@@ -1,0 +1,31 @@
+# Compiled CSS
+*.css
+
+# Minified js
+*.min.js
+!/assets/js/vendor/*.min.js
+
+# Sass
+.sass-cache
+
+# Grunt
+/node_modules/
+/storefront/
+npm-debug.log
+
+# Codekit
+config.codekit
+
+# Transifex
+.transifexrc
+/languages/*.po
+/languages/*.mo
+
+# PhpStorm
+.idea
+
+# macOS
+.DS_Store
+
+# Composer
+/vendor
