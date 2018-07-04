@@ -1,15 +1,15 @@
 <?php
 /**
- * Storefront functions.
+ * Woostify functions.
  *
- * @package storefront
+ * @package woostify
  */
 
-if ( ! function_exists( 'storefront_is_woocommerce_activated' ) ) {
+if ( ! function_exists('woostify_is_woocommerce_activated') ) {
 	/**
 	 * Query WooCommerce activation
 	 */
-	function storefront_is_woocommerce_activated() {
+	function woostify_is_woocommerce_activated() {
 		return class_exists( 'WooCommerce' ) ? true : false;
 	}
 }
@@ -25,7 +25,7 @@ if ( ! function_exists( 'storefront_is_woocommerce_activated' ) ) {
  *
  * @return string|bool False on failure, the result of the shortcode on success.
  */
-function storefront_do_shortcode( $tag, array $atts = array(), $content = null ) {
+function woostify_do_shortcode( $tag, array $atts = array(), $content = null ) {
 	global $shortcode_tags;
 
 	if ( ! isset( $shortcode_tags[ $tag ] ) ) {
@@ -37,12 +37,12 @@ function storefront_do_shortcode( $tag, array $atts = array(), $content = null )
 
 /**
  * Get the content background color
- * Accounts for the Storefront Designer and Storefront Powerpack content background option.
+ * Accounts for the Woostify Designer and Woostify Powerpack content background option.
  *
  * @since  1.6.0
  * @return string the background color
  */
-function storefront_get_content_background_color() {
+function woostify_get_content_background_color() {
 	if ( class_exists( 'Storefront_Designer' ) ) {
 		$content_bg_color = get_theme_mod( 'sd_content_background_color' );
 		$content_frame    = get_theme_mod( 'sd_fixed_width' );
@@ -65,12 +65,12 @@ function storefront_get_content_background_color() {
 }
 
 /**
- * Apply inline style to the Storefront header.
+ * Apply inline style to the Woostify header.
  *
  * @uses  get_header_image()
  * @since  2.0.0
  */
-function storefront_header_styles() {
+function woostify_header_styles() {
 	$is_header_image = get_header_image();
 	$header_bg_image = '';
 
@@ -84,7 +84,7 @@ function storefront_header_styles() {
 		$styles['background-image'] = $header_bg_image;
 	}
 
-	$styles = apply_filters( 'storefront_header_styles', $styles );
+	$styles = apply_filters( 'woostify_header_styles', $styles );
 
 	foreach ( $styles as $style => $value ) {
 		echo esc_attr( $style . ': ' . $value . '; ' );
@@ -92,12 +92,12 @@ function storefront_header_styles() {
 }
 
 /**
- * Apply inline style to the Storefront homepage content.
+ * Apply inline style to the Woostify homepage content.
  *
  * @uses  get_the_post_thumbnail_url()
  * @since  2.2.0
  */
-function storefront_homepage_content_styles() {
+function woostify_homepage_content_styles() {
 	$featured_image   = get_the_post_thumbnail_url( get_the_ID() );
 	$background_image = '';
 
@@ -111,7 +111,7 @@ function storefront_homepage_content_styles() {
 		$styles['background-image'] = $background_image;
 	}
 
-	$styles = apply_filters( 'storefront_homepage_content_styles', $styles );
+	$styles = apply_filters( 'woostify_homepage_content_styles', $styles );
 
 	foreach ( $styles as $style => $value ) {
 		echo esc_attr( $style . ': ' . $value . '; ' );
@@ -127,7 +127,7 @@ function storefront_homepage_content_styles() {
  * @return string        brightened/darkened hex color
  * @since  1.0.0
  */
-function storefront_adjust_color_brightness( $hex, $steps ) {
+function woostify_adjust_color_brightness( $hex, $steps ) {
 	// Steps should be between -255 and 255. Negative = darker, positive = lighter.
 	$steps  = max( -255, min( 255, $steps ) );
 
@@ -163,7 +163,7 @@ function storefront_adjust_color_brightness( $hex, $steps ) {
  * @param array $setting the setting object.
  * @since  1.3.0
  */
-function storefront_sanitize_choices( $input, $setting ) {
+function woostify_sanitize_choices( $input, $setting ) {
 	// Ensure input is a slug.
 	$input = sanitize_key( $input );
 
@@ -184,18 +184,18 @@ function storefront_sanitize_choices( $input, $setting ) {
  * @return bool Whether the checkbox is checked.
  * @since  1.5.0
  */
-function storefront_sanitize_checkbox( $checked ) {
+function woostify_sanitize_checkbox( $checked ) {
 	return ( ( isset( $checked ) && true == $checked ) ? true : false );
 }
 
 /**
- * Storefront Sanitize Hex Color
+ * Woostify Sanitize Hex Color
  *
  * @param string $color The color as a hex.
  * @todo remove in 2.1.
  */
-function storefront_sanitize_hex_color( $color ) {
-	_deprecated_function( 'storefront_sanitize_hex_color', '2.0', 'sanitize_hex_color' );
+function woostify_sanitize_hex_color( $color ) {
+	_deprecated_function( 'woostify_sanitize_hex_color', '2.0', 'sanitize_hex_color' );
 
 	if ( '' === $color ) {
 		return '';

@@ -1,15 +1,15 @@
 <?php
 /**
- * Storefront engine room
+ * Woostify engine room
  *
- * @package storefront
+ * @package woostify
  */
 
 /**
- * Assign the Storefront version to a var
+ * Assign the Woostify version to a var
  */
-$theme              = wp_get_theme( 'storefront' );
-$storefront_version = $theme['Version'];
+$theme              = wp_get_theme('Woostify');
+$woostify_version = $theme['Version'];
 
 /**
  * Set the content width based on the theme's design and stylesheet.
@@ -18,36 +18,36 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 980; /* pixels */
 }
 
-$storefront = (object) array(
-	'version' => $storefront_version,
+$woostify = (object) array(
+	'version' => $woostify_version,
 
 	/**
 	 * Initialize all the things.
 	 */
-	'main'       => require 'inc/class-storefront.php',
-	'customizer' => require 'inc/customizer/class-storefront-customizer.php',
+	'main'       => require 'inc/class-woostify.php',
+	'customizer' => require 'inc/customizer/class-woostify-customizer.php',
 );
 
-require 'inc/storefront-functions.php';
-require 'inc/storefront-template-hooks.php';
-require 'inc/storefront-template-functions.php';
+require 'inc/woostify-functions.php';
+require 'inc/woostify-template-hooks.php';
+require 'inc/woostify-template-functions.php';
 
 if ( class_exists( 'Jetpack' ) ) {
-	$storefront->jetpack = require 'inc/jetpack/class-storefront-jetpack.php';
+	$woostify->jetpack = require 'inc/jetpack/class-woostify-jetpack.php';
 }
 
-if ( storefront_is_woocommerce_activated() ) {
-	$storefront->woocommerce            = require 'inc/woocommerce/class-storefront-woocommerce.php';
-	$storefront->woocommerce_customizer = require 'inc/woocommerce/class-storefront-woocommerce-customizer.php';
+if ( woostify_is_woocommerce_activated() ) {
+	$woostify->woocommerce            = require 'inc/woocommerce/class-woostify-woocommerce.php';
+	$woostify->woocommerce_customizer = require 'inc/woocommerce/class-woostify-woocommerce-customizer.php';
 
-	require 'inc/woocommerce/storefront-woocommerce-template-hooks.php';
-	require 'inc/woocommerce/storefront-woocommerce-template-functions.php';
+	require 'inc/woocommerce/woostify-woocommerce-template-hooks.php';
+	require 'inc/woocommerce/woostify-woocommerce-template-functions.php';
 }
 
 if ( is_admin() ) {
-	$storefront->admin = require 'inc/admin/class-storefront-admin.php';
+	$woostify->admin = require 'inc/admin/class-woostify-admin.php';
 
-	require 'inc/admin/class-storefront-plugin-install.php';
+	require 'inc/admin/class-woostify-plugin-install.php';
 }
 
 /**

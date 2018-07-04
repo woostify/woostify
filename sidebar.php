@@ -2,7 +2,7 @@
 /**
  * The sidebar containing the main widget area.
  *
- * @package storefront
+ * @package woostify
  */
 
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {

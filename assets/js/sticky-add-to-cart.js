@@ -1,4 +1,4 @@
-/*global storefront_sticky_add_to_cart_params */
+/*global woostify_sticky_add_to_cart_params */
 ( function() {
 	document.addEventListener( 'DOMContentLoaded', function() {
 		var stickyAddToCart = document.getElementsByClassName( 'storefront-sticky-add-to-cart' );
@@ -7,20 +7,20 @@
 			return;
 		}
 
-		if ( typeof storefront_sticky_add_to_cart_params === 'undefined' ) {
+		if ( typeof woostify_sticky_add_to_cart_params === 'undefined' ) {
 			return;
 		}
 
-		var trigger = document.getElementsByClassName( storefront_sticky_add_to_cart_params.trigger_class );
+		var trigger = document.getElementsByClassName( woostify_sticky_add_to_cart_params.trigger_class );
 
 		if ( trigger.length > 0 ) {
 			var stickyAddToCartToggle = function() {
 				if ( ( trigger[0].getBoundingClientRect().top + trigger[0].scrollHeight ) < 0 ) {
-					stickyAddToCart[0].classList.add( 'storefront-sticky-add-to-cart--slideInDown' );
-					stickyAddToCart[0].classList.remove( 'storefront-sticky-add-to-cart--slideOutUp' );
-				} else if ( stickyAddToCart[0].classList.contains( 'storefront-sticky-add-to-cart--slideInDown' ) ) {
-					stickyAddToCart[0].classList.add( 'storefront-sticky-add-to-cart--slideOutUp' );
-					stickyAddToCart[0].classList.remove( 'storefront-sticky-add-to-cart--slideInDown' );
+					stickyAddToCart[0].classList.add( 'woostify-sticky-add-to-cart--slideInDown' );
+					stickyAddToCart[0].classList.remove( 'woostify-sticky-add-to-cart--slideOutUp' );
+				} else if ( stickyAddToCart[0].classList.contains( 'woostify-sticky-add-to-cart--slideInDown' ) ) {
+					stickyAddToCart[0].classList.add( 'woostify-sticky-add-to-cart--slideOutUp' );
+					stickyAddToCart[0].classList.remove( 'woostify-sticky-add-to-cart--slideInDown' );
 				}
 			};
 

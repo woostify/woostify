@@ -1,8 +1,8 @@
 <?php
 /**
- * Storefront NUX Starter Content Class
+ * Woostify NUX Starter Content Class
  *
- * @package  storefront
+ * @package  woostify
  * @since    2.0.0
  */
 
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 
 	/**
-	 * The Storefront NUX Starter Content class
+	 * The Woostify NUX Starter Content class
 	 */
 	class Storefront_NUX_Starter_Content {
 		/**
@@ -35,15 +35,15 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 
 		/**
 		 * Remove default widgets on activation
-		 * Set an option so that this is only done the first time the user activates Storefront.
+		 * Set an option so that this is only done the first time the user activates Woostify.
 		 *
 		 * @since 2.2.0
 		 * @return void
 		 */
 		public function remove_default_widgets() {
-			if ( false === (bool) get_option( 'storefront_cleared_widgets' ) && true === (bool) get_option( 'storefront_nux_fresh_site' ) ) {
+			if ( false === (bool) get_option( 'woostify_cleared_widgets' ) && true === (bool) get_option( 'woostify_nux_fresh_site' ) ) {
 				update_option( 'sidebars_widgets', array( 'wp_inactive_widgets' => array() ) );
-				update_option( 'storefront_cleared_widgets', true );
+				update_option( 'woostify_cleared_widgets', true );
 			}
 		}
 
@@ -56,21 +56,21 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 			$starter_content = array(
 				'posts' => array(
 					'home' => array(
-						'post_title'   => esc_attr__( 'Welcome', 'storefront' ),
+						'post_title'   => esc_attr__( 'Welcome', 'Woostify'),
 						/* translators: %s: 'End Of Line' symbol */
-						'post_content' => sprintf( esc_attr__( 'This is your homepage which is what most visitors will see when they first visit your shop.%sYou can change this text by editing the "Welcome" page via the "Pages" menu in your dashboard.', 'storefront' ), PHP_EOL . PHP_EOL ),
+						'post_content' => sprintf( esc_attr__( 'This is your homepage which is what most visitors will see when they first visit your shop.%sYou can change this text by editing the "Welcome" page via the "Pages" menu in your dashboard.', 'Woostify'), PHP_EOL . PHP_EOL ),
 						'template'     => 'template-homepage.php',
 						'thumbnail'    => '{{hero-image}}',
 					),
 					'about' => array(
 						'post_type' => 'page',
-						'post_title' => __( 'About', 'storefront' ),
-						'post_content' => __( 'You might be an artist who would like to introduce yourself and your work here or maybe you&rsquo;re a business with a mission to describe.', 'storefront' ),
+						'post_title' => __( 'About', 'Woostify'),
+						'post_content' => __( 'You might be an artist who would like to introduce yourself and your work here or maybe you&rsquo;re a business with a mission to describe.', 'Woostify'),
 					),
 					'contact' => array(
 						'post_type' => 'page',
-						'post_title' => __( 'Contact', 'storefront' ),
-						'post_content' => __( 'This is a page with some basic contact information, such as an address and phone number. You might also try a plugin to add a contact form.', 'storefront' ),
+						'post_title' => __( 'Contact', 'Woostify'),
+						'post_content' => __( 'This is a page with some basic contact information, such as an address and phone number. You might also try a plugin to add a contact form.', 'Woostify'),
 					),
 					'blog',
 				),
@@ -155,7 +155,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 				),
 				'nav_menus' => array(
 					'primary' => array(
-						'name' => __( 'Primary Menu', 'storefront' ),
+						'name' => __( 'Primary Menu', 'Woostify'),
 						'items' => array(
 							'shop' => array(
 								'type'      => 'post_type',
@@ -175,7 +175,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 						),
 					),
 					'secondary' => array(
-						'name' => __( 'Secondary Menu', 'storefront' ),
+						'name' => __( 'Secondary Menu', 'Woostify'),
 						'items' => array(
 							'my_account' => array(
 								'type'      => 'post_type',
@@ -185,7 +185,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 						),
 					),
 					'handheld' => array(
-						'name' => __( 'Handheld Menu', 'storefront' ),
+						'name' => __( 'Handheld Menu', 'Woostify'),
 						'items' => array(
 							'shop' => array(
 								'type'      => 'post_type',
@@ -230,7 +230,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 			}
 
 			// Register support for starter content.
-			add_theme_support( 'starter-content', apply_filters( 'storefront_starter_content', $starter_content ) );
+			add_theme_support( 'starter-content', apply_filters( 'woostify_starter_content', $starter_content ) );
 		}
 
 		/**
@@ -285,7 +285,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 			}
 
 			// Existing site: remove custom pages, navigation menus and widgets from starter content.
-			if ( true !== (bool) get_option( 'storefront_nux_fresh_site' ) ) {
+			if ( true !== (bool) get_option( 'woostify_nux_fresh_site' ) ) {
 				unset( $content['posts']['about'] );
 				unset( $content['posts']['contact'] );
 				unset( $content['nav_menus'] );
@@ -449,7 +449,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 				}
 			}
 
-			add_filter( 'storefront_product_categories_shortcode_args', array( $this, 'filter_sf_categories' ) );
+			add_filter( 'woostify_product_categories_shortcode_args', array( $this, 'filter_sf_categories' ) );
 		}
 
 		/**
@@ -523,7 +523,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 		}
 
 		/**
-		 * Filter Storefront Product Categories shortcode.
+		 * Filter Woostify Product Categories shortcode.
 		 *
 		 * @since 2.2.0
 		 * @param array $args Shortcode args.
@@ -610,19 +610,19 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 		 * @since 2.2.0
 		 */
 		private function _starter_content_products() {
-			$accessories_name        = esc_attr__( 'Accessories', 'storefront' );
-			$accessories_description = esc_attr__( 'A short category description', 'storefront' );
+			$accessories_name        = esc_attr__( 'Accessories', 'Woostify');
+			$accessories_description = esc_attr__( 'A short category description', 'Woostify');
 
-			$hoodies_name            = esc_attr__( 'Hoodies', 'storefront' );
-			$hoodies_description     = esc_attr__( 'A short category description', 'storefront' );
+			$hoodies_name            = esc_attr__( 'Hoodies', 'Woostify');
+			$hoodies_description     = esc_attr__( 'A short category description', 'Woostify');
 
-			$tshirts_name            = esc_attr__( 'Tshirts', 'storefront' );
-			$tshirts_description     = esc_attr__( 'A short category description', 'storefront' );
+			$tshirts_name            = esc_attr__( 'Tshirts', 'Woostify');
+			$tshirts_description     = esc_attr__( 'A short category description', 'Woostify');
 
 			$products = array(
 				// Accessories.
 				'beanie' => array(
-					'post_title'     => esc_attr__( 'Beanie', 'storefront' ),
+					'post_title'     => esc_attr__( 'Beanie', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -645,7 +645,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 
 				),
 				'belt' => array(
-					'post_title'     => esc_attr__( 'Belt', 'storefront' ),
+					'post_title'     => esc_attr__( 'Belt', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -667,7 +667,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 					),
 				),
 				'cap' => array(
-					'post_title'     => esc_attr__( 'Cap', 'storefront' ),
+					'post_title'     => esc_attr__( 'Cap', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -689,7 +689,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 					),
 				),
 				'sunglasses' => array(
-					'post_title'     => esc_attr__( 'Sunglasses', 'storefront' ),
+					'post_title'     => esc_attr__( 'Sunglasses', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -710,7 +710,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 					),
 				),
 				'hoodie-with-logo' => array(
-					'post_title'     => esc_attr__( 'Hoodie with Logo', 'storefront' ),
+					'post_title'     => esc_attr__( 'Hoodie with Logo', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -731,7 +731,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 					),
 				),
 				'hoodie-with-pocket' => array(
-					'post_title'     => esc_attr__( 'Hoodie with Pocket', 'storefront' ),
+					'post_title'     => esc_attr__( 'Hoodie with Pocket', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -753,7 +753,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 					),
 				),
 				'hoodie-with-zipper' => array(
-					'post_title'     => esc_attr__( 'Hoodie with Zipper', 'storefront' ),
+					'post_title'     => esc_attr__( 'Hoodie with Zipper', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -774,7 +774,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 					),
 				),
 				'hoodie' => array(
-					'post_title'     => esc_attr__( 'Hoodie', 'storefront' ),
+					'post_title'     => esc_attr__( 'Hoodie', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -796,7 +796,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 					),
 				),
 				'long-sleeve-tee' => array(
-					'post_title'     => esc_attr__( 'Long Sleeve Tee', 'storefront' ),
+					'post_title'     => esc_attr__( 'Long Sleeve Tee', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -817,7 +817,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 					),
 				),
 				'polo' => array(
-					'post_title'     => esc_attr__( 'Polo', 'storefront' ),
+					'post_title'     => esc_attr__( 'Polo', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -838,7 +838,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 					),
 				),
 				'tshirt' => array(
-					'post_title'     => esc_attr__( 'Tshirt', 'storefront' ),
+					'post_title'     => esc_attr__( 'Tshirt', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -859,7 +859,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 					),
 				),
 				'vneck-tee' => array(
-					'post_title'     => esc_attr__( 'Vneck Tshirt', 'storefront' ),
+					'post_title'     => esc_attr__( 'Vneck Tshirt', 'Woostify'),
 					'post_content'   => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
 					'post_type'      => 'product',
 					'comment_status' => 'open',
@@ -886,7 +886,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 				$products[ $symbol ]['post_name'] = $symbol;
 			}
 
-			return apply_filters( 'storefront_starter_content_products', $products );
+			return apply_filters( 'woostify_starter_content_products', $products );
 		}
 
 		/**
@@ -970,7 +970,7 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 		 * @return mixed false|array $validated_tasks if tasks list is not empty.
 		 */
 		private function _validate_tasks( $tasks ) {
-			$valid_tasks = apply_filters( 'storefront_valid_tour_tasks', array( 'homepage', 'products' ) );
+			$valid_tasks = apply_filters( 'woostify_valid_tour_tasks', array( 'homepage', 'products' ) );
 
 			$validated_tasks = array();
 

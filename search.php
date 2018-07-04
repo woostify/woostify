@@ -2,7 +2,7 @@
 /**
  * The template for displaying search results pages.
  *
- * @package storefront
+ * @package woostify
  */
 
 get_header(); ?>
@@ -16,7 +16,7 @@ get_header(); ?>
 				<h1 class="page-title">
 					<?php
 						/* translators: %s: search term */
-						printf( esc_attr__( 'Search Results for: %s', 'storefront' ), '<span>' . get_search_query() . '</span>' );
+						printf( esc_attr__( 'Search Results for: %s', 'Woostify'), '<span>' . get_search_query() . '</span>' );
 					?>
 				</h1>
 			</header><!-- .page-header -->
@@ -35,5 +35,5 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
-do_action( 'storefront_sidebar' );
+do_action( 'woostify_sidebar' );
 get_footer();

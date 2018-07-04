@@ -86,7 +86,7 @@
 		}
 
 		// Add class to footer search when clicked.
-		[].forEach.call( document.querySelectorAll( '.storefront-handheld-footer-bar .search > a' ), function( anchor ) {
+		[].forEach.call( document.querySelectorAll( '.woostify-handheld-footer-bar .search > a' ), function( anchor ) {
 			anchor.addEventListener( 'click', function( event ) {
 				anchor.parentElement.classList.toggle( 'active' );
 				event.preventDefault();

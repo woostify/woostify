@@ -105,7 +105,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Fix - Reverted Chromium overflow fix introduced in 2.2.6 due to incompatibility with other Storefront products.
 * Fix - Jetpack Google Translate widget styling.
 * Tweak - Improved Grouped products table styling.
-* Dev - Added filters; `storefront_custom_logo_args`, `storefront_register_nav_menus`, `storefront_html5_args`, and `storefront_site_logo_args`.
+* Dev - Added filters; `woostify_custom_logo_args`, `woostify_register_nav_menus`, `woostify_html5_args`, and `woostify_site_logo_args`.
 
 = 2.2.6 - 2018-01-16 =
 * Fix - Price slider widget styling.
@@ -131,7 +131,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Fix - Fix hero image positioning when page has RTL direction.
 * Tweak - Remove non-minified vendor script: `rgbaster.js`.
 * Tweak - Enqueue non-minified versions of scripts when `SCRIPT_DEBUG` is defined.
-* Dev - New hook to filter sidebar regions: `storefront_sidebar_args`.
+* Dev - New hook to filter sidebar regions: `woostify_sidebar_args`.
 * Dev - Adds `grunt-contrib-compress` to the build process.
 * Fix - Remove 4th parameter being passed to `remove_action`, it only accepts 3. Kudos [@ashfame](https://github.com/ashfame).
 * Fix - Limit product name cell to `300px` in the order review table.
@@ -146,7 +146,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Fix - Fix several typos in the theme description and customizer controls.
 * Fix - Remove `:hover` and `:active` states on `.screen-reader-text`.
 * Fix - Hide logo section from structured data if there's no image.
-* Dev - New hook after body tag: `storefront_before_site`.
+* Dev - New hook after body tag: `woostify_before_site`.
 * Fix - Fix modular scale negative values not being compiled correctly.
 * Tweak - Open documentation links in a new window.
 * Fix - Translatable labels in the 404 template.
@@ -174,12 +174,12 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - :focus borders now dotted.
 * Tweak - Default header background color is now white and header text color defaults updated accordingly.
 * Tweak - Various typographical adjustments to match updated header design.
-* Dev - Added actions; `storefront_jetpack_infinite_scroll_before`, `storefront_jetpack_infinite_scroll_after`, `storefront_jetpack_product_infinite_scroll_before` and `storefront_jetpack_product_infinite_scroll_after`.
-* Dev - Added filters; `storefront_footer_widget_rows` and `storefront_footer_widget_columns` to easily control the number of widget rows / columns in the footer.
+* Dev - Added actions; `woostify_jetpack_infinite_scroll_before`, `woostify_jetpack_infinite_scroll_after`, `woostify_jetpack_product_infinite_scroll_before` and `woostify_jetpack_product_infinite_scroll_after`.
+* Dev - Added filters; `woostify_footer_widget_rows` and `woostify_footer_widget_columns` to easily control the number of widget rows / columns in the footer.
 * Dev - FontAwesome and icon styles are now enqueued separately to make removing FontAwesome trivial.
 * Dev - Updated FontAwesome to 4.7.0
-* Dev - Upsells columns filterable via `storefront_upsells_columns`.
-* Dev - Added a column wrapper to product loops. To adjust the layout you now only need to filter `storefront_loop_columns`.
+* Dev - Upsells columns filterable via `woostify_upsells_columns`.
+* Dev - Added a column wrapper to product loops. To adjust the layout you now only need to filter `woostify_loop_columns`.
 * Dev - Homepage product sections only display if products are returned.
 * Tweak - Escape background content color before output. Kudos [@pdewouters](https://github.com/pdewouters).
 * Dev - Updated package versions. You'll need to `npm install` next time you try to build.
@@ -203,9 +203,9 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Fix - 404 layout.
 * Fix - Javascript error when `.site-header-cart` isn't present in the DOM.
 * Fix - Consistent spacing in site title.
-* Dev - Refactored `storefront_get_content_background_color()` to account for and give priority (over Storefront Designer) to Storefront Powerpack.
+* Dev - Refactored `woostify_get_content_background_color()` to account for and give priority (over Storefront Designer) to Storefront Powerpack.
 * Dev - Deprecated `is_woocommerce_activated()` and made it pluggable.
-* Dev - Added `storefront_is_woocommerce_activated()`.
+* Dev - Added `woostify_is_woocommerce_activated()`.
 
 = 2.1.5 - 2016-10-24 =
 * Tweak - Jetpack infinite scroll now works on product archives as well as posts.
@@ -221,9 +221,9 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Header cart dropdown now only scrolls if it renders beyond the current window height.
 * Tweak - Star rating selector styling.
 * Tweak - Widget region order. Addresses the issue of widgets being added to an unexpected region on default installs.
-* Dev - `storefront_post_thumbnail()` is now hooked in to `storefront_post_content_before`.
-* Dev - Added `storefront_post_content_before` and `storefront_post_content_after` actions.
-* Dev - `storefront_post_thumbnail()` now provides a default size.
+* Dev - `woostify_post_thumbnail()` is now hooked in to `woostify_post_content_before`.
+* Dev - Added `woostify_post_content_before` and `woostify_post_content_after` actions.
+* Dev - `woostify_post_thumbnail()` now provides a default size.
 * Dev - Updated FontAwesome to 4.6.3.
 
 = 2.1.3 - 2016-09-26 =
@@ -263,7 +263,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Fix - Photography extension layout on handheld devices.
 * Tweak - Product Bundles integration tweaks.
 * Tweak - Updated all docs links to point to docs.woocommerce.com.
-* Dev - Made `storefront_primary_navigation_wrapper()` and `storefront_primary_navigation_wrapper_close()` pluggable.
+* Dev - Made `woostify_primary_navigation_wrapper()` and `woostify_primary_navigation_wrapper_close()` pluggable.
 
 = 2.0.5 - 2016-07-05 =
 * Fix - Saved payment method styling.
@@ -279,7 +279,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Account / Cart links in the handheld nav bar will only appear if the pages are set in WooCommerce.
 * Tweak - Footer padding on handheld devices.
 * Tweak - `pre` background color to ensure legibility when displayed in messages.
-* Dev - Deprecate `storefront_html_tag_schema()`.
+* Dev - Deprecate `woostify_html_tag_schema()`.
 
 = 2.0.3 - 2016-06-02 =
 * Fix - Fatal error when using Storefront without WooCommerce.
@@ -290,8 +290,8 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Fix - Active link color when using the Custom Menu widget in the sidebar.
 * Fix - Store notice no longer hidden by the handheld nav bar.
 * Fix - Some errors in structured data. Kudos [@opportus](https://github.com/opportus).
-* Dev - Added `storefront_sticky_order_review` filter.
-* Dev - Added `storefront_structured_data` filter for structured data customisation.
+* Dev - Added `woostify_sticky_order_review` filter.
+* Dev - Added `woostify_structured_data` filter for structured data customisation.
 
 = 2.0.1 - 2016-05-12 =
 * Fix - Horizontal scroll bar on Safari.
@@ -300,8 +300,8 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Fix - Missing Customizer settings after updating to 2.0.0.
 * Tweak - Blog pagination hover effect.
 * Tweak - Apply the 'alt' button style to the checkout button in the cart widget.
-* Dev - Apply Customizer setting defaults on `customize_register` to account for child themes filtering `storefront_setting_default_values`.
-* Dev - Fix typo in the `storefront_homepage_after_best_selling_products` action name.
+* Dev - Apply Customizer setting defaults on `customize_register` to account for child themes filtering `woostify_setting_default_values`.
+* Dev - Fix typo in the `woostify_homepage_after_best_selling_products` action name.
 
 = 2.0.0 - 2016-05-06 =
 * Feature - Extensive improvements to the responsive design.
@@ -310,7 +310,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Feature - Added 'Best Sellers' product section to the Homepage.
 * Feature - oEmbed styling to match Storefront aesthetic.
 * Feature - The welcome screen now dynamically pulls in new products.
-* Feature - Added `storefront_header_styles()` for the header image/styles along with the `storefront_header_styles` filter to customise the treatment of header styles.
+* Feature - Added `woostify_header_styles()` for the header image/styles along with the `woostify_header_styles` filter to customise the treatment of header styles.
 * Feature - Support for the Custom Logo theme feature (requires WordPress 4.5).
 * Feature - Styled 'Average Rating' widget.
 * Feature - Styled WooCommerce 2.6 tabbed account section.
@@ -324,9 +324,9 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Fix - z-index on demo store notice.
 * Fix - Checkout add-ons integration.
 * Fix - Display of portrait logos on handheld devices.
-* Dev - Deprecated `storefront_categorized_blog()`.
-* Dev - Deprecated `storefront_sanitize_hex_color()`.
-* Dev - Deprecated `storefront_sanitize_layout()`.
+* Dev - Deprecated `woostify_categorized_blog()`.
+* Dev - Deprecated `woostify_sanitize_hex_color()`.
+* Dev - Deprecated `woostify_sanitize_layout()`.
 
 = 1.6.1 - 2016-01-18 =
 * Tweak - Jetpack integration updates.
@@ -344,13 +344,13 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Feature - Sticky order review on checkout.
 * Feature - Automatic credit card type detection in compatible payment gateways.
 * Tweak - Styled the in stock/out of stock message. Props @nishitlangaliya.
-* Tweak - Added new function `storefront_star_rating_script`. Outputs JavaScript for the new star rating input while we wait for WooCommerce 2.5 to be released.
+* Tweak - Added new function `woostify_star_rating_script`. Outputs JavaScript for the new star rating input while we wait for WooCommerce 2.5 to be released.
 * Tweak - Contrast on hovered links in the primary navigation.
 * Tweak - If no widgets are present in the sidebar a full width layout will be applied to all pages.
 * Tweak - Updated integration with the Variation Swatches extension.
 * Tweak - Featured images on posts / pages are now centered.
 * Fix - Table alignment on desktop.
-* Dev - Added some new hooks to the homepage template tags; `storefront_homepage_after_product_categories_title`, `storefront_homepage_after_recent_products_title`, `storefront_homepage_after_featured_products_title`, `storefront_homepage_after_popular_products_title`, `storefront_homepage_after_on_sale_products_title`
+* Dev - Added some new hooks to the homepage template tags; `woostify_homepage_after_product_categories_title`, `woostify_homepage_after_recent_products_title`, `woostify_homepage_after_featured_products_title`, `woostify_homepage_after_popular_products_title`, `woostify_homepage_after_on_sale_products_title`
 * Dev - Styling for 6 column product layouts.
 * Dev - Updates FontAwesome to version 4.5.0.
 
@@ -371,7 +371,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Added styles for WooCommerce password strength meter.
 * Tweak - Arrange the login/registration forms on the account page into two columns.
 * Tweak - Support for the most recent class applied to the site logo added by Jetpack.
-* Dev - `storefront_display_comments` is now hooked into `storefront_single_post_after` with priority 20 (was 10).
+* Dev - `woostify_display_comments` is now hooked into `woostify_single_post_after` with priority 20 (was 10).
 * Localization - All translations are now managed on [WordPress.org](https://translate.wordpress.org/projects/wp-themes/storefront)
 * Localization - Product names can no longer be translated.
 
@@ -383,7 +383,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Embedded objects (videos etc) width will no longer exceed the width of their containing element.
 * Tweak - Improved the ligibility of the active swatch when using the Variation Swatches extension.
 * Dev - Improved how RTL stylesheets are enqueued.
-* Dev - The default layout is now  filterable via `storefront_default_layout`.
+* Dev - The default layout is now  filterable via `woostify_default_layout`.
 
 = 1.5.0 - 2015-08-11 =
 * Feature - rtl support.
@@ -396,10 +396,10 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Fix - Horizontal scroll bar in Safari at small sizes.
 * Fix - Pay for order screen layout when using full width page template on my account.
 * Fix - Fixed display of disabled `option`s in Firefox.
-* Dev - Added `storefront_sanitize_checkbox()` sanitization function.
+* Dev - Added `woostify_sanitize_checkbox()` sanitization function.
 * Dev - Added `Storefront_Custom_Radio_Image_Control` class for creating radio image controls in the Customizer.
-* Dev - Added `storefront_post_thumbnail()`.
-* Dev - Renamed `do_shortcode_func()` to `storefront_do_shortcode()`.
+* Dev - Added `woostify_post_thumbnail()`.
+* Dev - Renamed `do_shortcode_func()` to `woostify_do_shortcode()`.
 * Dev - Updated Composite Products integration for compatibility with 3.2.
 * Dev - Updated normalize.css to 3.0.3.
 * Tweak - Menu button spacing on handheld.
@@ -411,10 +411,10 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Escaping function used on homepage section titles.
 * Tweak - Remove all instances of `do_shortcode()` to improve performance.
 * Tweak - Reduced link focus outline from 2px to 1px.
-* Dev - `$storefront_version` global when using a child theme.
+* Dev - `$woostify_version` global when using a child theme.
 
 = 1.4.5 - 2015-05-14 =
-* Fix - Use the correct escaping function in `storefront_product_categories()`.
+* Fix - Use the correct escaping function in `woostify_product_categories()`.
 * Fix - Pagination when only showing product categories / subcategories on archives.
 * Tweak - Logo prompt in Header section in Customizer.
 * Tweak - Only output description paragraph in header if one is set.
@@ -458,7 +458,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Accessibility improvements in post meta.
 * Tweak - Products widget styling.
 * Tweak - Widget headings are now `h3`s.
-* Tweak - Skip links are now a function (`storefront_skip_links()`) hooked into `storefront_header`.
+* Tweak - Skip links are now a function (`woostify_skip_links()`) hooked into `woostify_header`.
 * Tweak - Header widget region markup only displays when widgets are assigned.
 * Tweak - `:focus` styles.
 * Dev - Replaced `paginate_links()` with `the_posts_pagination()`.
@@ -483,14 +483,14 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Product Reviews Pro submission form.
 * Tweak - Review form input alignment.
 * Tweak - Improved integration with WooCommerce Photography extension.
-* Dev - Added `storefront_related_products_args` filter.
+* Dev - Added `woostify_related_products_args` filter.
 
 = 1.3.0 - 2015-02-10 =
 * Feature - Support for WooCommerce 2.3 features like responsive tables.
 * Fix - Margin on site title / logo.
 * Fix - Tweaked some css selectors in the checkout to improve compatiblity with Amazon Payments Advanced gateway.
 * Fix - Layout selector in Firefox.
-* Fix - `storefront_menu_toggle_text` filter. Props [jesinwp](https://github.com/jesinwp).
+* Fix - `woostify_menu_toggle_text` filter. Props [jesinwp](https://github.com/jesinwp).
 * Tweak - Product Reviews Pro integration.
 * Tweak - Select width in WooCommerce forms.
 * Tweak - Composite Products integration improvements.
@@ -501,7 +501,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Widget region order in dashboard.
 * Tweak - Add the correct page content hook in the inline docs ( template-homepage.php ).
 * Tweak - `mark` styling.
-* Dev - Added `storefront_sanitize_choices()`.
+* Dev - Added `woostify_sanitize_choices()`.
 * Dev - Tweaked the divider Customizer control to allow text/title.
 * Dev - Updated FontAwesome to version 4.3.0.
 * Dev - Libsass / node susy for faster compiling. Please do a fresh `npm install` when working with this version.
@@ -515,7 +515,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Link color in the sidebar.
 * Tweak - Padding in the header.
 * Tweak - Breadcrumb position.
-* Dev - `storefront_header_cart()` is now pluggable.
+* Dev - `woostify_header_cart()` is now pluggable.
 * Dev - Make use of WordPress 4.1 functions `the_archive_title()` and `the_archive_description()`.
 
 = 1.2.4 - 2015-01-15 =
@@ -524,7 +524,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Wishlist table design.
 * Dev - Reorganised sass files.
 * Dev - Added some handy class names to homepage product sections.
-* Dev - Added `storefront_menu_toggle_text` filter.
+* Dev - Added `woostify_menu_toggle_text` filter.
 * Dev - Updated how WooCommerce styles are dequeued.
 
 = 1.2.3 - 2015-01-07 =
@@ -541,14 +541,14 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Make use of WordPress 4.1's `title-tag` theme feature. (Requires WordPress 4.1).
 * Tweak - Welcome screen tweaks for WordPress 4.1.
 * Tweak - Slightly reduced button/input size.
-* Dev - Made `storefront_product_search()` pluggable.
+* Dev - Made `woostify_product_search()` pluggable.
 
 = 1.2.1 - 2014-12-09 =
 * Fix - Blog post category and tag link output.
 * Fix - Cart link in handheld orientation.
 * Tweak - Improved payment form display when using a dark background colour.
 * Tweak - Blog author rich snippet.
-* Dev - Added `storefront_single_post_posted_on_html` filter.
+* Dev - Added `woostify_single_post_posted_on_html` filter.
 * Dev - Replaced reset.css with normalize.css.
 
 = 1.2.0 - 2014-12-02 =
@@ -557,9 +557,9 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Fix - Layout picker images when using a child theme.
 * Fix - Header link color now properly applied to site title.
 * Fix - Included styling for `.form-row-wide`.
-* Dev - Added `storefront_copyright_text` filter.
+* Dev - Added `woostify_copyright_text` filter.
 * Dev - Tweaked how Storefront determines whether Customizer logic should be loaded.
-* Dev - Added `storefront_after_footer` action.
+* Dev - Added `woostify_after_footer` action.
 * Dev - Customizer CSS now correctly appended to appropriate stylesheets.
 * Tweak - Improved star rating input display for handheld devices.
 * Tweak - Several minor code optimisations (thanks https://scrutinizer-ci.com).
@@ -605,7 +605,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Moved the header controls in to the header image section.
 * Tweak - Removed header widget border.
 * Tweak - `.site-main` margin.
-* Dev - Added `storefront_product_thumbnail_columns` filter.
+* Dev - Added `woostify_product_thumbnail_columns` filter.
 * Dev - Added `Gruntfile.js` and `package.json`.
 
 = 1.0.1 - 2014-09-14 =

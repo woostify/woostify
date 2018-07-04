@@ -2,10 +2,10 @@
 /**
  * WooCommerce Template Functions.
  *
- * @package storefront
+ * @package woostify
  */
 
-if ( ! function_exists( 'storefront_before_content' ) ) {
+if ( ! function_exists( 'woostify_before_content' ) ) {
 	/**
 	 * Before Content
 	 * Wraps all WooCommerce content in wrappers which match the theme markup
@@ -13,7 +13,7 @@ if ( ! function_exists( 'storefront_before_content' ) ) {
 	 * @since   1.0.0
 	 * @return  void
 	 */
-	function storefront_before_content() {
+	function woostify_before_content() {
 		?>
 		<div id="primary" class="content-area">
 			<main id="main" class="site-main" role="main">
@@ -21,7 +21,7 @@ if ( ! function_exists( 'storefront_before_content' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_after_content' ) ) {
+if ( ! function_exists( 'woostify_after_content' ) ) {
 	/**
 	 * After Content
 	 * Closes the wrapping divs
@@ -29,17 +29,17 @@ if ( ! function_exists( 'storefront_after_content' ) ) {
 	 * @since   1.0.0
 	 * @return  void
 	 */
-	function storefront_after_content() {
+	function woostify_after_content() {
 		?>
 			</main><!-- #main -->
 		</div><!-- #primary -->
 
 		<?php
-		do_action( 'storefront_sidebar' );
+		do_action( 'woostify_sidebar' );
 	}
 }
 
-if ( ! function_exists( 'storefront_cart_link_fragment' ) ) {
+if ( ! function_exists( 'woostify_cart_link_fragment' ) ) {
 	/**
 	 * Cart Fragments
 	 * Ensure cart contents update when products are added to the cart via AJAX
@@ -47,22 +47,22 @@ if ( ! function_exists( 'storefront_cart_link_fragment' ) ) {
 	 * @param  array $fragments Fragments to refresh via AJAX.
 	 * @return array            Fragments to refresh via AJAX
 	 */
-	function storefront_cart_link_fragment( $fragments ) {
+	function woostify_cart_link_fragment( $fragments ) {
 		global $woocommerce;
 
 		ob_start();
-		storefront_cart_link();
+		woostify_cart_link();
 		$fragments['a.cart-contents'] = ob_get_clean();
 
 		ob_start();
-		storefront_handheld_footer_bar_cart_link();
+		woostify_handheld_footer_bar_cart_link();
 		$fragments['a.footer-cart-contents'] = ob_get_clean();
 
 		return $fragments;
 	}
 }
 
-if ( ! function_exists( 'storefront_cart_link' ) ) {
+if ( ! function_exists( 'woostify_cart_link' ) ) {
 	/**
 	 * Cart Link
 	 * Displayed a link to the cart including the number of items present and the cart total
@@ -70,26 +70,26 @@ if ( ! function_exists( 'storefront_cart_link' ) ) {
 	 * @return void
 	 * @since  1.0.0
 	 */
-	function storefront_cart_link() {
+	function woostify_cart_link() {
 		?>
-			<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'storefront' ); ?>">
+			<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'Woostify'); ?>">
 				<?php /* translators: %d: number of items in cart */ ?>
-				<?php echo wp_kses_post( WC()->cart->get_cart_subtotal() ); ?> <span class="count"><?php echo wp_kses_data( sprintf( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'storefront' ), WC()->cart->get_cart_contents_count() ) ); ?></span>
+				<?php echo wp_kses_post( WC()->cart->get_cart_subtotal() ); ?> <span class="count"><?php echo wp_kses_data( sprintf( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'Woostify'), WC()->cart->get_cart_contents_count() ) ); ?></span>
 			</a>
 		<?php
 	}
 }
 
-if ( ! function_exists( 'storefront_product_search' ) ) {
+if ( ! function_exists( 'woostify_product_search' ) ) {
 	/**
 	 * Display Product Search
 	 *
 	 * @since  1.0.0
-	 * @uses  storefront_is_woocommerce_activated() check if WooCommerce is activated
+	 * @uses  woostify_is_woocommerce_activated() check if WooCommerce is activated
 	 * @return void
 	 */
-	function storefront_product_search() {
-		if ( storefront_is_woocommerce_activated() ) {
+	function woostify_product_search() {
+		if ( woostify_is_woocommerce_activated() ) {
 			?>
 			<div class="site-search">
 				<?php the_widget( 'WC_Widget_Product_Search', 'title=' ); ?>
@@ -99,16 +99,16 @@ if ( ! function_exists( 'storefront_product_search' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_header_cart' ) ) {
+if ( ! function_exists( 'woostify_header_cart' ) ) {
 	/**
 	 * Display Header Cart
 	 *
 	 * @since  1.0.0
-	 * @uses  storefront_is_woocommerce_activated() check if WooCommerce is activated
+	 * @uses  woostify_is_woocommerce_activated() check if WooCommerce is activated
 	 * @return void
 	 */
-	function storefront_header_cart() {
-		if ( storefront_is_woocommerce_activated() ) {
+	function woostify_header_cart() {
+		if ( woostify_is_woocommerce_activated() ) {
 			if ( is_cart() ) {
 				$class = 'current-menu-item';
 			} else {
@@ -117,7 +117,7 @@ if ( ! function_exists( 'storefront_header_cart' ) ) {
 			?>
 		<ul id="site-header-cart" class="site-header-cart menu">
 			<li class="<?php echo esc_attr( $class ); ?>">
-				<?php storefront_cart_link(); ?>
+				<?php woostify_cart_link(); ?>
 			</li>
 			<li>
 				<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
@@ -128,7 +128,7 @@ if ( ! function_exists( 'storefront_header_cart' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_upsell_display' ) ) {
+if ( ! function_exists( 'woostify_upsell_display' ) ) {
 	/**
 	 * Upsells
 	 * Replace the default upsell function with our own which displays the correct number product columns
@@ -137,110 +137,110 @@ if ( ! function_exists( 'storefront_upsell_display' ) ) {
 	 * @return  void
 	 * @uses    woocommerce_upsell_display()
 	 */
-	function storefront_upsell_display() {
-		$columns = apply_filters( 'storefront_upsells_columns', 3 );
+	function woostify_upsell_display() {
+		$columns = apply_filters( 'woostify_upsells_columns', 3 );
 		woocommerce_upsell_display( -1, $columns );
 	}
 }
 
-if ( ! function_exists( 'storefront_sorting_wrapper' ) ) {
+if ( ! function_exists( 'woostify_sorting_wrapper' ) ) {
 	/**
 	 * Sorting wrapper
 	 *
 	 * @since   1.4.3
 	 * @return  void
 	 */
-	function storefront_sorting_wrapper() {
-		echo '<div class="storefront-sorting">';
+	function woostify_sorting_wrapper() {
+		echo '<div class="woostify-sorting">';
 	}
 }
 
-if ( ! function_exists( 'storefront_sorting_wrapper_close' ) ) {
+if ( ! function_exists( 'woostify_sorting_wrapper_close' ) ) {
 	/**
 	 * Sorting wrapper close
 	 *
 	 * @since   1.4.3
 	 * @return  void
 	 */
-	function storefront_sorting_wrapper_close() {
+	function woostify_sorting_wrapper_close() {
 		echo '</div>';
 	}
 }
 
-if ( ! function_exists( 'storefront_product_columns_wrapper' ) ) {
+if ( ! function_exists( 'woostify_product_columns_wrapper' ) ) {
 	/**
 	 * Product columns wrapper
 	 *
 	 * @since   2.2.0
 	 * @return  void
 	 */
-	function storefront_product_columns_wrapper() {
-		$columns = storefront_loop_columns();
+	function woostify_product_columns_wrapper() {
+		$columns = woostify_loop_columns();
 		echo '<div class="columns-' . absint( $columns ) . '">';
 	}
 }
 
-if ( ! function_exists( 'storefront_loop_columns' ) ) {
+if ( ! function_exists( 'woostify_loop_columns' ) ) {
 	/**
 	 * Default loop columns on product archives
 	 *
 	 * @return integer products per row
 	 * @since  1.0.0
 	 */
-	function storefront_loop_columns() {
+	function woostify_loop_columns() {
 		$columns = 3; // 3 products per row
 
 		if ( function_exists( 'wc_get_default_products_per_row' ) ) {
 			$columns = wc_get_default_products_per_row();
 		}
 
-		return apply_filters( 'storefront_loop_columns', $columns );
+		return apply_filters( 'woostify_loop_columns', $columns );
 	}
 }
 
-if ( ! function_exists( 'storefront_product_columns_wrapper_close' ) ) {
+if ( ! function_exists( 'woostify_product_columns_wrapper_close' ) ) {
 	/**
 	 * Product columns wrapper close
 	 *
 	 * @since   2.2.0
 	 * @return  void
 	 */
-	function storefront_product_columns_wrapper_close() {
+	function woostify_product_columns_wrapper_close() {
 		echo '</div>';
 	}
 }
 
-if ( ! function_exists( 'storefront_shop_messages' ) ) {
+if ( ! function_exists( 'woostify_shop_messages' ) ) {
 	/**
-	 * Storefront shop messages
+	 * Woostify shop messages
 	 *
 	 * @since   1.4.4
-	 * @uses    storefront_do_shortcode
+	 * @uses    woostify_do_shortcode
 	 */
-	function storefront_shop_messages() {
+	function woostify_shop_messages() {
 		if ( ! is_checkout() ) {
-			echo wp_kses_post( storefront_do_shortcode( 'woocommerce_messages' ) );
+			echo wp_kses_post( woostify_do_shortcode( 'woocommerce_messages' ) );
 		}
 	}
 }
 
-if ( ! function_exists( 'storefront_woocommerce_pagination' ) ) {
+if ( ! function_exists( 'woostify_woocommerce_pagination' ) ) {
 	/**
-	 * Storefront WooCommerce Pagination
+	 * Woostify WooCommerce Pagination
 	 * WooCommerce disables the product pagination inside the woocommerce_product_subcategories() function
-	 * but since Storefront adds pagination before that function is excuted we need a separate function to
+	 * but since Woostify adds pagination before that function is excuted we need a separate function to
 	 * determine whether or not to display the pagination.
 	 *
 	 * @since 1.4.4
 	 */
-	function storefront_woocommerce_pagination() {
+	function woostify_woocommerce_pagination() {
 		if ( woocommerce_products_will_display() ) {
 			woocommerce_pagination();
 		}
 	}
 }
 
-if ( ! function_exists( 'storefront_product_categories' ) ) {
+if ( ! function_exists( 'woostify_product_categories' ) ) {
 	/**
 	 * Display Product Categories
 	 * Hooked into the `homepage` action in the homepage template
@@ -249,20 +249,20 @@ if ( ! function_exists( 'storefront_product_categories' ) ) {
 	 * @param array $args the product section args.
 	 * @return void
 	 */
-	function storefront_product_categories( $args ) {
+	function woostify_product_categories( $args ) {
 		$args = apply_filters(
-			'storefront_product_categories_args', array(
+			'woostify_product_categories_args', array(
 				'limit'             => 3,
 				'columns'           => 3,
 				'child_categories'  => 0,
 				'orderby'           => 'name',
-				'title'             => __( 'Shop by Category', 'storefront' ),
+				'title'             => __( 'Shop by Category', 'Woostify'),
 			)
 		);
 
-		$shortcode_content = storefront_do_shortcode(
+		$shortcode_content = woostify_do_shortcode(
 			'product_categories', apply_filters(
-				'storefront_product_categories_shortcode_args', array(
+				'woostify_product_categories_shortcode_args', array(
 					'number'  => intval( $args['limit'] ),
 					'columns' => intval( $args['columns'] ),
 					'orderby' => esc_attr( $args['orderby'] ),
@@ -275,24 +275,24 @@ if ( ! function_exists( 'storefront_product_categories' ) ) {
 		 * Only display the section if the shortcode returns product categories
 		 */
 		if ( false !== strpos( $shortcode_content, 'product-category' ) ) {
-			echo '<section class="storefront-product-section storefront-product-categories" aria-label="' . esc_attr__( 'Product Categories', 'storefront' ) . '">';
+			echo '<section class="woostify-product-section woostify-product-categories" aria-label="' . esc_attr__( 'Product Categories', 'Woostify') . '">';
 
-			do_action( 'storefront_homepage_before_product_categories' );
+			do_action( 'woostify_homepage_before_product_categories' );
 
 			echo '<h2 class="section-title">' . wp_kses_post( $args['title'] ) . '</h2>';
 
-			do_action( 'storefront_homepage_after_product_categories_title' );
+			do_action( 'woostify_homepage_after_product_categories_title' );
 
 			echo $shortcode_content; // WPCS: XSS ok.
 
-			do_action( 'storefront_homepage_after_product_categories' );
+			do_action( 'woostify_homepage_after_product_categories' );
 
 			echo '</section>';
 		}
 	}
 }
 
-if ( ! function_exists( 'storefront_recent_products' ) ) {
+if ( ! function_exists( 'woostify_recent_products' ) ) {
 	/**
 	 * Display Recent Products
 	 * Hooked into the `homepage` action in the homepage template
@@ -301,20 +301,20 @@ if ( ! function_exists( 'storefront_recent_products' ) ) {
 	 * @param array $args the product section args.
 	 * @return void
 	 */
-	function storefront_recent_products( $args ) {
+	function woostify_recent_products( $args ) {
 		$args = apply_filters(
-			'storefront_recent_products_args', array(
+			'woostify_recent_products_args', array(
 				'limit'   => 4,
 				'columns' => 4,
 				'orderby' => 'date',
 				'order'   => 'desc',
-				'title'   => __( 'New In', 'storefront' ),
+				'title'   => __( 'New In', 'Woostify'),
 			)
 		);
 
-		$shortcode_content = storefront_do_shortcode(
+		$shortcode_content = woostify_do_shortcode(
 			'products', apply_filters(
-				'storefront_recent_products_shortcode_args', array(
+				'woostify_recent_products_shortcode_args', array(
 					'orderby'  => esc_attr( $args['orderby'] ),
 					'order'    => esc_attr( $args['order'] ),
 					'per_page' => intval( $args['limit'] ),
@@ -327,24 +327,24 @@ if ( ! function_exists( 'storefront_recent_products' ) ) {
 		 * Only display the section if the shortcode returns products
 		 */
 		if ( false !== strpos( $shortcode_content, 'product' ) ) {
-			echo '<section class="storefront-product-section storefront-recent-products" aria-label="' . esc_attr__( 'Recent Products', 'storefront' ) . '">';
+			echo '<section class="woostify-product-section woostify-recent-products" aria-label="' . esc_attr__( 'Recent Products', 'Woostify') . '">';
 
-			do_action( 'storefront_homepage_before_recent_products' );
+			do_action( 'woostify_homepage_before_recent_products' );
 
 			echo '<h2 class="section-title">' . wp_kses_post( $args['title'] ) . '</h2>';
 
-			do_action( 'storefront_homepage_after_recent_products_title' );
+			do_action( 'woostify_homepage_after_recent_products_title' );
 
 			echo $shortcode_content; // WPCS: XSS ok.
 
-			do_action( 'storefront_homepage_after_recent_products' );
+			do_action( 'woostify_homepage_after_recent_products' );
 
 			echo '</section>';
 		}
 	}
 }
 
-if ( ! function_exists( 'storefront_featured_products' ) ) {
+if ( ! function_exists( 'woostify_featured_products' ) ) {
 	/**
 	 * Display Featured Products
 	 * Hooked into the `homepage` action in the homepage template
@@ -353,21 +353,21 @@ if ( ! function_exists( 'storefront_featured_products' ) ) {
 	 * @param array $args the product section args.
 	 * @return void
 	 */
-	function storefront_featured_products( $args ) {
+	function woostify_featured_products( $args ) {
 		$args = apply_filters(
-			'storefront_featured_products_args', array(
+			'woostify_featured_products_args', array(
 				'limit'      => 4,
 				'columns'    => 4,
 				'orderby'    => 'date',
 				'order'      => 'desc',
 				'visibility' => 'featured',
-				'title'      => __( 'We Recommend', 'storefront' ),
+				'title'      => __( 'We Recommend', 'Woostify'),
 			)
 		);
 
-		$shortcode_content = storefront_do_shortcode(
+		$shortcode_content = woostify_do_shortcode(
 			'products', apply_filters(
-				'storefront_featured_products_shortcode_args', array(
+				'woostify_featured_products_shortcode_args', array(
 					'per_page'   => intval( $args['limit'] ),
 					'columns'    => intval( $args['columns'] ),
 					'orderby'    => esc_attr( $args['orderby'] ),
@@ -381,24 +381,24 @@ if ( ! function_exists( 'storefront_featured_products' ) ) {
 		 * Only display the section if the shortcode returns products
 		 */
 		if ( false !== strpos( $shortcode_content, 'product' ) ) {
-			echo '<section class="storefront-product-section storefront-featured-products" aria-label="' . esc_attr__( 'Featured Products', 'storefront' ) . '">';
+			echo '<section class="woostify-product-section woostify-featured-products" aria-label="' . esc_attr__( 'Featured Products', 'Woostify') . '">';
 
-			do_action( 'storefront_homepage_before_featured_products' );
+			do_action( 'woostify_homepage_before_featured_products' );
 
 			echo '<h2 class="section-title">' . wp_kses_post( $args['title'] ) . '</h2>';
 
-			do_action( 'storefront_homepage_after_featured_products_title' );
+			do_action( 'woostify_homepage_after_featured_products_title' );
 
 			echo $shortcode_content; // WPCS: XSS ok.
 
-			do_action( 'storefront_homepage_after_featured_products' );
+			do_action( 'woostify_homepage_after_featured_products' );
 
 			echo '</section>';
 		}
 	}
 }
 
-if ( ! function_exists( 'storefront_popular_products' ) ) {
+if ( ! function_exists( 'woostify_popular_products' ) ) {
 	/**
 	 * Display Popular Products
 	 * Hooked into the `homepage` action in the homepage template
@@ -407,20 +407,20 @@ if ( ! function_exists( 'storefront_popular_products' ) ) {
 	 * @param array $args the product section args.
 	 * @return void
 	 */
-	function storefront_popular_products( $args ) {
+	function woostify_popular_products( $args ) {
 		$args = apply_filters(
-			'storefront_popular_products_args', array(
+			'woostify_popular_products_args', array(
 				'limit'   => 4,
 				'columns' => 4,
 				'orderby' => 'rating',
 				'order'   => 'desc',
-				'title'   => __( 'Fan Favorites', 'storefront' ),
+				'title'   => __( 'Fan Favorites', 'Woostify'),
 			)
 		);
 
-		$shortcode_content = storefront_do_shortcode(
+		$shortcode_content = woostify_do_shortcode(
 			'products', apply_filters(
-				'storefront_popular_products_shortcode_args', array(
+				'woostify_popular_products_shortcode_args', array(
 					'per_page' => intval( $args['limit'] ),
 					'columns'  => intval( $args['columns'] ),
 					'orderby'  => esc_attr( $args['orderby'] ),
@@ -433,24 +433,24 @@ if ( ! function_exists( 'storefront_popular_products' ) ) {
 		 * Only display the section if the shortcode returns products
 		 */
 		if ( false !== strpos( $shortcode_content, 'product' ) ) {
-			echo '<section class="storefront-product-section storefront-popular-products" aria-label="' . esc_attr__( 'Popular Products', 'storefront' ) . '">';
+			echo '<section class="woostify-product-section woostify-popular-products" aria-label="' . esc_attr__( 'Popular Products', 'Woostify') . '">';
 
-			do_action( 'storefront_homepage_before_popular_products' );
+			do_action( 'woostify_homepage_before_popular_products' );
 
 			echo '<h2 class="section-title">' . wp_kses_post( $args['title'] ) . '</h2>';
 
-			do_action( 'storefront_homepage_after_popular_products_title' );
+			do_action( 'woostify_homepage_after_popular_products_title' );
 
 			echo $shortcode_content; // WPCS: XSS ok.
 
-			do_action( 'storefront_homepage_after_popular_products' );
+			do_action( 'woostify_homepage_after_popular_products' );
 
 			echo '</section>';
 		}
 	}
 }
 
-if ( ! function_exists( 'storefront_on_sale_products' ) ) {
+if ( ! function_exists( 'woostify_on_sale_products' ) ) {
 	/**
 	 * Display On Sale Products
 	 * Hooked into the `homepage` action in the homepage template
@@ -459,21 +459,21 @@ if ( ! function_exists( 'storefront_on_sale_products' ) ) {
 	 * @since  1.0.0
 	 * @return void
 	 */
-	function storefront_on_sale_products( $args ) {
+	function woostify_on_sale_products( $args ) {
 		$args = apply_filters(
-			'storefront_on_sale_products_args', array(
+			'woostify_on_sale_products_args', array(
 				'limit'   => 4,
 				'columns' => 4,
 				'orderby' => 'date',
 				'order'   => 'desc',
 				'on_sale' => 'true',
-				'title'   => __( 'On Sale', 'storefront' ),
+				'title'   => __( 'On Sale', 'Woostify'),
 			)
 		);
 
-		$shortcode_content = storefront_do_shortcode(
+		$shortcode_content = woostify_do_shortcode(
 			'products', apply_filters(
-				'storefront_on_sale_products_shortcode_args', array(
+				'woostify_on_sale_products_shortcode_args', array(
 					'per_page' => intval( $args['limit'] ),
 					'columns'  => intval( $args['columns'] ),
 					'orderby'  => esc_attr( $args['orderby'] ),
@@ -487,24 +487,24 @@ if ( ! function_exists( 'storefront_on_sale_products' ) ) {
 		 * Only display the section if the shortcode returns products
 		 */
 		if ( false !== strpos( $shortcode_content, 'product' ) ) {
-			echo '<section class="storefront-product-section storefront-on-sale-products" aria-label="' . esc_attr__( 'On Sale Products', 'storefront' ) . '">';
+			echo '<section class="woostify-product-section woostify-on-sale-products" aria-label="' . esc_attr__( 'On Sale Products', 'Woostify') . '">';
 
-			do_action( 'storefront_homepage_before_on_sale_products' );
+			do_action( 'woostify_homepage_before_on_sale_products' );
 
 			echo '<h2 class="section-title">' . wp_kses_post( $args['title'] ) . '</h2>';
 
-			do_action( 'storefront_homepage_after_on_sale_products_title' );
+			do_action( 'woostify_homepage_after_on_sale_products_title' );
 
 			echo $shortcode_content; // WPCS: XSS ok.
 
-			do_action( 'storefront_homepage_after_on_sale_products' );
+			do_action( 'woostify_homepage_after_on_sale_products' );
 
 			echo '</section>';
 		}
 	}
 }
 
-if ( ! function_exists( 'storefront_best_selling_products' ) ) {
+if ( ! function_exists( 'woostify_best_selling_products' ) ) {
 	/**
 	 * Display Best Selling Products
 	 * Hooked into the `homepage` action in the homepage template
@@ -513,20 +513,20 @@ if ( ! function_exists( 'storefront_best_selling_products' ) ) {
 	 * @param array $args the product section args.
 	 * @return void
 	 */
-	function storefront_best_selling_products( $args ) {
+	function woostify_best_selling_products( $args ) {
 		$args = apply_filters(
-			'storefront_best_selling_products_args', array(
+			'woostify_best_selling_products_args', array(
 				'limit'   => 4,
 				'columns' => 4,
 				'orderby' => 'popularity',
 				'order'   => 'desc',
-				'title'   => esc_attr__( 'Best Sellers', 'storefront' ),
+				'title'   => esc_attr__( 'Best Sellers', 'Woostify'),
 			)
 		);
 
-		$shortcode_content = storefront_do_shortcode(
+		$shortcode_content = woostify_do_shortcode(
 			'products', apply_filters(
-				'storefront_best_selling_products_shortcode_args', array(
+				'woostify_best_selling_products_shortcode_args', array(
 					'per_page' => intval( $args['limit'] ),
 					'columns'  => intval( $args['columns'] ),
 					'orderby'  => esc_attr( $args['orderby'] ),
@@ -539,24 +539,24 @@ if ( ! function_exists( 'storefront_best_selling_products' ) ) {
 		 * Only display the section if the shortcode returns products
 		 */
 		if ( false !== strpos( $shortcode_content, 'product' ) ) {
-			echo '<section class="storefront-product-section storefront-best-selling-products" aria-label="' . esc_attr__( 'Best Selling Products', 'storefront' ) . '">';
+			echo '<section class="woostify-product-section woostify-best-selling-products" aria-label="' . esc_attr__( 'Best Selling Products', 'Woostify') . '">';
 
-			do_action( 'storefront_homepage_before_best_selling_products' );
+			do_action( 'woostify_homepage_before_best_selling_products' );
 
 			echo '<h2 class="section-title">' . wp_kses_post( $args['title'] ) . '</h2>';
 
-			do_action( 'storefront_homepage_after_best_selling_products_title' );
+			do_action( 'woostify_homepage_after_best_selling_products_title' );
 
 			echo $shortcode_content; // WPCS: XSS ok.
 
-			do_action( 'storefront_homepage_after_best_selling_products' );
+			do_action( 'woostify_homepage_after_best_selling_products' );
 
 			echo '</section>';
 		}
 	}
 }
 
-if ( ! function_exists( 'storefront_promoted_products' ) ) {
+if ( ! function_exists( 'woostify_promoted_products' ) ) {
 	/**
 	 * Featured and On-Sale Products
 	 * Check for featured products then on-sale products and use the appropiate shortcode.
@@ -566,20 +566,20 @@ if ( ! function_exists( 'storefront_promoted_products' ) ) {
 	 * @param integer $per_page total products to display.
 	 * @param integer $columns columns to arrange products in to.
 	 * @param boolean $recent_fallback Should the function display recent products as a fallback when there are no featured or on-sale products?.
-	 * @uses  storefront_is_woocommerce_activated()
+	 * @uses  woostify_is_woocommerce_activated()
 	 * @uses  wc_get_featured_product_ids()
 	 * @uses  wc_get_product_ids_on_sale()
-	 * @uses  storefront_do_shortcode()
+	 * @uses  woostify_do_shortcode()
 	 * @return void
 	 */
-	function storefront_promoted_products( $per_page = '2', $columns = '2', $recent_fallback = true ) {
-		if ( storefront_is_woocommerce_activated() ) {
+	function woostify_promoted_products( $per_page = '2', $columns = '2', $recent_fallback = true ) {
+		if ( woostify_is_woocommerce_activated() ) {
 
 			if ( wc_get_featured_product_ids() ) {
 
-				echo '<h2>' . esc_html__( 'Featured Products', 'storefront' ) . '</h2>';
+				echo '<h2>' . esc_html__( 'Featured Products', 'Woostify') . '</h2>';
 
-				echo storefront_do_shortcode(
+				echo woostify_do_shortcode(
 					'featured_products', array(
 						'per_page' => $per_page,
 						'columns'  => $columns,
@@ -587,9 +587,9 @@ if ( ! function_exists( 'storefront_promoted_products' ) ) {
 				); // WPCS: XSS ok.
 			} elseif ( wc_get_product_ids_on_sale() ) {
 
-				echo '<h2>' . esc_html__( 'On Sale Now', 'storefront' ) . '</h2>';
+				echo '<h2>' . esc_html__( 'On Sale Now', 'Woostify') . '</h2>';
 
-				echo storefront_do_shortcode(
+				echo woostify_do_shortcode(
 					'sale_products', array(
 						'per_page' => $per_page,
 						'columns'  => $columns,
@@ -597,9 +597,9 @@ if ( ! function_exists( 'storefront_promoted_products' ) ) {
 				); // WPCS: XSS ok.
 			} elseif ( $recent_fallback ) {
 
-				echo '<h2>' . esc_html__( 'New In Store', 'storefront' ) . '</h2>';
+				echo '<h2>' . esc_html__( 'New In Store', 'Woostify') . '</h2>';
 
-				echo storefront_do_shortcode(
+				echo woostify_do_shortcode(
 					'recent_products', array(
 						'per_page' => $per_page,
 						'columns'  => $columns,
@@ -610,25 +610,25 @@ if ( ! function_exists( 'storefront_promoted_products' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_handheld_footer_bar' ) ) {
+if ( ! function_exists( 'woostify_handheld_footer_bar' ) ) {
 	/**
 	 * Display a menu intended for use on handheld devices
 	 *
 	 * @since 2.0.0
 	 */
-	function storefront_handheld_footer_bar() {
+	function woostify_handheld_footer_bar() {
 		$links = array(
 			'my-account' => array(
 				'priority' => 10,
-				'callback' => 'storefront_handheld_footer_bar_account_link',
+				'callback' => 'woostify_handheld_footer_bar_account_link',
 			),
 			'search'     => array(
 				'priority' => 20,
-				'callback' => 'storefront_handheld_footer_bar_search',
+				'callback' => 'woostify_handheld_footer_bar_search',
 			),
 			'cart'       => array(
 				'priority' => 30,
-				'callback' => 'storefront_handheld_footer_bar_cart_link',
+				'callback' => 'woostify_handheld_footer_bar_cart_link',
 			),
 		);
 
@@ -640,7 +640,7 @@ if ( ! function_exists( 'storefront_handheld_footer_bar' ) ) {
 			unset( $links['cart'] );
 		}
 
-		$links = apply_filters( 'storefront_handheld_footer_bar_links', $links );
+		$links = apply_filters( 'woostify_handheld_footer_bar_links', $links );
 		?>
 		<div class="storefront-handheld-footer-bar">
 			<ul class="columns-<?php echo count( $links ); ?>">
@@ -659,57 +659,57 @@ if ( ! function_exists( 'storefront_handheld_footer_bar' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_handheld_footer_bar_search' ) ) {
+if ( ! function_exists( 'woostify_handheld_footer_bar_search' ) ) {
 	/**
 	 * The search callback function for the handheld footer bar
 	 *
 	 * @since 2.0.0
 	 */
-	function storefront_handheld_footer_bar_search() {
-		echo '<a href="">' . esc_attr__( 'Search', 'storefront' ) . '</a>';
-		storefront_product_search();
+	function woostify_handheld_footer_bar_search() {
+		echo '<a href="">' . esc_attr__( 'Search', 'Woostify') . '</a>';
+		woostify_product_search();
 	}
 }
 
-if ( ! function_exists( 'storefront_handheld_footer_bar_cart_link' ) ) {
+if ( ! function_exists( 'woostify_handheld_footer_bar_cart_link' ) ) {
 	/**
 	 * The cart callback function for the handheld footer bar
 	 *
 	 * @since 2.0.0
 	 */
-	function storefront_handheld_footer_bar_cart_link() {
+	function woostify_handheld_footer_bar_cart_link() {
 		?>
-			<a class="footer-cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'storefront' ); ?>">
+			<a class="footer-cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'Woostify'); ?>">
 				<span class="count"><?php echo wp_kses_data( WC()->cart->get_cart_contents_count() ); ?></span>
 			</a>
 		<?php
 	}
 }
 
-if ( ! function_exists( 'storefront_handheld_footer_bar_account_link' ) ) {
+if ( ! function_exists( 'woostify_handheld_footer_bar_account_link' ) ) {
 	/**
 	 * The account callback function for the handheld footer bar
 	 *
 	 * @since 2.0.0
 	 */
-	function storefront_handheld_footer_bar_account_link() {
-		echo '<a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '">' . esc_attr__( 'My Account', 'storefront' ) . '</a>';
+	function woostify_handheld_footer_bar_account_link() {
+		echo '<a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '">' . esc_attr__( 'My Account', 'Woostify') . '</a>';
 	}
 }
 
-if ( ! function_exists( 'storefront_single_product_pagination' ) ) {
+if ( ! function_exists( 'woostify_single_product_pagination' ) ) {
 	/**
 	 * Single Product Pagination
 	 *
 	 * @since 2.3.0
 	 */
-	function storefront_single_product_pagination() {
-		if ( class_exists( 'Storefront_Product_Pagination' ) || true !== get_theme_mod( 'storefront_product_pagination' ) ) {
+	function woostify_single_product_pagination() {
+		if ( class_exists( 'Storefront_Product_Pagination' ) || true !== get_theme_mod( 'woostify_product_pagination' ) ) {
 			return;
 		}
 
 		// Show only products in the same category?
-		$same_category = apply_filters( 'storefront_single_product_pagination_same_category', false );
+		$same_category = apply_filters( 'woostify_single_product_pagination_same_category', false );
 
 		// Get previous and next products.
 		$previous_product = get_previous_post( $same_category );
@@ -728,29 +728,29 @@ if ( ! function_exists( 'storefront_single_product_pagination' ) ) {
 		}
 
 		?>
-		<nav class="storefront-product-pagination" aria-label="<?php esc_attr_e( 'More products', 'storefront' ); ?>">
+		<nav class="storefront-product-pagination" aria-label="<?php esc_attr_e( 'More products', 'Woostify'); ?>">
 			<?php if ( $previous_product && $previous_product->is_visible() ) : ?>
-				<?php previous_post_link( '%link', wp_kses_post( $previous_product->get_image() ) . '<span class="storefront-product-pagination__title">%title</span>', $same_category, '', 'product_cat' ); ?>
+				<?php previous_post_link( '%link', wp_kses_post( $previous_product->get_image() ) . '<span class="woostify-product-pagination__title">%title</span>', $same_category, '', 'product_cat' ); ?>
 			<?php endif; ?>
 
 			<?php if ( $next_product && $next_product->is_visible() ) : ?>
-				<?php next_post_link( '%link', wp_kses_post( $next_product->get_image() ) . '<span class="storefront-product-pagination__title">%title</span>', $same_category, '', 'product_cat' ); ?>
+				<?php next_post_link( '%link', wp_kses_post( $next_product->get_image() ) . '<span class="woostify-product-pagination__title">%title</span>', $same_category, '', 'product_cat' ); ?>
 			<?php endif; ?>
-		</nav><!-- .storefront-product-pagination -->
+		</nav><!-- .woostify-product-pagination -->
 		<?php
 	}
 }
 
-if ( ! function_exists( 'storefront_sticky_single_add_to_cart' ) ) {
+if ( ! function_exists( 'woostify_sticky_single_add_to_cart' ) ) {
 	/**
 	 * Sticky Add to Cart
 	 *
 	 * @since 2.3.0
 	 */
-	function storefront_sticky_single_add_to_cart() {
+	function woostify_sticky_single_add_to_cart() {
 		global $product;
 
-		if ( class_exists( 'Storefront_Sticky_Add_to_Cart' ) || true !== get_theme_mod( 'storefront_sticky_add_to_cart' ) ) {
+		if ( class_exists( 'Storefront_Sticky_Add_to_Cart' ) || true !== get_theme_mod( 'woostify_sticky_add_to_cart' ) ) {
 			return;
 		}
 
@@ -759,21 +759,21 @@ if ( ! function_exists( 'storefront_sticky_single_add_to_cart' ) ) {
 		}
 
 		$params = apply_filters(
-			'storefront_sticky_add_to_cart_params', array(
+			'woostify_sticky_add_to_cart_params', array(
 				'trigger_class' => 'entry-summary',
 			)
 		);
 
-		wp_localize_script( 'storefront-sticky-add-to-cart', 'storefront_sticky_add_to_cart_params', $params );
+		wp_localize_script( 'woostify-sticky-add-to-cart', 'woostify_sticky_add_to_cart_params', $params );
 
-		wp_enqueue_script( 'storefront-sticky-add-to-cart' );
+		wp_enqueue_script( 'woostify-sticky-add-to-cart' );
 		?>
 			<section class="storefront-sticky-add-to-cart">
 				<div class="col-full">
 					<div class="storefront-sticky-add-to-cart__content">
 						<?php echo wp_kses_post( woocommerce_get_product_thumbnail() ); ?>
 						<div class="storefront-sticky-add-to-cart__content-product-info">
-							<span class="storefront-sticky-add-to-cart__content-title"><?php esc_attr_e( 'You\'re viewing:', 'storefront' ); ?> <strong><?php the_title(); ?></strong></span>
+							<span class="storefront-sticky-add-to-cart__content-title"><?php esc_attr_e( 'You\'re viewing:', 'Woostify'); ?> <strong><?php the_title(); ?></strong></span>
 							<span class="storefront-sticky-add-to-cart__content-price"><?php echo wp_kses_post( $product->get_price_html() ); ?></span>
 							<?php echo wp_kses_post( wc_get_rating_html( $product->get_average_rating() ) ); ?>
 						</div>
@@ -782,12 +782,12 @@ if ( ! function_exists( 'storefront_sticky_single_add_to_cart' ) ) {
 						</a>
 					</div>
 				</div>
-			</section><!-- .storefront-sticky-add-to-cart -->
+			</section><!-- .woostify-sticky-add-to-cart -->
 		<?php
 	}
 }
 
-if ( ! function_exists( 'storefront_woocommerce_brands_homepage_section' ) ) {
+if ( ! function_exists( 'woostify_woocommerce_brands_homepage_section' ) ) {
 	/**
 	 * Display WooCommerce Brands
 	 * Hooked into the `homepage` action in the homepage template.
@@ -796,25 +796,25 @@ if ( ! function_exists( 'storefront_woocommerce_brands_homepage_section' ) ) {
 	 * @since  2.3.0
 	 * @link   https://woocommerce.com/products/brands/
 	 * @uses   apply_filters()
-	 * @uses   storefront_do_shortcode()
+	 * @uses   woostify_do_shortcode()
 	 * @uses   wp_kses_post()
 	 * @uses   do_action()
 	 * @return void
 	 */
-	function storefront_woocommerce_brands_homepage_section() {
+	function woostify_woocommerce_brands_homepage_section() {
 		$args = apply_filters(
-			'storefront_woocommerce_brands_args', array(
+			'woostify_woocommerce_brands_args', array(
 				'number'     => 6,
 				'columns'    => 4,
 				'orderby'    => 'name',
 				'show_empty' => false,
-				'title'      => __( 'Shop by Brand', 'storefront' ),
+				'title'      => __( 'Shop by Brand', 'Woostify'),
 			)
 		);
 
-		$shortcode_content = storefront_do_shortcode(
+		$shortcode_content = woostify_do_shortcode(
 			'product_brand_thumbnails', apply_filters(
-				'storefront_woocommerce_brands_shortcode_args', array(
+				'woostify_woocommerce_brands_shortcode_args', array(
 					'number'     => absint( $args['number'] ),
 					'columns'    => absint( $args['columns'] ),
 					'orderby'    => esc_attr( $args['orderby'] ),
@@ -823,23 +823,23 @@ if ( ! function_exists( 'storefront_woocommerce_brands_homepage_section' ) ) {
 			)
 		);
 
-		echo '<section class="storefront-product-section storefront-woocommerce-brands" aria-label="' . esc_attr__( 'Product Brands', 'storefront' ) . '">';
+		echo '<section class="woostify-product-section woostify-woocommerce-brands" aria-label="' . esc_attr__( 'Product Brands', 'Woostify') . '">';
 
-		do_action( 'storefront_homepage_before_woocommerce_brands' );
+		do_action( 'woostify_homepage_before_woocommerce_brands' );
 
 		echo '<h2 class="section-title">' . wp_kses_post( $args['title'] ) . '</h2>';
 
-		do_action( 'storefront_homepage_after_woocommerce_brands_title' );
+		do_action( 'woostify_homepage_after_woocommerce_brands_title' );
 
 		echo $shortcode_content; // WPCS: XSS ok.
 
-		do_action( 'storefront_homepage_after_woocommerce_brands' );
+		do_action( 'woostify_homepage_after_woocommerce_brands' );
 
 		echo '</section>';
 	}
 }
 
-if ( ! function_exists( 'storefront_woocommerce_brands_archive' ) ) {
+if ( ! function_exists( 'woostify_woocommerce_brands_archive' ) ) {
 	/**
 	 * Display brand image on brand archives
 	 * Requires WooCommerce Brands.
@@ -852,26 +852,26 @@ if ( ! function_exists( 'storefront_woocommerce_brands_archive' ) ) {
 	 * @uses   get_queried_object()
 	 * @return void
 	 */
-	function storefront_woocommerce_brands_archive() {
+	function woostify_woocommerce_brands_archive() {
 		if ( is_tax( 'product_brand' ) ) {
 			echo wp_kses_post( get_brand_thumbnail_image( get_queried_object() ) );
 		}
 	}
 }
 
-if ( ! function_exists( 'storefront_woocommerce_brands_single' ) ) {
+if ( ! function_exists( 'woostify_woocommerce_brands_single' ) ) {
 	/**
 	 * Output product brand image for use on single product pages
 	 * Requires WooCommerce Brands.
 	 *
 	 * @since  2.3.0
 	 * @link   https://woocommerce.com/products/brands/
-	 * @uses   storefront_do_shortcode()
+	 * @uses   woostify_do_shortcode()
 	 * @uses   wp_kses_post()
 	 * @return void
 	 */
-	function storefront_woocommerce_brands_single() {
-		$brand = storefront_do_shortcode(
+	function woostify_woocommerce_brands_single() {
+		$brand = woostify_do_shortcode(
 			'product_brand', array(
 				'class' => '',
 			)

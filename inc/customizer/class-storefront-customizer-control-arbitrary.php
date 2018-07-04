@@ -2,7 +2,7 @@
 /**
  * Class to create a custom arbitrary html control for dividers etc
  *
- * @package  storefront
+ * @package  woostify
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

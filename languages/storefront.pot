@@ -2,8 +2,8 @@
 # This file is distributed under the GNU General Public License v2 or later.=!>
 msgid ""
 msgstr ""
-"Project-Id-Version: Storefront 2.3.2\n"
-"Report-Msgid-Bugs-To: https://github.com/woothemes/storefront/issues\n"
+"Project-Id-Version: Woostify 2.3.2\n"
+"Report-Msgid-Bugs-To: https://github.com/woothemes/woostify/issues\n"
 "POT-Creation-Date: 2018-05-30 15:26:14+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -100,32 +100,32 @@ msgid "Development blog"
 msgstr ""
 
 #: inc/admin/class-storefront-admin.php:91
-msgid "Setup complete %sYour Storefront adventure begins now 🚀%s "
+msgid "Setup complete %sYour Woostify adventure begins now 🚀%s "
 msgstr ""
 
 #: inc/admin/class-storefront-admin.php:92
 msgid ""
-"One more thing... You might be interested in the following Storefront "
+"One more thing... You might be interested in the following Woostify "
 "extensions and designs."
 msgstr ""
 
 #: inc/admin/class-storefront-admin.php:94
 msgid ""
-"Hello! You might be interested in the following Storefront extensions and "
+"Hello! You might be interested in the following Woostify extensions and "
 "designs."
 msgstr ""
 
 #: inc/admin/class-storefront-admin.php:101
-msgid "Storefront Extensions Bundle"
+msgid "Woostify Extensions Bundle"
 msgstr ""
 
 #: inc/admin/class-storefront-admin.php:107
-msgid "All the tools you'll need to define your style and customize Storefront."
+msgid "All the tools you'll need to define your style and customize Woostify."
 msgstr ""
 
 #: inc/admin/class-storefront-admin.php:111
 msgid ""
-"Make it yours without touching code with the Storefront Extensions bundle. "
+"Make it yours without touching code with the Woostify Extensions bundle. "
 "Express yourself, optimize conversions, delight customers."
 msgstr ""
 
@@ -139,7 +139,7 @@ msgstr ""
 
 #: inc/admin/class-storefront-admin.php:124
 msgid ""
-"Quickly and easily transform your shops appearance with Storefront child "
+"Quickly and easily transform your shops appearance with Woostify child "
 "themes."
 msgstr ""
 
@@ -148,7 +148,7 @@ msgid "Each has been designed to serve a different industry - from fashion to fo
 msgstr ""
 
 #: inc/admin/class-storefront-admin.php:132
-msgid "Of course they are all fully compatible with each Storefront extension."
+msgid "Of course they are all fully compatible with each Woostify extension."
 msgstr ""
 
 #: inc/admin/class-storefront-admin.php:136
@@ -367,7 +367,7 @@ msgid "Looking for more options?"
 msgstr ""
 
 #: inc/nux/class-storefront-nux-admin.php:84
-msgid "Thanks for installing Storefront, you rock! 🤘"
+msgid "Thanks for installing Woostify, you rock! 🤘"
 msgstr ""
 
 #: inc/nux/class-storefront-nux-admin.php:85
@@ -404,11 +404,11 @@ msgid ""
 msgstr ""
 
 #: inc/nux/class-storefront-nux-admin.php:116
-msgid "Apply the Storefront homepage template"
+msgid "Apply the Woostify homepage template"
 msgstr ""
 
 #: inc/nux/class-storefront-nux-admin.php:118
-msgid "Create a homepage using Storefront's homepage template"
+msgid "Create a homepage using Woostify's homepage template"
 msgstr ""
 
 #: inc/nux/class-storefront-nux-admin.php:126
@@ -601,7 +601,7 @@ msgid "WooCommerce - The Best eCommerce Platform for WordPress"
 msgstr ""
 
 #: inc/storefront-template-functions.php:136
-msgid "Built with Storefront &amp; WooCommerce"
+msgid "Built with Woostify &amp; WooCommerce"
 msgstr ""
 
 #: inc/storefront-template-functions.php:238
@@ -764,16 +764,16 @@ msgid "Search Results for: %s"
 msgstr ""
 
 #. Theme Name of the plugin/theme
-msgid "Storefront"
+msgid "Woostify"
 msgstr ""
 
 #. Theme URI of the plugin/theme
-msgid "https://woocommerce.com/storefront/"
+msgid "https://woocommerce.com/woostify/"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Storefront is the perfect theme for your next WooCommerce project. Designed "
+"Woostify is the perfect theme for your next WooCommerce project. Designed "
 "and developed by WooCommerce Core developers, it features a bespoke "
 "integration with WooCommerce itself plus many of the most popular customer "
 "facing WooCommerce extensions. There are several layout & color options to "

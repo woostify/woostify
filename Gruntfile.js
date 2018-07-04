@@ -261,15 +261,15 @@ module.exports = function( grunt ) {
 				type: 'wp-theme',
 				domainPath: 'languages',
 				potHeaders: {
-					'report-msgid-bugs-to': 'https://github.com/woothemes/storefront/issues',
+					'report-msgid-bugs-to': 'https://github.com/woothemes/woostify/issues',
 					'language-team': 'LANGUAGE <EMAIL@ADDRESS>'
 				}
 			},
 			frontend: {
 				options: {
-					potFilename: 'storefront.pot',
+					potFilename: 'woostify.pot',
 					exclude: [
-						'storefront/.*' // Exclude deploy directory
+						'woostify/.*' // Exclude deploy directory
 					]
 				}
 			}
@@ -278,7 +278,7 @@ module.exports = function( grunt ) {
 		// Check textdomain errors.
 		checktextdomain: {
 			options:{
-				text_domain: 'storefront',
+				text_domain: 'woostify',
 				keywords: [
 					'__:1,2d',
 					'_e:1,2d',
@@ -325,7 +325,7 @@ module.exports = function( grunt ) {
 					'!assets/css/**/*.scss',
 					'!*.scss'
 				],
-				dest: 'storefront',
+				dest: 'woostify',
 				expand: true,
 				dot: true
 			}
@@ -434,11 +434,11 @@ module.exports = function( grunt ) {
 		compress: {
 			zip: {
 				options: {
-					archive: './storefront.zip',
+					archive: './woostify.zip',
 					mode: 'zip'
 				},
 				files: [
-					{ src: './storefront/**' }
+					{ src: './woostify/**' }
 				]
 			}
 		}

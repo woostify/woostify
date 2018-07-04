@@ -12,7 +12,7 @@
 			$.ajax({
 				type:     'POST',
 				url:      ajaxurl,
-				data:     { nonce: storefrontNUX.nonce, action: 'storefront_dismiss_notice' },
+				data:     { nonce: storefrontNUX.nonce, action: 'woostify_dismiss_notice' },
 				dataType: 'json'
 			});
 		});

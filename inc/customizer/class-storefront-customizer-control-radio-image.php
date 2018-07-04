@@ -10,7 +10,7 @@
  *
  * @link https://github.com/reduxframework/kirki/
  * @link http://ottopress.com/2012/making-a-custom-control-for-the-theme-customizer/
- * @package  storefront
+ * @package  woostify
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

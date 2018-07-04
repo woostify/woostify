@@ -112,8 +112,8 @@
 				top: this.$container.offset().top
 			});
 
-			$( 'body' ).addClass( 'sf-exiting' ).on( 'animationend.storefront webkitAnimationEnd.storefront', function() {
-				$( this ).removeClass( 'sf-exiting' ).off( 'animationend.storefront webkitAnimationEnd.storefront' ).addClass( 'sf-hidden' );
+			$( 'body' ).addClass( 'sf-exiting' ).on( 'animationend.woostify webkitAnimationEnd.woostify', function() {
+				$( this ).removeClass( 'sf-exiting' ).off( 'animationend.woostify webkitAnimationEnd.woostify' ).addClass( 'sf-hidden' );
 				self.$container.hide();
 
 				if ( ! _.isUndefined( remove ) && true === remove ) {
@@ -129,8 +129,8 @@
 
 			self.$container.show();
 
-			$( 'body' ).addClass( 'sf-entering' ).on( 'animationend.storefront webkitAnimationEnd.storefront', function() {
-				$( this ).removeClass( 'sf-entering' ).off( 'animationend.storefront webkitAnimationEnd.storefront' );
+			$( 'body' ).addClass( 'sf-entering' ).on( 'animationend.woostify webkitAnimationEnd.woostify', function() {
+				$( this ).removeClass( 'sf-entering' ).off( 'animationend.woostify webkitAnimationEnd.woostify' );
 
 				self.$container.css({
 					top: 'auto',
@@ -198,9 +198,9 @@
 
 			position = parseInt( $selector.offset().top, 10 ) + ( $selector.height() / 2 ) - 44;
 
-			this.$container.addClass( 'sf-moving' ).css({ 'transform': 'translateY(' + parseInt( position, 10 ) + 'px)' }).on( 'transitionend.storefront', function() {
+			this.$container.addClass( 'sf-moving' ).css({ 'transform': 'translateY(' + parseInt( position, 10 ) + 'px)' }).on( 'transitionend.woostify', function() {
 				self.$container.removeClass( 'sf-moving' );
-				self.$container.off( 'transitionend.storefront' );
+				self.$container.off( 'transitionend.woostify' );
 			} );
 		},
 

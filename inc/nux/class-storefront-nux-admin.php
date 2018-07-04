@@ -1,8 +1,8 @@
 <?php
 /**
- * Storefront NUX Admin Class
+ * Woostify NUX Admin Class
  *
- * @package  storefront
+ * @package  woostify
  * @since    2.0.0
  */
 
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 
 	/**
-	 * The Storefront NUX Admin class
+	 * The Woostify NUX Admin class
 	 */
 	class Storefront_NUX_Admin {
 		/**
@@ -24,8 +24,8 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		public function __construct() {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'admin_notices', array( $this, 'admin_notices' ), 99 );
-			add_action( 'wp_ajax_storefront_dismiss_notice', array( $this, 'dismiss_nux' ) );
-			add_action( 'admin_post_storefront_starter_content', array( $this, 'redirect_customizer' ) );
+			add_action( 'wp_ajax_woostify_dismiss_notice', array( $this, 'dismiss_nux' ) );
+			add_action( 'admin_post_woostify_starter_content', array( $this, 'redirect_customizer' ) );
 			add_action( 'init', array( $this, 'log_fresh_site_state' ) );
 			add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
 		}
@@ -36,23 +36,23 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		 * @since 2.2.0
 		 */
 		public function enqueue_scripts() {
-			global $wp_customize, $storefront_version;
+			global $wp_customize, $woostify_version;
 
-			if ( isset( $wp_customize ) || true === (bool) get_option( 'storefront_nux_dismissed' ) ) {
+			if ( isset( $wp_customize ) || true === (bool) get_option( 'woostify_nux_dismissed' ) ) {
 				return;
 			}
 
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-			wp_enqueue_style( 'storefront-admin-nux', get_template_directory_uri() . '/assets/css/admin/admin.css', '', $storefront_version );
+			wp_enqueue_style( 'woostify-admin-nux', get_template_directory_uri() . '/assets/css/admin/admin.css', '', $woostify_version );
 
-			wp_enqueue_script( 'storefront-admin-nux', get_template_directory_uri() . '/assets/js/admin/admin' . $suffix . '.js', array( 'jquery' ), $storefront_version, 'all' );
+			wp_enqueue_script( 'woostify-admin-nux', get_template_directory_uri() . '/assets/js/admin/admin' . $suffix . '.js', array( 'jquery' ), $woostify_version, 'all' );
 
-			$storefront_nux = array(
-				'nonce' => wp_create_nonce( 'storefront_notice_dismiss' ),
+			$woostify_nux = array(
+				'nonce' => wp_create_nonce( 'woostify_notice_dismiss' ),
 			);
 
-			wp_localize_script( 'storefront-admin-nux', 'storefrontNUX', $storefront_nux );
+			wp_localize_script( 'woostify-admin-nux', 'storefrontNUX', $woostify_nux );
 		}
 
 		/**
@@ -63,7 +63,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		public function admin_notices() {
 			global $pagenow;
 
-			if ( true === (bool) get_option( 'storefront_nux_dismissed' ) ) {
+			if ( true === (bool) get_option( 'woostify_nux_dismissed' ) ) {
 				return;
 			}
 
@@ -75,47 +75,47 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 
 			<div class="notice notice-info sf-notice-nux is-dismissible">
 				<span class="sf-icon">
-					<?php echo '<img src="' . esc_url( get_template_directory_uri() ) . '/assets/images/admin/storefront-icon.svg" alt="Storefront" width="250" />'; ?>
+					<?php echo '<img src="' . esc_url( get_template_directory_uri() ) . '/assets/images/admin/woostify-icon.svg" alt="Woostify" width="250" />'; ?>
 				</span>
 
 				<div class="notice-content">
-				<?php if ( ! storefront_is_woocommerce_activated() && current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) ) : ?>
-					<h2><?php esc_attr_e( 'Thanks for installing Storefront, you rock! 🤘', 'storefront' ); ?></h2>
-					<p><?php esc_attr_e( 'To enable eCommerce features you need to install the WooCommerce plugin.', 'storefront' ); ?></p>
-					<p><?php Storefront_Plugin_Install::install_plugin_button( 'woocommerce', 'woocommerce.php', 'WooCommerce', array( 'sf-nux-button' ), __( 'WooCommerce activated', 'storefront' ), __( 'Activate WooCommerce', 'storefront' ), __( 'Install WooCommerce', 'storefront' ) ); ?></p>
+				<?php if ( ! woostify_is_woocommerce_activated() && current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) ) : ?>
+					<h2><?php esc_attr_e( 'Thanks for installing Woostify, you rock! 🤘', 'Woostify'); ?></h2>
+					<p><?php esc_attr_e( 'To enable eCommerce features you need to install the WooCommerce plugin.', 'Woostify'); ?></p>
+					<p><?php Storefront_Plugin_Install::install_plugin_button( 'woocommerce', 'woocommerce.php', 'WooCommerce', array( 'sf-nux-button' ), __( 'WooCommerce activated', 'Woostify'), __( 'Activate WooCommerce', 'Woostify'), __( 'Install WooCommerce', 'Woostify') ); ?></p>
 				<?php endif; ?>
 
-				<?php if ( storefront_is_woocommerce_activated() ) : ?>
-					<h2><?php esc_html_e( 'Design your store 🎨', 'storefront' ); ?></h2>
+				<?php if ( woostify_is_woocommerce_activated() ) : ?>
+					<h2><?php esc_html_e( 'Design your store 🎨', 'Woostify'); ?></h2>
 					<p>
 					<?php
-					if ( true === (bool) get_option( 'storefront_nux_fresh_site' ) && 'post-new.php' === $pagenow ) {
-						echo esc_attr__( 'Before you add your first product let\'s design your store. We\'ll add some example products for you. When you\'re ready let\'s get started by adding your logo.', 'storefront' );
+					if ( true === (bool) get_option( 'woostify_nux_fresh_site' ) && 'post-new.php' === $pagenow ) {
+						echo esc_attr__( 'Before you add your first product let\'s design your store. We\'ll add some example products for you. When you\'re ready let\'s get started by adding your logo.', 'Woostify');
 					} else {
-						echo esc_attr__( 'You\'ve set up WooCommerce, now it\'s time to give it some style! Let\'s get started by entering the Customizer and adding your logo.', 'storefront' );
+						echo esc_attr__( 'You\'ve set up WooCommerce, now it\'s time to give it some style! Let\'s get started by entering the Customizer and adding your logo.', 'Woostify');
 					}
 					?>
 					</p>
 					<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
-						<input type="hidden" name="action" value="storefront_starter_content">
-						<?php wp_nonce_field( 'storefront_starter_content' ); ?>
+						<input type="hidden" name="action" value="woostify_starter_content">
+						<?php wp_nonce_field( 'woostify_starter_content' ); ?>
 
-						<?php if ( true === (bool) get_option( 'storefront_nux_fresh_site' ) ) : ?>
+						<?php if ( true === (bool) get_option( 'woostify_nux_fresh_site' ) ) : ?>
 							<input type="hidden" name="homepage" value="on">
 						<?php endif; ?>
 
-						<?php if ( true === (bool) get_option( 'storefront_nux_fresh_site' ) && true === $this->_is_woocommerce_empty() ) : ?>
+						<?php if ( true === (bool) get_option( 'woostify_nux_fresh_site' ) && true === $this->_is_woocommerce_empty() ) : ?>
 							<input type="hidden" name="products" value="on">
 						<?php endif; ?>
 
-						<?php if ( false === (bool) get_option( 'storefront_nux_fresh_site' ) ) : ?>
+						<?php if ( false === (bool) get_option( 'woostify_nux_fresh_site' ) ) : ?>
 							<label>
 								<input type="checkbox" name="homepage" checked>
 								<?php
 								if ( 'page' === get_option( 'show_on_front' ) ) {
-									esc_attr_e( 'Apply the Storefront homepage template', 'storefront' );
+									esc_attr_e( 'Apply the Woostify homepage template', 'Woostify');
 								} else {
-									esc_attr_e( 'Create a homepage using Storefront\'s homepage template', 'storefront' );
+									esc_attr_e( 'Create a homepage using Woostify\'s homepage template', 'Woostify');
 								}
 								?>
 							</label>
@@ -123,12 +123,12 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 							<?php if ( true === $this->_is_woocommerce_empty() ) : ?>
 							<label>
 								<input type="checkbox" name="products" checked>
-								<?php esc_attr_e( 'Add example products', 'storefront' ); ?>
+								<?php esc_attr_e( 'Add example products', 'Woostify'); ?>
 							</label>
 							<?php endif; ?>
 						<?php endif; ?>
 
-						<input type="submit" name="storefront-guided-tour" class="sf-nux-button" value="<?php esc_attr_e( 'Let\'s go!', 'storefront' ); ?>">
+						<input type="submit" name="storefront-guided-tour" class="sf-nux-button" value="<?php esc_attr_e( 'Let\'s go!', 'Woostify'); ?>">
 					</form>
 				<?php endif; ?>
 				</div>
@@ -142,11 +142,11 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		 * @since 2.2.0
 		 */
 		public function dismiss_nux() {
-			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'storefront_notice_dismiss' ) || ! current_user_can( 'manage_options' ) ) {
+			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'woostify_notice_dismiss' ) || ! current_user_can( 'manage_options' ) ) {
 				die();
 			}
 
-			update_option( 'storefront_nux_dismissed', true );
+			update_option( 'woostify_nux_dismissed', true );
 		}
 
 		/**
@@ -155,12 +155,12 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		 * @since 2.2.0
 		 */
 		public function redirect_customizer() {
-			check_admin_referer( 'storefront_starter_content' );
+			check_admin_referer( 'woostify_starter_content' );
 
 			if ( current_user_can( 'manage_options' ) ) {
 
 				// Dismiss notice.
-				update_option( 'storefront_nux_dismissed', true );
+				update_option( 'woostify_nux_dismissed', true );
 			}
 
 			$args = array( 'sf_starter_content' => '1' );
@@ -187,14 +187,14 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 					// Make sure the fresh_site flag is set to true.
 					update_option( 'fresh_site', true );
 
-					if ( current_user_can( 'edit_pages' ) && true === (bool) get_option( 'storefront_nux_fresh_site' ) ) {
+					if ( current_user_can( 'edit_pages' ) && true === (bool) get_option( 'woostify_nux_fresh_site' ) ) {
 						$this->_set_woocommerce_pages_full_width();
 					}
 				}
 			}
 
-			// Redirect to the Storefront Welcome screen when exiting the Customizer.
-			$args['return'] = urlencode( admin_url( 'themes.php?page=storefront-welcome' ) );
+			// Redirect to the Woostify Welcome screen when exiting the Customizer.
+			$args['return'] = urlencode( admin_url( 'themes.php?page=woostify-welcome' ) );
 
 			wp_safe_redirect( add_query_arg( $args, admin_url( 'customize.php' ) ) );
 
@@ -210,7 +210,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 			$woocommerce_pages = array();
 
 			$wc_pages_options = apply_filters(
-				'storefront_page_option_names', array(
+				'woostify_page_option_names', array(
 					'woocommerce_cart_page_id',
 					'woocommerce_checkout_page_id',
 					'woocommerce_myaccount_page_id',
@@ -235,13 +235,13 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		}
 
 		/**
-		 * Update Storefront fresh site flag.
+		 * Update Woostify fresh site flag.
 		 *
 		 * @since 2.2.0
 		 */
 		public function log_fresh_site_state() {
-			if ( null === get_option( 'storefront_nux_fresh_site', null ) ) {
-				update_option( 'storefront_nux_fresh_site', get_option( 'fresh_site' ) );
+			if ( null === get_option( 'woostify_nux_fresh_site', null ) ) {
+				update_option( 'woostify_nux_fresh_site', get_option( 'fresh_site' ) );
 			}
 		}
 
@@ -253,7 +253,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		 * @return string
 		 */
 		public function admin_body_class( $classes ) {
-			if ( true === (bool) get_option( 'storefront_nux_dismissed' ) ) {
+			if ( true === (bool) get_option( 'woostify_nux_dismissed' ) ) {
 				return $classes;
 			}
 

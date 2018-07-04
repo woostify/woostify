@@ -1,8 +1,8 @@
 <?php
 /**
- * Storefront Plugin Install Class
+ * Woostify Plugin Install Class
  *
- * @package  storefront
+ * @package  woostify
  * @since    2.2.0
  */
 
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'Storefront_Plugin_Install' ) ) :
 	/**
-	 * The Storefront plugin install class
+	 * The Woostify plugin install class
 	 */
 	class Storefront_Plugin_Install {
 
@@ -33,13 +33,13 @@ if ( ! class_exists( 'Storefront_Plugin_Install' ) ) :
 		 * @since  1.4.4
 		 */
 		public function plugin_install_scripts( $hook_suffix ) {
-			global $storefront_version;
+			global $woostify_version;
 
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-			wp_enqueue_script( 'storefront-plugin-install', get_template_directory_uri() . '/assets/js/admin/plugin-install' . $suffix . '.js', array( 'jquery', 'updates' ), $storefront_version, 'all' );
+			wp_enqueue_script( 'woostify-plugin-install', get_template_directory_uri() . '/assets/js/admin/plugin-install' . $suffix . '.js', array( 'jquery', 'updates' ), $woostify_version, 'all' );
 
-			wp_enqueue_style( 'storefront-plugin-install', get_template_directory_uri() . '/assets/css/admin/plugin-install.css', array(), $storefront_version, 'all' );
+			wp_enqueue_style( 'woostify-plugin-install', get_template_directory_uri() . '/assets/css/admin/plugin-install.css', array(), $woostify_version, 'all' );
 		}
 
 		/**
@@ -59,9 +59,9 @@ if ( ! class_exists( 'Storefront_Plugin_Install' ) ) :
 				if ( is_plugin_active( $plugin_slug . '/' . $plugin_file ) ) {
 					// The plugin is already active.
 					$button = array(
-						'message' => esc_attr__( 'Activated', 'storefront' ),
+						'message' => esc_attr__( 'Activated', 'Woostify'),
 						'url'     => '#',
-						'classes' => array( 'storefront-button', 'disabled' ),
+						'classes' => array( 'woostify-button', 'disabled' ),
 					);
 
 					if ( '' !== $activated ) {
@@ -72,9 +72,9 @@ if ( ! class_exists( 'Storefront_Plugin_Install' ) ) :
 
 					// The plugin exists but isn't activated yet.
 					$button = array(
-						'message' => esc_attr__( 'Activate', 'storefront' ),
+						'message' => esc_attr__( 'Activate', 'Woostify'),
 						'url'     => $url,
-						'classes' => array( 'storefront-button', 'activate-now' ),
+						'classes' => array( 'woostify-button', 'activate-now' ),
 					);
 
 					if ( '' !== $activate ) {
@@ -91,9 +91,9 @@ if ( ! class_exists( 'Storefront_Plugin_Install' ) ) :
 						), 'install-plugin_' . $plugin_slug
 					);
 					$button = array(
-						'message' => esc_attr__( 'Install now', 'storefront' ),
+						'message' => esc_attr__( 'Install now', 'Woostify'),
 						'url'     => $url,
-						'classes' => array( 'storefront-button', 'sf-install-now', 'install-now', 'install-' . $plugin_slug ),
+						'classes' => array( 'woostify-button', 'sf-install-now', 'install-now', 'install-' . $plugin_slug ),
 					);
 
 					if ( '' !== $install ) {
@@ -111,7 +111,7 @@ if ( ! class_exists( 'Storefront_Plugin_Install' ) ) :
 				<span class="sf-plugin-card plugin-card-<?php echo esc_attr( $plugin_slug ); ?>">
 					<a href="<?php echo esc_url( $button['url'] ); ?>" class="<?php echo esc_attr( $button['classes'] ); ?>" data-originaltext="<?php echo esc_attr( $button['message'] ); ?>" data-name="<?php echo esc_attr( $plugin_name ); ?>" data-slug="<?php echo esc_attr( $plugin_slug ); ?>" aria-label="<?php echo esc_attr( $button['message'] ); ?>"><?php echo esc_attr( $button['message'] ); ?></a>
 				</span>
-				<a href="https://wordpress.org/plugins/<?php echo esc_attr( $plugin_slug ); ?>" target="_blank"><?php esc_attr_e( 'Learn more', 'storefront' ); ?></a>
+				<a href="https://wordpress.org/plugins/<?php echo esc_attr( $plugin_slug ); ?>" target="_blank"><?php esc_attr_e( 'Learn more', 'Woostify'); ?></a>
 				<?php
 			}
 		}

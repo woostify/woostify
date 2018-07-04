@@ -1,17 +1,17 @@
 <?php
 /**
- * Storefront template functions.
+ * Woostify template functions.
  *
- * @package storefront
+ * @package woostify
  */
 
-if ( ! function_exists( 'storefront_display_comments' ) ) {
+if ( ! function_exists( 'woostify_display_comments' ) ) {
 	/**
-	 * Storefront display comments
+	 * Woostify display comments
 	 *
 	 * @since  1.0.0
 	 */
-	function storefront_display_comments() {
+	function woostify_display_comments() {
 		// If comments are open or we have at least one comment, load up the comment template.
 		if ( comments_open() || '0' != get_comments_number() ) :
 			comments_template();
@@ -19,16 +19,16 @@ if ( ! function_exists( 'storefront_display_comments' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_comment' ) ) {
+if ( ! function_exists( 'woostify_comment' ) ) {
 	/**
-	 * Storefront comment template
+	 * Woostify comment template
 	 *
 	 * @param array $comment the comment array.
 	 * @param array $args the comment args.
 	 * @param int   $depth the comment depth.
 	 * @since 1.0.0
 	 */
-	function storefront_comment( $comment, $args, $depth ) {
+	function woostify_comment( $comment, $args, $depth ) {
 		if ( 'div' == $args['style'] ) {
 			$tag = 'div';
 			$add_below = 'comment';
@@ -42,10 +42,10 @@ if ( ! function_exists( 'storefront_comment' ) ) {
 		<div class="comment-meta commentmetadata">
 			<div class="comment-author vcard">
 			<?php echo get_avatar( $comment, 128 ); ?>
-			<?php printf( wp_kses_post( '<cite class="fn">%s</cite>', 'storefront' ), get_comment_author_link() ); ?>
+			<?php printf( wp_kses_post( '<cite class="fn">%s</cite>', 'Woostify'), get_comment_author_link() ); ?>
 			</div>
 			<?php if ( '0' == $comment->comment_approved ) : ?>
-				<em class="comment-awaiting-moderation"><?php esc_attr_e( 'Your comment is awaiting moderation.', 'storefront' ); ?></em>
+				<em class="comment-awaiting-moderation"><?php esc_attr_e( 'Your comment is awaiting moderation.', 'Woostify'); ?></em>
 				<br />
 			<?php endif; ?>
 
@@ -71,7 +71,7 @@ if ( ! function_exists( 'storefront_comment' ) ) {
 			)
 		);
 		?>
-		<?php edit_comment_link( __( 'Edit', 'storefront' ), '  ', '' ); ?>
+		<?php edit_comment_link( __( 'Edit', 'Woostify'), '  ', '' ); ?>
 		</div>
 		</div>
 		<?php if ( 'div' != $args['style'] ) : ?>
@@ -81,16 +81,16 @@ if ( ! function_exists( 'storefront_comment' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_footer_widgets' ) ) {
+if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 	/**
 	 * Display the footer widget regions.
 	 *
 	 * @since  1.0.0
 	 * @return void
 	 */
-	function storefront_footer_widgets() {
-		$rows    = intval( apply_filters( 'storefront_footer_widget_rows', 1 ) );
-		$regions = intval( apply_filters( 'storefront_footer_widget_columns', 4 ) );
+	function woostify_footer_widgets() {
+		$rows    = intval( apply_filters( 'woostify_footer_widget_rows', 1 ) );
+		$regions = intval( apply_filters( 'woostify_footer_widget_columns', 4 ) );
 
 		for ( $row = 1; $row <= $rows; $row++ ) :
 
@@ -131,38 +131,38 @@ if ( ! function_exists( 'storefront_footer_widgets' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_credit' ) ) {
+if ( ! function_exists( 'woostify_credit' ) ) {
 	/**
 	 * Display the theme credit
 	 *
 	 * @since  1.0.0
 	 * @return void
 	 */
-	function storefront_credit() {
+	function woostify_credit() {
 		?>
 		<div class="site-info">
-			<?php echo esc_html( apply_filters( 'storefront_copyright_text', $content = '&copy; ' . get_bloginfo( 'name' ) . ' ' . date( 'Y' ) ) ); ?>
-			<?php if ( apply_filters( 'storefront_credit_link', true ) ) { ?>
+			<?php echo esc_html( apply_filters( 'woostify_copyright_text', $content = '&copy; ' . get_bloginfo( 'name' ) . ' ' . date( 'Y' ) ) ); ?>
+			<?php if ( apply_filters( 'woostify_credit_link', true ) ) { ?>
 			<br />
 				<?php
-				if ( apply_filters( 'storefront_privacy_policy_link', true ) && function_exists( 'the_privacy_policy_link' ) ) {
+				if ( apply_filters( 'woostify_privacy_policy_link', true ) && function_exists( 'the_privacy_policy_link' ) ) {
 					the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>' );
 				}
 				?>
-				<?php echo '<a href="https://woocommerce.com" target="_blank" title="' . esc_attr__( 'WooCommerce - The Best eCommerce Platform for WordPress', 'storefront' ) . '" rel="author">' . esc_html__( 'Built with Storefront &amp; WooCommerce', 'storefront' ) . '</a>.'; ?>
+				<?php echo '<a href="https://woocommerce.com" target="_blank" title="' . esc_attr__( 'WooCommerce - The Best eCommerce Platform for WordPress', 'Woostify') . '" rel="author">' . esc_html__( 'Built with Woostify &amp; WooCommerce', 'Woostify') . '</a>.'; ?>
 			<?php } ?>
 		</div><!-- .site-info -->
 		<?php
 	}
 }
 
-if ( ! function_exists( 'storefront_header_widget_region' ) ) {
+if ( ! function_exists( 'woostify_header_widget_region' ) ) {
 	/**
 	 * Display header widget region
 	 *
 	 * @since  1.0.0
 	 */
-	function storefront_header_widget_region() {
+	function woostify_header_widget_region() {
 		if ( is_active_sidebar( 'header-1' ) ) {
 			?>
 		<div class="header-widget-region" role="complementary">
@@ -175,23 +175,23 @@ if ( ! function_exists( 'storefront_header_widget_region' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_site_branding' ) ) {
+if ( ! function_exists( 'woostify_site_branding' ) ) {
 	/**
 	 * Site branding wrapper and display
 	 *
 	 * @since  1.0.0
 	 * @return void
 	 */
-	function storefront_site_branding() {
+	function woostify_site_branding() {
 		?>
 		<div class="site-branding">
-			<?php storefront_site_title_or_logo(); ?>
+			<?php woostify_site_title_or_logo(); ?>
 		</div>
 		<?php
 	}
 }
 
-if ( ! function_exists( 'storefront_site_title_or_logo' ) ) {
+if ( ! function_exists( 'woostify_site_title_or_logo' ) ) {
 	/**
 	 * Display the site title or logo
 	 *
@@ -199,7 +199,7 @@ if ( ! function_exists( 'storefront_site_title_or_logo' ) ) {
 	 * @param bool $echo Echo the string or return it.
 	 * @return string
 	 */
-	function storefront_site_title_or_logo( $echo = true ) {
+	function woostify_site_title_or_logo( $echo = true ) {
 		if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
 			$logo = get_custom_logo();
 			$html = is_home() ? '<h1 class="logo">' . $logo . '</h1>' : $logo;
@@ -243,17 +243,17 @@ if ( ! function_exists( 'storefront_site_title_or_logo' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_primary_navigation' ) ) {
+if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 	/**
 	 * Display Primary Navigation
 	 *
 	 * @since  1.0.0
 	 * @return void
 	 */
-	function storefront_primary_navigation() {
+	function woostify_primary_navigation() {
 		?>
-		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_html_e( 'Primary Navigation', 'storefront' ); ?>">
-		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span><?php echo esc_attr( apply_filters( 'storefront_menu_toggle_text', __( 'Menu', 'storefront' ) ) ); ?></span></button>
+		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_html_e( 'Primary Navigation', 'Woostify'); ?>">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span><?php echo esc_attr( apply_filters( 'woostify_menu_toggle_text', __( 'Menu', 'Woostify') ) ); ?></span></button>
 			<?php
 			wp_nav_menu(
 				array(
@@ -274,17 +274,17 @@ if ( ! function_exists( 'storefront_primary_navigation' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_secondary_navigation' ) ) {
+if ( ! function_exists( 'woostify_secondary_navigation' ) ) {
 	/**
 	 * Display Secondary Navigation
 	 *
 	 * @since  1.0.0
 	 * @return void
 	 */
-	function storefront_secondary_navigation() {
+	function woostify_secondary_navigation() {
 		if ( has_nav_menu( 'secondary' ) ) {
 			?>
-			<nav class="secondary-navigation" role="navigation" aria-label="<?php esc_html_e( 'Secondary Navigation', 'storefront' ); ?>">
+			<nav class="secondary-navigation" role="navigation" aria-label="<?php esc_html_e( 'Secondary Navigation', 'Woostify'); ?>">
 				<?php
 					wp_nav_menu(
 						array(
@@ -299,29 +299,29 @@ if ( ! function_exists( 'storefront_secondary_navigation' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_skip_links' ) ) {
+if ( ! function_exists( 'woostify_skip_links' ) ) {
 	/**
 	 * Skip links
 	 *
 	 * @since  1.4.1
 	 * @return void
 	 */
-	function storefront_skip_links() {
+	function woostify_skip_links() {
 		?>
-		<a class="skip-link screen-reader-text" href="#site-navigation"><?php esc_attr_e( 'Skip to navigation', 'storefront' ); ?></a>
-		<a class="skip-link screen-reader-text" href="#content"><?php esc_attr_e( 'Skip to content', 'storefront' ); ?></a>
+		<a class="skip-link screen-reader-text" href="#site-navigation"><?php esc_attr_e( 'Skip to navigation', 'Woostify'); ?></a>
+		<a class="skip-link screen-reader-text" href="#content"><?php esc_attr_e( 'Skip to content', 'Woostify'); ?></a>
 		<?php
 	}
 }
 
-if ( ! function_exists( 'storefront_homepage_header' ) ) {
+if ( ! function_exists( 'woostify_homepage_header' ) ) {
 	/**
 	 * Display the page header without the featured image
 	 *
 	 * @since 1.0.0
 	 */
-	function storefront_homepage_header() {
-		edit_post_link( __( 'Edit this section', 'storefront' ), '', '', '', 'button storefront-hero__button-edit' );
+	function woostify_homepage_header() {
+		edit_post_link( __( 'Edit this section', 'Woostify'), '', '', '', 'button woostify-hero__button-edit' );
 		?>
 		<header class="entry-header">
 			<?php
@@ -332,17 +332,17 @@ if ( ! function_exists( 'storefront_homepage_header' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_page_header' ) ) {
+if ( ! function_exists( 'woostify_page_header' ) ) {
 	/**
 	 * Display the page header
 	 *
 	 * @since 1.0.0
 	 */
-	function storefront_page_header() {
+	function woostify_page_header() {
 		?>
 		<header class="entry-header">
 			<?php
-			storefront_post_thumbnail( 'full' );
+			woostify_post_thumbnail( 'full' );
 			the_title( '<h1 class="entry-title">', '</h1>' );
 			?>
 		</header><!-- .entry-header -->
@@ -350,20 +350,20 @@ if ( ! function_exists( 'storefront_page_header' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_page_content' ) ) {
+if ( ! function_exists( 'woostify_page_content' ) ) {
 	/**
 	 * Display the post content
 	 *
 	 * @since 1.0.0
 	 */
-	function storefront_page_content() {
+	function woostify_page_content() {
 		?>
 		<div class="entry-content">
 			<?php the_content(); ?>
 			<?php
 				wp_link_pages(
 					array(
-						'before' => '<div class="page-links">' . __( 'Pages:', 'storefront' ),
+						'before' => '<div class="page-links">' . __( 'Pages:', 'Woostify'),
 						'after'  => '</div>',
 					)
 				);
@@ -373,22 +373,22 @@ if ( ! function_exists( 'storefront_page_content' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_post_header' ) ) {
+if ( ! function_exists( 'woostify_post_header' ) ) {
 	/**
 	 * Display the post header with a link to the single post
 	 *
 	 * @since 1.0.0
 	 */
-	function storefront_post_header() {
+	function woostify_post_header() {
 		?>
 		<header class="entry-header">
 		<?php
 		if ( is_single() ) {
-			storefront_posted_on();
+			woostify_posted_on();
 			the_title( '<h1 class="entry-title">', '</h1>' );
 		} else {
 			if ( 'post' == get_post_type() ) {
-				storefront_posted_on();
+				woostify_posted_on();
 			}
 
 			the_title( sprintf( '<h2 class="alpha entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
@@ -399,37 +399,37 @@ if ( ! function_exists( 'storefront_post_header' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_post_content' ) ) {
+if ( ! function_exists( 'woostify_post_content' ) ) {
 	/**
 	 * Display the post content with a link to the single post
 	 *
 	 * @since 1.0.0
 	 */
-	function storefront_post_content() {
+	function woostify_post_content() {
 		?>
 		<div class="entry-content">
 		<?php
 
 		/**
-		 * Functions hooked in to storefront_post_content_before action.
+		 * Functions hooked in to woostify_post_content_before action.
 		 *
-		 * @hooked storefront_post_thumbnail - 10
+		 * @hooked woostify_post_thumbnail - 10
 		 */
-		do_action( 'storefront_post_content_before' );
+		do_action( 'woostify_post_content_before' );
 
 		the_content(
 			sprintf(
 				/* translators: %s: post title */
-				__( 'Continue reading %s', 'storefront' ),
+				__( 'Continue reading %s', 'Woostify'),
 				'<span class="screen-reader-text">' . get_the_title() . '</span>'
 			)
 		);
 
-		do_action( 'storefront_post_content_after' );
+		do_action( 'woostify_post_content_after' );
 
 		wp_link_pages(
 			array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'storefront' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'Woostify'),
 				'after'  => '</div>',
 			)
 		);
@@ -439,13 +439,13 @@ if ( ! function_exists( 'storefront_post_content' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_post_meta' ) ) {
+if ( ! function_exists( 'woostify_post_meta' ) ) {
 	/**
 	 * Display the post meta
 	 *
 	 * @since 1.0.0
 	 */
-	function storefront_post_meta() {
+	function woostify_post_meta() {
 		?>
 		<aside class="entry-meta">
 			<?php
@@ -455,19 +455,19 @@ if ( ! function_exists( 'storefront_post_meta' ) ) {
 			<div class="vcard author">
 				<?php
 					echo get_avatar( get_the_author_meta( 'ID' ), 128 );
-					echo '<div class="label">' . esc_attr( __( 'Written by', 'storefront' ) ) . '</div>';
+					echo '<div class="label">' . esc_attr( __( 'Written by', 'Woostify') ) . '</div>';
 					echo sprintf( '<a href="%1$s" class="url fn" rel="author">%2$s</a>', esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ), get_the_author() );
 				?>
 			</div>
 				<?php
 				/* translators: used between list items, there is a space after the comma */
-				$categories_list = get_the_category_list( __( ', ', 'storefront' ) );
+				$categories_list = get_the_category_list( __( ', ', 'Woostify') );
 
 				if ( $categories_list ) :
 					?>
 				<div class="cat-links">
 						<?php
-						echo '<div class="label">' . esc_attr( __( 'Posted in', 'storefront' ) ) . '</div>';
+						echo '<div class="label">' . esc_attr( __( 'Posted in', 'Woostify') ) . '</div>';
 						echo wp_kses_post( $categories_list );
 						?>
 				</div>
@@ -475,13 +475,13 @@ if ( ! function_exists( 'storefront_post_meta' ) ) {
 
 				<?php
 				/* translators: used between list items, there is a space after the comma */
-				$tags_list = get_the_tag_list( '', __( ', ', 'storefront' ) );
+				$tags_list = get_the_tag_list( '', __( ', ', 'Woostify') );
 
 				if ( $tags_list ) :
 					?>
 				<div class="tags-links">
 						<?php
-						echo '<div class="label">' . esc_attr( __( 'Tagged', 'storefront' ) ) . '</div>';
+						echo '<div class="label">' . esc_attr( __( 'Tagged', 'Woostify') ) . '</div>';
 						echo wp_kses_post( $tags_list );
 						?>
 				</div>
@@ -491,8 +491,8 @@ if ( ! function_exists( 'storefront_post_meta' ) ) {
 
 			<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
 				<div class="comments-link">
-					<?php echo '<div class="label">' . esc_attr( __( 'Comments', 'storefront' ) ) . '</div>'; ?>
-					<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'storefront' ), __( '1 Comment', 'storefront' ), __( '% Comments', 'storefront' ) ); ?></span>
+					<?php echo '<div class="label">' . esc_attr( __( 'Comments', 'Woostify') ) . '</div>'; ?>
+					<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'Woostify'), __( '1 Comment', 'Woostify'), __( '% Comments', 'Woostify') ); ?></span>
 				</div>
 			<?php endif; ?>
 		</aside>
@@ -500,41 +500,41 @@ if ( ! function_exists( 'storefront_post_meta' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_paging_nav' ) ) {
+if ( ! function_exists( 'woostify_paging_nav' ) ) {
 	/**
 	 * Display navigation to next/previous set of posts when applicable.
 	 */
-	function storefront_paging_nav() {
+	function woostify_paging_nav() {
 		global $wp_query;
 
 		$args = array(
 			'type'      => 'list',
-			'next_text' => _x( 'Next', 'Next post', 'storefront' ),
-			'prev_text' => _x( 'Previous', 'Previous post', 'storefront' ),
+			'next_text' => _x( 'Next', 'Next post', 'Woostify'),
+			'prev_text' => _x( 'Previous', 'Previous post', 'Woostify'),
 		);
 
 		the_posts_pagination( $args );
 	}
 }
 
-if ( ! function_exists( 'storefront_post_nav' ) ) {
+if ( ! function_exists( 'woostify_post_nav' ) ) {
 	/**
 	 * Display navigation to next/previous post when applicable.
 	 */
-	function storefront_post_nav() {
+	function woostify_post_nav() {
 		$args = array(
-			'next_text' => '<span class="screen-reader-text">' . esc_html__( 'Next post:', 'storefront' ) . ' </span>%title',
-			'prev_text' => '<span class="screen-reader-text">' . esc_html__( 'Previous post:', 'storefront' ) . ' </span>%title',
+			'next_text' => '<span class="screen-reader-text">' . esc_html__( 'Next post:', 'Woostify') . ' </span>%title',
+			'prev_text' => '<span class="screen-reader-text">' . esc_html__( 'Previous post:', 'Woostify') . ' </span>%title',
 		);
 		the_post_navigation( $args );
 	}
 }
 
-if ( ! function_exists( 'storefront_posted_on' ) ) {
+if ( ! function_exists( 'woostify_posted_on' ) ) {
 	/**
 	 * Prints HTML with meta information for the current post-date/time and author.
 	 */
-	function storefront_posted_on() {
+	function woostify_posted_on() {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time> <time class="updated" datetime="%3$s">%4$s</time>';
@@ -550,12 +550,12 @@ if ( ! function_exists( 'storefront_posted_on' ) ) {
 
 		$posted_on = sprintf(
 			/* translators: %s: post date */
-			_x( 'Posted on %s', 'post date', 'storefront' ),
+			_x( 'Posted on %s', 'post date', 'Woostify'),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
 
 		echo wp_kses(
-			apply_filters( 'storefront_single_post_posted_on_html', '<span class="posted-on">' . $posted_on . '</span>', $posted_on ), array(
+			apply_filters( 'woostify_single_post_posted_on_html', '<span class="posted-on">' . $posted_on . '</span>', $posted_on ), array(
 				'span' => array(
 					'class'  => array(),
 				),
@@ -573,7 +573,7 @@ if ( ! function_exists( 'storefront_posted_on' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_homepage_content' ) ) {
+if ( ! function_exists( 'woostify_homepage_content' ) ) {
 	/**
 	 * Display homepage content
 	 * Hooked into the `homepage` action in the homepage template
@@ -581,7 +581,7 @@ if ( ! function_exists( 'storefront_homepage_content' ) ) {
 	 * @since  1.0.0
 	 * @return  void
 	 */
-	function storefront_homepage_content() {
+	function woostify_homepage_content() {
 		while ( have_posts() ) {
 			the_post();
 
@@ -591,7 +591,7 @@ if ( ! function_exists( 'storefront_homepage_content' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_social_icons' ) ) {
+if ( ! function_exists( 'woostify_social_icons' ) ) {
 	/**
 	 * Display social icons
 	 * If the subscribe and connect plugin is active, display the icons.
@@ -599,7 +599,7 @@ if ( ! function_exists( 'storefront_social_icons' ) ) {
 	 * @link http://wordpress.org/plugins/subscribe-and-connect/
 	 * @since 1.0.0
 	 */
-	function storefront_social_icons() {
+	function woostify_social_icons() {
 		if ( class_exists( 'Subscribe_And_Connect' ) ) {
 			echo '<div class="subscribe-and-connect-connect">';
 			subscribe_and_connect_connect();
@@ -608,19 +608,19 @@ if ( ! function_exists( 'storefront_social_icons' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_get_sidebar' ) ) {
+if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 	/**
-	 * Display storefront sidebar
+	 * Display woostify sidebar
 	 *
 	 * @uses get_sidebar()
 	 * @since 1.0.0
 	 */
-	function storefront_get_sidebar() {
+	function woostify_get_sidebar() {
 		get_sidebar();
 	}
 }
 
-if ( ! function_exists( 'storefront_post_thumbnail' ) ) {
+if ( ! function_exists( 'woostify_post_thumbnail' ) ) {
 	/**
 	 * Display post thumbnail
 	 *
@@ -630,45 +630,45 @@ if ( ! function_exists( 'storefront_post_thumbnail' ) ) {
 	 * @param string $size the post thumbnail size.
 	 * @since 1.5.0
 	 */
-	function storefront_post_thumbnail( $size = 'full' ) {
+	function woostify_post_thumbnail( $size = 'full' ) {
 		if ( has_post_thumbnail() ) {
 			the_post_thumbnail( $size );
 		}
 	}
 }
 
-if ( ! function_exists( 'storefront_primary_navigation_wrapper' ) ) {
+if ( ! function_exists( 'woostify_primary_navigation_wrapper' ) ) {
 	/**
 	 * The primary navigation wrapper
 	 */
-	function storefront_primary_navigation_wrapper() {
-		echo '<div class="storefront-primary-navigation"><div class="col-full">';
+	function woostify_primary_navigation_wrapper() {
+		echo '<div class="woostify-primary-navigation"><div class="col-full">';
 	}
 }
 
-if ( ! function_exists( 'storefront_primary_navigation_wrapper_close' ) ) {
+if ( ! function_exists( 'woostify_primary_navigation_wrapper_close' ) ) {
 	/**
 	 * The primary navigation wrapper close
 	 */
-	function storefront_primary_navigation_wrapper_close() {
+	function woostify_primary_navigation_wrapper_close() {
 		echo '</div></div>';
 	}
 }
 
-if ( ! function_exists( 'storefront_header_container' ) ) {
+if ( ! function_exists( 'woostify_header_container' ) ) {
 	/**
 	 * The header container
 	 */
-	function storefront_header_container() {
+	function woostify_header_container() {
 		echo '<div class="col-full">';
 	}
 }
 
-if ( ! function_exists( 'storefront_header_container_close' ) ) {
+if ( ! function_exists( 'woostify_header_container_close' ) ) {
 	/**
 	 * The header container close
 	 */
-	function storefront_header_container_close() {
+	function woostify_header_container_close() {
 		echo '</div>';
 	}
 }

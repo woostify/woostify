@@ -1,21 +1,21 @@
 <?php
 /**
- * Storefront Class
+ * Woostify Class
  *
  * @since    2.0.0
- * @package  storefront
+ * @package  woostify
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Storefront' ) ) :
+if ( ! class_exists('woostify') ) :
 
 	/**
-	 * The main Storefront class
+	 * The main Woostify class
 	 */
-	class Storefront {
+	class Woostify {
 
 		/**
 		 * Setup class.
@@ -47,14 +47,14 @@ if ( ! class_exists( 'Storefront' ) ) :
 			 * Note: the first-loaded translation file overrides any following ones if the same translation is present.
 			 */
 
-			// Loads wp-content/languages/themes/storefront-it_IT.mo.
-			load_theme_textdomain( 'storefront', trailingslashit( WP_LANG_DIR ) . 'themes/' );
+			// Loads wp-content/languages/themes/woostify-it_IT.mo.
+			load_theme_textdomain( 'woostify', trailingslashit( WP_LANG_DIR ) . 'themes/' );
 
 			// Loads wp-content/themes/child-theme-name/languages/it_IT.mo.
-			load_theme_textdomain( 'storefront', get_stylesheet_directory() . '/languages' );
+			load_theme_textdomain( 'woostify', get_stylesheet_directory() . '/languages' );
 
-			// Loads wp-content/themes/storefront/languages/it_IT.mo.
-			load_theme_textdomain( 'storefront', get_template_directory() . '/languages' );
+			// Loads wp-content/themes/woostify/languages/it_IT.mo.
+			load_theme_textdomain( 'woostify', get_template_directory() . '/languages' );
 
 			/**
 			 * Add default posts and comments RSS feed links to head.
@@ -73,7 +73,7 @@ if ( ! class_exists( 'Storefront' ) ) :
 			 */
 			add_theme_support(
 				'custom-logo', apply_filters(
-					'storefront_custom_logo_args', array(
+					'woostify_custom_logo_args', array(
 						'height'      => 110,
 						'width'       => 470,
 						'flex-width'  => true,
@@ -87,10 +87,10 @@ if ( ! class_exists( 'Storefront' ) ) :
 			 */
 			register_nav_menus(
 				apply_filters(
-					'storefront_register_nav_menus', array(
-						'primary'   => __( 'Primary Menu', 'storefront' ),
-						'secondary' => __( 'Secondary Menu', 'storefront' ),
-						'handheld'  => __( 'Handheld Menu', 'storefront' ),
+					'woostify_register_nav_menus', array(
+						'primary'   => __( 'Primary Menu', 'woostify'),
+						'secondary' => __( 'Secondary Menu', 'woostify'),
+						'handheld'  => __( 'Handheld Menu', 'woostify'),
 					)
 				)
 			);
@@ -101,7 +101,7 @@ if ( ! class_exists( 'Storefront' ) ) :
 			 */
 			add_theme_support(
 				'html5', apply_filters(
-					'storefront_html5_args', array(
+					'woostify_html5_args', array(
 						'search-form',
 						'comment-form',
 						'comment-list',
@@ -117,8 +117,8 @@ if ( ! class_exists( 'Storefront' ) ) :
 			 */
 			add_theme_support(
 				'custom-background', apply_filters(
-					'storefront_custom_background_args', array(
-						'default-color' => apply_filters( 'storefront_default_background_color', 'ffffff' ),
+					'woostify_custom_background_args', array(
+						'default-color' => apply_filters( 'woostify_default_background_color', 'ffffff' ),
 						'default-image' => '',
 					)
 				)
@@ -129,7 +129,7 @@ if ( ! class_exists( 'Storefront' ) ) :
 			 */
 			add_theme_support(
 				'custom-header', apply_filters(
-					'storefront_custom_header_args', array(
+					'woostify_custom_header_args', array(
 						'default-image' => '',
 						'header-text'   => false,
 						'width'         => 1950,
@@ -147,7 +147,7 @@ if ( ! class_exists( 'Storefront' ) ) :
 			 */
 			add_theme_support(
 				'site-logo', apply_filters(
-					'storefront_site_logo_args', array(
+					'woostify_site_logo_args', array(
 						'size' => 'full',
 					)
 				)
@@ -171,19 +171,19 @@ if ( ! class_exists( 'Storefront' ) ) :
 		 */
 		public function widgets_init() {
 			$sidebar_args['sidebar'] = array(
-				'name'          => __( 'Sidebar', 'storefront' ),
+				'name'          => __( 'Sidebar', 'woostify'),
 				'id'            => 'sidebar-1',
 				'description'   => '',
 			);
 
 			$sidebar_args['header'] = array(
-				'name'        => __( 'Below Header', 'storefront' ),
+				'name'        => __( 'Below Header', 'woostify'),
 				'id'          => 'header-1',
-				'description' => __( 'Widgets added to this region will appear beneath the header and above the main content.', 'storefront' ),
+				'description' => __( 'Widgets added to this region will appear beneath the header and above the main content.', 'woostify'),
 			);
 
-			$rows    = intval( apply_filters( 'storefront_footer_widget_rows', 1 ) );
-			$regions = intval( apply_filters( 'storefront_footer_widget_columns', 4 ) );
+			$rows    = intval( apply_filters( 'woostify_footer_widget_rows', 1 ) );
+			$regions = intval( apply_filters( 'woostify_footer_widget_columns', 4 ) );
 
 			for ( $row = 1; $row <= $rows; $row++ ) {
 				for ( $region = 1; $region <= $regions; $region++ ) {
@@ -192,16 +192,16 @@ if ( ! class_exists( 'Storefront' ) ) :
 
 					if ( 1 == $rows ) {
 						/* translators: 1: column number */
-						$footer_region_name = sprintf( __( 'Footer Column %1$d', 'storefront' ), $region );
+						$footer_region_name = sprintf( __( 'Footer Column %1$d', 'woostify'), $region );
 
 						/* translators: 1: column number */
-						$footer_region_description = sprintf( __( 'Widgets added here will appear in column %1$d of the footer.', 'storefront' ), $region );
+						$footer_region_description = sprintf( __( 'Widgets added here will appear in column %1$d of the footer.', 'woostify'), $region );
 					} else {
 						/* translators: 1: row number, 2: column number */
-						$footer_region_name = sprintf( __( 'Footer Row %1$d - Column %2$d', 'storefront' ), $row, $region );
+						$footer_region_name = sprintf( __( 'Footer Row %1$d - Column %2$d', 'woostify'), $row, $region );
 
 						/* translators: 1: column number, 2: row number */
-						$footer_region_description = sprintf( __( 'Widgets added here will appear in column %1$d of footer row %2$d.', 'storefront' ), $region, $row );
+						$footer_region_description = sprintf( __( 'Widgets added here will appear in column %1$d of footer row %2$d.', 'woostify'), $region, $row );
 					}
 
 					$sidebar_args[ $footer ] = array(
@@ -212,7 +212,7 @@ if ( ! class_exists( 'Storefront' ) ) :
 				}
 			}
 
-			$sidebar_args = apply_filters( 'storefront_sidebar_args', $sidebar_args );
+			$sidebar_args = apply_filters( 'woostify_sidebar_args', $sidebar_args );
 
 			foreach ( $sidebar_args as $sidebar => $args ) {
 				$widget_tags = array(
@@ -225,15 +225,15 @@ if ( ! class_exists( 'Storefront' ) ) :
 				/**
 				 * Dynamically generated filter hooks. Allow changing widget wrapper and title tags. See the list below.
 				 *
-				 * 'storefront_header_widget_tags'
-				 * 'storefront_sidebar_widget_tags'
+				 * 'woostify_header_widget_tags'
+				 * 'woostify_sidebar_widget_tags'
 				 *
-				 * 'storefront_footer_1_widget_tags'
-				 * 'storefront_footer_2_widget_tags'
-				 * 'storefront_footer_3_widget_tags'
-				 * 'storefront_footer_4_widget_tags'
+				 * 'woostify_footer_1_widget_tags'
+				 * 'woostify_footer_2_widget_tags'
+				 * 'woostify_footer_3_widget_tags'
+				 * 'woostify_footer_4_widget_tags'
 				 */
-				$filter_hook = sprintf( 'storefront_%s_widget_tags', $sidebar );
+				$filter_hook = sprintf( 'woostify_%s_widget_tags', $sidebar );
 				$widget_tags = apply_filters( $filter_hook, $widget_tags );
 
 				if ( is_array( $widget_tags ) ) {
@@ -248,22 +248,22 @@ if ( ! class_exists( 'Storefront' ) ) :
 		 * @since  1.0.0
 		 */
 		public function scripts() {
-			global $storefront_version;
+			global $woostify_version;
 
 			/**
 			 * Styles
 			 */
-			wp_enqueue_style( 'storefront-style', get_template_directory_uri() . '/style.css', '', $storefront_version );
-			wp_style_add_data( 'storefront-style', 'rtl', 'replace' );
+			wp_enqueue_style( 'woostify-style', get_template_directory_uri() . '/style.css', '', $woostify_version );
+			wp_style_add_data( 'woostify-style', 'rtl', 'replace' );
 
-			wp_enqueue_style( 'storefront-icons', get_template_directory_uri() . '/assets/css/base/icons.css', '', $storefront_version );
-			wp_style_add_data( 'storefront-icons', 'rtl', 'replace' );
+			wp_enqueue_style( 'woostify-icons', get_template_directory_uri() . '/assets/css/base/icons.css', '', $woostify_version );
+			wp_style_add_data( 'woostify-icons', 'rtl', 'replace' );
 
 			/**
 			 * Fonts
 			 */
 			$google_fonts = apply_filters(
-				'storefront_google_font_families', array(
+				'woostify_google_font_families', array(
 					'source-sans-pro' => 'Source+Sans+Pro:400,300,300italic,400italic,600,700,900',
 				)
 			);
@@ -275,27 +275,27 @@ if ( ! class_exists( 'Storefront' ) ) :
 
 			$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
 
-			wp_enqueue_style( 'storefront-fonts', $fonts_url, array(), null );
+			wp_enqueue_style( 'woostify-fonts', $fonts_url, array(), null );
 
 			/**
 			 * Scripts
 			 */
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-			wp_enqueue_script( 'storefront-navigation', get_template_directory_uri() . '/assets/js/navigation' . $suffix . '.js', array(), $storefront_version, true );
-			wp_enqueue_script( 'storefront-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix' . $suffix . '.js', array(), '20130115', true );
+			wp_enqueue_script( 'woostify-navigation', get_template_directory_uri() . '/assets/js/navigation' . $suffix . '.js', array(), $woostify_version, true );
+			wp_enqueue_script( 'woostify-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix' . $suffix . '.js', array(), '20130115', true );
 
 			if ( has_nav_menu( 'handheld' ) ) {
-				$storefront_l10n = array(
-					'expand'   => __( 'Expand child menu', 'storefront' ),
-					'collapse' => __( 'Collapse child menu', 'storefront' ),
+				$woostify_l10n = array(
+					'expand'   => __( 'Expand child menu', 'woostify'),
+					'collapse' => __( 'Collapse child menu', 'woostify'),
 				);
 
-				wp_localize_script( 'storefront-navigation', 'storefrontScreenReaderText', $storefront_l10n );
+				wp_localize_script( 'woostify-navigation', 'storefrontScreenReaderText', $woostify_l10n );
 			}
 
 			if ( is_page_template( 'template-homepage.php' ) && has_post_thumbnail() ) {
-				wp_enqueue_script( 'storefront-homepage', get_template_directory_uri() . '/assets/js/homepage' . $suffix . '.js', array(), $storefront_version, true );
+				wp_enqueue_script( 'woostify-homepage', get_template_directory_uri() . '/assets/js/homepage' . $suffix . '.js', array(), $woostify_version, true );
 			}
 
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -313,7 +313,7 @@ if ( ! class_exists( 'Storefront' ) ) :
 		public function child_scripts() {
 			if ( is_child_theme() ) {
 				$child_theme = wp_get_theme( get_stylesheet() );
-				wp_enqueue_style( 'storefront-child-style', get_stylesheet_uri(), array(), $child_theme->get( 'Version' ) );
+				wp_enqueue_style( 'woostify-child-style', get_stylesheet_uri(), array(), $child_theme->get( 'Version' ) );
 			}
 		}
 
@@ -350,17 +350,17 @@ if ( ! class_exists( 'Storefront' ) ) :
 			/**
 			 * What is this?!
 			 * Take the blue pill, close this file and forget you saw the following code.
-			 * Or take the red pill, filter storefront_make_me_cute and see how deep the rabbit hole goes...
+			 * Or take the red pill, filter woostify_make_me_cute and see how deep the rabbit hole goes...
 			 */
-			$cute = apply_filters( 'storefront_make_me_cute', false );
+			$cute = apply_filters( 'woostify_make_me_cute', false );
 
 			if ( true === $cute ) {
-				$classes[] = 'storefront-cute';
+				$classes[] = 'woostify-cute';
 			}
 
 			// If our main sidebar doesn't contain widgets, adjust the layout to be full-width.
 			if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-				$classes[] = 'storefront-full-width-content';
+				$classes[] = 'woostify-full-width-content';
 			}
 
 			// Add class when using homepage template + featured image.
@@ -370,7 +370,7 @@ if ( ! class_exists( 'Storefront' ) ) :
 
 			// Add class when Secondary Navigation is in use.
 			if ( has_nav_menu( 'secondary' ) ) {
-				$classes[] = 'storefront-secondary-navigation';
+				$classes[] = 'woostify-secondary-navigation';
 			}
 
 			return $classes;
@@ -380,12 +380,12 @@ if ( ! class_exists( 'Storefront' ) ) :
 		 * Custom navigation markup template hooked into `navigation_markup_template` filter hook.
 		 */
 		public function navigation_markup_template() {
-			$template  = '<nav id="post-navigation" class="navigation %1$s" role="navigation" aria-label="' . esc_html__( 'Post Navigation', 'storefront' ) . '">';
+			$template  = '<nav id="post-navigation" class="navigation %1$s" role="navigation" aria-label="' . esc_html__( 'Post Navigation', 'woostify') . '">';
 			$template .= '<h2 class="screen-reader-text">%2$s</h2>';
 			$template .= '<div class="nav-links">%3$s</div>';
 			$template .= '</nav>';
 
-			return apply_filters( 'storefront_navigation_markup_template', $template );
+			return apply_filters( 'woostify_navigation_markup_template', $template );
 		}
 
 		/**
@@ -393,8 +393,8 @@ if ( ! class_exists( 'Storefront' ) ) :
 		 */
 		public function print_embed_styles() {
 			wp_enqueue_style( 'source-sans-pro', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,700,900' );
-			$accent_color     = get_theme_mod( 'storefront_accent_color' );
-			$background_color = storefront_get_content_background_color();
+			$accent_color     = get_theme_mod( 'woostify_accent_color' );
+			$background_color = woostify_get_content_background_color();
 			?>
 			<style type="text/css">
 				.wp-embed {
@@ -402,7 +402,7 @@ if ( ! class_exists( 'Storefront' ) ) :
 					border: 0 !important;
 					border-radius: 3px !important;
 					font-family: "Source Sans Pro", "Open Sans", sans-serif !important;
-					background-color: <?php echo esc_html( storefront_adjust_color_brightness( $background_color, -7 ) ); ?> !important;
+					background-color: <?php echo esc_html( woostify_adjust_color_brightness( $background_color, -7 ) ); ?> !important;
 				}
 
 				.wp-embed .wp-embed-featured-image {
@@ -436,4 +436,4 @@ if ( ! class_exists( 'Storefront' ) ) :
 	}
 endif;
 
-return new Storefront();
+return new Woostify();

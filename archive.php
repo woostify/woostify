@@ -4,7 +4,7 @@
  *
  * Learn more: https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package storefront
+ * @package woostify
  */
 
 get_header(); ?>
@@ -35,5 +35,5 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
-do_action( 'storefront_sidebar' );
+do_action( 'woostify_sidebar' );
 get_footer();
