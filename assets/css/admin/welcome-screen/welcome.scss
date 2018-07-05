@@ -5,8 +5,8 @@
 
 $green: #45b964;
 
-.appearance_page_storefront-welcome {
-	.storefront-wrap {
+.appearance_page_woostify-welcome {
+	.woostify-wrap {
 		background: #e9eff3;
 		padding: 50px;
 		border: 10px solid white;
@@ -29,7 +29,7 @@ $green: #45b964;
 		}
 	}
 
-	.storefront-welcome-nav {
+	.woostify-welcome-nav {
 		background-color: #0087be;
 		margin: -50px -50px 0 -50px;
 
@@ -40,7 +40,7 @@ $green: #45b964;
 			padding: 1em;
 		}
 
-		.storefront-welcome-nav__version {
+		.woostify-welcome-nav__version {
 			float: right;
 			color: #a5c9e1;
 			display: inline-block;
@@ -63,7 +63,7 @@ $green: #45b964;
 		}
 	}
 
-	.storefront-logo {
+	.woostify-logo {
 		border: 0;
 		background: #fff;
 		display: block;
@@ -85,7 +85,7 @@ $green: #45b964;
 		}
 	}
 
-	.storefront-intro {
+	.woostify-intro {
 		max-width: 415px;
 		margin: 0 auto;
 		text-align: center;
@@ -101,22 +101,52 @@ $green: #45b964;
 		}
 	}
 
-	.storefront-enhance {
+	.woostify-enhance {
 		display: flex;
 		justify-content: center;
 		align-items: stretch;
 		margin: 4em 0;
+		flex-wrap: wrap;
 
-		.storefront-enhance__column {
-			border: 1px solid #d8e2e9;
+		.woostify-enhance-content {
+			width: 500px;
+			margin-right: 20px;
+		}
+
+		.woostify-enhance-sidebar {
 			width: 300px;
+		}
+
+		.woostify-enhance__column {
+			border: 1px solid #d8e2e9;
+			width: 100%;
 			margin: 0 1em;
 			background: #fff;
+			margin-bottom: 20px;
+
+			.wst-flex {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				align-content: center;
+				li {
+					margin: 10px 0;
+				}
+				.dashicons {
+					margin: 0 7px 0 20px;
+				}
+				li:nth-child( odd ) {
+					width: 74%;
+				}
+				li:nth-child( even ) {
+					width: 26%;
+				}
+			}
 
 			h3 {
-				font-size: 1em;
-				font-weight: 400;
-				color: #87a6bc;
+				font-size: 1.1em;
+				font-weight: 600;
+				color: #383838;
 				border-bottom: 1px solid #d8e2e9;
 				padding: 1em 1.5em;
 				margin: 0;
@@ -129,8 +159,8 @@ $green: #45b964;
 			}
 		}
 
-		.storefront-bundle,
-		.storefront-child-themes {
+		.woostify-bundle,
+		.woostify-child-themes {
 			padding-bottom: 0.5em;
 
 			p {
@@ -139,8 +169,8 @@ $green: #45b964;
 			}
 		}
 
-		.storefront-bundle {
-			order: 2;
+		.woostify-bundle {
+			//order: 2;
 
 			.bundle-image {
 				display: block;
@@ -155,12 +185,12 @@ $green: #45b964;
 			}
 		}
 
-		.storefront-child-themes {
-			order: 3;
+		.woostify-child-themes {
+			//order: 3;
 		}
 	}
 
-	a.storefront-button {
+	a.woostify-button {
 		color: #2e4453;
 		border: 1px solid #c8d7e1;
 		padding: 0.5em 1em;
@@ -211,16 +241,16 @@ $green: #45b964;
 }
 
 @media all and (max-width: 768px) {
-	.appearance_page_storefront-welcome {
-		.storefront-logo {
+	.appearance_page_woostify-welcome {
+		.woostify-logo {
 			margin-top: 20px;
 		}
 
-		.storefront-enhance {
+		.woostify-enhance {
 			display: block;
 			margin: 2em 0;
 
-			.storefront-enhance__column {
+			.woostify-enhance__column {
 				margin: 1em auto;
 			}
 		}
