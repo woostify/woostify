@@ -10,12 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Storefront_WooCommerce_Customizer' ) ) :
+if ( ! class_exists( 'Woostify_WooCommerce_Customizer' ) ) :
 
 	/**
 	 * The Woostify Customizer class
 	 */
-	class Storefront_WooCommerce_Customizer extends Storefront_Customizer {
+	class Woostify_WooCommerce_Customizer extends Woostify_Customizer {
 
 		/**
 		 * Setup class.
@@ -286,7 +286,7 @@ if ( ! class_exists( 'Storefront_WooCommerce_Customizer' ) ) :
 				}
 			}';
 
-			if ( ! class_exists( 'Storefront_Product_Pagination' ) ) {
+			if ( ! class_exists( 'Woostify_Product_Pagination' ) ) {
 				$styles .= '
 				.woostify-product-pagination a {
 					color: ' . $woostify_theme_mods['text_color'] . ';
@@ -294,7 +294,7 @@ if ( ! class_exists( 'Storefront_WooCommerce_Customizer' ) ) :
 				}';
 			}
 
-			if ( ! class_exists( 'Storefront_Sticky_Add_to_Cart' ) ) {
+			if ( ! class_exists( 'Woostify_Sticky_Add_to_Cart' ) ) {
 				$styles .= '
 				.woostify-sticky-add-to-cart {
 					color: ' . $woostify_theme_mods['text_color'] . ';
@@ -323,4 +323,4 @@ if ( ! class_exists( 'Storefront_WooCommerce_Customizer' ) ) :
 
 endif;
 
-return new Storefront_WooCommerce_Customizer();
+return new Woostify_WooCommerce_Customizer();

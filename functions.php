@@ -10,6 +10,8 @@
  */
 $theme              = wp_get_theme('Woostify');
 $woostify_version = $theme['Version'];
+define( 'WOOSTIFY_THEME_DIR', get_template_directory() . '/' );
+define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );
 
 /**
  * Set the content width based on the theme's design and stylesheet.

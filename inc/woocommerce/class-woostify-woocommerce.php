@@ -10,12 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Storefront_WooCommerce' ) ) :
+if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 	/**
 	 * The Woostify WooCommerce Integration class
 	 */
-	class Storefront_WooCommerce {
+	class Woostify_WooCommerce {
 
 		/**
 		 * Setup class.
@@ -137,7 +137,7 @@ if ( ! class_exists( 'Storefront_WooCommerce' ) ) :
 			wp_register_script( 'woostify-header-cart', get_template_directory_uri() . '/assets/js/woocommerce/header-cart' . $suffix . '.js', array(), $woostify_version, true );
 			wp_enqueue_script( 'woostify-header-cart' );
 
-			if ( ! class_exists( 'Storefront_Sticky_Add_to_Cart' ) && is_product() ) {
+			if ( ! class_exists( 'Woostify_Sticky_Add_to_Cart' ) && is_product() ) {
 				wp_register_script( 'woostify-sticky-add-to-cart', get_template_directory_uri() . '/assets/js/sticky-add-to-cart' . $suffix . '.js', array(), $woostify_version, true );
 			}
 
@@ -392,7 +392,7 @@ if ( ! class_exists( 'Storefront_WooCommerce' ) ) :
 		 * @return array $styles the css
 		 */
 		public function get_woocommerce_extension_css() {
-			$woostify_customizer = new Storefront_Customizer();
+			$woostify_customizer = new Woostify_Customizer();
 			$woostify_theme_mods = $woostify_customizer->get_woostify_theme_mods();
 
 			$woocommerce_extension_style                = '';
@@ -462,4 +462,4 @@ if ( ! class_exists( 'Storefront_WooCommerce' ) ) :
 
 endif;
 
-return new Storefront_WooCommerce();
+return new Woostify_WooCommerce();
