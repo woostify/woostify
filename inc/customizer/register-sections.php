@@ -22,8 +22,8 @@ $wp_customize->add_section(
  * Add the typography section
  */
 $wp_customize->add_section(
-    'woostify_typography', array(
-        'title'                 => __( 'Typography', 'woostify'),
+    'woostify_color', array(
+        'title'                 => __( 'Color', 'woostify'),
         'priority'              => 45,
     )
 );

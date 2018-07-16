@@ -13,7 +13,7 @@ $wp_customize->add_control(
     new WP_Customize_Color_Control(
         $wp_customize, 'woostify_heading_color', array(
             'label'                 => __( 'Heading color', 'Woostify'),
-            'section'               => 'woostify_typography',
+            'section'               => 'woostify_color',
             'settings'              => 'woostify_heading_color',
             'priority'              => 20,
         )
@@ -34,7 +34,7 @@ $wp_customize->add_control(
     new WP_Customize_Color_Control(
         $wp_customize, 'woostify_text_color', array(
             'label'                 => __( 'Text color', 'Woostify'),
-            'section'               => 'woostify_typography',
+            'section'               => 'woostify_color',
             'settings'              => 'woostify_text_color',
             'priority'              => 30,
         )
@@ -55,7 +55,7 @@ $wp_customize->add_control(
     new WP_Customize_Color_Control(
         $wp_customize, 'woostify_accent_color', array(
             'label'                 => __( 'Link / accent color', 'Woostify'),
-            'section'               => 'woostify_typography',
+            'section'               => 'woostify_color',
             'settings'              => 'woostify_accent_color',
             'priority'              => 40,
         )
@@ -76,7 +76,7 @@ $wp_customize->add_control(
     new WP_Customize_Color_Control(
         $wp_customize, 'woostify_hero_heading_color', array(
             'label'                 => __( 'Hero heading color', 'Woostify'),
-            'section'               => 'woostify_typography',
+            'section'               => 'woostify_color',
             'settings'              => 'woostify_hero_heading_color',
             'priority'              => 50,
             'active_callback'       => array( $this, 'is_homepage_template' ),
@@ -98,7 +98,7 @@ $wp_customize->add_control(
     new WP_Customize_Color_Control(
         $wp_customize, 'woostify_hero_text_color', array(
             'label'                 => __( 'Hero text color', 'Woostify'),
-            'section'               => 'woostify_typography',
+            'section'               => 'woostify_color',
             'settings'              => 'woostify_hero_text_color',
             'priority'              => 60,
             'active_callback'       => array( $this, 'is_homepage_template' ),

@@ -7,7 +7,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-    new Storefront_Custom_Radio_Image_Control(
+    new Woostify_Custom_Radio_Image_Control(
         $wp_customize, 'woostify_layout', array(
             'settings'              => 'woostify_layout',
             'section'               => 'woostify_layout',

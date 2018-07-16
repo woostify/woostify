@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * The radio image class.
  */
-class Storefront_Custom_Radio_Image_Control extends WP_Customize_Control {
+class Woostify_Custom_Radio_Image_Control extends WP_Customize_Control {
 
 	/**
 	 * Declare the control type.

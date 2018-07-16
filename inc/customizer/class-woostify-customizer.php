@@ -136,7 +136,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/footer/footer.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/header/header.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/layout/layout.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/typography.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/color/color.php';
 			
 
 		}

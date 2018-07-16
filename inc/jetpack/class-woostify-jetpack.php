@@ -10,12 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Storefront_Jetpack' ) ) :
+if ( ! class_exists( 'Woostify_Jetpack' ) ) :
 
 	/**
 	 * The Woostify Jetpack integration class
 	 */
-	class Storefront_Jetpack {
+	class Woostify_Jetpack {
 
 		/**
 		 * Setup class.
@@ -108,4 +108,4 @@ if ( ! class_exists( 'Storefront_Jetpack' ) ) :
 
 endif;
 
-return new Storefront_Jetpack();
+return new Woostify_Jetpack();
