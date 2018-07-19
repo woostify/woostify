@@ -71,7 +71,7 @@ if ( ! class_exists( 'Woostify_Jetpack' ) ) :
 				if ( woostify_is_product_archive() ) {
 					wc_get_template_part( 'content', 'product' );
 				} else {
-					get_template_part( 'content', get_post_format() );
+					get_template_part( 'template-parts/content', get_post_format() );
 				}
 			endwhile; // end of the loop.
 

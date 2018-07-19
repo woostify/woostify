@@ -29,3 +29,6 @@ config.codekit
 
 # Composer
 /vendor
+
+# Sublime
+*.cache

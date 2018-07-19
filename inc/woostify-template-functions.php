@@ -166,7 +166,7 @@ if ( ! function_exists( 'woostify_header_widget_region' ) ) {
 		if ( is_active_sidebar( 'header-1' ) ) {
 			?>
 		<div class="header-widget-region" role="complementary">
-			<div class="col-full">
+			<div class="container">
 				<?php dynamic_sidebar( 'header-1' ); ?>
 			</div>
 		</div>
@@ -585,7 +585,7 @@ if ( ! function_exists( 'woostify_homepage_content' ) ) {
 		while ( have_posts() ) {
 			the_post();
 
-			get_template_part( 'content', 'homepage' );
+			get_template_part( 'template-parts/content', 'homepage' );
 
 		} // end of the loop.
 	}
@@ -642,7 +642,7 @@ if ( ! function_exists( 'woostify_primary_navigation_wrapper' ) ) {
 	 * The primary navigation wrapper
 	 */
 	function woostify_primary_navigation_wrapper() {
-		echo '<div class="woostify-primary-navigation"><div class="col-full">';
+		echo '<div class="woostify-primary-navigation"><div class="container">';
 	}
 }
 
@@ -660,7 +660,7 @@ if ( ! function_exists( 'woostify_header_container' ) ) {
 	 * The header container
 	 */
 	function woostify_header_container() {
-		echo '<div class="col-full">';
+		echo '<div class="container">';
 	}
 }
 
