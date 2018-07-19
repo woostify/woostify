@@ -18,7 +18,7 @@ get_header(); ?>
 
 				do_action( 'woostify_page_before' );
 
-				get_template_part( 'content', 'page' );
+				get_template_part( 'template-parts/content', 'page' );
 
 				/**
 				 * Functions hooked in to woostify_page_after action

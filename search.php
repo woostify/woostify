@@ -22,11 +22,11 @@ get_header(); ?>
 			</header><!-- .page-header -->
 
 			<?php
-			get_template_part( 'loop' );
+			get_template_part( 'template-parts/loop' );
 
 		else :
 
-			get_template_part( 'content', 'none' );
+			get_template_part( 'template-parts/content', 'none' );
 
 		endif;
 		?>
