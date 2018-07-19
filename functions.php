@@ -29,6 +29,17 @@ $woostify = (object) array(
 	'main'       => require 'inc/class-woostify.php',
 	'customizer' => require 'inc/customizer/class-woostify-customizer.php',
 );
+/**
+ * Sanitize our Google Font variants
+ *
+ * @since 2.0
+ */
+function generate_sanitize_variants( $input ) {
+	if ( is_array( $input ) ) {
+		$input = implode( ',', $input );
+	}
+	return sanitize_text_field( $input );
+}
 
 require 'inc/woostify-functions.php';
 require 'inc/woostify-template-hooks.php';

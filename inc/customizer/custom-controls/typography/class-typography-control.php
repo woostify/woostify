@@ -33,7 +33,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			$this->json[ 'default_fonts_title'] = __( 'System fonts', 'generatepress' );
 			$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'generatepress' );
 			$this->json[ 'google_fonts' ] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
-			$this->json[ 'default_fonts' ] = generate_typography_default_fonts();
+			$this->json[ 'default_fonts' ] = $this->generate_typography_default_fonts();
 			$this->json[ 'family_title' ] = esc_html__( 'Font family', 'generatepress' );
 			$this->json[ 'weight_title' ] = esc_html__( 'Font weight', 'generatepress' );
 			$this->json[ 'transform_title' ] = esc_html__( 'Text transform', 'generatepress' );
@@ -188,6 +188,29 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 				'uppercase' => esc_html( 'uppercase' ),
 				'lowercase' => esc_html( 'lowercase' ),
 			);
+		}
+
+		public function generate_typography_default_fonts() {
+			$fonts = array(
+				'inherit',
+				'System Stack',
+				'Arial, Helvetica, sans-serif',
+				'Century Gothic',
+				'Comic Sans MS',
+				'Courier New',
+				'Georgia, Times New Roman, Times, serif',
+				'Helvetica',
+				'Impact',
+				'Lucida Console',
+				'Lucida Sans Unicode',
+				'Palatino Linotype',
+				'Segoe UI, Helvetica Neue, Helvetica, sans-serif',
+				'Tahoma, Geneva, sans-serif',
+				'Trebuchet MS, Helvetica, sans-serif',
+				'Verdana, Geneva, sans-serif'
+			);
+
+			return apply_filters( 'generate_typography_default_fonts', $fonts );
 		}
 	}
 }

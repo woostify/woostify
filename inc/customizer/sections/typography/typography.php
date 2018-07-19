@@ -37,6 +37,19 @@ if ( ! function_exists( 'generate_typography_default_fonts' ) ) {
 		return apply_filters( 'generate_typography_default_fonts', $fonts );
 	}
 }
+add_action( 'customize_controls_enqueue_scripts', 'generate_do_control_inline_scripts', 100 );
+/**
+ * Add misc inline scripts to our controls.
+ *
+ * We don't want to add these to the controls themselves, as they will be repeated
+ * each time the control is initialized.
+ *
+ * @since 2.0
+ */
+function generate_do_control_inline_scripts() {
+	wp_localize_script( 'generatepress-typography-customizer', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );
+	wp_localize_script( 'generatepress-typography-customizer', 'typography_defaults', generate_typography_default_fonts() );
+}
 if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 	/**
 	 * Set default options.
@@ -276,7 +289,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/typography/class-typography-control.php';
 
 		$defaults = generate_get_default_fonts();
-
+		// var_dump($defaults);
 		if ( method_exists( $wp_customize,'register_control_type' ) ) {
 			$wp_customize->register_control_type( 'Generate_Typography_Customize_Control' );
 			//$wp_customize->register_control_type( 'Generate_Range_Slider_Control' );
