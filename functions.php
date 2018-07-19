@@ -33,6 +33,7 @@ $woostify = (object) array(
 require 'inc/woostify-functions.php';
 require 'inc/woostify-template-hooks.php';
 require 'inc/woostify-template-functions.php';
+require 'inc/customizer/sections/typography/typography.php';
 
 if ( class_exists( 'Jetpack' ) ) {
 	$woostify->jetpack = require 'inc/jetpack/class-woostify-jetpack.php';
