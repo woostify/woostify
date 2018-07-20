@@ -1,0 +1,81 @@
+.cl{
+    clear: both;
+}
+
+@mixin flw{
+    float: left;
+    width: 100%;   
+}
+.flw{
+    @include flw;
+}
+
+.display{
+    &-none{
+        display: none;
+    }
+    &-block{
+        display: block;
+    }
+    &-inline-block{
+        display: inline-block;
+    }
+    &-table{
+        display: table;
+    }
+    &-flex{
+        display: flex;
+    }
+    &-inline-flex{
+        display: inline-flex;
+    }
+    &-inline{
+        display: inline;
+    }
+    &-initial{
+        display: initial;
+    }
+    &-inherit{
+        display: inherit;
+    }
+}
+
+.text {
+    &-center{
+        text-align: center;
+    }
+    &-left{
+        text-align: left;
+    }
+    &-right{
+        text-align: right;
+    }
+    &-justify {
+        text-align: justify;
+    }
+}
+
+.hidden{
+    display: none;
+}
+
+.float{
+    &-left{
+        float: left;
+    }
+    &-right{
+        float: right;
+    }
+    &-none{
+        float: none;
+    }
+}
+
+.screen-reader-text,
+.sr-only {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}

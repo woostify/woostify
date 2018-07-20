@@ -1,0 +1,304 @@
+select {
+    border: 1px solid #ddd;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    max-width: 100%;
+}
+
+input{
+    border: 1px solid #eeeeee;
+}
+input,
+textarea,
+button {
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    max-width: 100%;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="file"],
+button{
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding: 0;
+    border: 1px solid #cac7c7;
+    &::-moz-focus-inner{
+        border: none $i;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    clear: both;
+    margin: 15px 0;
+    line-height: 1.2;
+    a{
+        color: $inh
+    }
+}
+
+h1 {
+    font-size: 42px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+h3 {
+    font-size: 30px;
+}
+
+h4 {
+    font-size: 24px;
+}
+
+h5 {
+    font-size: 20px;
+}
+
+h6 {
+    font-size: 18px;
+}
+
+p {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    margin: 0 0 10px;
+}
+
+li {
+    ul,
+    ol {
+        padding-left: 0;
+        margin-left: 20px;
+    }
+}
+
+b,
+strong {
+    font-weight: 700;
+}
+
+dfn,
+cite,
+em,
+i {
+    font-style: italic;
+}
+
+li,
+figcaption {
+    line-height: 24px;
+}
+
+blockquote {
+    font-weight: 300;
+    margin: 30px 0;
+    border-left: 4px solid #333;
+    padding-left: 15px;
+    position: relative;
+    clear: both;
+    display: block;
+    p {
+        margin-bottom: 1.6667em;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    cite,
+    small {
+        color: #333;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    em,
+    i,
+    cite {
+        font-style: normal;
+    }
+}
+
+address {
+    font-style: italic;
+    margin: 0 0 1.6em;
+    line-height: 24px;
+}
+
+code,
+kbd,
+tt,
+var,
+samp,
+pre {
+    font-family: Inconsolata, monospace;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+pre {
+    background-color: rgba(0, 0, 0, 0.01);
+    border: 1px solid rgba(51, 51, 51, 0.1);
+    line-height: 24px;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 0.8em;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+mark,
+ins {
+    background-color: #fff9c0;
+    text-decoration: none;
+}
+
+sup,
+sub {
+    font-size: 75%;
+    height: 0;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    bottom: 1ex;
+}
+
+sub {
+    top: .5ex;
+}
+
+small {
+    font-size: 75%;
+}
+
+big {
+    font-size: 125%;
+}
+
+// ELEMENTS
+hr {
+    background-color: #eaeaea;
+    background-color: rgba(51, 51, 51, 0.1);
+    border: 0;
+    height: 1px;
+    margin: 15px 0;
+}
+
+table,
+th,
+td {
+    border: 1px solid #eaeaea;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 20px 0;
+    table-layout: fixed;
+    max-width: 100%;
+    .woocommerce & {
+        width: 100%;
+    }
+}
+
+caption,
+th,
+td {
+    font-weight: normal;
+    text-align: left;
+}
+
+tbody {
+    th {
+        background: #fff;
+    }
+}
+
+thead th {
+    border-width: 0 1px 1px 0;
+    font-weight: 700;
+}
+
+td {
+    border-width: 0 1px 1px 0;
+}
+
+th,
+td {
+    padding: 5px 10px;
+    line-height: 24px;
+}
+
+del {
+    opacity: 0.8;
+}
+
+
+
+/* Placeholder text color -- selectors need to be separate to work. */
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content
+    }
+    &:-moz-placeholder {
+        @content
+    }
+    &::-moz-placeholder {
+        @content
+    }
+    &:-ms-input-placeholder {
+        @content
+    }
+}
+
+input {
+    @include placeholder {
+        color: $inh
+    }
+}
+
+textarea {
+    max-width: 100%;
+    @include placeholder {
+        color: $inh
+    }
+}
+
+a {
+    text-decoration: none;
+    @extend .duration;
+}
+
+dl {
+    margin: 0 0 1.75em;
+    line-height: 24px;
+}
+
+dt {
+    font-weight: 700;
+}
+
+dd {
+    margin: 0 0 10px;
+}
+
+.rtl {
+    direction: rtl
+}
