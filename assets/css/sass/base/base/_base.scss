@@ -1,0 +1,125 @@
+/*--------------------------------------------------------------
+Reset
+--------------------------------------------------------------*/
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    outline: none;
+}
+
+html{
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary,
+audio,
+canvas,
+progress,
+video{
+    display: block;
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+[hidden],
+template {
+    display: none;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul {
+    list-style: disc;
+}
+
+ul,
+ol {
+    padding-left: 20px;
+}
+
+iframe,
+embed,
+figure,
+figcaption {
+    border: 0;
+    margin: 20px 0;
+    max-width: 100%;
+}
+
+caption,
+th,
+td {
+    font-weight: normal;
+    text-align: left;
+}
+
+blockquote,
+blockquote:before,
+blockquote:after,
+q,
+q:before,
+q:after {
+    content: "";
+}
+
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+}
+
+audio,
+canvas,
+video {
+    display: inline;
+    zoom: 1;
+}
+.text-center {
+    text-align: center;
+}
+.d-flex {
+    display: flex;
+    display: -webkit-flex;
+}
+.align-items-center {
+    align-items: center;
+    -webkit-align-items: center;
+}
+.justify-content-center {
+    justify-content: center;
+    -webkit-justify-content: center;
+}

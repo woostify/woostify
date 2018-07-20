@@ -1,0 +1,81 @@
+// transform
+@mixin transform($transforms, $important:null) {
+    -webkit-transform: $transforms $important;
+    transform: $transforms $important;
+}
+@mixin transforms($data...) {
+    $output: ();
+    @each $key in $data {
+        $output: append($output, $key, comma);
+    }
+
+    -webkit-transform: $output;
+    transform: $output;
+}
+
+// scale
+@mixin scale($scale: 1, $important:null) {
+    @include transform(scale($scale) $important);
+}
+@mixin scaleX($scalex: 1, $important:null) {
+    @include transform(scaleX($scalex) $important);
+}
+@mixin scaleY($scaley: 1, $important:null) {
+    @include transform(scaleY($scaley) $important);
+}
+
+//rotate
+@mixin rotate($deg: 360) { 
+    @include transform(rotate(#{$deg}deg));
+}
+
+/* skew */
+@mixin skew ($x: 0, $y: 0) {
+    @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+/* translate */
+@mixin translate ($x: 0, $y: 0) {
+    @include transform(translate($x, $y));
+}
+@mixin translatex ($x: 0, $important:null) {
+    @include transform(translateX($x) $important);
+}
+@mixin translatey ($y: 0) {
+    @include transform(translateY($y));
+}
+@mixin translate3d ($x: 0, $y: 0, $z: 0) {
+    @include transform(translate3d($x, $y, $z));
+}
+
+// transition
+@mixin transitions($data...) {
+    $output: ();
+    @each $key in $data {
+        $output: append($output, $key, comma);
+    }
+    -webkit-transition: $output;
+    transition: $output;
+}
+@mixin transition($pos, $i:null) {
+    -webkit-transition: $pos $i;
+    transition: $pos $i;
+}
+
+//transition-duration
+@mixin duration($time: 0.3s) {
+    -webkit-transition-duration: $time;
+    transition-duration: $time;
+}
+.duration {
+    @include duration;
+}
+
+@mixin delay($time: 0.3s) {
+    -webkit-transition-delay: $time;
+    transition-delay: $time;
+}
+.delay {
+    @include delay;
+    background: green;
+}

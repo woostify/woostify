@@ -1,0 +1,242 @@
+/* sticky style - author
+------------------------------------------------->*/
+.sticky,
+.bypostauthor{
+    background: $tr;
+}
+
+/* caption
+------------------------------------------------->*/
+.wp-caption {
+    margin-bottom: 15px;
+    max-width: 100%;
+    img[class*="wp-image-"] {
+        display: block;
+        margin: 0;
+    }
+    .wp-caption-text {
+        color: #686868;
+        font-size: 13px;
+        font-size: 14px;
+        font-style: italic;
+        line-height: 1.6153846154;
+        padding-top: 0.5384615385em;
+        a {
+            color: #7b98aa;
+        }
+    }
+}
+
+/* gallery image columns
+------------------------------------------------->*/
+.gallery-icon img {
+    margin: 0 auto;
+}
+.gallery-columns-2 .gallery-item {
+    max-width: 50%;
+}
+
+.gallery-columns-3 .gallery-item {
+    max-width: 33.33%;
+}
+
+.gallery-columns-4 .gallery-item {
+    max-width: 25%;
+}
+
+.gallery-columns-5 .gallery-item {
+    max-width: 20%;
+}
+
+.gallery-columns-6 .gallery-item {
+    max-width: 16.66%;
+}
+
+.gallery-columns-7 .gallery-item {
+    max-width: 14.28%;
+}
+
+.gallery-columns-8 .gallery-item {
+    max-width: 12.5%;
+}
+
+.gallery-columns-9 .gallery-item {
+    max-width: 11.11%;
+}
+
+.gallery-item {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    margin-top: 0!important;
+}
+
+.gallery-caption {
+    color: #686868;
+    display: block;
+    font-size: 13px;
+    font-size: 0.8125rem;
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+
+/* Alignments
+------------------------------------------------->*/
+
+.alignleft {
+    float: left;
+    margin: 0.375em 1.75em 1.75em 0;
+}
+
+.alignright {
+    float: right;
+    margin: 0.375em 0 1.75em 1.75em;
+}
+
+.aligncenter {
+    clear: both;
+    display: block;
+    margin: 0 auto 1.75em;
+}
+
+
+
+/* blog password form
+------------------------------------------------->*/
+.post-password-form {
+    label {
+        float: left;
+        display: -webkit-inline-flex;
+        display: inline-flex;
+        align-items: center;
+    }
+    input {
+        &[type="password"] {
+            height: 36px;
+            min-width: 240px;
+            max-width: 100%;
+            padding: 0 10px;
+            float: right;
+            margin-left: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+        }
+        &[type="submit"] {
+            height: 36px;
+            padding: 0 20px;
+            cursor: pointer;
+            border: 0;
+            float: left;
+            background: #333;
+            color: #fff;
+        }
+    }
+}
+
+/* widget calendar
+------------------------------------------------->*/
+#wp-calendar{
+    width: 100%;
+    caption{
+        text-align: left;
+        margin-bottom: 10px;
+    }
+    *{
+        text-align: center;
+    }
+    #prev{
+        text-align: left;
+    }
+    #next{
+        text-align: right;
+    }
+    td, th{
+        padding: 10px 5px;
+    }
+}
+
+/* widget recen posts with thumbnail
+------------------------------------------------->*/
+.widget_recent_posts_thumbnail,
+.elementor-widget-wp-widget-goto_recent_posts_with_thumbnail{
+    .widget_recent_post_thumbnail_item{
+        @extend .flw;
+        + .widget_recent_post_thumbnail_item{
+            margin-top: 15px;
+        }
+    }
+    .blog-recent-post-thumbnail-img{
+        float: left;
+        width: 70px;
+    }
+    .blog-recent-post-thumbnail-sumary{
+        @include calc(width, '100% - 80px');
+        margin-left: 9px;
+        float: left;
+        a{
+            font-weight: 600;
+            line-height: $ini;
+        }
+        span{
+            @extend .flw;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #aaaaaa
+        }
+    }
+}
+
+/* Template: Paginated
+------------------------------------------------->*/
+.theme-page-links{
+    @extend .flw;
+    margin-top: 20px;
+    a{
+        &:hover{
+            span{
+                background: #ccc;
+            }
+        }
+        span{
+            background: #ddd;
+            border: 1px solid #ddd;
+            color: #333;
+            @extend .duration;
+        }
+    }
+    span{
+        @extend .inline-flex;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #333;
+        color: #fff
+    }
+}
+
+/* Template: Pingbacks And Trackbacks
+------------------------------------------------->*/
+.comment-post-pingback{
+    @extend .flw;
+    line-height: 24px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 12px;
+    +.comment-post-pingback{
+        margin-top: 12px;
+    }
+    + .comment-item{
+        margin-top: 50px;
+    }
+    .comment-edit-link{
+        float: right;
+        margin-left: 20px;
+    }
+    .url{
+        margin-left: 7px;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}

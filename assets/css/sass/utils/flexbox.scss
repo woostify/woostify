@@ -1,0 +1,30 @@
+@mixin flex( $prop: flex, $justify: center, $align: center, $important: null) {
+    @if( 'flex' == $prop ) {
+        display: -webkit-box $important;
+    } @else {
+        display: -webkit-inline-box $important;
+    }
+    display: -webkit-#{$prop} $important;
+    display: $prop $important;
+    @if( 'center' == $justify ) {
+        -webkit-box-pack: center
+    }
+    @else if( 'start' == $justify ) {
+        -webkit-box-pack: start
+    }
+    @else if( 'end' == $justify ) {
+        -webkit-box-pack: end
+    }
+    @else {
+        -webkit-box-pack: justify
+    }
+    justify-content: $justify;
+    -webkit-box-align: $align;
+    align-items: $align
+}
+.flex {
+    @include flex()
+}
+.inline-flex {
+    @include flex( inline-flex )
+}

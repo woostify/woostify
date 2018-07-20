@@ -1,0 +1,20 @@
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    animation: #{$str};
+}
+@mixin animations($data...) {
+    $output: ();
+    @each $key in $data {
+        $output: append($output, $key, comma);
+    }
+    -webkit-animation: $output;
+    animation: $output;
+}
