@@ -37,19 +37,7 @@ if ( ! function_exists( 'generate_typography_default_fonts' ) ) {
 		return apply_filters( 'generate_typography_default_fonts', $fonts );
 	}
 }
-add_action( 'customize_controls_enqueue_scripts', 'generate_do_control_inline_scripts', 100 );
-/**
- * Add misc inline scripts to our controls.
- *
- * We don't want to add these to the controls themselves, as they will be repeated
- * each time the control is initialized.
- *
- * @since 2.0
- */
-function generate_do_control_inline_scripts() {
-	wp_localize_script( 'generatepress-typography-customizer', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );
-	wp_localize_script( 'generatepress-typography-customizer', 'typography_defaults', generate_typography_default_fonts() );
-}
+
 if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 	/**
 	 * Set default options.
@@ -671,66 +659,6 @@ if ( ! function_exists( 'generate_get_google_font_category' ) ) {
 		// Return it to be used by our function
 		return $category;
 
-	}
-}
-
-
-
-if ( ! function_exists( 'generate_get_font_family_css' ) ) {
-	/**
-	 * Wrapper function to create font-family value for CSS.
-	 *
-	 * @since 1.3.0
-	 *
-	 * @param string $font The name of our font.
-	 * @param string $settings The ID of the settings we're looking up.
-	 * @param array $default The defaults for our $settings.
-	 * @return string The CSS value for our font family.
-	 */
-	function generate_get_font_family_css( $font, $settings, $default ) {
-		$generate_settings = wp_parse_args(
-			get_option( $settings, array() ),
-			$default
-		);
-
-		// We don't want to wrap quotes around these values
-		$no_quotes = array(
-			'inherit',
-			'Arial, Helvetica, sans-serif',
-			'Georgia, Times New Roman, Times, serif',
-			'Helvetica',
-			'Impact',
-			'Segoe UI, Helvetica Neue, Helvetica, sans-serif',
-			'Tahoma, Geneva, sans-serif',
-			'Trebuchet MS, Helvetica, sans-serif',
-			'Verdana, Geneva, sans-serif',
-			apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' )
-		);
-
-		// Get our font
-		$font_family = $generate_settings[ $font ];
-
-		if ( 'System Stack' == $font_family ) {
-			$font_family = apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' );
-		}
-
-		// If our value is still using the old format, fix it
-		if ( strpos( $font_family, ':' ) !== false ) {
-			$font_family = current( explode( ':', $font_family ) );
-		}
-
-		// Set up our wrapper
-		if ( in_array( $font_family, $no_quotes ) ) {
-			$wrapper_start = null;
-			$wrapper_end = null;
-		} else {
-			$wrapper_start = '"';
-			$wrapper_end = '"' . generate_get_google_font_category( $font_family, $font );
-		}
-
-		// Output the CSS
-		$output = ( 'inherit' == $font_family ) ? '' : $wrapper_start . $font_family . $wrapper_end;
-		return $output;
 	}
 }
 

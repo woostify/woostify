@@ -123,6 +123,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			 */
 			require_once dirname( __FILE__ ) . '/custom-controls/radio-image/class-woostify-customizer-control-radio-image.php';
 			require_once dirname( __FILE__ ) . '/custom-controls/divider/class-woostify-customizer-control-arbitrary.php';
+			// Typography
+//            require_once dirname( __FILE__ ) . '/custom-controls/typography/class-woostify-fonts-helpers.php';
+            //require_once dirname( __FILE__ ) . '/custom-controls/typography/class-typography-control.php';
 
 			/**
 			 * Register section & panel
@@ -170,6 +173,178 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			return apply_filters( 'woostify_theme_mods', $woostify_theme_mods );
 		}
 
+        /**
+         * Wrapper function to create font-family value for CSS.
+         *
+         * @since 1.3.0
+         *
+         * @param string $font The name of our font.
+         * @param string $settings The ID of the settings we're looking up.
+         * @param array $default The defaults for our $settings.
+         * @return string The CSS value for our font family.
+         */
+        public function generate_get_font_family_css( $font, $settings, $default ) {
+            $generate_settings = wp_parse_args(
+                get_option( $settings, array() ),
+                $default
+            );
+
+            // We don't want to wrap quotes around these values
+            $no_quotes = array(
+                'inherit',
+                'Arial, Helvetica, sans-serif',
+                'Georgia, Times New Roman, Times, serif',
+                'Helvetica',
+                'Impact',
+                'Segoe UI, Helvetica Neue, Helvetica, sans-serif',
+                'Tahoma, Geneva, sans-serif',
+                'Trebuchet MS, Helvetica, sans-serif',
+                'Verdana, Geneva, sans-serif',
+                apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' )
+            );
+
+            // Get our font
+            $font_family = $generate_settings[ $font ];
+
+            if ( 'System Stack' == $font_family ) {
+                $font_family = apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' );
+            }
+
+            // If our value is still using the old format, fix it
+            if ( strpos( $font_family, ':' ) !== false ) {
+                $font_family = current( explode( ':', $font_family ) );
+            }
+
+            // Set up our wrapper
+            if ( in_array( $font_family, $no_quotes ) ) {
+                $wrapper_start = null;
+                $wrapper_end = null;
+            } else {
+                $wrapper_start = '"';
+                $wrapper_end = '"' . generate_get_google_font_category( $font_family, $font );
+            }
+
+            // Output the CSS
+            $output = ( 'inherit' == $font_family ) ? '' : $wrapper_start . $font_family . $wrapper_end;
+            return $output;
+        }
+
+        /**
+         * Set default options.
+         *
+         * @since 0.1
+         *
+         * @param bool $filter Whether to return the filtered values or original values.
+         * @return array Option defaults.
+         */
+        public function generate_get_default_fonts( $filter = true ) {
+            $generate_font_defaults = array(
+                'font_body' => 'System Stack',
+                'font_body_category' => '',
+                'font_body_variants' => '',
+                'body_font_weight' => 'normal',
+                'body_font_transform' => 'none',
+                'body_font_size' => '17',
+                'body_line_height' => '1.5', // no unit
+                'paragraph_margin' => '1.5', // em
+                'font_top_bar' => 'inherit',
+                'font_top_bar_category' => '',
+                'font_top_bar_variants' => '',
+                'top_bar_font_weight' => 'normal',
+                'top_bar_font_transform' => 'none',
+                'top_bar_font_size' => '13',
+                'font_site_title' => 'inherit',
+                'font_site_title_category' => '',
+                'font_site_title_variants' => '',
+                'site_title_font_weight' => 'bold',
+                'site_title_font_transform' => 'none',
+                'site_title_font_size' => '45',
+                'mobile_site_title_font_size' => '30',
+                'font_site_tagline' => 'inherit',
+                'font_site_tagline_category' => '',
+                'font_site_tagline_variants' => '',
+                'site_tagline_font_weight' => 'normal',
+                'site_tagline_font_transform' => 'none',
+                'site_tagline_font_size' => '15',
+                'font_navigation' => 'inherit',
+                'font_navigation_category' => '',
+                'font_navigation_variants' => '',
+                'navigation_font_weight' => 'normal',
+                'navigation_font_transform' => 'none',
+                'navigation_font_size' => '15',
+                'font_widget_title' => 'inherit',
+                'font_widget_title_category' => '',
+                'font_widget_title_variants' => '',
+                'widget_title_font_weight' => 'normal',
+                'widget_title_font_transform' => 'none',
+                'widget_title_font_size' => '20',
+                'widget_title_separator' => '30',
+                'widget_content_font_size' => '17',
+                'font_buttons' => 'inherit',
+                'font_buttons_category' => '',
+                'font_buttons_variants' => '',
+                'buttons_font_weight' => 'normal',
+                'buttons_font_transform' => 'none',
+                'buttons_font_size' => '',
+                'font_heading_1' => 'inherit',
+                'font_heading_1_category' => '',
+                'font_heading_1_variants' => '',
+                'heading_1_weight' => '300',
+                'heading_1_transform' => 'none',
+                'heading_1_font_size' => '40',
+                'heading_1_line_height' => '1.2', // em
+                'mobile_heading_1_font_size' => '30',
+                'font_heading_2' => 'inherit',
+                'font_heading_2_category' => '',
+                'font_heading_2_variants' => '',
+                'heading_2_weight' => '300',
+                'heading_2_transform' => 'none',
+                'heading_2_font_size' => '30',
+                'heading_2_line_height' => '1.2', // em
+                'mobile_heading_2_font_size' => '25',
+                'font_heading_3' => 'inherit',
+                'font_heading_3_category' => '',
+                'font_heading_3_variants' => '',
+                'heading_3_weight' => 'normal',
+                'heading_3_transform' => 'none',
+                'heading_3_font_size' => '20',
+                'heading_3_line_height' => '1.2', // em
+                'font_heading_4' => 'inherit',
+                'font_heading_4_category' => '',
+                'font_heading_4_variants' => '',
+                'heading_4_weight' => 'normal',
+                'heading_4_transform' => 'none',
+                'heading_4_font_size' => '',
+                'heading_4_line_height' => '', // em
+                'font_heading_5' => 'inherit',
+                'font_heading_5_category' => '',
+                'font_heading_5_variants' => '',
+                'heading_5_weight' => 'normal',
+                'heading_5_transform' => 'none',
+                'heading_5_font_size' => '',
+                'heading_5_line_height' => '', // em
+                'font_heading_6' => 'inherit',
+                'font_heading_6_category' => '',
+                'font_heading_6_variants' => '',
+                'heading_6_weight' => 'normal',
+                'heading_6_transform' => 'none',
+                'heading_6_font_size' => '',
+                'heading_6_line_height' => '', // em
+                'font_footer' => 'inherit',
+                'font_footer_category' => '',
+                'font_footer_variants' => '',
+                'footer_weight' => 'normal',
+                'footer_transform' => 'none',
+                'footer_font_size' => '15',
+            );
+
+            if ( $filter ) {
+                return apply_filters( 'generate_font_option_defaults', $generate_font_defaults );
+            }
+
+            return $generate_font_defaults;
+        }
+
 		/**
 		 * Get Customizer css.
 		 *
@@ -177,11 +352,21 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * @return array $styles the css
 		 */
 		public function get_css() {
+            $generate_settings = wp_parse_args(
+                get_option( 'generate_settings', array() ),
+                $this->generate_get_default_fonts()
+            );
+
 			$woostify_theme_mods = $this->get_woostify_theme_mods();
 			$brighten_factor       = apply_filters( 'woostify_brighten_factor', 25 );
 			$darken_factor         = apply_filters( 'woostify_darken_factor', -25 );
+            $body_font = $body_family = $this->generate_get_font_family_css( 'font_body', 'generate_settings', $this->generate_get_default_fonts());
+            var_dump($body_font);
 
 			$styles                = '
+			h2{
+			    font-family: ' . $body_font . ';
+			}
 			.main-navigation ul li a,
 			.site-title a,
 			ul.menu li a,
@@ -191,7 +376,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			button.menu-toggle:hover {
 				color: ' . $woostify_theme_mods['header_link_color'] . ';
 			}
-
+            
 			button.menu-toggle,
 			button.menu-toggle:hover {
 				border-color: ' . $woostify_theme_mods['header_link_color'] . ';

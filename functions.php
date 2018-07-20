@@ -44,6 +44,7 @@ function generate_sanitize_variants( $input ) {
 require 'inc/woostify-functions.php';
 require 'inc/woostify-template-hooks.php';
 require 'inc/woostify-template-functions.php';
+require 'inc/customizer/custom-controls/typography/class-woostify-fonts-helpers.php';
 require 'inc/customizer/sections/typography/typography.php';
 
 if ( class_exists( 'Jetpack' ) ) {
