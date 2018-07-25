@@ -13,3 +13,7 @@ $sidebar_width: percentage( 270 / 1170 );
         }
     }
 }
+
+.container{
+    @extend .clearfix;
+}

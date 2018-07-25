@@ -1,4 +1,25 @@
-.cl{
+.clearfix {
+    &:after{
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+
+.clr{
     clear: both;
 }
 

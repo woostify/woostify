@@ -55,16 +55,24 @@ add_action( 'homepage', 'woostify_homepage_content', 10 );
  * @see  woostify_post_nav()
  * @see  woostify_display_comments()
  */
-add_action( 'woostify_loop_post', 'woostify_post_header', 10 );
-add_action( 'woostify_loop_post', 'woostify_post_meta', 20 );
+add_action( 'woostify_loop_post', 'woostify_post_header_wrapper', 5 );
+add_action( 'woostify_loop_post', 'woostify_post_thumbnail', 7 );
+add_action( 'woostify_loop_post', 'woostify_post_meta', 10 );
+add_action( 'woostify_loop_post', 'woostify_post_title', 15 );
+add_action( 'woostify_loop_post', 'woostify_post_header_wrapper_close', 20 );
 add_action( 'woostify_loop_post', 'woostify_post_content', 30 );
+
 add_action( 'woostify_loop_after', 'woostify_paging_nav', 10 );
-add_action( 'woostify_single_post', 'woostify_post_header', 10 );
-add_action( 'woostify_single_post', 'woostify_post_meta', 20 );
+add_action( 'woostify_post_content_after', 'woostify_post_read_more_button', 10 );
+
+add_action( 'woostify_single_post', 'woostify_post_meta', 10 );
+add_action( 'woostify_single_post', 'woostify_post_title', 20 );
+add_action( 'woostify_single_post', 'woostify_post_thumbnail', 25 );
 add_action( 'woostify_single_post', 'woostify_post_content', 30 );
+add_action( 'woostify_single_post', 'woostify_post_tags', 40 );
+
 add_action( 'woostify_single_post_bottom', 'woostify_post_nav', 10 );
 add_action( 'woostify_single_post_bottom', 'woostify_display_comments', 20 );
-add_action( 'woostify_post_content_before', 'woostify_post_thumbnail', 10 );
 
 /**
  * Pages
@@ -75,6 +83,7 @@ add_action( 'woostify_post_content_before', 'woostify_post_thumbnail', 10 );
  */
 add_action( 'woostify_page', 'woostify_page_header', 10 );
 add_action( 'woostify_page', 'woostify_page_content', 20 );
+
 add_action( 'woostify_page_after', 'woostify_display_comments', 10 );
 
 /**

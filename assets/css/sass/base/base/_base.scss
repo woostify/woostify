@@ -19,8 +19,8 @@ html{
 }
 
 body {
-    overflow-x: hidden;
     margin: 0;
+    overflow-x: hidden;
     word-wrap: break-word;
 }
 
@@ -107,19 +107,4 @@ canvas,
 video {
     display: inline;
     zoom: 1;
-}
-.text-center {
-    text-align: center;
-}
-.d-flex {
-    display: flex;
-    display: -webkit-flex;
-}
-.align-items-center {
-    align-items: center;
-    -webkit-align-items: center;
-}
-.justify-content-center {
-    justify-content: center;
-    -webkit-justify-content: center;
 }

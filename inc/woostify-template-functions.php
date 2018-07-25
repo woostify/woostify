@@ -124,7 +124,7 @@ if ( ! function_exists( 'woostify_credit' ) ) {
                     }
                 echo '</div>';
 
-                if( has_nav_menu( 'footer_menu' ) ) {
+                if ( has_nav_menu( 'footer_menu' ) ) {
                     echo '<div class="site-infor-col">';
                         wp_nav_menu( array(
                             'theme_location' => 'footer_menu',
@@ -238,7 +238,7 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
             </button>
 
 			<?php
-                if( has_nav_menu( 'primary' ) ) {
+                if ( has_nav_menu( 'primary' ) ) {
         			wp_nav_menu(
         				array(
                             'theme_location'  => 'primary',
@@ -311,75 +311,7 @@ if ( ! function_exists( 'woostify_page_content' ) ) {
 	 * @since 1.0.0
 	 */
 	function woostify_page_content() {
-		?>
-		<div class="entry-content">
-			<?php the_content(); ?>
-			<?php
-				wp_link_pages(
-					array(
-						'before' => '<div class="page-links">' . __( 'Pages:', 'woostify' ),
-						'after'  => '</div>',
-					)
-				);
-			?>
-		</div><!-- .entry-content -->
-		<?php
-	}
-}
-
-if ( ! function_exists( 'woostify_post_header' ) ) {
-	/**
-	 * Display the post header with a link to the single post
-	 *
-	 * @since 1.0.0
-	 */
-	function woostify_post_header() {
-		?>
-		<header class="entry-header">
-		<?php
-		if ( is_single() ) {
-			woostify_posted_on();
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		} else {
-			if ( 'post' == get_post_type() ) {
-				woostify_posted_on();
-			}
-
-			the_title( sprintf( '<h2 class="alpha entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
-		}
-		?>
-		</header><!-- .entry-header -->
-		<?php
-	}
-}
-
-if ( ! function_exists( 'woostify_post_content' ) ) {
-	/**
-	 * Display the post content with a link to the single post
-	 *
-	 * @since 1.0.0
-	 */
-	function woostify_post_content() {
-		?>
-		<div class="entry-content">
-		<?php
-
-		/**
-		 * Functions hooked in to woostify_post_content_before action.
-		 *
-		 * @hooked woostify_post_thumbnail - 10
-		 */
-		do_action( 'woostify_post_content_before' );
-
-		the_content(
-			sprintf(
-				/* translators: %s: post title */
-				__( 'Continue reading %s', 'woostify' ),
-				'<span class="screen-reader-text">' . get_the_title() . '</span>'
-			)
-		);
-
-		do_action( 'woostify_post_content_after' );
+        the_content();
 
 		wp_link_pages(
 			array(
@@ -387,10 +319,77 @@ if ( ! function_exists( 'woostify_post_content' ) ) {
 				'after'  => '</div>',
 			)
 		);
-		?>
-		</div><!-- .entry-content -->
-		<?php
 	}
+}
+
+if ( ! function_exists( 'woostify_post_header_wrapper' ) ) {
+    /**
+     * Post header wrapper
+     * @since 1.0.0
+     * @return void
+     */
+    function woostify_post_header_wrapper() {
+        ?>
+            <header class="entry-header">
+        <?php
+    }
+}
+
+if ( ! function_exists( 'woostify_post_thumbnail' ) ) {
+    /**
+     * Display post thumbnail
+     *
+     * @var $size thumbnail size. thumbnail|medium|large|full|$custom
+     * @uses has_post_thumbnail()
+     * @uses the_post_thumbnail
+     * @param string $size the post thumbnail size.
+     * @since 1.0.0
+     */
+    function woostify_post_thumbnail( $size = 'full' ) {
+        if ( has_post_thumbnail() ) {
+        ?>
+            <div class="post-cover-image">
+                <?php if ( ! is_single() ) { ?>
+                    <a href="<?php echo esc_url( get_permalink() ) ?>">
+                        <?php the_post_thumbnail( $size ); ?>
+                    </a>
+                <?php
+                    } else {
+                        the_post_thumbnail( $size );
+                    }
+                ?>
+            </div>
+        <?php
+        }
+    }
+}
+
+if ( ! function_exists( 'woostify_post_title' ) ) {
+	/**
+	 * Display the post header with a link to the single post
+	 *
+	 * @since 1.0.0
+	 */
+	function woostify_post_title() {
+		if ( is_single() ) {
+			the_title( '<h1 class="entry-title">', '</h1>' );
+		} else {
+			the_title( sprintf( '<h2 class="alpha entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_post_header_wrapper_close' ) ) {
+    /**
+     * Post header wrapper close
+     * @since 1.0.0
+     * @return void
+     */
+    function woostify_post_header_wrapper_close() {
+        ?>
+            </header>
+        <?php
+    }
 }
 
 if ( ! function_exists( 'woostify_post_meta' ) ) {
@@ -402,56 +401,123 @@ if ( ! function_exists( 'woostify_post_meta' ) ) {
 	function woostify_post_meta() {
 		?>
 		<aside class="entry-meta">
-			<?php
-			if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search.
+            <?php
+            if ( 'post' == get_post_type() ) :
+                woostify_posted_on();
+                ?>
 
-				?>
-			<div class="vcard author">
-				<?php
-					echo get_avatar( get_the_author_meta( 'ID' ), 128 );
-					echo '<div class="label">' . esc_attr( __( 'Written by', 'woostify' ) ) . '</div>';
-					echo sprintf( '<a href="%1$s" class="url fn" rel="author">%2$s</a>', esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ), get_the_author() );
-				?>
-			</div>
+                <span class="vcard author">
+    				<?php
+    					echo '<span class="label">' . esc_attr( __( 'by', 'woostify' ) ) . '</span>';
+    					echo sprintf(
+                            ' <a href="%1$s" class="url fn" rel="author">%2$s</a>',
+                            esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+                            get_the_author() );
+    				?>
+                </span>
+
 				<?php
 				/* translators: used between list items, there is a space after the comma */
 				$categories_list = get_the_category_list( __( ', ', 'woostify' ) );
 
 				if ( $categories_list ) :
-					?>
-				<div class="cat-links">
-						<?php
-						echo '<div class="label">' . esc_attr( __( 'Posted in', 'woostify' ) ) . '</div>';
-						echo wp_kses_post( $categories_list );
-						?>
-				</div>
-				<?php endif; // End if categories. ?>
-
-				<?php
-				/* translators: used between list items, there is a space after the comma */
-				$tags_list = get_the_tag_list( '', __( ', ', 'woostify' ) );
-
-				if ( $tags_list ) :
-					?>
-				<div class="tags-links">
-						<?php
-						echo '<div class="label">' . esc_attr( __( 'Tagged', 'woostify' ) ) . '</div>';
-						echo wp_kses_post( $tags_list );
-						?>
-				</div>
-				<?php endif; // End if $tags_list. ?>
-
-		<?php endif; // End if 'post' == get_post_type(). ?>
+				    ?>
+        				<div class="cat-links sr-only">
+        					<?php
+        						echo '<div class="label">' . esc_attr( __( 'Posted in', 'woostify' ) ) . '</div>';
+        						echo wp_kses_post( $categories_list );
+        					?>
+        				</div>
+                    <?php
+                endif; // End if categories.
+            endif; // End if 'post' == get_post_type(). ?>
 
 			<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
-				<div class="comments-link">
-					<?php echo '<div class="label">' . esc_attr( __( 'Comments', 'woostify' ) ) . '</div>'; ?>
-					<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'woostify' ), __( '1 Comment', 'woostify' ), __( '% Comments', 'woostify' ) ); ?></span>
-				</div>
+				<span class="comments-link">
+                    <?php
+                        comments_popup_link(
+                            __( 'Leave a comment', 'woostify' ),
+                            __( '1 Comment', 'woostify' ),
+                            __( '% Comments', 'woostify' )
+                        ); 
+                    ?>
+                </span>
 			<?php endif; ?>
 		</aside>
 		<?php
 	}
+}
+
+if ( ! function_exists( 'woostify_post_content' ) ) {
+    /**
+     * Display the post content with a link to the single post
+     *
+     * @since 1.0.0
+     */
+    function woostify_post_content() {
+    ?>
+        <div class="entry-content">
+            <?php
+                do_action( 'woostify_post_content_before' );
+
+                the_content(
+                    sprintf(
+                        /* translators: %s: post title */
+                        __( 'Continue reading %s', 'woostify' ),
+                        '<span class="screen-reader-text">' . get_the_title() . '</span>'
+                    )
+                );
+
+                wp_link_pages(
+                    array(
+                        'before'      => '<div class="page-links">' . __( 'Pages:', 'woostify' ),
+                        'after'       => '</div>',
+                        'link_before' => '<span>',
+                        'link_after'  => '</span>',
+                    )
+                );
+
+                /**
+                 * Functions hooked in to woostify_post_content_after action
+                 * 
+                 * @hooked woostify_post_read_more_button - 5
+                 */
+                do_action( 'woostify_post_content_after' );
+            ?>
+        </div>
+    <?php
+    }
+}
+
+if ( ! function_exists( 'woostify_post_read_more_button' ) ) {
+    /**
+     * Display read more button
+     */
+    function woostify_post_read_more_button() {
+        if ( ! is_single() ) {
+            ?>
+                <a href="<?php echo get_permalink() ?>" class="post-read-more"><?php esc_html_e(  'Read more', 'woostify'  ); ?></a>
+            <?php
+        }
+    }
+}
+
+if ( ! function_exists( 'woostify_post_tags' ) ) {
+    /**
+     * Display post tags
+     */
+    function woostify_post_tags() {
+        $tags_list = get_the_tag_list( '<span class="label">' . esc_html__( 'Tags', 'woostify' ) . '</span>: ', __( ', ', 'woostify' ) );
+        if ( $tags_list ) :
+        ?>
+            <footer class="entry-footer">
+                <div class="tags-links">
+                    <?php echo wp_kses_post( $tags_list ); ?>
+                </div>
+            </footer>
+        <?php
+        endif; 
+    }
 }
 
 if ( ! function_exists( 'woostify_paging_nav' ) ) {
@@ -464,7 +530,7 @@ if ( ! function_exists( 'woostify_paging_nav' ) ) {
 		$args = array(
 			'type'      => 'list',
 			'next_text' => _x( 'Next', 'Next post', 'woostify' ),
-			'prev_text' => _x( 'Previous', 'Previous post', 'woostify' ),
+			'prev_text' => _x( 'Prev', 'Previous post', 'woostify' ),
 		);
 
 		the_posts_pagination( $args );
@@ -502,11 +568,8 @@ if ( ! function_exists( 'woostify_posted_on' ) ) {
 			esc_html( get_the_modified_date() )
 		);
 
-		$posted_on = sprintf(
-			/* translators: %s: post date */
-			_x( 'Posted on %s', 'post date', 'woostify' ),
-			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-		);
+        $posted_on = '<span class="sr-only">' . esc_html__( 'Posted on', 'woostify' ) . '</span>';
+        $posted_on .= '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>';
 
 		echo wp_kses(
 			apply_filters( 'woostify_single_post_posted_on_html', '<span class="posted-on">' . $posted_on . '</span>', $posted_on ), array(
@@ -554,23 +617,6 @@ if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 	 */
 	function woostify_get_sidebar() {
 		get_sidebar();
-	}
-}
-
-if ( ! function_exists( 'woostify_post_thumbnail' ) ) {
-	/**
-	 * Display post thumbnail
-	 *
-	 * @var $size thumbnail size. thumbnail|medium|large|full|$custom
-	 * @uses has_post_thumbnail()
-	 * @uses the_post_thumbnail
-	 * @param string $size the post thumbnail size.
-	 * @since 1.5.0
-	 */
-	function woostify_post_thumbnail( $size = 'full' ) {
-		if ( has_post_thumbnail() ) {
-			the_post_thumbnail( $size );
-		}
 	}
 }
 

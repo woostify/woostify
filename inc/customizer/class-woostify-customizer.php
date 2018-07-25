@@ -361,7 +361,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			$brighten_factor       = apply_filters( 'woostify_brighten_factor', 25 );
 			$darken_factor         = apply_filters( 'woostify_darken_factor', -25 );
             $body_font = $body_family = $this->generate_get_font_family_css( 'font_body', 'generate_settings', $this->generate_get_default_fonts());
-            var_dump($body_font);
+            //var_dump($body_font);
 
 			$styles                = '
 			h2{

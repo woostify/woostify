@@ -16,7 +16,7 @@ if ( ! function_exists( 'woostify_before_content' ) ) {
 	function woostify_before_content() {
 		?>
 		<div id="primary" class="content-area">
-			<main id="main" class="site-main" role="main">
+			<main id="main" class="site-main">
 		<?php
 	}
 }
