@@ -146,11 +146,8 @@ if ( ! class_exists( 'Storefront_NUX_Starter_Content' ) ) :
 					'page_for_posts' => '{{blog}}',
 				),
 				'widgets' => array(
-					'footer-1' => array(
+					'footer' => array(
 						'text_about',
-					),
-					'footer-2' => array(
-						'text_business_info',
 					),
 				),
 				'nav_menus' => array(

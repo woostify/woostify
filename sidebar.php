@@ -5,11 +5,14 @@
  * @package woostify
  */
 
-if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+if ( ! is_active_sidebar( 'sidebar' ) ) {
 	return;
 }
+
+$sidebar = get_theme_mod( 'woostify_layout', 'right' );
+
 ?>
 
 <div id="secondary" class="widget-area" role="complementary">
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
-</div><!-- #secondary -->
+	<?php dynamic_sidebar( 'sidebar' ); ?>
+</div>

@@ -43,10 +43,7 @@ if ( ! class_exists( 'Woostify_Jetpack' ) ) :
 						'footer'         => 'page',
 						'render'         => array( $this, 'jetpack_infinite_scroll_loop' ),
 						'footer_widgets' => array(
-							'footer-1',
-							'footer-2',
-							'footer-3',
-							'footer-4',
+							'footer',
 						),
 					)
 				)

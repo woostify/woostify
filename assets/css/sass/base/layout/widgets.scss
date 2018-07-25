@@ -1,0 +1,95 @@
+.widget{
+    > ul{
+        padding-left: 0;
+    }
+    li{
+        list-style: none;
+    }
+    ul.menu{
+        padding-left: 0;
+        a{
+            line-height: 36px;
+        }
+    }
+    select{
+        width: 100%;
+        height: 40px;
+        border-radius: 0
+    }
+    .widget-area &{
+        margin-bottom: 40px;
+    }
+}
+.widget_archive,
+.widget_categories,
+.widget_pages{
+    li{
+        line-height: 36px;
+    }
+    .post_count{
+        font-size: 13px;
+        position: relative;
+        bottom: 1ex
+    }
+}
+.tagcloud{
+    a{
+        border: 1px solid #e2e2e2;
+        padding: 0.5em 0.9em;
+        display: inline-block;
+        margin-bottom: 4px;
+        font-size: 14px;
+        margin-right: 4px;
+    }
+}
+.search-form,
+.woocommerce-product-search{
+    position: relative;
+    height: 50px;
+    &:hover{
+        &:after{
+            @include rotate( 90 )
+        }
+    }
+    &:after{
+        content: "\e610";
+        font-family: 'themify';
+        font-size: 20px;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        @extend .duration;
+    }
+    .search-field{
+        border-color: $tr;
+        height: 100%;
+        background: #eeeeec;
+        width: 100%;
+        padding: 0 20px;
+        padding-left: 20px;
+        padding-right: 50px;
+        border-radius: 50px;
+        font-size: 12px;
+        @extend .duration;
+        &::-webkit-search-cancel-button{
+            display: none;
+        }
+        &:focus{
+            border-color: #dedbdb;
+        }
+    }
+    .search-submit,
+    button[type="submit"]{
+        overflow: hidden;
+        color: $tr $i;
+        background: $tr $i;
+        border-radius: 50%;
+        width: 50px;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 2;
+        border: 0;
+    }
+}

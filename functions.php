@@ -8,8 +8,9 @@
 /**
  * Assign the Woostify version to a var
  */
-$theme              = wp_get_theme('Woostify');
+$theme            = wp_get_theme( 'woostify' );
 $woostify_version = $theme['Version'];
+
 define( 'WOOSTIFY_THEME_DIR', get_template_directory() . '/' );
 define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );
 
@@ -17,7 +18,7 @@ define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) ) {
-	$content_width = 980; /* pixels */
+	$content_width = 1170; /* pixels */
 }
 
 $woostify = (object) array(
@@ -29,6 +30,7 @@ $woostify = (object) array(
 	'main'       => require 'inc/class-woostify.php',
 	'customizer' => require 'inc/customizer/class-woostify-customizer.php',
 );
+
 /**
  * Sanitize our Google Font variants
  *

@@ -9,13 +9,13 @@
 
 ?>
 
-		</div><!-- .col-full -->
+		</div><!-- .container -->
 	</div><!-- #content -->
 
 	<?php do_action( 'woostify_before_footer' ); ?>
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="col-full">
+	<footer id="colophon" class="site-footer">
+		<div class="container">
 
 			<?php
 			/**
@@ -27,7 +27,7 @@
 			do_action( 'woostify_footer' );
 			?>
 
-		</div><!-- .col-full -->
+		</div><!-- .container -->
 	</footer><!-- #colophon -->
 
 	<?php do_action( 'woostify_after_footer' ); ?>

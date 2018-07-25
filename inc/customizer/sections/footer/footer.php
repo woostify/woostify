@@ -1,4 +1,36 @@
 <?php
+
+/**
+ * Footer widgets column
+ */
+$wp_customize->add_setting(
+    'woostify_footer_column',
+    array(
+        'default'   => 4,
+        'transport' => 'postMessage'
+    ) 
+);
+
+$wp_customize->add_control( new WP_Customize_Control(
+    $wp_customize,
+    'woostify_footer_column',
+    array(
+        'label'       => __( 'Widget columns', 'woostify' ),
+        'settings'    => 'woostify_footer_column',
+        'section'     => 'woostify_footer',
+        'type'        => 'select',
+        'choices'     => array(
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5,
+            6 => 6,
+        )
+    )
+));
+
+
 /**
  * Footer Background
  */
@@ -15,7 +47,6 @@ $wp_customize->add_control(
             'label'                 => __( 'Background color', 'Woostify'),
             'section'               => 'woostify_footer',
             'settings'              => 'woostify_footer_background_color',
-            'priority'              => 10,
         )
     )
 );
@@ -36,7 +67,6 @@ $wp_customize->add_control(
             'label'                 => __( 'Heading color', 'Woostify'),
             'section'               => 'woostify_footer',
             'settings'              => 'woostify_footer_heading_color',
-            'priority'              => 20,
         )
     )
 );
@@ -57,7 +87,6 @@ $wp_customize->add_control(
             'label'                 => __( 'Text color', 'Woostify'),
             'section'               => 'woostify_footer',
             'settings'              => 'woostify_footer_text_color',
-            'priority'              => 30,
         )
     )
 );
@@ -78,7 +107,6 @@ $wp_customize->add_control(
             'label'                 => __( 'Link color', 'Woostify'),
             'section'               => 'woostify_footer',
             'settings'              => 'woostify_footer_link_color',
-            'priority'              => 40,
         )
     )
 );

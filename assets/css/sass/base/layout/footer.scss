@@ -1,0 +1,99 @@
+.site-footer{
+    clear: both;
+}
+
+/* FOOTER WIDGET COLUMNS */
+
+.footer-widget{
+    float: left;
+    width: 100%;
+    padding: 70px 0;
+    .widget{
+        float: left;
+    }
+}
+.footer-widget-col-1{
+    .widget{
+        width: 100%;
+    }
+}
+
+@media ( min-width: 992px ){
+    @for $i from 3 through 6 {
+        .footer-widget-col-#{$i}{
+            .widget{
+                width: percentage( 1 / $i );
+                padding-left: $grid-gutter-width / 2;
+                padding-right: $grid-gutter-width / 2;
+                &:nth-of-type( #{$i}n+#{$i+1} ) {
+                    clear: both;
+                }
+            }
+        }
+    }
+}
+
+@media ( min-width: 600px ){
+    @media ( max-width: 991px ){
+        .footer-widget-col-3,
+        .footer-widget-col-4,
+        .footer-widget-col-5,
+        .footer-widget-col-6{
+            .widget{
+                width: 50%;
+                padding-left: $grid-gutter-width / 2;
+                padding-right: $grid-gutter-width / 2;
+                &:nth-of-type( 2n+3 ){
+                    clear: both;
+                }
+            }
+        }
+    }
+    .footer-widget-col-2{
+        .widget{
+            width: 50%;
+            padding-left: $grid-gutter-width / 2;
+            padding-right: $grid-gutter-width / 2;
+            &:nth-of-type( 2n+3 ){
+                clear: both;
+            }
+        }
+    }
+}
+
+@media ( max-width: 599px ){
+    .footer-widget-col-2,
+    .footer-widget-col-3,
+    .footer-widget-col-4,
+    .footer-widget-col-5,
+    .footer-widget-col-6{
+        .widget{
+            width: 100%;
+            padding-left: $grid-gutter-width / 2;
+            padding-right: $grid-gutter-width / 2;
+            clear: both;
+        }
+    }
+}
+
+/* SITE INFOR */
+.site-info{
+    clear: both;
+    border-top: 1px solid #e3e3e3;
+    padding: 11px 0;
+    font-size: 10px;
+    text-transform: uppercase;
+    @include flex( flex, space-between, center );
+    ul{
+        padding-left: 0;
+        margin: 0;
+        > li{
+            +li{
+                margin-left: 30px;
+            }
+        }
+    }
+    li{
+        display: inline-block;
+    }
+}

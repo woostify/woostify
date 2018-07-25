@@ -196,7 +196,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		public function thumbnail_columns() {
 			$columns = 4;
 
-			if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+			if ( ! is_active_sidebar( 'sidebar-shop' ) ) {
 				$columns = 5;
 			}
 
@@ -232,7 +232,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function change_breadcrumb_delimiter( $defaults ) {
 			$defaults['delimiter']   = '<span class="breadcrumb-separator"> / </span>';
-			$defaults['wrap_before'] = '<div class="woostify-breadcrumb"><div class="col-full"><nav class="woocommerce-breadcrumb">';
+			$defaults['wrap_before'] = '<div class="woostify-breadcrumb"><div class="container"><nav class="woocommerce-breadcrumb">';
 			$defaults['wrap_after']  = '</nav></div></div>';
 			return $defaults;
 		}

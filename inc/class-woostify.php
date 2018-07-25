@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists('woostify') ) :
+if ( ! class_exists('woostify' ) ) :
 
 	/**
 	 * The main Woostify class
@@ -31,6 +31,8 @@ if ( ! class_exists('woostify') ) :
 			add_filter( 'wp_page_menu_args', array( $this, 'page_menu_args' ) );
 			add_filter( 'navigation_markup_template', array( $this, 'navigation_markup_template' ) );
 			add_action( 'enqueue_embed_scripts', array( $this, 'print_embed_styles' ) );
+            add_action( 'customize_preview_init', array( $this, 'customize_live_preview' ) );
+            add_filter( 'wp_generate_tag_cloud', array( $this, 'remove_tag_inline_style' ) );
 		}
 
 		/**
@@ -88,9 +90,8 @@ if ( ! class_exists('woostify') ) :
 			register_nav_menus(
 				apply_filters(
 					'woostify_register_nav_menus', array(
-						'primary'   => __( 'Primary Menu', 'woostify'),
-						'secondary' => __( 'Secondary Menu', 'woostify'),
-						'handheld'  => __( 'Handheld Menu', 'woostify'),
+                        'primary'     => __( 'Primary Menu', 'woostify' ),
+                        'footer_menu' => __( 'Footer Menu', 'woostify' ),
 					)
 				)
 			);
@@ -171,67 +172,41 @@ if ( ! class_exists('woostify') ) :
 		 */
 		public function widgets_init() {
 			$sidebar_args['sidebar'] = array(
-				'name'          => __( 'Sidebar', 'woostify'),
-				'id'            => 'sidebar-1',
-				'description'   => '',
+				'name'          => __( 'Sidebar', 'woostify' ),
+				'id'            => 'sidebar',
+				'description'   => __( 'Appears in the sidebar of the site.', 'woostify' ),
 			);
+
+            if( class_exists( 'woocommerce' ) ){
+                $sidebar_args['shop_sidebar'] = array(
+                    'name'          => __( 'Sidebar Shop', 'woostify' ),
+                    'id'            => 'sidebar-shop',
+                    'description'   => __( 'Appears in the sidebar of shop/product page.', 'woostify' ),
+                );
+            }
 
 			$sidebar_args['header'] = array(
-				'name'        => __( 'Below Header', 'woostify'),
+				'name'        => __( 'Below Header', 'woostify' ),
 				'id'          => 'header-1',
-				'description' => __( 'Widgets added to this region will appear beneath the header and above the main content.', 'woostify'),
+				'description' => __( 'Widgets added to this region will appear beneath the header and above the main content.', 'woostify' ),
 			);
 
-			$rows    = intval( apply_filters( 'woostify_footer_widget_rows', 1 ) );
-			$regions = intval( apply_filters( 'woostify_footer_widget_columns', 4 ) );
-
-			for ( $row = 1; $row <= $rows; $row++ ) {
-				for ( $region = 1; $region <= $regions; $region++ ) {
-					$footer_n = $region + $regions * ( $row - 1 ); // Defines footer sidebar ID.
-					$footer   = sprintf( 'footer_%d', $footer_n );
-
-					if ( 1 == $rows ) {
-						/* translators: 1: column number */
-						$footer_region_name = sprintf( __( 'Footer Column %1$d', 'woostify'), $region );
-
-						/* translators: 1: column number */
-						$footer_region_description = sprintf( __( 'Widgets added here will appear in column %1$d of the footer.', 'woostify'), $region );
-					} else {
-						/* translators: 1: row number, 2: column number */
-						$footer_region_name = sprintf( __( 'Footer Row %1$d - Column %2$d', 'woostify'), $row, $region );
-
-						/* translators: 1: column number, 2: row number */
-						$footer_region_description = sprintf( __( 'Widgets added here will appear in column %1$d of footer row %2$d.', 'woostify'), $region, $row );
-					}
-
-					$sidebar_args[ $footer ] = array(
-						'name'        => $footer_region_name,
-						'id'          => sprintf( 'footer-%d', $footer_n ),
-						'description' => $footer_region_description,
-					);
-				}
-			}
-
-			$sidebar_args = apply_filters( 'woostify_sidebar_args', $sidebar_args );
+            $sidebar_args['footer'] = array(
+                'name'        => __( 'Footer', 'woostify' ),
+                'id'          => 'footer',
+                'description' => __( 'Appears in the footer section of the site.', 'woostify' ),
+            );
 
 			foreach ( $sidebar_args as $sidebar => $args ) {
 				$widget_tags = array(
 					'before_widget' => '<div id="%1$s" class="widget %2$s">',
 					'after_widget'  => '</div>',
-					'before_title'  => '<span class="gamma widget-title">',
-					'after_title'   => '</span>',
+					'before_title'  => '<h4 class="widget-title">',
+					'after_title'   => '</h4>',
 				);
 
 				/**
 				 * Dynamically generated filter hooks. Allow changing widget wrapper and title tags. See the list below.
-				 *
-				 * 'woostify_header_widget_tags'
-				 * 'woostify_sidebar_widget_tags'
-				 *
-				 * 'woostify_footer_1_widget_tags'
-				 * 'woostify_footer_2_widget_tags'
-				 * 'woostify_footer_3_widget_tags'
-				 * 'woostify_footer_4_widget_tags'
 				 */
 				$filter_hook = sprintf( 'woostify_%s_widget_tags', $sidebar );
 				$widget_tags = apply_filters( $filter_hook, $widget_tags );
@@ -253,17 +228,19 @@ if ( ! class_exists('woostify') ) :
 			/**
 			 * Styles
 			 */
-			wp_enqueue_style( 'woostify-style', get_template_directory_uri() . '/style.css', '', $woostify_version );
-			wp_style_add_data( 'woostify-style', 'rtl', 'replace' );
-
-			wp_enqueue_style( 'woostify-icons', get_template_directory_uri() . '/assets/css/base/icons.css', '', $woostify_version );
-			wp_style_add_data( 'woostify-icons', 'rtl', 'replace' );
+			wp_enqueue_style(
+                'woostify-style',
+                WOOSTIFY_THEME_URI . '/style.css',
+                '',
+                $woostify_version
+            );
 
 			/**
 			 * Fonts
 			 */
 			$google_fonts = apply_filters(
-				'woostify_google_font_families', array(
+				'woostify_google_font_families',
+                array(
 					'source-sans-pro' => 'Source+Sans+Pro:400,300,300italic,400italic,600,700,900',
 				)
 			);
@@ -275,27 +252,55 @@ if ( ! class_exists('woostify') ) :
 
 			$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
 
-			wp_enqueue_style( 'woostify-fonts', $fonts_url, array(), null );
+			wp_enqueue_style(
+                'woostify-fonts',
+                $fonts_url,
+                array(),
+                $woostify_version
+            );
 
 			/**
 			 * Scripts
 			 */
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-			wp_enqueue_script( 'woostify-navigation', get_template_directory_uri() . '/assets/js/navigation' . $suffix . '.js', array(), $woostify_version, true );
-			wp_enqueue_script( 'woostify-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix' . $suffix . '.js', array(), '20130115', true );
+			wp_enqueue_script(
+                'woostify-navigation',
+                WOOSTIFY_THEME_URI . '/assets/js/navigation' . $suffix . '.js',
+                array(),
+                $woostify_version,
+                true
+            );
+
+			wp_enqueue_script(
+                'woostify-skip-link-focus-fix',
+                WOOSTIFY_THEME_URI . '/assets/js/skip-link-focus-fix' . $suffix . '.js',
+                array(),
+                $woostify_version,
+                true
+            );
 
 			if ( has_nav_menu( 'handheld' ) ) {
 				$woostify_l10n = array(
-					'expand'   => __( 'Expand child menu', 'woostify'),
-					'collapse' => __( 'Collapse child menu', 'woostify'),
+					'expand'   => __( 'Expand child menu', 'woostify' ),
+					'collapse' => __( 'Collapse child menu', 'woostify' ),
 				);
 
-				wp_localize_script( 'woostify-navigation', 'storefrontScreenReaderText', $woostify_l10n );
+				wp_localize_script(
+                    'woostify-navigation',
+                    'storefrontScreenReaderText',
+                    $woostify_l10n
+                );
 			}
 
 			if ( is_page_template( 'template-homepage.php' ) && has_post_thumbnail() ) {
-				wp_enqueue_script( 'woostify-homepage', get_template_directory_uri() . '/assets/js/homepage' . $suffix . '.js', array(), $woostify_version, true );
+				wp_enqueue_script(
+                    'woostify-homepage',
+                    WOOSTIFY_THEME_URI . '/assets/js/homepage' . $suffix . '.js',
+                    array(),
+                    $woostify_version,
+                    true
+                );
 			}
 
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -359,7 +364,7 @@ if ( ! class_exists('woostify') ) :
 			}
 
 			// If our main sidebar doesn't contain widgets, adjust the layout to be full-width.
-			if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+			if ( ! is_active_sidebar( 'sidebar' ) ) {
 				$classes[] = 'woostify-full-width-content';
 			}
 
@@ -380,7 +385,7 @@ if ( ! class_exists('woostify') ) :
 		 * Custom navigation markup template hooked into `navigation_markup_template` filter hook.
 		 */
 		public function navigation_markup_template() {
-			$template  = '<nav id="post-navigation" class="navigation %1$s" role="navigation" aria-label="' . esc_html__( 'Post Navigation', 'woostify') . '">';
+			$template  = '<nav id="post-navigation" class="navigation %1$s" role="navigation" aria-label="' . esc_html__( 'Post Navigation', 'woostify' ) . '">';
 			$template .= '<h2 class="screen-reader-text">%2$s</h2>';
 			$template .= '<div class="nav-links">%3$s</div>';
 			$template .= '</nav>';
@@ -433,6 +438,28 @@ if ( ! class_exists('woostify') ) :
 			</style>
 			<?php
 		}
+
+        /**
+         * Customizer live preview
+         */
+        public function customize_live_preview() {
+            global $woostify_version;
+
+            wp_enqueue_script(
+                'woostify-customize-preview-js',
+                WOOSTIFY_THEME_URI . '/assets/js/customize-preview.js',
+                array(),
+                $woostify_version,
+                true
+            );
+        }
+
+        /**
+         * Remove inline css on tag
+         */
+        function remove_tag_inline_style( $string ){
+            return preg_replace( '/ style=("|\')(.*?)("|\')/', '', $string );
+        }
 	}
 endif;
 

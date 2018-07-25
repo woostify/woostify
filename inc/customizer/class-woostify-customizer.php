@@ -177,9 +177,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * @return array $styles the css
 		 */
 		public function get_css() {
-			$woostify_theme_mods = $this->get_woostify_theme_mods();
-			$brighten_factor       = apply_filters( 'woostify_brighten_factor', 25 );
-			$darken_factor         = apply_filters( 'woostify_darken_factor', -25 );
+            $woostify_theme_mods = $this->get_woostify_theme_mods();
+            $brighten_factor     = apply_filters( 'woostify_brighten_factor', 25 );
+            $darken_factor       = apply_filters( 'woostify_darken_factor', -25 );
 
 			$styles                = '
 			.main-navigation ul li a,
@@ -275,7 +275,13 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				outline-color: ' . $woostify_theme_mods['accent_color'] . ';
 			}
 
-			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .widget a.button {
+			button,
+            input[type="button"],
+            input[type="reset"],
+            input[type="file"],
+            input[type="submit"],
+            .button,
+            .widget a.button {
 				background-color: ' . $woostify_theme_mods['button_background_color'] . ';
 				border-color: ' . $woostify_theme_mods['button_background_color'] . ';
 				color: ' . $woostify_theme_mods['button_text_color'] . ';
@@ -336,11 +342,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 				.secondary-navigation ul.menu a {
 					color: ' . $woostify_theme_mods['header_text_color'] . ';
-				}
-
-				.main-navigation ul.menu ul.sub-menu,
-				.main-navigation ul.nav-menu ul.children {
-					background-color: ' . woostify_adjust_color_brightness( $woostify_theme_mods['header_background_color'], -15 ) . ';
 				}
 
 				.site-header {

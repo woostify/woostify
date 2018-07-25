@@ -84,7 +84,7 @@ add_action( 'woostify_after_footer', 'woostify_sticky_single_add_to_cart', 999 )
  * @see woostify_header_cart()
  */
 add_action( 'woostify_header', 'woostify_product_search', 40 );
-add_action( 'woostify_header', 'woostify_header_cart', 60 );
+add_action( 'woostify_header', 'woostify_header_cart', 50 );
 
 /**
  * Cart fragment
