@@ -32,7 +32,7 @@ if ( ! class_exists('woostify' ) ) :
 			add_filter( 'navigation_markup_template', array( $this, 'navigation_markup_template' ) );
 			add_action( 'enqueue_embed_scripts', array( $this, 'print_embed_styles' ) );
             add_action( 'customize_preview_init', array( $this, 'customize_live_preview' ) );
-            add_filter( 'wp_generate_tag_cloud', array( $this, 'remove_tag_inline_style' ) );
+            add_filter( 'wp_woostify_tag_cloud', array( $this, 'remove_tag_inline_style' ) );
 		}
 
 		/**

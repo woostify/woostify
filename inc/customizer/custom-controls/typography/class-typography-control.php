@@ -9,36 +9,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typography_Customize_Control' ) ) {
+if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typography_Customize_Control' ) ) {
 	/**
 	 * Create the typography elements control.
 	 *
 	 * @since 2.0
 	 */
-	class Generate_Typography_Customize_Control extends WP_Customize_Control {
-		public $type = 'gp-customizer-typography';
+	class Woostify_Typography_Customize_Control extends WP_Customize_Control {
+		public $type = 'woostify-customizer-typography';
 
 		public function enqueue() {
-			wp_enqueue_script( 'generatepress-typography-selectWoo', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/js/selectWoo.min.js', array( 'customize-controls', 'jquery' ), 1.0, true );
-			wp_enqueue_style( 'generatepress-typography-selectWoo', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/css/selectWoo.min.css', array(), 1.0 );
+			wp_enqueue_script( 'woostify-typography-selectWoo', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/js/selectWoo.min.js', array( 'customize-controls', 'jquery' ), 1.0, true );
+			wp_enqueue_style( 'woostify-typography-selectWoo', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/css/selectWoo.min.css', array(), 1.0 );
 
-			wp_enqueue_script( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/js/typography-customizer.js', array( 'customize-controls', 'generatepress-typography-selectWoo' ), 1.0, true );
-			wp_enqueue_style( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/css/typography-customizer.css', array(), 1.0 );
+			wp_enqueue_script( 'woostify-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/js/typography-customizer.js', array( 'customize-controls', 'woostify-typography-selectWoo' ), 1.0, true );
+			wp_enqueue_style( 'woostify-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/css/typography-customizer.css', array(), 1.0 );
 		}
 
 		public function to_json() {
 			parent::to_json();
 
-			$number_of_fonts = apply_filters( 'generate_number_of_fonts', 200 );
-			$this->json[ 'default_fonts_title'] = __( 'System fonts', 'generatepress' );
-			$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'generatepress' );
-			$this->json[ 'google_fonts' ] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
-			$this->json[ 'default_fonts' ] = $this->generate_typography_default_fonts();
-			$this->json[ 'family_title' ] = esc_html__( 'Font family', 'generatepress' );
-			$this->json[ 'weight_title' ] = esc_html__( 'Font weight', 'generatepress' );
-			$this->json[ 'transform_title' ] = esc_html__( 'Text transform', 'generatepress' );
+			$number_of_fonts = apply_filters( 'woostify_number_of_fonts', 200 );
+			$this->json[ 'default_fonts_title'] = __( 'System fonts', 'woostify' );
+			$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'woostify' );
+			$this->json[ 'google_fonts' ] = apply_filters( 'woostify_typography_customize_list', woostify_get_all_google_fonts( $number_of_fonts ) );
+			$this->json[ 'default_fonts' ] = $this->woostify_typography_default_fonts();
+			$this->json[ 'family_title' ] = esc_html__( 'Font family', 'woostify' );
+			$this->json[ 'weight_title' ] = esc_html__( 'Font weight', 'woostify' );
+			$this->json[ 'transform_title' ] = esc_html__( 'Text transform', 'woostify' );
 			$this->json[ 'category_title' ] = '';
-			$this->json[ 'variant_title' ] = esc_html__( 'Variants', 'generatepress' );
+			$this->json[ 'variant_title' ] = esc_html__( 'Variants', 'woostify' );
 
 			foreach ( $this->settings as $setting_key => $setting_id ) {
 				$this->json[ $setting_key ] = array(
@@ -64,7 +64,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 				<span class="customize-control-title">{{ data.label }}</span>
 			<# } #>
 			<# if ( 'undefined' !== typeof ( data.family ) ) { #>
-				<div class="generatepress-font-family">
+				<div class="woostify-font-family">
 					<label>
 						<select {{{ data.family.link }}} data-category="{{{ data.category.id }}}" data-variants="{{{ data.variant.id }}}" style="width:100%;">
 							<optgroup label="{{ data.default_fonts_title }}">
@@ -99,7 +99,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 					data.variant.value = data.variant.default;
 				}
 				#>
-				<div id={{{ data.variant.id }}}" class="generatepress-font-variant" data-saved-value="{{ data.variant.value }}">
+				<div id={{{ data.variant.id }}}" class="woostify-font-variant" data-saved-value="{{ data.variant.value }}">
 					<label>
 						<select name="{{{ data.variant.id }}}" multiple class="typography-multi-select" style="width:100%;" {{{ data.variant.link }}}>
 							<# _.each( variants, function( label, choice ) { #>
@@ -115,7 +115,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			<# } #>
 
 			<# if ( 'undefined' !== typeof ( data.category ) ) { #>
-				<div class="generatepress-font-category">
+				<div class="woostify-font-category">
 					<label>
 							<input name="{{{ data.category.id }}}" type="hidden" {{{ data.category.link }}} value="{{{ data.category.value }}}" class="gp-hidden-input" />
 						<# if ( '' !== data.category_title ) { #>
@@ -126,7 +126,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			<# } #>
 
 			<# if ( 'undefined' !== typeof ( data.weight ) ) { #>
-				<div class="generatepress-font-weight">
+				<div class="woostify-font-weight">
 					<label>
 						<select {{{ data.weight.link }}}>
 
@@ -145,7 +145,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			<# } #>
 
 			<# if ( 'undefined' !== typeof ( data.transform ) ) { #>
-				<div class="generatepress-font-transform">
+				<div class="woostify-font-transform">
 					<label>
 						<select {{{ data.transform.link }}}>
 
@@ -190,7 +190,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			);
 		}
 
-		public function generate_typography_default_fonts() {
+		public function woostify_typography_default_fonts() {
 			$fonts = array(
 				'inherit',
 				'System Stack',
@@ -210,7 +210,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 				'Verdana, Geneva, sans-serif'
 			);
 
-			return apply_filters( 'generate_typography_default_fonts', $fonts );
+			return apply_filters( 'woostify_typography_default_fonts', $fonts );
 		}
 	}
 }

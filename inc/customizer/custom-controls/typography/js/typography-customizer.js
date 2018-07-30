@@ -1,10 +1,10 @@
 ( function( api ) {
 
-	api.controlConstructor['gp-customizer-typography'] = api.Control.extend( {
+	api.controlConstructor['woostify-customizer-typography'] = api.Control.extend( {
 		ready: function() {
 			var control = this;
 
-			control.container.on( 'change', '.generatepress-font-family select',
+			control.container.on( 'change', '.woostify-font-family select',
 				function() {
 					var _this = jQuery( this ),
 						_value = _this.val(),
@@ -20,12 +20,12 @@
 					}
 
 					setTimeout( function() {
-						// Send our request to the generate_get_all_google_fonts_ajax function
+						// Send our request to the woostify_get_all_google_fonts_ajax function
 						var response = jQuery.getJSON({
 							type: 'POST',
 							url: ajaxurl,
 							data: {
-								action: 'generate_get_all_google_fonts_ajax',
+								action: 'woostify_get_all_google_fonts_ajax',
 								gp_customize_nonce: gp_customize.nonce
 							},
 							async: false,
@@ -43,19 +43,19 @@
 
 							// Get existing variants if this font is already selected
 							var got_variants = false;
-							jQuery( '.generatepress-font-family select' ).not( _this ).each( function( key, select ) {
-								var parent = jQuery( this ).closest( '.generatepress-font-family' );
+							jQuery( '.woostify-font-family select' ).not( _this ).each( function( key, select ) {
+								var parent = jQuery( this ).closest( '.woostify-font-family' );
 
 								if ( _value == jQuery( select ).val() && _this.data( 'category' ) !== jQuery( select ).data( 'category' ) ) {
 									if ( ! got_variants ) {
-										updated_variants = jQuery( parent.next( '.generatepress-font-variant' ).find( 'select' ) ).val();
+										updated_variants = jQuery( parent.next( '.woostify-font-variant' ).find( 'select' ) ).val();
 										got_variants = true;
 									}
 								}
 							} );
 
 							// We're using a Google font, so show the variants field
-							_this.closest( '.generatepress-font-family' ).next( 'div' ).show();
+							_this.closest( '.woostify-font-family' ).next( 'div' ).show();
 
 							// Remove existing variants
 							jQuery( 'select[name="' + _variantsID + '"]' ).find( 'option' ).remove();
@@ -76,7 +76,7 @@
 							control.settings[ 'category' ].set( fonts[ id ].category );
 							jQuery( 'input[name="' + _categoryID + '"' ).val( fonts[ id ].category );
 						} else {
-							_this.closest( '.generatepress-font-family' ).next( 'div' ).hide();
+							_this.closest( '.woostify-font-family' ).next( 'div' ).hide();
 							control.settings[ 'category' ].set( '' )
 							control.settings[ 'variant' ].set( '' )
 							jQuery( 'input[name="' + _categoryID + '"' ).val( '' );
@@ -86,16 +86,16 @@
 				}
 			);
 
-			control.container.on( 'change', '.generatepress-font-variant select',
+			control.container.on( 'change', '.woostify-font-variant select',
 				function() {
 					var _this = jQuery( this );
 					var variants = _this.val();
 
 					control.settings['variant'].set( variants );
 
-					jQuery( '.generatepress-font-variant select' ).each( function( key, value ) {
+					jQuery( '.woostify-font-variant select' ).each( function( key, value ) {
 						var this_control = jQuery( this ).closest( 'li' ).attr( 'id' ).replace( 'customize-control-', '' );
-						var parent = jQuery( this ).closest( '.generatepress-font-variant' );
+						var parent = jQuery( this ).closest( '.woostify-font-variant' );
 						var font_val = api.control( this_control ).settings['family'].get();
 
 						if ( font_val == control.settings['family'].get() && _this.attr( 'name' ) !== jQuery( value ).attr( 'name' ) ) {
@@ -106,19 +106,19 @@
 				}
 			);
 
-			control.container.on( 'change', '.generatepress-font-category input',
+			control.container.on( 'change', '.woostify-font-category input',
 				function() {
 					control.settings['category'].set( jQuery( this ).val() );
 				}
 			);
 
-			control.container.on( 'change', '.generatepress-font-weight select',
+			control.container.on( 'change', '.woostify-font-weight select',
 				function() {
 					control.settings['weight'].set( jQuery( this ).val() );
 				}
 			);
 
-			control.container.on( 'change', '.generatepress-font-transform select',
+			control.container.on( 'change', '.woostify-font-transform select',
 				function() {
 					control.settings['transform'].set( jQuery( this ).val() );
 				}
@@ -131,8 +131,8 @@
 
 jQuery( document ).ready( function($) {
 
-	jQuery( '.generatepress-font-family select' ).selectWoo();
-	jQuery( '.generatepress-font-variant' ).each( function( key, value ) {
+	jQuery( '.woostify-font-family select' ).selectWoo();
+	jQuery( '.woostify-font-variant' ).each( function( key, value ) {
 		var _this = $( this );
 		var value = _this.data( 'saved-value' );
 		if ( value ) {
@@ -141,10 +141,10 @@ jQuery( document ).ready( function($) {
 		_this.find( 'select' ).selectWoo().val( value ).trigger( 'change.select2' );
 	} );
 
-	$( ".generatepress-font-family" ).each( function( key, value ) {
+	$( ".woostify-font-family" ).each( function( key, value ) {
 		var _this = $( this );
 		if ( $.inArray( _this.find( 'select' ).val(), typography_defaults ) !== -1 ) {
-			_this.next( '.generatepress-font-variant' ).hide();
+			_this.next( '.woostify-font-variant' ).hide();
 		}
 	});
 

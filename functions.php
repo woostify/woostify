@@ -36,7 +36,7 @@ $woostify = (object) array(
  *
  * @since 2.0
  */
-function generate_sanitize_variants( $input ) {
+function woostify_sanitize_variants( $input ) {
 	if ( is_array( $input ) ) {
 		$input = implode( ',', $input );
 	}

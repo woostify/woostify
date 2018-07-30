@@ -8,13 +8,13 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-if ( ! function_exists( 'generate_typography_default_fonts' ) ) {
+if ( ! function_exists( 'woostify_typography_default_fonts' ) ) {
 	/**
 	 * Set the default system fonts.
 	 *
 	 * @since 1.3.40
 	 */
-	function generate_typography_default_fonts() {
+	function woostify_typography_default_fonts() {
 		$fonts = array(
 			'inherit',
 			'System Stack',
@@ -34,11 +34,11 @@ if ( ! function_exists( 'generate_typography_default_fonts' ) ) {
 			'Verdana, Geneva, sans-serif'
 		);
 
-		return apply_filters( 'generate_typography_default_fonts', $fonts );
+		return apply_filters( 'woostify_typography_default_fonts', $fonts );
 	}
 }
 
-if ( ! function_exists( 'generate_get_default_fonts' ) ) {
+if ( ! function_exists( 'woostify_get_default_fonts' ) ) {
 	/**
 	 * Set default options.
 	 *
@@ -47,8 +47,8 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 	 * @param bool $filter Whether to return the filtered values or original values.
 	 * @return array Option defaults.
 	 */
-	function generate_get_default_fonts( $filter = true ) {
-		$generate_font_defaults = array(
+	function woostify_get_default_fonts( $filter = true ) {
+		$woostify_font_defaults = array(
 			'font_body' => 'System Stack',
 			'font_body_category' => '',
 			'font_body_variants' => '',
@@ -149,34 +149,34 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 		);
 
 		if ( $filter ) {
-			return apply_filters( 'generate_font_option_defaults', $generate_font_defaults );
+			return apply_filters( 'woostify_font_option_defaults', $woostify_font_defaults );
 		}
 
-		return $generate_font_defaults;
+		return $woostify_font_defaults;
 	}
 }
 
-if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
-	add_action( 'wp_enqueue_scripts', 'generate_enqueue_google_fonts', 0 );
+if ( ! function_exists( 'woostify_enqueue_google_fonts' ) ) {
+	add_action( 'wp_enqueue_scripts', 'woostify_enqueue_google_fonts', 0 );
 	/**
 	 * Add Google Fonts to wp_head if needed.
 	 *
 	 * @since 0.1
 	 */
-	function generate_enqueue_google_fonts() {
+	function woostify_enqueue_google_fonts() {
 
 		if ( is_admin() ) {
 			return;
 		}
 
 		// Grab our options
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_default_fonts()
+		$woostify_settings = wp_parse_args(
+			get_option( 'woostify_settings', array() ),
+			woostify_get_default_fonts()
 		);
 
 		// List our non-Google fonts
-		$not_google = str_replace( ' ', '+', generate_typography_default_fonts() );
+		$not_google = str_replace( ' ', '+', woostify_typography_default_fonts() );
 
 		// Grab our font family settings
 		$font_settings = array(
@@ -203,20 +203,20 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 			foreach ( $font_settings as $key ) {
 
 				// If the key isn't set, move on
-				if ( ! isset( $generate_settings[$key] ) ) {
+				if ( ! isset( $woostify_settings[$key] ) ) {
 					continue;
 				}
 
 				// If our value is still using the old format, fix it
-				if ( strpos( $generate_settings[$key], ':' ) !== false ) {
-					$generate_settings[$key] = current( explode( ':', $generate_settings[$key] ) );
+				if ( strpos( $woostify_settings[$key], ':' ) !== false ) {
+					$woostify_settings[$key] = current( explode( ':', $woostify_settings[$key] ) );
 				}
 
 				// Replace the spaces in the names with a plus
-				$value = str_replace( ' ', '+', $generate_settings[$key] );
+				$value = str_replace( ' ', '+', $woostify_settings[$key] );
 
 				// Grab the variants using the plain name
-				$variants = generate_get_google_font_variants( $generate_settings[$key], $key );
+				$variants = woostify_get_google_font_variants( $woostify_settings[$key], $key );
 
 				// If we have variants, add them to our value
 				$value = ! empty( $variants ) ? $value . ':' . $variants : $value;
@@ -237,10 +237,10 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 		$google_fonts = implode( '|', $google_fonts );
 
 		// Apply a filter to the output
-		$google_fonts = apply_filters( 'generate_typography_google_fonts', $google_fonts );
+		$google_fonts = apply_filters( 'woostify_typography_google_fonts', $google_fonts );
 
 		// Get the subset
-		$subset = apply_filters( 'generate_fonts_subset','' );
+		$subset = apply_filters( 'woostify_fonts_subset','' );
 
 		// Set up our arguments
 		$font_args = array();
@@ -259,15 +259,15 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 	}
 }
 
-if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
-	add_action( 'customize_register', 'generate_default_fonts_customize_register' );
+if ( ! function_exists( 'woostify_default_fonts_customize_register' ) ) {
+	add_action( 'customize_register', 'woostify_default_fonts_customize_register' );
 	/**
 	 * Build our Typography options
 	 *
 	 * @since 0.1
 	 */
-	function generate_default_fonts_customize_register( $wp_customize ) {
-		if ( function_exists( 'generate_fonts_customize_register' ) ) {
+	function woostify_default_fonts_customize_register( $wp_customize ) {
+		if ( function_exists( 'woostify_fonts_customize_register' ) ) {
 			// Bail if GP Premium is active
 			return;
 		}
@@ -276,17 +276,17 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		//require_once trailingslashit( get_template_directory() ) . 'inc/customizer/customizer-helpers.php';
 		require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/typography/class-typography-control.php';
 
-		$defaults = generate_get_default_fonts();
+		$defaults = woostify_get_default_fonts();
 		// var_dump($defaults);
 		if ( method_exists( $wp_customize,'register_control_type' ) ) {
-			$wp_customize->register_control_type( 'Generate_Typography_Customize_Control' );
-			//$wp_customize->register_control_type( 'Generate_Range_Slider_Control' );
+			$wp_customize->register_control_type( 'Woostify_Typography_Customize_Control' );
+			//$wp_customize->register_control_type( 'woostify_Range_Slider_Control' );
 		}
 
 		$wp_customize->add_section(
 			'font_section',
 			array(
-				'title' => __( 'Typography', 'generatepress' ),
+				'title' => __( 'Typography', 'woostify' ),
 				'capability' => 'edit_theme_options',
 				'description' => '',
 				'priority' => 30
@@ -294,7 +294,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		);
 
 		$wp_customize->add_setting(
-			'generate_settings[font_body]',
+			'woostify_settings[font_body]',
 			array(
 				'default' => $defaults['font_body'],
 				'type' => 'option',
@@ -314,12 +314,12 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 			'font_body_variants',
 			array(
 				'default' => $defaults['font_body_variants'],
-				'sanitize_callback' => 'generate_sanitize_variants'
+				'sanitize_callback' => 'woostify_sanitize_variants'
 			)
 		);
 
 		$wp_customize->add_setting(
-			'generate_settings[body_font_weight]',
+			'woostify_settings[body_font_weight]',
 			array(
 				'default' => $defaults['body_font_weight'],
 				'type' => 'option',
@@ -329,7 +329,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		);
 
 		$wp_customize->add_setting(
-			'generate_settings[body_font_transform]',
+			'woostify_settings[body_font_transform]',
 			array(
 				'default' => $defaults['body_font_transform'],
 				'type' => 'option',
@@ -340,43 +340,43 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		);
 
 		$wp_customize->add_control(
-			new Generate_Typography_Customize_Control(
+			new Woostify_Typography_Customize_Control(
 				$wp_customize,
 				'body_typography',
 				array(
 					'section' => 'font_section',
 					'priority' => 1,
 					'settings' => array(
-						'family' => 'generate_settings[font_body]',
+						'family' => 'woostify_settings[font_body]',
 						'variant' => 'font_body_variants',
 						'category' => 'font_body_category',
-						'weight' => 'generate_settings[body_font_weight]',
-						'transform' => 'generate_settings[body_font_transform]',
+						'weight' => 'woostify_settings[body_font_weight]',
+						'transform' => 'woostify_settings[body_font_transform]',
 					),
 				)
 			)
 		);
 
 		// $wp_customize->add_setting(
-		// 	'generate_settings[body_font_size]',
+		// 	'woostify_settings[body_font_size]',
 		// 	array(
 		// 		'default' => $defaults['body_font_size'],
 		// 		'type' => 'option',
-		// 		'sanitize_callback' => 'generate_sanitize_integer',
+		// 		'sanitize_callback' => 'woostify_sanitize_integer',
 		// 		'transport' => 'postMessage'
 		// 	)
 		// );
 
 		// $wp_customize->add_control(
-		// 	new Generate_Range_Slider_Control(
+		// 	new woostify_Range_Slider_Control(
 		// 		$wp_customize,
-		// 		'generate_settings[body_font_size]',
+		// 		'woostify_settings[body_font_size]',
 		// 		array(
-		// 			'type' => 'generatepress-range-slider',
-		// 			'description' => __( 'Font size', 'generatepress' ),
+		// 			'type' => 'woostify-range-slider',
+		// 			'description' => __( 'Font size', 'woostify' ),
 		// 			'section' => 'font_section',
 		// 			'settings' => array(
-		// 				'desktop' => 'generate_settings[body_font_size]',
+		// 				'desktop' => 'woostify_settings[body_font_size]',
 		// 			),
 		// 			'choices' => array(
 		// 				'desktop' => array(
@@ -393,25 +393,25 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		// );
 
 		// $wp_customize->add_setting(
-		// 	'generate_settings[body_line_height]',
+		// 	'woostify_settings[body_line_height]',
 		// 	array(
 		// 		'default' => $defaults['body_line_height'],
 		// 		'type' => 'option',
-		// 		'sanitize_callback' => 'generate_sanitize_decimal_integer',
+		// 		'sanitize_callback' => 'woostify_sanitize_decimal_integer',
 		// 		'transport' => 'postMessage'
 		// 	)
 		// );
 
 		// $wp_customize->add_control(
-		// 	new Generate_Range_Slider_Control(
+		// 	new woostify_Range_Slider_Control(
 		// 		$wp_customize,
-		// 		'generate_settings[body_line_height]',
+		// 		'woostify_settings[body_line_height]',
 		// 		array(
-		// 			'type' => 'generatepress-range-slider',
-		// 			'description' => __( 'Line height', 'generatepress' ),
+		// 			'type' => 'woostify-range-slider',
+		// 			'description' => __( 'Line height', 'woostify' ),
 		// 			'section' => 'font_section',
 		// 			'settings' => array(
-		// 				'desktop' => 'generate_settings[body_line_height]',
+		// 				'desktop' => 'woostify_settings[body_line_height]',
 		// 			),
 		// 			'choices' => array(
 		// 				'desktop' => array(
@@ -428,25 +428,25 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		// );
 
 		// $wp_customize->add_setting(
-		// 	'generate_settings[paragraph_margin]',
+		// 	'woostify_settings[paragraph_margin]',
 		// 	array(
 		// 		'default' => $defaults['paragraph_margin'],
 		// 		'type' => 'option',
-		// 		'sanitize_callback' => 'generate_sanitize_decimal_integer',
+		// 		'sanitize_callback' => 'woostify_sanitize_decimal_integer',
 		// 		'transport' => 'postMessage'
 		// 	)
 		// );
 
 		// $wp_customize->add_control(
-		// 	new Generate_Range_Slider_Control(
+		// 	new woostify_Range_Slider_Control(
 		// 		$wp_customize,
-		// 		'generate_settings[paragraph_margin]',
+		// 		'woostify_settings[paragraph_margin]',
 		// 		array(
-		// 			'type' => 'generatepress-range-slider',
-		// 			'description' => __( 'Paragraph margin', 'generatepress' ),
+		// 			'type' => 'woostify-range-slider',
+		// 			'description' => __( 'Paragraph margin', 'woostify' ),
 		// 			'section' => 'font_section',
 		// 			'settings' => array(
-		// 				'desktop' => 'generate_settings[paragraph_margin]',
+		// 				'desktop' => 'woostify_settings[paragraph_margin]',
 		// 			),
 		// 			'choices' => array(
 		// 				'desktop' => array(
@@ -462,17 +462,17 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		// 	)
 		// );
 
-		// if ( ! function_exists( 'generate_fonts_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
+		// if ( ! function_exists( 'woostify_fonts_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
 		// 	$wp_customize->add_control(
-		// 		new Generate_Customize_Misc_Control(
+		// 		new woostify_Customize_Misc_Control(
 		// 			$wp_customize,
 		// 			'typography_get_addon_desc',
 		// 			array(
 		// 				'section' => 'font_section',
 		// 				'type' => 'addon',
-		// 				'label' => __( 'Learn more','generatepress' ),
-		// 				'description' => __( 'More options are available for this section in our premium version.', 'generatepress' ),
-		// 				'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
+		// 				'label' => __( 'Learn more','woostify' ),
+		// 				'description' => __( 'More options are available for this section in our premium version.', 'woostify' ),
+		// 				'url' => woostify_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
 		// 				'priority' => 50,
 		// 				'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
 		// 			)
@@ -482,7 +482,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 	}
 }
 
-if ( ! function_exists( 'generate_get_all_google_fonts' ) ) {
+if ( ! function_exists( 'woostify_get_all_google_fonts' ) ) {
 	/**
 	 * Return an array of all of our Google Fonts.
 	 *
@@ -490,7 +490,7 @@ if ( ! function_exists( 'generate_get_all_google_fonts' ) ) {
 	 * @param string $amount How many fonts to return.
 	 * @return array The list of Google Fonts.
 	 */
-	function generate_get_all_google_fonts( $amount = 'all' ) {
+	function woostify_get_all_google_fonts( $amount = 'all' ) {
 		// Our big list Google Fonts
 		// We use json_decode to reduce PHP memory usage
 		// Adding them as a PHP array seems to use quite a bit more memory
@@ -519,23 +519,23 @@ if ( ! function_exists( 'generate_get_all_google_fonts' ) ) {
 		}
 
 		// Alphabetize our fonts
-		if ( apply_filters( 'generate_alphabetize_google_fonts', true ) ) {
+		if ( apply_filters( 'woostify_alphabetize_google_fonts', true ) ) {
 			asort( $fonts );
 		}
 
 		// Filter to allow us to modify the fonts array
-		return apply_filters( 'generate_google_fonts_array', $fonts );
+		return apply_filters( 'woostify_google_fonts_array', $fonts );
 	}
 }
 
-if ( ! function_exists( 'generate_get_all_google_fonts_ajax' ) ) {
-	add_action( 'wp_ajax_generate_get_all_google_fonts_ajax', 'generate_get_all_google_fonts_ajax' );
+if ( ! function_exists( 'woostify_get_all_google_fonts_ajax' ) ) {
+	add_action( 'wp_ajax_woostify_get_all_google_fonts_ajax', 'woostify_get_all_google_fonts_ajax' );
 	/**
 	 * Return an array of all of our Google Fonts.
 	 *
 	 * @since 1.3.0
 	 */
-	function generate_get_all_google_fonts_ajax() {
+	function woostify_get_all_google_fonts_ajax() {
 		// Bail if the nonce doesn't check out
 		if ( ! isset( $_POST[ 'gp_customize_nonce' ] ) || ! wp_verify_nonce( sanitize_key( $_POST[ 'gp_customize_nonce' ] ), 'gp_customize_nonce' ) ) {
 			wp_die();
@@ -550,7 +550,7 @@ if ( ! function_exists( 'generate_get_all_google_fonts_ajax' ) ) {
 		}
 
 		// Get all of our fonts
-		$fonts = generate_get_all_google_fonts();
+		$fonts = woostify_get_all_google_fonts();
 
 		// Send all of our fonts in JSON format
 		echo wp_json_encode( $fonts );
@@ -560,15 +560,15 @@ if ( ! function_exists( 'generate_get_all_google_fonts_ajax' ) ) {
 	}
 }
 
-if ( ! function_exists( 'generate_get_google_font_variants' ) ) {
+if ( ! function_exists( 'woostify_get_google_font_variants' ) ) {
 	/**
 	 * Wrapper function to find variants for chosen Google Fonts
-	 * Example: generate_get_google_font_variation( 'Open Sans' )
+	 * Example: woostify_get_google_font_variation( 'Open Sans' )
 	 * @since 1.3.0
 	 */
-	function generate_get_google_font_variants( $font, $key = '' ) {
+	function woostify_get_google_font_variants( $font, $key = '' ) {
 		// Don't need variants if we're using a system font
-		if ( in_array( $font, generate_typography_default_fonts() ) ) {
+		if ( in_array( $font, woostify_typography_default_fonts() ) ) {
 			return;
 		}
 
@@ -578,7 +578,7 @@ if ( ! function_exists( 'generate_get_google_font_variants' ) ) {
 		}
 
 		// Get our defaults
-		$defaults = generate_get_default_fonts();
+		$defaults = woostify_get_default_fonts();
 
 		// If our default font is selected and the category isn't saved, we already know the category
 		if ( $defaults[ $key ] == $font ) {
@@ -587,7 +587,7 @@ if ( ! function_exists( 'generate_get_google_font_variants' ) ) {
 
 		// Grab all of our fonts
 		// It's a big list, so hopefully we're not even still reading
-		$fonts = generate_get_all_google_fonts();
+		$fonts = woostify_get_all_google_fonts();
 
 		// Get the ID from our font
 		$id = strtolower( str_replace( ' ', '_', $font ) );
@@ -606,15 +606,15 @@ if ( ! function_exists( 'generate_get_google_font_variants' ) ) {
 			foreach ( $variants as $variant ) {
 				$output[] = $variant;
 			}
-			return implode(',', apply_filters( 'generate_typography_variants', $output ) );
+			return implode(',', apply_filters( 'woostify_typography_variants', $output ) );
 		}
 	}
 }
 
-if ( ! function_exists( 'generate_get_google_font_category' ) ) {
+if ( ! function_exists( 'woostify_get_google_font_category' ) ) {
 	/**
 	 * Wrapper function to find the category for chosen Google Font
-	 * Example: generate_get_google_font_category( 'Open Sans' )
+	 * Example: woostify_get_google_font_category( 'Open Sans' )
 	 *
 	 * @since 1.3.0
 	 *
@@ -622,9 +622,9 @@ if ( ! function_exists( 'generate_get_google_font_category' ) ) {
 	 * @param string $key The ID of the font setting.
 	 * @return string The category of our font.
 	 */
-	function generate_get_google_font_category( $font, $key = '' ) {
+	function woostify_get_google_font_category( $font, $key = '' ) {
 		// Don't need a category if we're using a system font
-		if ( in_array( $font, generate_typography_default_fonts() ) ) {
+		if ( in_array( $font, woostify_typography_default_fonts() ) ) {
 			return;
 		}
 
@@ -634,7 +634,7 @@ if ( ! function_exists( 'generate_get_google_font_category' ) ) {
 		}
 
 		// Get our defaults
-		$defaults = generate_get_default_fonts();
+		$defaults = woostify_get_default_fonts();
 
 		// If our default font is selected and the category isn't saved, we already know the category
 		if ( $defaults[ $key ] == $font ) {
@@ -643,7 +643,7 @@ if ( ! function_exists( 'generate_get_google_font_category' ) ) {
 
 		// Grab all of our fonts
 		// It's a big list, so hopefully we're not even still reading
-		$fonts = generate_get_all_google_fonts();
+		$fonts = woostify_get_all_google_fonts();
 
 		// Get the ID from our font
 		$id = strtolower( str_replace( ' ', '_', $font ) );
@@ -662,8 +662,8 @@ if ( ! function_exists( 'generate_get_google_font_category' ) ) {
 	}
 }
 
-if ( ! function_exists( 'generate_add_to_font_customizer_list' ) ) {
-	add_filter( 'generate_typography_customize_list', 'generate_add_to_font_customizer_list' );
+if ( ! function_exists( 'woostify_add_to_font_customizer_list' ) ) {
+	add_filter( 'woostify_typography_customize_list', 'woostify_add_to_font_customizer_list' );
 	/**
 	 * This function makes sure your selected typography option exists in the Customizer list
 	 * Why wouldn't it? Originally, all 800+ fonts were in each list. This has been reduced to 200.
@@ -671,15 +671,15 @@ if ( ! function_exists( 'generate_add_to_font_customizer_list' ) ) {
 	 *
 	 * @since 1.3.40
 	 */
-	function generate_add_to_font_customizer_list( $fonts ) {
+	function woostify_add_to_font_customizer_list( $fonts ) {
 		// Bail if we don't have our defaults
-		if ( ! function_exists( 'generate_get_default_fonts' ) ) {
+		if ( ! function_exists( 'woostify_get_default_fonts' ) ) {
 			return;
 		}
 
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_default_fonts()
+		$woostify_settings = wp_parse_args(
+			get_option( 'woostify_settings', array() ),
+			woostify_get_default_fonts()
 		);
 
 		$font_settings = array(
@@ -694,37 +694,37 @@ if ( ! function_exists( 'generate_add_to_font_customizer_list' ) ) {
 			'font_heading_3',
 		);
 
-		$all_fonts = generate_get_all_google_fonts();
-		$select_fonts = generate_get_all_google_fonts( apply_filters( 'generate_number_of_fonts', 200 ) );
+		$all_fonts = woostify_get_all_google_fonts();
+		$select_fonts = woostify_get_all_google_fonts( apply_filters( 'woostify_number_of_fonts', 200 ) );
 
 		foreach ( $font_settings as $setting ) {
 			// If we don't have a setting, keep going
-			if ( ! isset( $generate_settings[ $setting ] ) ) {
+			if ( ! isset( $woostify_settings[ $setting ] ) ) {
 				continue;
 			}
 
-			$id = strtolower( str_replace( ' ', '_', $generate_settings[ $setting ] ) );
+			$id = strtolower( str_replace( ' ', '_', $woostify_settings[ $setting ] ) );
 
-			if ( array_key_exists( $id, $select_fonts ) || in_array( $generate_settings[ $setting ], generate_typography_default_fonts() ) ) {
+			if ( array_key_exists( $id, $select_fonts ) || in_array( $woostify_settings[ $setting ], woostify_typography_default_fonts() ) ) {
 				continue;
 			}
 
-			$fonts[ strtolower( str_replace( ' ', '_', $generate_settings[ $setting ] ) ) ] = array(
-				'name' => $generate_settings[ $setting ],
+			$fonts[ strtolower( str_replace( ' ', '_', $woostify_settings[ $setting ] ) ) ] = array(
+				'name' => $woostify_settings[ $setting ],
 				'variants' => array_key_exists( $id, $all_fonts ) ? $all_fonts[$id]['variants'] : array(),
 				'category' => array_key_exists( $id, $all_fonts ) ? $all_fonts[$id]['category'] : 'sans-serif'
 			);
 		}
 
-		if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
+		if ( function_exists( 'woostify_secondary_nav_get_defaults' ) ) {
 			$secondary_nav_settings = wp_parse_args(
-				get_option( 'generate_secondary_nav_settings', array() ),
-				generate_secondary_nav_get_defaults()
+				get_option( 'woostify_secondary_nav_settings', array() ),
+				woostify_secondary_nav_get_defaults()
 			);
 
 			$secondary_nav_id = strtolower( str_replace( ' ', '_', $secondary_nav_settings[ 'font_secondary_navigation' ] ) );
 
-			if ( ! array_key_exists( $secondary_nav_id, $select_fonts ) && ! in_array( $secondary_nav_settings[ 'font_secondary_navigation' ], generate_typography_default_fonts() ) ) {
+			if ( ! array_key_exists( $secondary_nav_id, $select_fonts ) && ! in_array( $secondary_nav_settings[ 'font_secondary_navigation' ], woostify_typography_default_fonts() ) ) {
 				$fonts[ strtolower( str_replace( ' ', '_', $secondary_nav_settings[ 'font_secondary_navigation' ] ) ) ] = array(
 					'name' => $secondary_nav_settings[ 'font_secondary_navigation' ],
 					'variants' => array_key_exists( $secondary_nav_id, $all_fonts ) ? $all_fonts[$secondary_nav_id]['variants'] : array(),

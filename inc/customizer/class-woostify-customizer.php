@@ -183,8 +183,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
          * @param array $default The defaults for our $settings.
          * @return string The CSS value for our font family.
          */
-        public function generate_get_font_family_css( $font, $settings, $default ) {
-            $generate_settings = wp_parse_args(
+        public function woostify_get_font_family_css( $font, $settings, $default ) {
+            $woostify_settings = wp_parse_args(
                 get_option( $settings, array() ),
                 $default
             );
@@ -200,14 +200,14 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
                 'Tahoma, Geneva, sans-serif',
                 'Trebuchet MS, Helvetica, sans-serif',
                 'Verdana, Geneva, sans-serif',
-                apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' )
+                apply_filters( 'woostify_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' )
             );
 
             // Get our font
-            $font_family = $generate_settings[ $font ];
+            $font_family = $woostify_settings[ $font ];
 
             if ( 'System Stack' == $font_family ) {
-                $font_family = apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' );
+                $font_family = apply_filters( 'woostify_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' );
             }
 
             // If our value is still using the old format, fix it
@@ -221,7 +221,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
                 $wrapper_end = null;
             } else {
                 $wrapper_start = '"';
-                $wrapper_end = '"' . generate_get_google_font_category( $font_family, $font );
+                $wrapper_end = '"' . woostify_get_google_font_category( $font_family, $font );
             }
 
             // Output the CSS
@@ -237,8 +237,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
          * @param bool $filter Whether to return the filtered values or original values.
          * @return array Option defaults.
          */
-        public function generate_get_default_fonts( $filter = true ) {
-            $generate_font_defaults = array(
+        public function woostify_get_default_fonts( $filter = true ) {
+            $woostify_font_defaults = array(
                 'font_body' => 'System Stack',
                 'font_body_category' => '',
                 'font_body_variants' => '',
@@ -339,10 +339,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
             );
 
             if ( $filter ) {
-                return apply_filters( 'generate_font_option_defaults', $generate_font_defaults );
+                return apply_filters( 'woostify_font_option_defaults', $woostify_font_defaults );
             }
 
-            return $generate_font_defaults;
+            return $woostify_font_defaults;
         }
 
 		/**
@@ -352,15 +352,15 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * @return array $styles the css
 		 */
 		public function get_css() {
-            $generate_settings = wp_parse_args(
-                get_option( 'generate_settings', array() ),
-                $this->generate_get_default_fonts()
+            $woostify_settings = wp_parse_args(
+                get_option( 'woostify_settings', array() ),
+                $this->woostify_get_default_fonts()
             );
 
 			$woostify_theme_mods = $this->get_woostify_theme_mods();
 			$brighten_factor       = apply_filters( 'woostify_brighten_factor', 25 );
 			$darken_factor         = apply_filters( 'woostify_darken_factor', -25 );
-            $body_font = $body_family = $this->generate_get_font_family_css( 'font_body', 'generate_settings', $this->generate_get_default_fonts());
+            $body_font = $body_family = $this->woostify_get_font_family_css( 'font_body', 'woostify_settings', $this->woostify_get_default_fonts());
             //var_dump($body_font);
 
 			$styles                = '
