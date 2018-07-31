@@ -21,6 +21,9 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 1170; /* pixels */
 }
 
+require 'inc/customizer/class-woostify-fonts-helpers.php';
+require 'inc/customizer/sections/typography/typography.php';
+
 $woostify = (object) array(
 	'version' => $woostify_version,
 
@@ -46,8 +49,7 @@ function woostify_sanitize_variants( $input ) {
 require 'inc/woostify-functions.php';
 require 'inc/woostify-template-hooks.php';
 require 'inc/woostify-template-functions.php';
-require 'inc/customizer/custom-controls/typography/class-woostify-fonts-helpers.php';
-require 'inc/customizer/sections/typography/typography.php';
+
 
 if ( class_exists( 'Jetpack' ) ) {
 	$woostify->jetpack = require 'inc/jetpack/class-woostify-jetpack.php';
