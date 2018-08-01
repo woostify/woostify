@@ -215,13 +215,13 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
                 $font_family = current( explode( ':', $font_family ) );
             }
 
-            // Set up our wrapper
+            // Set up our wrapperwoostify_get_all_google_fonts
             if ( in_array( $font_family, $no_quotes ) ) {
                 $wrapper_start = null;
                 $wrapper_end = null;
             } else {
                 $wrapper_start = '"';
-                $wrapper_end = '"' . woostify_get_google_font_category( $font_family, $font );
+                $wrapper_end = '"' . Woostify_Font_Helpers::woostify_get_google_font_category( $font_family, $font );
             }
 
             // Output the CSS
