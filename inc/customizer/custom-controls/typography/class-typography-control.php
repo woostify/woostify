@@ -32,8 +32,8 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 			$number_of_fonts = apply_filters( 'woostify_number_of_fonts', 200 );
 			$this->json[ 'default_fonts_title'] = __( 'System fonts', 'woostify' );
 			$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'woostify' );
-			$this->json[ 'google_fonts' ] = apply_filters( 'woostify_typography_customize_list', woostify_get_all_google_fonts( $number_of_fonts ) );
-			$this->json[ 'default_fonts' ] = $this->woostify_typography_default_fonts();
+			$this->json[ 'google_fonts' ] = apply_filters( 'woostify_typography_customize_list', Woostify_Font_Helpers::woostify_get_all_google_fonts( $number_of_fonts ) );
+			$this->json[ 'default_fonts' ] = Woostify_Font_Helpers::woostify_typography_default_fonts();
 			$this->json[ 'family_title' ] = esc_html__( 'Font family', 'woostify' );
 			$this->json[ 'weight_title' ] = esc_html__( 'Font weight', 'woostify' );
 			$this->json[ 'transform_title' ] = esc_html__( 'Text transform', 'woostify' );
@@ -190,27 +190,5 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 			);
 		}
 
-		public function woostify_typography_default_fonts() {
-			$fonts = array(
-				'inherit',
-				'System Stack',
-				'Arial, Helvetica, sans-serif',
-				'Century Gothic',
-				'Comic Sans MS',
-				'Courier New',
-				'Georgia, Times New Roman, Times, serif',
-				'Helvetica',
-				'Impact',
-				'Lucida Console',
-				'Lucida Sans Unicode',
-				'Palatino Linotype',
-				'Segoe UI, Helvetica Neue, Helvetica, sans-serif',
-				'Tahoma, Geneva, sans-serif',
-				'Trebuchet MS, Helvetica, sans-serif',
-				'Verdana, Geneva, sans-serif'
-			);
-
-			return apply_filters( 'woostify_typography_default_fonts', $fonts );
-		}
 	}
 }
