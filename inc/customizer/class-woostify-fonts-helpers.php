@@ -529,6 +529,62 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
 
             return $fonts;
         }
+
+        /**
+         * Wrapper function to create font-family value for CSS.
+         *
+         * @since 1.3.0
+         *
+         * @param string $font The name of our font.
+         * @param string $settings The ID of the settings we're looking up.
+         * @param array $default The defaults for our $settings.
+         * @return string The CSS value for our font family.
+         */
+        public function woostify_get_font_family_css( $font, $settings, $default ) {
+            $woostify_settings = wp_parse_args(
+                get_option( $settings, array() ),
+                $default
+            );
+
+            // We don't want to wrap quotes around these values
+            $no_quotes = array(
+                'inherit',
+                'Arial, Helvetica, sans-serif',
+                'Georgia, Times New Roman, Times, serif',
+                'Helvetica',
+                'Impact',
+                'Segoe UI, Helvetica Neue, Helvetica, sans-serif',
+                'Tahoma, Geneva, sans-serif',
+                'Trebuchet MS, Helvetica, sans-serif',
+                'Verdana, Geneva, sans-serif',
+                apply_filters( 'woostify_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' )
+            );
+
+            // Get our font
+            $font_family = $woostify_settings[ $font ];
+
+            if ( 'System Stack' == $font_family ) {
+                $font_family = apply_filters( 'woostify_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' );
+            }
+
+            // If our value is still using the old format, fix it
+            if ( strpos( $font_family, ':' ) !== false ) {
+                $font_family = current( explode( ':', $font_family ) );
+            }
+
+            // Set up our wrapper
+            if ( in_array( $font_family, $no_quotes ) ) {
+                $wrapper_start = null;
+                $wrapper_end = null;
+            } else {
+                $wrapper_start = '"';
+                $wrapper_end = '"' . Woostify_Font_Helpers::woostify_get_google_font_category( $font_family, $font );
+            }
+
+            // Output the CSS
+            $output = ( 'inherit' == $font_family ) ? '' : $wrapper_start . $font_family . $wrapper_end;
+            return $output;
+        }
     }
 endif;
 

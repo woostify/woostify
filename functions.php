@@ -22,7 +22,6 @@ if ( ! isset( $content_width ) ) {
 }
 
 require 'inc/customizer/class-woostify-fonts-helpers.php';
-require 'inc/customizer/sections/typography/typography.php';
 
 $woostify = (object) array(
 	'version' => $woostify_version,
