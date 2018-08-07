@@ -32,7 +32,7 @@ $woostify = (object) array(
 	'main'       => require 'inc/class-woostify.php',
 	'customizer' => require 'inc/customizer/class-woostify-customizer.php',
 );
-
+require 'inc/customizer/class-woostify-get-css.php'; // Output CSS
 /**
  * Sanitize our Google Font variants
  *
@@ -55,8 +55,8 @@ if ( class_exists( 'Jetpack' ) ) {
 }
 
 if ( woostify_is_woocommerce_activated() ) {
-	$woostify->woocommerce            = require 'inc/woocommerce/class-woostify-woocommerce.php';
-	$woostify->woocommerce_customizer = require 'inc/woocommerce/class-woostify-woocommerce-customizer.php';
+	//$woostify->woocommerce            = require 'inc/woocommerce/class-woostify-woocommerce.php';
+	//$woostify->woocommerce_customizer = require 'inc/woocommerce/class-woostify-woocommerce-customizer.php';
 
 	require 'inc/woocommerce/woostify-woocommerce-template-hooks.php';
 	require 'inc/woocommerce/woostify-woocommerce-template-functions.php';
