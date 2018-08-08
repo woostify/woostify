@@ -8,6 +8,9 @@ select {
 
 input{
     border: 1px solid #eeeeee;
+    &[type=search] {
+        -webkit-appearance: textfield;
+    }
 }
 input,
 textarea,
@@ -15,6 +18,7 @@ button {
     -webkit-border-radius: 0;
     border-radius: 0;
     max-width: 100%;
+    font-size: 14px;
 }
 
 input[type="button"],

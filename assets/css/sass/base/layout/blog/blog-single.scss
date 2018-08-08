@@ -1,0 +1,205 @@
+.single{
+    #post-navigation{
+        @extend .sr-only;
+    }
+    .site-main{
+        .post{
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+        .entry-footer{
+            clear: both;
+            margin-top: 30px;
+        }
+    }
+}
+
+/* related post */
+.related-box{
+    border-top: 1px solid #e8e8e8;
+    padding-top: 61px;
+    margin-top: 73px;
+    @extend .clearfix;
+    .related-title{
+        font-size: 18px;
+        font-weight: normal;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-bottom: 36px;
+    }
+    .related-post{
+        img{
+            height: 260px;
+            object-fit: cover;
+        }
+    }
+    .entry-header{
+        display: block;
+        margin-bottom: 25px;
+    }
+    .entry-title{
+        font-size: 16px;
+        margin-top: 18px;
+        margin-bottom: 25px;
+        font-weight: normal;
+        line-height: 27px;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    .post-read-more{
+        margin-top: 0;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+
+/* comment */
+#comments{
+    border-top: 1px solid #e8e8e8;
+    padding-top: 70px;
+    margin-top: 70px;
+}
+.comments-title{
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 36px;
+}
+.comment-list{
+    margin: 0;
+    padding-left: 0;
+    li{
+        list-style: none;
+    }
+}
+.comment{
+    display: block;
+}
+.comment-body{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 45px;
+    #respond{
+        flex-basis: 100%;
+        margin-top: 33px;
+        margin-left: 100px;
+        padding-bottom: 45px;
+        border-bottom: 1px solid #e8e8e8;
+    }
+    .comment-author{
+        max-width: 70px;
+        min-width: 70px;
+        img{
+            border-radius: 50%;
+        }
+    }
+    .comment-content{
+        flex-grow: 1;
+        margin-left: 30px;
+        border-bottom: 1px solid #e8e8e8;
+        padding-bottom: 33px;
+        @include calc( max-width, '100% - 100px' );
+    }
+    .comment-meta{
+        margin-bottom: 15px;
+        .fn{
+            display: block;
+            font-weight: 600;
+        }
+        .comment-date{
+            color: #bfbfbf;
+            font-size: 12px;
+        }
+    }
+    .comment-text{
+        margin-bottom: 16px;
+        p:last-child{
+            margin-bottom: 0;
+        }
+    }
+    .reply{
+        a{
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    .comment-edit-link{
+        margin-left: 5px;
+    }
+}
+
+#reply-title{
+    font-size: 18px;
+}
+
+#commentform{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 33px;
+    #comment{
+        flex-basis: 100%;
+        border: 1px solid #e8e8e8;
+        padding: 15px;
+        height: 200px;
+        color: #bfbfbf;
+        font-size: 12px;
+        margin-bottom: 20px;
+        resize: none;
+        border-radius: 2px;
+        @extend .duration;
+        &:focus{
+            border-color: $tr;
+            @include shadow( 0px 5px 30px 0px rgba(0, 0, 0, 0.1) );
+        }
+    }
+    #email,
+    #author{
+        flex: 5;
+        height: 50px;
+        border: 1px solid #e8e8e8;
+        padding: 0 15px;
+        color: #bfbfbf;
+        font-size: 12px;
+        margin-bottom: 20px;
+        border-radius: 2px;
+        @extend .duration;
+        &:focus{
+            border-color: $tr;
+            color: #2b2b2b;
+            @include shadow( 0px 5px 30px 0px rgba(0, 0, 0, 0.1) );
+        }
+    }
+    #author{
+        margin-right: 20px;
+    }
+    #email{
+
+    }
+    .form-submit{
+        flex-basis: 100%;
+        margin-bottom: 0;
+        input[type="submit"]{
+            height: 50px;
+            padding: 0 15px;
+            border: 0;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-radius: 50px;
+            min-width: 130px;
+            color: #fff;
+            @extend .duration;
+        }
+    }
+}
+
+#respond{
+    .logged-in-as{
+        a{
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}

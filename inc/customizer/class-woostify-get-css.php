@@ -192,10 +192,6 @@ class Woostify_Get_CSS
 				color: ' . woostify_adjust_color_brightness($woostify_theme_mods['text_color'], -10) . ';
 			}
 
-			#comments .comment-list .comment-content .comment-text {
-				background-color: ' . woostify_adjust_color_brightness($woostify_theme_mods['background_color'], -7) . ';
-			}
-
 			.site-footer {
 				background-color: ' . $woostify_theme_mods['footer_background_color'] . ';
 				color: ' . $woostify_theme_mods['footer_text_color'] . ';

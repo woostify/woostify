@@ -32,7 +32,8 @@ if ( ! class_exists('woostify' ) ) :
 			add_filter( 'navigation_markup_template', array( $this, 'navigation_markup_template' ) );
 			add_action( 'enqueue_embed_scripts', array( $this, 'print_embed_styles' ) );
             add_action( 'customize_preview_init', array( $this, 'customize_live_preview' ) );
-            add_filter( 'wp_woostify_tag_cloud', array( $this, 'remove_tag_inline_style' ) );
+            add_filter( 'wp_tag_cloud', array( $this, 'remove_tag_inline_style' ) );
+            add_filter( 'excerpt_more', array( $this, 'modify_excerpt_more' ) );
 		}
 
 		/**
@@ -340,6 +341,15 @@ if ( ! class_exists('woostify' ) ) :
 		 * @return array
 		 */
 		public function body_classes( $classes ) {
+            /*! BROWSER DETECT
+            ------------------------------------------------->*/
+            global $is_IE, $is_edge, $is_safari, $is_iphone;
+
+            if( $is_iphone ) $classes[]     = 'iphone-detected';
+            elseif( $is_IE ) $classes[]     = 'ie-detected';
+            elseif( $is_edge ) $classes[]   = 'edge-detected';
+            elseif( $is_safari ) $classes[] = 'safari-detected';
+            
 			// Adds a class to blogs with more than 1 published author.
 			if ( is_multi_author() ) {
 				$classes[] = 'group-blog';
@@ -455,10 +465,18 @@ if ( ! class_exists('woostify' ) ) :
         }
 
         /**
-         * Remove inline css on tag
+         * Remove inline css on tag cloud
          */
         function remove_tag_inline_style( $string ){
             return preg_replace( '/ style=("|\')(.*?)("|\')/', '', $string );
+        }
+
+
+        /**
+         * Modify excerpt more to `...`
+         */
+        public function modify_excerpt_more( $more ) {
+            return '...';
         }
 	}
 endif;
