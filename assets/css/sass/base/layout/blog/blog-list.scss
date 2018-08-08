@@ -52,19 +52,33 @@ body{
     }
     .post-read-more{
         font-weight: 600;
-        display: block;
-        clear: both;
         margin-top: 20px;
+        clear: both;
+        margin-bottom: 0;
     }
 }
 
 .page-links{
+    margin-top: 20px;
+    a{
+        &:hover{
+            opacity: 0.6;
+        }
+        span{
+            border: 1px solid #888;
+            color: #888;
+            cursor: pointer;
+            @extend .duration;
+        }
+    }
     span{
-        width: 29px;
-        height: 29px;
-        border-radius: 50%;
-        border: 1px solid #ddd;
         @extend .inline-flex;
+        width: 26px;
+        height: 26px;
+        border-radius: 2px;
+        border: 1px solid #ddd;
+        color: #ddd;
+        cursor: default;
     }
 }
 

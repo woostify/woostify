@@ -126,7 +126,7 @@
             float: right;
             margin-left: 10px;
             margin-right: 10px;
-            border: 1px solid #ddd;
+            border-radius: 3px;
         }
         &[type="submit"] {
             height: 36px;
@@ -136,6 +136,7 @@
             float: left;
             background: #333;
             color: #fff;
+            border-radius: 3px;
         }
     }
 }
@@ -193,33 +194,6 @@
     }
 }
 
-/* Template: Paginated
-------------------------------------------------->*/
-.theme-page-links{
-    @extend .flw;
-    margin-top: 20px;
-    a{
-        &:hover{
-            span{
-                background: #ccc;
-            }
-        }
-        span{
-            background: #ddd;
-            border: 1px solid #ddd;
-            color: #333;
-            @extend .duration;
-        }
-    }
-    span{
-        @extend .inline-flex;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background: #333;
-        color: #fff
-    }
-}
 
 /* Template: Pingbacks And Trackbacks
 ------------------------------------------------->*/

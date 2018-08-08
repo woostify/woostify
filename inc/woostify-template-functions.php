@@ -5,6 +5,51 @@
  * @package woostify
  */
 
+
+if ( ! function_exists( 'woostify_post_related' ) ) {
+    function woostify_post_related() {
+        $id = get_queried_object_id();
+        $args = array(
+            'post_type'           => 'post',
+            'post__not_in'        => array( $id ),
+            'posts_per_page'      => 3,
+            'post_status'         => 'publish',
+            'ignore_sticky_posts' => 1
+        );
+
+        $query = new WP_Query( $args );
+
+        if ( $query->have_posts() ) :
+            ?>
+            <div class="related-box">
+                <div class="row">
+                    <h3 class="related-title"><?php esc_html_e( 'Related Posts', 'woostify' ); ?></h3>
+                    <?php
+                    while ( $query->have_posts() ) :
+                        $query->the_post();
+
+                        $post_id = get_the_ID();
+                        ?>
+                        <div class="related-post col-md-4">
+                            <?php if ( has_post_thumbnail() ) { ?>
+                                <a href="<?php echo get_permalink(); ?>" class="entry-header">
+                                    <?php the_post_thumbnail( 'medium' ); ?>
+                                </a>
+                            <?php } ?>
+
+                            <div class="posted-on"><?php echo get_the_date() ?></div>
+                            <h2 class="entry-title"><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>
+                            <a class="post-read-more" href="<?php echo get_permalink(); ?>"><?php esc_html_e(  'Read more', 'woostify'  ); ?></a>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            </div>
+            <?php
+            wp_reset_postdata();
+        endif;
+    }
+}
+
 if ( ! function_exists( 'woostify_display_comments' ) ) {
 	/**
 	 * Woostify display comments
@@ -13,10 +58,24 @@ if ( ! function_exists( 'woostify_display_comments' ) ) {
 	 */
 	function woostify_display_comments() {
 		// If comments are open or we have at least one comment, load up the comment template.
-		if ( comments_open() || '0' != get_comments_number() ) :
+		if ( comments_open() || 0 !== get_comments_number() ) :
 			comments_template();
 		endif;
 	}
+}
+
+if ( ! function_exists( 'woostify_relative_time' ) ) {
+
+    /**
+     * Display relative time for comment
+     *
+     * @param      string  $type   Comment or post time
+     * @return     string  relative time
+     */
+    function woostify_relative_time( $type = 'comment' ) {
+        $time = 'comment' == $type ? 'get_comment_time' : 'get_post_time';
+        return human_time_diff( $time( 'U' ), current_time( 'timestamp' ) ) . " " . esc_html__( 'ago', 'woostify' );
+    }
 }
 
 if ( ! function_exists( 'woostify_comment' ) ) {
@@ -37,46 +96,53 @@ if ( ! function_exists( 'woostify_comment' ) ) {
 			$add_below = 'div-comment';
 		}
 		?>
-		<<?php echo esc_attr( $tag ); ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> id="comment-<?php comment_ID(); ?>">
-		<div class="comment-body">
-		<div class="comment-meta commentmetadata">
-			<div class="comment-author vcard">
-			<?php echo get_avatar( $comment, 128 ); ?>
-			<?php printf( wp_kses_post( '<cite class="fn">%s</cite>', 'woostify' ), get_comment_author_link() ); ?>
-			</div>
-			<?php if ( '0' == $comment->comment_approved ) : ?>
-				<em class="comment-awaiting-moderation"><?php esc_attr_e( 'Your comment is awaiting moderation.', 'woostify' ); ?></em>
-				<br />
-			<?php endif; ?>
 
-			<a href="<?php echo esc_url( htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ); ?>" class="comment-date">
-				<?php echo '<time datetime="' . get_comment_date( 'c' ) . '">' . get_comment_date() . '</time>'; ?>
-			</a>
-		</div>
-		<?php if ( 'div' != $args['style'] ) : ?>
-		<div id="div-comment-<?php comment_ID(); ?>" class="comment-content">
-		<?php endif; ?>
-		<div class="comment-text">
-		<?php comment_text(); ?>
-		</div>
-		<div class="reply">
-		<?php
-		comment_reply_link(
-			array_merge(
-				$args, array(
-					'add_below' => $add_below,
-					'depth' => $depth,
-					'max_depth' => $args['max_depth'],
-				)
-			)
-		);
-		?>
-		<?php edit_comment_link( __( 'Edit', 'woostify' ), '  ', '' ); ?>
-		</div>
-		</div>
-		<?php if ( 'div' != $args['style'] ) : ?>
-		</div>
-		<?php endif; ?>
+		<<?php echo esc_attr( $tag ); ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> id="comment-<?php comment_ID(); ?>">
+    		<div class="comment-body">
+                <div class="comment-author vcard">
+                    <?php echo get_avatar( $comment, 70 ); ?>
+                </div>
+
+        		<?php if ( 'div' != $args['style'] ) : ?>
+                <div id="div-comment-<?php comment_ID(); ?>" class="comment-content">
+        		<?php endif; ?>
+
+                    <div class="comment-meta commentmetadata">
+                        <?php printf( wp_kses_post( '<cite class="fn">%s</cite>', 'woostify' ), get_comment_author_link() ); ?>
+                        
+                        <?php if ( '0' == $comment->comment_approved ) : ?>
+                            <em class="comment-awaiting-moderation"><?php esc_attr_e( 'Your comment is awaiting moderation.', 'woostify' ); ?></em>
+                        <?php endif; ?>
+
+                        <a href="<?php echo get_comment_link( $comment->comment_ID ); ?>" class="comment-date">
+                            <?php echo woostify_relative_time(); ?>
+                            <?php echo '<time datetime="' . get_comment_date( 'c' ) . '" class="sr-only">' . get_comment_date() . '</time>'; ?>
+                        </a>
+                    </div>
+
+            		<div class="comment-text">
+            		  <?php comment_text(); ?>
+            		</div>
+
+            		<div class="reply">
+                		<?php
+                    		comment_reply_link(
+                    			array_merge(
+                    				$args, array(
+                    					'add_below' => $add_below,
+                    					'depth' => $depth,
+                    					'max_depth' => $args['max_depth'],
+                    				)
+                    			)
+                    		);
+                		?>
+                		<?php edit_comment_link( __( 'Edit', 'woostify' ), '  ', '' ); ?>
+            		</div>
+
+        		<?php if ( 'div' != $args['style'] ) : ?>
+                </div>
+                <?php endif; ?>
+            </div>
 		<?php
 	}
 }
@@ -432,16 +498,17 @@ if ( ! function_exists( 'woostify_post_meta' ) ) {
                 endif; // End if categories.
             endif; // End if 'post' == get_post_type(). ?>
 
-			<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
+			<?php if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) : ?>
 				<span class="comments-link">
                     <?php
                         comments_popup_link(
-                            __( 'Leave a comment', 'woostify' ),
+                            __( 'No comments yet', 'woostify' ),
                             __( '1 Comment', 'woostify' ),
                             __( '% Comments', 'woostify' )
-                        ); 
+                        );
                     ?>
                 </span>
+                <a href="<?php the_permalink(); ?>#comments">aaaaaaaaaaaaaaaaa <?php comments_number('No Comments', '1 Comment', '% Comments'); ?></a>
 			<?php endif; ?>
 		</aside>
 		<?php
@@ -460,13 +527,11 @@ if ( ! function_exists( 'woostify_post_content' ) ) {
             <?php
                 do_action( 'woostify_post_content_before' );
 
-                the_content(
-                    sprintf(
-                        /* translators: %s: post title */
-                        __( 'Continue reading %s', 'woostify' ),
-                        '<span class="screen-reader-text">' . get_the_title() . '</span>'
-                    )
-                );
+                if ( is_single() ) {
+                    the_content();
+                } else {
+                    the_excerpt();
+                }
 
                 wp_link_pages(
                     array(
@@ -496,7 +561,9 @@ if ( ! function_exists( 'woostify_post_read_more_button' ) ) {
     function woostify_post_read_more_button() {
         if ( ! is_single() ) {
             ?>
-                <a href="<?php echo get_permalink() ?>" class="post-read-more"><?php esc_html_e(  'Read more', 'woostify'  ); ?></a>
+            <p class="post-read-more">
+                <a href="<?php echo get_permalink() ?>"><?php esc_html_e(  'Read more', 'woostify'  ); ?></a>
+            </p>
             <?php
         }
     }
