@@ -174,6 +174,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		public function customizer_custom_control_css() {
 			?>
 			<style>
+            li#customize-control-woostify_settings-body_font_size {
+                margin-bottom: 25px;
+            }
 			.customize-control-radio-image input[type=radio] {
 				display: none;
 			}

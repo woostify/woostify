@@ -104,6 +104,11 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
                 'font_body_variants' => '',
                 'body_font_weight' => 'normal',
                 'body_font_transform' => 'none',
+                'font_heading' => 'System Stack',
+                'font_heading_category' => '',
+                'font_heading_variants' => '',
+                'heading_font_weight' => 'bold',
+                'heading_font_transform' => 'none',
                 'body_font_size' => '17',
                 'body_line_height' => '1.5', // no unit
                 'paragraph_margin' => '1.5', // em
