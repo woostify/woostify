@@ -84,7 +84,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * @return void
 		 */
 		public function add_customizer_css() {
-			wp_add_inline_style( 'woostify-woocommerce-style', $this->get_woocommerce_extension_css() );
+			//wp_add_inline_style( 'woostify-woocommerce-style', $this->get_woocommerce_extension_css() );
 		}
 
 		/**

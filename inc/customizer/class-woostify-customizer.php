@@ -60,6 +60,36 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			);
 		}
 
+        /**
+         * Get all of the Woostify theme mods.
+         *
+         * @return array $woostify_theme_mods The Woostify Theme Mods.
+         */
+        public function get_woostify_theme_mods()
+        {
+            $woostify_theme_mods = array(
+                'background_color' => woostify_get_content_background_color(),
+                'accent_color' => get_theme_mod('woostify_accent_color'),
+                'hero_heading_color' => get_theme_mod('woostify_hero_heading_color'),
+                'hero_text_color' => get_theme_mod('woostify_hero_text_color'),
+                'header_background_color' => get_theme_mod('woostify_header_background_color'),
+                'header_link_color' => get_theme_mod('woostify_header_link_color'),
+                'header_text_color' => get_theme_mod('woostify_header_text_color'),
+                'footer_background_color' => get_theme_mod('woostify_footer_background_color'),
+                'footer_link_color' => get_theme_mod('woostify_footer_link_color'),
+                'footer_heading_color' => get_theme_mod('woostify_footer_heading_color'),
+                'footer_text_color' => get_theme_mod('woostify_footer_text_color'),
+                'text_color' => get_theme_mod('woostify_text_color'),
+                'heading_color' => get_theme_mod('woostify_heading_color'),
+                'button_background_color' => get_theme_mod('woostify_button_background_color'),
+                'button_text_color' => get_theme_mod('woostify_button_text_color'),
+                'button_alt_background_color' => get_theme_mod('woostify_button_alt_background_color'),
+                'button_alt_text_color' => get_theme_mod('woostify_button_alt_text_color'),
+            );
+
+            return apply_filters('woostify_theme_mods', $woostify_theme_mods);
+        }
+
 		/**
 		 * Adds a value to each Woostify setting if one isn't already present.
 		 *
