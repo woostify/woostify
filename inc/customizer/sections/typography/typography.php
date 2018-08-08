@@ -80,6 +80,7 @@ $wp_customize->add_control(
         array(
             'section' => 'font_section',
             'priority' => 1,
+            'label' => 'Font Body',
             'settings' => array(
                 'family' => 'woostify_settings[font_body]',
                 'variant' => 'font_body_variants',
@@ -91,40 +92,25 @@ $wp_customize->add_control(
     )
 );
 
-		// $wp_customize->add_setting(
-		// 	'woostify_settings[body_font_size]',
-		// 	array(
-		// 		'default' => $defaults['body_font_size'],
-		// 		'type' => 'option',
-		// 		'sanitize_callback' => 'woostify_sanitize_integer',
-		// 		'transport' => 'postMessage'
-		// 	)
-		// );
+ $wp_customize->add_setting(
+ 	'woostify_settings[body_font_size]',
+ 	array(
+ 		'default' => $defaults['body_font_size'],
+ 		'type' => 'option',
+ 		'sanitize_callback' => 'woostify_sanitize_integer',
+ 		'transport' => 'refresh'
+ 	)
+ );
 
-		// $wp_customize->add_control(
-		// 	new woostify_Range_Slider_Control(
-		// 		$wp_customize,
-		// 		'woostify_settings[body_font_size]',
-		// 		array(
-		// 			'type' => 'woostify-range-slider',
-		// 			'description' => __( 'Font size', 'woostify' ),
-		// 			'section' => 'font_section',
-		// 			'settings' => array(
-		// 				'desktop' => 'woostify_settings[body_font_size]',
-		// 			),
-		// 			'choices' => array(
-		// 				'desktop' => array(
-		// 					'min' => 6,
-		// 					'max' => 25,
-		// 					'step' => 1,
-		// 					'edit' => true,
-		// 					'unit' => 'px',
-		// 				),
-		// 			),
-		// 			'priority' => 40,
-		// 		)
-		// 	)
-		// );
+ $wp_customize->add_control(
+    'woostify_settings[body_font_size]',
+    array(
+        'type' => 'text',
+        'description' => __( 'Font size(px)', 'woostify' ),
+        'section' => 'font_section',
+    )
+ );
+
 
 		// $wp_customize->add_setting(
 		// 	'woostify_settings[body_line_height]',
