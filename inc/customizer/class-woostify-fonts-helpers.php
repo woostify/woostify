@@ -545,7 +545,7 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
          * @param array $default The defaults for our $settings.
          * @return string The CSS value for our font family.
          */
-        public function woostify_get_font_family_css( $font, $settings, $default ) {
+        static public function woostify_get_font_family_css( $font, $settings, $default ) {
             $woostify_settings = wp_parse_args(
                 get_option( $settings, array() ),
                 $default
