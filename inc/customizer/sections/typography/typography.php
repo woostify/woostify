@@ -23,122 +23,147 @@ if ( method_exists( $wp_customize,'register_control_type' ) ) {
 $wp_customize->add_section(
     'font_section',
     array(
-        'title' => __( 'Typography', 'woostify' ),
-        'capability' => 'edit_theme_options',
-        'description' => '',
-        'priority' => 30
+        'title'       => __( 'Typography', 'woostify' ),
+        'capability'  => 'edit_theme_options',
+        'priority'    => 30
     )
 );
 
+// body font family
 $wp_customize->add_setting(
-    'woostify_settings[font_body]',
+    'woostify_settings[body_font_family]',
     array(
-        'default' => $defaults['font_body'],
-        'type' => 'option',
+        'default'           => $defaults['body_font_family'],
+        'type'              => 'option',
         'sanitize_callback' => 'sanitize_text_field'
     )
 );
 
+// body font category
 $wp_customize->add_setting(
-    'font_body_category',
+    'body_font_category',
     array(
-        'default' => $defaults['font_body_category'],
+        'default'           => $defaults['body_font_category'],
         'sanitize_callback' => 'sanitize_text_field'
     )
 );
 
+// font font variants
 $wp_customize->add_setting(
-    'font_body_variants',
+    'body_font_variants',
     array(
-        'default' => $defaults['font_body_variants'],
+        'default'           => $defaults['body_font_variants'],
         'sanitize_callback' => 'woostify_sanitize_variants'
     )
 );
 
+// body font weight
 $wp_customize->add_setting(
     'woostify_settings[body_font_weight]',
     array(
-        'default' => $defaults['body_font_weight'],
-        'type' => 'option',
+        'default'           => $defaults['body_font_weight'],
+        'type'              => 'option',
         'sanitize_callback' => 'sanitize_key',
-        'transport' => 'postMessage'
+        'transport'         => 'postMessage'
     )
 );
 
+// body text transform
 $wp_customize->add_setting(
     'woostify_settings[body_font_transform]',
     array(
-        'default' => $defaults['body_font_transform'],
-        'type' => 'option',
+        'default'           => $defaults['body_font_transform'],
+        'type'              => 'option',
         'sanitize_callback' => 'sanitize_key',
-        'transport' => 'postMessage'
-
+        'transport'         => 'postMessage'
     )
 );
 
+// add control for body typography
 $wp_customize->add_control(
     new Woostify_Typography_Customize_Control(
         $wp_customize,
         'body_typography',
         array(
-            'section' => 'font_section',
-            'priority' => 1,
-            'label' => 'Font Body',
+            'section'  => 'font_section',
+            'label'    => __( 'Body Font', 'woostify' ),
             'settings' => array(
-                'family' => 'woostify_settings[font_body]',
-                'variant' => 'font_body_variants',
-                'category' => 'font_body_category',
-                'weight' => 'woostify_settings[body_font_weight]',
-                'transform' => 'woostify_settings[body_font_transform]',
+                'family'    => 'woostify_settings[body_font_family]',
+                'variant'   => 'body_font_variants',
+                'category'  => 'body_font_category',
+                'weight'    => 'woostify_settings[body_font_weight]',
+                'transform' => 'woostify_settings[body_font_transform]'
             ),
         )
     )
 );
 
- $wp_customize->add_setting(
- 	'woostify_settings[body_font_size]',
- 	array(
- 		'default' => $defaults['body_font_size'],
- 		'type' => 'option',
- 		'sanitize_callback' => 'woostify_sanitize_integer',
- 		'transport' => 'refresh'
- 	)
- );
 
- $wp_customize->add_control(
+// body font size
+$wp_customize->add_setting(
     'woostify_settings[body_font_size]',
     array(
-        'type' => 'text',
-        'description' => __( 'Font size(px)', 'woostify' ),
-        'section' => 'font_section',
+        'default'           => $defaults['body_font_size'],
+        'type'              => 'option',
+        'sanitize_callback' => 'woostify_sanitize_integer',
+        'transport'         => 'postMessage'
     )
- );
+);
+
+$wp_customize->add_control(
+    'woostify_settings[body_font_size]',
+    array(
+        'type'        => 'number',
+        'description' => __( 'Font size (px)', 'woostify' ),
+        'section'     => 'font_section',
+    )
+);
+
+// body line height
+$wp_customize->add_setting(
+    'woostify_settings[body_line_height]',
+    array(
+        'default'           => $defaults['body_line_height'],
+        'type'              => 'option',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'postMessage'
+    )
+);
+
+$wp_customize->add_control(
+    'woostify_settings[body_line_height]',
+    array(
+        'type'        => 'text',
+        'description' => __( 'Line height', 'woostify' ),
+        'section'     => 'font_section',
+    )
+);
 
  /**
   * Heading
   */
 
 $wp_customize->add_setting(
-    'woostify_settings[font_heading]',
+    'woostify_settings[heading_font_family]',
     array(
-        'default' => $defaults['font_heading'],
-        'type' => 'option',
+        'default'           => $defaults['heading_font_family'],
+        'type'              => 'option',
         'sanitize_callback' => 'sanitize_text_field'
     )
 );
 
 $wp_customize->add_setting(
-    'font_heading_category',
+    'heading_font_category',
     array(
-        'default' => $defaults['font_heading_category'],
+        'default'           => $defaults['heading_font_category'],
         'sanitize_callback' => 'sanitize_text_field'
     )
 );
 
 $wp_customize->add_setting(
-    'font_heading_variants',
+    'heading_font_variants',
     array(
-        'default' => $defaults['font_heading_variants'],
+        'default'           => $defaults['heading_font_variants'],
         'sanitize_callback' => 'woostify_sanitize_variants'
     )
 );
@@ -146,21 +171,20 @@ $wp_customize->add_setting(
 $wp_customize->add_setting(
     'woostify_settings[heading_font_weight]',
     array(
-        'default' => $defaults['heading_font_weight'],
-        'type' => 'option',
+        'default'           => $defaults['heading_font_weight'],
+        'type'              => 'option',
         'sanitize_callback' => 'sanitize_key',
-        'transport' => 'postMessage'
+        'transport'         => 'postMessage'
     )
 );
 
 $wp_customize->add_setting(
     'woostify_settings[heading_font_transform]',
     array(
-        'default' => $defaults['heading_font_transform'],
-        'type' => 'option',
+        'default'           => $defaults['heading_font_transform'],
+        'type'              => 'option',
         'sanitize_callback' => 'sanitize_key',
-        'transport' => 'postMessage'
-
+        'transport'         => 'postMessage'
     )
 );
 
@@ -169,106 +193,188 @@ $wp_customize->add_control(
         $wp_customize,
         'heading_typography',
         array(
-            'section' => 'font_section',
-            'label' => 'Heading Font',
+            'section'  => 'font_section',
+            'label'    => __( 'Heading Font', 'woostify' ),
             'settings' => array(
-                'family' => 'woostify_settings[font_heading]',
-                'variant' => 'font_heading_variants',
-                'category' => 'font_heading_category',
-                'weight' => 'woostify_settings[heading_font_weight]',
+                'family'    => 'woostify_settings[heading_font_family]',
+                'variant'   => 'heading_font_variants',
+                'category'  => 'heading_font_category',
+                'weight'    => 'woostify_settings[heading_font_weight]',
                 'transform' => 'woostify_settings[heading_font_transform]',
             ),
         )
     )
 );
 
-		// $wp_customize->add_setting(
-		// 	'woostify_settings[body_line_height]',
-		// 	array(
-		// 		'default' => $defaults['body_line_height'],
-		// 		'type' => 'option',
-		// 		'sanitize_callback' => 'woostify_sanitize_decimal_integer',
-		// 		'transport' => 'postMessage'
-		// 	)
-		// );
+// heading line height
+$wp_customize->add_setting(
+    'woostify_settings[heading_line_height]',
+    array(
+        'default'           => $defaults['heading_line_height'],
+        'type'              => 'option',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'postMessage'
+    )
+);
 
-		// $wp_customize->add_control(
-		// 	new woostify_Range_Slider_Control(
-		// 		$wp_customize,
-		// 		'woostify_settings[body_line_height]',
-		// 		array(
-		// 			'type' => 'woostify-range-slider',
-		// 			'description' => __( 'Line height', 'woostify' ),
-		// 			'section' => 'font_section',
-		// 			'settings' => array(
-		// 				'desktop' => 'woostify_settings[body_line_height]',
-		// 			),
-		// 			'choices' => array(
-		// 				'desktop' => array(
-		// 					'min' => 1,
-		// 					'max' => 3,
-		// 					'step' => .1,
-		// 					'edit' => true,
-		// 					'unit' => '',
-		// 				),
-		// 			),
-		// 			'priority' => 45,
-		// 		)
-		// 	)
-		// );
+$wp_customize->add_control(
+    'woostify_settings[heading_line_height]',
+    array(
+        'type'        => 'number',
+        'description' => __( 'Line height', 'woostify' ),
+        'section'     => 'font_section',
+    )
+);
 
-		// $wp_customize->add_setting(
-		// 	'woostify_settings[paragraph_margin]',
-		// 	array(
-		// 		'default' => $defaults['paragraph_margin'],
-		// 		'type' => 'option',
-		// 		'sanitize_callback' => 'woostify_sanitize_decimal_integer',
-		// 		'transport' => 'postMessage'
-		// 	)
-		// );
+// CUSTOM HEADING
+$wp_customize->add_setting( 'heading_font_size_title' );
+$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'heading_font_size_title',
+        array(
+            'label'    => __( 'Font size (px)', 'woostify' ),
+            'section'  => 'font_section',
+            'settings' => 'heading_font_size_title',
+            'type'     => 'hidden',
+        )
+    )
+); 
 
-		// $wp_customize->add_control(
-		// 	new woostify_Range_Slider_Control(
-		// 		$wp_customize,
-		// 		'woostify_settings[paragraph_margin]',
-		// 		array(
-		// 			'type' => 'woostify-range-slider',
-		// 			'description' => __( 'Paragraph margin', 'woostify' ),
-		// 			'section' => 'font_section',
-		// 			'settings' => array(
-		// 				'desktop' => 'woostify_settings[paragraph_margin]',
-		// 			),
-		// 			'choices' => array(
-		// 				'desktop' => array(
-		// 					'min' => 0,
-		// 					'max' => 5,
-		// 					'step' => .1,
-		// 					'edit' => true,
-		// 					'unit' => 'em',
-		// 				),
-		// 			),
-		// 			'priority' => 47,
-		// 		)
-		// 	)
-		// );
+// h1
+$wp_customize->add_setting(
+    'woostify_settings[heading_h1_font_size]',
+    array(
+        'default'           => $defaults['heading_h1_font_size'],
+        'type'              => 'option',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'postMessage'
+    )
+);
 
-		// if ( ! function_exists( 'woostify_fonts_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
-		// 	$wp_customize->add_control(
-		// 		new woostify_Customize_Misc_Control(
-		// 			$wp_customize,
-		// 			'typography_get_addon_desc',
-		// 			array(
-		// 				'section' => 'font_section',
-		// 				'type' => 'addon',
-		// 				'label' => __( 'Learn more','woostify' ),
-		// 				'description' => __( 'More options are available for this section in our premium version.', 'woostify' ),
-		// 				'url' => woostify_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
-		// 				'priority' => 50,
-		// 				'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
-		// 			)
-		// 		)
-		// 	);
-		// }
+$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'woostify_settings[heading_h1_font_size]',
+        array(
+            'section'     => 'font_section',
+            'description' => __( 'h1', 'woostify' ),
+            'type'        => 'number'
+        )
+    )
+);
 
+// h2
+$wp_customize->add_setting(
+    'woostify_settings[heading_h2_font_size]',
+    array(
+        'default'           => $defaults['heading_h2_font_size'],
+        'type'              => 'option',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'postMessage'
+    )
+);
 
+$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'woostify_settings[heading_h2_font_size]',
+        array(
+            'section'     => 'font_section',
+            'description' => __( 'h2', 'woostify' ),
+            'type'        => 'number'
+        )
+    )
+);
 
+// h3
+$wp_customize->add_setting(
+    'woostify_settings[heading_h3_font_size]',
+    array(
+        'default'           => $defaults['heading_h3_font_size'],
+        'type'              => 'option',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'postMessage'
+    )
+);
+
+$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'woostify_settings[heading_h3_font_size]',
+        array(
+            'section'     => 'font_section',
+            'description' => __( 'h3', 'woostify' ),
+            'type'        => 'number'
+        )
+    )
+);
+
+// h4
+$wp_customize->add_setting(
+    'woostify_settings[heading_h4_font_size]',
+    array(
+        'default'           => $defaults['heading_h4_font_size'],
+        'type'              => 'option',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'postMessage'
+    )
+);
+
+$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'woostify_settings[heading_h4_font_size]',
+        array(
+            'section'     => 'font_section',
+            'description' => __( 'h4', 'woostify' ),
+            'type'        => 'number'
+        )
+    )
+);
+
+// h5
+$wp_customize->add_setting(
+    'woostify_settings[heading_h5_font_size]',
+    array(
+        'default'           => $defaults['heading_h5_font_size'],
+        'type'              => 'option',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'postMessage'
+    )
+);
+
+$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'woostify_settings[heading_h5_font_size]',
+        array(
+            'section'     => 'font_section',
+            'description' => __( 'h5', 'woostify' ),
+            'type'        => 'number'
+        )
+    )
+);
+
+// h6
+$wp_customize->add_setting(
+    'woostify_settings[heading_h6_font_size]',
+    array(
+        'default'           => $defaults['heading_h6_font_size'],
+        'type'              => 'option',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'postMessage'
+    )
+);
+
+$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'woostify_settings[heading_h6_font_size]',
+        array(
+            'section'     => 'font_section',
+            'description' => __( 'h6', 'woostify' ),
+            'type'        => 'number'
+        )
+    )
+);

@@ -1,7 +1,13 @@
 .woostify-font-weight,
-.woostify-font-transform {
+.woostify-font-transform,
+#customize-control-woostify_settings-body_font_size,
+#customize-control-woostify_settings-body_line_height{
     float: left;
-    width: 50%
+    width: 50%;
+    clear: none;
+}
+#customize-control-woostify_settings-body_line_height input{
+    line-height: 20px;
 }
 
 .woostify-font-weight select {

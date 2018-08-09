@@ -19,34 +19,58 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 		public $type = 'woostify-customizer-typography';
 
 		public function enqueue() {
-			wp_enqueue_script( 'woostify-typography-selectWoo', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/js/selectWoo.min.js', array( 'customize-controls', 'jquery' ), 1.0, true );
-			wp_enqueue_style( 'woostify-typography-selectWoo', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/css/selectWoo.min.css', array(), 1.0 );
+			wp_enqueue_script(
+                'woostify-typography-selectWoo',
+                trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/js/selectWoo.min.js',
+                array( 'customize-controls', 'jquery' ),
+                1.0,
+                true
+            );
 
-			wp_enqueue_script( 'woostify-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/js/typography-customizer.js', array( 'customize-controls', 'woostify-typography-selectWoo' ), 1.0, true );
-			wp_enqueue_style( 'woostify-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/css/typography-customizer.css', array(), 1.0 );
+			wp_enqueue_style(
+                'woostify-typography-selectWoo',
+                trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/css/selectWoo.min.css',
+                array(),
+                1.0
+            );
+
+			wp_enqueue_script(
+                'woostify-typography-customizer',
+                trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/js/typography-customizer.js',
+                array( 'customize-controls', 'woostify-typography-selectWoo' ),
+                1.0,
+                true
+            );
+
+			wp_enqueue_style(
+                'woostify-typography-customizer',
+                trailingslashit( get_template_directory_uri() )  . 'inc/customizer/custom-controls/typography/css/typography-customizer.css',
+                array(),
+                1.0
+            );
 		}
 
 		public function to_json() {
 			parent::to_json();
 
-			$number_of_fonts = apply_filters( 'woostify_number_of_fonts', 200 );
-			$this->to_json['label'] = $this->label;
-			$this->json[ 'default_fonts_title'] = __( 'System fonts', 'woostify' );
-			$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'woostify' );
-			$this->json[ 'google_fonts' ] = apply_filters( 'woostify_typography_customize_list', Woostify_Font_Helpers::woostify_get_all_google_fonts( $number_of_fonts ) );
-			$this->json[ 'default_fonts' ] = Woostify_Font_Helpers::woostify_typography_default_fonts();
-			$this->json[ 'family_title' ] = esc_html__( 'Font family', 'woostify' );
-			$this->json[ 'weight_title' ] = esc_html__( 'Font weight', 'woostify' );
-			$this->json[ 'transform_title' ] = esc_html__( 'Text transform', 'woostify' );
-			$this->json[ 'category_title' ] = '';
-			$this->json[ 'variant_title' ] = esc_html__( 'Variants', 'woostify' );
+            $number_of_fonts                   = apply_filters( 'woostify_number_of_fonts', 200 );
+            $this->to_json['label']            = $this->label;
+            $this->json['default_fonts_title'] = __( 'System fonts', 'woostify' );
+            $this->json['google_fonts_title']  = __( 'Google fonts', 'woostify' );
+            $this->json['google_fonts']        = apply_filters( 'woostify_typography_customize_list', Woostify_Font_Helpers::woostify_get_all_google_fonts( $number_of_fonts ) );
+            $this->json['default_fonts']       = Woostify_Font_Helpers::woostify_typography_default_fonts();
+            $this->json['family_title']        = esc_html__( 'Font family', 'woostify' );
+            $this->json['weight_title']        = esc_html__( 'Font weight', 'woostify' );
+            $this->json['transform_title']     = esc_html__( 'Text transform', 'woostify' );
+            $this->json['category_title']      = '';
+            $this->json['variant_title']       = esc_html__( 'Variants', 'woostify' );
 
 			foreach ( $this->settings as $setting_key => $setting_id ) {
-				$this->json[ $setting_key ] = array(
-					'link'  => $this->get_link( $setting_key ),
-					'value' => $this->value( $setting_key ),
-					'default' => isset( $setting_id->default ) ? $setting_id->default : '',
-					'id' => isset( $setting_id->id ) ? $setting_id->id : ''
+				$this->json[$setting_key] = array(
+                    'link'    => $this->get_link( $setting_key ),
+                    'value'   => $this->value( $setting_key ),
+                    'default' => isset( $setting_id->default ) ? $setting_id->default : '',
+                    'id'      => isset( $setting_id->id ) ? $setting_id->id : ''
 				);
 
 				if ( 'weight' === $setting_key ) {
@@ -168,26 +192,26 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 
 		public function get_font_weight_choices() {
 			return array(
-				'normal' => esc_html( 'normal' ),
-				'bold' => esc_html( 'bold' ),
-				'100' => esc_html( '100' ),
-				'200' => esc_html( '200' ),
-				'300' => esc_html( '300' ),
-				'400' => esc_html( '400' ),
-				'500' => esc_html( '500' ),
-				'600' => esc_html( '600' ),
-				'700' => esc_html( '700' ),
-				'800' => esc_html( '800' ),
-				'900' => esc_html( '900' ),
+                'normal' => esc_html( 'normal' ),
+                'bold'   => esc_html( 'bold' ),
+                '100'    => esc_html( '100' ),
+                '200'    => esc_html( '200' ),
+                '300'    => esc_html( '300' ),
+                '400'    => esc_html( '400' ),
+                '500'    => esc_html( '500' ),
+                '600'    => esc_html( '600' ),
+                '700'    => esc_html( '700' ),
+                '800'    => esc_html( '800' ),
+                '900'    => esc_html( '900' ),
 			);
 		}
 
 		public function get_font_transform_choices() {
 			return array(
-				'none' => esc_html( 'none' ),
-				'capitalize' => esc_html( 'capitalize' ),
-				'uppercase' => esc_html( 'uppercase' ),
-				'lowercase' => esc_html( 'lowercase' ),
+                'none'       => esc_html( 'none' ),
+                'capitalize' => esc_html( 'capitalize' ),
+                'uppercase'  => esc_html( 'uppercase' ),
+                'lowercase'  => esc_html( 'lowercase' ),
 			);
 		}
 

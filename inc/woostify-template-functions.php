@@ -508,7 +508,6 @@ if ( ! function_exists( 'woostify_post_meta' ) ) {
                         );
                     ?>
                 </span>
-                <a href="<?php the_permalink(); ?>#comments"><?php comments_number('No Comments', '1 Comment', '% Comments'); ?></a>
 			<?php endif; ?>
 		</aside>
 		<?php

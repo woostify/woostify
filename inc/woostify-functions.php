@@ -208,3 +208,15 @@ function woostify_sanitize_hex_color( $color ) {
 
 	return null;
 }
+
+
+
+/**
+ * Woostify Sanitize Interger
+ *
+ * @param      string  $fontsize Convert a value to non-negative integer
+ * @return     integer  $fontsize
+ */
+function woostify_sanitize_integer( $fontsize ) {
+    return absint( $fontsize );
+}

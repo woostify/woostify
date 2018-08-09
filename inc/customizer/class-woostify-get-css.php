@@ -3,11 +3,9 @@
 /**
  * Class Woostify_Get_CSS
  */
-class Woostify_Get_CSS
-{
+class Woostify_Get_CSS {
 
-    public function __construct()
-    {
+    public function __construct() {
         add_action( 'wp_enqueue_scripts', array( $this, 'add_customizer_css' ), 130 );
     }
 
@@ -17,187 +15,50 @@ class Woostify_Get_CSS
      * @see get_woostify_theme_mods()
      * @return array $styles the css
      */
-    public function get_css()
-    {
+    public function get_css() {
         $woostify_settings = wp_parse_args(
-            get_option('woostify_settings', array()),
+            get_option( 'woostify_settings', array() ),
             Woostify_Font_Helpers::woostify_get_default_fonts()
         );
 
         $woostify_customizer = new Woostify_Customizer();
         $woostify_theme_mods = $woostify_customizer->get_woostify_theme_mods();
 
-        $brighten_factor = apply_filters('woostify_brighten_factor', 25);
-        $darken_factor = apply_filters('woostify_darken_factor', -25);
-        $body_font = $body_family = Woostify_Font_Helpers::woostify_get_font_family_css('font_body', 'woostify_settings', Woostify_Font_Helpers::woostify_get_default_fonts());
-        //var_dump($body_font);
-
         $styles = '
-			h2{
-			    font-family: ' . $body_font . ';
-			}
-			.main-navigation ul li a,
-			.site-title a,
-			ul.menu li a,
-			.site-branding h1 a,
-			.site-footer .woostify-handheld-footer-bar a:not(.button),
-			button.menu-toggle,
-			button.menu-toggle:hover {
-				color: ' . $woostify_theme_mods['header_link_color'] . ';
-			}
-            
-			button.menu-toggle,
-			button.menu-toggle:hover {
-				border-color: ' . $woostify_theme_mods['header_link_color'] . ';
-			}
+            body, select, button, input, textarea{
+                font-family: ' . $woostify_settings['body_font_family'] . ';
+                font-weight: ' . $woostify_settings['body_font_weight'] . ';
+                line-height: ' . $woostify_settings['body_line_height'] . ';
+                text-transform: ' . $woostify_settings['body_font_transform'] . ';
+                font-size: ' . $woostify_settings['body_font_size'] . 'px;
+            }
 
-			.main-navigation ul li a:hover,
-			.main-navigation ul li:hover > a,
-			.site-title a:hover,
-			.site-header ul.menu li.current-menu-item > a {
-				color: ' . woostify_adjust_color_brightness($woostify_theme_mods['header_link_color'], 65) . ';
-			}
+            h1, h2, h3, h4, h5, h6{
+                font-family: ' . $woostify_settings['heading_font_family'] . ';
+                font-weight: ' . $woostify_settings['heading_font_weight'] . ';
+                text-transform: ' . $woostify_settings['heading_font_transform'] . ';
+                line-height: ' . $woostify_settings['heading_line_height'] . ';
+            }
 
-			table th {
-				background-color: ' . woostify_adjust_color_brightness($woostify_theme_mods['background_color'], -7) . ';
-			}
-
-			table tbody td {
-				background-color: ' . woostify_adjust_color_brightness($woostify_theme_mods['background_color'], -2) . ';
-			}
-
-			table tbody tr:nth-child(2n) td,
-			fieldset,
-			fieldset legend {
-				background-color: ' . woostify_adjust_color_brightness($woostify_theme_mods['background_color'], -4) . ';
-			}
-
-			.site-header,
-			.secondary-navigation ul ul,
-			.main-navigation ul.menu > li.menu-item-has-children:after,
-			.secondary-navigation ul.menu ul,
-			.woostify-handheld-footer-bar,
-			.woostify-handheld-footer-bar ul li > a,
-			.woostify-handheld-footer-bar ul li.search .site-search,
-			button.menu-toggle,
-			button.menu-toggle:hover {
-				background-color: ' . $woostify_theme_mods['header_background_color'] . ';
-			}
-
-			p.site-description,
-			.site-header,
-			.woostify-handheld-footer-bar {
-				color: ' . $woostify_theme_mods['header_text_color'] . ';
-			}
-
-			button.menu-toggle:after,
-			button.menu-toggle:before,
-			button.menu-toggle span:before {
-				background-color: ' . $woostify_theme_mods['header_link_color'] . ';
-			}
-
-			h1, h2, h3, h4, h5, h6 {
-				color: ' . $woostify_theme_mods['heading_color'] . ';
-			}
-
-			.widget h1 {
-				border-bottom-color: ' . $woostify_theme_mods['heading_color'] . ';
-			}
-
-			body,
-			.secondary-navigation a {
-				color: ' . $woostify_theme_mods['text_color'] . ';
-			}
-
-			.widget-area .widget a,
-			.hentry .entry-header .posted-on a,
-			.hentry .entry-header .byline a {
-				color: ' . woostify_adjust_color_brightness($woostify_theme_mods['text_color'], 5) . ';
-			}
-
-			a  {
-				color: ' . $woostify_theme_mods['accent_color'] . ';
-			}
-
-			a:focus,
-			.button:focus,
-			.button.alt:focus,
-			button:focus,
-			input[type="button"]:focus,
-			input[type="reset"]:focus,
-			input[type="submit"]:focus {
-				outline-color: ' . $woostify_theme_mods['accent_color'] . ';
-			}
-
-			button,
-            input[type="button"],
-            input[type="reset"],
-            input[type="file"],
-            input[type="submit"],
-            .button,
-            .widget a.button {
-				background-color: ' . $woostify_theme_mods['button_background_color'] . ';
-				border-color: ' . $woostify_theme_mods['button_background_color'] . ';
-				color: ' . $woostify_theme_mods['button_text_color'] . ';
-			}
-
-			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .widget a.button:hover {
-				background-color: ' . woostify_adjust_color_brightness($woostify_theme_mods['button_background_color'], $darken_factor) . ';
-				border-color: ' . woostify_adjust_color_brightness($woostify_theme_mods['button_background_color'], $darken_factor) . ';
-				color: ' . $woostify_theme_mods['button_text_color'] . ';
-			}
-
-			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .widget-area .widget a.button.alt {
-				background-color: ' . $woostify_theme_mods['button_alt_background_color'] . ';
-				border-color: ' . $woostify_theme_mods['button_alt_background_color'] . ';
-				color: ' . $woostify_theme_mods['button_alt_text_color'] . ';
-			}
-
-			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .widget-area .widget a.button.alt:hover {
-				background-color: ' . woostify_adjust_color_brightness($woostify_theme_mods['button_alt_background_color'], $darken_factor) . ';
-				border-color: ' . woostify_adjust_color_brightness($woostify_theme_mods['button_alt_background_color'], $darken_factor) . ';
-				color: ' . $woostify_theme_mods['button_alt_text_color'] . ';
-			}
-
-			.pagination .page-numbers li .page-numbers.current {
-				background-color: ' . woostify_adjust_color_brightness($woostify_theme_mods['background_color'], $darken_factor) . ';
-				color: ' . woostify_adjust_color_brightness($woostify_theme_mods['text_color'], -10) . ';
-			}
-
-			.site-footer {
-				background-color: ' . $woostify_theme_mods['footer_background_color'] . ';
-				color: ' . $woostify_theme_mods['footer_text_color'] . ';
-			}
-
-			.site-footer a:not(.button) {
-				color: ' . $woostify_theme_mods['footer_link_color'] . ';
-			}
-
-			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
-				color: ' . $woostify_theme_mods['footer_heading_color'] . ';
-			}
-
-			.page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-title {
-				color: ' . $woostify_theme_mods['hero_heading_color'] . ';
-			}
-
-			.page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-content {
-				color: ' . $woostify_theme_mods['hero_text_color'] . ';
-			}
-
-			@media screen and ( min-width: 768px ) {
-				.secondary-navigation ul.menu a:hover {
-					color: ' . woostify_adjust_color_brightness($woostify_theme_mods['header_text_color'], $brighten_factor) . ';
-				}
-
-				.secondary-navigation ul.menu a {
-					color: ' . $woostify_theme_mods['header_text_color'] . ';
-				}
-
-				.site-header {
-					border-bottom-color: ' . woostify_adjust_color_brightness($woostify_theme_mods['header_background_color'], -15) . ';
-				}
-			}';
+            h1{
+                font-size: ' . $woostify_settings['heading_h1_font_size'] . ';
+            }
+            h2{
+                font-size: ' . $woostify_settings['heading_h2_font_size'] . ';
+            }
+            h3{
+                font-size: ' . $woostify_settings['heading_h3_font_size'] . ';
+            }
+            h4{
+                font-size: ' . $woostify_settings['heading_h4_font_size'] . ';
+            }
+            h5{
+                font-size: ' . $woostify_settings['heading_h5_font_size'] . ';
+            }
+            h6{
+                font-size: ' . $woostify_settings['heading_h6_font_size'] . ';
+            }
+        ';
 
         return apply_filters('woostify_customizer_css', $styles);
     }
