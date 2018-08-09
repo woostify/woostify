@@ -317,7 +317,7 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
          * @param string $amount How many fonts to return.
          * @return array The list of Google Fonts.
          */
-        function woostify_get_all_google_fonts( $amount = 'all' ) {
+        static function woostify_get_all_google_fonts( $amount = 'all' ) {
             // Our big list Google Fonts
             // We use json_decode to reduce PHP memory usage
             // Adding them as a PHP array seems to use quite a bit more memory
