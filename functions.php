@@ -8,8 +8,8 @@
 /**
  * Assign the Woostify version to a var
  */
-$theme            = wp_get_theme( 'woostify' );
-$woostify_version = $theme['Version'];
+$theme            = wp_get_theme();
+$woostify_version = $theme->get( 'Version' );
 
 define( 'WOOSTIFY_THEME_DIR', get_template_directory() . '/' );
 define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );

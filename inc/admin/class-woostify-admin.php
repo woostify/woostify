@@ -37,8 +37,17 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
 			global $woostify_version;
 
 			if ( 'appearance_page_woostify-welcome' === $hook_suffix ) {
-				wp_enqueue_style( 'woostify-welcome-screen', get_template_directory_uri() . '/assets/css/admin/welcome-screen/welcome.css', $woostify_version );
-				wp_style_add_data( 'woostify-welcome-screen', 'rtl', 'replace' );
+				wp_enqueue_style(
+                    'woostify-welcome-screen',
+                    WOOSTIFY_THEME_URI . 'assets/css/admin/welcome-screen/welcome.css',
+                    $woostify_version
+                );
+
+				wp_style_add_data(
+                    'woostify-welcome-screen',
+                    'rtl',
+                    'replace'
+                );
 			}
 		}
 
@@ -76,7 +85,7 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
 				</section>
 
 				<div class="woostify-logo">
-					<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/admin/woostify-icon.svg" alt="woostify" />
+					<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/woostify-icon.svg' ); ?>" alt="woostify" />
 				</div>
 
 				<div class="woostify-intro">
@@ -152,7 +161,7 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
                     <div class="woostify-enhance-sidebar">
                         <div class="woostify-enhance__column">
                             <h3><?php esc_attr_e( 'Alternate designs', 'woostify'); ?></h3>
-                            <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/admin/welcome-screen/child-themes.jpg" alt="woostify Powerpack" />
+                            <img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/child-themes.jpg' ); ?>" alt="woostify Powerpack" />
 
                             <p>
                                 <?php esc_attr_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify'); ?>
@@ -172,7 +181,7 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
                         </div>
                         <div class="woostify-enhance__column">
                             <h3><?php esc_attr_e( 'Alternate designs', 'woostify'); ?></h3>
-                            <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/admin/welcome-screen/child-themes.jpg" alt="woostify Powerpack" />
+                            <img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/child-themes.jpg' ); ?>" alt="woostify Powerpack" />
 
                             <p>
                                 <?php esc_attr_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify'); ?>
@@ -203,7 +212,7 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
 		 * @since 1.0.0
 		 */
 		public function welcome_intro() {
-			require_once( get_template_directory() . '/inc/admin/welcome-screen/component-intro.php' );
+			require_once( WOOSTIFY_THEME_DIR . 'inc/admin/welcome-screen/component-intro.php' );
 		}
 
 		/**
@@ -284,7 +293,7 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
 		 * @since 1.5.2
 		 */
 		public function welcome_enhance() {
-			require_once( get_template_directory() . '/inc/admin/welcome-screen/component-enhance.php' );
+			require_once( WOOSTIFY_THEME_DIR . 'inc/admin/welcome-screen/component-enhance.php' );
 		}
 
 		/**
@@ -293,7 +302,7 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
 		 * @since 1.5.2
 		 */
 		public function welcome_contribute() {
-			require_once( get_template_directory() . '/inc/admin/welcome-screen/component-contribute.php' );
+			require_once( WOOSTIFY_THEME_DIR . 'inc/admin/welcome-screen/component-contribute.php' );
 		}
 
 		/**

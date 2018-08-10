@@ -14,8 +14,8 @@ $wp_customize->add_control(
             'label'                 => __( 'General Layout', 'Woostify'),
             'priority'              => 1,
             'choices'               => array(
-                'right' => get_template_directory_uri() . '/assets/images/customizer/controls/2cr.png',
-                'left'  => get_template_directory_uri() . '/assets/images/customizer/controls/2cl.png',
+                'right' => WOOSTIFY_THEME_URI . 'assets/images/customizer/controls/2cr.png',
+                'left'  => WOOSTIFY_THEME_URI . 'assets/images/customizer/controls/2cl.png',
             ),
         )
     )

@@ -44,15 +44,31 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-			wp_enqueue_style( 'woostify-admin-nux', get_template_directory_uri() . '/assets/css/admin/admin.css', '', $woostify_version );
+			wp_enqueue_style(
+                'woostify-admin-nux',
+                WOOSTIFY_THEME_URI .
+                'assets/css/admin/admin.css',
+                '',
+                $woostify_version
+            );
 
-			wp_enqueue_script( 'woostify-admin-nux', get_template_directory_uri() . '/assets/js/admin/admin' . $suffix . '.js', array( 'jquery' ), $woostify_version, 'all' );
+			wp_enqueue_script(
+                'woostify-admin-nux',
+                WOOSTIFY_THEME_URI . 'assets/js/admin/admin' . $suffix . '.js',
+                array( 'jquery' ),
+                $woostify_version,
+                'all'
+            );
 
 			$woostify_nux = array(
 				'nonce' => wp_create_nonce( 'woostify_notice_dismiss' ),
 			);
 
-			wp_localize_script( 'woostify-admin-nux', 'storefrontNUX', $woostify_nux );
+			wp_localize_script(
+                'woostify-admin-nux',
+                'storefrontNUX',
+                $woostify_nux
+            );
 		}
 
 		/**
@@ -75,7 +91,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 
 			<div class="notice notice-info sf-notice-nux is-dismissible">
 				<span class="sf-icon">
-					<?php echo '<img src="' . esc_url( get_template_directory_uri() ) . '/assets/images/admin/woostify-icon.svg" alt="Woostify" width="250" />'; ?>
+					<?php echo '<img src="' . esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/woostify-icon.svg' ) . '" alt="Woostify" width="250" />'; ?>
 				</span>
 
 				<div class="notice-content">

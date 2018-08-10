@@ -98,8 +98,18 @@ if ( ! class_exists( 'Woostify_Jetpack' ) ) :
 		public function jetpack_scripts() {
 			global $woostify_version;
 
-			wp_enqueue_style( 'woostify-jetpack-style', get_template_directory_uri() . '/assets/css/jetpack/jetpack.css', '', $woostify_version );
-			wp_style_add_data( 'woostify-jetpack-style', 'rtl', 'replace' );
+			wp_enqueue_style(
+                'woostify-jetpack-style',
+                WOOSTIFY_THEME_URI . 'assets/css/jetpack/jetpack.css',
+                '',
+                $woostify_version
+            );
+
+			wp_style_add_data(
+                'woostify-jetpack-style',
+                'rtl',
+                'replace'
+            );
 		}
 	}
 

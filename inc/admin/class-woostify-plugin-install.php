@@ -37,9 +37,21 @@ if ( ! class_exists( 'Storefront_Plugin_Install' ) ) :
 
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-			wp_enqueue_script( 'woostify-plugin-install', get_template_directory_uri() . '/assets/js/admin/plugin-install' . $suffix . '.js', array( 'jquery', 'updates' ), $woostify_version, 'all' );
+			wp_enqueue_script(
+                'woostify-plugin-install',
+                WOOSTIFY_THEME_URI . 'assets/js/admin/plugin-install' . $suffix . '.js',
+                array( 'jquery', 'updates' ),
+                $woostify_version,
+                'all'
+            );
 
-			wp_enqueue_style( 'woostify-plugin-install', get_template_directory_uri() . '/assets/css/admin/plugin-install.css', array(), $woostify_version, 'all' );
+			wp_enqueue_style(
+                'woostify-plugin-install',
+                WOOSTIFY_THEME_URI . 'assets/css/admin/plugin-install.css',
+                array(),
+                $woostify_version,
+                'all'
+            );
 		}
 
 		/**
