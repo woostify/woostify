@@ -57,8 +57,8 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
             $this->to_json['label']            = $this->label;
             $this->json['default_fonts_title'] = __( 'System fonts', 'woostify' );
             $this->json['google_fonts_title']  = __( 'Google fonts', 'woostify' );
-            $this->json['google_fonts']        = apply_filters( 'woostify_typography_customize_list', Woostify_Font_Helpers::woostify_get_all_google_fonts( $number_of_fonts ) );
-            $this->json['default_fonts']       = Woostify_Font_Helpers::woostify_typography_default_fonts();
+            $this->json['google_fonts']        = apply_filters( 'woostify_typography_customize_list', Woostify_Fonts_Helpers::woostify_get_all_google_fonts( $number_of_fonts ) );
+            $this->json['default_fonts']       = Woostify_Fonts_Helpers::woostify_typography_default_fonts();
             $this->json['family_title']        = esc_html__( 'Font family', 'woostify' );
             $this->json['weight_title']        = esc_html__( 'Font weight', 'woostify' );
             $this->json['transform_title']     = esc_html__( 'Text transform', 'woostify' );

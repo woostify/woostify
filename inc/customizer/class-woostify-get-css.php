@@ -18,7 +18,7 @@ class Woostify_Get_CSS {
     public function get_css() {
         $woostify_settings = wp_parse_args(
             get_option( 'woostify_settings', array() ),
-            Woostify_Font_Helpers::woostify_get_default_fonts()
+            Woostify_Fonts_Helpers::woostify_get_default_fonts()
         );
 
         $woostify_customizer = new Woostify_Customizer();

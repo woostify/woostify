@@ -1,40 +1,39 @@
 <?php
 /**
- * Woostify Fotn  Class
+ * Woostify Font Helper
  *
  * @package  woostify
  * @since    1.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
-if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
+if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 
-    /**
-     * The Woostify Customizer class
-     */
-    class Woostify_Font_Helpers
-    {
+	/**
+	 * The Woostify Customizer class
+	 */
+	class Woostify_Fonts_Helpers {
 
-        /**
-         * Instance
-         *
-         * @access private
-         * @var object
-         */
-        private static $instance;
+		/**
+		 * Instance
+		 *
+		 * @access private
+		 * @var object
+		 */
+		private static $instance;
 
-        /**
-         * Initiator
-         */
-        public static function get_instance() {
-            if ( ! isset( self::$instance ) ) {
-                self::$instance = new self;
-            }
-            return self::$instance;
-        }
+		/**
+		 * Initiator
+		 */
+		public static function get_instance() {
+			if ( ! isset( self::$instance ) ) {
+				self::$instance = new self;
+			}
+			return self::$instance;
+		}
 
         /**
          * Setup class.
@@ -235,11 +234,11 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
             // Grab our options
             $woostify_settings = wp_parse_args(
                 get_option( 'woostify_settings', array() ),
-                Woostify_Font_Helpers::woostify_get_default_fonts()
+                Woostify_Fonts_Helpers::woostify_get_default_fonts()
             );
 
             // List our non-Google fonts
-            $not_google = str_replace( ' ', '+', Woostify_Font_Helpers::woostify_typography_default_fonts() );
+            $not_google = str_replace( ' ', '+', Woostify_Fonts_Helpers::woostify_typography_default_fonts() );
 
             // Grab our font family settings
             $font_settings = array(
@@ -406,7 +405,7 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
          */
         static function woostify_get_google_font_category( $font, $key = '' ) {
             // Don't need a category if we're using a system font
-            if ( in_array( $font, Woostify_Font_Helpers::woostify_typography_default_fonts() ) ) {
+            if ( in_array( $font, Woostify_Fonts_Helpers::woostify_typography_default_fonts() ) ) {
                 return;
             }
 
@@ -416,7 +415,7 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
             }
 
             // Get our defaults
-            $defaults = Woostify_Font_Helpers::woostify_get_default_fonts();
+            $defaults = Woostify_Fonts_Helpers::woostify_get_default_fonts();
 
             // If our default font is selected and the category isn't saved, we already know the category
             if ( $defaults[ $key ] == $font ) {
@@ -425,7 +424,7 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
 
             // Grab all of our fonts
             // It's a big list, so hopefully we're not even still reading
-            $fonts = $this->woostify_get_all_google_fonts();
+            $fonts = Woostify_Fonts_Helpers::woostify_get_all_google_fonts();
 
             // Get the ID from our font
             $id = strtolower( str_replace( ' ', '_', $font ) );
@@ -450,7 +449,7 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
          */
         function woostify_get_google_font_variants( $font, $key = '' ) {
             // Don't need variants if we're using a system font
-            if ( in_array( $font, Woostify_Font_Helpers::woostify_typography_default_fonts() ) ) {
+            if ( in_array( $font, Woostify_Fonts_Helpers::woostify_typography_default_fonts() ) ) {
                 return;
             }
 
@@ -460,7 +459,7 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
             }
 
             // Get our defaults
-            $defaults = Woostify_Font_Helpers::woostify_get_default_fonts();
+            $defaults = Woostify_Fonts_Helpers::woostify_get_default_fonts();
 
             // If our default font is selected and the category isn't saved, we already know the category
             if ( $defaults[ $key ] == $font ) {
@@ -505,7 +504,7 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
 
             $woostify_settings = wp_parse_args(
                 get_option( 'woostify_settings', array() ),
-                Woostify_Font_Helpers::woostify_get_default_fonts()
+                Woostify_Fonts_Helpers::woostify_get_default_fonts()
             );
 
             $font_settings = array(
@@ -531,7 +530,7 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
 
                 $id = strtolower( str_replace( ' ', '_', $woostify_settings[ $setting ] ) );
 
-                if ( array_key_exists( $id, $select_fonts ) || in_array( $woostify_settings[ $setting ], Woostify_Font_Helpers::woostify_typography_default_fonts() ) ) {
+                if ( array_key_exists( $id, $select_fonts ) || in_array( $woostify_settings[ $setting ], Woostify_Fonts_Helpers::woostify_typography_default_fonts() ) ) {
                     continue;
                 }
 
@@ -594,7 +593,7 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
                 $wrapper_end = null;
             } else {
                 $wrapper_start = '"';
-                $wrapper_end = '"' . Woostify_Font_Helpers::woostify_get_google_font_category( $font_family, $font );
+                $wrapper_end = '"' . Woostify_Fonts_Helpers::woostify_get_google_font_category( $font_family, $font );
             }
 
             // Output the CSS
@@ -604,4 +603,4 @@ if ( ! class_exists( 'Woostify_Font_Helpers' ) ) :
     }
 endif;
 
-Woostify_Font_Helpers::get_instance();
+Woostify_Fonts_Helpers::get_instance();
