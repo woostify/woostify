@@ -98,15 +98,15 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
          */
         static public function woostify_get_default_fonts( $filter = true ) {
             $woostify_font_defaults = array(
-                'body_font_family'            => 'System Stack',
+                'body_font_family'            => 'Poppins',
                 'body_font_size'              => '14',
                 'body_font_weight'            => 'normal',
                 'body_line_height'            => '1.5', // no unit
                 'body_font_category'          => '',
-                'body_font_variants'          => '',
+                'body_font_family_variants'   => '',
                 'body_font_transform'         => 'none',
                 
-                'heading_font_family'         => 'System Stack',
+                'heading_font_family'         => 'Poppins',
                 'heading_font_category'       => '',
                 'heading_font_variants'       => '',
                 'heading_font_weight'         => 'bold',

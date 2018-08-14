@@ -35,14 +35,12 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 *
 		 * @return array
 		 */
-		public static function ge_woostify_default_setting_values() {
+		public static function get_woostify_default_setting_values() {
 			return apply_filters(
 				'woostify_setting_default_values', $args = array(
-                'woostify_heading_color'               => '#333333',
-				'woostify_text_color'                  => '#6d6d6d',
-				'woostify_accent_color'                => '#96588a',
-				'woostify_hero_heading_color'          => '#000000',
-				'woostify_hero_text_color'             => '#000000',
+                'woostify_heading_color'               => '#2b2b2b',
+				'woostify_text_color'                  => '#8f8f8f',
+				'woostify_accent_color'                => '#1346af',
 				'woostify_header_background_color'     => '#ffffff',
 				'woostify_header_text_color'           => '#404040',
 				'woostify_header_link_color'           => '#333333',
@@ -69,8 +67,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			$woostify_theme_mods = array(
 				'background_color'            => woostify_get_content_background_color(),
 				'accent_color'                => get_theme_mod( 'woostify_accent_color' ),
-				'hero_heading_color'          => get_theme_mod( 'woostify_hero_heading_color' ),
-				'hero_text_color'             => get_theme_mod( 'woostify_hero_text_color' ),
 				'header_background_color'     => get_theme_mod( 'woostify_header_background_color' ),
 				'header_link_color'           => get_theme_mod( 'woostify_header_link_color' ),
 				'header_text_color'           => get_theme_mod( 'woostify_header_text_color' ),
@@ -164,14 +160,13 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			/**
 			 * Section, settings & control
 			 */
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/buttons/button.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/footer/footer.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/header/header.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/layout/layout.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/color/color.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/typography.php';
-
-
+            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/buttons/button.php';
+            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/footer/footer.php';
+            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/header/header.php';
+            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/color/color.php';
+            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/typography.php';
+            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog.php';
+            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop.php';
 		}
 
 
@@ -187,7 +182,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		public function layout_class( $classes ) {
 			$left_or_right = get_theme_mod( 'woostify_layout' );
 
-			$classes[] = $left_or_right . '-sidebar';
+			$classes[] = $left_or_right . '-sidebar has-sidebar';
 
 			return $classes;
 		}
@@ -204,7 +199,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * @since  1.5.0
 		 */
 		public function customizer_custom_control_css() {
-			?><style>
+			?>
+			<style>
                 li#customize-control-woostify_settings-body_font_size {
                     margin-bottom: 25px;
                 }

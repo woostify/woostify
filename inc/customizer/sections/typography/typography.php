@@ -50,9 +50,9 @@ $wp_customize->add_setting(
 
 // font font variants.
 $wp_customize->add_setting(
-	'body_font_variants',
+	'body_font_family_variants',
 	array(
-		'default'           => $defaults['body_font_variants'],
+		'default'           => $defaults['body_font_family_variants'],
 		'sanitize_callback' => 'woostify_sanitize_variants',
 	)
 );
@@ -89,7 +89,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Body Font', 'woostify' ),
 			'settings' => array(
 				'family'    => 'woostify_settings[body_font_family]',
-				'variant'   => 'body_font_variants',
+				'variant'   => 'body_font_family_variants',
 				'category'  => 'body_font_category',
 				'weight'    => 'woostify_settings[body_font_weight]',
 				'transform' => 'woostify_settings[body_font_transform]',

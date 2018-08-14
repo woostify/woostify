@@ -7,14 +7,14 @@
 
 // Move background color setting alongside background image.
 $wp_customize->get_control( 'background_color' )->section   = 'background_image';
-$wp_customize->get_control( 'background_color' )->priority  = 20;
+$wp_customize->get_control( 'background_color' )->priority  = 80;
 
 // Change background image section title & priority.
-$wp_customize->get_section( 'background_image' )->title     = __( 'Background', 'Woostify');
-$wp_customize->get_section( 'background_image' )->priority  = 30;
+$wp_customize->get_section( 'background_image' )->title     = __( 'Background', 'woostify' );
+$wp_customize->get_section( 'background_image' )->priority  = 80;
 
 // Change header image section title & priority.
-$wp_customize->get_section( 'header_image' )->title         = __( 'Header', 'Woostify');
+$wp_customize->get_section( 'header_image' )->title         = __( 'Header', 'woostify' );
 $wp_customize->get_section( 'header_image' )->priority      = 25;
 
 // Selective refresh.

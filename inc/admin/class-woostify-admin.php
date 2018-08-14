@@ -78,9 +78,9 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
 				<section class="woostify-welcome-nav">
 					<span class="woostify-welcome-nav__version">woostify <?php echo esc_attr( $woostify_version ); ?></span>
 					<ul>
-						<li><a href="https://wordpress.org/support/theme/woostify" target="_blank"><?php esc_attr_e( 'Support', 'woostify'); ?></a></li>
-						<li><a href="https://docs.woocommerce.com/documentation/themes/woostify/" target="_blank"><?php esc_attr_e( 'Documentation', 'woostify'); ?></a></li>
-						<li><a href="https://woocommerce.wordpress.com/category/woostify/" target="_blank"><?php esc_attr_e( 'Development blog', 'woostify'); ?></a></li>
+						<li><a href="//wordpress.org/support/theme/woostify" target="_blank"><?php esc_attr_e( 'Support', 'woostify'); ?></a></li>
+						<li><a href="//docs.woocommerce.com/documentation/themes/woostify/" target="_blank"><?php esc_attr_e( 'Documentation', 'woostify'); ?></a></li>
+						<li><a href="//woocommerce.wordpress.com/category/woostify/" target="_blank"><?php esc_attr_e( 'Development blog', 'woostify'); ?></a></li>
 					</ul>
 				</section>
 
@@ -115,19 +115,23 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
                                     <ul class="wst-flex">
                                         <li class="">
                                             <span class="dashicons dashicons-format-image"></span>
-                                            <a class="wst-quick-setting-title" href="http://zoa.local/wp-admin/customize.php?autofocus%5Bcontrol%5D=custom_logo" target="_blank" rel="noopener">Upload Logo</a>
+                                            <a class="wst-quick-setting-title" href="<?php echo get_admin_url() . 'customize.php?autofocus%5Bcontrol%5D=custom_logo'; ?>" target="_blank" rel="noopener">
+                                                <?php esc_html_e( 'Upload Logo', 'woostify' ); ?>
+                                            </a>
                                         </li>
                                         <li class="">
                                             <span class="dashicons dashicons-admin-customizer"></span>
-                                            <a class="wst-quick-setting-title" href="http://zoa.local/wp-admin/customize.php?autofocus%5Bpanel%5D=panel-colors-background" target="_blank" rel="noopener">Set Colors</a>
+                                            <a class="wst-quick-setting-title" href="<?php echo get_admin_url() . 'customize.php?autofocus%5Bpanel%5D=panel-colors-background'; ?>" target="_blank" rel="noopener">
+                                            Set Colors
+                                        </a>
                                         </li>
                                         <li class="">
                                             <span class="dashicons dashicons-admin-customizer"></span>
-                                            <a class="wst-quick-setting-title" href="http://zoa.local/wp-admin/customize.php?autofocus%5Bpanel%5D=panel-colors-background" target="_blank" rel="noopener">Set Colors</a>
+                                            <a class="wst-quick-setting-title" href="<?php echo get_admin_url() . 'customize.php?autofocus%5Bpanel%5D=panel-colors-background'; ?>" target="_blank" rel="noopener">Set Colors</a>
                                         </li>
                                         <li class="">
                                             <span class="dashicons dashicons-admin-customizer"></span>
-                                            <a class="wst-quick-setting-title" href="http://zoa.local/wp-admin/customize.php?autofocus%5Bpanel%5D=panel-colors-background" target="_blank" rel="noopener">Set Colors</a>
+                                            <a class="wst-quick-setting-title" href="<?php echo get_admin_url() . 'customize.php?autofocus%5Bpanel%5D=panel-colors-background'; ?>" target="_blank" rel="noopener">Set Colors</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -135,7 +139,7 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
 
 
                             <p>
-                                <a href="https://woocommerce.com/products/woostify-extensions-bundle/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Read more and purchase', 'woostify'); ?></a>
+                                <a href="//woocommerce.com/products/woostify-extensions-bundle/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Read more and purchase', 'woostify'); ?></a>
                             </p>
                         </div>
                         <div class="woostify-enhance__column woostify-child-themes">
@@ -154,7 +158,7 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
                             </p>
 
                             <p>
-                                <a href="https://woocommerce.com/product-category/themes/woostify-child-theme-themes/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify'); ?></a>
+                                <a href="//woocommerce.com/product-category/themes/woostify-child-theme-themes/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify'); ?></a>
                             </p>
                         </div>
                     </div>
@@ -176,7 +180,7 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
                             </p>
 
                             <p>
-                                <a href="https://woocommerce.com/product-category/themes/woostify-child-theme-themes/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify'); ?></a>
+                                <a href="//woocommerce.com/product-category/themes/woostify-child-theme-themes/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify'); ?></a>
                             </p>
                         </div>
                         <div class="woostify-enhance__column">
@@ -196,7 +200,7 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
                             </p>
 
                             <p>
-                                <a href="https://woocommerce.com/product-category/themes/woostify-child-theme-themes/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify'); ?></a>
+                                <a href="//woocommerce.com/product-category/themes/woostify-child-theme-themes/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify'); ?></a>
                             </p>
                         </div>
                     </div>
@@ -258,7 +262,7 @@ if ( ! class_exists( 'woostify_Admin' ) ) :
 				}
 				?>
 				<a href="<?php echo esc_url( $button['url'] ); ?>" class="woostify-button <?php echo esc_attr( $button['classes'] ); ?>" data-originaltext="<?php echo esc_attr( $button['message'] ); ?>" data-slug="<?php echo esc_attr( $plugin_slug ); ?>" aria-label="<?php echo esc_attr( $button['message'] ); ?>"><?php echo esc_attr( $button['message'] ); ?></a>
-				<a href="https://wordpress.org/plugins/<?php echo esc_attr( $plugin_slug ); ?>" target="_blank"><?php esc_attr_e( 'Learn more', 'woostify'); ?></a>
+				<a href="//wordpress.org/plugins/<?php echo esc_attr( $plugin_slug ); ?>" target="_blank"><?php esc_attr_e( 'Learn more', 'woostify'); ?></a>
 				<?php
 			}
 		}

@@ -1,15 +1,29 @@
 $sidebar_width: percentage( 270 / 1170 );
 
-.right-sidebar{
+.has-sidebar{
     @media ( min-width: #{$screen-md} ){
-        .content-area{
-            float: left;
+        .content-area{;
             width: 100% - $sidebar_width;
             padding-right: 60px;
         }
         .widget-area{
-            float: right;
             width: $sidebar_width;
+        }
+    }
+    &.left-sidebar{
+        .content-area{
+            float: right;
+        }
+        .widget-area{
+            float: left;
+        }
+    }
+    &.right-sidebar{
+        .content-area{
+            float: left;
+        }
+        .widget-area{
+            float: right;
         }
     }
 }

@@ -88,6 +88,7 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
                     jQuery( 'style#body_font_size' ).not( ':last' ).remove();
                 }, 100);
             }
+            console.log( 1 );
             setTimeout("jQuery('body').trigger('woostify_spacing_updated');", 1000);
         } );
     } );

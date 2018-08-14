@@ -31,6 +31,7 @@ class Woostify_Get_CSS {
                 line-height: ' . $woostify_settings['body_line_height'] . ';
                 text-transform: ' . $woostify_settings['body_font_transform'] . ';
                 font-size: ' . $woostify_settings['body_font_size'] . 'px;
+                color: ' . $woostify_theme_mods['text_color'] . ';
             }
 
             h1, h2, h3, h4, h5, h6{
@@ -38,6 +39,7 @@ class Woostify_Get_CSS {
                 font-weight: ' . $woostify_settings['heading_font_weight'] . ';
                 text-transform: ' . $woostify_settings['heading_font_transform'] . ';
                 line-height: ' . $woostify_settings['heading_line_height'] . ';
+                color: ' . $woostify_theme_mods['heading_color'] . ';
             }
 
             h1{
@@ -57,6 +59,10 @@ class Woostify_Get_CSS {
             }
             h6{
                 font-size: ' . $woostify_settings['heading_h6_font_size'] . ';
+            }
+
+            a{
+            	color: ' . $woostify_theme_mods['accent_color'] . ';
             }
         ';
 

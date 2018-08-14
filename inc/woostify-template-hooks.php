@@ -8,10 +8,8 @@
 /**
  * General
  *
- * @see  woostify_header_widget_region()
  * @see  woostify_get_sidebar()
  */
-add_action( 'woostify_before_content', 'woostify_header_widget_region', 10 );
 add_action( 'woostify_sidebar', 'woostify_get_sidebar', 10 );
 
 /**

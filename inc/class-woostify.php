@@ -178,19 +178,13 @@ if ( ! class_exists('woostify' ) ) :
 				'description'   => __( 'Appears in the sidebar of the site.', 'woostify' ),
 			);
 
-            if( class_exists( 'woocommerce' ) ){
+            if ( class_exists( 'woocommerce' ) ) {
                 $sidebar_args['shop_sidebar'] = array(
                     'name'          => __( 'Sidebar Shop', 'woostify' ),
                     'id'            => 'sidebar-shop',
                     'description'   => __( 'Appears in the sidebar of shop/product page.', 'woostify' ),
                 );
             }
-
-			$sidebar_args['header'] = array(
-				'name'        => __( 'Below Header', 'woostify' ),
-				'id'          => 'header-1',
-				'description' => __( 'Widgets added to this region will appear beneath the header and above the main content.', 'woostify' ),
-			);
 
             $sidebar_args['footer'] = array(
                 'name'        => __( 'Footer', 'woostify' ),
@@ -319,7 +313,12 @@ if ( ! class_exists('woostify' ) ) :
 		public function child_scripts() {
 			if ( is_child_theme() ) {
 				$child_theme = wp_get_theme( get_stylesheet() );
-				wp_enqueue_style( 'woostify-child-style', get_stylesheet_uri(), array(), $child_theme->get( 'Version' ) );
+				wp_enqueue_style(
+                    'woostify-child-style',
+                    get_stylesheet_uri(),
+                    array(),
+                    $child_theme->get( 'Version' )
+                );
 			}
 		}
 
@@ -407,7 +406,11 @@ if ( ! class_exists('woostify' ) ) :
 		 * Add styles for embeds
 		 */
 		public function print_embed_styles() {
-			wp_enqueue_style( 'source-sans-pro', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,700,900' );
+			wp_enqueue_style(
+                'source-sans-pro',
+                '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,700,900'
+            );
+
 			$accent_color     = get_theme_mod( 'woostify_accent_color' );
 			$background_color = woostify_get_content_background_color();
 			?>
@@ -438,8 +441,7 @@ if ( ! class_exists('woostify' ) ) :
 					border: 0 !important;
 					line-height: 1;
 					border-radius: 0 !important;
-					box-shadow:
-						inset 0 -1px 0 rgba(#000,.3);
+					box-shadow: inset 0 -1px 0 rgba(0,0,0,.3);
 				}
 
 				a.wc-embed-button + a.wc-embed-button {
