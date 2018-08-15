@@ -56,7 +56,7 @@ if ( ! function_exists( 'woostify_display_comments' ) ) {
 	/**
 	 * Woostify display comments
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 */
 	function woostify_display_comments() {
 		// If comments are open or we have at least one comment, load up the comment template.
@@ -87,7 +87,7 @@ if ( ! function_exists( 'woostify_comment' ) ) {
 	 * @param array $comment the comment array.
 	 * @param array $args the comment args.
 	 * @param int   $depth the comment depth.
-	 * @since 1.0.0
+	 * @since 1.0
 	 */
 	function woostify_comment( $comment, $args, $depth ) {
 		if ( 'div' == $args['style'] ) {
@@ -153,7 +153,7 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 	/**
 	 * Display the footer widget regions.
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @return void
 	 */
 	function woostify_footer_widgets() {
@@ -172,7 +172,7 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 	/**
 	 * Display the theme credit
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @return void
 	 */
 	function woostify_credit() {
@@ -214,7 +214,7 @@ if ( ! function_exists( 'woostify_header_widget_region' ) ) {
 	/**
 	 * Display header widget region
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 */
 	function woostify_header_widget_region() {
 		if ( is_active_sidebar( 'header-1' ) ) {
@@ -233,7 +233,7 @@ if ( ! function_exists( 'woostify_site_branding' ) ) {
 	/**
 	 * Site branding wrapper and display
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @return void
 	 */
 	function woostify_site_branding() {
@@ -297,7 +297,7 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 	/**
 	 * Display Primary Navigation
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @return void
 	 */
 	function woostify_primary_navigation() {
@@ -343,7 +343,7 @@ if ( ! function_exists( 'woostify_homepage_header' ) ) {
 	/**
 	 * Display the page header without the featured image
 	 *
-	 * @since 1.0.0
+	 * @since 1.0
 	 */
 	function woostify_homepage_header() {
 		edit_post_link( __( 'Edit this section', 'woostify' ), '', '', '', 'button woostify-hero__button-edit' );
@@ -361,7 +361,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 	/**
 	 * Display the page header
 	 *
-	 * @since 1.0.0
+	 * @since 1.0
 	 */
 	function woostify_page_header() {
 		?>
@@ -379,7 +379,7 @@ if ( ! function_exists( 'woostify_page_content' ) ) {
 	/**
 	 * Display the post content
 	 *
-	 * @since 1.0.0
+	 * @since 1.0
 	 */
 	function woostify_page_content() {
 		the_content();
@@ -397,7 +397,7 @@ if ( ! function_exists( 'woostify_post_header_wrapper' ) ) {
 	/**
 	 * Post header wrapper
 	 *
-	 * @since 1.0.0
+	 * @since 1.0
 	 * @return void
 	 */
 	function woostify_post_header_wrapper() {
@@ -415,7 +415,7 @@ if ( ! function_exists( 'woostify_post_thumbnail' ) ) {
 	 * @uses has_post_thumbnail()
 	 * @uses the_post_thumbnail
 	 * @param string $size the post thumbnail size.
-	 * @since 1.0.0
+	 * @since 1.0
 	 */
 	function woostify_post_thumbnail( $size = 'full' ) {
 		if ( has_post_thumbnail() ) {
@@ -440,7 +440,7 @@ if ( ! function_exists( 'woostify_post_title' ) ) {
 	/**
 	 * Display the post header with a link to the single post
 	 *
-	 * @since 1.0.0
+	 * @since 1.0
 	 */
 	function woostify_post_title() {
 		if ( is_single() ) {
@@ -455,7 +455,7 @@ if ( ! function_exists( 'woostify_post_header_wrapper_close' ) ) {
 	/**
 	 * Post header wrapper close
 	 *
-	 * @since 1.0.0
+	 * @since 1.0
 	 * @return void
 	 */
 	function woostify_post_header_wrapper_close() {
@@ -469,7 +469,7 @@ if ( ! function_exists( 'woostify_post_meta' ) ) {
 	/**
 	 * Display the post meta
 	 *
-	 * @since 1.0.0
+	 * @since 1.0
 	 */
 	function woostify_post_meta() {
 		?>
@@ -527,7 +527,7 @@ if ( ! function_exists( 'woostify_post_content' ) ) {
 	/**
 	 * Display the post content with a link to the single post
 	 *
-	 * @since 1.0.0
+	 * @since 1.0
 	 */
 	function woostify_post_content() {
 		?>
@@ -670,7 +670,7 @@ if ( ! function_exists( 'woostify_homepage_content' ) ) {
 	 * Display homepage content
 	 * Hooked into the `homepage` action in the homepage template
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @return  void
 	 */
 	function woostify_homepage_content() {
@@ -688,10 +688,25 @@ if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 	 * Display woostify sidebar
 	 *
 	 * @uses get_sidebar()
-	 * @since 1.0.0
+	 * @since 1.0
 	 */
 	function woostify_get_sidebar() {
-		get_sidebar();
+		$sidebar_shop = get_theme_mod( 'woostify_shop_layout', $layout = is_rtl() ? 'left' : 'right' );
+		$sidebar      = get_theme_mod( 'woostify_blog_layout', $layout = is_rtl() ? 'left' : 'right' );
+
+		if ( true == woostify_is_woocommerce_page() ) {
+			if ( ! is_active_sidebar( 'sidebar-shop' ) || 'full' == $sidebar_shop ) {
+				return;
+			}
+
+			get_sidebar( 'shop' );
+		} else {
+			if ( ! is_active_sidebar( 'sidebar' ) || 'full' == $sidebar ) {
+				return;
+			}
+
+			get_sidebar();
+		}
 	}
 }
 

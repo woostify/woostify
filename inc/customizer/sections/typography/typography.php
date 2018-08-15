@@ -25,7 +25,7 @@ $wp_customize->add_section(
 	array(
 		'title'      => __( 'Typography', 'woostify' ),
 		'capability' => 'edit_theme_options',
-		'priority'   => 30,
+		'priority'   => 37,
 	)
 );
 

@@ -1,29 +1,34 @@
 $sidebar_width: percentage( 270 / 1170 );
 
-.has-sidebar{
-    @media ( min-width: #{$screen-md} ){
-        .content-area{;
+@media ( min-width: #{$screen-md} ){
+	.is-active-sidebar{
+        &.left-sidebar{
+	        .content-area{
+	            float: right;
+	            padding-left: 60px;
+	        }
+	        .widget-area{
+	            float: left;
+	        }
+	    }
+	    &.right-sidebar{
+	        .content-area{
+	            float: left;
+	            padding-right: 60px;
+	        }
+	        .widget-area{
+	            float: right;
+	        }
+	    }
+    }
+    
+    .left-sidebar,
+    .right-sidebar{
+    	.content-area{;
             width: 100% - $sidebar_width;
-            padding-right: 60px;
         }
         .widget-area{
             width: $sidebar_width;
-        }
-    }
-    &.left-sidebar{
-        .content-area{
-            float: right;
-        }
-        .widget-area{
-            float: left;
-        }
-    }
-    &.right-sidebar{
-        .content-area{
-            float: left;
-        }
-        .widget-area{
-            float: right;
         }
     }
 }

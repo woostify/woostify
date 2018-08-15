@@ -3,7 +3,7 @@
  * Woostify Customizer Class
  *
  * @package  woostify
- * @since    2.0.0
+ * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,11 +23,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * @since 1.0
 		 */
 		public function __construct() {
-			add_action( 'customize_register', array( $this, 'customize_register' ), 10 );
-			add_filter( 'body_class', array( $this, 'layout_class' ) );
-			add_action( 'customize_controls_print_styles', array( $this, 'customizer_custom_control_css' ) );
-			add_action( 'customize_register', array( $this, 'edit_default_customizer_settings' ), 99 );
 			add_action( 'init', array( $this, 'default_theme_mod_values' ), 10 );
+			add_action( 'customize_register', array( $this, 'customize_register' ), 10 );
+			add_action( 'customize_register', array( $this, 'edit_default_customizer_settings' ), 99 );
+			add_action( 'customize_controls_print_styles', array( $this, 'customizer_custom_control_css' ) );
 		}
 
 		/**
@@ -53,7 +52,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'woostify_button_text_color'           => '#333333',
 					'woostify_button_alt_background_color' => '#333333',
 					'woostify_button_alt_text_color'       => '#ffffff',
-					'woostify_layout'                      => 'right',
+					'woostify_shop_layout'                 => 'right',
 					'background_color'                     => 'ffffff',
 				)
 			);
@@ -137,7 +136,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 *
 		 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 		 *
-		 * @since  1.0.0
+		 * @since  1.0
 		 */
 		public function customize_register( $wp_customize ) {
 
@@ -149,9 +148,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			/**
 			 * Custom controls
 			 */
-			require_once dirname( __FILE__ ) . '/custom-controls/radio-image/class-woostify-customizer-control-radio-image.php';
-			require_once dirname( __FILE__ ) . '/custom-controls/divider/class-woostify-customizer-control-arbitrary.php';
-			require_once dirname( __FILE__ ) . '/custom-controls/typography/class-woostify-typography-customize-control.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/radio-image/class-woostify-customizer-control-radio-image.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/divider/class-woostify-customizer-control-arbitrary.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/typography/class-woostify-typography-customize-control.php';
 
 			/**
 			 * Register section & panel
@@ -170,24 +169,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop.php';
 		}
 
-
-		/**
-		 * Layout classes
-		 * Adds 'right-sidebar' and 'left-sidebar' classes to the body tag
-		 *
-		 * @param  array $classes current body classes.
-		 *
-		 * @return string[]          modified body classes
-		 * @since  1.0.0
-		 */
-		public function layout_class( $classes ) {
-			$left_or_right = get_theme_mod( 'woostify_layout' );
-
-			$classes[] = $left_or_right . '-sidebar has-sidebar';
-
-			return $classes;
-		}
-
 		/**
 		 * Add CSS for custom controls
 		 *
@@ -197,7 +178,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * is licensed under the terms of the GNU GPL, Version 2 (or later)
 		 *
 		 * @link https://github.com/reduxframework/kirki/
-		 * @since  1.5.0
+		 * @since  1.0
 		 */
 		public function customizer_custom_control_css() {
 			?>
@@ -211,23 +192,15 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				}
 
 				.customize-control-radio-image label {
+					margin-right: 10px;
+					display: inline-block;
+				}
+				.customize-control-radio-image label.ui-state-active {
+					border: 1px solid #008ec2;
+					cursor: default;
+				}
+				.customize-control-radio-image img{
 					display: block;
-					width: 48%;
-					float: left;
-					margin-right: 4%;
-				}
-
-				.customize-control-radio-image label:nth-of-type(2n) {
-					margin-right: 0;
-				}
-
-				.customize-control-radio-image img {
-					opacity: .5;
-				}
-
-				.customize-control-radio-image input[type=radio]:checked + label img,
-				.customize-control-radio-image img:hover {
-					opacity: 1;
 				}
 
 			</style>
@@ -237,7 +210,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		/**
 		 * Get site logo.
 		 *
-		 * @since 2.1.5
+		 * @since 1.0
 		 * @return string
 		 */
 		public function get_site_logo() {
@@ -247,7 +220,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		/**
 		 * Get site name.
 		 *
-		 * @since 2.1.5
+		 * @since 1.0
 		 * @return string
 		 */
 		public function get_site_name() {
@@ -257,7 +230,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		/**
 		 * Get site description.
 		 *
-		 * @since 2.1.5
+		 * @since 1.0
 		 * @return string
 		 */
 		public function get_site_description() {
@@ -267,7 +240,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		/**
 		 * Check if current page is using the Homepage template.
 		 *
-		 * @since 2.3.0
+		 * @since 1.0
 		 * @return bool
 		 */
 		public function is_homepage_template() {
@@ -278,48 +251,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			}
 
 			return true;
-		}
-
-		/**
-		 * Setup the WordPress core custom header feature.
-		 *
-		 * @deprecated 2.4.0
-		 * @return void
-		 */
-		public function custom_header_setup() {
-			if ( function_exists( 'wc_deprecated_function' ) ) {
-				wc_deprecated_function( __FUNCTION__, '2.4.0' );
-			} else {
-				_deprecated_function( __FUNCTION__, '2.4.0' );
-			}
-		}
-
-		/**
-		 * Get Customizer css associated with WooCommerce.
-		 *
-		 * @deprecated 2.4.0
-		 * @return void
-		 */
-		public function get_woocommerce_css() {
-			if ( function_exists( 'wc_deprecated_function' ) ) {
-				wc_deprecated_function( __FUNCTION__, '2.3.1' );
-			} else {
-				_deprecated_function( __FUNCTION__, '2.3.1' );
-			}
-		}
-
-		/**
-		 * Assign Woostify styles to individual theme mods.
-		 *
-		 * @deprecated 2.3.1
-		 * @return void
-		 */
-		public function set_woostify_style_theme_mods() {
-			if ( function_exists( 'wc_deprecated_function' ) ) {
-				wc_deprecated_function( __FUNCTION__, '2.3.1' );
-			} else {
-				_deprecated_function( __FUNCTION__, '2.3.1' );
-			}
 		}
 	}
 

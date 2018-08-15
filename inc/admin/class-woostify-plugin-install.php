@@ -3,7 +3,7 @@
  * Woostify Plugin Install Class
  *
  * @package  woostify
- * @since    2.2.0
+ * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -30,7 +30,7 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 		 *
 		 * @param string $hook_suffix the current page hook suffix.
 		 * @return void
-		 * @since  1.4.4
+		 * @since  1.0
 		 */
 		public function plugin_install_scripts( $hook_suffix ) {
 			global $woostify_version;

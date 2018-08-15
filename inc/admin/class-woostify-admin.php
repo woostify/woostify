@@ -3,7 +3,7 @@
  * Woostify Admin Class
  *
  * @package  woostify
- * @since    1.0.0
+ * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,7 +31,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 *
 		 * @param string $hook_suffix the current page hook suffix.
 		 * @return void
-		 * @since  1.4.4
+		 * @since  1.0
 		 */
 		public function welcome_style( $hook_suffix ) {
 			global $woostify_version;
@@ -41,7 +41,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'woostify-welcome-screen',
 					WOOSTIFY_THEME_URI . 'assets/css/admin/welcome-screen/welcome.css',
 					array(),
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -56,7 +56,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * Creates the dashboard page
 		 *
 		 * @see  add_theme_page()
-		 * @since 1.0.0
+		 * @since 1.0
 		 */
 		public function welcome_register_menu() {
 			add_theme_page( 'Woostify Panel', 'Woostify Panel', 'activate_plugins', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ) );
@@ -65,7 +65,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		/**
 		 * The welcome screen
 		 *
-		 * @since 1.0.0
+		 * @since 1.0
 		 */
 		public function woostify_welcome_screen() {
 			require_once( ABSPATH . 'wp-load.php' );
@@ -214,7 +214,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		/**
 		 * Welcome screen intro
 		 *
-		 * @since 1.0.0
+		 * @since 1.0
 		 */
 		public function welcome_intro() {
 			require_once( WOOSTIFY_THEME_DIR . 'inc/admin/welcome-screen/component-intro.php' );
@@ -295,7 +295,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		/**
 		 * Welcome screen enhance section
 		 *
-		 * @since 1.5.2
+		 * @since 1.0
 		 */
 		public function welcome_enhance() {
 			require_once( WOOSTIFY_THEME_DIR . 'inc/admin/welcome-screen/component-enhance.php' );
@@ -304,7 +304,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		/**
 		 * Welcome screen contribute section
 		 *
-		 * @since 1.5.2
+		 * @since 1.0
 		 */
 		public function welcome_contribute() {
 			require_once( WOOSTIFY_THEME_DIR . 'inc/admin/welcome-screen/component-contribute.php' );

@@ -2,7 +2,7 @@
 /**
  * Woostify Class
  *
- * @since    2.0.0
+ * @since    1.0
  * @package  woostify
  */
 
@@ -217,7 +217,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		/**
 		 * Enqueue scripts and styles.
 		 *
-		 * @since  1.0.0
+		 * @since  1.0
 		 */
 		public function scripts() {
 			global $woostify_version;
@@ -227,8 +227,8 @@ if ( ! class_exists( 'woostify' ) ) :
 			 */
 			wp_enqueue_style(
 				'woostify-style',
-				WOOSTIFY_THEME_URI . '/style.css',
-				'',
+				WOOSTIFY_THEME_URI . 'style.css',
+				array(),
 				$woostify_version
 			);
 
@@ -310,7 +310,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * A separate function is required as the child theme css needs to be enqueued _after_ the parent theme
 		 * primary css and the separate WooCommerce css.
 		 *
-		 * @since  1.5.3
+		 * @since  1.0
 		 */
 		public function child_scripts() {
 			if ( is_child_theme() ) {
@@ -379,8 +379,13 @@ if ( ! class_exists( 'woostify' ) ) :
 			}
 
 			// If our main sidebar doesn't contain widgets, adjust the layout to be full-width.
-			if ( ! is_active_sidebar( 'sidebar' ) ) {
-				$classes[] = 'woostify-full-width-content';
+			$sidebar_shop = get_theme_mod( 'woostify_shop_layout', $layout = is_rtl() ? 'left' : 'right' );
+			$sidebar      = get_theme_mod( 'woostify_blog_layout', $layout = is_rtl() ? 'left' : 'right' );
+
+			if ( true == woostify_is_woocommerce_page() ) {
+				$classes[] = $sidebar_shop . '-sidebar is-active-sidebar blog-sidebar';
+			} else {
+				$classes[] = $sidebar . '-sidebar is-active-sidebar blog-sidebar';
 			}
 
 			// Add class when using homepage template + featured image.
@@ -412,11 +417,12 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Add styles for embeds
 		 */
 		public function print_embed_styles() {
+			global $woostify_version;
 			wp_enqueue_style(
 				'source-sans-pro',
 				'//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,700,900',
 				array(),
-				'1.0'
+				$woostify_version
 			);
 
 			$accent_color     = get_theme_mod( 'woostify_accent_color' );

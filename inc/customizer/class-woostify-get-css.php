@@ -79,7 +79,7 @@ class Woostify_Get_CSS {
 	/**
 	 * Add CSS in <head> for styles handled by the theme customizer
 	 *
-	 * @since 1.0.0
+	 * @since 1.0
 	 * @return void
 	 */
 	public function add_customizer_css() {

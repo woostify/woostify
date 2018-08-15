@@ -88,21 +88,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
-		 * Assign styles to individual theme mod.
-		 *
-		 * @deprecated 2.3.1
-		 * @since 2.1.0
-		 * @return void
-		 */
-		public function set_woostify_style_theme_mods() {
-			if ( function_exists( 'wc_deprecated_function' ) ) {
-				wc_deprecated_function( __FUNCTION__, '2.3.1' );
-			} else {
-				_deprecated_function( __FUNCTION__, '2.3.1' );
-			}
-		}
-
-		/**
 		 * Add WooCommerce specific classes to the body tag
 		 *
 		 * @param  array $classes css classes applied to the body tag.
@@ -288,7 +273,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-bookings-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/bookings.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -306,7 +291,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-brands-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/brands.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -332,7 +317,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-wishlists-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/wishlists.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -350,7 +335,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-ajax-layered-nav-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/ajax-layered-nav.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -368,7 +353,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-variation-swatches-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/variation-swatches.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -386,7 +371,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-composite-products-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/composite-products.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -404,7 +389,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-photography-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/photography.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -422,7 +407,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-product-reviews-pro-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/product-reviews-pro.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -440,7 +425,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-smart-coupons-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/smart-coupons.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -458,7 +443,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-deposits-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/deposits.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -476,7 +461,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-bundles-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/bundles.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -494,7 +479,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-sma-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/ship-multiple-addresses.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -512,7 +497,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-apl-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/advanced-product-labels.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -530,7 +515,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-mix-and-match-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/mix-and-match.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -548,7 +533,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-memberships-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/memberships.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(
@@ -566,7 +551,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					'woostify-woocommerce-quick-view-style',
 					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/extensions/quick-view.css',
 					'woostify-woocommerce-style',
-					'1.0'
+					$woostify_version
 				);
 
 				wp_style_add_data(

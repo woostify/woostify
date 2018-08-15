@@ -318,7 +318,8 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 
 			/*Enqueue our fonts*/
 			if ( $google_fonts ) {
-				wp_enqueue_style( 'generate-fonts', $fonts_url, array(), '1.0', 'all' );
+				global $woostify_version;
+				wp_enqueue_style( 'generate-fonts', $fonts_url, array(), $woostify_version, 'all' );
 			}
 		}
 

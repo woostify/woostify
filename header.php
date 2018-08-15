@@ -9,7 +9,8 @@
 
 $woostify_customizer = new Woostify_Customizer();
 $woostify_theme_mods = $woostify_customizer->get_woostify_theme_mods();
-fw_print( $woostify_theme_mods );
+/*fw_print( $woostify_theme_mods );*/
+
 
 ?>
 
