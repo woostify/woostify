@@ -99,17 +99,17 @@ if ( ! class_exists( 'Woostify_Jetpack' ) ) :
 			global $woostify_version;
 
 			wp_enqueue_style(
-                'woostify-jetpack-style',
-                WOOSTIFY_THEME_URI . 'assets/css/jetpack/jetpack.css',
-                '',
-                $woostify_version
-            );
+				'woostify-jetpack-style',
+				WOOSTIFY_THEME_URI . 'assets/css/jetpack/jetpack.css',
+				'',
+				$woostify_version
+			);
 
 			wp_style_add_data(
-                'woostify-jetpack-style',
-                'rtl',
-                'replace'
-            );
+				'woostify-jetpack-style',
+				'rtl',
+				'replace'
+			);
 		}
 	}
 

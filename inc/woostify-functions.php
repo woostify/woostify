@@ -5,7 +5,7 @@
  * @package woostify
  */
 
-if ( ! function_exists('woostify_is_woocommerce_activated') ) {
+if ( ! function_exists( 'woostify_is_woocommerce_activated' ) ) {
 	/**
 	 * Query WooCommerce activation
 	 */
@@ -207,16 +207,4 @@ function woostify_sanitize_hex_color( $color ) {
 	}
 
 	return null;
-}
-
-
-
-/**
- * Woostify Sanitize Interger
- *
- * @param      string  $fontsize Convert a value to non-negative integer
- * @return     integer  $fontsize
- */
-function woostify_sanitize_integer( $fontsize ) {
-    return absint( $fontsize );
 }

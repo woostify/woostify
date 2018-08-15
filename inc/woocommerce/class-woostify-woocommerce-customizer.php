@@ -58,7 +58,7 @@ if ( ! class_exists( 'Woostify_WooCommerce_Customizer' ) ) :
 			 */
 			$wp_customize->add_section(
 				'woostify_single_product_page', array(
-					'title'                 => __( 'Product Page', 'Woostify'),
+					'title'                 => __( 'Product Page', 'woostify' ),
 					'priority'              => 60,
 				)
 			);
@@ -81,8 +81,8 @@ if ( ! class_exists( 'Woostify_WooCommerce_Customizer' ) ) :
 				'woostify_sticky_add_to_cart', array(
 					'type'                  => 'checkbox',
 					'section'               => 'woostify_single_product_page',
-					'label'                 => __( 'Sticky Add-To-Cart', 'Woostify'),
-					'description'           => __( 'A small content bar at the top of the browser window which includes relevant product information and an add-to-cart button. It slides into view once the standard add-to-cart button has scrolled out of view.', 'Woostify'),
+					'label'                 => __( 'Sticky Add-To-Cart', 'woostify' ),
+					'description'           => __( 'A small content bar at the top of the browser window which includes relevant product information and an add-to-cart button. It slides into view once the standard add-to-cart button has scrolled out of view.', 'woostify' ),
 					'priority'              => 10,
 				)
 			);
@@ -91,8 +91,8 @@ if ( ! class_exists( 'Woostify_WooCommerce_Customizer' ) ) :
 				'woostify_product_pagination', array(
 					'type'                  => 'checkbox',
 					'section'               => 'woostify_single_product_page',
-					'label'                 => __( 'Product Pagination', 'Woostify'),
-					'description'           => __( 'Displays next and previous links on product pages. A product thumbnail is displayed with the title revealed on hover.', 'Woostify'),
+					'label'                 => __( 'Product Pagination', 'woostify' ),
+					'description'           => __( 'Displays next and previous links on product pages. A product thumbnail is displayed with the title revealed on hover.', 'woostify' ),
 					'priority'              => 20,
 				)
 			);
@@ -316,7 +316,7 @@ if ( ! class_exists( 'Woostify_WooCommerce_Customizer' ) ) :
 		 * @return void
 		 */
 		public function add_customizer_css() {
-			//wp_add_inline_style( 'woostify-woocommerce-style', $this->get_css() );
+			/*wp_add_inline_style( 'woostify-woocommerce-style', $this->get_css() );*/
 		}
 
 	}

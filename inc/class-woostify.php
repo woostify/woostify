@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists('woostify' ) ) :
+if ( ! class_exists( 'woostify' ) ) :
 
 	/**
 	 * The main Woostify class
@@ -31,9 +31,9 @@ if ( ! class_exists('woostify' ) ) :
 			add_filter( 'wp_page_menu_args', array( $this, 'page_menu_args' ) );
 			add_filter( 'navigation_markup_template', array( $this, 'navigation_markup_template' ) );
 			add_action( 'enqueue_embed_scripts', array( $this, 'print_embed_styles' ) );
-            add_action( 'customize_preview_init', array( $this, 'customize_live_preview' ) );
-            add_filter( 'wp_tag_cloud', array( $this, 'remove_tag_inline_style' ) );
-            add_filter( 'excerpt_more', array( $this, 'modify_excerpt_more' ) );
+			add_action( 'customize_preview_init', array( $this, 'customize_live_preview' ) );
+			add_filter( 'wp_tag_cloud', array( $this, 'remove_tag_inline_style' ) );
+			add_filter( 'excerpt_more', array( $this, 'modify_excerpt_more' ) );
 		}
 
 		/**
@@ -91,8 +91,8 @@ if ( ! class_exists('woostify' ) ) :
 			register_nav_menus(
 				apply_filters(
 					'woostify_register_nav_menus', array(
-                        'primary'     => __( 'Primary Menu', 'woostify' ),
-                        'footer_menu' => __( 'Footer Menu', 'woostify' ),
+						'primary'     => __( 'Primary Menu', 'woostify' ),
+						'footer_menu' => __( 'Footer Menu', 'woostify' ),
 					)
 				)
 			);
@@ -130,8 +130,10 @@ if ( ! class_exists('woostify' ) ) :
 			 * Setup the WordPress core custom header feature.
 			 */
 			add_theme_support(
-				'custom-header', apply_filters(
-					'woostify_custom_header_args', array(
+				'custom-header',
+				apply_filters(
+					'woostify_custom_header_args',
+					array(
 						'default-image' => '',
 						'header-text'   => false,
 						'width'         => 1950,
@@ -178,19 +180,19 @@ if ( ! class_exists('woostify' ) ) :
 				'description'   => __( 'Appears in the sidebar of the site.', 'woostify' ),
 			);
 
-            if ( class_exists( 'woocommerce' ) ) {
-                $sidebar_args['shop_sidebar'] = array(
-                    'name'          => __( 'Sidebar Shop', 'woostify' ),
-                    'id'            => 'sidebar-shop',
-                    'description'   => __( 'Appears in the sidebar of shop/product page.', 'woostify' ),
-                );
-            }
+			if ( class_exists( 'woocommerce' ) ) {
+				$sidebar_args['shop_sidebar'] = array(
+					'name'          => __( 'Sidebar Shop', 'woostify' ),
+					'id'            => 'sidebar-shop',
+					'description'   => __( 'Appears in the sidebar of shop/product page.', 'woostify' ),
+				);
+			}
 
-            $sidebar_args['footer'] = array(
-                'name'        => __( 'Footer', 'woostify' ),
-                'id'          => 'footer',
-                'description' => __( 'Appears in the footer section of the site.', 'woostify' ),
-            );
+			$sidebar_args['footer'] = array(
+				'name'        => __( 'Footer', 'woostify' ),
+				'id'          => 'footer',
+				'description' => __( 'Appears in the footer section of the site.', 'woostify' ),
+			);
 
 			foreach ( $sidebar_args as $sidebar => $args ) {
 				$widget_tags = array(
@@ -224,18 +226,18 @@ if ( ! class_exists('woostify' ) ) :
 			 * Styles
 			 */
 			wp_enqueue_style(
-                'woostify-style',
-                WOOSTIFY_THEME_URI . '/style.css',
-                '',
-                $woostify_version
-            );
+				'woostify-style',
+				WOOSTIFY_THEME_URI . '/style.css',
+				'',
+				$woostify_version
+			);
 
 			/**
 			 * Fonts
 			 */
 			$google_fonts = apply_filters(
 				'woostify_google_font_families',
-                array(
+				array(
 					'source-sans-pro' => 'Source+Sans+Pro:400,300,300italic,400italic,600,700,900',
 				)
 			);
@@ -248,11 +250,11 @@ if ( ! class_exists('woostify' ) ) :
 			$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
 
 			wp_enqueue_style(
-                'woostify-fonts',
-                $fonts_url,
-                array(),
-                $woostify_version
-            );
+				'woostify-fonts',
+				$fonts_url,
+				array(),
+				$woostify_version
+			);
 
 			/**
 			 * Scripts
@@ -260,20 +262,20 @@ if ( ! class_exists('woostify' ) ) :
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_script(
-                'woostify-navigation',
-                WOOSTIFY_THEME_URI . '/assets/js/navigation' . $suffix . '.js',
-                array(),
-                $woostify_version,
-                true
-            );
+				'woostify-navigation',
+				WOOSTIFY_THEME_URI . '/assets/js/navigation' . $suffix . '.js',
+				array(),
+				$woostify_version,
+				true
+			);
 
 			wp_enqueue_script(
-                'woostify-skip-link-focus-fix',
-                WOOSTIFY_THEME_URI . '/assets/js/skip-link-focus-fix' . $suffix . '.js',
-                array(),
-                $woostify_version,
-                true
-            );
+				'woostify-skip-link-focus-fix',
+				WOOSTIFY_THEME_URI . '/assets/js/skip-link-focus-fix' . $suffix . '.js',
+				array(),
+				$woostify_version,
+				true
+			);
 
 			if ( has_nav_menu( 'handheld' ) ) {
 				$woostify_l10n = array(
@@ -282,20 +284,20 @@ if ( ! class_exists('woostify' ) ) :
 				);
 
 				wp_localize_script(
-                    'woostify-navigation',
-                    'storefrontScreenReaderText',
-                    $woostify_l10n
-                );
+					'woostify-navigation',
+					'storefrontScreenReaderText',
+					$woostify_l10n
+				);
 			}
 
 			if ( is_page_template( 'template-homepage.php' ) && has_post_thumbnail() ) {
 				wp_enqueue_script(
-                    'woostify-homepage',
-                    WOOSTIFY_THEME_URI . '/assets/js/homepage' . $suffix . '.js',
-                    array(),
-                    $woostify_version,
-                    true
-                );
+					'woostify-homepage',
+					WOOSTIFY_THEME_URI . '/assets/js/homepage' . $suffix . '.js',
+					array(),
+					$woostify_version,
+					true
+				);
 			}
 
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -314,11 +316,11 @@ if ( ! class_exists('woostify' ) ) :
 			if ( is_child_theme() ) {
 				$child_theme = wp_get_theme( get_stylesheet() );
 				wp_enqueue_style(
-                    'woostify-child-style',
-                    get_stylesheet_uri(),
-                    array(),
-                    $child_theme->get( 'Version' )
-                );
+					'woostify-child-style',
+					get_stylesheet_uri(),
+					array(),
+					$child_theme->get( 'Version' )
+				);
 			}
 		}
 
@@ -340,15 +342,19 @@ if ( ! class_exists('woostify' ) ) :
 		 * @return array
 		 */
 		public function body_classes( $classes ) {
-            /*! BROWSER DETECT
-            ------------------------------------------------->*/
-            global $is_IE, $is_edge, $is_safari, $is_iphone;
+			/*browser detect*/
+			global $is_IE, $is_edge, $is_safari, $is_iphone;
 
-            if( $is_iphone ) $classes[]     = 'iphone-detected';
-            elseif( $is_IE ) $classes[]     = 'ie-detected';
-            elseif( $is_edge ) $classes[]   = 'edge-detected';
-            elseif( $is_safari ) $classes[] = 'safari-detected';
-            
+			if ( $is_iphone ) {
+				$classes[] = 'iphone-detected';
+			} elseif ( $is_IE ) {
+				$classes[] = 'ie-detected';
+			} elseif ( $is_edge ) {
+				$classes[]   = 'edge-detected';
+			} elseif ( $is_safari ) {
+				$classes[] = 'safari-detected';
+			}
+
 			// Adds a class to blogs with more than 1 published author.
 			if ( is_multi_author() ) {
 				$classes[] = 'group-blog';
@@ -407,9 +413,11 @@ if ( ! class_exists('woostify' ) ) :
 		 */
 		public function print_embed_styles() {
 			wp_enqueue_style(
-                'source-sans-pro',
-                '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,700,900'
-            );
+				'source-sans-pro',
+				'//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,700,900',
+				array(),
+				'1.0'
+			);
 
 			$accent_color     = get_theme_mod( 'woostify_accent_color' );
 			$background_color = woostify_get_content_background_color();
@@ -451,35 +459,39 @@ if ( ! class_exists('woostify' ) ) :
 			<?php
 		}
 
-        /**
-         * Customizer live preview
-         */
-        public function customize_live_preview() {
-            global $woostify_version;
+		/**
+		 * Customizer live preview
+		 */
+		public function customize_live_preview() {
+			global $woostify_version;
 
-            wp_enqueue_script(
-                'woostify-customize-preview-js',
-                WOOSTIFY_THEME_URI . '/assets/js/customize-preview.js',
-                array(),
-                $woostify_version,
-                true
-            );
-        }
+			wp_enqueue_script(
+				'woostify-customize-preview-js',
+				WOOSTIFY_THEME_URI . '/assets/js/customize-preview.js',
+				array(),
+				$woostify_version,
+				true
+			);
+		}
 
-        /**
-         * Remove inline css on tag cloud
-         */
-        function remove_tag_inline_style( $string ){
-            return preg_replace( '/ style=("|\')(.*?)("|\')/', '', $string );
-        }
+		/**
+		 * Remove inline css on tag cloud
+		 *
+		 * @param string $string tagCloud.
+		 */
+		public function remove_tag_inline_style( $string ) {
+			return preg_replace( '/ style=("|\')(.*?)("|\')/', '', $string );
+		}
 
 
-        /**
-         * Modify excerpt more to `...`
-         */
-        public function modify_excerpt_more( $more ) {
-            return '...';
-        }
+		/**
+		 * Modify excerpt more to `...`
+		 *
+		 * @param string $more More exerpt.
+		 */
+		public function modify_excerpt_more( $more ) {
+			return '...';
+		}
 	}
 endif;
 

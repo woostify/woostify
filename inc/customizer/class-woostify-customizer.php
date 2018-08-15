@@ -37,24 +37,25 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 */
 		public static function get_woostify_default_setting_values() {
 			return apply_filters(
-				'woostify_setting_default_values', $args = array(
-                'woostify_heading_color'               => '#2b2b2b',
-				'woostify_text_color'                  => '#8f8f8f',
-				'woostify_accent_color'                => '#1346af',
-				'woostify_header_background_color'     => '#ffffff',
-				'woostify_header_text_color'           => '#404040',
-				'woostify_header_link_color'           => '#333333',
-				'woostify_footer_background_color'     => '#f0f0f0',
-				'woostify_footer_heading_color'        => '#333333',
-				'woostify_footer_text_color'           => '#6d6d6d',
-				'woostify_footer_link_color'           => '#333333',
-				'woostify_button_background_color'     => '#eeeeee',
-				'woostify_button_text_color'           => '#333333',
-				'woostify_button_alt_background_color' => '#333333',
-				'woostify_button_alt_text_color'       => '#ffffff',
-				'woostify_layout'                      => 'right',
-				'background_color'                     => 'ffffff',
-			)
+				'woostify_setting_default_values',
+				$args = array(
+					'woostify_heading_color'               => '#2b2b2b',
+					'woostify_text_color'                  => '#8f8f8f',
+					'woostify_accent_color'                => '#1346af',
+					'woostify_header_background_color'     => '#ffffff',
+					'woostify_header_text_color'           => '#404040',
+					'woostify_header_link_color'           => '#333333',
+					'woostify_footer_background_color'     => '#f0f0f0',
+					'woostify_footer_heading_color'        => '#333333',
+					'woostify_footer_text_color'           => '#6d6d6d',
+					'woostify_footer_link_color'           => '#333333',
+					'woostify_button_background_color'     => '#eeeeee',
+					'woostify_button_text_color'           => '#333333',
+					'woostify_button_alt_background_color' => '#333333',
+					'woostify_button_alt_text_color'       => '#ffffff',
+					'woostify_layout'                      => 'right',
+					'background_color'                     => 'ffffff',
+				)
 			);
 		}
 
@@ -150,7 +151,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			 */
 			require_once dirname( __FILE__ ) . '/custom-controls/radio-image/class-woostify-customizer-control-radio-image.php';
 			require_once dirname( __FILE__ ) . '/custom-controls/divider/class-woostify-customizer-control-arbitrary.php';
-			require_once dirname( __FILE__ ) . '/custom-controls/typography/class-typography-control.php';
+			require_once dirname( __FILE__ ) . '/custom-controls/typography/class-woostify-typography-customize-control.php';
 
 			/**
 			 * Register section & panel
@@ -160,13 +161,13 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			/**
 			 * Section, settings & control
 			 */
-            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/buttons/button.php';
-            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/footer/footer.php';
-            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/header/header.php';
-            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/color/color.php';
-            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/typography.php';
-            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog.php';
-            require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/buttons/button.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/footer/footer.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/header/header.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/color/color.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/typography.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop.php';
 		}
 
 
@@ -201,35 +202,35 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		public function customizer_custom_control_css() {
 			?>
 			<style>
-                li#customize-control-woostify_settings-body_font_size {
-                    margin-bottom: 25px;
-                }
+				li#customize-control-woostify_settings-body_font_size {
+					margin-bottom: 25px;
+				}
 
-                .customize-control-radio-image input[type=radio] {
-                    display: none;
-                }
+				.customize-control-radio-image input[type=radio] {
+					display: none;
+				}
 
-                .customize-control-radio-image label {
-                    display: block;
-                    width: 48%;
-                    float: left;
-                    margin-right: 4%;
-                }
+				.customize-control-radio-image label {
+					display: block;
+					width: 48%;
+					float: left;
+					margin-right: 4%;
+				}
 
-                .customize-control-radio-image label:nth-of-type(2n) {
-                    margin-right: 0;
-                }
+				.customize-control-radio-image label:nth-of-type(2n) {
+					margin-right: 0;
+				}
 
-                .customize-control-radio-image img {
-                    opacity: .5;
-                }
+				.customize-control-radio-image img {
+					opacity: .5;
+				}
 
-                .customize-control-radio-image input[type=radio]:checked + label img,
-                .customize-control-radio-image img:hover {
-                    opacity: 1;
-                }
+				.customize-control-radio-image input[type=radio]:checked + label img,
+				.customize-control-radio-image img:hover {
+					opacity: 1;
+				}
 
-            </style>
+			</style>
 			<?php
 		}
 

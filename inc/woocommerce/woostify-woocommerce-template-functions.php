@@ -72,9 +72,9 @@ if ( ! function_exists( 'woostify_cart_link' ) ) {
 	 */
 	function woostify_cart_link() {
 		?>
-			<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'Woostify'); ?>">
+			<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'woostify' ); ?>">
 				<?php /* translators: %d: number of items in cart */ ?>
-				<?php echo wp_kses_post( WC()->cart->get_cart_subtotal() ); ?> <span class="count"><?php echo wp_kses_data( sprintf( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'Woostify'), WC()->cart->get_cart_contents_count() ) ); ?></span>
+				<?php echo wp_kses_post( WC()->cart->get_cart_subtotal() ); ?> <span class="count"><?php echo wp_kses_data( sprintf( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'woostify' ), WC()->cart->get_cart_contents_count() ) ); ?></span>
 			</a>
 		<?php
 	}
@@ -256,7 +256,7 @@ if ( ! function_exists( 'woostify_product_categories' ) ) {
 				'columns'           => 3,
 				'child_categories'  => 0,
 				'orderby'           => 'name',
-				'title'             => __( 'Shop by Category', 'Woostify'),
+				'title'             => __( 'Shop by Category', 'woostify' ),
 			)
 		);
 
@@ -275,7 +275,7 @@ if ( ! function_exists( 'woostify_product_categories' ) ) {
 		 * Only display the section if the shortcode returns product categories
 		 */
 		if ( false !== strpos( $shortcode_content, 'product-category' ) ) {
-			echo '<section class="woostify-product-section woostify-product-categories" aria-label="' . esc_attr__( 'Product Categories', 'Woostify') . '">';
+			echo '<section class="woostify-product-section woostify-product-categories" aria-label="' . esc_attr__( 'Product Categories', 'woostify' ) . '">';
 
 			do_action( 'woostify_homepage_before_product_categories' );
 
@@ -308,7 +308,7 @@ if ( ! function_exists( 'woostify_recent_products' ) ) {
 				'columns' => 4,
 				'orderby' => 'date',
 				'order'   => 'desc',
-				'title'   => __( 'New In', 'Woostify'),
+				'title'   => __( 'New In', 'woostify' ),
 			)
 		);
 
@@ -327,7 +327,7 @@ if ( ! function_exists( 'woostify_recent_products' ) ) {
 		 * Only display the section if the shortcode returns products
 		 */
 		if ( false !== strpos( $shortcode_content, 'product' ) ) {
-			echo '<section class="woostify-product-section woostify-recent-products" aria-label="' . esc_attr__( 'Recent Products', 'Woostify') . '">';
+			echo '<section class="woostify-product-section woostify-recent-products" aria-label="' . esc_attr__( 'Recent Products', 'woostify' ) . '">';
 
 			do_action( 'woostify_homepage_before_recent_products' );
 
@@ -361,7 +361,7 @@ if ( ! function_exists( 'woostify_featured_products' ) ) {
 				'orderby'    => 'date',
 				'order'      => 'desc',
 				'visibility' => 'featured',
-				'title'      => __( 'We Recommend', 'Woostify'),
+				'title'      => __( 'We Recommend', 'woostify' ),
 			)
 		);
 
@@ -381,7 +381,7 @@ if ( ! function_exists( 'woostify_featured_products' ) ) {
 		 * Only display the section if the shortcode returns products
 		 */
 		if ( false !== strpos( $shortcode_content, 'product' ) ) {
-			echo '<section class="woostify-product-section woostify-featured-products" aria-label="' . esc_attr__( 'Featured Products', 'Woostify') . '">';
+			echo '<section class="woostify-product-section woostify-featured-products" aria-label="' . esc_attr__( 'Featured Products', 'woostify' ) . '">';
 
 			do_action( 'woostify_homepage_before_featured_products' );
 
@@ -414,7 +414,7 @@ if ( ! function_exists( 'woostify_popular_products' ) ) {
 				'columns' => 4,
 				'orderby' => 'rating',
 				'order'   => 'desc',
-				'title'   => __( 'Fan Favorites', 'Woostify'),
+				'title'   => __( 'Fan Favorites', 'woostify' ),
 			)
 		);
 
@@ -433,7 +433,7 @@ if ( ! function_exists( 'woostify_popular_products' ) ) {
 		 * Only display the section if the shortcode returns products
 		 */
 		if ( false !== strpos( $shortcode_content, 'product' ) ) {
-			echo '<section class="woostify-product-section woostify-popular-products" aria-label="' . esc_attr__( 'Popular Products', 'Woostify') . '">';
+			echo '<section class="woostify-product-section woostify-popular-products" aria-label="' . esc_attr__( 'Popular Products', 'woostify' ) . '">';
 
 			do_action( 'woostify_homepage_before_popular_products' );
 
@@ -467,7 +467,7 @@ if ( ! function_exists( 'woostify_on_sale_products' ) ) {
 				'orderby' => 'date',
 				'order'   => 'desc',
 				'on_sale' => 'true',
-				'title'   => __( 'On Sale', 'Woostify'),
+				'title'   => __( 'On Sale', 'woostify' ),
 			)
 		);
 
@@ -487,7 +487,7 @@ if ( ! function_exists( 'woostify_on_sale_products' ) ) {
 		 * Only display the section if the shortcode returns products
 		 */
 		if ( false !== strpos( $shortcode_content, 'product' ) ) {
-			echo '<section class="woostify-product-section woostify-on-sale-products" aria-label="' . esc_attr__( 'On Sale Products', 'Woostify') . '">';
+			echo '<section class="woostify-product-section woostify-on-sale-products" aria-label="' . esc_attr__( 'On Sale Products', 'woostify' ) . '">';
 
 			do_action( 'woostify_homepage_before_on_sale_products' );
 
@@ -520,7 +520,7 @@ if ( ! function_exists( 'woostify_best_selling_products' ) ) {
 				'columns' => 4,
 				'orderby' => 'popularity',
 				'order'   => 'desc',
-				'title'   => esc_attr__( 'Best Sellers', 'Woostify'),
+				'title'   => esc_attr__( 'Best Sellers', 'woostify' ),
 			)
 		);
 
@@ -539,7 +539,7 @@ if ( ! function_exists( 'woostify_best_selling_products' ) ) {
 		 * Only display the section if the shortcode returns products
 		 */
 		if ( false !== strpos( $shortcode_content, 'product' ) ) {
-			echo '<section class="woostify-product-section woostify-best-selling-products" aria-label="' . esc_attr__( 'Best Selling Products', 'Woostify') . '">';
+			echo '<section class="woostify-product-section woostify-best-selling-products" aria-label="' . esc_attr__( 'Best Selling Products', 'woostify' ) . '">';
 
 			do_action( 'woostify_homepage_before_best_selling_products' );
 
@@ -577,7 +577,7 @@ if ( ! function_exists( 'woostify_promoted_products' ) ) {
 
 			if ( wc_get_featured_product_ids() ) {
 
-				echo '<h2>' . esc_html__( 'Featured Products', 'Woostify') . '</h2>';
+				echo '<h2>' . esc_html__( 'Featured Products', 'woostify' ) . '</h2>';
 
 				echo woostify_do_shortcode(
 					'featured_products', array(
@@ -587,7 +587,7 @@ if ( ! function_exists( 'woostify_promoted_products' ) ) {
 				); // WPCS: XSS ok.
 			} elseif ( wc_get_product_ids_on_sale() ) {
 
-				echo '<h2>' . esc_html__( 'On Sale Now', 'Woostify') . '</h2>';
+				echo '<h2>' . esc_html__( 'On Sale Now', 'woostify' ) . '</h2>';
 
 				echo woostify_do_shortcode(
 					'sale_products', array(
@@ -597,7 +597,7 @@ if ( ! function_exists( 'woostify_promoted_products' ) ) {
 				); // WPCS: XSS ok.
 			} elseif ( $recent_fallback ) {
 
-				echo '<h2>' . esc_html__( 'New In Store', 'Woostify') . '</h2>';
+				echo '<h2>' . esc_html__( 'New In Store', 'woostify' ) . '</h2>';
 
 				echo woostify_do_shortcode(
 					'recent_products', array(
@@ -666,7 +666,7 @@ if ( ! function_exists( 'woostify_handheld_footer_bar_search' ) ) {
 	 * @since 2.0.0
 	 */
 	function woostify_handheld_footer_bar_search() {
-		echo '<a href="">' . esc_attr__( 'Search', 'Woostify') . '</a>';
+		echo '<a href="">' . esc_attr__( 'Search', 'woostify' ) . '</a>';
 		woostify_product_search();
 	}
 }
@@ -679,7 +679,7 @@ if ( ! function_exists( 'woostify_handheld_footer_bar_cart_link' ) ) {
 	 */
 	function woostify_handheld_footer_bar_cart_link() {
 		?>
-			<a class="footer-cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'Woostify'); ?>">
+			<a class="footer-cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'woostify' ); ?>">
 				<span class="count"><?php echo wp_kses_data( WC()->cart->get_cart_contents_count() ); ?></span>
 			</a>
 		<?php
@@ -693,7 +693,7 @@ if ( ! function_exists( 'woostify_handheld_footer_bar_account_link' ) ) {
 	 * @since 2.0.0
 	 */
 	function woostify_handheld_footer_bar_account_link() {
-		echo '<a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '">' . esc_attr__( 'My Account', 'Woostify') . '</a>';
+		echo '<a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '">' . esc_attr__( 'My Account', 'woostify' ) . '</a>';
 	}
 }
 
@@ -728,7 +728,7 @@ if ( ! function_exists( 'woostify_single_product_pagination' ) ) {
 		}
 
 		?>
-		<nav class="storefront-product-pagination" aria-label="<?php esc_attr_e( 'More products', 'Woostify'); ?>">
+		<nav class="storefront-product-pagination" aria-label="<?php esc_attr_e( 'More products', 'woostify' ); ?>">
 			<?php if ( $previous_product && $previous_product->is_visible() ) : ?>
 				<?php previous_post_link( '%link', wp_kses_post( $previous_product->get_image() ) . '<span class="woostify-product-pagination__title">%title</span>', $same_category, '', 'product_cat' ); ?>
 			<?php endif; ?>
@@ -773,7 +773,7 @@ if ( ! function_exists( 'woostify_sticky_single_add_to_cart' ) ) {
 					<div class="storefront-sticky-add-to-cart__content">
 						<?php echo wp_kses_post( woocommerce_get_product_thumbnail() ); ?>
 						<div class="storefront-sticky-add-to-cart__content-product-info">
-							<span class="storefront-sticky-add-to-cart__content-title"><?php esc_attr_e( 'You\'re viewing:', 'Woostify'); ?> <strong><?php the_title(); ?></strong></span>
+							<span class="storefront-sticky-add-to-cart__content-title"><?php esc_attr_e( 'You\'re viewing:', 'woostify' ); ?> <strong><?php the_title(); ?></strong></span>
 							<span class="storefront-sticky-add-to-cart__content-price"><?php echo wp_kses_post( $product->get_price_html() ); ?></span>
 							<?php echo wp_kses_post( wc_get_rating_html( $product->get_average_rating() ) ); ?>
 						</div>
@@ -808,7 +808,7 @@ if ( ! function_exists( 'woostify_woocommerce_brands_homepage_section' ) ) {
 				'columns'    => 4,
 				'orderby'    => 'name',
 				'show_empty' => false,
-				'title'      => __( 'Shop by Brand', 'Woostify'),
+				'title'      => __( 'Shop by Brand', 'woostify' ),
 			)
 		);
 
@@ -823,7 +823,7 @@ if ( ! function_exists( 'woostify_woocommerce_brands_homepage_section' ) ) {
 			)
 		);
 
-		echo '<section class="woostify-product-section woostify-woocommerce-brands" aria-label="' . esc_attr__( 'Product Brands', 'Woostify') . '">';
+		echo '<section class="woostify-product-section woostify-woocommerce-brands" aria-label="' . esc_attr__( 'Product Brands', 'woostify' ) . '">';
 
 		do_action( 'woostify_homepage_before_woocommerce_brands' );
 

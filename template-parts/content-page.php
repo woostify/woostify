@@ -12,8 +12,8 @@
 	/**
 	 * Functions hooked in to woostify_page add_action
 	 *
-	 * @hooked woostify_page_header          - 10
-	 * @hooked woostify_page_content         - 20
+	 * @hooked woostify_page_header  - 10
+	 * @hooked woostify_page_content - 20
 	 */
 	do_action( 'woostify_page' );
 	?>

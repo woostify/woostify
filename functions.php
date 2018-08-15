@@ -33,12 +33,15 @@ $woostify = (object) array(
 	'customizer' => require WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-customizer.php',
 );
 
-require WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-get-css.php'; // Output CSS
+
+require WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-get-css.php';
 
 /**
  * Sanitize our Google Font variants
  *
- * @since 2.0
+ * @param      string $input sanitize variants.
+ * @return     sanitize_text_field( $input )
+ * @since 1.0
  */
 function woostify_sanitize_variants( $input ) {
 	if ( is_array( $input ) ) {
@@ -58,8 +61,7 @@ if ( class_exists( 'Jetpack' ) ) {
 
 if ( woostify_is_woocommerce_activated() ) {
 	$woostify->woocommerce            = require WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce.php';
-	//$woostify->woocommerce_customizer = require WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce-customizer.php';
-
+	/*$woostify->woocommerce_customizer = require WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce-customizer.php';*/
 	require WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-hooks.php';
 	require WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-functions.php';
 }

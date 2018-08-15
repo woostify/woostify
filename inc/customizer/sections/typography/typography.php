@@ -2,7 +2,7 @@
 /**
  * Typography related functions.
  *
- * @package GeneratePress
+ * @package woostify
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,7 +14,7 @@ $defaults = Woostify_Fonts_Helpers::woostify_get_default_fonts();
 
 if ( method_exists( $wp_customize, 'register_control_type' ) ) {
 	$wp_customize->register_control_type( 'Woostify_Typography_Customize_Control' );
-	//$wp_customize->register_control_type( 'woostify_Range_Slider_Control' );
+	/*$wp_customize->register_control_type( 'woostify_Range_Slider_Control' );*/
 }
 
 /**
@@ -105,7 +105,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['body_font_size'],
 		'type'              => 'option',
-		'sanitize_callback' => 'woostify_sanitize_integer',
+		'sanitize_callback' => 'sanitize_text_field',
 		'transport'         => 'postMessage',
 	)
 );
