@@ -26,7 +26,7 @@
 							url: ajaxurl,
 							data: {
 								action: 'woostify_get_all_google_fonts_ajax',
-								gp_customize_nonce: gp_customize.nonce
+								woostify_customize_nonce: woostify_customize.nonce
 							},
 							async: false,
 							dataType: 'json',

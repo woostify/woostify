@@ -160,7 +160,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 			<# if ( 'undefined' !== typeof ( data.category ) ) { #>
 				<div class="woostify-font-category">
 					<label>
-							<input name="{{{ data.category.id }}}" type="hidden" {{{ data.category.link }}} value="{{{ data.category.value }}}" class="gp-hidden-input" />
+							<input name="{{{ data.category.id }}}" type="hidden" {{{ data.category.link }}} value="{{{ data.category.value }}}" class="woostify-hidden-input" />
 						<# if ( '' !== data.category_title ) { #>
 							<p class="description">{{ data.category_title }}</p>
 						<# } #>

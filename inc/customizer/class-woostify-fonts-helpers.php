@@ -55,7 +55,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		 * @since 1.0
 		 */
 		public function woostify_do_control_inline_scripts() {
-			wp_localize_script( 'woostify-typography-customizer', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );
+			wp_localize_script( 'woostify-typography-customizer', 'woostify_customize', array( 'nonce' => wp_create_nonce( 'woostify_customize_nonce' ) ) );
 			wp_localize_script( 'woostify-typography-customizer', 'typography_defaults', $this->woostify_typography_default_fonts() );
 		}
 
@@ -371,12 +371,12 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		 */
 		public function woostify_get_all_google_fonts_ajax() {
 			/*Bail if the nonce doesn't check out*/
-			if ( ! isset( $_POST['gp_customize_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['gp_customize_nonce'] ), 'gp_customize_nonce' ) ) {
+			if ( ! isset( $_POST['woostify_customize_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['woostify_customize_nonce'] ), 'woostify_customize_nonce' ) ) {
 				wp_die();
 			}
 
 			/*Do another nonce check*/
-			check_ajax_referer( 'gp_customize_nonce', 'gp_customize_nonce' );
+			check_ajax_referer( 'woostify_customize_nonce', 'woostify_customize_nonce' );
 
 			/*Bail if user can't edit theme options*/
 			if ( ! current_user_can( 'edit_theme_options' ) ) {
