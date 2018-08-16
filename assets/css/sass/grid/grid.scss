@@ -1,3 +1,6 @@
+//ios
+$screen-ios                                    : 375px !default;
+
 //Small screen / tablet
 $screen-sm                                     : 768px !default;
 $screen-sm-min                                 : $screen-sm !default;
@@ -27,84 +30,84 @@ $container-lg                                  : $container-large-desktop !defau
 
 //Framework grid generation
 @mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
-    @for $i from (1 + 1) through $grid-columns {
-        $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
-    }
-    #{$list} {
-        position: relative;
-        min-height: 1px;
-        padding-left: ($grid-gutter-width / 2);
-        padding-right: ($grid-gutter-width / 2);
-    }
+	@for $i from (1 + 1) through $grid-columns {
+		$list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+	}
+	#{$list} {
+		position: relative;
+		min-height: 1px;
+		padding-left: ($grid-gutter-width / 2);
+		padding-right: ($grid-gutter-width / 2);
+	}
 }
 
 @mixin calc-grid-column($index, $class, $type) {
-    @if ($type==width) and ($index > 0) {
-        .col-#{$class}-#{$index} {
-            width: percentage(($index / $grid-columns));
-        }
-    }
+	@if ($type==width) and ($index > 0) {
+		.col-#{$class}-#{$index} {
+			width: percentage(($index / $grid-columns));
+		}
+	}
 }
 
 //[converter] This is defined recursively in LESS, but Sass supports real loops
 @mixin loop-grid-columns($columns, $class, $type) {
-    @for $i from 0 through $columns {
-        @include calc-grid-column($i, $class, $type);
-    }
+	@for $i from 0 through $columns {
+		@include calc-grid-column($i, $class, $type);
+	}
 }
 
 //[converter] This is defined recursively in LESS, but Sass supports real loops
 @mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
-    @for $i from (1 + 1) through $grid-columns {
-        $list: "#{$list}, .col-#{$class}-#{$i}";
-    }
-    #{$list} {
-        float: left;
-    }
+	@for $i from (1 + 1) through $grid-columns {
+		$list: "#{$list}, .col-#{$class}-#{$i}";
+	}
+	#{$list} {
+		float: left;
+	}
 }
 
 //Create grid for specific class
 @mixin make-grid($class) {
-    @include float-grid-columns($class);
-    @include loop-grid-columns($grid-columns, $class, width);
+	@include float-grid-columns($class);
+	@include loop-grid-columns($grid-columns, $class, width);
 }
 
 //Grid system
 @mixin container-fixed($gutter: $grid-gutter-width) {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: ($gutter / 2);
-    padding-right: ($gutter / 2);
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: ($gutter / 2);
+	padding-right: ($gutter / 2);
 }
 
 //Creates a wrapper for a series of columns
 @mixin make-row($gutter: $grid-gutter-width) {
-    margin-left: ($gutter / -2);
-    margin-right: ($gutter / -2);
+	margin-left: ($gutter / -2);
+	margin-right: ($gutter / -2);
 }
 
 //Row
 .row {
-    @include make-row;
+	@include make-row;
 }
 
 //container
 .container {
-    @include container-fixed;
-    @media (min-width: $screen-sm-min) {
-        width: $container-sm;
-    }
-    @media (min-width: $screen-md-min) {
-        width: $container-md;
-    }
-    @media (min-width: $screen-lg-min) {
-        width: $container-lg;
-    }
+	@include container-fixed;
+	@media (min-width: $screen-sm-min) {
+		width: $container-sm;
+	}
+	@media (min-width: $screen-md-min) {
+		width: $container-md;
+	}
+	@media (min-width: $screen-lg-min) {
+		width: $container-lg;
+	}
 }
 
 //Fluid container
 .container-fluid {
-    @include container-fixed;
+	@include container-fixed;
 }
 
 //Columns
@@ -115,15 +118,15 @@ $container-lg                                  : $container-large-desktop !defau
 
 //Small grid
 @media (min-width: $screen-sm-min) {
-    @include make-grid(sm);
+	@include make-grid(sm);
 }
 
 //Medium grid
 @media (min-width: $screen-md-min) {
-    @include make-grid(md);
+	@include make-grid(md);
 }
 
 //Large grid
 @media (min-width: $screen-lg-min) {
-    @include make-grid(lg);
+	@include make-grid(lg);
 }

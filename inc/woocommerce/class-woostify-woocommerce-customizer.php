@@ -38,7 +38,8 @@ if ( ! class_exists( 'Woostify_WooCommerce_Customizer' ) ) :
 		 */
 		public static function get_woostify_default_setting_values() {
 			return apply_filters(
-				'woostify_woocommerce_setting_default_values', $args = array(
+				'woostify_woocommerce_setting_default_values',
+				$args = array(
 					'woostify_sticky_add_to_cart' => true,
 					'woostify_product_pagination' => true,
 				)

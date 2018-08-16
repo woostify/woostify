@@ -1,7 +1,5 @@
 .woostify-font-weight,
-.woostify-font-transform,
-#customize-control-woostify_settings-body_font_size,
-#customize-control-woostify_settings-body_line_height{
+.woostify-font-transform{
     float: left;
     width: 50%;
     clear: none;

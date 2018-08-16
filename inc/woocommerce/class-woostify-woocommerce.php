@@ -25,7 +25,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		public function __construct() {
 			add_action( 'after_setup_theme', array( $this, 'setup' ) );
 			add_filter( 'body_class', array( $this, 'woocommerce_body_class' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'woocommerce_scripts' ), 20 );
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 			add_filter( 'woocommerce_output_related_products_args', array( $this, 'related_products_args' ) );
 			add_filter( 'woocommerce_product_thumbnails_columns', array( $this, 'thumbnail_columns' ) );
@@ -107,65 +106,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
-		 * WooCommerce specific scripts & stylesheets
-		 *
-		 * @since 1.0.0
-		 */
-		public function woocommerce_scripts() {
-			global $woostify_version;
-
-			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-
-			wp_enqueue_style(
-				'woostify-woocommerce-style',
-				WOOSTIFY_THEME_URI . 'assets/css/woocommerce/woocommerce.css',
-				array(),
-				$woostify_version
-			);
-
-			wp_style_add_data(
-				'woostify-woocommerce-style',
-				'rtl',
-				'replace'
-			);
-
-			wp_register_script(
-				'woostify-header-cart',
-				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/header-cart' . $suffix . '.js',
-				array(),
-				$woostify_version,
-				true
-			);
-
-			wp_enqueue_script( 'woostify-header-cart' );
-
-			if ( ! class_exists( 'Woostify_Sticky_Add_to_Cart' ) && is_product() ) {
-				wp_register_script(
-					'woostify-sticky-add-to-cart',
-					WOOSTIFY_THEME_URI . 'assets/js/sticky-add-to-cart' . $suffix . '.js',
-					array(),
-					$woostify_version,
-					true
-				);
-			}
-
-			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.3', '<' ) ) {
-				wp_enqueue_style(
-					'woostify-woocommerce-legacy',
-					WOOSTIFY_THEME_URI . 'assets/css/woocommerce/woocommerce-legacy.css',
-					array(),
-					$woostify_version
-				);
-
-				wp_style_add_data(
-					'woostify-woocommerce-legacy',
-					'rtl',
-					'replace'
-				);
-			}
-		}
-
-		/**
 		 * Star rating backwards compatibility script (WooCommerce <2.5).
 		 *
 		 * @since 1.6.0
@@ -175,6 +115,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				?>
 			<script type="text/javascript">
 				var starsEl = document.querySelector( '#respond p.stars' );
+
 				if ( starsEl ) {
 					starsEl.addEventListener( 'click', function( event ) {
 						if ( event.target.tagName === 'A' ) {
@@ -576,10 +517,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * @return array $styles the css
 		 */
 		public function get_woocommerce_extension_css() {
-			$woostify_customizer = new Woostify_Customizer();
-			$woostify_theme_mods = $woostify_customizer->get_woostify_theme_mods();
+			$woostify_customizer         = new Woostify_Customizer();
+			$woostify_theme_mods         = $woostify_customizer->get_woostify_theme_mods();
 
-			$woocommerce_extension_style                = '';
+			$woocommerce_extension_style = '';
 
 			if ( $this->is_woocommerce_extension_activated( 'WC_Bookings' ) ) {
 				$woocommerce_extension_style                    .= '

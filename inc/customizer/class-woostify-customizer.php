@@ -38,20 +38,27 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			return apply_filters(
 				'woostify_setting_default_values',
 				$args = array(
+					// Color.
+					'woostify_theme_color'                 => '#1346af',
+					'woostify_primary_menu_color'                  => '#2b2b2b',
 					'woostify_heading_color'               => '#2b2b2b',
 					'woostify_text_color'                  => '#8f8f8f',
-					'woostify_accent_color'                => '#1346af',
+					'woostify_accent_color'                => '#2b2b2b',
+					// Header.
 					'woostify_header_background_color'     => '#ffffff',
 					'woostify_header_text_color'           => '#404040',
 					'woostify_header_link_color'           => '#333333',
+					// Footer.
 					'woostify_footer_background_color'     => '#f0f0f0',
 					'woostify_footer_heading_color'        => '#333333',
 					'woostify_footer_text_color'           => '#6d6d6d',
 					'woostify_footer_link_color'           => '#333333',
+					// Button.
 					'woostify_button_background_color'     => '#eeeeee',
 					'woostify_button_text_color'           => '#333333',
 					'woostify_button_alt_background_color' => '#333333',
 					'woostify_button_alt_text_color'       => '#ffffff',
+					// Other.
 					'woostify_shop_layout'                 => 'right',
 					'background_color'                     => 'ffffff',
 				)
@@ -65,17 +72,36 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 */
 		public function get_woostify_theme_mods() {
 			$woostify_theme_mods = array(
+				// Background color.
 				'background_color'            => woostify_get_content_background_color(),
-				'accent_color'                => get_theme_mod( 'woostify_accent_color' ),
+
+				// Header color.
 				'header_background_color'     => get_theme_mod( 'woostify_header_background_color' ),
 				'header_link_color'           => get_theme_mod( 'woostify_header_link_color' ),
 				'header_text_color'           => get_theme_mod( 'woostify_header_text_color' ),
+
+				// Footer color.
 				'footer_background_color'     => get_theme_mod( 'woostify_footer_background_color' ),
 				'footer_link_color'           => get_theme_mod( 'woostify_footer_link_color' ),
 				'footer_heading_color'        => get_theme_mod( 'woostify_footer_heading_color' ),
 				'footer_text_color'           => get_theme_mod( 'woostify_footer_text_color' ),
-				'text_color'                  => get_theme_mod( 'woostify_text_color' ),
+
+				// Theme color.
+				'theme_color'                 => get_theme_mod( 'woostify_theme_color' ),
+
+				// Menu color.
+				'primary_menu_color'          => get_theme_mod( 'woostify_primary_menu_color' ),
+
+				// Heading color.
 				'heading_color'               => get_theme_mod( 'woostify_heading_color' ),
+
+				// Body color.
+				'text_color'                  => get_theme_mod( 'woostify_text_color' ),
+
+				// Link color.
+				'accent_color'                => get_theme_mod( 'woostify_accent_color' ),
+
+				// Button color.
 				'button_background_color'     => get_theme_mod( 'woostify_button_background_color' ),
 				'button_text_color'           => get_theme_mod( 'woostify_button_text_color' ),
 				'button_alt_background_color' => get_theme_mod( 'woostify_button_alt_background_color' ),
@@ -164,7 +190,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/footer/footer.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/header/header.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/color/color.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/typography.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/body.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/primary-menu.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/heading.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop.php';
 		}
@@ -183,10 +211,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		public function customizer_custom_control_css() {
 			?>
 			<style>
-				li#customize-control-woostify_settings-body_font_size {
-					margin-bottom: 25px;
-				}
-
 				.customize-control-radio-image input[type=radio] {
 					display: none;
 				}
