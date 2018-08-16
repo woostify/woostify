@@ -7,7 +7,17 @@
  * @copyright   Copyright (c) 2018, Woostify
  * @since       Astra 1.0.0
  */
-
+/**
+ * Font section
+ */
+$wp_customize->add_section(
+	'font_section',
+	array(
+		'title'      => __( 'Typography', 'woostify' ),
+		'capability' => 'edit_theme_options',
+		'priority'   => 37,
+	)
+);
 /**
  * Footer section
  */

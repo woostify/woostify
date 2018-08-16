@@ -151,6 +151,15 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/radio-image/class-woostify-customizer-control-radio-image.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/divider/class-woostify-customizer-control-arbitrary.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/typography/class-woostify-typography-customize-control.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/range/class-woostify-range-customize-control.php';
+
+			/**
+			 * Register Control Type
+			 */
+			if ( method_exists( $wp_customize, 'register_control_type' ) ) {
+				$wp_customize->register_control_type( 'Woostify_Typography_Customize_Control' );
+				$wp_customize->register_control_type( 'Woostify_Range_Customize_Control' );
+			}
 
 			/**
 			 * Register section & panel

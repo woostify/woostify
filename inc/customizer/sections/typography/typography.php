@@ -9,26 +9,45 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-
 $defaults = Woostify_Fonts_Helpers::woostify_get_default_fonts();
-
-if ( method_exists( $wp_customize, 'register_control_type' ) ) {
-	$wp_customize->register_control_type( 'Woostify_Typography_Customize_Control' );
-	/*$wp_customize->register_control_type( 'woostify_Range_Slider_Control' );*/
-}
 
 /**
  * Body Font
  */
-$wp_customize->add_section(
-	'font_section',
+// Demo Range
+$wp_customize->add_setting(
+	'woostify_settings[container]',
 	array(
-		'title'      => __( 'Typography', 'woostify' ),
-		'capability' => 'edit_theme_options',
-		'priority'   => 37,
+		'default' => 14,
+		'type' => 'option',
+		'transport' => 'postMessage',
 	)
 );
 
+$wp_customize->add_control(
+	new Woostify_Range_Customize_Control(
+		$wp_customize,
+		'woostify_settings[container]',
+		array(
+			'type' => 'woostify-range-slider',
+			'description' => __( 'Demo Range', 'apress' ),
+			'section' => 'font_section',
+			'settings' => array(
+				'desktop' => 'woostify_settings[container]',
+			),
+			'choices' => array(
+				'desktop' => array(
+					'min' => 5,
+					'max' => 35,
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+			'priority' => 0,
+		)
+	)
+);
 // Body font family.
 $wp_customize->add_setting(
 	'woostify_settings[body_font_family]',
