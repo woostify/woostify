@@ -29,7 +29,7 @@ $wp_customize->add_section(
 	)
 );
 
-// body font family.
+// Body font family.
 $wp_customize->add_setting(
 	'woostify_settings[body_font_family]',
 	array(
@@ -39,7 +39,7 @@ $wp_customize->add_setting(
 	)
 );
 
-// body font category.
+// Body font category.
 $wp_customize->add_setting(
 	'body_font_category',
 	array(
@@ -48,7 +48,7 @@ $wp_customize->add_setting(
 	)
 );
 
-// font font variants.
+// Font font variants.
 $wp_customize->add_setting(
 	'body_font_variants',
 	array(
@@ -57,7 +57,7 @@ $wp_customize->add_setting(
 	)
 );
 
-// body font weight.
+// Body font weight.
 $wp_customize->add_setting(
 	'woostify_settings[body_font_weight]',
 	array(
@@ -68,7 +68,7 @@ $wp_customize->add_setting(
 	)
 );
 
-// body text transform.
+// Body text transform.
 $wp_customize->add_setting(
 	'woostify_settings[body_font_transform]',
 	array(
@@ -79,7 +79,7 @@ $wp_customize->add_setting(
 	)
 );
 
-// add control for body typography.
+// Add control for body typography.
 $wp_customize->add_control(
 	new Woostify_Typography_Customize_Control(
 		$wp_customize,
@@ -99,7 +99,7 @@ $wp_customize->add_control(
 );
 
 
-// body font size.
+// Body font size.
 $wp_customize->add_setting(
 	'woostify_settings[body_font_size]',
 	array(
@@ -119,7 +119,7 @@ $wp_customize->add_control(
 	)
 );
 
-// body line height.
+// Body line height.
 $wp_customize->add_setting(
 	'woostify_settings[body_line_height]',
 	array(
@@ -206,7 +206,7 @@ $wp_customize->add_control(
 	)
 );
 
-// heading line height.
+// Heading line height.
 $wp_customize->add_setting(
 	'woostify_settings[heading_line_height]',
 	array(
@@ -241,7 +241,7 @@ $wp_customize->add_control(
 	)
 );
 
-// h1.
+// H1.
 $wp_customize->add_setting(
 	'woostify_settings[heading_h1_font_size]',
 	array(
@@ -264,7 +264,7 @@ $wp_customize->add_control(
 	)
 );
 
-// h2.
+// H2.
 $wp_customize->add_setting(
 	'woostify_settings[heading_h2_font_size]',
 	array(
@@ -287,7 +287,7 @@ $wp_customize->add_control(
 	)
 );
 
-// h3.
+// H3.
 $wp_customize->add_setting(
 	'woostify_settings[heading_h3_font_size]',
 	array(
@@ -310,7 +310,7 @@ $wp_customize->add_control(
 	)
 );
 
-// h4.
+// H4.
 $wp_customize->add_setting(
 	'woostify_settings[heading_h4_font_size]',
 	array(
@@ -333,7 +333,7 @@ $wp_customize->add_control(
 	)
 );
 
-// h5.
+// H5.
 $wp_customize->add_setting(
 	'woostify_settings[heading_h5_font_size]',
 	array(
@@ -356,7 +356,7 @@ $wp_customize->add_control(
 	)
 );
 
-// h6.
+// H6.
 $wp_customize->add_setting(
 	'woostify_settings[heading_h6_font_size]',
 	array(

@@ -58,7 +58,7 @@ get_header(); ?>
 
 						echo '<section aria-label="' . esc_html__( 'Popular Products', 'Woostify') . '">';
 
-							echo '<h2>' . esc_html__( 'Popular Products', 'Woostify') . '</h2>';
+							echo '<h2>' . esc_html__( 'Popular Products', 'Woostify' ) . '</h2>';
 
 							$shortcode_content = woostify_do_shortcode(
 								'best_selling_products', array(
