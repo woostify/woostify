@@ -45,30 +45,30 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_style(
-                'woostify-admin-nux',
-                WOOSTIFY_THEME_URI .
-                'assets/css/admin/admin.css',
-                '',
-                $woostify_version
-            );
+				'woostify-admin-nux',
+				WOOSTIFY_THEME_URI .
+				'assets/css/admin/admin.css',
+				'',
+				$woostify_version
+			);
 
 			wp_enqueue_script(
-                'woostify-admin-nux',
-                WOOSTIFY_THEME_URI . 'assets/js/admin/admin' . $suffix . '.js',
-                array( 'jquery' ),
-                $woostify_version,
-                'all'
-            );
+				'woostify-admin-nux',
+				WOOSTIFY_THEME_URI . 'assets/js/admin/admin' . $suffix . '.js',
+				array( 'jquery' ),
+				$woostify_version,
+				'all'
+			);
 
 			$woostify_nux = array(
 				'nonce' => wp_create_nonce( 'woostify_notice_dismiss' ),
 			);
 
 			wp_localize_script(
-                'woostify-admin-nux',
-                'storefrontNUX',
-                $woostify_nux
-            );
+				'woostify-admin-nux',
+				'storefrontNUX',
+				$woostify_nux
+			);
 		}
 
 		/**
@@ -96,19 +96,19 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 
 				<div class="notice-content">
 				<?php if ( ! woostify_is_woocommerce_activated() && current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) ) : ?>
-					<h2><?php esc_attr_e( 'Thanks for installing Woostify, you rock! 🤘', 'Woostify'); ?></h2>
-					<p><?php esc_attr_e( 'To enable eCommerce features you need to install the WooCommerce plugin.', 'Woostify'); ?></p>
-					<p><?php Storefront_Plugin_Install::install_plugin_button( 'woocommerce', 'woocommerce.php', 'WooCommerce', array( 'sf-nux-button' ), __( 'WooCommerce activated', 'Woostify'), __( 'Activate WooCommerce', 'Woostify'), __( 'Install WooCommerce', 'Woostify') ); ?></p>
+					<h2><?php esc_attr_e( 'Thanks for installing Woostify, you rock! 🤘', 'woostify' ); ?></h2>
+					<p><?php esc_attr_e( 'To enable eCommerce features you need to install the WooCommerce plugin.', 'woostify' ); ?></p>
+					<p><?php Woostify_Plugin_Install::install_plugin_button( 'woocommerce', 'woocommerce.php', 'WooCommerce', array( 'sf-nux-button' ), __( 'WooCommerce activated', 'woostify' ), __( 'Activate WooCommerce', 'woostify' ), __( 'Install WooCommerce', 'woostify' ) ); ?></p>
 				<?php endif; ?>
 
 				<?php if ( woostify_is_woocommerce_activated() ) : ?>
-					<h2><?php esc_html_e( 'Design your store 🎨', 'Woostify'); ?></h2>
+					<h2><?php esc_html_e( 'Design your store 🎨', 'woostify' ); ?></h2>
 					<p>
 					<?php
 					if ( true === (bool) get_option( 'woostify_nux_fresh_site' ) && 'post-new.php' === $pagenow ) {
-						echo esc_attr__( 'Before you add your first product let\'s design your store. We\'ll add some example products for you. When you\'re ready let\'s get started by adding your logo.', 'Woostify');
+						echo esc_attr__( 'Before you add your first product let\'s design your store. We\'ll add some example products for you. When you\'re ready let\'s get started by adding your logo.', 'woostify' );
 					} else {
-						echo esc_attr__( 'You\'ve set up WooCommerce, now it\'s time to give it some style! Let\'s get started by entering the Customizer and adding your logo.', 'Woostify');
+						echo esc_attr__( 'You\'ve set up WooCommerce, now it\'s time to give it some style! Let\'s get started by entering the Customizer and adding your logo.', 'woostify' );
 					}
 					?>
 					</p>
@@ -129,9 +129,9 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 								<input type="checkbox" name="homepage" checked>
 								<?php
 								if ( 'page' === get_option( 'show_on_front' ) ) {
-									esc_attr_e( 'Apply the Woostify homepage template', 'Woostify');
+									esc_attr_e( 'Apply the Woostify homepage template', 'woostify' );
 								} else {
-									esc_attr_e( 'Create a homepage using Woostify\'s homepage template', 'Woostify');
+									esc_attr_e( 'Create a homepage using Woostify\'s homepage template', 'woostify' );
 								}
 								?>
 							</label>
@@ -139,12 +139,12 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 							<?php if ( true === $this->_is_woocommerce_empty() ) : ?>
 							<label>
 								<input type="checkbox" name="products" checked>
-								<?php esc_attr_e( 'Add example products', 'Woostify'); ?>
+								<?php esc_attr_e( 'Add example products', 'woostify' ); ?>
 							</label>
 							<?php endif; ?>
 						<?php endif; ?>
 
-						<input type="submit" name="storefront-guided-tour" class="sf-nux-button" value="<?php esc_attr_e( 'Let\'s go!', 'Woostify'); ?>">
+						<input type="submit" name="storefront-guided-tour" class="sf-nux-button" value="<?php esc_attr_e( 'Let\'s go!', 'woostify' ); ?>">
 					</form>
 				<?php endif; ?>
 				</div>

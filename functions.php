@@ -21,7 +21,7 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 1170; /* pixels */
 }
 
-require 'inc/customizer/class-woostify-fonts-helpers.php';
+require WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-fonts-helpers.php';
 
 $woostify = (object) array(
 	'version' => $woostify_version,
@@ -29,16 +29,19 @@ $woostify = (object) array(
 	/**
 	 * Initialize all the things.
 	 */
-	'main'       => require 'inc/class-woostify.php',
-	'customizer' => require 'inc/customizer/class-woostify-customizer.php',
+	'main'       => require WOOSTIFY_THEME_DIR . 'inc/class-woostify.php',
+	'customizer' => require WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-customizer.php',
 );
 
-require 'inc/customizer/class-woostify-get-css.php'; // Output CSS
+
+require WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-get-css.php';
 
 /**
  * Sanitize our Google Font variants
  *
- * @since 2.0
+ * @param      string $input sanitize variants.
+ * @return     sanitize_text_field( $input )
+ * @since 1.0
  */
 function woostify_sanitize_variants( $input ) {
 	if ( is_array( $input ) ) {
@@ -47,27 +50,26 @@ function woostify_sanitize_variants( $input ) {
 	return sanitize_text_field( $input );
 }
 
-require 'inc/woostify-functions.php';
-require 'inc/woostify-template-hooks.php';
-require 'inc/woostify-template-functions.php';
+require WOOSTIFY_THEME_DIR . 'inc/woostify-functions.php';
+require WOOSTIFY_THEME_DIR . 'inc/woostify-template-hooks.php';
+require WOOSTIFY_THEME_DIR . 'inc/woostify-template-functions.php';
 
 
 if ( class_exists( 'Jetpack' ) ) {
-	$woostify->jetpack = require 'inc/jetpack/class-woostify-jetpack.php';
+	$woostify->jetpack = require WOOSTIFY_THEME_DIR . 'inc/jetpack/class-woostify-jetpack.php';
 }
 
 if ( woostify_is_woocommerce_activated() ) {
-	$woostify->woocommerce            = require 'inc/woocommerce/class-woostify-woocommerce.php';
-	//$woostify->woocommerce_customizer = require 'inc/woocommerce/class-woostify-woocommerce-customizer.php';
-
-	require 'inc/woocommerce/woostify-woocommerce-template-hooks.php';
-	require 'inc/woocommerce/woostify-woocommerce-template-functions.php';
+	$woostify->woocommerce            = require WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce.php';
+	/*$woostify->woocommerce_customizer = require WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce-customizer.php';*/
+	require WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-hooks.php';
+	require WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-functions.php';
 }
 
 if ( is_admin() ) {
-	$woostify->admin = require 'inc/admin/class-woostify-admin.php';
+	$woostify->admin = require WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-admin.php';
 
-	require 'inc/admin/class-woostify-plugin-install.php';
+	require WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-plugin-install.php';
 }
 
 /**
@@ -76,11 +78,11 @@ if ( is_admin() ) {
  * https://core.trac.wordpress.org/ticket/39610?cversion=1&cnum_hist=2
  */
 if ( version_compare( get_bloginfo( 'version' ), '4.7.3', '>=' ) && ( is_admin() || is_customize_preview() ) ) {
-	require 'inc/nux/class-storefront-nux-admin.php';
-	require 'inc/nux/class-storefront-nux-guided-tour.php';
+	require WOOSTIFY_THEME_DIR . 'inc/nux/class-storefront-nux-admin.php';
+	require WOOSTIFY_THEME_DIR . 'inc/nux/class-storefront-nux-guided-tour.php';
 
 	if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.0.0', '>=' ) ) {
-		require 'inc/nux/class-storefront-nux-starter-content.php';
+		require WOOSTIFY_THEME_DIR . 'inc/nux/class-storefront-nux-starter-content.php';
 	}
 }
 

@@ -3,7 +3,7 @@
  * Woostify Customizer Class
  *
  * @package  woostify
- * @since    2.0.0
+ * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,11 +23,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * @since 1.0
 		 */
 		public function __construct() {
-			add_action( 'customize_register', array( $this, 'customize_register' ), 10 );
-			add_filter( 'body_class', array( $this, 'layout_class' ) );
-			add_action( 'customize_controls_print_styles', array( $this, 'customizer_custom_control_css' ) );
-			add_action( 'customize_register', array( $this, 'edit_default_customizer_settings' ), 99 );
 			add_action( 'init', array( $this, 'default_theme_mod_values' ), 10 );
+			add_action( 'customize_register', array( $this, 'customize_register' ), 10 );
+			add_action( 'customize_register', array( $this, 'edit_default_customizer_settings' ), 99 );
+			add_action( 'customize_controls_print_styles', array( $this, 'customizer_custom_control_css' ) );
 		}
 
 		/**
@@ -35,28 +34,27 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 *
 		 * @return array
 		 */
-		public static function ge_woostify_default_setting_values() {
+		public static function get_woostify_default_setting_values() {
 			return apply_filters(
-				'woostify_setting_default_values', $args = array(
-                'woostify_heading_color'               => '#333333',
-				'woostify_text_color'                  => '#6d6d6d',
-				'woostify_accent_color'                => '#96588a',
-				'woostify_hero_heading_color'          => '#000000',
-				'woostify_hero_text_color'             => '#000000',
-				'woostify_header_background_color'     => '#ffffff',
-				'woostify_header_text_color'           => '#404040',
-				'woostify_header_link_color'           => '#333333',
-				'woostify_footer_background_color'     => '#f0f0f0',
-				'woostify_footer_heading_color'        => '#333333',
-				'woostify_footer_text_color'           => '#6d6d6d',
-				'woostify_footer_link_color'           => '#333333',
-				'woostify_button_background_color'     => '#eeeeee',
-				'woostify_button_text_color'           => '#333333',
-				'woostify_button_alt_background_color' => '#333333',
-				'woostify_button_alt_text_color'       => '#ffffff',
-				'woostify_layout'                      => 'right',
-				'background_color'                     => 'ffffff',
-			)
+				'woostify_setting_default_values',
+				$args = array(
+					'woostify_heading_color'               => '#2b2b2b',
+					'woostify_text_color'                  => '#8f8f8f',
+					'woostify_accent_color'                => '#1346af',
+					'woostify_header_background_color'     => '#ffffff',
+					'woostify_header_text_color'           => '#404040',
+					'woostify_header_link_color'           => '#333333',
+					'woostify_footer_background_color'     => '#f0f0f0',
+					'woostify_footer_heading_color'        => '#333333',
+					'woostify_footer_text_color'           => '#6d6d6d',
+					'woostify_footer_link_color'           => '#333333',
+					'woostify_button_background_color'     => '#eeeeee',
+					'woostify_button_text_color'           => '#333333',
+					'woostify_button_alt_background_color' => '#333333',
+					'woostify_button_alt_text_color'       => '#ffffff',
+					'woostify_shop_layout'                 => 'right',
+					'background_color'                     => 'ffffff',
+				)
 			);
 		}
 
@@ -69,8 +67,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			$woostify_theme_mods = array(
 				'background_color'            => woostify_get_content_background_color(),
 				'accent_color'                => get_theme_mod( 'woostify_accent_color' ),
-				'hero_heading_color'          => get_theme_mod( 'woostify_hero_heading_color' ),
-				'hero_text_color'             => get_theme_mod( 'woostify_hero_text_color' ),
 				'header_background_color'     => get_theme_mod( 'woostify_header_background_color' ),
 				'header_link_color'           => get_theme_mod( 'woostify_header_link_color' ),
 				'header_text_color'           => get_theme_mod( 'woostify_header_text_color' ),
@@ -140,7 +136,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 *
 		 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 		 *
-		 * @since  1.0.0
+		 * @since  1.0
 		 */
 		public function customize_register( $wp_customize ) {
 
@@ -152,9 +148,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			/**
 			 * Custom controls
 			 */
-			require_once dirname( __FILE__ ) . '/custom-controls/radio-image/class-woostify-customizer-control-radio-image.php';
-			require_once dirname( __FILE__ ) . '/custom-controls/divider/class-woostify-customizer-control-arbitrary.php';
-			require_once dirname( __FILE__ ) . '/custom-controls/typography/class-typography-control.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/radio-image/class-woostify-customizer-control-radio-image.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/divider/class-woostify-customizer-control-arbitrary.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/typography/class-woostify-typography-customize-control.php';
 
 			/**
 			 * Register section & panel
@@ -167,29 +163,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/buttons/button.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/footer/footer.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/header/header.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/layout/layout.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/color/color.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/typography.php';
-
-
-		}
-
-
-		/**
-		 * Layout classes
-		 * Adds 'right-sidebar' and 'left-sidebar' classes to the body tag
-		 *
-		 * @param  array $classes current body classes.
-		 *
-		 * @return string[]          modified body classes
-		 * @since  1.0.0
-		 */
-		public function layout_class( $classes ) {
-			$left_or_right = get_theme_mod( 'woostify_layout' );
-
-			$classes[] = $left_or_right . '-sidebar';
-
-			return $classes;
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop.php';
 		}
 
 		/**
@@ -201,46 +178,39 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * is licensed under the terms of the GNU GPL, Version 2 (or later)
 		 *
 		 * @link https://github.com/reduxframework/kirki/
-		 * @since  1.5.0
+		 * @since  1.0
 		 */
 		public function customizer_custom_control_css() {
-			?><style>
-                li#customize-control-woostify_settings-body_font_size {
-                    margin-bottom: 25px;
-                }
+			?>
+			<style>
+				li#customize-control-woostify_settings-body_font_size {
+					margin-bottom: 25px;
+				}
 
-                .customize-control-radio-image input[type=radio] {
-                    display: none;
-                }
+				.customize-control-radio-image input[type=radio] {
+					display: none;
+				}
 
-                .customize-control-radio-image label {
-                    display: block;
-                    width: 48%;
-                    float: left;
-                    margin-right: 4%;
-                }
+				.customize-control-radio-image label {
+					margin-right: 10px;
+					display: inline-block;
+				}
+				.customize-control-radio-image label.ui-state-active {
+					border: 1px solid #008ec2;
+					cursor: default;
+				}
+				.customize-control-radio-image img{
+					display: block;
+				}
 
-                .customize-control-radio-image label:nth-of-type(2n) {
-                    margin-right: 0;
-                }
-
-                .customize-control-radio-image img {
-                    opacity: .5;
-                }
-
-                .customize-control-radio-image input[type=radio]:checked + label img,
-                .customize-control-radio-image img:hover {
-                    opacity: 1;
-                }
-
-            </style>
+			</style>
 			<?php
 		}
 
 		/**
 		 * Get site logo.
 		 *
-		 * @since 2.1.5
+		 * @since 1.0
 		 * @return string
 		 */
 		public function get_site_logo() {
@@ -250,7 +220,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		/**
 		 * Get site name.
 		 *
-		 * @since 2.1.5
+		 * @since 1.0
 		 * @return string
 		 */
 		public function get_site_name() {
@@ -260,7 +230,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		/**
 		 * Get site description.
 		 *
-		 * @since 2.1.5
+		 * @since 1.0
 		 * @return string
 		 */
 		public function get_site_description() {
@@ -270,7 +240,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		/**
 		 * Check if current page is using the Homepage template.
 		 *
-		 * @since 2.3.0
+		 * @since 1.0
 		 * @return bool
 		 */
 		public function is_homepage_template() {
@@ -281,48 +251,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			}
 
 			return true;
-		}
-
-		/**
-		 * Setup the WordPress core custom header feature.
-		 *
-		 * @deprecated 2.4.0
-		 * @return void
-		 */
-		public function custom_header_setup() {
-			if ( function_exists( 'wc_deprecated_function' ) ) {
-				wc_deprecated_function( __FUNCTION__, '2.4.0' );
-			} else {
-				_deprecated_function( __FUNCTION__, '2.4.0' );
-			}
-		}
-
-		/**
-		 * Get Customizer css associated with WooCommerce.
-		 *
-		 * @deprecated 2.4.0
-		 * @return void
-		 */
-		public function get_woocommerce_css() {
-			if ( function_exists( 'wc_deprecated_function' ) ) {
-				wc_deprecated_function( __FUNCTION__, '2.3.1' );
-			} else {
-				_deprecated_function( __FUNCTION__, '2.3.1' );
-			}
-		}
-
-		/**
-		 * Assign Woostify styles to individual theme mods.
-		 *
-		 * @deprecated 2.3.1
-		 * @return void
-		 */
-		public function set_woostify_style_theme_mods() {
-			if ( function_exists( 'wc_deprecated_function' ) ) {
-				wc_deprecated_function( __FUNCTION__, '2.3.1' );
-			} else {
-				_deprecated_function( __FUNCTION__, '2.3.1' );
-			}
 		}
 	}
 

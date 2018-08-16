@@ -2,7 +2,7 @@
 /**
  * Typography related functions.
  *
- * @package GeneratePress
+ * @package woostify
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,7 +14,7 @@ $defaults = Woostify_Fonts_Helpers::woostify_get_default_fonts();
 
 if ( method_exists( $wp_customize, 'register_control_type' ) ) {
 	$wp_customize->register_control_type( 'Woostify_Typography_Customize_Control' );
-	//$wp_customize->register_control_type( 'woostify_Range_Slider_Control' );
+	/*$wp_customize->register_control_type( 'woostify_Range_Slider_Control' );*/
 }
 
 /**
@@ -25,7 +25,7 @@ $wp_customize->add_section(
 	array(
 		'title'      => __( 'Typography', 'woostify' ),
 		'capability' => 'edit_theme_options',
-		'priority'   => 30,
+		'priority'   => 37,
 	)
 );
 
@@ -50,9 +50,9 @@ $wp_customize->add_setting(
 
 // Font font variants.
 $wp_customize->add_setting(
-	'body_font_variants',
+	'body_font_family_variants',
 	array(
-		'default'           => $defaults['body_font_variants'],
+		'default'           => $defaults['body_font_family_variants'],
 		'sanitize_callback' => 'woostify_sanitize_variants',
 	)
 );
@@ -89,7 +89,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Body Font', 'woostify' ),
 			'settings' => array(
 				'family'    => 'woostify_settings[body_font_family]',
-				'variant'   => 'body_font_variants',
+				'variant'   => 'body_font_family_variants',
 				'category'  => 'body_font_category',
 				'weight'    => 'woostify_settings[body_font_weight]',
 				'transform' => 'woostify_settings[body_font_transform]',
@@ -105,7 +105,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['body_font_size'],
 		'type'              => 'option',
-		'sanitize_callback' => 'woostify_sanitize_integer',
+		'sanitize_callback' => 'sanitize_text_field',
 		'transport'         => 'postMessage',
 	)
 );

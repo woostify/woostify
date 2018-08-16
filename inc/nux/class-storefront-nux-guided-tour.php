@@ -56,26 +56,26 @@ if ( ! class_exists( 'Storefront_NUX_Guided_Tour' ) ) :
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_style(
-                'sp-guided-tour',
-                WOOSTIFY_THEME_URI . 'assets/css/admin/customizer/customizer.css',
-                array(),
-                $woostify_version,
-                'all'
-            );
+				'sp-guided-tour',
+				WOOSTIFY_THEME_URI . 'assets/css/admin/customizer/customizer.css',
+				array(),
+				$woostify_version,
+				'all'
+			);
 
 			wp_enqueue_script(
-                'sf-guided-tour',
-                WOOSTIFY_THEME_URI . 'assets/js/admin/customizer' . $suffix . '.js',
-                array( 'jquery', 'wp-backbone' ),
-                $woostify_version,
-                true
-            );
+				'sf-guided-tour',
+				WOOSTIFY_THEME_URI . 'assets/js/admin/customizer' . $suffix . '.js',
+				array( 'jquery', 'wp-backbone' ),
+				$woostify_version,
+				true
+			);
 
 			wp_localize_script(
-                'sf-guided-tour',
-                '_wpCustomizeSFGuidedTourSteps',
-                $this->guided_tour_steps()
-            );
+				'sf-guided-tour',
+				'_wpCustomizeSFGuidedTourSteps',
+				$this->guided_tour_steps()
+			);
 		}
 
 		/**
@@ -95,15 +95,15 @@ if ( ! class_exists( 'Storefront_NUX_Guided_Tour' ) ) :
 						<# if ( data.button_text ) { #>
 							{{ data.button_text }}
 						<# } else { #>
-							<?php esc_attr_e( 'Next', 'Woostify'); ?>
+							<?php esc_attr_e( 'Next', 'woostify' ); ?>
 						<# } #>
 					</a>
 					<# if ( ! data.last_step ) { #>
 						<a class="sf-guided-tour-skip" href="#">
 						<# if ( data.first_step ) { #>
-							<?php esc_attr_e( 'No thanks, skip the tour', 'Woostify'); ?>
+							<?php esc_attr_e( 'No thanks, skip the tour', 'woostify' ); ?>
 						<# } else { #>
-							<?php esc_attr_e( 'Skip this step', 'Woostify'); ?>
+							<?php esc_attr_e( 'Skip this step', 'woostify' ); ?>
 						<# } #>
 						</a>
 					<# } #>
@@ -121,45 +121,45 @@ if ( ! class_exists( 'Storefront_NUX_Guided_Tour' ) ) :
 			$steps = array();
 
 			$steps[] = array(
-				'title'       => __( 'Welcome to the Customizer', 'Woostify'),
+				'title'       => __( 'Welcome to the Customizer', 'woostify' ),
 				/* translators: %s: 'End Of Line' symbol */
-				'message'     => sprintf( __( 'Here you can control the overall look and feel of your store.%sTo get started, let\'s add your logo', 'Woostify'), PHP_EOL . PHP_EOL ),
-				'button_text' => __( 'Let\'s go!', 'Woostify'),
+				'message'     => sprintf( __( 'Here you can control the overall look and feel of your store.%sTo get started, let\'s add your logo', 'woostify' ), PHP_EOL . PHP_EOL ),
+				'button_text' => __( 'Let\'s go!', 'woostify' ),
 				'section'     => '#customize-info',
 			);
 
 			if ( ! has_custom_logo() ) {
 				$steps[] = array(
-					'title'   => __( 'Add your logo', 'Woostify'),
-					'message' => __( 'Open the Site Identity Panel, then click the \'Select Logo\' button to upload your logo.', 'Woostify'),
+					'title'   => __( 'Add your logo', 'woostify' ),
+					'message' => __( 'Open the Site Identity Panel, then click the \'Select Logo\' button to upload your logo.', 'woostify' ),
 					'section' => 'title_tagline',
 				);
 			}
 
 			$steps[] = array(
-				'title'   => __( 'Customize your navigation menus', 'Woostify'),
-				'message' => __( 'Organize your menus by adding Pages, Categories, Tags, and Custom Links.', 'Woostify'),
+				'title'   => __( 'Customize your navigation menus', 'woostify' ),
+				'message' => __( 'Organize your menus by adding Pages, Categories, Tags, and Custom Links.', 'woostify' ),
 				'section' => 'nav_menus',
 			);
 
 			$steps[] = array(
-				'title'   => __( 'Choose your accent color', 'Woostify'),
-				'message' => __( 'In the typography panel you can specify an accent color which will be applied to things like links and star ratings. We recommend using your brand color for this setting.', 'Woostify'),
+				'title'   => __( 'Choose your accent color', 'woostify' ),
+				'message' => __( 'In the typography panel you can specify an accent color which will be applied to things like links and star ratings. We recommend using your brand color for this setting.', 'woostify' ),
 				'section' => 'woostify_typography',
 			);
 
 			$steps[] = array(
-				'title'   => __( 'Color your buttons', 'Woostify'),
-				'message' => __( 'Choose colors for your button backgrounds and text. Once again, brand colors are good choices here.', 'Woostify'),
+				'title'   => __( 'Color your buttons', 'woostify' ),
+				'message' => __( 'Choose colors for your button backgrounds and text. Once again, brand colors are good choices here.', 'woostify' ),
 				'section' => 'woostify_buttons',
 			);
 
 			$steps[] = array(
 				'title'       => '',
 				/* translators: 1: open <strong> tag, 2: close <strong> tag, 3: 'End Of Line' symbol */
-				'message'     => sprintf( __( 'All set! Remember to %1$ssave & publish%2$s your changes when you\'re done.%3$sYou can return to your dashboard by clicking the X in the top left corner.', 'Woostify'), '<strong>', '</strong>', PHP_EOL . PHP_EOL ),
+				'message'     => sprintf( __( 'All set! Remember to %1$ssave & publish%2$s your changes when you\'re done.%3$sYou can return to your dashboard by clicking the X in the top left corner.', 'woostify' ), '<strong>', '</strong>', PHP_EOL . PHP_EOL ),
 				'section'     => '#customize-header-actions .save',
-				'button_text' => __( 'Done', 'Woostify'),
+				'button_text' => __( 'Done', 'woostify' ),
 			);
 
 			return $steps;
