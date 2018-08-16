@@ -51,7 +51,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			 */
 
 			// Loads wp-content/languages/themes/woostify-it_IT.mo.
-			load_theme_textdomain( 'woostify', trailingslashit( WP_LANG_DIR ) . 'themes/' );
+			load_theme_textdomain( 'woostify', WP_LANG_DIR . '/themes/' );
 
 			// Loads wp-content/themes/child-theme-name/languages/it_IT.mo.
 			load_theme_textdomain( 'woostify', get_stylesheet_directory() . '/languages' );
@@ -75,8 +75,10 @@ if ( ! class_exists( 'woostify' ) ) :
 			 * Enable support for site logo.
 			 */
 			add_theme_support(
-				'custom-logo', apply_filters(
-					'woostify_custom_logo_args', array(
+				'custom-logo',
+				apply_filters(
+					'woostify_custom_logo_args',
+					array(
 						'height'      => 110,
 						'width'       => 470,
 						'flex-width'  => true,
@@ -90,7 +92,8 @@ if ( ! class_exists( 'woostify' ) ) :
 			 */
 			register_nav_menus(
 				apply_filters(
-					'woostify_register_nav_menus', array(
+					'woostify_register_nav_menus',
+					array(
 						'primary'     => __( 'Primary Menu', 'woostify' ),
 						'footer_menu' => __( 'Footer Menu', 'woostify' ),
 					)
@@ -102,8 +105,10 @@ if ( ! class_exists( 'woostify' ) ) :
 			 * to output valid HTML5.
 			 */
 			add_theme_support(
-				'html5', apply_filters(
-					'woostify_html5_args', array(
+				'html5',
+				apply_filters(
+					'woostify_html5_args',
+					array(
 						'search-form',
 						'comment-form',
 						'comment-list',
@@ -118,8 +123,10 @@ if ( ! class_exists( 'woostify' ) ) :
 			 * Setup the WordPress core custom background feature.
 			 */
 			add_theme_support(
-				'custom-background', apply_filters(
-					'woostify_custom_background_args', array(
+				'custom-background',
+				apply_filters(
+					'woostify_custom_background_args',
+					array(
 						'default-color' => apply_filters( 'woostify_default_background_color', 'ffffff' ),
 						'default-image' => '',
 					)
@@ -136,7 +143,7 @@ if ( ! class_exists( 'woostify' ) ) :
 					array(
 						'default-image' => '',
 						'header-text'   => false,
-						'width'         => 1950,
+						'width'         => 1920,
 						'height'        => 500,
 						'flex-width'    => true,
 						'flex-height'   => true,
@@ -150,8 +157,10 @@ if ( ! class_exists( 'woostify' ) ) :
 			 *  http://jetpack.me/
 			 */
 			add_theme_support(
-				'site-logo', apply_filters(
-					'woostify_site_logo_args', array(
+				'site-logo',
+				apply_filters(
+					'woostify_site_logo_args',
+					array(
 						'size' => 'full',
 					)
 				)
@@ -228,30 +237,6 @@ if ( ! class_exists( 'woostify' ) ) :
 			wp_enqueue_style(
 				'woostify-style',
 				WOOSTIFY_THEME_URI . 'style.css',
-				array(),
-				$woostify_version
-			);
-
-			/**
-			 * Fonts
-			 */
-			$google_fonts = apply_filters(
-				'woostify_google_font_families',
-				array(
-					'source-sans-pro' => 'Source+Sans+Pro:400,300,300italic,400italic,600,700,900',
-				)
-			);
-
-			$query_args = array(
-				'family' => implode( '|', $google_fonts ),
-				'subset' => urlencode( 'latin,latin-ext' ),
-			);
-
-			$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-
-			wp_enqueue_style(
-				'woostify-fonts',
-				$fonts_url,
 				array(),
 				$woostify_version
 			);
@@ -417,13 +402,6 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Add styles for embeds
 		 */
 		public function print_embed_styles() {
-			global $woostify_version;
-			wp_enqueue_style(
-				'source-sans-pro',
-				'//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,700,900',
-				array(),
-				$woostify_version
-			);
 
 			$accent_color     = get_theme_mod( 'woostify_accent_color' );
 			$background_color = woostify_get_content_background_color();
@@ -433,7 +411,6 @@ if ( ! class_exists( 'woostify' ) ) :
 					padding: 2.618em !important;
 					border: 0 !important;
 					border-radius: 3px !important;
-					font-family: "Source Sans Pro", "Open Sans", sans-serif !important;
 					background-color: <?php echo esc_html( woostify_adjust_color_brightness( $background_color, -7 ) ); ?> !important;
 				}
 

@@ -97,124 +97,37 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		 */
 		public static function woostify_get_default_fonts( $filter = true ) {
 			$woostify_font_defaults = array(
-				'body_font_family'            => 'Poppins',
-				'body_font_size'              => '14',
-				'body_font_weight'            => 'normal',
-				/* no unit */
-				'body_line_height'            => '1.5',
-				'body_font_category'          => '',
-				'body_font_family_variants'   => '',
-				'body_font_transform'         => 'none',
-				'heading_font_family'         => 'Poppins',
-				'heading_font_category'       => '',
-				'heading_font_variants'       => '',
-				'heading_font_weight'         => 'bold',
-				'heading_font_transform'      => 'none',
-				/* no unit */
-				'heading_line_height'         => '1.2',
-				'heading_h1_font_size'        => '48',
-				'heading_h2_font_size'        => '36',
-				'heading_h3_font_size'        => '30',
-				'heading_h4_font_size'        => '26',
-				'heading_h5_font_size'        => '28',
-				'heading_h6_font_size'        => '18',
-				/* em */
-				'paragraph_margin'            => '1.5',
-				'font_top_bar'                => 'inherit',
-				'font_top_bar_category'       => '',
-				'font_top_bar_variants'       => '',
-				'top_bar_font_weight'         => 'normal',
-				'top_bar_font_transform'      => 'none',
-				'top_bar_font_size'           => '13',
-				'font_site_title'             => 'inherit',
-				'font_site_title_category'    => '',
-				'font_site_title_variants'    => '',
-				'site_title_font_weight'      => 'bold',
-				'site_title_font_transform'   => 'none',
-				'site_title_font_size'        => '45',
-				'mobile_site_title_font_size' => '30',
-				'font_site_tagline'           => 'inherit',
-				'font_site_tagline_category'  => '',
-				'font_site_tagline_variants'  => '',
-				'site_tagline_font_weight'    => 'normal',
-				'site_tagline_font_transform' => 'none',
-				'site_tagline_font_size'      => '15',
-				'font_navigation'             => 'inherit',
-				'font_navigation_category'    => '',
-				'font_navigation_variants'    => '',
-				'navigation_font_weight'      => 'normal',
-				'navigation_font_transform'   => 'none',
-				'navigation_font_size'        => '15',
-				'font_widget_title'           => 'inherit',
-				'font_widget_title_category'  => '',
-				'font_widget_title_variants'  => '',
-				'widget_title_font_weight'    => 'normal',
-				'widget_title_font_transform' => 'none',
-				'widget_title_font_size'      => '20',
-				'widget_title_separator'      => '30',
-				'widget_content_font_size'    => '17',
-				'font_buttons'                => 'inherit',
-				'font_buttons_category'       => '',
-				'font_buttons_variants'       => '',
-				'buttons_font_weight'         => 'normal',
-				'buttons_font_transform'      => 'none',
-				'buttons_font_size'           => '',
-				'font_heading_1'              => 'inherit',
-				'font_heading_1_category'     => '',
-				'font_heading_1_variants'     => '',
-				'heading_1_weight'            => '300',
-				'heading_1_transform'         => 'none',
-				'heading_1_font_size'         => '40',
-				/*em*/
-				'heading_1_line_height'       => '1.2',
-				'mobile_heading_1_font_size'  => '30',
-				'font_heading_2'              => 'inherit',
-				'font_heading_2_category'     => '',
-				'font_heading_2_variants'     => '',
-				'heading_2_weight'            => '300',
-				'heading_2_transform'         => 'none',
-				'heading_2_font_size'         => '30',
-				/*em*/
-				'heading_2_line_height'       => '1.2',
-				'mobile_heading_2_font_size'  => '25',
-				'font_heading_3'              => 'inherit',
-				'font_heading_3_category'     => '',
-				'font_heading_3_variants'     => '',
-				'heading_3_weight'            => 'normal',
-				'heading_3_transform'         => 'none',
-				'heading_3_font_size'         => '20',
-				/*em*/
-				'heading_3_line_height'       => '1.2',
-				'font_heading_4'              => 'inherit',
-				'font_heading_4_category'     => '',
-				'font_heading_4_variants'     => '',
-				'heading_4_weight'            => 'normal',
-				'heading_4_transform'         => 'none',
-				'heading_4_font_size'         => '',
-				/*em*/
-				'heading_4_line_height'       => '',
-				'font_heading_5'              => 'inherit',
-				'font_heading_5_category'     => '',
-				'font_heading_5_variants'     => '',
-				'heading_5_weight'            => 'normal',
-				'heading_5_transform'         => 'none',
-				'heading_5_font_size'         => '',
-				/*em*/
-				'heading_5_line_height'       => '',
-				'font_heading_6'              => 'inherit',
-				'font_heading_6_category'     => '',
-				'font_heading_6_variants'     => '',
-				'heading_6_weight'            => 'normal',
-				'heading_6_transform'         => 'none',
-				'heading_6_font_size'         => '',
-				/*em*/
-				'heading_6_line_height'       => '',
-				'font_footer'                 => 'inherit',
-				'font_footer_category'        => '',
-				'font_footer_variants'        => '',
-				'footer_weight'               => 'normal',
-				'footer_transform'            => 'none',
-				'footer_font_size'            => '15',
+				// Body font.
+				'body_font_family'             => 'Poppins',
+				'body_font_family_variants'    => '',
+				'body_font_size'               => '14',
+				'body_font_weight'             => '400',
+				'body_line_height'             => '1.5',
+				'body_font_category'           => '',
+				'body_font_transform'          => 'none',
+				// Menu font.
+				'menu_font_family'             => 'Poppins',
+				'menu_font_family_variants'    => '',
+				'menu_font_weight'             => '500',
+				'parent_menu_font_size'        => '14',
+				'parent_menu_line_height'      => '90',
+				'sub_menu_font_size'           => '12',
+				'sub_menu_line_height'         => '24',
+				'menu_font_category'           => '',
+				'menu_font_transform'          => 'none',
+				// Heading font.
+				'heading_font_family'          => 'Poppins',
+				'heading_font_family_variants' => '',
+				'heading_font_category'        => '',
+				'heading_font_weight'          => '700',
+				'heading_font_transform'       => 'none',
+				'heading_line_height'          => '1.2',
+				'heading_h1_font_size'         => '48',
+				'heading_h2_font_size'         => '36',
+				'heading_h3_font_size'         => '30',
+				'heading_h4_font_size'         => '26',
+				'heading_h5_font_size'         => '28',
+				'heading_h6_font_size'         => '18',
 			);
 
 			if ( $filter ) {
@@ -247,19 +160,8 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			/*Grab our font family settings*/
 			$font_settings = array(
 				'body_font_family',
-				'font_top_bar',
-				'font_site_title',
-				'font_site_tagline',
-				'font_navigation',
-				'font_widget_title',
-				'font_buttons',
-				'font_heading_1',
-				'font_heading_2',
-				'font_heading_3',
-				'font_heading_4',
-				'font_heading_5',
-				'font_heading_6',
-				'font_footer',
+				'menu_font_family',
+				'heading_font_family',
 			);
 
 			/*Create our Google Fonts array*/
@@ -319,7 +221,13 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			/*Enqueue our fonts*/
 			if ( $google_fonts ) {
 				global $woostify_version;
-				wp_enqueue_style( 'generate-fonts', $fonts_url, array(), $woostify_version, 'all' );
+
+				wp_enqueue_style(
+					'woostify-fonts',
+					$fonts_url,
+					array(),
+					$woostify_version
+				);
 			}
 		}
 
@@ -509,14 +417,8 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 
 			$font_settings = array(
 				'body_font_family',
-				'font_top_bar',
-				'font_site_title',
-				'font_site_tagline',
-				'font_navigation',
-				'font_widget_title',
-				'font_heading_1',
-				'font_heading_2',
-				'font_heading_3',
+				'menu_font_family',
+				'heading_font_family',
 			);
 
 			$all_fonts = $this->woostify_get_all_google_fonts();

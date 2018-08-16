@@ -29,11 +29,13 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 		 * Enqueue javascript and css file
 		 */
 		public function enqueue() {
+			global $woostify_version;
+
 			wp_enqueue_script(
 				'woostify-typography-selectWoo',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/js/selectWoo.min.js',
 				array( 'customize-controls', 'jquery' ),
-				1.0,
+				$woostify_version,
 				true
 			);
 
@@ -41,14 +43,14 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 				'woostify-typography-selectWoo',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/css/selectWoo.min.css',
 				array(),
-				1.0
+				$woostify_version
 			);
 
 			wp_enqueue_script(
 				'woostify-typography-customizer',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/js/typography-customizer.js',
 				array( 'customize-controls', 'woostify-typography-selectWoo' ),
-				1.0,
+				$woostify_version,
 				true
 			);
 
@@ -56,7 +58,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 				'woostify-typography-customizer',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/css/typography-customizer.css',
 				array(),
-				1.0
+				$woostify_version
 			);
 		}
 

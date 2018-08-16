@@ -313,7 +313,7 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 				wp_nav_menu(
 					array(
 						'theme_location'  => 'primary',
-						'container_class' => 'primary-navigation',
+						'menu_class'      => 'primary-navigation',
 						'container'       => '',
 					)
 				);
