@@ -10,27 +10,6 @@
     }
 }
 
-html[xmlns] .clearfix {
-    display: block;
-}
-
-* html .clearfix {
-    height: 1%;
-}
-
-
-.clr{
-    clear: both;
-}
-
-@mixin flw{
-    float: left;
-    width: 100%;   
-}
-.flw{
-    @include flw;
-}
-
 .display{
     &-none{
         display: none;

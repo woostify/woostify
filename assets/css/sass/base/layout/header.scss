@@ -53,7 +53,7 @@
                     li.menu-item-has-children{
                         &:after{
                             content: "\e649";
-                            font-family: 'themify';
+                            font-family: $icon;
                             font-size: 12px $i;
                             top: 17px;
                             line-height: 1 $i;

@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'themify';
+    font-family: $icon;
     src:url('assets/fonts/themify.eot?-fvbane');
     src:url('assets/fonts/themify.eot?#iefix-fvbane') format('embedded-opentype'),
         url('assets/fonts/themify.woff?-fvbane') format('woff'),
@@ -23,7 +23,7 @@
     -moz-osx-font-smoothing: grayscale;
 
     &:before{
-        font-family: 'themify';
+        font-family: $icon;
     }
 }
 

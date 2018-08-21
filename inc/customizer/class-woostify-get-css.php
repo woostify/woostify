@@ -51,8 +51,13 @@ class Woostify_Get_CSS {
 
 			.woocommerce-pagination a,
 			.woocommerce-loop-product__title,
-			.price del{
+			.price del,
+			.stars a{
 				color: ' . $woostify_color['text_color'] . ';
+			}
+
+			.price_slider_wrapper .price_slider{
+				background-color: ' . $woostify_color['text_color'] . ';
 			}
 		';
 
@@ -113,6 +118,28 @@ class Woostify_Get_CSS {
 			a{
 				color: ' . $woostify_color['accent_color'] . ';
 			}
+			a:hover{
+				color: ' . $woostify_color['theme_color'] . ';
+			}
+		';
+
+		// Button.
+		$styles .= '
+			button.button,
+			input.button,
+			.woocommerce-widget-layered-nav-dropdown__submit,
+			.woocommerce-mini-cart__buttons .button{
+				background-color: ' . $woostify_color['button_background_color'] . ';
+				color: ' . $woostify_color['button_text_color'] . ';
+			}
+
+			button.button:hover,
+			input.button:hover,
+			.woocommerce-widget-layered-nav-dropdown__submit:hover,
+			.woocommerce-mini-cart__buttons .button:hover{
+				background-color: ' . $woostify_color['button_hover_background_color'] . ';
+				color: ' . $woostify_color['button_hover_text_color'] . ';
+			}
 		';
 
 		// Theme color.
@@ -127,7 +154,10 @@ class Woostify_Get_CSS {
 			}
 			
 			.onsale,
-			.woocommerce-pagination li .page-numbers.current{
+			.woocommerce-pagination li .page-numbers.current,
+			.tagcloud a:hover,
+			.price_slider_wrapper .ui-widget-header,
+			.price_slider_wrapper .ui-slider-handle{
 				background-color: ' . $woostify_color['theme_color'] . ';
 			}
 		';

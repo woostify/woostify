@@ -10,7 +10,7 @@
 			content: "\e64b";
 			position: absolute;
 			right: 0;
-			font-family: 'themify';
+			font-family: $icon;
 			pointer-events: none;
 			font-size: 10px;
 			top: 50%;
@@ -67,7 +67,8 @@
 }
 
 /* price */
-.price{
+.price,
+.product_list_widget{
 	mark,
 	ins{
 		background-color: $tr;

@@ -184,21 +184,21 @@ if ( ! class_exists( 'woostify' ) ) :
 		 */
 		public function widgets_init() {
 			$sidebar_args['sidebar'] = array(
-				'name'          => __( 'Sidebar', 'woostify' ),
+				'name'          => __( 'Main Sidebar', 'woostify' ),
 				'id'            => 'sidebar',
 				'description'   => __( 'Appears in the sidebar of the site.', 'woostify' ),
 			);
 
 			if ( class_exists( 'woocommerce' ) ) {
 				$sidebar_args['shop_sidebar'] = array(
-					'name'          => __( 'Sidebar Shop', 'woostify' ),
+					'name'          => __( 'Woocommerce Sidebar', 'woostify' ),
 					'id'            => 'sidebar-shop',
-					'description'   => __( 'Appears in the sidebar of shop/product page.', 'woostify' ),
+					'description'   => __( ' Appears in the sidebar of shop/product page.', 'woostify' ),
 				);
 			}
 
 			$sidebar_args['footer'] = array(
-				'name'        => __( 'Footer', 'woostify' ),
+				'name'        => __( 'Footer Widget', 'woostify' ),
 				'id'          => 'footer',
 				'description' => __( 'Appears in the footer section of the site.', 'woostify' ),
 			);
@@ -402,16 +402,14 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Add styles for embeds
 		 */
 		public function print_embed_styles() {
-
 			$accent_color     = get_theme_mod( 'woostify_accent_color' );
-			$background_color = woostify_get_content_background_color();
 			?>
 			<style type="text/css">
 				.wp-embed {
 					padding: 2.618em !important;
 					border: 0 !important;
 					border-radius: 3px !important;
-					background-color: <?php echo esc_html( woostify_adjust_color_brightness( $background_color, -7 ) ); ?> !important;
+					background-color: #fff;
 				}
 
 				.wp-embed .wp-embed-featured-image {

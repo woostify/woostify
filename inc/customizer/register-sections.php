@@ -7,17 +7,19 @@
  * @copyright   Copyright (c) 2018, Woostify
  * @since       Astra 1.0.0
  */
+
 /**
- * Font section
+ * Layout
  */
-$wp_customize->add_section(
-	'font_section',
+$wp_customize->add_panel(
+	'layout_section',
 	array(
-		'title'      => __( 'Typography', 'woostify' ),
+		'title'      => __( 'Layout', 'woostify' ),
 		'capability' => 'edit_theme_options',
-		'priority'   => 37,
+		'priority'   => 30,
 	)
 );
+
 /**
  * Footer section
  */
@@ -25,8 +27,8 @@ $wp_customize->add_section(
 	'woostify_footer',
 	array(
 		'title'       => __( 'Footer', 'woostify' ),
-		'priority'    => 30,
 		'description' => __( 'Customize the look & feel of your website footer.', 'woostify' ),
+		'panel'       => 'layout_section',
 	)
 );
 
@@ -37,8 +39,8 @@ $wp_customize->add_section(
 	'woostify_blog',
 	array(
 		'title'       => __( 'Blog', 'woostify' ),
-		'priority'    => 30,
 		'description' => __( 'Customize the look & feel of your blog page', 'woostify' ),
+		'panel'       => 'layout_section',
 	)
 );
 
@@ -49,8 +51,8 @@ $wp_customize->add_section(
 	'woostify_shop',
 	array(
 		'title'       => __( 'Shop', 'woostify' ),
-		'priority'    => 30,
 		'description' => __( 'Customize the look & feel of your shop page', 'woostify' ),
+		'panel'       => 'layout_section',
 	)
 );
 

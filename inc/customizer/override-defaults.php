@@ -14,8 +14,8 @@ $wp_customize->get_section( 'background_image' )->title     = __( 'Background', 
 $wp_customize->get_section( 'background_image' )->priority  = 80;
 
 // Change header image section title & priority.
-$wp_customize->get_section( 'header_image' )->title         = __( 'Header', 'woostify' );
-$wp_customize->get_section( 'header_image' )->priority      = 25;
+$wp_customize->get_section( 'header_image' )->title    = __( 'Header', 'woostify' );
+$wp_customize->get_section( 'header_image' )->panel    = 'layout_section';
 
 // Selective refresh.
 if ( function_exists( 'add_partial' ) ) {

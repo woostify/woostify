@@ -1,0 +1,9 @@
+button.button,
+input.button,
+.woocommerce-widget-layered-nav-dropdown__submit,
+.woocommerce-mini-cart__buttons a{
+	border: 0;
+	padding: 5px 20px;
+	border-radius: 2px;
+	@extend .duration;
+}

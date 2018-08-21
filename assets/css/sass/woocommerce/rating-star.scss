@@ -1,0 +1,97 @@
+$star: "\e60a\e60a\e60a\e60a\e60a";
+$font_size: 16px;
+$star_color: #ffc400;
+
+
+.star-rating {
+	display: inline-block;
+	width: 80px;
+	height: $font_size;
+	position: relative;
+	line-height: $font_size;
+	&:before {
+		font-family: $icon;
+		font-size: $font_size;
+		content: $star;
+		white-space: nowrap;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	> span {
+		font-size: 0;
+		position: absolute;
+		left: 0;
+		top: 0;
+		overflow: hidden;
+		white-space: nowrap;
+		line-height: $font_size;
+		&:before {
+			font-family: $icon;
+			font-size: $font_size;
+			content: $star;
+			color: $star_color;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	}
+}
+
+/* comment rating */
+.stars{
+    &.selected{
+    	span{
+    		a{
+    			color: $star_color;
+    			&.active{
+    				~a{
+    					color: $inh
+    				}
+    			}
+    			&:hover{
+    				~a{
+    					color: $inh $i
+    				}
+    			}
+    		}
+    		&:hover{
+    			a{
+    				color: $star_color;
+    				&.active{
+	    				~a{
+	    					color: $star_color
+	    				}
+	    			}
+    			}
+    		}
+    	}
+    }
+
+    &:not(.selected){
+    	span{
+    		a{
+	    		&:hover{
+	    			color: $inh;
+		        	~a{
+		        		color: $inh
+		        	}
+		        }
+	    	}
+	    	&:hover{
+	    		a{
+	    			color: $star_color
+	    		}
+	    	}
+	    }
+    }
+
+    a{
+        font-size: 0;
+        &:before{
+            font-size: $font_size;
+            font-family: $icon;
+            content: "\e60a";
+        }
+    }
+}

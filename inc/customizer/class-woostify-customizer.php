@@ -39,28 +39,31 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'woostify_setting_default_values',
 				$args = array(
 					// Color.
-					'woostify_theme_color'                 => '#1346af',
-					'woostify_primary_menu_color'                  => '#2b2b2b',
-					'woostify_heading_color'               => '#2b2b2b',
-					'woostify_text_color'                  => '#8f8f8f',
-					'woostify_accent_color'                => '#2b2b2b',
+					'woostify_theme_color'                   => '#1346af',
+					'woostify_primary_menu_color'            => '#2b2b2b',
+					'woostify_heading_color'                 => '#2b2b2b',
+					'woostify_text_color'                    => '#8f8f8f',
+					'woostify_accent_color'                  => '#2b2b2b',
+
 					// Header.
-					'woostify_header_background_color'     => '#ffffff',
-					'woostify_header_text_color'           => '#404040',
-					'woostify_header_link_color'           => '#333333',
+					'woostify_header_background_color'       => '#ffffff',
+					'woostify_header_text_color'             => '#404040',
+					'woostify_header_link_color'             => '#333333',
+
 					// Footer.
-					'woostify_footer_background_color'     => '#f0f0f0',
-					'woostify_footer_heading_color'        => '#333333',
-					'woostify_footer_text_color'           => '#6d6d6d',
-					'woostify_footer_link_color'           => '#333333',
+					'woostify_footer_background_color'       => '#f0f0f0',
+					'woostify_footer_heading_color'          => '#333333',
+					'woostify_footer_text_color'             => '#6d6d6d',
+					'woostify_footer_link_color'             => '#333333',
+
 					// Button.
-					'woostify_button_background_color'     => '#eeeeee',
-					'woostify_button_text_color'           => '#333333',
-					'woostify_button_alt_background_color' => '#333333',
-					'woostify_button_alt_text_color'       => '#ffffff',
-					// Other.
-					'woostify_shop_layout'                 => 'right',
-					'background_color'                     => 'ffffff',
+					'woostify_button_text_color'             => '#ffffff',
+					'woostify_button_background_color'       => '#1346af',
+					'woostify_button_hover_text_color'       => '#ffffff',
+					'woostify_button_hover_background_color' => '#3a3a3a',
+
+					// Shop layout.
+					'woostify_shop_layout'                   => 'right',
 				)
 			);
 		}
@@ -72,40 +75,31 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 */
 		public function get_woostify_theme_mods() {
 			$woostify_theme_mods = array(
-				// Background color.
-				'background_color'            => woostify_get_content_background_color(),
+				// Color.
+				'theme_color'                   => get_theme_mod( 'woostify_theme_color' ),
+				'primary_menu_color'            => get_theme_mod( 'woostify_primary_menu_color' ),
+				'heading_color'                 => get_theme_mod( 'woostify_heading_color' ),
+				'text_color'                    => get_theme_mod( 'woostify_text_color' ),
+				'accent_color'                  => get_theme_mod( 'woostify_accent_color' ),
 
 				// Header color.
-				'header_background_color'     => get_theme_mod( 'woostify_header_background_color' ),
-				'header_link_color'           => get_theme_mod( 'woostify_header_link_color' ),
-				'header_text_color'           => get_theme_mod( 'woostify_header_text_color' ),
+				'header_background_color'       => get_theme_mod( 'woostify_header_background_color' ),
+				'header_link_color'             => get_theme_mod( 'woostify_header_link_color' ),
+				'header_text_color'             => get_theme_mod( 'woostify_header_text_color' ),
 
 				// Footer color.
-				'footer_background_color'     => get_theme_mod( 'woostify_footer_background_color' ),
-				'footer_link_color'           => get_theme_mod( 'woostify_footer_link_color' ),
-				'footer_heading_color'        => get_theme_mod( 'woostify_footer_heading_color' ),
-				'footer_text_color'           => get_theme_mod( 'woostify_footer_text_color' ),
-
-				// Theme color.
-				'theme_color'                 => get_theme_mod( 'woostify_theme_color' ),
-
-				// Menu color.
-				'primary_menu_color'          => get_theme_mod( 'woostify_primary_menu_color' ),
-
-				// Heading color.
-				'heading_color'               => get_theme_mod( 'woostify_heading_color' ),
-
-				// Body color.
-				'text_color'                  => get_theme_mod( 'woostify_text_color' ),
-
-				// Link color.
-				'accent_color'                => get_theme_mod( 'woostify_accent_color' ),
+				'footer_background_color'       => get_theme_mod( 'woostify_footer_background_color' ),
+				'footer_link_color'             => get_theme_mod( 'woostify_footer_link_color' ),
+				'footer_heading_color'          => get_theme_mod( 'woostify_footer_heading_color' ),
+				'footer_text_color'             => get_theme_mod( 'woostify_footer_text_color' ),
 
 				// Button color.
-				'button_background_color'     => get_theme_mod( 'woostify_button_background_color' ),
-				'button_text_color'           => get_theme_mod( 'woostify_button_text_color' ),
-				'button_alt_background_color' => get_theme_mod( 'woostify_button_alt_background_color' ),
-				'button_alt_text_color'       => get_theme_mod( 'woostify_button_alt_text_color' ),
+				'button_text_color'             => get_theme_mod( 'woostify_button_text_color' ),
+				'button_background_color'       => get_theme_mod( 'woostify_button_background_color' ),
+				'button_hover_text_color'       => get_theme_mod( 'woostify_button_hover_text_color' ),
+				'button_hover_background_color' => get_theme_mod( 'woostify_button_hover_background_color' ),
+
+				'shop_layout'                   => get_theme_mod( 'woostify_shop_layout' ),
 			);
 
 			return apply_filters( 'woostify_theme_mods', $woostify_theme_mods );
