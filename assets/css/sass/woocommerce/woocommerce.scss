@@ -1,0 +1,91 @@
+/* sorting */
+.woostify-sorting{
+	@include flex( flex, space-between, center );
+	margin-bottom: 42px;
+
+	.woocommerce-ordering{
+		order: 2;
+		position: relative;
+		&:after{
+			content: "\e64b";
+			position: absolute;
+			right: 0;
+			font-family: 'themify';
+			pointer-events: none;
+			font-size: 10px;
+			top: 50%;
+			@include translatey( -50% );
+		}
+	}
+	.orderby{
+		border: 0;
+		padding-right: 15px;
+		background-color: $tr;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+	}
+
+	.woocommerce-result-count{
+		margin-bottom: 0;
+	}
+}
+
+/* product loop title */
+.woocommerce-loop-product__title{
+	font-size: 12px;
+	font-weight: normal;
+	margin-top: 26px;
+	margin-bottom: 5px;
+}
+
+/* pagination */
+.woocommerce-pagination{
+	text-align: center;
+	text-transform: uppercase;
+	ul{
+		padding-left: 0;
+	}
+	li{
+		list-style: none;
+		display: inline-block;
+		border: 0;
+		.page-numbers{
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			@extend .flex;
+		}
+		.prev,
+		.next{
+			width: auto;
+			padding: 0 5px;
+		}
+		.current{
+			color: #fff;
+		}
+	}
+}
+
+/* price */
+.price{
+	mark,
+	ins{
+		background-color: $tr;
+	}
+	del{
+		+ins{
+			margin-left: 3px;
+		}
+	}
+}
+
+/* flas sale */
+.onsale{
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	pointer-events: none;
+	color: #fff;
+	padding: 0 5px;
+	font-size: 12px;
+}

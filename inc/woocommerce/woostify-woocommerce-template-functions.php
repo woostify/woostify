@@ -10,7 +10,7 @@ if ( ! function_exists( 'woostify_before_content' ) ) {
 	 * Before Content
 	 * Wraps all WooCommerce content in wrappers which match the theme markup
 	 *
-	 * @since   1.0.0
+	 * @since   1.0
 	 * @return  void
 	 */
 	function woostify_before_content() {
@@ -26,7 +26,7 @@ if ( ! function_exists( 'woostify_after_content' ) ) {
 	 * After Content
 	 * Closes the wrapping divs
 	 *
-	 * @since   1.0.0
+	 * @since   1.0
 	 * @return  void
 	 */
 	function woostify_after_content() {
@@ -68,7 +68,7 @@ if ( ! function_exists( 'woostify_cart_link' ) ) {
 	 * Displayed a link to the cart including the number of items present and the cart total
 	 *
 	 * @return void
-	 * @since  1.0.0
+	 * @since  1.0
 	 */
 	function woostify_cart_link() {
 		?>
@@ -84,7 +84,7 @@ if ( ! function_exists( 'woostify_product_search' ) ) {
 	/**
 	 * Display Product Search
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @uses  woostify_is_woocommerce_activated() check if WooCommerce is activated
 	 * @return void
 	 */
@@ -103,7 +103,7 @@ if ( ! function_exists( 'woostify_header_cart' ) ) {
 	/**
 	 * Display Header Cart
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @uses  woostify_is_woocommerce_activated() check if WooCommerce is activated
 	 * @return void
 	 */
@@ -133,7 +133,7 @@ if ( ! function_exists( 'woostify_upsell_display' ) ) {
 	 * Upsells
 	 * Replace the default upsell function with our own which displays the correct number product columns
 	 *
-	 * @since   1.0.0
+	 * @since   1.0
 	 * @return  void
 	 * @uses    woocommerce_upsell_display()
 	 */
@@ -147,7 +147,7 @@ if ( ! function_exists( 'woostify_sorting_wrapper' ) ) {
 	/**
 	 * Sorting wrapper
 	 *
-	 * @since   1.4.3
+	 * @since   1.0
 	 * @return  void
 	 */
 	function woostify_sorting_wrapper() {
@@ -159,7 +159,7 @@ if ( ! function_exists( 'woostify_sorting_wrapper_close' ) ) {
 	/**
 	 * Sorting wrapper close
 	 *
-	 * @since   1.4.3
+	 * @since   1.0
 	 * @return  void
 	 */
 	function woostify_sorting_wrapper_close() {
@@ -171,7 +171,7 @@ if ( ! function_exists( 'woostify_product_columns_wrapper' ) ) {
 	/**
 	 * Product columns wrapper
 	 *
-	 * @since   2.2.0
+	 * @since   1.0
 	 * @return  void
 	 */
 	function woostify_product_columns_wrapper() {
@@ -185,7 +185,7 @@ if ( ! function_exists( 'woostify_loop_columns' ) ) {
 	 * Default loop columns on product archives
 	 *
 	 * @return integer products per row
-	 * @since  1.0.0
+	 * @since  1.0
 	 */
 	function woostify_loop_columns() {
 		$columns = 3; // 3 products per row
@@ -202,7 +202,7 @@ if ( ! function_exists( 'woostify_product_columns_wrapper_close' ) ) {
 	/**
 	 * Product columns wrapper close
 	 *
-	 * @since   2.2.0
+	 * @since   1.0
 	 * @return  void
 	 */
 	function woostify_product_columns_wrapper_close() {
@@ -214,7 +214,7 @@ if ( ! function_exists( 'woostify_shop_messages' ) ) {
 	/**
 	 * Woostify shop messages
 	 *
-	 * @since   1.4.4
+	 * @since   1.0
 	 * @uses    woostify_do_shortcode
 	 */
 	function woostify_shop_messages() {
@@ -231,7 +231,7 @@ if ( ! function_exists( 'woostify_woocommerce_pagination' ) ) {
 	 * but since Woostify adds pagination before that function is excuted we need a separate function to
 	 * determine whether or not to display the pagination.
 	 *
-	 * @since 1.4.4
+	 * @since 1.0
 	 */
 	function woostify_woocommerce_pagination() {
 		if ( woocommerce_products_will_display() ) {
@@ -245,7 +245,7 @@ if ( ! function_exists( 'woostify_product_categories' ) ) {
 	 * Display Product Categories
 	 * Hooked into the `homepage` action in the homepage template
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @param array $args the product section args.
 	 * @return void
 	 */
@@ -297,7 +297,7 @@ if ( ! function_exists( 'woostify_recent_products' ) ) {
 	 * Display Recent Products
 	 * Hooked into the `homepage` action in the homepage template
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @param array $args the product section args.
 	 * @return void
 	 */
@@ -349,7 +349,7 @@ if ( ! function_exists( 'woostify_featured_products' ) ) {
 	 * Display Featured Products
 	 * Hooked into the `homepage` action in the homepage template
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @param array $args the product section args.
 	 * @return void
 	 */
@@ -403,7 +403,7 @@ if ( ! function_exists( 'woostify_popular_products' ) ) {
 	 * Display Popular Products
 	 * Hooked into the `homepage` action in the homepage template
 	 *
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @param array $args the product section args.
 	 * @return void
 	 */
@@ -456,7 +456,7 @@ if ( ! function_exists( 'woostify_on_sale_products' ) ) {
 	 * Hooked into the `homepage` action in the homepage template
 	 *
 	 * @param array $args the product section args.
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @return void
 	 */
 	function woostify_on_sale_products( $args ) {
@@ -509,7 +509,7 @@ if ( ! function_exists( 'woostify_best_selling_products' ) ) {
 	 * Display Best Selling Products
 	 * Hooked into the `homepage` action in the homepage template
 	 *
-	 * @since 2.0.0
+	 * @since 1.0
 	 * @param array $args the product section args.
 	 * @return void
 	 */
@@ -614,7 +614,7 @@ if ( ! function_exists( 'woostify_handheld_footer_bar' ) ) {
 	/**
 	 * Display a menu intended for use on handheld devices
 	 *
-	 * @since 2.0.0
+	 * @since 1.0
 	 */
 	function woostify_handheld_footer_bar() {
 		$links = array(
@@ -663,7 +663,7 @@ if ( ! function_exists( 'woostify_handheld_footer_bar_search' ) ) {
 	/**
 	 * The search callback function for the handheld footer bar
 	 *
-	 * @since 2.0.0
+	 * @since 1.0
 	 */
 	function woostify_handheld_footer_bar_search() {
 		echo '<a href="">' . esc_attr__( 'Search', 'woostify' ) . '</a>';
@@ -675,7 +675,7 @@ if ( ! function_exists( 'woostify_handheld_footer_bar_cart_link' ) ) {
 	/**
 	 * The cart callback function for the handheld footer bar
 	 *
-	 * @since 2.0.0
+	 * @since 1.0
 	 */
 	function woostify_handheld_footer_bar_cart_link() {
 		?>
@@ -690,7 +690,7 @@ if ( ! function_exists( 'woostify_handheld_footer_bar_account_link' ) ) {
 	/**
 	 * The account callback function for the handheld footer bar
 	 *
-	 * @since 2.0.0
+	 * @since 1.0
 	 */
 	function woostify_handheld_footer_bar_account_link() {
 		echo '<a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '">' . esc_attr__( 'My Account', 'woostify' ) . '</a>';
@@ -701,7 +701,7 @@ if ( ! function_exists( 'woostify_single_product_pagination' ) ) {
 	/**
 	 * Single Product Pagination
 	 *
-	 * @since 2.3.0
+	 * @since 1.0
 	 */
 	function woostify_single_product_pagination() {
 		if ( class_exists( 'Storefront_Product_Pagination' ) || true !== get_theme_mod( 'woostify_product_pagination' ) ) {
@@ -745,7 +745,7 @@ if ( ! function_exists( 'woostify_sticky_single_add_to_cart' ) ) {
 	/**
 	 * Sticky Add to Cart
 	 *
-	 * @since 2.3.0
+	 * @since 1.0
 	 */
 	function woostify_sticky_single_add_to_cart() {
 		global $product;
@@ -793,7 +793,7 @@ if ( ! function_exists( 'woostify_woocommerce_brands_homepage_section' ) ) {
 	 * Hooked into the `homepage` action in the homepage template.
 	 * Requires WooCommerce Brands.
 	 *
-	 * @since  2.3.0
+	 * @since  1.0
 	 * @link   https://woocommerce.com/products/brands/
 	 * @uses   apply_filters()
 	 * @uses   woostify_do_shortcode()
@@ -844,7 +844,7 @@ if ( ! function_exists( 'woostify_woocommerce_brands_archive' ) ) {
 	 * Display brand image on brand archives
 	 * Requires WooCommerce Brands.
 	 *
-	 * @since  2.3.0
+	 * @since  1.0
 	 * @link   https://woocommerce.com/products/brands/
 	 * @uses   is_tax()
 	 * @uses   wp_kses_post()
@@ -864,7 +864,7 @@ if ( ! function_exists( 'woostify_woocommerce_brands_single' ) ) {
 	 * Output product brand image for use on single product pages
 	 * Requires WooCommerce Brands.
 	 *
-	 * @since  2.3.0
+	 * @since  1.0
 	 * @link   https://woocommerce.com/products/brands/
 	 * @uses   woostify_do_shortcode()
 	 * @uses   wp_kses_post()
@@ -886,5 +886,184 @@ if ( ! function_exists( 'woostify_woocommerce_brands_single' ) ) {
 			<?php echo wp_kses_post( $brand ); ?>
 		</div>
 		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_image_alt' ) ) {
+
+	/**
+	 * Get image alt
+	 *
+	 * @param      bolean $id     The image id.
+	 * @param      string $alt    The alternate.
+	 *
+	 * @return     string  The image alt
+	 */
+	function woostify_image_alt( $id = null, $alt = '' ) {
+		if ( ! $id ) {
+			return esc_attr__( 'Error image', 'woostify' );
+		}
+
+		$data = get_post_meta( $id, '_wp_attachment_image_alt', true );
+		$img_alt = ! empty( $data ) ? $data : $alt;
+
+		return $img_alt;
+	}
+}
+
+if ( ! function_exists( 'woostify_get_product_thumbnail' ) ) {
+
+	/**
+	 * Woostify get woocommerce thumbnail
+	 *
+	 * @param      string $size   Woocommerce thumbnail size.
+	 * @return     statement
+	 */
+	function woostify_get_product_thumbnail( $size = 'woocommerce_thumbnail' ) {
+		global $product;
+
+		if ( ! $product ) {
+			return '';
+		}
+
+		$variation  = $product->is_type( 'variable' );
+		$img_id     = $product->get_image_id();
+		$img_alt    = woostify_image_alt( $img_id, esc_attr__( 'Product image', 'woostify' ) );
+		$img_src    = array();
+		$img_origin = wp_get_attachment_image_src( $img_id, $size );
+		$image_attr = array(
+			'alt'             => $img_alt,
+			'data-origin_src' => $img_origin[0],
+		);
+		$image_size = apply_filters( 'single_product_archive_thumbnail_size', $size );
+
+		if ( $variation ) {
+			$vars         = $product->get_available_variations();
+			$default_attr = method_exists( $product, 'get_default_attributes' ) ? $product->get_default_attributes() : array();
+			$attributes   = $product->get_attributes();
+			$output       = '';
+
+			foreach ( $attributes as $key ) {
+				$attr_type = $key['name'];
+
+				foreach ( $vars as $key ) {
+					$slug = isset( $key['attributes'][ 'attribute_' . $attr_type ] ) ? $key['attributes'][ 'attribute_' . $attr_type ] : '';
+
+					if ( isset( $default_attr[ $attr_type ] ) && $default_attr[ $attr_type ] === $slug ) {
+						/**
+						 * Get image attribute
+						 *
+						 * @param $img_src     string get default image src
+						 * @param $default_alt string image alt for variation image
+						 * @param $img_props   array image attribute
+						 */
+						$img_src     = wp_get_attachment_image_src( $key['image_id'], $size );
+						$default_alt = woostify_image_alt( $key['image_id'], esc_attr__( 'Product image', 'woostify' ) );
+						$img_props   = wc_get_product_attachment_props( $key['image_id'], $product );
+
+						$default_image_attr = array(
+							'width'           => $img_props['thumb_src_w'],
+							'height'          => $img_props['thumb_src_h'],
+							'src'             => $img_src[0],
+							'alt'             => $default_alt,
+							'data-origin_src' => $img_origin[0],
+							'srcset'          => $img_props['srcset'],
+						);
+
+						$default_image_attr['sizes']  = function_exists( 'wp_get_attachment_image_sizes' ) ? wp_get_attachment_image_sizes( $img_id, 'woocommerce_single' ) : false;
+
+						$output = implode( ' ', array_map(
+							function ( $v, $k ) {
+								return sprintf( "%s='%s'", $k, $v );
+							},
+							$default_image_attr,
+							array_keys( $default_image_attr )
+						) );
+						break;
+					}
+				}
+			}
+
+			if ( ! empty( $img_src ) ) {
+				return '<img ' . wp_kses_post( $output ) . ' />';
+			}
+		}
+
+		return $product->get_image( $image_size, $image_attr );
+	}
+}
+
+if ( ! function_exists( 'woostify_loop_product_image_wrapper' ) ) {
+
+	/**
+	 * Woostify wrap loop product image
+	 *
+	 * @param string $size Woocommerce thumbnail.
+	 * @param array  $args array().
+	 */
+	function woostify_loop_product_image_wrapper( $size = 'woocommerce_thumbnail', $args = array() ) {
+		global $product;
+
+		$image_size = apply_filters( 'single_product_archive_thumbnail_size', $size );
+
+		$gallery = $product->get_gallery_image_ids();
+
+		if ( $product ) {
+			?>
+				<div class="loop-product-image-wrapper">
+					<?php
+					// open tag <a>.
+					woocommerce_template_loop_product_link_open();
+
+					echo woostify_get_product_thumbnail(); // WPCS: XSS ok.
+
+					// Hover image.
+					if ( ! empty( $gallery ) ) {
+						$hover = wp_get_attachment_image_src( $gallery[0], $image_size );
+						?>
+							<span class="hover-product-image" style="background-image: url(<?php echo esc_url( $hover[0] ); ?>);"></span>
+						<?php
+					}
+
+					// close tag </a>.
+					woocommerce_template_loop_product_link_close();
+					?>
+
+					<div class="loop-product-action">
+						<?php
+						// Add to cart button.
+						if ( $product ) {
+								$defaults = array(
+									'quantity'   => 1,
+									'class'      => implode( ' ', array_filter( array(
+										'woostify-add-to-cart-btn',
+										'button',
+										'product_type_' . $product->get_type(),
+										$product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
+										$product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
+									) ) ),
+									'attributes' => array(
+										'data-product_id'  => $product->get_id(),
+										'data-product_sku' => $product->get_sku(),
+										'aria-label'       => $product->add_to_cart_description(),
+									),
+								);
+
+								$args = apply_filters( 'woocommerce_loop_add_to_cart_args', wp_parse_args( $args, $defaults ), $product );
+
+								echo sprintf(
+									'<a href="%s" data-quantity="%s" class="%s" %s>%s</a>',
+									esc_url( $product->add_to_cart_url() ),
+									esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+									esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+									isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+									esc_html( $product->add_to_cart_text() )
+								); // WPCS: XSS ok.
+						}
+						?>
+					</div>
+				</div>
+			<?php
+		}
 	}
 }

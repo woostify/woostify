@@ -3,22 +3,23 @@
     padding-left: 0;
     margin: 0;
 
+    @extend .clearfix;
+
     .product {
-        text-align: center;
         list-style: none;
         float: left;
         margin: 0 30px 56px 0;
         position: relative;
 
         @media ( min-width: #{ $screen-md } ) {
-            @include calc( width, '( 100% - 90px ) / 4' );
+            width: calc( ( 100% - 90px ) / 4 );
             &.last {
                 margin-right: 0;
             }
         }
 
         @media ( min-width: #{ $screen-ios } ) and ( max-width: #{ $screen-md - 1 } ) {
-            @include calc( width, '( 100% - 30px ) / 2' );
+            width: calc( ( 100% - 30px ) / 2 );
             &:nth-of-type( 2n ) {
                 margin-right: 0;
             }
@@ -44,8 +45,7 @@
         @for $i from 2 through 6 {
             &.columns-#{ $i } {
                 .product{
-                	$gutter: 30px * ( $i - 1 );
-                    @include calc( width, '( 100% - #{ $gutter } ) / #{ $i }' );
+                    width: calc( ( 100% - #{ 30px * ( $i - 1 ) } ) / #{ $i } );
                     &:nth-of-type( #{ $i }n + #{ $i + 1 } ) {
                         clear: both;
                     }

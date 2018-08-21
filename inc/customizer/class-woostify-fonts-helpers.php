@@ -3,7 +3,7 @@
  * Woostify Font Helper
  *
  * @package  woostify
- * @since    1.0.0
+ * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -234,7 +234,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		/**
 		 * Return an array of all of our Google Fonts.
 		 *
-		 * @since 1.3.0
+		 * @since 1.0
 		 * @param string $amount How many fonts to return.
 		 * @return array The list of Google Fonts.
 		 */
@@ -275,7 +275,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		/**
 		 * Return an array of all of our Google Fonts.
 		 *
-		 * @since 1.3.0
+		 * @since 1.0
 		 */
 		public function woostify_get_all_google_fonts_ajax() {
 			/*Bail if the nonce doesn't check out*/
@@ -305,7 +305,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		 * Wrapper function to find the category for chosen Google Font
 		 * Example: woostify_get_google_font_category( 'Open Sans' )
 		 *
-		 * @since 1.3.0
+		 * @since 1.0
 		 *
 		 * @param string $font The name of our font.
 		 * @param string $key The ID of the font setting.

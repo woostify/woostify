@@ -3,7 +3,7 @@
  * Woostify NUX Guided Tour Class
  *
  * @package  woostify
- * @since    2.0.0
+ * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

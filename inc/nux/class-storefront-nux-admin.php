@@ -3,7 +3,7 @@
  * Woostify NUX Admin Class
  *
  * @package  woostify
- * @since    2.0.0
+ * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,7 +19,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * Setup class.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 */
 		public function __construct() {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -33,7 +33,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * Enqueue scripts.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 */
 		public function enqueue_scripts() {
 			global $wp_customize, $woostify_version;
@@ -74,7 +74,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * Output admin notices.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 */
 		public function admin_notices() {
 			global $pagenow;
@@ -155,7 +155,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * AJAX dismiss notice.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 */
 		public function dismiss_nux() {
 			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'woostify_notice_dismiss' ) || ! current_user_can( 'manage_options' ) ) {
@@ -168,7 +168,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * Redirects to the customizer with the correct variables.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 */
 		public function redirect_customizer() {
 			check_admin_referer( 'woostify_starter_content' );
@@ -220,7 +220,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * Get WooCommerce page ids.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 */
 		public static function get_woocommerce_pages() {
 			$woocommerce_pages = array();
@@ -253,7 +253,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * Update Woostify fresh site flag.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 */
 		public function log_fresh_site_state() {
 			if ( null === get_option( 'woostify_nux_fresh_site', null ) ) {
@@ -264,7 +264,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * Add custom classes to the list of admin body classes.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 * @param string $classes Classes for the admin body element.
 		 * @return string
 		 */
@@ -281,7 +281,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * Check if WooCommerce is installed.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 */
 		private function _is_woocommerce_installed() {
 			if ( file_exists( WP_PLUGIN_DIR . '/woocommerce' ) ) {
@@ -309,7 +309,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * Set WooCommerce pages to use the full width template.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 */
 		private function _set_woocommerce_pages_full_width() {
 			$wc_pages = $this->get_woocommerce_pages();
@@ -322,7 +322,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * Given a page id assign a given page template to it.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 * @param int    $page_id  Page id.
 		 * @param string $template Template file name.
 		 * @return void|bool Returns false if $page_id or $template is empty.
@@ -338,7 +338,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		/**
 		 * Check if WooCommerce is empty.
 		 *
-		 * @since 2.2.0
+		 * @since 1.0
 		 * @return bool
 		 */
 		private function _is_woocommerce_empty() {

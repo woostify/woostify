@@ -17,7 +17,7 @@ if ( ! function_exists( 'woostify_is_woocommerce_activated' ) ) {
 /**
  * Call a shortcode function by tag name.
  *
- * @since  1.4.6
+ * @since  1.0
  *
  * @param string $tag     The shortcode whose function to call.
  * @param array  $atts    The attributes to pass to the shortcode function. Optional.
@@ -68,7 +68,7 @@ function woostify_get_content_background_color() {
  * Apply inline style to the Woostify header.
  *
  * @uses  get_header_image()
- * @since  2.0.0
+ * @since  1.0
  */
 function woostify_header_styles() {
 	$is_header_image = get_header_image();

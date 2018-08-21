@@ -51,13 +51,21 @@
             @include rotate( 90 )
         }
     }
+    &:focus-within{
+    	&:after{
+    		@include rotate( 90 )
+    	}
+    }
     &:after{
         content: "\e610";
         font-family: 'themify';
         font-size: 20px;
         position: absolute;
-        right: 15px;
-        top: 15px;
+        right: 0;
+        top: 0;
+        width: 50px;
+        height: 50px;
+        @extend .flex;
         @extend .duration;
     }
     .search-field{

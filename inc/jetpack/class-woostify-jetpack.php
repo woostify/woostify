@@ -3,7 +3,7 @@
  * Woostify Jetpack Class
  *
  * @package  woostify
- * @since    2.0.0
+ * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -93,7 +93,7 @@ if ( ! class_exists( 'Woostify_Jetpack' ) ) :
 		/**
 		 * Enqueue jetpack styles.
 		 *
-		 * @since  1.6.1
+		 * @since  1.0
 		 */
 		public function jetpack_scripts() {
 			global $woostify_version;
