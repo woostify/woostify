@@ -683,33 +683,6 @@ if ( ! function_exists( 'woostify_homepage_content' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_get_sidebar' ) ) {
-	/**
-	 * Display woostify sidebar
-	 *
-	 * @uses get_sidebar()
-	 * @since 1.0
-	 */
-	function woostify_get_sidebar() {
-		$sidebar_shop = get_theme_mod( 'woostify_shop_layout', $layout = is_rtl() ? 'left' : 'right' );
-		$sidebar      = get_theme_mod( 'woostify_blog_layout', $layout = is_rtl() ? 'left' : 'right' );
-
-		if ( true == woostify_is_woocommerce_page() ) {
-			if ( ! is_active_sidebar( 'sidebar-shop' ) || 'full' == $sidebar_shop ) {
-				return;
-			}
-
-			get_sidebar( 'shop' );
-		} else {
-			if ( ! is_active_sidebar( 'sidebar' ) || 'full' == $sidebar ) {
-				return;
-			}
-
-			get_sidebar();
-		}
-	}
-}
-
 if ( ! function_exists( 'woostify_header_container' ) ) {
 	/**
 	 * The header container

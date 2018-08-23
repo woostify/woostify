@@ -198,6 +198,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/heading.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/sidebar/sidebar.php';
 		}
 
 		/**

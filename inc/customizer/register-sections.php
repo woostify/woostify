@@ -21,18 +21,6 @@ $wp_customize->add_panel(
 );
 
 /**
- * Footer section
- */
-$wp_customize->add_section(
-	'woostify_footer',
-	array(
-		'title'       => __( 'Footer', 'woostify' ),
-		'description' => __( 'Customize the look & feel of your website footer.', 'woostify' ),
-		'panel'       => 'layout_section',
-	)
-);
-
-/**
  * Blog section
  */
 $wp_customize->add_section(
@@ -45,6 +33,17 @@ $wp_customize->add_section(
 );
 
 /**
+ * Sidebar section
+ */
+$wp_customize->add_section(
+	'woostify_sidebar',
+	array(
+		'title'       => __( 'Sidebar', 'woostify' ),
+		'panel'       => 'layout_section',
+	)
+);
+
+/**
  * Shop section
  */
 $wp_customize->add_section(
@@ -52,6 +51,18 @@ $wp_customize->add_section(
 	array(
 		'title'       => __( 'Shop', 'woostify' ),
 		'description' => __( 'Customize the look & feel of your shop page', 'woostify' ),
+		'panel'       => 'layout_section',
+	)
+);
+
+/**
+ * Footer section
+ */
+$wp_customize->add_section(
+	'woostify_footer',
+	array(
+		'title'       => __( 'Footer', 'woostify' ),
+		'description' => __( 'Customize the look & feel of your website footer.', 'woostify' ),
 		'panel'       => 'layout_section',
 	)
 );

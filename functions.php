@@ -60,15 +60,14 @@ if ( class_exists( 'Jetpack' ) ) {
 }
 
 if ( woostify_is_woocommerce_activated() ) {
-	$woostify->woocommerce            = require WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce.php';
-	/*$woostify->woocommerce_customizer = require WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce-customizer.php';*/
-	require WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-hooks.php';
+	$woostify->woocommerce = require WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce.php';
+	require WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-functions.php';
 	require WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-functions.php';
+	require WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-hooks.php';
 }
 
 if ( is_admin() ) {
 	$woostify->admin = require WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-admin.php';
-
 	require WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-plugin-install.php';
 }
 
