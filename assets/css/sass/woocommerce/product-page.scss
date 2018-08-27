@@ -1,0 +1,288 @@
+.product-page-container{
+	padding: 90px 0;
+	background-color: #f3f3f3;
+}
+
+/* ONSALE */
+.product-gallery{
+	.onsale{
+		left: 80px;
+	}
+}
+
+/* GALLERY */
+.product-gallery{
+	position: relative;
+	display: flex;
+	float: left;
+	max-width: 100%;
+	@media ( min-width: #{ $screen-md } ) {
+		width: calc( ( 100% - 30px ) / 2 );
+	}
+}
+/* product images */
+.product-images{
+	order: 2;
+	.image-item{
+		margin: 0;
+		cursor: pointer;
+	}
+}
+
+/* product thumbnail images */
+.product-thumbnail-images{
+	width: 50px;
+	min-width: 50px;
+	margin-right: 20px;
+	.thumbnail-item{
+		cursor: pointer;
+		border: 1px solid $tr;
+	}
+	.tns-nav-active{
+		border-color: #555555;
+	}
+}
+
+/* SUMMARY */
+.summary.entry-summary{
+	float: left;
+	max-width: 100%;
+	@media ( min-width: #{ $screen-md } ) {
+		width: calc( ( 100% - 30px ) / 2 );
+		margin-left: 30px;
+	}
+	.price{
+		font-size: 24px;
+		margin-bottom: 18px;
+	}
+}
+.woocommerce-product-rating{
+	margin-bottom: 15px;
+}
+.woocommerce-product-details__short-description{
+	border: 1px solid #e8e8e8;
+	border-left: 0;
+	border-right: 0;
+	padding: 35px 0;
+	p{
+		&:last-child{
+			margin-bottom: 0;
+		}
+	}
+	+.cart{
+		margin-top: 20px;
+	}
+}
+// table variations.
+.variations{
+	border: 0;
+	td{
+		display: block;
+		border: 0;
+		padding: 2px 0;
+	}
+	tr{
+		display: block;
+		+tr{
+			margin-top: 10px;
+		}
+	}
+	select{
+		clear: both;
+		display: block;
+		height: 40px;
+	}
+	label{
+		text-transform: uppercase;
+	}
+}
+.reset_variations{
+	float: left;
+	margin-top: 5px;
+	@include duration(0s);
+	&[style*="visibility: hidden"]{
+		height: 0;
+		margin-top: 0;
+	}
+}
+
+.product_title{
+	font-size: 24px;
+	margin-top: 0;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+.cart{
+	.quantity{
+		margin-right: 8px;
+	}
+}
+.woocommerce-variation-price{
+	margin-bottom: 10px;
+}
+.quantity{
+	width: 170px;
+	height: 50px;
+	border-radius: 50px;
+	position: relative;
+	overflow: hidden;
+	background: #fff;
+	@extend .inline-flex;
+	.qty{
+		text-align: center;
+		border: 0;
+		font-size: 16px;
+		max-width: calc( 100% - 80px );
+		background-color: $tr;
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button{
+			-webkit-appearance: none;
+		}
+	}
+	.product-qty{
+		position: absolute;
+		font-family: $icon;
+		cursor: pointer;
+		width: 40px;
+		height: 100%;
+		@extend .flex;
+	}
+	[data-qty="minus"]{
+		left: 0;
+		&:before{
+			content: "\e622"
+		}
+	}
+	[data-qty="plus"]{
+		right: 0;
+		&:before{
+			content: "\e61a"
+		}
+	}
+}
+.single_add_to_cart_button{
+	&.button{
+		min-width: 200px;
+		height: 50px;
+		border-radius: 50px;
+		font-weight: 600;
+		text-transform: uppercase;
+		vertical-align: top
+	}
+	&.disabled{
+		cursor: default;
+		pointer-events: none;
+		opacity: 0.5;
+		@include filter( grayscale, 100% )
+	}
+}
+.product_meta{
+	margin-top: 20px;
+	>span{
+		display: block;
+	}
+}
+
+/* TABS */
+.woocommerce-tabs{
+	display: block;
+	clear: both;
+	padding-top: 54px;
+	border-bottom: 1px solid #efefef;
+	.tabs{
+		margin: 0;
+		padding-left: 0;
+		text-align: center;
+		li{
+			list-style: none;
+			display: inline-block;
+			margin: 0 30px;
+		}
+		a{
+			font-size: 18px;
+		}
+	}
+	.woocommerce-Tabs-panel{
+		padding: 23px 0;
+		max-width: 770px;
+		margin: 0 auto;
+		padding-bottom: 50px;
+		>h2{
+			display: none;
+		}
+		table{
+			margin: 0;
+		}
+		p{
+			&:last-child{
+				margin-bottom: 0;
+			}
+		}
+	}
+	// comment reviews.
+	#comments{
+		border-top: 0;
+		padding-top: 0;
+		margin-top: 0;
+	}
+	.woocommerce-Reviews-title{
+		display: none;
+	}
+	.commentlist{
+		padding-left: 0;
+		margin: 0;
+	}
+	.comment{
+		margin-bottom: 40px;
+	}
+	.comment_container{
+		display: flex;
+		justify-content: flex-start;
+		.avatar{
+			border-radius: 50%;
+			margin-right: 30px;
+			min-width: 60px;
+			width: 60px;
+			height: 60px;
+		}
+		.comment-text{
+			flex-grow: 1;
+		}
+		.meta{
+			margin-left: 10px;
+			margin-bottom: 0;
+			display: inline-block;
+			height: 16px;
+			line-height: 16px;
+			vertical-align: text-top;
+		}
+	}
+	.comment-notes{
+		width: 100%;
+	}
+	.comment-form{
+		>p{
+			width: 100%;
+			margin-bottom: 0;
+		}
+		input{
+			&:not([type="submit"]){
+				width: 100%;
+			}
+		}
+		textarea{
+			width: 100%;
+		}
+	}
+}
+
+/* RELATED && UPSELL */
+.related,
+.up-sells{
+	>h2{
+		text-align: center;
+		font-size: 18px;
+		font-weight: normal;
+		padding: 25px 0;
+	}
+}

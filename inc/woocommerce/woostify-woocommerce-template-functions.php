@@ -889,181 +889,35 @@ if ( ! function_exists( 'woostify_woocommerce_brands_single' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_image_alt' ) ) {
-
+if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 	/**
-	 * Get image alt
-	 *
-	 * @param      bolean $id     The image id.
-	 * @param      string $alt    The alternate.
-	 *
-	 * @return     string  The image alt
+	 * Cart sidebar
 	 */
-	function woostify_image_alt( $id = null, $alt = '' ) {
-		if ( ! $id ) {
-			return esc_attr__( 'Error image', 'woostify' );
-		}
-
-		$data = get_post_meta( $id, '_wp_attachment_image_alt', true );
-		$img_alt = ! empty( $data ) ? $data : $alt;
-
-		return $img_alt;
-	}
-}
-
-if ( ! function_exists( 'woostify_get_product_thumbnail' ) ) {
-
-	/**
-	 * Woostify get woocommerce thumbnail
-	 *
-	 * @param      string $size   Woocommerce thumbnail size.
-	 * @return     statement
-	 */
-	function woostify_get_product_thumbnail( $size = 'woocommerce_thumbnail' ) {
-		global $product;
-
-		if ( ! $product ) {
-			return '';
-		}
-
-		$variation  = $product->is_type( 'variable' );
-		$img_id     = $product->get_image_id();
-		$img_alt    = woostify_image_alt( $img_id, esc_attr__( 'Product image', 'woostify' ) );
-		$img_src    = array();
-		$img_origin = wp_get_attachment_image_src( $img_id, $size );
-		$image_attr = array(
-			'alt'             => $img_alt,
-			'data-origin_src' => $img_origin[0],
-		);
-		$image_size = apply_filters( 'single_product_archive_thumbnail_size', $size );
-
-		if ( $variation ) {
-			$vars         = $product->get_available_variations();
-			$default_attr = method_exists( $product, 'get_default_attributes' ) ? $product->get_default_attributes() : array();
-			$attributes   = $product->get_attributes();
-			$output       = '';
-
-			foreach ( $attributes as $key ) {
-				$attr_type = $key['name'];
-
-				foreach ( $vars as $key ) {
-					$slug = isset( $key['attributes'][ 'attribute_' . $attr_type ] ) ? $key['attributes'][ 'attribute_' . $attr_type ] : '';
-
-					if ( isset( $default_attr[ $attr_type ] ) && $default_attr[ $attr_type ] === $slug ) {
-						/**
-						 * Get image attribute
-						 *
-						 * @param $img_src     string get default image src
-						 * @param $default_alt string image alt for variation image
-						 * @param $img_props   array image attribute
-						 */
-						$img_src     = wp_get_attachment_image_src( $key['image_id'], $size );
-						$default_alt = woostify_image_alt( $key['image_id'], esc_attr__( 'Product image', 'woostify' ) );
-						$img_props   = wc_get_product_attachment_props( $key['image_id'], $product );
-
-						$default_image_attr = array(
-							'width'           => $img_props['thumb_src_w'],
-							'height'          => $img_props['thumb_src_h'],
-							'src'             => $img_src[0],
-							'alt'             => $default_alt,
-							'data-origin_src' => $img_origin[0],
-							'srcset'          => $img_props['srcset'],
-						);
-
-						$default_image_attr['sizes']  = function_exists( 'wp_get_attachment_image_sizes' ) ? wp_get_attachment_image_sizes( $img_id, 'woocommerce_single' ) : false;
-
-						$output = implode( ' ', array_map(
-							function ( $v, $k ) {
-								return sprintf( "%s='%s'", $k, $v );
-							},
-							$default_image_attr,
-							array_keys( $default_image_attr )
-						) );
-						break;
-					}
-				}
-			}
-
-			if ( ! empty( $img_src ) ) {
-				return '<img ' . wp_kses_post( $output ) . ' />';
-			}
-		}
-
-		return $product->get_image( $image_size, $image_attr );
-	}
-}
-
-if ( ! function_exists( 'woostify_loop_product_image_wrapper' ) ) {
-
-	/**
-	 * Woostify wrap loop product image
-	 *
-	 * @param string $size Woocommerce thumbnail.
-	 * @param array  $args array().
-	 */
-	function woostify_loop_product_image_wrapper( $size = 'woocommerce_thumbnail', $args = array() ) {
-		global $product;
-
-		$image_size = apply_filters( 'single_product_archive_thumbnail_size', $size );
-
-		$gallery = $product->get_gallery_image_ids();
-
-		if ( $product ) {
-			?>
-				<div class="loop-product-image-wrapper">
-					<?php
-					// open tag <a>.
-					woocommerce_template_loop_product_link_open();
-
-					echo woostify_get_product_thumbnail(); // WPCS: XSS ok.
-
-					// Hover image.
-					if ( ! empty( $gallery ) ) {
-						$hover = wp_get_attachment_image_src( $gallery[0], $image_size );
-						?>
-							<span class="hover-product-image" style="background-image: url(<?php echo esc_url( $hover[0] ); ?>);"></span>
-						<?php
-					}
-
-					// close tag </a>.
-					woocommerce_template_loop_product_link_close();
-					?>
-
-					<div class="loop-product-action">
-						<?php
-						// Add to cart button.
-						if ( $product ) {
-								$defaults = array(
-									'quantity'   => 1,
-									'class'      => implode( ' ', array_filter( array(
-										'woostify-add-to-cart-btn',
-										'button',
-										'product_type_' . $product->get_type(),
-										$product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
-										$product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
-									) ) ),
-									'attributes' => array(
-										'data-product_id'  => $product->get_id(),
-										'data-product_sku' => $product->get_sku(),
-										'aria-label'       => $product->add_to_cart_description(),
-									),
-								);
-
-								$args = apply_filters( 'woocommerce_loop_add_to_cart_args', wp_parse_args( $args, $defaults ), $product );
-
-								echo sprintf(
-									'<a href="%s" data-quantity="%s" class="%s" %s>%s</a>',
-									esc_url( $product->add_to_cart_url() ),
-									esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
-									esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
-									isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
-									esc_html( $product->add_to_cart_text() )
-								); // WPCS: XSS ok.
-						}
-						?>
-					</div>
+	function woostify_woocommerce_cart_sidebar() {
+		global $woocommerce;
+		$total = $woocommerce->cart->cart_contents_count;
+		?>
+			<div id="shop-cart-sidebar">
+				<div class="cart-sidebar-head">
+					<h4 class="cart-sidebar-title"><?php esc_html_e( 'Shopping cart', 'woostify' ); ?></h4>
+					<span class="shop-cart-count"><?php echo esc_attr( $total ); ?></span>
+					<button id="close-cart-sidebar-btn" class="ion-android-close"></button>
 				</div>
-			<?php
-		}
+
+				<div class="cart-sidebar-content">
+					<?php woocommerce_mini_cart(); ?>
+				</div>
+			</div>
+		<?php
 	}
 }
+
+if ( ! function_exists( 'woostify_woocommerce_overlay' ) ) {
+	/**
+	 * Woocommerce overlay
+	 */
+	function woostify_woocommerce_overlay() {
+		echo '<div id="woocommerce-overlay"></div>';
+	}
+}
+

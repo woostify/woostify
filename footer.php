@@ -7,12 +7,9 @@
  * @package woostify
  */
 
+	do_action( 'woostify_content_bottom' );
+	do_action( 'woostify_before_footer' );
 ?>
-
-		</div><!-- .container -->
-	</div><!-- #content -->
-
-	<?php do_action( 'woostify_before_footer' ); ?>
 
 	<footer id="colophon" class="site-footer">
 		<div class="container">
@@ -28,7 +25,7 @@
 			?>
 
 		</div><!-- .container -->
-	</footer><!-- #colophon -->
+	</footer>
 
 	<?php do_action( 'woostify_after_footer' ); ?>
 

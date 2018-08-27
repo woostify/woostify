@@ -39,6 +39,7 @@
 		display: block;
 	}
 	a{
+		padding-left: 1px;
 		&:before{
 			font-family: $icon;
 			font-weight: normal;

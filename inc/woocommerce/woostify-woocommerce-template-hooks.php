@@ -47,6 +47,8 @@ add_action( 'woostify_content_top', 'woostify_shop_messages', 15 );
 add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper', 9 );
 add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper_close', 31 );
 
+
+
 // Legacy WooCommerce columns filter.
 if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.3', '<' ) ) {
 	add_filter( 'loop_shop_columns', 'woostify_loop_columns' );
@@ -63,9 +65,18 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_d
 add_action( 'woocommerce_after_single_product_summary', 'woostify_upsell_display', 15 );
 
 add_action( 'woocommerce_after_single_product_summary', 'woostify_single_product_pagination', 30 );
-add_action( 'woostify_after_footer', 'woostify_sticky_single_add_to_cart', 999 );
 
-add_action( 'woostify_loop_product_image_wrapper_action', 'woostify_loop_product_image_wrapper' );
+// PRODUCT PAGE.
+// Remove default gallery.
+remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
+// Sale flash.
+remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
+add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 25 );
+// Swap position price and rating star.
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
 
 /**
  * Header

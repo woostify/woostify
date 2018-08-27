@@ -1,4 +1,4 @@
-.single{
+.single-post{
     #post-navigation{
         @extend .sr-only;
     }
@@ -11,6 +11,9 @@
             clear: both;
             margin-top: 30px;
         }
+    }
+    .entry-title{
+    	font-weight: 300;
     }
 }
 
@@ -180,17 +183,17 @@
     .form-submit{
         flex-basis: 100%;
         margin-bottom: 0;
-        input[type="submit"]{
-            height: 50px;
-            padding: 0 15px;
-            border: 0;
-            text-transform: uppercase;
-            font-weight: 600;
-            border-radius: 50px;
-            min-width: 130px;
-            color: #fff;
-            @extend .duration;
-        }
+    }
+    input[type="submit"]{
+        height: 50px;
+        padding: 0 15px;
+        border: 0;
+        text-transform: uppercase;
+        font-weight: 600;
+        border-radius: 50px;
+        min-width: 130px;
+        color: #fff;
+        @extend .duration;
     }
 }
 
@@ -202,4 +205,8 @@
             }
         }
     }
+}
+
+#cancel-comment-reply-link{
+	color: #c10606
 }

@@ -244,47 +244,53 @@ if ( ! class_exists( 'woostify' ) ) :
 			/**
 			 * Scripts
 			 */
-			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-			wp_enqueue_script(
-				'woostify-navigation',
-				WOOSTIFY_THEME_URI . '/assets/js/navigation' . $suffix . '.js',
+			// Quantity button.
+			wp_register_script(
+				'woostify-quantity-button',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/quantity-button.js',
+				array( 'jquery' ),
+				$woostify_version,
+				true
+			);
+
+			// Single add to cart.
+			wp_register_script(
+				'woostify-single-add-to-cart-button',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/single-add-to-cart.js',
 				array(),
 				$woostify_version,
 				true
 			);
 
-			wp_enqueue_script(
-				'woostify-skip-link-focus-fix',
-				WOOSTIFY_THEME_URI . '/assets/js/skip-link-focus-fix' . $suffix . '.js',
+			// Product gallery zoom.
+			wp_register_script(
+				'easyzoom',
+				WOOSTIFY_THEME_URI . 'assets/js/easyzoom.js',
+				array( 'jquery' ),
+				$woostify_version,
+				true
+			);
+
+			// Tiny slider js.
+			wp_register_script(
+				'tiny-slider',
+				WOOSTIFY_THEME_URI . 'assets/js/tiny-slider.min.js',
 				array(),
 				$woostify_version,
 				true
 			);
 
-			if ( has_nav_menu( 'handheld' ) ) {
-				$woostify_l10n = array(
-					'expand'   => __( 'Expand child menu', 'woostify' ),
-					'collapse' => __( 'Collapse child menu', 'woostify' ),
-				);
+			// Photoswipe init js.
+			wp_register_script(
+				'photoswipe-init',
+				WOOSTIFY_THEME_URI . 'assets/js/photoswipe-init.js',
+				array( 'photoswipe', 'photoswipe-ui-default' ),
+				$woostify_version,
+				true
+			);
 
-				wp_localize_script(
-					'woostify-navigation',
-					'storefrontScreenReaderText',
-					$woostify_l10n
-				);
-			}
-
-			if ( is_page_template( 'template-homepage.php' ) && has_post_thumbnail() ) {
-				wp_enqueue_script(
-					'woostify-homepage',
-					WOOSTIFY_THEME_URI . '/assets/js/homepage' . $suffix . '.js',
-					array(),
-					$woostify_version,
-					true
-				);
-			}
-
+			// Comment reply.
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 				wp_enqueue_script( 'comment-reply' );
 			}
@@ -327,7 +333,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @return array
 		 */
 		public function body_classes( $classes ) {
-			/*browser detect*/
+			// Broser detected.
 			global $is_IE, $is_edge, $is_safari, $is_iphone;
 
 			if ( $is_iphone ) {
@@ -335,53 +341,13 @@ if ( ! class_exists( 'woostify' ) ) :
 			} elseif ( $is_IE ) {
 				$classes[] = 'ie-detected';
 			} elseif ( $is_edge ) {
-				$classes[]   = 'edge-detected';
+				$classes[] = 'edge-detected';
 			} elseif ( $is_safari ) {
 				$classes[] = 'safari-detected';
 			}
 
-			// Adds a class to blogs with more than 1 published author.
-			if ( is_multi_author() ) {
-				$classes[] = 'group-blog';
-			}
-
-			/**
-			 * Adds a class when WooCommerce is not active.
-			 *
-			 * @todo Refactor child themes to remove dependency on this class.
-			 */
-			$classes[] = 'no-wc-breadcrumb';
-
-			/**
-			 * What is this?!
-			 * Take the blue pill, close this file and forget you saw the following code.
-			 * Or take the red pill, filter woostify_make_me_cute and see how deep the rabbit hole goes...
-			 */
-			$cute = apply_filters( 'woostify_make_me_cute', false );
-
-			if ( true === $cute ) {
-				$classes[] = 'woostify-cute';
-			}
-
-			// If our main sidebar doesn't contain widgets, adjust the layout to be full-width.
-			$sidebar_shop = get_theme_mod( 'woostify_shop_layout', $layout = is_rtl() ? 'left' : 'right' );
-			$sidebar      = get_theme_mod( 'woostify_blog_layout', $layout = is_rtl() ? 'left' : 'right' );
-
-			if ( true == woostify_is_woocommerce_page() ) {
-				$classes[] = $sidebar_shop . '-sidebar is-active-sidebar blog-sidebar';
-			} else {
-				$classes[] = $sidebar . '-sidebar is-active-sidebar blog-sidebar';
-			}
-
-			// Add class when using homepage template + featured image.
-			if ( is_page_template( 'template-homepage.php' ) && has_post_thumbnail() ) {
-				$classes[] = 'has-post-thumbnail';
-			}
-
-			// Add class when Secondary Navigation is in use.
-			if ( has_nav_menu( 'secondary' ) ) {
-				$classes[] = 'woostify-secondary-navigation';
-			}
+			// Sidebar class detected.
+			$classes[] = woostify_sidebar_class();
 
 			return $classes;
 		}

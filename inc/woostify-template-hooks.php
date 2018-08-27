@@ -11,6 +11,8 @@
  * @see  woostify_get_sidebar()
  */
 add_action( 'woostify_sidebar', 'woostify_get_sidebar', 10 );
+add_action( 'woostify_content_top', 'woostify_content_open', 10 );
+add_action( 'woostify_content_bottom', 'woostify_content_close', 10 );
 
 /**
  * Header
@@ -34,13 +36,6 @@ add_action( 'woostify_header', 'woostify_header_container_close', 60 );
  */
 add_action( 'woostify_footer', 'woostify_footer_widgets', 10 );
 add_action( 'woostify_footer', 'woostify_credit', 20 );
-
-/**
- * Homepage
- *
- * @see  woostify_homepage_content()
- */
-add_action( 'homepage', 'woostify_homepage_content', 10 );
 
 /**
  * Posts
@@ -84,12 +79,3 @@ add_action( 'woostify_page', 'woostify_page_header', 10 );
 add_action( 'woostify_page', 'woostify_page_content', 20 );
 
 add_action( 'woostify_page_after', 'woostify_display_comments', 10 );
-
-/**
- * Homepage Page Template
- *
- * @see  woostify_homepage_header()
- * @see  woostify_page_content()
- */
-add_action( 'woostify_homepage', 'woostify_homepage_header', 10 );
-add_action( 'woostify_homepage', 'woostify_page_content', 20 );

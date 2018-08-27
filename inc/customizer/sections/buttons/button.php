@@ -8,7 +8,7 @@
 /**
  * Default value
  */
-$default_color = Woostify_Customizer::get_woostify_default_setting_values();
+$default_color = woostify_default_settings();
 
 /**
  * Text color

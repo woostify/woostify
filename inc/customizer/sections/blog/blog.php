@@ -6,7 +6,8 @@
  */
 
 $wp_customize->add_setting(
-	'woostify_blog_layout', array(
+	'woostify_blog_layout',
+	array(
 		'default'           => apply_filters( 'woostify_default_blog_layout', $layout = is_rtl() ? 'left' : 'right' ),
 		'sanitize_callback' => 'woostify_sanitize_choices',
 	)

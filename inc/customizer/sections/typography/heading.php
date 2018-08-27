@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Get default value
  */
-$defaults = Woostify_Fonts_Helpers::woostify_get_default_fonts();
+$defaults = woostify_default_fonts();
 
 /**
  * Register typography control
@@ -105,7 +105,21 @@ $wp_customize->add_control(
 	)
 );
 
-// CUSTOM HEADING.
+// Heading font size divider.
+$wp_customize->add_setting( 'heading_font_divider' );
+$wp_customize->add_control(
+	new Arbitrary_Storefront_Control(
+		$wp_customize,
+		'heading_font_divider',
+		array(
+			'section'  => 'heading_font_section',
+			'settings' => 'heading_font_divider',
+			'type'     => 'divider',
+		)
+	)
+);
+
+// Heading font size title.
 $wp_customize->add_setting( 'heading_font_size_title' );
 $wp_customize->add_control(
 	new WP_Customize_Control(

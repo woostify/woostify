@@ -8,10 +8,8 @@
  */
 
 $woostify_customizer = new Woostify_Customizer();
-$woostify_theme_mods = $woostify_customizer->get_woostify_theme_mods();
-/*fw_print( $woostify_theme_mods );*/
-
-
+$theme_mod           = $woostify_customizer->get_woostify_theme_mods();
+$default_color       = $woostify_customizer->get_woostify_default_setting_values();
 ?>
 
 <!doctype html>
@@ -60,7 +58,5 @@ $woostify_theme_mods = $woostify_customizer->get_woostify_theme_mods();
 		?>
 
 		<div id="content" class="site-content" tabindex="-1">
-			<div class="container">
-
-				<?php
-					do_action( 'woostify_content_top' );
+			<?php
+				do_action( 'woostify_content_top' );

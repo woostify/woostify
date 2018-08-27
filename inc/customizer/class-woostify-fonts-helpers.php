@@ -102,7 +102,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				'body_font_family_variants'    => '',
 				'body_font_size'               => '14',
 				'body_font_weight'             => '400',
-				'body_line_height'             => '1.5',
+				'body_line_height'             => '28px',
 				'body_font_category'           => '',
 				'body_font_transform'          => 'none',
 				// Menu font.
@@ -482,21 +482,22 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			}
 
 			/*If our value is still using the old format, fix it*/
-			if ( strpos( $font_family, ':' ) !== false ) {
+			if ( false !== strpos( $font_family, ':' ) ) {
 				$font_family = current( explode( ':', $font_family ) );
 			}
 
 			/*Set up our wrapper*/
 			if ( in_array( $font_family, $no_quotes ) ) {
 				$wrapper_start = null;
-				$wrapper_end = null;
+				$wrapper_end   = null;
 			} else {
 				$wrapper_start = '"';
-				$wrapper_end = '"' . self::woostify_get_google_font_category( $font_family, $font );
+				$wrapper_end   = '"' . self::woostify_get_google_font_category( $font_family, $font );
 			}
 
 			/*Output the CSS*/
-			$output = ( 'inherit' == $font_family ) ? '' : $wrapper_start . $font_family . $wrapper_end;
+			$output = 'inherit' == $font_family ? '' : $wrapper_start . $font_family . $wrapper_end;
+
 			return $output;
 		}
 	}

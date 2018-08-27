@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Get default value
  */
-$defaults = Woostify_Fonts_Helpers::woostify_get_default_fonts();
+$defaults = woostify_default_fonts();
 
 /**
  * Register typography control

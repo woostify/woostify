@@ -700,3 +700,25 @@ if ( ! function_exists( 'woostify_header_container_close' ) ) {
 		echo '</div>';
 	}
 }
+
+if ( ! function_exists( 'woostify_content_open' ) ) {
+	/**
+	 * Woostify content open
+	 */
+	function woostify_content_open() {
+		if ( ! is_singular( 'product' ) ) {
+			echo '<div class="container">';
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_content_close' ) ) {
+	/**
+	 * Woostify content close
+	 */
+	function woostify_content_close() {
+		if ( ! is_singular( 'product' ) ) {
+			echo '</div>';
+		}
+	}
+}

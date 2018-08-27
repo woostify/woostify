@@ -9,12 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-$defaults = Woostify_Fonts_Helpers::woostify_get_default_fonts();
+$defaults = woostify_default_fonts();
 
 /**
  * Body Font
  */
-// Demo Range
+// Demo Range.
 $wp_customize->add_setting(
 	'woostify_settings[container]',
 	array(

@@ -134,7 +134,6 @@
 	li{
 		position: relative;
 		min-height: 90px;
-		padding-right: 0;
 		padding-left: 90px;
 		border-bottom: 1px solid #f7f7f7;
 	}
@@ -149,6 +148,13 @@
 			left: 0;
 			top: 20px;
 		}
+	}
+}
+.mini_cart_item{
+	.quantity{
+		width: auto;
+		height: auto;
+		border-radius: 0
 	}
 }
 .woocommerce-mini-cart__total{
@@ -175,7 +181,8 @@
 /* list, reviews, top rate product */
 .widget_products,
 .widget_recent_reviews,
-.widget_top_rated_products{
+.widget_top_rated_products,
+.widget_recently_viewed_products{
     li{
         min-height: 90px;
         position: relative;

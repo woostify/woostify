@@ -223,3 +223,48 @@ if ( ! function_exists( 'woostify_is_blog' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_default_settings' ) ) {
+	/**
+	 * Default setting values
+	 *
+	 * @return     array $default_setting Default setting value
+	 */
+	function woostify_default_settings() {
+		$default_setting = Woostify_Customizer::get_woostify_default_setting_values();
+		return $default_setting;
+	}
+}
+
+if ( ! function_exists( 'woostify_default_fonts' ) ) {
+	/**
+	 * Default font values
+	 *
+	 * @return     array $default_fonts Default font value
+	 */
+	function woostify_default_fonts() {
+		$default_font = Woostify_Fonts_Helpers::woostify_get_default_fonts();
+		return $default_font;
+	}
+}
+
+if ( ! function_exists( 'woostify_image_alt' ) ) {
+
+	/**
+	 * Get image alt
+	 *
+	 * @param      bolean $id     The image id.
+	 * @param      string $alt    The alternate.
+	 *
+	 * @return     string  The image alt
+	 */
+	function woostify_image_alt( $id = null, $alt = '' ) {
+		if ( ! $id ) {
+			return esc_attr__( 'Error image', 'woostify' );
+		}
+
+		$data = get_post_meta( $id, '_wp_attachment_image_alt', true );
+		$img_alt = ! empty( $data ) ? $data : $alt;
+
+		return $img_alt;
+	}
+}

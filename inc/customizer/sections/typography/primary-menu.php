@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Get default value
  */
-$defaults = Woostify_Fonts_Helpers::woostify_get_default_fonts();
+$defaults = woostify_default_fonts();
 
 /**
  * Register typography control
@@ -90,6 +90,20 @@ $wp_customize->add_control(
 	)
 );
 
+// Parent menu divider.
+$wp_customize->add_setting( 'parent_menu_divider' );
+$wp_customize->add_control(
+	new Arbitrary_Storefront_Control(
+		$wp_customize,
+		'parent_menu_divider',
+		array(
+			'section'  => 'menu_font_section',
+			'settings' => 'parent_menu_divider',
+			'type'     => 'divider',
+		)
+	)
+);
+
 // CUSTOM HEADING.
 $wp_customize->add_setting( 'parent_menu_title' );
 $wp_customize->add_control(
@@ -142,6 +156,20 @@ $wp_customize->add_control(
 		'type'        => 'number',
 		'description' => __( 'Line height (px)', 'woostify' ),
 		'section'     => 'menu_font_section',
+	)
+);
+
+// Submenu divider.
+$wp_customize->add_setting( 'sub_menu_divider' );
+$wp_customize->add_control(
+	new Arbitrary_Storefront_Control(
+		$wp_customize,
+		'sub_menu_divider',
+		array(
+			'section'  => 'menu_font_section',
+			'settings' => 'sub_menu_divider',
+			'type'     => 'divider',
+		)
 	)
 );
 

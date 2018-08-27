@@ -110,3 +110,19 @@ if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 		}
 	}
 }
+
+add_action( 'wp_ajax_single_add_to_cart', 'woostify_single_add_to_cart' );
+add_action( 'wp_ajax_nopriv_single_add_to_cart', 'woostify_single_add_to_cart' );
+/**
+ * Ajax single add to cart
+ */
+function woostify_single_add_to_cart() {
+	$response = array(
+		'message' => esc_html__( 'Yeah!', 'zoa' ),
+		'content' => false,
+		'skt'     => 908777,
+	);
+
+	echo json_encode( $response );
+	exit();
+}

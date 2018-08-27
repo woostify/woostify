@@ -62,8 +62,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'woostify_button_hover_text_color'       => '#ffffff',
 					'woostify_button_hover_background_color' => '#3a3a3a',
 
-					// Shop layout.
-					'woostify_shop_layout'                   => 'right',
+					// Shop.
+					'woostify_shop_content_background'       => '#f3f3f3',
 				)
 			);
 		}
@@ -99,7 +99,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'button_hover_text_color'       => get_theme_mod( 'woostify_button_hover_text_color' ),
 				'button_hover_background_color' => get_theme_mod( 'woostify_button_hover_background_color' ),
 
-				'shop_layout'                   => get_theme_mod( 'woostify_shop_layout' ),
+				// Shop.
+				'shop_content_background'       => get_theme_mod( 'woostify_shop_content_background' ),
 			);
 
 			return apply_filters( 'woostify_theme_mods', $woostify_theme_mods );

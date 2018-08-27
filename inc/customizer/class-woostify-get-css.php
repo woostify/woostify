@@ -25,16 +25,16 @@ class Woostify_Get_CSS {
 	public function get_css() {
 		$woostify_settings = wp_parse_args(
 			get_option( 'woostify_settings', array() ),
-			Woostify_Fonts_Helpers::woostify_get_default_fonts()
+			woostify_default_fonts()
 		);
 
 		$woostify_customizer = new Woostify_Customizer();
-		$woostify_color      = $woostify_customizer->get_woostify_theme_mods();
+		$woostify_theme_mods = $woostify_customizer->get_woostify_theme_mods();
 
 		// Remove outline select on Firefox.
 		$styles = '
 			select:-moz-focusring{
-				text-shadow: 0 0 0 ' . $woostify_color['text_color'] . ';
+				text-shadow: 0 0 0 ' . $woostify_theme_mods['text_color'] . ';
 			}
 		';
 
@@ -46,18 +46,20 @@ class Woostify_Get_CSS {
 				line-height: ' . $woostify_settings['body_line_height'] . ';
 				text-transform: ' . $woostify_settings['body_font_transform'] . ';
 				font-size: ' . $woostify_settings['body_font_size'] . 'px;
-				color: ' . $woostify_color['text_color'] . ';
+				color: ' . $woostify_theme_mods['text_color'] . ';
 			}
 
 			.woocommerce-pagination a,
 			.woocommerce-loop-product__title,
 			.price del,
-			.stars a{
-				color: ' . $woostify_color['text_color'] . ';
+			.stars a,
+			.woocommerce-review-link,
+			.woocommerce-tabs .tabs li:not(.active) a{
+				color: ' . $woostify_theme_mods['text_color'] . ';
 			}
 
 			.price_slider_wrapper .price_slider{
-				background-color: ' . $woostify_color['text_color'] . ';
+				background-color: ' . $woostify_theme_mods['text_color'] . ';
 			}
 		';
 
@@ -67,7 +69,7 @@ class Woostify_Get_CSS {
 				font-family: ' . $woostify_settings['menu_font_family'] . ';
 				font-weight: ' . $woostify_settings['menu_font_weight'] . ';
 				text-transform: ' . $woostify_settings['menu_font_transform'] . ';
-				color: ' . $woostify_color['primary_menu_color'] . ';
+				color: ' . $woostify_theme_mods['primary_menu_color'] . ';
 			}
 			.site-header .primary-navigation > li > a{
 				font-size: ' . $woostify_settings['parent_menu_font_size'] . 'px;
@@ -87,7 +89,7 @@ class Woostify_Get_CSS {
 				font-weight: ' . $woostify_settings['heading_font_weight'] . ';
 				text-transform: ' . $woostify_settings['heading_font_transform'] . ';
 				line-height: ' . $woostify_settings['heading_line_height'] . ';
-				color: ' . $woostify_color['heading_color'] . ';
+				color: ' . $woostify_theme_mods['heading_color'] . ';
 			}
 			h1{
 				font-size: ' . $woostify_settings['heading_h1_font_size'] . 'px;
@@ -108,18 +110,24 @@ class Woostify_Get_CSS {
 				font-size: ' . $woostify_settings['heading_h6_font_size'] . 'px;
 			}
 
-			.product-loop-meta .price{
-				color: ' . $woostify_color['heading_color'] . ';
+			.product-loop-meta .price,
+			.variations label,
+			.woocommerce-review__author{
+				color: ' . $woostify_theme_mods['heading_color'] . ';
+			}
+
+			.variations label{
+				font-weight: ' . $woostify_settings['heading_font_weight'] . ';
 			}
 		';
 
 		// Link color.
 		$styles .= '
 			a{
-				color: ' . $woostify_color['accent_color'] . ';
+				color: ' . $woostify_theme_mods['accent_color'] . ';
 			}
 			a:hover{
-				color: ' . $woostify_color['theme_color'] . ';
+				color: ' . $woostify_theme_mods['theme_color'] . ';
 			}
 		';
 
@@ -129,16 +137,22 @@ class Woostify_Get_CSS {
 			input.button,
 			.woocommerce-widget-layered-nav-dropdown__submit,
 			.woocommerce-mini-cart__buttons .button{
-				background-color: ' . $woostify_color['button_background_color'] . ';
-				color: ' . $woostify_color['button_text_color'] . ';
+				background-color: ' . $woostify_theme_mods['button_background_color'] . ';
+				color: ' . $woostify_theme_mods['button_text_color'] . ';
 			}
 
 			button.button:hover,
 			input.button:hover,
 			.woocommerce-widget-layered-nav-dropdown__submit:hover,
-			.woocommerce-mini-cart__buttons .button:hover{
-				background-color: ' . $woostify_color['button_hover_background_color'] . ';
-				color: ' . $woostify_color['button_hover_text_color'] . ';
+			.woocommerce-mini-cart__buttons .button:hover,
+			#commentform input[type="submit"]:hover{
+				background-color: ' . $woostify_theme_mods['button_hover_background_color'] . ';
+				color: ' . $woostify_theme_mods['button_hover_text_color'] . ';
+			}
+
+			.select2-container--default .select2-results__option--highlighted[aria-selected],
+			.select2-container--default .select2-results__option--highlighted[data-selected]{
+				background-color: ' . $woostify_theme_mods['button_background_color'] . ' !important;
 			}
 		';
 
@@ -150,15 +164,16 @@ class Woostify_Get_CSS {
 			.site-header .primary-navigation > li.current_page_parent > a,
 			.site-header .primary-navigation > li.current_page_ancestor > a,
 			.woocommerce-pagination a:hover{
-				color: ' . $woostify_color['theme_color'] . ';
+				color: ' . $woostify_theme_mods['theme_color'] . ';
 			}
 			
 			.onsale,
 			.woocommerce-pagination li .page-numbers.current,
 			.tagcloud a:hover,
 			.price_slider_wrapper .ui-widget-header,
-			.price_slider_wrapper .ui-slider-handle{
-				background-color: ' . $woostify_color['theme_color'] . ';
+			.price_slider_wrapper .ui-slider-handle,
+			.form-submit .submit{
+				background-color: ' . $woostify_theme_mods['theme_color'] . ';
 			}
 		';
 
