@@ -4,9 +4,11 @@
 }
 
 /* ONSALE */
-.product-gallery{
-	.onsale{
-		left: 80px;
+.has-product-gallery{
+	.product-page-container{
+		.onsale{
+			left: 80px;
+		}
 	}
 }
 
@@ -37,9 +39,43 @@
 	.thumbnail-item{
 		cursor: pointer;
 		border: 1px solid $tr;
+		position: relative;
 	}
 	.tns-nav-active{
 		border-color: #555555;
+	}
+}
+/* spinner gallery */
+.has-product-gallery{
+	#product-images{
+		&:not(.tns-slider){
+			.image-item{
+				&:first-of-type{
+					@extend .circle-loading;
+					img{
+						opacity: 0;
+					}
+					~.image-item{
+						display: none;
+					}
+				}
+			}
+		}
+	}
+	#product-thumbnail-images{
+		&:not(.tns-slider){
+			.thumbnail-item{
+				&:first-of-type{
+					@extend .circle-loading;
+					img{
+						opacity: 0;
+					}
+					~.thumbnail-item{
+						display: none;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -73,6 +109,21 @@
 		margin-top: 20px;
 	}
 }
+// Group product.
+.woocommerce-grouped-product-list{
+	border: 0;
+	margin-top: 0;
+	td{
+		border-left: 0;
+		border-right: 0;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	ins{
+		background-color: $tr;
+	}
+}
+
 // table variations.
 .variations{
 	border: 0;
@@ -91,6 +142,7 @@
 		clear: both;
 		display: block;
 		height: 40px;
+		background-color: $tr;
 	}
 	label{
 		text-transform: uppercase;
@@ -104,6 +156,10 @@
 		height: 0;
 		margin-top: 0;
 	}
+}
+
+.stock{
+	margin-top: 10px;
 }
 
 .product_title{
@@ -132,8 +188,8 @@
 		text-align: center;
 		border: 0;
 		font-size: 16px;
-		max-width: calc( 100% - 80px );
 		background-color: $tr;
+		flex-grow: 1;
 		&::-webkit-inner-spin-button,
 		&::-webkit-outer-spin-button{
 			-webkit-appearance: none;
@@ -161,6 +217,7 @@
 	}
 }
 .single_add_to_cart_button{
+	position: relative;
 	&.button{
 		min-width: 200px;
 		height: 50px;
@@ -170,7 +227,6 @@
 		vertical-align: top
 	}
 	&.disabled{
-		cursor: default;
 		pointer-events: none;
 		opacity: 0.5;
 		@include filter( grayscale, 100% )
@@ -189,6 +245,7 @@
 	clear: both;
 	padding-top: 54px;
 	border-bottom: 1px solid #efefef;
+	padding-bottom: 50px;
 	.tabs{
 		margin: 0;
 		padding-left: 0;
@@ -206,7 +263,7 @@
 		padding: 23px 0;
 		max-width: 770px;
 		margin: 0 auto;
-		padding-bottom: 50px;
+		display: none;
 		>h2{
 			display: none;
 		}
@@ -220,6 +277,9 @@
 		}
 	}
 	// comment reviews.
+	#reply-title{
+		display: none;
+	}
 	#comments{
 		border-top: 0;
 		padding-top: 0;

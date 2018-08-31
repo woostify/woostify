@@ -99,30 +99,57 @@ if ( ! function_exists( 'woostify_product_search' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_header_cart' ) ) {
+if ( ! function_exists( 'woostify_header_action' ) ) {
 	/**
-	 * Display Header Cart
+	 * Display header action
 	 *
 	 * @since  1.0
 	 * @uses  woostify_is_woocommerce_activated() check if WooCommerce is activated
 	 * @return void
 	 */
-	function woostify_header_cart() {
+	function woostify_header_action() {
 		if ( woostify_is_woocommerce_activated() ) {
-			if ( is_cart() ) {
-				$class = 'current-menu-item';
-			} else {
-				$class = '';
+
+			global $woocommerce;
+			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
+			$page_logout_id  = wp_logout_url( get_permalink( $page_account_id ) );
+
+			if ( 'yes' == get_option( 'woocommerce_force_ssl_checkout' ) ) {
+				$logout_url = str_replace( 'http:', 'https:', $logout_url );
 			}
+
+			$count = $woocommerce->cart->cart_contents_count;
+
+			$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
+			$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-bag' );
 			?>
-		<ul id="site-header-cart" class="site-header-cart menu">
-			<li class="<?php echo esc_attr( $class ); ?>">
-				<?php woostify_cart_link(); ?>
-			</li>
-			<li>
-				<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
-			</li>
-		</ul>
+			<div class="site-tools">
+				<?php do_action( 'woostify_site_tools_before_my_account' ); ?>
+
+				<div class="my-account">
+					<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account <?php echo esc_attr( $my_account_icon ); ?>"></a>
+
+					<ul>
+						<?php if ( ! is_user_logged_in() ) : ?>
+							<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
+						<?php else : ?>
+							<li>
+								<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
+							</li>
+							<li><a href="<?php echo esc_url( $page_logout_id ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
+							</li>
+						<?php endif; ?>
+					</ul>
+				</div>
+
+				<?php do_action( 'woostify_site_tools_after_my_account' ); ?>
+
+				<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
+					<span class="shop-cart-count"><?php echo esc_html( $count ); ?></span>
+				</a>
+
+				<?php do_action( 'woostify_site_tools_after_shop_bag' ); ?>
+			</div>
 			<?php
 		}
 	}
@@ -901,7 +928,7 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 				<div class="cart-sidebar-head">
 					<h4 class="cart-sidebar-title"><?php esc_html_e( 'Shopping cart', 'woostify' ); ?></h4>
 					<span class="shop-cart-count"><?php echo esc_attr( $total ); ?></span>
-					<button id="close-cart-sidebar-btn" class="ion-android-close"></button>
+					<button id="close-cart-sidebar-btn" class="ti-close"></button>
 				</div>
 
 				<div class="cart-sidebar-content">
@@ -920,4 +947,6 @@ if ( ! function_exists( 'woostify_woocommerce_overlay' ) ) {
 		echo '<div id="woocommerce-overlay"></div>';
 	}
 }
+
+
 

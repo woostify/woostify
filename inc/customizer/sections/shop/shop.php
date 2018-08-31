@@ -14,7 +14,7 @@ $default_color = woostify_default_settings();
 $wp_customize->add_setting(
 	'woostify_shop_content_background',
 	array(
-		'default'           => '#f00',
+		'default'           => $default_color['woostify_shop_content_background'],
 		'sanitize_callback' => 'sanitize_hex_color',
 	)
 );

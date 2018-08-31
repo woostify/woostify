@@ -8,6 +8,7 @@
 	}
 }
 
+
 .product-loop-image-wrapper{
 	position: relative;
 	&:hover{
@@ -39,7 +40,8 @@
 		display: block;
 	}
 	a{
-		padding-left: 1px;
+		position: relative;
+		@extend .flex;
 		&:before{
 			font-family: $icon;
 			font-weight: normal;
@@ -53,9 +55,8 @@
 	}
 	.loading{
 		&:before{
-			content: "\e619";
-			display: inline-block;
-			@include animation( 0.5s rotate-infinite linear infinite )
+			@include loading( $size: 14px, $center: false, $important: !important );
+			position: static;
 		}
 	}
 	.added{
@@ -70,13 +71,7 @@
 
 .animated-meta{
 	@include transition( all .2s ease-in-out );
-}
-
-@include keyframes ( rotate-infinite ) {
-	0% {
-		@include rotate( 0 );
-	}
-	100% {
-		@include rotate( -360 );
+	&:focus-within{
+		@include translatey( -32px );
 	}
 }

@@ -263,6 +263,15 @@ if ( ! class_exists( 'woostify' ) ) :
 				true
 			);
 
+			// Woocommerce.
+			wp_register_script(
+				'woostify-woocommerce',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/woocommerce.js',
+				array( 'jquery' ),
+				$woostify_version,
+				true
+			);
+
 			// Product gallery zoom.
 			wp_register_script(
 				'easyzoom',

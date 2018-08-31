@@ -47,7 +47,9 @@ add_action( 'woostify_content_top', 'woostify_shop_messages', 15 );
 add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper', 9 );
 add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper_close', 31 );
 
-
+// Woocommerce sidebar.
+add_action( 'woostify_after_footer', 'woostify_woocommerce_cart_sidebar', 20 );
+add_action( 'woostify_after_footer', 'woostify_woocommerce_overlay', 30 );
 
 // Legacy WooCommerce columns filter.
 if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.3', '<' ) ) {
@@ -82,10 +84,10 @@ add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_r
  * Header
  *
  * @see woostify_product_search()
- * @see woostify_header_cart()
+ * @see woostify_header_action()
  */
 add_action( 'woostify_header', 'woostify_product_search', 40 );
-add_action( 'woostify_header', 'woostify_header_cart', 50 );
+add_action( 'woostify_header', 'woostify_header_action', 50 );
 
 /**
  * Cart fragment

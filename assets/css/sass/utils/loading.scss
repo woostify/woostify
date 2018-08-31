@@ -1,0 +1,27 @@
+/* loading animation */
+@include keyframes( circle-loading ){
+    from { @include rotate( 0 ) }
+    to { @include rotate( 360 ) }
+}
+
+@mixin loading( $size: 20px, $center: true, $important: null ) {
+    content: '' $important;
+    z-index: 2;
+    position: absolute;
+    border: 1px solid #ddd;
+    border-top-color: #222;
+    border-radius: 50%;
+    height: $size;
+    width: $size;
+    @if ( true == $center ) {
+    	top: calc( 50% - #{ $size / 2 } );
+    	left: calc( 50% - #{ $size / 2 } );
+    	@include transforms( translateY( -50% ) translateX( -50% ) );
+    }
+    @include animation( circle-loading 0.35s linear infinite );
+}
+.circle-loading{
+    &:before{
+        @include loading();
+    }
+}

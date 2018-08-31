@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * The arbitrary control class
  */
-class Arbitrary_Storefront_Control extends WP_Customize_Control {
+class Arbitrary_Woostify_Control extends WP_Customize_Control {
 
 	/**
 	 * The settings var

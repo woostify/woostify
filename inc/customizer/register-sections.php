@@ -56,6 +56,17 @@ $wp_customize->add_section(
 );
 
 /**
+ * Shop single section
+ */
+$wp_customize->add_section(
+	'woostify_shop_single',
+	array(
+		'title'       => __( 'Shop single', 'woostify' ),
+		'panel'       => 'layout_section',
+	)
+);
+
+/**
  * Footer section
  */
 $wp_customize->add_section(

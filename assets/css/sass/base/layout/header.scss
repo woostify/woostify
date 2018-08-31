@@ -1,6 +1,3 @@
-#site-header-cart{
-    display: none;
-}
 .site-header{
     .container{
         display: flex;
@@ -130,4 +127,63 @@
             width: 40px;
         }
     }
+}
+
+/* site tools */
+.site-tools{
+	@include flex( flex, flex-end, center );
+	flex-basis: 100px;
+	.my-account{
+		position: relative;
+		&:hover{
+			ul{
+				opacity: 1;
+				visibility: visible;
+				pointer-events: auto;
+				@include translatey( 0px );
+			}
+		}
+		ul{
+			min-width: 160px;
+			margin: 0;
+			padding-left: 0;
+			visibility: hidden;
+			opacity: 0;
+			position: absolute;
+			z-index: 2;
+			left: -10px;
+			top: 100%;
+			background-color: #fff;
+			border-radius: 4px;
+			pointer-events: none;
+			@include duration( 0.2s );
+			@include translatey( 10px );
+			@include shadow( 0px 1px 4px 0 rgba(0, 0, 0, 0.2) )
+		}
+		li{
+			list-style: none;
+			+li{
+				border-top: 1px solid #eee;
+			}
+		}
+		a{
+			padding: 10px 20px;
+			display: block;
+		}
+		+.shopping-bag-button{
+			margin-left: 25px;
+		}
+	}
+	.tools-icon{
+		font-size: 24px;
+		display: flex;
+	}
+	.shopping-bag-button{
+		position: relative;
+	}
+	.shop-cart-count{
+		position: absolute;
+		top: -6px;
+		right: -10px;
+	}
 }

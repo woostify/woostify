@@ -6,16 +6,16 @@
 
 /* pswp = photoswipe */
 
-@media (min-width: 783px) {
-	.logged-in.admin-bar .pswp {
-		top: 32px;
-		background: transparent;
+.logged-in.admin-bar{
+	@media ( min-width: 783px ) {
+		.pswp__top-bar {
+			top: 32px;
+		}
 	}
-}
-@media (max-width: 782px) {
-	.logged-in.admin-bar .pswp {
-		top: 46px;
-		background: transparent;
+	@media ( max-width: 782px ) {
+		.pswp__top-bar {
+			top: 46px;
+		}
 	}
 }
 .pswp {

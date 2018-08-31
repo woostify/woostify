@@ -111,18 +111,56 @@ if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 	}
 }
 
-add_action( 'wp_ajax_single_add_to_cart', 'woostify_single_add_to_cart' );
-add_action( 'wp_ajax_nopriv_single_add_to_cart', 'woostify_single_add_to_cart' );
-/**
- * Ajax single add to cart
- */
-function woostify_single_add_to_cart() {
-	$response = array(
-		'message' => esc_html__( 'Yeah!', 'zoa' ),
-		'content' => false,
-		'skt'     => 908777,
-	);
+if ( ! function_exists( 'woostify_product_check_in' ) ) {
+	/**
+	 * Check product already in cart || product quantity in cart
+	 *
+	 * @param      int     $pid          Product id.
+	 * @param      boolean $in_cart      Check in cart.
+	 * @param      boolean $qty_in_cart  Get product quantity.
+	 */
+	function woostify_product_check_in( $pid = null, $in_cart = true, $qty_in_cart = false ) {
+		global $woocommerce;
+		$_cart    = $woocommerce->cart->get_cart();
+		$_product = wc_get_product( $pid );
+		$variable = $_product->is_type( 'variable' );
 
-	echo json_encode( $response );
-	exit();
+		// Check product already in cart. Return boolean.
+		if ( true == $in_cart ) {
+			foreach ( $_cart as $key ) {
+				$product_id = $key['product_id'];
+
+				if ( $product_id == $pid ) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		// Get product quantity in cart. Return INT.
+		if ( true == $qty_in_cart ) {
+			if ( $variable ) {
+				$arr = array();
+				foreach ( $_cart as $key ) {
+					if ( $key['product_id'] == $pid ) {
+						$qty   = $key['quantity'];
+						$arr[] = $qty;
+					}
+				}
+
+				return array_sum( $arr );
+			} else {
+				foreach ( $_cart as $key ) {
+					if ( $key['product_id'] == $pid ) {
+						$qty = $key['quantity'];
+
+						return $qty;
+					}
+				}
+			}
+
+			return 0;
+		}
+	}
 }

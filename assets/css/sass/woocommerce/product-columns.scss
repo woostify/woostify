@@ -10,6 +10,7 @@
         float: left;
         margin: 0 30px 56px 0;
         position: relative;
+        text-align: center;
 
         @media ( min-width: #{ $screen-md } ) {
             width: calc( ( 100% - 90px ) / 4 );

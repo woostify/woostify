@@ -64,6 +64,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 					// Shop.
 					'woostify_shop_content_background'       => '#f3f3f3',
+
+					// Shop single.
+					'woostify_single_add_to_cart_ajax'       => true,
 				)
 			);
 		}
@@ -101,6 +104,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 				// Shop.
 				'shop_content_background'       => get_theme_mod( 'woostify_shop_content_background' ),
+
+				// Shop single.
+				'shop_sinlge_add_to_cart_ajax'  => get_theme_mod( 'woostify_single_add_to_cart_ajax' ),
 			);
 
 			return apply_filters( 'woostify_theme_mods', $woostify_theme_mods );
@@ -199,6 +205,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/heading.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop-single.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/sidebar/sidebar.php';
 		}
 

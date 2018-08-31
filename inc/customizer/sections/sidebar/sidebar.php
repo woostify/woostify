@@ -35,7 +35,7 @@ $wp_customize->add_control(
 // Blog sidebar divider.
 $wp_customize->add_setting( 'blog_sidebar_divider' );
 $wp_customize->add_control(
-	new Arbitrary_Storefront_Control(
+	new Arbitrary_Woostify_Control(
 		$wp_customize,
 		'blog_sidebar_divider',
 		array(
@@ -105,7 +105,7 @@ $wp_customize->add_control(
 // woocommerce divider.
 $wp_customize->add_setting( 'woocommerce_sidebar_divider' );
 $wp_customize->add_control(
-	new Arbitrary_Storefront_Control(
+	new Arbitrary_Woostify_Control(
 		$wp_customize,
 		'woocommerce_sidebar_divider',
 		array(
