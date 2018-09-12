@@ -96,28 +96,29 @@ function singleAddToCartButton() {
 
 		// Fetch API.
 		fetch( request )
-		.then( function( res ) {
-			if ( 200 !== res.status ) {
-				console.log( 'Looks like there was a problem. Status Code: ' + res.status );
-				return;
-			}
-			res.json().then( function( data ) {
-				// Update product count.
-				for ( var c = 0, n = productCount.length; c < n; c++ ) {
-					productCount[c].innerHTML = data.item;
+			.then( function( res ) {
+				if ( 200 !== res.status ) {
+					console.log( 'Looks like there was a problem. Status Code: ' + res.status );
+					return;
 				}
 
-				// Append content.
-				cartSidebar.innerHTML = data.content;
+				res.json().then( function( data ) {
+					// Update product count.
+					for ( var c = 0, n = productCount.length; c < n; c++ ) {
+						productCount[c].innerHTML = data.item;
+					}
 
-				// Event when added to cart.
-				eventCartSidebarClose();
+					// Append content.
+					cartSidebar.innerHTML = data.content;
+
+					// Event when added to cart.
+					eventCartSidebarClose();
+				});
+			} )
+			.catch( function( err ) {
+				alert( 'Sorry, something went wrong. Please refresh this page to try again!' );
+				console.log( err );
 			});
-		} )
-		.catch( function( err ) {
-			alert( 'Sorry, something went wrong. Please refresh this page to try again!' );
-			console.log( err );
-		});
 	} );
 }
 singleAddToCartButton();

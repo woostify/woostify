@@ -168,8 +168,9 @@
         width: 100%;
         a {
             height: 40px;
-            padding: 0;
+            padding: 0 $i;
             line-height: 40px;
+            border-radius: 0 $i;
             &:not(.checkout){
             	@include filter( grayscale, 90% );
             }

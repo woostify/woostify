@@ -342,17 +342,9 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @return array
 		 */
 		public function body_classes( $classes ) {
-			// Broser detected.
-			global $is_IE, $is_edge, $is_safari, $is_iphone;
-
-			if ( $is_iphone ) {
-				$classes[] = 'iphone-detected';
-			} elseif ( $is_IE ) {
-				$classes[] = 'ie-detected';
-			} elseif ( $is_edge ) {
-				$classes[] = 'edge-detected';
-			} elseif ( $is_safari ) {
-				$classes[] = 'safari-detected';
+			// Broser detection.
+			if ( ! empty( woostify_browser_detection() ) ) {
+				$classes[] = woostify_browser_detection() . '-detected';
 			}
 
 			// Sidebar class detected.

@@ -1,0 +1,109 @@
+.woocommerce-thankyou-order-received{
+    display: block;
+    clear: both;
+}
+
+.woocommerce-thankyou-order-details{
+    padding-left: 0;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #e8e8e8;
+    li{
+        list-style: none;
+        padding: 15px;
+        +li{
+        	border-left: 1px dashed #e8e8e8;
+        }
+    }
+    strong{
+        display: block;
+    }
+}
+
+.woocommerce-order-details{
+	.woocommerce-order-details__title{
+		font-size: 1.35em;
+		font-weight: normal;
+		background-color: #fbfbfb;
+		padding: 1em;
+		margin: 0;
+		border: 1px solid #eaeaea;
+		border-bottom: 0;
+	}
+}
+
+.woocommerce-table--order-details{
+    margin-bottom: 50px;
+    margin-top: 0;
+    .wc-item-meta{
+        padding-left: 0;
+        margin: 0;
+        li{
+            list-style: none;
+            +li{
+                margin-top: 10px;
+            }
+            p{
+                display: inline-block;
+            }
+        }
+    }
+    tr{
+        &:nth-child( 2n ) {
+            td{
+                background: #fdfdfd;
+            }
+        }
+    }
+    th{
+        background: #f8f8f8;
+        font-weight: 600;
+    }
+    td{
+        background: #fbfbfb;
+        padding: 15px;
+    }
+    @media ( max-width: #{ $screen-sm - 1 } ) {
+        th, td{
+            display: block;
+            border-right: 0;
+            border-top: 0;
+            border-left: 0
+        }
+        tr{
+            &:last-of-type{
+                td{
+                    &:last-of-type{
+                        border-bottom: 0
+                    }
+                }
+            }
+        }
+    }
+}
+
+.woocommerce-customer-details{
+	.woocommerce-column__title{
+		font-size: 1.35em;
+		font-weight: normal;
+		background-color: #fbfbfb;
+		padding: 1em;
+		margin: 0;
+	}
+	address{
+		margin: 0;
+		padding: 1em;
+		border-top: 1px solid #e8e8e8;
+	}
+	.woocommerce-column--1{
+		float: left;
+		width: 48.5%;
+		border: 1px solid #e8e8e8;
+	}
+	.woocommerce-column--2{
+		float: right;
+		width: 48.5%;
+		border: 1px solid #e8e8e8;
+	}
+}

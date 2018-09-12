@@ -48,7 +48,7 @@
 .tagcloud{
     a{
         border: 1px solid #e2e2e2;
-        padding: 0.5em 0.9em;
+        padding: 0.3em 0.9em;
         display: inline-block;
         margin-bottom: 4px;
         font-size: 14px;
@@ -166,11 +166,6 @@
     		border-bottom: 0;
     	}
     }
-    .blockUI.blockOverlay {
-        background: $tr $i;
-        opacity: 0.7 $i;
-        cursor: pointer $i;
-    }
     .remove_from_cart_button {
         width: 20px;
         height: 20px;
@@ -179,7 +174,7 @@
         top: 10px;
         font-size: 0;
         z-index: 2;
-        color: #f00;
+        color: firebrick;
         @extend .flex;
         &:before {
             content: "\e646";

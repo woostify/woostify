@@ -54,7 +54,9 @@ class Woostify_Get_CSS {
 			.price del,
 			.stars a,
 			.woocommerce-review-link,
-			.woocommerce-tabs .tabs li:not(.active) a{
+			.woocommerce-tabs .tabs li:not(.active) a,
+			.woocommerce-cart-form__contents .product-remove a,
+			.comment-body .comment-meta .comment-date{
 				color: ' . $woostify_theme_mods['text_color'] . ';
 			}
 
@@ -112,7 +114,16 @@ class Woostify_Get_CSS {
 
 			.product-loop-meta .price,
 			.variations label,
-			.woocommerce-review__author{
+			.woocommerce-review__author,
+			[name="apply_coupon"],
+			[name="update_cart"],
+			.quantity .qty,
+			.form-row label,
+			.select2-container--default .select2-selection--single .select2-selection__rendered,
+			.form-row .input-text:focus,
+			.wc_payment_method label,
+			.woocommerce-checkout-review-order-table thead th,
+			.woocommerce-checkout-review-order-table .product-name{
 				color: ' . $woostify_theme_mods['heading_color'] . ';
 			}
 
@@ -133,19 +144,23 @@ class Woostify_Get_CSS {
 
 		// Button.
 		$styles .= '
-			button.button,
-			input.button,
+			.buttons .button,
+			.button:not([name="apply_coupon"]):not([name="update_cart"]):not(a),
 			.woocommerce-widget-layered-nav-dropdown__submit,
-			.woocommerce-mini-cart__buttons .button{
+			.clear-cart-btn,
+			.form-submit .submit,
+			.checkout-button{
 				background-color: ' . $woostify_theme_mods['button_background_color'] . ';
 				color: ' . $woostify_theme_mods['button_text_color'] . ';
 			}
 
-			button.button:hover,
-			input.button:hover,
+			.buttons .button:hover,
+			.button:not([name="apply_coupon"]):not([name="update_cart"]):not(a):hover,
 			.woocommerce-widget-layered-nav-dropdown__submit:hover,
-			.woocommerce-mini-cart__buttons .button:hover,
-			#commentform input[type="submit"]:hover{
+			#commentform input[type="submit"]:hover,
+			.clear-cart-btn:hover,
+			.form-submit .submit:hover,
+			.checkout-button:hover{
 				background-color: ' . $woostify_theme_mods['button_hover_background_color'] . ';
 				color: ' . $woostify_theme_mods['button_hover_text_color'] . ';
 			}
@@ -153,6 +168,10 @@ class Woostify_Get_CSS {
 			.select2-container--default .select2-results__option--highlighted[aria-selected],
 			.select2-container--default .select2-results__option--highlighted[data-selected]{
 				background-color: ' . $woostify_theme_mods['button_background_color'] . ' !important;
+			}
+
+			.clear-cart-btn{
+				line-height: ' . $woostify_settings['body_line_height'] . ';
 			}
 		';
 
@@ -163,7 +182,9 @@ class Woostify_Get_CSS {
 			.site-header .primary-navigation > li.current-menu-parent > a,
 			.site-header .primary-navigation > li.current_page_parent > a,
 			.site-header .primary-navigation > li.current_page_ancestor > a,
-			.woocommerce-pagination a:hover{
+			.woocommerce-pagination a:hover,
+			.woocommerce-cart-form__contents .product-subtotal,
+			.woocommerce-checkout-review-order-table .order-total{
 				color: ' . $woostify_theme_mods['theme_color'] . ';
 			}
 			
@@ -172,13 +193,13 @@ class Woostify_Get_CSS {
 			.tagcloud a:hover,
 			.price_slider_wrapper .ui-widget-header,
 			.price_slider_wrapper .ui-slider-handle,
-			.form-submit .submit,
 			.cart-sidebar-head .shop-cart-count,
 			.shop-cart-count{
 				background-color: ' . $woostify_theme_mods['theme_color'] . ';
 			}
 
-			.single_add_to_cart_button:not(.disabled){
+			.single_add_to_cart_button:not(.disabled),
+			.checkout-button{
 				box-shadow: 0px 10px 40px 0px ' . woostify_hex_to_rgba( $woostify_theme_mods['theme_color'], 0.3 ) . ';
 			}
 		';

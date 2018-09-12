@@ -1,21 +1,26 @@
 select {
-    border: 1px solid #ddd;
+    border: 1px solid #e8e8e8;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
     max-width: 100%;
     &:-moz-focusring{
     	color: $tr;
-    	text-shadow: 0 0 0 #8f8f8f;
+    	text-shadow: 0 0 0 #e8e8e8;
     }
 }
 
 input{
-    border: 1px solid #eeeeee;
+    border: 1px solid #e8e8e8;
     &[type=search] {
         -webkit-appearance: textfield;
     }
 }
+
+textarea{
+	border: 1px solid #e8e8e8;
+}
+
 input,
 textarea,
 button {
@@ -32,7 +37,13 @@ button{
     -webkit-appearance: none;
     cursor: pointer;
     padding: 0;
-    border: 1px solid #cac7c7;
+    border: 1px solid #e8e8e8;
+    &.disabled,
+    &:disabled{
+		pointer-events: none;
+		opacity: 0.5;
+		@include filter( grayscale, 100% )
+	}
 }
 
 h1,

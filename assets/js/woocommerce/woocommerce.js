@@ -118,4 +118,7 @@ jQuery( document.body ).on( 'adding_to_cart', function() {
 } ).on( 'removed_from_cart', function( event, fragments, cart_hash ) {
 	// Event `removed_from_cart`.
 	getProductItemInCart();
+} ).on( 'updated_cart_totals', function() {
+	// Event `updated_cart_totals`.
+	quantity();
 } );

@@ -188,3 +188,26 @@ if ( ! function_exists( 'woostify_hex_to_rgba' ) ) {
 		return 'rgba(' . implode( ',', $rgba ) . ')';
 	}
 }
+
+if ( ! function_exists( 'woostify_browser_detection' ) ) {
+	/**
+	 * Woostify broswer detection
+	 */
+	function woostify_browser_detection() {
+		global $is_IE, $is_edge, $is_safari, $is_iphone;
+
+		$class = '';
+
+		if ( $is_iphone ) {
+			$class = 'iphone';
+		} elseif ( $is_IE ) {
+			$class = 'ie';
+		} elseif ( $is_edge ) {
+			$class = 'edge';
+		} elseif ( $is_safari ) {
+			$class = 'safari';
+		}
+
+		return $class;
+	}
+}

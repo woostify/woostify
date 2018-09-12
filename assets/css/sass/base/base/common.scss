@@ -1,3 +1,6 @@
+.clear{
+	clear: both;
+}
 .clearfix {
     &:after{
         content: '';

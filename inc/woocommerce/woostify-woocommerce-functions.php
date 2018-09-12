@@ -60,6 +60,9 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 					$sidebar = $sidebar_default . '-sidebar is-active-sidebar woocommerce-sidebar';
 				}
 			}
+		} elseif ( is_cart() || is_checkout() || is_account_page() ) {
+			// Cart, checkout and account page.
+			$sidebar = '';
 		} elseif ( is_home() ) {
 			// Blog page.
 			if ( is_active_sidebar( 'sidebar' ) ) {

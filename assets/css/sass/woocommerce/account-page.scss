@@ -1,0 +1,29 @@
+.woocommerce-account{
+	.woocommerce-form.woocommerce-form-login{
+		border-top: 2px dashed #e8e8e8;
+		width: 100%;
+		margin-right: 0;
+	}
+
+	.u-column1{
+		float: left;
+		width: 48%;
+	}
+	.u-column2{
+		float: right;
+		width: 48%;
+	}
+
+	.woocommerce-form.woocommerce-form-register{
+		border: 2px dashed #e8e8e8;
+		border-radius: 2px;
+		padding: 30px;
+		.form-row{
+			float: none;
+			margin-bottom: 0;
+		}
+		.input-text{
+			height: 40px;
+		}
+	}
+}

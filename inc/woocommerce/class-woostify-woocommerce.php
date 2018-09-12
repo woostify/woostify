@@ -44,6 +44,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Cart fragment.
 			add_filter( 'add_to_cart_fragments', array( $this, 'woostify_cart_sidebar_content_fragments' ) );
 			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'woostify_cart_total_number_fragments' ) );
+			// Clear shop cart.
+			add_action( 'init', array( $this, 'detect_clear_cart_submit' ) );
 
 			// SHOP PAGE.
 			// Add url inside product title.
@@ -93,6 +95,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Removed on cart action.
 			add_action( 'wp_ajax_get_product_item_incart', array( $this, 'woostify_get_product_item_incart' ) );
 			add_action( 'wp_ajax_nopriv_get_product_item_incart', array( $this, 'woostify_get_product_item_incart' ) );
+
+			// CART PAGE.
+			add_action( 'woocommerce_cart_actions', array( $this, 'clear_shop_cart' ) );
 
 			// Star rating for Woo < 2.5.
 			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '2.5', '<' ) ) {
@@ -339,6 +344,19 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			return $fragments;
 		}
+
+		/**
+		 * Clear cart button.
+		 */
+		public function detect_clear_cart_submit() {
+			global $woocommerce;
+
+			if ( isset( $_GET['empty-cart'] ) ) {
+				$woocommerce->cart->empty_cart();
+			}
+		}
+
+
 
 
 		/**
@@ -862,6 +880,18 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			echo json_encode( $response );
 			exit();
+		}
+
+		/**
+		 * Add clear shop cart button
+		 */
+		public function clear_shop_cart() {
+			$clear = wc_get_cart_url() . '?empty-cart';
+			?>
+			<a class="clear-cart-btn" href="<?php echo esc_url( $clear ); ?>">
+				<?php esc_html_e( 'Clear cart', 'woostify' ); ?>
+			</a>
+			<?php
 		}
 	}
 

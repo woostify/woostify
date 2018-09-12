@@ -68,6 +68,7 @@
     font-size: 18px;
     font-weight: 400;
     margin-bottom: 36px;
+    text-transform: capitalize;
 }
 .comment-list{
     margin: 0;
@@ -111,7 +112,6 @@
             font-weight: 600;
         }
         .comment-date{
-            color: #bfbfbf;
             font-size: 12px;
         }
     }
@@ -146,7 +146,6 @@
         border: 1px solid #e8e8e8;
         padding: 15px;
         height: 200px;
-        color: #bfbfbf;
         font-size: 12px;
         margin-bottom: 20px;
         resize: none;
@@ -163,14 +162,12 @@
         height: 50px;
         border: 1px solid #e8e8e8;
         padding: 0 15px;
-        color: #bfbfbf;
         font-size: 12px;
         margin-bottom: 20px;
         border-radius: 2px;
         @extend .duration;
         &:focus{
             border-color: $tr;
-            color: #2b2b2b;
             @include shadow( 0px 5px 30px 0px rgba(0, 0, 0, 0.1) );
         }
     }
@@ -208,5 +205,5 @@
 }
 
 #cancel-comment-reply-link{
-	color: #c10606
+	color: firebrick
 }

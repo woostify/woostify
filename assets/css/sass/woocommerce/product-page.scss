@@ -190,6 +190,7 @@
 		font-size: 16px;
 		background-color: $tr;
 		flex-grow: 1;
+		padding: 0 40px;
 		&::-webkit-inner-spin-button,
 		&::-webkit-outer-spin-button{
 			-webkit-appearance: none;
@@ -221,15 +222,10 @@
 	&.button{
 		min-width: 200px;
 		height: 50px;
-		border-radius: 50px;
+		border-radius: 50px $i;
 		font-weight: 600;
 		text-transform: uppercase;
 		vertical-align: top
-	}
-	&.disabled{
-		pointer-events: none;
-		opacity: 0.5;
-		@include filter( grayscale, 100% )
 	}
 }
 .product_meta{

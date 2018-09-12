@@ -92,3 +92,36 @@
 	z-index: 2;
 	line-height: 1.7em;
 }
+
+/* message */
+.woocommerce-message,
+.woocommerce-error,
+.woocommerce-info{
+	padding-left: 0;
+	list-style: none;
+}
+
+.woocommerce-message{
+	color: teal
+}
+.woocommerce-info {
+	color: royalblue;
+}
+.woocommerce-error{
+	color: firebrick
+}
+
+/* table */
+.shop_table{
+	ul{
+		padding-left: 0;
+	}
+	li{
+		list-style: none;
+	}
+}
+
+/* remove overlay woocommerce */
+.blockUI.blockOverlay {
+    background-color: $tr $i;
+}
