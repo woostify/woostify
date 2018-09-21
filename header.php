@@ -7,12 +7,9 @@
  * @package woostify
  */
 
-$woostify_customizer = new Woostify_Customizer();
-$theme_mod           = $woostify_customizer->get_woostify_theme_mods();
-$default_color       = $woostify_customizer->get_woostify_default_setting_values();
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -40,7 +37,7 @@ $default_color       = $woostify_customizer->get_woostify_default_setting_values
 				 * @hooked woostify_site_branding          - 20
 				 * @hooked woostify_primary_navigation     - 30
 				 * @hooked woostify_product_search         - 40
-				 * @hooked woostify_header_cart            - 50
+				 * @hooked woostify_header_action            - 50
 				 * @hooked woostify_header_container_close - 60
 				 */
 				do_action( 'woostify_header' );
@@ -52,7 +49,7 @@ $default_color       = $woostify_customizer->get_woostify_default_setting_values
 			 * Functions hooked in to woostify_before_content
 			 *
 			 * @hooked woostify_header_widget_region - 10
-			 * @hooked woocommerce_breadcrumb - 10
+			 * @hooked woostify_breadcrumb - 20
 			 */
 			do_action( 'woostify_before_content' );
 		?>

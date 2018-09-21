@@ -342,6 +342,10 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @return array
 		 */
 		public function body_classes( $classes ) {
+			// Theme version.
+			global $woostify_version;
+			$classes[] = 'woostify-' . $woostify_version;
+
 			// Broser detection.
 			if ( ! empty( woostify_browser_detection() ) ) {
 				$classes[] = woostify_browser_detection() . '-detected';

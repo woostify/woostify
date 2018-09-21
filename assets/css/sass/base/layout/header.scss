@@ -1,4 +1,6 @@
 .site-header{
+	border-bottom: 1px solid #eaeaea;
+
     .container{
         display: flex;
         justify-content: space-between;
@@ -41,7 +43,7 @@
                     background: #fff;
                     min-width: 180px;
                     text-align: left;
-                    z-index: 2;
+                    z-index: 5;
                     @include scaleY(0);
                     ul{
                         top: 20%;

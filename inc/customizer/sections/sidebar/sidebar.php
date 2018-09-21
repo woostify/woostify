@@ -102,72 +102,74 @@ $wp_customize->add_control(
 	)
 );
 
-// woocommerce divider.
-$wp_customize->add_setting( 'woocommerce_sidebar_divider' );
-$wp_customize->add_control(
-	new Arbitrary_Woostify_Control(
-		$wp_customize,
-		'woocommerce_sidebar_divider',
-		array(
-			'section'  => 'woostify_sidebar',
-			'settings' => 'woocommerce_sidebar_divider',
-			'type'     => 'divider',
+if ( class_exists( 'woocommerce' ) ) {
+	// woocommerce divider.
+	$wp_customize->add_setting( 'woocommerce_sidebar_divider' );
+	$wp_customize->add_control(
+		new Arbitrary_Woostify_Control(
+			$wp_customize,
+			'woocommerce_sidebar_divider',
+			array(
+				'section'  => 'woostify_sidebar',
+				'settings' => 'woocommerce_sidebar_divider',
+				'type'     => 'divider',
+			)
 		)
-	)
-);
+	);
 
-// Shop page sidebar.
-$wp_customize->add_setting(
-	'woostify_shop_page_sidebar',
-	array(
-		'default'           => 'default',
-		'sanitize_callback' => 'woostify_sanitize_choices',
-	)
-);
-
-$wp_customize->add_control(
-	new WP_Customize_Control(
-		$wp_customize,
+	// Shop page sidebar.
+	$wp_customize->add_setting(
 		'woostify_shop_page_sidebar',
 		array(
-			'label'    => __( 'Shop page', 'woostify' ),
-			'section'  => 'woostify_sidebar',
-			'settings' => 'woostify_shop_page_sidebar',
-			'type'     => 'select',
-			'choices'  => array(
-				'default' => __( 'Default', 'woostify' ),
-				'full'    => __( 'No sidebar', 'woostify' ),
-				'left'    => __( 'Left sidebar', 'woostify' ),
-				'right'   => __( 'Right sidebar', 'woostify' ),
-			),
+			'default'           => 'default',
+			'sanitize_callback' => 'woostify_sanitize_choices',
 		)
-	)
-);
+	);
 
-// Product page sidebar.
-$wp_customize->add_setting(
-	'woostify_product_page_sidebar',
-	array(
-		'default'           => 'full',
-		'sanitize_callback' => 'woostify_sanitize_choices',
-	)
-);
+	$wp_customize->add_control(
+		new WP_Customize_Control(
+			$wp_customize,
+			'woostify_shop_page_sidebar',
+			array(
+				'label'    => __( 'Shop page', 'woostify' ),
+				'section'  => 'woostify_sidebar',
+				'settings' => 'woostify_shop_page_sidebar',
+				'type'     => 'select',
+				'choices'  => array(
+					'default' => __( 'Default', 'woostify' ),
+					'full'    => __( 'No sidebar', 'woostify' ),
+					'left'    => __( 'Left sidebar', 'woostify' ),
+					'right'   => __( 'Right sidebar', 'woostify' ),
+				),
+			)
+		)
+	);
 
-$wp_customize->add_control(
-	new WP_Customize_Control(
-		$wp_customize,
+	// Product page sidebar.
+	$wp_customize->add_setting(
 		'woostify_product_page_sidebar',
 		array(
-			'label'    => __( 'Shop single', 'woostify' ),
-			'section'  => 'woostify_sidebar',
-			'settings' => 'woostify_product_page_sidebar',
-			'type'     => 'select',
-			'choices'  => array(
-				'default' => __( 'Default', 'woostify' ),
-				'full'    => __( 'No sidebar', 'woostify' ),
-				'left'    => __( 'Left sidebar', 'woostify' ),
-				'right'   => __( 'Right sidebar', 'woostify' ),
-			),
+			'default'           => 'full',
+			'sanitize_callback' => 'woostify_sanitize_choices',
 		)
-	)
-);
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Control(
+			$wp_customize,
+			'woostify_product_page_sidebar',
+			array(
+				'label'    => __( 'Shop single', 'woostify' ),
+				'section'  => 'woostify_sidebar',
+				'settings' => 'woostify_product_page_sidebar',
+				'type'     => 'select',
+				'choices'  => array(
+					'default' => __( 'Default', 'woostify' ),
+					'full'    => __( 'No sidebar', 'woostify' ),
+					'left'    => __( 'Left sidebar', 'woostify' ),
+					'right'   => __( 'Right sidebar', 'woostify' ),
+				),
+			)
+		)
+	);
+}

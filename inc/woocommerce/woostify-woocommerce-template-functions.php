@@ -246,7 +246,13 @@ if ( ! function_exists( 'woostify_shop_messages' ) ) {
 	 */
 	function woostify_shop_messages() {
 		if ( ! is_checkout() ) {
-			echo wp_kses_post( woostify_do_shortcode( 'woocommerce_messages' ) );
+			?>
+			<div class="woostify-message">
+				<div class="container">
+					<?php echo wp_kses_post( woostify_do_shortcode( 'woocommerce_messages' ) ); ?>
+				</div>
+			</div>
+			<?php
 		}
 	}
 }

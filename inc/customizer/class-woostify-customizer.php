@@ -67,6 +67,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 					// Shop single.
 					'woostify_single_add_to_cart_ajax'       => true,
+					'woostify_single_content_background'     => '#f3f3f3',
 				)
 			);
 		}
@@ -79,34 +80,35 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		public function get_woostify_theme_mods() {
 			$woostify_theme_mods = array(
 				// Color.
-				'theme_color'                   => get_theme_mod( 'woostify_theme_color' ),
-				'primary_menu_color'            => get_theme_mod( 'woostify_primary_menu_color' ),
-				'heading_color'                 => get_theme_mod( 'woostify_heading_color' ),
-				'text_color'                    => get_theme_mod( 'woostify_text_color' ),
-				'accent_color'                  => get_theme_mod( 'woostify_accent_color' ),
+				'theme_color'                    => get_theme_mod( 'woostify_theme_color' ),
+				'primary_menu_color'             => get_theme_mod( 'woostify_primary_menu_color' ),
+				'heading_color'                  => get_theme_mod( 'woostify_heading_color' ),
+				'text_color'                     => get_theme_mod( 'woostify_text_color' ),
+				'accent_color'                   => get_theme_mod( 'woostify_accent_color' ),
 
 				// Header color.
-				'header_background_color'       => get_theme_mod( 'woostify_header_background_color' ),
-				'header_link_color'             => get_theme_mod( 'woostify_header_link_color' ),
-				'header_text_color'             => get_theme_mod( 'woostify_header_text_color' ),
+				'header_background_color'        => get_theme_mod( 'woostify_header_background_color' ),
+				'header_link_color'              => get_theme_mod( 'woostify_header_link_color' ),
+				'header_text_color'              => get_theme_mod( 'woostify_header_text_color' ),
 
 				// Footer color.
-				'footer_background_color'       => get_theme_mod( 'woostify_footer_background_color' ),
-				'footer_link_color'             => get_theme_mod( 'woostify_footer_link_color' ),
-				'footer_heading_color'          => get_theme_mod( 'woostify_footer_heading_color' ),
-				'footer_text_color'             => get_theme_mod( 'woostify_footer_text_color' ),
+				'footer_background_color'        => get_theme_mod( 'woostify_footer_background_color' ),
+				'footer_link_color'              => get_theme_mod( 'woostify_footer_link_color' ),
+				'footer_heading_color'           => get_theme_mod( 'woostify_footer_heading_color' ),
+				'footer_text_color'              => get_theme_mod( 'woostify_footer_text_color' ),
 
 				// Button color.
-				'button_text_color'             => get_theme_mod( 'woostify_button_text_color' ),
-				'button_background_color'       => get_theme_mod( 'woostify_button_background_color' ),
-				'button_hover_text_color'       => get_theme_mod( 'woostify_button_hover_text_color' ),
-				'button_hover_background_color' => get_theme_mod( 'woostify_button_hover_background_color' ),
+				'button_text_color'              => get_theme_mod( 'woostify_button_text_color' ),
+				'button_background_color'        => get_theme_mod( 'woostify_button_background_color' ),
+				'button_hover_text_color'        => get_theme_mod( 'woostify_button_hover_text_color' ),
+				'button_hover_background_color'  => get_theme_mod( 'woostify_button_hover_background_color' ),
 
 				// Shop.
-				'shop_content_background'       => get_theme_mod( 'woostify_shop_content_background' ),
+				'shop_content_background'        => get_theme_mod( 'woostify_shop_content_background' ),
 
 				// Shop single.
-				'shop_sinlge_add_to_cart_ajax'  => get_theme_mod( 'woostify_single_add_to_cart_ajax' ),
+				'shop_sinlge_add_to_cart_ajax'   => get_theme_mod( 'woostify_single_add_to_cart_ajax' ),
+				'shop_single_content_background' => get_theme_mod( 'woostify_single_content_background' ),
 			);
 
 			return apply_filters( 'woostify_theme_mods', $woostify_theme_mods );
@@ -206,6 +208,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop-single.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/woocommerce-shop-single.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/sidebar/sidebar.php';
 		}
 

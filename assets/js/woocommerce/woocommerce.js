@@ -84,7 +84,7 @@ function getProductItemInCart(){
 	if ( cart.classList.contains( 'variations_form' ) ) {
 		productId = cart.querySelector( '[name="product_id"]' ).value;
 	}
-	console.log( productId );
+
 	// Request.
 	var request = new Request( woostify_ajax.url, {
 		method: 'POST',

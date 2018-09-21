@@ -65,11 +65,12 @@ function singleAddToCartButton() {
 
 		// Condition if stock manager enable.
 		if ( 'yes' == inStock ) {
+			// Out of stock.
 			if ( inCartQuantity == inputMax ) {
 				alert( outStock );
 				return;
 			}
-
+			// Not enough quantity.
 			if ( +quantity + +inCartQuantity > inputMax ) {
 				alert( notEnough );
 				return;

@@ -61,7 +61,6 @@ if ( class_exists( 'Jetpack' ) ) {
 
 if ( woostify_is_woocommerce_activated() ) {
 	$woostify->woocommerce = require WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce.php';
-	require WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-functions.php';
 	require WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-functions.php';
 	require WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-hooks.php';
 }

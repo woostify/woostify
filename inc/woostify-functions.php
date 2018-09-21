@@ -211,3 +211,4 @@ if ( ! function_exists( 'woostify_browser_detection' ) ) {
 		return $class;
 	}
 }
+

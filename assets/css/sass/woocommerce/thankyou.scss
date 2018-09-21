@@ -11,13 +11,15 @@
     border: 1px solid #e8e8e8;
     li{
         list-style: none;
-        padding: 15px;
+        padding: 10px 15px;
+        flex-basis: 25%;
         +li{
         	border-left: 1px dashed #e8e8e8;
         }
     }
     strong{
         display: block;
+        font-weight: normal;
     }
 }
 
@@ -49,6 +51,16 @@
             }
         }
     }
+    thead{
+    	th{
+    		border-left: 0;
+    	}
+    }
+    tbody{
+    	strong{
+    		font-weight: normal;
+    	}
+    }
     tr{
         &:nth-child( 2n ) {
             td{
@@ -62,7 +74,6 @@
     }
     td{
         background: #fbfbfb;
-        padding: 15px;
     }
     @media ( max-width: #{ $screen-sm - 1 } ) {
         th, td{

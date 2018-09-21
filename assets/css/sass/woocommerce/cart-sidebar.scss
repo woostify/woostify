@@ -188,6 +188,7 @@
     .variation {
         margin: 5px 0;
         font-size: 13px;
+        @extend .clearfix;
         dt,
         dd {
             float: left;
@@ -204,6 +205,10 @@
                 margin-bottom: 0;
             }
         }
+        +.quantity{
+        	clear: both;
+        	display: block;
+        }
     }
     .quantity {
         font-size: 13px;
@@ -217,6 +222,12 @@
 		padding-left: 80px;
 		&:hover,
 		&:focus-within{
+			.remove_from_cart_button{
+				opacity: 1;
+				@include transforms( translateY( -50% ) translateX( 0px ) rotate( 0deg ) );
+			}
+		}
+		@media ( max-width: #{ $screen-md - 1 } ) {
 			.remove_from_cart_button{
 				opacity: 1;
 				@include transforms( translateY( -50% ) translateX( 0px ) rotate( 0deg ) );

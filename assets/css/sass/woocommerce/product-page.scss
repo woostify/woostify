@@ -1,5 +1,5 @@
 .product-page-container{
-	padding: 90px 0;
+	padding-bottom: 90px;
 	background-color: #f3f3f3;
 }
 
@@ -158,6 +158,24 @@
 	}
 }
 
+.shop_table{
+	.variation{
+		margin: 0;
+		dt, dd{
+			display: inline-block;
+			font-weight: normal;
+		}
+		dd{
+			margin-bottom: 0;
+		}
+		p{
+			&:last-child{
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
 .stock{
 	margin-top: 10px;
 }
@@ -191,6 +209,7 @@
 		background-color: $tr;
 		flex-grow: 1;
 		padding: 0 40px;
+		-moz-appearance:textfield;
 		&::-webkit-inner-spin-button,
 		&::-webkit-outer-spin-button{
 			-webkit-appearance: none;

@@ -1,4 +1,9 @@
 .widget{
+	&:first-of-type{
+		.widget-title{
+			margin-top: 0;
+		}
+	}
     > ul{
         padding-left: 0;
     }

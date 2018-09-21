@@ -1,0 +1,36 @@
+.woostify-message{
+	background-color: #f3f3f3;
+	.single-product &{
+		padding-top: 30px;
+	}
+}
+
+.wc-breadcrumb{
+	.single-product &{
+		padding: 35px 0;
+		background-color: #f3f3f3;
+	}
+}
+
+
+.woostify-breadcrumb{
+	.item-bread{
+		&:after{
+			content: "/";
+			font-size: 10px;
+			margin: 0 4px;
+		}
+		&:last-of-type{
+			&:after{
+				content: none
+			}
+		}
+	}
+}
+
+.page-header{
+	.entry-title{
+		font-size: 1.7em;
+		font-weight: normal;
+	}
+}

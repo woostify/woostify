@@ -37,8 +37,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_filter( 'woocommerce_breadcrumb_defaults', array( $this, 'change_breadcrumb_delimiter' ) );
 			// Pagination arrow.
 			add_filter( 'woocommerce_pagination_args', array( $this, 'change_woocommerce_arrow_pagination' ) );
-			// Remove shop title.
-			add_filter( 'woocommerce_show_page_title', array( $this, 'remove_shop_title' ) );
 			// Change sale flash.
 			add_filter( 'woocommerce_sale_flash', array( $this, 'change_sale_flash' ) );
 			// Cart fragment.
@@ -272,8 +270,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function change_breadcrumb_delimiter( $defaults ) {
 			$defaults['delimiter']   = '<span class="breadcrumb-separator"> / </span>';
-			$defaults['wrap_before'] = '<div class="woostify-breadcrumb"><div class="container"><nav class="woocommerce-breadcrumb">';
-			$defaults['wrap_after']  = '</nav></div></div>';
+
+			if ( is_singular( 'product' ) ) {
+				$defaults['wrap_before'] = '<div class="wc-breadcrumb breadcrumb"><div class="container"><nav class="woostify-breadcrumb">';
+				$defaults['wrap_after']  = '</nav></div></div>';
+			} else {
+				$defaults['wrap_before'] = '<div class="wc-breadcrumb breadcrumb"><nav class="woostify-breadcrumb">';
+				$defaults['wrap_after']  = '</nav></div>';
+			}
+
 			return $defaults;
 		}
 
@@ -286,15 +291,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			$args['prev_text'] = __( 'Prev', 'woostify' );
 			$args['next_text'] = __( 'Next', 'woostify' );
 			return $args;
-		}
-
-		/**
-		 * Removes a shop title.
-		 *
-		 * @return     boolean  true or false
-		 */
-		public function remove_shop_title() {
-			return false;
 		}
 
 		/**
@@ -804,30 +800,31 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_single_add_to_cart() {
 			$response = array(
-				'status'  => 500,
 				'message' => esc_html__( 'Something is wrong, please try again later...', 'woostify' ),
 				'content' => false,
 			);
 
 			if ( ! isset( $_POST['product_id'] ) ||
 				! isset( $_POST['product_qty'] ) ||
-				! isset( $_POST['nonce'] ) ||
-				! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'woostify_product_nonce' )
+				! isset( $_POST['nonce'] )
 			) {
+				$response['status'] = 500;
 				echo json_encode( $response );
 				exit();
 			}
 
-			$product_id        = intval( $_POST['product_id'] );
-			$product_qty       = intval( $_POST['product_qty'] );
+			$product_id        = absint( $_POST['product_id'] );
+			$nonce             = 'woostify_product_nonce';
+			$product_qty       = absint( $_POST['product_qty'] );
 			$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $product_qty );
+			$response['nonce'] = wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), $nonce );
 
 			if ( isset( $_POST['variation_id'] ) ) {
-				$variation_id = sanitize_key( $_POST['variation_id'] );
+				$variation_id = sanitize_text_field( wp_unslash( $_POST['variation_id'] ) );
 			}
 
 			if ( isset( $_POST['variations'] ) ) {
-				$variations  = (array) json_decode( wp_unslash( sanitize_key( $_POST['variations'] ) ) );
+				$variations = (array) json_decode( sanitize_text_field( wp_unslash( $_POST['variations'] ) ) );
 			}
 
 			if ( $variation_id && $passed_validation ) {
@@ -840,13 +837,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			ob_start();
 
-			$response = array(
-				'status' => 200,
-				'item'   => $count,
-			);
-
 			woocommerce_mini_cart();
-
+			$response['status']  = 200;
+			$response['item']    = $count;
+			$response['message'] = __( 'Success!', 'woostify' );
 			$response['content'] = ob_get_clean();
 
 			echo json_encode( $response );
@@ -863,7 +857,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			if ( ! isset( $_POST['product_id'] )
 				|| ! isset( $_POST['nonce'] )
-				|| ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'woostify_product_nonce' )
+				|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'woostify_product_nonce' )
 			) {
 				echo json_encode( $response );
 				exit();

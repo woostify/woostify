@@ -4,3 +4,10 @@
 		@extend .container-fluid;
 	}
 }
+
+.site-content{
+	margin-top: 3.5em;
+	.single-product &{
+		margin-top: 0;
+	}
+}

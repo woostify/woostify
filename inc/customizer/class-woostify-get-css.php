@@ -56,7 +56,9 @@ class Woostify_Get_CSS {
 			.woocommerce-review-link,
 			.woocommerce-tabs .tabs li:not(.active) a,
 			.woocommerce-cart-form__contents .product-remove a,
-			.comment-body .comment-meta .comment-date{
+			.comment-body .comment-meta .comment-date,
+			.woostify-breadcrumb a,
+			.breadcrumb-separator{
 				color: ' . $woostify_theme_mods['text_color'] . ';
 			}
 
@@ -123,7 +125,11 @@ class Woostify_Get_CSS {
 			.form-row .input-text:focus,
 			.wc_payment_method label,
 			.woocommerce-checkout-review-order-table thead th,
-			.woocommerce-checkout-review-order-table .product-name{
+			.woocommerce-checkout-review-order-table .product-name,
+			.woocommerce-thankyou-order-details strong,
+			.woocommerce-table--order-details th,
+			.woocommerce-table--order-details .amount,
+			.wc-breadcrumb .woostify-breadcrumb{
 				color: ' . $woostify_theme_mods['heading_color'] . ';
 			}
 
@@ -184,7 +190,8 @@ class Woostify_Get_CSS {
 			.site-header .primary-navigation > li.current_page_ancestor > a,
 			.woocommerce-pagination a:hover,
 			.woocommerce-cart-form__contents .product-subtotal,
-			.woocommerce-checkout-review-order-table .order-total{
+			.woocommerce-checkout-review-order-table .order-total,
+			.woocommerce-table--order-details .product-name a{
 				color: ' . $woostify_theme_mods['theme_color'] . ';
 			}
 			
