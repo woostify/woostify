@@ -281,62 +281,6 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	} );
 
 	/**
-	 * Navigation position
-	 */
-	wp.customize( 'woostify_settings[nav_position_setting]', function( value ) {
-		value.bind( function( newval ) {
-			jQuery('body').trigger('woostify_navigation_location_updated');
-			if ( $( '.gen-sidebar-nav' ).length ) {
-				wp.customize.preview.send( 'refresh' );
-				return false;
-			}
-			if ( 'nav-left-sidebar' == newval ) {
-				wp.customize.preview.send( 'refresh' );
-				return false;
-			}
-			if ( 'nav-right-sidebar' == newval ) {
-				wp.customize.preview.send( 'refresh' );
-				return false;
-			}
-			var classes = [ 'nav-below-header', 'nav-above-header', 'nav-float-right', 'nav-float-left', 'nav-left-sidebar', 'nav-right-sidebar' ];
-			if ( 'nav-left-sidebar' !== newval && 'nav-right-sidebar' !== newval ) {
-				$.each( classes, function( i, v ) {
-					$( 'body' ).removeClass( v );
-				});
-			}
-			$( 'body' ).addClass( newval );
-			if ( 'nav-below-header' == newval ) {
-				$( '#site-navigation:first' ).insertAfter( '.site-header' ).show();
-			}
-			if ( 'nav-above-header' == newval ) {
-				if ( $( '.top-bar:not(.secondary-navigation .top-bar)' ).length ) {
-					$( '#site-navigation:first' ).insertAfter( '.top-bar' ).show();
-				} else {
-					$( '#site-navigation:first' ).prependTo( 'body' ).show();
-				}
-			}
-			if ( 'nav-float-right' == newval ) {
-				$( '#site-navigation:first' ).appendTo( '.inside-header' ).show();
-			}
-			if ( 'nav-float-left' == newval ) {
-				$( '#site-navigation:first' ).appendTo( '.inside-header' ).show();
-			}
-			if ( '' == newval ) {
-				if ( $( '.gen-sidebar-nav' ).length ) {
-					wp.customize.preview.send( 'refresh' );
-				} else {
-					$( '#site-navigation:first' ).hide();
-				}
-			}
-		} );
-	} );
-
-	/**
-	 * Navigation alignment
-	 */
-	generatepress_classes_live_update( 'nav_alignment_setting', [ 'left', 'center', 'right' ], 'body', 'nav-aligned-' );
-
-	/**
 	 * Footer width
 	 */
 	wp.customize( 'woostify_settings[footer_layout_setting]', function( value ) {

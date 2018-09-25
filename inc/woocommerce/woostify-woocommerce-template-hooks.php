@@ -80,15 +80,6 @@ add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_p
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
 
 /**
- * Header
- *
- * @see woostify_product_search()
- * @see woostify_header_action()
- */
-add_action( 'woostify_header', 'woostify_product_search', 40 );
-add_action( 'woostify_header', 'woostify_header_action', 50 );
-
-/**
  * Cart fragment
  *
  * @see woostify_cart_link_fragment()

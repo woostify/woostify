@@ -1,7 +1,17 @@
 .woostify-message{
 	background-color: #f3f3f3;
 	.single-product &{
-		padding-top: 30px;
+		.woocommerce{
+			padding-top: 30px;
+		}
+	}
+	.woocommerce{
+		&:empty{
+			display: none;
+		}
+	}
+	ul{
+		margin: 0;
 	}
 }
 

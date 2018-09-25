@@ -298,30 +298,28 @@ if ( ! function_exists( 'woostify_site_title_or_logo' ) ) {
 if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 	/**
 	 * Display Primary Navigation
-	 *
-	 * @since  1.0
-	 * @return void
 	 */
 	function woostify_primary_navigation() {
 		?>
-		<nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'woostify' ); ?>">
+		<div id="site-navigation">
+			<?php do_action( 'woostify_before_main_nav' ); ?>
 
-			<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false">
-				<span><?php echo esc_attr( apply_filters( 'woostify_menu_toggle_text', __( 'Menu', 'woostify' ) ) ); ?></span>
-			</button>
+			<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary navigation', 'woostify' ); ?>">
+				<?php
+				if ( has_nav_menu( 'primary' ) ) {
+					wp_nav_menu(
+						array(
+							'theme_location' => 'primary',
+							'menu_class'     => 'primary-navigation',
+							'container'      => '',
+						)
+					);
+				}
+				?>
+			</nav>
 
-			<?php
-			if ( has_nav_menu( 'primary' ) ) {
-				wp_nav_menu(
-					array(
-						'theme_location'  => 'primary',
-						'menu_class'      => 'primary-navigation',
-						'container'       => '',
-					)
-				);
-			}
-			?>
-		</nav>
+			<?php do_action( 'woostify_after_main_nav' ); ?>
+		</div>
 		<?php
 	}
 }
@@ -871,5 +869,17 @@ if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 		} else {
 			get_sidebar();
 		}
+	}
+}
+
+if ( ! function_exists( 'woostify_mobile_menu_toggle_btn' ) ) {
+	/**
+	 * Mobile menu toggle button
+	 */
+	function woostify_mobile_menu_toggle_btn() {
+		$menu_toggle_icon = apply_filters( 'woostify_header_menu_toggle_icon', 'ti-view-list' );
+		?>
+			<span class="menu-toggle <?php echo esc_attr( $menu_toggle_icon ); ?>"></span>
+		<?php
 	}
 }

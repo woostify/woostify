@@ -104,3 +104,12 @@
         text-align: center;
     }
 }
+
+/* responsive */
+@media ( max-width: $screen-md - 1 ) {
+	#primary{
+		+#secondary{
+			margin-top: 40px;
+		}
+	}
+}

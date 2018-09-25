@@ -75,14 +75,17 @@ class Woostify_Get_CSS {
 				text-transform: ' . $woostify_settings['menu_font_transform'] . ';
 				color: ' . $woostify_theme_mods['primary_menu_color'] . ';
 			}
-			.site-header .primary-navigation > li > a{
-				font-size: ' . $woostify_settings['parent_menu_font_size'] . 'px;
-				line-height: ' . $woostify_settings['parent_menu_line_height'] . 'px;
-			}
 
-			.site-header .primary-navigation .sub-menu a{
-				line-height: ' . $woostify_settings['sub_menu_line_height'] . 'px;
-				font-size: ' . $woostify_settings['sub_menu_font_size'] . 'px;
+			@media ( min-width: 991px ) {
+				.site-header .primary-navigation > li > a{
+					font-size: ' . $woostify_settings['parent_menu_font_size'] . 'px;
+					line-height: ' . $woostify_settings['parent_menu_line_height'] . 'px;
+				}
+
+				.site-header .primary-navigation .sub-menu a{
+					line-height: ' . $woostify_settings['sub_menu_line_height'] . 'px;
+					font-size: ' . $woostify_settings['sub_menu_font_size'] . 'px;
+				}
 			}
 		';
 

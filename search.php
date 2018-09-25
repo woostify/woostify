@@ -13,7 +13,7 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h1 class="page-title">
+				<h1 class="page-title entry-title">
 					<?php
 						/* translators: %s: search term */
 						printf( esc_attr__( 'Search Results for: %s', 'woostify' ), '<span>' . get_search_query() . '</span>' );

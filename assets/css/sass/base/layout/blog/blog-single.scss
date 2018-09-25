@@ -207,3 +207,12 @@
 #cancel-comment-reply-link{
 	color: firebrick
 }
+
+/* responsive */
+@media ( max-width: $screen-md - 1 ) {
+	.single-post{
+		.entry-title{
+			font-size: 2em;
+		}
+	}
+}

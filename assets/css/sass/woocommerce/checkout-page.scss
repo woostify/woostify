@@ -91,7 +91,7 @@
 
 	@media ( min-width: #{ $screen-md } ) {
 		width: 640px;
-		float: left;
+		margin: 0 auto;
 	}
 
 	.form-row{
@@ -136,6 +136,7 @@
 
 /* customer details */
 #customer_details{
+	@extend .clearfix;
 	@media ( min-width: #{ $screen-md } ) {
 		float: left;
 		width: calc( 100% - 470px );
@@ -328,4 +329,12 @@
 }
 .select2-dropdown{
     border-color: #e8e8e8;
+}
+
+/* responsive */
+@media ( max-width: $screen-md - 1 ) {
+	#order_review{
+		clear: both;
+		margin-top: 30px;
+	}
 }

@@ -52,6 +52,12 @@
 		&:before{
 			content: "\e60d"
 		}
+		&.product_type_external{
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			display: block;
+		}
 	}
 	.loading{
 		&:before{

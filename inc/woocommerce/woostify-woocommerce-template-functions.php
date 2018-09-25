@@ -89,13 +89,19 @@ if ( ! function_exists( 'woostify_product_search' ) ) {
 	 * @return void
 	 */
 	function woostify_product_search() {
-		if ( woostify_is_woocommerce_activated() ) {
-			?>
-			<div class="site-search">
-				<?php the_widget( 'WC_Widget_Product_Search', 'title=' ); ?>
-			</div>
+		?>
+		<div class="site-search">
 			<?php
-		}
+			if ( is_home() ) {
+				get_search_form();
+			} else {
+				if ( woostify_is_woocommerce_activated() ) {
+					the_widget( 'WC_Widget_Product_Search', 'title=' );
+				}
+			}
+			?>
+		</div>
+		<?php
 	}
 }
 
@@ -149,6 +155,44 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 				</a>
 
 				<?php do_action( 'woostify_site_tools_after_shop_bag' ); ?>
+			</div>
+			<?php
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_sidebar_mobile_action' ) ) {
+	/**
+	 * Sidebar mobile action
+	 */
+	function woostify_sidebar_mobile_action() {
+		if ( woostify_is_woocommerce_activated() ) {
+
+			global $woocommerce;
+			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
+			$page_logout_id  = wp_logout_url( get_permalink( $page_account_id ) );
+
+			if ( 'yes' == get_option( 'woocommerce_force_ssl_checkout' ) ) {
+				$logout_url = str_replace( 'http:', 'https:', $logout_url );
+			}
+
+			$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
+			$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-bag' );
+			?>
+			<div class="mobile-my-account">
+				<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account <?php echo esc_attr( $my_account_icon ); ?>"></a>
+
+				<ul>
+					<?php if ( ! is_user_logged_in() ) : ?>
+						<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
+					<?php else : ?>
+						<li>
+							<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
+						</li>
+						<li><a href="<?php echo esc_url( $page_logout_id ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
+						</li>
+					<?php endif; ?>
+				</ul>
 			</div>
 			<?php
 		}

@@ -361,3 +361,11 @@
 		padding: 25px 0;
 	}
 }
+
+/* RESPONSIVE */
+@media ( max-width: $screen-md - 1 ) {
+	.summary.entry-summary{
+		margin-top: 50px;
+		width: 100%;
+	}
+}
