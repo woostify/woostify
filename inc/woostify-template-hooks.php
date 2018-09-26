@@ -11,8 +11,17 @@
  * @see  woostify_get_sidebar()
  */
 add_action( 'woostify_sidebar', 'woostify_get_sidebar', 10 );
+
 add_action( 'woostify_content_top', 'woostify_content_open', 10 );
 add_action( 'woostify_content_bottom', 'woostify_content_close', 10 );
+
+add_action( 'woostify_before_view', 'woostify_sidebar_menu_open', 10 );
+add_action( 'woostify_before_view', 'woostify_search', 20 );
+add_action( 'woostify_before_view', 'woostify_primary_navigation', 30 );
+add_action( 'woostify_before_view', 'woostify_sidebar_menu_action', 40 );
+add_action( 'woostify_before_view', 'woostify_sidebar_menu_close', 100 );
+
+add_action( 'woostify_after_view', 'woostify_overlay', 30 );
 
 /**
  * Header
@@ -20,23 +29,17 @@ add_action( 'woostify_content_bottom', 'woostify_content_close', 10 );
  * @see  woostify_skip_links()
  * @see  woostify_site_branding()
  * @see  woostify_primary_navigation()
- * @see woostify_product_search()
+ * @see woostify_search()
  * @see woostify_header_action()
  */
 add_action( 'woostify_header', 'woostify_header_container', 0 );
 add_action( 'woostify_header', 'woostify_skip_links', 5 );
 add_action( 'woostify_header', 'woostify_site_branding', 20 );
 add_action( 'woostify_header', 'woostify_primary_navigation', 30 );
-add_action( 'woostify_header', 'woostify_product_search', 40 );
+add_action( 'woostify_header', 'woostify_search', 40 );
 add_action( 'woostify_header', 'woostify_header_action', 50 );
 add_action( 'woostify_header', 'woostify_mobile_menu_toggle_btn', 60 );
 add_action( 'woostify_header', 'woostify_header_container_close', 200 );
-
-/**
- * Site navigation
- */
-add_action( 'woostify_before_main_nav', 'woostify_product_search', 10 );
-add_action( 'woostify_after_main_nav', 'woostify_sidebar_mobile_action', 10 );
 
 /**
  * Footer

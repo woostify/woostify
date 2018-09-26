@@ -10,28 +10,6 @@ function cartSidebarOpen() {
 	document.body.classList.add( 'cart-sidebar-open' );
 }
 
-// Action for close cart sidebar.
-function cartSidebarClose() {
-	// Use ESC key.
-	document.body.addEventListener( 'keyup', function( e ) {
-		if ( 27 === e.keyCode ) {
-			document.body.classList.remove( 'cart-sidebar-open' );
-		}
-	} );
-
-	// Use `X` close button.
-	var closeCartSidebarBtn = document.getElementById( 'close-cart-sidebar-btn' );
-	closeCartSidebarBtn.addEventListener( 'click', function() {
-		document.body.classList.remove( 'cart-sidebar-open' );
-	} );
-
-	// Use overlay.
-	var overlay = document.getElementById( 'woocommerce-overlay' );
-	overlay.addEventListener( 'click', function() {
-		document.body.classList.remove( 'cart-sidebar-open' );
-	} );
-}
-
 function eventCartSidebarOpen() {
 	document.body.classList.add( 'updating-cart' );
 	document.body.classList.remove( 'cart-updated' );
@@ -45,6 +23,7 @@ function eventCartSidebarClose() {
 // Event when click shopping bag button.
 ( function() {
 	var shoppingBag = document.getElementsByClassName( 'shopping-bag-button' );
+
 	if ( ! shoppingBag || document.body.classList.contains( 'woocommerce-cart' ) ) {
 		return;
 	}
@@ -54,13 +33,14 @@ function eventCartSidebarClose() {
 			e.preventDefault();
 
 			cartSidebarOpen();
-			cartSidebarClose();
+			closeAll();
 		} );
 	}
 } )();
 
 // Get product item in cart.
 function getProductItemInCart(){
+
 	// Variables.
 	var cart   = document.getElementsByClassName( 'cart' )[0],
 		button = cart ? cart.getElementsByClassName( 'single_add_to_cart_button' )[0] : false;
@@ -107,17 +87,21 @@ function getProductItemInCart(){
 		});
 	} );
 }
+
 jQuery( document.body ).on( 'adding_to_cart', function() {
 	// Event `adding_to_cart`.
 	eventCartSidebarOpen();
 	cartSidebarOpen();
+
 } ).on( 'added_to_cart', function() {
 	// Event `added_to_cart`.
 	eventCartSidebarClose();
-	cartSidebarClose();
+	closeAll();
+
 } ).on( 'removed_from_cart', function( event, fragments, cart_hash ) {
 	// Event `removed_from_cart`.
 	getProductItemInCart();
+
 } ).on( 'updated_cart_totals', function() {
 	// Event `updated_cart_totals`.
 	quantity();

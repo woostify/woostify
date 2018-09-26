@@ -80,125 +80,6 @@ if ( ! function_exists( 'woostify_cart_link' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_product_search' ) ) {
-	/**
-	 * Display Product Search
-	 *
-	 * @since  1.0
-	 * @uses  woostify_is_woocommerce_activated() check if WooCommerce is activated
-	 * @return void
-	 */
-	function woostify_product_search() {
-		?>
-		<div class="site-search">
-			<?php
-			if ( is_home() ) {
-				get_search_form();
-			} else {
-				if ( woostify_is_woocommerce_activated() ) {
-					the_widget( 'WC_Widget_Product_Search', 'title=' );
-				}
-			}
-			?>
-		</div>
-		<?php
-	}
-}
-
-if ( ! function_exists( 'woostify_header_action' ) ) {
-	/**
-	 * Display header action
-	 *
-	 * @since  1.0
-	 * @uses  woostify_is_woocommerce_activated() check if WooCommerce is activated
-	 * @return void
-	 */
-	function woostify_header_action() {
-		if ( woostify_is_woocommerce_activated() ) {
-
-			global $woocommerce;
-			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
-			$page_logout_id  = wp_logout_url( get_permalink( $page_account_id ) );
-
-			if ( 'yes' == get_option( 'woocommerce_force_ssl_checkout' ) ) {
-				$logout_url = str_replace( 'http:', 'https:', $logout_url );
-			}
-
-			$count = $woocommerce->cart->cart_contents_count;
-
-			$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
-			$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-bag' );
-			?>
-			<div class="site-tools">
-				<?php do_action( 'woostify_site_tools_before_my_account' ); ?>
-
-				<div class="my-account">
-					<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account <?php echo esc_attr( $my_account_icon ); ?>"></a>
-
-					<ul>
-						<?php if ( ! is_user_logged_in() ) : ?>
-							<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
-						<?php else : ?>
-							<li>
-								<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-							</li>
-							<li><a href="<?php echo esc_url( $page_logout_id ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
-							</li>
-						<?php endif; ?>
-					</ul>
-				</div>
-
-				<?php do_action( 'woostify_site_tools_after_my_account' ); ?>
-
-				<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
-					<span class="shop-cart-count"><?php echo esc_html( $count ); ?></span>
-				</a>
-
-				<?php do_action( 'woostify_site_tools_after_shop_bag' ); ?>
-			</div>
-			<?php
-		}
-	}
-}
-
-if ( ! function_exists( 'woostify_sidebar_mobile_action' ) ) {
-	/**
-	 * Sidebar mobile action
-	 */
-	function woostify_sidebar_mobile_action() {
-		if ( woostify_is_woocommerce_activated() ) {
-
-			global $woocommerce;
-			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
-			$page_logout_id  = wp_logout_url( get_permalink( $page_account_id ) );
-
-			if ( 'yes' == get_option( 'woocommerce_force_ssl_checkout' ) ) {
-				$logout_url = str_replace( 'http:', 'https:', $logout_url );
-			}
-
-			$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
-			$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-bag' );
-			?>
-			<div class="mobile-my-account">
-				<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account <?php echo esc_attr( $my_account_icon ); ?>"></a>
-
-				<ul>
-					<?php if ( ! is_user_logged_in() ) : ?>
-						<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
-					<?php else : ?>
-						<li>
-							<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-						</li>
-						<li><a href="<?php echo esc_url( $page_logout_id ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
-						</li>
-					<?php endif; ?>
-				</ul>
-			</div>
-			<?php
-		}
-	}
-}
-
 if ( ! function_exists( 'woostify_upsell_display' ) ) {
 	/**
 	 * Upsells
@@ -744,7 +625,7 @@ if ( ! function_exists( 'woostify_handheld_footer_bar_search' ) ) {
 	 */
 	function woostify_handheld_footer_bar_search() {
 		echo '<a href="">' . esc_attr__( 'Search', 'woostify' ) . '</a>';
-		woostify_product_search();
+		woostify_search();
 	}
 }
 
@@ -988,15 +869,3 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 		<?php
 	}
 }
-
-if ( ! function_exists( 'woostify_woocommerce_overlay' ) ) {
-	/**
-	 * Woocommerce overlay
-	 */
-	function woostify_woocommerce_overlay() {
-		echo '<div id="woocommerce-overlay"></div>';
-	}
-}
-
-
-

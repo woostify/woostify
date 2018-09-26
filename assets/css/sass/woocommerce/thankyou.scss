@@ -75,7 +75,7 @@
     td{
         background: #fbfbfb;
     }
-    @media ( max-width: #{ $screen-sm - 1 } ) {
+    @media ( max-width: $screen-sm - 1 ) {
         th, td{
             display: block;
             border-right: 0;

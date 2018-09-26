@@ -10,28 +10,35 @@
 	do_action( 'woostify_content_bottom' );
 	do_action( 'woostify_before_footer' );
 ?>
+			<?php // #content. ?>
+			</div>
 
-	<footer id="colophon" class="site-footer">
-		<div class="container">
+		<footer id="colophon" class="site-footer">
+			<div class="container">
 
-			<?php
-			/**
-			 * Functions hooked in to woostify_footer action
-			 *
-			 * @hooked woostify_footer_widgets - 10
-			 * @hooked woostify_credit         - 20
-			 */
-			do_action( 'woostify_footer' );
-			?>
+				<?php
+				/**
+				 * Functions hooked in to woostify_footer action
+				 *
+				 * @hooked woostify_footer_widgets - 10
+				 * @hooked woostify_credit         - 20
+				 */
+				do_action( 'woostify_footer' );
+				?>
 
-		</div><!-- .container -->
-	</footer>
+			</div><!-- .container -->
+		</footer>
 
-	<?php do_action( 'woostify_after_footer' ); ?>
+		<?php do_action( 'woostify_after_footer' ); ?>
 
-</div><!-- #page -->
+	<?php // #view. ?>
+	</div>
+
+	<?php do_action( 'woostify_after_view' ); ?>
+
+<?php // #page. ?>
+</div>
 
 <?php wp_footer(); ?>
-
 </body>
 </html>

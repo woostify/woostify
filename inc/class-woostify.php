@@ -245,6 +245,15 @@ if ( ! class_exists( 'woostify' ) ) :
 			 * Scripts
 			 */
 
+			// General script.
+			wp_enqueue_script(
+				'woostify-general',
+				WOOSTIFY_THEME_URI . 'assets/js/general.js',
+				array(),
+				$woostify_version,
+				true
+			);
+
 			// Mobile menu.
 			wp_enqueue_script(
 				'woostify-navigation',

@@ -25,35 +25,38 @@
 	<?php do_action( 'woostify_before_site' ); ?>
 
 	<div id="page" class="hfeed site">
-		<?php do_action( 'woostify_before_header' ); ?>
 
-		<header id="masthead" class="site-header" style="<?php woostify_header_styles(); ?>">
+		<?php do_action( 'woostify_before_view' ); ?>
+		<div id="view">
+
+			<?php do_action( 'woostify_before_header' ); ?>
+			<header id="masthead" class="site-header" style="<?php woostify_header_styles(); ?>">
+				<?php
+					/**
+					 * Functions hooked into woostify_header action
+					 *
+					 * @hooked woostify_header_container       - 0
+					 * @hooked woostify_skip_links             - 5
+					 * @hooked woostify_site_branding          - 20
+					 * @hooked woostify_primary_navigation     - 30
+					 * @hooked woostify_search         - 40
+					 * @hooked woostify_header_action          - 50
+					 * @hooked woostify_header_container_close - 200
+					 */
+					do_action( 'woostify_header' );
+				?>
+			</header>
+
 			<?php
 				/**
-				 * Functions hooked into woostify_header action
+				 * Functions hooked in to woostify_before_content
 				 *
-				 * @hooked woostify_header_container       - 0
-				 * @hooked woostify_skip_links             - 5
-				 * @hooked woostify_site_branding          - 20
-				 * @hooked woostify_primary_navigation     - 30
-				 * @hooked woostify_product_search         - 40
-				 * @hooked woostify_header_action            - 50
-				 * @hooked woostify_header_container_close - 60
+				 * @hooked woostify_header_widget_region - 10
+				 * @hooked woostify_breadcrumb           - 20
 				 */
-				do_action( 'woostify_header' );
+				do_action( 'woostify_before_content' );
 			?>
-		</header>
 
-		<?php
-			/**
-			 * Functions hooked in to woostify_before_content
-			 *
-			 * @hooked woostify_header_widget_region - 10
-			 * @hooked woostify_breadcrumb - 20
-			 */
-			do_action( 'woostify_before_content' );
-		?>
-
-		<div id="content" class="site-content" tabindex="-1">
-			<?php
-				do_action( 'woostify_content_top' );
+			<div id="content" class="site-content" tabindex="-1">
+				<?php
+					do_action( 'woostify_content_top' );

@@ -5,6 +5,10 @@
 	}
 }
 
+#view{
+	@include duration( 0.3s );
+}
+
 .site-content{
 	margin-top: 3.5em;
 	.single-product &{

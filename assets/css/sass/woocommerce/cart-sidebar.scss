@@ -9,6 +9,7 @@
 
     #shop-cart-sidebar {
     	@extend .circle-loading;
+
         &:before {
         	@include animation( 0.4s circle-loading linear infinite );
             top: calc( 50% + 20px ); /* 20px = spinner size */
@@ -26,6 +27,7 @@
     &.ajax-single-add-to-cart {
         .single_add_to_cart_button {
         	@include filter( grayscale, 100% );
+
             &:before {
             	@include loading( $size: 1em, $center: true );
             	left: 2em;
@@ -35,6 +37,12 @@
     }
 }
 .cart-sidebar-open {
+	overflow-y: hidden;
+	
+	#view{
+		@include translatex( -300px );
+	}
+
     &.cart-updated {
         #shop-cart-sidebar {
             &:before {
@@ -52,10 +60,10 @@
     #shop-cart-sidebar {
         visibility: visible;
         pointer-events: auto;
-        @include translate3d(0, 0, 0);
+        @include translatex( 0 );
     }
 
-    #woocommerce-overlay {
+    #woostify-overlay {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
@@ -68,10 +76,10 @@
     bottom: 0;
     z-index: 200;
     width: 300px;
-    background: #ffffff;
+    background: #fff;
     visibility: hidden;
     pointer-events: none;
-    @include translate3d(100%, 0, 0);
+    @include translatex( 100% );
     @include transition(all 0.3s);
 
     .logged-in.admin-bar & {
@@ -134,16 +142,16 @@
     border: 0;
     background: none;
     position: absolute;
-    right: 20px;
+    right: 10px;
     top: 50%;
     width: 30px;
     height: 30px;
     @extend .duration;
     @extend .flex;
-    @include transforms(translateY(-50%) rotate(0deg));
+    @include transforms(translatey(-50%) rotate(0deg));
 
     &:hover {
-        @include transforms(translateY(-50%) rotate(90deg));
+        @include transforms(translatey(-50%) rotate(90deg));
     }
 }
 
@@ -151,6 +159,7 @@
 .cart-sidebar-content {
     overflow: auto;
     @include calc(height, '100% - 140px');
+
     .woocommerce-mini-cart__total {
         position: absolute;
         margin-bottom: 0;
@@ -161,11 +170,13 @@
         padding: 0 20px;
         @include shadow( 0 0px 10px -4px rgba(0,0,0,0.3) );
     }
+
     .woocommerce-mini-cart__buttons {
         margin-bottom: 0;
         position: absolute;
         bottom: 0;
         width: 100%;
+
         a {
             height: 40px;
             padding: 0 $i;
@@ -176,40 +187,48 @@
             }
         }
     }
+
     .woocommerce-mini-cart__empty-message {
         margin-bottom: 0;
         padding: 20px;
     }
+
     .product_list_widget.woocommerce-mini-cart{
     	img{
     		left: 10px;
     	}
     }
+
     .variation {
         margin: 5px 0;
         font-size: 13px;
         @extend .clearfix;
+
         dt,
         dd {
             float: left;
             line-height: 18px;
         }
+
         dt {
             font-weight: normal;
             clear: both;
             margin-right: 5px;
         }
+
         dd {
             margin: 0;
             p:last-child {
                 margin-bottom: 0;
             }
         }
+
         +.quantity{
         	clear: both;
         	display: block;
         }
     }
+
     .quantity {
         font-size: 13px;
     }
@@ -220,6 +239,7 @@
 .cart-sidebar-content{
 	.mini_cart_item{
 		padding-left: 80px;
+
 		&:hover,
 		&:focus-within{
 			.remove_from_cart_button{
@@ -227,18 +247,21 @@
 				@include transforms( translateY( -50% ) translateX( 0px ) rotate( 0deg ) );
 			}
 		}
-		@media ( max-width: #{ $screen-md - 1 } ) {
+
+		@media ( max-width: $screen-md - 1 ) {
 			.remove_from_cart_button{
 				opacity: 1;
 				@include transforms( translateY( -50% ) translateX( 0px ) rotate( 0deg ) );
 			}
 		}
 	}
+
 	.remove_from_cart_button {
 		opacity: 0;
 		right: 15px;
 		top: 50%;
         @include transforms( translateY( -50% ) translateX( 10px ) rotate( 0deg ) );
+
         &:focus {
             &:before{
             	@include animation( 0.5s circle-loading linear infinite )
@@ -248,7 +271,7 @@
 }
 
 /* OVERLAY */
-#woocommerce-overlay {
+#woostify-overlay {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -260,4 +283,30 @@
     opacity: 0;
     visibility: hidden;
     @extend .duration;
+}
+
+
+/* RESPONSIVE */
+@media ( min-width: $screen-md ) {
+	.cart-sidebar-open{
+		#view{
+			@include translatex( -400px );
+		}
+	}
+
+	#shop-cart-sidebar{
+		width: 400px;
+	}	
+}
+
+@media ( min-width: 600px ) and ( max-width: $screen-md - 1 ) {
+	.cart-sidebar-open{
+		#view{
+			@include translatex( -50% );
+		}
+	}
+
+	#shop-cart-sidebar{
+		width: 50%;
+	}	
 }

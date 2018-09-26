@@ -1,21 +1,12 @@
-.products{
-	.product{
-		&:hover{
-			.animated-meta{
-				@include translatey( -32px );
-			}
-		}
-	}
-}
-
-
 .product-loop-image-wrapper{
 	position: relative;
+
 	&:hover{
 		.product-loop-hover-image{
 			opacity: 1;
 		}
 	}
+
 	.woocommerce-loop-product__link{
 		display: block;
 	}
@@ -33,25 +24,26 @@
 }
 
 .product-loop-meta{
-	height: 30px;
-	line-height: 30px;
-	overflow: hidden;
 	.price{
 		display: block;
 	}
+
 	a{
 		position: relative;
 		@extend .flex;
+
 		&:before{
 			font-family: $icon;
 			font-weight: normal;
 			margin-right: 5px;
 		}
 	}
+
 	.button{
 		&:before{
 			content: "\e60d"
 		}
+
 		&.product_type_external{
 			white-space: nowrap;
 			text-overflow: ellipsis;
@@ -59,15 +51,18 @@
 			display: block;
 		}
 	}
+
 	.loading{
 		&:before{
 			@include loading( $size: 14px, $center: false, $important: !important );
 			position: static;
 		}
 	}
+
 	.added{
 		display: none;
 	}
+
 	.added_to_cart{
 		&:before{
 			content: "\e60e"
@@ -75,9 +70,29 @@
 	}
 }
 
-.animated-meta{
-	@include transition( all .2s ease-in-out );
-	&:focus-within{
-		@include translatey( -32px );
+/* responsive */
+@media ( min-width: $screen-md ) {
+	.products{
+		.product{
+			&:hover{
+				.animated-meta{
+					@include translatey( -32px );
+				}
+			}
+		}
+	}
+
+	.animated-meta{
+		@include transition( all .2s ease-in-out );
+
+		&:focus-within{
+			@include translatey( -32px );
+		}
+	}
+
+	.product-loop-meta{
+		height: 30px;
+		line-height: 30px;
+		overflow: hidden;
 	}
 }

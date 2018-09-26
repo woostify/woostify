@@ -5,7 +5,7 @@
 	}
 	#content{
 		>.container{
-			@media ( min-width: #{ $screen-sm } ) {
+			@media ( min-width: $screen-sm ) {
 				width: 800px;
 			}
 		}

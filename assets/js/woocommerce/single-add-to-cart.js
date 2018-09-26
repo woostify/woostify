@@ -16,8 +16,7 @@ function singleAddToCartButton() {
 		return;
 	}
 
-	var overlay       = document.getElementById( 'woocommerce-overlay' ),
-		addToCart     = cart.querySelector( '[name="add-to-cart"]' ),
+	var addToCart     = cart.querySelector( '[name="add-to-cart"]' ),
 		productId     = addToCart ? addToCart.value : false,
 		input         = cart.getElementsByClassName( 'qty' )[0],
 		inputMax      = input ? parseInt( input.getAttribute( 'max' ) ) : 0,
@@ -83,7 +82,7 @@ function singleAddToCartButton() {
 		// Events.
 		eventCartSidebarOpen();
 		cartSidebarOpen();
-		cartSidebarClose();
+		closeAll();
 
 		// Request.
 		var request = new Request( woostify_ajax.url, {

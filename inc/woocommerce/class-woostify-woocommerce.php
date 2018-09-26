@@ -626,14 +626,17 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 							axis: 'vertical'
 						});
 
-						var _prev = document.querySelector( '[data-controls=\'prev\']' ),
-							_next = document.querySelector( '[data-controls=\'next\']' );
+						window.addEventListener( 'load', function() {
+							var _prev = document.querySelector( '[data-controls=\'prev\']' ),
+								_next = document.querySelector( '[data-controls=\'next\']' );
 
-						_prev.addEventListener( 'click', function () {
-							thumb_carousel.goTo( 'prev' );
-						});
-						_next.addEventListener( 'click', function () {
-							thumb_carousel.goTo( 'next' );
+							_prev.addEventListener( 'click', function () {
+								thumb_carousel.goTo( 'prev' );
+							});
+
+							_next.addEventListener( 'click', function () {
+								thumb_carousel.goTo( 'next' );
+							});
 						});
 
 						var reset_slider = function(){

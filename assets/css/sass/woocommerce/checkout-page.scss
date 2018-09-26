@@ -19,7 +19,7 @@
 	background-size: 40px 40px;
 	background-position: center left 30px;
 	@include flex( flex, flex-start, center );
-	@media ( min-width: #{ $screen-md } ) {
+	@media ( min-width: $screen-md ) {
 		float: left;
 		width: calc( 100% - 530px );
 		margin-right: 60px;
@@ -32,7 +32,7 @@
 	}
 
 	~ .checkout_coupon.woocommerce-form-coupon{
-		@media ( min-width: #{ $screen-md } ) {
+		@media ( min-width: $screen-md ) {
 			width: 470px;
 			float: right;
 			position: absolute;
@@ -47,7 +47,7 @@
 	border-top: 0;
 	border-radius: 2px;
 	padding: 30px;
-	@media ( min-width: #{ $screen-md } ) {
+	@media ( min-width: $screen-md ) {
 		float: left;
 		width: calc( 100% - 530px );
 		margin-right: 60px;
@@ -89,7 +89,7 @@
 	background-size: 40px 40px;
 	background-position: center left 30px;
 
-	@media ( min-width: #{ $screen-md } ) {
+	@media ( min-width: $screen-md ) {
 		width: 640px;
 		margin: 0 auto;
 	}
@@ -137,7 +137,7 @@
 /* customer details */
 #customer_details{
 	@extend .clearfix;
-	@media ( min-width: #{ $screen-md } ) {
+	@media ( min-width: $screen-md ) {
 		float: left;
 		width: calc( 100% - 470px );
 		padding-right: 60px;
@@ -194,7 +194,7 @@
 	background-color: #f9f9f9;
 	padding: 30px;
 	border-radius: 4px;
-	@media ( min-width: #{ $screen-md } ) {
+	@media ( min-width: $screen-md ) {
 		float: left;
 		width: 470px;
 	}

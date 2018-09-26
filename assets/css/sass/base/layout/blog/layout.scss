@@ -1,6 +1,6 @@
 $sidebar_width: percentage( 270 / 1170 );
 
-@media ( min-width: #{$screen-md} ){
+@media ( min-width: $screen-md ){
 	.is-active-sidebar{
         &.left-sidebar{
 	        .content-area{
