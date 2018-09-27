@@ -614,30 +614,30 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 							autoHeight: true
 						});
 
-						var thumb_carousel = tns({
+						var options = {
 							loop: false,
 							container: '#product-thumbnail-images',
 							gutter: 10,
 							items: 5,
 							mouseDrag: true,
 							nav: false,
-							fixedWidth: 0,
 							controls: false,
 							axis: 'vertical'
-						});
+						}
 
-						window.addEventListener( 'load', function() {
-							var _prev = document.querySelector( '[data-controls=\'prev\']' ),
-								_next = document.querySelector( '[data-controls=\'next\']' );
-
-							_prev.addEventListener( 'click', function () {
-								thumb_carousel.goTo( 'prev' );
+						if ( window.matchMedia( '( min-width: 768px )' ).matches ) {
+							var thumb_carousel = tns( options );
+						} else {
+							var thumb_carousel = tns({
+								loop: false,
+								container: '#product-thumbnail-images',
+								fixedWidth: 80,
+								items: 4,
+								mouseDrag: true,
+								nav: false,
+								controls: false,
 							});
-
-							_next.addEventListener( 'click', function () {
-								thumb_carousel.goTo( 'next' );
-							});
-						});
+						}
 
 						var reset_slider = function(){
 							image_carousel.goTo( 'first' );

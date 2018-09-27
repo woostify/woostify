@@ -541,7 +541,7 @@ Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq
 * Tweak - Make use of WordPress 4.1's `title-tag` theme feature. (Requires WordPress 4.1).
 * Tweak - Welcome screen tweaks for WordPress 4.1.
 * Tweak - Slightly reduced button/input size.
-* Dev - Made `woostify_product_search()` pluggable.
+* Dev - Made `woostify_search()` pluggable.
 
 = 1.2.1 - 2014-12-09 =
 * Fix - Blog post category and tag link output.
