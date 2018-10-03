@@ -2,6 +2,22 @@
 	padding-bottom: 90px;
 }
 
+/* SIDEBAR */
+.single-product{
+	&.left-sidebar,
+	&.right-sidebar{
+		.site-content{
+			@extend .container;
+		}
+
+		.site-main{
+			.container{
+				width: 100%;
+			}
+		}
+	}
+}
+
 /* ONSALE */
 .has-product-gallery{
 	.product-page-container{
@@ -58,9 +74,11 @@
 			.image-item{
 				&:first-of-type{
 					@extend .circle-loading;
+
 					img{
 						opacity: 0;
 					}
+
 					~.image-item{
 						display: none;
 					}
@@ -68,6 +86,7 @@
 			}
 		}
 	}
+
 	#product-thumbnail-images{
 		&:not(.tns-slider){
 			.thumbnail-item{
@@ -123,6 +142,7 @@
 		margin-top: 20px;
 	}
 }
+
 // Group product.
 .woocommerce-grouped-product-list{
 	border: 0;

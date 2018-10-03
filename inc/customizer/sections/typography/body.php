@@ -9,12 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-// Default value.
-$defaults = woostify_default_fonts();
+// Default values.
+$defaults = woostify_options();
 
 // body font family.
 $wp_customize->add_setting(
-	'woostify_settings[body_font_family]',
+	'woostify_setting[body_font_family]',
 	array(
 		'default'           => $defaults['body_font_family'],
 		'type'              => 'option',
@@ -28,6 +28,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['body_font_category'],
 		'sanitize_callback' => 'sanitize_text_field',
+		'type'              => 'option',
 	)
 );
 
@@ -37,12 +38,13 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['body_font_family_variants'],
 		'sanitize_callback' => 'woostify_sanitize_variants',
+		'type'              => 'option',
 	)
 );
 
 // body font weight.
 $wp_customize->add_setting(
-	'woostify_settings[body_font_weight]',
+	'woostify_setting[body_font_weight]',
 	array(
 		'default'           => $defaults['body_font_weight'],
 		'type'              => 'option',
@@ -53,7 +55,7 @@ $wp_customize->add_setting(
 
 // body text transform.
 $wp_customize->add_setting(
-	'woostify_settings[body_font_transform]',
+	'woostify_setting[body_font_transform]',
 	array(
 		'default'           => $defaults['body_font_transform'],
 		'type'              => 'option',
@@ -71,11 +73,11 @@ $wp_customize->add_control(
 			'section'  => 'body_font_section',
 			'label'    => __( 'Body Font', 'woostify' ),
 			'settings' => array(
-				'family'    => 'woostify_settings[body_font_family]',
+				'family'    => 'woostify_setting[body_font_family]',
 				'variant'   => 'body_font_family_variants',
 				'category'  => 'body_font_category',
-				'weight'    => 'woostify_settings[body_font_weight]',
-				'transform' => 'woostify_settings[body_font_transform]',
+				'weight'    => 'woostify_setting[body_font_weight]',
+				'transform' => 'woostify_setting[body_font_transform]',
 			),
 		)
 	)
@@ -83,7 +85,7 @@ $wp_customize->add_control(
 
 // body font size.
 $wp_customize->add_setting(
-	'woostify_settings[body_font_size]',
+	'woostify_setting[body_font_size]',
 	array(
 		'default'           => $defaults['body_font_size'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -95,13 +97,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[body_font_size]',
+		'woostify_setting[body_font_size]',
 		array(
 			'type'     => 'woostify-range-slider',
 			'label'    => __( 'Font size', 'woostify' ),
 			'section'  => 'body_font_section',
 			'settings' => array(
-				'desktop' => 'woostify_settings[body_font_size]',
+				'desktop' => 'woostify_setting[body_font_size]',
 			),
 			'choices' => array(
 				'desktop' => array(
@@ -118,7 +120,7 @@ $wp_customize->add_control(
 
 // body line height.
 $wp_customize->add_setting(
-	'woostify_settings[body_line_height]',
+	'woostify_setting[body_line_height]',
 	array(
 		'default'           => $defaults['body_line_height'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -130,13 +132,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[body_line_height]',
+		'woostify_setting[body_line_height]',
 		array(
 			'type'           => 'woostify-range-slider',
 			'description'    => __( 'Line height', 'woostify' ),
 			'section'        => 'body_font_section',
 			'settings'       => array(
-				'desktop' => 'woostify_settings[body_line_height]',
+				'desktop' => 'woostify_setting[body_line_height]',
 			),
 			'choices'        => array(
 				'desktop' => array(

@@ -152,7 +152,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 
 			// Grab our options.
 			$woostify_settings = wp_parse_args(
-				get_option( 'woostify_settings', array() ),
+				get_option( 'woostify_setting', array() ),
 				self::woostify_get_default_fonts()
 			);
 
@@ -260,7 +260,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				$fonts[ $id ] = $atts;
 			}
 
-			if ( 'all' !== $amount ) {
+			if ( 'all' != $amount ) {
 				$fonts = array_slice( $fonts, 0, $amount );
 			}
 
@@ -315,8 +315,8 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			}
 
 			// Return if we have our variants saved.
-			if ( '' !== $key && get_theme_mod( $key . '_category' ) ) {
-				return ', ' . get_theme_mod( $key . '_category' );
+			if ( '' !== $key && get_option( $key . '_category' ) ) {
+				return ', ' . get_option( $key . '_category' );
 			}
 
 			// Get our defaults.
@@ -360,8 +360,8 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			}
 
 			// Return if we have our variants saved.
-			if ( '' !== $key && get_theme_mod( $key . '_variants' ) ) {
-				return get_theme_mod( $key . '_variants' );
+			if ( '' !== $key && get_option( $key . '_variants' ) ) {
+				return get_option( $key . '_variants' );
 			}
 
 			// Get our defaults.

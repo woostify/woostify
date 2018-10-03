@@ -152,7 +152,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			}
 
 			// Single add to cart button.
-			if ( is_singular( 'product' ) && true == get_theme_mod( 'woostify_single_add_to_cart_ajax' ) ) {
+			if ( is_singular( 'product' ) && true == get_option( 'woostify_single_add_to_cart_ajax' ) ) {
 				wp_enqueue_script( 'woostify-single-add-to-cart-button' );
 				wp_localize_script(
 					'woostify-single-add-to-cart-button',
@@ -177,7 +177,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Product page.
 			if ( is_singular( 'product' ) ) {
 				// Ajax single add to cart.
-				if ( true == get_theme_mod( 'woostify_single_add_to_cart_ajax' ) ) {
+				if ( true == get_option( 'woostify_single_add_to_cart_ajax' ) ) {
 					$classes[] = 'ajax-single-add-to-cart';
 				}
 

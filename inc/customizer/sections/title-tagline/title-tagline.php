@@ -5,21 +5,25 @@
  * @package woostify
  */
 
+// Default values.
+$defaults = woostify_options();
+
 // Retina logo.
 $wp_customize->add_setting(
-	'woostify_retina_logo',
+	'woostify_setting[retina_logo]',
 	array(
-		'type' => 'option',
+		'type'    => 'option',
+		'default' => $defaults['retina_logo'],
 	)
 );
 $wp_customize->add_control(
 	new WP_Customize_Image_Control(
 		$wp_customize,
-		'woostify_retina_logo',
+		'woostify_setting[retina_logo]',
 		array(
 			'label'    => __( 'Retina logo', 'woostify' ),
 			'section'  => 'title_tagline',
-			'settings' => 'woostify_retina_logo',
+			'settings' => 'woostify_setting[retina_logo]',
 			'priority' => 8,
 		)
 	)
@@ -27,19 +31,20 @@ $wp_customize->add_control(
 
 // Logo mobile.
 $wp_customize->add_setting(
-	'woostify_logo_mobile',
+	'woostify_setting[logo_mobile]',
 	array(
-		'type' => 'option',
+		'type'    => 'option',
+		'default' => $defaults['logo_mobile'],
 	)
 );
 $wp_customize->add_control(
 	new WP_Customize_Image_Control(
 		$wp_customize,
-		'woostify_logo_mobile',
+		'woostify_setting[logo_mobile]',
 		array(
 			'label'    => __( 'Mobile logo (optional)', 'woostify' ),
 			'section'  => 'title_tagline',
-			'settings' => 'woostify_logo_mobile',
+			'settings' => 'woostify_setting[logo_mobile]',
 			'priority' => 8,
 		)
 	)
@@ -47,9 +52,9 @@ $wp_customize->add_control(
 
 // Logo width.
 $wp_customize->add_setting(
-	'woostify_logo_width',
+	'woostify_setting[logo_width]',
 	array(
-		'default'   => '',
+		'default'   => $defaults['logo_width'],
 		'type'      => 'option',
 		'transport' => 'postMessage',
 	)
@@ -58,15 +63,15 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_logo_width',
+		'woostify_setting[logo_width]',
 		array(
 			'type'     => 'woostify-range-slider',
 			'label'    => __( 'Logo width', 'woostify' ),
 			'section'  => 'title_tagline',
 			'settings' => array(
-				'desktop' => 'woostify_logo_width',
-				'tablet' => 'woostify_logo_width',
-				'mobile' => 'woostify_logo_width',
+				'desktop' => 'woostify_setting[logo_width]',
+				'tablet' => 'woostify_setting[logo_width]',
+				'mobile' => 'woostify_setting[logo_width]',
 			),
 			'choices' => array(
 				'desktop' => array(

@@ -24,27 +24,20 @@ class Woostify_Get_CSS {
 	 */
 	public function get_css() {
 
-		// Get all typography value.
-		$typo = wp_parse_args(
-			get_option( 'woostify_settings', array() ),
-			woostify_default_fonts()
-		);
-
-		// Get all theme mod.
-		$customizer = new Woostify_Customizer();
-		$theme_mods = $customizer->get_woostify_theme_mods();
+		// Get all theme option value.
+		$options = woostify_options( false );
 
 		// GENERATE CSS.
 		// Remove outline select on Firefox.
 		$styles = '
 			select:-moz-focusring{
-				text-shadow: 0 0 0 ' . $theme_mods['text_color'] . ';
+				text-shadow: 0 0 0 ' . esc_attr( $options['text_color'] ) . ';
 			}
 		';
 
 		// Logo width.
-		$logo_width = absint( get_option( 'woostify_logo_width' ) );
-		if ( '' != get_option( 'woostify_logo_width' ) && $logo_width > 0 ) {
+		$logo_width = $options['logo_width'];
+		if ( '' != $logo_width && absint( $logo_width ) > 0 ) {
 			$styles .= '
 				.site-branding img{
 					max-width: ' . esc_attr( $logo_width ) . 'px;
@@ -55,12 +48,12 @@ class Woostify_Get_CSS {
 		// Body css.
 		$styles .= '
 			body, select, button, input, textarea{
-				font-family: ' . $typo['body_font_family'] . ';
-				font-weight: ' . $typo['body_font_weight'] . ';
-				line-height: ' . $typo['body_line_height'] . 'px;
-				text-transform: ' . $typo['body_font_transform'] . ';
-				font-size: ' . $typo['body_font_size'] . 'px;
-				color: ' . $theme_mods['text_color'] . ';
+				font-family: ' . esc_attr( $options['body_font_family'] ) . ';
+				font-weight: ' . esc_attr( $options['body_font_weight'] ) . ';
+				line-height: ' . esc_attr( $options['body_line_height'] ) . 'px;
+				text-transform: ' . esc_attr( $options['body_font_transform'] ) . ';
+				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
+				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
 			.woocommerce-pagination a,
@@ -73,11 +66,11 @@ class Woostify_Get_CSS {
 			.comment-body .comment-meta .comment-date,
 			.woostify-breadcrumb a,
 			.breadcrumb-separator{
-				color: ' . $theme_mods['text_color'] . ';
+				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
 			.price_slider_wrapper .price_slider{
-				background-color: ' . $theme_mods['text_color'] . ';
+				background-color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 		';
 
@@ -85,21 +78,21 @@ class Woostify_Get_CSS {
 		$styles .= '
 			@media ( min-width: 991px ) {
 				.primary-navigation a{
-					font-family: ' . $typo['menu_font_family'] . ';
-					font-weight: ' . $typo['menu_font_weight'] . ';
-					text-transform: ' . $typo['menu_font_transform'] . ';
+					font-family: ' . esc_attr( $options['menu_font_family'] ) . ';
+					font-weight: ' . esc_attr( $options['menu_font_weight'] ) . ';
+					text-transform: ' . esc_attr( $options['menu_font_transform'] ) . ';
 				}
 				
 				.site-header .primary-navigation > li > a{
-					font-size: ' . $typo['parent_menu_font_size'] . 'px;
-					line-height: ' . $typo['parent_menu_line_height'] . 'px;
-					color: ' . $theme_mods['primary_menu_color'] . ';
+					font-size: ' . esc_attr( $options['parent_menu_font_size'] ) . 'px;
+					line-height: ' . esc_attr( $options['parent_menu_line_height'] ) . 'px;
+					color: ' . esc_attr( $options['primary_menu_color'] ) . ';
 				}
 
 				.site-header .primary-navigation .sub-menu a{
-					line-height: ' . $typo['sub_menu_line_height'] . 'px;
-					font-size: ' . $typo['sub_menu_font_size'] . 'px;
-					color: ' . $theme_mods['primary_sub_menu_color'] . ';
+					line-height: ' . esc_attr( $options['sub_menu_line_height'] ) . 'px;
+					font-size: ' . esc_attr( $options['sub_menu_font_size'] ) . 'px;
+					color: ' . esc_attr( $options['primary_sub_menu_color'] ) . ';
 				}
 			}
 		';
@@ -107,29 +100,29 @@ class Woostify_Get_CSS {
 		// Heading css.
 		$styles .= '
 			h1, h2, h3, h4, h5, h6{
-				font-family: ' . $typo['heading_font_family'] . ';
-				font-weight: ' . $typo['heading_font_weight'] . ';
-				text-transform: ' . $typo['heading_font_transform'] . ';
-				line-height: ' . $typo['heading_line_height'] . ';
-				color: ' . $theme_mods['heading_color'] . ';
+				font-family: ' . esc_attr( $options['heading_font_family'] ) . ';
+				font-weight: ' . esc_attr( $options['heading_font_weight'] ) . ';
+				text-transform: ' . esc_attr( $options['heading_font_transform'] ) . ';
+				line-height: ' . esc_attr( $options['heading_line_height'] ) . ';
+				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 			h1{
-				font-size: ' . $typo['heading_h1_font_size'] . 'px;
+				font-size: ' . esc_attr( $options['heading_h1_font_size'] ) . 'px;
 			}
 			h2{
-				font-size: ' . $typo['heading_h2_font_size'] . 'px;
+				font-size: ' . esc_attr( $options['heading_h2_font_size'] ) . 'px;
 			}
 			h3{
-				font-size: ' . $typo['heading_h3_font_size'] . 'px;
+				font-size: ' . esc_attr( $options['heading_h3_font_size'] ) . 'px;
 			}
 			h4{
-				font-size: ' . $typo['heading_h4_font_size'] . 'px;
+				font-size: ' . esc_attr( $options['heading_h4_font_size'] ) . 'px;
 			}
 			h5{
-				font-size: ' . $typo['heading_h5_font_size'] . 'px;
+				font-size: ' . esc_attr( $options['heading_h5_font_size'] ) . 'px;
 			}
 			h6{
-				font-size: ' . $typo['heading_h6_font_size'] . 'px;
+				font-size: ' . esc_attr( $options['heading_h6_font_size'] ) . 'px;
 			}
 
 			.product-loop-meta .price,
@@ -149,21 +142,21 @@ class Woostify_Get_CSS {
 			.woocommerce-table--order-details .amount,
 			.wc-breadcrumb .woostify-breadcrumb,
 			.sidebar-menu .primary-navigation .menu-item-has-children:after{
-				color: ' . $theme_mods['heading_color'] . ';
+				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 
 			.variations label{
-				font-weight: ' . $typo['heading_font_weight'] . ';
+				font-weight: ' . esc_attr( $options['heading_font_weight'] ) . ';
 			}
 		';
 
 		// Link color.
 		$styles .= '
 			a{
-				color: ' . $theme_mods['accent_color'] . ';
+				color: ' . esc_attr( $options['accent_color'] ) . ';
 			}
 			a:hover{
-				color: ' . $theme_mods['theme_color'] . ';
+				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 		';
 
@@ -175,8 +168,8 @@ class Woostify_Get_CSS {
 			.clear-cart-btn,
 			.form-submit .submit,
 			.checkout-button{
-				background-color: ' . $theme_mods['button_background_color'] . ';
-				color: ' . $theme_mods['button_text_color'] . ';
+				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
+				color: ' . esc_attr( $options['button_text_color'] ) . ';
 			}
 
 			.buttons .button:hover,
@@ -186,17 +179,17 @@ class Woostify_Get_CSS {
 			.clear-cart-btn:hover,
 			.form-submit .submit:hover,
 			.checkout-button:hover{
-				background-color: ' . $theme_mods['button_hover_background_color'] . ';
-				color: ' . $theme_mods['button_hover_text_color'] . ';
+				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
+				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
 			}
 
 			.select2-container--default .select2-results__option--highlighted[aria-selected],
 			.select2-container--default .select2-results__option--highlighted[data-selected]{
-				background-color: ' . $theme_mods['button_background_color'] . ' !important;
+				background-color: ' . esc_attr( $options['button_background_color'] ) . ' !important;
 			}
 
 			.clear-cart-btn{
-				line-height: ' . $typo['body_line_height'] . ';
+				line-height: ' . esc_attr( $options['body_line_height'] ) . ';
 			}
 		';
 
@@ -213,7 +206,7 @@ class Woostify_Get_CSS {
 			.woocommerce-table--order-details .product-name a,
 			.site-header .primary-navigation a:hover,
 			.site-header .primary-navigation .menu-item-has-children:hover > a{
-				color: ' . $theme_mods['theme_color'] . ';
+				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 			
 			.onsale,
@@ -224,35 +217,35 @@ class Woostify_Get_CSS {
 			.cart-sidebar-head .shop-cart-count,
 			.shop-cart-count,
 			.sidebar-menu .primary-navigation a:before{
-				background-color: ' . $theme_mods['theme_color'] . ';
+				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
 			.single_add_to_cart_button:not(.disabled),
 			.checkout-button{
-				box-shadow: 0px 10px 40px 0px ' . woostify_hex_to_rgba( $theme_mods['theme_color'], 0.3 ) . ';
+				box-shadow: 0px 10px 40px 0px ' . woostify_hex_to_rgba( esc_attr( $options['theme_color'] ), 0.3 ) . ';
 			}
 		';
 
 		// Header.
 		$styles .= '
 			.site-header{
-				background-color: ' . $theme_mods['header_background_color'] . ';
+				background-color: ' . esc_attr( $options['header_background_color'] ) . ';
 			}
 		';
 
 		// Footer.
 		$styles .= '
 			.site-footer{
-				background-color: ' . $theme_mods['footer_background_color'] . ';
-				color: ' . $theme_mods['footer_text_color'] . ';
+				background-color: ' . esc_attr( $options['footer_background_color'] ) . ';
+				color: ' . esc_attr( $options['footer_text_color'] ) . ';
 			}
 
 			.site-footer .widget-title{
-				color: ' . $theme_mods['footer_heading_color'] . ';
+				color: ' . esc_attr( $options['footer_heading_color'] ) . ';
 			}
 
 			.site-footer a{
-				color: ' . $theme_mods['footer_link_color'] . ';
+				color: ' . esc_attr( $options['footer_link_color'] ) . ';
 			}
 		';
 
@@ -265,7 +258,7 @@ class Woostify_Get_CSS {
 			.updating-cart #shop-cart-sidebar:before,
 			#product-images:not(.tns-slider) .image-item:first-of-type:before,
 			#product-thumbnail-images:not(.tns-slider) .thumbnail-item:first-of-type:before{
-				border-top-color: ' . $theme_mods['theme_color'] . ';
+				border-top-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 		';
 
@@ -275,7 +268,7 @@ class Woostify_Get_CSS {
 			.woostify-message,
 			.single-product .wc-breadcrumb,
 			.product-page-container{
-				background-color:  ' . $theme_mods['shop_single_content_background'] . ';
+				background-color:  ' . esc_attr( $options['single_content_background'] ) . ';
 			}
 		';
 

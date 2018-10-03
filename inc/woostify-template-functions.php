@@ -55,8 +55,6 @@ if ( ! function_exists( 'woostify_post_related' ) ) {
 if ( ! function_exists( 'woostify_display_comments' ) ) {
 	/**
 	 * Woostify display comments
-	 *
-	 * @since  1.0
 	 */
 	function woostify_display_comments() {
 		// If comments are open or we have at least one comment, load up the comment template.
@@ -160,7 +158,10 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 			return;
 		}
 
-		$footer_column = (int) get_theme_mod( 'woostify_footer_column', 4 );
+		// Default values.
+		$option        = woostify_options( false );
+		$footer_column = (int) $option['footer_column'];
+
 		if ( 0 == $footer_column ) {
 			return;
 		}
@@ -177,7 +178,6 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 	/**
 	 * Display the theme credit
 	 *
-	 * @since  1.0
 	 * @return void
 	 */
 	function woostify_credit() {
@@ -218,8 +218,6 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 if ( ! function_exists( 'woostify_header_widget_region' ) ) {
 	/**
 	 * Display header widget region
-	 *
-	 * @since  1.0
 	 */
 	function woostify_header_widget_region() {
 		if ( is_active_sidebar( 'header-1' ) ) {
@@ -238,15 +236,16 @@ if ( ! function_exists( 'woostify_site_branding' ) ) {
 	/**
 	 * Site branding wrapper and display
 	 *
-	 * @since  1.0
 	 * @return void
 	 */
 	function woostify_site_branding() {
+		// Default values.
 		$class           = '';
 		$mobile_logo_src = '';
+		$options         = woostify_options( false );
 
-		if ( '' != get_option( 'woostify_logo_mobile' ) ) {
-			$mobile_logo_src = get_option( 'woostify_logo_mobile' );
+		if ( '' != $options['logo_mobile'] ) {
+			$mobile_logo_src = $options['logo_mobile'];
 			$class           = 'has-custom-mobile-logo';
 		}
 
@@ -716,7 +715,6 @@ if ( ! function_exists( 'woostify_homepage_content' ) ) {
 	 * Display homepage content
 	 * Hooked into the `homepage` action in the homepage template
 	 *
-	 * @since  1.0
 	 * @return  void
 	 */
 	function woostify_homepage_content() {
@@ -796,7 +794,6 @@ if ( ! function_exists( 'woostify_search' ) ) {
 	/**
 	 * Display Product Search
 	 *
-	 * @since  1.0
 	 * @uses  woostify_is_woocommerce_activated() check if WooCommerce is activated
 	 * @return void
 	 */
@@ -878,11 +875,13 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 	 * @return string $sidebar Class name
 	 */
 	function woostify_sidebar_class() {
-		$sidebar_default     = get_theme_mod( 'woostify_default_sidebar', $layout = is_rtl() ? 'left' : 'right' );
-		$sidebar_blog        = get_theme_mod( 'woostify_blog_archive_sidebar', 'default' );
-		$sidebar_blog_single = get_theme_mod( 'woostify_blog_single_sidebar', 'default' );
-		$sidebar_shop        = get_theme_mod( 'woostify_shop_page_sidebar', 'default' );
-		$sidebar_shop_single = get_theme_mod( 'woostify_product_page_sidebar', 'full' );
+		$options = woostify_options( false );
+
+		$sidebar_default     = $options['sidebar_default'];
+		$sidebar_blog        = $options['sidebar_blog'];
+		$sidebar_blog_single = $options['sidebar_blog_single'];
+		$sidebar_shop        = $options['sidebar_shop'];
+		$sidebar_shop_single = $options['sidebar_shop_single'];
 		$sidebar             = '';
 
 		if ( ! is_active_sidebar( 'sidebar' ) && ! is_active_sidebar( 'sidebar-shop' ) ) {
@@ -1009,7 +1008,6 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 	/**
 	 * Display header action
 	 *
-	 * @since  1.0
 	 * @uses  woostify_is_woocommerce_activated() check if WooCommerce is activated
 	 * @return void
 	 */

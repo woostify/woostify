@@ -9,12 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-// Default value.
-$defaults = woostify_default_fonts();
+// Default values.
+$defaults = woostify_options();
 
-
+// Heading font family.
 $wp_customize->add_setting(
-	'woostify_settings[heading_font_family]',
+	'woostify_setting[heading_font_family]',
 	array(
 		'default'           => $defaults['heading_font_family'],
 		'type'              => 'option',
@@ -22,24 +22,29 @@ $wp_customize->add_setting(
 	)
 );
 
+// Heading font family.
 $wp_customize->add_setting(
 	'heading_font_category',
 	array(
 		'default'           => $defaults['heading_font_category'],
 		'sanitize_callback' => 'sanitize_text_field',
+		'type'              => 'option',
 	)
 );
 
+// Heading font variants.
 $wp_customize->add_setting(
 	'heading_font_family_variants',
 	array(
 		'default'           => $defaults['heading_font_family_variants'],
 		'sanitize_callback' => 'woostify_sanitize_variants',
+		'type'              => 'option',
 	)
 );
 
+// Heading font weight.
 $wp_customize->add_setting(
-	'woostify_settings[heading_font_weight]',
+	'woostify_setting[heading_font_weight]',
 	array(
 		'default'           => $defaults['heading_font_weight'],
 		'type'              => 'option',
@@ -48,8 +53,9 @@ $wp_customize->add_setting(
 	)
 );
 
+// Heading text transform.
 $wp_customize->add_setting(
-	'woostify_settings[heading_font_transform]',
+	'woostify_setting[heading_font_transform]',
 	array(
 		'default'           => $defaults['heading_font_transform'],
 		'type'              => 'option',
@@ -58,6 +64,7 @@ $wp_customize->add_setting(
 	)
 );
 
+// Generate options.
 $wp_customize->add_control(
 	new Woostify_Typography_Customize_Control(
 		$wp_customize,
@@ -66,11 +73,11 @@ $wp_customize->add_control(
 			'section'  => 'heading_font_section',
 			'label'    => __( 'Heading Font', 'woostify' ),
 			'settings' => array(
-				'family'    => 'woostify_settings[heading_font_family]',
+				'family'    => 'woostify_setting[heading_font_family]',
 				'variant'   => 'heading_font_family_variants',
 				'category'  => 'heading_font_category',
-				'weight'    => 'woostify_settings[heading_font_weight]',
-				'transform' => 'woostify_settings[heading_font_transform]',
+				'weight'    => 'woostify_setting[heading_font_weight]',
+				'transform' => 'woostify_setting[heading_font_transform]',
 			),
 		)
 	)
@@ -78,7 +85,7 @@ $wp_customize->add_control(
 
 // heading line height.
 $wp_customize->add_setting(
-	'woostify_settings[heading_line_height]',
+	'woostify_setting[heading_line_height]',
 	array(
 		'default'           => $defaults['heading_line_height'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -90,13 +97,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[heading_line_height]',
+		'woostify_setting[heading_line_height]',
 		array(
 			'type'        => 'woostify-range-slider',
 			'description' => __( 'Line height', 'woostify' ),
 			'section'     => 'heading_font_section',
 			'settings'    => array(
-				'desktop' => 'woostify_settings[heading_line_height]',
+				'desktop' => 'woostify_setting[heading_line_height]',
 			),
 			'choices'     => array(
 				'desktop' => array(
@@ -142,7 +149,7 @@ $wp_customize->add_control(
 
 // h1.
 $wp_customize->add_setting(
-	'woostify_settings[heading_h1_font_size]',
+	'woostify_setting[heading_h1_font_size]',
 	array(
 		'default'           => $defaults['heading_h1_font_size'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -154,13 +161,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[heading_h1_font_size]',
+		'woostify_setting[heading_h1_font_size]',
 		array(
 			'type'        => 'woostify-range-slider',
 			'description' => __( 'H1', 'woostify' ),
 			'section'     => 'heading_font_section',
 			'settings'    => array(
-				'desktop' => 'woostify_settings[heading_h1_font_size]',
+				'desktop' => 'woostify_setting[heading_h1_font_size]',
 			),
 			'choices'     => array(
 				'desktop' => array(
@@ -177,7 +184,7 @@ $wp_customize->add_control(
 
 // h2.
 $wp_customize->add_setting(
-	'woostify_settings[heading_h2_font_size]',
+	'woostify_setting[heading_h2_font_size]',
 	array(
 		'default'           => $defaults['heading_h2_font_size'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -189,13 +196,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[heading_h2_font_size]',
+		'woostify_setting[heading_h2_font_size]',
 		array(
 			'type'        => 'woostify-range-slider',
 			'description' => __( 'H2', 'woostify' ),
 			'section'     => 'heading_font_section',
 			'settings'    => array(
-				'desktop' => 'woostify_settings[heading_h2_font_size]',
+				'desktop' => 'woostify_setting[heading_h2_font_size]',
 			),
 			'choices'     => array(
 				'desktop' => array(
@@ -212,7 +219,7 @@ $wp_customize->add_control(
 
 // h3.
 $wp_customize->add_setting(
-	'woostify_settings[heading_h3_font_size]',
+	'woostify_setting[heading_h3_font_size]',
 	array(
 		'default'           => $defaults['heading_h3_font_size'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -224,13 +231,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[heading_h3_font_size]',
+		'woostify_setting[heading_h3_font_size]',
 		array(
 			'type'        => 'woostify-range-slider',
 			'description' => __( 'H3', 'woostify' ),
 			'section'     => 'heading_font_section',
 			'settings'    => array(
-				'desktop' => 'woostify_settings[heading_h3_font_size]',
+				'desktop' => 'woostify_setting[heading_h3_font_size]',
 			),
 			'choices'     => array(
 				'desktop' => array(
@@ -247,7 +254,7 @@ $wp_customize->add_control(
 
 // h4.
 $wp_customize->add_setting(
-	'woostify_settings[heading_h4_font_size]',
+	'woostify_setting[heading_h4_font_size]',
 	array(
 		'default'           => $defaults['heading_h4_font_size'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -259,13 +266,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[heading_h4_font_size]',
+		'woostify_setting[heading_h4_font_size]',
 		array(
 			'type'        => 'woostify-range-slider',
 			'description' => __( 'H4', 'woostify' ),
 			'section'     => 'heading_font_section',
 			'settings'    => array(
-				'desktop' => 'woostify_settings[heading_h4_font_size]',
+				'desktop' => 'woostify_setting[heading_h4_font_size]',
 			),
 			'choices'     => array(
 				'desktop' => array(
@@ -282,7 +289,7 @@ $wp_customize->add_control(
 
 // h5.
 $wp_customize->add_setting(
-	'woostify_settings[heading_h5_font_size]',
+	'woostify_setting[heading_h5_font_size]',
 	array(
 		'default'           => $defaults['heading_h5_font_size'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -294,13 +301,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[heading_h5_font_size]',
+		'woostify_setting[heading_h5_font_size]',
 		array(
 			'type'        => 'woostify-range-slider',
 			'description' => __( 'H5', 'woostify' ),
 			'section'     => 'heading_font_section',
 			'settings'    => array(
-				'desktop' => 'woostify_settings[heading_h5_font_size]',
+				'desktop' => 'woostify_setting[heading_h5_font_size]',
 			),
 			'choices'     => array(
 				'desktop' => array(
@@ -317,7 +324,7 @@ $wp_customize->add_control(
 
 // h6.
 $wp_customize->add_setting(
-	'woostify_settings[heading_h6_font_size]',
+	'woostify_setting[heading_h6_font_size]',
 	array(
 		'default'           => $defaults['heading_h6_font_size'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -329,13 +336,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[heading_h6_font_size]',
+		'woostify_setting[heading_h6_font_size]',
 		array(
 			'type'        => 'woostify-range-slider',
 			'description' => __( 'H6', 'woostify' ),
 			'section'     => 'heading_font_section',
 			'settings'    => array(
-				'desktop' => 'woostify_settings[heading_h6_font_size]',
+				'desktop' => 'woostify_setting[heading_h6_font_size]',
 			),
 			'choices'     => array(
 				'desktop' => array(

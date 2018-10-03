@@ -33,7 +33,6 @@ if ( ! class_exists( 'woostify' ) ) :
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
 			add_filter( 'wp_page_menu_args', array( $this, 'page_menu_args' ) );
 			add_filter( 'navigation_markup_template', array( $this, 'navigation_markup_template' ) );
-			add_action( 'enqueue_embed_scripts', array( $this, 'print_embed_styles' ) );
 			add_action( 'customize_preview_init', array( $this, 'customize_live_preview' ) );
 			add_filter( 'wp_tag_cloud', array( $this, 'remove_tag_inline_style' ) );
 			add_filter( 'excerpt_more', array( $this, 'modify_excerpt_more' ) );
@@ -150,21 +149,6 @@ if ( ! class_exists( 'woostify' ) ) :
 						'height'        => 500,
 						'flex-width'    => true,
 						'flex-height'   => true,
-					)
-				)
-			);
-
-			/**
-			 *  Add support for the Site Logo plugin and the site logo functionality in JetPack
-			 *  https://github.com/automattic/site-logo
-			 *  http://jetpack.me/
-			 */
-			add_theme_support(
-				'site-logo',
-				apply_filters(
-					'woostify_site_logo_args',
-					array(
-						'size' => 'full',
 					)
 				)
 			);
@@ -388,48 +372,6 @@ if ( ! class_exists( 'woostify' ) ) :
 			$template .= '</nav>';
 
 			return apply_filters( 'woostify_navigation_markup_template', $template );
-		}
-
-		/**
-		 * Add styles for embeds
-		 */
-		public function print_embed_styles() {
-			$accent_color     = get_theme_mod( 'woostify_accent_color' );
-			?>
-			<style type="text/css">
-				.wp-embed {
-					padding: 2.618em !important;
-					border: 0 !important;
-					border-radius: 3px !important;
-					background-color: #fff;
-				}
-
-				.wp-embed .wp-embed-featured-image {
-					margin-bottom: 2.618em;
-				}
-
-				.wp-embed .wp-embed-featured-image img,
-				.wp-embed .wp-embed-featured-image.square {
-					min-width: 100%;
-					margin-bottom: .618em;
-				}
-
-				a.wc-embed-button {
-					padding: .857em 1.387em !important;
-					font-weight: 600;
-					background-color: <?php echo esc_attr( $accent_color ); ?>;
-					color: #fff !important;
-					border: 0 !important;
-					line-height: 1;
-					border-radius: 0 !important;
-					box-shadow: inset 0 -1px 0 rgba(0,0,0,.3);
-				}
-
-				a.wc-embed-button + a.wc-embed-button {
-					background-color: #60646c;
-				}
-			</style>
-			<?php
 		}
 
 		/**

@@ -56,48 +56,16 @@ if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.3', '<' ) ) {
 	add_action( 'woocommerce_after_shop_loop', 'woostify_product_columns_wrapper_close', 40 );
 }
 
-/**
- * Products
- *
- * @see woostify_upsell_display()
- */
-remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
-add_action( 'woocommerce_after_single_product_summary', 'woostify_upsell_display', 15 );
-
-add_action( 'woocommerce_after_single_product_summary', 'woostify_single_product_pagination', 30 );
-
 // PRODUCT PAGE.
 // Remove default gallery.
 remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
+
 // Sale flash.
 remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 25 );
+
 // Swap position price and rating star.
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
-
-/**
- * Cart fragment
- *
- * @see woostify_cart_link_fragment()
- */
-if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '2.3', '>=' ) ) {
-	add_filter( 'woocommerce_add_to_cart_fragments', 'woostify_cart_link_fragment' );
-} else {
-	add_filter( 'add_to_cart_fragments', 'woostify_cart_link_fragment' );
-}
-
-/**
- * Integrations
- *
- * @see woostify_woocommerce_brands_archive()
- * @see woostify_woocommerce_brands_single()
- * @see woostify_woocommerce_brands_homepage_section()
- */
-if ( class_exists( 'WC_Brands' ) ) {
-	add_action( 'woocommerce_archive_description', 'woostify_woocommerce_brands_archive', 5 );
-	add_action( 'woocommerce_single_product_summary', 'woostify_woocommerce_brands_single', 4 );
-	add_action( 'homepage', 'woostify_woocommerce_brands_homepage_section', 80 );
-}

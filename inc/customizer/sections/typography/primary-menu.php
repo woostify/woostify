@@ -9,12 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-// Default value.
-$defaults = woostify_default_fonts();
+// Default values.
+$defaults = woostify_options();
 
 // menu font family.
 $wp_customize->add_setting(
-	'woostify_settings[menu_font_family]',
+	'woostify_setting[menu_font_family]',
 	array(
 		'default'           => $defaults['menu_font_family'],
 		'type'              => 'option',
@@ -42,7 +42,7 @@ $wp_customize->add_setting(
 
 // menu font weight.
 $wp_customize->add_setting(
-	'woostify_settings[menu_font_weight]',
+	'woostify_setting[menu_font_weight]',
 	array(
 		'default'           => $defaults['menu_font_weight'],
 		'type'              => 'option',
@@ -53,7 +53,7 @@ $wp_customize->add_setting(
 
 // menu text transform.
 $wp_customize->add_setting(
-	'woostify_settings[menu_font_transform]',
+	'woostify_setting[menu_font_transform]',
 	array(
 		'default'           => $defaults['menu_font_transform'],
 		'type'              => 'option',
@@ -71,11 +71,11 @@ $wp_customize->add_control(
 			'section'  => 'menu_font_section',
 			'label'    => __( 'Menu Font', 'woostify' ),
 			'settings' => array(
-				'family'    => 'woostify_settings[menu_font_family]',
+				'family'    => 'woostify_setting[menu_font_family]',
 				'variant'   => 'menu_font_family_variants',
 				'category'  => 'menu_font_category',
-				'weight'    => 'woostify_settings[menu_font_weight]',
-				'transform' => 'woostify_settings[menu_font_transform]',
+				'weight'    => 'woostify_setting[menu_font_weight]',
+				'transform' => 'woostify_setting[menu_font_transform]',
 			),
 		)
 	)
@@ -112,7 +112,7 @@ $wp_customize->add_control(
 
 // parent menu font size.
 $wp_customize->add_setting(
-	'woostify_settings[parent_menu_font_size]',
+	'woostify_setting[parent_menu_font_size]',
 	array(
 		'default'           => $defaults['parent_menu_font_size'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -124,13 +124,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[parent_menu_font_size]',
+		'woostify_setting[parent_menu_font_size]',
 		array(
 			'type'           => 'woostify-range-slider',
 			'description'    => __( 'Font size', 'woostify' ),
 			'section'        => 'menu_font_section',
 			'settings'       => array(
-				'desktop' => 'woostify_settings[parent_menu_font_size]',
+				'desktop' => 'woostify_setting[parent_menu_font_size]',
 			),
 			'choices'        => array(
 				'desktop' => array(
@@ -147,7 +147,7 @@ $wp_customize->add_control(
 
 // parent menu line height.
 $wp_customize->add_setting(
-	'woostify_settings[parent_menu_line_height]',
+	'woostify_setting[parent_menu_line_height]',
 	array(
 		'default'           => $defaults['parent_menu_line_height'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -159,13 +159,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[parent_menu_line_height]',
+		'woostify_setting[parent_menu_line_height]',
 		array(
 			'type'           => 'woostify-range-slider',
 			'description'    => __( 'Line height', 'woostify' ),
 			'section'        => 'menu_font_section',
 			'settings'       => array(
-				'desktop' => 'woostify_settings[parent_menu_line_height]',
+				'desktop' => 'woostify_setting[parent_menu_line_height]',
 			),
 			'choices'        => array(
 				'desktop' => array(
@@ -211,7 +211,7 @@ $wp_customize->add_control(
 
 // sub menu font size.
 $wp_customize->add_setting(
-	'woostify_settings[sub_menu_font_size]',
+	'woostify_setting[sub_menu_font_size]',
 	array(
 		'default'           => $defaults['sub_menu_font_size'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -223,13 +223,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[sub_menu_font_size]',
+		'woostify_setting[sub_menu_font_size]',
 		array(
 			'type'        => 'woostify-range-slider',
 			'description' => __( 'Font size', 'woostify' ),
 			'section'     => 'menu_font_section',
 			'settings'    => array(
-				'desktop' => 'woostify_settings[sub_menu_font_size]',
+				'desktop' => 'woostify_setting[sub_menu_font_size]',
 			),
 			'choices'     => array(
 				'desktop' => array(
@@ -246,7 +246,7 @@ $wp_customize->add_control(
 
 // sub menu line height.
 $wp_customize->add_setting(
-	'woostify_settings[sub_menu_line_height]',
+	'woostify_setting[sub_menu_line_height]',
 	array(
 		'default'           => $defaults['sub_menu_line_height'],
 		'sanitize_callback' => 'sanitize_text_field',
@@ -258,13 +258,13 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
-		'woostify_settings[sub_menu_line_height]',
+		'woostify_setting[sub_menu_line_height]',
 		array(
 			'type'        => 'woostify-range-slider',
 			'description' => __( 'Line height', 'woostify' ),
 			'section'     => 'menu_font_section',
 			'settings'    => array(
-				'desktop' => 'woostify_settings[sub_menu_line_height]',
+				'desktop' => 'woostify_setting[sub_menu_line_height]',
 			),
 			'choices'     => array(
 				'desktop' => array(

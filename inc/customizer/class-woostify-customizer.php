@@ -21,9 +21,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * Setup class.
 		 */
 		public function __construct() {
-			add_action( 'init', array( $this, 'default_theme_mod_values' ), 10 );
 			add_action( 'customize_register', array( $this, 'customize_register' ), 10 );
-			add_action( 'customize_register', array( $this, 'edit_default_customizer_settings' ), 99 );
 		}
 
 		/**
@@ -35,126 +33,67 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			return apply_filters(
 				'woostify_setting_default_values',
 				$args = array(
+					// Logo.
+					'retina_logo'                   => '',
+					'logo_mobile'                   => '',
+					'logo_width'                    => '',
+
 					// Color.
-					'woostify_theme_color'                   => '#1346af',
-					'woostify_primary_menu_color'            => '#2b2b2b',
-					'woostify_primary_sub_menu_color'        => '#2b2b2b',
-					'woostify_heading_color'                 => '#2b2b2b',
-					'woostify_text_color'                    => '#8f8f8f',
-					'woostify_accent_color'                  => '#2b2b2b',
+					'theme_color'                   => '#1346af',
+					'primary_menu_color'            => '#2b2b2b',
+					'primary_sub_menu_color'        => '#2b2b2b',
+					'heading_color'                 => '#2b2b2b',
+					'text_color'                    => '#8f8f8f',
+					'accent_color'                  => '#2b2b2b',
 
 					// Header.
-					'woostify_header_background_color'       => '#ffffff',
+					'header_background_color'       => '#ffffff',
 
 					// Footer.
-					'woostify_footer_background_color'       => '#eeeeec',
-					'woostify_footer_heading_color'          => '#2b2b2b',
-					'woostify_footer_link_color'             => '#8f8f8f',
-					'woostify_footer_text_color'             => '#8f8f8f',
+					'footer_column'                 => 0,
+					'footer_background_color'       => '#eeeeec',
+					'footer_heading_color'          => '#2b2b2b',
+					'footer_link_color'             => '#8f8f8f',
+					'footer_text_color'             => '#8f8f8f',
 
 					// Button.
-					'woostify_button_text_color'             => '#ffffff',
-					'woostify_button_background_color'       => '#1346af',
-					'woostify_button_hover_text_color'       => '#ffffff',
-					'woostify_button_hover_background_color' => '#3a3a3a',
+					'button_text_color'             => '#ffffff',
+					'button_background_color'       => '#1346af',
+					'button_hover_text_color'       => '#ffffff',
+					'button_hover_background_color' => '#3a3a3a',
 
 					// Shop single.
-					'woostify_single_add_to_cart_ajax'       => true,
-					'woostify_single_content_background'     => '#f3f3f3',
+					'single_add_to_cart_ajax'       => true,
+					'single_content_background'     => '#f3f3f3',
+
+					// Sidebar.
+					'sidebar_default'               => is_rtl() ? 'left' : 'right',
+					'sidebar_blog'                  => 'default',
+					'sidebar_blog_single'           => 'default',
+					'sidebar_shop'                  => 'default',
+					'sidebar_shop_single'           => 'full',
 				)
 			);
 		}
 
 		/**
-		 * Get all of the Woostify theme mods.
+		 * Get all of the Woostify theme option.
 		 *
-		 * @return array $woostify_theme_mods The Woostify Theme Mods.
+		 * @return array $woostify_options The Woostify Theme Options.
 		 */
-		public function get_woostify_theme_mods() {
-			$woostify_theme_mods = array(
-				// Color.
-				'theme_color'                    => get_theme_mod( 'woostify_theme_color' ),
-				'primary_menu_color'             => get_theme_mod( 'woostify_primary_menu_color' ),
-				'primary_sub_menu_color'         => get_theme_mod( 'woostify_primary_sub_menu_color' ),
-				'heading_color'                  => get_theme_mod( 'woostify_heading_color' ),
-				'text_color'                     => get_theme_mod( 'woostify_text_color' ),
-				'accent_color'                   => get_theme_mod( 'woostify_accent_color' ),
-
-				// Header color.
-				'header_background_color'        => get_theme_mod( 'woostify_header_background_color' ),
-
-				// Footer color.
-				'footer_background_color'        => get_theme_mod( 'woostify_footer_background_color' ),
-				'footer_heading_color'           => get_theme_mod( 'woostify_footer_heading_color' ),
-				'footer_link_color'              => get_theme_mod( 'woostify_footer_link_color' ),
-				'footer_text_color'              => get_theme_mod( 'woostify_footer_text_color' ),
-
-				// Button color.
-				'button_text_color'              => get_theme_mod( 'woostify_button_text_color' ),
-				'button_background_color'        => get_theme_mod( 'woostify_button_background_color' ),
-				'button_hover_text_color'        => get_theme_mod( 'woostify_button_hover_text_color' ),
-				'button_hover_background_color'  => get_theme_mod( 'woostify_button_hover_background_color' ),
-
-				// Shop single.
-				'shop_sinlge_add_to_cart_ajax'   => get_theme_mod( 'woostify_single_add_to_cart_ajax' ),
-				'shop_single_content_background' => get_theme_mod( 'woostify_single_content_background' ),
+		public function get_woostify_options() {
+			$woostify_options = wp_parse_args(
+				get_option( 'woostify_setting', array() ),
+				self::get_woostify_default_setting_values()
 			);
 
-			return apply_filters( 'woostify_theme_mods', $woostify_theme_mods );
-		}
-
-		/**
-		 * Adds a value to each Woostify setting if one isn't already present.
-		 *
-		 * @uses get_woostify_default_setting_values()
-		 */
-		public function default_theme_mod_values() {
-			foreach ( self::get_woostify_default_setting_values() as $mod => $val ) {
-				add_filter( 'theme_mod_' . $mod, array( $this, 'get_theme_mod_value' ), 10 );
-			}
-		}
-
-		/**
-		 * Get theme mod value.
-		 *
-		 * @param string $value Theme modification value.
-		 *
-		 * @return string
-		 */
-		public function get_theme_mod_value( $value ) {
-			$key = substr( current_filter(), 10 );
-
-			$set_theme_mods = get_theme_mods();
-
-			if ( isset( $set_theme_mods[ $key ] ) ) {
-				return $value;
-			}
-
-			$values = $this->get_woostify_default_setting_values();
-
-			return isset( $values[ $key ] ) ? $values[ $key ] : $value;
-		}
-
-		/**
-		 * Set Customizer setting defaults.
-		 * These defaults need to be applied separately as child themes can filter woostify_setting_default_values
-		 *
-		 * @param  array $wp_customize the Customizer object.
-		 *
-		 * @uses   get_woostify_default_setting_values()
-		 */
-		public function edit_default_customizer_settings( $wp_customize ) {
-			foreach ( self::get_woostify_default_setting_values() as $mod => $val ) {
-				$wp_customize->get_setting( $mod )->default = $val;
-			}
+			return apply_filters( 'woostify_options', $woostify_options );
 		}
 
 		/**
 		 * Add postMessage support for site title and description for the Theme Customizer along with several other settings.
 		 *
 		 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
-		 *
-		 * @since  1.0
 		 */
 		public function customize_register( $wp_customize ) {
 

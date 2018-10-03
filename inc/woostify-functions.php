@@ -145,27 +145,30 @@ if ( ! function_exists( 'woostify_is_blog' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_default_settings' ) ) {
+if ( ! function_exists( 'woostify_options' ) ) {
 	/**
-	 * Default setting values
+	 * Theme option
+	 * If ( $defaults = true ) return Default value
+	 * Else return option
 	 *
-	 * @return     array $default_setting Default setting value
+	 * @param      bool $defaults  Condition check output.
+	 * @return     array $options         All theme options
 	 */
-	function woostify_default_settings() {
-		$default_setting = Woostify_Customizer::get_woostify_default_setting_values();
-		return $default_setting;
-	}
-}
+	function woostify_options( $defaults = true ) {
+		$default_settings = Woostify_Customizer::get_woostify_default_setting_values();
+		$default_fonts    = Woostify_Fonts_Helpers::woostify_get_default_fonts();
+		$default_options  = array_merge( $default_settings, $default_fonts );
 
-if ( ! function_exists( 'woostify_default_fonts' ) ) {
-	/**
-	 * Default font values
-	 *
-	 * @return     array $default_fonts Default font value
-	 */
-	function woostify_default_fonts() {
-		$default_font = Woostify_Fonts_Helpers::woostify_get_default_fonts();
-		return $default_font;
+		if ( true == $default_options ) {
+			return $default_options;
+		}
+
+		$options = wp_parse_args(
+			get_option( 'woostify_setting', array() ),
+			$default_options
+		);
+
+		return $options;
 	}
 }
 
