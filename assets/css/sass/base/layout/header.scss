@@ -278,3 +278,21 @@
 		}
 	}
 }
+
+@media ( min-width: $screen-sm ) {
+	.has-custom-mobile-logo{
+		.custom-mobile-logo-url{
+			display: none;
+		}
+	}
+}
+
+@media ( max-width: $screen-sm - 1 ) {
+	.has-custom-mobile-logo{
+		a{
+			&:not(.custom-mobile-logo-url){
+				display: none;
+			}
+		}
+	}
+}

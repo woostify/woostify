@@ -9,17 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-/**
- * Get default value
- */
+// Default value.
 $defaults = woostify_default_fonts();
-
-/**
- * Register typography control
- */
-if ( method_exists( $wp_customize, 'register_control_type' ) ) {
-	$wp_customize->register_control_type( 'Woostify_Typography_Customize_Control' );
-}
 
 // menu font family.
 $wp_customize->add_setting(
@@ -124,18 +115,33 @@ $wp_customize->add_setting(
 	'woostify_settings[parent_menu_font_size]',
 	array(
 		'default'           => $defaults['parent_menu_font_size'],
-		'type'              => 'option',
 		'sanitize_callback' => 'sanitize_text_field',
+		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
 );
 
 $wp_customize->add_control(
-	'woostify_settings[parent_menu_font_size]',
-	array(
-		'type'        => 'number',
-		'description' => __( 'Font size (px)', 'woostify' ),
-		'section'     => 'menu_font_section',
+	new Woostify_Range_Customize_Control(
+		$wp_customize,
+		'woostify_settings[parent_menu_font_size]',
+		array(
+			'type'           => 'woostify-range-slider',
+			'description'    => __( 'Font size', 'woostify' ),
+			'section'        => 'menu_font_section',
+			'settings'       => array(
+				'desktop' => 'woostify_settings[parent_menu_font_size]',
+			),
+			'choices'        => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_parent_menu_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_parent_menu_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
 	)
 );
 
@@ -144,18 +150,33 @@ $wp_customize->add_setting(
 	'woostify_settings[parent_menu_line_height]',
 	array(
 		'default'           => $defaults['parent_menu_line_height'],
-		'type'              => 'option',
 		'sanitize_callback' => 'sanitize_text_field',
+		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
 );
 
 $wp_customize->add_control(
-	'woostify_settings[parent_menu_line_height]',
-	array(
-		'type'        => 'number',
-		'description' => __( 'Line height (px)', 'woostify' ),
-		'section'     => 'menu_font_section',
+	new Woostify_Range_Customize_Control(
+		$wp_customize,
+		'woostify_settings[parent_menu_line_height]',
+		array(
+			'type'           => 'woostify-range-slider',
+			'description'    => __( 'Line height', 'woostify' ),
+			'section'        => 'menu_font_section',
+			'settings'       => array(
+				'desktop' => 'woostify_settings[parent_menu_line_height]',
+			),
+			'choices'        => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_parent_menu_line_height_min_step', 20 ),
+					'max'  => apply_filters( 'woostify_parent_menu_line_height_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
 	)
 );
 
@@ -193,18 +214,33 @@ $wp_customize->add_setting(
 	'woostify_settings[sub_menu_font_size]',
 	array(
 		'default'           => $defaults['sub_menu_font_size'],
-		'type'              => 'option',
 		'sanitize_callback' => 'sanitize_text_field',
+		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
 );
 
 $wp_customize->add_control(
-	'woostify_settings[sub_menu_font_size]',
-	array(
-		'type'        => 'number',
-		'description' => __( 'Font size (px)', 'woostify' ),
-		'section'     => 'menu_font_section',
+	new Woostify_Range_Customize_Control(
+		$wp_customize,
+		'woostify_settings[sub_menu_font_size]',
+		array(
+			'type'        => 'woostify-range-slider',
+			'description' => __( 'Font size', 'woostify' ),
+			'section'     => 'menu_font_section',
+			'settings'    => array(
+				'desktop' => 'woostify_settings[sub_menu_font_size]',
+			),
+			'choices'     => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_sub_menu_font_size_min_step', 20 ),
+					'max'  => apply_filters( 'woostify_sub_menu_font_size_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
 	)
 );
 
@@ -213,17 +249,32 @@ $wp_customize->add_setting(
 	'woostify_settings[sub_menu_line_height]',
 	array(
 		'default'           => $defaults['sub_menu_line_height'],
-		'type'              => 'option',
 		'sanitize_callback' => 'sanitize_text_field',
+		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
 );
 
 $wp_customize->add_control(
-	'woostify_settings[sub_menu_line_height]',
-	array(
-		'type'        => 'number',
-		'description' => __( 'Line height (px)', 'woostify' ),
-		'section'     => 'menu_font_section',
+	new Woostify_Range_Customize_Control(
+		$wp_customize,
+		'woostify_settings[sub_menu_line_height]',
+		array(
+			'type'        => 'woostify-range-slider',
+			'description' => __( 'Line height', 'woostify' ),
+			'section'     => 'menu_font_section',
+			'settings'    => array(
+				'desktop' => 'woostify_settings[sub_menu_line_height]',
+			),
+			'choices'     => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_sub_menu_line_height_min_step', 20 ),
+					'max'  => apply_filters( 'woostify_sub_menu_line_height_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
 	)
 );

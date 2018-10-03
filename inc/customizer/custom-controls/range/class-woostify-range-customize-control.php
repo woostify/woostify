@@ -1,9 +1,9 @@
 <?php
-	/**
-	 * Range Slider for Customizer.
-	 *
-	 * @package woostify
-	 */
+/**
+ * Range Slider for Customizer.
+ *
+ * @package woostify
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -12,8 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Create a range slider control.
  * This control allows you to add responsive settings.
- *
- * @since 1.3.47
  */
 class Woostify_Range_Customize_Control extends WP_Customize_Control {
 	/**
@@ -24,7 +22,13 @@ class Woostify_Range_Customize_Control extends WP_Customize_Control {
 	 */
 	public $type = 'woostify-range-slider';
 
+	/**
+	 * Description
+	 *
+	 * @var string
+	 */
 	public $description = '';
+
 	/**
 	 * Refresh the parameters passed to the JavaScript via JSON.
 	 *
@@ -33,7 +37,7 @@ class Woostify_Range_Customize_Control extends WP_Customize_Control {
 	public function to_json() {
 		parent::to_json();
 
-		$devices = array( 'desktop','tablet','mobile' );
+		$devices = array( 'desktop', 'tablet', 'mobile' );
 		foreach ( $devices as $device ) {
 			$this->json['choices'][ $device ]['min']  = ( isset( $this->choices[ $device ]['min'] ) ) ? $this->choices[ $device ]['min'] : '0';
 			$this->json['choices'][ $device ]['max']  = ( isset( $this->choices[ $device ]['max'] ) ) ? $this->choices[ $device ]['max'] : '100';
@@ -44,18 +48,17 @@ class Woostify_Range_Customize_Control extends WP_Customize_Control {
 
 		foreach ( $this->settings as $setting_key => $setting_id ) {
 			$this->json[ $setting_key ] = array(
-				'link'  => $this->get_link( $setting_key ),
-				'value' => $this->value( $setting_key ),
+				'link'    => $this->get_link( $setting_key ),
+				'value'   => $this->value( $setting_key ),
 				'default' => isset( $setting_id->default ) ? $setting_id->default : '',
 			);
 		}
 
-		$this->json['desktop_label'] = __( 'Desktop','woostify' );
-		$this->json['tablet_label'] = __( 'Tablet','woostify' );
-		$this->json['mobile_label'] = __( 'Mobile','woostify' );
-		$this->json['reset_label'] = __( 'Reset','woostify' );
-
-		$this->json['description'] = $this->description;
+		$this->json['desktop_label'] = __( 'Desktop', 'woostify' );
+		$this->json['tablet_label']  = __( 'Tablet', 'woostify' );
+		$this->json['mobile_label']  = __( 'Mobile', 'woostify' );
+		$this->json['reset_label']   = __( 'Reset', 'woostify' );
+		$this->json['description']   = $this->description;
 	}
 
 	/**
@@ -64,8 +67,22 @@ class Woostify_Range_Customize_Control extends WP_Customize_Control {
 	 * @access public
 	 */
 	public function enqueue() {
-		wp_enqueue_script( 'woostify-range-slider', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/custom-controls/range/js/slider-control.js', array( 'jquery', 'customize-base', 'jquery-ui-slider' ), false, true );
-		wp_enqueue_style( 'woostify-range-slider-css', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/custom-controls/range/css/slider-customizer.css', null );
+		global $woostify_version;
+
+		wp_enqueue_script(
+			'woostify-range-slider',
+			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/range/js/slider-control.js',
+			array( 'jquery', 'customize-base', 'jquery-ui-slider' ),
+			$woostify_version,
+			true
+		);
+
+		wp_enqueue_style(
+			'woostify-range-slider',
+			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/range/css/slider-customizer.css',
+			array(),
+			$woostify_version
+		);
 	}
 
 	/**
@@ -95,19 +112,19 @@ class Woostify_Range_Customize_Control extends WP_Customize_Control {
 				<# } #>
 
 				<div class="woostify-range-slider-controls">
-				<span class="woostify-device-controls">
-					<# if ( 'undefined' !== typeof ( data.desktop ) ) { #>
-						<span class="woostify-device-desktop dashicons dashicons-desktop" data-option="desktop" title="{{ data.desktop_label }}"></span>
-					<# } #>
+					<span class="woostify-device-controls">
+						<# if ( 'undefined' !== typeof ( data.desktop ) ) { #>
+							<span class="woostify-device-desktop dashicons dashicons-desktop" data-option="desktop" title="{{ data.desktop_label }}"></span>
+						<# } #>
 
-					<# if ( 'undefined' !== typeof (data.tablet) ) { #>
-						<span class="woostify-device-tablet dashicons dashicons-tablet" data-option="tablet" title="{{ data.tablet_label }}"></span>
-					<# } #>
+						<# if ( 'undefined' !== typeof ( data.tablet ) ) { #>
+							<span class="woostify-device-tablet dashicons dashicons-tablet" data-option="tablet" title="{{ data.tablet_label }}"></span>
+						<# } #>
 
-					<# if ( 'undefined' !== typeof (data.mobile) ) { #>
-						<span class="woostify-device-mobile dashicons dashicons-smartphone" data-option="mobile" title="{{ data.mobile_label }}"></span>
-					<# } #>
-				</span>
+						<# if ( 'undefined' !== typeof ( data.mobile ) ) { #>
+							<span class="woostify-device-mobile dashicons dashicons-smartphone" data-option="mobile" title="{{ data.mobile_label }}"></span>
+						<# } #>
+					</span>
 
 					<span title="{{ data.reset_label }}" class="woostify-reset dashicons dashicons-image-rotate"></span>
 				</div>
@@ -119,12 +136,14 @@ class Woostify_Range_Customize_Control extends WP_Customize_Control {
 					<div class="wrapper <# if ( '' !== data.choices['desktop']['unit'] ) { #>has-unit<# } #>">
 						<div class="woostify_range_value <# if ( '' == data.choices['desktop']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
 							<input <# if ( data.choices['desktop']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['desktop']['step'] }}" class="desktop-range value" value="{{ data.desktop.value }}" min="{{ data.choices['desktop']['min'] }}" max="{{ data.choices['desktop']['max'] }}" {{{ data.desktop.link }}} data-reset_value="{{ data.desktop.default }}" />
+
 							<span <# if ( ! data.choices['desktop']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.desktop.value }}</span>
 
 							<# if ( data.choices['desktop']['unit'] ) { #>
-							<span class="unit">{{ data.choices['desktop']['unit'] }}</span>
+								<span class="unit">{{ data.choices['desktop']['unit'] }}</span>
 							<# } #>
 						</div>
+
 						<div class="woostify-slider" data-step="{{ data.choices['desktop']['step'] }}" data-min="{{ data.choices['desktop']['min'] }}" data-max="{{ data.choices['desktop']['max'] }}"></div>
 					</div>
 				</label>
@@ -141,6 +160,7 @@ class Woostify_Range_Customize_Control extends WP_Customize_Control {
 							<span class="unit">{{ data.choices['tablet']['unit'] }}</span>
 							<# } #>
 						</div>
+
 						<div class="woostify-slider" data-step="{{ data.choices['tablet']['step'] }}" data-min="{{ data.choices['tablet']['min'] }}" data-max="{{ data.choices['tablet']['max'] }}"></div>
 					</div>
 				</label>
@@ -157,6 +177,7 @@ class Woostify_Range_Customize_Control extends WP_Customize_Control {
 							<span class="unit">{{ data.choices['mobile']['unit'] }}</span>
 							<# } #>
 						</div>
+
 						<div class="woostify-slider" data-step="{{ data.choices['mobile']['step'] }}" data-min="{{ data.choices['mobile']['min'] }}" data-max="{{ data.choices['mobile']['max'] }}"></div>
 					</div>
 				</label>

@@ -154,19 +154,22 @@ if ( ! function_exists( 'woostify_comment' ) ) {
 if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 	/**
 	 * Display the footer widget regions.
-	 *
-	 * @since  1.0
-	 * @return void
 	 */
 	function woostify_footer_widgets() {
-		if ( is_active_sidebar( 'footer' ) ) :
-			$footer_column = (int) get_theme_mod( 'woostify_footer_column', 4 );
-			?>
-			<div class="footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
-				<?php dynamic_sidebar( 'footer' ); ?>
-			</div>
-			<?php
-		endif;
+		if ( ! is_active_sidebar( 'footer' ) ) {
+			return;
+		}
+
+		$footer_column = (int) get_theme_mod( 'woostify_footer_column', 4 );
+		if ( 0 == $footer_column ) {
+			return;
+		}
+		?>
+
+		<div class="footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
+			<?php dynamic_sidebar( 'footer' ); ?>
+		</div>
+		<?php
 	}
 }
 
@@ -239,12 +242,94 @@ if ( ! function_exists( 'woostify_site_branding' ) ) {
 	 * @return void
 	 */
 	function woostify_site_branding() {
+		$class           = '';
+		$mobile_logo_src = '';
+
+		if ( '' != get_option( 'woostify_logo_mobile' ) ) {
+			$mobile_logo_src = get_option( 'woostify_logo_mobile' );
+			$class           = 'has-custom-mobile-logo';
+		}
+
 		?>
-		<div class="site-branding">
-			<?php woostify_site_title_or_logo(); ?>
+		<div class="site-branding <?php echo esc_attr( $class ); ?>">
+			<?php
+			woostify_site_title_or_logo();
+
+			// Custom mobile logo.
+			if ( '' != $mobile_logo_src ) {
+				$mobile_logo_id  = attachment_url_to_postid( $mobile_logo_src );
+				$mobile_logo_alt = woostify_image_alt( $mobile_logo_id, __( 'Woostify mobile logo', 'woostify' ) );
+				?>
+					<a class="custom-mobile-logo-url" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" itemprop="url">
+						<img class="custom-mobile-logo" src="<?php echo esc_url( $mobile_logo_src ); ?>" alt="<?php echo esc_attr( $mobile_logo_alt ); ?>" itemprop="logo">
+					</a>
+				<?php
+			}
+			?>
 		</div>
 		<?php
 	}
+}
+
+if ( ! function_exists( 'woostify_replace_logo_attr' ) ) {
+	/**
+	 * Replace header logo.
+	 *
+	 * @param array  $attr Image.
+	 * @param object $attachment Image obj.
+	 * @param sting  $size Size name.
+	 *
+	 * @return array Image attr.
+	 */
+	function woostify_replace_logo_attr( $attr, $attachment, $size ) {
+
+		$custom_logo_id = get_theme_mod( 'custom_logo' );
+
+		if ( $custom_logo_id == $attachment->ID ) {
+
+			$attr['alt'] = woostify_image_alt( $custom_logo_id, __( 'Woostify logo', 'woostify' ) );
+
+			$attach_data = array();
+			if ( ! is_customize_preview() ) {
+				$attach_data = wp_get_attachment_image_src( $attachment->ID, 'full' );
+
+				if ( isset( $attach_data[0] ) ) {
+					$attr['src'] = $attach_data[0];
+				}
+			}
+
+			$file_type      = wp_check_filetype( $attr['src'] );
+			$file_extension = $file_type['ext'];
+
+			if ( 'svg' == $file_extension ) {
+				$attr['width']  = '100%';
+				$attr['height'] = '100%';
+				$attr['class']  = 'woostify-logo-svg';
+			}
+
+			// Retina logo.
+			$retina_logo = get_option( 'woostify_retina_logo' );
+
+			$attr['srcset'] = '';
+
+			if ( '' != $retina_logo ) {
+				$cutom_logo     = wp_get_attachment_image_src( $custom_logo_id, 'full' );
+				$cutom_logo_url = $cutom_logo[0];
+				$attr['alt']    = woostify_image_alt( $custom_logo_id, __( 'Woostify retina logo', 'woostify' ) );
+
+				// Replace logo src on IE.
+				if ( 'ie' == woostify_browser_detection() ) {
+					$attr['src'] = $retina_logo;
+				}
+
+				$attr['srcset'] = $cutom_logo_url . ' 1x, ' . $retina_logo . ' 2x';
+
+			}
+		}
+
+		return apply_filters( 'woostify_replace_logo_attr', $attr );
+	}
+	add_filter( 'wp_get_attachment_image_attributes', 'woostify_replace_logo_attr', 10, 3 );
 }
 
 if ( ! function_exists( 'woostify_site_title_or_logo' ) ) {
@@ -257,30 +342,9 @@ if ( ! function_exists( 'woostify_site_title_or_logo' ) ) {
 	 */
 	function woostify_site_title_or_logo( $echo = true ) {
 		if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+			// Image logo.
 			$logo = get_custom_logo();
 			$html = is_home() ? '<h1 class="logo">' . $logo . '</h1>' : $logo;
-		} elseif ( function_exists( 'jetpack_has_site_logo' ) && jetpack_has_site_logo() ) {
-			// Copied from jetpack_the_site_logo() function.
-			$logo    = site_logo()->logo;
-			$logo_id = get_theme_mod( 'custom_logo' ); // Check for WP 4.5 Site Logo.
-			$logo_id = $logo_id ? $logo_id : $logo['id']; // Use WP Core logo if present, otherwise use Jetpack's.
-			$size    = site_logo()->theme_size();
-			$html    = sprintf(
-				'<a href="%1$s" class="site-logo-link" rel="home" itemprop="url">%2$s</a>',
-				esc_url( home_url( '/' ) ),
-				wp_get_attachment_image(
-					$logo_id,
-					$size,
-					false,
-					array(
-						'class'     => 'site-logo attachment-' . $size,
-						'data-size' => $size,
-						'itemprop'  => 'logo',
-					)
-				)
-			);
-
-			$html = apply_filters( 'jetpack_the_site_logo', $html, $logo, $size );
 		} else {
 			$tag = is_home() ? 'h1' : 'div';
 

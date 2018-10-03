@@ -1,0 +1,14 @@
+.customize-control-radio-image input[type=radio] {
+	display: none;
+}
+.customize-control-radio-image label {
+	margin-right: 10px;
+	display: inline-block;
+}
+.customize-control-radio-image label.ui-state-active {
+	border: 1px solid #008ec2;
+	cursor: default;
+}
+.customize-control-radio-image img {
+	display: block;
+}

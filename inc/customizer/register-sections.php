@@ -8,9 +8,7 @@
  * @since       Astra 1.0.0
  */
 
-/**
- * Layout
- */
+// Layout.
 $wp_customize->add_panel(
 	'layout_section',
 	array(
@@ -20,9 +18,7 @@ $wp_customize->add_panel(
 	)
 );
 
-/**
- * Blog section
- */
+// Blog section.
 $wp_customize->add_section(
 	'woostify_blog',
 	array(
@@ -32,9 +28,7 @@ $wp_customize->add_section(
 	)
 );
 
-/**
- * Sidebar section
- */
+// Sidebar section.
 $wp_customize->add_section(
 	'woostify_sidebar',
 	array(
@@ -44,9 +38,7 @@ $wp_customize->add_section(
 );
 
 if ( class_exists( 'woocommerce' ) ) {
-	/**
-	 * Shop section
-	 */
+	// Shop section.
 	$wp_customize->add_section(
 		'woostify_shop',
 		array(
@@ -56,9 +48,7 @@ if ( class_exists( 'woocommerce' ) ) {
 		)
 	);
 
-	/**
-	 * Shop single section
-	 */
+	// Shop single section.
 	$wp_customize->add_section(
 		'woostify_shop_single',
 		array(
@@ -68,9 +58,7 @@ if ( class_exists( 'woocommerce' ) ) {
 	);
 }
 
-/**
- * Footer section
- */
+// Footer section.
 $wp_customize->add_section(
 	'woostify_footer',
 	array(
@@ -80,9 +68,7 @@ $wp_customize->add_section(
 	)
 );
 
-/**
- * Color section
- */
+// Color section.
 $wp_customize->add_section(
 	'woostify_color',
 	array(
@@ -91,9 +77,7 @@ $wp_customize->add_section(
 	)
 );
 
-/**
- * Buttons section
- */
+// Buttons section.
 $wp_customize->add_section(
 	'woostify_buttons',
 	array(
@@ -103,9 +87,7 @@ $wp_customize->add_section(
 	)
 );
 
-/**
- * Typography panel
- */
+// Typography panel.
 $wp_customize->add_panel(
 	'font_section',
 	array(
@@ -142,9 +124,7 @@ $wp_customize->add_section(
 	)
 );
 
-/**
- * Woocommerce shop single
- */
+// Woocommerce shop single.
 $wp_customize->add_section(
 	'wc_shop_single',
 	array(

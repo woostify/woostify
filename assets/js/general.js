@@ -28,12 +28,9 @@ function closeAll() {
 
 	// Use overlay.
 	var overlay = document.getElementById( 'woostify-overlay' );
-	console.log( 1 );
 
 	if ( overlay ) {
-		console.log( 2 );
 		overlay.addEventListener( 'click', function() {
-			console.log( 3 );
 			document.body.classList.remove( 'cart-sidebar-open', 'mobile-menu-open' );
 		} );
 	}

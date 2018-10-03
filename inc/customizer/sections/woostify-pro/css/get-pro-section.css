@@ -1,41 +1,23 @@
-.customize-control-addon:before {
-    content: "";
-    height: 1px;
-    width: 50px;
-    background: rgba(0,0,0,.10);
-    display: block;
-    margin-bottom: 10px;
-}
-
-.customize-control-addon {
-	margin-top: 10px;
-}
-
-li#accordion-section-generatepress_upsell_section {
-	border-top: 1px solid #D54E21;
-	border-bottom: 1px solid #D54E21;
+.woostify-get-pro-version-accordion-section{
+	border-bottom: 0;
 }
 .woostify-get-pro-version-accordion-section a {
 	background: #FFF;
 	display: block;
 	padding: 10px 10px 11px 14px;
 	line-height: 21px;
-	color: #D54E21;
 	text-decoration: none;
 }
-
 .woostify-get-pro-version-accordion-section a:hover {
-	background:#FAFAFA;
+	background: #FAFAFA;
 }
-
 .woostify-get-pro-version-accordion-section h3 {
 	margin: 0;
 	position: relative;
+	padding: 1px 0;
 }
-
 .woostify-get-pro-version-accordion-section h3 a:after {
 	content: "\f345";
-	color: #D54E21;
 	position: absolute;
 	top: 11px;
 	right: 10px;

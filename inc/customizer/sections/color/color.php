@@ -5,14 +5,10 @@
  * @package woostify
  */
 
-/**
- * Default value
- */
+// Default value.
 $default_color = woostify_default_settings();
 
-/**
- * Theme color
- */
+// Theme color.
 $wp_customize->add_setting(
 	'woostify_theme_color',
 	array(
@@ -33,9 +29,7 @@ $wp_customize->add_control(
 	)
 );
 
-/**
- * Primary menu color
- */
+// Primary parent menu color.
 $wp_customize->add_setting(
 	'woostify_primary_menu_color',
 	array(
@@ -49,16 +43,35 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_primary_menu_color',
 		array(
-			'label'    => __( 'Menu color', 'woostify' ),
+			'label'    => __( 'Parent menu color', 'woostify' ),
 			'section'  => 'woostify_color',
 			'settings' => 'woostify_primary_menu_color',
 		)
 	)
 );
 
-/**
- * Heading color
- */
+// Primary sub menu color.
+$wp_customize->add_setting(
+	'woostify_primary_sub_menu_color',
+	array(
+		'default'           => $default_color['woostify_primary_sub_menu_color'],
+		'sanitize_callback' => 'sanitize_hex_color',
+	)
+);
+
+$wp_customize->add_control(
+	new WP_Customize_Color_Control(
+		$wp_customize,
+		'woostify_primary_sub_menu_color',
+		array(
+			'label'    => __( 'Sub-menu color', 'woostify' ),
+			'section'  => 'woostify_color',
+			'settings' => 'woostify_primary_sub_menu_color',
+		)
+	)
+);
+
+// Heading color.
 $wp_customize->add_setting(
 	'woostify_heading_color',
 	array(
@@ -79,9 +92,7 @@ $wp_customize->add_control(
 	)
 );
 
-/**
- * Text Color
- */
+// Text Color.
 $wp_customize->add_setting(
 	'woostify_text_color',
 	array(
@@ -102,9 +113,7 @@ $wp_customize->add_control(
 	)
 );
 
-/**
- * Accent Color
- */
+// Accent Color.
 $wp_customize->add_setting(
 	'woostify_accent_color',
 	array(

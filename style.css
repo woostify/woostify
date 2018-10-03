@@ -3734,10 +3734,6 @@ dd {
   margin-top: 0;
 }
 
-.woostify-message {
-  background-color: #f3f3f3;
-}
-
 .single-product .woostify-message .woocommerce {
   padding-top: 30px;
 }
@@ -3752,7 +3748,6 @@ dd {
 
 .single-product .wc-breadcrumb {
   padding: 35px 0;
-  background-color: #f3f3f3;
 }
 
 .woostify-breadcrumb .item-bread:after {
@@ -4034,6 +4029,18 @@ dd {
   }
   .site-tools .shopping-bag-button {
     margin-left: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .has-custom-mobile-logo .custom-mobile-logo-url {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .has-custom-mobile-logo a:not(.custom-mobile-logo-url) {
+    display: none;
   }
 }
 
@@ -5092,7 +5099,6 @@ dd {
   font-weight: 600;
   border-radius: 50px;
   min-width: 130px;
-  color: #fff;
 }
 
 #respond .logged-in-as a:hover {
@@ -5550,7 +5556,6 @@ dd {
 
 .product-page-container {
   padding-bottom: 90px;
-  background-color: #f3f3f3;
 }
 
 /* ONSALE */

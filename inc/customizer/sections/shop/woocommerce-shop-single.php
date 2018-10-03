@@ -5,9 +5,7 @@
  * @package woostify
  */
 
-/**
- * Default value
- */
+// Default value.
 $default = woostify_default_settings();
 
 // Ajax single add to cart.

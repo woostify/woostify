@@ -26,7 +26,10 @@ if ( ! class_exists( 'woostify' ) ) :
 			add_action( 'after_setup_theme', array( $this, 'setup' ) );
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 10 );
-			add_action( 'wp_enqueue_scripts', array( $this, 'child_scripts' ), 30 ); // After WooCommerce.
+
+			// After WooCommerce.
+			add_action( 'wp_enqueue_scripts', array( $this, 'child_scripts' ), 30 );
+
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
 			add_filter( 'wp_page_menu_args', array( $this, 'page_menu_args' ) );
 			add_filter( 'navigation_markup_template', array( $this, 'navigation_markup_template' ) );
@@ -365,7 +368,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			$classes[] = 'woostify-' . $woostify_version;
 
 			// Broser detection.
-			if ( ! empty( woostify_browser_detection() ) ) {
+			if ( '' != woostify_browser_detection() ) {
 				$classes[] = woostify_browser_detection() . '-detected';
 			}
 

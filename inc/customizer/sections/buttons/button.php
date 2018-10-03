@@ -5,14 +5,10 @@
  * @package woostify
  */
 
-/**
- * Default value
- */
+// Default value.
 $default_color = woostify_default_settings();
 
-/**
- * Text color
- */
+// Text color.
 $wp_customize->add_setting(
 	'woostify_button_text_color',
 	array(
@@ -33,9 +29,7 @@ $wp_customize->add_control(
 	)
 );
 
-/**
- * Background color
- */
+// Background color.
 $wp_customize->add_setting(
 	'woostify_button_background_color',
 	array(
@@ -56,9 +50,7 @@ $wp_customize->add_control(
 	)
 );
 
-/**
- * Hover text color
- */
+// Hover text color.
 $wp_customize->add_setting(
 	'woostify_button_hover_text_color',
 	array(
@@ -79,9 +71,7 @@ $wp_customize->add_control(
 	)
 );
 
-/**
- * Hover background color
- */
+// Hover background color.
 $wp_customize->add_setting(
 	'woostify_button_hover_background_color',
 	array(

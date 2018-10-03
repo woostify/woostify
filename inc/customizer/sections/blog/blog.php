@@ -5,6 +5,7 @@
  * @package woostify
  */
 
+// Example.
 $wp_customize->add_setting(
 	'woostify_blog_layout',
 	array(

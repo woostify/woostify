@@ -38,7 +38,15 @@ class Woostify_Custom_Radio_Image_Control extends WP_Customize_Control {
 	 * at 'customize_controls_print_styles'.
 	 */
 	public function enqueue() {
+		global $woostify_version;
+
 		wp_enqueue_script( 'jquery-ui-button' );
+		wp_enqueue_style(
+			'woostify-radio-image-control',
+			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/radio-image/css/radio-image.css',
+			array(),
+			$woostify_version
+		);
 	}
 
 	/**
