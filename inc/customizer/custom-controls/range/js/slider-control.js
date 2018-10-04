@@ -39,9 +39,11 @@ wp.customize.controlConstructor['woostify-range-slider'] = wp.customize.Control.
 		// Update the range value based on the input value.
 		jQuery( controlClass + ' .woostify_range_value input[type=number]' ).on( 'input', function() {
 			value = jQuery( this ).attr( 'value' );
+
 			if ( '' == value ) {
 				value = -1;
 			}
+
 			jQuery( this ).closest( 'label' ).find( '.woostify-slider' ).slider( 'value', parseFloat( value ) ).change();
 		});
 
@@ -99,6 +101,7 @@ wp.customize.controlConstructor['woostify-range-slider'] = wp.customize.Control.
 		// Set the selected devices in our control when the Customizer devices are clicked.
 		footerActions.find( '.devices button' ).on( 'click', function() {
 			var device = jQuery( this ).data( 'device' );
+
 			jQuery( controlClass + ' .woostify-device-controls span' ).each( function() {
 				var _this = jQuery( this );
 				if ( device == _this.attr( 'data-option' ) ) {

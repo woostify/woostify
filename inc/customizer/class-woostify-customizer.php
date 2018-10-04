@@ -25,6 +25,21 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		}
 
 		/**
+		 * Add script for customize controls
+		 */
+		public function customize_controls_scripts() {
+			global $woostify_version;
+
+			wp_enqueue_script(
+				'woostify-conditio-control',
+				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/conditional/js/condition.js',
+				array( 'jquery' ),
+				$woostify_version,
+				true
+			);
+		}
+
+		/**
 		 * Returns an array of the desired default Woostify Options
 		 *
 		 * @return array
@@ -47,7 +62,12 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'accent_color'                  => '#2b2b2b',
 
 					// Header.
+					'header_layout'                 => 'layout-1',
 					'header_background_color'       => '#ffffff',
+					'header_search_form'            => true,
+					'header_search_only_product'    => false,
+					'header_account_icon'           => true,
+					'header_shop_cart_icon'         => true,
 
 					// Footer.
 					'footer_column'                 => 0,

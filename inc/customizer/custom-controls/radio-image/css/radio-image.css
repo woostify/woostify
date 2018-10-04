@@ -4,11 +4,17 @@
 .customize-control-radio-image label {
 	margin-right: 10px;
 	display: inline-block;
+	border: 3px solid #fcfcfc;
 }
 .customize-control-radio-image label.ui-state-active {
-	border: 1px solid #008ec2;
+	border-color: #5ea1ed;
 	cursor: default;
 }
 .customize-control-radio-image img {
 	display: block;
+}
+
+/* hide section intro at `layout/header` section */
+.customize-control-header .customizer-section-intro{
+	display: none;
 }

@@ -3777,6 +3777,7 @@ dd {
   justify-content: space-between;
   align-items: center;
   position: relative;
+  min-height: 70px;
 }
 
 .site-header .logo {
@@ -3789,9 +3790,16 @@ dd {
   font-size: 24px;
 }
 
+.site-header .site-navigation + .site-search {
+  margin-left: 10px;
+}
+
+.site-header .site-navigation + .site-tools {
+  margin-left: 10px;
+}
+
 @media (min-width: 992px) {
   .site-header .main-navigation {
-    flex-grow: 1;
     padding: 0 20px;
   }
   .site-header .main-navigation .primary-navigation {
@@ -3890,6 +3898,14 @@ dd {
   min-width: 270px;
 }
 
+.site-header .site-search + .site-tools {
+  margin-left: 10px;
+}
+
+.site-header .site-search + .site-tools .shopping-bag-button:first-child:last-child {
+  margin-left: 15px;
+}
+
 .site-header .site-search form {
   height: 40px;
 }
@@ -3917,7 +3933,6 @@ dd {
   justify-content: flex-end;
   -webkit-box-align: center;
   align-items: center;
-  flex-basis: 100px;
 }
 
 .site-tools .my-account {
@@ -3966,12 +3981,6 @@ dd {
   display: block;
 }
 
-@media (min-width: 992px) {
-  .site-tools .my-account + .shopping-bag-button {
-    margin-left: 25px;
-  }
-}
-
 .site-tools .tools-icon {
   font-size: 24px;
   display: flex;
@@ -4000,6 +4009,10 @@ dd {
   .menu-toggle-btn {
     display: none;
   }
+  .site-navigation {
+    flex-grow: 1;
+    text-align: right;
+  }
   .site-navigation .site-search,
   .site-navigation .mobile-my-account {
     display: none;
@@ -4008,7 +4021,6 @@ dd {
 
 @media (max-width: 991px) {
   .site-header .container, .site-header .single-product.left-sidebar .site-content, .single-product.left-sidebar .site-header .site-content, .site-header .single-product.right-sidebar .site-content, .single-product.right-sidebar .site-header .site-content {
-    min-height: 70px;
     padding: 15px;
     justify-content: center;
   }
@@ -4378,7 +4390,7 @@ dd {
 .site-info {
   clear: both;
   padding: 11px 0;
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
   display: -webkit-box;
   display: -webkit-flex;
@@ -4391,6 +4403,11 @@ dd {
 
 .site-info:not(:first-child) {
   border-top: 1px solid #e3e3e3;
+}
+
+.site-info .site-infor-col:first-child:last-child {
+  text-align: center;
+  width: 100%;
 }
 
 .site-info ul {
@@ -4780,8 +4797,12 @@ dd {
   display: inline-block;
 }
 
+.home.blog .site-main .post:first-child:last-child {
+  border-bottom: 0;
+}
+
 .alpha.entry-title {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: normal;
 }
 
@@ -4897,6 +4918,10 @@ dd {
 .single-post .site-main .post {
   border-bottom: 0;
   padding-bottom: 0;
+}
+
+.single-post .site-main .post .entry-title {
+  font-size: 30px;
 }
 
 .single-post .site-main .entry-footer {

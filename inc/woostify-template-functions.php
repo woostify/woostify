@@ -377,8 +377,10 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 							'container'      => '',
 						)
 					);
-				}
-				?>
+				} else {
+					?>
+					<a class="add-menu" href="<?php echo esc_url( get_admin_url() . 'nav-menus.php' ); ?>"><?php esc_html_e( 'Add Menu', 'woostify' ); ?></a>	
+				<?php } ?>
 			</nav>
 
 			<?php do_action( 'woostify_after_main_nav' ); ?>
@@ -798,10 +800,14 @@ if ( ! function_exists( 'woostify_search' ) ) {
 	 * @return void
 	 */
 	function woostify_search() {
+		$options = woostify_options( false );
+		if ( false == $options['header_search_form'] ) {
+			return;
+		}
 		?>
 		<div class="site-search">
 			<?php
-			if ( is_home() ) {
+			if ( false == $options['header_search_only_product'] ) {
 				get_search_form();
 			} else {
 				if ( woostify_is_woocommerce_activated() ) {
@@ -875,6 +881,7 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 	 * @return string $sidebar Class name
 	 */
 	function woostify_sidebar_class() {
+		// All theme options.
 		$options = woostify_options( false );
 
 		$sidebar_default     = $options['sidebar_default'];
@@ -1013,6 +1020,11 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 	 */
 	function woostify_header_action() {
 		if ( woostify_is_woocommerce_activated() ) {
+			$options = woostify_options( false );
+
+			if ( false == $options['header_shop_cart_icon'] && false == $options['header_account_icon'] ) {
+				return;
+			}
 
 			global $woocommerce;
 			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
@@ -1028,31 +1040,39 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-bag' );
 			?>
 			<div class="site-tools">
-				<?php do_action( 'woostify_site_tools_before_my_account' ); ?>
+				<?php // My account icon. ?>
+				<?php if ( true == $options['header_account_icon'] ) { ?>
+					<?php do_action( 'woostify_site_tools_before_my_account' ); ?>
 
-				<div class="my-account">
-					<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account <?php echo esc_attr( $my_account_icon ); ?>"></a>
+					<div class="my-account">
+						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account <?php echo esc_attr( $my_account_icon ); ?>"></a>
 
-					<ul>
-						<?php if ( ! is_user_logged_in() ) : ?>
-							<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
-						<?php else : ?>
-							<li>
-								<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-							</li>
-							<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
-							</li>
-						<?php endif; ?>
-					</ul>
-				</div>
+						<ul>
+							<?php if ( ! is_user_logged_in() ) : ?>
+								<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
+							<?php else : ?>
+								<li>
+									<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
+								</li>
+								<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
+								</li>
+							<?php endif; ?>
+						</ul>
+					</div>
 
-				<?php do_action( 'woostify_site_tools_after_my_account' ); ?>
+					<?php do_action( 'woostify_site_tools_after_my_account' ); ?>
+				<?php } ?>
+				
+				<?php // Shopping cart icon. ?>
+				<?php if ( true == $options['header_shop_cart_icon'] ) { ?>
+					<?php do_action( 'woostify_site_tools_before_shop_bag' ); ?>
 
-				<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
-					<span class="shop-cart-count"><?php echo esc_html( $count ); ?></span>
-				</a>
+					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
+						<span class="shop-cart-count"><?php echo esc_html( $count ); ?></span>
+					</a>
 
-				<?php do_action( 'woostify_site_tools_after_shop_bag' ); ?>
+					<?php do_action( 'woostify_site_tools_after_shop_bag' ); ?>
+				<?php } ?>
 			</div>
 			<?php
 		}

@@ -4,3 +4,6 @@
  *
  * @package woostify
  */
+
+// Default values.
+$defaults = woostify_options();

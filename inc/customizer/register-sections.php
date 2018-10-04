@@ -37,6 +37,7 @@ $wp_customize->add_section(
 	)
 );
 
+// Woocommerce.
 if ( class_exists( 'woocommerce' ) ) {
 	// Shop section.
 	$wp_customize->add_section(

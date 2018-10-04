@@ -76,11 +76,11 @@ if ( is_admin() ) {
  * https://core.trac.wordpress.org/ticket/39610?cversion=1&cnum_hist=2
  */
 if ( version_compare( get_bloginfo( 'version' ), '4.7.3', '>=' ) && ( is_admin() || is_customize_preview() ) ) {
-	require WOOSTIFY_THEME_DIR . 'inc/nux/class-storefront-nux-admin.php';
-	require WOOSTIFY_THEME_DIR . 'inc/nux/class-storefront-nux-guided-tour.php';
+	require WOOSTIFY_THEME_DIR . 'inc/nux/class-woostify-nux-admin.php';
+	require WOOSTIFY_THEME_DIR . 'inc/nux/class-woostify-nux-guided-tour.php';
 
 	if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.0.0', '>=' ) ) {
-		require WOOSTIFY_THEME_DIR . 'inc/nux/class-storefront-nux-starter-content.php';
+		require WOOSTIFY_THEME_DIR . 'inc/nux/class-woostify-nux-starter-content.php';
 	}
 }
 

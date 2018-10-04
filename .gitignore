@@ -10,7 +10,7 @@
 
 # Grunt
 /node_modules/
-/storefront/
+/woostify/
 npm-debug.log
 
 # Codekit

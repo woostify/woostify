@@ -159,7 +159,7 @@ if ( ! function_exists( 'woostify_options' ) ) {
 		$default_fonts    = Woostify_Fonts_Helpers::woostify_get_default_fonts();
 		$default_options  = array_merge( $default_settings, $default_fonts );
 
-		if ( true == $default_options ) {
+		if ( true == $defaults ) {
 			return $default_options;
 		}
 

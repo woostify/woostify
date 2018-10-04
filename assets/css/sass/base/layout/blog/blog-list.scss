@@ -1,8 +1,19 @@
-.alpha.entry-title{
-    font-size: 24px;
-    font-weight: normal;
+.home{
+	&.blog{
+		.site-main{
+			.post{
+				&:first-child:last-child{
+					border-bottom: 0;
+				}
+			}
+		}
+	}
 }
 
+.alpha.entry-title{
+    font-size: 30px;
+    font-weight: normal;
+}
 
 .site-main{
     .post{

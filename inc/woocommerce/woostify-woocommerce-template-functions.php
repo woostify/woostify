@@ -135,36 +135,6 @@ if ( ! function_exists( 'woostify_woocommerce_pagination' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_woocommerce_brands_single' ) ) {
-	/**
-	 * Output product brand image for use on single product pages
-	 * Requires WooCommerce Brands.
-	 *
-	 * @since  1.0
-	 * @link   https://woocommerce.com/products/brands/
-	 * @uses   woostify_do_shortcode()
-	 * @uses   wp_kses_post()
-	 * @return void
-	 */
-	function woostify_woocommerce_brands_single() {
-		$brand = woostify_do_shortcode(
-			'product_brand', array(
-				'class' => '',
-			)
-		);
-
-		if ( empty( $brand ) ) {
-			return;
-		}
-
-		?>
-		<div class="storefront-wc-brands-single-product">
-			<?php echo wp_kses_post( $brand ); ?>
-		</div>
-		<?php
-	}
-}
-
 if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 	/**
 	 * Cart sidebar

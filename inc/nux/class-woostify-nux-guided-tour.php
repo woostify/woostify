@@ -10,12 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Storefront_NUX_Guided_Tour' ) ) :
+if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 
 	/**
 	 * The Woostify NUX Guided Tour class
 	 */
-	class Storefront_NUX_Guided_Tour {
+	class Woostify_NUX_Guided_Tour {
 		/**
 		 * Setup class.
 		 *
@@ -168,4 +168,4 @@ if ( ! class_exists( 'Storefront_NUX_Guided_Tour' ) ) :
 
 endif;
 
-return new Storefront_NUX_Guided_Tour();
+return new Woostify_NUX_Guided_Tour();

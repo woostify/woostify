@@ -2,16 +2,23 @@
     #post-navigation{
         @extend .sr-only;
     }
+
     .site-main{
         .post{
             border-bottom: 0;
             padding-bottom: 0;
+
+            .entry-title{
+            	font-size: 30px;
+            }
         }
+
         .entry-footer{
             clear: both;
             margin-top: 30px;
         }
     }
+
     .entry-title{
     	font-weight: 300;
     }

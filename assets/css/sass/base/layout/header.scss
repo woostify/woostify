@@ -6,6 +6,7 @@
         justify-content: space-between;
         align-items: center;
         position: relative;
+        min-height: 70px;
     }
 
     /* logo */
@@ -21,9 +22,18 @@
     }
 
     /* menu */
+    .site-navigation{
+    	+.site-search{
+    		margin-left: 10px;
+    	}
+
+    	+.site-tools{
+    		margin-left: 10px;
+    	}
+    }
+
 	@media ( min-width: $screen-md ) {
 		.main-navigation{
-	        flex-grow: 1;
 	        padding: 0 20px;
 
 	        .primary-navigation{
@@ -132,6 +142,16 @@
     .site-search{
         min-width: 270px;
 
+        +.site-tools{
+        	margin-left: 10px;
+
+        	.shopping-bag-button{
+        		&:first-child:last-child{
+        			margin-left: 15px;
+        		}
+        	}
+        }
+
         form{
 	        height: 40px;
 
@@ -155,7 +175,6 @@
 /* site tools */
 .site-tools{
 	@include flex( flex, flex-end, center );
-	flex-basis: 100px;
 
 	.my-account{
 		position: relative;
@@ -199,12 +218,6 @@
 			padding: 10px 20px;
 			display: block;
 		}
-
-		@media ( min-width: $screen-md ) {
-			+.shopping-bag-button{
-				margin-left: 25px;
-			}
-		}
 	}
 
 	.tools-icon{
@@ -238,6 +251,9 @@
 	}
 
 	.site-navigation{
+		flex-grow: 1;
+		text-align: right;
+
 		.site-search,
 		.mobile-my-account{
 			display: none;
@@ -249,7 +265,6 @@
 	.site-header{
 
 	    .container{
-	    	min-height: 70px;
 	    	padding: 15px;
 	    	justify-content: center;
 	    }

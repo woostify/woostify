@@ -73,6 +73,21 @@ if ( ! class_exists( 'woostify' ) ) :
 			 */
 			add_theme_support( 'post-thumbnails' );
 
+			// Post formats.
+			add_theme_support(
+				'post-formats',
+				array(
+					'gallery',
+					'image',
+					'link',
+					'quote',
+					'video',
+					'audio',
+					'status',
+					'aside',
+				)
+			);
+
 			/**
 			 * Enable support for site logo.
 			 */

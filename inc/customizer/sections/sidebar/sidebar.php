@@ -27,10 +27,13 @@ $wp_customize->add_control(
 			'section'  => 'woostify_sidebar',
 			'settings' => 'woostify_setting[sidebar_default]',
 			'type'     => 'select',
-			'choices'  => array(
-				'full'  => __( 'No sidebar', 'woostify' ),
-				'left'  => __( 'Left sidebar', 'woostify' ),
-				'right' => __( 'Right sidebar', 'woostify' ),
+			'choices'  => apply_filters(
+				'woostify_setting_sidebar_default_choices',
+				array(
+					'full'  => __( 'No sidebar', 'woostify' ),
+					'left'  => __( 'Left sidebar', 'woostify' ),
+					'right' => __( 'Right sidebar', 'woostify' ),
+				)
 			),
 		)
 	)
@@ -69,11 +72,14 @@ $wp_customize->add_control(
 			'section'  => 'woostify_sidebar',
 			'settings' => 'woostify_setting[sidebar_blog]',
 			'type'     => 'select',
-			'choices'  => array(
-				'default' => __( 'Default', 'woostify' ),
-				'full'    => __( 'No sidebar', 'woostify' ),
-				'left'    => __( 'Left sidebar', 'woostify' ),
-				'right'   => __( 'Right sidebar', 'woostify' ),
+			'choices'  => apply_filters(
+				'woostify_setting_sidebar_blog_choices',
+				array(
+					'default' => __( 'Default', 'woostify' ),
+					'full'    => __( 'No sidebar', 'woostify' ),
+					'left'    => __( 'Left sidebar', 'woostify' ),
+					'right'   => __( 'Right sidebar', 'woostify' ),
+				)
 			),
 		)
 	)
@@ -98,11 +104,14 @@ $wp_customize->add_control(
 			'section'  => 'woostify_sidebar',
 			'settings' => 'woostify_setting[sidebar_blog_single]',
 			'type'     => 'select',
-			'choices'  => array(
-				'default' => __( 'Default', 'woostify' ),
-				'full'    => __( 'No sidebar', 'woostify' ),
-				'left'    => __( 'Left sidebar', 'woostify' ),
-				'right'   => __( 'Right sidebar', 'woostify' ),
+			'choices'  => apply_filters(
+				'woostify_setting_sidebar_blog_single_choices',
+				array(
+					'default' => __( 'Default', 'woostify' ),
+					'full'    => __( 'No sidebar', 'woostify' ),
+					'left'    => __( 'Left sidebar', 'woostify' ),
+					'right'   => __( 'Right sidebar', 'woostify' ),
+				)
 			),
 		)
 	)
@@ -142,11 +151,14 @@ if ( class_exists( 'woocommerce' ) ) {
 				'section'  => 'woostify_sidebar',
 				'settings' => 'woostify_setting[sidebar_shop]',
 				'type'     => 'select',
-				'choices'  => array(
-					'default' => __( 'Default', 'woostify' ),
-					'full'    => __( 'No sidebar', 'woostify' ),
-					'left'    => __( 'Left sidebar', 'woostify' ),
-					'right'   => __( 'Right sidebar', 'woostify' ),
+				'choices'  => apply_filters(
+					'woostify_setting_sidebar_shop_choices',
+					array(
+						'default' => __( 'Default', 'woostify' ),
+						'full'    => __( 'No sidebar', 'woostify' ),
+						'left'    => __( 'Left sidebar', 'woostify' ),
+						'right'   => __( 'Right sidebar', 'woostify' ),
+					)
 				),
 			)
 		)
@@ -171,11 +183,14 @@ if ( class_exists( 'woocommerce' ) ) {
 				'section'  => 'woostify_sidebar',
 				'settings' => 'woostify_setting[sidebar_shop_single]',
 				'type'     => 'select',
-				'choices'  => array(
-					'default' => __( 'Default', 'woostify' ),
-					'full'    => __( 'No sidebar', 'woostify' ),
-					'left'    => __( 'Left sidebar', 'woostify' ),
-					'right'   => __( 'Right sidebar', 'woostify' ),
+				'choices'  => apply_filters(
+					'woostify_setting_sidebar_shop_single_choices',
+					array(
+						'default' => __( 'Default', 'woostify' ),
+						'full'    => __( 'No sidebar', 'woostify' ),
+						'left'    => __( 'Left sidebar', 'woostify' ),
+						'right'   => __( 'Right sidebar', 'woostify' ),
+					)
 				),
 			)
 		)

@@ -10,12 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
+if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 
 	/**
 	 * The Woostify NUX Admin class
 	 */
-	class Storefront_NUX_Admin {
+	class Woostify_NUX_Admin {
 		/**
 		 * Setup class.
 		 *
@@ -66,7 +66,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 
 			wp_localize_script(
 				'woostify-admin-nux',
-				'storefrontNUX',
+				'woostifyNUX',
 				$woostify_nux
 			);
 		}
@@ -144,7 +144,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 							<?php endif; ?>
 						<?php endif; ?>
 
-						<input type="submit" name="storefront-guided-tour" class="sf-nux-button" value="<?php esc_attr_e( 'Let\'s go!', 'woostify' ); ?>">
+						<input type="submit" name="woostify-guided-tour" class="sf-nux-button" value="<?php esc_attr_e( 'Let\'s go!', 'woostify' ); ?>">
 					</form>
 				<?php endif; ?>
 				</div>
@@ -354,4 +354,4 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 
 endif;
 
-return new Storefront_NUX_Admin();
+return new Woostify_NUX_Admin();

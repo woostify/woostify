@@ -28,13 +28,16 @@ if ( is_active_sidebar( 'footer' ) ) {
 			'settings'    => 'woostify_setting[footer_column]',
 			'section'     => 'woostify_footer',
 			'type'        => 'select',
-			'choices'     => array(
-				0 => 0,
-				1 => 1,
-				2 => 2,
-				3 => 3,
-				4 => 4,
-				5 => 5,
+			'choices'     => apply_filters(
+				'woostify_setting_footer_column_choices',
+				array(
+					0 => 0,
+					1 => 1,
+					2 => 2,
+					3 => 3,
+					4 => 4,
+					5 => 5,
+				)
 			),
 		)
 	));

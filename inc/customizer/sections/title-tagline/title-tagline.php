@@ -70,8 +70,8 @@ $wp_customize->add_control(
 			'section'  => 'title_tagline',
 			'settings' => array(
 				'desktop' => 'woostify_setting[logo_width]',
-				'tablet' => 'woostify_setting[logo_width]',
-				'mobile' => 'woostify_setting[logo_width]',
+				'tablet'  => 'woostify_setting[logo_width]',
+				'mobile'  => 'woostify_setting[logo_width]',
 			),
 			'choices' => array(
 				'desktop' => array(

@@ -1,4 +1,4 @@
-/* global ajaxurl, storefrontNUX */
+/* global ajaxurl, woostifyNUX */
 ( function( wp, $ ) {
 	'use strict';
 
@@ -7,12 +7,12 @@
 	}
 
 	$( function() {
-		// Dismiss notice
+		// Dismiss notice.
 		$( document ).on( 'click', '.sf-notice-nux .notice-dismiss', function() {
 			$.ajax({
 				type:     'POST',
 				url:      ajaxurl,
-				data:     { nonce: storefrontNUX.nonce, action: 'woostify_dismiss_notice' },
+				data:     { nonce: woostifyNUX.nonce, action: 'woostify_dismiss_notice' },
 				dataType: 'json'
 			});
 		});

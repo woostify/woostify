@@ -17,6 +17,9 @@ $wp_customize->get_section( 'background_image' )->priority = 10;
 $wp_customize->get_section( 'header_image' )->title        = __( 'Header', 'woostify' );
 $wp_customize->get_section( 'header_image' )->panel        = 'layout_section';
 
+// Remove description on Site Icon.
+$wp_customize->get_control( 'site_icon' )->description     = '';
+
 // Selective refresh.
 if ( function_exists( 'add_partial' ) ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
