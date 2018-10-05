@@ -77,9 +77,9 @@ add_action( 'woostify_single_post', 'woostify_post_thumbnail', 25 );
 add_action( 'woostify_single_post', 'woostify_post_content', 30 );
 add_action( 'woostify_single_post', 'woostify_post_tags', 40 );
 
-add_action( 'woostify_single_post_bottom', 'woostify_post_nav', 10 );
-add_action( 'woostify_single_post_bottom', 'woostify_post_related', 15 );
-add_action( 'woostify_single_post_bottom', 'woostify_display_comments', 20 );
+add_action( 'woostify_single_post_after', 'woostify_post_nav', 10 );
+add_action( 'woostify_single_post_after', 'woostify_post_related', 15 );
+add_action( 'woostify_single_post_after', 'woostify_display_comments', 20 );
 
 /**
  * Pages

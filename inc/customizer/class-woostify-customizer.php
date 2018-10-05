@@ -82,6 +82,23 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'button_hover_text_color'       => '#ffffff',
 					'button_hover_background_color' => '#3a3a3a',
 
+					// Blog.
+					'blog_list_feature_image'       => true,
+					'blog_list_title'               => true,
+					'blog_list_publish_date'        => true,
+					'blog_list_author'              => true,
+					'blog_list_category'            => false,
+					'blog_list_comment'             => true,
+
+					// Blog single.
+					'blog_single_feature_image'     => true,
+					'blog_single_title'             => true,
+					'blog_single_publish_date'      => true,
+					'blog_single_author'            => true,
+					'blog_single_category'          => false,
+					'blog_single_comment'           => true,
+					'blog_single_related_post'      => true,
+
 					// Shop single.
 					'single_add_to_cart_ajax'       => true,
 					'single_content_background'     => '#f3f3f3',
@@ -190,6 +207,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/primary-menu.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/heading.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog-single.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop-single.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/woocommerce-shop-single.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/sidebar/sidebar.php';

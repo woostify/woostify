@@ -125,17 +125,6 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 						<?php endif; ?>
 
 						<?php if ( false === (bool) get_option( 'woostify_nux_fresh_site' ) ) : ?>
-							<label>
-								<input type="checkbox" name="homepage" checked>
-								<?php
-								if ( 'page' === get_option( 'show_on_front' ) ) {
-									esc_attr_e( 'Apply the Woostify homepage template', 'woostify' );
-								} else {
-									esc_attr_e( 'Create a homepage using Woostify\'s homepage template', 'woostify' );
-								}
-								?>
-							</label>
-
 							<?php if ( true === $this->_is_woocommerce_empty() ) : ?>
 							<label>
 								<input type="checkbox" name="products" checked>

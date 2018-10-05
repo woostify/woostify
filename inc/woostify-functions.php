@@ -136,12 +136,16 @@ if ( ! function_exists( 'woostify_is_blog' ) ) {
 	/**
 	 * Woostify detect blog page
 	 *
-	 * @return boolean
+	 * @return boolean $is_blog
 	 */
 	function woostify_is_blog() {
 		global $post;
+
 		$post_type = get_post_type( $post );
-		return ( 'post' == $post_type && ( is_archive() || is_author() || is_category() || is_home() || is_single() || is_tag() ) ) ? true : false;
+
+		$is_blog = ( 'post' == $post_type && ( is_archive() || is_author() || is_category() || is_home() || is_single() || is_tag() ) ) ? true : false;
+
+		return apply_filters( 'woostify_is_blog', $is_blog );
 	}
 }
 

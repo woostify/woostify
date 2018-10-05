@@ -3761,7 +3761,7 @@ dd {
 }
 
 .page-header .entry-title {
-  font-size: 1.7em;
+  font-size: 2em;
   font-weight: normal;
 }
 
@@ -4802,7 +4802,7 @@ dd {
 }
 
 .alpha.entry-title {
-  font-size: 30px;
+  font-size: 24px;
   font-weight: normal;
 }
 
@@ -4824,20 +4824,26 @@ dd {
   object-fit: cover;
 }
 
-.post .entry-meta .vcard.author {
-  margin: 0 7px;
+.post .entry-meta .post-meta-item {
+  margin: 0 5px;
 }
 
-.post .entry-meta .vcard.author:before {
+.post .entry-meta .post-meta-item:before {
   content: '•';
   margin-right: 7px;
   font-size: 8px;
 }
 
-.post .entry-meta .comments-link:before {
-  content: '•';
-  margin-right: 7px;
-  font-size: 8px;
+.post .entry-meta .post-meta-item:first-child {
+  margin-left: 0;
+}
+
+.post .entry-meta .post-meta-item:first-child:before {
+  content: none;
+}
+
+.post .entry-meta .post-meta-item:last-child {
+  margin-right: 0;
 }
 
 .post .alpha.entry-title {
@@ -4921,7 +4927,7 @@ dd {
 }
 
 .single-post .site-main .post .entry-title {
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .single-post .site-main .entry-footer {

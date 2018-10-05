@@ -6,23 +6,6 @@
  */
 
 /**
- * Homepage
- *
- * @see  woostify_product_categories()
- * @see  woostify_recent_products()
- * @see  woostify_featured_products()
- * @see  woostify_popular_products()
- * @see  woostify_on_sale_products()
- * @see  woostify_best_selling_products()
- */
-add_action( 'homepage', 'woostify_product_categories', 20 );
-add_action( 'homepage', 'woostify_recent_products', 30 );
-add_action( 'homepage', 'woostify_featured_products', 40 );
-add_action( 'homepage', 'woostify_popular_products', 50 );
-add_action( 'homepage', 'woostify_on_sale_products', 60 );
-add_action( 'homepage', 'woostify_best_selling_products', 70 );
-
-/**
  * Layout
  *
  * @see  woostify_before_content()
