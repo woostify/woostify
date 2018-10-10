@@ -1,16 +1,43 @@
+/* Full width template */
 .page-template-template-fullwidth{
-	.container{
+	.woostify-container{
 		width: auto;
 		@extend .container-fluid;
 	}
 }
 
+/* Site container */
+.site-boxed-container{
+	#page{
+		overflow: hidden;
+	}
+
+	#view{
+		margin: 50px;
+	}
+}
+
+
+.site-normal-container,
+.site-boxed-container {
+	.woostify-container{
+		@extend .container;
+	}
+}
+
+.woostify-container{
+	@extend .clearfix;
+}
+
 #view{
-	@include duration( 0.3s );
+	@include transition( all 0.3s );
+	background-color: #fff;
 }
 
 .site-content{
 	margin-top: 3.5em;
+	@extend .clearfix;
+
 	.single-product &{
 		margin-top: 0;
 	}

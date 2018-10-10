@@ -67,34 +67,6 @@ if ( ! function_exists( 'woostify_do_shortcode' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_header_styles' ) ) {
-	/**
-	 * Apply inline style to the Woostify header.
-	 *
-	 * @uses  get_header_image()
-	 */
-	function woostify_header_styles() {
-		$is_header_image = get_header_image();
-		$header_bg_image = '';
-
-		if ( $is_header_image ) {
-			$header_bg_image = 'url(' . esc_url( $is_header_image ) . ')';
-		}
-
-		$styles = array();
-
-		if ( '' !== $header_bg_image ) {
-			$styles['background-image'] = $header_bg_image;
-		}
-
-		$styles = apply_filters( 'woostify_header_styles', $styles );
-
-		foreach ( $styles as $style => $value ) {
-			echo esc_attr( $style . ': ' . $value . '; ' );
-		}
-	}
-}
-
 if ( ! function_exists( 'woostify_sanitize_choices' ) ) {
 	/**
 	 * Sanitizes choices (selects / radios)
@@ -247,4 +219,3 @@ if ( ! function_exists( 'woostify_browser_detection' ) ) {
 		return $class;
 	}
 }
-

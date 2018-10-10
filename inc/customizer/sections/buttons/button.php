@@ -23,7 +23,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[button_text_color]',
 		array(
-			'label'                 => __( 'Text color', 'woostify' ),
+			'label'                 => __( 'Text Color', 'woostify' ),
 			'section'               => 'woostify_buttons',
 			'settings'              => 'woostify_setting[button_text_color]',
 		)
@@ -45,7 +45,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[button_background_color]',
 		array(
-			'label'                 => __( 'Background color', 'woostify' ),
+			'label'                 => __( 'Background Color', 'woostify' ),
 			'section'               => 'woostify_buttons',
 			'settings'              => 'woostify_setting[button_background_color]',
 		)
@@ -67,7 +67,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[button_hover_text_color]',
 		array(
-			'label'                 => __( 'Hover text color', 'woostify' ),
+			'label'                 => __( 'Hover Text Color', 'woostify' ),
 			'section'               => 'woostify_buttons',
 			'settings'              => 'woostify_setting[button_hover_text_color]',
 		)
@@ -89,7 +89,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[button_hover_background_color]',
 		array(
-			'label'                 => __( 'Hover background color', 'woostify' ),
+			'label'                 => __( 'Hover Background Color', 'woostify' ),
 			'section'               => 'woostify_buttons',
 			'settings'              => 'woostify_setting[button_hover_background_color]',
 		)

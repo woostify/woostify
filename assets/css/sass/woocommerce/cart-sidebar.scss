@@ -80,7 +80,7 @@
     visibility: hidden;
     pointer-events: none;
     @include translatex( 100% );
-    @include transition(all 0.3s);
+    @include transition( all 0.3s );
 
     .logged-in.admin-bar & {
         top: 46px;

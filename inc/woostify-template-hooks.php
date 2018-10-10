@@ -34,11 +34,11 @@ add_action( 'woostify_after_view', 'woostify_overlay', 30 );
  */
 add_action( 'woostify_header', 'woostify_header_container', 0 );
 add_action( 'woostify_header', 'woostify_skip_links', 5 );
-add_action( 'woostify_header', 'woostify_site_branding', 20 );
+add_action( 'woostify_header', 'woostify_site_branding', 10 );
+add_action( 'woostify_header', 'woostify_mobile_menu_toggle_btn', 20 );
 add_action( 'woostify_header', 'woostify_primary_navigation', 30 );
 add_action( 'woostify_header', 'woostify_search', 40 );
 add_action( 'woostify_header', 'woostify_header_action', 50 );
-add_action( 'woostify_header', 'woostify_mobile_menu_toggle_btn', 60 );
 add_action( 'woostify_header', 'woostify_header_container_close', 200 );
 
 /**

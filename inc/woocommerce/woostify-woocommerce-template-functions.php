@@ -79,7 +79,8 @@ if ( ! function_exists( 'woostify_loop_columns' ) ) {
 	 * @since  1.0
 	 */
 	function woostify_loop_columns() {
-		$columns = 3; // 3 products per row
+		$options = woostify_options( false );
+		$columns = $options['shop_columns'];
 
 		if ( function_exists( 'wc_get_default_products_per_row' ) ) {
 			$columns = wc_get_default_products_per_row();

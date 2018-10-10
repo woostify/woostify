@@ -42,3 +42,15 @@
 		font-weight: normal;
 	}
 }
+
+.site-main{
+	.page-header{
+		margin-bottom: 50px;
+		background-color: #eeeeec;
+		padding: 30px;
+
+		.entry-title{
+			margin: 0;
+		}
+	}
+}

@@ -14,6 +14,7 @@
 
         @media ( min-width: $screen-md ) {
             width: calc( ( 100% - 90px ) / 4 );
+            
             &.last {
                 margin-right: 0;
             }

@@ -8,17 +8,17 @@
 // Default values.
 $defaults = woostify_options();
 
-// Blog list meta title.
-$wp_customize->add_setting( 'blog_list_post_meta_title' );
+// Blog list structure title.
+$wp_customize->add_setting( 'blog_list_structure_title' );
 $wp_customize->add_control(
 	new Arbitrary_Woostify_Control(
 		$wp_customize,
-		'blog_list_post_meta_title',
+		'blog_list_structure_title',
 		array(
 			'section'  => 'woostify_blog',
-			'settings' => 'blog_list_post_meta_title',
+			'settings' => 'blog_list_structure_title',
 			'type'     => 'heading',
-			'label'    => __( 'Blog list structure', 'woostify' ),
+			'label'    => __( 'Blog List Structure', 'woostify' ),
 		)
 	)
 );
@@ -37,7 +37,7 @@ $wp_customize->add_control(
 		'woostify_setting[blog_list_feature_image]',
 		array(
 			'type'     => 'checkbox',
-			'label'    => __( 'Featured image', 'woostify' ),
+			'label'    => __( 'Featured Image', 'woostify' ),
 			'section'  => 'woostify_blog',
 			'settings' => 'woostify_setting[blog_list_feature_image]',
 		)
@@ -58,9 +58,24 @@ $wp_customize->add_control(
 		'woostify_setting[blog_list_title]',
 		array(
 			'type'     => 'checkbox',
-			'label'    => __( 'Post title', 'woostify' ),
+			'label'    => __( 'Post Title', 'woostify' ),
 			'section'  => 'woostify_blog',
 			'settings' => 'woostify_setting[blog_list_title]',
+		)
+	)
+);
+
+// Blog list meta title.
+$wp_customize->add_setting( 'blog_list_post_meta_title' );
+$wp_customize->add_control(
+	new Arbitrary_Woostify_Control(
+		$wp_customize,
+		'blog_list_post_meta_title',
+		array(
+			'section'  => 'woostify_blog',
+			'settings' => 'blog_list_post_meta_title',
+			'type'     => 'heading',
+			'label'    => __( 'Blog Post Meta', 'woostify' ),
 		)
 	)
 );
@@ -79,7 +94,7 @@ $wp_customize->add_control(
 		'woostify_setting[blog_list_publish_date]',
 		array(
 			'type'     => 'checkbox',
-			'label'    => __( 'Publish date', 'woostify' ),
+			'label'    => __( 'Publish Date', 'woostify' ),
 			'section'  => 'woostify_blog',
 			'settings' => 'woostify_setting[blog_list_publish_date]',
 		)

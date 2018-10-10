@@ -1,7 +1,7 @@
 .site-header{
 	border-bottom: 1px solid #eaeaea;
 
-    .container{
+    .woostify-container{
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -23,6 +23,14 @@
 
     /* menu */
     .site-navigation{
+    	&:last-child{
+    		@media ( min-width: $screen-md ) {
+    			.main-navigation{
+    				padding-right: 0;
+    			}
+    		}
+    	}
+
     	+.site-search{
     		margin-left: 10px;
     	}
@@ -264,7 +272,7 @@
 @media ( max-width: $screen-md - 1 ) {
 	.site-header{
 
-	    .container{
+	    .woostify-container{
 	    	padding: 15px;
 	    	justify-content: center;
 	    }

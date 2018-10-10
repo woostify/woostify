@@ -1,3 +1,14 @@
+.products{
+	.product{
+		.product-loop-image-wrapper{
+			+.woocommerce-loop-product__category,
+			+.woocommerce-loop-product__title{
+				margin-top: 26px;
+			}
+		}
+	}
+}
+
 .product-loop-image-wrapper{
 	position: relative;
 
@@ -75,24 +86,30 @@
 	.products{
 		.product{
 			&:hover{
-				.animated-meta{
-					@include translatey( -32px );
+				.product-loop-meta{
+					&:not(.no-transform) {
+						.animated-meta{
+							@include translatey( -32px );
+						}
+					}
 				}
 			}
 		}
 	}
 
-	.animated-meta{
-		@include transition( all .2s ease-in-out );
-
-		&:focus-within{
-			@include translatey( -32px );
-		}
-	}
-
 	.product-loop-meta{
-		height: 30px;
-		line-height: 30px;
-		overflow: hidden;
+		&:not(.no-transform) {
+			height: 30px;
+			line-height: 30px;
+			overflow: hidden;
+
+			.animated-meta{
+				@include transition( all .2s ease-in-out );
+
+				&:focus-within{
+					@include translatey( -32px );
+				}
+			}
+		}
 	}
 }

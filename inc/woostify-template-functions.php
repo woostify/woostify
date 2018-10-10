@@ -10,7 +10,14 @@ if ( ! function_exists( 'woostify_post_related' ) ) {
 	 * Display related post.
 	 */
 	function woostify_post_related() {
+		$options = woostify_options( false );
+
+		if ( false == $options['blog_single_related_post'] ) {
+			return;
+		}
+
 		$id = get_queried_object_id();
+
 		$args = array(
 			'post_type'           => 'post',
 			'post__not_in'        => array( $id ),
@@ -155,9 +162,6 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 	 * Display the footer widget regions.
 	 */
 	function woostify_footer_widgets() {
-		if ( ! is_active_sidebar( 'footer' ) ) {
-			return;
-		}
 
 		// Default values.
 		$option        = woostify_options( false );
@@ -166,12 +170,86 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 		if ( 0 == $footer_column ) {
 			return;
 		}
-		?>
+
+		if ( is_active_sidebar( 'footer' ) ) {
+			?>
 
 		<div class="footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
 			<?php dynamic_sidebar( 'footer' ); ?>
 		</div>
-		<?php
+			<?php
+		} else {
+			?>
+		<div class="footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
+			<div class="widget widget_text default-widget">
+				<h2 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h2>
+				<div class="textwidget">
+					<p>
+						<?php
+						printf(
+							/* translators: 1: admin URL */
+							__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
+							esc_url( admin_url( 'widgets.php' ) )
+						);  // WPCS: XSS ok.
+						?>
+					</p>
+				</div>
+			</div>
+
+			<div class="widget widget_text default-widget">
+				<h2 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h2>
+				<div class="textwidget">
+					<p>
+						<?php
+						printf(
+							/* translators: 1: admin URL */
+							__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
+							esc_url( admin_url( 'widgets.php' ) )
+						);  // WPCS: XSS ok.
+						?>
+					</p>
+				</div>
+			</div>
+
+			<div class="widget widget_text default-widget">
+				<h2 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h2>
+				<div class="textwidget">
+					<p>
+						<?php
+						printf(
+							/* translators: 1: admin URL */
+							__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
+							esc_url( admin_url( 'widgets.php' ) )
+						);  // WPCS: XSS ok.
+						?>
+					</p>
+				</div>
+			</div>
+		</div>
+			<?php
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_footer_custom_text' ) ) {
+	/**
+	 * Footer custom text
+	 *
+	 * @return string $content Footer custom text
+	 */
+	function woostify_footer_custom_text() {
+		$content = '&copy; ' . date( 'Y' ) . ' ' . get_bloginfo( 'name' ) . ' ';
+
+		if ( apply_filters( 'woostify_credit_info', true ) ) {
+
+			if ( apply_filters( 'woostify_privacy_policy_link', true ) && function_exists( 'the_privacy_policy_link' ) ) {
+				$content .= get_the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>' );
+			}
+
+			$content .= __( 'All rights reserved. Designed &amp; developed by woostify&trade;', 'woostify' );
+		}
+
+		return $content;
 	}
 }
 
@@ -182,23 +260,17 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 	 * @return void
 	 */
 	function woostify_credit() {
+		$options = woostify_options( false );
+		if ( '' == $options['footer_custom_text'] && ! has_nav_menu( 'footer_menu' ) ) {
+			return;
+		}
 		?>
 		<div class="site-info">
-			<div class="site-infor-col">
-				<?php
-				$content = '&copy; ' . date( 'Y' ) . ' ' . get_bloginfo( 'name' ) . ' ';
-				echo wp_kses_post( apply_filters( 'woostify_copyright_text', $content ) );
-
-				if ( apply_filters( 'woostify_credit_info', true ) ) {
-
-					if ( apply_filters( 'woostify_privacy_policy_link', true ) && function_exists( 'the_privacy_policy_link' ) ) {
-						the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>' );
-					}
-
-					esc_html_e( 'All rights reserved. Designed &amp; developed by woostify&trade;', 'woostify' );
-				}
-				?>
-			</div>
+			<?php if ( '' != $options['footer_custom_text'] ) { ?>
+				<div class="site-infor-col">
+					<?php echo wp_kses_post( $options['footer_custom_text'] ); ?>
+				</div>
+			<?php } ?>
 
 			<?php
 			if ( has_nav_menu( 'footer_menu' ) ) {
@@ -207,6 +279,7 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 						'theme_location' => 'footer_menu',
 						'menu_class'     => 'woostify-footer-menu',
 						'container'      => '',
+						'depth'          => 1,
 					));
 				echo '</div>';
 			}
@@ -775,7 +848,8 @@ if ( ! function_exists( 'woostify_header_container' ) ) {
 	 * The header container
 	 */
 	function woostify_header_container() {
-		echo '<div class="container">';
+		$container = woostify_site_container();
+		echo '<div class="' . esc_attr( $container ) . '">';
 	}
 }
 
@@ -793,8 +867,9 @@ if ( ! function_exists( 'woostify_content_open' ) ) {
 	 * Woostify content open
 	 */
 	function woostify_content_open() {
+		$container = woostify_site_container();
 		if ( ! is_singular( 'product' ) ) {
-			echo '<div class="container">';
+			echo '<div class="' . esc_attr( $container ) . '">';
 		}
 	}
 }
@@ -915,6 +990,31 @@ if ( ! function_exists( 'woostify_product_check_in' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_get_sidebar_id' ) ) {
+	/**
+	 * Get sidebar by id
+	 *
+	 * @param      string $sidebar_id      The sidebar id.
+	 * @param      string $sidebar_layout  The sidebar layout: left, right, full.
+	 * @param      string $sidebar_default The sidebar layout default.
+	 * @param      string $wc_sidebar      The woocommerce sidebar.
+	 */
+	function woostify_get_sidebar_id( $sidebar_id, $sidebar_layout, $sidebar_default, $wc_sidebar = false ) {
+
+		$wc_sidebar_class      = true == $wc_sidebar ? ' woocommerce-sidebar' : '';
+		$sidebar_layout_class  = 'full' == $sidebar_layout ? 'no-sidebar' : $sidebar_layout . '-sidebar has-sidebar' . $wc_sidebar_class;
+		$sidebar_default_class = 'full' == $sidebar_default ? 'no-sidebar' : $sidebar_default . '-sidebar has-sidebar default-sidebar' . $wc_sidebar_class;
+
+		if ( 'default' != $sidebar_layout ) {
+			$sidebar = $sidebar_layout_class;
+		} else {
+			$sidebar = $sidebar_default_class;
+		}
+
+		return $sidebar;
+	}
+}
+
 if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 	/**
 	 * Get sidebar class
@@ -932,54 +1032,21 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		$sidebar_shop_single = $options['sidebar_shop_single'];
 		$sidebar             = '';
 
-		if ( ! is_active_sidebar( 'sidebar' ) && ! is_active_sidebar( 'sidebar-shop' ) ) {
-			return $sidebar;
-		}
-
 		if ( true == woostify_is_product_archive() ) {
 			// Product archive.
-			if ( is_active_sidebar( 'sidebar-shop' ) ) {
-				if ( 'default' != $sidebar_shop ) {
-					$sidebar = $sidebar_shop . '-sidebar is-active-sidebar woocommerce-sidebar';
-				} else {
-					$sidebar = $sidebar_default . '-sidebar is-active-sidebar woocommerce-sidebar';
-				}
-			}
+			$sidebar = woostify_get_sidebar_id( 'sidebar-shop', $sidebar_shop, $sidebar_default );
 		} elseif ( is_singular( 'product' ) ) {
 			// Product single.
-			if ( is_active_sidebar( 'sidebar-shop' ) ) {
-				if ( 'default' != $sidebar_shop_single ) {
-					$sidebar = $sidebar_shop_single . '-sidebar is-active-sidebar woocommerce-sidebar';
-				} else {
-					$sidebar = $sidebar_default . '-sidebar is-active-sidebar woocommerce-sidebar';
-				}
-			}
+			$sidebar = woostify_get_sidebar_id( 'sidebar-shop', $sidebar_shop_single, $sidebar_default );
 		} elseif ( class_exists( 'woocommerce' ) && ( is_cart() || is_checkout() || is_account_page() ) ) {
 			// Cart, checkout and account page.
 			$sidebar = '';
-		} elseif ( is_home() ) {
-			// Blog page.
-			if ( is_active_sidebar( 'sidebar' ) ) {
-				if ( 'default' != $sidebar_blog ) {
-					$sidebar = $sidebar_blog . '-sidebar is-active-sidebar';
-				} else {
-					$sidebar = $sidebar_default . '-sidebar is-active-sidebar';
-				}
-			}
 		} elseif ( is_singular( 'post' ) ) {
-			// Blog single.
-			if ( is_active_sidebar( 'sidebar' ) ) {
-				if ( 'default' != $sidebar_blog_single ) {
-					$sidebar = $sidebar_blog_single . '-sidebar is-active-sidebar';
-				} else {
-					$sidebar = $sidebar_default . '-sidebar is-active-sidebar';
-				}
-			}
-			// Other page.
+			// Blog page.
+			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_blog_single, $sidebar_default );
 		} else {
-			if ( is_active_sidebar( 'sidebar' ) ) {
-				$sidebar = $sidebar_default . '-sidebar is-active-sidebar';
-			}
+			// Other page.
+			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_blog, $sidebar_default );
 		}
 
 		return $sidebar;
@@ -995,11 +1062,11 @@ if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 	function woostify_get_sidebar() {
 		$sidebar = woostify_sidebar_class();
 
-		if ( false !== strpos( $sidebar, 'full-sidebar' ) || empty( $sidebar ) ) {
+		if ( false !== strpos( $sidebar, 'no-sidebar' ) || '' == $sidebar ) {
 			return;
 		}
 
-		if ( false !== strpos( $sidebar, 'woocommerce' ) || true == woostify_is_product_archive() || is_singular( 'product' ) ) {
+		if ( false !== strpos( $sidebar, 'woocommerce-sidebar' ) || true == woostify_is_product_archive() || is_singular( 'product' ) ) {
 			get_sidebar( 'shop' );
 		} else {
 			get_sidebar();
@@ -1155,5 +1222,24 @@ if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
 			</div>
 			<?php
 		}
+	}
+}
+
+if ( ! function_exists( 'woostify_site_container' ) ) {
+
+	/**
+	 * Woostify site container
+	 *
+	 * @return $container The site container
+	 */
+	function woostify_site_container() {
+		$options = woostify_options( false );
+		$container = 'woostify-container';
+
+		if ( 'full-width' == $options['default_container'] ) {
+			$container .= ' container-fluid';
+		}
+
+		return $container;
 	}
 }

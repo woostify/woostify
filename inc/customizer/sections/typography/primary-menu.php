@@ -102,7 +102,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'parent_menu_title',
 		array(
-			'label'    => __( 'Parent menu', 'woostify' ),
+			'label'    => __( 'Parent Menu', 'woostify' ),
 			'section'  => 'menu_font_section',
 			'settings' => 'parent_menu_title',
 			'type'     => 'hidden',
@@ -127,7 +127,7 @@ $wp_customize->add_control(
 		'woostify_setting[parent_menu_font_size]',
 		array(
 			'type'           => 'woostify-range-slider',
-			'description'    => __( 'Font size', 'woostify' ),
+			'description'    => __( 'Font Size', 'woostify' ),
 			'section'        => 'menu_font_section',
 			'settings'       => array(
 				'desktop' => 'woostify_setting[parent_menu_font_size]',
@@ -162,7 +162,7 @@ $wp_customize->add_control(
 		'woostify_setting[parent_menu_line_height]',
 		array(
 			'type'           => 'woostify-range-slider',
-			'description'    => __( 'Line height', 'woostify' ),
+			'description'    => __( 'Line Height', 'woostify' ),
 			'section'        => 'menu_font_section',
 			'settings'       => array(
 				'desktop' => 'woostify_setting[parent_menu_line_height]',
@@ -201,7 +201,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'sub_menu_title',
 		array(
-			'label'    => __( 'Sub menu', 'woostify' ),
+			'label'    => __( 'Sub Menu', 'woostify' ),
 			'section'  => 'menu_font_section',
 			'settings' => 'sub_menu_title',
 			'type'     => 'hidden',
@@ -226,7 +226,7 @@ $wp_customize->add_control(
 		'woostify_setting[sub_menu_font_size]',
 		array(
 			'type'        => 'woostify-range-slider',
-			'description' => __( 'Font size', 'woostify' ),
+			'description' => __( 'Font Size', 'woostify' ),
 			'section'     => 'menu_font_section',
 			'settings'    => array(
 				'desktop' => 'woostify_setting[sub_menu_font_size]',
@@ -261,7 +261,7 @@ $wp_customize->add_control(
 		'woostify_setting[sub_menu_line_height]',
 		array(
 			'type'        => 'woostify-range-slider',
-			'description' => __( 'Line height', 'woostify' ),
+			'description' => __( 'Line Height', 'woostify' ),
 			'section'     => 'menu_font_section',
 			'settings'    => array(
 				'desktop' => 'woostify_setting[sub_menu_line_height]',

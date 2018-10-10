@@ -9,39 +9,36 @@
 $defaults = woostify_options();
 
 // Footer widget columns.
-if ( is_active_sidebar( 'footer' ) ) {
+$wp_customize->add_setting(
+	'woostify_setting[footer_column]',
+	array(
+		'default'           => $defaults['footer_column'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+	)
+);
 
-	$wp_customize->add_setting(
-		'woostify_setting[footer_column]',
-		array(
-			'default'           => $defaults['footer_column'],
-			'type'              => 'option',
-			'sanitize_callback' => 'woostify_sanitize_choices',
-		)
-	);
-
-	$wp_customize->add_control( new WP_Customize_Control(
-		$wp_customize,
-		'woostify_setting[footer_column]',
-		array(
-			'label'       => __( 'Widget columns', 'woostify' ),
-			'settings'    => 'woostify_setting[footer_column]',
-			'section'     => 'woostify_footer',
-			'type'        => 'select',
-			'choices'     => apply_filters(
-				'woostify_setting_footer_column_choices',
-				array(
-					0 => 0,
-					1 => 1,
-					2 => 2,
-					3 => 3,
-					4 => 4,
-					5 => 5,
-				)
-			),
-		)
-	));
-}
+$wp_customize->add_control( new WP_Customize_Control(
+	$wp_customize,
+	'woostify_setting[footer_column]',
+	array(
+		'label'       => __( 'Widget Columns', 'woostify' ),
+		'settings'    => 'woostify_setting[footer_column]',
+		'section'     => 'woostify_footer',
+		'type'        => 'select',
+		'choices'     => apply_filters(
+			'woostify_setting_footer_column_choices',
+			array(
+				0 => 0,
+				1 => 1,
+				2 => 2,
+				3 => 3,
+				4 => 4,
+				5 => 5,
+			)
+		),
+	)
+));
 
 // Footer Background.
 $wp_customize->add_setting(
@@ -58,7 +55,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[footer_background_color]',
 		array(
-			'label'    => __( 'Background color', 'woostify' ),
+			'label'    => __( 'Background Color', 'woostify' ),
 			'section'  => 'woostify_footer',
 			'settings' => 'woostify_setting[footer_background_color]',
 		)
@@ -80,7 +77,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[footer_heading_color]',
 		array(
-			'label'    => __( 'Heading color', 'woostify' ),
+			'label'    => __( 'Heading Color', 'woostify' ),
 			'section'  => 'woostify_footer',
 			'settings' => 'woostify_setting[footer_heading_color]',
 		)
@@ -102,7 +99,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[footer_link_color]',
 		array(
-			'label'    => __( 'Link color', 'woostify' ),
+			'label'    => __( 'Link Color', 'woostify' ),
 			'section'  => 'woostify_footer',
 			'settings' => 'woostify_setting[footer_link_color]',
 		)
@@ -124,9 +121,32 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[footer_text_color]',
 		array(
-			'label'    => __( 'Text color', 'woostify' ),
+			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_footer',
 			'settings' => 'woostify_setting[footer_text_color]',
+		)
+	)
+);
+
+// Custom text.
+$wp_customize->add_setting(
+	'woostify_setting[footer_custom_text]',
+	array(
+		'default'           => $defaults['footer_custom_text'],
+		'sanitize_callback' => 'sanitize_textarea_field',
+		'type'              => 'option',
+	)
+);
+
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[footer_custom_text]',
+		array(
+			'label'    => __( 'Custom Text', 'woostify' ),
+			'type'     => 'textarea',
+			'section'  => 'woostify_footer',
+			'settings' => 'woostify_setting[footer_custom_text]',
 		)
 	)
 );

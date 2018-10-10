@@ -109,3 +109,15 @@
         display: inline-block;
     }
 }
+
+/* responsive */
+@media ( max-width: $screen-sm ) {
+	.site-info{
+		flex-direction: column;
+		justify-content: center;
+
+		.site-infor-col{
+			text-align: center;
+		}
+	}
+}

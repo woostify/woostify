@@ -57,6 +57,7 @@ class Woostify_Get_CSS {
 			}
 
 			.woocommerce-pagination a,
+			.woocommerce-loop-product__category a,
 			.woocommerce-loop-product__title,
 			.price del,
 			.stars a,
@@ -65,7 +66,8 @@ class Woostify_Get_CSS {
 			.woocommerce-cart-form__contents .product-remove a,
 			.comment-body .comment-meta .comment-date,
 			.woostify-breadcrumb a,
-			.breadcrumb-separator{
+			.breadcrumb-separator,
+			#secondary .widget a{
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
@@ -141,7 +143,8 @@ class Woostify_Get_CSS {
 			.woocommerce-table--order-details th,
 			.woocommerce-table--order-details .amount,
 			.wc-breadcrumb .woostify-breadcrumb,
-			.sidebar-menu .primary-navigation .menu-item-has-children:after{
+			.sidebar-menu .primary-navigation .menu-item-has-children:after,
+			.default-widget a strong:hover{
 				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 
@@ -155,7 +158,8 @@ class Woostify_Get_CSS {
 			a{
 				color: ' . esc_attr( $options['accent_color'] ) . ';
 			}
-			a:hover{
+			a:hover,
+			#secondary .widget a:hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 		';
@@ -205,7 +209,8 @@ class Woostify_Get_CSS {
 			.woocommerce-checkout-review-order-table .order-total,
 			.woocommerce-table--order-details .product-name a,
 			.site-header .primary-navigation a:hover,
-			.site-header .primary-navigation .menu-item-has-children:hover > a{
+			.site-header .primary-navigation .menu-item-has-children:hover > a,
+			.default-widget a strong{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 			

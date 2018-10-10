@@ -30,7 +30,7 @@
 		<div id="view">
 
 			<?php do_action( 'woostify_before_header' ); ?>
-			<header id="masthead" class="site-header" style="<?php woostify_header_styles(); ?>">
+			<header id="masthead" class="site-header">
 				<?php
 					/**
 					 * Functions hooked into woostify_header action

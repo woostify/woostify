@@ -9,12 +9,12 @@
 
 	do_action( 'woostify_content_bottom' );
 	do_action( 'woostify_before_footer' );
+	$container = woostify_site_container();
 ?>
-			<?php // #content. ?>
-			</div>
+			</div><?php // #content. ?>
 
 		<footer id="colophon" class="site-footer">
-			<div class="container">
+			<div class="<?php echo esc_attr( $container ); ?>">
 
 				<?php
 				/**
@@ -26,18 +26,16 @@
 				do_action( 'woostify_footer' );
 				?>
 
-			</div><!-- .container -->
+			</div>
 		</footer>
 
 		<?php do_action( 'woostify_after_footer' ); ?>
 
-	<?php // #view. ?>
-	</div>
+	</div><?php // #view. ?>
 
 	<?php do_action( 'woostify_after_view' ); ?>
 
-<?php // #page. ?>
-</div>
+</div><?php // #page. ?>
 
 <?php wp_footer(); ?>
 </body>

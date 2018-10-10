@@ -23,8 +23,8 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[header_layout]',
 		array(
-			'label'    => __( 'Header layout', 'woostify' ),
-			'section'  => 'header_image',
+			'label'    => __( 'Header Layout', 'woostify' ),
+			'section'  => 'woostify_header',
 			'settings' => 'woostify_setting[header_layout]',
 			'priority' => 5,
 			'choices'  => apply_filters(
@@ -44,7 +44,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'header_background_color_divider',
 		array(
-			'section'  => 'header_image',
+			'section'  => 'woostify_header',
 			'settings' => 'header_background_color_divider',
 			'type'     => 'divider',
 			'priority' => 7,
@@ -67,24 +67,25 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[header_background_color]',
 		array(
-			'label'    => __( 'Background color', 'woostify' ),
-			'section'  => 'header_image',
+			'label'    => __( 'Background Color', 'woostify' ),
+			'section'  => 'woostify_header',
 			'settings' => 'woostify_setting[header_background_color]',
 			'priority' => 9,
 		)
 	)
 );
 
-// Show/hide feature divider.
-$wp_customize->add_setting( 'header_show_hide_element_divider' );
+// Header element title.
+$wp_customize->add_setting( 'header_element_title' );
 $wp_customize->add_control(
 	new Arbitrary_Woostify_Control(
 		$wp_customize,
-		'header_show_hide_element_divider',
+		'header_element_title',
 		array(
-			'section'  => 'header_image',
-			'settings' => 'header_show_hide_element_divider',
-			'type'     => 'divider',
+			'section'  => 'woostify_header',
+			'settings' => 'header_element_title',
+			'type'     => 'heading',
+			'label'    => __( 'Elements', 'woostify' ),
 		)
 	)
 );
@@ -104,8 +105,8 @@ $wp_customize->add_control(
 		'woostify_setting[header_search_form]',
 		array(
 			'type'     => 'checkbox',
-			'label'    => __( 'Search form', 'woostify' ),
-			'section'  => 'header_image',
+			'label'    => __( 'Search Form', 'woostify' ),
+			'section'  => 'woostify_header',
 			'settings' => 'woostify_setting[header_search_form]',
 		)
 	)
@@ -127,8 +128,8 @@ if ( class_exists( 'woocommerce' ) ) {
 			'woostify_setting[header_search_only_product]',
 			array(
 				'type'     => 'checkbox',
-				'label'    => __( 'Search only product', 'woostify' ),
-				'section'  => 'header_image',
+				'label'    => __( 'Search Only Product', 'woostify' ),
+				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_search_only_product]',
 			)
 		)
@@ -148,8 +149,8 @@ if ( class_exists( 'woocommerce' ) ) {
 			'woostify_setting[header_account_icon]',
 			array(
 				'type'     => 'checkbox',
-				'label'    => __( 'Account icon', 'woostify' ),
-				'section'  => 'header_image',
+				'label'    => __( 'Account Icon', 'woostify' ),
+				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_account_icon]',
 			)
 		)
@@ -169,8 +170,8 @@ if ( class_exists( 'woocommerce' ) ) {
 			'woostify_setting[header_shop_cart_icon]',
 			array(
 				'type'     => 'checkbox',
-				'label'    => __( 'Shopping cart icon', 'woostify' ),
-				'section'  => 'header_image',
+				'label'    => __( 'Shopping Cart Icon', 'woostify' ),
+				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_shop_cart_icon]',
 			)
 		)

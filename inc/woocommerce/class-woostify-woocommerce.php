@@ -31,8 +31,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// GENERAL.
 			// Product related.
 			add_filter( 'woocommerce_output_related_products_args', array( $this, 'related_products_args' ) );
-			// Thumbnail columns.
-			add_filter( 'woocommerce_product_thumbnails_columns', array( $this, 'thumbnail_columns' ) );
+			// Shop columns.
+			add_filter( 'loop_shop_columns', array( $this, 'shop_columns' ) );
+			add_filter( 'loop_shop_per_page', array( $this, 'products_per_page' ) );
 			// Beadcrumbs.
 			add_filter( 'woocommerce_breadcrumb_defaults', array( $this, 'change_breadcrumb_delimiter' ) );
 			// Pagination arrow.
@@ -46,6 +47,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'init', array( $this, 'detect_clear_cart_submit' ) );
 
 			// SHOP PAGE.
+			// Add product category.
+			add_action( 'woocommerce_shop_loop_item_title', array( $this, 'add_template_loop_product_category' ), 5 );
 			// Add url inside product title.
 			add_action( 'woocommerce_shop_loop_item_title', array( $this, 'add_template_loop_product_title' ), 10 );
 			// Open wrapper product loop image.
@@ -60,9 +63,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_link_close' ), 60 );
 			// Close wrapper product loop image.
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_image_wrapper_close' ), 70 );
+			// Product rating.
+			add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'loop_product_rating' ), 2 );
 
 			// Product loop meta open.
 			add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'loop_product_meta_open' ), 5 );
+
+			add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'loop_product_price' ), 10 );
+			add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'loop_product_add_to_cart_button' ), 15 );
 			// Product loop meta close.
 			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'loop_product_meta_close' ), 20 );
 
@@ -101,22 +109,20 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '2.5', '<' ) ) {
 				add_action( 'wp_footer', array( $this, 'star_rating_script' ) );
 			}
+		}
 
-			// Products per page for Woo < 3.3.
-			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.3', '<' ) ) {
-				add_filter( 'loop_shop_per_page', array( $this, 'products_per_page' ) );
-			}
+		/**
+		 * Theme options
+		 *
+		 * @return array $options All theme options
+		 */
+		public function options() {
+			$options = woostify_options( false );
+			return $options;
 		}
 
 		/**
 		 * Sets up theme defaults and registers support for various WooCommerce features.
-		 *
-		 * Note that this function is hooked into the after_setup_theme hook, which
-		 * runs before the init hook. The init hook is too late for some features, such
-		 * as indicating support for post thumbnails.
-		 *
-		 * @since 1.0
-		 * @return void
 		 */
 		public function setup() {
 			add_theme_support(
@@ -140,6 +146,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Woocommerce enqueue scripts and styles.
 		 */
 		public function woocommerce_scripts() {
+			$options = self::options();
+
 			// Main woocommerce js file.
 			wp_enqueue_script( 'woostify-woocommerce' );
 
@@ -152,10 +160,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			}
 
 			// Single add to cart button.
-			if ( is_singular( 'product' ) && true == get_option( 'woostify_single_add_to_cart_ajax' ) ) {
-				wp_enqueue_script( 'woostify-single-add-to-cart-button' );
+			if ( is_singular( 'product' ) && true == $options['single_add_to_cart_ajax'] ) {
+				wp_enqueue_script( 'woostify-single-add-to-cart' );
 				wp_localize_script(
-					'woostify-single-add-to-cart-button',
+					'woostify-single-add-to-cart',
 					'woostify_ajax',
 					array(
 						'url'   => admin_url( 'admin-ajax.php' ),
@@ -176,8 +184,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			// Product page.
 			if ( is_singular( 'product' ) ) {
+
 				// Ajax single add to cart.
-				if ( true == get_option( 'woostify_single_add_to_cart_ajax' ) ) {
+				$options = self::options();
+
+				if ( true == $options['single_add_to_cart_ajax'] ) {
 					$classes[] = 'ajax-single-add-to-cart';
 				}
 
@@ -185,6 +196,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				$page_id = get_queried_object_id();
 				$product = wc_get_product( $page_id );
 				$gallery = $product->get_gallery_image_ids();
+
 				if ( $gallery ) {
 					$classes[] = 'has-product-gallery';
 				}
@@ -195,8 +207,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 		/**
 		 * Star rating backwards compatibility script (WooCommerce <2.5).
-		 *
-		 * @since 1.6.0
 		 */
 		public function star_rating_script() {
 			if ( is_product() ) {
@@ -220,7 +230,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Related Products Args
 		 *
 		 * @param  array $args related products args.
-		 * @since 1.0.0
 		 * @return  array $args related products args
 		 */
 		public function related_products_args( $args ) {
@@ -239,26 +248,24 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Product gallery thumbnail columns
 		 *
 		 * @return integer number of columns
-		 * @since  1.0.0
 		 */
-		public function thumbnail_columns() {
-			$columns = 4;
+		public function shop_columns() {
+			$options = self::options();
+			$columns = $options['shop_columns'];
 
-			if ( ! is_active_sidebar( 'sidebar-shop' ) ) {
-				$columns = 5;
-			}
-
-			return intval( apply_filters( 'woostify_product_thumbnail_columns', $columns ) );
+			return absint( apply_filters( 'woostify_shop_columns', $columns ) );
 		}
 
 		/**
 		 * Products per page
 		 *
 		 * @return integer number of products
-		 * @since  1.0.0
 		 */
 		public function products_per_page() {
-			return intval( apply_filters( 'woostify_products_per_page', 12 ) );
+			$options  = self::options();
+			$per_page = $options['shop_product_per_page'];
+
+			return absint( apply_filters( 'woostify_shop_products_per_page', $per_page ) );
 		}
 
 		/**
@@ -266,13 +273,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 *
 		 * @param  array $defaults The breadcrumb defaults.
 		 * @return array           The breadcrumb defaults.
-		 * @since 2.2.0
 		 */
 		public function change_breadcrumb_delimiter( $defaults ) {
-			$defaults['delimiter']   = '<span class="breadcrumb-separator"> / </span>';
+			$defaults['delimiter'] = '<span class="breadcrumb-separator"> / </span>';
+			$container             = woostify_site_container();
 
 			if ( is_singular( 'product' ) ) {
-				$defaults['wrap_before'] = '<div class="wc-breadcrumb breadcrumb"><div class="container"><nav class="woostify-breadcrumb">';
+				$defaults['wrap_before'] = '<div class="wc-breadcrumb breadcrumb"><div class="' . esc_attr( $container ) . '"><nav class="woostify-breadcrumb">';
 				$defaults['wrap_after']  = '</nav></div></div>';
 			} else {
 				$defaults['wrap_before'] = '<div class="wc-breadcrumb breadcrumb"><nav class="woostify-breadcrumb">';
@@ -375,9 +382,45 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
-		 * Adds a template loop product title.
+		 * Loop product category.
+		 */
+		public function add_template_loop_product_category() {
+			$options = self::options();
+			if ( false == $options['shop_page_product_category'] ) {
+				return;
+			}
+			?>
+			<div class="woocommerce-loop-product__category">
+				<?php
+				global $product;
+				$product_id = $product->get_ID();
+				echo wp_kses_post( wc_get_product_category_list( $product_id ) );
+				?>
+			</div>
+			<?php
+		}
+
+		/**
+		 * Loop product rating
+		 */
+		public function loop_product_rating() {
+			$options = self::options();
+			if ( false == $options['shop_page_product_rating'] ) {
+				return;
+			}
+
+			global $product;
+			echo wc_get_rating_html( $product->get_average_rating() ); // WPCS: XSS OK.
+		}
+
+		/**
+		 * Loop product title.
 		 */
 		public function add_template_loop_product_title() {
+			$options = self::options();
+			if ( false == $options['shop_page_product_title'] ) {
+				return;
+			}
 			?>
 			<h2 class="woocommerce-loop-product__title">
 				<?php
@@ -390,14 +433,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
-		 * Product loop image wrapper open tag
+		 * Loop product image wrapper open tag
 		 */
 		public function loop_product_image_wrapper_open() {
 			echo '<div class="product-loop-image-wrapper">';
 		}
 
 		/**
-		 * Product link open
+		 * Loop product link open
 		 */
 		public function loop_product_link_open() {
 			// open tag <a>.
@@ -405,7 +448,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
-		 * Product loop image
+		 * Loop product image
 		 */
 		public function loop_product_image() {
 			global $product;
@@ -427,7 +470,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
-		 * Product loop hover image
+		 * Loop product hover image
 		 */
 		public function loop_product_hover_image() {
 			global $product;
@@ -445,7 +488,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
-		 * Product link close
+		 * Loop product link close
 		 */
 		public function loop_product_link_close() {
 			// close tag </a>.
@@ -453,22 +496,57 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
-		 * Product loop image wrapper close tag
+		 * Loop product image wrapper close tag
 		 */
 		public function loop_product_image_wrapper_close() {
 			echo '</div>';
 		}
 
 		/**
-		 * Product loop meta open
+		 * Loop product meta open
 		 */
 		public function loop_product_meta_open() {
-			echo '<div class="product-loop-meta">';
+			$options = self::options();
+
+			$class = ( false == $options['shop_page_product_price'] || false == $options['shop_page_product_add_to_cart_button'] ) ? 'no-transform' : '';
+
+			echo '<div class="product-loop-meta ' . esc_attr( $class ) . '">';
 			echo '<div class="animated-meta">';
 		}
 
 		/**
-		 * Product loop meta close
+		 * Loop product price
+		 */
+		public function loop_product_price() {
+			$options = self::options();
+			if ( false == $options['shop_page_product_price'] ) {
+				return;
+			}
+
+			global $product;
+			$price_html = $product->get_price_html();
+
+			if ( $price_html ) {
+				?>
+				<span class="price"><?php echo wp_kses_post( $price_html ); ?></span>
+				<?php
+			}
+		}
+
+		/**
+		 * Loop product add to cart button
+		 */
+		public function loop_product_add_to_cart_button() {
+			$options = self::options();
+			if ( false == $options['shop_page_product_add_to_cart_button'] ) {
+				return;
+			}
+
+			woocommerce_template_loop_add_to_cart();
+		}
+
+		/**
+		 * Loop product meta close
 		 */
 		public function loop_product_meta_close() {
 			echo '</div></div>';
@@ -479,9 +557,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Product container open
 		 */
 		public function single_product_container_open() {
+			$container = woostify_site_container();
 			?>
 				<div class="product-page-container">
-					<div class="container">
+					<div class="<?php echo esc_attr( $container ); ?>">
 			<?php
 		}
 
@@ -761,7 +840,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Container after summary open
 		 */
 		public function single_product_after_summary_open() {
-			echo '<div class="container">';
+			$container = woostify_site_container();
+			echo '<div class="' . esc_attr( $container ) . '">';
 		}
 
 		/**

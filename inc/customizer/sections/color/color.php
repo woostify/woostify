@@ -23,7 +23,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[theme_color]',
 		array(
-			'label'    => __( 'Theme color', 'woostify' ),
+			'label'    => __( 'Theme Color', 'woostify' ),
 			'section'  => 'woostify_color',
 			'settings' => 'woostify_setting[theme_color]',
 		)
@@ -45,7 +45,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[primary_menu_color]',
 		array(
-			'label'    => __( 'Parent menu color', 'woostify' ),
+			'label'    => __( 'Parent Menu Color', 'woostify' ),
 			'section'  => 'woostify_color',
 			'settings' => 'woostify_setting[primary_menu_color]',
 		)
@@ -67,7 +67,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[primary_sub_menu_color]',
 		array(
-			'label'    => __( 'Sub-menu color', 'woostify' ),
+			'label'    => __( 'Sub-menu Color', 'woostify' ),
 			'section'  => 'woostify_color',
 			'settings' => 'woostify_setting[primary_sub_menu_color]',
 		)
@@ -89,7 +89,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[heading_color]',
 		array(
-			'label'    => __( 'Heading color', 'woostify' ),
+			'label'    => __( 'Heading Color', 'woostify' ),
 			'section'  => 'woostify_color',
 			'settings' => 'woostify_setting[heading_color]',
 		)
@@ -111,7 +111,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[text_color]',
 		array(
-			'label'    => __( 'Text color', 'woostify' ),
+			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_color',
 			'settings' => 'woostify_setting[text_color]',
 		)
@@ -133,7 +133,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[accent_color]',
 		array(
-			'label'    => __( 'Link / accent color', 'woostify' ),
+			'label'    => __( 'Link / Accent Color', 'woostify' ),
 			'section'  => 'woostify_color',
 			'settings' => 'woostify_setting[accent_color]',
 		)

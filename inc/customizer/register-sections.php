@@ -18,6 +18,15 @@ $wp_customize->add_panel(
 	)
 );
 
+// Header section.
+$wp_customize->add_section(
+	'woostify_header',
+	array(
+		'title'       => __( 'Header', 'woostify' ),
+		'panel'       => 'layout_section',
+	)
+);
+
 // Blog section.
 $wp_customize->add_section(
 	'woostify_blog',
@@ -31,7 +40,7 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'woostify_blog_single',
 	array(
-		'title'       => __( 'Blog single', 'woostify' ),
+		'title'       => __( 'Blog Single', 'woostify' ),
 		'panel'       => 'layout_section',
 	)
 );
@@ -44,27 +53,6 @@ $wp_customize->add_section(
 		'panel'       => 'layout_section',
 	)
 );
-
-// Woocommerce.
-if ( class_exists( 'woocommerce' ) ) {
-	// Shop section.
-	$wp_customize->add_section(
-		'woostify_shop',
-		array(
-			'title'       => __( 'Shop', 'woostify' ),
-			'panel'       => 'layout_section',
-		)
-	);
-
-	// Shop single section.
-	$wp_customize->add_section(
-		'woostify_shop_single',
-		array(
-			'title'       => __( 'Shop single', 'woostify' ),
-			'panel'       => 'layout_section',
-		)
-	);
-}
 
 // Footer section.
 $wp_customize->add_section(
@@ -130,12 +118,32 @@ $wp_customize->add_section(
 	)
 );
 
-// Woocommerce shop single.
-$wp_customize->add_section(
-	'wc_shop_single',
-	array(
-		'title'      => __( 'Shop single', 'woostify' ),
-		'capability' => 'edit_theme_options',
-		'panel'      => 'woocommerce',
-	)
-);
+// Woocommerce shop.
+if ( class_exists( 'woocommerce' ) ) {
+	$wp_customize->add_panel(
+		'woostify_shop',
+		array(
+			'title'      => __( 'Shop', 'woostify' ),
+			'capability' => 'edit_theme_options',
+			'priority'   => 30,
+		)
+	);
+
+	$wp_customize->add_section(
+		'woostify_shop_page',
+		array(
+			'title'      => __( 'Shop Archive', 'woostify' ),
+			'capability' => 'edit_theme_options',
+			'panel'      => 'woostify_shop',
+		)
+	);
+
+	$wp_customize->add_section(
+		'woostify_shop_single',
+		array(
+			'title'      => __( 'Shop Single', 'woostify' ),
+			'capability' => 'edit_theme_options',
+			'panel'      => 'woostify_shop',
+		)
+	);
+}

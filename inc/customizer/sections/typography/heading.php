@@ -100,7 +100,7 @@ $wp_customize->add_control(
 		'woostify_setting[heading_line_height]',
 		array(
 			'type'        => 'woostify-range-slider',
-			'description' => __( 'Line height', 'woostify' ),
+			'description' => __( 'Line Height', 'woostify' ),
 			'section'     => 'heading_font_section',
 			'settings'    => array(
 				'desktop' => 'woostify_setting[heading_line_height]',
@@ -139,7 +139,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'heading_font_size_title',
 		array(
-			'label'    => __( 'Font size', 'woostify' ),
+			'label'    => __( 'Font Size', 'woostify' ),
 			'section'  => 'heading_font_section',
 			'settings' => 'heading_font_size_title',
 			'type'     => 'hidden',

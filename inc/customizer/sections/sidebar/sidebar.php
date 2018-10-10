@@ -68,7 +68,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[sidebar_blog]',
 		array(
-			'label'    => __( 'Blog list', 'woostify' ),
+			'label'    => __( 'Blog List', 'woostify' ),
 			'section'  => 'woostify_sidebar',
 			'settings' => 'woostify_setting[sidebar_blog]',
 			'type'     => 'select',
@@ -100,7 +100,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[sidebar_blog_single]',
 		array(
-			'label'    => __( 'Blog single', 'woostify' ),
+			'label'    => __( 'Blog Single', 'woostify' ),
 			'section'  => 'woostify_sidebar',
 			'settings' => 'woostify_setting[sidebar_blog_single]',
 			'type'     => 'select',
@@ -147,7 +147,7 @@ if ( class_exists( 'woocommerce' ) ) {
 			$wp_customize,
 			'woostify_setting[sidebar_shop]',
 			array(
-				'label'    => __( 'Shop page', 'woostify' ),
+				'label'    => __( 'Shop Page', 'woostify' ),
 				'section'  => 'woostify_sidebar',
 				'settings' => 'woostify_setting[sidebar_shop]',
 				'type'     => 'select',
@@ -179,7 +179,7 @@ if ( class_exists( 'woocommerce' ) ) {
 			$wp_customize,
 			'woostify_setting[sidebar_shop_single]',
 			array(
-				'label'    => __( 'Shop single', 'woostify' ),
+				'label'    => __( 'Shop Single', 'woostify' ),
 				'section'  => 'woostify_sidebar',
 				'settings' => 'woostify_setting[sidebar_shop_single]',
 				'type'     => 'select',

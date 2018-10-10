@@ -1,18 +1,28 @@
+.site-full-width-container{
+	.woocommerce-tabs{
+		.woocommerce-Tabs-panel{
+			max-width: 100%;
+		}
+	}
+}
+
 .product-page-container{
 	padding-bottom: 90px;
 }
 
 /* SIDEBAR */
 .single-product{
-	&.left-sidebar,
-	&.right-sidebar{
-		.site-content{
-			@extend .container;
-		}
+	&:not(.site-full-width-container) {
+		&.left-sidebar,
+		&.right-sidebar{
+			.site-content{
+				@extend .container;
+			}
 
-		.site-main{
-			.container{
-				width: 100%;
+			.site-main{
+				.container{
+					width: 100%;
+				}
 			}
 		}
 	}

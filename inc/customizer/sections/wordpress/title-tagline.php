@@ -21,7 +21,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[retina_logo]',
 		array(
-			'label'    => __( 'Retina logo', 'woostify' ),
+			'label'    => __( 'Retina Logo', 'woostify' ),
 			'section'  => 'title_tagline',
 			'settings' => 'woostify_setting[retina_logo]',
 			'priority' => 8,
@@ -42,7 +42,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[logo_mobile]',
 		array(
-			'label'    => __( 'Mobile logo (optional)', 'woostify' ),
+			'label'    => __( 'Mobile Logo (Optional)', 'woostify' ),
 			'section'  => 'title_tagline',
 			'settings' => 'woostify_setting[logo_mobile]',
 			'priority' => 8,
@@ -66,7 +66,7 @@ $wp_customize->add_control(
 		'woostify_setting[logo_width]',
 		array(
 			'type'     => 'woostify-range-slider',
-			'label'    => __( 'Logo width', 'woostify' ),
+			'label'    => __( 'Logo Width', 'woostify' ),
 			'section'  => 'title_tagline',
 			'settings' => array(
 				'desktop' => 'woostify_setting[logo_width]',

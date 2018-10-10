@@ -151,24 +151,6 @@ if ( ! class_exists( 'woostify' ) ) :
 			);
 
 			/**
-			 * Setup the WordPress core custom header feature.
-			 */
-			add_theme_support(
-				'custom-header',
-				apply_filters(
-					'woostify_custom_header_args',
-					array(
-						'default-image' => '',
-						'header-text'   => false,
-						'width'         => 1920,
-						'height'        => 500,
-						'flex-width'    => true,
-						'flex-height'   => true,
-					)
-				)
-			);
-
-			/**
 			 * Declare support for title theme feature.
 			 */
 			add_theme_support( 'title-tag' );
@@ -276,7 +258,7 @@ if ( ! class_exists( 'woostify' ) ) :
 
 			// Single add to cart.
 			wp_register_script(
-				'woostify-single-add-to-cart-button',
+				'woostify-single-add-to-cart',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/single-add-to-cart.js',
 				array(),
 				$woostify_version,
@@ -362,6 +344,8 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @return array
 		 */
 		public function body_classes( $classes ) {
+			$options   = woostify_options( false );
+
 			// Theme version.
 			global $woostify_version;
 			$classes[] = 'woostify-' . $woostify_version;
@@ -370,6 +354,12 @@ if ( ! class_exists( 'woostify' ) ) :
 			if ( '' != woostify_browser_detection() ) {
 				$classes[] = woostify_browser_detection() . '-detected';
 			}
+
+			// Site container layout.
+			$classes[] = 'site-' . $options['default_container'] . '-container';
+
+			// Header layout.
+			$classes[] = 'header-' . $options['header_layout'];
 
 			// Sidebar class detected.
 			$classes[] = woostify_sidebar_class();
