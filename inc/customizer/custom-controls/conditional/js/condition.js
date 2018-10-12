@@ -4,35 +4,75 @@
  * @package woostify
  */
 
-'use strict';
+( function( api ) {
+	'use strict';
 
-( function( $ ) {
-	wp.customize.bind( 'ready', function() {
+	api.bind( 'ready', function() {
 
-		// Variables.
-		var parentConditionControl = 'woostify_setting[header_search_form]',
-			childConditionControl  = 'woostify_setting[header_search_only_product]',
-			childConditionControl  = childConditionControl.replace( ']', '' ),
-			childConditionControl  = childConditionControl.replace( '[', '-' ),
-			conditionControl       = $( '#customize-control-' + childConditionControl );
+		// Condition controls.
+		function condition( id, dependencies, checked ) {
+			// If true == `checked`. Hidden dependencies.
+			var checked = arguments.length > 0 && arguments[2] !== undefined ? arguments[2] : false;
 
-		function check( condition ) {
-			if ( true == condition ) {
-				$( conditionControl ).show( 200 );
-			} else {
-				$( conditionControl ).hide( 200 );
-			}
+			api( id, function( setting ) {
+
+				/**
+				 * Update a control's active state according to the boxed_body setting's value.
+				 *
+				 * @param {api.Control} control Boxed body control.
+				 */
+
+				function dependency( control ) {
+					function visibility() {
+						if ( true === checked ) {
+							if ( false === setting.get() ) {
+								control.container.show( 200 );
+							} else {
+								control.container.hide( 200 );
+							}
+						} else {
+							if ( false === setting.get() ) {
+								control.container.hide( 200 );
+							} else {
+								control.container.show( 200 );
+							}
+						}
+					}
+
+					// Set initial active state.
+					visibility();
+
+					// Update activate state whenever the setting is changed.
+					setting.bind( visibility );
+				};
+
+				// Call dependency on the border controls when they exist.
+				for ( var i = 0, j = dependencies.length; i < j; i++ ) {
+					api.control( dependencies[i], dependency );
+				}
+			} );
 		}
 
-		// Check condition on page load.
-		check( wp.customize.instance( parentConditionControl ).get() );
+		// Search product only.
+		condition(
+			'woostify_setting[header_search_form]',
+			['woostify_setting[header_search_only_product]']
+		);
 
-		// ... and on value change.
-		wp.customize.control( parentConditionControl, function( control ) {
-			control.setting.bind( function( value ) {
-				check( value );
-			} );
-		} );
+		// Disable footer.
+		condition(
+			'woostify_setting[footer_disable]',
+			[
+				'woostify_setting[footer_column]',
+				'woostify_setting[footer_background_color]',
+				'woostify_setting[footer_heading_color]',
+				'woostify_setting[footer_link_color]',
+				'woostify_setting[footer_text_color]',
+				'woostify_setting[footer_custom_text]'
+			],
+			true
+		);
 
 	} );
-} )( jQuery );
+
+}( wp.customize ) );

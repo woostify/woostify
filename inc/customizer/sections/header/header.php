@@ -40,7 +40,7 @@ $wp_customize->add_control(
 // Background color divider.
 $wp_customize->add_setting( 'header_background_color_divider' );
 $wp_customize->add_control(
-	new Arbitrary_Woostify_Control(
+	new Woostify_Divider_Control(
 		$wp_customize,
 		'header_background_color_divider',
 		array(
@@ -78,7 +78,7 @@ $wp_customize->add_control(
 // Header element title.
 $wp_customize->add_setting( 'header_element_title' );
 $wp_customize->add_control(
-	new Arbitrary_Woostify_Control(
+	new Woostify_Divider_Control(
 		$wp_customize,
 		'header_element_title',
 		array(
@@ -91,6 +91,27 @@ $wp_customize->add_control(
 );
 
 // Header element.
+// Header menu.
+$wp_customize->add_setting(
+	'woostify_setting[header_primary_menu]',
+	array(
+		'type'      => 'option',
+		'default'   => $defaults['header_primary_menu'],
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[header_primary_menu]',
+		array(
+			'type'     => 'checkbox',
+			'label'    => __( 'Header Primary Menu', 'woostify' ),
+			'section'  => 'woostify_header',
+			'settings' => 'woostify_setting[header_primary_menu]',
+		)
+	)
+);
+
 // Search form.
 $wp_customize->add_setting(
 	'woostify_setting[header_search_form]',

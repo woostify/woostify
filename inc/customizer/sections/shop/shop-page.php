@@ -79,7 +79,7 @@ $wp_customize->add_control(
 // Product meta title.
 $wp_customize->add_setting( 'shop_page_product_meta_title' );
 $wp_customize->add_control(
-	new Arbitrary_Woostify_Control(
+	new Woostify_Divider_Control(
 		$wp_customize,
 		'shop_page_product_meta_title',
 		array(

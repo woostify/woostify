@@ -68,12 +68,14 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					// Header.
 					'header_layout'                        => 'layout-1',
 					'header_background_color'              => '#ffffff',
+					'header_primary_menu'                  => true,
 					'header_search_form'                   => false,
 					'header_search_only_product'           => false,
 					'header_account_icon'                  => true,
 					'header_shop_cart_icon'                => true,
 
 					// Footer.
+					'footer_disable'                       => false,
 					'footer_column'                        => 0,
 					'footer_background_color'              => '#eeeeec',
 					'footer_heading_color'                 => '#2b2b2b',
@@ -152,8 +154,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/override-defaults.php';
 
 			// Custom controls.
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/switch/class-woostify-switch-control.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/radio-image/class-woostify-customizer-control-radio-image.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/divider/class-woostify-customizer-control-arbitrary.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/divider/class-woostify-divider-control.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/typography/class-woostify-typography-customize-control.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/range/class-woostify-range-customize-control.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/woostify-pro/class-woostify-get-pro-control.php';

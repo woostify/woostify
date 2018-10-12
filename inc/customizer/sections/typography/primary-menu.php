@@ -84,7 +84,7 @@ $wp_customize->add_control(
 // Parent menu divider.
 $wp_customize->add_setting( 'parent_menu_divider' );
 $wp_customize->add_control(
-	new Arbitrary_Woostify_Control(
+	new Woostify_Divider_Control(
 		$wp_customize,
 		'parent_menu_divider',
 		array(
@@ -183,7 +183,7 @@ $wp_customize->add_control(
 // Submenu divider.
 $wp_customize->add_setting( 'sub_menu_divider' );
 $wp_customize->add_control(
-	new Arbitrary_Woostify_Control(
+	new Woostify_Divider_Control(
 		$wp_customize,
 		'sub_menu_divider',
 		array(

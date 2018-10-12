@@ -12,14 +12,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * The arbitrary control class
  */
-class Arbitrary_Woostify_Control extends WP_Customize_Control {
+class Woostify_Divider_Control extends WP_Customize_Control {
 
 	/**
 	 * The settings var
 	 *
 	 * @var string $settings the blog name.
 	 */
-	public $settings    = 'blogname';
+	public $settings = 'blogname';
 
 	/**
 	 * The description var

@@ -44,11 +44,23 @@ if ( ! function_exists( 'woostify_is_woocommerce_activated' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_theme_name' ) ) {
+	/**
+	 * Get theme name.
+	 *
+	 * @return string Theme Name.
+	 */
+	function woostify_theme_name() {
+
+		$theme_name = __( 'Woostify', 'woostify' );
+
+		return apply_filters( 'woostify_theme_name', $theme_name );
+	}
+}
+
 if ( ! function_exists( 'woostify_do_shortcode' ) ) {
 	/**
 	 * Call a shortcode function by tag name.
-	 *
-	 * @since  1.0
 	 *
 	 * @param string $tag     The shortcode whose function to call.
 	 * @param array  $atts    The attributes to pass to the shortcode function. Optional.
@@ -74,7 +86,6 @@ if ( ! function_exists( 'woostify_sanitize_choices' ) ) {
 	 *
 	 * @param array $input the available choices.
 	 * @param array $setting the setting object.
-	 * @since  1.0
 	 */
 	function woostify_sanitize_choices( $input, $setting ) {
 		// Ensure input is a slug.
@@ -97,7 +108,6 @@ if ( ! function_exists( 'woostify_sanitize_checkbox' ) ) {
 	 *
 	 * @param bool $checked Whether the checkbox is checked.
 	 * @return bool Whether the checkbox is checked.
-	 * @since  1.0
 	 */
 	function woostify_sanitize_checkbox( $checked ) {
 		return ( ( isset( $checked ) && true == $checked ) ? true : false );

@@ -3806,6 +3806,10 @@ dd {
   min-height: 70px;
 }
 
+.site-header .woostify-container:after {
+  content: none;
+}
+
 .site-header .logo {
   margin: 0;
 }

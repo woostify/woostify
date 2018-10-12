@@ -436,6 +436,22 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 	 * Display Primary Navigation
 	 */
 	function woostify_primary_navigation() {
+		// Customize disable primary menu.
+		$options        = woostify_options( false );
+		$disable_menu   = false == $options['header_primary_menu'] ? true : false;
+
+		// Metabox disable primary menu.
+		$page_id        = woostify_get_page_id();
+		$metabox_menu   = get_post_meta( $page_id, 'site-header-primary-menu', true );
+
+		if ( ! empty( $metabox_menu ) && 'disabled' == $metabox_menu ) {
+			$disable_menu = true;
+		}
+
+		// Return.
+		if ( true == $disable_menu ) {
+			return;
+		}
 		?>
 		<div class="site-navigation">
 			<?php do_action( 'woostify_before_main_nav' ); ?>
@@ -479,6 +495,20 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 	 * Display the page header
 	 */
 	function woostify_page_header() {
+		if ( is_page() ) {
+			$page_id            = woostify_get_page_id();
+			$metabox_page_title = get_post_meta( $page_id, 'site-post-title', true );
+			$disable_page_title = false;
+
+			if ( ! empty( $metabox_page_title ) && 'disabled' == $metabox_page_title ) {
+				$disable_page_title = true;
+			}
+
+			// Return.
+			if ( true == $disable_page_title ) {
+				return;
+			}
+		}
 		?>
 		<header class="entry-header page-header">
 			<?php
@@ -560,9 +590,22 @@ if ( ! function_exists( 'woostify_post_title' ) ) {
 	 * Display the post header with a link to the single post
 	 */
 	function woostify_post_title() {
-		$options = woostify_options( false );
+		$options            = woostify_options( false );
+
+		// Metabox disable footer.
+		$page_id            = woostify_get_page_id();
+		$metabox_post_title = get_post_meta( $page_id, 'site-post-title', true );
+		$disable_post_title = false;
+
+		if ( ! empty( $metabox_post_title ) && 'disabled' == $metabox_post_title ) {
+			$disable_post_title = true;
+		}
 
 		if ( is_single() ) {
+			if ( true == $disable_post_title ) {
+				return;
+			}
+
 			if ( true == $options['blog_single_title'] ) {
 				the_title( '<h1 class="entry-title">', '</h1>' );
 			}
@@ -892,16 +935,12 @@ if ( ! function_exists( 'woostify_is_product_archive' ) ) {
 	 * @return boolean
 	 */
 	function woostify_is_product_archive() {
-		if ( ! class_exists( 'woocommerce' ) ) {
+		if ( ! class_exists( 'woocommerce' ) || ! woostify_is_woocommerce_activated() ) {
 			return false;
 		}
 
-		if ( woostify_is_woocommerce_activated() ) {
-			if ( is_shop() || is_product_taxonomy() || is_product_category() || is_product_tag() ) {
-				return true;
-			} else {
-				return false;
-			}
+		if ( is_shop() || is_product_taxonomy() || is_product_category() || is_product_tag() ) {
+			return true;
 		} else {
 			return false;
 		}
@@ -1023,14 +1062,23 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 	 */
 	function woostify_sidebar_class() {
 		// All theme options.
-		$options = woostify_options( false );
+		$options         = woostify_options( false );
 
-		$sidebar_default     = $options['sidebar_default'];
-		$sidebar_blog        = $options['sidebar_blog'];
-		$sidebar_blog_single = $options['sidebar_blog_single'];
-		$sidebar_shop        = $options['sidebar_shop'];
-		$sidebar_shop_single = $options['sidebar_shop_single'];
+		// Metabox options.
+		$page_id         = woostify_get_page_id();
+		$metabox_sidebar = get_post_meta( $page_id, 'site-sidebar', true );
+
+		if ( empty( $metabox_sidebar ) ) {
+			$metabox_sidebar = 'default';
+		}
+
+		// Customize options.
 		$sidebar             = '';
+		$sidebar_default     = $options['sidebar_default'];
+		$sidebar_blog        = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_blog'];
+		$sidebar_blog_single = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_blog_single'];
+		$sidebar_shop        = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop'];
+		$sidebar_shop_single = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop_single'];
 
 		if ( true == woostify_is_product_archive() ) {
 			// Product archive.
@@ -1225,6 +1273,23 @@ if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_get_page_id' ) ) {
+	/**
+	 * Get page id
+	 *
+	 * @return int $page_id Page id
+	 */
+	function woostify_get_page_id() {
+		$page_id = get_queried_object_id();
+
+		if ( class_exists( 'woocommerce' ) && is_shop() ) {
+			$page_id = get_option( 'woocommerce_shop_page_id' );
+		}
+
+		return $page_id;
+	}
+}
+
 if ( ! function_exists( 'woostify_site_container' ) ) {
 
 	/**
@@ -1236,10 +1301,69 @@ if ( ! function_exists( 'woostify_site_container' ) ) {
 		$options = woostify_options( false );
 		$container = 'woostify-container';
 
-		if ( 'full-width' == $options['default_container'] ) {
-			$container .= ' container-fluid';
+		// Metabox.
+		$page_id                = woostify_get_page_id();
+		$metabox_container      = get_post_meta( $page_id, 'site-container', true );
+
+		if ( empty( $metabox_container ) ) {
+			$metabox_container = 'default';
+		}
+
+		if ( 'default' != $metabox_container ) {
+			if ( 'full-width' == $metabox_container ) {
+				$container = 'woostify-container container-fluid';
+			}
+		} else {
+			if ( 'full-width' == $options['default_container'] ) {
+				$container = 'woostify-container container-fluid';
+			}
 		}
 
 		return $container;
+	}
+}
+
+if ( ! function_exists( 'woostify_site_footer' ) ) {
+
+	/**
+	 * Woostify footer
+	 */
+	function woostify_site_footer() {
+		$container = woostify_site_container();
+
+		// Customize disable footer.
+		$options        = woostify_options( false );
+		$disable_footer = true == $options['footer_disable'] ? true : false;
+
+		// Metabox disable footer.
+		$page_id        = woostify_get_page_id();
+		$metabox_footer = get_post_meta( $page_id, 'site-footer', true );
+
+		if ( ! empty( $metabox_footer ) && 'disabled' == $metabox_footer ) {
+			$disable_footer = true;
+		}
+
+		// Return.
+		if ( true == $disable_footer ) {
+			return;
+		}
+
+		?>
+			<footer id="colophon" class="site-footer">
+				<div class="<?php echo esc_attr( $container ); ?>">
+
+					<?php
+					/**
+					 * Functions hooked in to woostify_footer action
+					 *
+					 * @hooked woostify_footer_widgets - 10
+					 * @hooked woostify_credit         - 20
+					 */
+					do_action( 'woostify_footer_content' );
+					?>
+
+				</div>
+			</footer>
+		<?php
 	}
 }

@@ -121,7 +121,7 @@ $wp_customize->add_control(
 // Heading font size divider.
 $wp_customize->add_setting( 'heading_font_divider' );
 $wp_customize->add_control(
-	new Arbitrary_Woostify_Control(
+	new Woostify_Divider_Control(
 		$wp_customize,
 		'heading_font_divider',
 		array(

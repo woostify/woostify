@@ -11,7 +11,7 @@ $defaults = woostify_options();
 // Blog single structure title.
 $wp_customize->add_setting( 'blog_single_structure_title' );
 $wp_customize->add_control(
-	new Arbitrary_Woostify_Control(
+	new Woostify_Divider_Control(
 		$wp_customize,
 		'blog_single_structure_title',
 		array(
@@ -89,7 +89,7 @@ $wp_customize->add_control(
 // Blog single post meta title.
 $wp_customize->add_setting( 'blog_single_post_meta_title' );
 $wp_customize->add_control(
-	new Arbitrary_Woostify_Control(
+	new Woostify_Divider_Control(
 		$wp_customize,
 		'blog_single_post_meta_title',
 		array(

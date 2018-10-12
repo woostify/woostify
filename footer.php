@@ -7,29 +7,15 @@
  * @package woostify
  */
 
-	do_action( 'woostify_content_bottom' );
-	do_action( 'woostify_before_footer' );
-	$container = woostify_site_container();
+do_action( 'woostify_content_bottom' );
 ?>
 			</div><?php // #content. ?>
 
-		<footer id="colophon" class="site-footer">
-			<div class="<?php echo esc_attr( $container ); ?>">
-
-				<?php
-				/**
-				 * Functions hooked in to woostify_footer action
-				 *
-				 * @hooked woostify_footer_widgets - 10
-				 * @hooked woostify_credit         - 20
-				 */
-				do_action( 'woostify_footer' );
-				?>
-
-			</div>
-		</footer>
-
-		<?php do_action( 'woostify_after_footer' ); ?>
+		<?php
+			do_action( 'woostify_before_footer' );
+			do_action( 'woostify_site_footer' );
+			do_action( 'woostify_after_footer' );
+		?>
 
 	</div><?php // #view. ?>
 

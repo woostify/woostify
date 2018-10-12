@@ -57,7 +57,8 @@ class Woostify_Custom_Radio_Image_Control extends WP_Customize_Control {
 			return;
 		}
 
-		$name = '_customize-radio-' . $this->id; ?>
+		$name = '_customize-radio-' . $this->id;
+		?>
 
 		<span class="customize-control-title">
 			<?php echo esc_attr( $this->label ); ?>

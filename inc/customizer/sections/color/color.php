@@ -8,6 +8,34 @@
 // Default values.
 $defaults = woostify_options();
 
+/*
+$wp_customize->add_setting(
+	'woostify_setting[theme_switch]',
+	array(
+		'default'           => true,
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'type'              => 'option',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[theme_switch]',
+		array(
+			'label'    => __( 'On or Off', 'woostify' ),
+			'section'  => 'woostify_color',
+			'settings' => 'woostify_setting[theme_switch]',
+			'type'     => 'switch',
+			'choices' => array(
+				0 => __( 'No', 'woostify' ),
+				1 => __( 'Yes', 'woostify' ),
+			),
+		)
+	)
+);
+*/
+
 // Theme color.
 $wp_customize->add_setting(
 	'woostify_setting[theme_color]',

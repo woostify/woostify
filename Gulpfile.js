@@ -68,19 +68,19 @@ gulp.task( 'pot', () => {
 gulp.task( 'minJs', () => {
 	gulp.src( [ 'assets/js/**/*.js', '!assets/js/**/*.min.js'] )
 		.pipe( uglify() )
+		.on( 'error', function ( err ) { console.log( err ) } )
 		.pipe( rename( { suffix: '.min' } ) )
 		.pipe( gulp.dest( 'assets/js' ) );
 } );
 
 /* .POT */
-gulp.task( 'createPot', [ 'browser-sync' ], () => {
-	gulp.watch( '**/*.php', [ 'pot' ] );
-} );
+
 
 /*WATCH*/
 gulp.task( 'watch', [ 'browser-sync' ], () => {
 	gulp.watch( [ 'assets/css/sass/**/*.scss', 'style.scss' ], [ 'sass' ] );
 	gulp.watch( [ 'assets/js/**/*.js', '!assets/js/**/*.min.js'], ['minJs'] );
+	gulp.watch( '**/*.php', ['pot'] );
 } );
 
 /* DEFAULT TASK */
