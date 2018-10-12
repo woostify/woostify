@@ -832,7 +832,7 @@ msgstr ""
 msgid "Blog List Structure"
 msgstr ""
 
-#: inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:142, inc/customizer/sections/footer/footer.php:149
+#: inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:140, inc/customizer/sections/footer/footer.php:149
 msgid "Text Color"
 msgstr ""
 
@@ -848,23 +848,35 @@ msgstr ""
 msgid "Hover Background Color"
 msgstr ""
 
-#: inc/customizer/sections/color/color.php:54
+#: inc/customizer/sections/color/color.php:25
+msgid "On or Off"
+msgstr ""
+
+#: inc/customizer/sections/color/color.php:30
+msgid "No"
+msgstr ""
+
+#: inc/customizer/sections/color/color.php:31
+msgid "Yes"
+msgstr ""
+
+#: inc/customizer/sections/color/color.php:52
 msgid "Theme Color"
 msgstr ""
 
-#: inc/customizer/sections/color/color.php:76
+#: inc/customizer/sections/color/color.php:74
 msgid "Parent Menu Color"
 msgstr ""
 
-#: inc/customizer/sections/color/color.php:98
+#: inc/customizer/sections/color/color.php:96
 msgid "Sub-menu Color"
 msgstr ""
 
-#: inc/customizer/sections/color/color.php:120, inc/customizer/sections/footer/footer.php:105
+#: inc/customizer/sections/color/color.php:118, inc/customizer/sections/footer/footer.php:105
 msgid "Heading Color"
 msgstr ""
 
-#: inc/customizer/sections/color/color.php:164
+#: inc/customizer/sections/color/color.php:162
 msgid "Link / Accent Color"
 msgstr ""
 
