@@ -19,14 +19,15 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Switch_Control(
 		$wp_customize,
 		'woostify_setting[single_add_to_cart_ajax]',
 		array(
-			'label'       => __( 'Ajax Single Add To Cart', 'woostify' ),
-			'section'     => 'woostify_shop_single',
-			'type'        => 'checkbox',
-			'settings'    => 'woostify_setting[single_add_to_cart_ajax]',
+			'label'        => __( 'Ajax Single Add To Cart', 'woostify' ),
+			'section'      => 'woostify_shop_single',
+			'settings'     => 'woostify_setting[single_add_to_cart_ajax]',
+			'left_switch'  => __( 'No', 'woostify' ),
+			'right_switch' => __( 'Yes', 'woostify' ),
 		)
 	)
 );

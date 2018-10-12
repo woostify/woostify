@@ -89,8 +89,8 @@ class Woostify_Switch_Control extends WP_Customize_Control {
 				<span class="switch-label right-switch"><?php echo esc_attr( $this->right_switch ); ?></span>
 			</div>
 
-			<?php if ( ! empty( $description ) ) { ?>
-				<span class="description customize-control-description"><?php echo esc_html( $description ); ?></span>
+			<?php if ( ! empty( $desc ) ) { ?>
+				<span class="description customize-control-description"><?php echo esc_html( $desc ); ?></span>
 			<?php } ?>
 		</div>
 

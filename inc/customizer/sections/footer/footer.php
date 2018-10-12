@@ -19,14 +19,15 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Switch_Control(
 		$wp_customize,
 		'woostify_setting[footer_disable]',
 		array(
-			'label'    => __( 'Disable Footer', 'woostify' ),
-			'settings' => 'woostify_setting[footer_disable]',
-			'section'  => 'woostify_footer',
-			'type'     => 'checkbox',
+			'label'        => __( 'Disable Footer', 'woostify' ),
+			'settings'     => 'woostify_setting[footer_disable]',
+			'section'      => 'woostify_footer',
+			'left_switch'  => __( 'No', 'woostify' ),
+			'right_switch' => __( 'Yes', 'woostify' ),
 		)
 	)
 );
