@@ -40,7 +40,12 @@ $wp_customize->add_control(
 );
 
 // Blog sidebar divider.
-$wp_customize->add_setting( 'blog_sidebar_divider' );
+$wp_customize->add_setting(
+	'blog_sidebar_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new Woostify_Divider_Control(
 		$wp_customize,
@@ -119,7 +124,12 @@ $wp_customize->add_control(
 
 if ( class_exists( 'woocommerce' ) ) {
 	// woocommerce divider.
-	$wp_customize->add_setting( 'woocommerce_sidebar_divider' );
+	$wp_customize->add_setting(
+		'woocommerce_sidebar_divider',
+		array(
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
 	$wp_customize->add_control(
 		new Woostify_Divider_Control(
 			$wp_customize,

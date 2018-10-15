@@ -105,7 +105,7 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 					$button = array(
 						'message' => esc_attr__( 'Install now', 'woostify' ),
 						'url'     => $url,
-						'classes' => array( 'woostify-button', 'sf-install-now', 'install-now', 'install-' . $plugin_slug ),
+						'classes' => array( 'woostify-button', 'woostify-install-now', 'install-now', 'install-' . $plugin_slug ),
 					);
 
 					if ( '' !== $install ) {
@@ -120,7 +120,7 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 				$button['classes'] = implode( ' ', $button['classes'] );
 
 				?>
-				<span class="sf-plugin-card plugin-card-<?php echo esc_attr( $plugin_slug ); ?>">
+				<span class="woostify-plugin-card plugin-card-<?php echo esc_attr( $plugin_slug ); ?>">
 					<a href="<?php echo esc_url( $button['url'] ); ?>" class="<?php echo esc_attr( $button['classes'] ); ?>" data-originaltext="<?php echo esc_attr( $button['message'] ); ?>" data-name="<?php echo esc_attr( $plugin_name ); ?>" data-slug="<?php echo esc_attr( $plugin_slug ); ?>" aria-label="<?php echo esc_attr( $button['message'] ); ?>"><?php echo esc_attr( $button['message'] ); ?></a>
 				</span>
 				<a href="https://wordpress.org/plugins/<?php echo esc_attr( $plugin_slug ); ?>" target="_blank"><?php esc_attr_e( 'Learn more', 'woostify' ); ?></a>

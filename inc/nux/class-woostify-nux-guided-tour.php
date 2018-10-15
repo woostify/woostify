@@ -18,8 +18,6 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 	class Woostify_NUX_Guided_Tour {
 		/**
 		 * Setup class.
-		 *
-		 * @since 2.2.0
 		 */
 		public function __construct() {
 			add_action( 'admin_init', array( $this, 'customizer' ) );
@@ -56,7 +54,7 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_style(
-				'sp-guided-tour',
+				'woostify-guided-tour',
 				WOOSTIFY_THEME_URI . 'assets/css/admin/customizer/customizer.css',
 				array(),
 				$woostify_version,
@@ -64,7 +62,7 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 			);
 
 			wp_enqueue_script(
-				'sf-guided-tour',
+				'woostify-guided-tour',
 				WOOSTIFY_THEME_URI . 'assets/js/admin/customizer' . $suffix . '.js',
 				array( 'jquery', 'wp-backbone' ),
 				$woostify_version,
@@ -72,7 +70,7 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 			);
 
 			wp_localize_script(
-				'sf-guided-tour',
+				'woostify-guided-tour',
 				'_wpCustomizeSFGuidedTourSteps',
 				$this->guided_tour_steps()
 			);
@@ -85,13 +83,13 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 		 */
 		public function print_templates() {
 			?>
-			<script type="text/html" id="tmpl-sf-guided-tour-step">
-				<div class="sf-guided-tour-step">
+			<script type="text/html" id="tmpl-woostify-guided-tour-step">
+				<div class="woostify-guided-tour-step">
 					<# if ( data.title ) { #>
 						<h2>{{ data.title }}</h2>
 					<# } #>
 					{{{ data.message }}}
-					<a class="sf-nux-button" href="#">
+					<a class="woostify-nux-button" href="#">
 						<# if ( data.button_text ) { #>
 							{{ data.button_text }}
 						<# } else { #>
@@ -99,7 +97,7 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 						<# } #>
 					</a>
 					<# if ( ! data.last_step ) { #>
-						<a class="sf-guided-tour-skip" href="#">
+						<a class="woostify-guided-tour-skip" href="#">
 						<# if ( data.first_step ) { #>
 							<?php esc_attr_e( 'No thanks, skip the tour', 'woostify' ); ?>
 						<# } else { #>

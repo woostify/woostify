@@ -77,16 +77,16 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 			<div class="woostify-wrap">
 				<section class="woostify-welcome-nav">
-					<span class="woostify-welcome-nav__version">woostify <?php echo esc_attr( $woostify_version ); ?></span>
+					<span class="woostify-welcome-nav__version">Woostify <?php echo esc_attr( $woostify_version ); ?></span>
 					<ul>
-						<li><a href="//wordpress.org/support/theme/woostify" target="_blank"><?php esc_attr_e( 'Support', 'woostify' ); ?></a></li>
-						<li><a href="//docs.woocommerce.com/documentation/themes/woostify/" target="_blank"><?php esc_attr_e( 'Documentation', 'woostify' ); ?></a></li>
-						<li><a href="//woocommerce.wordpress.com/category/woostify/" target="_blank"><?php esc_attr_e( 'Development blog', 'woostify' ); ?></a></li>
+						<li><a href="//woostify.com/contact/" target="_blank"><?php esc_attr_e( 'Support', 'woostify' ); ?></a></li>
+						<li><a href="//woostify.com/docs/" target="_blank"><?php esc_attr_e( 'Documentation', 'woostify' ); ?></a></li>
+						<li><a href="//woostify.com/pricing/" target="_blank"><?php esc_attr_e( 'Development Blog', 'woostify' ); ?></a></li>
 					</ul>
 				</section>
 
 				<div class="woostify-logo">
-					<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/woostify-icon.svg' ); ?>" alt="woostify" />
+					<span class="dashicons dashicons-store"></span>
 				</div>
 
 				<div class="woostify-intro">
@@ -96,7 +96,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					 */
 					$referrer = wp_get_referer();
 
-					if ( strpos( $referrer, 'sf_starter_content' ) !== false ) {
+					if ( false !== strpos( $referrer, 'woostify_starter_content' ) ) {
 						/* translators: 1: HTML, 2: HTML */
 						echo '<h1>' . sprintf( esc_attr__( 'Setup complete %1$sYour Woostify adventure begins now 🚀%2$s ', 'woostify' ), '<span>', '</span>' ) . '</h1>';
 						echo '<p>' . esc_attr__( 'One more thing... You might be interested in the following Woostify extensions and designs.', 'woostify' ) . '</p>';
@@ -110,99 +110,102 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					<div class="woostify-enhance-content">
 						<div class="woostify-enhance__column woostify-bundle">
 							<h3><?php esc_attr_e( 'Link to Customizer Settings', 'woostify' ); ?></h3>
-
 							<div class="wst-quick-setting-section">
-								<div class="wst-quick-links">
-									<ul class="wst-flex">
-										<li class="">
-											<span class="dashicons dashicons-format-image"></span>
-											<a class="wst-quick-setting-title" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bcontrol%5D=custom_logo' ); ?>" target="_blank" rel="noopener">
-												<?php esc_html_e( 'Upload Logo', 'woostify' ); ?>
+								<ul class="wst-flex">
+									<li class="link-to-customie-item">
+										<span class="dashicons dashicons-format-image"></span>
+										<a class="wst-quick-setting-title" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bcontrol%5D=custom_logo' ); ?>" target="_blank" rel="noopener">
+											<?php esc_html_e( 'Upload Logo', 'woostify' ); ?>
+										</a>
+									</li>
+									<li class="link-to-customie-item">
+										<span class="dashicons dashicons-admin-appearance"></span>
+										<a class="wst-quick-setting-title" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bsection%5D=woostify_color' ); ?>" target="_blank" rel="noopener">
+										<?php esc_html_e( 'Set Colors', 'woostify' ); ?>
+									</a>
+									</li>
+									<li class="link-to-customie-item">
+										<span class="dashicons dashicons-layout"></span>
+										<a class="wst-quick-setting-title" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bpanel%5D=woostify_layout' ); ?>" target="_blank" rel="noopener">
+											<?php esc_html_e( 'Layout', 'woostify' ); ?>
+										</a>
+									</li>
+									<li class="link-to-customie-item">
+										<span class="dashicons dashicons-admin-customizer"></span>
+										<a class="wst-quick-setting-title" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bsection%5D=woostify_buttons' ); ?>" target="_blank" rel="noopener">
+										<?php esc_html_e( 'Buttons', 'woostify' ); ?>
+									</a>
+									<li class="link-to-customie-item">
+										<span class="dashicons dashicons-editor-paragraph"></span>
+										<a class="wst-quick-setting-title" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bpanel%5D=woostify_typography' ); ?>" target="_blank" rel="noopener">
+											<?php esc_html_e( 'Typography', 'woostify' ); ?>
+										</a>
+									</li>
+									<?php if ( class_exists( 'woocommerce' ) ) { ?>
+										<li class="link-to-customie-item">
+											<span class="dashicons dashicons-cart"></span>
+											<a class="wst-quick-setting-title" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bpanel%5D=woostify_shop' ); ?>" target="_blank" rel="noopener">
+												<?php esc_html_e( 'Shop', 'woostify' ); ?>
 											</a>
 										</li>
-										<li class="">
-											<span class="dashicons dashicons-admin-customizer"></span>
-											<a class="wst-quick-setting-title" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bpanel%5D=panel-colors-background' ); ?>" target="_blank" rel="noopener">
-											Set Colors
-										</a>
-										</li>
-										<li class="">
-											<span class="dashicons dashicons-admin-customizer"></span>
-											<a class="wst-quick-setting-title" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bpanel%5D=panel-colors-background' ); ?>" target="_blank" rel="noopener">Set Colors</a>
-										</li>
-										<li class="">
-											<span class="dashicons dashicons-admin-customizer"></span>
-											<a class="wst-quick-setting-title" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bpanel%5D=panel-colors-background' ); ?>" target="_blank" rel="noopener">Set Colors</a>
-										</li>
-									</ul>
-								</div>
+									<?php } ?>
+								</ul>
+
+								<p>
+									<a href="//woostify.com/pricing/" class="woostify-button" target="_blank"><?php esc_attr_e( 'Read more and purchase', 'woostify' ); ?></a>
+								</p>
 							</div>
-
-
-							<p>
-								<a href="//woocommerce.com/products/woostify-extensions-bundle/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Read more and purchase', 'woostify' ); ?></a>
-							</p>
 						</div>
 						<div class="woostify-enhance__column woostify-child-themes">
-							<h3><?php esc_attr_e( 'More Features Avaiable with Woostify Pro', 'woostify' ); ?></h3>
+							<h3>
+								<?php esc_attr_e( 'More Features Avaiable with Woostify Pro', 'woostify' ); ?>
+								<a class="woostify-learn-more" href="//woostify.com/pricing/" target="_blank"><?php esc_html_e( 'Learn more!', 'woostify' ); ?></a>
+							</h3>
 
-							<p>
-								<?php esc_attr_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify' ); ?>
-							</p>
+							<div class="wst-quick-setting-section">
+								<p>
+									<?php esc_attr_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify' ); ?>
+								</p>
 
-							<p>
-								<?php esc_attr_e( 'Each has been designed to serve a different industry - from fashion to food.', 'woostify' ); ?>
-							</p>
+								<p>
+									<?php esc_attr_e( 'Each has been designed to serve a different industry - from fashion to food.', 'woostify' ); ?>
+								</p>
 
-							<p>
-								<?php esc_attr_e( 'Of course they are all fully compatible with each Woostify extension.', 'woostify' ); ?>
-							</p>
+								<p>
+									<?php esc_attr_e( 'Of course they are all fully compatible with each Woostify extension.', 'woostify' ); ?>
+								</p>
 
-							<p>
-								<a href="//woocommerce.com/product-category/themes/woostify-child-theme-themes/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify' ); ?></a>
-							</p>
+								<p>
+									<a href="//woostify.com/pricing/" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify' ); ?></a>
+								</p>
+							</div>
 						</div>
 					</div>
+
 					<div class="woostify-enhance-sidebar">
 						<div class="woostify-enhance__column">
 							<h3><?php esc_attr_e( 'Alternate designs', 'woostify' ); ?></h3>
-							<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/child-themes.jpg' ); ?>" alt="woostify Powerpack" />
+							
 
-							<p>
-								<?php esc_attr_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify' ); ?>
-							</p>
+							<div class="wst-quick-setting-section">
+								<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/child-themes.jpg' ); ?>" alt="woostify Powerpack" />
 
-							<p>
-								<?php esc_attr_e( 'Each has been designed to serve a different industry - from fashion to food.', 'woostify' ); ?>
-							</p>
+								<p>
+									<?php esc_attr_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify' ); ?>
+								</p>
 
-							<p>
-								<?php esc_attr_e( 'Of course they are all fully compatible with each Woostify extension.', 'woostify' ); ?>
-							</p>
+								<p>
+									<?php esc_attr_e( 'Each has been designed to serve a different industry - from fashion to food.', 'woostify' ); ?>
+								</p>
 
-							<p>
-								<a href="//woocommerce.com/product-category/themes/woostify-child-theme-themes/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify' ); ?></a>
-							</p>
-						</div>
-						<div class="woostify-enhance__column">
-							<h3><?php esc_attr_e( 'Alternate designs', 'woostify' ); ?></h3>
-							<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/child-themes.jpg' ); ?>" alt="woostify Powerpack" />
+								<p>
+									<?php esc_attr_e( 'Of course they are all fully compatible with each Woostify extension.', 'woostify' ); ?>
+								</p>
 
-							<p>
-								<?php esc_attr_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify' ); ?>
-							</p>
-
-							<p>
-								<?php esc_attr_e( 'Each has been designed to serve a different industry - from fashion to food.', 'woostify' ); ?>
-							</p>
-
-							<p>
-								<?php esc_attr_e( 'Of course they are all fully compatible with each Woostify extension.', 'woostify' ); ?>
-							</p>
-
-							<p>
-								<a href="//woocommerce.com/product-category/themes/woostify-child-theme-themes/?utm_source=product&utm_medium=upsell&utm_campaign=woostifyaddons" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify' ); ?></a>
-							</p>
+								<p>
+										<a href="//woostify.com/pricing/" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify' ); ?></a>
+									</p>
+							</div>
 						</div>
 					</div>
 				</div>

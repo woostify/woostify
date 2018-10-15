@@ -6,7 +6,7 @@
 	}
 
 	$( function() {
-		$( document ).on( 'click', '.sf-install-now', function( event ) {
+		$( document ).on( 'click', '.woostify-install-now', function( event ) {
 			var $button = $( event.target );
 
 			if ( $button.hasClass( 'activate-now' ) ) {
@@ -23,7 +23,7 @@
 				wp.updates.requestFilesystemCredentials( event );
 
 				$( document ).on( 'credential-modal-cancel', function() {
-					var $message = $( '.sf-install-now.updating-message' );
+					var $message = $( '.woostify-install-now.updating-message' );
 
 					$message
 						.removeClass( 'updating-message' )

@@ -18,7 +18,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['body_font_family'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'sanitize_key',
 	)
 );
 
@@ -27,7 +27,7 @@ $wp_customize->add_setting(
 	'body_font_category',
 	array(
 		'default'           => $defaults['body_font_category'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'sanitize_key',
 		'type'              => 'option',
 	)
 );
@@ -88,7 +88,7 @@ $wp_customize->add_setting(
 	'woostify_setting[body_font_size]',
 	array(
 		'default'           => $defaults['body_font_size'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -123,7 +123,7 @@ $wp_customize->add_setting(
 	'woostify_setting[body_line_height]',
 	array(
 		'default'           => $defaults['body_line_height'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)

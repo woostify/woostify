@@ -1,8 +1,8 @@
-# Copyright (C) 2018 Haintheme
-# This file is distributed under the same license as the Haintheme package.
+# Copyright (C) 2018 Woostify
+# This file is distributed under the same license as the Woostify package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Haintheme\n"
+"Project-Id-Version: Woostify\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -103,17 +103,15 @@ msgstr ""
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Woocommerce Sidebar</strong></a> and dragging widgets into this widget area."
 msgstr ""
 
-#: sidebar.php:17
+#: sidebar.php:17, sidebar.php:32, sidebar.php:47
 msgid "Sidebar Widget"
 msgstr ""
 
 #. translators: 1: admin URL
-#: sidebar.php:23
+#. translators: 1: admin URL
+#. translators: 1: admin URL
+#: sidebar.php:23, sidebar.php:38, sidebar.php:53
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Main Sidebar</strong></a> and dragging widgets into this widget area."
-msgstr ""
-
-#: template-fullwidth.php:5
-msgid "Full width"
 msgstr ""
 
 #: inc/class-woostify.php:114, inc/nux/class-woostify-nux-starter-content.php:155
@@ -312,7 +310,7 @@ msgid "Documentation"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:84
-msgid "Development blog"
+msgid "Development Blog"
 msgstr ""
 
 #. translators: 1: HTML, 2: HTML
@@ -332,51 +330,75 @@ msgstr ""
 msgid "Link to Customizer Settings"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:120
+#: inc/admin/class-woostify-admin.php:118
 msgid "Upload Logo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:143
+#: inc/admin/class-woostify-admin.php:124
+msgid "Set Colors"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:130, inc/customizer/register-sections.php:15
+msgid "Layout"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:136, inc/customizer/register-sections.php:79
+msgid "Buttons"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:141, inc/customizer/register-sections.php:88
+msgid "Typography"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:148, inc/customizer/register-sections.php:126
+msgid "Shop"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:155
 msgid "Read more and purchase"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:147
+#: inc/admin/class-woostify-admin.php:161
 msgid "More Features Avaiable with Woostify Pro"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:150, inc/admin/class-woostify-admin.php:172, inc/admin/class-woostify-admin.php:192
+#: inc/admin/class-woostify-admin.php:162
+msgid "Learn more!"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:167, inc/admin/class-woostify-admin.php:194
 msgid "Quickly and easily transform your shops appearance with Woostify child themes."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:154, inc/admin/class-woostify-admin.php:176, inc/admin/class-woostify-admin.php:196
+#: inc/admin/class-woostify-admin.php:171, inc/admin/class-woostify-admin.php:198
 msgid "Each has been designed to serve a different industry - from fashion to food."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:158, inc/admin/class-woostify-admin.php:180, inc/admin/class-woostify-admin.php:200
+#: inc/admin/class-woostify-admin.php:175, inc/admin/class-woostify-admin.php:202
 msgid "Of course they are all fully compatible with each Woostify extension."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:162, inc/admin/class-woostify-admin.php:184, inc/admin/class-woostify-admin.php:204
+#: inc/admin/class-woostify-admin.php:179, inc/admin/class-woostify-admin.php:206
 msgid "Check 'em out"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:168, inc/admin/class-woostify-admin.php:188
+#: inc/admin/class-woostify-admin.php:187
 msgid "Alternate designs"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:235, inc/admin/class-woostify-plugin-install.php:74
+#: inc/admin/class-woostify-admin.php:238, inc/admin/class-woostify-plugin-install.php:74
 msgid "Activated"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:244, inc/admin/class-woostify-plugin-install.php:87
+#: inc/admin/class-woostify-admin.php:247, inc/admin/class-woostify-plugin-install.php:87
 msgid "Activate"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:259, inc/admin/class-woostify-plugin-install.php:106
+#: inc/admin/class-woostify-admin.php:262, inc/admin/class-woostify-plugin-install.php:106
 msgid "Install now"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:266, inc/admin/class-woostify-plugin-install.php:126
+#: inc/admin/class-woostify-admin.php:269, inc/admin/class-woostify-plugin-install.php:126
 msgid "Learn more"
 msgstr ""
 
@@ -456,10 +478,6 @@ msgstr ""
 msgid "Site Container"
 msgstr ""
 
-#: inc/customizer/register-sections.php:15
-msgid "Layout"
-msgstr ""
-
 #: inc/customizer/register-sections.php:25
 msgid "Header"
 msgstr ""
@@ -468,7 +486,7 @@ msgstr ""
 msgid "Blog"
 msgstr ""
 
-#: inc/customizer/register-sections.php:43, inc/customizer/sections/sidebar/sidebar.php:103
+#: inc/customizer/register-sections.php:43, inc/customizer/sections/sidebar/sidebar.php:108
 msgid "Blog Single"
 msgstr ""
 
@@ -478,14 +496,6 @@ msgstr ""
 
 #: inc/customizer/register-sections.php:70
 msgid "Color"
-msgstr ""
-
-#: inc/customizer/register-sections.php:79
-msgid "Buttons"
-msgstr ""
-
-#: inc/customizer/register-sections.php:88
-msgid "Typography"
 msgstr ""
 
 #: inc/customizer/register-sections.php:97
@@ -500,117 +510,113 @@ msgstr ""
 msgid "Heading"
 msgstr ""
 
-#: inc/customizer/register-sections.php:126
-msgid "Shop"
-msgstr ""
-
 #: inc/customizer/register-sections.php:135
 msgid "Shop Archive"
 msgstr ""
 
-#: inc/customizer/register-sections.php:144, inc/customizer/sections/sidebar/sidebar.php:182
+#: inc/customizer/register-sections.php:144, inc/customizer/sections/sidebar/sidebar.php:192
 msgid "Shop Single"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:99
+#: inc/nux/class-woostify-nux-admin.php:102
 msgid "Thanks for installing Woostify, you rock! 🤘"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:100
+#: inc/nux/class-woostify-nux-admin.php:103
 msgid "To enable eCommerce features you need to install the WooCommerce plugin."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:101
+#: inc/nux/class-woostify-nux-admin.php:104
 msgid "WooCommerce activated"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:101
+#: inc/nux/class-woostify-nux-admin.php:104
 msgid "Activate WooCommerce"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:101
+#: inc/nux/class-woostify-nux-admin.php:104
 msgid "Install WooCommerce"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:105
+#: inc/nux/class-woostify-nux-admin.php:108
 msgid "Design your store 🎨"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:109
+#: inc/nux/class-woostify-nux-admin.php:112
 msgid "Before you add your first product let's design your store. We'll add some example products for you. When you're ready let's get started by adding your logo."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:111
+#: inc/nux/class-woostify-nux-admin.php:114
 msgid "You've set up WooCommerce, now it's time to give it some style! Let's get started by entering the Customizer and adding your logo."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:131
+#: inc/nux/class-woostify-nux-admin.php:134
 msgid "Add example products"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:136, inc/nux/class-woostify-nux-guided-tour.php:127
+#: inc/nux/class-woostify-nux-admin.php:139, inc/nux/class-woostify-nux-guided-tour.php:125
 msgid "Let's go!"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:98, inc/woocommerce/class-woostify-woocommerce.php:299
+#: inc/nux/class-woostify-nux-guided-tour.php:96, inc/woocommerce/class-woostify-woocommerce.php:299
 msgid "Next"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:104
+#: inc/nux/class-woostify-nux-guided-tour.php:102
 msgid "No thanks, skip the tour"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:106
+#: inc/nux/class-woostify-nux-guided-tour.php:104
 msgid "Skip this step"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:124
+#: inc/nux/class-woostify-nux-guided-tour.php:122
 msgid "Welcome to the Customizer"
 msgstr ""
 
 #. translators: %s: 'End Of Line' symbol
-#: inc/nux/class-woostify-nux-guided-tour.php:126
+#: inc/nux/class-woostify-nux-guided-tour.php:124
 msgid "Here you can control the overall look and feel of your store.%sTo get started, let's add your logo"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:133
+#: inc/nux/class-woostify-nux-guided-tour.php:131
 msgid "Add your logo"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:134
+#: inc/nux/class-woostify-nux-guided-tour.php:132
 msgid "Open the Site Identity Panel, then click the 'Select Logo' button to upload your logo."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:140
+#: inc/nux/class-woostify-nux-guided-tour.php:138
 msgid "Customize your navigation menus"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:141
+#: inc/nux/class-woostify-nux-guided-tour.php:139
 msgid "Organize your menus by adding Pages, Categories, Tags, and Custom Links."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:146
+#: inc/nux/class-woostify-nux-guided-tour.php:144
 msgid "Choose your accent color"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:147
+#: inc/nux/class-woostify-nux-guided-tour.php:145
 msgid "In the typography panel you can specify an accent color which will be applied to things like links and star ratings. We recommend using your brand color for this setting."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:152
+#: inc/nux/class-woostify-nux-guided-tour.php:150
 msgid "Color your buttons"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:153
+#: inc/nux/class-woostify-nux-guided-tour.php:151
 msgid "Choose colors for your button backgrounds and text. Once again, brand colors are good choices here."
 msgstr ""
 
 #. translators: 1: open <strong> tag, 2: close <strong> tag, 3: 'End Of Line' symbol
-#: inc/nux/class-woostify-nux-guided-tour.php:160
+#: inc/nux/class-woostify-nux-guided-tour.php:158
 msgid "All set! Remember to %1$ssave & publish%2$s your changes when you're done.%3$sYou can return to your dashboard by clicking the X in the top left corner."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:162
+#: inc/nux/class-woostify-nux-guided-tour.php:160
 msgid "Done"
 msgstr ""
 
@@ -792,51 +798,51 @@ msgstr ""
 msgid "Variants"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:21
+#: inc/customizer/sections/blog/blog-single.php:26
 msgid "Blog Single Structure"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:40, inc/customizer/sections/blog/blog.php:40
+#: inc/customizer/sections/blog/blog-single.php:46, inc/customizer/sections/blog/blog.php:46
 msgid "Featured Image"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:61, inc/customizer/sections/blog/blog.php:61
+#: inc/customizer/sections/blog/blog-single.php:68, inc/customizer/sections/blog/blog.php:68
 msgid "Post Title"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:82
+#: inc/customizer/sections/blog/blog-single.php:90
 msgid "Related Post"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:99, inc/customizer/sections/blog/blog.php:78
+#: inc/customizer/sections/blog/blog-single.php:112, inc/customizer/sections/blog/blog.php:90
 msgid "Blog Post Meta"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:118, inc/customizer/sections/blog/blog.php:97
+#: inc/customizer/sections/blog/blog-single.php:132, inc/customizer/sections/blog/blog.php:110
 msgid "Publish Date"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:139, inc/customizer/sections/blog/blog.php:118
+#: inc/customizer/sections/blog/blog-single.php:154, inc/customizer/sections/blog/blog.php:132
 msgid "Author"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:160, inc/customizer/sections/blog/blog.php:139
+#: inc/customizer/sections/blog/blog-single.php:176, inc/customizer/sections/blog/blog.php:154
 msgid "Category"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:181, inc/customizer/sections/blog/blog.php:160
+#: inc/customizer/sections/blog/blog-single.php:198, inc/customizer/sections/blog/blog.php:176
 msgid "Comments"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog.php:21
+#: inc/customizer/sections/blog/blog.php:26
 msgid "Blog List Structure"
 msgstr ""
 
-#: inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:140, inc/customizer/sections/footer/footer.php:149
+#: inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:114, inc/customizer/sections/footer/footer.php:150
 msgid "Text Color"
 msgstr ""
 
-#: inc/customizer/sections/buttons/button.php:48, inc/customizer/sections/footer/footer.php:83, inc/customizer/sections/header/header.php:70
+#: inc/customizer/sections/buttons/button.php:48, inc/customizer/sections/footer/footer.php:84, inc/customizer/sections/header/header.php:75
 msgid "Background Color"
 msgstr ""
 
@@ -848,47 +854,43 @@ msgstr ""
 msgid "Hover Background Color"
 msgstr ""
 
-#: inc/customizer/sections/color/color.php:25
-msgid "On or Off"
-msgstr ""
-
-#: inc/customizer/sections/color/color.php:30
-msgid "No"
-msgstr ""
-
-#: inc/customizer/sections/color/color.php:31
-msgid "Yes"
-msgstr ""
-
-#: inc/customizer/sections/color/color.php:52
+#: inc/customizer/sections/color/color.php:26
 msgid "Theme Color"
 msgstr ""
 
-#: inc/customizer/sections/color/color.php:74
+#: inc/customizer/sections/color/color.php:48
 msgid "Parent Menu Color"
 msgstr ""
 
-#: inc/customizer/sections/color/color.php:96
+#: inc/customizer/sections/color/color.php:70
 msgid "Sub-menu Color"
 msgstr ""
 
-#: inc/customizer/sections/color/color.php:118, inc/customizer/sections/footer/footer.php:105
+#: inc/customizer/sections/color/color.php:92, inc/customizer/sections/footer/footer.php:106
 msgid "Heading Color"
 msgstr ""
 
-#: inc/customizer/sections/color/color.php:162
+#: inc/customizer/sections/color/color.php:136
 msgid "Link / Accent Color"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:49
+#: inc/customizer/sections/footer/footer.php:29, inc/customizer/sections/shop/shop-single.php:29
+msgid "No"
+msgstr ""
+
+#: inc/customizer/sections/footer/footer.php:30, inc/customizer/sections/shop/shop-single.php:30
+msgid "Yes"
+msgstr ""
+
+#: inc/customizer/sections/footer/footer.php:50
 msgid "Widget Columns"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:127
+#: inc/customizer/sections/footer/footer.php:128
 msgid "Link Color"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:171
+#: inc/customizer/sections/footer/footer.php:172
 msgid "Custom Text"
 msgstr ""
 
@@ -896,27 +898,27 @@ msgstr ""
 msgid "Header Layout"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:88
+#: inc/customizer/sections/header/header.php:98
 msgid "Elements"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:108
+#: inc/customizer/sections/header/header.php:119
 msgid "Header Primary Menu"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:129
+#: inc/customizer/sections/header/header.php:141
 msgid "Search Form"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:152
+#: inc/customizer/sections/header/header.php:165
 msgid "Search Only Product"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:173
+#: inc/customizer/sections/header/header.php:187
 msgid "Account Icon"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:194
+#: inc/customizer/sections/header/header.php:209
 msgid "Shopping Cart Icon"
 msgstr ""
 
@@ -928,27 +930,27 @@ msgstr ""
 msgid "Product Per Page"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:89
+#: inc/customizer/sections/shop/shop-page.php:94
 msgid "Product Meta"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:108
+#: inc/customizer/sections/shop/shop-page.php:114
 msgid "Product Title"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:129
+#: inc/customizer/sections/shop/shop-page.php:136
 msgid "Product Category"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:150
+#: inc/customizer/sections/shop/shop-page.php:158
 msgid "Product Rating"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:171
+#: inc/customizer/sections/shop/shop-page.php:180
 msgid "Product Add To Cart Button"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:192
+#: inc/customizer/sections/shop/shop-page.php:202
 msgid "Product Price"
 msgstr ""
 
@@ -956,31 +958,31 @@ msgstr ""
 msgid "Ajax Single Add To Cart"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:49
+#: inc/customizer/sections/shop/shop-single.php:50
 msgid "Content Background"
 msgstr ""
 
-#: inc/customizer/sections/sidebar/sidebar.php:26, inc/customizer/sections/sidebar/sidebar.php:78, inc/customizer/sections/sidebar/sidebar.php:110, inc/customizer/sections/sidebar/sidebar.php:157, inc/customizer/sections/sidebar/sidebar.php:189
+#: inc/customizer/sections/sidebar/sidebar.php:26, inc/customizer/sections/sidebar/sidebar.php:83, inc/customizer/sections/sidebar/sidebar.php:115, inc/customizer/sections/sidebar/sidebar.php:167, inc/customizer/sections/sidebar/sidebar.php:199
 msgid "Default"
 msgstr ""
 
-#: inc/customizer/sections/sidebar/sidebar.php:33, inc/customizer/sections/sidebar/sidebar.php:79, inc/customizer/sections/sidebar/sidebar.php:111, inc/customizer/sections/sidebar/sidebar.php:158, inc/customizer/sections/sidebar/sidebar.php:190
+#: inc/customizer/sections/sidebar/sidebar.php:33, inc/customizer/sections/sidebar/sidebar.php:84, inc/customizer/sections/sidebar/sidebar.php:116, inc/customizer/sections/sidebar/sidebar.php:168, inc/customizer/sections/sidebar/sidebar.php:200
 msgid "No sidebar"
 msgstr ""
 
-#: inc/customizer/sections/sidebar/sidebar.php:34, inc/customizer/sections/sidebar/sidebar.php:80, inc/customizer/sections/sidebar/sidebar.php:112, inc/customizer/sections/sidebar/sidebar.php:159, inc/customizer/sections/sidebar/sidebar.php:191
+#: inc/customizer/sections/sidebar/sidebar.php:34, inc/customizer/sections/sidebar/sidebar.php:85, inc/customizer/sections/sidebar/sidebar.php:117, inc/customizer/sections/sidebar/sidebar.php:169, inc/customizer/sections/sidebar/sidebar.php:201
 msgid "Left sidebar"
 msgstr ""
 
-#: inc/customizer/sections/sidebar/sidebar.php:35, inc/customizer/sections/sidebar/sidebar.php:81, inc/customizer/sections/sidebar/sidebar.php:113, inc/customizer/sections/sidebar/sidebar.php:160, inc/customizer/sections/sidebar/sidebar.php:192
+#: inc/customizer/sections/sidebar/sidebar.php:35, inc/customizer/sections/sidebar/sidebar.php:86, inc/customizer/sections/sidebar/sidebar.php:118, inc/customizer/sections/sidebar/sidebar.php:170, inc/customizer/sections/sidebar/sidebar.php:202
 msgid "Right sidebar"
 msgstr ""
 
-#: inc/customizer/sections/sidebar/sidebar.php:71
+#: inc/customizer/sections/sidebar/sidebar.php:76
 msgid "Blog List"
 msgstr ""
 
-#: inc/customizer/sections/sidebar/sidebar.php:150
+#: inc/customizer/sections/sidebar/sidebar.php:160
 msgid "Shop Page"
 msgstr ""
 
@@ -988,11 +990,11 @@ msgstr ""
 msgid "Body Font"
 msgstr ""
 
-#: inc/customizer/sections/typography/body.php:103, inc/customizer/sections/typography/heading.php:142, inc/customizer/sections/typography/primary-menu.php:130, inc/customizer/sections/typography/primary-menu.php:229
+#: inc/customizer/sections/typography/body.php:103, inc/customizer/sections/typography/heading.php:152, inc/customizer/sections/typography/primary-menu.php:140, inc/customizer/sections/typography/primary-menu.php:249
 msgid "Font Size"
 msgstr ""
 
-#: inc/customizer/sections/typography/body.php:138, inc/customizer/sections/typography/heading.php:103, inc/customizer/sections/typography/primary-menu.php:165, inc/customizer/sections/typography/primary-menu.php:264
+#: inc/customizer/sections/typography/body.php:138, inc/customizer/sections/typography/heading.php:103, inc/customizer/sections/typography/primary-menu.php:175, inc/customizer/sections/typography/primary-menu.php:284
 msgid "Line Height"
 msgstr ""
 
@@ -1000,27 +1002,27 @@ msgstr ""
 msgid "Heading Font"
 msgstr ""
 
-#: inc/customizer/sections/typography/heading.php:167
+#: inc/customizer/sections/typography/heading.php:177
 msgid "H1"
 msgstr ""
 
-#: inc/customizer/sections/typography/heading.php:202
+#: inc/customizer/sections/typography/heading.php:212
 msgid "H2"
 msgstr ""
 
-#: inc/customizer/sections/typography/heading.php:237
+#: inc/customizer/sections/typography/heading.php:247
 msgid "H3"
 msgstr ""
 
-#: inc/customizer/sections/typography/heading.php:272
+#: inc/customizer/sections/typography/heading.php:282
 msgid "H4"
 msgstr ""
 
-#: inc/customizer/sections/typography/heading.php:307
+#: inc/customizer/sections/typography/heading.php:317
 msgid "H5"
 msgstr ""
 
-#: inc/customizer/sections/typography/heading.php:342
+#: inc/customizer/sections/typography/heading.php:352
 msgid "H6"
 msgstr ""
 
@@ -1028,11 +1030,11 @@ msgstr ""
 msgid "Menu Font"
 msgstr ""
 
-#: inc/customizer/sections/typography/primary-menu.php:105
+#: inc/customizer/sections/typography/primary-menu.php:115
 msgid "Parent Menu"
 msgstr ""
 
-#: inc/customizer/sections/typography/primary-menu.php:204
+#: inc/customizer/sections/typography/primary-menu.php:224
 msgid "Sub Menu"
 msgstr ""
 
@@ -1040,14 +1042,14 @@ msgstr ""
 msgid "Default Container"
 msgstr ""
 
-#: inc/customizer/sections/wordpress/title-tagline.php:24
+#: inc/customizer/sections/wordpress/title-tagline.php:25
 msgid "Retina Logo"
 msgstr ""
 
-#: inc/customizer/sections/wordpress/title-tagline.php:45
+#: inc/customizer/sections/wordpress/title-tagline.php:47
 msgid "Mobile Logo (Optional)"
 msgstr ""
 
-#: inc/customizer/sections/wordpress/title-tagline.php:69
+#: inc/customizer/sections/wordpress/title-tagline.php:72
 msgid "Logo Width"
 msgstr ""

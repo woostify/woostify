@@ -18,7 +18,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['heading_font_family'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'sanitize_key',
 	)
 );
 
@@ -27,7 +27,7 @@ $wp_customize->add_setting(
 	'heading_font_category',
 	array(
 		'default'           => $defaults['heading_font_category'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'sanitize_key',
 		'type'              => 'option',
 	)
 );
@@ -88,7 +88,7 @@ $wp_customize->add_setting(
 	'woostify_setting[heading_line_height]',
 	array(
 		'default'           => $defaults['heading_line_height'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -119,7 +119,12 @@ $wp_customize->add_control(
 );
 
 // Heading font size divider.
-$wp_customize->add_setting( 'heading_font_divider' );
+$wp_customize->add_setting(
+	'heading_font_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new Woostify_Divider_Control(
 		$wp_customize,
@@ -133,7 +138,12 @@ $wp_customize->add_control(
 );
 
 // Heading font size title.
-$wp_customize->add_setting( 'heading_font_size_title' );
+$wp_customize->add_setting(
+	'heading_font_size_title',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new WP_Customize_Control(
 		$wp_customize,
@@ -152,7 +162,7 @@ $wp_customize->add_setting(
 	'woostify_setting[heading_h1_font_size]',
 	array(
 		'default'           => $defaults['heading_h1_font_size'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -187,7 +197,7 @@ $wp_customize->add_setting(
 	'woostify_setting[heading_h2_font_size]',
 	array(
 		'default'           => $defaults['heading_h2_font_size'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -222,7 +232,7 @@ $wp_customize->add_setting(
 	'woostify_setting[heading_h3_font_size]',
 	array(
 		'default'           => $defaults['heading_h3_font_size'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -257,7 +267,7 @@ $wp_customize->add_setting(
 	'woostify_setting[heading_h4_font_size]',
 	array(
 		'default'           => $defaults['heading_h4_font_size'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -292,7 +302,7 @@ $wp_customize->add_setting(
 	'woostify_setting[heading_h5_font_size]',
 	array(
 		'default'           => $defaults['heading_h5_font_size'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -327,7 +337,7 @@ $wp_customize->add_setting(
 	'woostify_setting[heading_h6_font_size]',
 	array(
 		'default'           => $defaults['heading_h6_font_size'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)

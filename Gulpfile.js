@@ -27,15 +27,25 @@ let theme       = 'woostify',
 /* SASS: `compressed` `expanded` `compact` `nested` */
 gulp.task( 'sass', () =>
 	gulp.src( 'style.scss' )
-	.pipe( globbing( {
-		extensions: [ '.scss' ]
-	} ) )
-	.pipe( sourcemaps.init() )
-	.pipe( sass( {
-		outputStyle: 'expanded'
-	} ).on( 'error', sass.logError ) )
-	.pipe( sourcemaps.write( '.' ) )
-	.pipe( gulp.dest( '.' ) )
+		.pipe( globbing( {
+			extensions: [ '.scss' ]
+		} ) )
+		.pipe( sourcemaps.init() )
+		.pipe( sass( { outputStyle: 'expanded' } )
+		.on( 'error', sass.logError ) )
+		.pipe( sourcemaps.write( '.' ) )
+		.pipe( gulp.dest( '.' ) )
+);
+
+/* SASS: Admin */
+gulp.task( 'sass-admin', () =>
+	gulp.src( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'] )
+		.pipe( globbing( {
+			extensions: [ '.scss' ]
+		} ) )
+		.pipe( sass( { outputStyle: 'expanded' } )
+		.on( 'error', sass.logError ) )
+		.pipe( gulp.dest( 'assets/css/admin' ) )
 );
 
 /* CONSOLE */
@@ -57,7 +67,7 @@ gulp.task( 'pot', () => {
 	gulp.src( '**/*.php' )
 		.pipe( wpPot( {
 			domain: theme,
-			package: 'Haintheme'
+			package: 'Woostify'
 		} ) )
 		.on( 'error', handleError )
 		.pipe( gulp.dest( 'languages/' + theme + '.pot' ) );
@@ -65,26 +75,24 @@ gulp.task( 'pot', () => {
 
 
 /* MIN JS FILE */
-gulp.task( 'minJs', () => {
+gulp.task( 'min-js', () => {
 	gulp.src( [ 'assets/js/**/*.js', '!assets/js/**/*.min.js'] )
 		.pipe( uglify() )
-		.on( 'error', function ( err ) { console.log( err ) } )
+		.on( 'error', err => { console.log( err ) } )
 		.pipe( rename( { suffix: '.min' } ) )
 		.pipe( gulp.dest( 'assets/js' ) );
 } );
 
-/* .POT */
-
-
 /*WATCH*/
 gulp.task( 'watch', [ 'browser-sync' ], () => {
-	gulp.watch( [ 'assets/css/sass/**/*.scss', 'style.scss' ], [ 'sass' ] );
-	gulp.watch( [ 'assets/js/**/*.js', '!assets/js/**/*.min.js'], ['minJs'] );
+	gulp.watch( ['assets/css/sass/**/*.scss', 'style.scss' ], ['sass'] );
+	gulp.watch( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'], ['sass-admin'] );
+	gulp.watch( ['assets/js/**/*.js', '!assets/js/**/*.min.js'], ['min-js'] );
 	gulp.watch( '**/*.php', ['pot'] );
 } );
 
 /* DEFAULT TASK */
-gulp.task( 'default', [ 'watch', 'minJs' ] );
+gulp.task( 'default', ['watch', 'min-js'] );
 
 /* CLEAN */
-gulp.task( 'clean', del.bind( null, [ 'build' ] ) );
+gulp.task( 'clean', del.bind( null, ['build'] ) );

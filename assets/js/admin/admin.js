@@ -8,7 +8,7 @@
 
 	$( function() {
 		// Dismiss notice.
-		$( document ).on( 'click', '.sf-notice-nux .notice-dismiss', function() {
+		$( document ).on( 'click', '.woostify-notice-nux .notice-dismiss', function() {
 			$.ajax({
 				type:     'POST',
 				url:      ajaxurl,

@@ -37,7 +37,7 @@ class Woostify_Get_CSS {
 
 		// Logo width.
 		$logo_width = $options['logo_width'];
-		if ( '' != $logo_width && absint( $logo_width ) > 0 ) {
+		if ( '' != $logo_width && $logo_width > 0 ) {
 			$styles .= '
 				.site-branding img{
 					max-width: ' . esc_attr( $logo_width ) . 'px;

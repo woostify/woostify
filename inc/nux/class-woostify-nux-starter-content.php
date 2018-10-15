@@ -157,7 +157,7 @@ if ( ! class_exists( 'Woostify_NUX_Starter_Content' ) ) :
 							'shop' => array(
 								'type'      => 'post_type',
 								'object'    => 'page',
-								'object_id' => '{{sf_shop}}',
+								'object_id' => '{{woostify_shop}}',
 							),
 							'page_about' => array(
 								'type' => 'post_type',
@@ -177,7 +177,7 @@ if ( ! class_exists( 'Woostify_NUX_Starter_Content' ) ) :
 							'my_account' => array(
 								'type'      => 'post_type',
 								'object'    => 'page',
-								'object_id' => '{{sf_my-account}}',
+								'object_id' => '{{woostify_my-account}}',
 							),
 						),
 					),
@@ -187,7 +187,7 @@ if ( ! class_exists( 'Woostify_NUX_Starter_Content' ) ) :
 							'shop' => array(
 								'type'      => 'post_type',
 								'object'    => 'page',
-								'object_id' => '{{sf_shop}}',
+								'object_id' => '{{woostify_shop}}',
 							),
 						),
 					),
@@ -214,7 +214,7 @@ if ( ! class_exists( 'Woostify_NUX_Starter_Content' ) ) :
 				$page = get_post( $page_id );
 
 				if ( null !== $page ) {
-					$starter_content_wc_pages[ 'sf_' . $page->post_name ] = array(
+					$starter_content_wc_pages[ 'woostify_' . $page->post_name ] = array(
 						'post_title' => $page->post_title,
 						'post_name'  => $page->post_name,
 						'post_type'  => 'page',
@@ -239,7 +239,7 @@ if ( ! class_exists( 'Woostify_NUX_Starter_Content' ) ) :
 		 * @return array $content
 		 */
 		public function filter_start_content( $content, $config ) {
-			if ( ! isset( $_GET['sf_starter_content'] ) || 1 !== absint( $_GET['sf_starter_content'] ) ) {
+			if ( ! isset( $_GET['woostify_starter_content'] ) || 1 !== absint( $_GET['woostify_starter_content'] ) ) {
 
 				// We only allow starter content if the users comes from the NUX wizard.
 				return $content;
@@ -247,8 +247,8 @@ if ( ! class_exists( 'Woostify_NUX_Starter_Content' ) ) :
 
 			$tasks = array();
 
-			if ( isset( $_GET['sf_tasks'] ) && '' !== sanitize_text_field( wp_unslash( $_GET['sf_tasks'] ) ) ) {
-				$tasks = explode( ',', sanitize_text_field( wp_unslash( $_GET['sf_tasks'] ) ) );
+			if ( isset( $_GET['woostify_tasks'] ) && '' !== sanitize_text_field( wp_unslash( $_GET['woostify_tasks'] ) ) ) {
+				$tasks = explode( ',', sanitize_text_field( wp_unslash( $_GET['woostify_tasks'] ) ) );
 			}
 
 			$tasks = $this->_validate_tasks( $tasks );
@@ -446,7 +446,7 @@ if ( ! class_exists( 'Woostify_NUX_Starter_Content' ) ) :
 				}
 			}
 
-			add_filter( 'woostify_product_categories_shortcode_args', array( $this, 'filter_sf_categories' ) );
+			add_filter( 'woostify_product_categories_shortcode_args', array( $this, 'filter_woostify_categories' ) );
 		}
 
 		/**
@@ -526,7 +526,7 @@ if ( ! class_exists( 'Woostify_NUX_Starter_Content' ) ) :
 		 * @param array $args Shortcode args.
 		 * @return array $args
 		 */
-		public function filter_sf_categories( $args ) {
+		public function filter_woostify_categories( $args ) {
 			// Get Categories.
 			$product_cats = get_terms(
 				'product_cat', array(

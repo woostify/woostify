@@ -1,8 +1,3 @@
-// @import 'bourbon';
-// @import '../../../../assets/css/sass/utils/variables';
-// @import '../../../../assets/css/sass/utils/mixins';
-// @import '../../../../assets/css/sass/vendors/modular-scale';
-
 $green: #45b964;
 
 .appearance_page_woostify-welcome {
@@ -25,7 +20,11 @@ $green: #45b964;
 
 		a {
 			color: #00aadc;
-			text-decoration: underline;
+			text-decoration: none;
+
+			&:hover{
+				opacity: 0.7;
+			}
 		}
 	}
 
@@ -75,12 +74,13 @@ $green: #45b964;
 		position: relative;
 		margin-top: -20px;
 
-		img {
+		span {
 			position: absolute;
 			top: 50%;
 			left: 50%;
 			transform: translateX(-50%) translateY(-50%);
-			width: 90px;
+			font-size: 70px;
+			width: auto;
 			height: auto;
 		}
 	}
@@ -108,19 +108,26 @@ $green: #45b964;
 		margin: 4em 0;
 		flex-wrap: wrap;
 
+		&:after{
+			content: '';
+			clear: both;
+			display: block;
+		}
+
 		.woostify-enhance-content {
 			width: 500px;
 			margin-right: 20px;
+			float: left;
 		}
 
 		.woostify-enhance-sidebar {
 			width: 300px;
+			float: right;
 		}
 
 		.woostify-enhance__column {
 			border: 1px solid #d8e2e9;
 			width: 100%;
-			margin: 0 1em;
 			background: #fff;
 			margin-bottom: 20px;
 
@@ -129,17 +136,17 @@ $green: #45b964;
 				flex-wrap: wrap;
 				align-items: center;
 				align-content: center;
-				li {
+
+				.link-to-customie-item {
 					margin: 10px 0;
-				}
-				.dashicons {
-					margin: 0 7px 0 20px;
-				}
-				li:nth-child( odd ) {
-					width: 74%;
-				}
-				li:nth-child( even ) {
-					width: 26%;
+
+					&:nth-child( odd ) {
+						width: 74%;
+					}
+
+					&:nth-child( even ) {
+						width: 26%;
+					}
 				}
 			}
 
@@ -162,11 +169,6 @@ $green: #45b964;
 		.woostify-bundle,
 		.woostify-child-themes {
 			padding-bottom: 0.5em;
-
-			p {
-				padding: 0 1.5em;
-				margin: 0 0 1em;
-			}
 		}
 
 		.woostify-bundle {
@@ -237,6 +239,16 @@ $green: #45b964;
 			margin-top: -3px;
 			opacity: 0.5;
 		}
+	}
+
+	/*  */
+	.wst-quick-setting-section{
+		margin: 1em 0;
+		padding: 0 1.5em;
+	}
+
+	.woostify-learn-more{
+		float: right;
 	}
 }
 

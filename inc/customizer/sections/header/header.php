@@ -38,7 +38,12 @@ $wp_customize->add_control(
 );
 
 // Background color divider.
-$wp_customize->add_setting( 'header_background_color_divider' );
+$wp_customize->add_setting(
+	'header_background_color_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new Woostify_Divider_Control(
 		$wp_customize,
@@ -76,7 +81,12 @@ $wp_customize->add_control(
 );
 
 // Header element title.
-$wp_customize->add_setting( 'header_element_title' );
+$wp_customize->add_setting(
+	'header_element_title',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new Woostify_Divider_Control(
 		$wp_customize,
@@ -95,8 +105,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[header_primary_menu]',
 	array(
-		'type'      => 'option',
-		'default'   => $defaults['header_primary_menu'],
+		'type'              => 'option',
+		'default'           => $defaults['header_primary_menu'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
@@ -116,8 +127,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[header_search_form]',
 	array(
-		'type'      => 'option',
-		'default'   => $defaults['header_search_form'],
+		'type'              => 'option',
+		'default'           => $defaults['header_search_form'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
@@ -139,8 +151,9 @@ if ( class_exists( 'woocommerce' ) ) {
 	$wp_customize->add_setting(
 		'woostify_setting[header_search_only_product]',
 		array(
-			'type'    => 'option',
-			'default' => $defaults['header_search_only_product'],
+			'type'              => 'option',
+			'default'           => $defaults['header_search_only_product'],
+			'sanitize_callback' => 'woostify_sanitize_checkbox',
 		)
 	);
 	$wp_customize->add_control(
@@ -160,8 +173,9 @@ if ( class_exists( 'woocommerce' ) ) {
 	$wp_customize->add_setting(
 		'woostify_setting[header_account_icon]',
 		array(
-			'type'    => 'option',
-			'default' => $defaults['header_account_icon'],
+			'type'              => 'option',
+			'default'           => $defaults['header_account_icon'],
+			'sanitize_callback' => 'woostify_sanitize_checkbox',
 		)
 	);
 	$wp_customize->add_control(
@@ -181,8 +195,9 @@ if ( class_exists( 'woocommerce' ) ) {
 	$wp_customize->add_setting(
 		'woostify_setting[header_shop_cart_icon]',
 		array(
-			'type'    => 'option',
-			'default' => $defaults['header_shop_cart_icon'],
+			'type'              => 'option',
+			'default'           => $defaults['header_shop_cart_icon'],
+			'sanitize_callback' => 'woostify_sanitize_checkbox',
 		)
 	);
 	$wp_customize->add_control(

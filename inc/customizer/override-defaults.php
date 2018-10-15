@@ -9,7 +9,7 @@
 $wp_customize->get_control( 'background_color' )->section  = 'background_image';
 
 // Change background image section title & priority.
-$wp_customize->get_section( 'background_image' )->panel    = 'layout_section';
+$wp_customize->get_section( 'background_image' )->panel    = 'woostify_layout';
 $wp_customize->get_section( 'background_image' )->title    = __( 'Site Container', 'woostify' );
 $wp_customize->get_section( 'background_image' )->priority = 10;
 

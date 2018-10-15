@@ -1,6 +1,6 @@
-@import 'buttons';
+@import 'buttons.scss';
 
-.sf-notice-nux {
+.woostify-notice-nux {
 	background: #e9eff3;
 	border: 10px solid #fff;
 	color: #608299;
@@ -23,7 +23,7 @@
 		margin: 0 auto;
 	}
 
-	.sf-icon {
+	.woostify-icon {
 		position: relative;
 		display: block;
 		width: 100px;
@@ -32,16 +32,14 @@
 		border-radius: 100%;
 		margin: 0 auto 30px;
 
-		img {
+		span {
 			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			margin: auto;
-			padding: 16px;
-			box-sizing: border-box;
-			max-width: 100%;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			font-size: 50px;
+			width: auto;
+			height: auto;
 		}
 	}
 
@@ -67,12 +65,12 @@
 		}
 	}
 
-	.sf-plugin-card {
+	.woostify-plugin-card {
 		display: block;
 	}
 }
 
-.sf-nux-button {
+.woostify-nux-button {
 	&.updating-message {
 		&::before {
 			display: inline-block;
@@ -87,8 +85,8 @@
 }
 
 @media only screen and (max-width: 782px) {
-	.sf-notice-nux {
-		.sf-icon {
+	.woostify-notice-nux {
+		.woostify-icon {
 			width: 65px;
 			height: 65px;
 

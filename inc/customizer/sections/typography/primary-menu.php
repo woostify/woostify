@@ -18,7 +18,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['menu_font_family'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'sanitize_key',
 	)
 );
 
@@ -27,7 +27,7 @@ $wp_customize->add_setting(
 	'menu_font_category',
 	array(
 		'default'           => $defaults['menu_font_category'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'sanitize_key',
 	)
 );
 
@@ -82,7 +82,12 @@ $wp_customize->add_control(
 );
 
 // Parent menu divider.
-$wp_customize->add_setting( 'parent_menu_divider' );
+$wp_customize->add_setting(
+	'parent_menu_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new Woostify_Divider_Control(
 		$wp_customize,
@@ -96,7 +101,12 @@ $wp_customize->add_control(
 );
 
 // CUSTOM HEADING.
-$wp_customize->add_setting( 'parent_menu_title' );
+$wp_customize->add_setting(
+	'parent_menu_title',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new WP_Customize_Control(
 		$wp_customize,
@@ -115,7 +125,7 @@ $wp_customize->add_setting(
 	'woostify_setting[parent_menu_font_size]',
 	array(
 		'default'           => $defaults['parent_menu_font_size'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -150,7 +160,7 @@ $wp_customize->add_setting(
 	'woostify_setting[parent_menu_line_height]',
 	array(
 		'default'           => $defaults['parent_menu_line_height'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -181,7 +191,12 @@ $wp_customize->add_control(
 );
 
 // Submenu divider.
-$wp_customize->add_setting( 'sub_menu_divider' );
+$wp_customize->add_setting(
+	'sub_menu_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new Woostify_Divider_Control(
 		$wp_customize,
@@ -195,7 +210,12 @@ $wp_customize->add_control(
 );
 
 // CUSTOM HEADING.
-$wp_customize->add_setting( 'sub_menu_title' );
+$wp_customize->add_setting(
+	'sub_menu_title',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new WP_Customize_Control(
 		$wp_customize,
@@ -214,7 +234,7 @@ $wp_customize->add_setting(
 	'woostify_setting[sub_menu_font_size]',
 	array(
 		'default'           => $defaults['sub_menu_font_size'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -249,7 +269,7 @@ $wp_customize->add_setting(
 	'woostify_setting[sub_menu_line_height]',
 	array(
 		'default'           => $defaults['sub_menu_line_height'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)

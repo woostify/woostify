@@ -12,8 +12,9 @@ $defaults = woostify_options();
 $wp_customize->add_setting(
 	'woostify_setting[retina_logo]',
 	array(
-		'type'    => 'option',
-		'default' => $defaults['retina_logo'],
+		'type'              => 'option',
+		'default'           => $defaults['retina_logo'],
+		'sanitize_callback' => 'esc_url_raw',
 	)
 );
 $wp_customize->add_control(
@@ -33,8 +34,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[logo_mobile]',
 	array(
-		'type'    => 'option',
-		'default' => $defaults['logo_mobile'],
+		'type'              => 'option',
+		'default'           => $defaults['logo_mobile'],
+		'sanitize_callback' => 'esc_url_raw',
 	)
 );
 $wp_customize->add_control(
@@ -54,9 +56,10 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[logo_width]',
 	array(
-		'default'   => $defaults['logo_width'],
-		'type'      => 'option',
-		'transport' => 'postMessage',
+		'default'           => $defaults['logo_width'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
 	)
 );
 

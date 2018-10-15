@@ -1,43 +1,67 @@
+.appearance_page_woostify-welcome {
+  /*  */
+}
+
 .appearance_page_woostify-welcome .woostify-wrap {
   background: #e9eff3;
   padding: 50px;
   border: 10px solid white;
   margin-top: 20px;
   margin-right: 20px;
-  color: #608299; }
-  .appearance_page_woostify-welcome .woostify-wrap h1,
-  .appearance_page_woostify-welcome .woostify-wrap h2,
-  .appearance_page_woostify-welcome .woostify-wrap h3,
-  .appearance_page_woostify-welcome .woostify-wrap h4,
-  .appearance_page_woostify-welcome .woostify-wrap h5,
-  .appearance_page_woostify-welcome .woostify-wrap h6 {
-    color: #2e4453; }
-  .appearance_page_woostify-welcome .woostify-wrap a {
-    color: #00aadc;
-    text-decoration: underline; }
+  color: #608299;
+}
+
+.appearance_page_woostify-welcome .woostify-wrap h1,
+.appearance_page_woostify-welcome .woostify-wrap h2,
+.appearance_page_woostify-welcome .woostify-wrap h3,
+.appearance_page_woostify-welcome .woostify-wrap h4,
+.appearance_page_woostify-welcome .woostify-wrap h5,
+.appearance_page_woostify-welcome .woostify-wrap h6 {
+  color: #2e4453;
+}
+
+.appearance_page_woostify-welcome .woostify-wrap a {
+  color: #00aadc;
+  text-decoration: none;
+}
+
+.appearance_page_woostify-welcome .woostify-wrap a:hover {
+  opacity: 0.7;
+}
 
 .appearance_page_woostify-welcome .woostify-welcome-nav {
   background-color: #0087be;
-  margin: -50px -50px 0 -50px; }
-  .appearance_page_woostify-welcome .woostify-welcome-nav a {
-    text-decoration: none;
-    color: #fff;
-    display: inline-block;
-    padding: 1em; }
-  .appearance_page_woostify-welcome .woostify-welcome-nav .woostify-welcome-nav__version {
-    float: right;
-    color: #a5c9e1;
-    display: inline-block;
-    padding: 1em 2em; }
-  .appearance_page_woostify-welcome .woostify-welcome-nav ul,
-  .appearance_page_woostify-welcome .woostify-welcome-nav li {
-    list-style: none;
-    padding: 0; }
-  .appearance_page_woostify-welcome .woostify-welcome-nav ul {
-    margin: 0 0 0 1em; }
-  .appearance_page_woostify-welcome .woostify-welcome-nav li {
-    display: inline-block;
-    margin: 0; }
+  margin: -50px -50px 0 -50px;
+}
+
+.appearance_page_woostify-welcome .woostify-welcome-nav a {
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  padding: 1em;
+}
+
+.appearance_page_woostify-welcome .woostify-welcome-nav .woostify-welcome-nav__version {
+  float: right;
+  color: #a5c9e1;
+  display: inline-block;
+  padding: 1em 2em;
+}
+
+.appearance_page_woostify-welcome .woostify-welcome-nav ul,
+.appearance_page_woostify-welcome .woostify-welcome-nav li {
+  list-style: none;
+  padding: 0;
+}
+
+.appearance_page_woostify-welcome .woostify-welcome-nav ul {
+  margin: 0 0 0 1em;
+}
+
+.appearance_page_woostify-welcome .woostify-welcome-nav li {
+  display: inline-block;
+  margin: 0;
+}
 
 .appearance_page_woostify-welcome .woostify-logo {
   border: 0;
@@ -49,82 +73,117 @@
   height: 150px;
   text-align: center;
   position: relative;
-  margin-top: -20px; }
-  .appearance_page_woostify-welcome .woostify-logo img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    width: 90px;
-    height: auto; }
+  margin-top: -20px;
+}
+
+.appearance_page_woostify-welcome .woostify-logo span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-size: 70px;
+  width: auto;
+  height: auto;
+}
 
 .appearance_page_woostify-welcome .woostify-intro {
   max-width: 415px;
   margin: 0 auto;
-  text-align: center; }
-  .appearance_page_woostify-welcome .woostify-intro h1 {
-    line-height: 1.5;
-    font-weight: 400; }
-    .appearance_page_woostify-welcome .woostify-intro h1 span {
-      display: block;
-      font-size: 75%; }
+  text-align: center;
+}
+
+.appearance_page_woostify-welcome .woostify-intro h1 {
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.appearance_page_woostify-welcome .woostify-intro h1 span {
+  display: block;
+  font-size: 75%;
+}
 
 .appearance_page_woostify-welcome .woostify-enhance {
   display: flex;
   justify-content: center;
   align-items: stretch;
   margin: 4em 0;
-  flex-wrap: wrap; }
-  .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance-content {
-    width: 500px;
-    margin-right: 20px; }
-  .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance-sidebar {
-    width: 300px; }
-  .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column {
-    border: 1px solid #d8e2e9;
-    width: 100%;
-    margin: 0 1em;
-    background: #fff;
-    margin-bottom: 20px; }
-    .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column .wst-flex {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      align-content: center; }
-      .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column .wst-flex li {
-        margin: 10px 0; }
-      .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column .wst-flex .dashicons {
-        margin: 0 7px 0 20px; }
-      .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column .wst-flex li:nth-child(odd) {
-        width: 74%; }
-      .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column .wst-flex li:nth-child(even) {
-        width: 26%; }
-    .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column h3 {
-      font-size: 1.1em;
-      font-weight: 600;
-      color: #383838;
-      border-bottom: 1px solid #d8e2e9;
-      padding: 1em 1.5em;
-      margin: 0; }
-    .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 1.5em; }
-  .appearance_page_woostify-welcome .woostify-enhance .woostify-bundle,
-  .appearance_page_woostify-welcome .woostify-enhance .woostify-child-themes {
-    padding-bottom: 0.5em; }
-    .appearance_page_woostify-welcome .woostify-enhance .woostify-bundle p,
-    .appearance_page_woostify-welcome .woostify-enhance .woostify-child-themes p {
-      padding: 0 1.5em;
-      margin: 0 0 1em; }
-  .appearance_page_woostify-welcome .woostify-enhance .woostify-bundle .bundle-image {
-    display: block;
-    background: #f7f7f7;
-    margin-bottom: 1.5em; }
-    .appearance_page_woostify-welcome .woostify-enhance .woostify-bundle .bundle-image img {
-      display: block;
-      max-width: 75%;
-      margin: 0 auto; }
+  flex-wrap: wrap;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-enhance-content {
+  width: 500px;
+  margin-right: 20px;
+  float: left;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-enhance-sidebar {
+  width: 300px;
+  float: right;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column {
+  border: 1px solid #d8e2e9;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column .wst-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column .wst-flex .link-to-customie-item {
+  margin: 10px 0;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column .wst-flex .link-to-customie-item:nth-child(odd) {
+  width: 74%;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column .wst-flex .link-to-customie-item:nth-child(even) {
+  width: 26%;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #383838;
+  border-bottom: 1px solid #d8e2e9;
+  padding: 1em 1.5em;
+  margin: 0;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.5em;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-bundle,
+.appearance_page_woostify-welcome .woostify-enhance .woostify-child-themes {
+  padding-bottom: 0.5em;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-bundle .bundle-image {
+  display: block;
+  background: #f7f7f7;
+  margin-bottom: 1.5em;
+}
+
+.appearance_page_woostify-welcome .woostify-enhance .woostify-bundle .bundle-image img {
+  display: block;
+  max-width: 75%;
+  margin: 0 auto;
+}
 
 .appearance_page_woostify-welcome a.woostify-button {
   color: #2e4453;
@@ -138,36 +197,61 @@
   background-color: #fff;
   text-shadow: none;
   height: auto;
-  line-height: 1.5; }
-  .appearance_page_woostify-welcome a.woostify-button:hover {
-    border-color: #a8bece;
-    box-shadow: 0 1px 0 #a8bece; }
-  .appearance_page_woostify-welcome a.woostify-button.disabled {
-    cursor: default;
-    color: #c8d7e1; }
-    .appearance_page_woostify-welcome a.woostify-button.disabled:hover {
-      border-color: #c8d7e1;
-      box-shadow: 0 1px 0 #c8d7e1; }
+  line-height: 1.5;
+}
+
+.appearance_page_woostify-welcome a.woostify-button:hover {
+  border-color: #a8bece;
+  box-shadow: 0 1px 0 #a8bece;
+}
+
+.appearance_page_woostify-welcome a.woostify-button.disabled {
+  cursor: default;
+  color: #c8d7e1;
+}
+
+.appearance_page_woostify-welcome a.woostify-button.disabled:hover {
+  border-color: #c8d7e1;
+  box-shadow: 0 1px 0 #c8d7e1;
+}
 
 .appearance_page_woostify-welcome .automattic {
   text-align: center;
-  clear: both; }
-  .appearance_page_woostify-welcome .automattic p {
-    font-size: 0.75em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #aaa; }
-  .appearance_page_woostify-welcome .automattic img {
-    max-height: 9px;
-    margin: 0 ms(-3);
-    margin-top: -3px;
-    opacity: 0.5; }
+  clear: both;
+}
+
+.appearance_page_woostify-welcome .automattic p {
+  font-size: 0.75em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+.appearance_page_woostify-welcome .automattic img {
+  max-height: 9px;
+  margin: 0 ms(-3);
+  margin-top: -3px;
+  opacity: 0.5;
+}
+
+.appearance_page_woostify-welcome .wst-quick-setting-section {
+  margin: 1em 0;
+  padding: 0 1.5em;
+}
+
+.appearance_page_woostify-welcome .woostify-learn-more {
+  float: right;
+}
 
 @media all and (max-width: 768px) {
   .appearance_page_woostify-welcome .woostify-logo {
-    margin-top: 20px; }
+    margin-top: 20px;
+  }
   .appearance_page_woostify-welcome .woostify-enhance {
     display: block;
-    margin: 2em 0; }
-    .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column {
-      margin: 1em auto; } }
+    margin: 2em 0;
+  }
+  .appearance_page_woostify-welcome .woostify-enhance .woostify-enhance__column {
+    margin: 1em auto;
+  }
+}

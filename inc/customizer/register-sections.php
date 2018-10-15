@@ -10,7 +10,7 @@
 
 // Layout.
 $wp_customize->add_panel(
-	'layout_section',
+	'woostify_layout',
 	array(
 		'title'      => __( 'Layout', 'woostify' ),
 		'capability' => 'edit_theme_options',
@@ -23,7 +23,7 @@ $wp_customize->add_section(
 	'woostify_header',
 	array(
 		'title'       => __( 'Header', 'woostify' ),
-		'panel'       => 'layout_section',
+		'panel'       => 'woostify_layout',
 	)
 );
 
@@ -32,7 +32,7 @@ $wp_customize->add_section(
 	'woostify_blog',
 	array(
 		'title'       => __( 'Blog', 'woostify' ),
-		'panel'       => 'layout_section',
+		'panel'       => 'woostify_layout',
 	)
 );
 
@@ -41,7 +41,7 @@ $wp_customize->add_section(
 	'woostify_blog_single',
 	array(
 		'title'       => __( 'Blog Single', 'woostify' ),
-		'panel'       => 'layout_section',
+		'panel'       => 'woostify_layout',
 	)
 );
 
@@ -50,7 +50,7 @@ $wp_customize->add_section(
 	'woostify_sidebar',
 	array(
 		'title'       => __( 'Sidebar', 'woostify' ),
-		'panel'       => 'layout_section',
+		'panel'       => 'woostify_layout',
 	)
 );
 
@@ -59,7 +59,7 @@ $wp_customize->add_section(
 	'woostify_footer',
 	array(
 		'title'       => __( 'Footer', 'woostify' ),
-		'panel'       => 'layout_section',
+		'panel'       => 'woostify_layout',
 	)
 );
 
@@ -83,7 +83,7 @@ $wp_customize->add_section(
 
 // Typography panel.
 $wp_customize->add_panel(
-	'font_section',
+	'woostify_typography',
 	array(
 		'title'      => __( 'Typography', 'woostify' ),
 		'capability' => 'edit_theme_options',
@@ -96,7 +96,7 @@ $wp_customize->add_section(
 	array(
 		'title'      => __( 'Body', 'woostify' ),
 		'capability' => 'edit_theme_options',
-		'panel'      => 'font_section',
+		'panel'      => 'woostify_typography',
 	)
 );
 
@@ -105,7 +105,7 @@ $wp_customize->add_section(
 	array(
 		'title'      => __( 'Primary menu', 'woostify' ),
 		'capability' => 'edit_theme_options',
-		'panel'      => 'font_section',
+		'panel'      => 'woostify_typography',
 	)
 );
 
@@ -114,7 +114,7 @@ $wp_customize->add_section(
 	array(
 		'title'      => __( 'Heading', 'woostify' ),
 		'capability' => 'edit_theme_options',
-		'panel'      => 'font_section',
+		'panel'      => 'woostify_typography',
 	)
 );
 

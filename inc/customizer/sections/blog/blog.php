@@ -9,7 +9,12 @@
 $defaults = woostify_options();
 
 // Blog list structure title.
-$wp_customize->add_setting( 'blog_list_structure_title' );
+$wp_customize->add_setting(
+	'blog_list_structure_title',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new Woostify_Divider_Control(
 		$wp_customize,
@@ -27,8 +32,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[blog_list_feature_image]',
 	array(
-		'type'      => 'option',
-		'default'   => $defaults['blog_list_feature_image'],
+		'type'              => 'option',
+		'default'           => $defaults['blog_list_feature_image'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
@@ -48,8 +54,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[blog_list_title]',
 	array(
-		'type'      => 'option',
-		'default'   => $defaults['blog_list_title'],
+		'type'              => 'option',
+		'default'           => $defaults['blog_list_title'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
@@ -66,7 +73,12 @@ $wp_customize->add_control(
 );
 
 // Blog list meta title.
-$wp_customize->add_setting( 'blog_list_post_meta_title' );
+$wp_customize->add_setting(
+	'blog_list_post_meta_title',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new Woostify_Divider_Control(
 		$wp_customize,
@@ -84,8 +96,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[blog_list_publish_date]',
 	array(
-		'type'      => 'option',
-		'default'   => $defaults['blog_list_publish_date'],
+		'type'              => 'option',
+		'default'           => $defaults['blog_list_publish_date'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
@@ -105,8 +118,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[blog_list_author]',
 	array(
-		'type'      => 'option',
-		'default'   => $defaults['blog_list_author'],
+		'type'              => 'option',
+		'default'           => $defaults['blog_list_author'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
@@ -126,8 +140,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[blog_list_category]',
 	array(
-		'type'      => 'option',
-		'default'   => $defaults['blog_list_category'],
+		'type'              => 'option',
+		'default'           => $defaults['blog_list_category'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
@@ -147,8 +162,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[blog_list_comment]',
 	array(
-		'type'      => 'option',
-		'default'   => $defaults['blog_list_comment'],
+		'type'              => 'option',
+		'default'           => $defaults['blog_list_comment'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(

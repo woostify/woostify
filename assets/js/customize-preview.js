@@ -88,7 +88,7 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 	} );
 
 	// Logo width.
-	woostify_unit_live_update( 'logo_width', '.site-branding img', 'max-width', 100, 'px', '%' );
+	woostify_unit_live_update( 'logo_width', '.site-header .site-branding img', 'max-width', 100, 'px', '%' );
 
 	// Body.
 	// Body font size.

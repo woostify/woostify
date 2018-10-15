@@ -2,7 +2,9 @@
 ( function( wp, $ ) {
 	'use strict';
 
-	if ( ! wp || ! wp.customize ) { return; }
+	if ( ! wp || ! wp.customize ) {
+		return;
+	}
 
 	// Set up our namespace.
 	var api = wp.customize;
@@ -14,8 +16,7 @@
 	}
 
 	/**
-	 * wp.customize.SFGuidedTour
-	 *
+	 * Wp.customize.SFGuidedTour
 	 */
 	api.SFGuidedTour = {
 		$container: null,
@@ -27,30 +28,30 @@
 
 		_setupUI: function() {
 			var self = this,
-			    $wpCustomize = $( 'body.wp-customizer .wp-full-overlay' );
+				$wpCustomize = $( 'body.wp-customizer .wp-full-overlay' );
 
-			this.$container = $( '<div/>' ).addClass( 'sf-guided-tour' );
+			this.$container = $( '<div/>' ).addClass( 'woostify-guided-tour' );
 
-			// Add guided tour div
+			// Add guided tour div.
 			$wpCustomize.prepend( this.$container );
 
-			// Add listeners
+			// Add listeners.
 			this._addListeners();
 
-			// Initial position
+			// Initial position.
 			this.$container.css( 'left', ( $( '#customize-controls' ).width() + 10 ) + 'px' ).on( 'transitionend', function() {
-				self.$container.addClass( 'sf-loaded' );
+				self.$container.addClass( 'woostify-loaded' );
 			});
 
-			// Show first step
+			// Show first step.
 			this._showNextStep();
 
-			$( document ).on( 'click', '.sf-guided-tour-step .sf-nux-button', function() {
+			$( document ).on( 'click', '.woostify-guided-tour-step .woostify-nux-button', function() {
 				self._showNextStep();
 				return false;
 			});
 
-			$( document ).on( 'click', '.sf-guided-tour-step .sf-guided-tour-skip', function() {
+			$( document ).on( 'click', '.woostify-guided-tour-step .woostify-guided-tour-skip', function() {
 				if ( 0 === self.currentStep ) {
 					self._hideTour( true );
 				} else {
@@ -82,11 +83,11 @@
 				return;
 			}
 
-			this.$container.removeClass( 'sf-inside-section' );
+			this.$container.removeClass( 'woostify-inside-section' );
 
 			if ( expandedSection && step.section === expandedSection.id ) {
 				this._moveContainer( $( expandedSection.container[1] ).find( '.customize-section-title' ) );
-				this.$container.addClass( 'sf-inside-section' );
+				this.$container.addClass( 'woostify-inside-section' );
 			} else if ( false === expandedSection && false === expandedPanel ) {
 				if ( this._isTourHidden() ) {
 					this._revealTour();
@@ -112,8 +113,8 @@
 				top: this.$container.offset().top
 			});
 
-			$( 'body' ).addClass( 'sf-exiting' ).on( 'animationend.woostify webkitAnimationEnd.woostify', function() {
-				$( this ).removeClass( 'sf-exiting' ).off( 'animationend.woostify webkitAnimationEnd.woostify' ).addClass( 'sf-hidden' );
+			$( document.body ).addClass( 'woostify-exiting' ).on( 'animationend.woostify webkitAnimationEnd.woostify', function() {
+				$( this ).removeClass( 'woostify-exiting' ).off( 'animationend.woostify webkitAnimationEnd.woostify' ).addClass( 'woostify-hidden' );
 				self.$container.hide();
 
 				if ( ! _.isUndefined( remove ) && true === remove ) {
@@ -125,12 +126,12 @@
 		_revealTour: function() {
 			 var self = this;
 
-			$( 'body' ).removeClass( 'sf-hidden' );
+			$( document.body ).removeClass( 'woostify-hidden' );
 
 			self.$container.show();
 
-			$( 'body' ).addClass( 'sf-entering' ).on( 'animationend.woostify webkitAnimationEnd.woostify', function() {
-				$( this ).removeClass( 'sf-entering' ).off( 'animationend.woostify webkitAnimationEnd.woostify' );
+			$( document.body ).addClass( 'woostify-entering' ).on( 'animationend.woostify webkitAnimationEnd.woostify', function() {
+				$( this ).removeClass( 'woostify-entering' ).off( 'animationend.woostify webkitAnimationEnd.woostify' );
 
 				self.$container.css({
 					top: 'auto',
@@ -163,25 +164,25 @@
 
 			this._closeAllSections();
 
-			// Get next step
+			// Get next step.
 			step = this._getNextStep();
 
-			// Convert line breaks to paragraphs
+			// Convert line breaks to paragraphs.
 			step.message = this._lineBreaksToParagraphs( step.message );
 
-			// Load template
-			template = wp.template( 'sf-guided-tour-step' );
+			// Load template.
+			template = wp.template( 'woostify-guided-tour-step' );
 
-			this.$container.removeClass( 'sf-first-step' );
+			this.$container.removeClass( 'woostify-first-step' );
 
 			if ( 0 === this.currentStep ) {
 				step.first_step = true;
-				this.$container.addClass( 'sf-first-step' );
+				this.$container.addClass( 'woostify-first-step' );
 			}
 
 			if ( this._isLastStep() ) {
 				step.last_step = true;
-				this.$container.addClass( 'sf-last-step' );
+				this.$container.addClass( 'woostify-last-step' );
 			}
 
 			this._moveContainer( this._getSelector( step.section ) );
@@ -198,8 +199,8 @@
 
 			position = parseInt( $selector.offset().top, 10 ) + ( $selector.height() / 2 ) - 44;
 
-			this.$container.addClass( 'sf-moving' ).css({ 'transform': 'translateY(' + parseInt( position, 10 ) + 'px)' }).on( 'transitionend.woostify', function() {
-				self.$container.removeClass( 'sf-moving' );
+			this.$container.addClass( 'woostify-moving' ).css( { 'transform': 'translateY(' + parseInt( position, 10 ) + 'px)' } ).on( 'transitionend.woostify', function() {
+				self.$container.removeClass( 'woostify-moving' );
 				self.$container.off( 'transitionend.woostify' );
 			} );
 		},
@@ -207,7 +208,7 @@
 		_getSelector: function( pointTo ) {
 			var sectionOrPanel = api.section( pointTo ) ? api.section( pointTo ) : api.panel( pointTo );
 
-			// Check whether this is a section, panel, or a regular selector
+			// Check whether this is a section, panel, or a regular selector.
 			if ( ! _.isUndefined( sectionOrPanel ) ) {
 				return $( sectionOrPanel.container[0] );
 			}
@@ -225,7 +226,7 @@
 		},
 
 		_isTourHidden: function() {
-			return ( ( $( 'body' ).hasClass( 'sf-hidden' ) ) ? true : false );
+			return ( ( $( document.body ).hasClass( 'woostify-hidden' ) ) ? true : false );
 		},
 
 		_isLastStep: function() {

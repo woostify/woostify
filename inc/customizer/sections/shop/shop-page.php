@@ -47,7 +47,7 @@ $wp_customize->add_setting(
 	'woostify_setting[shop_product_per_page]',
 	array(
 		'default'           => $defaults['shop_product_per_page'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
 	)
 );
@@ -77,7 +77,12 @@ $wp_customize->add_control(
 );
 
 // Product meta title.
-$wp_customize->add_setting( 'shop_page_product_meta_title' );
+$wp_customize->add_setting(
+	'shop_page_product_meta_title',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
 $wp_customize->add_control(
 	new Woostify_Divider_Control(
 		$wp_customize,
@@ -95,8 +100,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_product_title]',
 	array(
-		'type'      => 'option',
-		'default'   => true,
+		'type'              => 'option',
+		'default'           => $defaults['shop_page_product_title'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
@@ -116,8 +122,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_product_category]',
 	array(
-		'type'      => 'option',
-		'default'   => false,
+		'type'              => 'option',
+		'default'           => $defaults['shop_page_product_category'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
@@ -137,8 +144,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_product_rating]',
 	array(
-		'type'      => 'option',
-		'default'   => true,
+		'type'              => 'option',
+		'default'           => $defaults['shop_page_product_rating'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
@@ -158,8 +166,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_product_add_to_cart_button]',
 	array(
-		'type'      => 'option',
-		'default'   => true,
+		'type'              => 'option',
+		'default'           => $defaults['shop_page_product_add_to_cart_button'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
@@ -179,8 +188,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_product_price]',
 	array(
-		'type'      => 'option',
-		'default'   => true,
+		'type'              => 'option',
+		'default'           => $defaults['shop_page_product_price'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(

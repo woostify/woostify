@@ -46,8 +46,7 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 
 			wp_enqueue_style(
 				'woostify-admin-nux',
-				WOOSTIFY_THEME_URI .
-				'assets/css/admin/admin.css',
+				WOOSTIFY_THEME_URI . 'assets/css/admin/admin.css',
 				'',
 				$woostify_version
 			);
@@ -84,21 +83,25 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 			}
 
 			// Coming from the WooCommerce Wizard?
-			if ( wp_get_referer() && 'index.php?page=wc-setup&step=next_steps' === basename( wp_get_referer() ) && 'post-new.php' === $pagenow ) {
+			if (
+				wp_get_referer() &&
+				'index.php?page=wc-setup&step=next_steps' === basename( wp_get_referer() ) &&
+				'post-new.php' === $pagenow
+			) {
 				return;
 			}
 			?>
 
-			<div class="notice notice-info sf-notice-nux is-dismissible">
-				<span class="sf-icon">
-					<?php echo '<img src="' . esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/woostify-icon.svg' ) . '" alt="Woostify" width="250" />'; ?>
-				</span>
+			<div class="notice notice-info woostify-notice-nux is-dismissible">
+				<div class="woostify-icon">
+					<span class="dashicons dashicons-store"></span>
+				</div>
 
 				<div class="notice-content">
 				<?php if ( ! woostify_is_woocommerce_activated() && current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) ) : ?>
 					<h2><?php esc_attr_e( 'Thanks for installing Woostify, you rock! 🤘', 'woostify' ); ?></h2>
 					<p><?php esc_attr_e( 'To enable eCommerce features you need to install the WooCommerce plugin.', 'woostify' ); ?></p>
-					<p><?php Woostify_Plugin_Install::install_plugin_button( 'woocommerce', 'woocommerce.php', 'WooCommerce', array( 'sf-nux-button' ), __( 'WooCommerce activated', 'woostify' ), __( 'Activate WooCommerce', 'woostify' ), __( 'Install WooCommerce', 'woostify' ) ); ?></p>
+					<p><?php Woostify_Plugin_Install::install_plugin_button( 'woocommerce', 'woocommerce.php', 'WooCommerce', array( 'woostify-nux-button' ), __( 'WooCommerce activated', 'woostify' ), __( 'Activate WooCommerce', 'woostify' ), __( 'Install WooCommerce', 'woostify' ) ); ?></p>
 				<?php endif; ?>
 
 				<?php if ( woostify_is_woocommerce_activated() ) : ?>
@@ -133,7 +136,7 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 							<?php endif; ?>
 						<?php endif; ?>
 
-						<input type="submit" name="woostify-guided-tour" class="sf-nux-button" value="<?php esc_attr_e( 'Let\'s go!', 'woostify' ); ?>">
+						<input type="submit" name="woostify-guided-tour" class="woostify-nux-button" value="<?php esc_attr_e( 'Let\'s go!', 'woostify' ); ?>">
 					</form>
 				<?php endif; ?>
 				</div>
@@ -168,7 +171,7 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 				update_option( 'woostify_nux_dismissed', true );
 			}
 
-			$args = array( 'sf_starter_content' => '1' );
+			$args = array( 'woostify_starter_content' => '1' );
 
 			$tasks = array();
 
@@ -185,7 +188,7 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 			}
 
 			if ( ! empty( $tasks ) ) {
-				$args['sf_tasks'] = implode( ',', $tasks );
+				$args['woostify_tasks'] = implode( ',', $tasks );
 
 				if ( current_user_can( 'manage_options' ) ) {
 
@@ -262,7 +265,7 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 				return $classes;
 			}
 
-			$classes .= ' sf-nux ';
+			$classes .= ' woostify-nux ';
 
 			return $classes;
 		}
