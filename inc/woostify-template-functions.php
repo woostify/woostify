@@ -747,7 +747,7 @@ if ( ! function_exists( 'woostify_post_content' ) ) {
 
 		do_action( 'woostify_post_content_before' );
 
-		if ( woostify_show_excerpt() ) {
+		if ( woostify_show_excerpt() && ! is_single() ) {
 			?>
 				<div class="entry-summary" itemprop="text">
 					<?php the_excerpt(); ?>

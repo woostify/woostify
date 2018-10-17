@@ -32,3 +32,6 @@ config.codekit
 
 # Sublime
 *.cache
+
+# FTP
+*ftp*

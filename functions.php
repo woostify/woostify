@@ -54,11 +54,6 @@ require_once WOOSTIFY_THEME_DIR . 'inc/woostify-functions.php';
 require_once WOOSTIFY_THEME_DIR . 'inc/woostify-template-hooks.php';
 require_once WOOSTIFY_THEME_DIR . 'inc/woostify-template-functions.php';
 
-
-if ( class_exists( 'Jetpack' ) ) {
-	$woostify->jetpack = require_once WOOSTIFY_THEME_DIR . 'inc/jetpack/class-woostify-jetpack.php';
-}
-
 if ( woostify_is_woocommerce_activated() ) {
 	$woostify->woocommerce = require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce.php';
 	require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-functions.php';
@@ -80,11 +75,12 @@ if (
 ) {
 	require_once WOOSTIFY_THEME_DIR . 'inc/nux/class-woostify-nux-admin.php';
 	require_once WOOSTIFY_THEME_DIR . 'inc/nux/class-woostify-nux-guided-tour.php';
-
-	if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.0.0', '>=' ) ) {
-		require_once WOOSTIFY_THEME_DIR . 'inc/nux/class-woostify-nux-starter-content.php';
-	}
 }
+
+/**
+ * Widgets
+ */
+require_once WOOSTIFY_THEME_DIR . 'inc/widget/class-woostify-recent-post-thumbnail.php';
 
 /**
  * Note: Do not add any custom code here. Please use a custom plugin so that your customizations aren't lost during updates.
