@@ -94,12 +94,14 @@ msgstr ""
 msgid "Search Results for: %s"
 msgstr ""
 
-#: sidebar-shop.php:17
+#: sidebar-shop.php:17, sidebar-shop.php:32, sidebar-shop.php:47
 msgid "Sidebar Shop Widget"
 msgstr ""
 
 #. translators: 1: admin URL
-#: sidebar-shop.php:23
+#. translators: 1: admin URL
+#. translators: 1: admin URL
+#: sidebar-shop.php:23, sidebar-shop.php:38, sidebar-shop.php:53
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Woocommerce Sidebar</strong></a> and dragging widgets into this widget area."
 msgstr ""
 
@@ -114,39 +116,39 @@ msgstr ""
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Main Sidebar</strong></a> and dragging widgets into this widget area."
 msgstr ""
 
-#: inc/class-woostify.php:114, inc/nux/class-woostify-nux-starter-content.php:155
+#: inc/class-woostify.php:112
 msgid "Primary Menu"
 msgstr ""
 
-#: inc/class-woostify.php:115
+#: inc/class-woostify.php:113
 msgid "Footer Menu"
 msgstr ""
 
-#: inc/class-woostify.php:171
+#: inc/class-woostify.php:169
 msgid "Main Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:173
+#: inc/class-woostify.php:171
 msgid "Appears in the sidebar of the site."
 msgstr ""
 
-#: inc/class-woostify.php:178
+#: inc/class-woostify.php:176
 msgid "Woocommerce Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:180
+#: inc/class-woostify.php:178
 msgid " Appears in the sidebar of shop/product page."
 msgstr ""
 
-#: inc/class-woostify.php:185, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
+#: inc/class-woostify.php:183, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
 msgid "Footer Widget"
 msgstr ""
 
-#: inc/class-woostify.php:187
+#: inc/class-woostify.php:185
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:382
+#: inc/class-woostify.php:383
 msgid "Post Navigation"
 msgstr ""
 
@@ -550,11 +552,7 @@ msgstr ""
 msgid "You've set up WooCommerce, now it's time to give it some style! Let's get started by entering the Customizer and adding your logo."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:134
-msgid "Add example products"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-admin.php:139, inc/nux/class-woostify-nux-guided-tour.php:125
+#: inc/nux/class-woostify-nux-admin.php:120, inc/nux/class-woostify-nux-guided-tour.php:125
 msgid "Let's go!"
 msgstr ""
 
@@ -620,101 +618,16 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-starter-content.php:59
-msgid "Welcome"
+#: inc/widget/class-woostify-recent-post-thumbnail.php:23
+msgid "Recent Post With Thumbnail"
 msgstr ""
 
-#. translators: %s: 'End Of Line' symbol
-#: inc/nux/class-woostify-nux-starter-content.php:61
-msgid "This is your homepage which is what most visitors will see when they first visit your shop.%sYou can change this text by editing the \"Welcome\" page via the \"Pages\" menu in your dashboard."
+#: inc/widget/class-woostify-recent-post-thumbnail.php:26
+msgid "List the most recent posts with post titles, thumbnail"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-starter-content.php:67
-msgid "About"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:68
-msgid "You might be an artist who would like to introduce yourself and your work here or maybe you&rsquo;re a business with a mission to describe."
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:72
-msgid "Contact"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:73
-msgid "This is a page with some basic contact information, such as an address and phone number. You might also try a plugin to add a contact form."
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:175
-msgid "Secondary Menu"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:185
-msgid "Handheld Menu"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:610
-msgid "Accessories"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:611, inc/nux/class-woostify-nux-starter-content.php:614, inc/nux/class-woostify-nux-starter-content.php:617
-msgid "A short category description"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:613
-msgid "Hoodies"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:616
-msgid "Tshirts"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:622
-msgid "Beanie"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:645
-msgid "Belt"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:667
-msgid "Cap"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:689
-msgid "Sunglasses"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:710
-msgid "Hoodie with Logo"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:731
-msgid "Hoodie with Pocket"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:753
-msgid "Hoodie with Zipper"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:774
-msgid "Hoodie"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:796
-msgid "Long Sleeve Tee"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:817
-msgid "Polo"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:838
-msgid "Tshirt"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-starter-content.php:859
-msgid "Vneck Tshirt"
+#: inc/widget/class-woostify-recent-post-thumbnail.php:41
+msgid "Recent Posts"
 msgstr ""
 
 #: inc/woocommerce/class-woostify-woocommerce.php:298

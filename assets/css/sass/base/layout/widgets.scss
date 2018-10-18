@@ -1,30 +1,38 @@
 .widget{
+
 	&:first-of-type{
 		.widget-title{
 			margin-top: 0;
 		}
 	}
+
     > ul{
         padding-left: 0;
     }
+
     li{
         list-style: none;
         line-height: 36px;
     }
+
     ul.menu{
         padding-left: 0;
+
         a{
             line-height: 36px;
         }
     }
+
     select{
         width: 100%;
         height: 40px;
         border-radius: 0
     }
+
     .widget-area &{
         margin-bottom: 40px;
     }
+
     .count{
     	float: right;
     }
@@ -43,6 +51,7 @@
     li{
         line-height: 36px;
     }
+
     .post_count{
         font-size: 13px;
         position: relative;
@@ -59,6 +68,7 @@
         margin-bottom: 4px;
         font-size: 14px;
         margin-right: 4px;
+
         &:hover{
         	border-color: $tr;
         	color: #fff;
@@ -71,16 +81,19 @@
 .woocommerce-product-search{
     position: relative;
     height: 50px;
+
     &:hover{
         &:after{
             @include rotate( 90 )
         }
     }
+
     &:focus-within{
     	&:after{
     		@include rotate( 90 )
     	}
     }
+
     &:after{
         content: "\e610";
         font-family: $icon;
@@ -93,6 +106,7 @@
         @extend .flex;
         @extend .duration;
     }
+
     .search-field{
         border-color: $tr;
         height: 100%;
@@ -104,9 +118,11 @@
         border-radius: 50px;
         font-size: 12px;
         @extend .duration;
+
         &::-webkit-search-cancel-button{
             display: none;
         }
+
         &:focus{
             border-color: #dedbdb;
         }
@@ -136,6 +152,7 @@
 		padding-top: 10px;
 		border-top: 1px solid #f7f7f7;
 	}
+
 	.remove_from_cart_button{
 		&:hover{
 			@include rotate( 90 )
@@ -149,6 +166,7 @@
 			line-height: 1.4em;
 		}
 	}
+
 	li{
 		position: relative;
 		min-height: 90px;
@@ -156,17 +174,20 @@
 		border-bottom: 1px solid #f7f7f7;
 		line-height: 26px;
 	}
+
 	img{
 		max-width: 60px;
 		max-height: 60px;
 		position: absolute;
 		left: 0;
 	}
+
 	&.woocommerce-mini-cart{
 		img{
 			top: 10px;
 		}
 	}
+
 	.mini_cart_item{
     	&:last-of-type{
     		border-bottom: 0;
@@ -182,12 +203,14 @@
         z-index: 2;
         color: firebrick;
         @extend .flex;
+
         &:before {
             content: "\e646";
             font-family: $icon;
             line-height: 1;
             font-size: 10px;
         }
+
         &:focus {
         	&:before{
         		left: 0;
@@ -204,6 +227,7 @@
 		border-radius: 0
 	}
 }
+
 .woocommerce-mini-cart__total{
 	text-transform: uppercase;
 	@include flex( flex, space-between, center );
@@ -214,10 +238,12 @@
 }
 .woocommerce-mini-cart__buttons{
 	margin-bottom: 0;
+
 	.button{
 		font-size: 12px;
 		font-weight: 700;
 	}
+
 	a.button{
 		width: 50%;
 		display: inline-block;
@@ -225,6 +251,7 @@
 		text-align: center;
 		text-transform: uppercase;
 	}
+
 	a.checkout{
 		border-left: 1px solid #fff;
 	}
@@ -238,25 +265,29 @@
     li{
         min-height: 90px;
         position: relative;
-        padding: 10px 0 10px 80px;
-        
+        padding: 10px 0 10px 80px;        
         @extend .clearfix;
+
         &:last-of-type{
         	border-bottom: 0;
         }
     }
+
     a{
         line-height: 1.3;
         margin-bottom: 5px;
     }
+
     .star-rating{
         display: block;
     }
+
     del{
         margin-right: 5px;
         float: left;
         clear: both;
     }
+
     ins{
         float: left;
         background: $tr;
@@ -276,6 +307,7 @@
 	.product-categories > li{
 		ul{
 			margin-left: 10px;
+
 			li:before{
 				content: "\e649";
 				font-family: $icon;
@@ -301,10 +333,12 @@
 		margin-right: .5em;
         @extend .clearfix
     }
+
     .ui-widget-header{
     	height: 100%;
         position: absolute;
     }
+
     .ui-slider-handle{
         cursor: pointer;
         position: absolute;
@@ -317,17 +351,44 @@
         @include translatey( -50% );
         @include shadow(1px 1px 3px 0px rgba(0, 0, 0, 0.2));
     }
+
     .price_slider_amount{
         input,
         .clear{
             display: none;
         }
+
         button{
             display: inline-block;
             margin-right: 15px;
         }
+
         .price_label{
             display: inline-block;
         }
     }
+}
+
+/* Recent post thumbnail */
+.widget_recent_post_thumbnail_item{
+	display: flex;
+	align-items: center;
+
+	+#{&}{
+		margin-top: 30px;
+	}
+
+	.recent-post-thumbnail-img{
+		width: 50px;
+		min-width: 50px;
+		margin-right: 20px;
+		
+		img {
+			border-radius: 3px;
+		}
+	}
+
+	.recent-post-thumbnail-sum{
+		flex-grow: 1;
+	}
 }

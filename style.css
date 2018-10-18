@@ -3516,7 +3516,7 @@ blockquote {
   font-weight: 300;
   margin: 30px 0;
   border-left: 4px solid #333;
-  padding-left: 15px;
+  padding-left: 30px;
   position: relative;
   clear: both;
   display: block;
@@ -4841,6 +4841,30 @@ dd {
 
 .price_slider_wrapper .price_slider_amount .price_label {
   display: inline-block;
+}
+
+/* Recent post thumbnail */
+.widget_recent_post_thumbnail_item {
+  display: flex;
+  align-items: center;
+}
+
+.widget_recent_post_thumbnail_item + .widget_recent_post_thumbnail_item {
+  margin-top: 30px;
+}
+
+.widget_recent_post_thumbnail_item .recent-post-thumbnail-img {
+  width: 50px;
+  min-width: 50px;
+  margin-right: 20px;
+}
+
+.widget_recent_post_thumbnail_item .recent-post-thumbnail-img img {
+  border-radius: 3px;
+}
+
+.widget_recent_post_thumbnail_item .recent-post-thumbnail-sum {
+  flex-grow: 1;
 }
 
 .home.blog .site-main .post:first-child:last-child {

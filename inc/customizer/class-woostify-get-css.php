@@ -67,7 +67,7 @@ class Woostify_Get_CSS {
 			.comment-body .comment-meta .comment-date,
 			.woostify-breadcrumb a,
 			.breadcrumb-separator,
-			#secondary .widget a{
+			#secondary .widget a:not(.tag-cloud-link):not(.tag-cloud-link){
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
@@ -159,7 +159,7 @@ class Woostify_Get_CSS {
 				color: ' . esc_attr( $options['accent_color'] ) . ';
 			}
 			a:hover,
-			#secondary .widget a:hover{
+			#secondary .widget a:not(.tag-cloud-link):hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 		';

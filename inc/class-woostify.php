@@ -19,8 +19,6 @@ if ( ! class_exists( 'woostify' ) ) :
 
 		/**
 		 * Setup class.
-		 *
-		 * @since 1.0
 		 */
 		public function __construct() {
 			add_action( 'after_setup_theme', array( $this, 'setup' ) );
@@ -205,6 +203,9 @@ if ( ! class_exists( 'woostify' ) ) :
 					register_sidebar( $args + $widget_tags );
 				}
 			}
+
+			// Custom widgets.
+			register_widget( 'Woostify_Recent_Post_Thumbnail' );
 		}
 
 		/**

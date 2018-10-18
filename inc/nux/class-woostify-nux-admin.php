@@ -115,29 +115,10 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 					}
 					?>
 					</p>
-					<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
-						<input type="hidden" name="action" value="woostify_starter_content">
-						<?php wp_nonce_field( 'woostify_starter_content' ); ?>
 
-						<?php if ( true === (bool) get_option( 'woostify_nux_fresh_site' ) ) : ?>
-							<input type="hidden" name="homepage" value="on">
-						<?php endif; ?>
-
-						<?php if ( true === (bool) get_option( 'woostify_nux_fresh_site' ) && true === $this->_is_woocommerce_empty() ) : ?>
-							<input type="hidden" name="products" value="on">
-						<?php endif; ?>
-
-						<?php if ( false === (bool) get_option( 'woostify_nux_fresh_site' ) ) : ?>
-							<?php if ( true === $this->_is_woocommerce_empty() ) : ?>
-							<label>
-								<input type="checkbox" name="products" checked>
-								<?php esc_attr_e( 'Add example products', 'woostify' ); ?>
-							</label>
-							<?php endif; ?>
-						<?php endif; ?>
-
-						<input type="submit" name="woostify-guided-tour" class="woostify-nux-button" value="<?php esc_attr_e( 'Let\'s go!', 'woostify' ); ?>">
-					</form>
+					<a class="woostify-nux-button" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bcontrol%5D=custom_logo' ); ?>">
+						<?php esc_attr_e( 'Let\'s go!', 'woostify' ); ?>
+					</a>
 				<?php endif; ?>
 				</div>
 			</div>
