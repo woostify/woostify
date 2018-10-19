@@ -1,10 +1,5 @@
 # Compiled CSS
 
-# Minified js
-*.min.js
-!/inc/customizer/custom-controls/typography/js/*.min.js
-!/assets/js/vendor/*.min.js
-
 # Sass
 .sass-cache
 

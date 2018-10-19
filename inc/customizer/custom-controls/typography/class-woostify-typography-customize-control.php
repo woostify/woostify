@@ -33,7 +33,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 
 			wp_enqueue_script(
 				'woostify-typography-selectWoo',
-				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/js/selectWoo.min.js',
+				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/js/selectWoo.js',
 				array( 'customize-controls', 'jquery' ),
 				$woostify_version,
 				true
