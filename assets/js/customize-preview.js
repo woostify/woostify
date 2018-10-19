@@ -20,9 +20,9 @@ function woostify_colors_live_update( id, selector, property, default_value ) {
 			} else {
 				jQuery( 'head' ).append( '<style id="' + id + '">' + selector + '{' + property + ':' + newval + '}</style>' );
 
-				setTimeout(function() {
+				setTimeout( function() {
 					jQuery( 'style#' + id ).not( ':last' ).remove();
-				}, 1000);
+				}, 1000 );
 			}
 		} );
 	} );
@@ -30,7 +30,7 @@ function woostify_colors_live_update( id, selector, property, default_value ) {
 
 function woostify_unit_live_update( id, selector, property, default_value, unit, default_unit ) {
 	// Default parameters.
-	unit         = typeof unit != 'undefined' ? unit : 'px';
+	unit = typeof unit != 'undefined' ? unit : 'px';
 	default_unit = typeof default_unit != 'undefined' ? default_unit : 'px';
 
 	// Wordpress customize.
@@ -92,7 +92,7 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 
 	// Body.
 	// Body font size.
-	woostify_unit_live_update( 'body_font_size', 'body, button, input, select, textarea', 'font-size', 14 );
+	woostify_unit_live_update( 'body_font_size', 'body, button, input, select, textarea, .woocommerce-loop-product__title', 'font-size', 14 );
 
 	// Body line height.
 	woostify_unit_live_update( 'body_line_height', 'body', 'line-height', 28 );
@@ -101,9 +101,9 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 	wp.customize( 'body_font_weight', function( value ) {
 		value.bind( function( newval ) {
 			jQuery( 'head' ).append( '<style id="body_font_weight">body, button, input, select, textarea{font-weight:' + newval + ';}</style>' );
-			setTimeout(function() {
+			setTimeout( function() {
 				jQuery( 'style#body_font_weight' ).not( ':last' ).remove();
-			}, 100);
+			}, 100 );
 		} );
 	} );
 
@@ -111,9 +111,9 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 	wp.customize( 'body_font_transform', function( value ) {
 		value.bind( function( newval ) {
 			jQuery( 'head' ).append( '<style id="body_font_transform">body, button, input, select, textarea{text-transform:' + newval + ';}</style>' );
-			setTimeout(function() {
+			setTimeout( function() {
 				jQuery( 'style#body_font_transform' ).not( ':last' ).remove();
-			}, 100);
+			}, 100 );
 		} );
 	} );
 
@@ -138,9 +138,9 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 	wp.customize( 'heading_font_weight', function( value ) {
 		value.bind( function( newval ) {
 			jQuery( 'head' ).append( '<style id="heading_font_weight">h1, h2, h3, h4, h5, h6{font-weight:' + newval + ';}</style>' );
-			setTimeout(function() {
+			setTimeout( function() {
 				jQuery( 'style#heading_font_weight' ).not( ':last' ).remove();
-			}, 100);
+			}, 100 );
 		} );
 	} );
 
@@ -148,9 +148,9 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 	wp.customize( 'heading_font_transform', function( value ) {
 		value.bind( function( newval ) {
 			jQuery( 'head' ).append( '<style id="heading_font_transform">h1, h2, h3, h4, h5, h6{text-transform:' + newval + ';}</style>' );
-			setTimeout(function() {
+			setTimeout( function() {
 				jQuery( 'style#heading_font_transform' ).not( ':last' ).remove();
-			}, 100);
+			}, 100 );
 		} );
 	} );
 

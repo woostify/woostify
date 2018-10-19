@@ -77,11 +77,12 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 			<div class="woostify-wrap">
 				<section class="woostify-welcome-nav">
-					<span class="woostify-welcome-nav__version">Woostify <?php echo esc_attr( $woostify_version ); ?></span>
-					<ul>
-						<li><a href="//woostify.com/contact/" target="_blank"><?php esc_attr_e( 'Support', 'woostify' ); ?></a></li>
-						<li><a href="//woostify.com/docs/" target="_blank"><?php esc_attr_e( 'Documentation', 'woostify' ); ?></a></li>
-						<li><a href="//woostify.com/pricing/" target="_blank"><?php esc_attr_e( 'Development Blog', 'woostify' ); ?></a></li>
+					<span class="woostify-welcome-nav__version">Woostify <?php echo esc_html( $woostify_version ); ?></span>
+
+					<ul class="woostify-welcome-nav_link">
+						<li><a href="//woostify.com/contact/" target="_blank"><?php esc_html_e( 'Support', 'woostify' ); ?></a></li>
+						<li><a href="//woostify.com/docs/" target="_blank"><?php esc_html_e( 'Documentation', 'woostify' ); ?></a></li>
+						<li><a href="//woostify.com/pricing/" target="_blank"><?php esc_html_e( 'Development Blog', 'woostify' ); ?></a></li>
 					</ul>
 				</section>
 
@@ -98,10 +99,10 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 					if ( false !== strpos( $referrer, 'woostify_starter_content' ) ) {
 						/* translators: 1: HTML, 2: HTML */
-						echo '<h1>' . sprintf( esc_attr__( 'Setup complete %1$sYour Woostify adventure begins now 🚀%2$s ', 'woostify' ), '<span>', '</span>' ) . '</h1>';
-						echo '<p>' . esc_attr__( 'One more thing... You might be interested in the following Woostify extensions and designs.', 'woostify' ) . '</p>';
+						echo '<h1>' . sprintf( esc_html__( 'Setup complete %1$sYour Woostify adventure begins now 🚀%2$s ', 'woostify' ), '<span>', '</span>' ) . '</h1>';
+						echo '<p>' . esc_html__( 'One more thing... You might be interested in the following Woostify extensions and designs.', 'woostify' ) . '</p>';
 					} else {
-						echo '<p>' . esc_attr__( 'Hello! You might be interested in the following Woostify extensions and designs.', 'woostify' ) . '</p>';
+						echo '<p>' . esc_html__( 'Hello! You might be interested in the following Woostify extensions and designs.', 'woostify' ) . '</p>';
 					}
 					?>
 				</div>
@@ -109,7 +110,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				<div class="woostify-enhance">
 					<div class="woostify-enhance-content">
 						<div class="woostify-enhance__column woostify-bundle">
-							<h3><?php esc_attr_e( 'Link to Customizer Settings', 'woostify' ); ?></h3>
+							<h3><?php esc_html_e( 'Link to Customizer Settings', 'woostify' ); ?></h3>
 							<div class="wst-quick-setting-section">
 								<ul class="wst-flex">
 									<li class="link-to-customie-item">
@@ -152,31 +153,31 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								</ul>
 
 								<p>
-									<a href="//woostify.com/pricing/" class="woostify-button" target="_blank"><?php esc_attr_e( 'Read more and purchase', 'woostify' ); ?></a>
+									<a href="//woostify.com/pricing/" class="woostify-button" target="_blank"><?php esc_html_e( 'Read more and purchase', 'woostify' ); ?></a>
 								</p>
 							</div>
 						</div>
 						<div class="woostify-enhance__column woostify-child-themes">
 							<h3>
-								<?php esc_attr_e( 'More Features Avaiable with Woostify Pro', 'woostify' ); ?>
+								<?php esc_html_e( 'More Features Avaiable with Woostify Pro', 'woostify' ); ?>
 								<a class="woostify-learn-more" href="//woostify.com/pricing/" target="_blank"><?php esc_html_e( 'Learn more!', 'woostify' ); ?></a>
 							</h3>
 
 							<div class="wst-quick-setting-section">
 								<p>
-									<?php esc_attr_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify' ); ?>
+									<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify' ); ?>
 								</p>
 
 								<p>
-									<?php esc_attr_e( 'Each has been designed to serve a different industry - from fashion to food.', 'woostify' ); ?>
+									<?php esc_html_e( 'Each has been designed to serve a different industry - from fashion to food.', 'woostify' ); ?>
 								</p>
 
 								<p>
-									<?php esc_attr_e( 'Of course they are all fully compatible with each Woostify extension.', 'woostify' ); ?>
+									<?php esc_html_e( 'Of course they are all fully compatible with each Woostify extension.', 'woostify' ); ?>
 								</p>
 
 								<p>
-									<a href="//woostify.com/pricing/" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify' ); ?></a>
+									<a href="//woostify.com/pricing/" class="woostify-button" target="_blank"><?php esc_html_e( 'Check \'em out', 'woostify' ); ?></a>
 								</p>
 							</div>
 						</div>
@@ -184,26 +185,26 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 					<div class="woostify-enhance-sidebar">
 						<div class="woostify-enhance__column">
-							<h3><?php esc_attr_e( 'Alternate designs', 'woostify' ); ?></h3>
+							<h3><?php esc_html_e( 'Alternate designs', 'woostify' ); ?></h3>
 							
 
 							<div class="wst-quick-setting-section">
 								<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/child-themes.jpg' ); ?>" alt="woostify Powerpack" />
 
 								<p>
-									<?php esc_attr_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify' ); ?>
+									<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify' ); ?>
 								</p>
 
 								<p>
-									<?php esc_attr_e( 'Each has been designed to serve a different industry - from fashion to food.', 'woostify' ); ?>
+									<?php esc_html_e( 'Each has been designed to serve a different industry - from fashion to food.', 'woostify' ); ?>
 								</p>
 
 								<p>
-									<?php esc_attr_e( 'Of course they are all fully compatible with each Woostify extension.', 'woostify' ); ?>
+									<?php esc_html_e( 'Of course they are all fully compatible with each Woostify extension.', 'woostify' ); ?>
 								</p>
 
 								<p>
-										<a href="//woostify.com/pricing/" class="woostify-button" target="_blank"><?php esc_attr_e( 'Check \'em out', 'woostify' ); ?></a>
+										<a href="//woostify.com/pricing/" class="woostify-button" target="_blank"><?php esc_html_e( 'Check \'em out', 'woostify' ); ?></a>
 									</p>
 							</div>
 						</div>
@@ -235,7 +236,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				if ( is_plugin_active( $plugin_slug . '/' . $plugin_file ) ) {
 					// The plugin is already active.
 					$button = array(
-						'message' => esc_attr__( 'Activated', 'woostify' ),
+						'message' => esc_html__( 'Activated', 'woostify' ),
 						'url'     => '#',
 						'classes' => 'disabled',
 					);
@@ -244,7 +245,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 					// The plugin exists but isn't activated yet.
 					$button = array(
-						'message' => esc_attr__( 'Activate', 'woostify' ),
+						'message' => esc_html__( 'Activate', 'woostify' ),
 						'url'     => $url,
 						'classes' => 'activate-now',
 					);
@@ -259,14 +260,14 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						), 'install-plugin_' . $plugin_slug
 					);
 					$button = array(
-						'message' => esc_attr__( 'Install now', 'woostify' ),
+						'message' => esc_html__( 'Install now', 'woostify' ),
 						'url'     => $url,
 						'classes' => ' install-now install-' . $plugin_slug,
 					);
 				}
 				?>
-				<a href="<?php echo esc_url( $button['url'] ); ?>" class="woostify-button <?php echo esc_attr( $button['classes'] ); ?>" data-originaltext="<?php echo esc_attr( $button['message'] ); ?>" data-slug="<?php echo esc_attr( $plugin_slug ); ?>" aria-label="<?php echo esc_attr( $button['message'] ); ?>"><?php echo esc_attr( $button['message'] ); ?></a>
-				<a href="//wordpress.org/plugins/<?php echo esc_attr( $plugin_slug ); ?>" target="_blank"><?php esc_attr_e( 'Learn more', 'woostify' ); ?></a>
+				<a href="<?php echo esc_url( $button['url'] ); ?>" class="woostify-button <?php echo esc_attr( $button['classes'] ); ?>" data-originaltext="<?php echo esc_attr( $button['message'] ); ?>" data-slug="<?php echo esc_attr( $plugin_slug ); ?>" aria-label="<?php echo esc_attr( $button['message'] ); ?>"><?php echo esc_html( $button['message'] ); ?></a>
+				<a href="//wordpress.org/plugins/<?php echo esc_attr( $plugin_slug ); ?>" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 				<?php
 			}
 		}

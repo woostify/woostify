@@ -74,6 +74,10 @@ class Woostify_Get_CSS {
 			.price_slider_wrapper .price_slider{
 				background-color: ' . esc_attr( $options['text_color'] ) . ';
 			}
+
+			.woocommerce-loop-product__title{
+				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
+			}
 		';
 
 		// Primary menu css.
@@ -221,7 +225,8 @@ class Woostify_Get_CSS {
 			.price_slider_wrapper .ui-slider-handle,
 			.cart-sidebar-head .shop-cart-count,
 			.shop-cart-count,
-			.sidebar-menu .primary-navigation a:before{
+			.sidebar-menu .primary-navigation a:before,
+			.woostify-footer-text-widget .woostify-footer-social-icon a{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 

@@ -61,7 +61,7 @@ class Woostify_Custom_Radio_Image_Control extends WP_Customize_Control {
 		?>
 
 		<span class="customize-control-title">
-			<?php echo esc_attr( $this->label ); ?>
+			<?php echo esc_html( $this->label ); ?>
 		</span>
 
 		<?php if ( ! empty( $this->description ) ) : ?>

@@ -85,8 +85,8 @@ class Woostify_Switch_Control extends WP_Customize_Control {
 					<span class="on-off-label"></span>
 				</label>
 				
-				<span class="switch-label left-switch"><?php echo esc_attr( $this->left_switch ); ?></span>
-				<span class="switch-label right-switch"><?php echo esc_attr( $this->right_switch ); ?></span>
+				<span class="switch-label left-switch"><?php echo esc_html( $this->left_switch ); ?></span>
+				<span class="switch-label right-switch"><?php echo esc_html( $this->right_switch ); ?></span>
 			</div>
 
 			<?php if ( ! empty( $desc ) ) { ?>

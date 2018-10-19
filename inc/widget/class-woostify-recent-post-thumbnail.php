@@ -44,8 +44,8 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 
 			$instance = wp_parse_args( (array) $instance, $default );
 
-			$title  = esc_attr( $instance['title'] );
-			$number = esc_attr( $instance['number'] );
+			$title  = $instance['title'];
+			$number = $instance['number'];
 			?>
 
 			<p>

@@ -147,7 +147,7 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 			<div id="shop-cart-sidebar">
 				<div class="cart-sidebar-head">
 					<h4 class="cart-sidebar-title"><?php esc_html_e( 'Shopping cart', 'woostify' ); ?></h4>
-					<span class="shop-cart-count"><?php echo esc_attr( $total ); ?></span>
+					<span class="shop-cart-count"><?php echo esc_html( $total ); ?></span>
 					<button id="close-cart-sidebar-btn" class="ti-close"></button>
 				</div>
 
@@ -156,5 +156,86 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 				</div>
 			</div>
 		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_product_slider' ) ) {
+	/**
+	 * Shortcode product slider
+	 *
+	 * @param array|string $args User defined attributes for this shortcode instance.
+	 * @param string|null  $content Content between the opening and closing shortcode elements.
+	 * @param string       $shortcode_name Name of the shortcode.
+	 */
+	function woostify_product_slider( $args, $content, $shortcode_name ) {
+		$attrs = shortcode_atts(
+			array(
+				'posts_per_page'      => 3,
+				'post_status'         => 'publish',
+				'ignore_sticky_posts' => 1,
+				'orderby'             => 'id',
+				'order'               => 'ASC',
+			),
+			$args,
+			$shortcode_name
+		);
+
+		$attrs['post_type'] = 'product';
+
+		// Ids.
+		if ( ! empty( $attrs['ids'] ) ) {
+			$ids = array_map( 'trim', explode( ',', $attrs['ids'] ) );
+
+			if ( 1 === count( $ids ) ) {
+				$attrs['p'] = $ids[0];
+			} else {
+				$attrs['post__in'] = $ids;
+			}
+		}
+
+		// SKU.
+		if ( ! empty( $attrs['sku'] ) ) {
+			$skus                       = array_map( 'trim', explode( ',', $attrs['skus'] ) );
+			$attrs['meta_query'] = array(
+				'key'     => '_sku',
+				'value'   => 1 === count( $skus ) ? $skus[0] : $skus,
+				'compare' => 1 === count( $skus ) ? '=' : 'IN',
+			);
+		}
+
+		// Category.
+		if ( ! empty( $attrs['category'] ) ) {
+			$categories = array_map( 'sanitize_title', explode( ',', $attrs['category'] ) );
+			$field      = 'slug';
+
+			if ( is_numeric( $categories[0] ) ) {
+				$categories = array_map( 'absint', $categories );
+				$field      = 'term_id';
+			}
+
+			$attrs['tax_query'][] = array(
+				'taxonomy' => 'product_cat',
+				'terms'    => $categories,
+				'field'    => $field,
+				'operator' => $attrs['cat_operator'],
+			);
+		}
+
+		ob_start();
+
+		// Query.
+		$query = new WP_Query( $attrs );
+
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				echo get_the_title() . '<br>';
+			}
+		}
+
+		wp_reset_postdata();
+
+		return ob_get_clean();
 	}
 }
