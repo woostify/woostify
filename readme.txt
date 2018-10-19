@@ -55,6 +55,13 @@ Woostify is distributed under the terms of the GNU GPL
 
 Woostify bundles the following third-party resources:
 
+Screenshot Licenses
+-------------------------------------------------------
+Screenshot images are all licensed under CC0 Universal
+https://unsplash.com/photos/GRfLA7aXlO4
+https://unsplash.com/photos/R3ot0RljP_4
+https://unsplash.com/photos/XbY0xayztVU
+
 Themeify Icons, Copyright lykmapipo
 Font License- Applies to all desktop and webfont files in the following directory: assets/fonts/.
 Themify Icons font licensed under: http://scripts.sil.org/OFL
