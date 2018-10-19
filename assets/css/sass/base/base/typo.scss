@@ -38,6 +38,7 @@ button{
     cursor: pointer;
     padding: 0;
     border: 1px solid #e8e8e8;
+
     &.disabled,
     &:disabled{
 		pointer-events: none;
@@ -54,6 +55,7 @@ h5,
 h6 {
     clear: both;
     margin: 15px 0;
+
     a{
         color: $inh
     }
@@ -93,8 +95,10 @@ blockquote {
     position: relative;
     clear: both;
     display: block;
+
     p {
         margin-bottom: 1.6667em;
+        
         &:last-child {
             margin-bottom: 0;
         }

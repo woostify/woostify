@@ -31,53 +31,15 @@ get_header(); ?>
 					}
 
 					echo '</section>';
-
-					if ( woostify_is_woocommerce_activated() ) {
-
-						echo '<div class="fourohfour-columns-2">';
-
-							echo '<section class="col-1" aria-label="' . esc_html__( 'Promoted Products', 'woostify' ) . '">';
-
-								woostify_promoted_products();
-
-							echo '</section>';
-
-							echo '<nav class="col-2" aria-label="' . esc_html__( 'Product Categories', 'woostify' ) . '">';
-
-								echo '<h2>' . esc_html__( 'Product Categories', 'woostify' ) . '</h2>';
-
-								the_widget(
-									'WC_Widget_Product_Categories', array(
-										'count' => 1,
-									)
-								);
-
-							echo '</nav>';
-
-						echo '</div>';
-
-						echo '<section aria-label="' . esc_html__( 'Popular Products', 'woostify' ) . '">';
-
-							echo '<h2>' . esc_html__( 'Popular Products', 'woostify' ) . '</h2>';
-
-							$shortcode_content = woostify_do_shortcode(
-								'best_selling_products', array(
-									'per_page' => 4,
-									'columns'  => 4,
-								)
-							);
-
-							echo $shortcode_content; // WPCS: XSS ok.
-
-						echo '</section>';
-					}
 					?>
 
-				</div><!-- .page-content -->
-			</div><!-- .error-404 -->
+				</div>
+			</div>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		</main>
+	</div>
+
+	<?php woostify_get_sidebar(); ?>
 
 <?php
 get_footer();

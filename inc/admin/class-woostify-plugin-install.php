@@ -71,26 +71,26 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 				if ( is_plugin_active( $plugin_slug . '/' . $plugin_file ) ) {
 					// The plugin is already active.
 					$button = array(
-						'message' => esc_attr__( 'Activated', 'woostify' ),
+						'message' => esc_html__( 'Activated', 'woostify' ),
 						'url'     => '#',
 						'classes' => array( 'woostify-button', 'disabled' ),
 					);
 
 					if ( '' !== $activated ) {
-						$button['message'] = esc_attr( $activated );
+						$button['message'] = esc_html( $activated );
 					}
 				} elseif ( self::_is_plugin_installed( $plugin_slug ) ) {
 					$url = self::_is_plugin_installed( $plugin_slug );
 
 					// The plugin exists but isn't activated yet.
 					$button = array(
-						'message' => esc_attr__( 'Activate', 'woostify' ),
+						'message' => esc_html__( 'Activate', 'woostify' ),
 						'url'     => $url,
 						'classes' => array( 'woostify-button', 'activate-now' ),
 					);
 
 					if ( '' !== $activate ) {
-						$button['message'] = esc_attr( $activate );
+						$button['message'] = esc_html( $activate );
 					}
 				} else {
 					// The plugin doesn't exist.
@@ -103,13 +103,13 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 						), 'install-plugin_' . $plugin_slug
 					);
 					$button = array(
-						'message' => esc_attr__( 'Install now', 'woostify' ),
+						'message' => esc_html__( 'Install now', 'woostify' ),
 						'url'     => $url,
 						'classes' => array( 'woostify-button', 'woostify-install-now', 'install-now', 'install-' . $plugin_slug ),
 					);
 
 					if ( '' !== $install ) {
-						$button['message'] = esc_attr( $install );
+						$button['message'] = esc_html( $install );
 					}
 				}
 
@@ -121,9 +121,9 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 
 				?>
 				<span class="woostify-plugin-card plugin-card-<?php echo esc_attr( $plugin_slug ); ?>">
-					<a href="<?php echo esc_url( $button['url'] ); ?>" class="<?php echo esc_attr( $button['classes'] ); ?>" data-originaltext="<?php echo esc_attr( $button['message'] ); ?>" data-name="<?php echo esc_attr( $plugin_name ); ?>" data-slug="<?php echo esc_attr( $plugin_slug ); ?>" aria-label="<?php echo esc_attr( $button['message'] ); ?>"><?php echo esc_attr( $button['message'] ); ?></a>
+					<a href="<?php echo esc_url( $button['url'] ); ?>" class="<?php echo esc_attr( $button['classes'] ); ?>" data-originaltext="<?php echo esc_attr( $button['message'] ); ?>" data-name="<?php echo esc_attr( $plugin_name ); ?>" data-slug="<?php echo esc_attr( $plugin_slug ); ?>" aria-label="<?php echo esc_attr( $button['message'] ); ?>"><?php echo esc_html( $button['message'] ); ?></a>
 				</span>
-				<a href="https://wordpress.org/plugins/<?php echo esc_attr( $plugin_slug ); ?>" target="_blank"><?php esc_attr_e( 'Learn more', 'woostify' ); ?></a>
+				<a href="https://wordpress.org/plugins/<?php echo esc_attr( $plugin_slug ); ?>" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 				<?php
 			}
 		}

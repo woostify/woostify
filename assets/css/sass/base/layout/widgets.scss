@@ -392,3 +392,134 @@
 		flex-grow: 1;
 	}
 }
+
+/* Footer widget text */
+.woostify-footer-text-widget{
+	.woostify-footer-site-title{
+		font-size: 24px;
+		font-weight: 600;
+		margin-bottom: 15px;
+	}
+
+	.woostify-footer-social-icon{
+		padding-left: 0;
+		margin: 20px 0 0;
+
+		li{
+			list-style: none;
+			display: inline-flex;
+
+			+li{
+				margin-left: 7px;
+			}
+		}
+
+		a{
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			color: #fff;
+			background-color: #232323;
+			@extend .inline-flex;
+
+			&:hover{
+				opacity: 0.7;
+			}
+		}
+	}
+}
+
+.woostify-social-icon{
+    a{
+        font-size: 0;
+
+        &:before{
+            font-size: 14px;
+            font-family: $icon;
+        }
+
+        &[href*="twitter.com"]:before {
+            content: "\e72a";
+        }
+
+        &[href*="facebook.com"]:before {
+            content: "\e741";
+        }
+
+        &[href*="plus.google.com"]:before {
+            content: "\e73e";
+        }
+
+        &[href*="instagram.com"]:before {
+            content: "\e73d";
+        }
+
+        &[href*="vimeo.com"]:before {
+            content: "\e729";
+        }
+
+        &[href*="youtube.com"]:before {
+            content: "\e728";
+        }
+
+        &[href*="github.com"]:before {
+            content: "\e73f";
+        }
+
+        &[href*="linkedin.com"]:before {
+            content: "\e735";
+        }
+
+        &[href*="pinterest.com"]:before {
+            content: "\e753";
+        }
+
+        &[href*="flickr.com"]:before {
+            content: "\e740";
+        }
+
+        &[href*="tumblr.com"]:before {
+            content: "\e72c";
+        }
+    }
+}
+
+/* WPForm: Subscribe */
+.wpforms-widget {
+	.wpforms-container.woostify-subscribe-form{
+		margin-bottom: 0;
+
+		.wpforms-field{
+			padding-bottom: 0;
+		}
+
+		input[type="email"] {
+			border-radius: 4px;
+			padding: 0 20px;
+			max-width: 100%;
+			height: 40px;
+			color: #232323;
+			font-size: 1em;
+
+			@include placeholder {
+		        color: #bfbfbf;
+		    }
+		}
+
+		button[type="submit"] {
+			text-transform: uppercase;
+			font-size: 12px;
+			font-weight: 600;
+			color: #2b2b2b;
+			background-color: $tr;
+			padding: 0 20px;
+			height: 40px;
+			border-radius: 4px;
+
+			&:hover,
+			&:active{
+				background-color: #eee;
+			}
+		}
+	}
+}

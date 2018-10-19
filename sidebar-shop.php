@@ -11,7 +11,7 @@
 	<?php
 	if ( is_active_sidebar( 'sidebar-shop' ) ) {
 		dynamic_sidebar( 'sidebar-shop' );
-	} else {
+	} elseif ( is_user_logged_in() ) {
 		?>
 		<div class="widget widget_text default-widget">
 			<h2 class="widgettitle"><?php esc_html_e( 'Sidebar Shop Widget', 'woostify' ); ?></h2>

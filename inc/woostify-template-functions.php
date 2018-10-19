@@ -121,7 +121,7 @@ if ( ! function_exists( 'woostify_comment' ) ) {
 						<?php printf( wp_kses_post( '<cite class="fn">%s</cite>', 'woostify' ), get_comment_author_link() ); ?>
 						
 						<?php if ( '0' == $comment->comment_approved ) : ?>
-							<em class="comment-awaiting-moderation"><?php esc_attr_e( 'Your comment is awaiting moderation.', 'woostify' ); ?></em>
+							<em class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'woostify' ); ?></em>
 						<?php endif; ?>
 
 						<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>" class="comment-date">
@@ -178,7 +178,7 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 			<?php dynamic_sidebar( 'footer' ); ?>
 		</div>
 			<?php
-		} else {
+		} elseif ( is_user_logged_in() ) {
 			?>
 		<div class="footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
 			<div class="widget widget_text default-widget">
@@ -484,8 +484,8 @@ if ( ! function_exists( 'woostify_skip_links' ) ) {
 	 */
 	function woostify_skip_links() {
 		?>
-		<a class="skip-link screen-reader-text" href="#site-navigation"><?php esc_attr_e( 'Skip to navigation', 'woostify' ); ?></a>
-		<a class="skip-link screen-reader-text" href="#content"><?php esc_attr_e( 'Skip to content', 'woostify' ); ?></a>
+		<a class="skip-link screen-reader-text" href="#site-navigation"><?php esc_html_e( 'Skip to navigation', 'woostify' ); ?></a>
+		<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'woostify' ); ?></a>
 		<?php
 	}
 }
@@ -656,7 +656,7 @@ if ( ! function_exists( 'woostify_post_meta' ) ) {
 					?>
 					<span class="post-meta-item vcard author">
 						<?php
-							echo '<span class="label">' . esc_attr( __( 'by', 'woostify' ) ) . '</span>';
+							echo '<span class="label">' . esc_html( __( 'by', 'woostify' ) ) . '</span>';
 							echo sprintf(
 								' <a href="%1$s" class="url fn" rel="author">%2$s</a>',
 								esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
@@ -679,7 +679,7 @@ if ( ! function_exists( 'woostify_post_meta' ) ) {
 						?>
 							<span class="post-meta-item cat-links">
 								<?php
-									echo '<span class="label sr-only">' . esc_attr( __( 'Posted in', 'woostify' ) ) . '</span>';
+									echo '<span class="label sr-only">' . esc_html( __( 'Posted in', 'woostify' ) ) . '</span>';
 									echo wp_kses_post( $categories_list );
 								?>
 							</span>

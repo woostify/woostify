@@ -19,14 +19,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 		/**
 		 * Setup class.
-		 *
-		 * @since 1.0
 		 */
 		public function __construct() {
 			add_action( 'after_setup_theme', array( $this, 'setup' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'woocommerce_scripts' ), 10 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'woocommerce_scripts' ), 200 );
 			add_filter( 'body_class', array( $this, 'woocommerce_body_class' ) );
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+			add_action( 'init', array( $this, 'woostify_shortcode' ) );
 
 			// GENERAL.
 			// Product related.
@@ -150,6 +149,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			// Main woocommerce js file.
 			wp_enqueue_script( 'woostify-woocommerce' );
+
+			// Product variations.
+			wp_enqueue_script( 'woostify-product-variation' );
 
 			// Quantity button.
 			wp_enqueue_script( 'woostify-quantity-button' );
@@ -316,7 +318,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				<span class="onsale">
 					<?php
 					if ( $simple ) {
-						$final_price = esc_attr( ( ( $price - $price_sale ) / $price ) * 100 );
+						$final_price = esc_html( ( ( $price - $price_sale ) / $price ) * 100 );
 						echo '-' . round( $final_price ) . '%'; // WPCS: XSS ok.
 					} else {
 						esc_html_e( 'Sale!', 'woostify' );
@@ -340,7 +342,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			ob_start();
 			?>
-				<span class="shop-cart-count"><?php echo esc_attr( $total ); ?></span>
+				<span class="shop-cart-count"><?php echo esc_html( $total ); ?></span>
 			<?php
 
 			$fragments['span.shop-cart-count'] = ob_get_clean();
@@ -581,7 +583,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			global $product;
 			$image_id   = $product->get_image_id();
 			$image_alt  = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
-			$image_size = '500x500';
+			$get_size   = wc_get_image_size( 'shop_catalog' );
+			$image_size = $get_size['width'] . 'x' . ( ! empty( $get_size['height'] ) ? $get_size['height'] : $get_size['width'] );
 
 			if ( $image_id ) {
 				$image_small_src  = wp_get_attachment_image_src( $image_id, 'thumbnail' );
@@ -598,7 +601,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			?>
 			<div class="product-images">
 				<div id="product-images" itemscope itemtype="http://schema.org/ImageGallery">
-					<figure class="image-item ez-zoom" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" data-zoom="<?php echo esc_attr( $image_full_src[0] ); ?>">
+					<figure class="image-item ez-zoom" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
 						<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" itemprop="contentUrl">
 							<img src="<?php echo esc_url( $image_medium_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" itemprop="thumbnail">
 						</a>
@@ -612,7 +615,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 							$g_image_size     = $g_medium_img_src[1] . 'x' . $g_medium_img_src[2];
 							$g_img_alt        = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
 							?>
-							<figure class="image-item ez-zoom" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" data-zoom="<?php echo esc_attr( $g_full_img_src[0] ); ?>">
+							<figure class="image-item ez-zoom" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
 								<a href="<?php echo esc_url( $g_full_img_src[0] ); ?>" data-size="<?php echo esc_attr( $g_image_size ); ?>" itemprop="contentUrl">
 									<img src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>" itemprop="thumbnail">
 								</a>
@@ -737,6 +740,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			// Easyzoom.
 			wp_enqueue_script( 'easyzoom' );
+			wp_enqueue_script( 'easyzoom-handle' );
 			wp_add_inline_script(
 				'easyzoom',
 				"document.addEventListener( 'DOMContentLoaded', function(){
@@ -969,6 +973,24 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				<?php esc_html_e( 'Clear cart', 'woostify' ); ?>
 			</a>
 			<?php
+		}
+
+		/**
+		 * Add shortcode
+		 */
+		public function woostify_shortcode() {
+			$shortcodes = apply_filters(
+				'woostify_shortcodes',
+				array(
+					'product_slider' => 'product_slider',
+				)
+			);
+
+			foreach ( $shortcodes as $shortcode => $function ) {
+				if ( function_exists( "woostify_{$function}" ) ) {
+					add_shortcode( apply_filters( "woostify_{$shortcode}_shortcode_tag", $shortcode ), "woostify_{$function}" );
+				}
+			}
 		}
 	}
 

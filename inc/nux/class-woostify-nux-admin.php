@@ -99,8 +99,8 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 
 				<div class="notice-content">
 				<?php if ( ! woostify_is_woocommerce_activated() && current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) ) : ?>
-					<h2><?php esc_attr_e( 'Thanks for installing Woostify, you rock! 🤘', 'woostify' ); ?></h2>
-					<p><?php esc_attr_e( 'To enable eCommerce features you need to install the WooCommerce plugin.', 'woostify' ); ?></p>
+					<h2><?php esc_html_e( 'Thanks for installing Woostify, you rock! 🤘', 'woostify' ); ?></h2>
+					<p><?php esc_html_e( 'To enable eCommerce features you need to install the WooCommerce plugin.', 'woostify' ); ?></p>
 					<p><?php Woostify_Plugin_Install::install_plugin_button( 'woocommerce', 'woocommerce.php', 'WooCommerce', array( 'woostify-nux-button' ), __( 'WooCommerce activated', 'woostify' ), __( 'Activate WooCommerce', 'woostify' ), __( 'Install WooCommerce', 'woostify' ) ); ?></p>
 				<?php endif; ?>
 
@@ -109,15 +109,15 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 					<p>
 					<?php
 					if ( true === (bool) get_option( 'woostify_nux_fresh_site' ) && 'post-new.php' === $pagenow ) {
-						echo esc_attr__( 'Before you add your first product let\'s design your store. We\'ll add some example products for you. When you\'re ready let\'s get started by adding your logo.', 'woostify' );
+						echo esc_html__( 'Before you add your first product let\'s design your store. We\'ll add some example products for you. When you\'re ready let\'s get started by adding your logo.', 'woostify' );
 					} else {
-						echo esc_attr__( 'You\'ve set up WooCommerce, now it\'s time to give it some style! Let\'s get started by entering the Customizer and adding your logo.', 'woostify' );
+						echo esc_html__( 'You\'ve set up WooCommerce, now it\'s time to give it some style! Let\'s get started by entering the Customizer and adding your logo.', 'woostify' );
 					}
 					?>
 					</p>
 
 					<a class="woostify-nux-button" href="<?php echo esc_url( get_admin_url() . 'customize.php?autofocus%5Bcontrol%5D=custom_logo' ); ?>">
-						<?php esc_attr_e( 'Let\'s go!', 'woostify' ); ?>
+						<?php esc_html_e( 'Let\'s go!', 'woostify' ); ?>
 					</a>
 				<?php endif; ?>
 				</div>

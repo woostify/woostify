@@ -20,24 +20,6 @@ function eventCartSidebarClose() {
 	document.body.classList.remove( 'updating-cart' );
 }
 
-// Event when click shopping bag button.
-( function() {
-	var shoppingBag = document.getElementsByClassName( 'shopping-bag-button' );
-
-	if ( ! shoppingBag || document.body.classList.contains( 'woocommerce-cart' ) ) {
-		return;
-	}
-
-	for ( var i = 0, j = shoppingBag.length; i < j; i++ ) {
-		shoppingBag[i].addEventListener( 'click', function( e ) {
-			e.preventDefault();
-
-			cartSidebarOpen();
-			closeAll();
-		} );
-	}
-} )();
-
 // Get product item in cart.
 function getProductItemInCart(){
 
@@ -106,3 +88,21 @@ jQuery( document.body ).on( 'adding_to_cart', function() {
 	// Event `updated_cart_totals`.
 	quantity();
 } );
+
+// Event when click shopping bag button.
+( function() {
+	var shoppingBag = document.getElementsByClassName( 'shopping-bag-button' );
+
+	if ( ! shoppingBag || document.body.classList.contains( 'woocommerce-cart' ) ) {
+		return;
+	}
+
+	for ( var i = 0, j = shoppingBag.length; i < j; i++ ) {
+		shoppingBag[i].addEventListener( 'click', function( e ) {
+			e.preventDefault();
+
+			cartSidebarOpen();
+			closeAll();
+		} );
+	}
+} )();

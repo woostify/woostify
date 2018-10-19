@@ -7,7 +7,7 @@
 'use strict';
 
 let theme       = 'woostify',
-	site_name   = 'wootify',
+	site_name   = 'woostify',
 	gulp        = require( 'gulp' ),
 	babel       = require( 'gulp-babel' ),
 	autoLoad    = require( 'gulp-load-plugins' )(),
@@ -58,7 +58,7 @@ function handleError( e ) {
 gulp.task( 'browser-sync', () =>
 	browserSync( {
 		files: 'style.css',
-		proxy: "http://" + site_name + ".ss"
+		proxy: "http://" + site_name + ".io"
 	} )
 );
 

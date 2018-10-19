@@ -93,15 +93,15 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 						<# if ( data.button_text ) { #>
 							{{ data.button_text }}
 						<# } else { #>
-							<?php esc_attr_e( 'Next', 'woostify' ); ?>
+							<?php esc_html_e( 'Next', 'woostify' ); ?>
 						<# } #>
 					</a>
 					<# if ( ! data.last_step ) { #>
 						<a class="woostify-guided-tour-skip" href="#">
 						<# if ( data.first_step ) { #>
-							<?php esc_attr_e( 'No thanks, skip the tour', 'woostify' ); ?>
+							<?php esc_html_e( 'No thanks, skip the tour', 'woostify' ); ?>
 						<# } else { #>
-							<?php esc_attr_e( 'Skip this step', 'woostify' ); ?>
+							<?php esc_html_e( 'Skip this step', 'woostify' ); ?>
 						<# } #>
 						</a>
 					<# } #>

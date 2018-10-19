@@ -210,8 +210,6 @@ if ( ! class_exists( 'woostify' ) ) :
 
 		/**
 		 * Enqueue scripts and styles.
-		 *
-		 * @since  1.0
 		 */
 		public function scripts() {
 			global $woostify_version;
@@ -285,6 +283,24 @@ if ( ! class_exists( 'woostify' ) ) :
 				true
 			);
 
+			// Product gallery zoom handle.
+			wp_register_script(
+				'easyzoom-handle',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/easyzoom-handle' . $suffix . '.js',
+				array( 'easyzoom' ),
+				$woostify_version,
+				true
+			);
+
+			// Product varitions.
+			wp_register_script(
+				'woostify-product-variation',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/product-variation' . $suffix . '.js',
+				array( 'jquery', 'easyzoom-handle' ),
+				$woostify_version,
+				true
+			);
+
 			// Tiny slider js.
 			wp_register_script(
 				'tiny-slider',
@@ -313,8 +329,6 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Enqueue child theme stylesheet.
 		 * A separate function is required as the child theme css needs to be enqueued _after_ the parent theme
 		 * primary css and the separate WooCommerce css.
-		 *
-		 * @since  1.0
 		 */
 		public function child_scripts() {
 			if ( is_child_theme() ) {
