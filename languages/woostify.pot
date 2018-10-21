@@ -508,39 +508,39 @@ msgstr ""
 msgid "Shop Single"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:102
+#: inc/nux/class-woostify-nux-admin.php:101
 msgid "Thanks for installing Woostify, you rock! 🤘"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:103
+#: inc/nux/class-woostify-nux-admin.php:102
 msgid "To enable eCommerce features you need to install the WooCommerce plugin."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:104
+#: inc/nux/class-woostify-nux-admin.php:103
 msgid "WooCommerce activated"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:104
+#: inc/nux/class-woostify-nux-admin.php:103
 msgid "Activate WooCommerce"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:104
+#: inc/nux/class-woostify-nux-admin.php:103
 msgid "Install WooCommerce"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:108
+#: inc/nux/class-woostify-nux-admin.php:107
 msgid "Design your store 🎨"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:112
+#: inc/nux/class-woostify-nux-admin.php:111
 msgid "Before you add your first product let's design your store. We'll add some example products for you. When you're ready let's get started by adding your logo."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:114
+#: inc/nux/class-woostify-nux-admin.php:113
 msgid "You've set up WooCommerce, now it's time to give it some style! Let's get started by entering the Customizer and adding your logo."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:120, inc/nux/class-woostify-nux-guided-tour.php:125
+#: inc/nux/class-woostify-nux-admin.php:119, inc/nux/class-woostify-nux-guided-tour.php:125
 msgid "Let's go!"
 msgstr ""
 
