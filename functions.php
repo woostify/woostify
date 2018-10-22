@@ -67,17 +67,6 @@ if ( is_admin() ) {
 }
 
 /**
- * NUX
- */
-if (
-	version_compare( get_bloginfo( 'version' ), '4.7.3', '>=' ) &&
-	( is_admin() || is_customize_preview() )
-) {
-	require_once WOOSTIFY_THEME_DIR . 'inc/nux/class-woostify-nux-admin.php';
-	require_once WOOSTIFY_THEME_DIR . 'inc/nux/class-woostify-nux-guided-tour.php';
-}
-
-/**
  * Widgets
  */
 require_once WOOSTIFY_THEME_DIR . 'inc/widget/class-woostify-recent-post-thumbnail.php';
