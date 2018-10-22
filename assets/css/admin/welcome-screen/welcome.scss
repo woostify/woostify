@@ -255,22 +255,24 @@ $green: #45b964;
 	}
 
 	a.woostify-button {
-		color: #2e4453;
-		border: 1px solid #c8d7e1;
-		padding: 0.5em 1em;
-		border-radius: 3px;
-		font-weight: 600;
-		display: inline-block;
-		box-shadow: 0 1px 0 #c8d7e1;
-		text-decoration: none;
-		background-color: #fff;
-		text-shadow: none;
-		height: auto;
-		line-height: 1.5;
+		&:not(.activate-now) {
+			color: #2e4453;
+			border: 1px solid #c8d7e1;
+			padding: 0.5em 1em;
+			border-radius: 3px;
+			font-weight: 600;
+			display: inline-block;
+			box-shadow: 0 1px 0 #c8d7e1;
+			text-decoration: none;
+			background-color: #fff;
+			text-shadow: none;
+			height: auto;
+			line-height: 1.5;
 
-		&:hover {
-			border-color: #a8bece;
-			box-shadow: 0 1px 0 #a8bece;
+			&:hover {
+				border-color: #a8bece;
+				box-shadow: 0 1px 0 #a8bece;
+			}
 		}
 
 		&.disabled {

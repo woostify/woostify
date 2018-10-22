@@ -259,7 +259,7 @@
   margin: 0 auto;
 }
 
-.appearance_page_woostify-welcome a.woostify-button {
+.appearance_page_woostify-welcome a.woostify-button:not(.activate-now) {
   color: #2e4453;
   border: 1px solid #c8d7e1;
   padding: 0.5em 1em;
@@ -274,7 +274,7 @@
   line-height: 1.5;
 }
 
-.appearance_page_woostify-welcome a.woostify-button:hover {
+.appearance_page_woostify-welcome a.woostify-button:not(.activate-now):hover {
   border-color: #a8bece;
   box-shadow: 0 1px 0 #a8bece;
 }

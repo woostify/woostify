@@ -23,7 +23,6 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 		 */
 		public function __construct() {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-			add_action( 'admin_notices', array( $this, 'admin_notices' ), 99 );
 			add_action( 'wp_ajax_woostify_dismiss_notice', array( $this, 'dismiss_nux' ) );
 			add_action( 'admin_post_woostify_starter_content', array( $this, 'redirect_customizer' ) );
 			add_action( 'init', array( $this, 'log_fresh_site_state' ) );
