@@ -68,10 +68,6 @@ Themify Icons font licensed under: http://scripts.sil.org/OFL
 Code licensed under: MIT
 Source: https://fontawesome.com/v4.7.0/license/
 
-normalize.css, Copyright 2012-2016 Nicolas Gallagher and Jonathan Neal
-License: MIT
-Source: https://necolas.github.io/normalize.css/
-
 Tiny Slider, Copyright ganlanyuan
 License: Mit.
 Source: https://github.com/ganlanyuan/tiny-slider
@@ -79,4 +75,8 @@ Source: https://github.com/ganlanyuan/tiny-slider
 EasyZoom, Copyright EasyZoom
 License: Mit
 Source: https://github.com/i-like-robots/EasyZoom
+
+Photoswipe, Copyright Dmitry Semenov.
+License: Mit
+Source: https://github.com/dimsemenov/PhotoSwipe
 
