@@ -24,6 +24,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			add_action( 'after_setup_theme', array( $this, 'setup' ) );
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 10 );
+			add_filter( 'wpcf7_load_css', '__return_false' );
 
 			// After WooCommerce.
 			add_action( 'wp_enqueue_scripts', array( $this, 'child_scripts' ), 30 );
@@ -304,7 +305,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Tiny slider js.
 			wp_register_script(
 				'tiny-slider',
-				WOOSTIFY_THEME_URI . 'assets/js/tiny-slider.min' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/tiny-slider' . $suffix . '.js',
 				array(),
 				$woostify_version,
 				true

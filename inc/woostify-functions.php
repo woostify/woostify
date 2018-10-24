@@ -44,6 +44,33 @@ if ( ! function_exists( 'woostify_is_woocommerce_activated' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_is_elementor_activated' ) ) {
+	/**
+	 * Check Elementor active
+	 *
+	 * @return     bool
+	 */
+	function woostify_is_elementor_activated() {
+		return defined( 'ELEMENTOR_VERSION' );
+	}
+}
+
+if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
+	/**
+	 * Detect Elementor Page editor with current page
+	 *
+	 * @return     bool
+	 */
+	function woostify_is_elementor_page() {
+		if ( ! woostify_is_elementor_activated() ) {
+			return false;
+		}
+
+		$id = woostify_get_page_id();
+		return get_post_meta( $id, '_elementor_edit_mode', true );
+	}
+}
+
 if ( ! function_exists( 'woostify_theme_name' ) ) {
 	/**
 	 * Get theme name.
@@ -135,7 +162,7 @@ if ( ! function_exists( 'woostify_options' ) ) {
 	/**
 	 * Theme option
 	 * If ( $defaults = true ) return Default value
-	 * Else return option
+	 * Else return all theme option
 	 *
 	 * @param      bool $defaults  Condition check output.
 	 * @return     array $options         All theme options

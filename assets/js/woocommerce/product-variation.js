@@ -32,11 +32,11 @@ function productVariation() {
 		// Photoswipe + zoom.
 		photoSwipe.prop( 'href', imgUrl );
 		// Image loading.
-		image.addClass( 'image-is-loading' );
+		image.addClass( 'image-loading' );
 		image.find( 'img' )
 			.prop( 'src', imgUrl )
 			.one( 'load', function() {
-				image.removeClass( 'image-is-loading' );
+				image.removeClass( 'image-loading' );
 			} );
 		// Zoom handle.
 		easyZoom();

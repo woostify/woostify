@@ -1,0 +1,68 @@
+/* Woostify contact info */
+.woostify-contact-info{
+	.contact-info-list{
+		display: flex;
+		align-items: flex-start;
+		border-bottom: 1px solid #f3f3f3;
+		padding: 30px 0;
+	}
+
+	.contact-info-img{
+		min-width: 40px;
+		max-width: 40px;
+		margin-right: 30px;
+		display: inline-block;
+		margin-top: 10px;
+	}
+
+	.contact-info-detail{
+		display: inline-block;
+		flex-grow: 1;
+	
+		label{
+			font-size: 10px;
+			font-weight: 600;
+			text-transform: uppercase;
+		}
+		h6{
+			font-weight: 400;
+			margin: 0;
+		}
+		p{
+			&:last-child{
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+/* Shop category */
+.woostify-shop-category{
+	.elementor-widget-wrap{
+		>.elementor-widget-image{
+			position: relative;
+			
+			&:hover{
+				.wp-caption .wp-caption-text{
+					bottom: 20px;
+					left: 20px;
+				}
+			}
+
+			.wp-caption .wp-caption-text{
+				position: absolute;
+				left: 30px;
+				bottom: 30px;
+				font-style: normal;
+				font-size: 24px;
+				font-weight: 500;
+				margin-top: 0;
+				line-height: 1;
+				padding-top: 0;
+				pointer-events: none;
+				@extend .duration;
+			}
+		}
+	}
+}
+

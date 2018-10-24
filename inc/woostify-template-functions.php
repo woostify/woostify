@@ -495,6 +495,11 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 	 * Display the page header
 	 */
 	function woostify_page_header() {
+		// Not showing page title with edited by Elementor.
+		if ( true == woostify_is_elementor_page() ) {
+			return;
+		}
+
 		if ( is_page() ) {
 			$page_id            = woostify_get_page_id();
 			$metabox_page_title = get_post_meta( $page_id, 'site-post-title', true );
@@ -1080,6 +1085,10 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		$sidebar_shop        = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop'];
 		$sidebar_shop_single = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop_single'];
 
+		if ( true == woostify_is_elementor_page() ) {
+			return $sidebar;
+		}
+
 		if ( true == woostify_is_product_archive() ) {
 			// Product archive.
 			$sidebar = woostify_get_sidebar_id( 'sidebar-shop', $sidebar_shop, $sidebar_default );
@@ -1110,7 +1119,7 @@ if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 	function woostify_get_sidebar() {
 		$sidebar = woostify_sidebar_class();
 
-		if ( false !== strpos( $sidebar, 'no-sidebar' ) || '' == $sidebar ) {
+		if ( false !== strpos( $sidebar, 'no-sidebar' ) || '' == $sidebar || true == woostify_is_elementor_page() ) {
 			return;
 		}
 

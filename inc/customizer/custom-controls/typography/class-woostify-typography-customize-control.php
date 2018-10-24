@@ -41,7 +41,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 
 			wp_enqueue_style(
 				'woostify-typography-selectWoo',
-				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/css/selectWoo.min.css',
+				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/css/selectWoo.css',
 				array(),
 				$woostify_version
 			);

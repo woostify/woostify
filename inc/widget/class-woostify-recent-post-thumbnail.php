@@ -49,7 +49,7 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 			?>
 
 			<p>
-				<label for='<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>'><?php esc_html_e( 'Title:' ); ?></label>
+				<label for='<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>'><?php esc_html_e( 'Title:', 'woostify' ); ?></label>
 				<input
 					class="widefat"
 					type='text'
@@ -58,7 +58,7 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 					id='<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>' />
 			</p>
 			<p>
-				<label for='<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>'><?php esc_html_e( 'Number:' ); ?></label>
+				<label for='<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>'><?php esc_html_e( 'Number:', 'woostify' ); ?></label>
 				<input
 					class="widefat"
 					type="text"

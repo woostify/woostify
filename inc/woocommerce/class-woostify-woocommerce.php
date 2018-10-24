@@ -25,7 +25,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'wp_enqueue_scripts', array( $this, 'woocommerce_scripts' ), 200 );
 			add_filter( 'body_class', array( $this, 'woocommerce_body_class' ) );
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
-			add_action( 'init', array( $this, 'woostify_shortcode' ) );
 
 			// GENERAL.
 			// Product related.
@@ -687,7 +686,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				wp_add_inline_script(
 					'tiny-slider',
 					"document.addEventListener( 'DOMContentLoaded', function(){
-						var image_carousel = tns({
+						var imageCarousel = tns({
 							loop: false,
 							container: '#product-images',
 							navContainer: '#product-thumbnail-images',
@@ -708,9 +707,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 						}
 
 						if ( window.matchMedia( '( min-width: 768px )' ).matches ) {
-							var thumb_carousel = tns( options );
+							var thumbCarousel = tns( options );
 						} else {
-							var thumb_carousel = tns({
+							var thumbCarousel = tns({
 								loop: false,
 								container: '#product-thumbnail-images',
 								fixedWidth: 80,
@@ -721,17 +720,17 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 							});
 						}
 
-						var reset_slider = function(){
-							image_carousel.goTo( 'first' );
-							thumb_carousel.goTo( 'first' );
+						var resetSlider = function(){
+							imageCarousel.goTo( 'first' );
+							thumbCarousel.goTo( 'first' );
 						}
 
 						jQuery( document.body ).on( 'found_variation', 'form.variations_form', function( event, variation ) {
-							reset_slider();
+							resetSlider();
 						});
 
 						jQuery( '.reset_variations' ).on( 'click', function(){
-							reset_slider();
+							resetSlider();
 						});
 					});",
 					'after'
@@ -973,24 +972,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				<?php esc_html_e( 'Clear cart', 'woostify' ); ?>
 			</a>
 			<?php
-		}
-
-		/**
-		 * Add shortcode
-		 */
-		public function woostify_shortcode() {
-			$shortcodes = apply_filters(
-				'woostify_shortcodes',
-				array(
-					'product_slider' => 'product_slider',
-				)
-			);
-
-			foreach ( $shortcodes as $shortcode => $function ) {
-				if ( function_exists( "woostify_{$function}" ) ) {
-					add_shortcode( apply_filters( "woostify_{$shortcode}_shortcode_tag", $shortcode ), "woostify_{$function}" );
-				}
-			}
 		}
 	}
 

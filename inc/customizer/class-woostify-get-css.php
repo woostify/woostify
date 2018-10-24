@@ -148,7 +148,9 @@ class Woostify_Get_CSS {
 			.woocommerce-table--order-details .amount,
 			.wc-breadcrumb .woostify-breadcrumb,
 			.sidebar-menu .primary-navigation .menu-item-has-children:after,
-			.default-widget a strong:hover{
+			.default-widget a strong:hover,
+			.woostify-subscribe-form input,
+			.woostify-shop-category .elementor-widget-image .widget-image-caption{
 				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 
@@ -175,7 +177,8 @@ class Woostify_Get_CSS {
 			.woocommerce-widget-layered-nav-dropdown__submit,
 			.clear-cart-btn,
 			.form-submit .submit,
-			.checkout-button{
+			.checkout-button,
+			.woostify-contact-form input[type="submit"]{
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 				color: ' . esc_attr( $options['button_text_color'] ) . ';
 			}
@@ -186,7 +189,8 @@ class Woostify_Get_CSS {
 			#commentform input[type="submit"]:hover,
 			.clear-cart-btn:hover,
 			.form-submit .submit:hover,
-			.checkout-button:hover{
+			.checkout-button:hover,
+			.woostify-contact-form input[type="submit"]:hover{
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
 				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
 			}

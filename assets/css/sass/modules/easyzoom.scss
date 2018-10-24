@@ -1,6 +1,7 @@
 .ez-zoom {
 	position: relative;
 }
+
 .easyzoom-flyout {
 	position: absolute;
 	top: 0;
@@ -11,11 +12,11 @@
 	z-index: 1;
 	overflow: hidden;
 	background: #fff;
-	@include transition( opacity 0.5s ease );
-	img{
+	@include transition( opacity 0.5s ease);
+	img {
 		max-width: initial;
 	}
-	&:hover{
+	&:hover {
 		opacity: 1;
 	}
 }

@@ -116,7 +116,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shop_page_product_price'              => true,
 
 					// Shop single.
-					'single_add_to_cart_ajax'              => true,
 					'single_content_background'            => '#f3f3f3',
 
 					// Sidebar.

@@ -1,0 +1,144 @@
+.wpcf7 {
+	.row{
+		@extend .clearfix;
+	}
+	
+	.ajax-loader {
+		display: none;
+		opacity: 0;
+		visibility: hidden;
+		width: 1em;
+		height: 1em;
+
+		&:before {
+			content: "\e619";
+			font-family: $icon;
+		}
+		&.is-active {
+			@extend .flex;
+			margin-top: 10px;
+			opacity: 1;
+			visibility: visible;
+			animation: loading 0.5s linear infinite;
+		}
+	}
+}
+
+.screen-reader-response{
+	@extend .sr-only;
+}
+
+.wpcf7-mail-sent-ok {
+	color: #27ae61;
+}
+
+.wpcf7-display-none {
+	display: none;
+}
+
+.wpcf7-response-output {
+	margin: 10px 0;
+}
+
+.wpcf7-not-valid-tip,
+.wpcf7-validation-errors {
+	color: firebrick;
+	margin: 5px 0;
+	display: block;
+	font-size: 12px;
+}
+
+
+@keyframes loading {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/* Footer Subscribe Form */
+.woostify-subscribe-form{
+	position: relative;
+	display: inline-block;
+	max-width: 100%;
+
+	input{
+		&[type="email"]{
+			height: 44px;
+			border-radius: 50px;
+			padding: 0 100px 0 30px;
+			display: block;
+			@extend .duration;
+
+			@include placeholder{
+				color: #bfbfbf;
+			}
+
+			&:focus{
+				border-color: #ccc;
+			}
+		}
+
+		&[type="submit"]{
+			font-size: 12px;
+			font-weight: 600;
+			position: absolute;
+			right: 0;
+			top: 0;
+			height: 44px;
+			border: 0;
+			padding: 0 20px;
+			border-radius: 0 50px 50px 0;
+			text-transform: uppercase;
+			background-color: $tr;
+		}
+	}
+}
+
+/* Contact form */
+.woostify-contact-form {
+	input{
+		height: 50px;
+		@extend .duration;
+
+		&:not([type="submit"]) {
+			padding: 0 20px;
+			display: block;
+			width: 100%;
+			margin-top: 30px;
+			border-radius: 4px;
+
+			@include placeholder{
+				color: #bfbfbf
+			}
+
+			&:focus{
+				border-color: #ccc;
+			}
+		}
+		&[type="submit"] {
+			border-radius: 50px;
+			padding: 0 20px;
+			text-transform: uppercase;
+			font-weight: 600;
+			min-width: 130px;
+		}
+	}
+
+	textarea{
+		width: 100%;
+		display: block;
+		padding: 20px;
+		resize: none;
+		border-radius: 4px;
+		margin-top: 30px;
+		@extend .duration;
+
+		@include placeholder{
+			color: #bfbfbf
+		}
+
+		&:focus{
+			border-color: #ccc;
+		}
+	}
+}

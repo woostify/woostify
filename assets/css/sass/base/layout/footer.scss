@@ -1,6 +1,10 @@
 .site-footer {
 	margin-top: 100px;
 	clear: both;
+
+	.elementor-page &{
+		margin-top: 0;
+	}
 }
 
 /* FOOTER WIDGET COLUMNS */

@@ -8,30 +8,6 @@
 // Default values.
 $defaults = woostify_options();
 
-// Ajax single add to cart.
-$wp_customize->add_setting(
-	'woostify_setting[single_add_to_cart_ajax]',
-	array(
-		'default'           => $defaults['single_add_to_cart_ajax'],
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
-		'type'              => 'option',
-	)
-);
-
-$wp_customize->add_control(
-	new Woostify_Switch_Control(
-		$wp_customize,
-		'woostify_setting[single_add_to_cart_ajax]',
-		array(
-			'label'        => __( 'Ajax Single Add To Cart', 'woostify' ),
-			'section'      => 'woostify_shop_single',
-			'settings'     => 'woostify_setting[single_add_to_cart_ajax]',
-			'left_switch'  => __( 'No', 'woostify' ),
-			'right_switch' => __( 'Yes', 'woostify' ),
-		)
-	)
-);
-
 // Product content background.
 $wp_customize->add_setting(
 	'woostify_setting[single_content_background]',

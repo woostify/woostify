@@ -38,7 +38,8 @@
 	margin-top: 3.5em;
 	@extend .clearfix;
 
-	.single-product &{
+	.single-product &,
+	.elementor-page &{
 		margin-top: 0;
 	}
 }
