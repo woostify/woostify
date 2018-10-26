@@ -56,6 +56,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'retina_logo'                          => '',
 					'logo_mobile'                          => '',
 					'logo_width'                           => '',
+					'tablet_logo_width'                    => '',
+					'mobile_logo_width'                    => '',
 
 					// Color.
 					'theme_color'                          => '#1346af',

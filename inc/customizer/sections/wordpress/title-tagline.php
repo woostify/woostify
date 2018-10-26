@@ -63,6 +63,26 @@ $wp_customize->add_setting(
 	)
 );
 
+$wp_customize->add_setting(
+	'woostify_setting[tablet_logo_width]',
+	array(
+		'default'           => $defaults['tablet_logo_width'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[mobile_logo_width]',
+	array(
+		'default'           => $defaults['mobile_logo_width'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
 $wp_customize->add_control(
 	new Woostify_Range_Customize_Control(
 		$wp_customize,
@@ -73,8 +93,8 @@ $wp_customize->add_control(
 			'section'  => 'title_tagline',
 			'settings' => array(
 				'desktop' => 'woostify_setting[logo_width]',
-				'tablet'  => 'woostify_setting[logo_width]',
-				'mobile'  => 'woostify_setting[logo_width]',
+				'tablet'  => 'woostify_setting[tablet_logo_width]',
+				'mobile'  => 'woostify_setting[mobile_logo_width]',
 			),
 			'choices' => array(
 				'desktop' => array(

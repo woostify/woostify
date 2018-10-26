@@ -71,6 +71,48 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 	} );
 }
 
+
+/**
+ * Multi device slider update
+ *
+ * @param      array   array     The array: array of settings Desktop -> Tablet -> Mobile
+ * @param      string  selector  The selector: css selector
+ * @param      string  property  The property: background-color, display...
+ * @param      string  unit      The css unit: px, em, pt...
+ */
+function woostify_range_slider_update( arr, selector, property, unit ) {
+	arr.forEach( function( el, i ) {
+
+		wp.customize( 'woostify_setting[' + el + ']', function( value ) {
+			value.bind( function( newval ) {
+
+				var styles = '';
+				if ( 0 == i ) {
+					styles = '@media ( min-width: 769px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
+				} else if ( 1 == i ) {
+					styles = '@media ( min-width: 321px ) and ( max-width: 768px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
+				} else {
+					styles = '@media ( max-width: 320px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
+				}
+
+				// Append style.
+				if ( jQuery( 'style#woostify_setting-' + el ).length ) {
+					jQuery( 'style#woostify_setting-' + el ).html( styles );
+				} else {
+					jQuery( 'head' ).append( '<style id="woostify_setting-' + el + '">' + styles + ' }</style>' );
+
+					setTimeout( function() {
+						jQuery( 'style#woostify_setting-' + el ).not( ':last' ).remove();
+					}, 100 );
+				}
+
+				// Trigger event.
+				setTimeout( "jQuery( document.body ).trigger( 'woostify_spacing_updated' );", 1000 );
+			} );
+		} );
+	} );
+}
+
 ( function( $ ) {
 
 	// Update the site title in real time...
@@ -88,7 +130,7 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 	} );
 
 	// Logo width.
-	woostify_unit_live_update( 'logo_width', '.site-header .site-branding img', 'max-width', 100, 'px', '%' );
+	woostify_range_slider_update( ['logo_width', 'tablet_logo_width', 'mobile_logo_width'], '.site-header .site-branding img', 'max-width', 'px' );
 
 	// Body.
 	// Body font size.

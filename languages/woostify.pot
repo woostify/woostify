@@ -452,15 +452,15 @@ msgstr ""
 msgid "Disable Footer"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:186
+#: inc/customizer/class-woostify-customizer.php:188
 msgid "Pro Version Available"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:203
+#: inc/customizer/class-woostify-customizer.php:205
 msgid "Learn More"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:204
+#: inc/customizer/class-woostify-customizer.php:206
 msgid "More options are available for this section in our pro version."
 msgstr ""
 
@@ -955,6 +955,6 @@ msgstr ""
 msgid "Mobile Logo (Optional)"
 msgstr ""
 
-#: inc/customizer/sections/wordpress/title-tagline.php:72
+#: inc/customizer/sections/wordpress/title-tagline.php:92
 msgid "Logo Width"
 msgstr ""

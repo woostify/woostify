@@ -36,11 +36,35 @@ class Woostify_Get_CSS {
 		';
 
 		// Logo width.
-		$logo_width = $options['logo_width'];
+		$logo_width        = $options['logo_width'];
+		$tablet_logo_width = $options['tablet_logo_width'];
+		$mobile_logo_width = $options['mobile_logo_width'];
 		if ( '' != $logo_width && $logo_width > 0 ) {
 			$styles .= '
-				.site-branding img{
-					max-width: ' . esc_attr( $logo_width ) . 'px;
+				@media ( min-width: 769px ) {
+					.site-branding img{
+						max-width: ' . esc_attr( $logo_width ) . 'px;
+					}
+				}
+			';
+		}
+
+		if ( '' != $tablet_logo_width && $tablet_logo_width > 0 ) {
+			$styles .= '
+				@media ( min-width: 321px ) and ( max-width: 768px ) {
+					.site-branding img{
+						max-width: ' . esc_attr( $tablet_logo_width ) . 'px;
+					}
+				}
+			';
+		}
+
+		if ( '' != $mobile_logo_width && $mobile_logo_width > 0 ) {
+			$styles .= '
+				@media ( max-width: 320px ) {
+					.site-branding img{
+						max-width: ' . esc_attr( $mobile_logo_width ) . 'px;
+					}
 				}
 			';
 		}
