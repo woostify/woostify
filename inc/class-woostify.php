@@ -213,7 +213,6 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Enqueue scripts and styles.
 		 */
 		public function scripts() {
-			global $woostify_version;
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			/**
@@ -223,7 +222,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				'woostify-style',
 				WOOSTIFY_THEME_URI . 'style.css',
 				array(),
-				$woostify_version
+				woostify_version()
 			);
 
 			/**
@@ -235,7 +234,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				'woostify-general',
 				WOOSTIFY_THEME_URI . 'assets/js/general' . $suffix . '.js',
 				array(),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 
@@ -244,7 +243,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				'woostify-navigation',
 				WOOSTIFY_THEME_URI . 'assets/js/navigation' . $suffix . '.js',
 				array( 'jquery' ),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 
@@ -253,16 +252,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				'woostify-quantity-button',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/quantity-button' . $suffix . '.js',
 				array( 'jquery' ),
-				$woostify_version,
-				true
-			);
-
-			// Single add to cart.
-			wp_register_script(
-				'woostify-single-add-to-cart',
-				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/single-add-to-cart' . $suffix . '.js',
-				array(),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 
@@ -271,7 +261,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				'woostify-woocommerce',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/woocommerce' . $suffix . '.js',
 				array( 'jquery' ),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 
@@ -280,7 +270,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				'easyzoom',
 				WOOSTIFY_THEME_URI . 'assets/js/easyzoom' . $suffix . '.js',
 				array( 'jquery' ),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 
@@ -289,7 +279,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				'easyzoom-handle',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/easyzoom-handle' . $suffix . '.js',
 				array( 'easyzoom' ),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 
@@ -298,7 +288,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				'woostify-product-variation',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/product-variation' . $suffix . '.js',
 				array( 'jquery', 'easyzoom-handle' ),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 
@@ -307,7 +297,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				'tiny-slider',
 				WOOSTIFY_THEME_URI . 'assets/js/tiny-slider' . $suffix . '.js',
 				array(),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 
@@ -316,7 +306,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				'photoswipe-init',
 				WOOSTIFY_THEME_URI . 'assets/js/photoswipe-init' . $suffix . '.js',
 				array( 'photoswipe', 'photoswipe-ui-default' ),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 
@@ -364,8 +354,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			$options   = woostify_options( false );
 
 			// Theme version.
-			global $woostify_version;
-			$classes[] = 'woostify-' . $woostify_version;
+			$classes[] = 'woostify-' . woostify_version();
 
 			// Broser detection.
 			if ( '' != woostify_browser_detection() ) {
@@ -388,6 +377,11 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Sidebar class detected.
 			$classes[] = woostify_sidebar_class();
 
+			// Woostify Pro Version.
+			if ( defined( 'WOOSTIFY_PRO_VERSION' ) ) {
+				$classes[] = 'woostify-pro-' . WOOSTIFY_PRO_VERSION;
+			}
+
 			return $classes;
 		}
 
@@ -407,14 +401,13 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Customizer live preview
 		 */
 		public function customize_live_preview() {
-			global $woostify_version;
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_script(
 				'woostify-customize-preview-js',
 				WOOSTIFY_THEME_URI . '/assets/js/customize-preview' . $suffix . '.js',
 				array(),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 		}

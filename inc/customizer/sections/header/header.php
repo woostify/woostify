@@ -19,7 +19,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Custom_Radio_Image_Control(
+	new Woostify_Radio_Image_Control(
 		$wp_customize,
 		'woostify_setting[header_layout]',
 		array(

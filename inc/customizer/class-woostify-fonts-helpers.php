@@ -222,13 +222,11 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 
 			// Enqueue our fonts.
 			if ( $google_fonts ) {
-				global $woostify_version;
-
 				wp_enqueue_style(
 					'woostify-fonts',
 					$fonts_url,
 					array(),
-					$woostify_version
+					woostify_version()
 				);
 			}
 		}

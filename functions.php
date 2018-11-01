@@ -5,18 +5,14 @@
  * @package woostify
  */
 
-/**
- * Assign the Woostify version to a var
- */
+// Assign the Woostify version to a var.
 $theme            = wp_get_theme();
 $woostify_version = $theme->get( 'Version' );
 
 define( 'WOOSTIFY_THEME_DIR', get_template_directory() . '/' );
 define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );
 
-/**
- * Set the content width based on the theme's design and stylesheet.
- */
+// Set the content width based on the theme's design and stylesheet.
 if ( ! isset( $content_width ) ) {
 	$content_width = 1170; /* pixels */
 }
@@ -26,9 +22,7 @@ require_once WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-fonts-helpers.p
 $woostify = (object) array(
 	'version' => $woostify_version,
 
-	/**
-	 * Initialize all the things.
-	 */
+	// Initialize all the things.
 	'main'       => require_once WOOSTIFY_THEME_DIR . 'inc/class-woostify.php',
 	'customizer' => require_once WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-customizer.php',
 );
@@ -66,9 +60,7 @@ if ( is_admin() ) {
 	require_once WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-meta-boxes.php';
 }
 
-/**
- * Widgets
- */
+// Widgets.
 require_once WOOSTIFY_THEME_DIR . 'inc/widget/class-woostify-recent-post-thumbnail.php';
 
 /**

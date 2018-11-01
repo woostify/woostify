@@ -33,15 +33,13 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 		 * @since  1.0
 		 */
 		public function plugin_install_scripts( $hook_suffix ) {
-			global $woostify_version;
-
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_script(
 				'woostify-plugin-install',
 				WOOSTIFY_THEME_URI . 'assets/js/admin/plugin-install' . $suffix . '.js',
 				array( 'jquery', 'updates' ),
-				$woostify_version,
+				woostify_version(),
 				'all'
 			);
 
@@ -49,7 +47,7 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 				'woostify-plugin-install',
 				WOOSTIFY_THEME_URI . 'assets/css/admin/plugin-install.css',
 				array(),
-				$woostify_version,
+				woostify_version(),
 				'all'
 			);
 		}

@@ -66,7 +66,7 @@ $wp_customize->add_setting(
 
 // Generate options.
 $wp_customize->add_control(
-	new Woostify_Typography_Customize_Control(
+	new Woostify_Typography_Control(
 		$wp_customize,
 		'heading_typography',
 		array(
@@ -95,7 +95,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[heading_line_height]',
 		array(
@@ -169,7 +169,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[heading_h1_font_size]',
 		array(
@@ -204,7 +204,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[heading_h2_font_size]',
 		array(
@@ -239,7 +239,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[heading_h3_font_size]',
 		array(
@@ -274,7 +274,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[heading_h4_font_size]',
 		array(
@@ -309,7 +309,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[heading_h5_font_size]',
 		array(
@@ -344,7 +344,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[heading_h6_font_size]',
 		array(

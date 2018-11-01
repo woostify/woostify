@@ -40,13 +40,11 @@ class Woostify_Switch_Control extends WP_Customize_Control {
 	 * Enqueue scripts and styles for the custom control.
 	 */
 	public function enqueue() {
-		global $woostify_version;
-
 		wp_enqueue_style(
 			'woostify-switch-control',
 			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/switch/css/switch.css',
 			array(),
-			$woostify_version
+			woostify_version()
 		);
 	}
 

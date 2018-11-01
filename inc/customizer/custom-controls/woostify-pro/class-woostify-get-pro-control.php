@@ -46,13 +46,11 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Get_Pro
 		 * Add JS/CSS for our controls
 		 */
 		public function enqueue() {
-			global $woostify_version;
-
 			wp_enqueue_style(
 				'woostify-get-pro-control',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/woostify-pro/css/get-pro-control.css',
 				array(),
-				$woostify_version
+				woostify_version()
 			);
 		}
 

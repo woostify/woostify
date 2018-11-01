@@ -9,13 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typography_Customize_Control' ) ) {
+if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typography_Control' ) ) {
 	/**
 	 * Create the typography elements control.
 	 *
 	 * @since 1.0
 	 */
-	class Woostify_Typography_Customize_Control extends WP_Customize_Control {
+	class Woostify_Typography_Control extends WP_Customize_Control {
 
 		/**
 		 * Create the typography elements control.
@@ -29,13 +29,11 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 		 * Enqueue javascript and css file
 		 */
 		public function enqueue() {
-			global $woostify_version;
-
 			wp_enqueue_script(
 				'woostify-typography-selectWoo',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/js/selectWoo.js',
 				array( 'customize-controls', 'jquery' ),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 
@@ -43,14 +41,14 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 				'woostify-typography-selectWoo',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/css/selectWoo.css',
 				array(),
-				$woostify_version
+				woostify_version()
 			);
 
 			wp_enqueue_script(
 				'woostify-typography-customizer',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/js/typography-customizer.js',
 				array( 'customize-controls', 'woostify-typography-selectWoo' ),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 
@@ -58,7 +56,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 				'woostify-typography-customizer',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/typography/css/typography-customizer.css',
 				array(),
-				$woostify_version
+				woostify_version()
 			);
 		}
 

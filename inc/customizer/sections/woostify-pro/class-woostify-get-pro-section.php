@@ -75,20 +75,18 @@ if ( ! function_exists( 'woostify_customizer_section_pro_static' ) ) {
 	 * Add JS/CSS for our controls
 	 */
 	function woostify_customizer_section_pro_static() {
-		global $woostify_version;
-
 		wp_enqueue_style(
 			'woostify-get-pro-section',
 			WOOSTIFY_THEME_URI . 'inc/customizer/sections/woostify-pro/css/get-pro-section.css',
 			array(),
-			$woostify_version
+			woostify_version()
 		);
 
 		wp_enqueue_script(
 			'woostify-get-pro-section',
 			WOOSTIFY_THEME_URI . 'inc/customizer/sections/woostify-pro/js/get-pro-section.js',
 			array( 'customize-controls' ),
-			$woostify_version,
+			woostify_version(),
 			true
 		);
 	}

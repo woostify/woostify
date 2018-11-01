@@ -84,7 +84,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[logo_width]',
 		array(

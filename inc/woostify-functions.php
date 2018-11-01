@@ -5,6 +5,19 @@
  * @package woostify
  */
 
+if ( ! class_exists( 'woostify_version' ) ) {
+	/**
+	 * Woostify Version
+	 *
+	 * @return string Woostify Version.
+	 */
+	function woostify_version() {
+		global $woostify_version;
+
+		return $woostify_version;
+	}
+}
+
 if ( ! function_exists( 'woostify_get_pro_url' ) ) {
 	/**
 	 * Generate a URL to our pro add-ons.

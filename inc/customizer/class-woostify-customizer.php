@@ -21,7 +21,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * Setup class.
 		 */
 		public function __construct() {
-			add_action( 'customize_register', array( $this, 'customize_register' ), 10 );
+			add_action( 'customize_register', array( $this, 'customize_register' ) );
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'customize_controls_scripts' ) );
 		}
 
@@ -29,13 +29,11 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * Add script for customize controls
 		 */
 		public function customize_controls_scripts() {
-			global $woostify_version;
-
 			wp_enqueue_script(
 				'woostify-conditio-control',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/conditional/js/condition.js',
 				array( 'jquery' ),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 		}
@@ -156,10 +154,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 			// Custom controls.
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/switch/class-woostify-switch-control.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/radio-image/class-woostify-customizer-control-radio-image.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/radio-image/class-woostify-radio-image-control.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/divider/class-woostify-divider-control.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/typography/class-woostify-typography-customize-control.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/range/class-woostify-range-customize-control.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/typography/class-woostify-typography-control.php';
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/range/class-woostify-range-slider-control.php';
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/woostify-pro/class-woostify-get-pro-control.php';
 
 			// Custom section.
@@ -167,8 +165,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 			// Register Control Type.
 			if ( method_exists( $wp_customize, 'register_control_type' ) ) {
-				$wp_customize->register_control_type( 'Woostify_Typography_Customize_Control' );
-				$wp_customize->register_control_type( 'Woostify_Range_Customize_Control' );
+				$wp_customize->register_control_type( 'Woostify_Typography_Control' );
+				$wp_customize->register_control_type( 'Woostify_Range_Slider_Control' );
 				$wp_customize->register_control_type( 'Woostify_Get_Pro_Control' );
 			}
 

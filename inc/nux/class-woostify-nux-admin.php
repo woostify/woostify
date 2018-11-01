@@ -35,7 +35,7 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 		 * @since 1.0
 		 */
 		public function enqueue_scripts() {
-			global $wp_customize, $woostify_version;
+			global $wp_customize;
 
 			if ( isset( $wp_customize ) || true === (bool) get_option( 'woostify_nux_dismissed' ) ) {
 				return;
@@ -47,14 +47,14 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 				'woostify-admin-nux',
 				WOOSTIFY_THEME_URI . 'assets/css/admin/admin.css',
 				'',
-				$woostify_version
+				woostify_version()
 			);
 
 			wp_enqueue_script(
 				'woostify-admin-nux',
 				WOOSTIFY_THEME_URI . 'assets/js/admin/admin' . $suffix . '.js',
 				array( 'jquery' ),
-				$woostify_version,
+				woostify_version(),
 				'all'
 			);
 

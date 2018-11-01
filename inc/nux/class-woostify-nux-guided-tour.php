@@ -49,15 +49,13 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 		 * @since 2.2.0
 		 */
 		public function customize_scripts() {
-			global $woostify_version;
-
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_style(
 				'woostify-guided-tour',
 				WOOSTIFY_THEME_URI . 'assets/css/admin/customizer/customizer.css',
 				array(),
-				$woostify_version,
+				woostify_version(),
 				'all'
 			);
 
@@ -65,7 +63,7 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 				'woostify-guided-tour',
 				WOOSTIFY_THEME_URI . 'assets/js/admin/customizer' . $suffix . '.js',
 				array( 'jquery', 'wp-backbone' ),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 

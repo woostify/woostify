@@ -171,6 +171,7 @@
 // table variations.
 .variations {
 	border: 0;
+	margin-bottom: 40px;
 	td {
 		display: block;
 		border: 0;
@@ -186,20 +187,28 @@
 		clear: both;
 		display: block;
 		height: 40px;
-		background-color: $tr;
+		min-width: 170px;
+		background-color: #fff;
 	}
 	label {
 		text-transform: uppercase;
 	}
 }
 
+.single_variation{
+	margin-bottom: 40px;
+}
+
 .reset_variations {
 	float: left;
-	margin-top: 5px;
+	margin-top: 0px;
+	display: none;
+	height: 0;
 	@include duration(0s);
-	&[style*="visibility: hidden"] {
-		height: 0;
-		margin-top: 0;
+
+	&[style*="visibility: visible"] {
+		height: auto;
+		margin-top: 5px;
 	}
 }
 

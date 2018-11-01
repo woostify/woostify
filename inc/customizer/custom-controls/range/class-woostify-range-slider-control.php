@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Create a range slider control.
  * This control allows you to add responsive settings.
  */
-class Woostify_Range_Customize_Control extends WP_Customize_Control {
+class Woostify_Range_Slider_Control extends WP_Customize_Control {
 	/**
 	 * The control type.
 	 *
@@ -67,13 +67,11 @@ class Woostify_Range_Customize_Control extends WP_Customize_Control {
 	 * @access public
 	 */
 	public function enqueue() {
-		global $woostify_version;
-
 		wp_enqueue_script(
 			'woostify-range-slider',
 			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/range/js/slider-control.js',
 			array( 'jquery', 'customize-base', 'jquery-ui-slider' ),
-			$woostify_version,
+			woostify_version(),
 			true
 		);
 
@@ -81,7 +79,7 @@ class Woostify_Range_Customize_Control extends WP_Customize_Control {
 			'woostify-range-slider',
 			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/range/css/slider-customizer.css',
 			array(),
-			$woostify_version
+			woostify_version()
 		);
 	}
 

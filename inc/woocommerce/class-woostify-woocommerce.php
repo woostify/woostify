@@ -91,11 +91,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_after_single_product_summary', array( $this, 'single_product_after_summary_open' ), 8 );
 			add_action( 'woocommerce_after_single_product_summary', array( $this, 'single_product_after_summary_close' ), 100 );
 
-			// Single add to cart ajax.
-			add_action( 'wp_ajax_single_add_to_cart', array( $this, 'woostify_single_add_to_cart' ) );
-			add_action( 'wp_ajax_nopriv_single_add_to_cart', array( $this, 'woostify_single_add_to_cart' ) );
-			add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'woostify_additional_simple_add_to_cart' ), 20 );
-
 			// Removed on cart action.
 			add_action( 'wp_ajax_get_product_item_incart', array( $this, 'woostify_get_product_item_incart' ) );
 			add_action( 'wp_ajax_nopriv_get_product_item_incart', array( $this, 'woostify_get_product_item_incart' ) );
@@ -159,19 +154,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			if ( wp_script_is( 'wc-add-to-cart-variation', 'registered' ) && ! wp_script_is( 'wc-add-to-cart-variation', 'enqueued' ) ) {
 				wp_enqueue_script( 'wc-add-to-cart-variation' );
 			}
-
-			// Single add to cart button.
-			if ( is_singular( 'product' ) && true == $options['single_add_to_cart_ajax'] ) {
-				wp_enqueue_script( 'woostify-single-add-to-cart' );
-				wp_localize_script(
-					'woostify-single-add-to-cart',
-					'woostify_ajax',
-					array(
-						'url'   => admin_url( 'admin-ajax.php' ),
-						'nonce' => wp_create_nonce( 'woostify_product_nonce' ),
-					)
-				);
-			}
 		}
 
 		/**
@@ -185,13 +167,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			// Product page.
 			if ( is_singular( 'product' ) ) {
-
-				// Ajax single add to cart.
-				$options = self::options();
-
-				if ( true == $options['single_add_to_cart_ajax'] ) {
-					$classes[] = 'ajax-single-add-to-cart';
-				}
 
 				// Product gallery.
 				$page_id = get_queried_object_id();
@@ -852,85 +827,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function single_product_after_summary_close() {
 			echo '</div>';
-		}
-
-
-		/**
-		 * Add translate text for alert warning
-		 */
-		public function woostify_additional_simple_add_to_cart() {
-			global $product;
-			$pid       = $product->get_id();
-			// Return `yes` || `no`.
-			$in_stock  = get_post_meta( $pid, '_manage_stock', true );
-			// Return INT value.
-			$stock_qty = $product->get_stock_quantity();
-
-			/*CHECK PRODUCT IN CART && CHECK QUANTITY IF IT ALREADY IN CART*/
-			$in_cart_qty  = woostify_product_check_in( $pid, $in_cart = true, $qty_in_cart = false ) ? woostify_product_check_in( $pid, $in_cart = false, $qty_in_cart = true ) : 0;
-			$not_enough   = __( 'You cannot add that amount of this product to the cart because there is not enough stock.', 'woostify' );
-			/* translators: %1$d: stock quantity */
-			$out_stock    = sprintf( __( 'You cannot add that amount to the cart - we have %1$d in stock and you already have %1$d in your cart', 'woostify' ), $stock_qty );
-			$valid_qty    = __( 'Please enter a valid quantity for this product', 'woostify' );
-			?>
-			<input class="additional-product" type="hidden" value="<?php echo esc_attr( $in_cart_qty ); ?>"
-			data-in_stock="<?php echo esc_attr( $in_stock ); ?>"
-			data-out_of_stock="<?php echo esc_attr( $out_stock ); ?>"
-			data-valid_quantity="<?php echo esc_attr( $valid_qty ); ?>"
-			data-not_enough="<?php echo esc_attr( $not_enough ); ?>">
-			<?php
-		}
-
-		/**
-		 * Ajax single add to cart
-		 */
-		public function woostify_single_add_to_cart() {
-			$response = array(
-				'message' => esc_html__( 'Something is wrong, please try again later...', 'woostify' ),
-				'content' => false,
-			);
-
-			if ( ! isset( $_POST['product_id'] ) ||
-				! isset( $_POST['product_qty'] ) ||
-				! isset( $_POST['nonce'] )
-			) {
-				$response['status'] = 500;
-				echo json_encode( $response );
-				exit();
-			}
-
-			$product_id        = absint( $_POST['product_id'] );
-			$nonce             = 'woostify_product_nonce';
-			$product_qty       = absint( $_POST['product_qty'] );
-			$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $product_qty );
-			$response['nonce'] = wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), $nonce );
-
-			if ( isset( $_POST['variation_id'] ) ) {
-				$variation_id = sanitize_text_field( wp_unslash( $_POST['variation_id'] ) );
-			}
-
-			if ( isset( $_POST['variations'] ) ) {
-				$variations = (array) json_decode( sanitize_text_field( wp_unslash( $_POST['variations'] ) ) );
-			}
-
-			if ( $variation_id && $passed_validation ) {
-				WC()->cart->add_to_cart( $product_id, $product_qty, $variation_id, $variations );
-			} else {
-				WC()->cart->add_to_cart( $product_id, $product_qty );
-			}
-
-			$count = WC()->cart->get_cart_contents_count();
-
-			ob_start();
-
-			woocommerce_mini_cart();
-			$response['status']  = 200;
-			$response['item']    = $count;
-			$response['message'] = __( 'Success!', 'woostify' );
-			$response['content'] = ob_get_clean();
-
-			echo json_encode( $response );
-			exit();
 		}
 
 		/**

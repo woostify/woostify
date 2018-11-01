@@ -64,7 +64,7 @@ $wp_customize->add_setting(
 
 // add control for menu typography.
 $wp_customize->add_control(
-	new Woostify_Typography_Customize_Control(
+	new Woostify_Typography_Control(
 		$wp_customize,
 		'menu_typography',
 		array(
@@ -132,7 +132,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[parent_menu_font_size]',
 		array(
@@ -167,7 +167,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[parent_menu_line_height]',
 		array(
@@ -241,7 +241,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[sub_menu_font_size]',
 		array(
@@ -276,7 +276,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new Woostify_Range_Customize_Control(
+	new Woostify_Range_Slider_Control(
 		$wp_customize,
 		'woostify_setting[sub_menu_line_height]',
 		array(

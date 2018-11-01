@@ -5603,7 +5603,17 @@ dd {
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
+  flex-wrap: wrap;
   margin-bottom: 42px;
+}
+
+.woostify-sorting .woocommerce-notices-wrapper {
+  flex: 0 0 100%;
+  margin-bottom: 20px;
+}
+
+.woostify-sorting .woocommerce-notices-wrapper:empty {
+  display: none;
 }
 
 .woostify-sorting .woocommerce-ordering {
@@ -6195,6 +6205,7 @@ dd {
 
 .variations {
   border: 0;
+  margin-bottom: 40px;
 }
 
 .variations td {
@@ -6215,23 +6226,30 @@ dd {
   clear: both;
   display: block;
   height: 40px;
-  background-color: rgba(0, 0, 0, 0);
+  min-width: 170px;
+  background-color: #fff;
 }
 
 .variations label {
   text-transform: uppercase;
 }
 
+.single_variation {
+  margin-bottom: 40px;
+}
+
 .reset_variations {
   float: left;
-  margin-top: 5px;
+  margin-top: 0px;
+  display: none;
+  height: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s;
 }
 
-.reset_variations[style*="visibility: hidden"] {
-  height: 0;
-  margin-top: 0;
+.reset_variations[style*="visibility: visible"] {
+  height: auto;
+  margin-top: 5px;
 }
 
 .shop_table .variation {

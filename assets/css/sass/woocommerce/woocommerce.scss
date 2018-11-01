@@ -9,7 +9,17 @@
 /* sorting */
 .woostify-sorting{
 	@include flex( flex, space-between, center );
+	flex-wrap: wrap;
 	margin-bottom: 42px;
+	
+	.woocommerce-notices-wrapper{
+		flex: 0 0 100%;
+		margin-bottom: 20px;
+
+		&:empty{
+			display: none;
+		}
+	}
 
 	.woocommerce-ordering{
 		order: 2;

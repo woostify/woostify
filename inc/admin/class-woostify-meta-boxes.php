@@ -90,21 +90,20 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 		 * Add script and style for meta boxs setting
 		 */
 		public function metabox_assets() {
-			global $woostify_version;
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_style(
 				'woostify-metabox-setting-tab',
 				WOOSTIFY_THEME_URI . 'assets/css/admin/metabox.css',
 				array(),
-				$woostify_version
+				woostify_version()
 			);
 
 			wp_enqueue_script(
 				'woostify-metabox-setting-tab',
 				WOOSTIFY_THEME_URI . 'assets/js/admin/metabox' . $suffix . '.js',
 				array( 'jquery' ),
-				$woostify_version,
+				woostify_version(),
 				true
 			);
 		}
