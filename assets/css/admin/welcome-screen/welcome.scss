@@ -2,23 +2,10 @@ $green: #45b964;
 
 .appearance_page_woostify-welcome {
 	#wpcontent {
-		@media ( max-width: 719px ) {
-			padding-left: 0;
-		}
+		padding: 0;
 	}
 
 	.woostify-wrap {
-		background: #e9eff3;
-		padding: 50px 10px 0 10px;
-		border: 10px solid white;
-		margin: 0 auto;
-
-		@media ( min-width: 720px ) {
-			padding: 50px;
-			margin-top: 20px;
-			margin-right: 20px;
-		}
-
 		a {
 			text-decoration: none;
 			outline: none !important;
@@ -29,53 +16,104 @@ $green: #45b964;
 		}
 	}
 
+	.woostify-welcome-container{
+		max-width: 930px;
+		margin: 0 auto;
+		padding: 0 15px;
+	}
+
+	.woostify-welcome-theme-brand{
+		max-width: 200px;
+	}
+
 	.woostify-welcome-nav {
-		margin: -50px -10px 0 -10px;
-		padding: 1em;
-		
-		@media ( min-width: 720px ) {
-			margin: -50px -50px 0 -50px;
-			padding: 0 1em;
+		background-color: #fff;
+		box-shadow: 0 1px 1px 0 rgba( 0, 0, 0, 0.1 );
+
+		@media ( max-width: 719px ) {
+			padding: 15px 0;
+			text-align: center;
 		}
 
-		
+		.woostify-welcome-container{
+			@media ( min-width: 720px ) {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+		}
+
+		.woostify-welcome-theme-brand{
+			display: inline-flex;
+			align-items: center;
+			color: #333;
+			color: unset;
+			font-size: 1.4em;
+
+			@media ( max-width: 719px ) {
+				border-bottom: 1px solid #f4f4f4;
+				padding-bottom: 25px;
+				margin-bottom: 15px;
+				justify-content: center;
+			}
+		}
+
+		.woostify-welcome-theme-icon{
+			max-width: 30px;
+			max-height: 40px;
+			position: relative;
+			transform: rotate( -20deg );
+		}
+
+		.woostify-welcome-theme-title{
+			margin: 0 10px 0 5px;
+			text-transform: uppercase;
+			font-weight: 700;
+			color: #463fba;
+		}
+
+		.woostify-welcome-theme-version{
+			background-color: #e5e5e5;
+			border-radius: 2px;
+			font-size: 0.65em;
+			padding: 2px 5px;
+		}
 
 		.woostify-welcome-nav__version {
 			color: #fff;
 			display: inline-block;
 			padding: 0.5em 0;
 			font-weight: 700;
-
-			@media ( min-width: 600px ) {
-				float: right;
-				padding: 1em 1em 1em 0;
-			}
 		}
 
 		.woostify-welcome-nav_link{
-			margin: 0;
+			@media ( max-width: 719px ) {
+				margin: 0;
+			}
 
 			li{
-				display: block;
+				display: inline-block;
+
+				&:last-of-type{
+					a{
+						padding-right: 0;
+					}
+				}
 			}
 
 			a{
 				text-decoration: none;
-				color: #fff;
 				display: block;
-				padding: 0.5em 0;
-			}
+				padding: 0.5em;
 
-			strong{
-				color: cornsilk
-			}
-
-			@media ( min-width: 600px )	{
-				li{
-					display: inline-block;
+				&:hover{
+					color: #000;
 				}
+			}
 
+			@media ( min-width: 719px )	{
 				a {
+					color: #333;
 					padding: 1em;
 				}
 			}
@@ -94,20 +132,27 @@ $green: #45b964;
 	}
 
 	.woostify-enhance {
-		display: flex;
-		justify-content: center;
-		align-items: stretch;
-		margin-top: 4em;
-		flex-wrap: wrap;
+		margin-top: 3em;
 
 		@media ( min-width: 1140px ) {
-			margin: 4em 0px;
+			margin: 3em 0px;
 		}
 
 		&:after{
 			content: '';
 			clear: both;
 			display: block;
+		}
+
+		.woostify-welcome-container{
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+
+			@media ( max-width: 1140px ) {
+				flex-wrap: wrap;
+				justify-content: center;
+			}
 		}
 
 		.woostify-enhance-content {
@@ -254,6 +299,13 @@ $green: #45b964;
 	.woostify-learn-more{
 		@media ( min-width: 720px ) {
 			float: right;
+		}
+	}
+
+	/* notice */
+	#wpbody-content{
+		.notice{
+			margin-bottom: 10px;
 		}
 	}
 }

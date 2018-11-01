@@ -316,71 +316,75 @@ msgid "Shop"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:129
+msgid "Woostify Logo"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:135
 msgid "Support"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:130
+#: inc/admin/class-woostify-admin.php:136
 msgid "Documentation"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:131
+#: inc/admin/class-woostify-admin.php:137
 msgid "Development Blog"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:141
+#: inc/admin/class-woostify-admin.php:149
 msgid "Link to Customizer Settings"
 msgstr ""
 
 #. translators: 1: Class name
-#: inc/admin/class-woostify-admin.php:154
+#: inc/admin/class-woostify-admin.php:162
 msgid "You need activate %s plugin to use this feature."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:172
+#: inc/admin/class-woostify-admin.php:180
 msgid "Read more and purchase"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:181
+#: inc/admin/class-woostify-admin.php:189
 msgid "More Features Avaiable with Woostify Pro"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:182
+#: inc/admin/class-woostify-admin.php:190
 msgid "Learn more!"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:187, inc/admin/class-woostify-admin.php:218
+#: inc/admin/class-woostify-admin.php:195, inc/admin/class-woostify-admin.php:226
 msgid "Quickly and easily transform your shops appearance with Woostify child themes."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:191, inc/admin/class-woostify-admin.php:222
+#: inc/admin/class-woostify-admin.php:199, inc/admin/class-woostify-admin.php:230
 msgid "Each has been designed to serve a different industry - from fashion to food."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:195, inc/admin/class-woostify-admin.php:226
+#: inc/admin/class-woostify-admin.php:203, inc/admin/class-woostify-admin.php:234
 msgid "Of course they are all fully compatible with each Woostify extension."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:199, inc/admin/class-woostify-admin.php:230
+#: inc/admin/class-woostify-admin.php:207, inc/admin/class-woostify-admin.php:238
 msgid "Check 'em out"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:212
+#: inc/admin/class-woostify-admin.php:220
 msgid "Import Demo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:253, inc/admin/class-woostify-plugin-install.php:72
+#: inc/admin/class-woostify-admin.php:262, inc/admin/class-woostify-plugin-install.php:72
 msgid "Activated"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:262, inc/admin/class-woostify-plugin-install.php:85
+#: inc/admin/class-woostify-admin.php:271, inc/admin/class-woostify-plugin-install.php:85
 msgid "Activate"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:277, inc/admin/class-woostify-plugin-install.php:104
+#: inc/admin/class-woostify-admin.php:286, inc/admin/class-woostify-plugin-install.php:104
 msgid "Install now"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:284, inc/admin/class-woostify-plugin-install.php:124
+#: inc/admin/class-woostify-admin.php:293, inc/admin/class-woostify-plugin-install.php:124
 msgid "Learn more"
 msgstr ""
 
