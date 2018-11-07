@@ -337,7 +337,7 @@ msgstr ""
 
 #. translators: 1: Class name
 #: inc/admin/class-woostify-admin.php:162
-msgid "You need activate %s plugin to use this feature."
+msgid "%s not activated."
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:180
@@ -634,7 +634,7 @@ msgstr ""
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:868
+#: inc/woocommerce/class-woostify-woocommerce.php:869
 msgid "Clear cart"
 msgstr ""
 

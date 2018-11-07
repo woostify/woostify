@@ -35,6 +35,7 @@ gulp.task( 'sass', () =>
 		.on( 'error', sass.logError ) )
 		.pipe( sourcemaps.write( '.' ) )
 		.pipe( gulp.dest( '.' ) )
+		.pipe( browserSync.reload( { stream: true } ) )
 );
 
 /* SASS: Admin */

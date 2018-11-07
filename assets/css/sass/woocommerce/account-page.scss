@@ -38,14 +38,11 @@
 }
 
 /* when login */
-.woocommerce-form-login,
-.woocommerce-form-register,
 .woocommerce-form-coupon{
 
     button[type="submit"]{
-        color: #fff;
-        border: 0;
-        height: 40px;
+        height: 30px;
+        border-width: 0 0 1px 0;
         padding: 0 20px;
         margin-right: 10px;
     }

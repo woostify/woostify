@@ -22,19 +22,6 @@
             visibility: visible;
         }
     }
-	
-	/* Product page */
-    &.ajax-single-add-to-cart {
-        .single_add_to_cart_button {
-        	@include filter( grayscale, 100% );
-
-            &:before {
-            	@include loading( $size: 1em, $center: true );
-            	left: 2em;
-                border-width: 2px;
-            }
-        }
-    }
 }
 .cart-sidebar-open {
 	overflow-y: hidden;

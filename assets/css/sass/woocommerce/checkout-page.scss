@@ -80,18 +80,25 @@
 .checkout_coupon.woocommerce-form-coupon{
 	border: 2px dashed #e8e8e8;
 	border-radius: 2px;
-	height: 100px $i;
-	padding-right: 30px;
-	padding-left: 100px;
-	@include flex( flex, center, center, !important );
-	background-image: url(assets/images/coupon.svg);
-	background-repeat: no-repeat;
-	background-size: 40px 40px;
-	background-position: center left 30px;
+	
+	@media ( min-width: 601px ) {
+		height: 100px $i;
+		padding-right: 30px;
+		padding-left: 100px;
+		background-image: url(assets/images/coupon.svg);
+		background-repeat: no-repeat;
+		background-size: 40px 40px;
+		background-position: center left 30px;
+		@include flex( flex, center, center, !important );
+	}
 
 	@media ( min-width: $screen-md ) {
 		width: 640px;
 		margin: 0 auto;
+	}
+
+	@media ( max-width: $screen-md - 1 ) {
+		margin-top: 30px $i;
 	}
 
 	.form-row{
@@ -101,7 +108,9 @@
 	}
 
 	.form-row-first{
-		flex-grow: 1
+		@media ( min-width: 601px ){
+			flex-grow: 1
+		}
 	}
 
 	[name="coupon_code"]{
@@ -115,6 +124,7 @@
 		font-size: 12px;
 		font-weight: 600;
 		text-transform: uppercase;
+		background-color: $tr;
 	}
 
 	p:not(.form-row){
@@ -144,6 +154,7 @@
 	}
 }
 .woocommerce-billing-fields{
+	@extend .clearfix;
 	>h3{
 		font-size: 24px;
 		font-weight: normal;
@@ -221,10 +232,6 @@
 			}
 		}
 	}
-	ul{
-		padding-left: 0;
-		text-align: left;
-	}
 	li{
 		list-style: none;
 	}
@@ -257,6 +264,14 @@
 	resize: none;
 }
 
+#payment{
+	@extend .clearfix;
+}
+
+.wc_payment_methods{
+	padding-left: 0;
+}
+
 .wc_payment_method{
 	margin-bottom: 10px;
 	label{
@@ -267,7 +282,7 @@
 	padding: 10px;
 	background-color: #fff;
 	border-radius: 4px;
-	margin: 1em 0px;
+	margin: 1em 0px 1em 1.8em;
 	p{
 		&:last-child{
 			margin-bottom: 0;
@@ -336,5 +351,48 @@
 	#order_review{
 		clear: both;
 		margin-top: 30px;
+	}
+}
+
+@media ( max-width: 600px ) {
+	.woocommerce-form-login{
+		&.login{
+			.form-row{
+				width: 100%;
+			}
+		}
+	}
+	.woocommerce-form-coupon{
+		&.checkout_coupon{
+			display: block $i;
+			height: 150px $i;
+			padding: 30px $i;
+			flex-direction: column;
+			.form-row{
+				+.form-row{
+					margin-top: 10px;
+				}
+			}
+			input{
+				border-width: 1px $i;
+				padding: 0 15px $i;
+				height: 3em $i;
+			}
+			button{
+				width: 100%;
+				border-width: 1px $i;
+				height: 3em $i;
+			}
+		}
+	}
+	.woocommerce-billing-fields{
+		.form-row-first,
+		.form-row-last{
+			float: left;
+			width: 100%;
+		}
+	}
+	#order_review{
+		padding: 15px 15px 30px 15px;
 	}
 }

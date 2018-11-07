@@ -142,6 +142,35 @@
 		list-style: none;
 	}
 }
+.shop_table_responsive{
+	@media ( max-width: 600px ) {
+		th{
+			display: none;
+		}
+		tr{
+			&:last-of-type{
+				td{
+					border-bottom: 0;
+				}
+			}
+		}
+		td{
+			display: block;
+			border-right: 0;
+			&:not(.product-remove) {
+				text-align: right $i;
+			}
+			&:before{
+				float: left;
+				font-weight: bold;
+				content: attr(data-title)
+			}
+		}
+		#shipping_method{
+			margin-top: 0;
+		}
+	}
+}
 
 /* remove overlay woocommerce */
 .blockUI.blockOverlay {

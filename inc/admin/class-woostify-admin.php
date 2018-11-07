@@ -159,7 +159,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 											$disabled = 'disabled';
 
 											/* translators: 1: Class name */
-											$title = sprintf( __( 'You need activate %s plugin to use this feature.', 'woostify' ), ucfirst( $key['required'] ) );
+											$title = sprintf( __( '%s not activated.', 'woostify' ), ucfirst( $key['required'] ) );
 
 											$url = '#';
 										}
@@ -177,7 +177,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									
 									<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
 										<p>
-											<a href="//woostify.com/pricing/" class="woostify-button" target="_blank"><?php esc_html_e( 'Read more and purchase', 'woostify' ); ?></a>
+											<a href="//woostify.com/pricing/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Read more and purchase', 'woostify' ); ?></a>
 										</p>
 									<?php endif; ?>
 								</div>
