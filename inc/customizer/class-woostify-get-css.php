@@ -112,7 +112,7 @@ class Woostify_Get_CSS {
 					font-weight: ' . esc_attr( $options['menu_font_weight'] ) . ';
 					text-transform: ' . esc_attr( $options['menu_font_transform'] ) . ';
 				}
-				
+
 				.site-header .primary-navigation > li > a{
 					font-size: ' . esc_attr( $options['parent_menu_font_size'] ) . 'px;
 					line-height: ' . esc_attr( $options['parent_menu_line_height'] ) . 'px;
@@ -202,7 +202,7 @@ class Woostify_Get_CSS {
 			.woocommerce-widget-layered-nav-dropdown__submit,
 			.clear-cart-btn,
 			.form-submit .submit,
-			.checkout-button,
+			.checkout-button, .elementor-button-wrapper .elementor-button,
 			.woostify-contact-form input[type="submit"]{
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 				color: ' . esc_attr( $options['button_text_color'] ) . ';
@@ -214,7 +214,7 @@ class Woostify_Get_CSS {
 			#commentform input[type="submit"]:hover,
 			.clear-cart-btn:hover,
 			.form-submit .submit:hover,
-			.checkout-button:hover,
+			.checkout-button:hover, 
 			.woostify-contact-form input[type="submit"]:hover{
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
 				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
@@ -255,7 +255,7 @@ class Woostify_Get_CSS {
 			.default-widget a strong{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
-			
+
 			.onsale,
 			.woocommerce-pagination li .page-numbers.current,
 			.tagcloud a:hover,
