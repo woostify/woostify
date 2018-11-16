@@ -55,4 +55,6 @@ function productVariation() {
 	} );
 }
 
-productVariation();
+document.addEventListener( 'DOMContentLoaded', function() {
+	productVariation();
+} );

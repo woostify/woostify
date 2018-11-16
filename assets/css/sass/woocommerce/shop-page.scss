@@ -11,6 +11,7 @@
 
 .product-loop-image-wrapper{
 	position: relative;
+	overflow: hidden;
 
 	&:hover{
 		.product-loop-hover-image{
@@ -44,16 +45,18 @@
 		@extend .flex;
 
 		&:before{
-			font-family: $icon;
 			font-weight: normal;
 			margin-right: 5px;
+		}
+
+		&.added_to_cart {
+			&:before{
+				font-family: $icon;
+			}
 		}
 	}
 
 	.button{
-		&:before{
-			content: "\e60d"
-		}
 
 		&.product_type_external{
 			white-space: nowrap;
@@ -89,7 +92,7 @@
 				.product-loop-meta{
 					&:not(.no-transform) {
 						.animated-meta{
-							@include translatey( -32px );
+							@include translatey( -24px );
 						}
 					}
 				}
@@ -107,7 +110,7 @@
 				@include transition( all .2s ease-in-out );
 
 				&:focus-within{
-					@include translatey( -32px );
+					@include translatey( -24px );
 				}
 			}
 		}

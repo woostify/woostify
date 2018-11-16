@@ -10,11 +10,12 @@
  * @package woostify
  */
 
-get_header(); ?>
+get_header();
+
+?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
-
 			<?php
 			while ( have_posts() ) :
 				the_post();
@@ -30,12 +31,12 @@ get_header(); ?>
 				 */
 				do_action( 'woostify_page_after' );
 
-			endwhile; // End of the loop.
+			endwhile;
 			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		</main>
+	</div>
 
 <?php
 do_action( 'woostify_sidebar' );
+
 get_footer();

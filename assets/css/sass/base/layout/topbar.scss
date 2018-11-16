@@ -1,0 +1,16 @@
+.topbar{
+	.woostify-container{
+		@include flex( flex, space-between, center );
+		&:after{
+			content: none;
+		}
+	}
+	.topbar-item{
+		&:first-child:last-child{
+			margin: 0 auto;
+		}
+		&:empty{
+			display: none;
+		}
+	}
+}

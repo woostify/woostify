@@ -8,6 +8,7 @@
 
 'use strict';
 
+// Colors.
 function woostify_colors_live_update( id, selector, property, default_value ) {
 	default_value = typeof default_value !== 'undefined' ? default_value : 'initial';
 
@@ -28,6 +29,7 @@ function woostify_colors_live_update( id, selector, property, default_value ) {
 	} );
 }
 
+// Units.
 function woostify_unit_live_update( id, selector, property, default_value, unit, default_unit ) {
 	// Default parameters.
 	unit = typeof unit != 'undefined' ? unit : 'px';
@@ -71,6 +73,14 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 	} );
 }
 
+// Html.
+function woostify_html_live_update( id, selector ) {
+	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
+		value.bind( function( newval ) {
+			$( selector ).html( newval );
+		} );
+	} );
+}
 
 /**
  * Multi device slider update
@@ -116,18 +126,18 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 ( function( $ ) {
 
 	// Update the site title in real time...
-	wp.customize( 'blogname', function( value ) {
-		value.bind( function( newval ) {
-			$( '.main-title a' ).html( newval );
-		} );
-	} );
+	woostify_html_live_update( 'blogname', '.main-title a' );
 
 	// Update the site description in real time...
-	wp.customize( 'blogdescription', function( value ) {
-		value.bind( function( newval ) {
-			$( '.site-description' ).html( newval );
-		} );
-	} );
+	woostify_html_live_update( 'blogdescription', '.site-description' );
+
+	// Topbar.
+	woostify_colors_live_update( 'topbar_text_color', '.topbar .topbar-item', 'color' );
+	woostify_colors_live_update( 'topbar_background_color', '.topbar', 'background-color' );
+	woostify_range_slider_update( ['topbar_space'], '.topbar', 'padding', 'px 0' );
+	woostify_html_live_update( 'topbar_left', '.topbar .topbar-left' );
+	woostify_html_live_update( 'topbar_center', '.topbar .topbar-center' );
+	woostify_html_live_update( 'topbar_right', '.topbar .topbar-right' );
 
 	// Logo width.
 	woostify_range_slider_update( ['logo_width', 'tablet_logo_width', 'mobile_logo_width'], '.site-header .site-branding img', 'max-width', 'px' );

@@ -45,10 +45,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'init', array( $this, 'detect_clear_cart_submit' ) );
 
 			// SHOP PAGE.
-			// Add product category.
-			add_action( 'woocommerce_shop_loop_item_title', array( $this, 'add_template_loop_product_category' ), 5 );
-			// Add url inside product title.
-			add_action( 'woocommerce_shop_loop_item_title', array( $this, 'add_template_loop_product_title' ), 10 );
 			// Open wrapper product loop image.
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_image_wrapper_open' ), 20 );
 			// Product link open.
@@ -61,6 +57,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_link_close' ), 60 );
 			// Close wrapper product loop image.
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_image_wrapper_close' ), 70 );
+
+			// Add product category.
+			add_action( 'woocommerce_shop_loop_item_title', array( $this, 'add_template_loop_product_category' ), 5 );
+			// Add url inside product title.
+			add_action( 'woocommerce_shop_loop_item_title', array( $this, 'add_template_loop_product_title' ), 10 );
+
 			// Product rating.
 			add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'loop_product_rating' ), 2 );
 
@@ -484,7 +486,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		public function loop_product_meta_open() {
 			$options = self::options();
 
-			$class = ( false == $options['shop_page_product_price'] || false == $options['shop_page_product_add_to_cart_button'] ) ? 'no-transform' : '';
+			$condi = apply_filters( 'woostify_product_loop_add_to_cart_animate', true );
+
+			$class = (
+				false == $options['shop_page_product_price'] ||
+				false == $options['shop_page_product_add_to_cart_button'] ||
+				false == $condi
+			) ? 'no-transform' : '';
 
 			echo '<div class="product-loop-meta ' . esc_attr( $class ) . '">';
 			echo '<div class="animated-meta">';
@@ -518,7 +526,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				return;
 			}
 
-			woocommerce_template_loop_add_to_cart();
+			$args = woostify_modify_loop_add_to_cart_class();
+			woocommerce_template_loop_add_to_cart( $args );
 		}
 
 		/**

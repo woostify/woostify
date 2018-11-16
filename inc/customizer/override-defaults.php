@@ -22,21 +22,24 @@ if ( function_exists( 'add_partial' ) ) {
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
 	$wp_customize->selective_refresh->add_partial(
-		'custom_logo', array(
+		'custom_logo',
+		array(
 			'selector'        => '.site-branding',
 			'render_callback' => array( $this, 'get_site_logo' ),
 		)
 	);
 
 	$wp_customize->selective_refresh->add_partial(
-		'blogname', array(
+		'blogname',
+		array(
 			'selector'        => '.site-title.beta a',
 			'render_callback' => array( $this, 'get_site_name' ),
 		)
 	);
 
 	$wp_customize->selective_refresh->add_partial(
-		'blogdescription', array(
+		'blogdescription',
+		array(
 			'selector'        => '.site-description',
 			'render_callback' => array( $this, 'get_site_description' ),
 		)

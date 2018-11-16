@@ -69,6 +69,17 @@ class Woostify_Get_CSS {
 			';
 		}
 
+		// Topbar.
+		$styles .= '
+			.topbar{
+				background-color: ' . esc_attr( $options['topbar_background_color'] ) . ';
+				padding: ' . esc_attr( $options['topbar_space'] ) . 'px 0;
+			}
+			.topbar .topbar-item{
+				color: ' . esc_attr( $options['topbar_text_color'] ) . ';
+			}
+		';
+
 		// Body css.
 		$styles .= '
 			body, select, button, input, textarea{

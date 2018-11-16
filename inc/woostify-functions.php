@@ -26,7 +26,7 @@ if ( ! function_exists( 'woostify_get_pro_url' ) ) {
 	 * @param string $url URL to pro page.
 	 * @return string The URL to woostify.com.
 	 */
-	function woostify_get_pro_url( $url = 'https://woostify.com/pro' ) {
+	function woostify_get_pro_url( $url = 'https://woostify.com/pricing' ) {
 		$url = trailingslashit( $url );
 
 		$args = apply_filters( 'generate_premium_url_args', array(

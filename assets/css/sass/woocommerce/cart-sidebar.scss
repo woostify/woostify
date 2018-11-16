@@ -251,7 +251,7 @@
 
         &:focus {
             &:before{
-            	@include animation( 0.5s circle-loading linear infinite )
+            	@include animation( 0.5s circle-loading linear infinite );
             }
         }
     }
@@ -274,17 +274,6 @@
 
 
 /* RESPONSIVE */
-@media ( min-width: $screen-md ) {
-	.cart-sidebar-open{
-		#view{
-			@include translatex( -400px );
-		}
-	}
-
-	#shop-cart-sidebar{
-		width: 400px;
-	}	
-}
 
 @media ( min-width: 600px ) and ( max-width: $screen-md - 1 ) {
 	.cart-sidebar-open{

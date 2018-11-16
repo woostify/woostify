@@ -50,4 +50,7 @@ function quantity() {
 		jQuery( '[name=\'update_cart\']' ).prop( 'disabled', false );
 	} );
 }
-quantity();
+
+document.addEventListener( 'DOMContentLoaded', function() {
+	quantity();
+} );

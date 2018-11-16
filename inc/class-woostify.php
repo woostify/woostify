@@ -351,10 +351,16 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @return array
 		 */
 		public function body_classes( $classes ) {
+			// Get theme options.
 			$options   = woostify_options( false );
 
 			// Theme version.
 			$classes[] = 'woostify-' . woostify_version();
+
+			// Woostify Pro Version.
+			if ( defined( 'WOOSTIFY_PRO_VERSION' ) ) {
+				$classes[] = 'woostify-pro-' . WOOSTIFY_PRO_VERSION;
+			}
 
 			// Broser detection.
 			if ( '' != woostify_browser_detection() ) {
@@ -362,8 +368,8 @@ if ( ! class_exists( 'woostify' ) ) :
 			}
 
 			// Site container layout.
-			$page_id                = woostify_get_page_id();
-			$metabox_container      = get_post_meta( $page_id, 'site-container', true );
+			$page_id           = woostify_get_page_id();
+			$metabox_container = get_post_meta( $page_id, 'site-container', true );
 
 			if ( ! empty( $metabox_container ) && 'default' != $metabox_container ) {
 				$classes[] = 'site-' . $metabox_container . '-container';
@@ -377,10 +383,8 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Sidebar class detected.
 			$classes[] = woostify_sidebar_class();
 
-			// Woostify Pro Version.
-			if ( defined( 'WOOSTIFY_PRO_VERSION' ) ) {
-				$classes[] = 'woostify-pro-' . WOOSTIFY_PRO_VERSION;
-			}
+			// Product style layout.
+			$classes[] = 'ps-' . $options['product_style'];
 
 			return $classes;
 		}
@@ -404,8 +408,8 @@ if ( ! class_exists( 'woostify' ) ) :
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_script(
-				'woostify-customize-preview-js',
-				WOOSTIFY_THEME_URI . '/assets/js/customize-preview' . $suffix . '.js',
+				'woostify-customizer-preview',
+				WOOSTIFY_THEME_URI . '/assets/js/customizer-preview' . $suffix . '.js',
 				array(),
 				woostify_version(),
 				true
@@ -433,4 +437,4 @@ if ( ! class_exists( 'woostify' ) ) :
 	}
 endif;
 
-return new Woostify();
+$woostify = new Woostify();

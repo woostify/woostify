@@ -21,7 +21,7 @@ function eventCartSidebarClose() {
 }
 
 // Get product item in cart.
-function getProductItemInCart(){
+function getProductItemInCart() {
 
 	// Variables.
 	var cart   = document.getElementsByClassName( 'cart' )[0],
@@ -70,30 +70,11 @@ function getProductItemInCart(){
 	} );
 }
 
-jQuery( document.body ).on( 'adding_to_cart', function() {
-	// Event `adding_to_cart`.
-	eventCartSidebarOpen();
-	cartSidebarOpen();
-
-} ).on( 'added_to_cart', function() {
-	// Event `added_to_cart`.
-	eventCartSidebarClose();
-	closeAll();
-
-} ).on( 'removed_from_cart', function( event, fragments, cart_hash ) {
-	// Event `removed_from_cart`.
-	getProductItemInCart();
-
-} ).on( 'updated_cart_totals', function() {
-	// Event `updated_cart_totals`.
-	quantity();
-} );
-
 // Event when click shopping bag button.
-( function() {
+function shoppingBag() {
 	var shoppingBag = document.getElementsByClassName( 'shopping-bag-button' );
 
-	if ( ! shoppingBag || document.body.classList.contains( 'woocommerce-cart' ) ) {
+	if ( ! shoppingBag.length || document.body.classList.contains( 'woocommerce-cart' ) ) {
 		return;
 	}
 
@@ -105,4 +86,20 @@ jQuery( document.body ).on( 'adding_to_cart', function() {
 			closeAll();
 		} );
 	}
-} )();
+}
+
+document.addEventListener( 'DOMContentLoaded', function() {
+	shoppingBag();
+
+	jQuery( document.body ).on( 'adding_to_cart', function() {
+		eventCartSidebarOpen();
+		cartSidebarOpen();
+	} ).on( 'added_to_cart', function() {
+		eventCartSidebarClose();
+		closeAll();
+	} ).on( 'removed_from_cart', function() {
+		getProductItemInCart();
+	} ).on( 'updated_cart_totals', function() {
+		quantity();
+	} );
+} );

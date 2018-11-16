@@ -30,7 +30,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 */
 		public function customize_controls_scripts() {
 			wp_enqueue_script(
-				'woostify-conditio-control',
+				'woostify-condition-control',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/conditional/js/condition.js',
 				array( 'jquery' ),
 				woostify_version(),
@@ -64,6 +64,14 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'heading_color'                        => '#2b2b2b',
 					'text_color'                           => '#8f8f8f',
 					'accent_color'                         => '#2b2b2b',
+
+					// Topbar.
+					'topbar_text_color'                    => '#ffffff',
+					'topbar_background_color'              => '#292f34',
+					'topbar_space'                         => 0,
+					'topbar_left'                          => '',
+					'topbar_center'                        => '',
+					'topbar_right'                         => '',
 
 					// Header.
 					'header_layout'                        => 'layout-1',
@@ -115,6 +123,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shop_page_product_add_to_cart_button' => true,
 					'shop_page_product_price'              => true,
 
+					// Product style.
+					'product_style'                        => 'layout-1',
+
 					// Shop single.
 					'single_content_background'            => '#f3f3f3',
 
@@ -152,16 +163,24 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			// Custom default section, panel.
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/override-defaults.php';
 
-			// Custom controls.
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/switch/class-woostify-switch-control.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/radio-image/class-woostify-radio-image-control.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/divider/class-woostify-divider-control.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/typography/class-woostify-typography-control.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/range/class-woostify-range-slider-control.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/woostify-pro/class-woostify-get-pro-control.php';
+			// Add customizer custom controls.
+			$customizer_controls = glob( WOOSTIFY_THEME_DIR . 'inc/customizer/custom-controls/**/*.php' );
+			foreach ( $customizer_controls as $file ) {
+				if ( file_exists( $file ) ) {
+					require_once $file;
+				}
+			}
 
-			// Custom section.
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/woostify-pro/class-woostify-get-pro-section.php';
+			// Register section & panel.
+			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/register-sections.php';
+
+			// Add customizer sections.
+			$customizer_sections = glob( WOOSTIFY_THEME_DIR . 'inc/customizer/sections/**/*.php' );
+			foreach ( $customizer_sections as $file ) {
+				if ( file_exists( $file ) ) {
+					require_once $file;
+				}
+			}
 
 			// Register Control Type.
 			if ( method_exists( $wp_customize, 'register_control_type' ) ) {
@@ -184,7 +203,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 						'woostify_get_pro_section',
 						array(
 							'pro_text'   => __( 'Pro Version Available', 'woostify' ),
-							'pro_url'    => woostify_get_pro_url( 'https://woostify.com/pricing/' ),
+							'pro_url'    => woostify_get_pro_url(),
 							'capability' => 'edit_theme_options',
 							'priority'   => 0,
 							'type'       => 'woostify-pro-section',
@@ -202,37 +221,61 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 							'type'        => 'addon',
 							'label'       => __( 'Learn More', 'woostify' ),
 							'description' => __( 'More options are available for this section in our pro version.', 'woostify' ),
-							'url'         => woostify_get_pro_url( 'https://woostify.com/pricing/' ),
+							'url'         => woostify_get_pro_url(),
+							'priority'    => 200,
+							'settings'    => isset( $wp_customize->selective_refresh ) ? array() : 'blogname',
+						)
+					)
+				);
+
+				$wp_customize->add_control(
+					new Woostify_Get_Pro_Control(
+						$wp_customize,
+						'woostify_product_style_addon',
+						array(
+							'section'     => 'woostify_product_style',
+							'type'        => 'addon',
+							'label'       => __( 'Learn More', 'woostify' ),
+							'description' => __( 'More options are available for this section in our pro version.', 'woostify' ),
+							'url'         => woostify_get_pro_url(),
+							'priority'    => 200,
+							'settings'    => isset( $wp_customize->selective_refresh ) ? array() : 'blogname',
+						)
+					)
+				);
+
+				$wp_customize->add_control(
+					new Woostify_Get_Pro_Control(
+						$wp_customize,
+						'woostify_shop_single_addon',
+						array(
+							'section'     => 'woostify_shop_single',
+							'type'        => 'addon',
+							'label'       => __( 'Learn More', 'woostify' ),
+							'description' => __( 'More options are available for this section in our pro version.', 'woostify' ),
+							'url'         => woostify_get_pro_url(),
+							'priority'    => 200,
+							'settings'    => isset( $wp_customize->selective_refresh ) ? array() : 'blogname',
+						)
+					)
+				);
+
+				$wp_customize->add_control(
+					new Woostify_Get_Pro_Control(
+						$wp_customize,
+						'woostify_footer_addon',
+						array(
+							'section'     => 'woostify_footer',
+							'type'        => 'addon',
+							'label'       => __( 'Learn More', 'woostify' ),
+							'description' => __( 'More options are available for this section in our pro version.', 'woostify' ),
+							'url'         => woostify_get_pro_url(),
 							'priority'    => 200,
 							'settings'    => isset( $wp_customize->selective_refresh ) ? array() : 'blogname',
 						)
 					)
 				);
 			}
-
-			// Register section & panel.
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/register-sections.php';
-
-			// Section, settings & control.
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/wordpress/title-tagline.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/wordpress/background-image.php';
-
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/header/header.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/sidebar/sidebar.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/footer/footer.php';
-
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/color/color.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/buttons/button.php';
-
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/body.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/primary-menu.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/typography/heading.php';
-
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/blog/blog-single.php';
-
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop-page.php';
-			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/sections/shop/shop-single.php';
 		}
 
 		/**

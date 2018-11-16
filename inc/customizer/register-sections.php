@@ -18,6 +18,15 @@ $wp_customize->add_panel(
 	)
 );
 
+// Topbar section.
+$wp_customize->add_section(
+	'woostify_topbar',
+	array(
+		'title'       => __( 'Topbar', 'woostify' ),
+		'panel'       => 'woostify_layout',
+	)
+);
+
 // Header section.
 $wp_customize->add_section(
 	'woostify_header',
@@ -126,6 +135,15 @@ if ( class_exists( 'woocommerce' ) ) {
 			'title'      => __( 'Shop', 'woostify' ),
 			'capability' => 'edit_theme_options',
 			'priority'   => 30,
+		)
+	);
+
+	$wp_customize->add_section(
+		'woostify_product_style',
+		array(
+			'title'      => __( 'Product Style', 'woostify' ),
+			'capability' => 'edit_theme_options',
+			'panel'      => 'woostify_shop',
 		)
 	);
 

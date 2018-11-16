@@ -59,7 +59,8 @@ function handleError( e ) {
 gulp.task( 'browser-sync', () =>
 	browserSync( {
 		files: 'style.css',
-		proxy: "http://" + site_name + ".io"
+		proxy: "http://" + site_name + ".io",
+		notify: false
 	} )
 );
 

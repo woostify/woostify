@@ -891,45 +891,30 @@ if ( ! function_exists( 'woostify_posted_on' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_header_container' ) ) {
+if ( ! function_exists( 'woostify_container_open' ) ) {
 	/**
-	 * The header container
+	 * Woostify container open
 	 */
-	function woostify_header_container() {
+	function woostify_container_open() {
+		if ( is_singular( 'product' ) ) {
+			return;
+		}
+
 		$container = woostify_site_container();
 		echo '<div class="' . esc_attr( $container ) . '">';
 	}
 }
 
-if ( ! function_exists( 'woostify_header_container_close' ) ) {
+if ( ! function_exists( 'woostify_container_close' ) ) {
 	/**
-	 * The header container close
+	 * Woostify container close
 	 */
-	function woostify_header_container_close() {
+	function woostify_container_close() {
+		if ( is_singular( 'product' ) ) {
+			return;
+		}
+
 		echo '</div>';
-	}
-}
-
-if ( ! function_exists( 'woostify_content_open' ) ) {
-	/**
-	 * Woostify content open
-	 */
-	function woostify_content_open() {
-		$container = woostify_site_container();
-		if ( ! is_singular( 'product' ) ) {
-			echo '<div class="' . esc_attr( $container ) . '">';
-		}
-	}
-}
-
-if ( ! function_exists( 'woostify_content_close' ) ) {
-	/**
-	 * Woostify content close
-	 */
-	function woostify_content_close() {
-		if ( ! is_singular( 'product' ) ) {
-			echo '</div>';
-		}
 	}
 }
 
@@ -1373,6 +1358,42 @@ if ( ! function_exists( 'woostify_site_footer' ) ) {
 
 				</div>
 			</footer>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_topbar_left' ) ) {
+	/**
+	 * Topbar left content
+	 */
+	function woostify_topbar_left() {
+		$options = woostify_options( false );
+		?>
+		<div class="topbar-item topbar-left"><?php echo wp_kses_post( $options['topbar_left'] ); ?></div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_topbar_center' ) ) {
+	/**
+	 * Topbar center content
+	 */
+	function woostify_topbar_center() {
+		$options = woostify_options( false );
+		?>
+		<div class="topbar-item topbar-center"><?php echo wp_kses_post( $options['topbar_center'] ); ?></div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_topbar_right' ) ) {
+	/**
+	 * Topbar right content
+	 */
+	function woostify_topbar_right() {
+		$options = woostify_options( false );
+		?>
+		<div class="topbar-item topbar-right"><?php echo wp_kses_post( $options['topbar_right'] ); ?></div>
 		<?php
 	}
 }
