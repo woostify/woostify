@@ -122,21 +122,20 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			?>
 
 			<div class="woostify-wrap">
-				
+
 				<section class="woostify-welcome-nav">
 					<div class="woostify-welcome-container">
 						<a class="woostify-welcome-theme-brand" href="https://woostify.com/" target="_blank" rel="noopener">
 							<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . '/assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
-							<span class="woostify-welcome-theme-title">Woostify</span>
+							<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify' , 'woostify' ); ?></span>
 							<span class="woostify-welcome-theme-version"><?php echo woostify_version(); // WPCS: XSS ok. ?></span>
 						</a>
 
 						<ul class="woostify-welcome-nav_link">
 							<li><a href="//woostify.com/contact/" target="_blank"><?php esc_html_e( 'Support', 'woostify' ); ?></a></li>
 							<li><a href="//woostify.com/docs/" target="_blank"><?php esc_html_e( 'Documentation', 'woostify' ); ?></a></li>
-							<li><a href="//woostify.com/pricing/" target="_blank"><?php esc_html_e( 'Development Blog', 'woostify' ); ?></a></li>
 							<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
-								<li><a href="//woostify.com/pricing/" target="_blank"><strong>Go Pro Version.</strong></a></li>
+								<li><a href="//woostify.com/pricing/" target="_blank"><strong><?php esc_html_e( 'Go Pro', 'woostify' ); ?></strong></a></li>
 							<?php endif; ?>
 						</ul>
 					</div>
@@ -174,10 +173,10 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 									<?php } ?>
 									</ul>
-									
+
 									<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
 										<p>
-											<a href="//woostify.com/pricing/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Read more and purchase', 'woostify' ); ?></a>
+											<a href="//woostify.com/docs/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Read more', 'woostify' ); ?></a>
 										</p>
 									<?php endif; ?>
 								</div>
@@ -187,12 +186,12 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								<div class="woostify-enhance__column woostify-pro-featured">
 									<h3>
 										<?php esc_html_e( 'More Features Avaiable with Woostify Pro', 'woostify' ); ?>
-										<a class="woostify-learn-more wp-ui-text-highlight" href="//woostify.com/pricing/" target="_blank"><?php esc_html_e( 'Learn more!', 'woostify' ); ?></a>
+										<a class="woostify-learn-more wp-ui-text-highlight" href="//woostify.com/pricing/" target="_blank"><?php esc_html_e( 'Read more!', 'woostify' ); ?></a>
 									</h3>
 
 									<div class="wf-quick-setting-section">
 										<p>
-											<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify' ); ?>
+											<?php esc_html_e( 'Optimize website with our powerful Pro Modules.', 'woostify' ); ?>
 										</p>
 
 										<p>
@@ -200,11 +199,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 										</p>
 
 										<p>
-											<?php esc_html_e( 'Of course they are all fully compatible with each Woostify extension.', 'woostify' ); ?>
-										</p>
-
-										<p>
-											<a href="//woostify.com/pricing/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Check \'em out', 'woostify' ); ?></a>
+											<a href="//woostify.com/pricing/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Read More', 'woostify' ); ?></a>
 										</p>
 									</div>
 								</div>
@@ -217,25 +212,21 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 							<?php do_action( 'woostify_pro_panel_sidebar' ); ?>
 
 							<div class="woostify-enhance__column">
-								<h3><?php esc_html_e( 'Import Demo', 'woostify' ); ?></h3>							
+								<h3><?php esc_html_e( 'Import Demo', 'woostify' ); ?></h3>
 
 								<div class="wf-quick-setting-section">
-									<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/child-themes.jpg' ); ?>" alt="woostify Powerpack" />
+									<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/demo-sites.jpg' ); ?>" alt="woostify Powerpack" />
 
 									<p>
-										<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify child themes.', 'woostify' ); ?>
+										<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify Demo Sites.', 'woostify' ); ?>
 									</p>
 
 									<p>
-										<?php esc_html_e( 'Each has been designed to serve a different industry - from fashion to food.', 'woostify' ); ?>
+										<?php esc_html_e( 'It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc.', 'woostify' ); ?>
 									</p>
 
 									<p>
-										<?php esc_html_e( 'Of course they are all fully compatible with each Woostify extension.', 'woostify' ); ?>
-									</p>
-
-									<p>
-											<a href="//woostify.com/pricing/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Check \'em out', 'woostify' ); ?></a>
+											<a href="//woostify.com/pricing/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Install Demo', 'woostify' ); ?></a>
 										</p>
 								</div>
 							</div>
