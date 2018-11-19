@@ -891,6 +891,48 @@ if ( ! function_exists( 'woostify_posted_on' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_get_header_class' ) ) {
+	/**
+	 * Header class
+	 *
+	 * @param string|array $class One or more classes to add to the class list.
+	 */
+	function woostify_get_header_class( $class = '' ) {
+		$classes = array();
+
+		$classes[] = 'site-header';
+
+		if ( ! empty( $class ) ) {
+			if ( ! is_array( $class ) ) {
+				$class = preg_split( '#\s+#', $class );
+			}
+			$classes = array_merge( $classes, $class );
+		} else {
+			// Ensure that we always coerce class to being an array.
+			$class = array();
+		}
+
+		$classes = array_map( 'esc_attr', $classes );
+
+		$classes = apply_filters( 'woostify_header_class', $classes, $class );
+
+		return array_unique( $classes );
+	}
+}
+
+if ( ! function_exists( 'woostify_header_class' ) ) {
+
+	/**
+	 * Display the classes for the header element.
+	 *
+	 * @param string|array $class One or more classes to add to the class list.
+	 */
+	function woostify_header_class( $class = '' ) {
+		// Separates classes with a single space, collates classes for body element.
+		echo 'class="' . join( ' ', woostify_get_header_class( $class ) ) . '"'; // WPCS: XSS ok.
+	}
+}
+
 if ( ! function_exists( 'woostify_container_open' ) ) {
 	/**
 	 * Woostify container open

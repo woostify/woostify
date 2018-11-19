@@ -378,7 +378,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			}
 
 			// Header layout.
-			$classes[] = 'header-' . $options['header_layout'];
+			$classes[] = 'has-header-' . $options['header_layout'];
 
 			// Sidebar class detected.
 			$classes[] = woostify_sidebar_class();

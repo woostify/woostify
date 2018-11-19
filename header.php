@@ -32,7 +32,7 @@
 			</div>
 
 			<?php do_action( 'woostify_before_header' ); ?>
-			<header id="masthead" class="site-header">
+			<header id="masthead" <?php woostify_header_class(); ?>>
 				<?php
 					/**
 					 * Functions hooked into woostify_header action
