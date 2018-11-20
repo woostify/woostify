@@ -4448,12 +4448,12 @@ dd {
   .header-layout-1 .toggle-sidebar-menu-btn {
     display: none;
   }
-  .site-navigation {
+  .header-layout-1 .site-navigation {
     flex-grow: 1;
     text-align: right;
   }
-  .site-navigation .site-search,
-  .site-navigation .mobile-my-account {
+  .header-layout-1 .site-navigation .site-search,
+  .header-layout-1 .site-navigation .mobile-my-account {
     display: none;
   }
 }
@@ -4537,18 +4537,18 @@ dd {
   bottom: -6px;
 }
 
-.mobile-menu-open .woostify-icon-bar span {
+.sidebar-menu-open .woostify-icon-bar span {
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
-.mobile-menu-open .woostify-icon-bar span:before {
+.sidebar-menu-open .woostify-icon-bar span:before {
   width: 50%;
   -webkit-transform: rotate(45deg) translate(14px, -11px);
   transform: rotate(45deg) translate(14px, -11px);
 }
 
-.mobile-menu-open .woostify-icon-bar span:after {
+.sidebar-menu-open .woostify-icon-bar span:after {
   width: 50%;
   -webkit-transform: rotate(-45deg) translate(14px, 11px);
   transform: rotate(-45deg) translate(14px, 11px);
@@ -4686,46 +4686,49 @@ dd {
   list-style: none;
 }
 
+/* Header Layout 1 */
 @media (min-width: 992px) {
-  .sidebar-menu {
+  .has-header-layout-1 .sidebar-menu {
     display: none;
   }
 }
 
 @media (max-width: 991px) {
-  /* menu open */
-  .mobile-menu-open {
+  .has-header-layout-1 {
+    /* menu open */
+  }
+  .has-header-layout-1.sidebar-menu-open {
     overflow: hidden;
   }
-  .mobile-menu-open #woostify-overlay {
+  .has-header-layout-1.sidebar-menu-open #woostify-overlay {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
   }
-  .mobile-menu-open #view {
+  .has-header-layout-1.sidebar-menu-open #view {
     -webkit-transform: translateX(300px);
     transform: translateX(300px);
   }
-  .mobile-menu-open .sidebar-menu {
+  .has-header-layout-1.sidebar-menu-open .sidebar-menu {
     -webkit-transform: translateX(0);
     transform: translateX(0);
   }
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
-  .mobile-menu-open #view {
+@media (max-width: 991px) and (min-width: 992px) {
+  .has-header-layout-1.sidebar-menu-open #view {
     -webkit-transform: translateX(50%);
     transform: translateX(50%);
   }
-  .sidebar-menu {
+  .has-header-layout-1 .sidebar-menu {
     padding: 40px 60px;
     width: 50%;
   }
-  .sidebar-menu .site-navigation {
+  .has-header-layout-1 .sidebar-menu .site-navigation {
     left: 60px;
     right: 60px;
   }
-  .sidebar-menu .sidebar-menu-bottom {
+  .has-header-layout-1 .sidebar-menu .sidebar-menu-bottom {
     padding: 30px 60px 10px 60px;
   }
 }

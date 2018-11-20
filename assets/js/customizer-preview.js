@@ -139,6 +139,9 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	woostify_html_live_update( 'topbar_center', '.topbar .topbar-center' );
 	woostify_html_live_update( 'topbar_right', '.topbar .topbar-right' );
 
+	// Header.
+	woostify_colors_live_update( 'header_background_color', '.site-header', 'background-color' )
+
 	// Logo width.
 	woostify_range_slider_update( ['logo_width', 'tablet_logo_width', 'mobile_logo_width'], '.site-header .site-branding img', 'max-width', 'px' );
 

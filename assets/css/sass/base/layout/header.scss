@@ -266,17 +266,17 @@
 		.toggle-sidebar-menu-btn{
 			display: none;
 		}
-	}
+		.site-navigation{
+			flex-grow: 1;
+			text-align: right;
 
-	.site-navigation{
-		flex-grow: 1;
-		text-align: right;
-
-		.site-search,
-		.mobile-my-account{
-			display: none;
+			.site-search,
+			.mobile-my-account{
+				display: none;
+			}
 		}
 	}
+
 }
 
 @media ( max-width: $screen-md - 1 ) {

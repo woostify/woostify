@@ -18,17 +18,12 @@
 
 		for ( var i = 0, j = menuToggleBtn.length; i < j; i++ ) {
 			menuToggleBtn[i].addEventListener( 'click', function() {
-				document.body.classList.add( 'mobile-menu-open' );
+				document.body.classList.add( 'sidebar-menu-open' );
 				closeAll();
 			} );
 		}
 
-		jQuery( document.body ).on( 'click', '.sidebar-menu .primary-navigation a', function( e ) {
-
-			// This script only run only mobile devices.
-			if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
-				return;
-			}
+		jQuery( document.body ).on( 'click', '.sidebar-menu ul a', function( e ) {
 
 			e.preventDefault();
 

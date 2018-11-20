@@ -64,6 +64,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['header_background_color'],
 		'sanitize_callback' => 'sanitize_hex_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 

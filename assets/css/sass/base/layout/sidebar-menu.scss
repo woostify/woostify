@@ -1,58 +1,52 @@
-.woostify-icon-bar{
-    width: 26px;
-    height: 26px;
-    @extend .flex;
-
-    span {
-        position: relative;
-        background-color: #000;
-        width: 100%;
-        height: 2px;
-        display: block;
-        @include delay(0.5s);
-        @include duration(0.5s);
-
-        &:before,
-        &:after {
-            @include delay(0.5s);
-            @include duration(0.5s);
-        }
-
-        &:before,
-        &:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: $inh;
-        }
-
-        &:before {
-            top: -6px;
-        }
-
-        &:after {
-            bottom: -6px;
-        }
-    }
-
-    .mobile-menu-open & {
-        span {
-            @include rotate(180);
-            &:before {
-                width: 50%;
-                @include transform(rotate(45deg) translate(14px, -11px));
-            }
-            &:after {
-                width: 50%;
-                @include transform(rotate(-45deg) translate(14px, 11px));
-            }
-        }
-    }
+.woostify-icon-bar {
+	width: 26px;
+	height: 26px;
+	@extend .flex;
+	span {
+		position: relative;
+		background-color: #000;
+		width: 100%;
+		height: 2px;
+		display: block;
+		@include delay(0.5s);
+		@include duration(0.5s);
+		&:before,
+		&:after {
+			@include delay(0.5s);
+			@include duration(0.5s);
+		}
+		&:before,
+		&:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background-color: $inh;
+		}
+		&:before {
+			top: -6px;
+		}
+		&:after {
+			bottom: -6px;
+		}
+	}
+	.sidebar-menu-open & {
+		span {
+			@include rotate(180);
+			&:before {
+				width: 50%;
+				@include transform(rotate(45deg) translate(14px, -11px));
+			}
+			&:after {
+				width: 50%;
+				@include transform(rotate(-45deg) translate(14px, 11px));
+			}
+		}
+	}
 }
 
-.sidebar-menu{
+.sidebar-menu {
 	position: fixed;
 	left: 0;
 	bottom: 0;
@@ -62,38 +56,33 @@
 	z-index: 200;
 	padding: 30px;
 	width: 300px;
-	@include translatex( -100% );
+	@include translatex( -100%);
 	@extend .duration;
-
 	.logged-in.admin-bar & {
 		top: 46px;
 		@media (min-width: 783px) {
 			top: 32px;
 		}
 	}
-	
 	/* search form */
 	.search-form,
-	.woocommerce-product-search{
+	.woocommerce-product-search {
 		height: 40px;
-		.search-field{
+		.search-field {
 			padding-right: 40px;
 		}
 	}
-
 	.search-form .search-submit,
-	.woocommerce-product-search button[type="submit"]{
+	.woocommerce-product-search button[type="submit"] {
 		width: 40px;
 	}
-
 	.search-form,
-	.woocommerce-product-search{
-		&:after{
+	.woocommerce-product-search {
+		&:after {
 			width: 40px;
 			height: 40px;
 		}
 	}
-	
 	/* menu */
 	.site-navigation{
 		position: absolute;
@@ -103,27 +92,23 @@
 		bottom: 200px;
 		overflow-y: scroll;
 	}
-
 	.primary-navigation{
 		padding-left: 0;
 		margin: 0;
-
-		>li{
+		> li {
 			&.current-menu-ancestor,
 			&.current-menu-parent,
 			&.current_page_parent,
-			&.current_page_ancestor{
-				> a:before{
+			&.current_page_ancestor {
+				> a:before {
 					content: '';
 					width: 40px;
 				}
 			}
 		}
-		
-		.menu-item-has-children{
+		.menu-item-has-children {
 			position: relative;
-
-			&:after{
+			&:after {
 				content: "\e64b";
 				font-family: $icon;
 				position: absolute;
@@ -133,19 +118,17 @@
 				font-weight: 700;
 			}
 		}
-
-		a{
+		a {
 			display: block;
 			font-size: 1.2em;
 			line-height: 3em;
 			position: relative;
-			&:hover{
-				&:before{
+			&:hover {
+				&:before {
 					width: 40px;
 				}
 			}
-
-			&:before{
+			&:before {
 				content: '';
 				position: absolute;
 				left: 0;
@@ -156,87 +139,77 @@
 			}
 		}
 	}
-
-	.sub-menu{
+	.sub-menu {
 		display: none;
 	}
-	
 	/* sidebar bottom */
-	.sidebar-menu-bottom{
+	.sidebar-menu-bottom {
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		right: 0;
 		padding: 30px 30px 10px 30px;
-
-		ul{
+		ul {
 			padding-left: 0;
 			margin: 0;
 		}
 	}
-
-	.sidebar-account{
-		li{
+	.sidebar-account {
+		li {
 			border-top: 1px solid #eee;
 		}
-		a{
+		a {
 			display: block;
 			line-height: 3em;
 			font-size: 1.2em;
 		}
 	}
-
-	ul{
+	ul {
 		list-style: none;
 	}
 }
 
-@media ( min-width: $screen-md ) {
-	.sidebar-menu{
-		display: none;
-	}
-}
+/* Header Layout 1 */
 
-@media ( max-width: $screen-md - 1 ) {
-	/* menu open */
-	.mobile-menu-open{
-		overflow: hidden;
-
-		#woostify-overlay{
-			opacity: 1;
-			visibility: visible;
-			pointer-events: auto;
-		}
-
-		#view{
-			@include translatex( 300px );
-		}
-
-		.sidebar-menu{
-			@include translatex( 0 );
+.has-header-layout-1 {
+	@media ( min-width: $screen-md) {
+		.sidebar-menu {
+			display: none;
 		}
 	}
-}
-
-@media ( min-width: $screen-sm ) and ( max-width: $screen-md ) {
-	.mobile-menu-open{
-		#view{
-			@include translatex( 50% );
+	@media ( max-width: $screen-md - 1) {
+		/* menu open */
+		&.sidebar-menu-open {
+			overflow: hidden;
+			#woostify-overlay {
+				opacity: 1;
+				visibility: visible;
+				pointer-events: auto;
+			}
+			#view {
+				@include translatex( 300px);
+			}
+			.sidebar-menu {
+				@include translatex( 0);
+			}
+		}
+		@media ( min-width: $screen-md) {
+			&.sidebar-menu-open {
+				#view {
+					@include translatex( 50%);
+				}
+			}
+			.sidebar-menu {
+				padding: 40px 60px;
+				width: 50%;
+				.site-navigation {
+					left: 60px;
+					right: 60px;
+				}
+				.sidebar-menu-bottom {
+					padding: 30px 60px 10px 60px;
+				}
+			}
 		}
 	}
-
-	.sidebar-menu{
-		padding: 40px 60px;
-		width: 50%;
-
-		.site-navigation{
-			left: 60px;
-			right: 60px;
-		}
-
-		.sidebar-menu-bottom{
-			padding: 30px 60px 10px 60px;
-		}
-	}
-
 }

@@ -746,7 +746,7 @@ msgstr ""
 msgid "Text Color"
 msgstr ""
 
-#: inc/customizer/sections/buttons/button.php:48, inc/customizer/sections/footer/footer.php:84, inc/customizer/sections/header/header.php:75, inc/customizer/sections/header/topbar.php:50
+#: inc/customizer/sections/buttons/button.php:48, inc/customizer/sections/footer/footer.php:84, inc/customizer/sections/header/header.php:76, inc/customizer/sections/header/topbar.php:50
 msgid "Background Color"
 msgstr ""
 
@@ -802,27 +802,27 @@ msgstr ""
 msgid "Header Layout"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:98
+#: inc/customizer/sections/header/header.php:99
 msgid "Elements"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:119
+#: inc/customizer/sections/header/header.php:120
 msgid "Header Primary Menu"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:141
+#: inc/customizer/sections/header/header.php:142
 msgid "Search Icon"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:165
+#: inc/customizer/sections/header/header.php:166
 msgid "Search Only Product"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:187
+#: inc/customizer/sections/header/header.php:188
 msgid "Account Icon"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:209
+#: inc/customizer/sections/header/header.php:210
 msgid "Shopping Cart Icon"
 msgstr ""
 

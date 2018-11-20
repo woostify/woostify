@@ -31,7 +31,7 @@ function closeAll() {
 
 	if ( overlay ) {
 		overlay.addEventListener( 'click', function() {
-			document.body.classList.remove( 'cart-sidebar-open', 'mobile-menu-open' );
+			document.body.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
 		} );
 	}
 }
