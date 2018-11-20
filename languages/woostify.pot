@@ -196,7 +196,7 @@ msgid "Primary navigation"
 msgstr ""
 
 #: inc/woostify-template-functions.php:471
-msgid "Add Menu"
+msgid "Add a Primary Menu"
 msgstr ""
 
 #: inc/woostify-template-functions.php:487
@@ -262,15 +262,23 @@ msgstr ""
 msgid "Posted on"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1241, inc/woostify-template-functions.php:1293
+#: inc/woostify-template-functions.php:1067
+msgid "Dialog search icon"
+msgstr ""
+
+#: inc/woostify-template-functions.php:1071
+msgid "Type to search"
+msgstr ""
+
+#: inc/woostify-template-functions.php:1333, inc/woostify-template-functions.php:1383
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1244, inc/woostify-template-functions.php:1296
+#: inc/woostify-template-functions.php:1336, inc/woostify-template-functions.php:1386
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1246, inc/woostify-template-functions.php:1298
+#: inc/woostify-template-functions.php:1338, inc/woostify-template-functions.php:1388
 msgid "Logout"
 msgstr ""
 
@@ -803,7 +811,7 @@ msgid "Header Primary Menu"
 msgstr ""
 
 #: inc/customizer/sections/header/header.php:141
-msgid "Search Form"
+msgid "Search Icon"
 msgstr ""
 
 #: inc/customizer/sections/header/header.php:165

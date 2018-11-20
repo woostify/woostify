@@ -1,0 +1,135 @@
+.dialog-search-open{
+	overflow: hidden;
+	.site-dialog-search{
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+	.dialog-search-content{
+		-webkit-animation-name: anim-open;
+		animation-name: anim-open;
+	}
+}
+
+.dialog-search-close{
+	.dialog-search-content{
+		-webkit-animation-name: anim-close;
+		animation-name: anim-close;
+	}
+}
+
+.dialog-search-open,
+.dialog-search-close{
+	.dialog-search-content{
+		-webkit-animation-duration: 0.4s;
+		animation-duration: 0.4s;
+		-webkit-animation-fill-mode: forwards;
+		animation-fill-mode: forwards;
+	}
+}
+
+.site-dialog-search{
+	@extend .flex;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	position: fixed;
+	z-index: 200;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	background-color: rgba(55, 58, 71, 0.9);
+	transition-duration: 0.4s;
+}
+
+.dialog-search-content{
+	opacity: 0;
+	width: 50%;
+	max-width: 650px;
+	min-width: 290px;
+	background-color: #fff;
+	position: relative;
+	z-index: 5;
+	border-radius: 4px;
+	overflow: hidden;
+
+	.dialog-search-header{
+		padding-left: 20px;
+		font-weight: 700;
+		position: relative;
+		z-index: 10;
+		@include shadow( 0 -3px 15px 6px rgba(0, 0, 0, 0.03) );
+		@include flex( flex, space-between, center );
+	}
+
+	.dialog-search-icon{
+		width: 25px;
+		height: 28px;
+		@include rotate( -35 );
+		+.dialog-search-title{
+			padding-left: 15px;
+		}
+	}
+
+	.dialog-search-title{
+		flex-grow: 1;
+		text-transform: uppercase;
+	}
+
+	.dialog-search-close-icon{
+		cursor: pointer;
+		font-weight: 700;
+		height: 50px;
+		width: 50px;
+		@extend .flex;
+		&:hover{
+			color: firebrick;
+		}
+	}
+
+	.search-form,
+	.woocommerce-product-search{
+		height: 60px;
+		.search-field {
+			border-radius: 0;
+			visibility: visible;
+			background-color: #f1f3f5;
+			font-size: 1em;
+			font-style: italic;
+			&:focus{
+				border-color: $tr;
+			}
+			@include placeholder{
+				color: #a5b0b7;
+			}
+		}
+	}
+}
+
+
+@keyframes anim-open {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -100px, 0);
+		transform: translate3d(0, -100px, 0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes anim-close {
+	0% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+	100% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 100px, 0);
+		transform: translate3d(0, 100px, 0);
+	}
+}

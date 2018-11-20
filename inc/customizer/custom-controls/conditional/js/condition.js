@@ -55,7 +55,7 @@
 
 		// Search product only.
 		condition(
-			'woostify_setting[header_search_form]',
+			'woostify_setting[header_search_icon]',
 			['woostify_setting[header_search_only_product]']
 		);
 

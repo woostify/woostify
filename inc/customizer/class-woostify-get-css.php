@@ -186,7 +186,8 @@ class Woostify_Get_CSS {
 			.default-widget a strong:hover,
 			.woostify-subscribe-form input,
 			.woostify-shop-category .elementor-widget-image .widget-image-caption,
-			.shop_table_responsive td:before{
+			.shop_table_responsive td:before,
+			.dialog-search-title{
 				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 
@@ -197,9 +198,12 @@ class Woostify_Get_CSS {
 
 		// Link color.
 		$styles .= '
+			.site-tools .header-search-icon,
 			a{
 				color: ' . esc_attr( $options['accent_color'] ) . ';
 			}
+
+			.site-tools .header-search-icon:hover,
 			a:hover,
 			#secondary .widget a:not(.tag-cloud-link):hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';

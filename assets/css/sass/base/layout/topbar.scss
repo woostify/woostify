@@ -6,11 +6,25 @@
 		}
 	}
 	.topbar-item{
+		flex-grow: 1;
 		&:first-child:last-child{
 			margin: 0 auto;
 		}
 		&:empty{
 			display: none;
 		}
+		p{
+			&:empty{
+				display: none;
+			}
+			&:last-child{
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	/* can remove */
+	.topbar-center{
+		text-align: center;
 	}
 }

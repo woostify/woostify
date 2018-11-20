@@ -110,8 +110,8 @@ if ( ! class_exists( 'woostify' ) ) :
 				apply_filters(
 					'woostify_register_nav_menus',
 					array(
-						'primary'     => __( 'Primary Menu', 'woostify' ),
-						'footer_menu' => __( 'Footer Menu', 'woostify' ),
+						'primary' => __( 'Primary Menu', 'woostify' ),
+						'footer'  => __( 'Footer Menu', 'woostify' ),
 					)
 				)
 			);

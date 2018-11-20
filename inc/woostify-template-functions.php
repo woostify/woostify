@@ -261,7 +261,7 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 	 */
 	function woostify_credit() {
 		$options = woostify_options( false );
-		if ( '' == $options['footer_custom_text'] && ! has_nav_menu( 'footer_menu' ) ) {
+		if ( '' == $options['footer_custom_text'] && ! has_nav_menu( 'footer' ) ) {
 			return;
 		}
 		?>
@@ -273,10 +273,10 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 			<?php } ?>
 
 			<?php
-			if ( has_nav_menu( 'footer_menu' ) ) {
+			if ( has_nav_menu( 'footer' ) ) {
 				echo '<div class="site-infor-col">';
 					wp_nav_menu( array(
-						'theme_location' => 'footer_menu',
+						'theme_location' => 'footer',
 						'menu_class'     => 'woostify-footer-menu',
 						'container'      => '',
 						'depth'          => 1,
@@ -468,7 +468,7 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 					);
 				} else {
 					?>
-					<a class="add-menu" href="<?php echo esc_url( get_admin_url() . 'nav-menus.php' ); ?>"><?php esc_html_e( 'Add Menu', 'woostify' ); ?></a>	
+					<a class="add-menu" href="<?php echo esc_url( get_admin_url() . 'nav-menus.php' ); ?>"><?php esc_html_e( 'Add a Primary Menu', 'woostify' ); ?></a>	
 				<?php } ?>
 			</nav>
 
@@ -979,6 +979,42 @@ if ( ! function_exists( 'woostify_is_product_archive' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_topbar_left' ) ) {
+	/**
+	 * Topbar left content
+	 */
+	function woostify_topbar_left() {
+		$options = woostify_options( false );
+		?>
+		<div class="topbar-item topbar-left"><?php echo wp_kses_post( $options['topbar_left'] ); ?></div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_topbar_center' ) ) {
+	/**
+	 * Topbar center content
+	 */
+	function woostify_topbar_center() {
+		$options = woostify_options( false );
+		?>
+		<div class="topbar-item topbar-center"><?php echo wp_kses_post( $options['topbar_center'] ); ?></div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_topbar_right' ) ) {
+	/**
+	 * Topbar right content
+	 */
+	function woostify_topbar_right() {
+		$options = woostify_options( false );
+		?>
+		<div class="topbar-item topbar-right"><?php echo wp_kses_post( $options['topbar_right'] ); ?></div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_search' ) ) {
 	/**
 	 * Display Product Search
@@ -988,20 +1024,66 @@ if ( ! function_exists( 'woostify_search' ) ) {
 	 */
 	function woostify_search() {
 		$options = woostify_options( false );
-		if ( false == $options['header_search_form'] ) {
-			return;
-		}
 		?>
+
 		<div class="site-search">
 			<?php
 			if ( false == $options['header_search_only_product'] ) {
 				get_search_form();
-			} else {
-				if ( woostify_is_woocommerce_activated() ) {
-					the_widget( 'WC_Widget_Product_Search', 'title=' );
-				}
+			} elseif ( woostify_is_woocommerce_activated() ) {
+				the_widget( 'WC_Widget_Product_Search', 'title=' );
 			}
 			?>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_dialog_search' ) ) {
+	/**
+	 * Display Dialog Search
+	 *
+	 * @uses  woostify_is_woocommerce_activated() check if WooCommerce is activated
+	 * @return void
+	 */
+	function woostify_dialog_search() {
+		$options = woostify_options( false );
+
+		if ( false == $options['header_search_icon'] ) {
+			return;
+		}
+
+		$title_icon = apply_filters( 'woostify_dialog_search_title_icon', WOOSTIFY_THEME_URI . 'assets/images/logo.svg' );
+		$close_icon = apply_filters( 'woostify_dialog_search_close_icon', 'ti-close' );
+		?>
+
+		<div class="site-dialog-search">
+			<div class="dialog-search-content">
+				<?php do_action( 'woostify_dialog_search_before' ); ?>
+
+				<div class="dialog-search-header">
+					<?php if ( false != $title_icon ) { ?>
+						<span class="dialog-search-icon">
+							<img src="<?php echo esc_url( $title_icon ); ?>" alt="<?php esc_attr_e( 'Dialog search icon', 'woostify' ); ?>">
+						</span>
+					<?php } ?>
+
+					<span class="dialog-search-title"><?php esc_html_e( 'Type to search', 'woostify' ); ?></span>
+
+					<span class="dialog-search-close-icon <?php echo esc_attr( $close_icon ); ?>"></span>
+				</div>
+				<div class="dialog-search-main">
+					<?php
+					if ( false == $options['header_search_only_product'] ) {
+						get_search_form();
+					} elseif ( woostify_is_woocommerce_activated() ) {
+						the_widget( 'WC_Widget_Product_Search', 'title=' );
+					}
+					?>
+				</div>
+
+				<?php do_action( 'woostify_dialog_search_after' ); ?>
+			</div>
 		</div>
 		<?php
 	}
@@ -1158,15 +1240,15 @@ if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_mobile_menu_toggle_btn' ) ) {
+if ( ! function_exists( 'woostify_menu_toggle_btn' ) ) {
 	/**
-	 * Mobile menu toggle button
+	 * Menu toggle button
 	 */
-	function woostify_mobile_menu_toggle_btn() {
+	function woostify_menu_toggle_btn() {
 		$menu_toggle_icon  = apply_filters( 'woostify_header_menu_toggle_icon', 'woostify-icon-bar' );
 		$woostify_icon_bar = apply_filters( 'woostify_header_icon_bar', '<span></span>' );
 		?>
-			<span class="menu-toggle-btn <?php echo esc_attr( $menu_toggle_icon ); ?>">
+			<span class="toggle-sidebar-menu-btn <?php echo esc_attr( $menu_toggle_icon ); ?>">
 				<?php echo wp_kses_post( $woostify_icon_bar ); ?>
 			</span>
 		<?php
@@ -1225,14 +1307,24 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 
 			$count = $woocommerce->cart->cart_contents_count;
 
+			$search_icon     = apply_filters( 'woostify_header_search_icon', 'ti-search' );
 			$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
 			$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-bag' );
 			?>
+
 			<div class="site-tools">
+
+				<?php do_action( 'woostify_site_tools_before_search' ); ?>
+
+				<?php // Search icon. ?>
+				<?php if ( true == $options['header_search_icon'] ) { ?>
+					<span class="tools-icon header-search-icon <?php echo esc_attr( $search_icon ); ?>"></span>
+				<?php } ?>
+
+				<?php do_action( 'woostify_site_tools_before_my_account' ); ?>
+
 				<?php // My account icon. ?>
 				<?php if ( true == $options['header_account_icon'] ) { ?>
-					<?php do_action( 'woostify_site_tools_before_my_account' ); ?>
-
 					<div class="my-account">
 						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account <?php echo esc_attr( $my_account_icon ); ?>"></a>
 
@@ -1248,20 +1340,18 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 							<?php endif; ?>
 						</ul>
 					</div>
-
-					<?php do_action( 'woostify_site_tools_after_my_account' ); ?>
 				<?php } ?>
 				
+				<?php do_action( 'woostify_site_tools_before_shop_bag' ); ?>
+
 				<?php // Shopping cart icon. ?>
 				<?php if ( true == $options['header_shop_cart_icon'] ) { ?>
-					<?php do_action( 'woostify_site_tools_before_shop_bag' ); ?>
-
 					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
 						<span class="shop-cart-count"><?php echo esc_html( $count ); ?></span>
 					</a>
-
-					<?php do_action( 'woostify_site_tools_after_shop_bag' ); ?>
 				<?php } ?>
+
+				<?php do_action( 'woostify_site_tools_after_shop_bag' ); ?>
 			</div>
 			<?php
 		}
@@ -1404,38 +1494,3 @@ if ( ! function_exists( 'woostify_site_footer' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_topbar_left' ) ) {
-	/**
-	 * Topbar left content
-	 */
-	function woostify_topbar_left() {
-		$options = woostify_options( false );
-		?>
-		<div class="topbar-item topbar-left"><?php echo wp_kses_post( $options['topbar_left'] ); ?></div>
-		<?php
-	}
-}
-
-if ( ! function_exists( 'woostify_topbar_center' ) ) {
-	/**
-	 * Topbar center content
-	 */
-	function woostify_topbar_center() {
-		$options = woostify_options( false );
-		?>
-		<div class="topbar-item topbar-center"><?php echo wp_kses_post( $options['topbar_center'] ); ?></div>
-		<?php
-	}
-}
-
-if ( ! function_exists( 'woostify_topbar_right' ) ) {
-	/**
-	 * Topbar right content
-	 */
-	function woostify_topbar_right() {
-		$options = woostify_options( false );
-		?>
-		<div class="topbar-item topbar-right"><?php echo wp_kses_post( $options['topbar_right'] ); ?></div>
-		<?php
-	}
-}

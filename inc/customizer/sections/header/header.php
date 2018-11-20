@@ -123,24 +123,24 @@ $wp_customize->add_control(
 	)
 );
 
-// Search form.
+// Search icon.
 $wp_customize->add_setting(
-	'woostify_setting[header_search_form]',
+	'woostify_setting[header_search_icon]',
 	array(
 		'type'              => 'option',
-		'default'           => $defaults['header_search_form'],
+		'default'           => $defaults['header_search_icon'],
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
 	new WP_Customize_Control(
 		$wp_customize,
-		'woostify_setting[header_search_form]',
+		'woostify_setting[header_search_icon]',
 		array(
 			'type'     => 'checkbox',
-			'label'    => __( 'Search Form', 'woostify' ),
+			'label'    => __( 'Search Icon', 'woostify' ),
 			'section'  => 'woostify_header',
-			'settings' => 'woostify_setting[header_search_form]',
+			'settings' => 'woostify_setting[header_search_icon]',
 		)
 	)
 );

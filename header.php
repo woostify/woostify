@@ -41,7 +41,6 @@
 					 * @hooked woostify_skip_links         - 5
 					 * @hooked woostify_site_branding      - 20
 					 * @hooked woostify_primary_navigation - 30
-					 * @hooked woostify_search             - 40
 					 * @hooked woostify_header_action      - 50
 					 * @hooked woostify_container_close    - 200
 					 */

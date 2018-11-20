@@ -77,7 +77,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'header_layout'                        => 'layout-1',
 					'header_background_color'              => '#ffffff',
 					'header_primary_menu'                  => true,
-					'header_search_form'                   => false,
+					'header_search_icon'                   => false,
 					'header_search_only_product'           => false,
 					'header_account_icon'                  => false,
 					'header_shop_cart_icon'                => false,

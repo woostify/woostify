@@ -36,3 +36,62 @@ function closeAll() {
 	}
 }
 
+function dialogSearch() {
+	var headerSearchIcon = document.getElementsByClassName( 'header-search-icon' ),
+		dialogSearchForm = document.getElementsByClassName( 'site-dialog-search' ),
+		closeBtn         = dialogSearchForm[0].getElementsByClassName( 'dialog-search-close-icon' )[0];
+
+	if ( ! headerSearchIcon.length || ! dialogSearchForm.length || ! closeBtn ) {
+		return;
+	}
+
+	var fieldFocus = function() {
+		if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
+			var searchField = dialogSearchForm[0].getElementsByClassName( 'search-field' )[0];
+			searchField.focus();
+		}
+	}
+
+	var dialogOpen = function() {
+		document.body.classList.add( 'dialog-search-open' );
+		document.body.classList.remove( 'dialog-search-close' );
+
+		fieldFocus();
+	}
+
+	var dialogClose = function() {
+		document.body.classList.add( 'dialog-search-close' );
+		document.body.classList.remove( 'dialog-search-open' );
+	}
+
+	for ( var i = 0, j = headerSearchIcon.length; i < j; i++ ) {
+		headerSearchIcon[i].addEventListener( 'click', function() {
+			dialogOpen();
+
+			// Use ESC key.
+			document.body.addEventListener( 'keyup', function( e ) {
+				if ( 27 === e.keyCode ) {
+					dialogClose();
+				}
+			} );
+
+			// Use dialog overlay.
+			dialogSearchForm[0].addEventListener( 'click', function( e ) {
+				if ( this !== e.target ) {
+					return;
+				}
+
+				dialogClose();
+			} );
+
+			// Use closr button.
+			closeBtn.addEventListener( 'click', function() {
+				dialogClose();
+			} );
+		} );
+	}
+}
+
+document.addEventListener( 'DOMContentLoaded', function() {
+	dialogSearch();
+} );

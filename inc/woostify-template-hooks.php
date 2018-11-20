@@ -16,10 +16,11 @@ add_action( 'woostify_content_top', 'woostify_container_open', 10 );
 add_action( 'woostify_content_bottom', 'woostify_container_close', 10 );
 
 add_action( 'woostify_before_view', 'woostify_sidebar_menu_open', 10 );
-add_action( 'woostify_before_view', 'woostify_search', 20 );
+add_action( 'woostify_before_view', 'woostify_search', 20 ); // Search form for mobile.
 add_action( 'woostify_before_view', 'woostify_primary_navigation', 30 ); // Header menu for mobile.
 add_action( 'woostify_before_view', 'woostify_sidebar_menu_action', 40 );
 add_action( 'woostify_before_view', 'woostify_sidebar_menu_close', 100 );
+add_action( 'woostify_before_view', 'woostify_dialog_search', 110 ); // Dialog search.
 
 add_action( 'woostify_after_view', 'woostify_overlay', 30 );
 
@@ -47,10 +48,9 @@ add_action( 'woostify_topbar', 'woostify_container_close', 100 );
  */
 add_action( 'woostify_header', 'woostify_container_open', 0 );
 add_action( 'woostify_header', 'woostify_skip_links', 5 );
-add_action( 'woostify_header', 'woostify_mobile_menu_toggle_btn', 10 );
+add_action( 'woostify_header', 'woostify_menu_toggle_btn', 10 );
 add_action( 'woostify_header', 'woostify_site_branding', 20 );
 add_action( 'woostify_header', 'woostify_primary_navigation', 30 );
-add_action( 'woostify_header', 'woostify_search', 40 );
 add_action( 'woostify_header', 'woostify_header_action', 50 );
 add_action( 'woostify_header', 'woostify_container_close', 200 );
 

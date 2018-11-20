@@ -10,7 +10,7 @@
 
 ( function() {
 	document.addEventListener( 'DOMContentLoaded', function() {
-		var menuToggleBtn = document.getElementsByClassName( 'menu-toggle-btn' );
+		var menuToggleBtn = document.getElementsByClassName( 'toggle-sidebar-menu-btn' );
 
 		if ( ! menuToggleBtn ) {
 			return;
