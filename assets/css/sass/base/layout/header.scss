@@ -1,6 +1,15 @@
 .site-header{
 	border-bottom: 1px solid #eaeaea;
 
+	p{
+		&:empty{
+			display: none;
+		}
+		&:last-child{
+			margin-bottom: 0;
+		}
+	}
+
     .woostify-container{
         display: flex;
         justify-content: space-between;

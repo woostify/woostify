@@ -144,7 +144,7 @@ msgstr ""
 msgid "Woostify"
 msgstr ""
 
-#: inc/woostify-functions.php:213
+#: inc/woostify-functions.php:224
 msgid "Error image"
 msgstr ""
 

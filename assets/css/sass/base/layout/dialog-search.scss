@@ -91,6 +91,9 @@
 	.search-form,
 	.woocommerce-product-search{
 		height: 60px;
+		&:after{
+			height: 100%;
+		}
 		.search-field {
 			border-radius: 0;
 			visibility: visible;

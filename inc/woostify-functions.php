@@ -119,6 +119,17 @@ if ( ! function_exists( 'woostify_do_shortcode' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_raw_html' ) ) {
+	/**
+	 * Raw html
+	 *
+	 * @param string $text The setting value.
+	 */
+	function woostify_raw_html( $text ) {
+		return $text;
+	}
+}
+
 if ( ! function_exists( 'woostify_sanitize_choices' ) ) {
 	/**
 	 * Sanitizes choices (selects / radios)
