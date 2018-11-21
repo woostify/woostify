@@ -6,7 +6,8 @@
 	#content {
 		> .woostify-container {
 			@media ( min-width: $screen-sm) {
-				width: 800px;
+				width: 970px;
+				max-width: 100%;
 			}
 		}
 	}
@@ -200,12 +201,18 @@
 
 .clear-cart-box{
 	clear: both;
-	text-align: right;
+	text-align: center;
 	@extend .clearfix;
-
-	@media ( max-width: 600px ) {
-		text-align: center;
-		.clear-cart-btn{
+	@media ( min-width: 601px ) {
+		text-align: right;
+	}
+	.clear-cart-btn{
+		height: 40px;
+		line-height: 40px;
+		display: inline-block;
+		padding-top: 0;
+		padding-bottom: 0;
+		@media ( max-width: 600px ) {
 			width: 100%;
 			padding: 10px 15px;
 			float: left;
@@ -214,7 +221,7 @@
 }
 
 .cart-collaterals {
-	margin-top: 80px;
+	margin-top: 50px;
 	@extend .clearfix;
 	@media ( min-width: $screen-md) {
 		.cross-sells {
@@ -233,20 +240,31 @@
 	.shop_table,
 	th{
 		background-color: #fcfcfc;
+		border: 0;
+	}
+
+	th{
+		font-weight: 700;
+		background-color: #f8f8f8;
 	}
 
 	th, td{
-		padding: 10px;
+		padding: 15px;
+		border: 0;
+	}
+
+	[name="calc_shipping"]{
+		width: 100%;
+		height: 50px;
 	}
 }
 
 .checkout-button {
-	border-radius: 50px;
-	height: 50px;
 	text-transform: uppercase;
 	font-weight: 600;
-	line-height: 50px;
+	line-height: 55px;
 	padding-top: 0;
 	padding-bottom: 0;
-	float: right;
+	display: block;
+	text-align: center;
 }

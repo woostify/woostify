@@ -938,10 +938,6 @@ if ( ! function_exists( 'woostify_container_open' ) ) {
 	 * Woostify container open
 	 */
 	function woostify_container_open() {
-		if ( is_singular( 'product' ) ) {
-			return;
-		}
-
 		$container = woostify_site_container();
 		echo '<div class="' . esc_attr( $container ) . '">';
 	}
@@ -952,10 +948,6 @@ if ( ! function_exists( 'woostify_container_close' ) ) {
 	 * Woostify container close
 	 */
 	function woostify_container_close() {
-		if ( is_singular( 'product' ) ) {
-			return;
-		}
-
 		echo '</div>';
 	}
 }

@@ -78,7 +78,7 @@ $wp_customize->add_control(
 			'choices' => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_topbar_min_step', 0 ),
-					'max'  => apply_filters( 'woostify_topbar_max_step', 500 ),
+					'max'  => apply_filters( 'woostify_topbar_max_step', 50 ),
 					'step' => 1,
 					'edit' => true,
 					'unit' => 'px',

@@ -25,6 +25,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'wp_enqueue_scripts', array( $this, 'woocommerce_scripts' ), 200 );
 			add_filter( 'body_class', array( $this, 'woocommerce_body_class' ) );
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+			add_filter( 'woocommerce_cross_sells_columns', array( $this, 'change_cross_sells_columns' ) );
 
 			// GENERAL.
 			// Product related.
@@ -181,6 +182,16 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			}
 
 			return $classes;
+		}
+
+
+		/**
+		 * Change cross sell column
+		 *
+		 * @param      int $columns  The columns.
+		 */
+		public function change_cross_sells_columns( $columns ) {
+			return 3;
 		}
 
 		/**

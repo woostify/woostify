@@ -110,7 +110,7 @@ class Woostify_Get_CSS {
 				background-color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
-			.woocommerce-loop-product__title{
+			.type-product .woocommerce-loop-product__title{
 				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
 			}
 		';
@@ -187,7 +187,8 @@ class Woostify_Get_CSS {
 			.woostify-subscribe-form input,
 			.woostify-shop-category .elementor-widget-image .widget-image-caption,
 			.shop_table_responsive td:before,
-			.dialog-search-title{
+			.dialog-search-title,
+			.cart-collaterals th{
 				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 

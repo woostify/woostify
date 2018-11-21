@@ -7,9 +7,6 @@
 	}
 	.topbar-item{
 		flex-grow: 1;
-		&:empty{
-			display: none;
-		}
 		p{
 			&:empty{
 				display: none;
@@ -18,5 +15,11 @@
 				margin-bottom: 0;
 			}
 		}
+	}
+	.topbar-center{
+		text-align: center;
+	}
+	.topbar-right{
+		text-align: right
 	}
 }

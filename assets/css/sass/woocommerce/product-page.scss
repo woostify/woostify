@@ -10,6 +10,26 @@
 	padding-bottom: 90px;
 }
 
+.single-product{
+	#content{
+		>.woostify-container{
+			width: auto;
+			padding: 0;
+		}
+	}
+	.summary {
+		.yith-wcwl-add-to-wishlist{
+			display: block;
+			margin: 20px 0;
+		}
+	}
+	@media ( max-width: $screen-md - 1 ) {
+		.wc-breadcrumb{
+			display: none;
+		}
+	}
+}
+
 /* SIDEBAR */
 
 .single-product {
