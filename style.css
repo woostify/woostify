@@ -4112,20 +4112,8 @@ dd {
   }
 }
 
-.single-product .woostify-message .woocommerce {
-  padding-top: 30px;
-}
-
-.woostify-message .woocommerce:empty {
-  display: none;
-}
-
-.woostify-message ul {
-  margin: 0;
-}
-
 .single-product .wc-breadcrumb {
-  padding: 35px 0;
+  padding-bottom: 35px;
 }
 
 .woostify-breadcrumb .item-bread:after {
@@ -5938,23 +5926,65 @@ dd {
 }
 
 /* message */
-.woocommerce-message,
-.woocommerce-error,
-.woocommerce-info {
-  padding-left: 0;
+.woostify-container .woocommerce ul {
   list-style: none;
 }
 
-.woocommerce-message {
-  color: teal;
+.woocommerce-message,
+.woocommerce-error,
+.woocommerce-info {
+  padding: 15px;
+  color: #fff;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
 }
 
-.woocommerce-info {
-  color: royalblue;
+.woocommerce-message a,
+.woocommerce-error a,
+.woocommerce-info a {
+  order: 2;
+  color: #fff;
+  line-height: 1;
+  border: 1px solid #fff;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.woocommerce-message a:hover,
+.woocommerce-error a:hover,
+.woocommerce-info a:hover {
+  color: #fff;
+}
+
+.woocommerce-message a:before,
+.woocommerce-error a:before,
+.woocommerce-info a:before {
+  content: "\e71b";
+  font-family: "themify";
+  margin-right: 10px;
+}
+
+@media (max-width: 600px) {
+  .woocommerce-message {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .woocommerce-message a {
+    margin-top: 15px;
+  }
 }
 
 .woocommerce-error {
-  color: firebrick;
+  background-color: firebrick;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 /* table */
@@ -6324,6 +6354,10 @@ dd {
 .single-product #content > .woostify-container {
   width: auto;
   padding: 0;
+}
+
+.single-product .content-top {
+  padding-top: 35px;
 }
 
 .single-product .summary .yith-wcwl-add-to-wishlist {

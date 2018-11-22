@@ -262,23 +262,23 @@ msgstr ""
 msgid "Posted on"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1059
+#: inc/woostify-template-functions.php:1077
 msgid "Dialog search icon"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1063
+#: inc/woostify-template-functions.php:1081
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1325, inc/woostify-template-functions.php:1375
+#: inc/woostify-template-functions.php:1343, inc/woostify-template-functions.php:1393
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1328, inc/woostify-template-functions.php:1378
+#: inc/woostify-template-functions.php:1346, inc/woostify-template-functions.php:1396
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1330, inc/woostify-template-functions.php:1380
+#: inc/woostify-template-functions.php:1348, inc/woostify-template-functions.php:1398
 msgid "Logout"
 msgstr ""
 
@@ -658,7 +658,7 @@ msgstr ""
 msgid "Clear cart"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:149
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:148
 msgid "Shopping cart"
 msgstr ""
 

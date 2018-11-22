@@ -13,6 +13,8 @@
 add_action( 'woostify_sidebar', 'woostify_get_sidebar', 10 );
 
 add_action( 'woostify_content_top', 'woostify_container_open', 10 );
+add_action( 'woostify_content_top', 'woostify_content_top_open', 20 );
+add_action( 'woostify_content_top', 'woostify_content_top_close', 90 );
 add_action( 'woostify_content_bottom', 'woostify_container_close', 10 );
 
 add_action( 'woostify_before_view', 'woostify_sidebar_menu_open', 10 );

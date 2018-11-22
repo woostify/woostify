@@ -115,21 +115,51 @@
 }
 
 /* message */
+.woostify-container{
+	.woocommerce{
+		ul{
+			list-style: none;
+		}
+	}
+}
 .woocommerce-message,
 .woocommerce-error,
 .woocommerce-info{
-	padding-left: 0;
-	list-style: none;
+	padding: 15px;
+	color: #fff;
+	border-radius: 4px;
+	margin-bottom: 20px;
+	@include flex( flex, space-between, center );
+	a{
+		order: 2;
+		color: #fff;
+		line-height: 1;
+		border: 1px solid #fff;
+		padding: 10px;
+		border-radius: 4px;
+		&:hover{
+			color: #fff;
+		}
+		&:before{
+			content: "\e71b";
+			font-family: $icon;
+			margin-right: 10px;
+		}
+	}
 }
-
 .woocommerce-message{
-	color: teal
-}
-.woocommerce-info {
-	color: royalblue;
+	@media ( max-width: 600px ) {
+		flex-direction: column;
+		align-items: flex-start;
+		a{
+			margin-top: 15px;
+		}
+	}
 }
 .woocommerce-error{
-	color: firebrick
+	background-color: firebrick;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 /* table */

@@ -28,7 +28,10 @@ remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_ad
 
 add_action( 'woocommerce_before_main_content', 'woostify_before_content', 10 );
 add_action( 'woocommerce_after_main_content', 'woostify_after_content', 10 );
-add_action( 'woostify_content_top', 'woostify_shop_messages', 15 );
+add_action( 'woostify_content_top', 'woostify_shop_messages', 30 );
+
+remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+add_action( 'woostify_content_top', 'woocommerce_breadcrumb', 40 );
 
 add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper', 9 );
 add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper_close', 31 );

@@ -280,7 +280,9 @@ class Woostify_Get_CSS {
 			.cart-sidebar-head .shop-cart-count,
 			.shop-cart-count,
 			.sidebar-menu .primary-navigation a:before,
-			.woostify-footer-text-widget .woostify-footer-social-icon a{
+			.woostify-footer-text-widget .woostify-footer-social-icon a,
+			.woocommerce-message,
+			.woocommerce-info{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
@@ -329,8 +331,7 @@ class Woostify_Get_CSS {
 		// Woocommerce.
 		// Shop single.
 		$styles .= '
-			.woostify-message,
-			.single-product .wc-breadcrumb,
+			.single-product .content-top,
 			.product-page-container{
 				background-color:  ' . esc_attr( $options['single_content_background'] ) . ';
 			}

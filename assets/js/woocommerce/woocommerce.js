@@ -20,56 +20,6 @@ function eventCartSidebarClose() {
 	document.body.classList.remove( 'updating-cart' );
 }
 
-// Get product item in cart.
-function getProductItemInCart() {
-
-	// Variables.
-	var cart   = document.getElementsByClassName( 'cart' )[0],
-		button = cart ? cart.getElementsByClassName( 'single_add_to_cart_button' )[0] : false;
-
-	if ( ! cart || ! button || 'A' == button.tagName || cart.classList.contains( 'grouped_form' ) ) {
-		return;
-	}
-
-	var addToCart     = cart.querySelector( '[name="add-to-cart"]' ),
-		productId     = addToCart ? addToCart.value : false,
-		input         = cart.getElementsByClassName( 'qty' )[0],
-		quantity      = parseInt( input.value ),
-		productInfo   = cart.getElementsByClassName( 'additional-product' )[0],
-		inStock       = productInfo.getAttribute( 'data-in_stock' );
-
-	if ( ! productId || 'no' == inStock ) {
-		return;
-	}
-
-	// Product variations id.
-	if ( cart.classList.contains( 'variations_form' ) ) {
-		productId = cart.querySelector( '[name="product_id"]' ).value;
-	}
-
-	// Request.
-	var request = new Request( woostify_ajax.url, {
-		method: 'POST',
-		body: 'action=get_product_item_incart&nonce=' + woostify_ajax.nonce + '&product_id=' + productId,
-		credentials: 'same-origin',
-		headers: new Headers({
-			'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-		})
-	} );
-
-	// Fetch API.
-	fetch( request )
-	.then( function( res ) {
-		if ( 200 !== res.status ) {
-			return;
-		}
-
-		res.json().then( function( data ) {
-			productInfo.value = data.item;
-		});
-	} );
-}
-
 // Event when click shopping bag button.
 function shoppingBag() {
 	var shoppingBag = document.getElementsByClassName( 'shopping-bag-button' );
@@ -97,8 +47,6 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	} ).on( 'added_to_cart', function() {
 		eventCartSidebarClose();
 		closeAll();
-	} ).on( 'removed_from_cart', function() {
-		getProductItemInCart();
 	} ).on( 'updated_cart_totals', function() {
 		quantity();
 	} );

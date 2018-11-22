@@ -952,6 +952,24 @@ if ( ! function_exists( 'woostify_container_close' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_content_top_open' ) ) {
+	/**
+	 * Woostify .content-top open
+	 */
+	function woostify_content_top_open() {
+		echo '<div class="content-top">';
+	}
+}
+
+if ( ! function_exists( 'woostify_content_top_close' ) ) {
+	/**
+	 * Woostify .content-top close
+	 */
+	function woostify_content_top_close() {
+		echo '</div>';
+	}
+}
+
 if ( ! function_exists( 'woostify_is_product_archive' ) ) {
 	/**
 	 * Checks if the current page is a product archive

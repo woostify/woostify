@@ -1,22 +1,6 @@
-.woostify-message{
-	.single-product &{
-		.woocommerce{
-			padding-top: 30px;
-		}
-	}
-	.woocommerce{
-		&:empty{
-			display: none;
-		}
-	}
-	ul{
-		margin: 0;
-	}
-}
-
 .wc-breadcrumb{
 	.single-product &{
-		padding: 35px 0;
+		padding-bottom: 35px;
 	}
 }
 

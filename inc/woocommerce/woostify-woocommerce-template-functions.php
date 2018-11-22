@@ -108,15 +108,14 @@ if ( ! function_exists( 'woostify_shop_messages' ) ) {
 	 * @uses    woostify_do_shortcode
 	 */
 	function woostify_shop_messages() {
-		if ( ! is_checkout() ) {
-			?>
-			<div class="woostify-message">
-				<div class="container">
-					<?php echo wp_kses_post( woostify_do_shortcode( 'woocommerce_messages' ) ); ?>
-				</div>
-			</div>
-			<?php
+		if ( is_checkout() ) {
+			return;
 		}
+		?>
+		<div class="container">
+			<?php echo wp_kses_post( woostify_do_shortcode( 'woocommerce_messages' ) ); ?>
+		</div>
+		<?php
 	}
 }
 
