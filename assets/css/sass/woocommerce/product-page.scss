@@ -19,6 +19,9 @@
 	}
 	.content-top{
 		padding-top: 35px;
+		.woocommerce{
+			@extend .container;
+		}
 	}
 	.summary {
 		.yith-wcwl-add-to-wishlist{

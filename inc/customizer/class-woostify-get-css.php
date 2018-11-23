@@ -102,7 +102,7 @@ class Woostify_Get_CSS {
 			.comment-body .comment-meta .comment-date,
 			.woostify-breadcrumb a,
 			.breadcrumb-separator,
-			#secondary .widget a:not(.tag-cloud-link):not(.tag-cloud-link){
+			#secondary .widget a{
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
@@ -188,7 +188,8 @@ class Woostify_Get_CSS {
 			.woostify-shop-category .elementor-widget-image .widget-image-caption,
 			.shop_table_responsive td:before,
 			.dialog-search-title,
-			.cart-collaterals th{
+			.cart-collaterals th,
+			.woocommerce-mini-cart__total strong{
 				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 
@@ -199,6 +200,7 @@ class Woostify_Get_CSS {
 
 		// Link color.
 		$styles .= '
+			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout),
 			.site-tools .header-search-icon,
 			a{
 				color: ' . esc_attr( $options['accent_color'] ) . ';
@@ -206,7 +208,8 @@ class Woostify_Get_CSS {
 
 			.site-tools .header-search-icon:hover,
 			a:hover,
-			#secondary .widget a:not(.tag-cloud-link):hover{
+			#secondary .widget a:not(.tag-cloud-link):hover,
+			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout):hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 		';
@@ -219,7 +222,8 @@ class Woostify_Get_CSS {
 			.clear-cart-btn,
 			.form-submit .submit,
 			.checkout-button, .elementor-button-wrapper .elementor-button,
-			.woostify-contact-form input[type="submit"]{
+			.woostify-contact-form input[type="submit"],
+			#secondary .widget a.button{
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 				color: ' . esc_attr( $options['button_text_color'] ) . ';
 			}
@@ -230,7 +234,8 @@ class Woostify_Get_CSS {
 			#commentform input[type="submit"]:hover,
 			.clear-cart-btn:hover,
 			.form-submit .submit:hover,
-			.checkout-button:hover, 
+			.checkout-button:hover,
+			#secondary .widget a.button:hover,
 			.woostify-contact-form input[type="submit"]:hover{
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
 				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
@@ -268,7 +273,8 @@ class Woostify_Get_CSS {
 			.woocommerce-table--order-details .product-name a,
 			.site-header .primary-navigation a:hover,
 			.site-header .primary-navigation .menu-item-has-children:hover > a,
-			.default-widget a strong{
+			.default-widget a strong,
+			.woocommerce-mini-cart__total .amount{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 

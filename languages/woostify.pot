@@ -658,7 +658,7 @@ msgstr ""
 msgid "Clear cart"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:148
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:145
 msgid "Shopping cart"
 msgstr ""
 

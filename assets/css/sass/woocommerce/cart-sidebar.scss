@@ -1,3 +1,7 @@
+$space: 30px;
+$space_mobile: 15px;
+$media: 599px;
+
 .updating-cart {
     &.cart-sidebar-open {
         #shop-cart-sidebar {
@@ -28,6 +32,9 @@
 	
 	#view{
 		@include translatex( -300px );
+		@media ( max-width: $media ) {
+			@include translatex( -290px );
+		}
 	}
 
     &.cart-updated {
@@ -62,12 +69,18 @@
     right: 0;
     bottom: 0;
     z-index: 200;
-    width: 300px;
+    width: 400px;
+	padding: 0 30px 30px;
     background: #fff;
     visibility: hidden;
     pointer-events: none;
     @include translatex( 100% );
     @include transition( all 0.3s );
+
+    @media ( max-width: $media ){
+    	width: 290px;
+    	padding: 0 $space_mobile $space_mobile;
+    }
 
     .logged-in.admin-bar & {
         top: 46px;
@@ -89,6 +102,10 @@
         visibility: hidden;
         @extend .duration;
     }
+
+    ul{
+    	margin: 0;
+    }
 }
 
 .shop-cart-count{
@@ -106,12 +123,17 @@
 /* SIDEBAR HEAD */
 .cart-sidebar-head {
     border-bottom: 1px solid #ddd;
-    padding: 20px;
+    padding: $space 0;
     position: relative;
     z-index: 3;
-    min-height: 60px;
-    background: $inh;
+    height: 80px;
+    background-color: $inh;
     @include flex(flex, flex-start, center);
+
+    @media ( max-width: $media ) {
+    	height: 60px;
+    	padding: $space_mobile 0;
+    }
 
     .shop-cart-count {
         margin-left: 10px;
@@ -129,60 +151,117 @@
     border: 0;
     background: none;
     position: absolute;
-    right: 10px;
+    right: 0;
     top: 50%;
     width: 30px;
     height: 30px;
+    font-weight: 700;
     @extend .duration;
     @extend .flex;
     @include transforms(translatey(-50%) rotate(0deg));
 
     &:hover {
         @include transforms(translatey(-50%) rotate(90deg));
+        color: firebrick;
     }
 }
 
 /* SIDEBAR CONTENT */
 .cart-sidebar-content {
     overflow: auto;
-    @include calc(height, '100% - 140px');
+    @include calc(height, '100% - 210px');
+
+    @media ( max-width: $media ) {
+        @include calc(height, '100% - 160px');
+    }
 
     .woocommerce-mini-cart__total {
         position: absolute;
         margin-bottom: 0;
-        bottom: 40px;
-        background: #fff;
-        width: 100%;
+        bottom: 120px;
+        background-color: #fff;
         height: 40px;
-        padding: 0 20px;
-        @include shadow( 0 0px 10px -4px rgba(0,0,0,0.3) );
+        border-top: 1px solid #ddd;
+        left: $space;
+        right: $space;
+        align-items: flex-end;
+
+        @media ( max-width: $media ) {
+	        right: $space_mobile;
+	        left: $space_mobile;
+	        bottom: 85px;
+	        height: 30px;
+        }
     }
 
     .woocommerce-mini-cart__buttons {
         margin-bottom: 0;
         position: absolute;
-        bottom: 0;
-        width: 100%;
+        bottom: $space;
+        right: $space;
+        left: $space;
+
+        @media ( max-width: $media ) {
+        	bottom: $space_mobile;
+	        right: $space_mobile;
+	        left: $space_mobile;
+        }
 
         a {
-            height: 40px;
             padding: 0 $i;
-            line-height: 40px;
             border-radius: 0 $i;
+            display: block;
+            width: auto;
+            border-left: 0;
+
             &:not(.checkout){
-            	@include filter( grayscale, 90% );
+            	background-color: #fff;
+            	height: 40px;
+            	@extend .flex;
+
+            	@media ( max-width: $media ) {
+            		height: 30px;
+            	}
+            }
+
+            &.checkout{
+            	height: 50px;
+            	@extend .flex;
+
+            	@media ( max-width: $media ) {
+            		height: 40px;
+            	}
             }
         }
     }
 
     .woocommerce-mini-cart__empty-message {
         margin-bottom: 0;
-        padding: 20px;
+        padding: $space 0;
     }
 
     .product_list_widget.woocommerce-mini-cart{
+    	li{
+    		padding: $space $space $space 0;
+    		@extend .clearfix;
+
+    		@media ( max-width: $media ) {
+    			padding: $space_mobile $space_mobile $space_mobile 0;
+    		}
+    	}
     	img{
-    		left: 10px;
+    		max-width: 75px;
+    		max-height: 75px;
+    		object-fit: cover;
+    		position: static;
+    		float: left;
+    		margin-right: 20px;
+
+    		@media ( max-width: $media ) {
+    			max-width: 60px;
+    			max-height: 60px;
+    			margin-right: $space_mobile;
+    		}
     	}
     }
 
@@ -225,7 +304,7 @@
 /* CART ITEM */
 .cart-sidebar-content{
 	.mini_cart_item{
-		padding-left: 80px;
+		padding-left: 95px;
 
 		&:hover,
 		&:focus-within{
@@ -245,7 +324,7 @@
 
 	.remove_from_cart_button {
 		opacity: 0;
-		right: 15px;
+		right: 0;
 		top: 50%;
         @include transforms( translateY( -50% ) translateX( 10px ) rotate( 0deg ) );
 
