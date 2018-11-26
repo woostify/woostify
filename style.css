@@ -4880,8 +4880,8 @@ dd {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
 }
 
 #scroll-to-top {
@@ -4892,6 +4892,7 @@ dd {
   height: 40px;
   color: #fff;
   font-size: 1.2em;
+  z-index: 10;
 }
 
 /* responsive */
@@ -6438,6 +6439,16 @@ dd {
   padding-top: 35px;
 }
 
+@media (max-width: 991px) {
+  .single-product .content-top {
+    padding-bottom: 35px;
+  }
+  .single-product .content-top .woocommerce-message,
+  .single-product .content-top .woocommerce-info {
+    margin-bottom: 0;
+  }
+}
+
 .single-product .summary .yith-wcwl-add-to-wishlist {
   display: block;
   margin: 20px 0;
@@ -7516,7 +7527,6 @@ dd {
 @media (max-width: 600px) {
   .clear-cart-box .clear-cart-btn {
     width: 100%;
-    padding: 10px 15px;
     float: left;
   }
 }
