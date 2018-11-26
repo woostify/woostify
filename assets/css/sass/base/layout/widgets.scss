@@ -71,8 +71,14 @@
 
         &:hover{
         	border-color: $tr;
-        	color: #fff;
         }
+    }
+    #secondary .widget &{
+    	a{
+    		&:hover{
+    			color: #fff;
+    		}
+    	}
     }
 }
 

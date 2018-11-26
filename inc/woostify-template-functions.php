@@ -496,12 +496,16 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 	 */
 	function woostify_page_header() {
 		// Not showing page title with edited by Elementor.
-		if ( true == woostify_is_elementor_page() ) {
+		if ( true == woostify_is_elementor_page() || is_singular( 'product' ) ) {
 			return;
 		}
 
+		$page_id       = woostify_get_page_id();
+		$container     = woostify_site_container();
+		$options       = woostify_options( false );
+		$disable_title = false;
+
 		if ( is_page() ) {
-			$page_id            = woostify_get_page_id();
 			$metabox_page_title = get_post_meta( $page_id, 'site-post-title', true );
 			$disable_page_title = false;
 
@@ -514,13 +518,38 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 				return;
 			}
 		}
+
+		$title = get_the_title( $page_id );
+
+		if ( class_exists( 'woocommerce' ) && is_shop() ) {
+			$title = get_the_title( $page_id );
+		} elseif ( is_archive() ) {
+			$title = get_the_archive_title( $page_id );
+		} elseif ( is_404() ) {
+			$title = __( 'Error 404', 'woostify' );
+		}
+
+		if ( false == $options['blog_single_title'] ) {
+			$disable_title = true;
+		}
+
+		// Metabox option.
+		$metabox_post_title = get_post_meta( $page_id, 'site-post-title', true );
+		if ( ! empty( $metabox_post_title ) && 'disabled' == $metabox_post_title ) {
+			$disable_title = true;
+		}
+
+		if ( true == $disable_title ) {
+			return;
+		}
+
 		?>
-		<header class="entry-header page-header">
-			<?php
-			woostify_post_thumbnail( 'full' );
-			the_title( '<h1 class="entry-title">', '</h1>' );
-			?>
-		</header><!-- .entry-header -->
+
+		<div class="page-header">
+			<div class="<?php echo esc_attr( $container ); ?>">
+				<h1 class="entry-title"><?php echo wp_kses_post( $title ); ?></h1>
+			</div>
+		</div>
 		<?php
 	}
 }
@@ -606,15 +635,7 @@ if ( ! function_exists( 'woostify_post_title' ) ) {
 			$disable_post_title = true;
 		}
 
-		if ( is_single() ) {
-			if ( true == $disable_post_title ) {
-				return;
-			}
-
-			if ( true == $options['blog_single_title'] ) {
-				the_title( '<h1 class="entry-title">', '</h1>' );
-			}
-		} else {
+		if ( ! is_single() ) {
 			if ( true == $options['blog_list_title'] ) {
 				the_title( sprintf( '<h2 class="alpha entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
 			}
@@ -1434,12 +1455,12 @@ if ( ! function_exists( 'woostify_site_container' ) ) {
 	 * @return $container The site container
 	 */
 	function woostify_site_container() {
-		$options = woostify_options( false );
+		$options   = woostify_options( false );
 		$container = 'woostify-container';
 
 		// Metabox.
-		$page_id                = woostify_get_page_id();
-		$metabox_container      = get_post_meta( $page_id, 'site-container', true );
+		$page_id           = woostify_get_page_id();
+		$metabox_container = get_post_meta( $page_id, 'site-container', true );
 
 		if ( empty( $metabox_container ) ) {
 			$metabox_container = 'default';
@@ -1500,6 +1521,29 @@ if ( ! function_exists( 'woostify_site_footer' ) ) {
 
 				</div>
 			</footer>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_footer_action' ) ) {
+	/**
+	 * Footer action
+	 */
+	function woostify_footer_action() {
+		?>
+		<div class="footer-action"><?php do_action( 'woostify_footer_action' ); ?></div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_scroll_to_top' ) ) {
+	/**
+	 * Scroll to top
+	 */
+	function woostify_scroll_to_top() {
+		$icon = apply_filters( 'woostify_scroll_to_top_icon', 'ti-angle-up' );
+		?>
+		<span id="scroll-to-top" class="ft-action-item <?php echo esc_attr( $icon ); ?>" title="<?php esc_attr_e( 'Scroll To Top', 'woostify' ); ?>"></span>
 		<?php
 	}
 }

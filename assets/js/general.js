@@ -9,7 +9,6 @@
 
 // Disable popup/sidebar/menumobile.
 function closeAll() {
-
 	// Use ESC key.
 	document.body.addEventListener( 'keyup', function( e ) {
 		if ( 27 === e.keyCode ) {
@@ -36,10 +35,11 @@ function closeAll() {
 	}
 }
 
+// Dialog search form.
 function dialogSearch() {
 	var headerSearchIcon = document.getElementsByClassName( 'header-search-icon' ),
 		dialogSearchForm = document.getElementsByClassName( 'site-dialog-search' ),
-		closeBtn         = dialogSearchForm[0].getElementsByClassName( 'dialog-search-close-icon' )[0];
+		closeBtn         = dialogSearchForm.length ? dialogSearchForm[0].getElementsByClassName( 'dialog-search-close-icon' )[0] : false;
 
 	if ( ! headerSearchIcon.length || ! dialogSearchForm.length || ! closeBtn ) {
 		return;
@@ -92,6 +92,47 @@ function dialogSearch() {
 	}
 }
 
+// Footer action.
+function footerAction() {
+	var scroll = function() {
+		var item = document.getElementsByClassName( 'footer-action' )[0];
+		if ( ! item ) {
+			return;
+		}
+
+		var pos = arguments.length > 0 && undefined !== arguments[0] ? arguments[0] : window.scrollY;
+
+		if ( pos > 200 ) {
+			item.classList.add( 'active' );
+		} else {
+			item.classList.remove( 'active' );
+		}
+	}
+
+	window.addEventListener( 'load', function() {
+		scroll();
+	} );
+
+	window.addEventListener( 'scroll', function() {
+		scroll();
+	} );
+}
+
+// Scroll to top.
+function scrollToTop() {
+	var top = jQuery( '#scroll-to-top' );
+
+	if ( ! top.length ) {
+		return;
+	}
+
+	jQuery( top ).on( 'click', function() {
+		jQuery( document.documentElement, document.body ).animate( { scrollTop: 0 }, 300 );
+	} );
+}
+
 document.addEventListener( 'DOMContentLoaded', function() {
 	dialogSearch();
+	footerAction();
+	scrollToTop();
 } );

@@ -13,15 +13,11 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: 404.php:19
-msgid "Oops! That page can&rsquo;t be found."
-msgstr ""
-
-#: 404.php:22
+#: 404.php:18
 msgid "Nothing was found at this location. Try searching, or check out the links below."
 msgstr ""
 
-#: 404.php:25
+#: 404.php:21
 msgid "Search"
 msgstr ""
 
@@ -152,7 +148,7 @@ msgstr ""
 msgid "Related Posts"
 msgstr ""
 
-#: inc/woostify-template-functions.php:51, inc/woostify-template-functions.php:798, inc/admin/class-woostify-admin.php:179
+#: inc/woostify-template-functions.php:51, inc/woostify-template-functions.php:819, inc/admin/class-woostify-admin.php:179
 msgid "Read more"
 msgstr ""
 
@@ -207,79 +203,87 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: inc/woostify-template-functions.php:537, inc/woostify-template-functions.php:769
+#: inc/woostify-template-functions.php:529
+msgid "Error 404"
+msgstr ""
+
+#: inc/woostify-template-functions.php:566, inc/woostify-template-functions.php:790
 msgid "Pages:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:664
+#: inc/woostify-template-functions.php:685
 msgid "by"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: inc/woostify-template-functions.php:681, inc/woostify-template-functions.php:811
+#: inc/woostify-template-functions.php:702, inc/woostify-template-functions.php:832
 msgid ", "
 msgstr ""
 
-#: inc/woostify-template-functions.php:687
+#: inc/woostify-template-functions.php:708
 msgid "Posted in"
 msgstr ""
 
-#: inc/woostify-template-functions.php:703
+#: inc/woostify-template-functions.php:724
 msgid "No comments yet"
 msgstr ""
 
-#: inc/woostify-template-functions.php:704
+#: inc/woostify-template-functions.php:725
 msgid "1 Comment"
 msgstr ""
 
-#: inc/woostify-template-functions.php:705
+#: inc/woostify-template-functions.php:726
 msgid "% Comments"
 msgstr ""
 
-#: inc/woostify-template-functions.php:811
+#: inc/woostify-template-functions.php:832
 msgid "Tags"
 msgstr ""
 
-#: inc/woostify-template-functions.php:833
+#: inc/woostify-template-functions.php:854
 msgctxt "Next post"
 msgid "Next"
 msgstr ""
 
-#: inc/woostify-template-functions.php:834
+#: inc/woostify-template-functions.php:855
 msgctxt "Previous post"
 msgid "Prev"
 msgstr ""
 
-#: inc/woostify-template-functions.php:847
+#: inc/woostify-template-functions.php:868
 msgid "Next post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:848
+#: inc/woostify-template-functions.php:869
 msgid "Previous post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:872
+#: inc/woostify-template-functions.php:893
 msgid "Posted on"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1077
+#: inc/woostify-template-functions.php:1098
 msgid "Dialog search icon"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1081
+#: inc/woostify-template-functions.php:1102
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1343, inc/woostify-template-functions.php:1393
+#: inc/woostify-template-functions.php:1364, inc/woostify-template-functions.php:1414
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1346, inc/woostify-template-functions.php:1396
+#: inc/woostify-template-functions.php:1367, inc/woostify-template-functions.php:1417
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1348, inc/woostify-template-functions.php:1398
+#: inc/woostify-template-functions.php:1369, inc/woostify-template-functions.php:1419
 msgid "Logout"
+msgstr ""
+
+#: inc/woostify-template-functions.php:1546
+msgid "Scroll To Top"
 msgstr ""
 
 #: template-parts/content-none.php:14
@@ -560,7 +564,7 @@ msgstr ""
 msgid "Let's go!"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:94, inc/woocommerce/class-woostify-woocommerce.php:288
+#: inc/nux/class-woostify-nux-guided-tour.php:94, inc/woocommerce/class-woostify-woocommerce.php:296
 msgid "Next"
 msgstr ""
 
@@ -642,19 +646,19 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:287
+#: inc/woocommerce/class-woostify-woocommerce.php:295
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:311
+#: inc/woocommerce/class-woostify-woocommerce.php:319
 msgid "Sale!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:451, inc/woocommerce/class-woostify-woocommerce.php:579, inc/woocommerce/class-woostify-woocommerce.php:610, inc/woocommerce/class-woostify-woocommerce.php:633, inc/woocommerce/class-woostify-woocommerce.php:658
+#: inc/woocommerce/class-woostify-woocommerce.php:459, inc/woocommerce/class-woostify-woocommerce.php:587, inc/woocommerce/class-woostify-woocommerce.php:618, inc/woocommerce/class-woostify-woocommerce.php:641, inc/woocommerce/class-woostify-woocommerce.php:666
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:889
+#: inc/woocommerce/class-woostify-woocommerce.php:897
 msgid "Clear cart"
 msgstr ""
 

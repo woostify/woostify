@@ -189,7 +189,8 @@ class Woostify_Get_CSS {
 			.shop_table_responsive td:before,
 			.dialog-search-title,
 			.cart-collaterals th,
-			.woocommerce-mini-cart__total strong{
+			.woocommerce-mini-cart__total strong,
+			.woocommerce-form-login-toggle .woocommerce-info a{
 				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 
@@ -274,7 +275,8 @@ class Woostify_Get_CSS {
 			.site-header .primary-navigation a:hover,
 			.site-header .primary-navigation .menu-item-has-children:hover > a,
 			.default-widget a strong,
-			.woocommerce-mini-cart__total .amount{
+			.woocommerce-mini-cart__total .amount,
+			.woocommerce-form-login-toggle .woocommerce-info a:hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
@@ -288,7 +290,8 @@ class Woostify_Get_CSS {
 			.sidebar-menu .primary-navigation a:before,
 			.woostify-footer-text-widget .woostify-footer-social-icon a,
 			.woocommerce-message,
-			.woocommerce-info{
+			.woocommerce-info,
+			#scroll-to-top{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 

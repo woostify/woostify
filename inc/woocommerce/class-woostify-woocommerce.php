@@ -26,6 +26,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_filter( 'body_class', array( $this, 'woocommerce_body_class' ) );
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 			add_filter( 'woocommerce_cross_sells_columns', array( $this, 'change_cross_sells_columns' ) );
+			add_filter( 'woocommerce_show_page_title', array( $this, 'remove_woocommerce_shop_title' ) );
 
 			// GENERAL.
 			// Product related.
@@ -40,7 +41,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Change sale flash.
 			add_filter( 'woocommerce_sale_flash', array( $this, 'change_sale_flash' ) );
 			// Cart fragment.
-			add_filter( 'add_to_cart_fragments', array( $this, 'woostify_cart_sidebar_content_fragments' ) );
+			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'woostify_cart_sidebar_content_fragments' ) );
 			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'woostify_cart_total_number_fragments' ) );
 			// Clear shop cart.
 			add_action( 'init', array( $this, 'detect_clear_cart_submit' ) );
@@ -182,6 +183,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			}
 
 			return $classes;
+		}
+
+		/**
+		 * Removes a woocommerce shop title.
+		 */
+		public function remove_woocommerce_shop_title() {
+			return false;
 		}
 
 

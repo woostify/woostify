@@ -11,6 +11,7 @@
 .woocommerce-form-login-toggle{
 	border: 2px dashed #e8e8e8;
 	border-radius: 2px;
+	margin-bottom: 30px;
 	height: 100px;
 	padding-right: 30px;
 	padding-left: 100px;
@@ -44,9 +45,9 @@
 .woocommerce-form.woocommerce-form-login{
 	clear: both;
 	border: 2px dashed #e8e8e8;
-	border-top: 0;
 	border-radius: 2px;
 	padding: 30px;
+	margin-bottom: 30px;
 	@media ( min-width: $screen-md ) {
 		float: left;
 		width: calc( 100% - 530px );
@@ -141,7 +142,7 @@
 	clear: both;
 	float: left;
 	width: 100%;
-	margin-top: 60px;
+	margin-top: 30px;
 }
 
 /* customer details */

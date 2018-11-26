@@ -160,6 +160,38 @@
 	background-color: firebrick;
 	flex-direction: column;
 	align-items: flex-start;
+	li{
+		width: 100%;
+		a{
+			float: right;
+		}
+		@media ( max-width: 600px ) {
+			display: flex;
+			flex-wrap: wrap;
+			a{
+				float: none;
+				flex: 0 0 100%;
+				margin-top: 15px;
+			}
+		}
+	}
+}
+
+/* checkout toggle login form */
+.woocommerce-form-login-toggle{
+	.woocommerce-info{
+		margin-bottom: 0;
+		background-color: $tr;
+		display: block;
+		padding: 0;
+		a{
+			color: #f00;
+			padding: 0;
+			&:before{
+				content: none
+			}
+		}
+	}
 }
 
 /* table */

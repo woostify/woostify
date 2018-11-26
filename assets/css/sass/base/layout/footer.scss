@@ -110,6 +110,37 @@
 	}
 }
 
+/* footer action */
+.footer-action{
+	&.active{
+		.ft-action-item{
+			visibility: visible;
+			opacity: 1;
+			pointer-events: auto;
+			cursor: pointer;
+			@include translatex( 0 );
+		}
+	}
+}
+.ft-action-item{
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	@include translatex( 100% );
+	@extend .duration;
+	@extend .flex;
+}
+
+#scroll-to-top{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: 40px;
+	height: 40px;
+	color: #fff;
+	font-size: 1.2em;
+}
+
 /* responsive */
 
 @media ( max-width: $screen-sm) {

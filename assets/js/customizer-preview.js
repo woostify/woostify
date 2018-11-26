@@ -10,7 +10,7 @@
 
 // Colors.
 function woostify_colors_live_update( id, selector, property, default_value ) {
-	default_value = typeof default_value !== 'undefined' ? default_value : 'initial';
+	default_value = 'undefined' !== typeof default_value ? default_value : 'initial';
 
 	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
@@ -32,8 +32,8 @@ function woostify_colors_live_update( id, selector, property, default_value ) {
 // Units.
 function woostify_unit_live_update( id, selector, property, default_value, unit, default_unit ) {
 	// Default parameters.
-	unit = typeof unit != 'undefined' ? unit : 'px';
-	default_unit = typeof default_unit != 'undefined' ? default_unit : 'px';
+	unit         = 'undefined' !== typeof unit ? unit : 'px';
+	default_unit = 'undefined' !== typeof default_unit ? default_unit : 'px';
 
 	// Wordpress customize.
 	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
@@ -52,7 +52,7 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 			var data = ! newval ? '' : selector + '{ ' + property + ': ' + newval + unit + '}';
 
 			// Default value.
-			if ( ! newval && typeof default_value != 'undefined' && '' != default_value ) {
+			if ( ! newval && 'undefined' !== typeof default_value && '' != default_value ) {
 				data = selector + '{ ' + property + ': ' + default_value + default_unit + '}';
 			}
 

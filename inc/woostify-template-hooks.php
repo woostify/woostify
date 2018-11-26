@@ -25,6 +25,8 @@ add_action( 'woostify_before_view', 'woostify_sidebar_menu_close', 100 );
 add_action( 'woostify_before_view', 'woostify_dialog_search', 110 ); // Dialog search.
 
 add_action( 'woostify_after_view', 'woostify_overlay', 30 );
+add_action( 'woostify_after_view', 'woostify_footer_action', 40 );
+add_action( 'woostify_footer_action', 'woostify_scroll_to_top', 40 );
 
 /**
  * Topbar
@@ -104,7 +106,7 @@ add_action( 'woostify_single_post_after', 'woostify_display_comments', 20 );
  * @see  woostify_page_content()
  * @see  woostify_display_comments()
  */
-add_action( 'woostify_page', 'woostify_page_header', 10 );
+add_action( 'woostify_before_content', 'woostify_page_header', 10 );
 add_action( 'woostify_page', 'woostify_page_content', 20 );
 
 add_action( 'woostify_page_after', 'woostify_display_comments', 10 );
