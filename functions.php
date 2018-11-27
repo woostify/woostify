@@ -66,3 +66,11 @@ require_once WOOSTIFY_THEME_DIR . 'inc/widget/class-woostify-recent-post-thumbna
 /**
  * Note: Do not add any custom code here. Please use a custom plugin so that your customizations aren't lost during updates.
  */
+
+// Theme update.
+require_once WOOSTIFY_THEME_DIR . 'theme-update/plugin-update-checker.php';
+$woostify_updater = Puc_v4_Factory::buildUpdateChecker(
+	'http://woostify.com/wp-content/themes/theme-update.json',
+	__FILE__,
+	'woostify'
+);
