@@ -217,8 +217,7 @@ class Woostify_Get_CSS {
 
 		// Button.
 		$styles .= '
-			.buttons .button,
-			.button:not([name="apply_coupon"]):not([name="update_cart"]):not(a),
+			.button,
 			.woocommerce-widget-layered-nav-dropdown__submit,
 			.clear-cart-btn,
 			.form-submit .submit,
@@ -229,8 +228,7 @@ class Woostify_Get_CSS {
 				color: ' . esc_attr( $options['button_text_color'] ) . ';
 			}
 
-			.buttons .button:hover,
-			.button:not([name="apply_coupon"]):not([name="update_cart"]):not(a):hover,
+			.button:hover,
 			.woocommerce-widget-layered-nav-dropdown__submit:hover,
 			#commentform input[type="submit"]:hover,
 			.clear-cart-btn:hover,

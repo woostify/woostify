@@ -1,6 +1,5 @@
-.button:not([name="apply_coupon"]):not([name="update_cart"]):not(a),
+.button,
 .woocommerce-widget-layered-nav-dropdown__submit,
-.buttons .button,
 .clear-cart-btn,
 .checkout-button{
 	border: 0;
@@ -8,3 +7,4 @@
 	border-radius: 2px;
 	@extend .duration;
 }
+/*:not([name="apply_coupon"]):not([name="update_cart"]):not(a)*/
