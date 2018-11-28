@@ -6323,7 +6323,6 @@ dd {
   border-radius: 2px;
 }
 
-/*:not([name="apply_coupon"]):not([name="update_cart"]):not(a)*/
 .products .product .product-loop-image-wrapper + .woocommerce-loop-product__category,
 .products .product .product-loop-image-wrapper + .woocommerce-loop-product__title {
   margin-top: 26px;
@@ -6761,7 +6760,7 @@ dd {
 .single_add_to_cart_button.button {
   min-width: 200px;
   height: 50px;
-  border-radius: 50px !important;
+  border-radius: 50px;
   font-weight: 600;
   text-transform: uppercase;
   vertical-align: top;
@@ -7446,8 +7445,13 @@ dd {
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
-    border-width: 0 0 1px 0;
+    border-bottom: 1px solid #e8e8e8;
     height: 30px;
+    padding: 0 10px;
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .woocommerce-cart-form__contents [name="apply_coupon"]:hover {
     background-color: rgba(0, 0, 0, 0);
   }
   .woocommerce-cart-form__contents [name="update_cart"] {
@@ -7733,7 +7737,7 @@ dd {
 }
 
 .checkout_coupon.woocommerce-form-coupon [name="apply_coupon"] {
-  border-width: 0 0 1px 0;
+  border-bottom: 1px solid #e8e8e8;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
