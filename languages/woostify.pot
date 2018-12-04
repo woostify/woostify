@@ -465,7 +465,7 @@ msgid "Disable Footer"
 msgstr ""
 
 #: inc/customizer/class-woostify-customizer.php:205
-msgid "Pro Version Available"
+msgid "Pro Version Is Coming Soon"
 msgstr ""
 
 #: inc/customizer/class-woostify-customizer.php:222, inc/customizer/class-woostify-customizer.php:238, inc/customizer/class-woostify-customizer.php:254, inc/customizer/class-woostify-customizer.php:270
@@ -473,7 +473,7 @@ msgid "Learn More"
 msgstr ""
 
 #: inc/customizer/class-woostify-customizer.php:223, inc/customizer/class-woostify-customizer.php:239, inc/customizer/class-woostify-customizer.php:255, inc/customizer/class-woostify-customizer.php:271
-msgid "More options are available for this section in our pro version."
+msgid "More options are coming for this section in our pro version."
 msgstr ""
 
 #: inc/customizer/override-defaults.php:13
