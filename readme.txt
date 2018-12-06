@@ -33,7 +33,7 @@ It does! Woostify has a premium plugin which extends the available options in th
 You can learn more about [here](https://woostify.com/).
 
 = Where can I find documentation? =
-Woostify has extensive documentation you can find [here](https://woostify.com/).
+Woostify has extensive documentation you can find [here](https://woostify.com/docs).
 
 = Do you offer support? =
 Definitely. We offer support for the free theme in the WordPress theme forum.
@@ -58,9 +58,9 @@ Woostify bundles the following third-party resources:
 Screenshot Licenses
 -------------------------------------------------------
 Screenshot images are all licensed under CC0 Universal
-https://unsplash.com/photos/GRfLA7aXlO4
-https://unsplash.com/photos/R3ot0RljP_4
-https://unsplash.com/photos/XbY0xayztVU
+https://pixabay.com/en/balancing-chair-fashion-man-model-1868051/
+https://pixabay.com/en/man-person-shirt-bow-tie-suspender-407095/
+https://pixabay.com/en/fashion-shooting-guy-man-male-601563/
 
 Themeify Icons, Copyright lykmapipo
 Font License- Applies to all desktop and webfont files in the following directory: assets/fonts/.

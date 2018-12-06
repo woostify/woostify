@@ -51,7 +51,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * @since 1.0
 		 */
 		public function welcome_register_menu() {
-			$page = add_theme_page( 'Woostify Panel', 'Woostify Panel', 'activate_plugins', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ) );
+			$page = add_theme_page( 'Woostify Options', 'Woostify Options', 'activate_plugins', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ) );
 			add_action( 'admin_print_styles-' . $page, array( $this, 'welcome_static' ) );
 		}
 
@@ -134,9 +134,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						<ul class="woostify-welcome-nav_link">
 							<li><a href="//woostify.com/contact/" target="_blank"><?php esc_html_e( 'Support', 'woostify' ); ?></a></li>
 							<li><a href="//woostify.com/docs/" target="_blank"><?php esc_html_e( 'Documentation', 'woostify' ); ?></a></li>
-							<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
-								<li><a href="//woostify.com/pricing/" target="_blank"><strong><?php esc_html_e( 'Go Pro', 'woostify' ); ?></strong></a></li>
-							<?php endif; ?>
 						</ul>
 					</div>
 				</section>
@@ -185,8 +182,8 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 							<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
 								<div class="woostify-enhance__column woostify-pro-featured">
 									<h3>
-										<?php esc_html_e( 'More Features Avaiable with Woostify Pro', 'woostify' ); ?>
-										<a class="woostify-learn-more wp-ui-text-highlight" href="//woostify.com/pricing/" target="_blank"><?php esc_html_e( 'Read more!', 'woostify' ); ?></a>
+										<?php esc_html_e( 'More Features are coming with Woostify Pro', 'woostify' ); ?>
+										<a class="woostify-learn-more wp-ui-text-highlight" href="//mailchi.mp/9a7fdc86d444/woostify-sub" target="_blank"><?php esc_html_e( 'Follow here!', 'woostify' ); ?></a>
 									</h3>
 
 									<div class="wf-quick-setting-section">
@@ -195,11 +192,11 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 										</p>
 
 										<p>
-											<?php esc_html_e( 'Each has been designed to serve a different industry - from fashion to food.', 'woostify' ); ?>
+											<?php esc_html_e( 'All the tools you need to define your style and customize your Woostify store.', 'woostify' ); ?>
 										</p>
 
 										<p>
-											<a href="//woostify.com/pricing/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Read More', 'woostify' ); ?></a>
+											<a href="//mailchi.mp/9a7fdc86d444/woostify-sub" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Read More', 'woostify' ); ?></a>
 										</p>
 									</div>
 								</div>
