@@ -38,8 +38,59 @@ function shoppingBag() {
 	}
 }
 
+// Get cookie.
+function getCookie( name ) {
+	var dc     = document.cookie,
+		prefix = name + '=',
+		begin  = dc.indexOf( '; ' + prefix );
+
+	if ( -1 == begin ) {
+		begin = dc.indexOf( prefix );
+
+		if ( 0 != begin ) {
+			return false;
+		}
+
+		return false;
+	} else {
+		begin += 2;
+		var end = document.cookie.indexOf( ';', begin );
+		if ( -1 == end ) {
+			end = dc.length;
+		}
+	}
+
+	return decodeURI( dc.substring( begin + prefix.length, end ) );
+}
+
+
+// Store notice.
+function storeNotice() {
+	if ( document.body.classList.contains( 'woocommerce-demo-store' ) && 'hidden' != getCookie( 'store_notice' ) ) {
+		return true;
+	}
+
+	return false;
+}
+
 document.addEventListener( 'DOMContentLoaded', function() {
 	shoppingBag();
+
+	window.addEventListener( 'scroll', function() {
+		if ( storeNotice() ) {
+			// "false" if direction is down and "true" if up.
+			if ( this.oldScroll > this.scrollY ) {
+				document.body.classList.add( 'scrolling-up' );
+				document.body.classList.remove( 'scrolling-down' );
+			} else {
+				document.body.classList.remove( 'scrolling-up' );
+				document.body.classList.add( 'scrolling-down' );
+			}
+
+			// Reset state.
+			this.oldScroll = this.scrollY;
+		}
+	} );
 
 	jQuery( document.body ).on( 'adding_to_cart', function() {
 		eventCartSidebarOpen();

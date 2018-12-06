@@ -136,11 +136,11 @@ msgstr ""
 msgid "Post Navigation"
 msgstr ""
 
-#: inc/woostify-functions.php:95, inc/admin/class-woostify-admin.php:130
+#: inc/woostify-functions.php:93, inc/admin/class-woostify-admin.php:130
 msgid "Woostify"
 msgstr ""
 
-#: inc/woostify-functions.php:224
+#: inc/woostify-functions.php:222
 msgid "Error image"
 msgstr ""
 

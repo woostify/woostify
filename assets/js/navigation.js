@@ -27,21 +27,24 @@
 
 			e.preventDefault();
 
-			var t = jQuery( this );
+			var t         = jQuery( this ),
+				next      = t.next(),
+				nextAlias = t.parent().parent().find( 'li .sub-menu' );
 
 			// Go to url if not have sub-menu.
 			if ( ! t.siblings().length ) {
+				// hash.
 				window.location.href = t.prop( 'href' );
 			}
 
-			if ( t.next().hasClass( 'show' ) ) {
-				t.next().removeClass( 'show' );
-				t.next().slideUp( 200 );
+			if ( next.hasClass( 'show' ) ) {
+				next.removeClass( 'show' );
+				next.slideUp( 200 );
 			} else {
-				t.parent().parent().find( 'li .sub-menu' ).removeClass( 'show' );
-				t.parent().parent().find( 'li .sub-menu' ).slideUp( 200 );
-				t.next().toggleClass( 'show' );
-				t.next().slideToggle( 200 );
+				nextAlias.removeClass( 'show' );
+				nextAlias.slideUp( 200 );
+				next.toggleClass( 'show' );
+				next.slideToggle( 200 );
 			}
 		});
 	} );

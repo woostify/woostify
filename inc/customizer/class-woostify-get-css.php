@@ -289,7 +289,8 @@ class Woostify_Get_CSS {
 			.woostify-footer-text-widget .woostify-footer-social-icon a,
 			.woocommerce-message,
 			.woocommerce-info,
-			#scroll-to-top{
+			#scroll-to-top,
+			.woocommerce-store-notice{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 

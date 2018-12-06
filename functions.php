@@ -1,26 +1,25 @@
 <?php
 /**
- * Woostify engine room
+ * Woostify
  *
  * @package woostify
  */
 
-// Assign the Woostify version to a var.
-$theme            = wp_get_theme();
-$woostify_version = $theme->get( 'Version' );
-
+// Define constants.
+define( 'WOOSTIFY_VERSION', '1.0.2' );
 define( 'WOOSTIFY_THEME_DIR', get_template_directory() . '/' );
 define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );
 
 // Set the content width based on the theme's design and stylesheet.
 if ( ! isset( $content_width ) ) {
-	$content_width = 1170; /* pixels */
+	// Pixel.
+	$content_width = 1170;
 }
 
 require_once WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-fonts-helpers.php';
 
 $woostify = (object) array(
-	'version' => $woostify_version,
+	'version' => WOOSTIFY_VERSION,
 
 	// Initialize all the things.
 	'main'       => require_once WOOSTIFY_THEME_DIR . 'inc/class-woostify.php',
