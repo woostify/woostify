@@ -66,7 +66,7 @@ function getCookie( name ) {
 
 // Store notice.
 function storeNotice() {
-	if ( document.body.classList.contains( 'woocommerce-demo-store' ) && 'hidden' != getCookie( 'store_notice' ) ) {
+	if ( document.body.classList.contains( 'woocommerce-demo-store' ) && false !== getCookie( 'store_notice' ) ) {
 		return true;
 	}
 

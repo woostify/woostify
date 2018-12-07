@@ -6127,6 +6127,7 @@ dd {
   bottom: 0;
   visibility: hidden;
   opacity: 0;
+  z-index: 10;
   -webkit-transform: translateY(100%);
   transform: translateY(100%);
 }

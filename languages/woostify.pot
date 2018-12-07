@@ -148,7 +148,7 @@ msgstr ""
 msgid "Related Posts"
 msgstr ""
 
-#: inc/woostify-template-functions.php:51, inc/woostify-template-functions.php:819, inc/admin/class-woostify-admin.php:179
+#: inc/woostify-template-functions.php:51, inc/woostify-template-functions.php:819, inc/admin/class-woostify-admin.php:176
 msgid "Read more"
 msgstr ""
 
@@ -339,68 +339,64 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:138
-msgid "Go Pro"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:148
+#: inc/admin/class-woostify-admin.php:145
 msgid "Link to Customizer Settings"
 msgstr ""
 
 #. translators: 1: Class name
-#: inc/admin/class-woostify-admin.php:161
+#: inc/admin/class-woostify-admin.php:158
 msgid "%s not activated."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:188
-msgid "More Features Avaiable with Woostify Pro"
+#: inc/admin/class-woostify-admin.php:185
+msgid "More Features are coming with Woostify Pro"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:189
-msgid "Read more!"
+#: inc/admin/class-woostify-admin.php:186
+msgid "Follow here!"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:194
+#: inc/admin/class-woostify-admin.php:191
 msgid "Optimize website with our powerful Pro Modules."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:198
-msgid "Each has been designed to serve a different industry - from fashion to food."
+#: inc/admin/class-woostify-admin.php:195
+msgid "All the tools you need to define your style and customize your Woostify store."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:202
+#: inc/admin/class-woostify-admin.php:199
 msgid "Read More"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:215
+#: inc/admin/class-woostify-admin.php:212
 msgid "Import Demo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:221
+#: inc/admin/class-woostify-admin.php:218
 msgid "Quickly and easily transform your shops appearance with Woostify Demo Sites."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:225
+#: inc/admin/class-woostify-admin.php:222
 msgid "It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:229
+#: inc/admin/class-woostify-admin.php:226
 msgid "Install Demo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:253, inc/admin/class-woostify-plugin-install.php:72
+#: inc/admin/class-woostify-admin.php:250, inc/admin/class-woostify-plugin-install.php:72
 msgid "Activated"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:262, inc/admin/class-woostify-plugin-install.php:85
+#: inc/admin/class-woostify-admin.php:259, inc/admin/class-woostify-plugin-install.php:85
 msgid "Activate"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:277, inc/admin/class-woostify-plugin-install.php:104
+#: inc/admin/class-woostify-admin.php:274, inc/admin/class-woostify-plugin-install.php:104
 msgid "Install now"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:284, inc/admin/class-woostify-plugin-install.php:124
+#: inc/admin/class-woostify-admin.php:281, inc/admin/class-woostify-plugin-install.php:124
 msgid "Learn more"
 msgstr ""
 

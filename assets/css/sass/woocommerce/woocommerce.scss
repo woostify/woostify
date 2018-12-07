@@ -264,6 +264,7 @@
 	bottom: 0;
 	visibility: hidden;
 	opacity: 0;
+	z-index: 10;
 	@include translatey( 100% );
 	@extend .duration;
 	&:before{
