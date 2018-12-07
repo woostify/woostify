@@ -264,7 +264,7 @@
 	bottom: 0;
 	visibility: hidden;
 	opacity: 0;
-	z-index: 10;
+	z-index: 501; // higher Sticky Button on Mobile feature.
 	@include translatey( 100% );
 	@extend .duration;
 	&:before{
