@@ -8,7 +8,9 @@
 
 let theme       = 'woostify',
 	site_name   = 'woostify',
+	theme_ver   = '1.0.4',
 	gulp        = require( 'gulp' ),
+	zip         = require( 'gulp-zip' ),
 	babel       = require( 'gulp-babel' ),
 	autoLoad    = require( 'gulp-load-plugins' )(),
 	del         = require( 'del' ),
@@ -21,10 +23,11 @@ let theme       = 'woostify',
 	concat      = require( 'gulp-concat' ),
 	uglify      = require( 'gulp-uglify' ),
 	rename      = require( 'gulp-rename' ),
-	vinylBuffer = require( 'vinyl-buffer' );
+	vinylBuffer = require( 'vinyl-buffer' ),
+	debug       = require( 'gulp-debug' );
 
 
-/* SASS: `compressed` `expanded` `compact` `nested` */
+// Sass `compressed` `expanded` `compact` `nested`.
 gulp.task( 'sass', () =>
 	gulp.src( 'style.scss' )
 		.pipe( globbing( {
@@ -38,7 +41,7 @@ gulp.task( 'sass', () =>
 		.pipe( browserSync.reload( { stream: true } ) )
 );
 
-/* SASS: Admin */
+// Sass admin.
 gulp.task( 'sass-admin', () =>
 	gulp.src( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'] )
 		.pipe( globbing( {
@@ -49,13 +52,13 @@ gulp.task( 'sass-admin', () =>
 		.pipe( gulp.dest( 'assets/css/admin' ) )
 );
 
-/* CONSOLE */
+// Handle console.
 function handleError( e ) {
 	console.log( e.toString() );
 	this.emit( 'end' );
 }
 
-/* BROSWER SYNC */
+// Broswer sync task.
 gulp.task( 'browser-sync', () =>
 	browserSync( {
 		files: 'style.css',
@@ -64,7 +67,7 @@ gulp.task( 'browser-sync', () =>
 	} )
 );
 
-/* CREATE .POT FILE */
+// Create .post file.
 gulp.task( 'pot', () => {
 	gulp.src( '**/*.php' )
 		.pipe( wpPot( {
@@ -76,7 +79,7 @@ gulp.task( 'pot', () => {
 } );
 
 
-/* MIN JS FILE */
+// Min js file.
 gulp.task( 'min-js', () => {
 	gulp.src( [ 'assets/js/**/*.js', '!assets/js/**/*.min.js'] )
 		.pipe( uglify() )
@@ -85,7 +88,7 @@ gulp.task( 'min-js', () => {
 		.pipe( gulp.dest( 'assets/js' ) );
 } );
 
-/*WATCH*/
+// Watch task.
 gulp.task( 'watch', [ 'browser-sync' ], () => {
 	gulp.watch( ['assets/css/sass/**/*.scss', 'style.scss' ], ['sass'] );
 	gulp.watch( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'], ['sass-admin'] );
@@ -93,8 +96,26 @@ gulp.task( 'watch', [ 'browser-sync' ], () => {
 	gulp.watch( '**/*.php', ['pot'] );
 } );
 
-/* DEFAULT TASK */
+// Zip task.
+gulp.task( 'zip', () =>
+	gulp.src([
+		'**/*',
+		'!./{node_modules,node_modules/**/*}',
+		'!./*.cache',
+		'!./*.log',
+		'!./*.xml',
+		'!./*.lock',
+		'!./*.json',
+		'!./*.map',
+		'!./Gulpfile.js'
+	] )
+	/*.pipe( debug( { title: 'src' } ) )*/
+	.pipe( zip( theme + '-' + theme_ver + '.zip' ) )
+	.pipe( gulp.dest( '.' ) )
+);
+
+// Default task.
 gulp.task( 'default', ['watch', 'min-js'] );
 
-/* CLEAN */
+// Clean.
 gulp.task( 'clean', del.bind( null, ['build'] ) );

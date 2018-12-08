@@ -238,3 +238,74 @@
 .blockUI.blockOverlay {
     background-color: $tr $i;
 }
+
+/* store notice */
+.scrolling-down{
+	&.woocommerce-demo-store{
+		.woocommerce-store-notice{
+			visibility: visible;
+			opacity: 1;
+			@include translatey( 0 );
+		}
+	}
+
+	#scroll-to-top{
+		bottom: 60px;
+	}
+}
+.woocommerce-store-notice{
+	margin-bottom: 0;
+	padding: 10px 15px;
+	color: #fff;
+	flex-grow: 1;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	visibility: hidden;
+	opacity: 0;
+	z-index: 501; // higher Sticky Button on Mobile feature.
+	@include translatey( 100% );
+	@extend .duration;
+	&:before{
+		content: "\e717";
+		font-family: $icon;
+		margin-right: 7px;
+	}
+	a{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		padding: 0 20px;
+		min-width: 120px;
+		color: #fff;
+		background-color: rgba( 255,255,255,0.1 );
+		@extend .flex;
+		&:before{
+			content: "\e646";
+			font-family: $icon;
+			margin-right: 10px;
+			@extend .duration;
+		}
+		&:hover{
+			color: #fff;
+			&:before{
+				@include rotate( 90 );
+			}
+		}
+
+		@media ( max-width: $screen-md - 1 ) {
+			position: static;
+			background-color: $tr;
+			padding: 0;
+			display: inline;
+			text-decoration: underline;
+			margin-left: 7px;
+			&:before{
+				content: none;
+			}
+		}
+	}
+
+}

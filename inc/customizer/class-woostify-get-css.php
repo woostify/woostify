@@ -169,8 +169,9 @@ class Woostify_Get_CSS {
 			.product-loop-meta .price,
 			.variations label,
 			.woocommerce-review__author,
-			[name="apply_coupon"],
-			[name="update_cart"],
+			.button[name="apply_coupon"],
+			.button[name="apply_coupon"]:hover,
+			.button[name="update_cart"],
 			.quantity .qty,
 			.form-row label,
 			.select2-container--default .select2-selection--single .select2-selection__rendered,
@@ -221,7 +222,7 @@ class Woostify_Get_CSS {
 			.woocommerce-widget-layered-nav-dropdown__submit,
 			.clear-cart-btn,
 			.form-submit .submit,
-			.checkout-button, .elementor-button-wrapper .elementor-button,
+			.elementor-button-wrapper .elementor-button,
 			.woostify-contact-form input[type="submit"],
 			#secondary .widget a.button{
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
@@ -233,7 +234,6 @@ class Woostify_Get_CSS {
 			#commentform input[type="submit"]:hover,
 			.clear-cart-btn:hover,
 			.form-submit .submit:hover,
-			.checkout-button:hover,
 			#secondary .widget a.button:hover,
 			.woostify-contact-form input[type="submit"]:hover{
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
@@ -289,7 +289,8 @@ class Woostify_Get_CSS {
 			.woostify-footer-text-widget .woostify-footer-social-icon a,
 			.woocommerce-message,
 			.woocommerce-info,
-			#scroll-to-top{
+			#scroll-to-top,
+			.woocommerce-store-notice{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 

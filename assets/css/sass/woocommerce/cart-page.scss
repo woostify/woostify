@@ -142,9 +142,14 @@
 			font-weight: 600;
 			font-size: 12px;
 			text-transform: uppercase;
-			border-width: 0 0 1px 0;
+			border-bottom: 1px solid #e8e8e8;
 			height: 30px;
+			padding: 0 10px;
+			border-radius: 0;
 			background-color: $tr;
+			&:hover{
+				background-color: $tr;
+			}
 		}
 		[name="update_cart"] {
 			height: 100%;

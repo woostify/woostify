@@ -12,9 +12,7 @@ if ( ! class_exists( 'woostify_version' ) ) {
 	 * @return string Woostify Version.
 	 */
 	function woostify_version() {
-		global $woostify_version;
-
-		return $woostify_version;
+		return WOOSTIFY_VERSION;
 	}
 }
 
@@ -26,10 +24,10 @@ if ( ! function_exists( 'woostify_get_pro_url' ) ) {
 	 * @param string $url URL to pro page.
 	 * @return string The URL to woostify.com.
 	 */
-	function woostify_get_pro_url( $url = 'https://woostify.com/pricing' ) {
+	function woostify_get_pro_url( $url = 'https://woostify.com' ) {
 		$url = trailingslashit( $url );
 
-		$args = apply_filters( 'generate_premium_url_args', array(
+		$args = apply_filters( 'woostify_premium_url_args', array(
 			'ref'      => null,
 			'campaign' => null,
 		) );
