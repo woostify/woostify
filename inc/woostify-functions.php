@@ -12,9 +12,7 @@ if ( ! class_exists( 'woostify_version' ) ) {
 	 * @return string Woostify Version.
 	 */
 	function woostify_version() {
-		global $woostify_version;
-
-		return $woostify_version;
+		return WOOSTIFY_VERSION;
 	}
 }
 
