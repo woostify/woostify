@@ -134,6 +134,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						<ul class="woostify-welcome-nav_link">
 							<li><a href="https://woostify.com/contact/" target="_blank"><?php esc_html_e( 'Support', 'woostify' ); ?></a></li>
 							<li><a href="https://woostify.com/docs/" target="_blank"><?php esc_html_e( 'Documentation', 'woostify' ); ?></a></li>
+							<li><strong><a href="https://www.facebook.com/groups/2245150649099616/" target="_blank"><?php esc_html_e( 'Join FB Group', 'woostify' ); ?></a></strong></li>
 						</ul>
 					</div>
 				</section>
