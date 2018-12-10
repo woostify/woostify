@@ -31,7 +31,7 @@ $media: 599px;
 	overflow-y: hidden;
 	
 	#view{
-		@include translatex( -300px );
+		@include translatex( -400px );
 		@media ( max-width: $media ) {
 			@include translatex( -290px );
 		}

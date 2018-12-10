@@ -181,3 +181,51 @@ if ( ! function_exists( 'woostify_modify_loop_add_to_cart_class' ) ) {
 		return $args;
 	}
 }
+
+if ( ! function_exists( 'woostify_is_woocommerce_page' ) ) {
+	/**
+	 * Returns true if on a page which uses WooCommerce templates
+	 * Cart and Checkout are standard pages with shortcodes and which are also included
+	 */
+	function woostify_is_woocommerce_page() {
+		if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
+			return true;
+		}
+
+		$keys = array(
+			'woocommerce_shop_page_id',
+			'woocommerce_terms_page_id',
+			'woocommerce_cart_page_id',
+			'woocommerce_checkout_page_id',
+			'woocommerce_pay_page_id',
+			'woocommerce_thanks_page_id',
+			'woocommerce_myaccount_page_id',
+			'woocommerce_edit_address_page_id',
+			'woocommerce_view_order_page_id',
+			'woocommerce_change_password_page_id',
+			'woocommerce_logout_page_id',
+			'woocommerce_lost_password_page_id',
+		);
+
+		foreach ( $keys as $k ) {
+			if ( get_the_ID() == get_option( $k, 0 ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+}
+
+if ( ! function_exists( 'woostify_breadcrumb_only_for_woocommerce_page' ) ) {
+	/**
+	 * Add woocommerce breadcrumb for woocommerce page only
+	 */
+	function woostify_breadcrumb_only_for_woocommerce_page() {
+		if ( ! woostify_is_woocommerce_page() ) {
+			return;
+		}
+
+		add_action( 'woostify_content_top', 'woocommerce_breadcrumb', 40 );
+	}
+}

@@ -282,7 +282,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1546
+#: inc/woostify-template-functions.php:1546, inc/customizer/sections/footer/footer.php:26
 msgid "Scroll To Top"
 msgstr ""
 
@@ -456,19 +456,19 @@ msgstr ""
 msgid "Disable Title"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:292, inc/customizer/sections/footer/footer.php:26
+#: inc/admin/class-woostify-meta-boxes.php:292, inc/customizer/sections/footer/footer.php:50
 msgid "Disable Footer"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:205
+#: inc/customizer/class-woostify-customizer.php:206
 msgid "Pro Version Is Coming Soon"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:222, inc/customizer/class-woostify-customizer.php:238, inc/customizer/class-woostify-customizer.php:254, inc/customizer/class-woostify-customizer.php:270
+#: inc/customizer/class-woostify-customizer.php:223, inc/customizer/class-woostify-customizer.php:239, inc/customizer/class-woostify-customizer.php:255, inc/customizer/class-woostify-customizer.php:271
 msgid "Learn More"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:223, inc/customizer/class-woostify-customizer.php:239, inc/customizer/class-woostify-customizer.php:255, inc/customizer/class-woostify-customizer.php:271
+#: inc/customizer/class-woostify-customizer.php:224, inc/customizer/class-woostify-customizer.php:240, inc/customizer/class-woostify-customizer.php:256, inc/customizer/class-woostify-customizer.php:272
 msgid "More options are coming for this section in our pro version."
 msgstr ""
 
@@ -742,11 +742,11 @@ msgstr ""
 msgid "Blog List Structure"
 msgstr ""
 
-#: inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:114, inc/customizer/sections/footer/footer.php:150, inc/customizer/sections/header/topbar.php:27
+#: inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:114, inc/customizer/sections/footer/footer.php:174, inc/customizer/sections/header/topbar.php:27
 msgid "Text Color"
 msgstr ""
 
-#: inc/customizer/sections/buttons/button.php:48, inc/customizer/sections/footer/footer.php:84, inc/customizer/sections/header/header.php:76, inc/customizer/sections/header/topbar.php:50
+#: inc/customizer/sections/buttons/button.php:48, inc/customizer/sections/footer/footer.php:108, inc/customizer/sections/header/header.php:76, inc/customizer/sections/header/topbar.php:50
 msgid "Background Color"
 msgstr ""
 
@@ -770,7 +770,7 @@ msgstr ""
 msgid "Sub-menu Color"
 msgstr ""
 
-#: inc/customizer/sections/color/color.php:92, inc/customizer/sections/footer/footer.php:106
+#: inc/customizer/sections/color/color.php:92, inc/customizer/sections/footer/footer.php:130
 msgid "Heading Color"
 msgstr ""
 
@@ -778,23 +778,23 @@ msgstr ""
 msgid "Link / Accent Color"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:29
+#: inc/customizer/sections/footer/footer.php:29, inc/customizer/sections/footer/footer.php:53
 msgid "No"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:30
+#: inc/customizer/sections/footer/footer.php:30, inc/customizer/sections/footer/footer.php:54
 msgid "Yes"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:50
+#: inc/customizer/sections/footer/footer.php:74
 msgid "Widget Columns"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:128
+#: inc/customizer/sections/footer/footer.php:152
 msgid "Link Color"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:172
+#: inc/customizer/sections/footer/footer.php:196
 msgid "Custom Text"
 msgstr ""
 

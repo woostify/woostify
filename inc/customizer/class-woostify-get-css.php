@@ -204,12 +204,14 @@ class Woostify_Get_CSS {
 		$styles .= '
 			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout),
 			.site-tools .header-search-icon,
+			.ps-layout-1 .product-loop-meta .button,
 			a{
 				color: ' . esc_attr( $options['accent_color'] ) . ';
 			}
 
 			.site-tools .header-search-icon:hover,
 			a:hover,
+			.ps-layout-1 .product-loop-meta .button:hover,
 			#secondary .widget a:not(.tag-cloud-link):hover,
 			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout):hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';

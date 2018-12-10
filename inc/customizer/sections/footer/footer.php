@@ -8,6 +8,30 @@
 // Default values.
 $defaults = woostify_options();
 
+// Scroll to top.
+$wp_customize->add_setting(
+	'woostify_setting[scroll_to_top]',
+	array(
+		'default'           => $defaults['scroll_to_top'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[scroll_to_top]',
+		array(
+			'label'        => __( 'Scroll To Top', 'woostify' ),
+			'settings'     => 'woostify_setting[scroll_to_top]',
+			'section'      => 'woostify_footer',
+			'left_switch'  => __( 'No', 'woostify' ),
+			'right_switch' => __( 'Yes', 'woostify' ),
+		)
+	)
+);
+
 // Disable footer.
 $wp_customize->add_setting(
 	'woostify_setting[footer_disable]',

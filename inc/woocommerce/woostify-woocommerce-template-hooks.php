@@ -30,8 +30,9 @@ add_action( 'woocommerce_before_main_content', 'woostify_before_content', 10 );
 add_action( 'woocommerce_after_main_content', 'woostify_after_content', 10 );
 add_action( 'woostify_content_top', 'woostify_shop_messages', 30 );
 
+// Wocoommerce breadcrumb.
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
-add_action( 'woostify_content_top', 'woocommerce_breadcrumb', 40 );
+add_action( 'wp', 'woostify_breadcrumb_only_for_woocommerce_page' );
 
 add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper', 9 );
 add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper_close', 31 );

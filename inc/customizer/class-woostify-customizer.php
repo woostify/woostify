@@ -83,6 +83,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'header_shop_cart_icon'                => false,
 
 					// Footer.
+					'scroll_to_top'                        => true,
 					'footer_disable'                       => false,
 					'footer_column'                        => 0,
 					'footer_background_color'              => '#eeeeec',
