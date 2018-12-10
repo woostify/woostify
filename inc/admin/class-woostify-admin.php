@@ -132,8 +132,8 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						</a>
 
 						<ul class="woostify-welcome-nav_link">
-							<li><a href="//woostify.com/contact/" target="_blank"><?php esc_html_e( 'Support', 'woostify' ); ?></a></li>
-							<li><a href="//woostify.com/docs/" target="_blank"><?php esc_html_e( 'Documentation', 'woostify' ); ?></a></li>
+							<li><a href="https://woostify.com/contact/" target="_blank"><?php esc_html_e( 'Support', 'woostify' ); ?></a></li>
+							<li><a href="https://woostify.com/docs/" target="_blank"><?php esc_html_e( 'Documentation', 'woostify' ); ?></a></li>
 						</ul>
 					</div>
 				</section>
@@ -173,7 +173,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 									<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
 										<p>
-											<a href="//woostify.com/docs/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Read more', 'woostify' ); ?></a>
+											<a href="https://woostify.com/docs/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Read more', 'woostify' ); ?></a>
 										</p>
 									<?php endif; ?>
 								</div>
@@ -223,7 +223,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									</p>
 
 									<p>
-											<a href="//woostify.com/pricing/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Install Demo', 'woostify' ); ?></a>
+											<a href="https://woostify.com/docs/getting-started/import-demo/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Install Demo', 'woostify' ); ?></a>
 										</p>
 								</div>
 							</div>
