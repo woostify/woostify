@@ -6,7 +6,7 @@
  */
 
 // Define constants.
-define( 'WOOSTIFY_VERSION', '1.0.2' );
+define( 'WOOSTIFY_VERSION', '1.0.3' );
 define( 'WOOSTIFY_THEME_DIR', get_template_directory() . '/' );
 define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );
 
@@ -16,36 +16,19 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 1170;
 }
 
+require_once WOOSTIFY_THEME_DIR . 'inc/woostify-functions.php';
+require_once WOOSTIFY_THEME_DIR . 'inc/woostify-template-hooks.php';
+require_once WOOSTIFY_THEME_DIR . 'inc/woostify-template-functions.php';
 require_once WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-fonts-helpers.php';
+require_once WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-get-css.php';
 
 $woostify = (object) array(
-	'version' => WOOSTIFY_VERSION,
+	'version' => woostify_version(),
 
 	// Initialize all the things.
 	'main'       => require_once WOOSTIFY_THEME_DIR . 'inc/class-woostify.php',
 	'customizer' => require_once WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-customizer.php',
 );
-
-
-require_once WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-get-css.php';
-
-/**
- * Sanitize our Google Font variants
- *
- * @param      string $input sanitize variants.
- * @return     sanitize_text_field( $input )
- * @since 1.0
- */
-function woostify_sanitize_variants( $input ) {
-	if ( is_array( $input ) ) {
-		$input = implode( ',', $input );
-	}
-	return sanitize_text_field( $input );
-}
-
-require_once WOOSTIFY_THEME_DIR . 'inc/woostify-functions.php';
-require_once WOOSTIFY_THEME_DIR . 'inc/woostify-template-hooks.php';
-require_once WOOSTIFY_THEME_DIR . 'inc/woostify-template-functions.php';
 
 if ( woostify_is_woocommerce_activated() ) {
 	$woostify->woocommerce = require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce.php';

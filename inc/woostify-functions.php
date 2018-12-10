@@ -163,6 +163,22 @@ if ( ! function_exists( 'woostify_sanitize_checkbox' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_sanitize_variants' ) ) {
+	/**
+	 * Sanitize our Google Font variants
+	 *
+	 * @param      string $input sanitize variants.
+	 * @return     sanitize_text_field( $input )
+	 * @since 1.0
+	 */
+	function woostify_sanitize_variants( $input ) {
+		if ( is_array( $input ) ) {
+			$input = implode( ',', $input );
+		}
+		return sanitize_text_field( $input );
+	}
+}
+
 if ( ! function_exists( 'woostify_is_blog' ) ) {
 	/**
 	 * Woostify detect blog page
