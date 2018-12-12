@@ -107,6 +107,8 @@ gulp.task( 'zip', () =>
 		'!./*.lock',
 		'!./*.json',
 		'!./*.map',
+		'!./**/*.scss',
+		'!./{assets/css/sass,assets/css/sass/**/*}',
 		'!./Gulpfile.js'
 	] )
 	/*.pipe( debug( { title: 'src' } ) )*/

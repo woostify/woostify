@@ -7,6 +7,13 @@
 }
 
 /* sorting */
+.woocommerce-notices-wrapper{
+	display: block;
+	clear: both;
+	.woocommerce-message{
+		margin-top: 30px;
+	}
+}
 .woostify-sorting{
 	@include flex( flex, space-between, center );
 	flex-wrap: wrap;
@@ -307,5 +314,12 @@
 			}
 		}
 	}
+}
 
+/* cart empty || errors */
+.button.wc-backward{
+	margin-top: 20px;
+	display: inline-block;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 }

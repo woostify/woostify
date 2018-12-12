@@ -1,22 +1,22 @@
-$star: "\e60a\e60a\e60a\e60a\e60a";
+$star: '\53\53\53\53\53';
 $font_size: 16px;
 $star_color: #ffc400;
 
-
 .star-rating {
 	display: inline-block;
-	width: 80px;
+	width: 84px;
 	height: $font_size;
 	position: relative;
 	line-height: $font_size;
 	&:before {
-		font-family: $icon;
+		font-family: 'star';
 		font-size: $font_size;
 		content: $star;
 		white-space: nowrap;
 		position: absolute;
 		left: 0;
 		top: 0;
+		opacity: 0.5;
 	}
 	> span {
 		font-size: 0;
@@ -27,7 +27,7 @@ $star_color: #ffc400;
 		white-space: nowrap;
 		line-height: $font_size;
 		&:before {
-			font-family: $icon;
+			font-family: 'star';
 			font-size: $font_size;
 			content: $star;
 			color: $star_color;
@@ -90,8 +90,8 @@ $star_color: #ffc400;
         font-size: 0;
         &:before{
             font-size: $font_size;
-            font-family: $icon;
-            content: "\e60a";
+            font-family: 'star';
+            content: '\53';
         }
     }
 }

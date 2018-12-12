@@ -170,8 +170,8 @@
 	abbr{
 		text-decoration: none;
 	}
-	.required{
-		color: #f01145
+	@at-root .required{
+		color: firebrick;
 	}
 	.input-text{
 		width: 100%;

@@ -282,7 +282,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1546, inc/customizer/sections/footer/footer.php:26
+#: inc/woostify-template-functions.php:1551, inc/customizer/sections/footer/footer.php:26
 msgid "Scroll To Top"
 msgstr ""
 

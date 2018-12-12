@@ -31,6 +31,10 @@
 		}
 	}
 	.summary {
+		.star-rating{
+			vertical-align: text-top;
+			margin-right: 7px;
+		}
 		.yith-wcwl-add-to-wishlist{
 			display: block;
 			margin: 20px 0;
@@ -206,25 +210,31 @@
 	border: 0;
 	margin-bottom: 40px;
 	td {
-		display: block;
 		border: 0;
 		padding: 2px 0;
-	}
-	tr {
-		display: block;
-		+ tr {
-			margin-top: 10px;
+		vertical-align: top;
+		@media ( max-width: $screen-sm - 1 ) {
+			display: block;
+			clear: both;
+
+			@at-root .variations tr+tr{
+				margin-top: 15px;
+				display: block;
+			}
 		}
 	}
 	select {
-		clear: both;
 		display: block;
+		clear: both;
 		height: 40px;
 		min-width: 170px;
 		background-color: #fff;
 	}
 	label {
 		text-transform: uppercase;
+	}
+	.label{
+		width: 30%;
 	}
 }
 
@@ -347,6 +357,7 @@
 }
 .woocommerce-variation-add-to-cart{
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .single_add_to_cart_button {
@@ -432,6 +443,12 @@
 	.commentlist {
 		padding-left: 0;
 		margin: 0;
+		li{
+			list-style: none;
+			+li{
+				margin-top: 30px;
+			}
+		}
 	}
 	.comment {
 		margin-bottom: 40px;
