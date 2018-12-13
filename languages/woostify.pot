@@ -148,7 +148,7 @@ msgstr ""
 msgid "Related Posts"
 msgstr ""
 
-#: inc/woostify-template-functions.php:51, inc/woostify-template-functions.php:819, inc/admin/class-woostify-admin.php:176
+#: inc/woostify-template-functions.php:51, inc/woostify-template-functions.php:819, inc/admin/class-woostify-admin.php:177
 msgid "Read more"
 msgstr ""
 
@@ -339,64 +339,68 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:145
+#: inc/admin/class-woostify-admin.php:137
+msgid "Join FB Group"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:146
 msgid "Link to Customizer Settings"
 msgstr ""
 
 #. translators: 1: Class name
-#: inc/admin/class-woostify-admin.php:158
+#: inc/admin/class-woostify-admin.php:159
 msgid "%s not activated."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:185
+#: inc/admin/class-woostify-admin.php:186
 msgid "More Features are coming with Woostify Pro"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:186
+#: inc/admin/class-woostify-admin.php:187
 msgid "Follow here!"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:191
+#: inc/admin/class-woostify-admin.php:192
 msgid "Optimize website with our powerful Pro Modules."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:195
+#: inc/admin/class-woostify-admin.php:196
 msgid "All the tools you need to define your style and customize your Woostify store."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:199
+#: inc/admin/class-woostify-admin.php:200
 msgid "Read More"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:212
+#: inc/admin/class-woostify-admin.php:213
 msgid "Import Demo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:218
+#: inc/admin/class-woostify-admin.php:219
 msgid "Quickly and easily transform your shops appearance with Woostify Demo Sites."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:222
+#: inc/admin/class-woostify-admin.php:223
 msgid "It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:226
+#: inc/admin/class-woostify-admin.php:227
 msgid "Install Demo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:250, inc/admin/class-woostify-plugin-install.php:72
+#: inc/admin/class-woostify-admin.php:251, inc/admin/class-woostify-plugin-install.php:72
 msgid "Activated"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:259, inc/admin/class-woostify-plugin-install.php:85
+#: inc/admin/class-woostify-admin.php:260, inc/admin/class-woostify-plugin-install.php:85
 msgid "Activate"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:274, inc/admin/class-woostify-plugin-install.php:104
+#: inc/admin/class-woostify-admin.php:275, inc/admin/class-woostify-plugin-install.php:104
 msgid "Install now"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:281, inc/admin/class-woostify-plugin-install.php:124
+#: inc/admin/class-woostify-admin.php:282, inc/admin/class-woostify-plugin-install.php:124
 msgid "Learn more"
 msgstr ""
 
@@ -630,15 +634,15 @@ msgstr ""
 msgid "List the most recent posts with post titles, thumbnail"
 msgstr ""
 
-#: inc/widget/class-woostify-recent-post-thumbnail.php:41
+#: inc/widget/class-woostify-recent-post-thumbnail.php:38
 msgid "Recent Posts"
 msgstr ""
 
-#: inc/widget/class-woostify-recent-post-thumbnail.php:52
+#: inc/widget/class-woostify-recent-post-thumbnail.php:49
 msgid "Title:"
 msgstr ""
 
-#: inc/widget/class-woostify-recent-post-thumbnail.php:61
+#: inc/widget/class-woostify-recent-post-thumbnail.php:58
 msgid "Number:"
 msgstr ""
 

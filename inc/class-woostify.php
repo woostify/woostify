@@ -190,8 +190,8 @@ if ( ! class_exists( 'woostify' ) ) :
 				$widget_tags = array(
 					'before_widget' => '<div id="%1$s" class="widget %2$s">',
 					'after_widget'  => '</div>',
-					'before_title'  => '<h4 class="widget-title">',
-					'after_title'   => '</h4>',
+					'before_title'  => '<h6 class="widget-title">',
+					'after_title'   => '</h6>',
 				);
 
 				/**

@@ -34,9 +34,6 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 		 * @param      array $instance The instance.
 		 */
 		public function form( $instance ) {
-
-			parent::form( $instance );
-
 			$default = array(
 				'title'  => __( 'Recent Posts', 'woostify' ),
 				'number' => 3,
