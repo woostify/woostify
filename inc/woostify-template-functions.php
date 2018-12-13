@@ -182,7 +182,7 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 			?>
 		<div class="footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
 			<div class="widget widget_text default-widget">
-				<h2 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h2>
+				<h6 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h6>
 				<div class="textwidget">
 					<p>
 						<?php
@@ -197,7 +197,7 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 			</div>
 
 			<div class="widget widget_text default-widget">
-				<h2 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h2>
+				<h6 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h6>
 				<div class="textwidget">
 					<p>
 						<?php
@@ -212,7 +212,7 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 			</div>
 
 			<div class="widget widget_text default-widget">
-				<h2 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h2>
+				<h6 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h6>
 				<div class="textwidget">
 					<p>
 						<?php

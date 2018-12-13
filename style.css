@@ -5400,6 +5400,19 @@ dd {
   display: none !important;
 }
 
+/* Hide adv feature product if slider not initialize */
+.advanced-featured-product {
+  position: relative;
+}
+
+.adv-featured-product {
+  position: relative;
+}
+
+.adv-featured-product:not(.slick-initialized) {
+  display: none;
+}
+
 /* Contact info */
 .woostify-contact-info .contact-info-list {
   display: flex;

@@ -14,7 +14,7 @@
 	} elseif ( is_user_logged_in() ) {
 		?>
 		<div class="widget widget_text default-widget">
-			<h2 class="widgettitle"><?php esc_html_e( 'Sidebar Shop Widget', 'woostify' ); ?></h2>
+			<h6 class="widgettitle"><?php esc_html_e( 'Sidebar Shop Widget', 'woostify' ); ?></h6>
 			<div class="textwidget">
 				<p>
 					<?php
@@ -29,7 +29,7 @@
 		</div>
 
 		<div class="widget widget_text default-widget">
-			<h2 class="widgettitle"><?php esc_html_e( 'Sidebar Shop Widget', 'woostify' ); ?></h2>
+			<h6 class="widgettitle"><?php esc_html_e( 'Sidebar Shop Widget', 'woostify' ); ?></h6>
 			<div class="textwidget">
 				<p>
 					<?php
@@ -44,7 +44,7 @@
 		</div>
 
 		<div class="widget widget_text default-widget">
-			<h2 class="widgettitle"><?php esc_html_e( 'Sidebar Shop Widget', 'woostify' ); ?></h2>
+			<h6 class="widgettitle"><?php esc_html_e( 'Sidebar Shop Widget', 'woostify' ); ?></h6>
 			<div class="textwidget">
 				<p>
 					<?php

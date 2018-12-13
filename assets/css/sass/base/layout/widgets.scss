@@ -499,3 +499,14 @@
 #yith-wcwl-popup-message {
   display: none $i;
 }
+
+/* Hide adv feature product if slider not initialize */
+.advanced-featured-product{
+	position: relative;
+}
+.adv-featured-product{
+	position: relative;
+	&:not(.slick-initialized){
+		display: none;
+	}
+}
