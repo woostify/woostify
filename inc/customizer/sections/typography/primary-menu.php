@@ -18,7 +18,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['menu_font_family'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_key',
+		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 
@@ -27,7 +27,7 @@ $wp_customize->add_setting(
 	'menu_font_category',
 	array(
 		'default'           => $defaults['menu_font_category'],
-		'sanitize_callback' => 'sanitize_key',
+		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 
@@ -46,7 +46,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['menu_font_weight'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_key',
+		'sanitize_callback' => 'sanitize_text_field',
 		'transport'         => 'postMessage',
 	)
 );
@@ -57,7 +57,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['menu_font_transform'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_key',
+		'sanitize_callback' => 'sanitize_text_field',
 		'transport'         => 'postMessage',
 	)
 );

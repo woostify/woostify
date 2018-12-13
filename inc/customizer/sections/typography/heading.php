@@ -18,7 +18,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['heading_font_family'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_key',
+		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 
@@ -27,7 +27,7 @@ $wp_customize->add_setting(
 	'heading_font_category',
 	array(
 		'default'           => $defaults['heading_font_category'],
-		'sanitize_callback' => 'sanitize_key',
+		'sanitize_callback' => 'sanitize_text_field',
 		'type'              => 'option',
 	)
 );
@@ -48,7 +48,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['heading_font_weight'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_key',
+		'sanitize_callback' => 'sanitize_text_field',
 		'transport'         => 'postMessage',
 	)
 );
@@ -59,7 +59,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['heading_font_transform'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_key',
+		'sanitize_callback' => 'sanitize_text_field',
 		'transport'         => 'postMessage',
 	)
 );
