@@ -251,7 +251,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			wp_register_script(
 				'woostify-quantity-button',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/quantity-button' . $suffix . '.js',
-				array( 'jquery' ),
+				array(),
 				woostify_version(),
 				true
 			);
@@ -260,7 +260,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			wp_register_script(
 				'woostify-woocommerce',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/woocommerce' . $suffix . '.js',
-				array( 'jquery' ),
+				array( 'jquery', 'woostify-quantity-button' ),
 				woostify_version(),
 				true
 			);
