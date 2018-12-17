@@ -294,3 +294,29 @@ if ( ! function_exists( 'woostify_browser_detection' ) ) {
 		return $class;
 	}
 }
+
+if ( ! function_exists( 'woostify_remove_query_strings' ) ) {
+
+	/**
+	 * Remove query strings from static resources
+	 *
+	 * @param      string $src The source.
+	 */
+	function woostify_remove_query_strings( $src ) {
+		if ( strpos( $src, '?ver=' ) ) {
+			$src = remove_query_arg( 'ver', $src );
+			return $src;
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_dequeue_scripts_and_styles' ) ) {
+	/**
+	 * Dequeue scripts and style no need
+	 */
+	function woostify_dequeue_scripts_and_styles() {
+		// What is 'sb-font-awesome'?
+		wp_deregister_style( 'sb-font-awesome' );
+		wp_dequeue_style( 'sb-font-awesome' );
+	}
+}

@@ -102,15 +102,18 @@ class Woostify_Get_CSS {
 			.comment-body .comment-meta .comment-date,
 			.woostify-breadcrumb a,
 			.breadcrumb-separator,
-			#secondary .widget a{
+			#secondary .widget a,
+			.has-woostify-text-color{
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
-			.price_slider_wrapper .price_slider{
+			.price_slider_wrapper .price_slider,
+			.has-woostify-text-background-color{
 				background-color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
-			.type-product .woocommerce-loop-product__title{
+			.type-product .woocommerce-loop-product__title,
+			.has-woostify-text-font-size{
 				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
 			}
 		';
@@ -147,22 +150,28 @@ class Woostify_Get_CSS {
 				line-height: ' . esc_attr( $options['heading_line_height'] ) . ';
 				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
-			h1{
+			h1,
+			.has-woostify-heading-1-font-size{
 				font-size: ' . esc_attr( $options['heading_h1_font_size'] ) . 'px;
 			}
-			h2{
+			h2,
+			.has-woostify-heading-2-font-size{
 				font-size: ' . esc_attr( $options['heading_h2_font_size'] ) . 'px;
 			}
-			h3{
+			h3,
+			.has-woostify-heading-3-font-size{
 				font-size: ' . esc_attr( $options['heading_h3_font_size'] ) . 'px;
 			}
-			h4{
+			h4,
+			.has-woostify-heading-4-font-size{
 				font-size: ' . esc_attr( $options['heading_h4_font_size'] ) . 'px;
 			}
-			h5{
+			h5,
+			.has-woostify-heading-5-font-size{
 				font-size: ' . esc_attr( $options['heading_h5_font_size'] ) . 'px;
 			}
-			h6{
+			h6,
+			.has-woostify-heading-6-font-size{
 				font-size: ' . esc_attr( $options['heading_h6_font_size'] ) . 'px;
 			}
 
@@ -191,8 +200,13 @@ class Woostify_Get_CSS {
 			.dialog-search-title,
 			.cart-collaterals th,
 			.woocommerce-mini-cart__total strong,
-			.woocommerce-form-login-toggle .woocommerce-info a{
+			.woocommerce-form-login-toggle .woocommerce-info a,
+			.has-woostify-heading-color{
 				color: ' . esc_attr( $options['heading_color'] ) . ';
+			}
+
+			.has-woostify-heading-background-color{
+				background-color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 
 			.variations label{
@@ -225,7 +239,7 @@ class Woostify_Get_CSS {
 			.clear-cart-btn,
 			.form-submit .submit,
 			.elementor-button-wrapper .elementor-button,
-			.woostify-contact-form input[type="submit"],
+			.has-woostify-contact-form input[type="submit"],
 			#secondary .widget a.button{
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 				color: ' . esc_attr( $options['button_text_color'] ) . ';
@@ -276,7 +290,8 @@ class Woostify_Get_CSS {
 			.site-header .primary-navigation .menu-item-has-children:hover > a,
 			.default-widget a strong,
 			.woocommerce-mini-cart__total .amount,
-			.woocommerce-form-login-toggle .woocommerce-info a:hover{
+			.woocommerce-form-login-toggle .woocommerce-info a:hover,
+			.has-woostify-primary-color{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
@@ -292,7 +307,8 @@ class Woostify_Get_CSS {
 			.woocommerce-message,
 			.woocommerce-info,
 			#scroll-to-top,
-			.woocommerce-store-notice{
+			.woocommerce-store-notice,
+			.has-woostify-primary-background-color{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
