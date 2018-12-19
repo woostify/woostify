@@ -21,55 +21,51 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: comments.php:22
+#: comments.php:14
 msgid "Post Comments"
 msgstr ""
 
 #. translators: 1: number of comments, 2: post title
-#: comments.php:29
+#: comments.php:21
 msgctxt "comments title"
 msgid "%1$s comment"
 msgid_plural "%1$s comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: comments.php:37
+#: comments.php:29
 msgid "Comment Navigation Above"
 msgstr ""
 
-#: comments.php:38, comments.php:58
+#: comments.php:30
 msgid "Comment navigation"
 msgstr ""
 
-#: comments.php:39, comments.php:59
+#: comments.php:31
 msgid "&larr; Older Comments"
 msgstr ""
 
-#: comments.php:40, comments.php:60
+#: comments.php:32
 msgid "Newer Comments &rarr;"
 msgstr ""
 
-#: comments.php:57
-msgid "Comment Navigation Below"
-msgstr ""
-
-#: comments.php:69
+#: comments.php:51
 msgid "Comments are closed."
 msgstr ""
 
-#: comments.php:74
+#: comments.php:56
 msgid "Name"
 msgstr ""
 
-#: comments.php:75
+#: comments.php:57
 msgid "Email"
 msgstr ""
 
-#: comments.php:84
+#: comments.php:66
 msgid "Message"
 msgstr ""
 
-#: comments.php:86
+#: comments.php:68
 msgid "Submit"
 msgstr ""
 

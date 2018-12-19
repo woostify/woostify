@@ -5675,6 +5675,17 @@ dd {
   text-transform: capitalize;
 }
 
+.comment-navigation {
+  margin-bottom: 30px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: flex-start;
+  align-items: flex-start;
+}
+
 .comment-list {
   margin: 0;
   padding-left: 0;
