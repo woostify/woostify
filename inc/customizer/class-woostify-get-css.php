@@ -291,7 +291,8 @@ class Woostify_Get_CSS {
 			.default-widget a strong,
 			.woocommerce-mini-cart__total .amount,
 			.woocommerce-form-login-toggle .woocommerce-info a:hover,
-			.has-woostify-primary-color{
+			.has-woostify-primary-color,
+			.blog-layout-grid .site-main .post-read-more a{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 

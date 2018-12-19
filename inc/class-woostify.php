@@ -465,6 +465,11 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Product style layout.
 			$classes[] = 'ps-' . $options['product_style'];
 
+			// Blog page layout.
+			if ( woostify_is_blog() && ! is_singular( 'post' ) ) {
+				$classes[] = 'blog-layout-' . $options['blog_list_layout'];
+			}
+
 			return $classes;
 		}
 
@@ -511,7 +516,15 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @param string $more More exerpt.
 		 */
 		public function modify_excerpt_more( $more ) {
-			return '...';
+			$more           = '...';
+			$options        = woostify_options( false );
+			$read_more_text = apply_filters( 'woostify_read_more_text', __( 'Read More', 'woostify' ) );
+
+			if ( 'grid' == $options['blog_list_layout'] ) {
+				$more .= '<span class="post-read-more"><a href="' . get_the_permalink() . '">' . esc_html( $read_more_text ) . '</a></span>';
+			}
+
+			return $more;
 		}
 	}
 endif;

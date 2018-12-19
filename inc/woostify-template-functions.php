@@ -656,6 +656,28 @@ if ( ! function_exists( 'woostify_post_header_wrapper_close' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_post_info_start' ) ) {
+	/**
+	 * Blog info start
+	 */
+	function woostify_post_info_start() {
+		?>
+		<div class="post-info">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_post_info_end' ) ) {
+	/**
+	 * Blog info end
+	 */
+	function woostify_post_info_end() {
+		?>
+		</div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_post_meta' ) ) {
 	/**
 	 * Display the post meta
@@ -775,13 +797,13 @@ if ( ! function_exists( 'woostify_post_content' ) ) {
 
 		if ( woostify_show_excerpt() && ! is_single() ) {
 			?>
-				<div class="entry-summary" itemprop="text">
+				<div class="entry-summary summary-text" itemprop="text">
 					<?php the_excerpt(); ?>
 				</div>
 			<?php
 		} else {
 			?>
-			<div class="entry-content" itemprop="text">
+			<div class="entry-content summary-text" itemprop="text">
 				<?php
 				the_content();
 
@@ -813,10 +835,12 @@ if ( ! function_exists( 'woostify_post_read_more_button' ) ) {
 	 */
 	function woostify_post_read_more_button() {
 		if ( ! is_single() ) {
+			$read_more_text = apply_filters( 'woostify_read_more_text', __( 'Read More', 'woostify' ) );
 			?>
+			
 			<p class="post-read-more">
 				<a href="<?php echo esc_url( get_permalink() ); ?>">
-					<?php esc_html_e( 'Read more', 'woostify' ); ?>
+					<?php echo esc_html( $read_more_text ); ?>
 				</a>
 			</p>
 			<?php
