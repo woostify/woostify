@@ -63,7 +63,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 		eventCartSidebarClose();
 		closeAll();
 	} ).on( 'updated_cart_totals', function() {
-		if ( 'undefined' !== typeof quantity() ) {
+		if ( 'function' === typeof quantity ) {
 			quantity();
 		}
 	} );

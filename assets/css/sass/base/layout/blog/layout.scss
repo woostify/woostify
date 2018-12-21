@@ -36,3 +36,64 @@ $sidebar_width: percentage( 270 / 1170 );
 .container{
     @extend .clearfix;
 }
+
+/* Grid Layout */
+.blog-layout-grid{
+	.site-main{
+		@include flex( flex, space-between, flex-start );
+		flex-wrap: wrap;
+
+		.post{
+			margin-bottom: 75px;
+			padding-bottom: 0;
+			border-bottom: 0;
+			background-color: #fff;
+			text-align: center;
+
+			@media ( min-width: 600px ) {
+				flex-basis: calc( ( 100%  - 30px ) / 2 );
+			}
+
+			@media ( min-width: $screen-md ) {
+				flex-basis: calc( ( 100%  - 60px ) / 3 );
+			}
+
+			+ .post {
+				margin-top: 0;
+			}
+		}
+
+		.post-cover-image{
+			margin-bottom: 0;
+		}
+
+		.post-info{
+			padding: 15px 20px 0 20px;
+
+			.entry-title{
+				font-size: 18px;
+			}
+		}
+
+		.summary-text{
+			padding: 0 20px 20px 20px;
+		}
+
+		.post-read-more{
+			display: block;
+			margin-top: 15px;
+			font-weight: 700;
+			a{
+				text-decoration: underline;
+				&:hover{
+					text-decoration: none;
+				}
+			}
+		}
+
+		#post-navigation{
+			flex: 0 0 100%;
+			margin-top: 0;
+		}
+	}
+}

@@ -27,12 +27,14 @@
 
 .post{
     .updated:not(.published){
-        @extend .sr-only
+        @extend .sr-only;
     }
 
     .post-cover-image{
         margin-bottom: 35px;
-
+		a{
+			display: block;
+		}
         img{
             max-height: 400px;
             object-fit: cover

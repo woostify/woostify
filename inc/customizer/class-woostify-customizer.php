@@ -99,6 +99,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'button_hover_background_color'        => '#3a3a3a',
 
 					// Blog.
+					'blog_list_layout'                     => 'list',
 					'blog_list_feature_image'              => true,
 					'blog_list_title'                      => true,
 					'blog_list_publish_date'               => true,

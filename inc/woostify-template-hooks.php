@@ -28,6 +28,11 @@ add_action( 'woostify_after_view', 'woostify_overlay', 30 );
 add_action( 'woostify_after_view', 'woostify_footer_action', 40 );
 add_action( 'woostify_footer_action', 'woostify_scroll_to_top', 40 );
 
+// Performance.
+add_filter( 'style_loader_src', 'woostify_remove_query_strings', 10, 2 );
+add_filter( 'script_loader_src', 'woostify_remove_query_strings', 10, 2 );
+add_action( 'wp_enqueue_scripts', 'woostify_dequeue_scripts_and_styles' );
+
 /**
  * Topbar
  *
@@ -79,12 +84,16 @@ add_action( 'woostify_footer_content', 'woostify_credit', 20 );
  * @see  woostify_post_nav()
  * @see  woostify_display_comments()
  */
-add_action( 'woostify_loop_post', 'woostify_post_header_wrapper', 5 );
-add_action( 'woostify_loop_post', 'woostify_post_thumbnail', 7 );
-add_action( 'woostify_loop_post', 'woostify_post_meta', 10 );
-add_action( 'woostify_loop_post', 'woostify_post_title', 15 );
-add_action( 'woostify_loop_post', 'woostify_post_header_wrapper_close', 20 );
-add_action( 'woostify_loop_post', 'woostify_post_content', 30 );
+add_action( 'woostify_loop_post', 'woostify_post_header_wrapper', 10 );
+add_action( 'woostify_loop_post', 'woostify_post_thumbnail', 20 );
+
+add_action( 'woostify_loop_post', 'woostify_post_info_start', 30 );
+add_action( 'woostify_loop_post', 'woostify_post_meta', 40 );
+add_action( 'woostify_loop_post', 'woostify_post_title', 50 );
+add_action( 'woostify_loop_post', 'woostify_post_info_end', 60 );
+
+add_action( 'woostify_loop_post', 'woostify_post_header_wrapper_close', 70 );
+add_action( 'woostify_loop_post', 'woostify_post_content', 80 );
 
 add_action( 'woostify_loop_after', 'woostify_paging_nav', 10 );
 add_action( 'woostify_post_content_after', 'woostify_post_read_more_button', 10 );

@@ -77,6 +77,12 @@
     margin-bottom: 36px;
     text-transform: capitalize;
 }
+
+.comment-navigation{
+	margin-bottom: 30px;
+	@include flex( flex, space-between, flex-start );
+}
+
 .comment-list{
     margin: 0;
     padding-left: 0;

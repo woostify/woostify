@@ -21,55 +21,51 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: comments.php:22
+#: comments.php:14
 msgid "Post Comments"
 msgstr ""
 
 #. translators: 1: number of comments, 2: post title
-#: comments.php:29
+#: comments.php:21
 msgctxt "comments title"
 msgid "%1$s comment"
 msgid_plural "%1$s comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: comments.php:37
+#: comments.php:29
 msgid "Comment Navigation Above"
 msgstr ""
 
-#: comments.php:38, comments.php:58
+#: comments.php:30
 msgid "Comment navigation"
 msgstr ""
 
-#: comments.php:39, comments.php:59
+#: comments.php:31
 msgid "&larr; Older Comments"
 msgstr ""
 
-#: comments.php:40, comments.php:60
+#: comments.php:32
 msgid "Newer Comments &rarr;"
 msgstr ""
 
-#: comments.php:57
-msgid "Comment Navigation Below"
-msgstr ""
-
-#: comments.php:69
+#: comments.php:51
 msgid "Comments are closed."
 msgstr ""
 
-#: comments.php:74
+#: comments.php:56
 msgid "Name"
 msgstr ""
 
-#: comments.php:75
+#: comments.php:57
 msgid "Email"
 msgstr ""
 
-#: comments.php:84
+#: comments.php:66
 msgid "Message"
 msgstr ""
 
-#: comments.php:86
+#: comments.php:68
 msgid "Submit"
 msgstr ""
 
@@ -108,32 +104,76 @@ msgstr ""
 msgid "Footer Menu"
 msgstr ""
 
-#: inc/class-woostify.php:170
+#: inc/class-woostify.php:182
+msgid "Primary Color"
+msgstr ""
+
+#: inc/class-woostify.php:187, inc/customizer/sections/color/color.php:92, inc/customizer/sections/footer/footer.php:130
+msgid "Heading Color"
+msgstr ""
+
+#: inc/class-woostify.php:192, inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:114, inc/customizer/sections/footer/footer.php:174, inc/customizer/sections/header/topbar.php:27
+msgid "Text Color"
+msgstr ""
+
+#: inc/class-woostify.php:204
+msgid "Text Font Size"
+msgstr ""
+
+#: inc/class-woostify.php:209
+msgid "H6 Font Size"
+msgstr ""
+
+#: inc/class-woostify.php:214
+msgid "H5 Font Size"
+msgstr ""
+
+#: inc/class-woostify.php:219
+msgid "H4 Font Size"
+msgstr ""
+
+#: inc/class-woostify.php:224
+msgid "H3 Font Size"
+msgstr ""
+
+#: inc/class-woostify.php:229
+msgid "H2 Font Size"
+msgstr ""
+
+#: inc/class-woostify.php:234
+msgid "H1 Font Size"
+msgstr ""
+
+#: inc/class-woostify.php:249
 msgid "Main Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:172
+#: inc/class-woostify.php:251
 msgid "Appears in the sidebar of the site."
 msgstr ""
 
-#: inc/class-woostify.php:177
+#: inc/class-woostify.php:256
 msgid "Woocommerce Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:179
+#: inc/class-woostify.php:258
 msgid " Appears in the sidebar of shop/product page."
 msgstr ""
 
-#: inc/class-woostify.php:184, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
+#: inc/class-woostify.php:263, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
 msgid "Footer Widget"
 msgstr ""
 
-#: inc/class-woostify.php:186
+#: inc/class-woostify.php:265
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:396
+#: inc/class-woostify.php:480
 msgid "Post Navigation"
+msgstr ""
+
+#: inc/class-woostify.php:521, inc/woostify-template-functions.php:838, inc/admin/class-woostify-admin.php:200
+msgid "Read More"
 msgstr ""
 
 #: inc/woostify-functions.php:93, inc/admin/class-woostify-admin.php:130
@@ -148,7 +188,7 @@ msgstr ""
 msgid "Related Posts"
 msgstr ""
 
-#: inc/woostify-template-functions.php:51, inc/woostify-template-functions.php:819, inc/admin/class-woostify-admin.php:177
+#: inc/woostify-template-functions.php:51, inc/admin/class-woostify-admin.php:177
 msgid "Read more"
 msgstr ""
 
@@ -207,82 +247,82 @@ msgstr ""
 msgid "Error 404"
 msgstr ""
 
-#: inc/woostify-template-functions.php:566, inc/woostify-template-functions.php:790
+#: inc/woostify-template-functions.php:566, inc/woostify-template-functions.php:812
 msgid "Pages:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:685
+#: inc/woostify-template-functions.php:707
 msgid "by"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: inc/woostify-template-functions.php:702, inc/woostify-template-functions.php:832
+#: inc/woostify-template-functions.php:724, inc/woostify-template-functions.php:856
 msgid ", "
 msgstr ""
 
-#: inc/woostify-template-functions.php:708
+#: inc/woostify-template-functions.php:730
 msgid "Posted in"
 msgstr ""
 
-#: inc/woostify-template-functions.php:724
+#: inc/woostify-template-functions.php:746
 msgid "No comments yet"
 msgstr ""
 
-#: inc/woostify-template-functions.php:725
+#: inc/woostify-template-functions.php:747
 msgid "1 Comment"
 msgstr ""
 
-#: inc/woostify-template-functions.php:726
+#: inc/woostify-template-functions.php:748
 msgid "% Comments"
 msgstr ""
 
-#: inc/woostify-template-functions.php:832
+#: inc/woostify-template-functions.php:856
 msgid "Tags"
 msgstr ""
 
-#: inc/woostify-template-functions.php:854
+#: inc/woostify-template-functions.php:878
 msgctxt "Next post"
 msgid "Next"
 msgstr ""
 
-#: inc/woostify-template-functions.php:855
+#: inc/woostify-template-functions.php:879
 msgctxt "Previous post"
 msgid "Prev"
 msgstr ""
 
-#: inc/woostify-template-functions.php:868
+#: inc/woostify-template-functions.php:892
 msgid "Next post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:869
+#: inc/woostify-template-functions.php:893
 msgid "Previous post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:893
+#: inc/woostify-template-functions.php:917
 msgid "Posted on"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1098
+#: inc/woostify-template-functions.php:1122
 msgid "Dialog search icon"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1102
+#: inc/woostify-template-functions.php:1126
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1364, inc/woostify-template-functions.php:1414
+#: inc/woostify-template-functions.php:1388, inc/woostify-template-functions.php:1438
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1367, inc/woostify-template-functions.php:1417
+#: inc/woostify-template-functions.php:1391, inc/woostify-template-functions.php:1441
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1369, inc/woostify-template-functions.php:1419
+#: inc/woostify-template-functions.php:1393, inc/woostify-template-functions.php:1443
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1551, inc/customizer/sections/footer/footer.php:26
+#: inc/woostify-template-functions.php:1575, inc/customizer/sections/footer/footer.php:26
 msgid "Scroll To Top"
 msgstr ""
 
@@ -366,10 +406,6 @@ msgstr ""
 
 #: inc/admin/class-woostify-admin.php:196
 msgid "All the tools you need to define your style and customize your Woostify store."
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:200
-msgid "Read More"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:213
@@ -464,15 +500,15 @@ msgstr ""
 msgid "Disable Footer"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:206
+#: inc/customizer/class-woostify-customizer.php:207
 msgid "Pro Version Is Coming Soon"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:223, inc/customizer/class-woostify-customizer.php:239, inc/customizer/class-woostify-customizer.php:255, inc/customizer/class-woostify-customizer.php:271
+#: inc/customizer/class-woostify-customizer.php:224, inc/customizer/class-woostify-customizer.php:240, inc/customizer/class-woostify-customizer.php:256, inc/customizer/class-woostify-customizer.php:272
 msgid "Learn More"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:224, inc/customizer/class-woostify-customizer.php:240, inc/customizer/class-woostify-customizer.php:256, inc/customizer/class-woostify-customizer.php:272
+#: inc/customizer/class-woostify-customizer.php:225, inc/customizer/class-woostify-customizer.php:241, inc/customizer/class-woostify-customizer.php:257, inc/customizer/class-woostify-customizer.php:273
 msgid "More options are coming for this section in our pro version."
 msgstr ""
 
@@ -710,11 +746,11 @@ msgstr ""
 msgid "Blog Single Structure"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:46, inc/customizer/sections/blog/blog.php:46
+#: inc/customizer/sections/blog/blog-single.php:46, inc/customizer/sections/blog/blog.php:75
 msgid "Featured Image"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:68, inc/customizer/sections/blog/blog.php:68
+#: inc/customizer/sections/blog/blog-single.php:68, inc/customizer/sections/blog/blog.php:97
 msgid "Post Title"
 msgstr ""
 
@@ -722,32 +758,40 @@ msgstr ""
 msgid "Related Post"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:112, inc/customizer/sections/blog/blog.php:90
+#: inc/customizer/sections/blog/blog-single.php:112, inc/customizer/sections/blog/blog.php:119
 msgid "Blog Post Meta"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:132, inc/customizer/sections/blog/blog.php:110
+#: inc/customizer/sections/blog/blog-single.php:132, inc/customizer/sections/blog/blog.php:139
 msgid "Publish Date"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:154, inc/customizer/sections/blog/blog.php:132
+#: inc/customizer/sections/blog/blog-single.php:154, inc/customizer/sections/blog/blog.php:161
 msgid "Author"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:176, inc/customizer/sections/blog/blog.php:154
+#: inc/customizer/sections/blog/blog-single.php:176, inc/customizer/sections/blog/blog.php:183
 msgid "Category"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:198, inc/customizer/sections/blog/blog.php:176
+#: inc/customizer/sections/blog/blog-single.php:198, inc/customizer/sections/blog/blog.php:205
 msgid "Comments"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog.php:26
-msgid "Blog List Structure"
+#: inc/customizer/sections/blog/blog.php:28
+msgid "Blog Layout"
 msgstr ""
 
-#: inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:114, inc/customizer/sections/footer/footer.php:174, inc/customizer/sections/header/topbar.php:27
-msgid "Text Color"
+#: inc/customizer/sections/blog/blog.php:32
+msgid "List"
+msgstr ""
+
+#: inc/customizer/sections/blog/blog.php:33
+msgid "Grid"
+msgstr ""
+
+#: inc/customizer/sections/blog/blog.php:55
+msgid "Blog List Structure"
 msgstr ""
 
 #: inc/customizer/sections/buttons/button.php:48, inc/customizer/sections/footer/footer.php:108, inc/customizer/sections/header/header.php:76, inc/customizer/sections/header/topbar.php:50
@@ -772,10 +816,6 @@ msgstr ""
 
 #: inc/customizer/sections/color/color.php:70
 msgid "Sub-menu Color"
-msgstr ""
-
-#: inc/customizer/sections/color/color.php:92, inc/customizer/sections/footer/footer.php:130
-msgid "Heading Color"
 msgstr ""
 
 #: inc/customizer/sections/color/color.php:136

@@ -158,6 +158,85 @@ if ( ! class_exists( 'woostify' ) ) :
 			 * Declare support for selective refreshing of widgets.
 			 */
 			add_theme_support( 'customize-selective-refresh-widgets' );
+
+			// Gutenberg.
+			$options = woostify_options( false );
+
+			// Default block styles.
+			add_theme_support( 'wp-block-styles' );
+
+			// Responsive embedded content.
+			add_theme_support( 'responsive-embeds' );
+
+			// Editor styles.
+			add_theme_support( 'editor-styles' );
+
+			// Wide Alignment.
+			add_theme_support( 'align-wide' );
+
+			// Editor Color Palette.
+			add_theme_support(
+				'editor-color-palette',
+				array(
+					array(
+						'name'  => __( 'Primary Color', 'woostify' ),
+						'slug'  => 'woostify-primary',
+						'color' => $options['theme_color'],
+					),
+					array(
+						'name'  => __( 'Heading Color', 'woostify' ),
+						'slug'  => 'woostify-heading',
+						'color' => $options['heading_color'],
+					),
+					array(
+						'name'  => __( 'Text Color', 'woostify' ),
+						'slug'  => 'woostify-text',
+						'color' => $options['text_color'],
+					),
+				)
+			);
+
+			// Block Font Sizes.
+			add_theme_support(
+				'editor-font-sizes',
+				array(
+					array(
+						'name'      => __( 'Text Font Size', 'woostify' ),
+						'size'      => $options['body_font_size'],
+						'slug'      => 'woostify-text',
+					),
+					array(
+						'name'      => __( 'H6 Font Size', 'woostify' ),
+						'size'      => $options['heading_h6_font_size'],
+						'slug'      => 'woostify-heading-6',
+					),
+					array(
+						'name'      => __( 'H5 Font Size', 'woostify' ),
+						'size'      => $options['heading_h5_font_size'],
+						'slug'      => 'woostify-heading-5',
+					),
+					array(
+						'name'      => __( 'H4 Font Size', 'woostify' ),
+						'size'      => $options['heading_h4_font_size'],
+						'slug'      => 'woostify-heading-4',
+					),
+					array(
+						'name'      => __( 'H3 Font Size', 'woostify' ),
+						'size'      => $options['heading_h3_font_size'],
+						'slug'      => 'woostify-heading-3',
+					),
+					array(
+						'name'      => __( 'H2 Font Size', 'woostify' ),
+						'size'      => $options['heading_h2_font_size'],
+						'slug'      => 'woostify-heading-2',
+					),
+					array(
+						'name'      => __( 'H1 Font Size', 'woostify' ),
+						'size'      => $options['heading_h1_font_size'],
+						'slug'      => 'woostify-heading-1',
+					),
+				)
+			);
 		}
 
 		/**
@@ -386,6 +465,11 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Product style layout.
 			$classes[] = 'ps-' . $options['product_style'];
 
+			// Blog page layout.
+			if ( woostify_is_blog() && ! is_singular( 'post' ) ) {
+				$classes[] = 'blog-layout-' . $options['blog_list_layout'];
+			}
+
 			return $classes;
 		}
 
@@ -432,7 +516,15 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @param string $more More exerpt.
 		 */
 		public function modify_excerpt_more( $more ) {
-			return '...';
+			$more           = '...';
+			$options        = woostify_options( false );
+			$read_more_text = apply_filters( 'woostify_read_more_text', __( 'Read More', 'woostify' ) );
+
+			if ( 'grid' == $options['blog_list_layout'] ) {
+				$more .= '<span class="post-read-more"><a href="' . get_the_permalink() . '">' . esc_html( $read_more_text ) . '</a></span>';
+			}
+
+			return $more;
 		}
 	}
 endif;
