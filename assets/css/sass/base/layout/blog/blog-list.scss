@@ -108,7 +108,7 @@
     }
 }
 
-#post-navigation{
+.pagination{
     margin-top: 70px;
 
     ul{
@@ -132,6 +132,10 @@
     li{
         list-style: none;
         display: inline-flex;
+
+        .current{
+        	color: #fff;
+        }
     }
 
     .nav-links{

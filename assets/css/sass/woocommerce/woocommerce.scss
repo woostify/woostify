@@ -69,29 +69,7 @@
 /* pagination */
 .woocommerce-pagination{
 	text-align: center;
-	text-transform: uppercase;
-	ul{
-		padding-left: 0;
-	}
-	li{
-		list-style: none;
-		display: inline-block;
-		border: 0;
-		.page-numbers{
-			width: 40px;
-			height: 40px;
-			border-radius: 50%;
-			@extend .flex;
-		}
-		.prev,
-		.next{
-			width: auto;
-			padding: 0 5px;
-		}
-		.current{
-			color: #fff;
-		}
-	}
+	@extend .pagination;
 }
 
 /* price */

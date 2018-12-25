@@ -96,84 +96,88 @@ msgstr ""
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Main Sidebar</strong></a> and dragging widgets into this widget area."
 msgstr ""
 
-#: inc/class-woostify.php:113
+#: inc/class-woostify.php:126
 msgid "Primary Menu"
 msgstr ""
 
-#: inc/class-woostify.php:114
+#: inc/class-woostify.php:127
 msgid "Footer Menu"
 msgstr ""
 
-#: inc/class-woostify.php:182
+#: inc/class-woostify.php:195
 msgid "Primary Color"
 msgstr ""
 
-#: inc/class-woostify.php:187, inc/customizer/sections/color/color.php:92, inc/customizer/sections/footer/footer.php:130
+#: inc/class-woostify.php:200, inc/customizer/sections/color/color.php:92, inc/customizer/sections/footer/footer.php:130
 msgid "Heading Color"
 msgstr ""
 
-#: inc/class-woostify.php:192, inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:114, inc/customizer/sections/footer/footer.php:174, inc/customizer/sections/header/topbar.php:27
+#: inc/class-woostify.php:205, inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:114, inc/customizer/sections/footer/footer.php:174, inc/customizer/sections/header/topbar.php:27
 msgid "Text Color"
 msgstr ""
 
-#: inc/class-woostify.php:204
+#: inc/class-woostify.php:217
 msgid "Text Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:209
+#: inc/class-woostify.php:222
 msgid "H6 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:214
+#: inc/class-woostify.php:227
 msgid "H5 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:219
+#: inc/class-woostify.php:232
 msgid "H4 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:224
+#: inc/class-woostify.php:237
 msgid "H3 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:229
+#: inc/class-woostify.php:242
 msgid "H2 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:234
+#: inc/class-woostify.php:247
 msgid "H1 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:249
+#: inc/class-woostify.php:262
 msgid "Main Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:251
+#: inc/class-woostify.php:264
 msgid "Appears in the sidebar of the site."
 msgstr ""
 
-#: inc/class-woostify.php:256
+#: inc/class-woostify.php:269
 msgid "Woocommerce Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:258
+#: inc/class-woostify.php:271
 msgid " Appears in the sidebar of shop/product page."
 msgstr ""
 
-#: inc/class-woostify.php:263, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
+#: inc/class-woostify.php:276, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
 msgid "Footer Widget"
 msgstr ""
 
-#: inc/class-woostify.php:265
+#: inc/class-woostify.php:278
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:480
-msgid "Post Navigation"
+#: inc/class-woostify.php:493
+msgid "Post Pagination"
 msgstr ""
 
-#: inc/class-woostify.php:521, inc/woostify-template-functions.php:838, inc/admin/class-woostify-admin.php:200
+#: inc/class-woostify.php:534, inc/woostify-template-functions.php:838, inc/admin/class-woostify-admin.php:200
 msgid "Read More"
+msgstr ""
+
+#: inc/elementor.php:20
+msgid "Woostify Theme"
 msgstr ""
 
 #: inc/woostify-functions.php:93, inc/admin/class-woostify-admin.php:130
@@ -600,7 +604,7 @@ msgstr ""
 msgid "Let's go!"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:94, inc/woocommerce/class-woostify-woocommerce.php:296
+#: inc/nux/class-woostify-nux-guided-tour.php:94, inc/woocommerce/class-woostify-woocommerce.php:369
 msgid "Next"
 msgstr ""
 
@@ -682,19 +686,19 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:295
+#: inc/woocommerce/class-woostify-woocommerce.php:368
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:319
+#: inc/woocommerce/class-woostify-woocommerce.php:392
 msgid "Sale!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:459, inc/woocommerce/class-woostify-woocommerce.php:587, inc/woocommerce/class-woostify-woocommerce.php:618, inc/woocommerce/class-woostify-woocommerce.php:641, inc/woocommerce/class-woostify-woocommerce.php:666
+#: inc/woocommerce/class-woostify-woocommerce.php:532, inc/woocommerce/class-woostify-woocommerce.php:660, inc/woocommerce/class-woostify-woocommerce.php:691, inc/woocommerce/class-woostify-woocommerce.php:714, inc/woocommerce/class-woostify-woocommerce.php:739
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:897
+#: inc/woocommerce/class-woostify-woocommerce.php:970
 msgid "Clear cart"
 msgstr ""
 

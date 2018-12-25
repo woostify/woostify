@@ -90,7 +90,9 @@ class Woostify_Get_CSS {
 				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
-
+			
+			.pagination a,
+			.pagination a,
 			.woocommerce-pagination a,
 			.woocommerce-loop-product__category a,
 			.woocommerce-loop-product__title,
@@ -282,7 +284,6 @@ class Woostify_Get_CSS {
 			.site-header .primary-navigation > li.current-menu-parent > a,
 			.site-header .primary-navigation > li.current_page_parent > a,
 			.site-header .primary-navigation > li.current_page_ancestor > a,
-			.woocommerce-pagination a:hover,
 			.woocommerce-cart-form__contents .product-subtotal,
 			.woocommerce-checkout-review-order-table .order-total,
 			.woocommerce-table--order-details .product-name a,
@@ -297,6 +298,7 @@ class Woostify_Get_CSS {
 			}
 
 			.onsale,
+			.pagination li .page-numbers.current,
 			.woocommerce-pagination li .page-numbers.current,
 			.tagcloud a:hover,
 			.price_slider_wrapper .ui-widget-header,

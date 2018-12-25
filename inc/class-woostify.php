@@ -21,6 +21,9 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Setup class.
 		 */
 		public function __construct() {
+			// Set the content width based on the theme's design and stylesheet.
+			$this->content_width();
+
 			add_action( 'after_setup_theme', array( $this, 'setup' ) );
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 10 );
@@ -35,6 +38,16 @@ if ( ! class_exists( 'woostify' ) ) :
 			add_action( 'customize_preview_init', array( $this, 'customize_live_preview' ) );
 			add_filter( 'wp_tag_cloud', array( $this, 'remove_tag_inline_style' ) );
 			add_filter( 'excerpt_more', array( $this, 'modify_excerpt_more' ) );
+		}
+
+		/**
+		 * Set the content width based on the theme's design and stylesheet.
+		 */
+		public function content_width() {
+			if ( ! isset( $content_width ) ) {
+				// Pixel.
+				$content_width = 1170;
+			}
 		}
 
 		/**
@@ -477,7 +490,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Custom navigation markup template hooked into `navigation_markup_template` filter hook.
 		 */
 		public function navigation_markup_template() {
-			$template  = '<nav id="post-navigation" class="navigation %1$s" role="navigation" aria-label="' . esc_html__( 'Post Navigation', 'woostify' ) . '">';
+			$template  = '<nav id="post-navigation" class="navigation %1$s" role="navigation" aria-label="' . esc_html__( 'Post Pagination', 'woostify' ) . '">';
 			$template .= '<h2 class="screen-reader-text">%2$s</h2>';
 			$template .= '<div class="nav-links">%3$s</div>';
 			$template .= '</nav>';

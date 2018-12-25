@@ -320,3 +320,37 @@ if ( ! function_exists( 'woostify_dequeue_scripts_and_styles' ) ) {
 		wp_dequeue_style( 'sb-font-awesome' );
 	}
 }
+
+if ( ! function_exists( 'woostify_narrow_data' ) ) {
+	/**
+	 * Get dropdown data
+	 *
+	 * @param      string $type   The type 'post' || 'term'.
+	 * @param      string $terms  The terms post, category, product, product_cat, custom_post_type...
+	 *
+	 * @return     array
+	 */
+	function woostify_narrow_data( $type = 'post', $terms = 'category' ) {
+		$output = array();
+		switch ( $type ) {
+			case 'post':
+				$args = array(
+					'post_type'           => $terms,
+					'post_status'         => 'publish',
+					'ignore_sticky_posts' => 1,
+					'posts_per_page'      => -1,
+				);
+
+				$qr     = new WP_Query( $args );
+				$output = wp_list_pluck( $qr->posts, 'post_title', 'ID' );
+				break;
+
+			case 'term':
+				$terms  = get_terms( $terms );
+				$output = wp_list_pluck( $terms, 'name', 'term_id' );
+				break;
+		}
+
+		return $output;
+	}
+}
