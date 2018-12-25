@@ -295,21 +295,6 @@ if ( ! function_exists( 'woostify_browser_detection' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_remove_query_strings' ) ) {
-
-	/**
-	 * Remove query strings from static resources
-	 *
-	 * @param      string $src The source.
-	 */
-	function woostify_remove_query_strings( $src ) {
-		if ( strpos( $src, '?ver=' ) ) {
-			$src = remove_query_arg( 'ver', $src );
-			return $src;
-		}
-	}
-}
-
 if ( ! function_exists( 'woostify_dequeue_scripts_and_styles' ) ) {
 	/**
 	 * Dequeue scripts and style no need

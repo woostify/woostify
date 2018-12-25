@@ -29,8 +29,6 @@ add_action( 'woostify_after_view', 'woostify_footer_action', 40 );
 add_action( 'woostify_footer_action', 'woostify_scroll_to_top', 40 );
 
 // Performance.
-add_filter( 'style_loader_src', 'woostify_remove_query_strings', 10, 2 );
-add_filter( 'script_loader_src', 'woostify_remove_query_strings', 10, 2 );
 add_action( 'wp_enqueue_scripts', 'woostify_dequeue_scripts_and_styles' );
 
 /**

@@ -172,7 +172,9 @@ if ( ! class_exists( 'woostify' ) ) :
 			 */
 			add_theme_support( 'customize-selective-refresh-widgets' );
 
-			// Gutenberg.
+			/**
+			 * Gutenberg.
+			 */
 			$options = woostify_options( false );
 
 			// Default block styles.

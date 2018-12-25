@@ -144,7 +144,7 @@ $wp_customize->add_control(
 			),
 			'choices'        => array(
 				'desktop' => array(
-					'min'  => apply_filters( 'woostify_parent_menu_font_size_min_step', 5 ),
+					'min'  => apply_filters( 'woostify_parent_menu_font_size_min_step', 10 ),
 					'max'  => apply_filters( 'woostify_parent_menu_font_size_max_step', 60 ),
 					'step' => 1,
 					'edit' => true,
@@ -179,7 +179,7 @@ $wp_customize->add_control(
 			),
 			'choices'        => array(
 				'desktop' => array(
-					'min'  => apply_filters( 'woostify_parent_menu_line_height_min_step', 20 ),
+					'min'  => apply_filters( 'woostify_parent_menu_line_height_min_step', 10 ),
 					'max'  => apply_filters( 'woostify_parent_menu_line_height_max_step', 100 ),
 					'step' => 1,
 					'edit' => true,
@@ -253,7 +253,7 @@ $wp_customize->add_control(
 			),
 			'choices'     => array(
 				'desktop' => array(
-					'min'  => apply_filters( 'woostify_sub_menu_font_size_min_step', 20 ),
+					'min'  => apply_filters( 'woostify_sub_menu_font_size_min_step', 10 ),
 					'max'  => apply_filters( 'woostify_sub_menu_font_size_max_step', 100 ),
 					'step' => 1,
 					'edit' => true,
@@ -288,7 +288,7 @@ $wp_customize->add_control(
 			),
 			'choices'     => array(
 				'desktop' => array(
-					'min'  => apply_filters( 'woostify_sub_menu_line_height_min_step', 20 ),
+					'min'  => apply_filters( 'woostify_sub_menu_line_height_min_step', 10 ),
 					'max'  => apply_filters( 'woostify_sub_menu_line_height_max_step', 100 ),
 					'step' => 1,
 					'edit' => true,
