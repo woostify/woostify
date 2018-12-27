@@ -82,6 +82,19 @@ function woostify_html_live_update( id, selector ) {
 	} );
 }
 
+// Hidden product meta.
+function woostify_hidden_product_meta( id, selector ) {
+	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
+		value.bind( function( newval ) {
+			if ( false === newval ) {
+				jQuery( document.body ).addClass( selector );
+			} else {
+				jQuery( document.body ).removeClass( selector );
+			}
+		} );
+	} );
+}
+
 /**
  * Multi device slider update
  *
@@ -227,4 +240,8 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	// H6 font size.
 	woostify_unit_live_update( 'heading_h6_font_size', 'h6', 'font-size', 18 );
 
+	// Hidden product meta.
+	woostify_hidden_product_meta( 'shop_single_skus', 'hid-skus' );
+	woostify_hidden_product_meta( 'shop_single_categories', 'hid-categories' );
+	woostify_hidden_product_meta( 'shop_single_tags', 'hid-tags' );
 } )( jQuery );

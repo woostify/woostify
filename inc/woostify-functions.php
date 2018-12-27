@@ -303,6 +303,11 @@ if ( ! function_exists( 'woostify_dequeue_scripts_and_styles' ) ) {
 		// What is 'sb-font-awesome'?
 		wp_deregister_style( 'sb-font-awesome' );
 		wp_dequeue_style( 'sb-font-awesome' );
+
+		// Remove default YITH Wishlist css.
+		wp_dequeue_style( 'yith-wcwl-main' );
+		wp_dequeue_style( 'yith-wcwl-font-awesome' );
+		wp_dequeue_style( 'jquery-selectBox' );
 	}
 }
 

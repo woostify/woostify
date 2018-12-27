@@ -1,10 +1,7 @@
 .products{
 	.product{
 		.product-loop-image-wrapper{
-			+.woocommerce-loop-product__category,
-			+.woocommerce-loop-product__title{
-				margin-top: 26px;
-			}
+			margin-bottom: 20px;
 		}
 	}
 }
@@ -93,6 +90,17 @@
 	}
 }
 
+.product-loop-action{
+	.yith-wcwl-add-to-wishlist{
+		background-color: #fff;
+		.yith-wcwl-wishlistexistsbrowse{
+			a{
+				color: #f00;
+			}
+		}
+	}
+}
+
 #secondary{
 	.select2-selection--multiple{
 		min-height: auto;
@@ -125,6 +133,7 @@
 		}
 	}
 }
+
 
 /* responsive */
 @media ( min-width: $screen-md ) {

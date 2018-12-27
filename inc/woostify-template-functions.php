@@ -523,6 +523,10 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 
 		if ( class_exists( 'woocommerce' ) && is_shop() ) {
 			$title = get_the_title( $page_id );
+
+			if ( true != $options['shop_page_title'] ) {
+				$disable_title = true;
+			}
 		} elseif ( is_archive() ) {
 			$title = get_the_archive_title( $page_id );
 		} elseif ( is_404() ) {
@@ -1337,6 +1341,29 @@ if ( ! function_exists( 'woostify_sidebar_menu_close' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_wishlist_page_url' ) ) {
+	/**
+	 * Get YTH wishlist page id
+	 */
+	function woostify_wishlist_page_url() {
+		if ( ! defined( 'YITH_WCWL' ) ) {
+			return '#';
+		}
+
+		global $wpdb;
+		$id = $wpdb->get_results( 'SELECT ID FROM ' . $wpdb->prefix . 'posts WHERE post_content LIKE "%[yith_wcwl_wishlist]%" AND post_parent = 0' );
+
+		if ( $id ) {
+			$id  = intval( $id[0]->ID );
+			$url = get_the_permalink( $id );
+
+			return $url;
+		}
+
+		return '#';
+	}
+}
+
 if ( ! function_exists( 'woostify_header_action' ) ) {
 	/**
 	 * Display header action
@@ -1363,6 +1390,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			$count = $woocommerce->cart->cart_contents_count;
 
 			$search_icon     = apply_filters( 'woostify_header_search_icon', 'ti-search' );
+			$wishlist_icon   = apply_filters( 'woostify_header_search_icon', 'ti-heart' );
 			$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
 			$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-bag' );
 			?>
@@ -1376,12 +1404,18 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 					<span class="tools-icon header-search-icon <?php echo esc_attr( $search_icon ); ?>"></span>
 				<?php } ?>
 
+				<?php do_action( 'woostify_site_tools_before_wishlist_icon' ); ?>
+
+				<?php if ( defined( 'YITH_WCWL' ) && true == $options['header_wishlist_icon'] ) { ?>
+					<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>"></a>
+				<?php } ?>
+
 				<?php do_action( 'woostify_site_tools_before_my_account' ); ?>
 
 				<?php // My account icon. ?>
 				<?php if ( true == $options['header_account_icon'] ) { ?>
-					<div class="my-account">
-						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account <?php echo esc_attr( $my_account_icon ); ?>"></a>
+					<div class="my-account tools-icon">
+						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon <?php echo esc_attr( $my_account_icon ); ?>"></a>
 
 						<ul>
 							<?php if ( ! is_user_logged_in() ) : ?>

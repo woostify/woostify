@@ -222,10 +222,24 @@ if ( ! function_exists( 'woostify_breadcrumb_only_for_woocommerce_page' ) ) {
 	 * Add woocommerce breadcrumb for woocommerce page only
 	 */
 	function woostify_breadcrumb_only_for_woocommerce_page() {
+		$options = woostify_options( false );
+
+		// Return if not woocommerce page.
 		if ( ! woostify_is_woocommerce_page() ) {
+			return;
+		}
+
+		// For woocommerce page ( not product page ).
+		if ( ! is_singular( 'product' ) && true != $options['shop_page_breadcrumb'] ) {
+			return;
+		}
+
+		// For product page.
+		if ( is_singular( 'product' ) && true != $options['shop_single_breadcrumb'] ) {
 			return;
 		}
 
 		add_action( 'woostify_content_top', 'woocommerce_breadcrumb', 40 );
 	}
 }
+

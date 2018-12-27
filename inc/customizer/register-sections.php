@@ -3,9 +3,6 @@
  * Register customizer panels & sections.
  *
  * @package     Woostify
- * @author      Woostify
- * @copyright   Copyright (c) 2018, Woostify
- * @since       Astra 1.0.0
  */
 
 // Layout.
@@ -159,7 +156,7 @@ if ( class_exists( 'woocommerce' ) ) {
 	$wp_customize->add_section(
 		'woostify_shop_single',
 		array(
-			'title'      => __( 'Shop Single', 'woostify' ),
+			'title'      => __( 'Product Single', 'woostify' ),
 			'capability' => 'edit_theme_options',
 			'panel'      => 'woostify_shop',
 		)

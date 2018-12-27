@@ -121,13 +121,12 @@ function footerAction() {
 // Scroll to top.
 function scrollToTop() {
 	var top = jQuery( '#scroll-to-top' );
-
 	if ( ! top.length ) {
 		return;
 	}
 
-	jQuery( top ).on( 'click', function() {
-		jQuery( document.documentElement, document.body ).animate( { scrollTop: 0 }, 300 );
+	top.on( 'click', function() {
+		jQuery( 'html, body' ).animate( { scrollTop: 0 }, 300 );
 	} );
 }
 

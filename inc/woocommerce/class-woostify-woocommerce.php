@@ -65,6 +65,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Cart fragment.
 			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'woostify_cart_sidebar_content_fragments' ) );
 			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'woostify_cart_total_number_fragments' ) );
+			// Add product Loop action area.
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_product_loop_item_action' ), 25 );
+			// Add wishlist icon into Loop action area.
+			add_action( 'woostify_product_loop_item_action_item', array( $this, 'woostify_product_loop_item_wishlist_icon' ), 30 );
 			// Clear shop cart.
 			add_action( 'init', array( $this, 'detect_clear_cart_submit' ) );
 
@@ -189,6 +193,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * @return array $classes modified to include 'woocommerce-active' class
 		 */
 		public function woocommerce_body_class( $classes ) {
+			$options   = woostify_options( false );
 			$classes[] = 'woocommerce-active';
 
 			// Product page.
@@ -199,8 +204,25 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				$product = wc_get_product( $page_id );
 				$gallery = $product->get_gallery_image_ids();
 
+				// Product meta.
+				$sku        = $options['shop_single_skus'];
+				$categories = $options['shop_single_categories'];
+				$tags       = $options['shop_single_tags'];
+
+				if ( true != $sku ) {
+					$classes[] = 'hid-skus';
+				}
+
+				if ( true != $categories ) {
+					$classes[] = 'hid-categories';
+				}
+
+				if ( true != $tags ) {
+					$classes[] = 'hid-tags';
+				}
+
 				if ( $gallery ) {
-					$classes[] = 'has-product-gallery';
+					$classes[] = 'has-gallery-layout-' . $options['shop_single_gallery_layout'];
 				}
 			}
 
@@ -395,6 +417,26 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				</span>
 				<?php
 			}
+		}
+
+		/**
+		 * Product loop action
+		 */
+		public function woostify_product_loop_item_action() {
+			?>
+			<div class="product-loop-action"><?php do_action( 'woostify_product_loop_item_action_item' ); ?></div>
+			<?php
+		}
+
+		/**
+		 * Product loop wishlist icon
+		 */
+		public function woostify_product_loop_item_wishlist_icon() {
+			if ( ! defined( 'YITH_WCWL' ) ) {
+				return;
+			}
+
+			echo do_shortcode( '[yith_wcwl_add_to_wishlist]' );
 		}
 
 
@@ -758,6 +800,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			// Tiny slider.
 			if ( ! empty( $gallery_id ) ) {
+				$options = woostify_options( false );
+				$axis    = $options['shop_single_gallery_layout'];
+
 				wp_enqueue_script( 'tiny-slider' );
 				wp_add_inline_script(
 					'tiny-slider',
@@ -771,37 +816,41 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 							autoHeight: true
 						});
 
-						var options = {
-							loop: false,
-							container: '#product-thumbnail-images',
-							gutter: 10,
-							items: 5,
-							mouseDrag: true,
-							nav: false,
-							controls: false,
-							axis: 'vertical'
-						}
-
-						if ( window.matchMedia( '( min-width: 768px )' ).matches ) {
-							var thumbCarousel = tns( options );
-						} else {
-							var thumbCarousel = tns({
+						var thumbCarousel,
+							options = {
 								loop: false,
 								container: '#product-thumbnail-images',
-								fixedWidth: 80,
-								items: 4,
+								gutter: 10,
+								items: 5,
 								mouseDrag: true,
 								nav: false,
 								controls: false,
-							});
+								axis: '{$axis}'
+							}
+
+						function slider() {
+							var match = window.matchMedia( '( min-width: 768px )' ).matches;
+
+							if ( match ) {
+								if ( document.body.classList.contains( 'has-gallery-layout-horizontal' ) ) {
+									options.fixedWidth = 80;
+								}
+								thumbCarousel = tns( options );
+							} else {
+								delete options.axis;
+								options.fixedWidth = 80;
+
+								thumbCarousel = tns( options );
+							}
 						}
+						slider();
 
 						var resetSlider = function(){
 							imageCarousel.goTo( 'first' );
 							thumbCarousel.goTo( 'first' );
 						}
 
-						jQuery( document.body ).on( 'found_variation', 'form.variations_form', function( event, variation ) {
+						jQuery( document.body ).on( 'found_variation', 'form.variations_form', function() {
 							resetSlider();
 						});
 
@@ -832,69 +881,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			wp_enqueue_script( 'photoswipe-init' );
 
 			// Photoswipe markup html.
-			?>
-			<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-				<!-- Background of PhotoSwipe. 
-					 It's a separate element, as animating opacity is faster than rgba(). -->
-				<div class="pswp__bg"></div>
-
-				<!-- Slides wrapper with overflow:hidden. -->
-				<div class="pswp__scroll-wrap">
-
-					<!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
-					<!-- don't modify these 3 pswp__item elements, data is added later on. -->
-					<div class="pswp__container">
-						<div class="pswp__item"></div>
-						<div class="pswp__item"></div>
-						<div class="pswp__item"></div>
-					</div>
-
-					<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-					<div class="pswp__ui pswp__ui--hidden">
-
-						<div class="pswp__top-bar">
-
-							<!--  Controls are self-explanatory. Order can be changed. -->
-
-							<div class="pswp__counter"></div>
-
-							<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-							<button class="pswp__button pswp__button--share" title="Share"></button>
-
-							<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-							<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-							<!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
-							<!-- element will get class pswp__preloader--active when preloader is running -->
-							<div class="pswp__preloader">
-								<div class="pswp__preloader__icn">
-									<div class="pswp__preloader__cut">
-										<div class="pswp__preloader__donut"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-							<div class="pswp__share-tooltip"></div> 
-						</div>
-
-						<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-						</button>
-
-						<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-						</button>
-
-						<div class="pswp__caption">
-							<div class="pswp__caption__center"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<?php
+			get_template_part( 'template-parts/content', 'photoswipe' );
 		}
 
 

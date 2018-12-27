@@ -327,7 +327,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			wp_enqueue_script(
 				'woostify-general',
 				WOOSTIFY_THEME_URI . 'assets/js/general' . $suffix . '.js',
-				array(),
+				array( 'jquery' ),
 				woostify_version(),
 				true
 			);

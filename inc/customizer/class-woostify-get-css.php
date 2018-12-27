@@ -362,7 +362,7 @@ class Woostify_Get_CSS {
 		$styles .= '
 			.single-product .content-top,
 			.product-page-container{
-				background-color:  ' . esc_attr( $options['single_content_background'] ) . ';
+				background-color:  ' . esc_attr( $options['shop_single_content_background'] ) . ';
 			}
 		';
 
