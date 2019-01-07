@@ -293,7 +293,9 @@ class Woostify_Get_CSS {
 			.woocommerce-mini-cart__total .amount,
 			.woocommerce-form-login-toggle .woocommerce-info a:hover,
 			.has-woostify-primary-color,
-			.blog-layout-grid .site-main .post-read-more a{
+			.blog-layout-grid .site-main .post-read-more a,
+			.site-footer a:hover,
+			.woostify-simple-subsbrice-form input[type="submit"]{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
@@ -306,12 +308,13 @@ class Woostify_Get_CSS {
 			.cart-sidebar-head .shop-cart-count,
 			.shop-cart-count,
 			.sidebar-menu .primary-navigation a:before,
-			.woostify-footer-text-widget .woostify-footer-social-icon a,
 			.woocommerce-message,
 			.woocommerce-info,
 			#scroll-to-top,
 			.woocommerce-store-notice,
-			.has-woostify-primary-background-color{
+			.has-woostify-primary-background-color,
+			.woostify-simple-subsbrice-form input[type="submit"]:hover,
+			.woostify-simple-subsbrice-form:focus-within input[type="submit"]{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
@@ -331,16 +334,29 @@ class Woostify_Get_CSS {
 		// Footer.
 		$styles .= '
 			.site-footer{
-				background-color: ' . esc_attr( $options['footer_background_color'] ) . ';
-				color: ' . esc_attr( $options['footer_text_color'] ) . ';
-			}
-
-			.site-footer .widget-title{
-				color: ' . esc_attr( $options['footer_heading_color'] ) . ';
+				margin-top: ' . esc_attr( $options['footer_space'] ) . 'px;
 			}
 
 			.site-footer a{
 				color: ' . esc_attr( $options['footer_link_color'] ) . ';
+			}
+
+			.site-footer{
+				background-color: ' . esc_attr( $options['footer_background_color'] ) . ';
+				color: ' . esc_attr( $options['footer_text_color'] ) . ';
+			}
+
+			.site-footer .widget-title,
+			.woostify-footer-social-icon a{
+				color: ' . esc_attr( $options['footer_heading_color'] ) . ';
+			}
+
+			.woostify-footer-social-icon a:hover{
+				background-color: ' . esc_attr( $options['footer_heading_color'] ) . ';
+			}
+
+			.woostify-footer-social-icon a {
+				border-color: ' . esc_attr( $options['footer_heading_color'] ) . ';
 			}
 		';
 

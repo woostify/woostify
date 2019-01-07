@@ -2,6 +2,10 @@
 	.row{
 		@extend .clearfix;
 	}
+
+	br{
+		display: none;
+	}
 	
 	.ajax-loader {
 		display: none;
@@ -104,7 +108,7 @@
 			padding: 0 20px;
 			display: block;
 			width: 100%;
-			margin-top: 30px;
+			margin-bottom: 30px;
 			border-radius: 4px;
 
 			@include placeholder{
@@ -130,7 +134,6 @@
 		padding: 20px;
 		resize: none;
 		border-radius: 4px;
-		margin-top: 30px;
 		@extend .duration;
 
 		@include placeholder{
@@ -139,6 +142,52 @@
 
 		&:focus{
 			border-color: #ccc;
+		}
+	}
+}
+
+/* Simple Subscribe Form */
+.woostify-simple-subsbrice-form{
+	&:focus-within{
+		input {
+			&:not([type="submit"]){
+				padding-right: 130px;
+			}
+			&[type="submit"]{
+				text-decoration: none;
+				color: #fff;
+			}
+		}
+	}
+	input{
+		&:not([type="submit"]){
+			height: 50px;
+			padding: 0 110px 0 20px;
+			display: block;
+			width: 100%;
+			@extend .duration;
+
+			&:focus{
+				border-color: #c6c0c0;
+			}
+		}
+
+		&[type="submit"]{
+			font-size: 12px;
+			font-weight: 600;
+			position: absolute;
+			right: 0;
+			top: 0;
+			height: 50px;
+			border: 0;
+			padding: 0 20px;
+			text-decoration: underline;
+			background-color: $tr;
+			@extend .duration;
+			&:hover{
+				text-decoration: none;
+				color: #fff;
+			}
 		}
 	}
 }

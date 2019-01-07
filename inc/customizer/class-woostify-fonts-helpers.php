@@ -212,7 +212,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 
 			// Set up our arguments.
 			$font_args = array();
-			$font_args['family'] = urlencode( $google_fonts );
+			$font_args['family'] = $google_fonts;
 			if ( '' !== $subset ) {
 				$font_args['subset'] = urlencode( $subset );
 			}

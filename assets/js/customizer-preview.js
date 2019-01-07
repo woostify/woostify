@@ -73,6 +73,19 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 	} );
 }
 
+// Append data.
+function woostify_append_data( id, selector, property ) {
+	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
+		value.bind( function( newval ) {
+			jQuery( 'head' ).append( '<style id="' + id + '">' + selector + '{' + property + ':' + newval + ';}</style>' );
+
+			setTimeout( function() {
+				jQuery( 'style#' + id ).not( ':last' ).remove();
+			}, 100 );
+		} );
+	} );
+}
+
 // Html.
 function woostify_html_live_update( id, selector ) {
 	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
@@ -166,24 +179,10 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	woostify_unit_live_update( 'body_line_height', 'body', 'line-height', 28 );
 
 	// Body font weight.
-	wp.customize( 'body_font_weight', function( value ) {
-		value.bind( function( newval ) {
-			jQuery( 'head' ).append( '<style id="body_font_weight">body, button, input, select, textarea{font-weight:' + newval + ';}</style>' );
-			setTimeout( function() {
-				jQuery( 'style#body_font_weight' ).not( ':last' ).remove();
-			}, 100 );
-		} );
-	} );
+	woostify_append_data( 'body_font_weight', 'body, button, input, select, textarea', 'font-weight' );
 
 	// Body text transform.
-	wp.customize( 'body_font_transform', function( value ) {
-		value.bind( function( newval ) {
-			jQuery( 'head' ).append( '<style id="body_font_transform">body, button, input, select, textarea{text-transform:' + newval + ';}</style>' );
-			setTimeout( function() {
-				jQuery( 'style#body_font_transform' ).not( ':last' ).remove();
-			}, 100 );
-		} );
-	} );
+	woostify_append_data( 'body_font_transform', 'body, button, input, select, textarea', 'text-transform' );
 
 	// Menu.
 	// Parent menu font size.
@@ -203,24 +202,10 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	woostify_unit_live_update( 'heading_line_height', 'h1, h2, h3, h4, h5, h6', 'line-height', '1.5', false, false );
 
 	// Heading font weight.
-	wp.customize( 'heading_font_weight', function( value ) {
-		value.bind( function( newval ) {
-			jQuery( 'head' ).append( '<style id="heading_font_weight">h1, h2, h3, h4, h5, h6{font-weight:' + newval + ';}</style>' );
-			setTimeout( function() {
-				jQuery( 'style#heading_font_weight' ).not( ':last' ).remove();
-			}, 100 );
-		} );
-	} );
+	woostify_append_data( 'heading_font_weight', 'h1, h2, h3, h4, h5, h6', 'font-weight' );
 
 	// Heading text transform.
-	wp.customize( 'heading_font_transform', function( value ) {
-		value.bind( function( newval ) {
-			jQuery( 'head' ).append( '<style id="heading_font_transform">h1, h2, h3, h4, h5, h6{text-transform:' + newval + ';}</style>' );
-			setTimeout( function() {
-				jQuery( 'style#heading_font_transform' ).not( ':last' ).remove();
-			}, 100 );
-		} );
-	} );
+	woostify_append_data( 'heading_font_transform', 'h1, h2, h3, h4, h5, h6', 'text-transform' );
 
 	// H1 font size.
 	woostify_unit_live_update( 'heading_h1_font_size', 'h1', 'font-size', 48 );
@@ -244,4 +229,7 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	woostify_hidden_product_meta( 'shop_single_skus', 'hid-skus' );
 	woostify_hidden_product_meta( 'shop_single_categories', 'hid-categories' );
 	woostify_hidden_product_meta( 'shop_single_tags', 'hid-tags' );
+
+	// Footer.
+	woostify_range_slider_update( ['footer_space'], '.site-footer', 'margin-top', 'px' );
 } )( jQuery );

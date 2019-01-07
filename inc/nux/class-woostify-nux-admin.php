@@ -108,9 +108,9 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 					<p>
 					<?php
 					if ( true === (bool) get_option( 'woostify_nux_fresh_site' ) && 'post-new.php' === $pagenow ) {
-						echo esc_html__( 'Before you add your first product let\'s design your store. We\'ll add some example products for you. When you\'re ready let\'s get started by adding your logo.', 'woostify' );
+						esc_html_e( 'Before you add your first product let\'s design your store. We\'ll add some example products for you. When you\'re ready let\'s get started by adding your logo.', 'woostify' );
 					} else {
-						echo esc_html__( 'You\'ve set up WooCommerce, now it\'s time to give it some style! Let\'s get started by entering the Customizer and adding your logo.', 'woostify' );
+						esc_html_e( 'You\'ve set up WooCommerce, now it\'s time to give it some style! Let\'s get started by entering the Customizer and adding your logo.', 'woostify' );
 					}
 					?>
 					</p>

@@ -24,6 +24,33 @@
     }
 }
 
+/* author box */
+.post-author-box{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 80px;
+
+	.author-ava{
+		margin-right: 30px;
+		min-width: 100px;
+		img{
+			border-radius: 50%;
+		}
+	}
+	.author-name-before{
+		display: block;
+		text-transform: uppercase;
+	}
+	.author-name{
+		font-size: 700px;
+		font-size: 18px;
+	}
+	.author-bio{
+		margin-top: 10px;
+	}
+}
+
 /* related post */
 .related-box{
     border-top: 1px solid #e8e8e8;

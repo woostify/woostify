@@ -72,6 +72,28 @@ $wp_customize->add_control(
 	)
 );
 
+// Author box.
+$wp_customize->add_setting(
+	'woostify_setting[blog_single_author_box]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['blog_single_author_box'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[blog_single_author_box]',
+		array(
+			'type'     => 'checkbox',
+			'label'    => __( 'Author Box', 'woostify' ),
+			'section'  => 'woostify_blog_single',
+			'settings' => 'woostify_setting[blog_single_author_box]',
+		)
+	)
+);
+
 // Related post.
 $wp_customize->add_setting(
 	'woostify_setting[blog_single_related_post]',

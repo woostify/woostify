@@ -21,12 +21,6 @@
 	 */
 	do_action( 'woostify_single_post' );
 
-	/**
-	 * Functions hooked in to woostify_single_post_bottom action
-	 *
-	 * @hooked woostify_post_nav         - 10
-	 * @hooked woostify_display_comments - 20
-	 */
 	do_action( 'woostify_single_post_bottom' );
 	?>
 

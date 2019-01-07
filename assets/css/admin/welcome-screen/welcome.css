@@ -1,3 +1,7 @@
+* {
+  outline: none !important;
+}
+
 .appearance_page_woostify-welcome {
   /*  */
   /* notice */
@@ -305,4 +309,18 @@
 
 .appearance_page_woostify-welcome #wpbody-content .notice {
   margin-bottom: 10px;
+}
+
+/* STYLE FOR `Image` COLUMN `post` ADMIN SCREEN
+***************************************************/
+#thumbnail_image {
+  width: 60px;
+}
+
+#the-list td.thumbnail_image a:focus {
+  box-shadow: none;
+}
+
+#the-list td.thumbnail_image img {
+  max-width: 100%;
 }

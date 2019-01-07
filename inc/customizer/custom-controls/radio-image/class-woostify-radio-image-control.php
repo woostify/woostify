@@ -81,7 +81,7 @@ class Woostify_Radio_Image_Control extends WP_Customize_Control {
 				>
 
 				<label for="<?php echo esc_attr( $this->id ) . esc_attr( $value ); ?>">
-					<img src="<?php echo esc_html( $label ); ?>" alt="<?php echo esc_attr( $value ); ?>" title="<?php echo esc_attr( ucwords( str_replace( '-', ' ', $value ) ) ); ?>">
+					<img src="<?php echo esc_url( $label ); ?>" alt="<?php echo esc_attr( $value ); ?>" title="<?php echo esc_attr( ucwords( str_replace( '-', ' ', $value ) ) ); ?>">
 				</label>
 			<?php endforeach; ?>
 		</div>

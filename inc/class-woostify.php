@@ -28,6 +28,11 @@ if ( ! class_exists( 'woostify' ) ) :
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 10 );
 			add_filter( 'wpcf7_load_css', '__return_false' );
+			add_filter( 'excerpt_length', array( $this, 'limit_excerpt_character' ), 99 );
+
+			// Add Image column on blog list in admin screen.
+			add_filter( 'manage_post_posts_columns', array( $this, 'columns_head' ), 10 );
+			add_action( 'manage_post_posts_custom_column', array( $this, 'columns_content' ), 10, 2 );
 
 			// After WooCommerce.
 			add_action( 'wp_enqueue_scripts', array( $this, 'child_scripts' ), 30 );
@@ -47,6 +52,62 @@ if ( ! class_exists( 'woostify' ) ) :
 			if ( ! isset( $content_width ) ) {
 				// Pixel.
 				$content_width = 1170;
+			}
+		}
+
+		/**
+		 * Get featured image
+		 *
+		 * @param      int $post_ID The post id.
+		 * @return     string Image src.
+		 */
+		public function get_featured_image_src( $post_ID ) {
+			$img_id  = get_post_thumbnail_id( $post_ID );
+			$img_src = WOOSTIFY_THEME_URI . 'assets/images/thumbnail-default.jpg';
+
+			if ( $img_id ) {
+				$src     = wp_get_attachment_image_src( $img_id, 'thumbnail' );
+				if ( $src ) {
+					$img_src = $src[0];
+				}
+			}
+
+			return $img_src;
+		}
+
+		/**
+		 * Column head
+		 *
+		 * @param      array $defaults  The defaults.
+		 */
+		public function columns_head( $defaults ) {
+			$order    = array();
+			// `cb`   = checkbox.
+			$checkbox = 'cb';
+			foreach ( $defaults as $key => $value ) {
+				$order[ $key ] = $value;
+				if ( $key === $checkbox ) {
+					$order['thumbnail_image'] = __( 'Image', 'woostify' );
+				}
+			}
+
+			return $order;
+		}
+
+		/**
+		 * Column content
+		 *
+		 * @param      string $column_name  The column name.
+		 * @param      int    $post_ID      The post id.
+		 */
+		public function columns_content( $column_name, $post_ID ) {
+			if ( 'thumbnail_image' === $column_name ) {
+				$_img_src = $this->get_featured_image_src( $post_ID );
+				?>
+					<a href="<?php echo esc_url( get_edit_post_link( $post_ID ) ); ?>">
+						<img src="<?php echo esc_url( $_img_src ); ?>"/>
+					</a>
+				<?php
 			}
 		}
 
@@ -264,6 +325,8 @@ if ( ! class_exists( 'woostify' ) ) :
 				'name'          => __( 'Main Sidebar', 'woostify' ),
 				'id'            => 'sidebar',
 				'description'   => __( 'Appears in the sidebar of the site.', 'woostify' ),
+				'before_widget' => '<div id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</div>',
 			);
 
 			if ( class_exists( 'woocommerce' ) ) {
@@ -271,19 +334,21 @@ if ( ! class_exists( 'woostify' ) ) :
 					'name'          => __( 'Woocommerce Sidebar', 'woostify' ),
 					'id'            => 'sidebar-shop',
 					'description'   => __( ' Appears in the sidebar of shop/product page.', 'woostify' ),
+					'before_widget' => '<div id="%1$s" class="widget %2$s">',
+					'after_widget'  => '</div>',
 				);
 			}
 
 			$sidebar_args['footer'] = array(
-				'name'        => __( 'Footer Widget', 'woostify' ),
-				'id'          => 'footer',
-				'description' => __( 'Appears in the footer section of the site.', 'woostify' ),
+				'name'          => __( 'Footer Widget', 'woostify' ),
+				'id'            => 'footer',
+				'description'   => __( 'Appears in the footer section of the site.', 'woostify' ),
+				'before_widget' => '<div id="%1$s" class="widget footer-widget %2$s">',
+				'after_widget'  => '</div>',
 			);
 
 			foreach ( $sidebar_args as $sidebar => $args ) {
 				$widget_tags = array(
-					'before_widget' => '<div id="%1$s" class="widget %2$s">',
-					'after_widget'  => '</div>',
 					'before_title'  => '<h6 class="widget-title">',
 					'after_title'   => '</h6>',
 				);
@@ -299,7 +364,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				}
 			}
 
-			// Custom widgets.
+			// Recent post with thumbnail.
 			register_widget( 'Woostify_Recent_Post_Thumbnail' );
 		}
 
@@ -411,6 +476,22 @@ if ( ! class_exists( 'woostify' ) ) :
 		}
 
 		/**
+		 * Limit the character length in exerpt
+		 *
+		 * @param      int $length The length.
+		 */
+		public function limit_excerpt_character( $length ) {
+			// Don't change anything inside /wp-admin/.
+			if ( is_admin() ) {
+				return $length;
+			}
+
+			$options = woostify_options( false );
+			$length  = $options['blog_list_limit_exerpt'];
+			return $length;
+		}
+
+		/**
 		 * Enqueue child theme stylesheet.
 		 * A separate function is required as the child theme css needs to be enqueued _after_ the parent theme
 		 * primary css and the separate WooCommerce css.
@@ -492,7 +573,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Custom navigation markup template hooked into `navigation_markup_template` filter hook.
 		 */
 		public function navigation_markup_template() {
-			$template  = '<nav id="post-navigation" class="navigation %1$s" role="navigation" aria-label="' . esc_html__( 'Post Pagination', 'woostify' ) . '">';
+			$template  = '<nav id="post-navigation" class="navigation %1$s" role="navigation" aria-label="' . esc_attr__( 'Post Pagination', 'woostify' ) . '">';
 			$template .= '<h2 class="screen-reader-text">%2$s</h2>';
 			$template .= '<div class="nav-links">%3$s</div>';
 			$template .= '</nav>';
@@ -531,6 +612,11 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @param string $more More exerpt.
 		 */
 		public function modify_excerpt_more( $more ) {
+			// Don't change anything inside /wp-admin/.
+			if ( is_admin() ) {
+				return $more;
+			}
+
 			$more           = '...';
 			$options        = woostify_options( false );
 			$read_more_text = apply_filters( 'woostify_read_more_text', __( 'Read More', 'woostify' ) );

@@ -56,10 +56,10 @@
 				<div class="pswp__share-tooltip"></div> 
 			</div>
 
-			<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+			<button class="pswp__button pswp__button--arrow--left" title="<?php esc_attr_e( 'Previous (arrow left)', 'woostify' ); ?>">
 			</button>
 
-			<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+			<button class="pswp__button pswp__button--arrow--right" title="<?php esc_attr_e( 'Next (arrow right)', 'woostify' ); ?>">
 			</button>
 
 			<div class="pswp__caption">

@@ -37,6 +37,47 @@ $wp_customize->add_control(
 	)
 );
 
+// Limit exerpt.
+$wp_customize->add_setting(
+	'woostify_setting[blog_list_limit_exerpt]',
+	array(
+		'sanitize_callback' => 'absint',
+		'default'           => $defaults['blog_list_limit_exerpt'],
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[blog_list_limit_exerpt]',
+		array(
+			'section'  => 'woostify_blog',
+			'settings' => 'woostify_setting[blog_list_limit_exerpt]',
+			'type'     => 'number',
+			'label'    => __( 'Limit Excerpt', 'woostify' ),
+		)
+	)
+);
+
+// End section one divider.
+$wp_customize->add_setting(
+	'blog_list_section_one_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'blog_list_section_one_divider',
+		array(
+			'section'  => 'woostify_blog',
+			'settings' => 'blog_list_section_one_divider',
+			'type'     => 'divider',
+		)
+	)
+);
+
 // Blog list structure title.
 $wp_customize->add_setting(
 	'blog_list_structure_title',

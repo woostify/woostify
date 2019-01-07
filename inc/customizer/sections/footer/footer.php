@@ -17,7 +17,6 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
-
 $wp_customize->add_control(
 	new Woostify_Switch_Control(
 		$wp_customize,
@@ -41,7 +40,6 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
-
 $wp_customize->add_control(
 	new Woostify_Switch_Control(
 		$wp_customize,
@@ -56,6 +54,39 @@ $wp_customize->add_control(
 	)
 );
 
+// Space.
+$wp_customize->add_setting(
+	'woostify_setting[footer_space]',
+	array(
+		'default'           => $defaults['footer_space'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[footer_space]',
+		array(
+			'label'    => __( 'Space', 'woostify' ),
+			'section'  => 'woostify_footer',
+			'settings' => array(
+				'desktop' => 'woostify_setting[footer_space]',
+			),
+			'choices' => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_footer_space_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_footer_space_max_step', 200 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
 // Footer widget columns.
 $wp_customize->add_setting(
 	'woostify_setting[footer_column]',
@@ -65,7 +96,6 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'woostify_sanitize_choices',
 	)
 );
-
 $wp_customize->add_control(
 	new WP_Customize_Control(
 		$wp_customize,
@@ -99,7 +129,6 @@ $wp_customize->add_setting(
 		'type'              => 'option',
 	)
 );
-
 $wp_customize->add_control(
 	new WP_Customize_Color_Control(
 		$wp_customize,
@@ -121,7 +150,6 @@ $wp_customize->add_setting(
 		'type'              => 'option',
 	)
 );
-
 $wp_customize->add_control(
 	new WP_Customize_Color_Control(
 		$wp_customize,
@@ -143,7 +171,6 @@ $wp_customize->add_setting(
 		'type'              => 'option',
 	)
 );
-
 $wp_customize->add_control(
 	new WP_Customize_Color_Control(
 		$wp_customize,
@@ -165,7 +192,6 @@ $wp_customize->add_setting(
 		'type'              => 'option',
 	)
 );
-
 $wp_customize->add_control(
 	new WP_Customize_Color_Control(
 		$wp_customize,
@@ -187,7 +213,6 @@ $wp_customize->add_setting(
 		'type'              => 'option',
 	)
 );
-
 $wp_customize->add_control(
 	new WP_Customize_Control(
 		$wp_customize,

@@ -216,17 +216,17 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 		 */
 		public function get_font_weight_choices() {
 			return array(
-				'normal' => esc_html( 'normal' ),
-				'bold'   => esc_html( 'bold' ),
-				'100'    => esc_html( '100' ),
-				'200'    => esc_html( '200' ),
-				'300'    => esc_html( '300' ),
-				'400'    => esc_html( '400' ),
-				'500'    => esc_html( '500' ),
-				'600'    => esc_html( '600' ),
-				'700'    => esc_html( '700' ),
-				'800'    => esc_html( '800' ),
-				'900'    => esc_html( '900' ),
+				'normal' => 'normal',
+				'bold'   => 'bold',
+				'100'    => '100',
+				'200'    => '200',
+				'300'    => '300',
+				'400'    => '400',
+				'500'    => '500',
+				'600'    => '600',
+				'700'    => '700',
+				'800'    => '800',
+				'900'    => '900',
 			);
 		}
 
@@ -238,10 +238,10 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 		 */
 		public function get_font_transform_choices() {
 			return array(
-				'none'       => esc_html( 'none' ),
-				'capitalize' => esc_html( 'capitalize' ),
-				'uppercase'  => esc_html( 'uppercase' ),
-				'lowercase'  => esc_html( 'lowercase' ),
+				'none'       => 'none',
+				'capitalize' => 'capitalize',
+				'uppercase'  => 'uppercase',
+				'lowercase'  => 'lowercase',
 			);
 		}
 

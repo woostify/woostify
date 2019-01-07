@@ -18,7 +18,7 @@ get_header(); ?>
 					<p><?php esc_html_e( 'Nothing was found at this location. Try searching, or check out the links below.', 'woostify' ); ?></p>
 
 					<?php
-					echo '<section aria-label="' . esc_html__( 'Search', 'woostify' ) . '">';
+					echo '<section aria-label="' . esc_attr__( 'Search', 'woostify' ) . '">';
 
 					if ( woostify_is_woocommerce_activated() ) {
 						the_widget( 'WC_Widget_Product_Search' );

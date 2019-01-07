@@ -86,6 +86,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					// Footer.
 					'scroll_to_top'                        => true,
 					'footer_disable'                       => false,
+					'footer_space'                         => 100,
 					'footer_column'                        => 0,
 					'footer_background_color'              => '#eeeeec',
 					'footer_heading_color'                 => '#2b2b2b',
@@ -101,8 +102,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 					// Blog.
 					'blog_list_layout'                     => 'list',
+					'blog_list_limit_exerpt'               => 20,
 					'blog_list_feature_image'              => true,
 					'blog_list_title'                      => true,
+					'blog_single_author_box'               => false,
 					'blog_list_publish_date'               => true,
 					'blog_list_author'                     => true,
 					'blog_list_category'                   => false,

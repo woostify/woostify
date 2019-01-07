@@ -168,7 +168,8 @@ $media: 599px;
 
 /* SIDEBAR CONTENT */
 .cart-sidebar-content {
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     @include calc(height, '100% - 210px');
 
     @media ( max-width: $media ) {

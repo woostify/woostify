@@ -98,13 +98,14 @@ add_action( 'woostify_post_content_after', 'woostify_post_read_more_button', 10 
 
 add_action( 'woostify_single_post', 'woostify_post_meta', 10 );
 add_action( 'woostify_single_post', 'woostify_post_title', 20 );
-add_action( 'woostify_single_post', 'woostify_post_thumbnail', 25 );
-add_action( 'woostify_single_post', 'woostify_post_content', 30 );
-add_action( 'woostify_single_post', 'woostify_post_tags', 40 );
+add_action( 'woostify_single_post', 'woostify_post_thumbnail', 30 );
+add_action( 'woostify_single_post', 'woostify_post_content', 40 );
+add_action( 'woostify_single_post', 'woostify_post_tags', 50 );
 
 add_action( 'woostify_single_post_after', 'woostify_post_nav', 10 );
-add_action( 'woostify_single_post_after', 'woostify_post_related', 15 );
-add_action( 'woostify_single_post_after', 'woostify_display_comments', 20 );
+add_action( 'woostify_single_post_after', 'woostify_post_author_box', 20 );
+add_action( 'woostify_single_post_after', 'woostify_post_related', 30 );
+add_action( 'woostify_single_post_after', 'woostify_display_comments', 40 );
 
 /**
  * Pages
@@ -126,3 +127,4 @@ add_action( 'woostify_page_after', 'woostify_display_comments', 10 );
 // Add Cart sidebar for Page using Elementor Canvas.
 add_action( 'elementor/page_templates/canvas/after_content', 'woostify_woocommerce_cart_sidebar', 20 );
 add_action( 'elementor/page_templates/canvas/after_content', 'woostify_overlay', 30 );
+add_action( 'elementor/page_templates/canvas/after_content', 'woostify_footer_action', 40 );

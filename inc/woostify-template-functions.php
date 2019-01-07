@@ -174,13 +174,13 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 		if ( is_active_sidebar( 'footer' ) ) {
 			?>
 
-		<div class="footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
+		<div class="site-footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
 			<?php dynamic_sidebar( 'footer' ); ?>
 		</div>
 			<?php
 		} elseif ( is_user_logged_in() ) {
 			?>
-		<div class="footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
+		<div class="site-footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
 			<div class="widget widget_text default-widget">
 				<h6 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h6>
 				<div class="textwidget">
@@ -900,6 +900,43 @@ if ( ! function_exists( 'woostify_post_nav' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_post_author_box' ) ) {
+	/**
+	 * Display author box
+	 */
+	function woostify_post_author_box() {
+		$options = woostify_options( false );
+		if ( true != $options['blog_single_author_box'] ) {
+			return;
+		}
+
+		$author_id   = get_the_author_meta( 'ID' );
+		$author_avar = get_avatar_url( $author_id );
+		$author_url  = get_author_posts_url( $author_id );
+		$author_name = get_the_author_meta( 'nickname', $author_id );
+		$author_bio  = get_the_author_meta( 'description', $author_id );
+		?>
+
+		<div class="post-author-box">
+			<?php if ( $author_avar ) { ?>
+				<a class="author-ava" href="<?php echo esc_url( $author_url ); ?>">
+					<img src="<?php echo esc_url( $author_avar ); ?>" alt="<?php esc_attr_e( 'Author Avatar', 'woostify' ); ?>">
+				</a>
+			<?php } ?>
+
+			<div class="author-content">
+				<span class="author-name-before"><?php esc_html_e( 'Written by', 'woostify' ); ?></span>
+				<a class="author-name" href="<?php echo esc_url( $author_url ); ?>"><?php echo esc_html( $author_name ); ?></a>
+
+				<?php if ( ! empty( $author_bio ) ) { ?>
+					<div class="author-bio"><?php echo wp_kses_post( $author_bio ); ?></div>
+				<?php } ?>
+			</div>
+		</div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_posted_on' ) ) {
 	/**
 	 * Prints HTML with meta information for the current post-date/time and author.
@@ -1414,7 +1451,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 
 				<?php // My account icon. ?>
 				<?php if ( true == $options['header_account_icon'] ) { ?>
-					<div class="my-account tools-icon">
+					<div class="tools-icon my-account">
 						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon <?php echo esc_attr( $my_account_icon ); ?>"></a>
 
 						<ul>
