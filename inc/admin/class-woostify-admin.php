@@ -134,7 +134,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						<ul class="woostify-welcome-nav_link">
 							<li><a href="https://woostify.com/contact/" target="_blank"><?php esc_html_e( 'Support', 'woostify' ); ?></a></li>
 							<li><a href="https://woostify.com/docs/" target="_blank"><?php esc_html_e( 'Documentation', 'woostify' ); ?></a></li>
-							<li><strong><a href="https://www.facebook.com/groups/2245150649099616/" target="_blank"><?php esc_html_e( 'Join FB Group', 'woostify' ); ?></a></strong></li>
+							<li><strong><a href="https://www.facebook.com/WoostifyWP" target="_blank"><?php esc_html_e( 'Join FB Page', 'woostify' ); ?></a></strong></li>
 						</ul>
 					</div>
 				</section>
@@ -184,7 +184,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								<div class="woostify-enhance__column woostify-pro-featured">
 									<h3>
 										<?php esc_html_e( 'More Features are coming with Woostify Pro', 'woostify' ); ?>
-										<a class="woostify-learn-more wp-ui-text-highlight" href="//mailchi.mp/9a7fdc86d444/woostify-sub" target="_blank"><?php esc_html_e( 'Follow here!', 'woostify' ); ?></a>
+										<a class="woostify-learn-more wp-ui-text-highlight" href="https://www.facebook.com/WoostifyWP" target="_blank"><?php esc_html_e( 'Follow here!', 'woostify' ); ?></a>
 									</h3>
 
 									<div class="wf-quick-setting-section">
@@ -197,7 +197,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 										</p>
 
 										<p>
-											<a href="//mailchi.mp/9a7fdc86d444/woostify-sub" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Read More', 'woostify' ); ?></a>
+											<a href="https://www.facebook.com/WoostifyWP" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Follow here', 'woostify' ); ?></a>
 										</p>
 									</div>
 								</div>
