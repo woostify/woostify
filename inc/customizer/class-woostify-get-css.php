@@ -13,7 +13,7 @@ class Woostify_Get_CSS {
 	 * Wp enqueue scripts
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'add_customizer_css' ), 130 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'woostify_add_customizer_css' ), 130 );
 	}
 
 	/**
@@ -22,7 +22,7 @@ class Woostify_Get_CSS {
 	 * @see get_woostify_theme_mods()
 	 * @return array $styles the css
 	 */
-	public function get_css() {
+	public function woostify_get_css() {
 
 		// Get all theme option value.
 		$options = woostify_options( false );
@@ -388,11 +388,10 @@ class Woostify_Get_CSS {
 	/**
 	 * Add CSS in <head> for styles handled by the theme customizer
 	 *
-	 * @since 1.0
 	 * @return void
 	 */
-	public function add_customizer_css() {
-		wp_add_inline_style( 'woostify-style', $this->get_css() );
+	public function woostify_add_customizer_css() {
+		wp_add_inline_style( 'woostify-style', $this->woostify_get_css() );
 	}
 }
 

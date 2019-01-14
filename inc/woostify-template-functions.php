@@ -801,13 +801,28 @@ if ( ! function_exists( 'woostify_post_content' ) ) {
 
 		if ( woostify_show_excerpt() && ! is_single() ) {
 			?>
-				<div class="entry-summary summary-text" itemprop="text">
-					<?php the_excerpt(); ?>
+				<div class="entry-summary summary-text">
+					<?php
+					the_excerpt();
+
+					// Add 'Read More' button in Grid layout.
+					$options = woostify_options( false );
+					if ( 'grid' == $options['blog_list_layout'] ) {
+						$read_more_text = apply_filters( 'woostify_read_more_text', __( 'Read More', 'woostify' ) );
+						?>
+						<span class="post-read-more">
+							<a href="<?php the_permalink(); ?>">
+								<?php echo esc_html( $read_more_text ); ?>
+							</a>
+						</span>
+						<?php
+					}
+					?>
 				</div>
 			<?php
 		} else {
 			?>
-			<div class="entry-content summary-text" itemprop="text">
+			<div class="entry-content summary-text">
 				<?php
 				the_content();
 

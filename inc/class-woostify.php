@@ -2,7 +2,6 @@
 /**
  * Woostify Class
  *
- * @since    1.0
  * @package  woostify
  */
 
@@ -22,33 +21,33 @@ if ( ! class_exists( 'woostify' ) ) :
 		 */
 		public function __construct() {
 			// Set the content width based on the theme's design and stylesheet.
-			$this->content_width();
+			$this->woostify_content_width();
 
-			add_action( 'after_setup_theme', array( $this, 'setup' ) );
-			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 10 );
+			add_action( 'after_setup_theme', array( $this, 'woostify_setup' ) );
+			add_action( 'widgets_init', array( $this, 'woostify_widgets_init' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'woostify_scripts' ), 10 );
 			add_filter( 'wpcf7_load_css', '__return_false' );
-			add_filter( 'excerpt_length', array( $this, 'limit_excerpt_character' ), 99 );
+			add_filter( 'excerpt_length', array( $this, 'woostify_limit_excerpt_character' ), 99 );
 
 			// Add Image column on blog list in admin screen.
-			add_filter( 'manage_post_posts_columns', array( $this, 'columns_head' ), 10 );
-			add_action( 'manage_post_posts_custom_column', array( $this, 'columns_content' ), 10, 2 );
+			add_filter( 'manage_post_posts_columns', array( $this, 'woostify_columns_head' ), 10 );
+			add_action( 'manage_post_posts_custom_column', array( $this, 'woostify_columns_content' ), 10, 2 );
 
 			// After WooCommerce.
-			add_action( 'wp_enqueue_scripts', array( $this, 'child_scripts' ), 30 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'woostify_child_scripts' ), 30 );
 
-			add_filter( 'body_class', array( $this, 'body_classes' ) );
-			add_filter( 'wp_page_menu_args', array( $this, 'page_menu_args' ) );
-			add_filter( 'navigation_markup_template', array( $this, 'navigation_markup_template' ) );
-			add_action( 'customize_preview_init', array( $this, 'customize_live_preview' ) );
-			add_filter( 'wp_tag_cloud', array( $this, 'remove_tag_inline_style' ) );
-			add_filter( 'excerpt_more', array( $this, 'modify_excerpt_more' ) );
+			add_filter( 'body_class', array( $this, 'woostify_body_classes' ) );
+			add_filter( 'wp_page_menu_args', array( $this, 'woostify_page_menu_args' ) );
+			add_filter( 'navigation_markup_template', array( $this, 'woostify_navigation_markup_template' ) );
+			add_action( 'customize_preview_init', array( $this, 'woostify_customize_live_preview' ) );
+			add_filter( 'wp_tag_cloud', array( $this, 'woostify_remove_tag_inline_style' ) );
+			add_filter( 'excerpt_more', array( $this, 'woostify_modify_excerpt_more' ) );
 		}
 
 		/**
 		 * Set the content width based on the theme's design and stylesheet.
 		 */
-		public function content_width() {
+		public function woostify_content_width() {
 			if ( ! isset( $content_width ) ) {
 				// Pixel.
 				$content_width = 1170;
@@ -61,7 +60,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @param      int $post_ID The post id.
 		 * @return     string Image src.
 		 */
-		public function get_featured_image_src( $post_ID ) {
+		public function woostify_get_featured_image_src( $post_ID ) {
 			$img_id  = get_post_thumbnail_id( $post_ID );
 			$img_src = WOOSTIFY_THEME_URI . 'assets/images/thumbnail-default.jpg';
 
@@ -80,7 +79,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 *
 		 * @param      array $defaults  The defaults.
 		 */
-		public function columns_head( $defaults ) {
+		public function woostify_columns_head( $defaults ) {
 			$order    = array();
 			// `cb`   = checkbox.
 			$checkbox = 'cb';
@@ -100,7 +99,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @param      string $column_name  The column name.
 		 * @param      int    $post_ID      The post id.
 		 */
-		public function columns_content( $column_name, $post_ID ) {
+		public function woostify_columns_content( $column_name, $post_ID ) {
 			if ( 'thumbnail_image' === $column_name ) {
 				$_img_src = $this->get_featured_image_src( $post_ID );
 				?>
@@ -114,11 +113,11 @@ if ( ! class_exists( 'woostify' ) ) :
 		/**
 		 * Sets up theme defaults and registers support for various WordPress features.
 		 *
-		 * Note that this function is hooked into the after_setup_theme hook, which
+		 * Note that this function woostify_is hooked into the after_setup_theme hook, which
 		 * runs before the init hook. The init hook is too late for some features, such
 		 * as indicating support for post thumbnails.
 		 */
-		public function setup() {
+		public function woostify_setup() {
 			/*
 			 * Load Localisation files.
 			 *
@@ -320,7 +319,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 *
 		 * @link https://codex.wordpress.org/Function_Reference/register_sidebar
 		 */
-		public function widgets_init() {
+		public function woostify_widgets_init() {
 			$sidebar_args['sidebar'] = array(
 				'name'          => __( 'Main Sidebar', 'woostify' ),
 				'id'            => 'sidebar',
@@ -371,7 +370,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		/**
 		 * Enqueue scripts and styles.
 		 */
-		public function scripts() {
+		public function woostify_scripts() {
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			/**
@@ -480,7 +479,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 *
 		 * @param      int $length The length.
 		 */
-		public function limit_excerpt_character( $length ) {
+		public function woostify_limit_excerpt_character( $length ) {
 			// Don't change anything inside /wp-admin/.
 			if ( is_admin() ) {
 				return $length;
@@ -493,10 +492,10 @@ if ( ! class_exists( 'woostify' ) ) :
 
 		/**
 		 * Enqueue child theme stylesheet.
-		 * A separate function is required as the child theme css needs to be enqueued _after_ the parent theme
+		 * A separate function woostify_is required as the child theme css needs to be enqueued _after_ the parent theme
 		 * primary css and the separate WooCommerce css.
 		 */
-		public function child_scripts() {
+		public function woostify_child_scripts() {
 			if ( is_child_theme() ) {
 				$child_theme = wp_get_theme( get_stylesheet() );
 				wp_enqueue_style(
@@ -514,7 +513,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @param array $args Configuration arguments.
 		 * @return array
 		 */
-		public function page_menu_args( $args ) {
+		public function woostify_page_menu_args( $args ) {
 			$args['show_home'] = true;
 			return $args;
 		}
@@ -525,7 +524,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @param array $classes Classes for the body element.
 		 * @return array
 		 */
-		public function body_classes( $classes ) {
+		public function woostify_body_classes( $classes ) {
 			// Get theme options.
 			$options   = woostify_options( false );
 
@@ -572,8 +571,8 @@ if ( ! class_exists( 'woostify' ) ) :
 		/**
 		 * Custom navigation markup template hooked into `navigation_markup_template` filter hook.
 		 */
-		public function navigation_markup_template() {
-			$template  = '<nav id="post-navigation" class="navigation %1$s" role="navigation" aria-label="' . esc_attr__( 'Post Pagination', 'woostify' ) . '">';
+		public function woostify_navigation_markup_template() {
+			$template  = '<nav class="post-navigation navigation %1$s" aria-label="' . esc_attr__( 'Post Pagination', 'woostify' ) . '">';
 			$template .= '<h2 class="screen-reader-text">%2$s</h2>';
 			$template .= '<div class="nav-links">%3$s</div>';
 			$template .= '</nav>';
@@ -584,7 +583,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		/**
 		 * Customizer live preview
 		 */
-		public function customize_live_preview() {
+		public function woostify_customize_live_preview() {
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_script(
@@ -601,7 +600,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 *
 		 * @param string $string tagCloud.
 		 */
-		public function remove_tag_inline_style( $string ) {
+		public function woostify_remove_tag_inline_style( $string ) {
 			return preg_replace( '/ style=("|\')(.*?)("|\')/', '', $string );
 		}
 
@@ -611,20 +610,13 @@ if ( ! class_exists( 'woostify' ) ) :
 		 *
 		 * @param string $more More exerpt.
 		 */
-		public function modify_excerpt_more( $more ) {
+		public function woostify_modify_excerpt_more( $more ) {
 			// Don't change anything inside /wp-admin/.
 			if ( is_admin() ) {
 				return $more;
 			}
 
-			$more           = '...';
-			$options        = woostify_options( false );
-			$read_more_text = apply_filters( 'woostify_read_more_text', __( 'Read More', 'woostify' ) );
-
-			if ( 'grid' == $options['blog_list_layout'] ) {
-				$more .= '<span class="post-read-more"><a href="' . get_the_permalink() . '">' . esc_html( $read_more_text ) . '</a></span>';
-			}
-
+			$more = apply_filters( 'woostify_excerpt_more', '...' );
 			return $more;
 		}
 	}

@@ -75,8 +75,7 @@ if ( ! function_exists( 'woostify_loop_columns' ) ) {
 	/**
 	 * Default loop columns on product archives
 	 *
-	 * @return integer products per row
-	 * @since  1.0
+	 * @return integer products per
 	 */
 	function woostify_loop_columns() {
 		$options = woostify_options( false );
@@ -122,8 +121,6 @@ if ( ! function_exists( 'woostify_woocommerce_pagination' ) ) {
 	 * WooCommerce disables the product pagination inside the woocommerce_product_subcategories() function
 	 * but since Woostify adds pagination before that function is excuted we need a separate function to
 	 * determine whether or not to display the pagination.
-	 *
-	 * @since 1.0
 	 */
 	function woostify_woocommerce_pagination() {
 		if ( woocommerce_products_will_display() ) {

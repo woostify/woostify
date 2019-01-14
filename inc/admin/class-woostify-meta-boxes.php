@@ -43,18 +43,18 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 		 * Constructor
 		 */
 		public function __construct() {
-			add_action( 'load-post.php', array( $this, 'init_metabox' ) );
-			add_action( 'load-post-new.php', array( $this, 'init_metabox' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'metabox_assets' ) );
+			add_action( 'load-post.php', array( $this, 'woostify_init_metabox' ) );
+			add_action( 'load-post-new.php', array( $this, 'woostify_init_metabox' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'woostify_metabox_assets' ) );
 		}
 
 		/**
 		 *  Init Metabox
 		 */
-		public function init_metabox() {
+		public function woostify_init_metabox() {
 
-			add_action( 'add_meta_boxes', array( $this, 'setup_meta_box' ) );
-			add_action( 'save_post', array( $this, 'save_meta_box' ) );
+			add_action( 'add_meta_boxes', array( $this, 'woostify_setup_meta_box' ) );
+			add_action( 'save_post', array( $this, 'woostify_save_meta_box' ) );
 
 			/**
 			 * Set metabox options
@@ -89,7 +89,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 		/**
 		 * Add script and style for meta boxs setting
 		 */
-		public function metabox_assets() {
+		public function woostify_metabox_assets() {
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_style(
@@ -111,7 +111,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 		/**
 		 *  Setup Metabox
 		 */
-		public function setup_meta_box() {
+		public function woostify_setup_meta_box() {
 
 			// Get all public posts.
 			$post_types = apply_filters(
@@ -126,7 +126,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 				add_meta_box(
 					'woostify_settings_meta_box',           // Id.
 					$metabox_name,                          // Title.
-					array( $this, 'markup_meta_box' ),      // Callback.
+					array( $this, 'woostify_markup_meta_box' ),      // Callback.
 					$type,                                  // Post_type.
 					'advanced',                             // Context.
 					'high'                                  // Priority.
@@ -137,7 +137,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 		/**
 		 * Get metabox options
 		 */
-		public static function get_meta_option() {
+		public static function woostify_get_meta_option() {
 			return self::$meta_option;
 		}
 
@@ -147,7 +147,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 		 * @param  object $post Post object.
 		 * @return void
 		 */
-		public function markup_meta_box( $post ) {
+		public function woostify_markup_meta_box( $post ) {
 
 			wp_nonce_field( basename( __FILE__ ), 'woostify_settings_meta_box' );
 			$stored = get_post_meta( $post->ID );
@@ -158,7 +158,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 			}
 
 			// Get defaults.
-			$meta = self::get_meta_option();
+			$meta = self::woostify_get_meta_option();
 
 			/**
 			 * Get options
@@ -315,7 +315,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 		 * @param  number $post_id Post ID.
 		 * @return void
 		 */
-		public function save_meta_box( $post_id ) {
+		public function woostify_save_meta_box( $post_id ) {
 
 			// Checks save status.
 			$is_autosave    = wp_is_post_autosave( $post_id );
@@ -330,7 +330,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 			/**
 			 * Get meta options
 			 */
-			$post_meta = self::get_meta_option();
+			$post_meta = self::woostify_get_meta_option();
 
 			foreach ( $post_meta as $key => $data ) {
 

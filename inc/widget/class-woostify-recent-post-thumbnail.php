@@ -19,10 +19,10 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 		 */
 		public function __construct() {
 			parent::__construct(
-				'recent_post_with_thumbnail',
+				'woostify_recent_post_with_thumbnail',
 				__( 'Recent Post With Thumbnail', 'woostify' ),
 				array(
-					'classname'   => 'recent_post_with_thumbnail',
+					'classname'   => 'woostify_recent_post_with_thumbnail',
 					'description' => __( 'List the most recent posts with post titles, thumbnail', 'woostify' ),
 				)
 			);
@@ -75,7 +75,7 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 		 * @param      array $instance  The instance.
 		 */
 		public function widget( $args, $instance ) {
-			$title  = apply_filters( 'widget_title', $instance['title'] );
+			$title  = apply_filters( 'woostify_widget_title', $instance['title'] );
 			$number = absint( $instance['number'] );
 
 			if ( $number <= 0 ) {

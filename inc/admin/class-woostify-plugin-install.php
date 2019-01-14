@@ -3,7 +3,6 @@
  * Woostify Plugin Install Class
  *
  * @package  woostify
- * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,11 +17,9 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 
 		/**
 		 * Setup class.
-		 *
-		 * @since 1.0
 		 */
 		public function __construct() {
-			add_action( 'admin_enqueue_scripts', array( $this, 'plugin_install_scripts' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'woostify_plugin_install_scripts' ) );
 		}
 
 		/**
@@ -30,9 +27,8 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 		 *
 		 * @param string $hook_suffix the current page hook suffix.
 		 * @return void
-		 * @since  1.0
 		 */
-		public function plugin_install_scripts( $hook_suffix ) {
+		public function woostify_plugin_install_scripts( $hook_suffix ) {
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_script(
@@ -64,7 +60,7 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 		 * @param string $activate Button activate text.
 		 * @param string $install Button install text.
 		 */
-		public static function install_plugin_button( $plugin_slug, $plugin_file, $plugin_name, $classes = array(), $activated = '', $activate = '', $install = '' ) {
+		public static function woostify_install_plugin_button( $plugin_slug, $plugin_file, $plugin_name, $classes = array(), $activated = '', $activate = '', $install = '' ) {
 			if ( current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) ) {
 				if ( is_plugin_active( $plugin_slug . '/' . $plugin_file ) ) {
 					// The plugin is already active.
@@ -77,8 +73,8 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 					if ( '' !== $activated ) {
 						$button['message'] = esc_html( $activated );
 					}
-				} elseif ( self::_is_plugin_installed( $plugin_slug ) ) {
-					$url = self::_is_plugin_installed( $plugin_slug );
+				} elseif ( self::woostify_is_plugin_installed( $plugin_slug ) ) {
+					$url = self::woostify_is_plugin_installed( $plugin_slug );
 
 					// The plugin exists but isn't activated yet.
 					$button = array(
@@ -131,7 +127,7 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 		 *
 		 * @param string $plugin_slug The plugin slug.
 		 */
-		private static function _is_plugin_installed( $plugin_slug ) {
+		private static function woostify_is_plugin_installed( $plugin_slug ) {
 			if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_slug ) ) {
 				$plugins = get_plugins( '/' . $plugin_slug );
 				if ( ! empty( $plugins ) ) {

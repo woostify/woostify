@@ -3,7 +3,6 @@
  * Woostify Customizer Class
  *
  * @package  woostify
- * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,14 +20,14 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * Setup class.
 		 */
 		public function __construct() {
-			add_action( 'customize_register', array( $this, 'customize_register' ) );
-			add_action( 'customize_controls_enqueue_scripts', array( $this, 'customize_controls_scripts' ) );
+			add_action( 'customize_register', array( $this, 'woostify_customize_register' ) );
+			add_action( 'customize_controls_enqueue_scripts', array( $this, 'woostify_customize_controls_scripts' ) );
 		}
 
 		/**
 		 * Add script for customize controls
 		 */
-		public function customize_controls_scripts() {
+		public function woostify_customize_controls_scripts() {
 			wp_enqueue_script(
 				'woostify-condition-control',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/conditional/js/condition.js',
@@ -43,7 +42,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 *
 		 * @return array
 		 */
-		public static function get_woostify_default_setting_values() {
+		public static function woostify_get_woostify_default_setting_values() {
 			return apply_filters(
 				'woostify_setting_default_values',
 				$args = array(
@@ -157,10 +156,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 *
 		 * @return array $woostify_options The Woostify Theme Options.
 		 */
-		public function get_woostify_options() {
+		public function woostify_get_woostify_options() {
 			$woostify_options = wp_parse_args(
 				get_option( 'woostify_setting', array() ),
-				self::get_woostify_default_setting_values()
+				self::woostify_get_woostify_default_setting_values()
 			);
 
 			return apply_filters( 'woostify_options', $woostify_options );
@@ -171,7 +170,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 *
 		 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 		 */
-		public function customize_register( $wp_customize ) {
+		public function woostify_customize_register( $wp_customize ) {
 
 			// Custom default section, panel.
 			require_once WOOSTIFY_THEME_DIR . 'inc/customizer/override-defaults.php';
@@ -296,7 +295,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 *
 		 * @return string
 		 */
-		public function get_site_logo() {
+		public function woostify_get_site_logo() {
 			return woostify_site_title_or_logo( false );
 		}
 
@@ -305,7 +304,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 *
 		 * @return string
 		 */
-		public function get_site_name() {
+		public function woostify_get_site_name() {
 			return get_bloginfo( 'name', 'display' );
 		}
 
@@ -314,7 +313,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 *
 		 * @return string
 		 */
-		public function get_site_description() {
+		public function woostify_get_site_description() {
 			return get_bloginfo( 'description', 'display' );
 		}
 	}

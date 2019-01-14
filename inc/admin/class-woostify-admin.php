@@ -3,7 +3,6 @@
  * Woostify Admin Class
  *
  * @package  woostify
- * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,18 +17,16 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 		/**
 		 * Setup class.
-		 *
-		 * @since 1.0
 		 */
 		public function __construct() {
-			add_action( 'admin_menu', array( $this, 'welcome_register_menu' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'welcome_static' ) );
+			add_action( 'admin_menu', array( $this, 'woostify_welcome_register_menu' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'woostify_welcome_static' ) );
 		}
 
 		/**
 		 * Load welcome screen script and css
 		 */
-		public function welcome_static() {
+		public function woostify_welcome_static() {
 			wp_enqueue_style(
 				'woostify-welcome-screen',
 				WOOSTIFY_THEME_URI . 'assets/css/admin/welcome-screen/welcome.css',
@@ -48,17 +45,16 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * Creates the dashboard page
 		 *
 		 * @see  add_theme_page()
-		 * @since 1.0
 		 */
-		public function welcome_register_menu() {
+		public function woostify_welcome_register_menu() {
 			$page = add_theme_page( 'Woostify Options', 'Woostify Options', 'activate_plugins', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ) );
-			add_action( 'admin_print_styles-' . $page, array( $this, 'welcome_static' ) );
+			add_action( 'admin_print_styles-' . $page, array( $this, 'woostify_welcome_static' ) );
 		}
 
 		/**
 		 * Customizer settings link
 		 */
-		public function welcome_customizer_settings() {
+		public function woostify_welcome_customizer_settings() {
 			$customizer_settings = apply_filters(
 				'woostify_panel_customizer_settings',
 				array(
@@ -112,8 +108,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 		/**
 		 * The welcome screen
-		 *
-		 * @since 1.0
 		 */
 		public function woostify_welcome_screen() {
 			require_once( ABSPATH . 'wp-load.php' );
@@ -147,7 +141,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								<div class="wf-quick-setting-section">
 									<ul class="wst-flex">
 									<?php
-									foreach ( $this->welcome_customizer_settings() as $key ) {
+									foreach ( $this->woostify_welcome_customizer_settings() as $key ) {
 										$url = get_admin_url() . 'customize.php?autofocus[' . $key['type'] . ']=' . $key['setting'];
 
 										$disabled = '';
@@ -243,7 +237,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * @param string $plugin_slug The plugin slug.
 		 * @param string $plugin_file The plugin file.
 		 */
-		public function install_plugin_button( $plugin_slug, $plugin_file ) {
+		public function woostify_install_plugin_button( $plugin_slug, $plugin_file ) {
 			if ( current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) ) {
 				if ( is_plugin_active( $plugin_slug . '/' . $plugin_file ) ) {
 					// The plugin is already active.
@@ -252,8 +246,8 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						'url'     => '#',
 						'classes' => 'disabled',
 					);
-				} elseif ( $this->_is_plugin_installed( $plugin_slug ) ) {
-					$url = $this->_is_plugin_installed( $plugin_slug );
+				} elseif ( $this->woostify_is_plugin_installed( $plugin_slug ) ) {
+					$url = $this->woostify_is_plugin_installed( $plugin_slug );
 
 					// The plugin exists but isn't activated yet.
 					$button = array(
@@ -289,7 +283,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 *
 		 * @param string $plugin_slug The plugin slug.
 		 */
-		public function _is_plugin_installed( $plugin_slug ) {
+		public function woostify_is_plugin_installed( $plugin_slug ) {
 			if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_slug ) ) {
 				$plugins = get_plugins( '/' . $plugin_slug );
 				if ( ! empty( $plugins ) ) {
@@ -310,19 +304,15 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		}
 		/**
 		 * Welcome screen enhance section
-		 *
-		 * @since 1.0
 		 */
-		public function welcome_enhance() {
+		public function woostify_welcome_enhance() {
 			require_once( WOOSTIFY_THEME_DIR . 'inc/admin/welcome-screen/component-enhance.php' );
 		}
 
 		/**
 		 * Welcome screen contribute section
-		 *
-		 * @since 1.0
 		 */
-		public function welcome_contribute() {
+		public function woostify_welcome_contribute() {
 			require_once( WOOSTIFY_THEME_DIR . 'inc/admin/welcome-screen/component-contribute.php' );
 		}
 
@@ -333,7 +323,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * @param  string $transient Name the transient.
 		 * @return [type]            [description]
 		 */
-		public function get_woostify_product_data( $url, $transient ) {
+		public function woostify_get_woostify_product_data( $url, $transient ) {
 			$raw_products = wp_safe_remote_get( $url );
 			$products     = json_decode( wp_remote_retrieve_body( $raw_products ) );
 

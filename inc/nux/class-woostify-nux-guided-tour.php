@@ -3,7 +3,6 @@
  * Woostify NUX Guided Tour Class
  *
  * @package  woostify
- * @since    1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,20 +19,18 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 		 * Setup class.
 		 */
 		public function __construct() {
-			add_action( 'admin_init', array( $this, 'customizer' ) );
+			add_action( 'admin_init', array( $this, 'woostify_customizer' ) );
 		}
 
 		/**
 		 * Customizer.
-		 *
-		 * @since 2.2.0
 		 */
-		public function customizer() {
+		public function woostify_customizer() {
 			global $pagenow;
 
 			if ( 'customize.php' === $pagenow && false === (bool) get_option( 'woostify_nux_guided_tour', false ) ) {
-				add_action( 'customize_controls_enqueue_scripts', array( $this, 'customize_scripts' ) );
-				add_action( 'customize_controls_print_footer_scripts', array( $this, 'print_templates' ) );
+				add_action( 'customize_controls_enqueue_scripts', array( $this, 'woostify_customize_scripts' ) );
+				add_action( 'customize_controls_print_footer_scripts', array( $this, 'woostify_print_templates' ) );
 
 				if ( current_user_can( 'manage_options' ) ) {
 
@@ -45,10 +42,8 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 
 		/**
 		 * Customizer enqueues.
-		 *
-		 * @since 2.2.0
 		 */
-		public function customize_scripts() {
+		public function woostify_customize_scripts() {
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			wp_enqueue_style(
@@ -70,16 +65,14 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 			wp_localize_script(
 				'woostify-guided-tour',
 				'_wpCustomizeSFGuidedTourSteps',
-				$this->guided_tour_steps()
+				$this->woostify_guided_tour_steps()
 			);
 		}
 
 		/**
 		 * Template for steps.
-		 *
-		 * @since 2.2.0
 		 */
-		public function print_templates() {
+		public function woostify_print_templates() {
 			?>
 			<script type="text/html" id="tmpl-woostify-guided-tour-step">
 				<div class="woostify-guided-tour-step">
@@ -110,10 +103,8 @@ if ( ! class_exists( 'Woostify_NUX_Guided_Tour' ) ) :
 
 		/**
 		 * Guided tour steps.
-		 *
-		 * @since 2.2.0
 		 */
-		public function guided_tour_steps() {
+		public function woostify_guided_tour_steps() {
 			$steps = array();
 
 			$steps[] = array(

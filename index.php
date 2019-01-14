@@ -18,20 +18,16 @@ get_header();
 		<main id="main" class="site-main">
 
 			<?php
-			if ( have_posts() ) :
-
-					get_template_part( 'template-parts/loop' );
-
-				else :
-
-					get_template_part( 'template-parts/content', 'none' );
-
-			endif;
-				?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+			if ( have_posts() ) {
+				get_template_part( 'template-parts/loop' );
+			} else {
+				get_template_part( 'template-parts/content', 'none' );
+			}
+			?>
+		</main>
+	</div>
 
 <?php
 do_action( 'woostify_sidebar' );
+
 get_footer();

@@ -341,7 +341,6 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 
 			// Return it to be used by our function.
 			return $category;
-
 		}
 
 		/**

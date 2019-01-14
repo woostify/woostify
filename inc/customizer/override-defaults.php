@@ -25,7 +25,7 @@ if ( function_exists( 'add_partial' ) ) {
 		'custom_logo',
 		array(
 			'selector'        => '.site-branding',
-			'render_callback' => array( $this, 'get_site_logo' ),
+			'render_callback' => array( $this, 'woostify_get_site_logo' ),
 		)
 	);
 
@@ -33,7 +33,7 @@ if ( function_exists( 'add_partial' ) ) {
 		'blogname',
 		array(
 			'selector'        => '.site-title.beta a',
-			'render_callback' => array( $this, 'get_site_name' ),
+			'render_callback' => array( $this, 'woostify_get_site_name' ),
 		)
 	);
 
@@ -41,7 +41,7 @@ if ( function_exists( 'add_partial' ) ) {
 		'blogdescription',
 		array(
 			'selector'        => '.site-description',
-			'render_callback' => array( $this, 'get_site_description' ),
+			'render_callback' => array( $this, 'woostify_get_site_description' ),
 		)
 	);
 }

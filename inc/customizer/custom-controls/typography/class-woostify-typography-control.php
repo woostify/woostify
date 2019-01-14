@@ -12,8 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typography_Control' ) ) {
 	/**
 	 * Create the typography elements control.
-	 *
-	 * @since 1.0
 	 */
 	class Woostify_Typography_Control extends WP_Customize_Control {
 

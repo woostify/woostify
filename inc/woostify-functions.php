@@ -5,7 +5,7 @@
  * @package woostify
  */
 
-if ( ! class_exists( 'woostify_version' ) ) {
+if ( ! function_exists( 'woostify_version' ) ) {
 	/**
 	 * Woostify Version
 	 *
@@ -169,7 +169,6 @@ if ( ! function_exists( 'woostify_sanitize_variants' ) ) {
 	 *
 	 * @param      string $input sanitize variants.
 	 * @return     sanitize_text_field( $input )
-	 * @since 1.0
 	 */
 	function woostify_sanitize_variants( $input ) {
 		if ( is_array( $input ) ) {
@@ -206,7 +205,7 @@ if ( ! function_exists( 'woostify_options' ) ) {
 	 * @return     array $options         All theme options
 	 */
 	function woostify_options( $defaults = true ) {
-		$default_settings = Woostify_Customizer::get_woostify_default_setting_values();
+		$default_settings = Woostify_Customizer::woostify_get_woostify_default_setting_values();
 		$default_fonts    = Woostify_Fonts_Helpers::woostify_get_default_fonts();
 		$default_options  = array_merge( $default_settings, $default_fonts );
 

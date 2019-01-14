@@ -26,7 +26,7 @@ if ( post_password_required() ) {
 		</h2>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
-		<nav class="comment-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Comment Navigation Above', 'woostify' ); ?>">
+		<nav class="comment-navigation" aria-label="<?php esc_attr_e( 'Comment Navigation Above', 'woostify' ); ?>">
 			<span class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'woostify' ); ?></span>
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'woostify' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'woostify' ) ); ?></div>
