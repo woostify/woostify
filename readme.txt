@@ -58,9 +58,9 @@ Woostify bundles the following third-party resources:
 Screenshot Licenses
 -------------------------------------------------------
 Screenshot images are all licensed under CC0 Universal
-https://pixabay.com/en/balancing-chair-fashion-man-model-1868051/
-https://pixabay.com/en/man-person-shirt-bow-tie-suspender-407095/
-https://pixabay.com/en/fashion-shooting-guy-man-male-601563/
+https://www.pexels.com/photo/bow-tie-businessman-fashion-man-1702/
+https://www.pexels.com/photo/woman-in-white-long-sleeved-dress-1030895/
+https://www.pexels.com/photo/white-and-blue-floral-flap-sling-bag-hanging-on-white-steel-rack-904350/
 
 Themeify Icons, Copyright lykmapipo
 Font License- Applies to all desktop and webfont files in the following directory: assets/fonts/.
