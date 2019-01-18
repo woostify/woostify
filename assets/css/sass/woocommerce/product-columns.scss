@@ -61,7 +61,7 @@
     }
 	
 	/* For product grid inside Elementor Edit Mode */
-    @at-root .elementor-editor-active {
+    @at-root .elementor-editor-active, .elementor-shortcode {
     	@media ( min-width: $screen-md ) {
 	        @for $i from 2 through 6 {
 	            .products.columns-#{ $i } {

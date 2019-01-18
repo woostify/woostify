@@ -102,9 +102,9 @@
 	overflow-y: hidden
 }
 
-.tns-visually-hidden {
-	position: absolute;
-	left: -10000em
+.tns-visually-hidden,
+.tns-outer button[data-action] {
+	display: none;
 }
 
 .tns-transparent {

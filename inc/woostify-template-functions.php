@@ -1427,10 +1427,6 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 		if ( woostify_is_woocommerce_activated() ) {
 			$options = woostify_options( false );
 
-			if ( false == $options['header_shop_cart_icon'] && false == $options['header_account_icon'] ) {
-				return;
-			}
-
 			global $woocommerce;
 			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
 			$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
@@ -1458,6 +1454,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 
 				<?php do_action( 'woostify_site_tools_before_wishlist_icon' ); ?>
 
+				<?php // Wishlist icon. ?>
 				<?php if ( defined( 'YITH_WCWL' ) && true == $options['header_wishlist_icon'] ) { ?>
 					<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>"></a>
 				<?php } ?>

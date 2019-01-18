@@ -146,30 +146,6 @@ $wp_customize->add_control(
 	)
 );
 
-// Wishlist icon.
-if ( defined( 'YITH_WCWL' ) ) {
-	$wp_customize->add_setting(
-		'woostify_setting[header_wishlist_icon]',
-		array(
-			'type'              => 'option',
-			'default'           => $defaults['header_wishlist_icon'],
-			'sanitize_callback' => 'woostify_sanitize_checkbox',
-		)
-	);
-	$wp_customize->add_control(
-		new WP_Customize_Control(
-			$wp_customize,
-			'woostify_setting[header_wishlist_icon]',
-			array(
-				'type'     => 'checkbox',
-				'label'    => __( 'Wishlist Icon', 'woostify' ),
-				'section'  => 'woostify_header',
-				'settings' => 'woostify_setting[header_wishlist_icon]',
-			)
-		)
-	);
-}
-
 // Woocommerce.
 if ( class_exists( 'woocommerce' ) ) {
 	// Search product only.
@@ -194,6 +170,30 @@ if ( class_exists( 'woocommerce' ) ) {
 		)
 	);
 
+	// Wishlist icon.
+	if ( defined( 'YITH_WCWL' ) ) {
+		$wp_customize->add_setting(
+			'woostify_setting[header_wishlist_icon]',
+			array(
+				'type'              => 'option',
+				'default'           => $defaults['header_wishlist_icon'],
+				'sanitize_callback' => 'woostify_sanitize_checkbox',
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Control(
+				$wp_customize,
+				'woostify_setting[header_wishlist_icon]',
+				array(
+					'type'     => 'checkbox',
+					'label'    => __( 'Wishlist Icon', 'woostify' ),
+					'section'  => 'woostify_header',
+					'settings' => 'woostify_setting[header_wishlist_icon]',
+				)
+			)
+		);
+	}
+
 	// Account icon.
 	$wp_customize->add_setting(
 		'woostify_setting[header_account_icon]',
@@ -216,7 +216,7 @@ if ( class_exists( 'woocommerce' ) ) {
 		)
 	);
 
-	// Shopping cart icon.
+	// Shopping bag icon.
 	$wp_customize->add_setting(
 		'woostify_setting[header_shop_cart_icon]',
 		array(
