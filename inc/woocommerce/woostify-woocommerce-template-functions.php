@@ -222,7 +222,7 @@ if ( ! function_exists( 'woostify_breadcrumb_only_for_woocommerce_page' ) ) {
 		$options = woostify_options( false );
 
 		// Return if not woocommerce page.
-		if ( ! woostify_is_woocommerce_page() ) {
+		if ( ! woostify_is_woocommerce_page() || is_404() ) {
 			return;
 		}
 

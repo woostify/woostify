@@ -97,6 +97,7 @@ $wp_customize->add_panel(
 	)
 );
 
+// Body.
 $wp_customize->add_section(
 	'body_font_section',
 	array(
@@ -106,6 +107,7 @@ $wp_customize->add_section(
 	)
 );
 
+// Primary menu.
 $wp_customize->add_section(
 	'menu_font_section',
 	array(
@@ -115,12 +117,22 @@ $wp_customize->add_section(
 	)
 );
 
+// Heading.
 $wp_customize->add_section(
 	'heading_font_section',
 	array(
 		'title'      => __( 'Heading', 'woostify' ),
 		'capability' => 'edit_theme_options',
 		'panel'      => 'woostify_typography',
+	)
+);
+
+// 404 section.
+$wp_customize->add_section(
+	'woostify_error',
+	array(
+		'title' => __( '404', 'woostify' ),
+		'panel' => 'woostify_layout',
 	)
 );
 

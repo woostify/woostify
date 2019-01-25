@@ -147,6 +147,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'sidebar_blog_single'                  => 'default',
 					'sidebar_shop'                         => 'default',
 					'sidebar_shop_single'                  => 'full',
+
+					// 404.
+					'error_404_text'                       => __( 'Opps! The page you’re looking for is missing for some reasons. Please come back to homepage', 'woostify' ),
+					'error_404_image'                      => '',
 				)
 			);
 		}
@@ -288,33 +292,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					)
 				);
 			}
-		}
-
-		/**
-		 * Get site logo.
-		 *
-		 * @return string
-		 */
-		public function woostify_get_site_logo() {
-			return woostify_site_title_or_logo( false );
-		}
-
-		/**
-		 * Get site name.
-		 *
-		 * @return string
-		 */
-		public function woostify_get_site_name() {
-			return get_bloginfo( 'name', 'display' );
-		}
-
-		/**
-		 * Get site description.
-		 *
-		 * @return string
-		 */
-		public function woostify_get_site_description() {
-			return get_bloginfo( 'description', 'display' );
 		}
 	}
 

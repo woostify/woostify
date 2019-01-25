@@ -31,6 +31,9 @@
             margin: 0;
             font-size: 24px;
         }
+        @media ( max-width: $screen-md ) {
+        	text-align: center;
+        }
     }
 
     /* menu */

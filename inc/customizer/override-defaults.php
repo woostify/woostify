@@ -16,32 +16,5 @@ $wp_customize->get_section( 'background_image' )->priority = 10;
 // Remove description on Site Icon.
 $wp_customize->get_control( 'site_icon' )->description     = '';
 
-// Selective refresh.
-if ( function_exists( 'add_partial' ) ) {
-	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-
-	$wp_customize->selective_refresh->add_partial(
-		'custom_logo',
-		array(
-			'selector'        => '.site-branding',
-			'render_callback' => array( $this, 'woostify_get_site_logo' ),
-		)
-	);
-
-	$wp_customize->selective_refresh->add_partial(
-		'blogname',
-		array(
-			'selector'        => '.site-title.beta a',
-			'render_callback' => array( $this, 'woostify_get_site_name' ),
-		)
-	);
-
-	$wp_customize->selective_refresh->add_partial(
-		'blogdescription',
-		array(
-			'selector'        => '.site-description',
-			'render_callback' => array( $this, 'woostify_get_site_description' ),
-		)
-	);
-}
+$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
+$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';

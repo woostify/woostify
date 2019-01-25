@@ -21,6 +21,23 @@
 	transition: all 0s
 }
 
+.tns{
+	&:not(.tns-slider){
+		@extend .circle-loading;
+		.tnsi,
+		.product{
+			&:first-of-type{
+				opacity: 0;
+				visibility: hidden;
+			}
+			~.tnsi,
+			~.product{
+				display: none;
+			}
+		}
+	}
+}
+
 .tns-slider > .tns-item {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;

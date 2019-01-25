@@ -114,7 +114,7 @@ class Woostify_Get_CSS {
 				background-color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
-			.type-product .woocommerce-loop-product__title,
+			.product .woocommerce-loop-product__title,
 			.has-woostify-text-font-size{
 				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
 			}
@@ -381,6 +381,16 @@ class Woostify_Get_CSS {
 				background-color:  ' . esc_attr( $options['shop_single_content_background'] ) . ';
 			}
 		';
+
+		// 404.
+		$error_404_bg = $options['error_404_image'];
+		if ( $error_404_bg ) {
+			$styles .= '
+				.error404 .site-content{
+					background-image: url(' . esc_url( $error_404_bg ) . ');
+				}
+			';
+		}
 
 		return apply_filters( 'woostify_customizer_css', $styles );
 	}

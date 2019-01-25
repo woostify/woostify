@@ -42,3 +42,23 @@
 		margin-top: 0;
 	}
 }
+/* 404 */
+.error404{
+	.site-content{
+		margin-top: 0;
+		min-height: 500px;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+		@extend .flex;
+	}
+	.site-footer{
+		margin-top: 0;
+	}
+	.error-404-text{
+		max-width: 320px;
+		margin: 0 auto;
+		font-size: 18px;
+		line-height: 1.8em;
+	}
+}

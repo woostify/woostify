@@ -66,9 +66,6 @@ function woostify_unit_live_update( id, selector, property, default_value, unit,
 					jQuery( 'style#' + id ).not( ':last' ).remove();
 				}, 100 );
 			}
-
-			// Trigger event.
-			setTimeout( "jQuery( document.body ).trigger( 'woostify_spacing_updated' );", 1000 );
 		} );
 	} );
 }
@@ -90,7 +87,7 @@ function woostify_append_data( id, selector, property ) {
 function woostify_html_live_update( id, selector ) {
 	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
-			$( selector ).html( newval );
+			document.querySelector( selector ).innerHTML = newval;
 		} );
 	} );
 }
@@ -100,9 +97,9 @@ function woostify_hidden_product_meta( id, selector ) {
 	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
 			if ( false === newval ) {
-				jQuery( document.body ).addClass( selector );
+				document.body.classList.add( selector );
 			} else {
-				jQuery( document.body ).removeClass( selector );
+				document.body.classList.remove( selector );
 			}
 		} );
 	} );
@@ -111,7 +108,7 @@ function woostify_hidden_product_meta( id, selector ) {
 /**
  * Multi device slider update
  *
- * @param      array   array     The array: array of settings Desktop -> Tablet -> Mobile
+ * @param      array   array     The Array of settings Desktop -> Tablet -> Mobile
  * @param      string  selector  The selector: css selector
  * @param      string  property  The property: background-color, display...
  * @param      string  unit      The css unit: px, em, pt...
@@ -141,21 +138,40 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 						jQuery( 'style#woostify_setting-' + el ).not( ':last' ).remove();
 					}, 100 );
 				}
-
-				// Trigger event.
-				setTimeout( "jQuery( document.body ).trigger( 'woostify_spacing_updated' );", 1000 );
 			} );
 		} );
 	} );
 }
 
 ( function( $ ) {
+	// Refresh Preview when remove Custom Logo.
+	wp.customize( 'custom_logo', function( value ) {
+		value.bind( function( newval ) {
+			if ( ! newval ) {
+				wp.customize.preview.send( 'refresh' );
+			}
+		} );
+	} );
 
 	// Update the site title in real time...
-	woostify_html_live_update( 'blogname', '.main-title a' );
+	wp.customize( 'blogname', function( value ) {
+		value.bind( function( newval ) {
+			var selector = document.querySelector( '.site-title.beta a' );
+			if ( selector ) {
+				selector.innerHTML = newval;
+			}
+		} );
+	} );
 
 	// Update the site description in real time...
-	woostify_html_live_update( 'blogdescription', '.site-description' );
+	wp.customize( 'blogdescription', function( value ) {
+		value.bind( function( newval ) {
+			var selector = document.querySelector( '.site-description' );
+			if ( selector ) {
+				selector.innerHTML = newval;
+			}
+		} );
+	} );
 
 	// Topbar.
 	woostify_colors_live_update( 'topbar_text_color', '.topbar .topbar-item', 'color' );
@@ -185,6 +201,12 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	woostify_append_data( 'body_font_transform', 'body, button, input, select, textarea', 'text-transform' );
 
 	// Menu.
+	// Menu font weight.
+	woostify_append_data( 'menu_font_weight', '.primary-navigation a', 'font-weight' );
+
+	// Menu text transform.
+	woostify_append_data( 'menu_font_transform', '.primary-navigation a', 'text-transform' );
+
 	// Parent menu font size.
 	woostify_unit_live_update( 'parent_menu_font_size', '.site-header .primary-navigation > li > a', 'font-size', 14 );
 

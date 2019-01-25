@@ -7,22 +7,9 @@
  * @package woostify
  */
 
-do_action( 'woostify_content_bottom' );
+do_action( 'woostify_theme_footer' );
+wp_footer();
 ?>
-			</div><?php // #content. ?>
 
-		<?php
-			do_action( 'woostify_before_footer' );
-			do_action( 'woostify_site_footer' );
-			do_action( 'woostify_after_footer' );
-		?>
-
-	</div><?php // #view. ?>
-
-	<?php do_action( 'woostify_after_view' ); ?>
-
-</div><?php // #page. ?>
-
-<?php wp_footer(); ?>
 </body>
 </html>

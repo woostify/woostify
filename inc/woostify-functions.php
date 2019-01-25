@@ -227,13 +227,17 @@ if ( ! function_exists( 'woostify_image_alt' ) ) {
 	/**
 	 * Get image alt
 	 *
-	 * @param      bolean $id     The image id.
-	 * @param      string $alt    The alternate.
+	 * @param      bolean $id          The image id.
+	 * @param      string $alt         The alternate.
+	 * @param      bolean $placeholder The bolean.
 	 *
 	 * @return     string  The image alt
 	 */
-	function woostify_image_alt( $id = null, $alt = '' ) {
+	function woostify_image_alt( $id = null, $alt = '', $placeholder = false ) {
 		if ( ! $id ) {
+			if ( $placeholder ) {
+				return esc_attr__( 'Placeholder image', 'woostify' );
+			}
 			return esc_attr__( 'Error image', 'woostify' );
 		}
 
@@ -342,4 +346,13 @@ if ( ! function_exists( 'woostify_narrow_data' ) ) {
 
 		return $output;
 	}
+}
+
+/**
+ * This is develeper function. Not publish.
+ *
+ * @param      array|string $data   The data.
+ */
+function fw_print( $data ) {
+	echo '<pre>' . var_export( $data, true ) . '</pre>'; // // @codingStandardsIgnoreLine
 }

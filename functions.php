@@ -41,9 +41,7 @@ if ( is_admin() ) {
 require_once WOOSTIFY_THEME_DIR . 'inc/widget/class-woostify-recent-post-thumbnail.php';
 
 // Woostify elementor.
-if ( woostify_is_elementor_activated() ) {
-	require_once WOOSTIFY_THEME_DIR . 'inc/elementor.php';
-}
+require_once WOOSTIFY_THEME_DIR . 'inc/elementor.php';
 
 /**
  * Note: Do not add any custom code here. Please use a custom plugin so that your customizations aren't lost during updates.

@@ -12,22 +12,13 @@
  */
 
 get_header();
-?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
-
-			<?php
-			if ( have_posts() ) {
-				get_template_part( 'template-parts/loop' );
-			} else {
-				get_template_part( 'template-parts/content', 'none' );
-			}
-			?>
-		</main>
-	</div>
-
-<?php
-do_action( 'woostify_sidebar' );
+if ( is_archive() || is_home() || is_search() ) {
+	get_template_part( 'template-parts/archive' );
+} elseif ( is_singular() ) {
+	get_template_part( 'template-parts/single' );
+} else {
+	get_template_part( 'template-parts/404' );
+}
 
 get_footer();

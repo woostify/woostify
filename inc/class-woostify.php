@@ -29,6 +29,10 @@ if ( ! class_exists( 'woostify' ) ) :
 			add_filter( 'wpcf7_load_css', '__return_false' );
 			add_filter( 'excerpt_length', array( $this, 'woostify_limit_excerpt_character' ), 99 );
 
+			// Elementor.
+			add_action( 'elementor/elements/categories_registered', array( $this, 'woostify_widget_categories' ) );
+			add_action( 'elementor/preview/enqueue_scripts', array( $this, 'woostify_elementor_preview_scripts' ) );
+
 			// Add Image column on blog list in admin screen.
 			add_filter( 'manage_post_posts_columns', array( $this, 'woostify_columns_head' ), 10 );
 			add_action( 'manage_post_posts_custom_column', array( $this, 'woostify_columns_content' ), 10, 2 );
@@ -101,7 +105,7 @@ if ( ! class_exists( 'woostify' ) ) :
 		 */
 		public function woostify_columns_content( $column_name, $post_ID ) {
 			if ( 'thumbnail_image' === $column_name ) {
-				$_img_src = $this->get_featured_image_src( $post_ID );
+				$_img_src = $this->woostify_get_featured_image_src( $post_ID );
 				?>
 					<a href="<?php echo esc_url( get_edit_post_link( $post_ID ) ); ?>">
 						<img src="<?php echo esc_url( $_img_src ); ?>"/>
@@ -475,6 +479,35 @@ if ( ! class_exists( 'woostify' ) ) :
 		}
 
 		/**
+		 * Add Elementor Category
+		 *
+		 * @param      Elements_Manager $elements_manager The elements manager.
+		 */
+		public function woostify_widget_categories( $elements_manager ) {
+			$elements_manager->add_category(
+				'woostify-theme',
+				array(
+					'title' => esc_html__( 'Woostify Theme', 'woostify' ),
+				)
+			);
+		}
+
+		/**
+		 * Elementor pewview scripts
+		 */
+		public function woostify_elementor_preview_scripts() {
+			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
+			// Elementor widgets js.
+			wp_enqueue_script(
+				'woostify-elementor-live-preview',
+				WOOSTIFY_THEME_URI . 'assets/js/elementor-preview' . $suffix . '.js',
+				array(),
+				woostify_version()
+			);
+		}
+
+		/**
 		 * Limit the character length in exerpt
 		 *
 		 * @param      int $length The length.
@@ -588,8 +621,8 @@ if ( ! class_exists( 'woostify' ) ) :
 
 			wp_enqueue_script(
 				'woostify-customizer-preview',
-				WOOSTIFY_THEME_URI . '/assets/js/customizer-preview' . $suffix . '.js',
-				array(),
+				WOOSTIFY_THEME_URI . 'assets/js/customizer-preview' . $suffix . '.js',
+				array( 'jquery' ),
 				woostify_version(),
 				true
 			);

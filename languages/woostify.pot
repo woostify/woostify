@@ -13,14 +13,6 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: 404.php:18
-msgid "Nothing was found at this location. Try searching, or check out the links below."
-msgstr ""
-
-#: 404.php:21
-msgid "Search"
-msgstr ""
-
 #: comments.php:14
 msgid "Post Comments"
 msgstr ""
@@ -96,95 +88,119 @@ msgstr ""
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Main Sidebar</strong></a> and dragging widgets into this widget area."
 msgstr ""
 
-#: inc/class-woostify.php:90
+#: inc/class-woostify.php:93
 msgid "Image"
 msgstr ""
 
-#: inc/class-woostify.php:187
+#: inc/class-woostify.php:190
 msgid "Primary Menu"
 msgstr ""
 
-#: inc/class-woostify.php:188
+#: inc/class-woostify.php:191
 msgid "Footer Menu"
 msgstr ""
 
-#: inc/class-woostify.php:258
+#: inc/class-woostify.php:261
 msgid "Primary Color"
 msgstr ""
 
-#: inc/class-woostify.php:263, inc/customizer/sections/color/color.php:92, inc/customizer/sections/footer/footer.php:158
+#: inc/class-woostify.php:266, inc/customizer/sections/color/color.php:92, inc/customizer/sections/footer/footer.php:158
 msgid "Heading Color"
 msgstr ""
 
-#: inc/class-woostify.php:268, inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:114, inc/customizer/sections/footer/footer.php:200, inc/customizer/sections/header/topbar.php:26
+#: inc/class-woostify.php:271, inc/customizer/sections/buttons/button.php:26, inc/customizer/sections/color/color.php:114, inc/customizer/sections/footer/footer.php:200, inc/customizer/sections/header/topbar.php:26
 msgid "Text Color"
 msgstr ""
 
-#: inc/class-woostify.php:280
+#: inc/class-woostify.php:283
 msgid "Text Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:285
+#: inc/class-woostify.php:288
 msgid "H6 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:290
+#: inc/class-woostify.php:293
 msgid "H5 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:295
+#: inc/class-woostify.php:298
 msgid "H4 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:300
+#: inc/class-woostify.php:303
 msgid "H3 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:305
+#: inc/class-woostify.php:308
 msgid "H2 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:310
+#: inc/class-woostify.php:313
 msgid "H1 Font Size"
 msgstr ""
 
-#: inc/class-woostify.php:325
+#: inc/class-woostify.php:328
 msgid "Main Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:327
+#: inc/class-woostify.php:330
 msgid "Appears in the sidebar of the site."
 msgstr ""
 
-#: inc/class-woostify.php:334
+#: inc/class-woostify.php:337
 msgid "Woocommerce Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:336
+#: inc/class-woostify.php:339
 msgid " Appears in the sidebar of shop/product page."
 msgstr ""
 
-#: inc/class-woostify.php:343, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
+#: inc/class-woostify.php:346, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
 msgid "Footer Widget"
 msgstr ""
 
-#: inc/class-woostify.php:345
+#: inc/class-woostify.php:348
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:576
-msgid "Post Pagination"
-msgstr ""
-
-#: inc/elementor.php:20
+#: inc/class-woostify.php:490
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/woostify-functions.php:93, inc/admin/class-woostify-admin.php:130
+#: inc/class-woostify.php:608
+msgid "Post Pagination"
+msgstr ""
+
+#: inc/elementor.php:19
+msgid "Woostify Header"
+msgstr ""
+
+#: inc/elementor.php:29
+msgid "Woostify Footer"
+msgstr ""
+
+#: inc/elementor.php:39
+msgid "Woostify Single"
+msgstr ""
+
+#: inc/elementor.php:49
+msgid "Woostify Archive"
+msgstr ""
+
+#: inc/elementor.php:59
+msgid "Woostify 404"
+msgstr ""
+
+#: inc/woostify-functions.php:93, inc/admin/class-woostify-admin.php:124
 msgid "Woostify"
 msgstr ""
 
-#: inc/woostify-functions.php:238
+#: inc/woostify-functions.php:239
+msgid "Placeholder image"
+msgstr ""
+
+#: inc/woostify-functions.php:241
 msgid "Error image"
 msgstr ""
 
@@ -192,7 +208,7 @@ msgstr ""
 msgid "Related Posts"
 msgstr ""
 
-#: inc/woostify-template-functions.php:51, inc/admin/class-woostify-admin.php:177
+#: inc/woostify-template-functions.php:51, inc/admin/class-woostify-admin.php:171
 msgid "Read more"
 msgstr ""
 
@@ -219,126 +235,122 @@ msgstr ""
 msgid "All rights reserved. Designed &amp; developed by woostify&trade;"
 msgstr ""
 
-#: inc/woostify-template-functions.php:334
+#: inc/woostify-template-functions.php:317
 msgid "Woostify mobile logo"
 msgstr ""
 
-#: inc/woostify-template-functions.php:363
+#: inc/woostify-template-functions.php:346
 msgid "Woostify logo"
 msgstr ""
 
-#: inc/woostify-template-functions.php:391
+#: inc/woostify-template-functions.php:374
 msgid "Woostify retina logo"
 msgstr ""
 
-#: inc/woostify-template-functions.php:459
+#: inc/woostify-template-functions.php:443
 msgid "Primary navigation"
 msgstr ""
 
-#: inc/woostify-template-functions.php:471
+#: inc/woostify-template-functions.php:455
 msgid "Add a Primary Menu"
 msgstr ""
 
-#: inc/woostify-template-functions.php:487
+#: inc/woostify-template-functions.php:471
 msgid "Skip to navigation"
 msgstr ""
 
-#: inc/woostify-template-functions.php:488
+#: inc/woostify-template-functions.php:472
 msgid "Skip to content"
 msgstr ""
 
-#: inc/woostify-template-functions.php:533
-msgid "Error 404"
-msgstr ""
-
-#: inc/woostify-template-functions.php:570, inc/woostify-template-functions.php:831
+#: inc/woostify-template-functions.php:554, inc/woostify-template-functions.php:815
 msgid "Pages:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:711
+#: inc/woostify-template-functions.php:695
 msgid "by"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: inc/woostify-template-functions.php:728, inc/woostify-template-functions.php:875
+#: inc/woostify-template-functions.php:712, inc/woostify-template-functions.php:859
 msgid ", "
 msgstr ""
 
-#: inc/woostify-template-functions.php:734
+#: inc/woostify-template-functions.php:718
 msgid "Posted in"
 msgstr ""
 
-#: inc/woostify-template-functions.php:750
+#: inc/woostify-template-functions.php:734
 msgid "No comments yet"
 msgstr ""
 
-#: inc/woostify-template-functions.php:751
+#: inc/woostify-template-functions.php:735
 msgid "1 Comment"
 msgstr ""
 
-#: inc/woostify-template-functions.php:752
+#: inc/woostify-template-functions.php:736
 msgid "% Comments"
 msgstr ""
 
-#: inc/woostify-template-functions.php:811, inc/woostify-template-functions.php:857, inc/admin/class-woostify-admin.php:200
+#: inc/woostify-template-functions.php:795, inc/woostify-template-functions.php:841
 msgid "Read More"
 msgstr ""
 
-#: inc/woostify-template-functions.php:875, inc/customizer/sections/shop/shop-single.php:205
+#: inc/woostify-template-functions.php:859, inc/customizer/sections/shop/shop-single.php:205
 msgid "Tags"
 msgstr ""
 
-#: inc/woostify-template-functions.php:897
+#: inc/woostify-template-functions.php:881
 msgctxt "Next post"
 msgid "Next"
 msgstr ""
 
-#: inc/woostify-template-functions.php:898
+#: inc/woostify-template-functions.php:882
 msgctxt "Previous post"
 msgid "Prev"
 msgstr ""
 
-#: inc/woostify-template-functions.php:911
+#: inc/woostify-template-functions.php:895
 msgid "Next post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:912
+#: inc/woostify-template-functions.php:896
 msgid "Previous post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:938
+#: inc/woostify-template-functions.php:922
 msgid "Author Avatar"
 msgstr ""
 
-#: inc/woostify-template-functions.php:943
+#: inc/woostify-template-functions.php:927
 msgid "Written by"
 msgstr ""
 
-#: inc/woostify-template-functions.php:973
+#: inc/woostify-template-functions.php:957
 msgid "Posted on"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1178
+#: inc/woostify-template-functions.php:1162
 msgid "Dialog search icon"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1182
+#: inc/woostify-template-functions.php:1166
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1474, inc/woostify-template-functions.php:1524
+#: inc/woostify-template-functions.php:1455, inc/woostify-template-functions.php:1505
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1477, inc/woostify-template-functions.php:1527
+#: inc/woostify-template-functions.php:1458, inc/woostify-template-functions.php:1508
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1479, inc/woostify-template-functions.php:1529
+#: inc/woostify-template-functions.php:1460, inc/woostify-template-functions.php:1510
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1661, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:1642, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 
@@ -367,100 +379,104 @@ msgstr ""
 msgid "Next (arrow right)"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:67
+#: inc/admin/class-woostify-admin.php:63
 msgid "Upload Logo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:74
+#: inc/admin/class-woostify-admin.php:70
 msgid "Set Colors"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:81, inc/customizer/register-sections.php:12, inc/customizer/sections/shop/product-style.php:26
+#: inc/admin/class-woostify-admin.php:77, inc/customizer/register-sections.php:12, inc/customizer/sections/shop/product-style.php:26
 msgid "Layout"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:88, inc/customizer/register-sections.php:85
+#: inc/admin/class-woostify-admin.php:84, inc/customizer/register-sections.php:85
 msgid "Buttons"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:95, inc/customizer/register-sections.php:94
+#: inc/admin/class-woostify-admin.php:91, inc/customizer/register-sections.php:94
 msgid "Typography"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:102, inc/customizer/register-sections.php:132
+#: inc/admin/class-woostify-admin.php:98, inc/customizer/register-sections.php:144
 msgid "Shop"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:129
+#: inc/admin/class-woostify-admin.php:123
 msgid "Woostify Logo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:135
+#: inc/admin/class-woostify-admin.php:129
 msgid "Support"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:136
+#: inc/admin/class-woostify-admin.php:130
 msgid "Documentation"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:137
-msgid "Join FB Group"
+#: inc/admin/class-woostify-admin.php:131
+msgid "Join FB Page"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:146
+#: inc/admin/class-woostify-admin.php:140
 msgid "Link to Customizer Settings"
 msgstr ""
 
 #. translators: 1: Class name
-#: inc/admin/class-woostify-admin.php:159
+#: inc/admin/class-woostify-admin.php:153
 msgid "%s not activated."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:186
+#: inc/admin/class-woostify-admin.php:180
 msgid "More Features are coming with Woostify Pro"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:187
+#: inc/admin/class-woostify-admin.php:181
 msgid "Follow here!"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:192
+#: inc/admin/class-woostify-admin.php:186
 msgid "Optimize website with our powerful Pro Modules."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:196
+#: inc/admin/class-woostify-admin.php:190
 msgid "All the tools you need to define your style and customize your Woostify store."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:213
+#: inc/admin/class-woostify-admin.php:194
+msgid "Follow here"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:207
 msgid "Import Demo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:219
+#: inc/admin/class-woostify-admin.php:213
 msgid "Quickly and easily transform your shops appearance with Woostify Demo Sites."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:223
+#: inc/admin/class-woostify-admin.php:217
 msgid "It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:227
+#: inc/admin/class-woostify-admin.php:221
 msgid "Install Demo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:251, inc/admin/class-woostify-plugin-install.php:72
+#: inc/admin/class-woostify-admin.php:245, inc/admin/class-woostify-plugin-install.php:68
 msgid "Activated"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:260, inc/admin/class-woostify-plugin-install.php:85
+#: inc/admin/class-woostify-admin.php:254, inc/admin/class-woostify-plugin-install.php:81
 msgid "Activate"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:275, inc/admin/class-woostify-plugin-install.php:104
+#: inc/admin/class-woostify-admin.php:269, inc/admin/class-woostify-plugin-install.php:100
 msgid "Install now"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:282, inc/admin/class-woostify-plugin-install.php:124
+#: inc/admin/class-woostify-admin.php:276, inc/admin/class-woostify-plugin-install.php:120
 msgid "Learn more"
 msgstr ""
 
@@ -524,15 +540,19 @@ msgstr ""
 msgid "Disable Footer"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:218
+#: inc/customizer/class-woostify-customizer.php:152
+msgid "Opps! The page you’re looking for is missing for some reasons. Please come back to homepage"
+msgstr ""
+
+#: inc/customizer/class-woostify-customizer.php:221
 msgid "Pro Version Is Coming Soon"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:235, inc/customizer/class-woostify-customizer.php:251, inc/customizer/class-woostify-customizer.php:267, inc/customizer/class-woostify-customizer.php:283
+#: inc/customizer/class-woostify-customizer.php:238, inc/customizer/class-woostify-customizer.php:254, inc/customizer/class-woostify-customizer.php:270, inc/customizer/class-woostify-customizer.php:286
 msgid "Learn More"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:236, inc/customizer/class-woostify-customizer.php:252, inc/customizer/class-woostify-customizer.php:268, inc/customizer/class-woostify-customizer.php:284
+#: inc/customizer/class-woostify-customizer.php:239, inc/customizer/class-woostify-customizer.php:255, inc/customizer/class-woostify-customizer.php:271, inc/customizer/class-woostify-customizer.php:287
 msgid "More options are coming for this section in our pro version."
 msgstr ""
 
@@ -564,125 +584,129 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: inc/customizer/register-sections.php:103
+#: inc/customizer/register-sections.php:104
 msgid "Body"
 msgstr ""
 
-#: inc/customizer/register-sections.php:112
+#: inc/customizer/register-sections.php:114
 msgid "Primary menu"
 msgstr ""
 
-#: inc/customizer/register-sections.php:121
+#: inc/customizer/register-sections.php:124
 msgid "Heading"
 msgstr ""
 
-#: inc/customizer/register-sections.php:141
+#: inc/customizer/register-sections.php:134
+msgid "404"
+msgstr ""
+
+#: inc/customizer/register-sections.php:153
 msgid "Product Style"
 msgstr ""
 
-#: inc/customizer/register-sections.php:150
+#: inc/customizer/register-sections.php:162
 msgid "Shop Archive"
 msgstr ""
 
-#: inc/customizer/register-sections.php:159
+#: inc/customizer/register-sections.php:171
 msgid "Product Single"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:101
+#: inc/nux/class-woostify-nux-admin.php:94
 msgid "Thanks for installing Woostify, you rock! 🤘"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:102
+#: inc/nux/class-woostify-nux-admin.php:95
 msgid "To enable eCommerce features you need to install the WooCommerce plugin."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:103
+#: inc/nux/class-woostify-nux-admin.php:96
 msgid "WooCommerce activated"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:103
+#: inc/nux/class-woostify-nux-admin.php:96
 msgid "Activate WooCommerce"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:103
+#: inc/nux/class-woostify-nux-admin.php:96
 msgid "Install WooCommerce"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:107
+#: inc/nux/class-woostify-nux-admin.php:100
 msgid "Design your store 🎨"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:111
+#: inc/nux/class-woostify-nux-admin.php:104
 msgid "Before you add your first product let's design your store. We'll add some example products for you. When you're ready let's get started by adding your logo."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:113
+#: inc/nux/class-woostify-nux-admin.php:106
 msgid "You've set up WooCommerce, now it's time to give it some style! Let's get started by entering the Customizer and adding your logo."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:119, inc/nux/class-woostify-nux-guided-tour.php:123
+#: inc/nux/class-woostify-nux-admin.php:112, inc/nux/class-woostify-nux-guided-tour.php:114
 msgid "Let's go!"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:94, inc/woocommerce/class-woostify-woocommerce.php:391
+#: inc/nux/class-woostify-nux-guided-tour.php:87, inc/woocommerce/class-woostify-woocommerce.php:389
 msgid "Next"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:100
+#: inc/nux/class-woostify-nux-guided-tour.php:93
 msgid "No thanks, skip the tour"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:102
+#: inc/nux/class-woostify-nux-guided-tour.php:95
 msgid "Skip this step"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:120
+#: inc/nux/class-woostify-nux-guided-tour.php:111
 msgid "Welcome to the Customizer"
 msgstr ""
 
 #. translators: %s: 'End Of Line' symbol
-#: inc/nux/class-woostify-nux-guided-tour.php:122
+#: inc/nux/class-woostify-nux-guided-tour.php:113
 msgid "Here you can control the overall look and feel of your store.%sTo get started, let's add your logo"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:129
+#: inc/nux/class-woostify-nux-guided-tour.php:120
 msgid "Add your logo"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:130
+#: inc/nux/class-woostify-nux-guided-tour.php:121
 msgid "Open the Site Identity Panel, then click the 'Select Logo' button to upload your logo."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:136
+#: inc/nux/class-woostify-nux-guided-tour.php:127
 msgid "Customize your navigation menus"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:137
+#: inc/nux/class-woostify-nux-guided-tour.php:128
 msgid "Organize your menus by adding Pages, Categories, Tags, and Custom Links."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:142
+#: inc/nux/class-woostify-nux-guided-tour.php:133
 msgid "Choose your accent color"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:143
+#: inc/nux/class-woostify-nux-guided-tour.php:134
 msgid "In the typography panel you can specify an accent color which will be applied to things like links and star ratings. We recommend using your brand color for this setting."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:148
+#: inc/nux/class-woostify-nux-guided-tour.php:139
 msgid "Color your buttons"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:149
+#: inc/nux/class-woostify-nux-guided-tour.php:140
 msgid "Choose colors for your button backgrounds and text. Once again, brand colors are good choices here."
 msgstr ""
 
 #. translators: 1: open <strong> tag, 2: close <strong> tag, 3: 'End Of Line' symbol
-#: inc/nux/class-woostify-nux-guided-tour.php:156
+#: inc/nux/class-woostify-nux-guided-tour.php:147
 msgid "All set! Remember to %1$ssave & publish%2$s your changes when you're done.%3$sYou can return to your dashboard by clicking the X in the top left corner."
 msgstr ""
 
-#: inc/nux/class-woostify-nux-guided-tour.php:158
+#: inc/nux/class-woostify-nux-guided-tour.php:149
 msgid "Done"
 msgstr ""
 
@@ -706,23 +730,23 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:390
+#: inc/woocommerce/class-woostify-woocommerce.php:388
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:414
+#: inc/woocommerce/class-woostify-woocommerce.php:412
 msgid "Sale!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:574, inc/woocommerce/class-woostify-woocommerce.php:702, inc/woocommerce/class-woostify-woocommerce.php:733, inc/woocommerce/class-woostify-woocommerce.php:756, inc/woocommerce/class-woostify-woocommerce.php:781
+#: inc/woocommerce/class-woostify-woocommerce.php:568, inc/woocommerce/class-woostify-woocommerce.php:695, inc/woocommerce/class-woostify-woocommerce.php:726, inc/woocommerce/class-woostify-woocommerce.php:748, inc/woocommerce/class-woostify-woocommerce.php:773
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:957
+#: inc/woocommerce/class-woostify-woocommerce.php:947
 msgid "Clear cart"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:145
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:142
 msgid "Shopping cart"
 msgstr ""
 
@@ -742,28 +766,36 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:72
+#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:70
 msgid "System fonts"
 msgstr ""
 
-#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:73
+#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:71
 msgid "Google fonts"
 msgstr ""
 
-#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:76
+#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:74
 msgid "Font family"
 msgstr ""
 
-#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:77
+#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:75
 msgid "Font weight"
 msgstr ""
 
-#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:78
+#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:76
 msgid "Text transform"
 msgstr ""
 
-#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:80
+#: inc/customizer/custom-controls/typography/class-woostify-typography-control.php:78
 msgid "Variants"
+msgstr ""
+
+#: inc/customizer/sections/404/error-404.php:25, inc/customizer/sections/footer/footer.php:221
+msgid "Custom Text"
+msgstr ""
+
+#: inc/customizer/sections/404/error-404.php:47
+msgid "Background"
 msgstr ""
 
 #: inc/customizer/sections/blog/blog-single.php:26
@@ -874,10 +906,6 @@ msgstr ""
 msgid "Link Color"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:221
-msgid "Custom Text"
-msgstr ""
-
 #: inc/customizer/sections/header/header.php:26
 msgid "Header Layout"
 msgstr ""
@@ -894,12 +922,12 @@ msgstr ""
 msgid "Search Icon"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:165
-msgid "Wishlist Icon"
+#: inc/customizer/sections/header/header.php:166
+msgid "Search Only Product"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:190
-msgid "Search Only Product"
+#: inc/customizer/sections/header/header.php:189
+msgid "Wishlist Icon"
 msgstr ""
 
 #: inc/customizer/sections/header/header.php:212

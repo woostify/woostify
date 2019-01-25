@@ -289,23 +289,6 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_header_widget_region' ) ) {
-	/**
-	 * Display header widget region
-	 */
-	function woostify_header_widget_region() {
-		if ( is_active_sidebar( 'header-1' ) ) {
-			?>
-		<div class="header-widget-region" role="complementary">
-			<div class="container">
-				<?php dynamic_sidebar( 'header-1' ); ?>
-			</div>
-		</div>
-			<?php
-		}
-	}
-}
-
 if ( ! function_exists( 'woostify_site_branding' ) ) {
 	/**
 	 * Site branding wrapper and display
@@ -421,6 +404,7 @@ if ( ! function_exists( 'woostify_site_title_or_logo' ) ) {
 			$tag = is_home() ? 'h1' : 'div';
 
 			$html = '<' . esc_attr( $tag ) . ' class="beta site-title"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a></' . esc_attr( $tag ) . '>';
+			$html .= '<span class="site-description">' . esc_html( get_bloginfo( 'description' ) ) . '</span>';
 		}
 
 		if ( ! $echo ) {
@@ -530,7 +514,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		} elseif ( is_archive() ) {
 			$title = get_the_archive_title( $page_id );
 		} elseif ( is_404() ) {
-			$title = __( 'Error 404', 'woostify' );
+			$disable_title = true;
 		}
 
 		if ( false == $options['blog_single_title'] ) {
@@ -1305,7 +1289,7 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		$sidebar_shop        = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop'];
 		$sidebar_shop_single = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop_single'];
 
-		if ( true == woostify_is_elementor_page() ) {
+		if ( true == woostify_is_elementor_page() || is_404() ) {
 			return $sidebar;
 		}
 
@@ -1395,7 +1379,7 @@ if ( ! function_exists( 'woostify_sidebar_menu_close' ) ) {
 
 if ( ! function_exists( 'woostify_wishlist_page_url' ) ) {
 	/**
-	 * Get YTH wishlist page id
+	 * Get YTH wishlist page url
 	 */
 	function woostify_wishlist_page_url() {
 		if ( ! defined( 'YITH_WCWL' ) ) {
@@ -1438,28 +1422,28 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			$count = $woocommerce->cart->cart_contents_count;
 
 			$search_icon     = apply_filters( 'woostify_header_search_icon', 'ti-search' );
-			$wishlist_icon   = apply_filters( 'woostify_header_search_icon', 'ti-heart' );
+			$wishlist_icon   = apply_filters( 'woostify_header_wishlist_icon', 'ti-heart' );
 			$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
 			$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-bag' );
 			?>
 
 			<div class="site-tools">
 
-				<?php do_action( 'woostify_site_tools_before_search' ); ?>
+				<?php do_action( 'woostify_site_tool_before_first_item' ); ?>
 
 				<?php // Search icon. ?>
 				<?php if ( true == $options['header_search_icon'] ) { ?>
 					<span class="tools-icon header-search-icon <?php echo esc_attr( $search_icon ); ?>"></span>
 				<?php } ?>
 
-				<?php do_action( 'woostify_site_tools_before_wishlist_icon' ); ?>
+				<?php do_action( 'woostify_site_tool_before_second_item' ); ?>
 
 				<?php // Wishlist icon. ?>
 				<?php if ( defined( 'YITH_WCWL' ) && true == $options['header_wishlist_icon'] ) { ?>
 					<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>"></a>
 				<?php } ?>
 
-				<?php do_action( 'woostify_site_tools_before_my_account' ); ?>
+				<?php do_action( 'woostify_site_tool_before_third_item' ); ?>
 
 				<?php // My account icon. ?>
 				<?php if ( true == $options['header_account_icon'] ) { ?>
@@ -1480,7 +1464,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 					</div>
 				<?php } ?>
 				
-				<?php do_action( 'woostify_site_tools_before_shop_bag' ); ?>
+				<?php do_action( 'woostify_site_tool_before_fourth_item' ); ?>
 
 				<?php // Shopping cart icon. ?>
 				<?php if ( true == $options['header_shop_cart_icon'] ) { ?>
@@ -1489,7 +1473,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 					</a>
 				<?php } ?>
 
-				<?php do_action( 'woostify_site_tools_after_shop_bag' ); ?>
+				<?php do_action( 'woostify_site_tool_after_last_item' ); ?>
 			</div>
 			<?php
 		}

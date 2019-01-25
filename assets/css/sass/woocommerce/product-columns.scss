@@ -5,52 +5,48 @@
 
     @extend .clearfix;
 
-    .type-product {
+    .product {
         list-style: none;
         float: left;
         margin: 0 30px 56px 0;
         position: relative;
         text-align: center;
 
-        @media ( min-width: $screen-md ) {
-            width: calc( ( 100% - 90px ) / 4 );
-            
-            &.last {
-                margin-right: 0;
-            }
-        }
-
         @media ( min-width: #{ $screen-ios } ) and ( max-width: #{ $screen-md - 1 } ) {
-            width: calc( ( 100% - 30px ) / 2 );
+	        width: calc( ( 100% - 30px ) / 2 );
 
-            &:nth-of-type( 2n ) {
-                margin-right: 0;
-            }
+	        &:nth-of-type( 2n ) {
+	            margin-right: 0;
+	        }
 
-            &:nth-of-type( 2n + 3 ) {
-                clear: both;
-            }
-        }
+	        &:nth-of-type( 2n + 3 ) {
+	            clear: both;
+	        }
+	    }
 
-        /*ios*/
-        @media ( max-width: #{ $screen-ios - 1 } ) {
-            width: 100%;
-            clear: both;
-        }
+	    @media ( max-width: #{ $screen-ios - 1 } ) {
+	        width: 100%;
+	        clear: both;
+	    }
     }
 
     &.columns-1 {
-        .type-product{
+        .product{
             width: 100%;
             margin-right: 0;
         }
     }
 
-    @media ( min-width: $screen-md ) {
-        @for $i from 2 through 6 {
-            &.columns-#{ $i } {
-                .type-product{
+    
+    @for $i from 2 through 6 {
+        &.columns-#{ $i } {
+            .product{
+            	@media ( min-width: $screen-md ) {
                     width: calc( ( 100% - #{ 30px * ( $i - 1 ) } ) / #{ $i } );
+
+                    &:nth-of-type( #{ $i }n ) {
+                    	margin-right: 0;
+                    }
                     
                     &:nth-of-type( #{ $i }n + #{ $i + 1 } ) {
                         clear: both;
@@ -58,26 +54,5 @@
                 }
             }
         }
-    }
-	
-	/* For product grid inside Elementor Edit Mode */
-    @at-root .elementor-editor-active, .elementor-shortcode {
-    	@media ( min-width: $screen-md ) {
-	        @for $i from 2 through 6 {
-	            .products.columns-#{ $i } {
-	                .type-product{
-	                    width: calc( ( 100% - #{ 30px * ( $i - 1 ) } ) / #{ $i } );
-
-	                    &:nth-of-type( #{ $i }n ) {
-	                    	margin-right: 0;
-	                    }
-	                    
-	                    &:nth-of-type( #{ $i }n + #{ $i + 1 } ) {
-	                        clear: both;
-	                    }
-	                }
-	            }
-	        }
-	    }
     }
 }
