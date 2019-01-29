@@ -177,6 +177,30 @@ if ( ! function_exists( 'woostify_sanitize_variants' ) ) {
 		return sanitize_text_field( $input );
 	}
 }
+if ( ! function_exists( 'woostify_sanitize_rgba_color' ) ) {
+	/**
+	 * Sanitize color || rgba color
+	 *
+	 * @param      string $color  The color.
+	 */
+	function woostify_sanitize_rgba_color( $color ) {
+		if ( empty( $color ) || is_array( $color ) ) {
+			return 'rgba(255,255,255,0)';
+		}
+
+		// If string does not start with 'rgba', then treat as hex sanitize the hex color and finally convert hex to rgba.
+		if ( false === strpos( $color, 'rgba' ) ) {
+			return sanitize_hex_color( $color );
+		}
+
+		// By now we know the string is formatted as an rgba color so we need to further sanitize it.
+		$color = str_replace( ' ', '', $color );
+		sscanf( $color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
+
+		return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
+	}
+}
+
 
 if ( ! function_exists( 'woostify_is_blog' ) ) {
 	/**

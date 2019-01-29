@@ -31,7 +31,15 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			wp_enqueue_script(
 				'woostify-condition-control',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/conditional/js/condition.js',
-				array( 'jquery' ),
+				array(),
+				woostify_version(),
+				true
+			);
+
+			wp_enqueue_script(
+				'woostify-condition-control',
+				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/conditional/js/condition.js',
+				array(),
 				woostify_version(),
 				true
 			);
@@ -200,6 +208,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 			// Register Control Type.
 			if ( method_exists( $wp_customize, 'register_control_type' ) ) {
+				$wp_customize->register_control_type( 'Woostify_Color_Control' );
 				$wp_customize->register_control_type( 'Woostify_Typography_Control' );
 				$wp_customize->register_control_type( 'Woostify_Range_Slider_Control' );
 				$wp_customize->register_control_type( 'Woostify_Get_Pro_Control' );
