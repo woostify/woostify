@@ -616,104 +616,6 @@ msgstr ""
 msgid "Product Single"
 msgstr ""
 
-#: inc/nux/class-woostify-nux-admin.php:94
-msgid "Thanks for installing Woostify, you rock! 🤘"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-admin.php:95
-msgid "To enable eCommerce features you need to install the WooCommerce plugin."
-msgstr ""
-
-#: inc/nux/class-woostify-nux-admin.php:96
-msgid "WooCommerce activated"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-admin.php:96
-msgid "Activate WooCommerce"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-admin.php:96
-msgid "Install WooCommerce"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-admin.php:100
-msgid "Design your store 🎨"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-admin.php:104
-msgid "Before you add your first product let's design your store. We'll add some example products for you. When you're ready let's get started by adding your logo."
-msgstr ""
-
-#: inc/nux/class-woostify-nux-admin.php:106
-msgid "You've set up WooCommerce, now it's time to give it some style! Let's get started by entering the Customizer and adding your logo."
-msgstr ""
-
-#: inc/nux/class-woostify-nux-admin.php:112, inc/nux/class-woostify-nux-guided-tour.php:114
-msgid "Let's go!"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:87, inc/woocommerce/class-woostify-woocommerce.php:389
-msgid "Next"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:93
-msgid "No thanks, skip the tour"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:95
-msgid "Skip this step"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:111
-msgid "Welcome to the Customizer"
-msgstr ""
-
-#. translators: %s: 'End Of Line' symbol
-#: inc/nux/class-woostify-nux-guided-tour.php:113
-msgid "Here you can control the overall look and feel of your store.%sTo get started, let's add your logo"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:120
-msgid "Add your logo"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:121
-msgid "Open the Site Identity Panel, then click the 'Select Logo' button to upload your logo."
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:127
-msgid "Customize your navigation menus"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:128
-msgid "Organize your menus by adding Pages, Categories, Tags, and Custom Links."
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:133
-msgid "Choose your accent color"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:134
-msgid "In the typography panel you can specify an accent color which will be applied to things like links and star ratings. We recommend using your brand color for this setting."
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:139
-msgid "Color your buttons"
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:140
-msgid "Choose colors for your button backgrounds and text. Once again, brand colors are good choices here."
-msgstr ""
-
-#. translators: 1: open <strong> tag, 2: close <strong> tag, 3: 'End Of Line' symbol
-#: inc/nux/class-woostify-nux-guided-tour.php:147
-msgid "All set! Remember to %1$ssave & publish%2$s your changes when you're done.%3$sYou can return to your dashboard by clicking the X in the top left corner."
-msgstr ""
-
-#: inc/nux/class-woostify-nux-guided-tour.php:149
-msgid "Done"
-msgstr ""
-
 #: inc/widget/class-woostify-recent-post-thumbnail.php:23
 msgid "Recent Post With Thumbnail"
 msgstr ""
@@ -736,6 +638,10 @@ msgstr ""
 
 #: inc/woocommerce/class-woostify-woocommerce.php:388
 msgid "Prev"
+msgstr ""
+
+#: inc/woocommerce/class-woostify-woocommerce.php:389
+msgid "Next"
 msgstr ""
 
 #: inc/woocommerce/class-woostify-woocommerce.php:412

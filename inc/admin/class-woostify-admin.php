@@ -255,7 +255,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									// If Woostifu Site install.
 									if ( ! defined( 'WOOSTIFY_SITES_VER' ) ) {
 										if ( 'deactivate' == $type ) {
-											$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $slug ) . '" class="woostify-button button-primary woostify-active-now" href="' . esc_url( $nonce ) . '">' . esc_html__( 'Activate', 'hestia' ) . '</a>';
+											$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $slug ) . '" class="woostify-button button woostify-active-now" href="' . esc_url( $nonce ) . '">' . esc_html__( 'Activate', 'hestia' ) . '</a>';
 										} else {
 											$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $plugin_slug ) . '" href="' . esc_url( $nonce ) . '" class="woostify-button install-now button woostify-install-demo">' . esc_html__( 'Install Woostify Library', 'woostify' ) . '</a>';
 										}
