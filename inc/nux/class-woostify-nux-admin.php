@@ -50,7 +50,7 @@ if ( ! class_exists( 'Woostify_NUX_Admin' ) ) :
 				WOOSTIFY_THEME_URI . 'assets/js/admin/admin' . $suffix . '.js',
 				array( 'jquery' ),
 				woostify_version(),
-				'all'
+				true
 			);
 
 			$woostify_nux = array(

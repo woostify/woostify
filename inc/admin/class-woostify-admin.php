@@ -27,11 +27,21 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * Load welcome screen script and css
 		 */
 		public function woostify_welcome_static() {
+			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
 			wp_enqueue_style(
 				'woostify-welcome-screen',
 				WOOSTIFY_THEME_URI . 'assets/css/admin/welcome-screen/welcome.css',
 				array(),
 				woostify_version()
+			);
+
+			wp_enqueue_script(
+				'woostify-install-demo',
+				WOOSTIFY_THEME_URI . 'assets/js/admin/install-demo' . $suffix . '.js',
+				array(),
+				woostify_version(),
+				true
 			);
 
 			wp_style_add_data(
@@ -121,7 +131,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					<div class="woostify-welcome-container">
 						<a class="woostify-welcome-theme-brand" href="https://woostify.com/" target="_blank" rel="noopener">
 							<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . '/assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
-							<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify' , 'woostify' ); ?></span>
+							<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
 							<span class="woostify-welcome-theme-version"><?php echo woostify_version(); // WPCS: XSS ok. ?></span>
 						</a>
 
@@ -217,9 +227,53 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 										<?php esc_html_e( 'It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc.', 'woostify' ); ?>
 									</p>
 
+									<?php
+									$plugin_slug = 'woostify-sites-library';
+									$slug        = 'woostify-sites-library/woostify-sites.php';
+									$redirect    = admin_url( 'themes.php?page=woostify-sites' );
+									$nonce       = add_query_arg(
+										array(
+											'action'        => 'activate',
+											'plugin'        => rawurlencode( $slug ),
+											'plugin_status' => 'all',
+											'paged'         => '1',
+											'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug ),
+										),
+										network_admin_url( 'plugins.php' )
+									);
+
+									// Check Woostify Sites status.
+									$type = 'install';
+									if ( file_exists( ABSPATH . 'wp-content/plugins/' . $plugin_slug ) ) {
+										$activate = is_plugin_active( $plugin_slug . '/woostify-sites.php' ) ? 'activate' : 'deactivate';
+										$type = $activate;
+									}
+
+									// Generate button.
+									$button = '<a href="' . esc_url( admin_url( 'themes.php?page=woostify-sites' ) ) . '" class="woostify-button button-primary" target="_blank">' . esc_html__( 'Import Demo', 'woostify' ) . '</a>';
+
+									// If Woostifu Site install.
+									if ( ! defined( 'WOOSTIFY_SITES_VER' ) ) {
+										if ( 'deactivate' == $type ) {
+											$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $slug ) . '" class="woostify-button button-primary woostify-active-now" href="' . esc_url( $nonce ) . '">' . esc_html__( 'Activate', 'hestia' ) . '</a>';
+										} else {
+											$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $plugin_slug ) . '" href="' . esc_url( $nonce ) . '" class="woostify-button install-now button woostify-install-demo">' . esc_html__( 'Install Woostify Library', 'woostify' ) . '</a>';
+										}
+									}
+
+									// Data.
+									wp_localize_script(
+										'woostify-install-demo',
+										'woostify_install_demo',
+										array(
+											'activating' => esc_html__( 'Activating', 'woostify' ),
+										)
+									);
+									?>
+
 									<p>
-											<a href="https://woostify.com/docs/getting-started/import-demo/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Install Demo', 'woostify' ); ?></a>
-										</p>
+										<?php echo $button; // WPCS: XSS ok. ?>
+									</p>
 								</div>
 							</div>
 						</div>
@@ -302,6 +356,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			}
 			return false;
 		}
+
 		/**
 		 * Welcome screen enhance section
 		 */
