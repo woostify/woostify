@@ -382,7 +382,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			 */
 			wp_enqueue_style(
 				'woostify-style',
-				WOOSTIFY_THEME_URI . 'style.css',
+				get_stylesheet_uri(),
 				array(),
 				woostify_version()
 			);

@@ -19,8 +19,39 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * Setup class.
 		 */
 		public function __construct() {
+			add_action( 'admin_notices', array( $this, 'woostify_admin_notice' ) );
 			add_action( 'admin_menu', array( $this, 'woostify_welcome_register_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'woostify_welcome_static' ) );
+		}
+
+		/**
+		 * Add admin notice
+		 */
+		public function woostify_admin_notice() {
+			global $pagenow;
+			if ( is_admin() && ( 'themes.php' == $pagenow ) && isset( $_GET['activated'] ) ) {
+				?>
+			<div class="woostify-admin-notice notice is-dismissible">
+				<div class="woostify-notice-content">
+					<div class="woostify-notice-img">
+						<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'logo', 'woostify' ); ?>">
+					</div>
+					<div class="woostify-notice-text">
+						<div class="woostify-notice-heading"><?php esc_html_e( 'Thanks for installing Woostify, you rock!', 'woostify' ); ?></div>
+						<p>
+							<?php
+							printf( // WPCS: XSS OK.
+								/* translators: Theme options */
+								__( 'To fully take advantage of the best our theme can offer please make sure you visit our <a href="%1$s">Woostify Options</a>.', 'woostify' ),
+								esc_url( admin_url( 'themes.php?page=woostify-welcome' ) )
+							);
+							?>
+						</p>
+					</div>
+				</div>
+			</div>
+				<?php
+			}
 		}
 
 		/**

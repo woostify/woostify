@@ -311,8 +311,7 @@
   margin-bottom: 10px;
 }
 
-/* STYLE FOR `Image` COLUMN `post` ADMIN SCREEN
-***************************************************/
+/* STYLE FOR `Image` COLUMN `post` ADMIN SCREEN */
 #thumbnail_image {
   width: 60px;
 }
@@ -323,4 +322,39 @@
 
 #the-list td.thumbnail_image img {
   max-width: 100%;
+}
+
+/* Admin notice */
+.woostify-admin-notice {
+  padding: 10px !important;
+  border-left: 0;
+  clear: both;
+}
+
+.woostify-admin-notice .woostify-notice-content {
+  display: flex;
+  align-items: center;
+  background: rgba(72, 73, 21, 0.15);
+  padding: 20px;
+}
+
+.woostify-admin-notice .woostify-notice-img {
+  margin-left: 10px;
+  margin-right: 30px;
+  width: 50px;
+  transform: rotate(-30deg);
+}
+
+.woostify-admin-notice .woostify-notice-heading {
+  font-size: 1.4em;
+}
+
+.woostify-admin-notice .woostify-notice-text a {
+  font-weight: 700;
+  color: #001099;
+}
+
+.woostify-admin-notice .notice-dismiss {
+  top: 5px;
+  right: 5px;
 }
