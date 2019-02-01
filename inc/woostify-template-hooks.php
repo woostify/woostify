@@ -128,3 +128,9 @@ add_action( 'woostify_page_after', 'woostify_display_comments', 10 );
 add_action( 'elementor/page_templates/canvas/after_content', 'woostify_woocommerce_cart_sidebar', 20 );
 add_action( 'elementor/page_templates/canvas/after_content', 'woostify_overlay', 30 );
 add_action( 'elementor/page_templates/canvas/after_content', 'woostify_footer_action', 40 );
+
+/**
+ * For Header & Footer plugin
+ */
+add_action( 'woostify_after_hle_render_header', 'woostify_container_open', 10 );
+add_action( 'woostify_before_hle_render_footer', 'woostify_container_close', 10 );
