@@ -357,4 +357,6 @@
 .woostify-admin-notice .notice-dismiss {
   top: 5px;
   right: 5px;
+  outline: none !important;
+  box-shadow: none !important;
 }
