@@ -59,8 +59,8 @@ Screenshot Licenses
 -------------------------------------------------------
 Screenshot images are all licensed under CC0 Universal
 https://www.pexels.com/photo/bow-tie-businessman-fashion-man-1702/
-https://www.pexels.com/photo/woman-in-white-long-sleeved-dress-1030895/
-https://www.pexels.com/photo/white-and-blue-floral-flap-sling-bag-hanging-on-white-steel-rack-904350/
+https://www.dreamstime.com/white-blue-floral-flap-sling-bag-hanging-white-steel-rack-public-domain-image-free-111170086
+https://www.dreamstime.com/woman-wearing-green-puffer-vest-black-pants-public-domain-image-free-82952564
 
 Themeify Icons, Copyright lykmapipo
 Font License- Applies to all desktop and webfont files in the following directory: assets/fonts/.
