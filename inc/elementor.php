@@ -68,7 +68,12 @@ add_action( 'elementor/theme/register_locations', 'woostify_register_elementor_l
  * Header template
  */
 function woostify_theme_print_elementor_header() {
-	get_template_part( 'template-parts/header' );
+	if ( function_exists( 'hfe_render_header' ) ) {
+		hfe_render_header();
+		do_action( 'woostify_after_hle_render_header' );
+	} else {
+		get_template_part( 'template-parts/header' );
+	}
 }
 add_action( 'woostify_theme_header', 'woostify_theme_print_elementor_header' );
 
@@ -76,7 +81,12 @@ add_action( 'woostify_theme_header', 'woostify_theme_print_elementor_header' );
  * Footer template
  */
 function woostify_theme_print_elementor_footer() {
-	get_template_part( 'template-parts/footer' );
+	if ( function_exists( 'hfe_render_footer' ) ) {
+		do_action( 'woostify_before_hle_render_footer' );
+		hfe_render_footer();
+	} else {
+		get_template_part( 'template-parts/footer' );
+	}
 }
 add_action( 'woostify_theme_footer', 'woostify_theme_print_elementor_footer' );
 

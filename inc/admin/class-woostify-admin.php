@@ -20,6 +20,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 */
 		public function __construct() {
 			add_action( 'admin_notices', array( $this, 'woostify_admin_notice' ) );
+			add_action( 'admin_init', array( $this, 'woostify_dismiss_admin_notice' ) );
 			add_action( 'admin_menu', array( $this, 'woostify_welcome_register_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'woostify_welcome_static' ) );
 		}
@@ -28,8 +29,10 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * Add admin notice
 		 */
 		public function woostify_admin_notice() {
-			global $pagenow;
-			if ( is_admin() && ( 'themes.php' == $pagenow ) && isset( $_GET['activated'] ) ) {
+			global $current_user;
+			$user_id = $current_user->ID;
+
+			if ( is_admin() && ! get_user_meta( $user_id, 'woostify_print_admin_notice' ) ) {
 				?>
 			<div class="woostify-admin-notice notice is-dismissible">
 				<div class="woostify-notice-content">
@@ -55,11 +58,42 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		}
 
 		/**
+		 * Dismiss admin notice
+		 */
+		public function woostify_dismiss_admin_notice() {
+
+			global $current_user;
+			$user_id = $current_user->ID;
+
+			if ( isset( $_GET['woostify-dismiss-admin-notice'] ) ) {
+				add_user_meta( $user_id, 'woostify_print_admin_notice', 'true', true );
+			}
+		}
+
+		/**
 		 * Load welcome screen script and css
 		 */
 		public function woostify_welcome_static() {
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
+			// Dismiss admin notice.
+			wp_enqueue_script(
+				'woostify-dismiss-admin-notice',
+				WOOSTIFY_THEME_URI . 'assets/js/admin/dismiss-admin-notice' . $suffix . '.js',
+				array(),
+				woostify_version(),
+				true
+			);
+
+			wp_localize_script(
+				'woostify-dismiss-admin-notice',
+				'woostify_dismiss_admin_notice',
+				array(
+					'url' => get_admin_url() . '?woostify-dismiss-admin-notice',
+				)
+			);
+
+			// Welcome screen style.
 			wp_enqueue_style(
 				'woostify-welcome-screen',
 				WOOSTIFY_THEME_URI . 'assets/css/admin/welcome-screen/welcome.css',
@@ -67,18 +101,13 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				woostify_version()
 			);
 
+			// Install plugin import demo.
 			wp_enqueue_script(
 				'woostify-install-demo',
 				WOOSTIFY_THEME_URI . 'assets/js/admin/install-demo' . $suffix . '.js',
 				array(),
 				woostify_version(),
 				true
-			);
-
-			wp_style_add_data(
-				'woostify-welcome-screen',
-				'rtl',
-				'replace'
 			);
 		}
 
