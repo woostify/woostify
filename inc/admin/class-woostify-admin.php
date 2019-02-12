@@ -40,7 +40,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'logo', 'woostify' ); ?>">
 					</div>
 					<div class="woostify-notice-text">
-						<div class="woostify-notice-heading"><?php esc_html_e( 'Thanks for installing Woostify, you rock!', 'woostify' ); ?></div>
+						<div class="woostify-notice-heading"><?php esc_html_e( 'Thanks for installing Woostify!', 'woostify' ); ?></div>
 						<p>
 							<?php
 							printf( // WPCS: XSS OK.
