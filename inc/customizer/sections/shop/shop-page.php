@@ -57,16 +57,17 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_product_per_page]',
 		array(
-			'type'     => 'woostify-range-slider',
-			'label'    => __( 'Product Per Page', 'woostify' ),
-			'section'  => 'woostify_shop_page',
-			'settings' => array(
+			'type'        => 'woostify-range-slider',
+			'label'       => __( 'Products Per Row', 'woostify' ),
+			'description' => __( 'How many products should be shown per row?', 'woostify' ),
+			'section'     => 'woostify_shop_page',
+			'settings'    => array(
 				'desktop' => 'woostify_setting[shop_product_per_page]',
 			),
 			'choices' => array(
 				'desktop' => array(
-					'min'  => apply_filters( 'woostify_shop_product_per_page_min_step', 3 ),
-					'max'  => apply_filters( 'woostify_shop_product_per_page_max_step', 60 ),
+					'min'  => apply_filters( 'woostify_shop_product_per_row_min_step', 3 ),
+					'max'  => apply_filters( 'woostify_shop_product_per_row_max_step', 60 ),
 					'step' => 1,
 					'edit' => true,
 					'unit' => '',

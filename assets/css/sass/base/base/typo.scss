@@ -13,7 +13,7 @@ select {
 input{
     border: 1px solid #e8e8e8;
     &[type=search] {
-        -webkit-appearance: textfield;
+        -webkit-appearance: none;
     }
 }
 

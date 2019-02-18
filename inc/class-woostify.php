@@ -280,42 +280,40 @@ if ( ! class_exists( 'woostify' ) ) :
 				'editor-font-sizes',
 				array(
 					array(
-						'name'      => __( 'Text Font Size', 'woostify' ),
-						'size'      => $options['body_font_size'],
-						'slug'      => 'woostify-text',
-					),
-					array(
-						'name'      => __( 'H6 Font Size', 'woostify' ),
+						'name'      => __( 'H6', 'woostify' ),
 						'size'      => $options['heading_h6_font_size'],
 						'slug'      => 'woostify-heading-6',
 					),
 					array(
-						'name'      => __( 'H5 Font Size', 'woostify' ),
+						'name'      => __( 'H5', 'woostify' ),
 						'size'      => $options['heading_h5_font_size'],
 						'slug'      => 'woostify-heading-5',
 					),
 					array(
-						'name'      => __( 'H4 Font Size', 'woostify' ),
+						'name'      => __( 'H4', 'woostify' ),
 						'size'      => $options['heading_h4_font_size'],
 						'slug'      => 'woostify-heading-4',
 					),
 					array(
-						'name'      => __( 'H3 Font Size', 'woostify' ),
+						'name'      => __( 'H3', 'woostify' ),
 						'size'      => $options['heading_h3_font_size'],
 						'slug'      => 'woostify-heading-3',
 					),
 					array(
-						'name'      => __( 'H2 Font Size', 'woostify' ),
+						'name'      => __( 'H2', 'woostify' ),
 						'size'      => $options['heading_h2_font_size'],
 						'slug'      => 'woostify-heading-2',
 					),
 					array(
-						'name'      => __( 'H1 Font Size', 'woostify' ),
+						'name'      => __( 'H1', 'woostify' ),
 						'size'      => $options['heading_h1_font_size'],
 						'slug'      => 'woostify-heading-1',
 					),
 				)
 			);
+
+			// Header Footer Elementor support.
+			add_theme_support( 'header-footer-elementor' );
 		}
 
 		/**

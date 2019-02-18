@@ -128,8 +128,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 					$metabox_name,                          // Title.
 					array( $this, 'woostify_markup_meta_box' ),      // Callback.
 					$type,                                  // Post_type.
-					'advanced',                             // Context.
-					'high'                                  // Priority.
+					'side'                             // Context.
 				);
 			}
 		}
@@ -168,46 +167,15 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 			$site_post_title  = isset( $meta['site-post-title']['default'] ) ? $meta['site-post-title']['default'] : '';
 			$site_footer      = isset( $meta['site-footer']['default'] ) ? $meta['site-footer']['default'] : '';
 			$site_header_menu = isset( $meta['site-header-primary-menu']['default'] ) ? $meta['site-header-primary-menu']['default'] : '';
-
-			do_action( 'woostify_metabox_markup_before', $meta );
-
-			$tabs_id = apply_filters(
-				'woostify_metabox_tabs_id',
-				array(
-					uniqid( 'woostify-id-' ),
-				)
-			);
-
-			$tabs_name = apply_filters(
-				'woostify_metabox_tabs_name',
-				array(
-					__( 'General', 'woostify' ),
-				)
-			);
-
 			?>
 
 			<div class="woostify-metabox-setting">
-				<div class="woostify-metabox-tabs">
-					<?php
-					foreach ( $tabs_id as $key => $val ) {
-						$current = 0 == $key ? 'current' : '';
-						?>
-						<a href="#<?php echo esc_attr( $val ); ?>" class="<?php echo esc_attr( $current ); ?>"><?php echo esc_html( $tabs_name[ $key ] ); ?></a>
-					<?php } ?>
-				</div>
-
 				<div class="woostify-metabox-content-box">
-					<?php do_action( 'woostify_metabox_setting_content_box_before', $tabs_id ); ?>
-
-					<div class="woostify-metabox-content" id="<?php echo esc_attr( $tabs_id[0] ); ?>">
-
-						<?php do_action( 'woostify_metabox_setting_content_before' ); ?>
-
+					<div class="woostify-metabox-content">
 						<?php // Option: Content. ?>
 						<div class="woostify-metabox-option">
 							<div class="woostify-metabox-option-title">
-								<strong> <?php esc_html_e( 'Container', 'woostify' ); ?> </strong>
+								<span><?php esc_html_e( 'Container', 'woostify' ); ?>:</span>
 							</div>
 
 							<div class="woostify-metabox-option-content">
@@ -236,7 +204,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 						<?php // Option: Sidebar. ?>
 						<div class="woostify-metabox-option">
 							<div class="woostify-metabox-option-title">
-								<strong> <?php esc_html_e( 'Sidebar', 'woostify' ); ?> </strong>
+								<span><?php esc_html_e( 'Sidebar', 'woostify' ); ?>:</span>
 							</div>
 
 							<div class="woostify-metabox-option-content">
@@ -265,13 +233,11 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 						<?php // Option: Disable Sections - Primary Header, Title, Footer Widgets, Footer Bar. ?>
 						<div class="woostify-metabox-option">
 							<div class="woostify-metabox-option-title">
-								<strong> <?php esc_html_e( 'Disable Sections', 'woostify' ); ?> </strong>
+								<span><?php esc_html_e( 'Disable Sections', 'woostify' ); ?>:</span>
 							</div>
 							
 							<div class="woostify-metabox-option-content">
 								<div class="disable-section-meta">
-									<?php do_action( 'woostify_metabox_markup_disable_sections_before', $meta ); ?>
-
 									<div class="site-header-primary-menu-option-wrap">
 										<label for="site-header-primary-menu">
 											<input type="checkbox" id="site-header-primary-menu" name="site-header-primary-menu" value="disabled" <?php checked( $site_header_menu, 'disabled' ); ?> />
@@ -292,21 +258,13 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 											<?php esc_html_e( 'Disable Footer', 'woostify' ); ?>
 										</label>
 									</div>
-
-									<?php do_action( 'woostify_metabox_markup_disable_sections_after', $meta ); ?>
 								</div>
 							</div>
 						</div>
-
-						<?php do_action( 'woostify_metabox_setting_content_after' ); ?>
 					</div>
-
-					<?php do_action( 'woostify_metabox_setting_content_box_after', $tabs_id ); ?>
 				</div>
 			</div>
-
 			<?php
-			do_action( 'woostify_metabox_markup_after', $meta );
 		}
 
 		/**

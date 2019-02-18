@@ -14,6 +14,7 @@ class Woostify_Get_CSS {
 	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'woostify_add_customizer_css' ), 130 );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'woostify_guten_block_editor_assets' ) );
 	}
 
 	/**
@@ -114,8 +115,7 @@ class Woostify_Get_CSS {
 				background-color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
-			.product .woocommerce-loop-product__title,
-			.has-woostify-text-font-size{
+			.product .woocommerce-loop-product__title{
 				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
 			}
 		';
@@ -393,6 +393,29 @@ class Woostify_Get_CSS {
 		}
 
 		return apply_filters( 'woostify_customizer_css', $styles );
+	}
+
+	/**
+	 * Add Gutenberg css.
+	 */
+	public function woostify_guten_block_editor_assets() {
+		// Get all theme option value.
+		$options = woostify_options( false );
+
+		$block_styles = '
+		.edit-post-visual-editor, .edit-post-visual-editor p{
+			font-family: ' . esc_attr( $options['body_font_family'] ) . ';
+		}
+		
+		.editor-post-title__block .editor-post-title__input,
+		.wp-block-heading, .editor-rich-text__tinymce{
+			font-family: ' . esc_attr( $options['heading_font_family'] ) . ';
+		}
+		';
+
+		wp_register_style( 'woostify-block-editor', false ); // @codingStandardsIgnoreLine
+		wp_enqueue_style( 'woostify-block-editor' );
+		wp_add_inline_style( 'woostify-block-editor', $block_styles );
 	}
 
 	/**

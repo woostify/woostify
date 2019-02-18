@@ -23,6 +23,19 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			add_action( 'admin_init', array( $this, 'woostify_dismiss_admin_notice' ) );
 			add_action( 'admin_menu', array( $this, 'woostify_welcome_register_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'woostify_welcome_static' ) );
+			add_action( 'admin_body_class', array( $this, 'woostify_admin_classes' ) );
+		}
+
+		/**
+		 * Admin body classes.
+		 *
+		 * @param array $classes Classes for the body element.
+		 * @return array
+		 */
+		public function woostify_admin_classes( $classes ) {
+			$classes .= version_compare( get_bloginfo( 'version' ), '5.0', '>=' ) ? 'gutenberg-version' : 'old-version';
+
+			return $classes;
 		}
 
 		/**

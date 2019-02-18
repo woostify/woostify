@@ -1,11 +1,22 @@
+.gutenberg-version #woostify_settings_meta_box.closed .hndle:hover {
+  background-color: #f8f9f9;
+}
+
+.gutenberg-version #woostify_settings_meta_box .handlediv {
+  position: relative;
+  z-index: 99;
+}
+
+.gutenberg-version #woostify_settings_meta_box .hndle {
+  cursor: pointer;
+  color: #191e23 !important;
+  border-bottom: 0 !important;
+  transition: 0.1s background ease-in-out;
+}
+
 #woostify_settings_meta_box .inside {
   margin: 0;
   padding: 0;
-}
-
-.woostify-metabox-setting {
-  clear: both;
-  margin-top: 15px;
 }
 
 /* tabs */
@@ -40,11 +51,6 @@
 }
 
 /* content box */
-.woostify-metabox-content-box {
-  border-top: 1px solid #ddd;
-  padding-top: 15px;
-}
-
 /*content tab */
 .woostify-metabox-content:not(.current) {
   display: none;
@@ -53,7 +59,15 @@
 /* metabox option */
 .woostify-metabox-option {
   border-bottom: 1px solid #eee;
-  padding: 20px;
+  padding: 15px;
+}
+
+body.old-version .woostify-metabox-option {
+  padding: 12px;
+}
+
+.woostify-metabox-option select {
+  width: 100%;
 }
 
 .woostify-metabox-option:after {
@@ -67,11 +81,5 @@
 }
 
 .woostify-metabox-option-title {
-  float: left;
-  width: 17%;
-}
-
-.woostify-metabox-option-content {
-  float: left;
-  width: 83%;
+  margin-bottom: 4px;
 }

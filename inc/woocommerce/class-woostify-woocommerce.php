@@ -152,7 +152,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				apply_filters(
 					'woostify_woocommerce_args',
 					array(
-						'product_grid'          => array(
+						'product_grid' => array(
 							'default_columns' => 3,
 							'default_rows'    => 4,
 							'min_columns'     => 1,

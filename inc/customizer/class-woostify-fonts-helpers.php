@@ -40,6 +40,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		public function __construct() {
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'woostify_do_control_inline_scripts' ), 100 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'woostify_enqueue_google_fonts' ), 0 );
+			add_action( 'enqueue_block_editor_assets', array( $this, 'woostify_enqueue_google_fonts' ), 0 );
 			add_action( 'wp_ajax_woostify_get_all_google_fonts_ajax', array( $this, 'woostify_get_all_google_fonts_ajax' ) );
 			add_filter( 'woostify_typography_customize_list', array( $this, 'woostify_add_to_font_customizer_list' ) );
 		}
@@ -145,11 +146,6 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		 * Add Google Fonts to wp_head if needed.
 		 */
 		public function woostify_enqueue_google_fonts() {
-
-			if ( is_admin() ) {
-				return;
-			}
-
 			// Grab our options.
 			$woostify_settings = wp_parse_args(
 				get_option( 'woostify_setting', array() ),
@@ -165,6 +161,11 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				'menu_font_family',
 				'heading_font_family',
 			);
+
+			// Remove heading google font on admin.
+			if ( is_admin() ) {
+				unset( $font_settings[1] );
+			}
 
 			// Create our Google Fonts array.
 			$google_fonts = array();
