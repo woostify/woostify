@@ -173,6 +173,16 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Main woocommerce js file.
 			wp_enqueue_script( 'woostify-woocommerce' );
 
+			// Removed from mini cart.
+			wp_localize_script(
+				'woostify-woocommerce',
+				'woostify_woocommerce_data',
+				array(
+					'ajax_url'     => admin_url( 'admin-ajax.php' ),
+					'ajax_nonce'   => wp_create_nonce( 'woostify_ajax_mini_cart' ),
+				)
+			);
+
 			// Product variations.
 			wp_enqueue_script( 'woostify-product-variation' );
 
@@ -268,7 +278,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper_close', 31 );
 
 			// Woocommerce sidebar.
-			add_action( 'woostify_after_view', 'woostify_woocommerce_cart_sidebar', 20 );
+			add_action( 'woostify_theme_footer', 'woostify_woocommerce_cart_sidebar', 20 );
 
 			// Legacy WooCommerce columns filter.
 			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.3', '<' ) ) {
@@ -911,14 +921,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Get product item in cart
 		 */
 		public function woostify_get_product_item_incart() {
+			check_ajax_referer( 'woostify_ajax_mini_cart', 'nonce' );
+
 			$response = array(
 				'item' => 0,
 			);
 
-			if ( ! isset( $_POST['product_id'] )
-				|| ! isset( $_POST['nonce'] )
-				|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'woostify_product_nonce' )
-			) {
+			if ( ! isset( $_POST['product_id'] ) ) {
 				echo json_encode( $response );
 				exit();
 			}
@@ -932,8 +941,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			ob_get_clean();
 
-			echo json_encode( $response );
-			exit();
+			wp_send_json( $response );
 		}
 
 		/**

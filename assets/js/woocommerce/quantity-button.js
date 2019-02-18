@@ -84,7 +84,7 @@ function quantity() {
 
 					// Action when hit Plus button.
 					if ( 'plus' === dataQty ) {
-						if ( current >= max || ! isNaN( max ) ) {
+						if ( max && current >= max ) {
 							return;
 						}
 						input.value = current + 1;

@@ -24,8 +24,8 @@ add_action( 'woostify_before_view', 'woostify_sidebar_menu_action', 40 );
 add_action( 'woostify_before_view', 'woostify_sidebar_menu_close', 100 );
 add_action( 'woostify_before_view', 'woostify_dialog_search', 110 ); // Dialog search.
 
-add_action( 'woostify_after_view', 'woostify_overlay', 30 );
-add_action( 'woostify_after_view', 'woostify_footer_action', 40 );
+add_action( 'woostify_theme_footer', 'woostify_overlay', 30 );
+add_action( 'woostify_theme_footer', 'woostify_footer_action', 40 );
 add_action( 'woostify_footer_action', 'woostify_scroll_to_top', 40 );
 
 // Performance.
@@ -116,12 +116,11 @@ add_action( 'woostify_single_post_after', 'woostify_display_comments', 40 );
  */
 add_action( 'woostify_before_content', 'woostify_page_header', 10 );
 add_action( 'woostify_page', 'woostify_page_content', 20 );
-
 add_action( 'woostify_page_after', 'woostify_display_comments', 10 );
 
 
 /**
- * For Elementor
+ * For Elementor plugin with Canvas page-template
  */
 
 // Add Cart sidebar for Page using Elementor Canvas.
@@ -130,7 +129,7 @@ add_action( 'elementor/page_templates/canvas/after_content', 'woostify_overlay',
 add_action( 'elementor/page_templates/canvas/after_content', 'woostify_footer_action', 40 );
 
 /**
- * For Header & Footer plugin
+ * For Header & Footer Elementor plugin
  */
 add_action( 'woostify_after_hle_render_header', 'woostify_container_open', 10 );
 add_action( 'woostify_before_hle_render_footer', 'woostify_container_close', 10 );

@@ -380,7 +380,7 @@ msgid "logo"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:56
-msgid "Thanks for installing Woostify, you rock!"
+msgid "Thanks for installing Woostify!"
 msgstr ""
 
 #. translators: Theme options
@@ -641,23 +641,23 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:388
+#: inc/woocommerce/class-woostify-woocommerce.php:398
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:389
+#: inc/woocommerce/class-woostify-woocommerce.php:399
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:412
+#: inc/woocommerce/class-woostify-woocommerce.php:422
 msgid "Sale!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:568, inc/woocommerce/class-woostify-woocommerce.php:695, inc/woocommerce/class-woostify-woocommerce.php:726, inc/woocommerce/class-woostify-woocommerce.php:748, inc/woocommerce/class-woostify-woocommerce.php:773
+#: inc/woocommerce/class-woostify-woocommerce.php:578, inc/woocommerce/class-woostify-woocommerce.php:705, inc/woocommerce/class-woostify-woocommerce.php:736, inc/woocommerce/class-woostify-woocommerce.php:758, inc/woocommerce/class-woostify-woocommerce.php:783
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:947
+#: inc/woocommerce/class-woostify-woocommerce.php:955
 msgid "Clear cart"
 msgstr ""
 

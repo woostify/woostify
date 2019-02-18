@@ -68,7 +68,8 @@ add_action( 'elementor/theme/register_locations', 'woostify_register_elementor_l
  * Header template
  */
 function woostify_theme_print_elementor_header() {
-	if ( function_exists( 'hfe_render_header' ) ) {
+	// Support Header & Footer Elementor plugin.
+	if ( function_exists( 'hfe_render_header' ) && hfe_header_enabled() ) {
 		hfe_render_header();
 		do_action( 'woostify_after_hle_render_header' );
 	} else {
@@ -81,9 +82,20 @@ add_action( 'woostify_theme_header', 'woostify_theme_print_elementor_header' );
  * Footer template
  */
 function woostify_theme_print_elementor_footer() {
-	if ( function_exists( 'hfe_render_footer' ) ) {
+	// Support Header & Footer Elementor plugin.
+	if ( function_exists( 'hfe_render_footer' ) && hfe_footer_enabled() ) {
 		do_action( 'woostify_before_hle_render_footer' );
 		hfe_render_footer();
+
+		// Close 3 `div` on header template.
+		// If only using HLE Footer template.
+		if ( ! hfe_header_enabled() ) {
+			?>
+					</div>
+				</div>
+			</div>
+			<?php
+		}
 	} else {
 		get_template_part( 'template-parts/footer' );
 	}
