@@ -249,6 +249,28 @@ $wp_customize->add_control(
 	)
 );
 
+// Always show add to cart button.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_always_show_add_to_cart]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_page_always_show_add_to_cart'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_always_show_add_to_cart]',
+		array(
+			'type'     => 'checkbox',
+			'label'    => __( 'Always Show Add To Cart', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_always_show_add_to_cart]',
+		)
+	)
+);
+
 // Product price.
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_product_price]',

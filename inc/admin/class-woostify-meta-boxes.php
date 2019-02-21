@@ -235,13 +235,13 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 							<div class="woostify-metabox-option-title">
 								<span><?php esc_html_e( 'Disable Sections', 'woostify' ); ?>:</span>
 							</div>
-							
+
 							<div class="woostify-metabox-option-content">
 								<div class="disable-section-meta">
 									<div class="site-header-primary-menu-option-wrap">
 										<label for="site-header-primary-menu">
 											<input type="checkbox" id="site-header-primary-menu" name="site-header-primary-menu" value="disabled" <?php checked( $site_header_menu, 'disabled' ); ?> />
-											<?php esc_html_e( 'Disable Header Primary Menu', 'woostify' ); ?>
+											<?php esc_html_e( 'Disable Header', 'woostify' ); ?>
 										</label>
 									</div>
 

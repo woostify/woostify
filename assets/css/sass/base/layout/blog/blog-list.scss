@@ -82,33 +82,6 @@
     }
 }
 
-.page-links{
-    margin-top: 20px;
-
-    a{
-        &:hover{
-            opacity: 0.6;
-        }
-
-        span{
-            border: 1px solid #888;
-            color: #888;
-            cursor: pointer;
-            @extend .duration;
-        }
-    }
-
-    span{
-        @extend .inline-flex;
-        width: 26px;
-        height: 26px;
-        border-radius: 2px;
-        border: 1px solid #ddd;
-        color: #ddd;
-        cursor: default;
-    }
-}
-
 .pagination{
     margin-top: 70px;
 

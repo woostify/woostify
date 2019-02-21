@@ -330,6 +330,7 @@ $green: #45b964;
 	padding: 10px !important;
 	border-left: 0;
 	clear: both;
+	position: relative;
 	.woostify-notice-content{
 		display: flex;
 		align-items: center;
@@ -355,6 +356,7 @@ $green: #45b964;
 		top: 5px;
 		right: 5px;
 		outline: none !important;
-		box-shadow: none !important
+		box-shadow: none !important;
+		text-decoration: none;
 	}
 }

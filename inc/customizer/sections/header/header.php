@@ -17,7 +17,6 @@ $wp_customize->add_setting(
 		'type'              => 'option',
 	)
 );
-
 $wp_customize->add_control(
 	new Woostify_Radio_Image_Control(
 		$wp_customize,

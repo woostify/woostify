@@ -119,7 +119,7 @@ if ( ! function_exists( 'woostify_comment' ) ) {
 
 					<div class="comment-meta commentmetadata">
 						<?php printf( wp_kses_post( '<cite class="fn">%s</cite>', 'woostify' ), get_comment_author_link() ); ?>
-						
+
 						<?php if ( '0' == $comment->comment_approved ) : ?>
 							<em class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'woostify' ); ?></em>
 						<?php endif; ?>
@@ -452,7 +452,7 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 					);
 				} else {
 					?>
-					<a class="add-menu" href="<?php echo esc_url( get_admin_url() . 'nav-menus.php' ); ?>"><?php esc_html_e( 'Add a Primary Menu', 'woostify' ); ?></a>	
+					<a class="add-menu" href="<?php echo esc_url( get_admin_url() . 'nav-menus.php' ); ?>"><?php esc_html_e( 'Add a Primary Menu', 'woostify' ); ?></a>
 				<?php } ?>
 			</nav>
 
@@ -551,8 +551,10 @@ if ( ! function_exists( 'woostify_page_content' ) ) {
 
 		wp_link_pages(
 			array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'woostify' ),
-				'after'  => '</div>',
+				'before'      => '<div class="page-links">' . __( 'Pages:', 'woostify' ),
+				'after'       => '</div>',
+				'link_before' => '<span>',
+				'link_after'  => '</span>',
 			)
 		);
 	}
@@ -840,7 +842,7 @@ if ( ! function_exists( 'woostify_post_read_more_button' ) ) {
 		if ( ! is_single() ) {
 			$read_more_text = apply_filters( 'woostify_read_more_text', __( 'Read More', 'woostify' ) );
 			?>
-			
+
 			<p class="post-read-more">
 				<a href="<?php echo esc_url( get_permalink() ); ?>">
 					<?php echo esc_html( $read_more_text ); ?>
@@ -1284,6 +1286,7 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		// Customize options.
 		$sidebar             = '';
 		$sidebar_default     = $options['sidebar_default'];
+		$sidebar_page        = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_page'];
 		$sidebar_blog        = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_blog'];
 		$sidebar_blog_single = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_blog_single'];
 		$sidebar_shop        = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop'];
@@ -1302,6 +1305,9 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		} elseif ( class_exists( 'woocommerce' ) && ( is_cart() || is_checkout() || is_account_page() ) ) {
 			// Cart, checkout and account page.
 			$sidebar = '';
+		} elseif ( is_page() ) {
+			// Page.
+			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_page, $sidebar_default );
 		} elseif ( is_singular( 'post' ) ) {
 			// Blog page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_blog_single, $sidebar_default );
@@ -1463,7 +1469,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 						</ul>
 					</div>
 				<?php } ?>
-				
+
 				<?php do_action( 'woostify_site_tool_before_fourth_item' ); ?>
 
 				<?php // Shopping cart icon. ?>

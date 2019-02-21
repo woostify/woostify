@@ -59,6 +59,12 @@
 			['woostify_setting[header_search_only_product]']
 		);
 
+		// Always show add to cart button.
+		condition(
+			'woostify_setting[shop_page_product_add_to_cart_button]',
+			['woostify_setting[shop_page_always_show_add_to_cart]']
+		);
+
 		// Disable footer.
 		condition(
 			'woostify_setting[footer_disable]',

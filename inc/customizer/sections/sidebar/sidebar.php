@@ -39,6 +39,38 @@ $wp_customize->add_control(
 	)
 );
 
+// Page sidebar.
+$wp_customize->add_setting(
+	'woostify_setting[sidebar_page]',
+	array(
+		'default'           => $defaults['sidebar_page'],
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'type'              => 'option',
+	)
+);
+
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[sidebar_page]',
+		array(
+			'label'    => __( 'Page', 'woostify' ),
+			'section'  => 'woostify_sidebar',
+			'settings' => 'woostify_setting[sidebar_page]',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_sidebar_page_choices',
+				array(
+					'default' => __( 'Default', 'woostify' ),
+					'full'    => __( 'No sidebar', 'woostify' ),
+					'left'    => __( 'Left sidebar', 'woostify' ),
+					'right'   => __( 'Right sidebar', 'woostify' ),
+				)
+			),
+		)
+	)
+);
+
 // Blog sidebar divider.
 $wp_customize->add_setting(
 	'blog_sidebar_divider',

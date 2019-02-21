@@ -20,5 +20,3 @@ trim_trailing_whitespace = false
 
 [*.{md,json,yml}]
 trim_trailing_whitespace = false
-indent_style = tab
-indent_size = 4

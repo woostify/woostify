@@ -624,12 +624,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		public function woostify_loop_product_meta_open() {
 			$options = self::woostify_options();
 
-			$condi = apply_filters( 'woostify_product_loop_add_to_cart_animate', true );
+			$button_animation = (
+				true == $options['shop_page_product_add_to_cart_button'] &&
+				true == $options['shop_page_always_show_add_to_cart']
+			) ? false : true;
 
 			$class = (
 				false == $options['shop_page_product_price'] ||
 				false == $options['shop_page_product_add_to_cart_button'] ||
-				false == $condi
+				false == $button_animation
 			) ? 'no-transform' : '';
 
 			echo '<div class="product-loop-meta ' . esc_attr( $class ) . '">';

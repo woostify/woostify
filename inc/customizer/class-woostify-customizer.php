@@ -136,6 +136,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shop_page_product_category'           => false,
 					'shop_page_product_rating'             => true,
 					'shop_page_product_add_to_cart_button' => true,
+					'shop_page_always_show_add_to_cart'    => false,
 					'shop_page_product_price'              => true,
 
 					// Product style.
@@ -151,6 +152,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 					// Sidebar.
 					'sidebar_default'                      => is_rtl() ? 'left' : 'right',
+					'sidebar_page'                         => 'full',
 					'sidebar_blog'                         => 'default',
 					'sidebar_blog_single'                  => 'default',
 					'sidebar_shop'                         => 'default',

@@ -329,6 +329,7 @@
   padding: 10px !important;
   border-left: 0;
   clear: both;
+  position: relative;
 }
 
 .woostify-admin-notice .woostify-notice-content {
@@ -359,4 +360,5 @@
   right: 5px;
   outline: none !important;
   box-shadow: none !important;
+  text-decoration: none;
 }
