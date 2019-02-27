@@ -77,8 +77,12 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 			return false;
 		}
 
-		$id = woostify_get_page_id();
-		return get_post_meta( $id, '_elementor_edit_mode', true );
+		$id        = woostify_get_page_id();
+		$edit_mode = woostify_get_metabox( '_elementor_edit_mode' );
+
+		$elementor = 'builder' === $edit_mode ? true : false;
+
+		return $elementor;
 	}
 }
 
@@ -114,17 +118,6 @@ if ( ! function_exists( 'woostify_do_shortcode' ) ) {
 		}
 
 		return call_user_func( $shortcode_tags[ $tag ], $atts, $content, $tag );
-	}
-}
-
-if ( ! function_exists( 'woostify_raw_html' ) ) {
-	/**
-	 * Raw html
-	 *
-	 * @param string $text The setting value.
-	 */
-	function woostify_raw_html( $text ) {
-		return $text;
 	}
 }
 
@@ -372,11 +365,46 @@ if ( ! function_exists( 'woostify_narrow_data' ) ) {
 	}
 }
 
-/**
- * This is develeper function. Not publish.
- *
- * @param      array|string $data   The data.
- */
-function fw_print( $data ) {
-	echo '<pre>' . var_export( $data, true ) . '</pre>'; // // @codingStandardsIgnoreLine
+if ( ! function_exists( 'woostify_get_metabox' ) ) {
+	/**
+	 * Get metabox option
+	 *
+	 * @param string $metabox Metabox option name.
+	 */
+	function woostify_get_metabox( $metabox ) {
+		$page_id = woostify_get_page_id();
+		$metabox = get_post_meta( $page_id, $metabox, true );
+
+		if ( '' === $metabox ) {
+			$metabox = 'default';
+		}
+
+		return $metabox;
+	}
+}
+
+if ( ! function_exists( 'woostify_header_transparent' ) ) {
+	/**
+	 * Detect header transparent on current page
+	 */
+	function woostify_header_transparent() {
+		$options                       = woostify_options( false );
+		$header_transparent            = false;
+		$customizer_header_transparent = $options['header_transparent'];
+		$metabox_header_transparent    = woostify_get_metabox( 'site-header-transparent' );
+
+		if ( true == $customizer_header_transparent ) {
+			$header_transparent = true;
+		}
+
+		if ( 'default' != $metabox_header_transparent ) {
+			if ( 'enabled' == $metabox_header_transparent ) {
+				$header_transparent = true;
+			} else {
+				$header_transparent = false;
+			}
+		}
+
+		return $header_transparent;
+	}
 }

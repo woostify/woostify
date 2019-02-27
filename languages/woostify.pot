@@ -164,7 +164,7 @@ msgstr ""
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:606
+#: inc/class-woostify.php:611
 msgid "Post Pagination"
 msgstr ""
 
@@ -188,15 +188,15 @@ msgstr ""
 msgid "Woostify 404"
 msgstr ""
 
-#: inc/woostify-functions.php:93, inc/admin/class-woostify-admin.php:207
+#: inc/woostify-functions.php:97, inc/admin/class-woostify-admin.php:207
 msgid "Woostify"
 msgstr ""
 
-#: inc/woostify-functions.php:263
+#: inc/woostify-functions.php:256
 msgid "Placeholder image"
 msgstr ""
 
-#: inc/woostify-functions.php:265
+#: inc/woostify-functions.php:258
 msgid "Error image"
 msgstr ""
 
@@ -334,19 +334,19 @@ msgstr ""
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1461, inc/woostify-template-functions.php:1511
+#: inc/woostify-template-functions.php:1457, inc/woostify-template-functions.php:1507
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1464, inc/woostify-template-functions.php:1514
+#: inc/woostify-template-functions.php:1460, inc/woostify-template-functions.php:1510
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1466, inc/woostify-template-functions.php:1516
+#: inc/woostify-template-functions.php:1462, inc/woostify-template-functions.php:1512
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1648, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:1640, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 
@@ -400,15 +400,15 @@ msgstr ""
 msgid "Layout"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:167, inc/customizer/register-sections.php:85
+#: inc/admin/class-woostify-admin.php:167, inc/customizer/register-sections.php:94
 msgid "Buttons"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:174, inc/customizer/register-sections.php:94
+#: inc/admin/class-woostify-admin.php:174, inc/customizer/register-sections.php:103
 msgid "Typography"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:181, inc/customizer/register-sections.php:144
+#: inc/admin/class-woostify-admin.php:181, inc/customizer/register-sections.php:153
 msgid "Shop"
 msgstr ""
 
@@ -469,6 +469,10 @@ msgstr ""
 msgid "It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc."
 msgstr ""
 
+#: inc/admin/class-woostify-admin.php:331, inc/admin/class-woostify-admin.php:381, inc/admin/class-woostify-plugin-install.php:81
+msgid "Activate"
+msgstr ""
+
 #: inc/admin/class-woostify-admin.php:333
 msgid "Install Woostify Library"
 msgstr ""
@@ -481,10 +485,6 @@ msgstr ""
 msgid "Activated"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:381, inc/admin/class-woostify-plugin-install.php:81
-msgid "Activate"
-msgstr ""
-
 #: inc/admin/class-woostify-admin.php:396, inc/admin/class-woostify-plugin-install.php:100
 msgid "Install now"
 msgstr ""
@@ -493,75 +493,87 @@ msgstr ""
 msgid "Learn more"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:124
+#: inc/admin/class-woostify-meta-boxes.php:128
 msgid " Settings"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:178
+#: inc/admin/class-woostify-meta-boxes.php:184
 msgid "Container"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:184, inc/admin/class-woostify-meta-boxes.php:213
+#: inc/admin/class-woostify-meta-boxes.php:190, inc/admin/class-woostify-meta-boxes.php:217, inc/admin/class-woostify-meta-boxes.php:244
 msgid "Customizer Setting"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:188, inc/customizer/sections/wordpress/background-image.php:33
+#: inc/admin/class-woostify-meta-boxes.php:194, inc/customizer/sections/wordpress/background-image.php:33
 msgid "Normal"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:192, inc/customizer/sections/wordpress/background-image.php:35
+#: inc/admin/class-woostify-meta-boxes.php:198, inc/customizer/sections/wordpress/background-image.php:35
 msgid "Boxed"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:196, inc/customizer/sections/wordpress/background-image.php:34
+#: inc/admin/class-woostify-meta-boxes.php:202, inc/customizer/sections/wordpress/background-image.php:34
 msgid "Full Width"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:207, inc/customizer/register-sections.php:58
+#: inc/admin/class-woostify-meta-boxes.php:211, inc/customizer/register-sections.php:67
 msgid "Sidebar"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:217
+#: inc/admin/class-woostify-meta-boxes.php:221
 msgid "Left Sidebar"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:221
+#: inc/admin/class-woostify-meta-boxes.php:225
 msgid "Right Sidebar"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:225
+#: inc/admin/class-woostify-meta-boxes.php:229
 msgid "No Sidebar"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:236
+#: inc/admin/class-woostify-meta-boxes.php:238
+msgid "Transparent Header"
+msgstr ""
+
+#: inc/admin/class-woostify-meta-boxes.php:248
+msgid "Enabled"
+msgstr ""
+
+#: inc/admin/class-woostify-meta-boxes.php:252
+msgid "Disabled"
+msgstr ""
+
+#: inc/admin/class-woostify-meta-boxes.php:261
 msgid "Disable Sections"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:244
-msgid "Disable Header"
+#: inc/admin/class-woostify-meta-boxes.php:269
+msgid "Disable Header Menu"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:251
+#: inc/admin/class-woostify-meta-boxes.php:276
 msgid "Disable Title"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:258, inc/customizer/sections/footer/footer.php:48
+#: inc/admin/class-woostify-meta-boxes.php:283, inc/customizer/sections/footer/footer.php:48
 msgid "Disable Footer"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:162
+#: inc/customizer/class-woostify-customizer.php:168
 msgid "Opps! The page you’re looking for is missing for some reasons. Please come back to homepage"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:232
+#: inc/customizer/class-woostify-customizer.php:238
 msgid "Pro Version Is Coming Soon"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:249, inc/customizer/class-woostify-customizer.php:265, inc/customizer/class-woostify-customizer.php:281, inc/customizer/class-woostify-customizer.php:297
+#: inc/customizer/class-woostify-customizer.php:255, inc/customizer/class-woostify-customizer.php:271, inc/customizer/class-woostify-customizer.php:287, inc/customizer/class-woostify-customizer.php:303
 msgid "Learn More"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:250, inc/customizer/class-woostify-customizer.php:266, inc/customizer/class-woostify-customizer.php:282, inc/customizer/class-woostify-customizer.php:298
+#: inc/customizer/class-woostify-customizer.php:256, inc/customizer/class-woostify-customizer.php:272, inc/customizer/class-woostify-customizer.php:288, inc/customizer/class-woostify-customizer.php:304
 msgid "More options are coming for this section in our pro version."
 msgstr ""
 
@@ -578,46 +590,50 @@ msgid "Header"
 msgstr ""
 
 #: inc/customizer/register-sections.php:40
+msgid "Header Transparent"
+msgstr ""
+
+#: inc/customizer/register-sections.php:49
 msgid "Blog"
 msgstr ""
 
-#: inc/customizer/register-sections.php:49, inc/customizer/sections/sidebar/sidebar.php:140
+#: inc/customizer/register-sections.php:58, inc/customizer/sections/sidebar/sidebar.php:140
 msgid "Blog Single"
 msgstr ""
 
-#: inc/customizer/register-sections.php:67
+#: inc/customizer/register-sections.php:76
 msgid "Footer"
 msgstr ""
 
-#: inc/customizer/register-sections.php:76
+#: inc/customizer/register-sections.php:85
 msgid "Color"
 msgstr ""
 
-#: inc/customizer/register-sections.php:104
+#: inc/customizer/register-sections.php:113
 msgid "Body"
 msgstr ""
 
-#: inc/customizer/register-sections.php:114
+#: inc/customizer/register-sections.php:123
 msgid "Primary menu"
 msgstr ""
 
-#: inc/customizer/register-sections.php:124
+#: inc/customizer/register-sections.php:133
 msgid "Heading"
 msgstr ""
 
-#: inc/customizer/register-sections.php:134
+#: inc/customizer/register-sections.php:143
 msgid "404"
 msgstr ""
 
-#: inc/customizer/register-sections.php:153
+#: inc/customizer/register-sections.php:162
 msgid "Product Style"
 msgstr ""
 
-#: inc/customizer/register-sections.php:162
+#: inc/customizer/register-sections.php:171
 msgid "Shop Archive"
 msgstr ""
 
-#: inc/customizer/register-sections.php:171
+#: inc/customizer/register-sections.php:180
 msgid "Product Single"
 msgstr ""
 
@@ -665,7 +681,7 @@ msgstr ""
 msgid "Shopping cart"
 msgstr ""
 
-#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:57
+#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:57, inc/customizer/sections/header/header-transparent.php:141
 msgid "Desktop"
 msgstr ""
 
@@ -673,7 +689,7 @@ msgstr ""
 msgid "Tablet"
 msgstr ""
 
-#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:59
+#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:59, inc/customizer/sections/header/header-transparent.php:142
 msgid "Mobile"
 msgstr ""
 
@@ -801,11 +817,11 @@ msgstr ""
 msgid "Link / Accent Color"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:28, inc/customizer/sections/footer/footer.php:51
+#: inc/customizer/sections/footer/footer.php:28, inc/customizer/sections/footer/footer.php:51, inc/customizer/sections/header/header-transparent.php:28
 msgid "No"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:29, inc/customizer/sections/footer/footer.php:52
+#: inc/customizer/sections/footer/footer.php:29, inc/customizer/sections/footer/footer.php:52, inc/customizer/sections/header/header-transparent.php:29
 msgid "Yes"
 msgstr ""
 
@@ -819,6 +835,34 @@ msgstr ""
 
 #: inc/customizer/sections/footer/footer.php:179
 msgid "Link Color"
+msgstr ""
+
+#: inc/customizer/sections/header/header-transparent.php:25
+msgid "Enable Transparent Header"
+msgstr ""
+
+#: inc/customizer/sections/header/header-transparent.php:48
+msgid "Disable on 404, Search & Archives"
+msgstr ""
+
+#: inc/customizer/sections/header/header-transparent.php:70
+msgid "Disable on Blog page"
+msgstr ""
+
+#: inc/customizer/sections/header/header-transparent.php:92
+msgid "Disable on Pages"
+msgstr ""
+
+#: inc/customizer/sections/header/header-transparent.php:114
+msgid "Disable on Posts"
+msgstr ""
+
+#: inc/customizer/sections/header/header-transparent.php:136
+msgid "Enable On"
+msgstr ""
+
+#: inc/customizer/sections/header/header-transparent.php:143
+msgid "Both"
 msgstr ""
 
 #: inc/customizer/sections/header/header.php:25

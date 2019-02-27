@@ -61,27 +61,31 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 			 *
 			 * @see http://php.net/manual/en/filter.filters.sanitize.php
 			 */
-			self::$meta_option = apply_filters(
-				'woostify_metabox_options',
-				array(
-					'site-container' => array(
-						'default'  => 'default',
-						'sanitize' => 'FILTER_DEFAULT',
-					),
-					'site-header-primary-menu' => array(
-						'sanitize' => 'FILTER_DEFAULT',
-					),
-					'site-post-title' => array(
-						'sanitize' => 'FILTER_DEFAULT',
-					),
-					'site-sidebar' => array(
-						'default'  => 'default',
-						'sanitize' => 'FILTER_DEFAULT',
-					),
-					'site-footer' => array(
-						'sanitize' => 'FILTER_DEFAULT',
-					),
-				)
+			self::$meta_option = array(
+				'site-container' => array(
+					'default'  => 'default',
+					'sanitize' => 'FILTER_DEFAULT',
+				),
+				'site-header-transparent' => array(
+					'default'  => 'default',
+					'sanitize' => 'FILTER_DEFAULT',
+				),
+				'site-sidebar' => array(
+					'default'  => 'default',
+					'sanitize' => 'FILTER_DEFAULT',
+				),
+				'site-header-primary-menu' => array(
+					'default'  => 'default',
+					'sanitize' => 'FILTER_DEFAULT',
+				),
+				'site-post-title' => array(
+					'default'  => 'default',
+					'sanitize' => 'FILTER_DEFAULT',
+				),
+				'site-footer' => array(
+					'default'  => 'default',
+					'sanitize' => 'FILTER_DEFAULT',
+				),
 			);
 		}
 
@@ -115,7 +119,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 
 			// Get all public posts.
 			$post_types = apply_filters(
-				'woostify_post_types',
+				'woostify_metabox_post_types',
 				array( 'post', 'page' )
 			);
 
@@ -162,17 +166,19 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 			/**
 			 * Get options
 			 */
-			$site_container   = isset( $meta['site-container']['default'] ) ? $meta['site-container']['default'] : 'default';
-			$site_sidebar     = isset( $meta['site-sidebar']['default'] ) ? $meta['site-sidebar']['default'] : 'default';
-			$site_post_title  = isset( $meta['site-post-title']['default'] ) ? $meta['site-post-title']['default'] : '';
-			$site_footer      = isset( $meta['site-footer']['default'] ) ? $meta['site-footer']['default'] : '';
-			$site_header_menu = isset( $meta['site-header-primary-menu']['default'] ) ? $meta['site-header-primary-menu']['default'] : '';
+			$site_container          = isset( $meta['site-container']['default'] ) ? $meta['site-container']['default'] : 'default';
+			$site_sidebar            = isset( $meta['site-sidebar']['default'] ) ? $meta['site-sidebar']['default'] : 'default';
+			$site_header_transparent = isset( $meta['site-header-transparent']['default'] ) ? $meta['site-header-transparent']['default'] : 'default';
+
+			$site_header_menu        = isset( $meta['site-header-primary-menu']['default'] ) ? $meta['site-header-primary-menu']['default'] : 'default';
+			$site_post_title         = isset( $meta['site-post-title']['default'] ) ? $meta['site-post-title']['default'] : 'default';
+			$site_footer             = isset( $meta['site-footer']['default'] ) ? $meta['site-footer']['default'] : 'default';
 			?>
 
 			<div class="woostify-metabox-setting">
 				<div class="woostify-metabox-content-box">
 					<div class="woostify-metabox-content">
-						<?php // Option: Content. ?>
+						<?php // Option: Container. ?>
 						<div class="woostify-metabox-option">
 							<div class="woostify-metabox-option-title">
 								<span><?php esc_html_e( 'Container', 'woostify' ); ?>:</span>
@@ -195,8 +201,6 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 									<option value="full-width" <?php selected( $site_container, 'full-width' ); ?> >
 										<?php esc_html_e( 'Full Width', 'woostify' ); ?>
 									</option>
-
-									<?php do_action( 'woostify_metabox_options' ); ?>
 								</select>
 							</div>
 						</div>
@@ -224,8 +228,29 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 									<option value="full" <?php selected( $site_sidebar, 'full' ); ?> >
 										<?php esc_html_e( 'No Sidebar', 'woostify' ); ?>
 									</option>
+								</select>
+							</div>
+						</div>
 
-									<?php do_action( 'woostify_metabox_options' ); ?>
+						<?php // Option: Transparent Header. ?>
+						<div class="woostify-metabox-option">
+							<div class="woostify-metabox-option-title">
+								<span><?php esc_html_e( 'Transparent Header', 'woostify' ); ?>:</span>
+							</div>
+
+							<div class="woostify-metabox-option-content">
+								<select name="site-header-transparent" id="site-header-transparent">
+									<option value="default" <?php selected( $site_header_transparent, 'default' ); ?> >
+										<?php esc_html_e( 'Customizer Setting', 'woostify' ); ?>
+									</option>
+
+									<option value="enabled" <?php selected( $site_header_transparent, 'enabled' ); ?> >
+										<?php esc_html_e( 'Enabled', 'woostify' ); ?>
+									</option>
+
+									<option value="disabled" <?php selected( $site_header_transparent, 'disabled' ); ?> >
+										<?php esc_html_e( 'Disabled', 'woostify' ); ?>
+									</option>
 								</select>
 							</div>
 						</div>
@@ -241,7 +266,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 									<div class="site-header-primary-menu-option-wrap">
 										<label for="site-header-primary-menu">
 											<input type="checkbox" id="site-header-primary-menu" name="site-header-primary-menu" value="disabled" <?php checked( $site_header_menu, 'disabled' ); ?> />
-											<?php esc_html_e( 'Disable Header', 'woostify' ); ?>
+											<?php esc_html_e( 'Disable Header Menu', 'woostify' ); ?>
 										</label>
 									</div>
 

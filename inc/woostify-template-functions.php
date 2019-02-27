@@ -426,9 +426,9 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 
 		// Metabox disable primary menu.
 		$page_id        = woostify_get_page_id();
-		$metabox_menu   = get_post_meta( $page_id, 'site-header-primary-menu', true );
+		$metabox_menu   = woostify_get_metabox( 'site-header-primary-menu' );
 
-		if ( ! empty( $metabox_menu ) && 'disabled' == $metabox_menu ) {
+		if ( 'disabled' == $metabox_menu ) {
 			$disable_menu = true;
 		}
 
@@ -450,7 +450,7 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 							'container'      => '',
 						)
 					);
-				} else {
+				} elseif ( is_user_logged_in() ) {
 					?>
 					<a class="add-menu" href="<?php echo esc_url( get_admin_url() . 'nav-menus.php' ); ?>"><?php esc_html_e( 'Add a Primary Menu', 'woostify' ); ?></a>
 				<?php } ?>
@@ -490,10 +490,10 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		$disable_title = false;
 
 		if ( is_page() ) {
-			$metabox_page_title = get_post_meta( $page_id, 'site-post-title', true );
+			$metabox_page_title = woostify_get_metabox( 'site-post-title' );
 			$disable_page_title = false;
 
-			if ( ! empty( $metabox_page_title ) && 'disabled' == $metabox_page_title ) {
+			if ( 'disabled' == $metabox_page_title ) {
 				$disable_page_title = true;
 			}
 
@@ -522,8 +522,8 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		}
 
 		// Metabox option.
-		$metabox_post_title = get_post_meta( $page_id, 'site-post-title', true );
-		if ( ! empty( $metabox_post_title ) && 'disabled' == $metabox_post_title ) {
+		$metabox_post_title = woostify_get_metabox( 'site-post-title' );
+		if ( 'disabled' == $metabox_post_title ) {
 			$disable_title = true;
 		}
 
@@ -618,10 +618,10 @@ if ( ! function_exists( 'woostify_post_title' ) ) {
 
 		// Metabox disable footer.
 		$page_id            = woostify_get_page_id();
-		$metabox_post_title = get_post_meta( $page_id, 'site-post-title', true );
+		$metabox_post_title = woostify_get_metabox( 'site-post-title' );
 		$disable_post_title = false;
 
-		if ( ! empty( $metabox_post_title ) && 'disabled' == $metabox_post_title ) {
+		if ( 'disabled' == $metabox_post_title ) {
 			$disable_post_title = true;
 		}
 
@@ -1277,11 +1277,7 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 
 		// Metabox options.
 		$page_id         = woostify_get_page_id();
-		$metabox_sidebar = get_post_meta( $page_id, 'site-sidebar', true );
-
-		if ( empty( $metabox_sidebar ) ) {
-			$metabox_sidebar = 'default';
-		}
+		$metabox_sidebar = woostify_get_metabox( 'site-sidebar' );
 
 		// Customize options.
 		$sidebar             = '';
@@ -1557,11 +1553,7 @@ if ( ! function_exists( 'woostify_site_container' ) ) {
 
 		// Metabox.
 		$page_id           = woostify_get_page_id();
-		$metabox_container = get_post_meta( $page_id, 'site-container', true );
-
-		if ( empty( $metabox_container ) ) {
-			$metabox_container = 'default';
-		}
+		$metabox_container = woostify_get_metabox( 'site-container' );
 
 		if ( 'default' != $metabox_container ) {
 			if ( 'full-width' == $metabox_container ) {
@@ -1591,9 +1583,9 @@ if ( ! function_exists( 'woostify_site_footer' ) ) {
 
 		// Metabox disable footer.
 		$page_id        = woostify_get_page_id();
-		$metabox_footer = get_post_meta( $page_id, 'site-footer', true );
+		$metabox_footer = woostify_get_metabox( 'site-footer' );
 
-		if ( ! empty( $metabox_footer ) && 'disabled' == $metabox_footer ) {
+		if ( 'disabled' == $metabox_footer ) {
 			$disable_footer = true;
 		}
 

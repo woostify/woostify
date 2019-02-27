@@ -574,9 +574,9 @@ if ( ! class_exists( 'woostify' ) ) :
 
 			// Site container layout.
 			$page_id           = woostify_get_page_id();
-			$metabox_container = get_post_meta( $page_id, 'site-container', true );
+			$metabox_container = woostify_get_metabox( 'site-container' );
 
-			if ( ! empty( $metabox_container ) && 'default' != $metabox_container ) {
+			if ( 'default' != $metabox_container ) {
 				$classes[] = 'site-' . $metabox_container . '-container';
 			} else {
 				$classes[] = 'site-' . $options['default_container'] . '-container';
@@ -584,6 +584,11 @@ if ( ! class_exists( 'woostify' ) ) :
 
 			// Header layout.
 			$classes[] = 'has-header-' . $options['header_layout'];
+
+			// Header transparent.
+			if ( true == woostify_header_transparent() ) {
+				$classes[] = 'has-header-transparent';
+			}
 
 			// Sidebar class detected.
 			$classes[] = woostify_sidebar_class();

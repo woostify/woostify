@@ -33,6 +33,15 @@ $wp_customize->add_section(
 	)
 );
 
+// Header transparent section.
+$wp_customize->add_section(
+	'woostify_header_transparent',
+	array(
+		'title'       => __( 'Header Transparent', 'woostify' ),
+		'panel'       => 'woostify_layout',
+	)
+);
+
 // Blog section.
 $wp_customize->add_section(
 	'woostify_blog',

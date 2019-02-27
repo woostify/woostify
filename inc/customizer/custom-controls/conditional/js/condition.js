@@ -53,6 +53,7 @@
 			} );
 		}
 
+		// HEADER SECTION.
 		// Search product only.
 		condition(
 			'woostify_setting[header_search_icon]',
@@ -65,10 +66,25 @@
 			['woostify_setting[shop_page_always_show_add_to_cart]']
 		);
 
+		// HEADER TRANSPARENT SECTION.
+		// Enable transparent header.
+		condition(
+			'woostify_setting[header_transparent]',
+			[
+			'woostify_setting[header_transparent_disable_archive]',
+			'woostify_setting[header_transparent_disable_index]',
+			'woostify_setting[header_transparent_disable_page]',
+			'woostify_setting[header_transparent_disable_post]',
+			'woostify_setting[header_transparent_enable_on]'
+			]
+		);
+
+		// FOOTER SECTION.
 		// Disable footer.
 		condition(
 			'woostify_setting[footer_disable]',
 			[
+				'woostify_setting[footer_space]',
 				'woostify_setting[footer_column]',
 				'woostify_setting[footer_background_color]',
 				'woostify_setting[footer_heading_color]',

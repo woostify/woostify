@@ -82,6 +82,12 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 					// Header.
 					'header_layout'                        => 'layout-1',
+					'header_transparent'                   => false,
+					'header_transparent_enable_on'         => 'desktop',
+					'header_transparent_disable_archive'   => true,
+					'header_transparent_disable_index'     => false,
+					'header_transparent_disable_page'      => false,
+					'header_transparent_disable_post'      => false,
 					'header_background_color'              => '#ffffff',
 					'header_primary_menu'                  => true,
 					'header_search_icon'                   => true,
@@ -222,7 +228,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			}
 
 			// Get pro version area.
-			if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) {
+			if ( defined( 'WOOSTIFY_PRO_VERSION_DEMO' ) ) {
 				// Add get pro version section.
 				$wp_customize->add_section(
 					new Woostify_Get_Pro_Section(
