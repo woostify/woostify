@@ -91,7 +91,7 @@ class Woostify_Get_CSS {
 				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
-			
+
 			.pagination a,
 			.pagination a,
 			.woocommerce-pagination a,
@@ -406,7 +406,7 @@ class Woostify_Get_CSS {
 		.edit-post-visual-editor, .edit-post-visual-editor p{
 			font-family: ' . esc_attr( $options['body_font_family'] ) . ';
 		}
-		
+
 		.editor-post-title__block .editor-post-title__input,
 		.wp-block-heading, .editor-rich-text__tinymce{
 			font-family: ' . esc_attr( $options['heading_font_family'] ) . ';

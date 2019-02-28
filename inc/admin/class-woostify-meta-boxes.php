@@ -233,7 +233,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 						</div>
 
 						<?php // Option: Transparent Header. ?>
-						<div class="woostify-metabox-option">
+						<!-- <div class="woostify-metabox-option">
 							<div class="woostify-metabox-option-title">
 								<span><?php esc_html_e( 'Transparent Header', 'woostify' ); ?>:</span>
 							</div>
@@ -253,7 +253,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 									</option>
 								</select>
 							</div>
-						</div>
+						</div> -->
 
 						<?php // Option: Disable Sections - Primary Header, Title, Footer Widgets, Footer Bar. ?>
 						<div class="woostify-metabox-option">

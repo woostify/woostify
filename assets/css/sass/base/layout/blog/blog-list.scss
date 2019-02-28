@@ -47,9 +47,11 @@
     		margin: 0 5px;
 
     		&:before{
-                content: '•';
+                content: '.';
                 margin-right: 7px;
-                font-size: 8px;
+                font-size: 20px;
+                position: relative;
+                top: -3px;
             }
 
     		&:first-child{

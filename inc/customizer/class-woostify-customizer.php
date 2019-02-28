@@ -228,7 +228,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			}
 
 			// Get pro version area.
-			if ( defined( 'WOOSTIFY_PRO_VERSION_DEMO' ) ) {
+			if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) {
 				// Add get pro version section.
 				$wp_customize->add_section(
 					new Woostify_Get_Pro_Section(

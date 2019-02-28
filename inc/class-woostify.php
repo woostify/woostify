@@ -586,9 +586,9 @@ if ( ! class_exists( 'woostify' ) ) :
 			$classes[] = 'has-header-' . $options['header_layout'];
 
 			// Header transparent.
-			if ( true == woostify_header_transparent() ) {
+			/*if ( true == woostify_header_transparent() ) {
 				$classes[] = 'has-header-transparent';
-			}
+			}*/
 
 			// Sidebar class detected.
 			$classes[] = woostify_sidebar_class();

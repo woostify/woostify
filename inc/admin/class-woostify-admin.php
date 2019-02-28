@@ -258,24 +258,61 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 							</div>
 
 							<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
-								<div class="woostify-enhance__column woostify-pro-featured">
+								<div class="woostify-enhance__column woostify-pro-featured pro-featured-list">
 									<h3>
 										<?php esc_html_e( 'More Features are coming with Woostify Pro', 'woostify' ); ?>
 										<a class="woostify-learn-more wp-ui-text-highlight" href="https://www.facebook.com/WoostifyWP" target="_blank"><?php esc_html_e( 'Follow here!', 'woostify' ); ?></a>
 									</h3>
 
 									<div class="wf-quick-setting-section">
-										<p>
-											<?php esc_html_e( 'Optimize website with our powerful Pro Modules.', 'woostify' ); ?>
-										</p>
-
-										<p>
-											<?php esc_html_e( 'All the tools you need to define your style and customize your Woostify store.', 'woostify' ); ?>
-										</p>
-
-										<p>
-											<a href="https://www.facebook.com/WoostifyWP" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Follow here', 'woostify' ); ?></a>
-										</p>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name wp-ui-text-highlight">
+												<?php esc_html_e( 'Multiple Headers', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/pro-modules/multiple-header-styles/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name wp-ui-text-highlight">
+												<?php esc_html_e( 'Elementor Bundle', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/pro-modules/elementor-bundle/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name wp-ui-text-highlight">
+												<?php esc_html_e( 'Advanced Shop Widgets', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name wp-ui-text-highlight">
+												<?php esc_html_e( 'Product Style', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/pro-modules/multiple-product-layouts/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name wp-ui-text-highlight">
+												<?php esc_html_e( 'Buy Now Button', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/pro-modules/buy-now-button/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name wp-ui-text-highlight">
+												<?php esc_html_e( 'Sticky Button', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name wp-ui-text-highlight">
+												<?php esc_html_e( 'Ajax Single Add To Cart', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/pro-modules/ajax-single-add-to-cart/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name wp-ui-text-highlight">
+												<?php esc_html_e( 'Quick View', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
 									</div>
 								</div>
 							<?php endif; ?>
@@ -346,6 +383,48 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 									<p>
 										<?php echo $button; // WPCS: XSS ok. ?>
+									</p>
+								</div>
+							</div>
+
+							<div class="woostify-enhance__column">
+								<h3><?php esc_html_e( 'Learn More', 'woostify' ); ?></h3>
+
+								<div class="wf-quick-setting-section">
+									<p>
+										<?php esc_html_e( 'Want to know how it works, take a look on this and get whole knowledge about Woostify. Learn Woostify.', 'woostify' ); ?>
+									</p>
+
+									<p>
+										<a href="https://woostify.com/" class="woostify-button"><?php esc_html_e( 'Visit Us', 'woostify' ); ?></a>
+									</p>
+								</div>
+							</div>
+
+							<div class="woostify-enhance__column">
+								<h3><?php esc_html_e( 'Woostify Community', 'woostify' ); ?></h3>
+
+								<div class="wf-quick-setting-section">
+									<p>
+										<?php esc_html_e( 'Join the community of generous Woostify users. Get connected, share opinion, ask questions and help each other!', 'woostify' ); ?>
+									</p>
+
+									<p>
+										<a href="https://www.facebook.com/groups/2245150649099616/" class="woostify-button"><?php esc_html_e( 'Join Our Facebook Group', 'woostify' ); ?></a>
+									</p>
+								</div>
+							</div>
+
+							<div class="woostify-enhance__column">
+								<h3><?php esc_html_e( 'Customer Support', 'woostify' ); ?></h3>
+
+								<div class="wf-quick-setting-section">
+									<p>
+										<?php esc_html_e( 'We start with what the customer needs and we work backwards. You\'re absolutely free to contact us and Woostify team will be happy to help you.', 'woostify' ); ?>
+									</p>
+
+									<p>
+										<a href="https://woostify.com/contact/" class="woostify-button"><?php esc_html_e( 'Submit a Ticket', 'woostify' ); ?></a>
 									</p>
 								</div>
 							</div>

@@ -694,12 +694,16 @@ if ( ! function_exists( 'woostify_post_meta' ) ) {
 					?>
 					<span class="post-meta-item vcard author">
 						<?php
-							echo '<span class="label">' . esc_html( __( 'by', 'woostify' ) ) . '</span>';
+						if ( '' === get_the_author() ) {
+							esc_html_e( 'by Unknown author', 'woostify' );
+						} else {
+							echo '<span class="label">' . esc_html__( 'by', 'woostify' ) . '</span>';
 							echo sprintf(
 								' <a href="%1$s" class="url fn" rel="author">%2$s</a>',
 								esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 								get_the_author()
 							);
+						}
 						?>
 					</span>
 					<?php

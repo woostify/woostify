@@ -294,10 +294,30 @@ $green: #45b964;
 		}
 	}
 
-	/*  */
 	.wf-quick-setting-section{
 		margin: 1em 0;
 		padding: 0 1.5em;
+	}
+
+	/* List pro feature */
+	.pro-featured-list{
+		padding-bottom: 0 !important;
+
+		.wf-quick-setting-section{
+			margin: 0;
+			padding: 0;
+		}
+
+		.pro-featured-item{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			border-bottom: 1px solid #eeeeee;
+			padding: 1em 1.5em;
+			&:last-of-type{
+				border-bottom: 0;
+			}
+		}
 	}
 
 	.woostify-learn-more{
@@ -334,7 +354,7 @@ $green: #45b964;
 	.woostify-notice-content{
 		display: flex;
 		align-items: center;
-		background: rgba(72, 73, 21, 0.15);
+		background-color: #faf5ef;
 		padding: 20px;
 	}
 	.woostify-notice-img{

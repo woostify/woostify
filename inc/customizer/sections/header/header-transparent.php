@@ -6,7 +6,7 @@
  */
 
 // Default values.
-$defaults = woostify_options();
+/*$defaults = woostify_options();
 
 // Enable/disable Header transparent.
 $wp_customize->add_setting(
@@ -146,3 +146,4 @@ $wp_customize->add_control(
 	)
 );
 
+*/
