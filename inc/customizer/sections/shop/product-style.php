@@ -30,7 +30,7 @@ $wp_customize->add_control(
 			'choices'  => apply_filters(
 				'woostify_setting_product_style_choices',
 				array(
-					'layout-1' => WOOSTIFY_THEME_URI . 'assets/images/customizer/header/header-1.png',
+					'layout-1' => WOOSTIFY_THEME_URI . 'assets/images/customizer/product-style/woostify-product-card-1.jpg',
 				)
 			),
 		)

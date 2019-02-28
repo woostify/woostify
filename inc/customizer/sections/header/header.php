@@ -29,7 +29,7 @@ $wp_customize->add_control(
 			'choices'  => apply_filters(
 				'woostify_setting_header_layout_choices',
 				array(
-					'layout-1' => WOOSTIFY_THEME_URI . 'assets/images/customizer/header/header-1.png',
+					'layout-1' => WOOSTIFY_THEME_URI . 'assets/images/customizer/header/woostify-header-1.jpg',
 				)
 			),
 		)
