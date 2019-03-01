@@ -145,41 +145,30 @@ $wp_customize->add_section(
 	)
 );
 
-// Woocommerce shop.
-if ( class_exists( 'woocommerce' ) ) {
-	$wp_customize->add_panel(
-		'woostify_shop',
-		array(
-			'title'      => __( 'Shop', 'woostify' ),
-			'capability' => 'edit_theme_options',
-			'priority'   => 30,
-		)
-	);
+// Woocommerce.
+$wp_customize->add_section(
+	'woostify_product_style',
+	array(
+		'title'      => __( 'Product Style', 'woostify' ),
+		'capability' => 'edit_theme_options',
+		'panel'      => 'woocommerce',
+	)
+);
 
-	$wp_customize->add_section(
-		'woostify_product_style',
-		array(
-			'title'      => __( 'Product Style', 'woostify' ),
-			'capability' => 'edit_theme_options',
-			'panel'      => 'woostify_shop',
-		)
-	);
+$wp_customize->add_section(
+	'woostify_shop_page',
+	array(
+		'title'      => __( 'Shop Archive', 'woostify' ),
+		'capability' => 'edit_theme_options',
+		'panel'      => 'woocommerce',
+	)
+);
 
-	$wp_customize->add_section(
-		'woostify_shop_page',
-		array(
-			'title'      => __( 'Shop Archive', 'woostify' ),
-			'capability' => 'edit_theme_options',
-			'panel'      => 'woostify_shop',
-		)
-	);
-
-	$wp_customize->add_section(
-		'woostify_shop_single',
-		array(
-			'title'      => __( 'Product Single', 'woostify' ),
-			'capability' => 'edit_theme_options',
-			'panel'      => 'woostify_shop',
-		)
-	);
-}
+$wp_customize->add_section(
+	'woostify_shop_single',
+	array(
+		'title'      => __( 'Product Single', 'woostify' ),
+		'capability' => 'edit_theme_options',
+		'panel'      => 'woocommerce',
+	)
+);
