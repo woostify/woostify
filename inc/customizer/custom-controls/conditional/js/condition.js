@@ -79,6 +79,18 @@
 			]
 		);
 
+		// Enable box shadow.
+		condition(
+			'woostify_setting[header_transparent_box_shadow]',
+			[
+			'woostify_setting[header_transparent_shadow_type]',
+			'woostify_setting[header_transparent_shadow_x]',
+			'woostify_setting[header_transparent_shadow_y]',
+			'woostify_setting[header_transparent_shadow_blur]',
+			'woostify_setting[header_transparent_shadow_spread]'
+			]
+		);
+
 		// FOOTER SECTION.
 		// Disable footer.
 		condition(

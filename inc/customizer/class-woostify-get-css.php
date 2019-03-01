@@ -331,6 +331,16 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// Header transparent.
+		if ( true == woostify_header_transparent() ) {
+			$styles .= '
+				.has-header-transparent .site-header{
+					border-bottom-width: ' . esc_attr( $options['header_transparent_border_width'] ) . 'px;
+					border-bottom-color: ' . esc_attr( $options['header_transparent_border_color'] ) . ';
+				}
+			';
+		}
+
 		// Footer.
 		$styles .= '
 			.site-footer{

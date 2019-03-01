@@ -170,6 +170,7 @@ if ( ! function_exists( 'woostify_sanitize_variants' ) ) {
 		return sanitize_text_field( $input );
 	}
 }
+
 if ( ! function_exists( 'woostify_sanitize_rgba_color' ) ) {
 	/**
 	 * Sanitize color || rgba color
@@ -194,6 +195,16 @@ if ( ! function_exists( 'woostify_sanitize_rgba_color' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_sanitize_int' ) ) {
+	/**
+	 * Sanitize integer value
+	 *
+	 * @param      integer $value  The integer number.
+	 */
+	function woostify_sanitize_int( $value ) {
+		return intval( $value );
+	}
+}
 
 if ( ! function_exists( 'woostify_is_blog' ) ) {
 	/**
@@ -375,7 +386,7 @@ if ( ! function_exists( 'woostify_get_metabox' ) ) {
 		$page_id = woostify_get_page_id();
 		$metabox = get_post_meta( $page_id, $metabox, true );
 
-		if ( '' === $metabox ) {
+		if ( '' === $metabox || false === $metabox ) {
 			$metabox = 'default';
 		}
 
@@ -388,23 +399,43 @@ if ( ! function_exists( 'woostify_header_transparent' ) ) {
 	 * Detect header transparent on current page
 	 */
 	function woostify_header_transparent() {
-		$options                       = woostify_options( false );
-		$header_transparent            = false;
-		$customizer_header_transparent = $options['header_transparent'];
-		$metabox_header_transparent    = woostify_get_metabox( 'site-header-transparent' );
+		$options             = woostify_options( false );
+		$transparent         = false;
+		$general_transparent = $options['header_transparent'];
+		$archive_transparent = $options['header_transparent_disable_archive'];
+		$index_transparent   = $options['header_transparent_disable_index'];
+		$page_transparent    = $options['header_transparent_disable_page'];
+		$post_transparent    = $options['header_transparent_disable_post'];
+		$metabox_transparent = woostify_get_metabox( 'site-header-transparent' );
 
-		if ( true == $customizer_header_transparent ) {
-			$header_transparent = true;
+		// General header transparent for all site.
+		if ( true == $general_transparent ) {
+			$transparent = true;
 		}
 
-		if ( 'default' != $metabox_header_transparent ) {
-			if ( 'enabled' == $metabox_header_transparent ) {
-				$header_transparent = true;
+		// Disable header transparent on Archive, 404 and Search page.
+		if ( ( is_archive() || is_404() || is_search() ) && true == $archive_transparent ) {
+			$transparent = false;
+		} elseif ( is_home() && true == $index_transparent ) {
+			// Disable header transparent on Blog page.
+			$transparent = false;
+		} elseif ( is_page() && true == $page_transparent ) {
+			// Disable header transparent on Pages.
+			$transparent = false;
+		} elseif ( is_singular( 'post' ) && true == $post_transparent ) {
+			// Disable header transparent on Posts.
+			$transparent = false;
+		}
+
+		// For metabox, special page or post. Priority highest.
+		if ( 'default' != $metabox_transparent ) {
+			if ( 'enabled' == $metabox_transparent ) {
+				$transparent = true;
 			} else {
-				$header_transparent = false;
+				$transparent = false;
 			}
 		}
 
-		return $header_transparent;
+		return $transparent;
 	}
 }
