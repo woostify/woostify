@@ -8,6 +8,18 @@
 
 'use strict';
 
+// Remove class with prefix.
+jQuery.fn.removeClassPrefix = function (prefix) {
+	this.each( function ( i, it ) {
+		var classes = it.className.split( ' ' ).map( function ( item ) {
+			return item.indexOf( prefix ) === 0 ? '' : item;
+		});
+		it.className = classes.join( ' ' );
+	});
+
+	return this;
+};
+
 // Colors.
 function woostify_colors_live_update( id, selector, property, default_value ) {
 	default_value = 'undefined' !== typeof default_value ? default_value : 'initial';
@@ -105,44 +117,11 @@ function woostify_hidden_product_meta( id, selector ) {
 	} );
 }
 
-// Box shadow type.
-function woostify_shadow_type( id ) {
-	var shadowItem = [0,1,2,3,4,5];
-
-	wp.customize( 'woostify_setting[header_transparent_shadow_type]', function( value ) {
+// Update body class.
+function woostify_update_body_class( id, selector ) {
+	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
-			shadowItem[0] = newval;
-		} );
-	} );
-
-	wp.customize( 'woostify_setting[header_transparent_shadow_x]', function( value ) {
-		value.bind( function( newval ) {
-			shadowItem[1] = newval;
-		} );
-	} );
-
-	wp.customize( 'woostify_setting[header_transparent_shadow_y]', function( value ) {
-		value.bind( function( newval ) {
-			shadowItem[2] = newval;
-		} );
-	} );
-
-	wp.customize( 'woostify_setting[header_transparent_shadow_blur]', function( value ) {
-		value.bind( function( newval ) {
-			shadowItem[3] = newval;
-		} );
-	} );
-
-	wp.customize( 'woostify_setting[header_transparent_shadow_spread]', function( value ) {
-		value.bind( function( newval ) {
-			shadowItem[4] = newval;
-		} );
-	} );
-
-	wp.customize( 'woostify_setting[header_transparent_shadow_color]', function( value ) {
-		value.bind( function( newval ) {
-			shadowItem[5] = newval;
-			console.log( shadowItem );
+			jQuery( selector ).removeClassPrefix( 'header-transparent-for' ).addClass( 'header-transparent-for-' + newval );
 		} );
 	} );
 }
@@ -186,15 +165,8 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 }
 
 ( function( $ ) {
-	/*woostify_box_shadow( [
-		'header_transparent_shadow_type',
-		'header_transparent_shadow_x',
-		'header_transparent_shadow_y',
-		'header_transparent_shadow_blur',
-		'header_transparent_shadow_spread',
-		'header_transparent_shadow_color'
-	], '.has-header-transparent .site-header' );*/
-	woostify_shadow_type();
+	woostify_update_body_class( 'header_transparent_enable_on', 'body' );
+
 	// Refresh Preview when remove Custom Logo.
 	wp.customize( 'custom_logo', function( value ) {
 		value.bind( function( newval ) {

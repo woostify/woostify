@@ -733,7 +733,7 @@ msgstr ""
 msgid "Shopping cart"
 msgstr ""
 
-#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:57, inc/customizer/sections/header/header-transparent.php:141
+#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:57, inc/customizer/sections/header/header-transparent.php:142
 msgid "Desktop"
 msgstr ""
 
@@ -741,7 +741,7 @@ msgstr ""
 msgid "Tablet"
 msgstr ""
 
-#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:59, inc/customizer/sections/header/header-transparent.php:142
+#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:59, inc/customizer/sections/header/header-transparent.php:143
 msgid "Mobile"
 msgstr ""
 
@@ -869,11 +869,11 @@ msgstr ""
 msgid "Link / Accent Color"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:28, inc/customizer/sections/footer/footer.php:51, inc/customizer/sections/header/header-transparent.php:28, inc/customizer/sections/header/header-transparent.php:259
+#: inc/customizer/sections/footer/footer.php:28, inc/customizer/sections/footer/footer.php:51, inc/customizer/sections/header/header-transparent.php:28
 msgid "No"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:29, inc/customizer/sections/footer/footer.php:52, inc/customizer/sections/header/header-transparent.php:29, inc/customizer/sections/header/header-transparent.php:260
+#: inc/customizer/sections/footer/footer.php:29, inc/customizer/sections/footer/footer.php:52, inc/customizer/sections/header/header-transparent.php:29
 msgid "Yes"
 msgstr ""
 
@@ -909,56 +909,20 @@ msgstr ""
 msgid "Disable on Posts"
 msgstr ""
 
-#: inc/customizer/sections/header/header-transparent.php:136
+#: inc/customizer/sections/header/header-transparent.php:137
 msgid "Enable On"
 msgstr ""
 
-#: inc/customizer/sections/header/header-transparent.php:143
+#: inc/customizer/sections/header/header-transparent.php:144
 msgid "Both"
 msgstr ""
 
-#: inc/customizer/sections/header/header-transparent.php:183
+#: inc/customizer/sections/header/header-transparent.php:184
 msgid "Bottom Border Width"
 msgstr ""
 
-#: inc/customizer/sections/header/header-transparent.php:216
+#: inc/customizer/sections/header/header-transparent.php:217
 msgid "Border Color"
-msgstr ""
-
-#: inc/customizer/sections/header/header-transparent.php:256
-msgid "Enable Box Shadow"
-msgstr ""
-
-#: inc/customizer/sections/header/header-transparent.php:280
-msgid "Box Shadow Type"
-msgstr ""
-
-#: inc/customizer/sections/header/header-transparent.php:285
-msgid "Outset"
-msgstr ""
-
-#: inc/customizer/sections/header/header-transparent.php:286
-msgid "Inset"
-msgstr ""
-
-#: inc/customizer/sections/header/header-transparent.php:307
-msgid "X Offset"
-msgstr ""
-
-#: inc/customizer/sections/header/header-transparent.php:340
-msgid "Y Offset"
-msgstr ""
-
-#: inc/customizer/sections/header/header-transparent.php:373
-msgid "Blur"
-msgstr ""
-
-#: inc/customizer/sections/header/header-transparent.php:406
-msgid "Spread"
-msgstr ""
-
-#: inc/customizer/sections/header/header-transparent.php:439
-msgid "Shadow Color"
 msgstr ""
 
 #: inc/customizer/sections/header/header.php:25
