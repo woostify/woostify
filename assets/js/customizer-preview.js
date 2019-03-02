@@ -8,6 +8,18 @@
 
 'use strict';
 
+// Remove class with prefix.
+jQuery.fn.removeClassPrefix = function (prefix) {
+	this.each( function ( i, it ) {
+		var classes = it.className.split( ' ' ).map( function ( item ) {
+			return item.indexOf( prefix ) === 0 ? '' : item;
+		});
+		it.className = classes.join( ' ' );
+	});
+
+	return this;
+};
+
 // Colors.
 function woostify_colors_live_update( id, selector, property, default_value ) {
 	default_value = 'undefined' !== typeof default_value ? default_value : 'initial';
@@ -105,6 +117,15 @@ function woostify_hidden_product_meta( id, selector ) {
 	} );
 }
 
+// Update body class.
+function woostify_update_body_class( id, selector ) {
+	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
+		value.bind( function( newval ) {
+			jQuery( selector ).removeClassPrefix( 'header-transparent-for' ).addClass( 'header-transparent-for-' + newval );
+		} );
+	} );
+}
+
 /**
  * Multi device slider update
  *
@@ -144,6 +165,8 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 }
 
 ( function( $ ) {
+	woostify_update_body_class( 'header_transparent_enable_on', 'body' );
+
 	// Refresh Preview when remove Custom Logo.
 	wp.customize( 'custom_logo', function( value ) {
 		value.bind( function( newval ) {
@@ -181,13 +204,18 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	woostify_html_live_update( 'topbar_center', '.topbar .topbar-center' );
 	woostify_html_live_update( 'topbar_right', '.topbar .topbar-right' );
 
-	// Header.
-	woostify_colors_live_update( 'header_background_color', '.site-header', 'background-color' )
+	// HEADER.
+	// Header background.
+	woostify_colors_live_update( 'header_background_color', '.site-header', 'background-color' );
+	// Header transparent: border bottom width.
+	woostify_unit_live_update( 'header_transparent_border_width', '.has-header-transparent .site-header', 'border-bottom-width', 0 );
+	// Header transparent: border bottom color.
+	woostify_colors_live_update( 'header_transparent_border_color', '.has-header-transparent .site-header', 'border-bottom-color' );
 
 	// Logo width.
 	woostify_range_slider_update( ['logo_width', 'tablet_logo_width', 'mobile_logo_width'], '.site-header .site-branding img', 'max-width', 'px' );
 
-	// Body.
+	// BODY.
 	// Body font size.
 	woostify_unit_live_update( 'body_font_size', 'body, button, input, select, textarea, .woocommerce-loop-product__title', 'font-size', 14 );
 
@@ -200,7 +228,7 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	// Body text transform.
 	woostify_append_data( 'body_font_transform', 'body, button, input, select, textarea', 'text-transform' );
 
-	// Menu.
+	// MENU.
 	// Menu font weight.
 	woostify_append_data( 'menu_font_weight', '.primary-navigation a', 'font-weight' );
 
@@ -219,7 +247,7 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	// Sub-menu line-height.
 	woostify_unit_live_update( 'sub_menu_line_height', '.site-header .primary-navigation .sub-menu a', 'line-height', 24 );
 
-	// Heading.
+	// HEADING.
 	// Heading line height.
 	woostify_unit_live_update( 'heading_line_height', 'h1, h2, h3, h4, h5, h6', 'line-height', '1.5', false, false );
 

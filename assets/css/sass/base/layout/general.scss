@@ -14,6 +14,7 @@
 
 	#view{
 		margin: 50px;
+		background-color: #fff;
 	}
 }
 
@@ -30,6 +31,7 @@
 }
 
 #view{
+	position: relative;
 	@include transition( all 0.3s );
 }
 

@@ -1,0 +1,32 @@
+.has-header-transparent{
+	&.header-transparent-for-desktop{
+		@media ( min-width: $screen-md ) {
+			.site-header{
+				position: absolute;
+				left: 0;
+				right: 0;
+				z-index: 10;
+			}
+		}
+	}
+
+	&.header-transparent-for-mobile{
+		@media ( max-width: $screen-md - 1 ) {
+			.site-header{
+				position: absolute;
+				left: 0;
+				right: 0;
+				z-index: 10;
+			}
+		}
+	}
+
+	&.header-transparent-for-all-devices{
+		.site-header{
+			position: absolute;
+			left: 0;
+			right: 0;
+			z-index: 10;
+		}
+	}
+}

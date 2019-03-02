@@ -125,12 +125,12 @@ $wp_customize->add_setting(
 	'woostify_setting[footer_background_color]',
 	array(
 		'default'           => $defaults['footer_background_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[footer_background_color]',
 		array(

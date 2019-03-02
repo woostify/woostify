@@ -6,7 +6,7 @@
  */
 
 // Default values.
-/*$defaults = woostify_options();
+$defaults = woostify_options();
 
 // Enable/disable Header transparent.
 $wp_customize->add_setting(
@@ -125,7 +125,8 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['header_transparent_enable_on'],
 		'type'              => 'option',
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -138,12 +139,103 @@ $wp_customize->add_control(
 			'section'  => 'woostify_header_transparent',
 			'type'     => 'select',
 			'choices'  => array(
-				'desktop' => __( 'Desktop', 'woostify' ),
-				'mobile'  => __( 'Mobile', 'woostify' ),
-				'both'    => __( 'Both', 'woostify' ),
+				'desktop'     => __( 'Desktop', 'woostify' ),
+				'mobile'      => __( 'Mobile', 'woostify' ),
+				'all-devices' => __( 'Both', 'woostify' ),
 			),
 		)
 	)
 );
 
-*/
+// Border divider.
+$wp_customize->add_setting(
+	'header_transparent_border_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'header_transparent_border_divider',
+		array(
+			'section'  => 'woostify_header_transparent',
+			'settings' => 'header_transparent_border_divider',
+			'type'     => 'divider',
+		)
+	)
+);
+
+// Border width.
+$wp_customize->add_setting(
+	'woostify_setting[header_transparent_border_width]',
+	array(
+		'default'           => $defaults['header_transparent_border_width'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[header_transparent_border_width]',
+		array(
+			'label'    => __( 'Bottom Border Width', 'woostify' ),
+			'section'  => 'woostify_header_transparent',
+			'settings' => array(
+				'desktop' => 'woostify_setting[header_transparent_border_width]',
+			),
+			'choices' => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_header_transparent_border_width_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_header_transparent_border_width_max_step', 20 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+// Border color.
+$wp_customize->add_setting(
+	'woostify_setting[header_transparent_border_color]',
+	array(
+		'default'           => $defaults['header_transparent_border_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[header_transparent_border_color]',
+		array(
+			'label'    => __( 'Border Color', 'woostify' ),
+			'section'  => 'woostify_header_transparent',
+			'settings' => 'woostify_setting[header_transparent_border_color]',
+		)
+	)
+);
+
+// Box shadow divider.
+$wp_customize->add_setting(
+	'header_transparent_box_shadow_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'header_transparent_box_shadow_divider',
+		array(
+			'section'  => 'woostify_header_transparent',
+			'settings' => 'header_transparent_box_shadow_divider',
+			'type'     => 'divider',
+		)
+	)
+);

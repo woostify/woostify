@@ -4009,9 +4009,11 @@ dd {
 
 .site-boxed-container #view {
   margin: 50px;
+  background-color: #fff;
 }
 
 #view {
+  position: relative;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -4603,6 +4605,31 @@ dd {
   .has-custom-mobile-logo a:not(.custom-mobile-logo-url) {
     display: none;
   }
+}
+
+@media (min-width: 992px) {
+  .has-header-transparent.header-transparent-for-desktop .site-header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+}
+
+@media (max-width: 991px) {
+  .has-header-transparent.header-transparent-for-mobile .site-header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+}
+
+.has-header-transparent.header-transparent-for-all-devices .site-header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
 .woostify-icon-bar {

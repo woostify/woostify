@@ -573,22 +573,18 @@ if ( ! class_exists( 'woostify' ) ) :
 			}
 
 			// Site container layout.
-			$page_id           = woostify_get_page_id();
-			$metabox_container = woostify_get_metabox( 'site-container' );
-
-			if ( 'default' != $metabox_container ) {
-				$classes[] = 'site-' . $metabox_container . '-container';
-			} else {
-				$classes[] = 'site-' . $options['default_container'] . '-container';
-			}
+			$customizer_container = $options['default_container'];
+			$metabox_container    = woostify_get_metabox( 'site-container' );
+			$container            = 'default' != $metabox_container ? $metabox_container : $customizer_container;
+			$classes[]            = 'site-' . $container . '-container';
 
 			// Header layout.
 			$classes[] = 'has-header-' . $options['header_layout'];
 
 			// Header transparent.
-			/*if ( true == woostify_header_transparent() ) {
-				$classes[] = 'has-header-transparent';
-			}*/
+			if ( true == woostify_header_transparent() ) {
+				$classes[] = 'has-header-transparent header-transparent-for-' . $options['header_transparent_enable_on'];
+			}
 
 			// Sidebar class detected.
 			$classes[] = woostify_sidebar_class();
