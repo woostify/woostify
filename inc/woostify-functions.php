@@ -375,7 +375,7 @@ if ( ! function_exists( 'woostify_get_metabox' ) ) {
 		$page_id = woostify_get_page_id();
 		$metabox = get_post_meta( $page_id, $metabox, true );
 
-		if ( '' === $metabox ) {
+		if ( '' === $metabox || false === $metabox ) {
 			$metabox = 'default';
 		}
 
