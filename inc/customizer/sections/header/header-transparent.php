@@ -220,22 +220,3 @@ $wp_customize->add_control(
 		)
 	)
 );
-
-// Box shadow divider.
-$wp_customize->add_setting(
-	'header_transparent_box_shadow_divider',
-	array(
-		'sanitize_callback' => 'sanitize_text_field',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Divider_Control(
-		$wp_customize,
-		'header_transparent_box_shadow_divider',
-		array(
-			'section'  => 'woostify_header_transparent',
-			'settings' => 'header_transparent_box_shadow_divider',
-			'type'     => 'divider',
-		)
-	)
-);

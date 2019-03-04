@@ -9,11 +9,13 @@
 'use strict';
 
 // Remove class with prefix.
-jQuery.fn.removeClassPrefix = function (prefix) {
+jQuery.fn.removeClassPrefix = function ( prefix ) {
 	this.each( function ( i, it ) {
 		var classes = it.className.split( ' ' ).map( function ( item ) {
-			return item.indexOf( prefix ) === 0 ? '' : item;
+			var j = 0 === item.indexOf( prefix ) ? '' : item;
+			return j;
 		});
+
 		it.className = classes.join( ' ' );
 	});
 
