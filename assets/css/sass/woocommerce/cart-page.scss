@@ -54,7 +54,7 @@
 		width: 100px;
 		margin-right: 0;
 	}
-	
+
 	@media ( min-width: 601px ) {
 		tbody {
 			tr {
@@ -178,6 +178,7 @@
 		.product-remove {
 			a{
 				background-color: firebrick;
+				filter: grayscale( 70% );
 				color: #fff $i;
 			}
 		}
@@ -191,9 +192,13 @@
 			}
 			input,
 			button{
-				width: 50%;
+				width: calc( 50% - 5px );
 				float: left;
 				padding: 10px 15px;
+			}
+			input{
+				margin-right: 10px;
+				height: 48px;
 			}
 		}
 		[name="update_cart"]{
@@ -212,11 +217,12 @@
 		text-align: right;
 	}
 	.clear-cart-btn{
-		height: 40px;
-		line-height: 40px;
+		height: 48px;
+		line-height: 48px;
 		display: inline-block;
 		padding-top: 0;
 		padding-bottom: 0;
+		font-weight: 600;
 		@media ( max-width: 600px ) {
 			width: 100%;
 			float: left;
@@ -239,7 +245,7 @@
 		}
 	}
 	.cart_totals{
-				
+
 	}
 	.shop_table,
 	th{

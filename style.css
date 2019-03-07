@@ -4263,6 +4263,7 @@ dd {
 
 .page-header .woostify-container.content-align-justify .entry-title:first-child:last-child {
   flex-grow: 1;
+  text-align: center;
 }
 
 .single-product .page-header {
@@ -5667,7 +5668,6 @@ dd {
 }
 
 .post .post-cover-image img {
-  max-height: 400px;
   object-fit: cover;
 }
 
@@ -6767,7 +6767,6 @@ dd {
 .checkout-button {
   border: 0;
   padding: .35em 1.5em;
-  border-radius: 2px;
 }
 
 .products .product .product-loop-image-wrapper {
@@ -8035,6 +8034,7 @@ dd {
   }
   .woocommerce-cart-form__contents .product-remove a {
     background-color: firebrick;
+    filter: grayscale(70%);
     color: #fff !important;
   }
   .woocommerce-cart-form__contents .actions {
@@ -8046,9 +8046,13 @@ dd {
   }
   .woocommerce-cart-form__contents .coupon input,
   .woocommerce-cart-form__contents .coupon button {
-    width: 50%;
+    width: calc( 50% - 5px);
     float: left;
     padding: 10px 15px;
+  }
+  .woocommerce-cart-form__contents .coupon input {
+    margin-right: 10px;
+    height: 48px;
   }
   .woocommerce-cart-form__contents [name="update_cart"] {
     width: 100%;
@@ -8069,11 +8073,12 @@ dd {
 }
 
 .clear-cart-box .clear-cart-btn {
-  height: 40px;
-  line-height: 40px;
+  height: 48px;
+  line-height: 48px;
   display: inline-block;
   padding-top: 0;
   padding-bottom: 0;
+  font-weight: 600;
 }
 
 @media (max-width: 600px) {

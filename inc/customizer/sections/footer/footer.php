@@ -266,7 +266,7 @@ $wp_customize->add_setting(
 	'woostify_setting[footer_custom_text]',
 	array(
 		'default'           => $defaults['footer_custom_text'],
-		'sanitize_callback' => 'sanitize_textarea_field',
+		'sanitize_callback' => 'woostify_sanitize_raw_html',
 		'type'              => 'option',
 	)
 );

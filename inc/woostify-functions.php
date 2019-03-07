@@ -206,6 +206,64 @@ if ( ! function_exists( 'woostify_sanitize_int' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
+	/**
+	 * Sanitize raw html value
+	 *
+	 * @param      string $value  The raw html value.
+	 */
+	function woostify_sanitize_raw_html( $value ) {
+		$content = wp_kses(
+			$value,
+			array(
+				'a' => array(
+					'class'  => array(),
+					'href'   => array(),
+					'rel'    => array(),
+					'title'  => array(),
+					'target' => array(),
+				),
+				'b' => array(),
+				'code' => array(),
+				'div' => array(
+					'class' => array(),
+					'style' => array(),
+				),
+				'em' => array(),
+				'h1' => array(),
+				'h2' => array(),
+				'h3' => array(),
+				'h4' => array(),
+				'h5' => array(),
+				'h6' => array(),
+				'i'  => array(),
+				'li' => array(
+					'class' => array(),
+				),
+				'ul' => array(
+					'class' => array(),
+				),
+				'ol' => array(
+					'class' => array(),
+				),
+				'p' => array(
+					'class' => array(),
+					'style' => array(),
+				),
+				'span' => array(
+					'class' => array(),
+					'style' => array(),
+				),
+				'strong' => array(
+					'class' => array(),
+					'style' => array(),
+				),
+			)
+		);
+		return $content;
+	}
+}
+
 if ( ! function_exists( 'woostify_is_blog' ) ) {
 	/**
 	 * Woostify detect blog page

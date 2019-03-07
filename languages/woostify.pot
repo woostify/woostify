@@ -192,11 +192,11 @@ msgstr ""
 msgid "Woostify"
 msgstr ""
 
-#: inc/woostify-functions.php:267
+#: inc/woostify-functions.php:325
 msgid "Placeholder image"
 msgstr ""
 
-#: inc/woostify-functions.php:269
+#: inc/woostify-functions.php:327
 msgid "Error image"
 msgstr ""
 
@@ -379,27 +379,27 @@ msgstr ""
 msgid "Posted on"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1269
+#: inc/woostify-template-functions.php:1272
 msgid "Dialog search icon"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1273
+#: inc/woostify-template-functions.php:1276
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1562, inc/woostify-template-functions.php:1612
+#: inc/woostify-template-functions.php:1565, inc/woostify-template-functions.php:1615
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1565, inc/woostify-template-functions.php:1615
+#: inc/woostify-template-functions.php:1568, inc/woostify-template-functions.php:1618
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1567, inc/woostify-template-functions.php:1617
+#: inc/woostify-template-functions.php:1570, inc/woostify-template-functions.php:1620
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1768, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:1771, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 
@@ -550,7 +550,7 @@ msgstr ""
 msgid "Activating"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:390, inc/customizer/class-woostify-customizer.php:282, inc/customizer/class-woostify-customizer.php:298, inc/customizer/class-woostify-customizer.php:314, inc/customizer/class-woostify-customizer.php:330
+#: inc/admin/class-woostify-admin.php:390, inc/customizer/class-woostify-customizer.php:284, inc/customizer/class-woostify-customizer.php:300, inc/customizer/class-woostify-customizer.php:316, inc/customizer/class-woostify-customizer.php:332
 msgid "Learn More"
 msgstr ""
 
@@ -666,15 +666,15 @@ msgstr ""
 msgid "Disable Footer"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:195
+#: inc/customizer/class-woostify-customizer.php:197
 msgid "Opps! The page you’re looking for is missing for some reasons. Please come back to homepage"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:265
+#: inc/customizer/class-woostify-customizer.php:267
 msgid "Pro Version Is Coming Soon"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:283, inc/customizer/class-woostify-customizer.php:299, inc/customizer/class-woostify-customizer.php:315, inc/customizer/class-woostify-customizer.php:331
+#: inc/customizer/class-woostify-customizer.php:285, inc/customizer/class-woostify-customizer.php:301, inc/customizer/class-woostify-customizer.php:317, inc/customizer/class-woostify-customizer.php:333
 msgid "More options are coming for this section in our pro version."
 msgstr ""
 

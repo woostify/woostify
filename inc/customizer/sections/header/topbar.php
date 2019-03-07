@@ -109,7 +109,7 @@ $wp_customize->add_setting(
 	'woostify_setting[topbar_left]',
 	array(
 		'default'           => $defaults['topbar_left'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'woostify_sanitize_raw_html',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -132,7 +132,7 @@ $wp_customize->add_setting(
 	'woostify_setting[topbar_center]',
 	array(
 		'default'           => $defaults['topbar_center'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'woostify_sanitize_raw_html',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -155,7 +155,7 @@ $wp_customize->add_setting(
 	'woostify_setting[topbar_right]',
 	array(
 		'default'           => $defaults['topbar_right'],
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'woostify_sanitize_raw_html',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)

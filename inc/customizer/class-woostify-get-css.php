@@ -115,6 +115,11 @@ class Woostify_Get_CSS {
 				background-color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
+			.clear-cart-btn {
+				border: 1px solid ' . esc_attr( $options['text_color'] ) . ';
+				color: ' . esc_attr( $options['text_color'] ) . ';
+			}
+
 			.product .woocommerce-loop-product__title{
 				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
 			}
@@ -238,7 +243,6 @@ class Woostify_Get_CSS {
 		$styles .= '
 			.button,
 			.woocommerce-widget-layered-nav-dropdown__submit,
-			.clear-cart-btn,
 			.form-submit .submit,
 			.elementor-button-wrapper .elementor-button,
 			.has-woostify-contact-form input[type="submit"],
@@ -250,14 +254,14 @@ class Woostify_Get_CSS {
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
 			}
 
-			.cart .quantity{
+			.cart .quantity,
+			.clear-cart-btn{
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
 			}
 
 			.button:hover,
 			.woocommerce-widget-layered-nav-dropdown__submit:hover,
 			#commentform input[type="submit"]:hover,
-			.clear-cart-btn:hover,
 			.form-submit .submit:hover,
 			#secondary .widget a.button:hover,
 			.woostify-contact-form input[type="submit"]:hover{
@@ -273,12 +277,15 @@ class Woostify_Get_CSS {
 			@media ( max-width: 600px ) {
 				.woocommerce-cart-form__contents [name="update_cart"],
 				.woocommerce-cart-form__contents .coupon button,
-				.checkout_coupon.woocommerce-form-coupon [name="apply_coupon"]{
+				.checkout_coupon.woocommerce-form-coupon [name="apply_coupon"],
+				.clear-cart-btn{
 					background-color: ' . esc_attr( $options['button_background_color'] ) . ';
+					filter: grayscale(100%);
 				}
 				.woocommerce-cart-form__contents [name="update_cart"],
 				.woocommerce-cart-form__contents .coupon button,
-				.checkout_coupon.woocommerce-form-coupon [name="apply_coupon"]{
+				.checkout_coupon.woocommerce-form-coupon [name="apply_coupon"],
+				.clear-cart-box .clear-cart-btn{
 					color: ' . esc_attr( $options['button_text_color'] ) . ';
 				}
 			}

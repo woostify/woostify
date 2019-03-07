@@ -1226,6 +1226,9 @@ if ( ! function_exists( 'woostify_search' ) ) {
 	 */
 	function woostify_search() {
 		$options = woostify_options( false );
+		if ( ! $options['header_search_icon'] ) {
+			return;
+		}
 		?>
 
 		<div class="site-search">
