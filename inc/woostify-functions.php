@@ -464,6 +464,7 @@ if ( ! function_exists( 'woostify_header_transparent' ) ) {
 		$index_transparent   = $options['header_transparent_disable_index'];
 		$page_transparent    = $options['header_transparent_disable_page'];
 		$post_transparent    = $options['header_transparent_disable_post'];
+		$shop_transparent    = $options['header_transparent_disable_shop'];
 		$metabox_transparent = woostify_get_metabox( 'site-header-transparent' );
 
 		// General header transparent for all site.
@@ -471,16 +472,19 @@ if ( ! function_exists( 'woostify_header_transparent' ) ) {
 			$transparent = true;
 		}
 
-		// Disable header transparent on Archive, 404 and Search page.
-		if ( ( is_archive() || is_404() || is_search() ) && true == $archive_transparent ) {
+		// Disable header transparent on Shop page.
+		if ( class_exists( 'woocommerce' ) && is_shop() && $shop_transparent ) {
 			$transparent = false;
-		} elseif ( is_home() && true == $index_transparent ) {
+		} elseif ( ( is_post_type_archive( 'post' ) || is_404() || is_search() ) && $archive_transparent ) {
+			// Disable header transparent on Archive, 404 and Search page.
+			$transparent = false;
+		} elseif ( is_home() && $index_transparent ) {
 			// Disable header transparent on Blog page.
 			$transparent = false;
-		} elseif ( is_page() && true == $page_transparent ) {
+		} elseif ( is_page() && $page_transparent ) {
 			// Disable header transparent on Pages.
 			$transparent = false;
-		} elseif ( is_singular( 'post' ) && true == $post_transparent ) {
+		} elseif ( is_singular( 'post' ) && $post_transparent ) {
 			// Disable header transparent on Posts.
 			$transparent = false;
 		}

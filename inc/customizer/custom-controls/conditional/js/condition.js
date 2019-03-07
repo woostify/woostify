@@ -144,6 +144,7 @@
 				'woostify_setting[header_transparent_disable_index]',
 				'woostify_setting[header_transparent_disable_page]',
 				'woostify_setting[header_transparent_disable_post]',
+				'woostify_setting[header_transparent_disable_shop]',
 				'woostify_setting[header_transparent_enable_on]',
 				'header_transparent_border_divider',
 				'woostify_setting[header_transparent_border_width]',

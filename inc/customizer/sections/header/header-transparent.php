@@ -119,6 +119,28 @@ $wp_customize->add_control(
 	)
 );
 
+// Disable on Shop page.
+$wp_customize->add_setting(
+	'woostify_setting[header_transparent_disable_shop]',
+	array(
+		'default'           => $defaults['header_transparent_disable_shop'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[header_transparent_disable_shop]',
+		array(
+			'label'    => __( 'Disable on Shop page', 'woostify' ),
+			'settings' => 'woostify_setting[header_transparent_disable_shop]',
+			'section'  => 'woostify_header_transparent',
+			'type'     => 'checkbox',
+		)
+	)
+);
+
 // Enable on devices.
 $wp_customize->add_setting(
 	'woostify_setting[header_transparent_enable_on]',
