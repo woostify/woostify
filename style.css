@@ -3248,7 +3248,7 @@ html {
 body {
   margin: 0;
   overflow-x: hidden;
-  word-wrap: break-word;
+  word-break: break-word;
 }
 
 article,
@@ -4643,6 +4643,7 @@ dd {
     left: 0;
     right: 0;
     z-index: 10;
+    background-color: transparent;
   }
 }
 
@@ -4652,6 +4653,7 @@ dd {
     left: 0;
     right: 0;
     z-index: 10;
+    background-color: transparent;
   }
 }
 
@@ -4660,6 +4662,7 @@ dd {
   left: 0;
   right: 0;
   z-index: 10;
+  background-color: transparent;
 }
 
 .woostify-icon-bar {
