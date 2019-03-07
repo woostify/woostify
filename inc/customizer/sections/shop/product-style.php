@@ -17,7 +17,6 @@ $wp_customize->add_setting(
 		'type'              => 'option',
 	)
 );
-
 $wp_customize->add_control(
 	new Woostify_Radio_Image_Control(
 		$wp_customize,
@@ -33,6 +32,28 @@ $wp_customize->add_control(
 					'layout-1' => WOOSTIFY_THEME_URI . 'assets/images/customizer/product-style/woostify-product-card-1.jpg',
 				)
 			),
+		)
+	)
+);
+
+// Always show add to cart button.
+$wp_customize->add_setting(
+	'woostify_setting[product_style_defaut_add_to_cart]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['product_style_defaut_add_to_cart'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[product_style_defaut_add_to_cart]',
+		array(
+			'type'     => 'checkbox',
+			'label'    => __( 'Always Show Add To Cart', 'woostify' ),
+			'section'  => 'woostify_product_style',
+			'settings' => 'woostify_setting[product_style_defaut_add_to_cart]',
 		)
 	)
 );

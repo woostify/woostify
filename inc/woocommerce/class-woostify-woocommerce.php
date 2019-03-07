@@ -46,8 +46,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			// Remove Woo-Commerce Default actions.
 			add_action( 'init', array( $this, 'woocommerce_remove_action' ) );
-			// Wocoommerce breadcrumb.
-			add_action( 'wp', 'woostify_breadcrumb_only_for_woocommerce_page' );
+			// Custom breadcrumb for Product page.
+			add_action( 'wp', 'woostify_breadcrumb_for_product_page' );
 
 			// GENERAL.
 			// Product related.
@@ -55,8 +55,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Shop columns.
 			add_filter( 'loop_shop_columns', array( $this, 'woostify_shop_columns' ) );
 			add_filter( 'loop_shop_per_page', array( $this, 'woostify_products_per_page' ) );
-			// Beadcrumbs.
-			add_filter( 'woocommerce_breadcrumb_defaults', array( $this, 'woostify_change_breadcrumb_delimiter' ) );
 			// Pagination arrow.
 			add_filter( 'woocommerce_pagination_args', array( $this, 'woostify_change_woocommerce_arrow_pagination' ) );
 			// Change sale flash.
@@ -369,27 +367,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
-		 * Remove the breadcrumb delimiter
-		 *
-		 * @param  array $defaults The breadcrumb defaults.
-		 * @return array           The breadcrumb defaults.
-		 */
-		public function woostify_change_breadcrumb_delimiter( $defaults ) {
-			$defaults['delimiter'] = '<span class="breadcrumb-separator"> / </span>';
-			$container             = woostify_site_container();
-
-			if ( is_singular( 'product' ) ) {
-				$defaults['wrap_before'] = '<div class="wc-breadcrumb breadcrumb"><div class="' . esc_attr( $container ) . '"><nav class="woostify-breadcrumb">';
-				$defaults['wrap_after']  = '</nav></div></div>';
-			} else {
-				$defaults['wrap_before'] = '<div class="wc-breadcrumb breadcrumb"><nav class="woostify-breadcrumb">';
-				$defaults['wrap_after']  = '</nav></div>';
-			}
-
-			return $defaults;
-		}
-
-		/**
 		 * Change arrow for pagination
 		 *
 		 * @param array $args Woocommerce pagination.
@@ -624,15 +601,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		public function woostify_loop_product_meta_open() {
 			$options = self::woostify_options();
 
-			$button_animation = (
-				true == $options['shop_page_product_add_to_cart_button'] &&
-				true == $options['shop_page_always_show_add_to_cart']
-			) ? false : true;
-
 			$class = (
 				false == $options['shop_page_product_price'] ||
 				false == $options['shop_page_product_add_to_cart_button'] ||
-				false == $button_animation
+				'layout-1' != $options['product_style'] ||
+				(
+					'layout-1' == $options['product_style'] &&
+					true == $options['product_style_defaut_add_to_cart']
+				)
 			) ? 'no-transform' : '';
 
 			echo '<div class="product-loop-meta ' . esc_attr( $class ) . '">';

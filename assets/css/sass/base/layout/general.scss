@@ -64,3 +64,14 @@
 		line-height: 1.8em;
 	}
 }
+
+
+/* search */
+.search-no-results{
+	.search-form,
+	.woocommerce-product-search{
+		.search-field{
+			border-radius: 5px;
+		}
+	}
+}

@@ -223,26 +223,24 @@
     clear: both;
     display: block;
 
-    a{
-        &:hover{
-            opacity: 0.6;
-        }
-
-        span{
-            border: 1px solid #888;
-            color: #888;
-            cursor: pointer;
-            @extend .duration;
-        }
-    }
-
-    span{
+    .post-page-numbers{
         @extend .inline-flex;
         width: 26px;
         height: 26px;
         border-radius: 2px;
-        border: 1px solid #ddd;
-        color: #ddd;
-        cursor: default;
+        border: 1px solid #888;
+        @extend .duration;
+
+        &:hover{
+            opacity: 0.6;
+            color: #888;
+        }
+
+        &.current{
+        	border: 1px solid #ddd;
+	        color: #ddd;
+	        cursor: default;
+	        pointer-events: none;
+        }
     }
 }

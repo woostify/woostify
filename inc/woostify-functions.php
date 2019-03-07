@@ -380,11 +380,11 @@ if ( ! function_exists( 'woostify_get_metabox' ) ) {
 	/**
 	 * Get metabox option
 	 *
-	 * @param string $metabox Metabox option name.
+	 * @param string $metabox_name Metabox option name.
 	 */
-	function woostify_get_metabox( $metabox ) {
+	function woostify_get_metabox( $metabox_name ) {
 		$page_id = woostify_get_page_id();
-		$metabox = get_post_meta( $page_id, $metabox, true );
+		$metabox = get_post_meta( $page_id, $metabox_name, true );
 
 		if ( '' === $metabox || false === $metabox ) {
 			$metabox = 'default';
@@ -437,5 +437,19 @@ if ( ! function_exists( 'woostify_header_transparent' ) ) {
 		}
 
 		return $transparent;
+	}
+}
+
+if ( ! function_exists( 'woostify_pingback' ) ) {
+	/**
+	 * Pingback
+	 */
+	function woostify_pingback() {
+		if ( ! is_singular() || ! pings_open( get_queried_object() ) ) {
+			return;
+		}
+		?>
+		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+		<?php
 	}
 }

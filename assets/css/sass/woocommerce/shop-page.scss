@@ -83,9 +83,20 @@
 
 .ps-layout-1{
 	.product-loop-meta{
-		.button{
-			padding: 0;
-			background-color: $tr;
+		&.no-transform{
+			.button,
+			.added_to_cart{
+				display: inline-flex;
+				padding: 10px 15px;
+				margin-top: 10px;
+				height: 36px;
+			}
+		}
+		&:not(.no-transform) {
+			.button{
+				padding: 0;
+				background-color: $tr;
+			}
 		}
 	}
 }

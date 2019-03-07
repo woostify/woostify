@@ -70,15 +70,19 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 					'default'  => 'default',
 					'sanitize' => 'FILTER_DEFAULT',
 				),
+				'site-page-header' => array(
+					'default'  => 'default',
+					'sanitize' => 'FILTER_DEFAULT',
+				),
 				'site-sidebar' => array(
 					'default'  => 'default',
 					'sanitize' => 'FILTER_DEFAULT',
 				),
-				'site-header-primary-menu' => array(
+				'site-topbar' => array(
 					'default'  => 'default',
 					'sanitize' => 'FILTER_DEFAULT',
 				),
-				'site-post-title' => array(
+				'site-header' => array(
 					'default'  => 'default',
 					'sanitize' => 'FILTER_DEFAULT',
 				),
@@ -169,9 +173,10 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 			$site_container          = isset( $meta['site-container']['default'] ) ? $meta['site-container']['default'] : 'default';
 			$site_sidebar            = isset( $meta['site-sidebar']['default'] ) ? $meta['site-sidebar']['default'] : 'default';
 			$site_header_transparent = isset( $meta['site-header-transparent']['default'] ) ? $meta['site-header-transparent']['default'] : 'default';
+			$site_page_header        = isset( $meta['site-page-header']['default'] ) ? $meta['site-page-header']['default'] : 'default';
 
-			$site_header_menu        = isset( $meta['site-header-primary-menu']['default'] ) ? $meta['site-header-primary-menu']['default'] : 'default';
-			$site_post_title         = isset( $meta['site-post-title']['default'] ) ? $meta['site-post-title']['default'] : 'default';
+			$site_header             = isset( $meta['site-header']['default'] ) ? $meta['site-header']['default'] : 'default';
+			$site_topbar             = isset( $meta['site-topbar']['default'] ) ? $meta['site-topbar']['default'] : 'default';
 			$site_footer             = isset( $meta['site-footer']['default'] ) ? $meta['site-footer']['default'] : 'default';
 			?>
 
@@ -255,6 +260,29 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 							</div>
 						</div>
 
+						<?php // Option: Page Header. ?>
+						<div class="woostify-metabox-option">
+							<div class="woostify-metabox-option-title">
+								<span><?php esc_html_e( 'Page Header', 'woostify' ); ?>:</span>
+							</div>
+
+							<div class="woostify-metabox-option-content">
+								<select name="site-page-header" id="site-page-header">
+									<option value="default" <?php selected( $site_page_header, 'default' ); ?> >
+										<?php esc_html_e( 'Customizer Setting', 'woostify' ); ?>
+									</option>
+
+									<option value="enabled" <?php selected( $site_page_header, 'enabled' ); ?> >
+										<?php esc_html_e( 'Enabled', 'woostify' ); ?>
+									</option>
+
+									<option value="disabled" <?php selected( $site_page_header, 'disabled' ); ?> >
+										<?php esc_html_e( 'Disabled', 'woostify' ); ?>
+									</option>
+								</select>
+							</div>
+						</div>
+
 						<?php // Option: Disable Sections - Primary Header, Title, Footer Widgets, Footer Bar. ?>
 						<div class="woostify-metabox-option">
 							<div class="woostify-metabox-option-title">
@@ -263,17 +291,17 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 
 							<div class="woostify-metabox-option-content">
 								<div class="disable-section-meta">
-									<div class="site-header-primary-menu-option-wrap">
-										<label for="site-header-primary-menu">
-											<input type="checkbox" id="site-header-primary-menu" name="site-header-primary-menu" value="disabled" <?php checked( $site_header_menu, 'disabled' ); ?> />
-											<?php esc_html_e( 'Disable Header Menu', 'woostify' ); ?>
+									<div class="site-topbar-option-wrap">
+										<label for="site-topbar">
+											<input type="checkbox" id="site-topbar" name="site-topbar" value="disabled" <?php checked( $site_topbar, 'disabled' ); ?> />
+											<?php esc_html_e( 'Disable Topbar', 'woostify' ); ?>
 										</label>
 									</div>
 
-									<div class="site-post-title-option-wrap">
-										<label for="site-post-title">
-											<input type="checkbox" id="site-post-title" name="site-post-title" value="disabled" <?php checked( $site_post_title, 'disabled' ); ?> />
-											<?php esc_html_e( 'Disable Title', 'woostify' ); ?>
+									<div class="site-header-option-wrap">
+										<label for="site-header">
+											<input type="checkbox" id="site-header" name="site-header" value="disabled" <?php checked( $site_header, 'disabled' ); ?> />
+											<?php esc_html_e( 'Disable Primary Header', 'woostify' ); ?>
 										</label>
 									</div>
 

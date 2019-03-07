@@ -209,9 +209,8 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						</a>
 
 						<ul class="woostify-welcome-nav_link">
-							<li><a href="https://woostify.com/contact/" target="_blank"><?php esc_html_e( 'Support', 'woostify' ); ?></a></li>
-							<li><a href="https://woostify.com/docs/" target="_blank"><?php esc_html_e( 'Documentation', 'woostify' ); ?></a></li>
-							<li><strong><a href="https://www.facebook.com/WoostifyWP" target="_blank"><?php esc_html_e( 'Join FB Page', 'woostify' ); ?></a></strong></li>
+							<li><a href="https://woostify.com/changelog/" target="_blank"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a></li>
+							<li><a href="https://www.facebook.com/WoostifyWP" target="_blank"><strong><?php esc_html_e( 'Join FB Page', 'woostify' ); ?></strong></a></li>
 						</ul>
 					</div>
 				</section>

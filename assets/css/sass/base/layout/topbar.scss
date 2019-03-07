@@ -1,6 +1,7 @@
 .topbar{
 	.woostify-container{
 		@include flex( flex, space-between, center );
+		flex-wrap: wrap;
 		&:after{
 			content: none;
 		}

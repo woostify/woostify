@@ -421,22 +421,14 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 	 */
 	function woostify_primary_navigation() {
 		// Customize disable primary menu.
-		$options        = woostify_options( false );
-		$disable_menu   = false == $options['header_primary_menu'] ? true : false;
+		$options             = woostify_options( false );
+		$header_primary_menu = $options['header_primary_menu'];
 
-		// Metabox disable primary menu.
-		$page_id        = woostify_get_page_id();
-		$metabox_menu   = woostify_get_metabox( 'site-header-primary-menu' );
-
-		if ( 'disabled' == $metabox_menu ) {
-			$disable_menu = true;
-		}
-
-		// Return.
-		if ( true == $disable_menu ) {
+		if ( ! $header_primary_menu ) {
 			return;
 		}
 		?>
+
 		<div class="site-navigation">
 			<?php do_action( 'woostify_before_main_nav' ); ?>
 
@@ -474,68 +466,201 @@ if ( ! function_exists( 'woostify_skip_links' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_breadcrumb' ) ) {
+	/**
+	 * Woostify breadcrumb
+	 */
+	function woostify_breadcrumb() {
+		$page_id     = woostify_get_page_id();
+		$options     = woostify_options( false );
+		$breadcrumb  = $options['page_header_breadcrumb'];
+		$container[] = 'woostify-breadcrumb';
+
+		if ( class_exists( 'woocommerce' ) ) {
+			if ( is_singular( 'product' ) ) {
+				$breadcrumb  = $options['shop_single_breadcrumb'];
+				$container[] = woostify_site_container();
+			} elseif ( woostify_is_woocommerce_page() ) {
+				$breadcrumb = $options['shop_page_breadcrumb'];
+			}
+		}
+
+		$container = implode( $container, ' ' );
+
+		if ( is_front_page() || false == $breadcrumb ) {
+			return;
+		}
+		?>
+
+		<nav class="<?php echo esc_attr( $container ); ?>" itemscope itemtype="http://schema.org/BreadcrumbList">
+			<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<a itemprop="item" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<span itemprop="name"><?php echo esc_html( apply_filters( 'woostify_breadcrumb_home', get_bloginfo( 'name' ) ) ); ?></span>
+				</a>
+				<meta itemprop="position" content="1"></span>
+			</span>
+
+			<?php
+			if ( class_exists( 'woocommerce' ) && is_singular( 'product' ) ) {
+				$terms = get_the_terms( $page_id, 'product_cat' );
+
+				if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+					?>
+					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<a itemprop="item" href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_shop_page_id' ) ) ); ?>">
+							<span itemprop="name"><?php esc_html_e( 'Shop', 'woostify' ); ?></span>
+						</a>
+						<meta itemprop="position" content="2"></span>
+					</span>
+
+					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<a itemprop="item" href="<?php echo esc_url( get_term_link( $terms[0]->term_id, 'product_cat' ) ); ?>">
+							<span itemprop="name"><?php echo esc_html( $terms[0]->name ); ?></span>
+						</a>
+						<meta itemprop="position" content="3"></span>
+					</span>
+
+					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<span><?php echo get_the_title( $page_id ); ?></span>
+						<meta itemprop="position" content="4"></span>
+					</span>
+					<?php
+				}
+			} elseif ( is_single() ) {
+				$cat = get_the_category();
+				if ( ! empty( $cat ) && ! is_wp_error( $cat ) ) {
+					?>
+					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<a itemprop="item" href="<?php echo esc_url( get_permalink( $page_id ) ); ?>">
+							<span itemprop="name"><?php esc_html_e( 'Blog', 'woostify' ); ?></span>
+						</a>
+						<meta itemprop="position" content="2"></span>
+					</span>
+
+					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<a itemprop="item" href="<?php echo esc_url( get_term_link( $cat[0]->term_id ) ); ?>">
+							<span itemprop="name"><?php echo esc_html( $cat[0]->name ); ?></span>
+						</a>
+						<meta itemprop="position" content="3"></span>
+					</span>
+
+					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<span itemprop="name"><?php echo get_the_title(); ?></span>
+						<meta itemprop="position" content="4"></span>
+					</span>
+					<?php
+				}
+			} else {
+				?>
+					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<span itemprop="name">
+							<?php
+							if ( is_day() ) {
+								/* translators: post date */
+								printf( esc_html__( 'Daily Archives: %s', 'woostify' ), get_the_date() );
+							} elseif ( is_month() ) {
+								/* translators: post date */
+								printf( esc_html__( 'Monthly Archives: %s', 'woostify' ), get_the_date( esc_html_x( 'F Y', 'monthly archives date format', 'woostify' ) ) );
+							} elseif ( is_home() ) {
+								echo esc_html( get_the_title( $page_id ) );
+							} elseif ( is_author() ) {
+								$author = get_query_var( 'author_name' ) ? get_user_by( 'slug', get_query_var( 'author_name' ) ) : get_userdata( get_query_var( 'author' ) );
+								echo esc_html( $author->display_name );
+							} elseif ( is_category() || is_tax() ) {
+								single_term_title();
+							} elseif ( is_year() ) {
+								/* translators: post date */
+								printf( esc_html__( 'Yearly Archives: %s', 'woostify' ), get_the_date( esc_html_x( 'Y', 'yearly archives date format', 'woostify' ) ) );
+							} elseif ( is_search() ) {
+								esc_html_e( 'Search results: ', 'woostify' );
+								echo get_search_query();
+							} elseif ( class_exists( 'woocommerce' ) && is_shop() ) {
+								esc_html_e( 'Shop', 'woostify' );
+							} elseif ( class_exists( 'woocommerce' ) && ( is_product_tag() || is_tag() ) ) {
+								esc_html_e( 'Tags: ', 'woostify' );
+								single_tag_title();
+							} elseif ( is_page() ) {
+								echo get_the_title();
+							} else {
+								esc_html_e( 'Archives', 'woostify' );
+							}
+							?>
+						</span>
+						<meta itemprop="position" content="2"></span>
+					</span>
+				<?php
+			}
+			?>
+		</nav>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_page_header' ) ) {
 	/**
 	 * Display the page header
 	 */
 	function woostify_page_header() {
-		// Not showing page title with edited by Elementor.
-		if ( true == woostify_is_elementor_page() || is_singular( 'product' ) ) {
+		// Not showing page title on Product page.
+		if ( is_singular( 'product' ) ) {
 			return;
 		}
 
 		$page_id       = woostify_get_page_id();
-		$container     = woostify_site_container();
 		$options       = woostify_options( false );
-		$disable_title = false;
+		$page_header   = $options['page_header_display'];
+		$metabox       = woostify_get_metabox( 'site-page-header' );
+		$title         = get_the_title( $page_id );
+		$disable_title = $options['blog_single_title'];
 
-		if ( is_page() ) {
-			$metabox_page_title = woostify_get_metabox( 'site-post-title' );
-			$disable_page_title = false;
-
-			if ( 'disabled' == $metabox_page_title ) {
-				$disable_page_title = true;
-			}
-
-			// Return.
-			if ( true == $disable_page_title ) {
-				return;
-			}
-		}
-
-		$title = get_the_title( $page_id );
+		$classes[]     = woostify_site_container();
+		$classes[]     = 'content-align-' . $options['page_header_text_align'];
+		$classes       = implode( $classes, ' ' );
 
 		if ( class_exists( 'woocommerce' ) && is_shop() ) {
-			$title = get_the_title( $page_id );
-
 			if ( true != $options['shop_page_title'] ) {
-				$disable_title = true;
+				$disable_title = false;
 			}
 		} elseif ( is_archive() ) {
 			$title = get_the_archive_title( $page_id );
+		} elseif ( is_home() ) {
+			$title = __( 'Blog', 'woostify' );
+		} elseif ( is_search() ) {
+			$title = __( 'Search', 'woostify' );
 		} elseif ( is_404() ) {
-			$disable_title = true;
-		}
-
-		if ( false == $options['blog_single_title'] ) {
-			$disable_title = true;
+			$disable_title = false;
 		}
 
 		// Metabox option.
-		$metabox_post_title = woostify_get_metabox( 'site-post-title' );
-		if ( 'disabled' == $metabox_post_title ) {
-			$disable_title = true;
+		if ( 'default' != $metabox ) {
+			if ( 'enabled' == $metabox ) {
+				$page_header = true;
+			} else {
+				$page_header = false;
+			}
 		}
 
-		if ( true == $disable_title ) {
+		if ( false == $page_header ) {
 			return;
 		}
-
 		?>
 
 		<div class="page-header">
-			<div class="<?php echo esc_attr( $container ); ?>">
-				<h1 class="entry-title"><?php echo wp_kses_post( $title ); ?></h1>
+			<div class="<?php echo esc_attr( $classes ); ?>">
+				<?php do_action( 'woostify_page_header_start' ); ?>
+
+				<?php if ( $disable_title ) { ?>
+					<h1 class="entry-title"><?php echo wp_kses_post( $title ); ?></h1>
+				<?php } ?>
+
+				<?php
+					/**
+					 * Functions hooked in to woostify_page_header_end
+					 *
+					 * @hooked woostify_breadcrumb   - 10
+					 */
+					do_action( 'woostify_page_header_end' );
+				?>
 			</div>
 		</div>
 		<?php
@@ -614,21 +739,10 @@ if ( ! function_exists( 'woostify_post_title' ) ) {
 	 * Display the post header with a link to the single post
 	 */
 	function woostify_post_title() {
-		$options            = woostify_options( false );
+		$options = woostify_options( false );
 
-		// Metabox disable footer.
-		$page_id            = woostify_get_page_id();
-		$metabox_post_title = woostify_get_metabox( 'site-post-title' );
-		$disable_post_title = false;
-
-		if ( 'disabled' == $metabox_post_title ) {
-			$disable_post_title = true;
-		}
-
-		if ( ! is_single() ) {
-			if ( true == $options['blog_list_title'] ) {
-				the_title( sprintf( '<h2 class="alpha entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
-			}
+		if ( ! is_single() && true == $options['blog_list_title'] ) {
+			the_title( sprintf( '<h2 class="alpha entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
 		}
 	}
 }
@@ -1080,38 +1194,25 @@ if ( ! function_exists( 'woostify_is_product_archive' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_topbar_left' ) ) {
+if ( ! function_exists( 'woostify_topbar_section' ) ) {
 	/**
-	 * Topbar left content
+	 * Display topbar
 	 */
-	function woostify_topbar_left() {
+	function woostify_topbar() {
 		$options = woostify_options( false );
+		$topbar  = woostify_get_metabox( 'site-topbar' );
+		if ( 'disabled' == $topbar ) {
+			return;
+		}
 		?>
-		<div class="topbar-item topbar-left"><?php echo wp_kses_post( $options['topbar_left'] ); ?></div>
-		<?php
-	}
-}
 
-if ( ! function_exists( 'woostify_topbar_center' ) ) {
-	/**
-	 * Topbar center content
-	 */
-	function woostify_topbar_center() {
-		$options = woostify_options( false );
-		?>
-		<div class="topbar-item topbar-center"><?php echo wp_kses_post( $options['topbar_center'] ); ?></div>
-		<?php
-	}
-}
-
-if ( ! function_exists( 'woostify_topbar_right' ) ) {
-	/**
-	 * Topbar right content
-	 */
-	function woostify_topbar_right() {
-		$options = woostify_options( false );
-		?>
-		<div class="topbar-item topbar-right"><?php echo wp_kses_post( $options['topbar_right'] ); ?></div>
+		<div class="topbar">
+			<div class="<?php echo esc_attr( woostify_site_container() ); ?>">
+				<div class="topbar-item topbar-left"><?php echo wp_kses_post( $options['topbar_left'] ); ?></div>
+				<div class="topbar-item topbar-center"><?php echo wp_kses_post( $options['topbar_center'] ); ?></div>
+				<div class="topbar-item topbar-right"><?php echo wp_kses_post( $options['topbar_right'] ); ?></div>
+			</div>
+		</div>
 		<?php
 	}
 }
@@ -1559,17 +1660,42 @@ if ( ! function_exists( 'woostify_site_container' ) ) {
 		$page_id           = woostify_get_page_id();
 		$metabox_container = woostify_get_metabox( 'site-container' );
 
-		if ( 'default' != $metabox_container ) {
-			if ( 'full-width' == $metabox_container ) {
-				$container = 'woostify-container container-fluid';
-			}
-		} else {
-			if ( 'full-width' == $options['default_container'] ) {
-				$container = 'woostify-container container-fluid';
-			}
+		if ( 'default' != $metabox_container && 'full-width' == $metabox_container ) {
+			$container = 'woostify-container container-fluid';
+		} elseif ( 'default' == $metabox_container && 'full-width' == $options['default_container'] ) {
+			$container = 'woostify-container container-fluid';
 		}
 
 		return $container;
+	}
+}
+
+if ( ! function_exists( 'woostify_site_header' ) ) {
+	/**
+	 * Display header
+	 */
+	function woostify_site_header() {
+		$header = woostify_get_metabox( 'site-header' );
+		if ( 'disabled' == $header ) {
+			return;
+		}
+		?>
+			<header id="masthead" <?php woostify_header_class(); ?>>
+				<?php
+					/**
+					 * Functions hooked into woostify_header action
+					 *
+					 * @hooked woostify_container_open     - 0
+					 * @hooked woostify_skip_links         - 5
+					 * @hooked woostify_site_branding      - 20
+					 * @hooked woostify_primary_navigation - 30
+					 * @hooked woostify_header_action      - 50
+					 * @hooked woostify_container_close    - 200
+					 */
+					do_action( 'woostify_header' );
+				?>
+			</header>
+		<?php
 	}
 }
 
@@ -1583,18 +1709,16 @@ if ( ! function_exists( 'woostify_site_footer' ) ) {
 
 		// Customize disable footer.
 		$options        = woostify_options( false );
-		$disable_footer = true == $options['footer_disable'] ? true : false;
+		$footer_display = $options['footer_display'];
 
 		// Metabox disable footer.
-		$page_id        = woostify_get_page_id();
 		$metabox_footer = woostify_get_metabox( 'site-footer' );
-
 		if ( 'disabled' == $metabox_footer ) {
-			$disable_footer = true;
+			$footer_display = false;
 		}
 
 		// Return.
-		if ( true == $disable_footer ) {
+		if ( false == $footer_display ) {
 			return;
 		}
 

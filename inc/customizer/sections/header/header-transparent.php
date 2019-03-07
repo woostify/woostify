@@ -1,6 +1,6 @@
 <?php
 /**
- * Header
+ * Header Transparent
  *
  * @package woostify
  */
@@ -141,7 +141,7 @@ $wp_customize->add_control(
 			'choices'  => array(
 				'desktop'     => __( 'Desktop', 'woostify' ),
 				'mobile'      => __( 'Mobile', 'woostify' ),
-				'all-devices' => __( 'Both', 'woostify' ),
+				'all-devices' => __( 'Desktop + Mobile', 'woostify' ),
 			),
 		)
 	)

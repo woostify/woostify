@@ -255,7 +255,6 @@
 	a.button{
 		width: 50%;
 		display: inline-block;
-		border-radius: 0;
 		text-align: center;
 		text-transform: uppercase;
 	}
@@ -273,7 +272,7 @@
     li{
         min-height: 90px;
         position: relative;
-        padding: 10px 0 10px 80px;        
+        padding: 10px 0 10px 80px;
         @extend .clearfix;
 
         &:last-of-type{
@@ -390,7 +389,7 @@
 		width: 50px;
 		min-width: 50px;
 		margin-right: 20px;
-		
+
 		img {
 			border-radius: 3px;
 		}

@@ -41,7 +41,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[topbar_background_color]',
 		array(
@@ -81,6 +81,25 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
+		)
+	)
+);
+
+// Content divider.
+$wp_customize->add_setting(
+	'topbar_content_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'topbar_content_divider',
+		array(
+			'section'  => 'woostify_topbar',
+			'settings' => 'topbar_content_divider',
+			'type'     => 'divider',
 		)
 	)
 );

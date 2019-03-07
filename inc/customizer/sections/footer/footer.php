@@ -31,11 +31,30 @@ $wp_customize->add_control(
 	)
 );
 
-// Disable footer.
+// Footer display divider.
 $wp_customize->add_setting(
-	'woostify_setting[footer_disable]',
+	'footer_display_divider',
 	array(
-		'default'           => $defaults['footer_disable'],
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'footer_display_divider',
+		array(
+			'section'  => 'woostify_footer',
+			'settings' => 'footer_display_divider',
+			'type'     => 'divider',
+		)
+	)
+);
+
+// Footer display.
+$wp_customize->add_setting(
+	'woostify_setting[footer_display]',
+	array(
+		'default'           => $defaults['footer_display'],
 		'type'              => 'option',
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
@@ -43,10 +62,10 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Switch_Control(
 		$wp_customize,
-		'woostify_setting[footer_disable]',
+		'woostify_setting[footer_display]',
 		array(
-			'label'        => __( 'Disable Footer', 'woostify' ),
-			'settings'     => 'woostify_setting[footer_disable]',
+			'label'        => __( 'Footer Display', 'woostify' ),
+			'settings'     => 'woostify_setting[footer_display]',
 			'section'      => 'woostify_footer',
 			'left_switch'  => __( 'No', 'woostify' ),
 			'right_switch' => __( 'Yes', 'woostify' ),
@@ -116,6 +135,25 @@ $wp_customize->add_control(
 					5 => 5,
 				)
 			),
+		)
+	)
+);
+
+// Footer background color divider.
+$wp_customize->add_setting(
+	'footer_background_color_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'footer_background_color_divider',
+		array(
+			'section'  => 'woostify_footer',
+			'settings' => 'footer_background_color_divider',
+			'type'     => 'divider',
 		)
 	)
 );
@@ -200,6 +238,25 @@ $wp_customize->add_control(
 			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_footer',
 			'settings' => 'woostify_setting[footer_text_color]',
+		)
+	)
+);
+
+// Footer text divider.
+$wp_customize->add_setting(
+	'footer_text_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'footer_text_divider',
+		array(
+			'section'  => 'woostify_footer',
+			'settings' => 'footer_text_divider',
+			'type'     => 'divider',
 		)
 	)
 );

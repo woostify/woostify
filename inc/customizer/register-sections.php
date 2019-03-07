@@ -19,17 +19,17 @@ $wp_customize->add_panel(
 $wp_customize->add_section(
 	'woostify_topbar',
 	array(
-		'title'       => __( 'Topbar', 'woostify' ),
-		'panel'       => 'woostify_layout',
+		'title' => __( 'Topbar', 'woostify' ),
+		'panel' => 'woostify_layout',
 	)
 );
 
-// Header section.
+// Header normal section.
 $wp_customize->add_section(
 	'woostify_header',
 	array(
-		'title'       => __( 'Header', 'woostify' ),
-		'panel'       => 'woostify_layout',
+		'title' => __( 'Normal Header', 'woostify' ),
+		'panel' => 'woostify_layout',
 	)
 );
 
@@ -37,8 +37,17 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'woostify_header_transparent',
 	array(
-		'title'       => __( 'Header Transparent', 'woostify' ),
-		'panel'       => 'woostify_layout',
+		'title' => __( 'Header Transparent', 'woostify' ),
+		'panel' => 'woostify_layout',
+	)
+);
+
+// Page header.
+$wp_customize->add_section(
+	'woostify_page_header',
+	array(
+		'title' => __( 'Page Header', 'woostify' ),
+		'panel' => 'woostify_layout',
 	)
 );
 
@@ -46,8 +55,8 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'woostify_blog',
 	array(
-		'title'       => __( 'Blog', 'woostify' ),
-		'panel'       => 'woostify_layout',
+		'title' => __( 'Blog', 'woostify' ),
+		'panel' => 'woostify_layout',
 	)
 );
 
@@ -55,8 +64,8 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'woostify_blog_single',
 	array(
-		'title'       => __( 'Blog Single', 'woostify' ),
-		'panel'       => 'woostify_layout',
+		'title' => __( 'Blog Single', 'woostify' ),
+		'panel' => 'woostify_layout',
 	)
 );
 
@@ -64,8 +73,8 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'woostify_sidebar',
 	array(
-		'title'       => __( 'Sidebar', 'woostify' ),
-		'panel'       => 'woostify_layout',
+		'title' => __( 'Sidebar', 'woostify' ),
+		'panel' => 'woostify_layout',
 	)
 );
 
@@ -73,8 +82,8 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'woostify_footer',
 	array(
-		'title'       => __( 'Footer', 'woostify' ),
-		'panel'       => 'woostify_layout',
+		'title' => __( 'Footer', 'woostify' ),
+		'panel' => 'woostify_layout',
 	)
 );
 
@@ -91,8 +100,8 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'woostify_buttons',
 	array(
-		'title'       => __( 'Buttons', 'woostify' ),
-		'priority'    => 30,
+		'title'    => __( 'Buttons', 'woostify' ),
+		'priority' => 30,
 	)
 );
 

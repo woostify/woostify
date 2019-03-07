@@ -66,7 +66,6 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
 	new Woostify_Color_Control(
 		$wp_customize,
@@ -100,7 +99,7 @@ $wp_customize->add_control(
 	)
 );
 
-// Header element.
+// HEADER ELEMENT.
 // Header menu.
 $wp_customize->add_setting(
 	'woostify_setting[header_primary_menu]',

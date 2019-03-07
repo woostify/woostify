@@ -98,10 +98,20 @@ function woostify_append_data( id, selector, property ) {
 }
 
 // Html.
-function woostify_html_live_update( id, selector ) {
-	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
+function woostify_html_live_update( id, selector, fullId ) {
+	var fullId  = ( arguments.length > 0 && undefined !== arguments[2] ) ? arguments[2] : false,
+		setting = 'woostify_setting[' + id + ']';
+
+	if ( fullId ) {
+		setting = id;
+	}
+
+	wp.customize( setting, function( value ) {
 		value.bind( function( newval ) {
-			document.querySelector( selector ).innerHTML = newval;
+			var element = document.querySelector( selector );
+			if ( element ) {
+				element.innerHTML = newval;
+			}
 		} );
 	} );
 }
@@ -120,18 +130,67 @@ function woostify_hidden_product_meta( id, selector ) {
 }
 
 // Update body class.
-function woostify_update_body_class( id, selector ) {
+function woostify_update_element_class( id, selector, prefix ) {
 	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
-			jQuery( selector ).removeClassPrefix( 'header-transparent-for' ).addClass( 'header-transparent-for-' + newval );
+			jQuery( selector ).removeClassPrefix( prefix ).addClass( prefix + newval );
 		} );
 	} );
 }
 
 /**
+ * Upload background image.
+ *
+ * @param      string  id  The setting id
+ * @param      string  dependencies  The dependencies with background image.
+ * Must follow: Size -> Repeat -> Position -> Attachment.
+ * @param      string  selector      The css selector
+ */
+function woostify_background_image_live_upload( id, dependencies, selector ) {
+	var dep     = ( arguments.length > 0 && undefined !== arguments[1] ) ? arguments[1] : false,
+		element = document.querySelector( selector );
+
+	if ( ! element ) {
+		return;
+	}
+
+	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
+		value.bind( function( newval ) {
+			if ( newval ) {
+				element.style.backgroundImage = 'url(' + newval + ')';
+			} else {
+				element.style.backgroundImage = 'none';
+			}
+		} );
+	} );
+
+	if ( dep ) {
+		dep.forEach( function( el, i ) {
+			wp.customize( 'woostify_setting[' + el + ']', function( value ) {
+				value.bind( function( newval ) {
+					if ( 0 == i ) {
+						// Set background size.
+						element.style.backgroundSize = newval;
+					} else if ( 1 == i ) {
+						// Set background repeat.
+						element.style.backgroundRepeat = newval;
+					} else if ( 2 == i ) {
+						// Set background position.
+						element.style.backgroundPosition = newval.replace( '-', ' ' );
+					} else {
+						// Set background attachment.
+						element.style.backgroundAttachment = newval;
+					}
+				} );
+			} );
+		} );
+	}
+}
+
+/**
  * Multi device slider update
  *
- * @param      array   array     The Array of settings Desktop -> Tablet -> Mobile
+ * @param      array   array     The Array of settings id. Follow Desktop -> Tablet -> Mobile
  * @param      string  selector  The selector: css selector
  * @param      string  property  The property: background-color, display...
  * @param      string  unit      The css unit: px, em, pt...
@@ -143,12 +202,16 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 			value.bind( function( newval ) {
 
 				var styles = '';
-				if ( 0 == i ) {
-					styles = '@media ( min-width: 769px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
-				} else if ( 1 == i ) {
-					styles = '@media ( min-width: 321px ) and ( max-width: 768px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
+				if ( arr.length > 1 ) {
+					if ( 0 == i ) {
+						styles = '@media ( min-width: 769px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
+					} else if ( 1 == i ) {
+						styles = '@media ( min-width: 321px ) and ( max-width: 768px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
+					} else {
+						styles = '@media ( max-width: 320px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
+					}
 				} else {
-					styles = '@media ( max-width: 320px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
+					styles = selector + ' { ' + property + ': ' + newval + unit + ' }';
 				}
 
 				// Append style.
@@ -167,8 +230,6 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 }
 
 ( function( $ ) {
-	woostify_update_body_class( 'header_transparent_enable_on', 'body' );
-
 	// Refresh Preview when remove Custom Logo.
 	wp.customize( 'custom_logo', function( value ) {
 		value.bind( function( newval ) {
@@ -179,24 +240,10 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	} );
 
 	// Update the site title in real time...
-	wp.customize( 'blogname', function( value ) {
-		value.bind( function( newval ) {
-			var selector = document.querySelector( '.site-title.beta a' );
-			if ( selector ) {
-				selector.innerHTML = newval;
-			}
-		} );
-	} );
+	woostify_html_live_update( 'blogname', '.site-title.beta a', true );
 
 	// Update the site description in real time...
-	wp.customize( 'blogdescription', function( value ) {
-		value.bind( function( newval ) {
-			var selector = document.querySelector( '.site-description' );
-			if ( selector ) {
-				selector.innerHTML = newval;
-			}
-		} );
-	} );
+	woostify_html_live_update( 'blogdescription', '.site-description', true );
 
 	// Topbar.
 	woostify_colors_live_update( 'topbar_text_color', '.topbar .topbar-item', 'color' );
@@ -216,6 +263,43 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 
 	// Logo width.
 	woostify_range_slider_update( ['logo_width', 'tablet_logo_width', 'mobile_logo_width'], '.site-header .site-branding img', 'max-width', 'px' );
+
+	// Header transparent enable on...
+	woostify_update_element_class( 'header_transparent_enable_on', 'body', 'header-transparent-for-' );
+
+	// PAGE HEADER.
+	// Text align.
+	woostify_update_element_class( 'page_header_text_align', '.page-header .woostify-container', 'content-align-' );
+
+	// Title color.
+	woostify_colors_live_update( 'page_header_title_color', '.page-header .entry-title', 'color' );
+
+	// Breadcrumb text color.
+	woostify_colors_live_update( 'page_header_breadcrumb_text_color', '.woostify-breadcrumb, .woostify-breadcrumb a', 'color' );
+
+	// Background color.
+	woostify_colors_live_update( 'page_header_background_color', '.page-header', 'background-color' );
+
+	// Background image.
+	woostify_background_image_live_upload(
+		'page_header_background_image',
+		[
+			'page_header_background_image_size',
+			'page_header_background_image_repeat',
+			'page_header_background_image_position',
+			'page_header_background_image_attachment'
+		],
+		'.page-header'
+	);
+
+	// Padding top.
+	woostify_range_slider_update( ['page_header_padding_top'], '.page-header', 'padding-top', 'px' );
+
+	// Padding bottom.
+	woostify_range_slider_update( ['page_header_padding_bottom'], '.page-header', 'padding-bottom', 'px' );
+
+	// Margin bottom.
+	woostify_range_slider_update( ['page_header_margin_bottom'], '.page-header', 'margin-bottom', 'px' );
 
 	// BODY.
 	// Body font size.
@@ -276,6 +360,19 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 
 	// H6 font size.
 	woostify_unit_live_update( 'heading_h6_font_size', 'h6', 'font-size', 18 );
+
+	// BUTTONS.
+	// Color.
+	// Background color.
+	// Hover color
+	// Hover background color.
+	// Border radius.
+	woostify_unit_live_update(
+		'buttons_border_radius',
+		'.cart .quantity, .button, .woocommerce-widget-layered-nav-dropdown__submit, .clear-cart-btn, .form-submit .submit, .elementor-button-wrapper .elementor-button, .has-woostify-contact-form input[type="submit"], #secondary .widget a.button',
+		'border-radius',
+		4
+	);
 
 	// Hidden product meta.
 	woostify_hidden_product_meta( 'shop_single_skus', 'hid-skus' );

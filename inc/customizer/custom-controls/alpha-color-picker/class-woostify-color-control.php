@@ -87,17 +87,14 @@ class Woostify_Color_Control extends WP_Customize_Control {
 		?>
 
 		<#
-		var defaultValue = '#RRGGBB', defaultValueAttr = '';
-		console.log( data );
-		if ( data.defaultValue ) {
-			if ( '#' !== data.defaultValue.substring( 0, 1 ) ) {
-				defaultValue = '#' + data.defaultValue;
-			} else {
-				defaultValue = data.defaultValue;
-			}
-			defaultValueAttr = ' data-default-color=' + defaultValue; // Quotes added automatically.
-		} #>
-		<# if ( data.label ) { #>
+		var defaultValue = '#ffffff', defaultValueAttr = '';
+		if ( data.default ) {
+			defaultValue     = data.default;
+			defaultValueAttr = ' data-default-color=' + data.default; // Quotes added automatically.
+		}
+
+		if ( data.label ) {
+		#>
 			<label>
 				<span class="customize-control-title">{{{ data.label }}}</span>
 			</label>

@@ -29,7 +29,7 @@ $media: 599px;
 }
 .cart-sidebar-open {
 	overflow-y: hidden;
-	
+
 	#view{
 		@include translatex( -400px );
 		@media ( max-width: $media ) {
@@ -210,7 +210,6 @@ $media: 599px;
 
         a {
             padding: 0 $i;
-            border-radius: 0 $i;
             display: block;
             width: auto;
             border-left: 0;
@@ -299,7 +298,7 @@ $media: 599px;
     .quantity {
         font-size: 13px;
     }
-    
+
 }
 
 /* CART ITEM */
@@ -364,5 +363,5 @@ $media: 599px;
 
 	#shop-cart-sidebar{
 		width: 50%;
-	}	
+	}
 }

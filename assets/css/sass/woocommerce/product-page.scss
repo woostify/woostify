@@ -127,7 +127,7 @@
 		.product-gallery{
 			display: flex;
 		}
-		.product-thumbnail-images {		
+		.product-thumbnail-images {
 			width: 50px;
 			min-width: 50px;
 			margin-right: 20px;
@@ -342,7 +342,6 @@
 .quantity {
 	width: 170px;
 	height: 50px;
-	border-radius: 50px;
 	position: relative;
 	overflow: hidden;
 	background: #fff;
@@ -410,7 +409,6 @@
 	&.button {
 		min-width: 200px;
 		height: 50px;
-		border-radius: 50px;
 		font-weight: 600;
 		text-transform: uppercase;
 		vertical-align: top;
