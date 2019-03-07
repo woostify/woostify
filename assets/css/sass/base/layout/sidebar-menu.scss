@@ -56,6 +56,8 @@
 	z-index: 200;
 	padding: 30px;
 	width: 300px;
+	overflow-x: hidden;
+	overflow-y: scroll;
 	@include translatex( -100%);
 	@extend .duration;
 	.logged-in.admin-bar & {
@@ -65,6 +67,9 @@
 		}
 	}
 	/* search form */
+	.site-search{
+		margin-bottom: 20px;
+	}
 	.search-form,
 	.woocommerce-product-search {
 		height: 40px;
@@ -85,12 +90,7 @@
 	}
 	/* menu */
 	.site-navigation{
-		position: absolute;
-		top: 100px;
-		left: 30px;
-		right: 30px;
-		bottom: 200px;
-		overflow-y: scroll;
+		margin-bottom: 40px;
 	}
 	.primary-navigation{
 		padding-left: 0;
@@ -108,14 +108,27 @@
 		}
 		.menu-item-has-children {
 			position: relative;
+		}
+		.arrow-icon{
+			cursor: pointer;
+			position: absolute;
+			right: -20px;
+			top: 1em;
+			width: 30px;
+			height: 30px;
+			z-index: 5;
+			@extend .flex;
 			&:after {
-				content: "\e64b";
+				content: "\e649";
 				font-family: $icon;
-				position: absolute;
-				right: 0;
-				top: 1em;
 				font-size: 10px;
 				font-weight: 700;
+				@extend .duration;
+			}
+			&.active{
+				&:after{
+					@include rotate( 90 );
+				}
 			}
 		}
 		a {
@@ -144,20 +157,13 @@
 	}
 	/* sidebar bottom */
 	.sidebar-menu-bottom {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		padding: 30px 30px 10px 30px;
+		border-top: 1px solid #eee;
 		ul {
 			padding-left: 0;
 			margin: 0;
 		}
 	}
 	.sidebar-account {
-		li {
-			border-top: 1px solid #eee;
-		}
 		a {
 			display: block;
 			line-height: 3em;

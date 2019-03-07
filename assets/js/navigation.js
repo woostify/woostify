@@ -23,28 +23,33 @@
 			} );
 		}
 
-		jQuery( document.body ).on( 'click', '.sidebar-menu ul a', function( e ) {
+		var hasChild = jQuery( '.sidebar-menu .primary-navigation .menu-item-has-children' );
+		if ( hasChild.length ) {
+			hasChild.prepend( '<span class="arrow-icon"></span>' );
+		}
+
+		jQuery( document.body ).on( 'click', '.sidebar-menu .primary-navigation .arrow-icon', function( e ) {
 
 			e.preventDefault();
 
-			var t         = jQuery( this ),
-				next      = t.next(),
-				nextAlias = t.parent().parent().find( 'li .sub-menu' );
+			var t        = jQuery( this ),
+				siblings = t.siblings( 'ul' ),
+				arrow    = t.parent().parent().find( '.arrow-icon' ),
+				subMenu  = t.parent().parent().find( 'li .sub-menu' );
 
-			// Go to url if not have sub-menu.
-			if ( ! t.siblings().length ) {
-				// hash.
-				window.location.href = t.prop( 'href' );
-			}
-
-			if ( next.hasClass( 'show' ) ) {
-				next.removeClass( 'show' );
-				next.slideUp( 200 );
+			if ( siblings.hasClass( 'show' ) ) {
+				siblings.removeClass( 'show' );
+				siblings.slideUp( 200 );
+				// Remove active state.
+				t.removeClass( 'active' );
 			} else {
-				nextAlias.removeClass( 'show' );
-				nextAlias.slideUp( 200 );
-				next.toggleClass( 'show' );
-				next.slideToggle( 200 );
+				subMenu.removeClass( 'show' );
+				subMenu.slideUp( 200 );
+				siblings.toggleClass( 'show' );
+				siblings.slideToggle( 200 );
+				// Add active state for current arrow.
+				arrow.removeClass( 'active' );
+				t.addClass( 'active' );
 			}
 		});
 	} );

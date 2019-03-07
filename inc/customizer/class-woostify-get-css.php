@@ -199,7 +199,7 @@ class Woostify_Get_CSS {
 			.woocommerce-table--order-details th,
 			.woocommerce-table--order-details .amount,
 			.wc-breadcrumb .woostify-breadcrumb,
-			.sidebar-menu .primary-navigation .menu-item-has-children:after,
+			.sidebar-menu .primary-navigation .arrow-icon,
 			.default-widget a strong:hover,
 			.woostify-subscribe-form input,
 			.woostify-shop-category .elementor-widget-image .widget-image-caption,

@@ -108,7 +108,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'header_transparent_shadow_color'         => '#000000',
 
 					// Page header.
-					'page_header_display'                     => true,
+					'page_header_display'                     => false,
 					'page_header_breadcrumb'                  => true,
 					'page_header_text_align'                  => 'justify',
 					'page_header_title_color'                 => '#4c4c4c',
@@ -140,7 +140,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'button_background_color'                 => '#1346af',
 					'button_hover_text_color'                 => '#ffffff',
 					'button_hover_background_color'           => '#3a3a3a',
-					'buttons_border_radius'                   => 4,
+					'buttons_border_radius'                   => 50,
 
 					// Blog.
 					'blog_list_layout'                        => 'list',
