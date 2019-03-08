@@ -276,7 +276,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper_close', 31 );
 
 			// Woocommerce sidebar.
-			add_action( 'woostify_theme_footer', 'woostify_woocommerce_cart_sidebar', 20 );
+			add_action( 'woostify_theme_footer', 'woostify_woocommerce_cart_sidebar', 120 );
 
 			// Legacy WooCommerce columns filter.
 			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.3', '<' ) ) {

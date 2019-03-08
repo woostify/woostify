@@ -79,6 +79,23 @@ function woostify_theme_print_elementor_header() {
 add_action( 'woostify_theme_header', 'woostify_theme_print_elementor_header' );
 
 /**
+ * Footer close 3 `div` on Header template. For Elementor Pro Footer template only.
+ */
+function woostify_footer_close_tag() {
+	if (
+		function_exists( 'elementor_theme_do_location' ) &&
+		elementor_theme_do_location( 'footer' ) &&
+		! elementor_theme_do_location( 'header' )
+	) {
+		?>
+					</div>
+				</div>
+			</div>
+		<?php
+	}
+}
+
+/**
  * Footer template
  */
 function woostify_theme_print_elementor_footer() {
@@ -87,20 +104,16 @@ function woostify_theme_print_elementor_footer() {
 		do_action( 'woostify_before_hle_render_footer' );
 		hfe_render_footer();
 
-		// Close 3 `div` on header template.
 		// If only using HLE Footer template.
 		if ( ! hfe_header_enabled() ) {
-			?>
-					</div>
-				</div>
-			</div>
-			<?php
+			woostify_footer_close_tag();
 		}
 	} else {
 		get_template_part( 'template-parts/footer' );
 	}
 }
-add_action( 'woostify_theme_footer', 'woostify_theme_print_elementor_footer' );
+add_action( 'woostify_theme_footer', 'woostify_theme_print_elementor_footer', 9 );
+add_action( 'woostify_theme_footer', 'woostify_footer_close_tag' );
 
 /**
  * Single template

@@ -24,8 +24,8 @@ add_action( 'woostify_before_view', 'woostify_sidebar_menu_action', 40 );
 add_action( 'woostify_before_view', 'woostify_sidebar_menu_close', 100 );
 add_action( 'woostify_before_view', 'woostify_dialog_search', 110 ); // Dialog search.
 
-add_action( 'woostify_theme_footer', 'woostify_overlay', 30 );
-add_action( 'woostify_theme_footer', 'woostify_footer_action', 40 );
+add_action( 'woostify_theme_footer', 'woostify_overlay', 130 );
+add_action( 'woostify_theme_footer', 'woostify_footer_action', 140 );
 add_action( 'woostify_footer_action', 'woostify_scroll_to_top', 40 );
 
 // Performance.
