@@ -22,7 +22,7 @@
 	@media ( max-width: $screen-sm - 1 ) {
 		justify-content: center;
 	}
-	
+
 	.woocommerce-notices-wrapper{
 		flex: 0 0 100%;
 		margin-bottom: 20px;
@@ -193,7 +193,7 @@
 	ul{
 		padding-left: 0;
 	}
-	
+
 	li{
 		list-style: none;
 	}
@@ -402,7 +402,13 @@ $icon_size: 40px;
 
 	.products{
 		.product{
-			&:hover,
+			&:hover{
+				.product-loop-action{
+					@include translatey( 0 );
+					opacity: 1;
+				}
+			}
+			/* Fix issue not showing on IE */
 			&:focus-within{
 				.product-loop-action{
 					@include translatey( 0 );

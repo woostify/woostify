@@ -272,14 +272,12 @@
 .toggle-sidebar-menu-btn{
 	font-size: 24px;
 	cursor: pointer;
-	position: absolute;
-	left: 15px;
 }
 
 /* responsive */
 @media ( min-width: $screen-md ) {
 	.has-header-layout-1 {
-		.toggle-sidebar-menu-btn{
+		.wrap-toggle-sidebar-menu{
 			display: none;
 		}
 		.site-navigation{
@@ -296,6 +294,15 @@
 }
 
 @media ( max-width: $screen-md - 1 ) {
+	.header-layout-1{
+		.wrap-toggle-sidebar-menu,
+		.site-tools{
+			flex: 1 1 0px;
+		}
+		.site-branding{
+			flex: 0 1 auto;
+		}
+	}
 	.site-header{
 
 	    .woostify-container{
@@ -313,11 +320,8 @@
 	    	margin: 0 auto;
 	    }
 	}
-	
+
 	.site-tools{
-		position: absolute;
-		right: 27px;
-		
 		.header-search-icon,
 		.my-account{
 			display: none;

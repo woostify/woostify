@@ -91,13 +91,14 @@
 
     &:hover{
         &:after{
-            @include rotate( 90 )
+            @include rotate( 90 );
         }
     }
 
+	/* Fix issue not showing on IE */
     &:focus-within{
     	&:after{
-    		@include rotate( 90 )
+    		@include rotate( 90 );
     	}
     }
 

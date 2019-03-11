@@ -160,11 +160,11 @@ msgstr ""
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:488
+#: inc/class-woostify.php:508
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:607
+#: inc/class-woostify.php:627
 msgid "Post Pagination"
 msgstr ""
 
@@ -192,11 +192,11 @@ msgstr ""
 msgid "Woostify"
 msgstr ""
 
-#: inc/woostify-functions.php:325
+#: inc/woostify-functions.php:329
 msgid "Placeholder image"
 msgstr ""
 
-#: inc/woostify-functions.php:327
+#: inc/woostify-functions.php:331
 msgid "Error image"
 msgstr ""
 
@@ -387,19 +387,19 @@ msgstr ""
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1565, inc/woostify-template-functions.php:1615
+#: inc/woostify-template-functions.php:1567, inc/woostify-template-functions.php:1617
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1568, inc/woostify-template-functions.php:1618
+#: inc/woostify-template-functions.php:1570, inc/woostify-template-functions.php:1620
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1570, inc/woostify-template-functions.php:1620
+#: inc/woostify-template-functions.php:1572, inc/woostify-template-functions.php:1622
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1771, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:1773, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 
@@ -762,11 +762,11 @@ msgstr ""
 msgid "Sale!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:555, inc/woocommerce/class-woostify-woocommerce.php:684, inc/woocommerce/class-woostify-woocommerce.php:715, inc/woocommerce/class-woostify-woocommerce.php:737, inc/woocommerce/class-woostify-woocommerce.php:762
+#: inc/woocommerce/class-woostify-woocommerce.php:555, inc/woocommerce/class-woostify-woocommerce.php:689, inc/woocommerce/class-woostify-woocommerce.php:720, inc/woocommerce/class-woostify-woocommerce.php:742, inc/woocommerce/class-woostify-woocommerce.php:767
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:934
+#: inc/woocommerce/class-woostify-woocommerce.php:939
 msgid "Clear cart"
 msgstr ""
 

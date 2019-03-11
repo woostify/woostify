@@ -246,7 +246,7 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	woostify_html_live_update( 'blogdescription', '.site-description', true );
 
 	// Topbar.
-	woostify_colors_live_update( 'topbar_text_color', '.topbar .topbar-item', 'color' );
+	woostify_colors_live_update( 'topbar_text_color', '.topbar *', 'color' );
 	woostify_colors_live_update( 'topbar_background_color', '.topbar', 'background-color' );
 	woostify_range_slider_update( ['topbar_space'], '.topbar', 'padding', 'px 0' );
 	woostify_html_live_update( 'topbar_left', '.topbar .topbar-left' );

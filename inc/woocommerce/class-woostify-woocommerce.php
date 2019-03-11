@@ -599,12 +599,17 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Loop product meta open
 		 */
 		public function woostify_loop_product_meta_open() {
+			global $product;
 			$options = self::woostify_options();
 
 			$class = (
 				false == $options['shop_page_product_price'] ||
 				false == $options['shop_page_product_add_to_cart_button'] ||
 				'layout-1' != $options['product_style'] ||
+				(
+					'external' === $product->get_type() &&
+					'' === $product->get_price()
+				) ||
 				(
 					'layout-1' == $options['product_style'] &&
 					true == $options['product_style_defaut_add_to_cart']

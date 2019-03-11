@@ -115,6 +115,7 @@
 
 .product-images {
 	order: 2;
+	overflow: hidden;
 	.image-item {
 		margin: 0;
 		cursor: pointer;
@@ -368,7 +369,8 @@
 		font-family: $icon;
 		cursor: pointer;
 		width: 40px;
-		height: 100%;
+		top: 0;
+		bottom: 0;
 		@extend .flex;
 
 		&:active,

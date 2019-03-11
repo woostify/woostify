@@ -306,7 +306,14 @@ $media: 599px;
 	.mini_cart_item{
 		padding-left: 95px;
 
-		&:hover,
+		&:hover{
+			.remove_from_cart_button{
+				opacity: 1;
+				@include transforms( translateY( -50% ) translateX( 0px ) rotate( 0deg ) );
+			}
+		}
+
+		/* Fix issue not showing on IE */
 		&:focus-within{
 			.remove_from_cart_button{
 				opacity: 1;

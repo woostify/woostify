@@ -76,7 +76,7 @@ class Woostify_Get_CSS {
 				background-color: ' . esc_attr( $options['topbar_background_color'] ) . ';
 				padding: ' . esc_attr( $options['topbar_space'] ) . 'px 0;
 			}
-			.topbar .topbar-item{
+			.topbar *{
 				color: ' . esc_attr( $options['topbar_text_color'] ) . ';
 			}
 		';
@@ -327,7 +327,11 @@ class Woostify_Get_CSS {
 			#scroll-to-top,
 			.woocommerce-store-notice,
 			.has-woostify-primary-background-color,
-			.woostify-simple-subsbrice-form input[type="submit"]:hover,
+			.woostify-simple-subsbrice-form input[type="submit"]:hover{
+				background-color: ' . esc_attr( $options['theme_color'] ) . ';
+			}
+
+			/* Fix issue not showing on IE */
 			.woostify-simple-subsbrice-form:focus-within input[type="submit"]{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}

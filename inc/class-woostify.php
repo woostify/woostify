@@ -388,6 +388,26 @@ if ( ! class_exists( 'woostify' ) ) :
 			/**
 			 * Scripts
 			 */
+			// For IE.
+			if ( 'ie' == woostify_browser_detection() ) {
+				// Fetch API polyfill.
+				wp_enqueue_script(
+					'woostify-fetch-api-polyfill',
+					WOOSTIFY_THEME_URI . 'assets/js/fetch-api-polyfill' . $suffix . '.js',
+					array(),
+					woostify_version(),
+					true
+				);
+
+				// foreach polyfill.
+				wp_enqueue_script(
+					'woostify-for-each-polyfill',
+					WOOSTIFY_THEME_URI . 'assets/js/for-each-polyfill' . $suffix . '.js',
+					array(),
+					woostify_version(),
+					true
+				);
+			}
 
 			// General script.
 			wp_enqueue_script(

@@ -222,10 +222,10 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 					'rel'    => array(),
 					'title'  => array(),
 					'target' => array(),
+					'style'  => array(),
 				),
-				'b' => array(),
 				'code' => array(),
-				'div' => array(
+				'div'  => array(
 					'class' => array(),
 					'style' => array(),
 				),
@@ -255,6 +255,10 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 					'style' => array(),
 				),
 				'strong' => array(
+					'class' => array(),
+					'style' => array(),
+				),
+				'b'    => array(
 					'class' => array(),
 					'style' => array(),
 				),

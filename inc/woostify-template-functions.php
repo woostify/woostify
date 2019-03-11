@@ -1453,9 +1453,11 @@ if ( ! function_exists( 'woostify_menu_toggle_btn' ) ) {
 		$menu_toggle_icon  = apply_filters( 'woostify_header_menu_toggle_icon', 'woostify-icon-bar' );
 		$woostify_icon_bar = apply_filters( 'woostify_header_icon_bar', '<span></span>' );
 		?>
+		<div class="wrap-toggle-sidebar-menu">
 			<span class="toggle-sidebar-menu-btn <?php echo esc_attr( $menu_toggle_icon ); ?>">
 				<?php echo wp_kses_post( $woostify_icon_bar ); ?>
 			</span>
+		</div>
 		<?php
 	}
 }
