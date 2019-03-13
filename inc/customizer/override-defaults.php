@@ -20,4 +20,6 @@ $wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 $wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
 // Chage Woocommerce panel priority, after Typography panel.
-$wp_customize->get_panel( 'woocommerce' )->priority = 40;
+if ( class_exists( 'woocommerce' ) ) {
+	$wp_customize->get_panel( 'woocommerce' )->priority = 40;
+}
