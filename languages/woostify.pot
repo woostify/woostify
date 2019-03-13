@@ -263,7 +263,7 @@ msgstr ""
 msgid "Shop"
 msgstr ""
 
-#: inc/woostify-template-functions.php:535, inc/woostify-template-functions.php:627, inc/customizer/register-sections.php:58
+#: inc/woostify-template-functions.php:535, inc/woostify-template-functions.php:627, inc/customizer/register-sections.php:16
 msgid "Blog"
 msgstr ""
 
@@ -399,7 +399,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1773, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:1775, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 
@@ -449,15 +449,15 @@ msgstr ""
 msgid "Set Colors"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:160, inc/customizer/register-sections.php:12, inc/customizer/sections/shop/product-style.php:25
+#: inc/admin/class-woostify-admin.php:160, inc/customizer/register-sections.php:27, inc/customizer/sections/shop/product-style.php:25
 msgid "Layout"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:167, inc/customizer/register-sections.php:103
+#: inc/admin/class-woostify-admin.php:167, inc/customizer/register-sections.php:55
 msgid "Buttons"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:174, inc/customizer/register-sections.php:112
+#: inc/admin/class-woostify-admin.php:174, inc/customizer/register-sections.php:64
 msgid "Typography"
 msgstr ""
 
@@ -506,7 +506,7 @@ msgstr ""
 msgid "Advanced Shop Widgets"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:287, inc/customizer/register-sections.php:161
+#: inc/admin/class-woostify-admin.php:287, inc/customizer/register-sections.php:100
 msgid "Product Style"
 msgstr ""
 
@@ -618,7 +618,7 @@ msgstr ""
 msgid "Full Width"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:216, inc/customizer/register-sections.php:76
+#: inc/admin/class-woostify-meta-boxes.php:216, inc/customizer/register-sections.php:18
 msgid "Sidebar"
 msgstr ""
 
@@ -646,7 +646,7 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:266, inc/customizer/register-sections.php:49
+#: inc/admin/class-woostify-meta-boxes.php:266, inc/customizer/register-sections.php:15
 msgid "Page Header"
 msgstr ""
 
@@ -682,51 +682,51 @@ msgstr ""
 msgid "Site Container"
 msgstr ""
 
-#: inc/customizer/register-sections.php:22
+#: inc/customizer/register-sections.php:12
 msgid "Topbar"
 msgstr ""
 
-#: inc/customizer/register-sections.php:31
+#: inc/customizer/register-sections.php:13
 msgid "Normal Header"
 msgstr ""
 
-#: inc/customizer/register-sections.php:40
+#: inc/customizer/register-sections.php:14
 msgid "Header Transparent"
 msgstr ""
 
-#: inc/customizer/register-sections.php:67, inc/customizer/sections/sidebar/sidebar.php:140
+#: inc/customizer/register-sections.php:17, inc/customizer/sections/sidebar/sidebar.php:140
 msgid "Blog Single"
 msgstr ""
 
-#: inc/customizer/register-sections.php:85
+#: inc/customizer/register-sections.php:19
 msgid "Footer"
 msgstr ""
 
-#: inc/customizer/register-sections.php:94
-msgid "Color"
-msgstr ""
-
-#: inc/customizer/register-sections.php:122
-msgid "Body"
-msgstr ""
-
-#: inc/customizer/register-sections.php:132
-msgid "Primary menu"
-msgstr ""
-
-#: inc/customizer/register-sections.php:142
-msgid "Heading"
-msgstr ""
-
-#: inc/customizer/register-sections.php:152
+#: inc/customizer/register-sections.php:20
 msgid "404"
 msgstr ""
 
-#: inc/customizer/register-sections.php:170
+#: inc/customizer/register-sections.php:46
+msgid "Color"
+msgstr ""
+
+#: inc/customizer/register-sections.php:73
+msgid "Body"
+msgstr ""
+
+#: inc/customizer/register-sections.php:82
+msgid "Primary menu"
+msgstr ""
+
+#: inc/customizer/register-sections.php:91
+msgid "Heading"
+msgstr ""
+
+#: inc/customizer/register-sections.php:108
 msgid "Shop Archive"
 msgstr ""
 
-#: inc/customizer/register-sections.php:179
+#: inc/customizer/register-sections.php:116
 msgid "Product Single"
 msgstr ""
 
@@ -1306,6 +1306,6 @@ msgstr ""
 msgid "Mobile Logo (Optional)"
 msgstr ""
 
-#: inc/customizer/sections/wordpress/title-tagline.php:92
+#: inc/customizer/sections/wordpress/title-tagline.php:109
 msgid "Logo Width"
 msgstr ""

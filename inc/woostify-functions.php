@@ -462,19 +462,13 @@ if ( ! function_exists( 'woostify_header_transparent' ) ) {
 	 */
 	function woostify_header_transparent() {
 		$options             = woostify_options( false );
-		$transparent         = false;
-		$general_transparent = $options['header_transparent'];
+		$transparent         = $options['header_transparent'];
 		$archive_transparent = $options['header_transparent_disable_archive'];
 		$index_transparent   = $options['header_transparent_disable_index'];
 		$page_transparent    = $options['header_transparent_disable_page'];
 		$post_transparent    = $options['header_transparent_disable_post'];
 		$shop_transparent    = $options['header_transparent_disable_shop'];
 		$metabox_transparent = woostify_get_metabox( 'site-header-transparent' );
-
-		// General header transparent for all site.
-		if ( true == $general_transparent ) {
-			$transparent = true;
-		}
 
 		// Disable header transparent on Shop page.
 		if ( class_exists( 'woocommerce' ) && is_shop() && $shop_transparent ) {
@@ -493,7 +487,7 @@ if ( ! function_exists( 'woostify_header_transparent' ) ) {
 			$transparent = false;
 		}
 
-		// For metabox, special page or post. Priority highest.
+		// Metabox option for single post or page. Priority highest.
 		if ( 'default' != $metabox_transparent ) {
 			if ( 'enabled' == $metabox_transparent ) {
 				$transparent = true;
@@ -517,5 +511,32 @@ if ( ! function_exists( 'woostify_pingback' ) ) {
 		?>
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_array_insert' ) ) {
+	/**
+	 * Insert an array into another array before/after a certain key
+	 *
+	 * @param array  $array The initial array.
+	 * @param array  $pairs The array to insert.
+	 * @param string $key The certain key.
+	 * @param string $position Wether to insert the array before or after the key.
+	 * @return array
+	 */
+	function woostify_array_insert( $array, $pairs, $key, $position = 'after' ) {
+		$key_pos = array_search( $key, array_keys( $array ) );
+		if ( 'after' === $position ) {
+			$key_pos++;
+			if ( false !== $key_pos ) {
+				$result = array_slice( $array, 0, $key_pos );
+				$result = array_merge( $result, $pairs );
+				$result = array_merge( $result, array_slice( $array, $key_pos ) );
+			}
+		} else {
+			$result = array_merge( $array, $pairs );
+		}
+
+		return $result;
 	}
 }

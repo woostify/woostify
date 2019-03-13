@@ -1,12 +1,19 @@
 .has-header-transparent{
+	.site-header{
+		position: static;
+		left: 0;
+		right: 0;
+		z-index: 10;
+	}
+
+	.site-header-inner {
+		background-color: transparent;
+	}
+
 	&.header-transparent-for-desktop{
 		@media ( min-width: $screen-md ) {
 			.site-header{
 				position: absolute;
-				left: 0;
-				right: 0;
-				z-index: 10;
-				background-color: transparent;
 			}
 		}
 	}
@@ -15,10 +22,6 @@
 		@media ( max-width: $screen-md - 1 ) {
 			.site-header{
 				position: absolute;
-				left: 0;
-				right: 0;
-				z-index: 10;
-				background-color: transparent;
 			}
 		}
 	}
@@ -26,10 +29,6 @@
 	&.header-transparent-for-all-devices{
 		.site-header{
 			position: absolute;
-			left: 0;
-			right: 0;
-			z-index: 10;
-			background-color: transparent;
 		}
 	}
 }

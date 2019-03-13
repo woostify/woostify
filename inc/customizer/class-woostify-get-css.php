@@ -344,7 +344,7 @@ class Woostify_Get_CSS {
 
 		// Header.
 		$styles .= '
-			.site-header{
+			.site-header-inner{
 				background-color: ' . esc_attr( $options['header_background_color'] ) . ';
 			}
 		';
@@ -352,7 +352,7 @@ class Woostify_Get_CSS {
 		// Header transparent.
 		if ( woostify_header_transparent() ) {
 			$styles .= '
-				.has-header-transparent .site-header{
+				.has-header-transparent .site-header-inner{
 					border-bottom-width: ' . esc_attr( $options['header_transparent_border_width'] ) . 'px;
 					border-bottom-color: ' . esc_attr( $options['header_transparent_border_color'] ) . ';
 				}

@@ -94,17 +94,11 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	shoppingBag();
 
 	window.addEventListener( 'scroll', function() {
-		if ( document.body.classList.contains( 'woocommerce-demo-store' ) && -1 === document.cookie.indexOf( 'store_notice' ) ) {
-			if ( this.oldScroll > this.scrollY ) {
-				document.body.classList.add( 'scrolling-up' );
-				document.body.classList.remove( 'scrolling-down' );
-			} else {
-				document.body.classList.remove( 'scrolling-up' );
-				document.body.classList.add( 'scrolling-down' );
-			}
-
-			// Reset state.
-			this.oldScroll = this.scrollY;
+		if (
+			document.body.classList.contains( 'woocommerce-demo-store' ) &&
+			-1 === document.cookie.indexOf( 'store_notice' )
+		) {
+			scrollingDetect();
 		}
 	} );
 

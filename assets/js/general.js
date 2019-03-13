@@ -130,6 +130,20 @@ function scrollToTop() {
 	} );
 }
 
+// Scrolling detect direction.
+function scrollingDetect() {
+	if ( window.oldScroll > window.scrollY ) {
+		document.body.classList.add( 'scrolling-up' );
+		document.body.classList.remove( 'scrolling-down' );
+	} else {
+		document.body.classList.remove( 'scrolling-up' );
+		document.body.classList.add( 'scrolling-down' );
+	}
+
+	// Reset state.
+	window.oldScroll = window.scrollY;
+}
+
 document.addEventListener( 'DOMContentLoaded', function() {
 	dialogSearch();
 	footerAction();

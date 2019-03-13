@@ -255,11 +255,11 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 
 	// HEADER.
 	// Header background.
-	woostify_colors_live_update( 'header_background_color', '.site-header', 'background-color' );
+	woostify_colors_live_update( 'header_background_color', '.site-header-inner', 'background-color' );
 	// Header transparent: border bottom width.
-	woostify_unit_live_update( 'header_transparent_border_width', '.has-header-transparent .site-header', 'border-bottom-width', 0 );
+	woostify_unit_live_update( 'header_transparent_border_width', '.has-header-transparent .site-header-inner', 'border-bottom-width', 0 );
 	// Header transparent: border bottom color.
-	woostify_colors_live_update( 'header_transparent_border_color', '.has-header-transparent .site-header', 'border-bottom-color' );
+	woostify_colors_live_update( 'header_transparent_border_color', '.has-header-transparent .site-header-inner', 'border-bottom-color' );
 
 	// Logo width.
 	woostify_range_slider_update( ['logo_width', 'tablet_logo_width', 'mobile_logo_width'], '.site-header .site-branding img', 'max-width', 'px' );

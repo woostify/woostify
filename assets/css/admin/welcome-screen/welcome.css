@@ -383,3 +383,8 @@
   box-shadow: none !important;
   text-decoration: none;
 }
+
+/* Button Devices on Customizer */
+.wp-full-overlay-footer .devices {
+  display: flex;
+}
