@@ -52,6 +52,26 @@ $wp_customize->add_control(
 	)
 );
 
+// Above logo width divider.
+$wp_customize->add_setting(
+	'above_logo_with_color_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'above_logo_with_color_divider',
+		array(
+			'section'  => 'title_tagline',
+			'settings' => 'above_logo_with_color_divider',
+			'type'     => 'divider',
+			'priority' => 8,
+		)
+	)
+);
+
 // Logo width.
 $wp_customize->add_setting(
 	'woostify_setting[logo_width]',
@@ -62,7 +82,6 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'absint',
 	)
 );
-
 $wp_customize->add_setting(
 	'woostify_setting[tablet_logo_width]',
 	array(
@@ -72,7 +91,6 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'absint',
 	)
 );
-
 $wp_customize->add_setting(
 	'woostify_setting[mobile_logo_width]',
 	array(
@@ -82,7 +100,6 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'absint',
 	)
 );
-
 $wp_customize->add_control(
 	new Woostify_Range_Slider_Control(
 		$wp_customize,
@@ -119,6 +136,26 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
+			'priority' => 8,
+		)
+	)
+);
+
+// Under logo width divider.
+$wp_customize->add_setting(
+	'under_logo_with_color_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'under_logo_with_color_divider',
+		array(
+			'section'  => 'title_tagline',
+			'settings' => 'under_logo_with_color_divider',
+			'type'     => 'divider',
 			'priority' => 8,
 		)
 	)
