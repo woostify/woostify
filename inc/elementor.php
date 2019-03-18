@@ -106,7 +106,11 @@ function woostify_theme_print_elementor_footer() {
 
 		// If only using HLE Footer template.
 		if ( ! hfe_header_enabled() ) {
-			woostify_footer_close_tag();
+			?>
+						</div>
+					</div>
+				</div>
+			<?php
 		}
 	} else {
 		get_template_part( 'template-parts/footer' );

@@ -88,83 +88,83 @@ msgstr ""
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Main Sidebar</strong></a> and dragging widgets into this widget area."
 msgstr ""
 
-#: inc/class-woostify.php:93
+#: inc/class-woostify.php:94
 msgid "Image"
 msgstr ""
 
-#: inc/class-woostify.php:190
+#: inc/class-woostify.php:191
 msgid "Primary Menu"
 msgstr ""
 
-#: inc/class-woostify.php:191
+#: inc/class-woostify.php:192
 msgid "Footer Menu"
 msgstr ""
 
-#: inc/class-woostify.php:261
+#: inc/class-woostify.php:262
 msgid "Primary Color"
 msgstr ""
 
-#: inc/class-woostify.php:266, inc/customizer/sections/color/color.php:92, inc/customizer/sections/footer/footer.php:196
+#: inc/class-woostify.php:267, inc/customizer/sections/color/color.php:92, inc/customizer/sections/footer/footer.php:196
 msgid "Heading Color"
 msgstr ""
 
-#: inc/class-woostify.php:271, inc/customizer/sections/buttons/button.php:25, inc/customizer/sections/color/color.php:114, inc/customizer/sections/footer/footer.php:238, inc/customizer/sections/header/topbar.php:26
+#: inc/class-woostify.php:272, inc/customizer/sections/buttons/button.php:25, inc/customizer/sections/color/color.php:114, inc/customizer/sections/footer/footer.php:238, inc/customizer/sections/header/topbar.php:26
 msgid "Text Color"
 msgstr ""
 
-#: inc/class-woostify.php:283, inc/customizer/sections/typography/heading.php:352
+#: inc/class-woostify.php:284, inc/customizer/sections/typography/heading.php:352
 msgid "H6"
 msgstr ""
 
-#: inc/class-woostify.php:288, inc/customizer/sections/typography/heading.php:317
+#: inc/class-woostify.php:289, inc/customizer/sections/typography/heading.php:317
 msgid "H5"
 msgstr ""
 
-#: inc/class-woostify.php:293, inc/customizer/sections/typography/heading.php:282
+#: inc/class-woostify.php:294, inc/customizer/sections/typography/heading.php:282
 msgid "H4"
 msgstr ""
 
-#: inc/class-woostify.php:298, inc/customizer/sections/typography/heading.php:247
+#: inc/class-woostify.php:299, inc/customizer/sections/typography/heading.php:247
 msgid "H3"
 msgstr ""
 
-#: inc/class-woostify.php:303, inc/customizer/sections/typography/heading.php:212
+#: inc/class-woostify.php:304, inc/customizer/sections/typography/heading.php:212
 msgid "H2"
 msgstr ""
 
-#: inc/class-woostify.php:308, inc/customizer/sections/typography/heading.php:177
+#: inc/class-woostify.php:309, inc/customizer/sections/typography/heading.php:177
 msgid "H1"
 msgstr ""
 
-#: inc/class-woostify.php:326
+#: inc/class-woostify.php:327
 msgid "Main Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:328
+#: inc/class-woostify.php:329
 msgid "Appears in the sidebar of the site."
 msgstr ""
 
-#: inc/class-woostify.php:335
+#: inc/class-woostify.php:336
 msgid "Woocommerce Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:337
+#: inc/class-woostify.php:338
 msgid " Appears in the sidebar of shop/product page."
 msgstr ""
 
-#: inc/class-woostify.php:344, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
+#: inc/class-woostify.php:345, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
 msgid "Footer Widget"
 msgstr ""
 
-#: inc/class-woostify.php:346
+#: inc/class-woostify.php:347
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:508
+#: inc/class-woostify.php:509
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:627
+#: inc/class-woostify.php:641
 msgid "Post Pagination"
 msgstr ""
 
