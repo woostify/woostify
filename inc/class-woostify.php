@@ -41,6 +41,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			add_action( 'wp_enqueue_scripts', array( $this, 'woostify_child_scripts' ), 30 );
 
 			add_filter( 'body_class', array( $this, 'woostify_body_classes' ) );
+			add_filter( 'woostify_header_class', array( $this, 'woostify_header_classes' ) );
 			add_filter( 'wp_page_menu_args', array( $this, 'woostify_page_menu_args' ) );
 			add_filter( 'navigation_markup_template', array( $this, 'woostify_navigation_markup_template' ) );
 			add_action( 'customize_preview_init', array( $this, 'woostify_customize_live_preview' ) );
@@ -616,6 +617,19 @@ if ( ! class_exists( 'woostify' ) ) :
 			if ( woostify_is_blog() && ! is_singular( 'post' ) ) {
 				$classes[] = 'blog-layout-' . $options['blog_list_layout'];
 			}
+
+			return $classes;
+		}
+
+		/**
+		 * Adds custom classes to the array of header classes.
+		 *
+		 * @param array $classes Classes for the header element.
+		 */
+		public function woostify_header_classes( $classes ) {
+			$options = woostify_options( false );
+
+			$classes[] = 'header-' . $options['header_layout'];
 
 			return $classes;
 		}
