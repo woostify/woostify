@@ -309,7 +309,8 @@ class Woostify_Get_CSS {
 			.has-woostify-primary-color,
 			.blog-layout-grid .site-main .post-read-more a,
 			.site-footer a:hover,
-			.woostify-simple-subsbrice-form input[type="submit"]{
+			.woostify-simple-subsbrice-form input[type="submit"],
+			.woocommerce-tabs li.active a{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
