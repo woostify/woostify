@@ -16,11 +16,16 @@
 				margin-bottom: 0;
 			}
 		}
+		@media ( max-width: $screen-md ) {
+			text-align: center;
+		}
 	}
-	.topbar-center{
-		text-align: center;
-	}
-	.topbar-right{
-		text-align: right
+	@media ( min-width: $screen-md - 1 ) {
+		.topbar-center{
+			text-align: center;
+		}
+		.topbar-right{
+			text-align: right;
+		}
 	}
 }

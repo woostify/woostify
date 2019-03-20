@@ -28,6 +28,7 @@
 
 .woostify-container{
 	@extend .clearfix;
+	max-width: 100%;
 }
 
 #view{

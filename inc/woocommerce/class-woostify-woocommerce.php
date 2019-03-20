@@ -95,7 +95,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'woostify_loop_product_meta_open' ), 5 );
 
 			add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'woostify_loop_product_price' ), 10 );
-			add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'woostifyloop_product_add_to_cart_button' ), 15 );
+			add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'woostify_loop_product_add_to_cart_button' ), 15 );
 			// Product loop meta close.
 			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'woostify_loop_product_meta_close' ), 20 );
 
@@ -642,7 +642,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		/**
 		 * Loop product add to cart button
 		 */
-		public function woostifyloop_product_add_to_cart_button() {
+		public function woostify_loop_product_add_to_cart_button() {
 			$options = self::woostify_options();
 			if ( false == $options['shop_page_product_add_to_cart_button'] ) {
 				return;

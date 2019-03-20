@@ -98,6 +98,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'header_transparent_disable_page'         => false,
 					'header_transparent_disable_post'         => false,
 					'header_transparent_disable_shop'         => false,
+					'header_transparent_disable_product'      => false,
 					'header_transparent_border_width'         => 0,
 					'header_transparent_border_color'         => '#ffffff',
 					'header_transparent_box_shadow'           => false,

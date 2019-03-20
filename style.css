@@ -4045,6 +4045,10 @@ dd {
   background-color: #fff;
 }
 
+.woostify-container {
+  max-width: 100%;
+}
+
 #view {
   position: relative;
   -webkit-transition: all 0.3s;
@@ -4341,12 +4345,19 @@ dd {
   margin-bottom: 0;
 }
 
-.topbar .topbar-center {
-  text-align: center;
+@media (max-width: 992px) {
+  .topbar .topbar-item {
+    text-align: center;
+  }
 }
 
-.topbar .topbar-right {
-  text-align: right;
+@media (min-width: 991px) {
+  .topbar .topbar-center {
+    text-align: center;
+  }
+  .topbar .topbar-right {
+    text-align: right;
+  }
 }
 
 .site-header-inner {

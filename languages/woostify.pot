@@ -550,7 +550,7 @@ msgstr ""
 msgid "Activating"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:390, inc/customizer/class-woostify-customizer.php:285, inc/customizer/class-woostify-customizer.php:301, inc/customizer/class-woostify-customizer.php:317, inc/customizer/class-woostify-customizer.php:333
+#: inc/admin/class-woostify-admin.php:390, inc/customizer/class-woostify-customizer.php:286, inc/customizer/class-woostify-customizer.php:302, inc/customizer/class-woostify-customizer.php:318, inc/customizer/class-woostify-customizer.php:334
 msgid "Learn More"
 msgstr ""
 
@@ -666,15 +666,15 @@ msgstr ""
 msgid "Disable Footer"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:198
+#: inc/customizer/class-woostify-customizer.php:199
 msgid "Opps! The page you’re looking for is missing for some reasons. Please come back to homepage"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:268
+#: inc/customizer/class-woostify-customizer.php:269
 msgid "Pro Version Is Coming Soon"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:286, inc/customizer/class-woostify-customizer.php:302, inc/customizer/class-woostify-customizer.php:318, inc/customizer/class-woostify-customizer.php:334
+#: inc/customizer/class-woostify-customizer.php:287, inc/customizer/class-woostify-customizer.php:303, inc/customizer/class-woostify-customizer.php:319, inc/customizer/class-woostify-customizer.php:335
 msgid "More options are coming for this section in our pro version."
 msgstr ""
 
@@ -774,7 +774,7 @@ msgstr ""
 msgid "Shopping cart"
 msgstr ""
 
-#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:57, inc/customizer/sections/header/header-transparent.php:164
+#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:57, inc/customizer/sections/header/header-transparent.php:186
 msgid "Desktop"
 msgstr ""
 
@@ -782,7 +782,7 @@ msgstr ""
 msgid "Tablet"
 msgstr ""
 
-#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:59, inc/customizer/sections/header/header-transparent.php:165
+#: inc/customizer/custom-controls/range/class-woostify-range-slider-control.php:59, inc/customizer/sections/header/header-transparent.php:187
 msgid "Mobile"
 msgstr ""
 
@@ -962,19 +962,23 @@ msgstr ""
 msgid "Disable on Shop page"
 msgstr ""
 
-#: inc/customizer/sections/header/header-transparent.php:159
+#: inc/customizer/sections/header/header-transparent.php:158
+msgid "Disable on Product page"
+msgstr ""
+
+#: inc/customizer/sections/header/header-transparent.php:181
 msgid "Enable On"
 msgstr ""
 
-#: inc/customizer/sections/header/header-transparent.php:166
+#: inc/customizer/sections/header/header-transparent.php:188
 msgid "Desktop + Mobile"
 msgstr ""
 
-#: inc/customizer/sections/header/header-transparent.php:206
+#: inc/customizer/sections/header/header-transparent.php:228
 msgid "Bottom Border Width"
 msgstr ""
 
-#: inc/customizer/sections/header/header-transparent.php:239
+#: inc/customizer/sections/header/header-transparent.php:261
 msgid "Border Color"
 msgstr ""
 

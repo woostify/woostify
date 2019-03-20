@@ -38,15 +38,20 @@
 				subMenu  = t.parent().parent().find( 'li .sub-menu' );
 
 			if ( siblings.hasClass( 'show' ) ) {
-				siblings.removeClass( 'show' );
-				siblings.slideUp( 200 );
+				siblings.slideUp( 200, function() {
+					jQuery( this ).removeClass( 'show' );
+				} );
+
 				// Remove active state.
 				t.removeClass( 'active' );
 			} else {
-				subMenu.removeClass( 'show' );
-				subMenu.slideUp( 200 );
-				siblings.toggleClass( 'show' );
-				siblings.slideToggle( 200 );
+				subMenu.slideUp( 200, function() {
+					jQuery( this ).removeClass( 'show' );
+				} );
+				siblings.slideToggle( 200, function() {
+					jQuery( this ).toggleClass( 'show' );
+				} );
+
 				// Add active state for current arrow.
 				arrow.removeClass( 'active' );
 				t.addClass( 'active' );

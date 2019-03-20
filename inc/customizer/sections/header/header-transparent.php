@@ -141,6 +141,28 @@ $wp_customize->add_control(
 	)
 );
 
+// Disable on Product page.
+$wp_customize->add_setting(
+	'woostify_setting[header_transparent_disable_product]',
+	array(
+		'default'           => $defaults['header_transparent_disable_product'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[header_transparent_disable_product]',
+		array(
+			'label'    => __( 'Disable on Product page', 'woostify' ),
+			'settings' => 'woostify_setting[header_transparent_disable_product]',
+			'section'  => 'woostify_header_transparent',
+			'type'     => 'checkbox',
+		)
+	)
+);
+
 // Enable on devices.
 $wp_customize->add_setting(
 	'woostify_setting[header_transparent_enable_on]',
