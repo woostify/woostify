@@ -340,6 +340,7 @@ if ( ! function_exists( 'woostify_replace_logo_attr' ) ) {
 	function woostify_replace_logo_attr( $attr, $attachment, $size ) {
 
 		$custom_logo_id = get_theme_mod( 'custom_logo' );
+		$options        = woostify_options( false );
 
 		if ( $custom_logo_id == $attachment->ID ) {
 
@@ -364,11 +365,11 @@ if ( ! function_exists( 'woostify_replace_logo_attr' ) ) {
 			}
 
 			// Retina logo.
-			$retina_logo = get_option( 'woostify_retina_logo' );
+			$retina_logo = $options['retina_logo'];
 
 			$attr['srcset'] = '';
 
-			if ( '' != $retina_logo ) {
+			if ( $retina_logo ) {
 				$cutom_logo     = wp_get_attachment_image_src( $custom_logo_id, 'full' );
 				$cutom_logo_url = $cutom_logo[0];
 				$attr['alt']    = woostify_image_alt( $custom_logo_id, __( 'Woostify retina logo', 'woostify' ) );

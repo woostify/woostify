@@ -40,7 +40,7 @@ class Woostify_Get_CSS {
 		$logo_width        = $options['logo_width'];
 		$tablet_logo_width = $options['tablet_logo_width'];
 		$mobile_logo_width = $options['mobile_logo_width'];
-		if ( '' != $logo_width && $logo_width > 0 ) {
+		if ( $logo_width && $logo_width > 0 ) {
 			$styles .= '
 				@media ( min-width: 769px ) {
 					.site-branding img{
@@ -50,9 +50,9 @@ class Woostify_Get_CSS {
 			';
 		}
 
-		if ( '' != $tablet_logo_width && $tablet_logo_width > 0 ) {
+		if ( $tablet_logo_width && $tablet_logo_width > 0 ) {
 			$styles .= '
-				@media ( min-width: 321px ) and ( max-width: 768px ) {
+				@media ( min-width: 481px ) and ( max-width: 768px ) {
 					.site-branding img{
 						max-width: ' . esc_attr( $tablet_logo_width ) . 'px;
 					}
@@ -60,9 +60,9 @@ class Woostify_Get_CSS {
 			';
 		}
 
-		if ( '' != $mobile_logo_width && $mobile_logo_width > 0 ) {
+		if ( $mobile_logo_width && $mobile_logo_width > 0 ) {
 			$styles .= '
-				@media ( max-width: 320px ) {
+				@media ( max-width: 480px ) {
 					.site-branding img{
 						max-width: ' . esc_attr( $mobile_logo_width ) . 'px;
 					}
@@ -274,6 +274,11 @@ class Woostify_Get_CSS {
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ' !important;
 			}
 
+			.single_add_to_cart_button:not(.disabled),
+			.checkout-button{
+				box-shadow: 0px 10px 40px 0px ' . woostify_hex_to_rgba( esc_attr( $options['button_background_color'] ), 0.3 ) . ';
+			}
+
 			@media ( max-width: 600px ) {
 				.woocommerce-cart-form__contents [name="update_cart"],
 				.woocommerce-cart-form__contents .coupon button,
@@ -335,11 +340,6 @@ class Woostify_Get_CSS {
 			/* Fix issue not showing on IE */
 			.woostify-simple-subsbrice-form:focus-within input[type="submit"]{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
-			}
-
-			.single_add_to_cart_button:not(.disabled),
-			.checkout-button{
-				box-shadow: 0px 10px 40px 0px ' . woostify_hex_to_rgba( esc_attr( $options['theme_color'] ), 0.3 ) . ';
 			}
 		';
 

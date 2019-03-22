@@ -33,6 +33,7 @@
 
 #view{
 	position: relative;
+	overflow-x: hidden;
 	@include transition( all 0.3s );
 }
 

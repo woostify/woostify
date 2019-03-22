@@ -3280,6 +3280,7 @@ html {
 
 body {
   margin: 0;
+  position: relative;
   overflow-x: hidden;
   word-break: break-word;
 }
@@ -4051,6 +4052,7 @@ dd {
 
 #view {
   position: relative;
+  overflow-x: hidden;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
