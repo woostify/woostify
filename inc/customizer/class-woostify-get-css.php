@@ -230,6 +230,10 @@ class Woostify_Get_CSS {
 				color: ' . esc_attr( $options['accent_color'] ) . ';
 			}
 
+			.woostify-icon-bar span{
+				background-color: ' . esc_attr( $options['accent_color'] ) . ';
+			}
+
 			.site-tools .header-search-icon:hover,
 			a:hover,
 			.ps-layout-1 .product-loop-meta .button:hover,

@@ -1,8 +1,11 @@
-/* Full width template */
-.page-template-template-fullwidth{
-	.woostify-container{
-		width: auto;
-		@extend .container-fluid;
+/* Content full-width */
+.elementor-template-full-width{
+	#content{
+		.woostify-container{
+			width: 100%;
+			padding-left: 0;
+			padding-right: 0;
+		}
 	}
 }
 
@@ -14,10 +17,8 @@
 
 	#view{
 		margin: 50px;
-		background-color: #fff;
 	}
 }
-
 
 .site-normal-container,
 .site-boxed-container {
@@ -29,11 +30,19 @@
 .woostify-container{
 	@extend .clearfix;
 	max-width: 100%;
+	&:not(.container-fluid) {
+		@extend .container;
+	}
+	&.container-fluid{
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 
 #view{
 	position: relative;
 	overflow-x: hidden;
+	background-color: #fff;
 	@include transition( all 0.3s );
 }
 

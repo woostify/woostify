@@ -614,7 +614,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		$title         = get_the_title( $page_id );
 		$disable_title = $options['blog_single_title'];
 
-		$classes[]     = woostify_site_container();
+		$classes[]     = 'woostify-container';
 		$classes[]     = 'content-align-' . $options['page_header_text_align'];
 		$classes       = implode( $classes, ' ' );
 
@@ -1139,6 +1139,24 @@ if ( ! function_exists( 'woostify_header_class' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_default_container_open' ) ) {
+	/**
+	 * Woostify default container open
+	 */
+	function woostify_default_container_open() {
+		echo '<div class="woostify-container">';
+	}
+}
+
+if ( ! function_exists( 'woostify_default_container_close' ) ) {
+	/**
+	 * Woostify default container close
+	 */
+	function woostify_default_container_close() {
+		echo '</div>';
+	}
+}
+
 if ( ! function_exists( 'woostify_container_open' ) ) {
 	/**
 	 * Woostify container open
@@ -1208,7 +1226,7 @@ if ( ! function_exists( 'woostify_topbar_section' ) ) {
 		?>
 
 		<div class="topbar">
-			<div class="<?php echo esc_attr( woostify_site_container() ); ?>">
+			<div class="woostify-container">
 				<div class="topbar-item topbar-left"><?php echo wp_kses_post( $options['topbar_left'] ); ?></div>
 				<div class="topbar-item topbar-center"><?php echo wp_kses_post( $options['topbar_center'] ); ?></div>
 				<div class="topbar-item topbar-right"><?php echo wp_kses_post( $options['topbar_right'] ); ?></div>
@@ -1713,8 +1731,6 @@ if ( ! function_exists( 'woostify_site_footer' ) ) {
 	 * Woostify footer
 	 */
 	function woostify_site_footer() {
-		$container = woostify_site_container();
-
 		// Customize disable footer.
 		$options        = woostify_options( false );
 		$footer_display = $options['footer_display'];
@@ -1732,7 +1748,7 @@ if ( ! function_exists( 'woostify_site_footer' ) ) {
 
 		?>
 			<footer id="colophon" class="site-footer">
-				<div class="<?php echo esc_attr( $container ); ?>">
+				<div class="woostify-container">
 
 					<?php
 					/**

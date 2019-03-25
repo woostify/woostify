@@ -379,27 +379,27 @@ msgstr ""
 msgid "Posted on"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1273
+#: inc/woostify-template-functions.php:1291
 msgid "Dialog search icon"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1277
+#: inc/woostify-template-functions.php:1295
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1568, inc/woostify-template-functions.php:1618
+#: inc/woostify-template-functions.php:1586, inc/woostify-template-functions.php:1636
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1571, inc/woostify-template-functions.php:1621
+#: inc/woostify-template-functions.php:1589, inc/woostify-template-functions.php:1639
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1573, inc/woostify-template-functions.php:1623
+#: inc/woostify-template-functions.php:1591, inc/woostify-template-functions.php:1641
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1776, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:1792, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 
