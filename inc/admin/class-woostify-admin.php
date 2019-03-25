@@ -78,12 +78,8 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						<div class="woostify-notice-text">
 							<p>
 								<?php
-								printf( // WPCS: XSS OK.
 									/* translators: Theme options */
-									__( 'Woostify Pro version has available <a href="%1$s" target="_blank">here</a>.', 'woostify' ),
-									'https://woostify.com/pricing/'
-								);
-								?>
+									echo 'Woostify Pro has been released. We have special discount UP to 40% OFF for a very limited time. <a href="https://woostify.com/pricing/" target="_blank">Get It Now</a>.'; ?>
 							</p>
 						</div>
 					</div>
