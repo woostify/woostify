@@ -45,27 +45,49 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			global $current_user;
 			$user_id = $current_user->ID;
 
-			if ( is_admin() && ! get_user_meta( $user_id, 'woostify_print_admin_notice' ) ) {
+			// For theme options box.
+			if ( is_admin() && ! get_user_meta( $user_id, 'woostify_print_option_box_admin_notice' ) ) {
 				?>
-			<div class="woostify-admin-notice notice is-dismissible">
-				<div class="woostify-notice-content">
-					<div class="woostify-notice-img">
-						<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'logo', 'woostify' ); ?>">
-					</div>
-					<div class="woostify-notice-text">
-						<div class="woostify-notice-heading"><?php esc_html_e( 'Thanks for installing Woostify!', 'woostify' ); ?></div>
-						<p>
-							<?php
-							printf( // WPCS: XSS OK.
-								/* translators: Theme options */
-								__( 'To fully take advantage of the best our theme can offer please make sure you visit our <a href="%1$s">Woostify Options</a>.', 'woostify' ),
-								esc_url( admin_url( 'themes.php?page=woostify-welcome' ) )
-							);
-							?>
-						</p>
+				<div class="woostify-admin-notice woostify-options-notice notice is-dismissible">
+					<div class="woostify-notice-content">
+						<div class="woostify-notice-img">
+							<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'logo', 'woostify' ); ?>">
+						</div>
+						<div class="woostify-notice-text">
+							<div class="woostify-notice-heading"><?php esc_html_e( 'Thanks for installing Woostify!', 'woostify' ); ?></div>
+							<p>
+								<?php
+								printf( // WPCS: XSS OK.
+									/* translators: Theme options */
+									__( 'To fully take advantage of the best our theme can offer please make sure you visit our <a href="%1$s">Woostify Options</a>.', 'woostify' ),
+									esc_url( admin_url( 'themes.php?page=woostify-welcome' ) )
+								);
+								?>
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
+				<?php
+			}
+
+			// For pro version release box.
+			if ( is_admin() && ! get_user_meta( $user_id, 'woostify_print_pro_release_admin_notice' ) ) {
+				?>
+				<div class="woostify-admin-notice woostify-pro-release-notice notice notice-warning is-dismissible">
+					<div class="woostify-notice-content">
+						<div class="woostify-notice-text">
+							<p>
+								<?php
+								printf( // WPCS: XSS OK.
+									/* translators: Theme options */
+									__( 'Woostify Pro version has available <a href="%1$s" target="_blank">here</a>.', 'woostify' ),
+									'https://woostify.com/pricing/'
+								);
+								?>
+							</p>
+						</div>
+					</div>
+				</div>
 				<?php
 			}
 		}
@@ -78,8 +100,12 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			global $current_user;
 			$user_id = $current_user->ID;
 
-			if ( isset( $_GET['woostify-dismiss-admin-notice'] ) ) {
-				add_user_meta( $user_id, 'woostify_print_admin_notice', 'true', true );
+			if ( isset( $_GET['woostify-dismiss-option-box-notice'] ) ) {
+				add_user_meta( $user_id, 'woostify_print_option_box_admin_notice', 'true', true );
+			}
+
+			if ( isset( $_GET['woostify-dismiss-pro-release-box-notice'] ) ) {
+				add_user_meta( $user_id, 'woostify_print_pro_release_admin_notice', 'true', true );
 			}
 		}
 
@@ -102,7 +128,8 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				'woostify-dismiss-admin-notice',
 				'woostify_dismiss_admin_notice',
 				array(
-					'url' => get_admin_url() . '?woostify-dismiss-admin-notice',
+					'option_notice_url'      => get_admin_url() . '?woostify-dismiss-option-box-notice',
+					'pro_release_notice_url' => get_admin_url() . '?woostify-dismiss-pro-release-box-notice',
 				)
 			);
 
