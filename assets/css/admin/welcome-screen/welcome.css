@@ -384,6 +384,10 @@
   text-decoration: none;
 }
 
+.woostify-pro-release-notice {
+  background-color: #faf5ef;
+}
+
 /* Button Devices on Customizer */
 .wp-full-overlay-footer .devices {
   display: flex;
