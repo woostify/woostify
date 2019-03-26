@@ -628,7 +628,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				(
 					'layout-1' == $options['product_style'] &&
 					true == $options['product_style_defaut_add_to_cart']
-				)
+				) ||
+				defined( 'YITH_WCQV_VERSION' )
 			) ? 'no-transform' : '';
 
 			echo '<div class="product-loop-meta ' . esc_attr( $class ) . '">';

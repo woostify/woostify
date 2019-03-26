@@ -82,6 +82,12 @@
 }
 
 .ps-layout-1{
+	.no-transform{
+		.animated-meta{
+			display: inline-flex;
+			flex-direction: column;
+		}
+	}
 	.product-loop-meta{
 		&.no-transform{
 			.button,

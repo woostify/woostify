@@ -609,7 +609,8 @@ if ( ! class_exists( 'woostify' ) ) :
 			$classes[]            = 'site-' . $container . '-container';
 
 			// Header layout.
-			$classes[] = 'has-header-' . $options['header_layout'];
+			$header_class_name = defined( 'WOOSTIFY_PRO_VERSION' ) ? $options['header_layout'] : 'layout-1';
+			$classes[] = 'has-header-' . $header_class_name;
 
 			// Header transparent.
 			if ( true == woostify_header_transparent() ) {
@@ -620,7 +621,8 @@ if ( ! class_exists( 'woostify' ) ) :
 			$classes[] = woostify_sidebar_class();
 
 			// Product style layout.
-			$classes[] = 'ps-' . $options['product_style'];
+			$product_style_class_name = defined( 'WOOSTIFY_PRO_VERSION' ) ? $options['product_style'] : 'layout-1';
+			$classes[] = 'ps-' . $product_style_class_name;
 
 			// Blog page layout.
 			if ( woostify_is_blog() && ! is_singular( 'post' ) ) {
@@ -636,9 +638,10 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @param array $classes Classes for the header element.
 		 */
 		public function woostify_header_classes( $classes ) {
-			$options = woostify_options( false );
+			$options           = woostify_options( false );
+			$header_class_name = defined( 'WOOSTIFY_PRO_VERSION' ) ? $options['header_layout'] : 'layout-1';
 
-			$classes[] = 'header-' . $options['header_layout'];
+			$classes[] = 'header-' . $header_class_name;
 
 			return $classes;
 		}
