@@ -7,57 +7,71 @@
 }
 
 /* woocommerce sidebar mobile */
-@media ( max-width: $screen-md - 1 ) {
-	.sidebar-mobile-open{
-		overflow: hidden;
-		.shop-widget {
-			margin-top: 0 $i;
-			position: fixed;
-			left: 0;
-			bottom: 0;
-			top: 0;
-			width: 100%;
-			background-color: #fff;
-			padding: 15px;
-			max-width: 280px;
-			z-index: 200;
-			overflow-y: auto;
-			opacity: 0;
-			visibility: hidden;
-			@include translatex( -100% );
-			@include duration( 0.3s );
-			.logged-in.admin-bar &{
-				top: 46px;
-				@media ( min-width: 783px ) {
-					top: 32px;
+.sidebar-mobile-open{
+	overflow: hidden;
+	#woostify-overlay{
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		&:after{
+			content: "\e646";
+			font-family: $icon;
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			width: 30px;
+			height: 30px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			color: #fff;
+			font-weight: 700;
+			font-size: 1.5em;
+		}
+	}
+}
+.sidebar-mobile-open {
+	.logged-in.admin-bar{
+		#woostify-overlay{
+			&:after{
+				top: 66px;
+			}
+			@media ( min-width: 783px ) {
+				&:after{
+					top: 52px;
 				}
 			}
-			&.active{
-				opacity: 1;
-				visibility: visible;
-				@include translatex( 0 );
+		}
+	}
+}
+@media ( max-width: $screen-md - 1 ) {
+	.shop-widget {
+		margin-top: 0 $i;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		top: 0;
+		width: 100%;
+		background-color: #fff;
+		padding: 15px;
+		max-width: 280px;
+		z-index: 200;
+		overflow-y: auto;
+		opacity: 0;
+		visibility: hidden;
+		@include translatex( -100% );
+		@include duration( 0.2s );
+		.logged-in.admin-bar &{
+			top: 46px;
+			@media ( min-width: 783px ) {
+				top: 32px;
 			}
 		}
-		#woostify-overlay{
+		&.active{
 			opacity: 1;
 			visibility: visible;
-			pointer-events: auto;
-			&:after{
-				content: "\e646";
-				font-family: $icon;
-				position: absolute;
-				top: 20px;
-				right: 20px;
-				width: 30px;
-				height: 30px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				cursor: pointer;
-				color: #fff;
-				font-weight: 700;
-				font-size: 1.5em;
-			}
+			@include translatex( 0 );
 		}
 	}
 }
