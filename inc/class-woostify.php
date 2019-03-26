@@ -437,6 +437,15 @@ if ( ! class_exists( 'woostify' ) ) :
 				true
 			);
 
+			// Woocommerce sidebar for mobile.
+			wp_register_script(
+				'woostify-woocommerce-sidebar',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/woocommerce-sidebar' . $suffix . '.js',
+				array(),
+				woostify_version(),
+				true
+			);
+
 			// Woocommerce.
 			wp_register_script(
 				'woostify-woocommerce',

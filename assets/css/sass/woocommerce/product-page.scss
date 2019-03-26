@@ -547,14 +547,23 @@
 
 /* RESPONSIVE */
 
-@media ( max-width: $screen-md - 1) {
+@media ( max-width: $screen-md - 1 ) {
 	.summary.entry-summary {
 		margin-top: 50px;
 		width: 100%;
 	}
+
+	.single-product{
+		.content-top{
+			padding-top: 0;
+		}
+		.woostify-breadcrumb{
+			display: none;
+		}
+	}
 }
 
-@media ( max-width: $screen-sm - 1) {
+@media ( max-width: $screen-sm - 1 ) {
 	.product-gallery {
 		display: block;
 	}

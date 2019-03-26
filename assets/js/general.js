@@ -12,7 +12,7 @@ function closeAll() {
 	// Use ESC key.
 	document.body.addEventListener( 'keyup', function( e ) {
 		if ( 27 === e.keyCode ) {
-			document.body.classList.remove( 'cart-sidebar-open' );
+			document.documentElement.classList.remove( 'cart-sidebar-open' );
 		}
 	} );
 
@@ -21,7 +21,7 @@ function closeAll() {
 
 	if ( closeCartSidebarBtn ) {
 		closeCartSidebarBtn.addEventListener( 'click', function() {
-			document.body.classList.remove( 'cart-sidebar-open' );
+			document.documentElement.classList.remove( 'cart-sidebar-open' );
 		} );
 	}
 
@@ -30,7 +30,7 @@ function closeAll() {
 
 	if ( overlay ) {
 		overlay.addEventListener( 'click', function() {
-			document.body.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
+			document.documentElement.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
 		} );
 	}
 }
@@ -132,12 +132,14 @@ function scrollToTop() {
 
 // Scrolling detect direction.
 function scrollingDetect() {
+	var body = document.body;
+
 	if ( window.oldScroll > window.scrollY ) {
-		document.body.classList.add( 'scrolling-up' );
-		document.body.classList.remove( 'scrolling-down' );
+		body.classList.add( 'scrolling-up' );
+		body.classList.remove( 'scrolling-down' );
 	} else {
-		document.body.classList.remove( 'scrolling-up' );
-		document.body.classList.add( 'scrolling-down' );
+		body.classList.remove( 'scrolling-up' );
+		body.classList.add( 'scrolling-down' );
 	}
 
 	// Reset state.

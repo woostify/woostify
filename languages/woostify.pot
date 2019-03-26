@@ -66,14 +66,14 @@ msgstr ""
 msgid "Search Results for: %s"
 msgstr ""
 
-#: sidebar-shop.php:17, sidebar-shop.php:32, sidebar-shop.php:47
+#: sidebar-shop.php:16, sidebar-shop.php:31, sidebar-shop.php:46
 msgid "Sidebar Shop Widget"
 msgstr ""
 
 #. translators: 1: admin URL
 #. translators: 1: admin URL
 #. translators: 1: admin URL
-#: sidebar-shop.php:23, sidebar-shop.php:38, sidebar-shop.php:53
+#: sidebar-shop.php:22, sidebar-shop.php:37, sidebar-shop.php:52
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Woocommerce Sidebar</strong></a> and dragging widgets into this widget area."
 msgstr ""
 
@@ -160,11 +160,11 @@ msgstr ""
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:509
+#: inc/class-woostify.php:518
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:641
+#: inc/class-woostify.php:650
 msgid "Post Pagination"
 msgstr ""
 
@@ -755,23 +755,27 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:375
+#: inc/woocommerce/class-woostify-woocommerce.php:257
+msgid "Filter"
+msgstr ""
+
+#: inc/woocommerce/class-woostify-woocommerce.php:390
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:376
+#: inc/woocommerce/class-woostify-woocommerce.php:391
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:399
+#: inc/woocommerce/class-woostify-woocommerce.php:414
 msgid "Sale!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:555, inc/woocommerce/class-woostify-woocommerce.php:689, inc/woocommerce/class-woostify-woocommerce.php:720, inc/woocommerce/class-woostify-woocommerce.php:742, inc/woocommerce/class-woostify-woocommerce.php:767
+#: inc/woocommerce/class-woostify-woocommerce.php:570, inc/woocommerce/class-woostify-woocommerce.php:704, inc/woocommerce/class-woostify-woocommerce.php:735, inc/woocommerce/class-woostify-woocommerce.php:757, inc/woocommerce/class-woostify-woocommerce.php:782
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:939
+#: inc/woocommerce/class-woostify-woocommerce.php:954
 msgid "Clear cart"
 msgstr ""
 

@@ -6,7 +6,6 @@
  */
 
 ?>
-
 <div id="secondary" class="widget-area shop-widget" role="complementary">
 	<?php
 	if ( is_active_sidebar( 'sidebar-shop' ) ) {

@@ -6,6 +6,82 @@
 	font-weight: normal;
 }
 
+/* woocommerce sidebar mobile */
+@media ( max-width: $screen-md - 1 ) {
+	.sidebar-mobile-open{
+		overflow: hidden;
+		.shop-widget {
+			margin-top: 0 $i;
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			top: 0;
+			width: 100%;
+			background-color: #fff;
+			padding: 15px;
+			max-width: 280px;
+			z-index: 200;
+			overflow-y: auto;
+			opacity: 0;
+			visibility: hidden;
+			@include translatex( -100% );
+			@include duration( 0.3s );
+			.logged-in.admin-bar &{
+				top: 46px;
+				@media ( min-width: 783px ) {
+					top: 32px;
+				}
+			}
+			&.active{
+				opacity: 1;
+				visibility: visible;
+				@include translatex( 0 );
+			}
+		}
+		#woostify-overlay{{
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+			&:after{
+				content: "\e646";
+				font-family: $icon;
+				position: absolute;
+				top: 20px;
+				right: 20px;
+				width: 30px;
+				height: 30px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+				color: #fff;
+				font-weight: 700;
+				font-size: 1.5em;
+			}
+		}
+	}
+}
+#toggle-sidebar-mobile-button{
+	background-color: $tr;
+	padding: 11px 15px;
+	border-radius: 2px;
+	@extend .duration;
+	&.active{
+		@include translatex( -20px );
+		opacity: 0;
+		visibility: hidden;
+	}
+	&:before{
+		margin-right: 7px;
+	}
+	@media ( min-width: $screen-md ) {
+		display: none;
+	}
+	@media ( max-width: $screen-sm - 1 ) {
+		margin-bottom: 15px;
+	}
+}
+
 /* sorting */
 .woocommerce-notices-wrapper{
 	display: block;
@@ -21,6 +97,7 @@
 
 	@media ( max-width: $screen-sm - 1 ) {
 		justify-content: center;
+		flex-direction: column;
 	}
 
 	.woocommerce-notices-wrapper{

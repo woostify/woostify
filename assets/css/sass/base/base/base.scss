@@ -16,13 +16,13 @@ html{
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
+	overflow-x: hidden;
     font-size: 14px;
     background-color: #fff;
 }
 
 body {
     margin: 0;
-    position: relative;
     overflow-x: hidden;
     word-break: break-word;
 }

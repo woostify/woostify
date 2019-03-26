@@ -49,6 +49,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Custom breadcrumb for Product page.
 			add_action( 'wp', 'woostify_breadcrumb_for_product_page' );
 
+			add_action( 'woocommerce_before_shop_loop', array( $this, 'woostify_toggle_sidebar_mobile_button' ), 25 );
+
 			// GENERAL.
 			// Product related.
 			add_filter( 'woocommerce_output_related_products_args', array( $this, 'woostify_related_products_args' ) );
@@ -187,6 +189,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Quantity button.
 			wp_enqueue_script( 'woostify-quantity-button' );
 
+			// Woocommerce sidebar.
+			wp_enqueue_script( 'woostify-woocommerce-sidebar' );
+
 			// Add to cart variation.
 			if ( wp_script_is( 'wc-add-to-cart-variation', 'registered' ) && ! wp_script_is( 'wc-add-to-cart-variation', 'enqueued' ) ) {
 				wp_enqueue_script( 'wc-add-to-cart-variation' );
@@ -241,6 +246,16 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_remove_woocommerce_shop_title() {
 			return false;
+		}
+
+		/**
+		 * Toggle sidebar mobile button
+		 */
+		public function woostify_toggle_sidebar_mobile_button() {
+			$icon = apply_filters( 'woostify_toggle_sidebar_mobile_button_icon', 'ti-filter' );
+			?>
+			<button id="toggle-sidebar-mobile-button" class="<?php echo esc_attr( $icon ); ?>"><?php esc_html_e( 'Filter', 'woostify' ); ?></button>
+			<?php
 		}
 
 		/**

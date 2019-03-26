@@ -2,6 +2,17 @@ $space: 30px;
 $space_mobile: 15px;
 $media: 599px;
 
+
+.cart-sidebar-open {
+	.updating-cart {
+        #shop-cart-sidebar {
+            &:after {
+                @include duration(0s);
+            }
+        }
+    }
+}
+
 .updating-cart {
     &.cart-sidebar-open {
         #shop-cart-sidebar {
@@ -28,7 +39,7 @@ $media: 599px;
     }
 }
 .cart-sidebar-open {
-	overflow-y: hidden;
+	overflow: hidden;
 
 	#view{
 		@include translatex( -400px );

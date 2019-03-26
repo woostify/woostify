@@ -18,7 +18,7 @@
 
 		for ( var i = 0, j = menuToggleBtn.length; i < j; i++ ) {
 			menuToggleBtn[i].addEventListener( 'click', function() {
-				document.body.classList.add( 'sidebar-menu-open' );
+				document.documentElement.classList.add( 'sidebar-menu-open' );
 				closeAll();
 			} );
 		}

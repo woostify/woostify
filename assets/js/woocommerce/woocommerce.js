@@ -7,7 +7,7 @@
 'use strict';
 
 function cartSidebarOpen() {
-	document.body.classList.add( 'cart-sidebar-open' );
+	document.documentElement.classList.add( 'cart-sidebar-open' );
 }
 
 function eventCartSidebarOpen() {

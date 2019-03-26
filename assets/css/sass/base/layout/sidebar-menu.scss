@@ -31,7 +31,11 @@
 			bottom: -6px;
 		}
 	}
-	.sidebar-menu-open & {
+}
+
+.sidebar-menu-open {
+	overflow: hidden;
+	.woostify-icon-bar{
 		span {
 			@include rotate(180);
 			&:before {
@@ -185,8 +189,7 @@
 	}
 	@media ( max-width: $screen-md - 1) {
 		/* menu open */
-		&.sidebar-menu-open {
-			overflow: hidden;
+		.sidebar-menu-open &{
 			#woostify-overlay {
 				opacity: 1;
 				visibility: visible;
@@ -200,7 +203,7 @@
 			}
 		}
 		@media ( min-width: $screen-md) {
-			&.sidebar-menu-open {
+			.sidebar-menu-open &{
 				#view {
 					@include translatex( 50%);
 				}
