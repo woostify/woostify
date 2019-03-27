@@ -111,6 +111,35 @@
 	}
 }
 
+.product-thumbnail-images{
+	.tns-controls{
+		[data-controls]{
+			width: 30px;
+			height: 30px;
+		}
+	}
+}
+.has-gallery-layout-vertical{
+	.product-thumbnail-images{
+		.tns-controls{
+			@media ( min-width: $screen-md ) {
+				[data-controls]{
+					top: auto;
+					left: 50%;
+					@include transforms( translateX( -50% ) translateY( 0 ) rotate( 90deg ) );
+				}
+				[data-controls="prev"]{
+					top: 0;
+				}
+				[data-controls="next"]{
+					bottom: 0;
+					right: auto;
+				}
+			}
+		}
+	}
+}
+
 /* product images */
 
 .product-images {

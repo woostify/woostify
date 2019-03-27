@@ -814,7 +814,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 							navContainer: '#product-thumbnail-images',
 							items: 1,
 							navAsThumbnails: true,
-							autoHeight: true
+							autoHeight: true,
+							mouseDrag: true
 						});
 
 						var thumbCarousel,
@@ -825,7 +826,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 								items: 5,
 								mouseDrag: true,
 								nav: false,
-								controls: false,
+								controls: true,
 								axis: '{$axis}'
 							}
 
@@ -845,6 +846,29 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 							}
 						}
 						slider();
+
+						function triggerPrevAndNext() {
+							if ( ! imageCarousel || ! thumbCarousel ) {
+								return;
+							}
+							var buttons = document.querySelectorAll( '.product-gallery .tns-controls button' );
+
+							if ( ! buttons.length ) {
+								return;
+							}
+
+							buttons.forEach( function( el ) {
+								el.addEventListener( 'click', function() {
+									var nav = el.getAttribute( 'data-controls' );
+									if ( 'next' === nav ) {
+										thumbCarousel.goTo( 'next' );
+									} else {
+										thumbCarousel.goTo( 'prev' );
+									}
+								} );
+							} );
+						}
+						window.addEventListener( 'load', triggerPrevAndNext );
 
 						var resetSlider = function(){
 							imageCarousel.goTo( 'first' );

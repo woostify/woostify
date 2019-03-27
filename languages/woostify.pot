@@ -770,7 +770,7 @@ msgstr ""
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:955
+#: inc/woocommerce/class-woostify-woocommerce.php:979
 msgid "Clear cart"
 msgstr ""
 
