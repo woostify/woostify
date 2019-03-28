@@ -8,7 +8,7 @@
 
 let theme       = 'woostify',
 	site_name   = 'woostify',
-	theme_ver   = '1.1.2',
+	theme_ver   = '1.1.3',
 	gulp        = require( 'gulp' ),
 	zip         = require( 'gulp-zip' ),
 	babel       = require( 'gulp-babel' ),
