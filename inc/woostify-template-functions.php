@@ -522,7 +522,8 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 					</span>
 
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-						<span><?php echo get_the_title( $page_id ); ?></span>
+						<a itemprop="item" href="<?php echo esc_url( home_url( '/' ) ); ?>"></a>
+						<span itemprop="name"><?php echo get_the_title( $page_id ); ?></span>
 						<meta itemprop="position" content="4"></span>
 					</span>
 					<?php
@@ -546,6 +547,7 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 					</span>
 
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<a itemprop="item" href="<?php echo esc_url( home_url( '/' ) ); ?>"></a>
 						<span itemprop="name"><?php echo get_the_title(); ?></span>
 						<meta itemprop="position" content="4"></span>
 					</span>
@@ -554,6 +556,7 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 			} else {
 				?>
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<a itemprop="item" href="<?php echo esc_url( home_url( '/' ) ); ?>"></a>
 						<span itemprop="name">
 							<?php
 							if ( is_day() ) {
