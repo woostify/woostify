@@ -225,3 +225,13 @@
         }
     }
 }
+
+.woocommerce-orders-table__cell-order-actions{
+	display: inline-flex;
+	flex-direction: column;
+	text-align: center;
+	border: 0;
+	a+a{
+		margin-top: 10px;
+	}
+}
