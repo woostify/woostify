@@ -160,11 +160,11 @@ msgstr ""
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:518
+#: inc/class-woostify.php:527
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:653
+#: inc/class-woostify.php:662
 msgid "Post Pagination"
 msgstr ""
 
@@ -750,27 +750,27 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:257
+#: inc/woocommerce/class-woostify-woocommerce.php:261
 msgid "Filter"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:390
+#: inc/woocommerce/class-woostify-woocommerce.php:394
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:391
+#: inc/woocommerce/class-woostify-woocommerce.php:395
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:414
+#: inc/woocommerce/class-woostify-woocommerce.php:418
 msgid "Sale!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:570, inc/woocommerce/class-woostify-woocommerce.php:705, inc/woocommerce/class-woostify-woocommerce.php:736, inc/woocommerce/class-woostify-woocommerce.php:758, inc/woocommerce/class-woostify-woocommerce.php:783
+#: inc/woocommerce/class-woostify-woocommerce.php:574, inc/woocommerce/class-woostify-woocommerce.php:709, inc/woocommerce/class-woostify-woocommerce.php:740, inc/woocommerce/class-woostify-woocommerce.php:762, inc/woocommerce/class-woostify-woocommerce.php:787
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:979
+#: inc/woocommerce/class-woostify-woocommerce.php:874
 msgid "Clear cart"
 msgstr ""
 

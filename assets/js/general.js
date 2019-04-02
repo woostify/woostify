@@ -6,6 +6,18 @@
 
 'use strict';
 
+// Run scripts only elementor loaded.
+function onElementorLoaded( callback ) {
+	if ( undefined === window.elementorFrontend || undefined === window.elementorFrontend.hooks ) {
+		setTimeout( function() {
+			onElementorLoaded( callback )
+		} );
+
+		return;
+	}
+
+	callback();
+}
 
 // Disable popup/sidebar/menumobile.
 function closeAll() {

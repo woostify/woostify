@@ -189,6 +189,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Quantity button.
 			wp_enqueue_script( 'woostify-quantity-button' );
 
+			// Tiny slider: product images.
+			wp_enqueue_script( 'woostify-product-images' );
+
+			// Easyzoom.
+			wp_enqueue_script( 'easyzoom-handle' );
+
+			// Photoswipe.
+			wp_enqueue_script( 'photoswipe-init' );
+
 			// Woocommerce sidebar.
 			wp_enqueue_script( 'woostify-woocommerce-sidebar' );
 
@@ -208,34 +217,29 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			$options   = woostify_options( false );
 			$classes[] = 'woocommerce-active';
 
-			// Product page.
-			if ( is_singular( 'product' ) ) {
+			// Product gallery.
+			$page_id = woostify_get_page_id();
+			$product = wc_get_product( $page_id );
+			$gallery = $product ? $product->get_gallery_image_ids() : false;
+			if ( $gallery || is_singular( 'elementor_library' ) ) {
+				$classes[] = 'has-gallery-layout-' . $options['shop_single_gallery_layout'];
+			}
 
-				// Product gallery.
-				$page_id = get_queried_object_id();
-				$product = wc_get_product( $page_id );
-				$gallery = $product->get_gallery_image_ids();
+			// Product meta.
+			$sku        = $options['shop_single_skus'];
+			$categories = $options['shop_single_categories'];
+			$tags       = $options['shop_single_tags'];
 
-				// Product meta.
-				$sku        = $options['shop_single_skus'];
-				$categories = $options['shop_single_categories'];
-				$tags       = $options['shop_single_tags'];
+			if ( true != $sku ) {
+				$classes[] = 'hid-skus';
+			}
 
-				if ( true != $sku ) {
-					$classes[] = 'hid-skus';
-				}
+			if ( true != $categories ) {
+				$classes[] = 'hid-categories';
+			}
 
-				if ( true != $categories ) {
-					$classes[] = 'hid-categories';
-				}
-
-				if ( true != $tags ) {
-					$classes[] = 'hid-tags';
-				}
-
-				if ( $gallery ) {
-					$classes[] = 'has-gallery-layout-' . $options['shop_single_gallery_layout'];
-				}
+			if ( true != $tags ) {
+				$classes[] = 'hid-tags';
 			}
 
 			return $classes;
@@ -796,115 +800,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Single gallery product gallery script and style dependency
 		 */
 		public function woostify_single_product_gallery_dependency() {
-			global $product;
-			$gallery_id = $product->get_gallery_image_ids();
-
-			// Tiny slider.
-			if ( ! empty( $gallery_id ) ) {
-				$options = woostify_options( false );
-				$axis    = $options['shop_single_gallery_layout'];
-
-				wp_enqueue_script( 'tiny-slider' );
-				wp_add_inline_script(
-					'tiny-slider',
-					"document.addEventListener( 'DOMContentLoaded', function(){
-						var imageCarousel = tns({
-							loop: false,
-							container: '#product-images',
-							navContainer: '#product-thumbnail-images',
-							items: 1,
-							navAsThumbnails: true,
-							autoHeight: true,
-							mouseDrag: true
-						});
-
-						var thumbCarousel,
-							options = {
-								loop: false,
-								container: '#product-thumbnail-images',
-								gutter: 10,
-								items: 5,
-								mouseDrag: true,
-								nav: false,
-								controls: true,
-								axis: '{$axis}'
-							}
-
-						function slider() {
-							var match = window.matchMedia( '( min-width: 768px )' ).matches;
-
-							if ( match ) {
-								if ( document.body.classList.contains( 'has-gallery-layout-horizontal' ) ) {
-									options.fixedWidth = 80;
-								}
-								thumbCarousel = tns( options );
-							} else {
-								delete options.axis;
-								options.fixedWidth = 80;
-
-								thumbCarousel = tns( options );
-							}
-						}
-						slider();
-
-						function triggerPrevAndNext() {
-							if ( ! imageCarousel || ! thumbCarousel ) {
-								return;
-							}
-							var buttons = document.querySelectorAll( '.product-gallery .tns-controls button' );
-
-							if ( ! buttons.length ) {
-								return;
-							}
-
-							buttons.forEach( function( el ) {
-								el.addEventListener( 'click', function() {
-									var nav = el.getAttribute( 'data-controls' );
-									if ( 'next' === nav ) {
-										thumbCarousel.goTo( 'next' );
-									} else {
-										thumbCarousel.goTo( 'prev' );
-									}
-								} );
-							} );
-						}
-						window.addEventListener( 'load', triggerPrevAndNext );
-
-						var resetSlider = function(){
-							imageCarousel.goTo( 'first' );
-							thumbCarousel.goTo( 'first' );
-						}
-
-						jQuery( document.body ).on( 'found_variation', 'form.variations_form', function() {
-							resetSlider();
-						});
-
-						jQuery( '.reset_variations' ).on( 'click', function(){
-							resetSlider();
-						});
-					});",
-					'after'
-				);
-			}
-
-			// Easyzoom.
-			wp_enqueue_script( 'easyzoom' );
-			wp_enqueue_script( 'easyzoom-handle' );
-			wp_add_inline_script(
-				'easyzoom',
-				"document.addEventListener( 'DOMContentLoaded', function(){
-					if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
-						jQuery( '.ez-zoom' ).easyZoom();
-					}
-				} );",
-				'after'
-			);
-
-			// Photoswipe.
-			wp_enqueue_script( 'photoswipe' );
-			wp_enqueue_script( 'photoswipe-ui-default' );
-			wp_enqueue_script( 'photoswipe-init' );
-
 			// Photoswipe markup html.
 			get_template_part( 'template-parts/content', 'photoswipe' );
 		}
@@ -982,7 +877,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			<?php
 		}
 	}
+	Woostify_WooCommerce::get_instance();
 
 endif;
-
-Woostify_WooCommerce::get_instance();

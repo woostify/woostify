@@ -105,5 +105,15 @@ function quantity() {
 }
 
 document.addEventListener( 'DOMContentLoaded', function() {
+	// For preview mode.
+	if ( 'function' === typeof( onElementorLoaded ) ) {
+		onElementorLoaded( function() {
+			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/global', function() {
+				quantity();
+			} );
+		} );
+	}
+
+	// For frontend mode.
 	quantity();
 } );

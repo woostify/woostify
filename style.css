@@ -2813,6 +2813,7 @@ a.pswp__share--download:hover {
 
 .tns-outer {
   position: relative;
+  direction: ltr;
 }
 
 .tns-outer [hidden] {
@@ -7202,6 +7203,14 @@ dd {
   }
 }
 
+.woostify-product-images-widget {
+  min-height: 1px;
+}
+
+.woostify-product-images-widget .product-gallery {
+  width: 100%;
+}
+
 .product-thumbnail-images .tns-controls [data-controls] {
   width: 30px;
   height: 30px;
@@ -7260,7 +7269,7 @@ dd {
 }
 
 .product-thumbnail-images .tns-nav-active img {
-  border-color: #555555;
+  border: 1px solid #555;
 }
 
 /* spinner gallery */
@@ -7435,6 +7444,10 @@ dd {
     width: 90px;
     min-width: 90px;
   }
+}
+
+.cart .woocommerce-variation-add-to-cart {
+  flex-wrap: wrap !important;
 }
 
 .woocommerce-variation-price {

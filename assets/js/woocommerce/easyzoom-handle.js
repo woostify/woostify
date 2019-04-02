@@ -6,6 +6,7 @@
 
 'use strict';
 
+// Use in product-variation.js.
 function easyZoom() {
 
 	if ( window.matchMedia( '( max-width: 991px )' ).matches ) {
@@ -23,4 +24,9 @@ function easyZoom() {
 
 	api.teardown();
 	api._init();
+}
+
+// Setup image zoom.
+if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
+	jQuery( '.ez-zoom' ).easyZoom();
 }

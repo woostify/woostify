@@ -491,6 +491,15 @@ if ( ! class_exists( 'woostify' ) ) :
 				true
 			);
 
+			// Product images ( Tiny slider ).
+			wp_register_script(
+				'woostify-product-images',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/product-images' . $suffix . '.js',
+				array( 'tiny-slider' ),
+				woostify_version(),
+				true
+			);
+
 			// Photoswipe init js.
 			wp_register_script(
 				'photoswipe-init',

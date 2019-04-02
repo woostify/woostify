@@ -6,19 +6,6 @@
 
 'use strict';
 
-// Run scripts only elementor loaded.
-var onElementorLoaded = function( callback ) {
-	if ( undefined === window.elementorFrontend || undefined === window.elementorFrontend.hooks ) {
-		setTimeout( function() {
-			onElementorLoaded( callback )
-		} );
-
-		return;
-	}
-
-	callback();
-}
-
 // Elementor not print a 'product' class for product item. We add this. Please fix it.
 var pleaseFixIt = function() {
 	var products = document.querySelectorAll( '.products > li' );
@@ -34,9 +21,11 @@ var pleaseFixIt = function() {
 // DOM loaded.
 document.addEventListener( 'DOMContentLoaded', function() {
 	// Only for Preview mode.
-	onElementorLoaded( function() {
-		window.elementorFrontend.hooks.addAction( 'frontend/element_ready/global', function() {
-			pleaseFixIt();
+	if ( 'function' === typeof( onElementorLoaded ) ) {
+		onElementorLoaded( function() {
+			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/global', function() {
+				pleaseFixIt();
+			} );
 		} );
-	} );
+	}
 } );
