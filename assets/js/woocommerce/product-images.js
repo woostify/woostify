@@ -24,6 +24,17 @@ var productImages = function( selector, options ) {
 	}
 }
 
+// Generate product images item.
+function generateImageItem( fullSrc, imgSize, src ) {
+	var item = '<figure class="image-item ez-zoom" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">';
+	item += '<a href=' + fullSrc + ' data-size=' + imgSize + ' itemprop="contentUrl">';
+	item += '<img src=' + src + ' itemprop="thumbnail">';
+	item += '</a>';
+	item += '</figure>';
+
+	return item;
+}
+
 document.addEventListener( 'DOMContentLoaded', function(){
 
 	// Product image.
@@ -104,6 +115,15 @@ document.addEventListener( 'DOMContentLoaded', function(){
 		// Trigger variation.
 		jQuery( document.body ).on( 'found_variation', 'form.variations_form', function() {
 			resetCarousel();
+
+			for ( var i = 0, j = woostify_variation_gallery.length; i < j; i++ ) {
+				console.log( woostify_variation_gallery[i] );
+				if ( woostify_variation_gallery[i].css_class ) {
+					var size = woostify_variation_gallery[i].full_src_w + 'x' + woostify_variation_gallery[i].full_src_h;
+					document.body.innerHTML = generateImageItem( woostify_variation_gallery[i].full_src, size, woostify_variation_gallery[i].src );
+					/*document.body.insertAdjacentHTML( 'beforebegin', generateImageItem( woostify_variation_gallery[i].full_src, size, woostify_variation_gallery[i].src ) );*/
+				}
+			}
 		});
 
 		// Trigger reset.

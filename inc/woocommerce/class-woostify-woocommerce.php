@@ -701,6 +701,24 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
+		 * Get variation gallery
+		 *
+		 * @param object $product The product.
+		 */
+		public function woostify_get_variation_gallery( $product ) {
+			$images               = array();
+			$available_variations = array_values( $product->get_available_variations() );
+
+			foreach ( $available_variations as $k => $v ) {
+				foreach ( $v['variation_gallery_images'] as $i => $j ) {
+					array_push( $images, $j );
+				}
+			}
+
+			return $images;
+		}
+
+		/**
 		 * Product gallery product image slider
 		 */
 		public function woostify_single_product_gallery_image_slide() {
@@ -714,6 +732,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 				$product = wc_get_product( $id );
 			}
+			$product_id = $product->get_id();
 			$image_id   = $product->get_image_id();
 			$image_alt  = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
 			$get_size   = wc_get_image_size( 'shop_catalog' );
@@ -723,14 +742,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				$image_small_src  = wp_get_attachment_image_src( $image_id, 'thumbnail' );
 				$image_medium_src = wp_get_attachment_image_src( $image_id, 'woocommerce_single' );
 				$image_full_src   = wp_get_attachment_image_src( $image_id, 'full' );
-				$image_size       = $image_medium_src[1] . 'x' . $image_medium_src[2];
+				$image_size       = $image_full_src[1] . 'x' . $image_full_src[2];
 			} else {
 				$image_small_src[0]  = wc_placeholder_img_src();
 				$image_medium_src[0] = wc_placeholder_img_src();
 				$image_full_src[0]   = wc_placeholder_img_src();
 			}
 
-			$gallery_id = $product->get_gallery_image_ids();
+			$gallery_id        = $product->get_gallery_image_ids();
 			?>
 			<div class="product-images">
 				<div id="product-images" itemscope itemtype="http://schema.org/ImageGallery">
@@ -760,6 +779,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				</div>
 			</div>
 			<?php
+
+			// Variation gallery.
+			wp_localize_script(
+				'woostify-product-variation',
+				'woostify_variation_gallery',
+				$this->woostify_get_variation_gallery( $product )
+			);
 		}
 
 		/**

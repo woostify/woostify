@@ -495,7 +495,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			wp_register_script(
 				'woostify-product-images',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/product-images' . $suffix . '.js',
-				array( 'tiny-slider' ),
+				array( 'jquery', 'tiny-slider' ),
 				woostify_version(),
 				true
 			);

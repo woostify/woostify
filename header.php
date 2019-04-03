@@ -5,6 +5,11 @@
  * @package woostify
  */
 
+$wc         = Woostify_Woocommerce::get_instance();
+$product_id = $wc->woostify_get_last_product_id();
+$product    = wc_get_product( $product_id );
+$gallery    = $wc->woostify_get_variation_gallery( $product );
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
