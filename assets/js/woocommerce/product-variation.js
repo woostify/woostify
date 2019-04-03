@@ -18,8 +18,6 @@ function productVariation() {
 		thumb         = gallery.find( '.thumbnail-item:eq(0)' ),
 		thumbSrc      = thumb.find( 'img' ).prop( 'src' );
 
-	easyZoom();
-
 	// event when variation changed.
 	jQuery( document.body ).on( 'found_variation', 'form.variations_form', function( event, variation ) {
 		// get image url form `variation`.
@@ -39,7 +37,7 @@ function productVariation() {
 				image.removeClass( 'image-loading' );
 			} );
 		// Zoom handle.
-		easyZoom();
+		easyZoomHandle();
 	} );
 
 	// Reset variation.
@@ -51,7 +49,7 @@ function productVariation() {
 		// Photoswipe + zoom.
 		photoSwipe.prop( 'href', photoSwipeSrc );
 		// Zoom handle.
-		easyZoom();
+		easyZoomHandle();
 	} );
 }
 

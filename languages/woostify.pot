@@ -766,11 +766,11 @@ msgstr ""
 msgid "Sale!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:574, inc/woocommerce/class-woostify-woocommerce.php:709, inc/woocommerce/class-woostify-woocommerce.php:740, inc/woocommerce/class-woostify-woocommerce.php:762, inc/woocommerce/class-woostify-woocommerce.php:787
+#: inc/woocommerce/class-woostify-woocommerce.php:574, inc/woocommerce/class-woostify-woocommerce.php:713, inc/woocommerce/class-woostify-woocommerce.php:744, inc/woocommerce/class-woostify-woocommerce.php:770, inc/woocommerce/class-woostify-woocommerce.php:795
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:874
+#: inc/woocommerce/class-woostify-woocommerce.php:882
 msgid "Clear cart"
 msgstr ""
 

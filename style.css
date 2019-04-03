@@ -7203,14 +7203,6 @@ dd {
   }
 }
 
-.woostify-product-images-widget {
-  min-height: 1px;
-}
-
-.woostify-product-images-widget .product-gallery {
-  width: 100%;
-}
-
 .product-thumbnail-images .tns-controls [data-controls] {
   width: 30px;
   height: 30px;

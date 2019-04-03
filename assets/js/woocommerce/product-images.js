@@ -6,6 +6,24 @@
 
 'use strict';
 
+// Carousel widget.
+var productImages = function( selector, options ) {
+	var element = document.querySelectorAll( selector );
+
+	if ( ! element.length ) {
+		return;
+	}
+
+	for ( var i = 0, j = element.length; i < j; i++ ) {
+
+		if ( element[i].classList.contains( 'tns-slider' ) ) {
+			continue;
+		}
+
+		var slider = tns( options );
+	}
+}
+
 document.addEventListener( 'DOMContentLoaded', function(){
 
 	// Product image.
@@ -102,12 +120,8 @@ document.addEventListener( 'DOMContentLoaded', function(){
 	if ( 'function' === typeof( onElementorLoaded ) ) {
 		onElementorLoaded( function() {
 			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/global', function() {
-				if ( document.getElementById( 'product-thumbnail-images' ) && ! imageCarousel ) {
-					imageCarousel = tns( option );
-				}
-				if ( document.getElementById( 'product-thumbnail-images' ) && ! thumbCarousel ) {
-					thumbCarousel = tns( thumbOption );
-				}
+				productImages( '#product-images', option );
+				productImages( '#product-thumbnail-images', thumbOption );
 				carouselAction();
 				arrowsEvent();
 			} );

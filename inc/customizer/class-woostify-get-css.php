@@ -106,7 +106,8 @@ class Woostify_Get_CSS {
 			.woostify-breadcrumb a,
 			.breadcrumb-separator,
 			#secondary .widget a,
-			.has-woostify-text-color{
+			.has-woostify-text-color,
+			.clear-cart-btn{
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
@@ -115,9 +116,9 @@ class Woostify_Get_CSS {
 				background-color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
-			.clear-cart-btn {
+			.elementor-add-to-cart .quantity,
+			.clear-cart-btn{
 				border: 1px solid ' . esc_attr( $options['text_color'] ) . ';
-				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
 			.product .woocommerce-loop-product__title{

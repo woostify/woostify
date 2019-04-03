@@ -705,6 +705,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_single_product_gallery_image_slide() {
 			global $product;
+
+			if ( ! is_object( $product ) ) {
+				$id = $this->woostify_get_last_product_id();
+				if ( ! $id ) {
+					return;
+				}
+
+				$product = wc_get_product( $id );
+			}
 			$image_id   = $product->get_image_id();
 			$image_alt  = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
 			$get_size   = wc_get_image_size( 'shop_catalog' );
@@ -758,6 +767,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_single_product_gallery_thumb_slide() {
 			global $product;
+			if ( ! is_object( $product ) ) {
+				$id = $this->woostify_get_last_product_id();
+				if ( ! $id ) {
+					return;
+				}
+
+				$product = wc_get_product( $id );
+			}
+
 			$image_id   = $product->get_image_id();
 			$image_alt  = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
 
@@ -875,6 +893,34 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				</a>
 			</div>
 			<?php
+		}
+
+		/**
+		 * Get the last ID of product
+		 */
+		public function woostify_get_last_product_id() {
+			$args = array(
+				'post_type'           => 'product',
+				'posts_per_page'      => 1,
+				'post_status'         => 'publish',
+				'ignore_sticky_posts' => 1,
+			);
+
+			$query = new WP_Query( $args );
+
+			$id = false;
+
+			if ( $query->have_posts() ) {
+				while ( $query->have_posts() ) {
+					$query->the_post();
+
+					$id = get_the_ID();
+				}
+
+				wp_reset_postdata();
+			}
+
+			return $id;
 		}
 	}
 	Woostify_WooCommerce::get_instance();
