@@ -10,13 +10,11 @@
 // Carousel widget.
 function renderSlider( selector, options ) {
 	var element = document.querySelectorAll( selector );
-
 	if ( ! element.length ) {
 		return;
 	}
 
 	for ( var i = 0, j = element.length; i < j; i++ ) {
-
 		if ( element[i].classList.contains( 'tns-slider' ) ) {
 			continue;
 		}
@@ -128,6 +126,12 @@ document.addEventListener( 'DOMContentLoaded', function(){
 			return;
 		}
 
+        // For Elementor Preview Mode.
+        if ( ! gallery ) {
+            gallery           = document.getElementsByClassName( 'product-gallery' )[0];
+            thumbOptions.axis = gallery.classList.contains( 'vertical-style' ) ? 'vertical' : 'horizontal';
+        }
+
 		var images      = '',
 			thumbnails  = '',
 			variationId = document.querySelector( 'form.variations_form [name=variation_id]' );
@@ -201,8 +205,13 @@ document.addEventListener( 'DOMContentLoaded', function(){
 	if ( 'function' === typeof( onElementorLoaded ) ) {
 		onElementorLoaded( function() {
 			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/global', function() {
-				if ( productThumbnails ) {
+				if ( document.getElementById( 'product-thumbnail-images' ) ) {
 					renderSlider( '#product-images', options );
+
+                    if ( ! gallery ) {
+                        gallery           = document.getElementsByClassName( 'product-gallery' )[0];
+                        thumbOptions.axis = gallery.classList.contains( 'vertical-style' ) ? 'vertical' : 'horizontal';
+                    }
 					renderSlider( '#product-thumbnail-images', thumbOptions );
 				}
 				carouselAction();

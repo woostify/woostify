@@ -7226,7 +7226,6 @@ dd {
 
 /* product images */
 .product-images {
-  order: 2;
   overflow: hidden;
 }
 
@@ -7237,10 +7236,13 @@ dd {
 
 /* product thumbnail images */
 @media (min-width: 768px) {
-  .product-gallery.vertical-style .product-gallery {
+  .product-gallery.vertical-style.has-product-thumbnails {
     display: flex;
   }
-  .product-gallery.vertical-style .has-product-thumbnails .product-thumbnail-images {
+  .product-gallery.vertical-style.has-product-thumbnails .product-images {
+    order: 2;
+  }
+  .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images {
     width: 50px;
     min-width: 50px;
     margin-right: 20px;

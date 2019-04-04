@@ -1,20 +1,17 @@
 # Compiled CSS
 
-# Sass
-.sass-cache
-
-# Grunt
 /node_modules/
 /woostify/
-npm-debug.log
+*.log
+*.map
 
 # Codekit
 config.codekit
 
 # Transifex
 .transifexrc
-/languages/*.po
-/languages/*.mo
+*.po
+*.mo
 
 # PhpStorm
 .idea
@@ -27,6 +24,7 @@ config.codekit
 
 # Sublime
 *.cache
+*sublime*
 
 # FTP
 *ftp*

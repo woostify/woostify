@@ -143,7 +143,6 @@
 /* product images */
 
 .product-images {
-	order: 2;
 	overflow: hidden;
 	.image-item {
 		margin: 0;
@@ -152,13 +151,14 @@
 }
 
 /* product thumbnail images */
-.product-gallery.vertical-style{
-	@media ( min-width: $screen-sm ) {
-		.product-gallery{
-			display: flex;
-		}
-		.has-product-thumbnails {
-			.product-thumbnail-images{
+.product-gallery{
+    &.vertical-style.has-product-thumbnails {
+        @media ( min-width: $screen-sm ) {
+            display: flex;
+            .product-images{
+                order: 2;
+            }
+            .product-thumbnail-images{
 				width: 50px;
 				min-width: 50px;
 				margin-right: 20px;
