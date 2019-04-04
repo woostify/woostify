@@ -13,7 +13,7 @@ function easyZoomHandle() {
 		return;
 	}
 
-	var image = jQuery( document.body ).find( '.product-images .image-item:eq(0)' );
+	var image = jQuery( '.product-images .image-item' );
 
 	if ( ! image.length || document.documentElement.classList.contains( 'quick-view-open' ) ) {
 		return;

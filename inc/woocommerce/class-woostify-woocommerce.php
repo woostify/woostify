@@ -205,6 +205,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			if ( wp_script_is( 'wc-add-to-cart-variation', 'registered' ) && ! wp_script_is( 'wc-add-to-cart-variation', 'enqueued' ) ) {
 				wp_enqueue_script( 'wc-add-to-cart-variation' );
 			}
+
+			// Add global variable for variation gallery.
+			$this->woostify_global_for_vartiation_gallery();
 		}
 
 		/**
@@ -695,8 +698,25 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Single gallery product open
 		 */
 		public function woostify_single_product_gallery_open() {
+			global $product;
+
+			if ( ! is_object( $product ) ) {
+				$id = $this->woostify_get_last_product_id();
+				if ( ! $id ) {
+					return;
+				}
+
+				$product = wc_get_product( $id );
+			}
+
+			$options    = woostify_options( false );
+			$gallery_id = $product->get_gallery_image_ids();
+			$classes[]  = $options['shop_single_gallery_layout'] . '-style';
+			if ( ! empty( $gallery_id ) ) {
+				$classes[] = 'has-product-thumbnails';
+			}
 			?>
-			<div class="product-gallery">
+			<div class="product-gallery <?php echo esc_attr( implode( ' ', $classes ) ); ?>">
 			<?php
 		}
 
@@ -706,16 +726,53 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * @param object $product The product.
 		 */
 		public function woostify_get_variation_gallery( $product ) {
-			$images               = array();
-			$available_variations = array_values( $product->get_available_variations() );
+			$images = array();
 
-			foreach ( $available_variations as $k => $v ) {
-				foreach ( $v['variation_gallery_images'] as $i => $j ) {
-					array_push( $images, $j );
-				}
+			if ( ! $product->is_type( 'variable' ) ) {
+				return $images;
 			}
 
+			$variations = array_values( $product->get_available_variations() );
+
+			$images = array();
+			foreach ( $variations as $k ) {
+				array_unshift( $k['variation_gallery_images'], array( 'variation_id' => $k['variation_id'] ) );
+				array_push( $images, $k['variation_gallery_images'] );
+			}
 			return $images;
+		}
+
+		/**
+		 * Add global variation
+		 */
+		public function woostify_global_for_vartiation_gallery() {
+			global $product;
+
+			if ( ! is_object( $product ) ) {
+				$id = $this->woostify_get_last_product_id();
+				if ( ! $id ) {
+					return;
+				}
+
+				$product = wc_get_product( $id );
+			}
+			$product_id = $product->get_id();
+
+			// Variation gallery.
+			wp_localize_script(
+				'woostify-product-variation',
+				'woostify_variation_gallery',
+				$this->woostify_get_variation_gallery( $product )
+			);
+
+			// Woostify default gallery.
+			if ( class_exists( 'Woo_Variation_Gallery' ) ) {
+				wp_localize_script(
+					'woostify-product-variation',
+					'woostify_default_gallery',
+					wvg_get_default_gallery_images( $product_id )
+				);
+			}
 		}
 
 		/**
@@ -779,13 +836,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				</div>
 			</div>
 			<?php
-
-			// Variation gallery.
-			wp_localize_script(
-				'woostify-product-variation',
-				'woostify_variation_gallery',
-				$this->woostify_get_variation_gallery( $product )
-			);
 		}
 
 		/**
@@ -816,28 +866,27 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			}
 
 			$gallery_id = $product->get_gallery_image_ids();
-
-			if ( ! empty( $gallery_id ) ) {
-				?>
-				<div class="product-thumbnail-images">
-					<div id="product-thumbnail-images">
-						<div class="thumbnail-item">
-							<img src="<?php echo esc_url( $image_small_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
-						</div>
-
-						<?php
-						foreach ( $gallery_id as $key ) :
-							$g_thumb_src = wp_get_attachment_image_src( $key, 'thumbnail' );
-							$g_thumb_alt = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
-							?>
-							<div class="thumbnail-item">
-								<img src="<?php echo esc_url( $g_thumb_src[0] ); ?>" alt="<?php echo esc_attr( $g_thumb_alt ); ?>">
-							</div>
-						<?php endforeach; ?>
+			?>
+			<div class="product-thumbnail-images">
+				<?php if ( ! empty( $gallery_id ) ) { ?>
+				<div id="product-thumbnail-images">
+					<div class="thumbnail-item">
+						<img src="<?php echo esc_url( $image_small_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
 					</div>
+
+					<?php
+					foreach ( $gallery_id as $key ) :
+						$g_thumb_src = wp_get_attachment_image_src( $key, 'thumbnail' );
+						$g_thumb_alt = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
+						?>
+						<div class="thumbnail-item">
+							<img src="<?php echo esc_url( $g_thumb_src[0] ); ?>" alt="<?php echo esc_attr( $g_thumb_alt ); ?>">
+						</div>
+					<?php endforeach; ?>
 				</div>
-				<?php
-			}
+				<?php } ?>
+			</div>
+			<?php
 		}
 
 		/**

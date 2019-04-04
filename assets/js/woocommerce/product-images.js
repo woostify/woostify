@@ -6,8 +6,9 @@
 
 'use strict';
 
+
 // Carousel widget.
-var productImages = function( selector, options ) {
+function renderSlider( selector, options ) {
 	var element = document.querySelectorAll( selector );
 
 	if ( ! element.length ) {
@@ -24,10 +25,10 @@ var productImages = function( selector, options ) {
 	}
 }
 
-// Generate product images item.
-function generateImageItem( fullSrc, imgSize, src ) {
+// Create product images item.
+function createImages( fullSrc, src, size ) {
 	var item = '<figure class="image-item ez-zoom" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">';
-	item += '<a href=' + fullSrc + ' data-size=' + imgSize + ' itemprop="contentUrl">';
+	item += '<a href=' + fullSrc + ' data-size=' + size + ' itemprop="contentUrl">';
 	item += '<img src=' + src + ' itemprop="thumbnail">';
 	item += '</a>';
 	item += '</figure>';
@@ -35,11 +36,22 @@ function generateImageItem( fullSrc, imgSize, src ) {
 	return item;
 }
 
-document.addEventListener( 'DOMContentLoaded', function(){
+// Create product thumbnails item.
+function createThumbnails( src ) {
+	var item = '<div class="thumbnail-item">';
+	item += '<img src="' + src + '">';
+	item += '</div>';
 
-	// Product image.
+	return item;
+}
+
+document.addEventListener( 'DOMContentLoaded', function(){
+	var gallery           = document.getElementsByClassName( 'product-gallery' )[0],
+		productThumbnails = document.getElementById( 'product-thumbnail-images' );
+
+	// Product images.
 	var imageCarousel,
-		option = {
+		options = {
 			loop: false,
 			container: '#product-images',
 			navContainer: '#product-thumbnail-images',
@@ -49,13 +61,9 @@ document.addEventListener( 'DOMContentLoaded', function(){
 			mouseDrag: true
 	}
 
-	if ( document.getElementById( 'product-thumbnail-images' ) ) {
-		imageCarousel = tns( option );
-	}
-
-	// Product thumb images.
+	// Product thumbnails.
 	var thumbCarousel,
-		thumbOption = {
+		thumbOptions = {
 			loop: false,
 			container: '#product-thumbnail-images',
 			gutter: 10,
@@ -65,13 +73,17 @@ document.addEventListener( 'DOMContentLoaded', function(){
 			controls: true
 	}
 
-	var media = window.matchMedia( '( min-width: 768px )' ).matches;
-	if ( media ) {
-		thumbOption.axis = document.body.classList.contains( 'has-gallery-layout-vertical' ) ? 'vertical' : 'horizontal';
+	if (
+		window.matchMedia( '( min-width: 768px )' ).matches &&
+		gallery &&
+		gallery.classList.contains( 'vertical-style' )
+	) {
+		thumbOptions.axis = 'vertical';
 	}
 
-	if ( document.getElementById( 'product-thumbnail-images' ) ) {
-		thumbCarousel = tns( thumbOption );
+	if ( productThumbnails ) {
+		imageCarousel = tns( options );
+		thumbCarousel = tns( thumbOptions );
 	}
 
 	// Arrow event.
@@ -110,25 +122,74 @@ document.addEventListener( 'DOMContentLoaded', function(){
 		}
 	}
 
+	// Update gallery.
+	function updateGallery( data, boolean ) {
+		if ( ! data.length ) {
+			return;
+		}
+
+		var images      = '',
+			thumbnails  = '',
+			variationId = document.querySelector( 'form.variations_form [name=variation_id]' );
+
+		for ( var i = 0, j = data.length; i < j; i++ ) {
+			if ( true === boolean ) {
+				// For reset variation.
+				var size = data[i].full_src_w + 'x' + data[i].full_src_h;
+				images     += createImages( data[i].full_src, data[i].src, size );
+				thumbnails += createThumbnails( data[i].gallery_thumbnail_src );
+			} else if ( variationId && data[i][0].variation_id && parseInt( variationId.value ) === data[i][0].variation_id ) {
+				// Render new item for new Slider.
+				for ( var x = 1, y = data[i].length; x < y; x++ ) {
+					var size = data[i][x].full_src_w + 'x' + data[i][x].full_src_h;
+					images     += createImages( data[i][x].full_src, data[i][x].src, size );
+					thumbnails += createThumbnails( data[i][x].gallery_thumbnail_src );
+				}
+			}
+		}
+
+		// Destroy current slider.
+		imageCarousel ? imageCarousel.destroy() : false;
+		thumbCarousel ? thumbCarousel.destroy() : false;
+
+		// Append new markup html.
+		var productImages = document.getElementById( 'product-images' ),
+			productThumbs = document.getElementById( 'product-thumbnail-images' );
+
+		// If not have #product-thumbnail-images, create it.
+		if ( ! productThumbs ) {
+			var productThumbs = document.createElement( 'div' );
+
+			productThumbs.setAttribute( 'id', 'product-thumbnail-images' );
+			document.getElementsByClassName( 'product-thumbnail-images' )[0].appendChild( productThumbs );
+			gallery ? gallery.classList.add( 'has-product-thumbnails' ) : false;
+		}
+
+		productImages.innerHTML = images;
+		productThumbs.innerHTML = thumbnails;
+		// Rebuild new slider.
+		imageCarousel = imageCarousel ? imageCarousel.rebuild() : tns( options );
+		thumbCarousel = thumbCarousel ? thumbCarousel.rebuild() : tns( thumbOptions );
+
+		// Re-init easyzoom.
+		easyZoomHandle();
+
+		// Re-init Photo Swipe.
+		initPhotoSwipe( '#product-images' );
+	}
+
 	// Carousel action.
 	function carouselAction() {
 		// Trigger variation.
 		jQuery( document.body ).on( 'found_variation', 'form.variations_form', function() {
 			resetCarousel();
-
-			for ( var i = 0, j = woostify_variation_gallery.length; i < j; i++ ) {
-				console.log( woostify_variation_gallery[i] );
-				if ( woostify_variation_gallery[i].css_class ) {
-					var size = woostify_variation_gallery[i].full_src_w + 'x' + woostify_variation_gallery[i].full_src_h;
-					document.body.innerHTML = generateImageItem( woostify_variation_gallery[i].full_src, size, woostify_variation_gallery[i].src );
-					/*document.body.insertAdjacentHTML( 'beforebegin', generateImageItem( woostify_variation_gallery[i].full_src, size, woostify_variation_gallery[i].src ) );*/
-				}
-			}
+			updateGallery( woostify_variation_gallery );
 		});
 
 		// Trigger reset.
 		jQuery( '.reset_variations' ).on( 'click', function(){
 			resetCarousel();
+			updateGallery( woostify_default_gallery, true );
 		});
 	}
 	carouselAction();
@@ -140,8 +201,10 @@ document.addEventListener( 'DOMContentLoaded', function(){
 	if ( 'function' === typeof( onElementorLoaded ) ) {
 		onElementorLoaded( function() {
 			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/global', function() {
-				productImages( '#product-images', option );
-				productImages( '#product-thumbnail-images', thumbOption );
+				if ( productThumbnails ) {
+					renderSlider( '#product-images', options );
+					renderSlider( '#product-thumbnail-images', thumbOptions );
+				}
 				carouselAction();
 				arrowsEvent();
 			} );
