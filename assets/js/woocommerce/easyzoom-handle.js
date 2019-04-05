@@ -29,7 +29,9 @@ function easyZoomHandle() {
 document.addEventListener( 'DOMContentLoaded', function() {
 	// Setup image zoom.
 	if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
-		jQuery( '.ez-zoom' ).easyZoom();
+		jQuery( '.ez-zoom' ).easyZoom({
+			loadingNotice: ''
+		});
 	}
 
 	// For Elementor Preview Mode.

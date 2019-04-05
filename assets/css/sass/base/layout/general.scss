@@ -1,10 +1,12 @@
 /* Content full-width */
 .elementor-template-full-width{
-	#content{
-		.woostify-container{
-			width: 100%;
-			padding-left: 0;
-			padding-right: 0;
+	&:not(.single-product){
+		#content{
+			.woostify-container{
+				width: 100%;
+				padding-left: 0;
+				padding-right: 0;
+			}
 		}
 	}
 }

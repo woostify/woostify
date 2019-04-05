@@ -4037,7 +4037,7 @@ dd {
 }
 
 /* Content full-width */
-.elementor-template-full-width #content .woostify-container {
+.elementor-template-full-width:not(.single-product) #content .woostify-container {
   width: 100%;
   padding-left: 0;
   padding-right: 0;
@@ -7249,7 +7249,6 @@ dd {
   }
 }
 
-.has-gallery-layout-horizontal .product-images,
 .has-product-thumbnails.horizontal-style .product-images {
   margin-bottom: 20px;
 }
@@ -7377,6 +7376,10 @@ dd {
 
 .variations .label {
   width: 30%;
+}
+
+.variations .value {
+  max-width: 50%;
 }
 
 .single_variation {

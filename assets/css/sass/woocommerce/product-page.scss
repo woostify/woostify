@@ -166,7 +166,6 @@
 		}
 	}
 }
-.has-gallery-layout-horizontal,
 .has-product-thumbnails.horizontal-style{
 	.product-images{
 		margin-bottom: 20px;
@@ -306,6 +305,9 @@
 	}
 	.label{
 		width: 30%;
+	}
+	.value{
+		max-width: 50%;
 	}
 }
 

@@ -39,6 +39,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		public function __construct() {
 			add_action( 'after_setup_theme', array( $this, 'woostify_woocommerce_setup' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'woocommerce_scripts' ), 200 );
+			add_action( 'elementor/preview/enqueue_scripts', array( $this, 'woostify_elementor_preview_product_page_scripts' ) );
 			add_filter( 'body_class', array( $this, 'woocommerce_body_class' ) );
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 			add_filter( 'woocommerce_cross_sells_columns', array( $this, 'woostify_change_cross_sells_columns' ) );
@@ -205,9 +206,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			if ( wp_script_is( 'wc-add-to-cart-variation', 'registered' ) && ! wp_script_is( 'wc-add-to-cart-variation', 'enqueued' ) ) {
 				wp_enqueue_script( 'wc-add-to-cart-variation' );
 			}
+		}
 
-			// Add global variable for variation gallery.
-			$this->woostify_global_for_vartiation_gallery();
+		/**
+		 * Global variation gallery
+		 */
+		public function woostify_elementor_preview_product_page_scripts() {
+			$product = wc_get_product( $this->woostify_get_last_product_id() );
+			$this->woostify_global_for_vartiation_gallery( $product );
 		}
 
 		/**
@@ -715,6 +721,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			if ( ! empty( $gallery_id ) ) {
 				$classes[] = 'has-product-thumbnails';
 			}
+
+			// Global variation gallery.
+			$this->woostify_global_for_vartiation_gallery( $product );
 			?>
 			<div class="product-gallery <?php echo esc_attr( implode( ' ', $classes ) ); ?>">
 			<?php
@@ -739,26 +748,48 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				array_unshift( $k['variation_gallery_images'], array( 'variation_id' => $k['variation_id'] ) );
 				array_push( $images, $k['variation_gallery_images'] );
 			}
+
+			return $images;
+		}
+
+		/**
+		 * Get variation gallery
+		 *
+		 * @param object $product The product.
+		 */
+		public function woostify_get_default_gallery( $product ) {
+			$images                 = array();
+			$product_id             = $product->get_id();
+			$gallery_images         = $product->get_gallery_image_ids();
+			$has_default_thumbnails = false;
+
+			if ( ! empty( $gallery_images ) ) {
+				$has_default_thumbnails = true;
+			}
+
+			if ( has_post_thumbnail( $product_id ) ) {
+				array_unshift( $gallery_images, get_post_thumbnail_id( $product_id ) );
+			}
+
+			if ( ! empty( $gallery_images ) ) {
+				foreach ( $gallery_images as $i => $image_id ) {
+					$images[ $i ]                           = wc_get_product_attachment_props( $image_id );
+					$images[ $i ]['image_id']               = $image_id;
+					$images[ $i ]['has_default_thumbnails'] = $has_default_thumbnails;
+				}
+			}
+
 			return $images;
 		}
 
 		/**
 		 * Add global variation
+		 *
+		 * @param object $product The Product.
 		 */
-		public function woostify_global_for_vartiation_gallery() {
-			global $product;
+		public function woostify_global_for_vartiation_gallery( $product ) {
 
-			if ( ! is_object( $product ) ) {
-				$id = $this->woostify_get_last_product_id();
-				if ( ! $id ) {
-					return;
-				}
-
-				$product = wc_get_product( $id );
-			}
-			$product_id = $product->get_id();
-
-			// Variation gallery.
+			// Woostify Variation gallery.
 			wp_localize_script(
 				'woostify-product-variation',
 				'woostify_variation_gallery',
@@ -766,13 +797,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			);
 
 			// Woostify default gallery.
-			if ( class_exists( 'Woo_Variation_Gallery' ) ) {
-				wp_localize_script(
-					'woostify-product-variation',
-					'woostify_default_gallery',
-					wvg_get_default_gallery_images( $product_id )
-				);
-			}
+			wp_localize_script(
+				'woostify-product-variation',
+				'woostify_default_gallery',
+				$this->woostify_get_default_gallery( $product )
+			);
 		}
 
 		/**
