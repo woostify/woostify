@@ -737,7 +737,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		public function woostify_get_variation_gallery( $product ) {
 			$images = array();
 
-			if ( ! $product->is_type( 'variable' ) ) {
+			if ( ! $product->is_type( 'variable' ) || ! class_exists( 'Woo_Variation_Gallery' ) ) {
 				return $images;
 			}
 
