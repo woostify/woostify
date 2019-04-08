@@ -12,6 +12,9 @@
 		border-top: 2px dashed #e8e8e8;
 		width: 100%;
 		margin-right: 0;
+		@media ( min-width: $screen-md ) {
+			max-width: 50%;
+		}
 	}
 
 	.u-column1{
@@ -52,15 +55,15 @@
     .u-column1{
         margin-bottom: 30px;
 
+        .woocommerce-form-login{
+            width: 100%;
+            max-width: 100%;
+        }
+
         @media ( min-width: $screen-sm ) {
             @include calc( max-width, '( 100% - 30px ) / 2' );
             margin-right: 30px;
             margin-bottom: 0;
-        }
-
-        .woocommerce-form-login{
-            width: 100%;
-            max-width: 100%;
         }
     }
     .u-column2{
@@ -233,5 +236,19 @@
 	border: 0;
 	a+a{
 		margin-top: 10px;
+	}
+}
+
+/* responsive */
+.woocommerce-account{
+	@media ( max-width: $screen-sm - 1 ) {
+		.u-columns.col2-set{
+			.u-column1.col-1,
+			.u-column2.col-2 {
+				width: 100%;
+				max-width: 100%;
+				margin-right: 0;
+			}
+		}
 	}
 }

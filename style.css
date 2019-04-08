@@ -8834,6 +8834,12 @@ footer#colophon {
   margin-right: 0;
 }
 
+@media (min-width: 992px) {
+  .woocommerce-account .woocommerce-form.woocommerce-form-login {
+    max-width: 50%;
+  }
+}
+
 .woocommerce-account .u-column1 {
   float: left;
   width: 48%;
@@ -8871,6 +8877,11 @@ footer#colophon {
   margin-bottom: 30px;
 }
 
+.woocommerce-account .u-column1 .woocommerce-form-login {
+  width: 100%;
+  max-width: 100%;
+}
+
 @media (min-width: 768px) {
   .woocommerce-account .u-column1 {
     max-width: -webkit-calc( ( 100% - 30px ) / 2);
@@ -8878,11 +8889,6 @@ footer#colophon {
     margin-right: 30px;
     margin-bottom: 0;
   }
-}
-
-.woocommerce-account .u-column1 .woocommerce-form-login {
-  width: 100%;
-  max-width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -9054,6 +9060,16 @@ footer#colophon {
 
 .woocommerce-orders-table__cell-order-actions a + a {
   margin-top: 10px;
+}
+
+/* responsive */
+@media (max-width: 767px) {
+  .woocommerce-account .u-columns.col2-set .u-column1.col-1,
+  .woocommerce-account .u-columns.col2-set .u-column2.col-2 {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+  }
 }
 
 .woocommerce-thankyou-order-received {
