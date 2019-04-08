@@ -79,23 +79,6 @@ function woostify_theme_print_elementor_header() {
 add_action( 'woostify_theme_header', 'woostify_theme_print_elementor_header' );
 
 /**
- * Footer close 3 `div` on Header template. For Elementor Pro Footer template only.
- */
-function woostify_footer_close_tag() {
-	if (
-		function_exists( 'elementor_theme_do_location' ) &&
-		elementor_theme_do_location( 'footer' ) &&
-		! elementor_theme_do_location( 'header' )
-	) {
-		?>
-					</div>
-				</div>
-			</div>
-		<?php
-	}
-}
-
-/**
  * Footer template
  */
 function woostify_theme_print_elementor_footer() {
@@ -116,8 +99,7 @@ function woostify_theme_print_elementor_footer() {
 		get_template_part( 'template-parts/footer' );
 	}
 }
-add_action( 'woostify_theme_footer', 'woostify_theme_print_elementor_footer', 9 );
-add_action( 'woostify_theme_footer', 'woostify_footer_close_tag' );
+add_action( 'woostify_theme_footer', 'woostify_theme_print_elementor_footer' );
 
 /**
  * Single template
@@ -142,3 +124,47 @@ function woostify_theme_print_elementor_404() {
 	get_template_part( 'template-parts/404' );
 }
 add_action( 'woostify_theme_404', 'woostify_theme_print_elementor_404' );
+
+
+
+// CUSTOM ELEMENTOR TEMPLATE.
+/**
+ * Add container open tag on after Header End
+ */
+function woostify_content_page_start() {
+	if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'header' ) ) {
+		return;
+	}
+	$container = woostify_site_container();
+	echo '<div class="' . esc_attr( $container ) . '">';
+}
+
+/**
+ * Add container close tag on after Footer Start
+ */
+function woostify_content_page_end() {
+	if ( function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'footer' ) ) {
+		return;
+	}
+	echo '</div>';
+}
+add_action( 'woostify_theme_header', 'woostify_content_page_start', 100 );
+add_action( 'woostify_theme_footer', 'woostify_content_page_end', 1 );
+
+/**
+ * Add 3 close tag if using only Elementor Footer Location
+ */
+function woostify_using_footer_location_only() {
+	if (
+		function_exists( 'elementor_theme_do_location' ) &&
+		elementor_theme_do_location( 'footer' ) &&
+		! elementor_theme_do_location( 'header' )
+	) {
+		?>
+					</div>
+				</div>
+			</div>
+		<?php
+	}
+}
+add_action( 'woostify_theme_footer', 'woostify_using_footer_location_only' );

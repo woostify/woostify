@@ -4967,6 +4967,10 @@ dd {
   }
 }
 
+footer#colophon {
+  clear: both;
+}
+
 .site-footer {
   clear: both;
 }
