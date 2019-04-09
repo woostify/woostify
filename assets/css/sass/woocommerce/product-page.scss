@@ -315,19 +315,6 @@
 	margin-bottom: 40px;
 }
 
-.reset_variations {
-	float: left;
-	margin-top: 0px;
-	display: none;
-	height: 0;
-	@include duration(0s);
-
-	&[style*="visibility: visible"] {
-		height: auto;
-		margin-top: 5px;
-	}
-}
-
 .shop_table {
 	.variation {
 		margin: 0;

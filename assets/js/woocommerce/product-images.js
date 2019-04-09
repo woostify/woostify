@@ -145,7 +145,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
 				images     += createImages( data[i].full_src, data[i].src, size );
 				thumbnails += createThumbnails( data[i].gallery_thumbnail_src );
 
-				if ( data[i].has_default_thumbnails && '1' == data[i].has_default_thumbnails ) {
+				if ( data[i].has_default_thumbnails ) {
 					defaultThumbnails = true;
 				}
 			} else if ( variationId && data[i][0].variation_id && parseInt( variationId.value ) === data[i][0].variation_id ) {
