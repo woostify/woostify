@@ -4,6 +4,7 @@
 /woostify/
 *.log
 *.map
+.sass-cache
 
 # Codekit
 config.codekit
