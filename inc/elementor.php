@@ -143,7 +143,7 @@ function woostify_content_page_start() {
  * Add container close tag on after Footer Start
  */
 function woostify_content_page_end() {
-	if ( function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'footer' ) ) {
+	if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'footer' ) ) {
 		return;
 	}
 	echo '</div>';
