@@ -4,7 +4,6 @@
 /woostify/
 *.log
 *.map
-.sass-cache
 
 # Codekit
 config.codekit
@@ -24,7 +23,7 @@ config.codekit
 /vendor
 
 # Sublime
-*.cache
+*cache*
 *sublime*
 
 # FTP
