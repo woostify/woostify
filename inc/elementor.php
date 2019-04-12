@@ -129,6 +129,21 @@ add_action( 'woostify_theme_404', 'woostify_theme_print_elementor_404' );
 
 // CUSTOM ELEMENTOR TEMPLATE.
 /**
+ * Add 3 close tag if using only Elementor Footer Location
+ */
+function woostify_using_footer_location_only() {
+	if ( ! defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+		return;
+	}
+	?>
+				</div>
+			</div>
+		</div>
+	<?php
+}
+add_action( 'woostify_theme_footer', 'woostify_using_footer_location_only', 5 );
+
+/**
  * Add container open tag on after Header End
  */
 function woostify_content_page_start() {
@@ -149,22 +164,4 @@ function woostify_content_page_end() {
 	echo '</div>';
 }
 add_action( 'woostify_theme_header', 'woostify_content_page_start', 100 );
-add_action( 'woostify_theme_footer', 'woostify_content_page_end', 1 );
-
-/**
- * Add 3 close tag if using only Elementor Footer Location
- */
-function woostify_using_footer_location_only() {
-	if (
-		function_exists( 'elementor_theme_do_location' ) &&
-		elementor_theme_do_location( 'footer' ) &&
-		! elementor_theme_do_location( 'header' )
-	) {
-		?>
-					</div>
-				</div>
-			</div>
-		<?php
-	}
-}
-add_action( 'woostify_theme_footer', 'woostify_using_footer_location_only' );
+add_action( 'woostify_theme_footer', 'woostify_content_page_end' );
