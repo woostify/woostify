@@ -840,7 +840,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			<div class="product-images">
 				<div id="product-images" itemscope itemtype="http://schema.org/ImageGallery">
 					<figure class="image-item ez-zoom" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-						<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" itemprop="contentUrl">
+						<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" itemprop="contentUrl" data-elementor-open-lightbox="no">
 							<img src="<?php echo esc_url( $image_medium_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" itemprop="thumbnail">
 						</a>
 					</figure>
@@ -854,7 +854,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 							$g_img_alt        = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
 							?>
 							<figure class="image-item ez-zoom" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-								<a href="<?php echo esc_url( $g_full_img_src[0] ); ?>" data-size="<?php echo esc_attr( $g_image_size ); ?>" itemprop="contentUrl">
+								<a href="<?php echo esc_url( $g_full_img_src[0] ); ?>" data-size="<?php echo esc_attr( $g_image_size ); ?>" itemprop="contentUrl" data-elementor-open-lightbox="no">
 									<img src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>" itemprop="thumbnail">
 								</a>
 							</figure>
