@@ -5,6 +5,8 @@
 	margin: 0 5px 10px 0;
 	display: inline-block;
 	border: 3px solid #fcfcfc;
+	height: auto;
+	background-color: transparent;
 }
 .customize-control-radio-image label.ui-state-active {
 	border-color: #5ea1ed;

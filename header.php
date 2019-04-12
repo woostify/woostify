@@ -17,4 +17,5 @@
 </head>
 
 <body <?php body_class(); ?>>
-	<?php do_action( 'woostify_theme_header' ); ?>
+	<?php
+	do_action( 'woostify_theme_header' );

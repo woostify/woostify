@@ -189,10 +189,14 @@ document.addEventListener( 'DOMContentLoaded', function(){
 		}
 
 		// Re-init easyzoom.
-		easyZoomHandle();
+		if ( 'function' === typeof( easyZoomHandle ) ) {
+			easyZoomHandle();
+		}
 
 		// Re-init Photo Swipe.
-		initPhotoSwipe( '#product-images' );
+		if ( 'function' === typeof( initPhotoSwipe ) ) {
+			initPhotoSwipe( '#product-images' );
+		}
 	}
 
 	// Carousel action.
