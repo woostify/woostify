@@ -44,6 +44,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 			add_filter( 'woocommerce_cross_sells_columns', array( $this, 'woostify_change_cross_sells_columns' ) );
 			add_filter( 'woocommerce_show_page_title', array( $this, 'woostify_remove_woocommerce_shop_title' ) );
+			add_filter( 'woocommerce_available_variation', array( $this, 'woostify_available_variation_gallery' ), 90, 3 );
 
 			// Remove Woo-Commerce Default actions.
 			add_action( 'init', array( $this, 'woocommerce_remove_action' ) );
@@ -734,29 +735,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 *
 		 * @param object $product The product.
 		 */
-		public function woostify_get_variation_gallery( $product ) {
-			$images = array();
-
-			if ( ! $product->is_type( 'variable' ) || ! class_exists( 'Woo_Variation_Gallery' ) ) {
-				return $images;
-			}
-
-			$variations = array_values( $product->get_available_variations() );
-
-			$images = array();
-			foreach ( $variations as $k ) {
-				array_unshift( $k['variation_gallery_images'], array( 'variation_id' => $k['variation_id'] ) );
-				array_push( $images, $k['variation_gallery_images'] );
-			}
-
-			return $images;
-		}
-
-		/**
-		 * Get variation gallery
-		 *
-		 * @param object $product The product.
-		 */
 		public function woostify_get_default_gallery( $product ) {
 			$images                 = array();
 			$product_id             = $product->get_id();
@@ -777,6 +755,73 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					$images[ $i ]['image_id']               = $image_id;
 					$images[ $i ]['has_default_thumbnails'] = $has_default_thumbnails;
 				}
+			}
+
+			return $images;
+		}
+
+		/**
+		 * Available Gallery
+		 *
+		 * @param array  $available_variation Avaiable Variations.
+		 * @param object $variation_product_object Product object.
+		 * @param array  $variation Variations.
+		 */
+		public function woostify_available_variation_gallery( $available_variation, $variation_product_object, $variation ) {
+			$product_id         = absint( $variation->get_parent_id() );
+			$variation_id       = absint( $variation->get_id() );
+			$variation_image_id = absint( $variation->get_image_id() );
+			$product            = wc_get_product( $product_id );
+
+			if ( ! $product->is_type( 'variable' ) || ! class_exists( 'WC_Additional_Variation_Images' ) ) {
+				return $available_variation;
+			}
+
+			$gallery_images = get_post_meta( $variation_id, '_wc_additional_variation_images', true );
+			if ( ! $gallery_images ) {
+				return $available_variation;
+			}
+			$gallery_images = explode( ',', $gallery_images );
+
+			if ( $variation_image_id ) {
+				// Add Variation Default Image.
+				array_unshift( $gallery_images, $variation->get_image_id() );
+			} elseif ( has_post_thumbnail( $product_id ) ) {
+				// Add Product Default Image.
+				array_unshift( $gallery_images, get_post_thumbnail_id( $product_id ) );
+			}
+
+			$available_variation['woostify_variation_gallery_images'] = [];
+			foreach ( $gallery_images as $k => $v ) {
+				$available_variation['woostify_variation_gallery_images'][ $k ] = wc_get_product_attachment_props( $v );
+			}
+
+			return $available_variation;
+		}
+
+		/**
+		 * Get variation gallery
+		 *
+		 * @param object $product The product.
+		 */
+		public function woostify_get_variation_gallery( $product ) {
+			$images = array();
+
+			if ( ! $product->is_type( 'variable' ) ) {
+				return $images;
+			}
+
+			$variations = array_values( $product->get_available_variations() );
+			$key        = class_exists( 'WC_Additional_Variation_Images' ) ? 'woostify_variation_gallery_images' : 'variation_gallery_images';
+
+			$images = array();
+			foreach ( $variations as $k ) {
+				if ( ! isset( $k[ $key ] ) ) {
+					break;
+				}
+
+				array_unshift( $k[ $key ], array( 'variation_id' => $k['variation_id'] ) );
+				array_push( $images, $k[ $key ] );
 			}
 
 			return $images;

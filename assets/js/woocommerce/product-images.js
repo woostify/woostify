@@ -4,6 +4,8 @@
  * @package woostify
  */
 
+/* global woostify_variation_gallery, woostify_default_gallery */
+
 'use strict';
 
 
@@ -122,7 +124,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
 
 	// Update gallery.
 	function updateGallery( data, reset ) {
-		if ( ! data.length ) {
+		if ( ! woostify_variation_gallery.length ) {
 			return;
 		}
 

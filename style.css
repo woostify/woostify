@@ -6487,6 +6487,10 @@ footer#colophon,
   margin-right: 10px;
 }
 
+.woocommerce-message {
+  clear: both;
+}
+
 @media (max-width: 600px) {
   .woocommerce-message {
     flex-direction: column;
