@@ -1208,7 +1208,7 @@ if ( ! function_exists( 'woostify_is_product_archive' ) ) {
 			return false;
 		}
 
-		if ( is_shop() || is_product_taxonomy() || is_product_category() || is_product_tag() ) {
+		if ( is_shop() || is_product_taxonomy() || is_product_category() || is_product_tag() || is_tax() ) {
 			return true;
 		} else {
 			return false;
@@ -1406,7 +1406,6 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		$options         = woostify_options( false );
 
 		// Metabox options.
-		$page_id         = woostify_get_page_id();
 		$metabox_sidebar = woostify_get_metabox( 'site-sidebar' );
 
 		// Customize options.

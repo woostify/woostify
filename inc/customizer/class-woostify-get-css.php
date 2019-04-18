@@ -320,7 +320,9 @@ class Woostify_Get_CSS {
 			.blog-layout-grid .site-main .post-read-more a,
 			.site-footer a:hover,
 			.woostify-simple-subsbrice-form input[type="submit"],
-			.woocommerce-tabs li.active a{
+			.woocommerce-tabs li.active a,
+			#secondary .widget .current-cat > a,
+			#secondary .widget .current-cat > span{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 

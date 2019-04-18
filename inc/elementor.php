@@ -17,8 +17,6 @@ function woostify_register_elementor_locations( $elementor_theme_manager ) {
 			'hook'            => 'woostify_theme_header',
 			'remove_hooks'    => [ 'woostify_theme_print_elementor_header' ],
 			'label'           => __( 'Woostify Header', 'woostify' ),
-			'multiple'        => false,
-			'edit_in_content' => true,
 		]
 	);
 	$elementor_theme_manager->register_location(
@@ -27,8 +25,6 @@ function woostify_register_elementor_locations( $elementor_theme_manager ) {
 			'hook'            => 'woostify_theme_footer',
 			'remove_hooks'    => [ 'woostify_theme_print_elementor_footer' ],
 			'label'           => __( 'Woostify Footer', 'woostify' ),
-			'multiple'        => false,
-			'edit_in_content' => true,
 		]
 	);
 	$elementor_theme_manager->register_location(
@@ -37,18 +33,14 @@ function woostify_register_elementor_locations( $elementor_theme_manager ) {
 			'hook'            => 'woostify_theme_single',
 			'remove_hooks'    => [ 'woostify_theme_print_elementor_single' ],
 			'label'           => __( 'Woostify Single', 'woostify' ),
-			'multiple'        => false,
-			'edit_in_content' => true,
 		]
 	);
 	$elementor_theme_manager->register_location(
-		'archive',
+		'product_archive',
 		[
 			'hook'            => 'woostify_theme_archive',
 			'remove_hooks'    => [ 'woostify_theme_print_elementor_archive' ],
 			'label'           => __( 'Woostify Archive', 'woostify' ),
-			'multiple'        => false,
-			'edit_in_content' => true,
 		]
 	);
 	$elementor_theme_manager->register_location(
@@ -57,8 +49,6 @@ function woostify_register_elementor_locations( $elementor_theme_manager ) {
 			'hook'            => 'woostify_theme_404',
 			'remove_hooks'    => [ 'woostify_theme_print_elementor_404' ],
 			'label'           => __( 'Woostify 404', 'woostify' ),
-			'multiple'        => false,
-			'edit_in_content' => true,
 		]
 	);
 }

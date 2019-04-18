@@ -77,10 +77,13 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 			return false;
 		}
 
-		$id        = woostify_get_page_id();
 		$edit_mode = woostify_get_metabox( '_elementor_edit_mode' );
 
 		$elementor = 'builder' === $edit_mode ? true : false;
+
+		if ( class_exists( 'woocommerce' ) && is_tax() ) {
+			$elementor = false;
+		}
 
 		return $elementor;
 	}
