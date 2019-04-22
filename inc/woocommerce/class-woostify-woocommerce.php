@@ -214,7 +214,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_elementor_preview_product_page_scripts() {
 			$product = wc_get_product( $this->woostify_get_last_product_id() );
-			$this->woostify_global_for_vartiation_gallery( $product );
+			if ( ! is_object( $product ) ) {
+				$this->woostify_global_for_vartiation_gallery( $product );
+			}
 		}
 
 		/**
@@ -736,7 +738,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * @param object $product The product.
 		 */
 		public function woostify_get_default_gallery( $product ) {
-			$images                 = array();
+			$images = array();
+			if ( ! is_object( $product ) ) {
+				return $images;
+			}
+
 			$product_id             = $product->get_id();
 			$gallery_images         = $product->get_gallery_image_ids();
 			$has_default_thumbnails = false;
@@ -807,7 +813,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		public function woostify_get_variation_gallery( $product ) {
 			$images = array();
 
-			if ( ! $product->is_type( 'variable' ) ) {
+			if ( ! is_object( $product ) || ! $product->is_type( 'variable' ) ) {
 				return $images;
 			}
 
