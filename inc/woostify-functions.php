@@ -89,6 +89,21 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_is_elementor_edit_mode' ) ) {
+	/**
+	 * Condition if Current screen is Edit mode || Preview mode.
+	 */
+	function woostify_is_elementor_edit_mode() {
+		if ( ! woostify_is_elementor_activated() ) {
+			return false;
+		}
+
+		$support_old_php_version = ( \Elementor\Plugin::$instance->editor->is_edit_mode() || \Elementor\Plugin::$instance->preview->is_preview_mode() );
+
+		return $support_old_php_version;
+	}
+}
+
 if ( ! function_exists( 'woostify_theme_name' ) ) {
 	/**
 	 * Get theme name.

@@ -124,7 +124,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
 
 	// Update gallery.
 	function updateGallery( data, reset ) {
-		if ( ! woostify_variation_gallery.length ) {
+		if ( ! data.length || document.documentElement.classList.contains( 'quick-view-open' ) ) {
 			return;
 		}
 
@@ -206,13 +206,17 @@ document.addEventListener( 'DOMContentLoaded', function(){
 		// Trigger variation.
 		jQuery( document.body ).on( 'found_variation', 'form.variations_form', function() {
 			resetCarousel();
-			updateGallery( woostify_variation_gallery );
+			if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
+				updateGallery( woostify_variation_gallery );
+			}
 		});
 
 		// Trigger reset.
 		jQuery( '.reset_variations' ).on( 'click', function(){
 			resetCarousel();
-			updateGallery( woostify_default_gallery, true );
+			if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
+				updateGallery( woostify_default_gallery, true );
+			}
 
 			if ( document.body.classList.contains( 'elementor-editor-active' ) || document.body.classList.contains( 'elementor-editor-preview' ) ) {
 				if ( ! document.getElementById( 'product-thumbnail-images' ) ) {

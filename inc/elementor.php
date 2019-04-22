@@ -115,8 +115,6 @@ function woostify_theme_print_elementor_404() {
 }
 add_action( 'woostify_theme_404', 'woostify_theme_print_elementor_404' );
 
-
-
 // CUSTOM ELEMENTOR TEMPLATE.
 /**
  * Add 3 close tag if using only Elementor Footer Location

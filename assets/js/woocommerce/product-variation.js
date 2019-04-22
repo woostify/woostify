@@ -7,8 +7,8 @@
 
 'use strict';
 
-function productVariation() {
-	var gallery       = jQuery( document.body ).find( '.product-gallery' ),
+function productVariation( selector ) {
+	var gallery       = jQuery( selector ),
 		image         = gallery.find( '.image-item:eq(0)' ),
 		imageSrc      = image.find( 'img' ).prop( 'src' ),
 		// Photoswipe + zoom.
@@ -54,13 +54,13 @@ function productVariation() {
 }
 
 document.addEventListener( 'DOMContentLoaded', function() {
-	productVariation();
+	productVariation( '.product-gallery' );
 
 	// For Elementor Preview Mode.
 	if ( 'function' === typeof( onElementorLoaded ) ) {
 		onElementorLoaded( function() {
 			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/global', function() {
-				productVariation();
+				productVariation( '.product-gallery' );
 			} );
 		} );
 	}

@@ -1,0 +1,11 @@
+.elementor-add-to-cart {
+	&.elementor-product-variable {
+		.variations {
+			.value {
+				&:before{
+					content: none !important;
+				}
+			}
+		}
+	}
+}
