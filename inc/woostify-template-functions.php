@@ -389,6 +389,28 @@ if ( ! function_exists( 'woostify_replace_logo_attr' ) ) {
 	add_filter( 'wp_get_attachment_image_attributes', 'woostify_replace_logo_attr', 10, 3 );
 }
 
+if ( ! function_exists( 'woostify_get_logo_image_url' ) ) {
+	/**
+	 * Get logo image url
+	 *
+	 * @param string $size The image size.
+	 */
+	function woostify_get_logo_image_url( $size = 'full' ) {
+		$options   = woostify_options( false );
+		$image_src = '';
+
+		if ( $options['retina_logo'] ) {
+			$image_src = $options['retina_logo'];
+		} elseif ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+			$image_id  = get_theme_mod( 'custom_logo' );
+			$image     = wp_get_attachment_image_src( $image_id, $size );
+			$image_src = $image[0];
+		}
+
+		return $image_src;
+	}
+}
+
 if ( ! function_exists( 'woostify_site_title_or_logo' ) ) {
 	/**
 	 * Display the site title or logo
@@ -1280,7 +1302,7 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 			return;
 		}
 
-		$title_icon = apply_filters( 'woostify_dialog_search_title_icon', WOOSTIFY_THEME_URI . 'assets/images/logo.svg' );
+		$image_icon = woostify_get_logo_image_url();
 		$close_icon = apply_filters( 'woostify_dialog_search_close_icon', 'ti-close' );
 		?>
 
@@ -1289,9 +1311,9 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 				<?php do_action( 'woostify_dialog_search_before' ); ?>
 
 				<div class="dialog-search-header">
-					<?php if ( false != $title_icon ) { ?>
+					<?php if ( $image_icon ) { ?>
 						<span class="dialog-search-icon">
-							<img src="<?php echo esc_url( $title_icon ); ?>" alt="<?php esc_attr_e( 'Dialog search icon', 'woostify' ); ?>">
+							<img src="<?php echo esc_url( $image_icon ); ?>" alt="<?php esc_attr_e( 'Dialog search icon', 'woostify' ); ?>">
 						</span>
 					<?php } ?>
 

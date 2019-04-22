@@ -12,8 +12,11 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-	<?php woostify_pingback(); ?>
-	<?php wp_head(); ?>
+	<?php
+		woostify_facebook_social();
+		woostify_pingback();
+		wp_head();
+	?>
 </head>
 
 <body <?php body_class(); ?>>

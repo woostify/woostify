@@ -243,163 +243,163 @@ msgstr ""
 msgid "Woostify retina logo"
 msgstr ""
 
-#: inc/woostify-template-functions.php:436
+#: inc/woostify-template-functions.php:458
 msgid "Primary navigation"
 msgstr ""
 
-#: inc/woostify-template-functions.php:448
+#: inc/woostify-template-functions.php:470
 msgid "Add a Primary Menu"
 msgstr ""
 
-#: inc/woostify-template-functions.php:464
+#: inc/woostify-template-functions.php:486
 msgid "Skip to navigation"
 msgstr ""
 
-#: inc/woostify-template-functions.php:465
+#: inc/woostify-template-functions.php:487
 msgid "Skip to content"
 msgstr ""
 
-#: inc/woostify-template-functions.php:512, inc/woostify-template-functions.php:582, inc/admin/class-woostify-admin.php:204
+#: inc/woostify-template-functions.php:534, inc/woostify-template-functions.php:604, inc/admin/class-woostify-admin.php:204
 msgid "Shop"
 msgstr ""
 
-#: inc/woostify-template-functions.php:537, inc/woostify-template-functions.php:631, inc/customizer/register-sections.php:16
+#: inc/woostify-template-functions.php:559, inc/woostify-template-functions.php:653, inc/customizer/register-sections.php:16
 msgid "Blog"
 msgstr ""
 
 #. translators: post date
-#: inc/woostify-template-functions.php:564
+#: inc/woostify-template-functions.php:586
 msgid "Daily Archives: %s"
 msgstr ""
 
 #. translators: post date
-#: inc/woostify-template-functions.php:567
+#: inc/woostify-template-functions.php:589
 msgid "Monthly Archives: %s"
 msgstr ""
 
-#: inc/woostify-template-functions.php:567
+#: inc/woostify-template-functions.php:589
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
 
 #. translators: post date
-#: inc/woostify-template-functions.php:577
+#: inc/woostify-template-functions.php:599
 msgid "Yearly Archives: %s"
 msgstr ""
 
-#: inc/woostify-template-functions.php:577
+#: inc/woostify-template-functions.php:599
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr ""
 
-#: inc/woostify-template-functions.php:579
+#: inc/woostify-template-functions.php:601
 msgid "Search results: "
 msgstr ""
 
-#: inc/woostify-template-functions.php:584
+#: inc/woostify-template-functions.php:606
 msgid "Tags: "
 msgstr ""
 
-#: inc/woostify-template-functions.php:589
+#: inc/woostify-template-functions.php:611
 msgid "Archives"
 msgstr ""
 
-#: inc/woostify-template-functions.php:633
+#: inc/woostify-template-functions.php:655
 msgid "Search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:683, inc/woostify-template-functions.php:939
+#: inc/woostify-template-functions.php:705, inc/woostify-template-functions.php:961
 msgid "Pages:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:816
+#: inc/woostify-template-functions.php:838
 msgid "by Unknown author"
 msgstr ""
 
-#: inc/woostify-template-functions.php:818
+#: inc/woostify-template-functions.php:840
 msgid "by"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: inc/woostify-template-functions.php:836, inc/woostify-template-functions.php:983
+#: inc/woostify-template-functions.php:858, inc/woostify-template-functions.php:1005
 msgid ", "
 msgstr ""
 
-#: inc/woostify-template-functions.php:842
+#: inc/woostify-template-functions.php:864
 msgid "Posted in"
 msgstr ""
 
-#: inc/woostify-template-functions.php:858
+#: inc/woostify-template-functions.php:880
 msgid "No comments yet"
 msgstr ""
 
-#: inc/woostify-template-functions.php:859
+#: inc/woostify-template-functions.php:881
 msgid "1 Comment"
 msgstr ""
 
-#: inc/woostify-template-functions.php:860
+#: inc/woostify-template-functions.php:882
 msgid "% Comments"
 msgstr ""
 
-#: inc/woostify-template-functions.php:919, inc/woostify-template-functions.php:965
+#: inc/woostify-template-functions.php:941, inc/woostify-template-functions.php:987
 msgid "Read More"
 msgstr ""
 
-#: inc/woostify-template-functions.php:983, inc/customizer/sections/shop/shop-single.php:205
+#: inc/woostify-template-functions.php:1005, inc/customizer/sections/shop/shop-single.php:205
 msgid "Tags"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1005
+#: inc/woostify-template-functions.php:1027
 msgctxt "Next post"
 msgid "Next"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1006
+#: inc/woostify-template-functions.php:1028
 msgctxt "Previous post"
 msgid "Prev"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1019
+#: inc/woostify-template-functions.php:1041
 msgid "Next post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1020
+#: inc/woostify-template-functions.php:1042
 msgid "Previous post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1046
+#: inc/woostify-template-functions.php:1068
 msgid "Author Avatar"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1051
+#: inc/woostify-template-functions.php:1073
 msgid "Written by"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1081
+#: inc/woostify-template-functions.php:1103
 msgid "Posted on"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1294
+#: inc/woostify-template-functions.php:1316
 msgid "Dialog search icon"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1298
+#: inc/woostify-template-functions.php:1320
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1588, inc/woostify-template-functions.php:1638
+#: inc/woostify-template-functions.php:1610, inc/woostify-template-functions.php:1660
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1591, inc/woostify-template-functions.php:1641
+#: inc/woostify-template-functions.php:1613, inc/woostify-template-functions.php:1663
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1593, inc/woostify-template-functions.php:1643
+#: inc/woostify-template-functions.php:1615, inc/woostify-template-functions.php:1665
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1794, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:1816, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 

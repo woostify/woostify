@@ -64,9 +64,7 @@
 	}
 
 	.dialog-search-icon{
-		width: 25px;
-		height: 28px;
-		@include rotate( -35 );
+		width: 30px;
 		+.dialog-search-title{
 			padding-left: 15px;
 		}

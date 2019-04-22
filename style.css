@@ -4175,10 +4175,7 @@ dd {
 }
 
 .dialog-search-content .dialog-search-icon {
-  width: 25px;
-  height: 28px;
-  -webkit-transform: rotate(-35deg);
-  transform: rotate(-35deg);
+  width: 30px;
 }
 
 .dialog-search-content .dialog-search-icon + .dialog-search-title {
