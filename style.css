@@ -7348,7 +7348,8 @@ footer#colophon,
 
 .variations {
   border: 0;
-  margin-bottom: 40px;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .variations td {
@@ -7386,6 +7387,18 @@ footer#colophon,
 
 .variations .value {
   max-width: 50%;
+}
+
+.variations .tawcvs-swatches .swatch.selected {
+  box-shadow: none;
+}
+
+.variations .tawcvs-swatches .swatch-label {
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .single_variation {

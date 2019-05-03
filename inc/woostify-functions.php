@@ -16,6 +16,19 @@ if ( ! function_exists( 'woostify_version' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_suffix' ) ) {
+	/**
+	 * Define Script debug.
+	 *
+	 * @return     string $suffix
+	 */
+	function woostify_suffix() {
+		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
+		return $suffix;
+	}
+}
+
 if ( ! function_exists( 'woostify_get_pro_url' ) ) {
 	/**
 	 * Generate a URL to our pro add-ons.
@@ -70,22 +83,26 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 	/**
 	 * Detect Elementor Page editor with current page
 	 *
+	 * @param int $page_id The page id.
 	 * @return     bool
 	 */
-	function woostify_is_elementor_page() {
+	function woostify_is_elementor_page( $page_id = false ) {
 		if ( ! woostify_is_elementor_activated() ) {
 			return false;
 		}
 
-		$edit_mode = woostify_get_metabox( '_elementor_edit_mode' );
-
-		$elementor = 'builder' === $edit_mode ? true : false;
-
-		if ( class_exists( 'woocommerce' ) && is_tax() ) {
-			$elementor = false;
+		if ( ! $page_id ) {
+			$page_id = woostify_get_page_id();
 		}
 
-		return $elementor;
+		$edit_mode = get_post_meta( $page_id, '_elementor_edit_mode', true );
+		$edit_mode = 'builder' === $edit_mode ? true : false;
+
+		if ( class_exists( 'woocommerce' ) && is_tax() ) {
+			$edit_mode = false;
+		}
+
+		return $edit_mode;
 	}
 }
 
@@ -541,13 +558,12 @@ if ( ! function_exists( 'woostify_facebook_social' ) ) {
 	 * Get Title and Image for Facebook share
 	 */
 	function woostify_facebook_social() {
-		$id    = woostify_get_page_id();
-		$title = get_the_title( $id );
-
 		if ( ! is_singular( 'product' ) ) {
 			return;
 		}
 
+		$id        = woostify_get_page_id();
+		$title     = get_the_title( $id );
 		$image     = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), 'full' );
 		$image_src = $image ? $image[0] : wc_placeholder_img_src();
 		?>

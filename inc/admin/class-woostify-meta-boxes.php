@@ -98,21 +98,11 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 		 * Add script and style for meta boxs setting
 		 */
 		public function woostify_metabox_assets() {
-			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-
 			wp_enqueue_style(
 				'woostify-metabox-setting-tab',
 				WOOSTIFY_THEME_URI . 'assets/css/admin/metabox.css',
 				array(),
 				woostify_version()
-			);
-
-			wp_enqueue_script(
-				'woostify-metabox-setting-tab',
-				WOOSTIFY_THEME_URI . 'assets/js/admin/metabox' . $suffix . '.js',
-				array( 'jquery' ),
-				woostify_version(),
-				true
 			);
 		}
 
@@ -377,9 +367,9 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 
 		}
 	}
-}
 
-/**
- * Kicking this off by calling 'get_instance()' method
- */
-Woostify_Meta_Boxes::get_instance();
+	/**
+	 * Kicking this off by calling 'get_instance()' method
+	 */
+	Woostify_Meta_Boxes::get_instance();
+}

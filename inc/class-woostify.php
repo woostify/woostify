@@ -374,8 +374,6 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Enqueue scripts and styles.
 		 */
 		public function woostify_scripts() {
-			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-
 			/**
 			 * Styles
 			 */
@@ -394,7 +392,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				// Fetch API polyfill.
 				wp_enqueue_script(
 					'woostify-fetch-api-polyfill',
-					WOOSTIFY_THEME_URI . 'assets/js/fetch-api-polyfill' . $suffix . '.js',
+					WOOSTIFY_THEME_URI . 'assets/js/fetch-api-polyfill' . woostify_suffix() . '.js',
 					array(),
 					woostify_version(),
 					true
@@ -403,7 +401,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				// foreach polyfill.
 				wp_enqueue_script(
 					'woostify-for-each-polyfill',
-					WOOSTIFY_THEME_URI . 'assets/js/for-each-polyfill' . $suffix . '.js',
+					WOOSTIFY_THEME_URI . 'assets/js/for-each-polyfill' . woostify_suffix() . '.js',
 					array(),
 					woostify_version(),
 					true
@@ -413,7 +411,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// General script.
 			wp_enqueue_script(
 				'woostify-general',
-				WOOSTIFY_THEME_URI . 'assets/js/general' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/general' . woostify_suffix() . '.js',
 				array( 'jquery' ),
 				woostify_version(),
 				true
@@ -422,7 +420,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Mobile menu.
 			wp_enqueue_script(
 				'woostify-navigation',
-				WOOSTIFY_THEME_URI . 'assets/js/navigation' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/navigation' . woostify_suffix() . '.js',
 				array( 'jquery' ),
 				woostify_version(),
 				true
@@ -431,7 +429,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Quantity button.
 			wp_register_script(
 				'woostify-quantity-button',
-				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/quantity-button' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/quantity-button' . woostify_suffix() . '.js',
 				array(),
 				woostify_version(),
 				true
@@ -440,7 +438,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Woocommerce sidebar for mobile.
 			wp_register_script(
 				'woostify-woocommerce-sidebar',
-				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/woocommerce-sidebar' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/woocommerce-sidebar' . woostify_suffix() . '.js',
 				array(),
 				woostify_version(),
 				true
@@ -449,7 +447,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Woocommerce.
 			wp_register_script(
 				'woostify-woocommerce',
-				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/woocommerce' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/woocommerce' . woostify_suffix() . '.js',
 				array( 'jquery', 'woostify-quantity-button' ),
 				woostify_version(),
 				true
@@ -458,7 +456,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Product gallery zoom.
 			wp_register_script(
 				'easyzoom',
-				WOOSTIFY_THEME_URI . 'assets/js/easyzoom' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/easyzoom' . woostify_suffix() . '.js',
 				array( 'jquery' ),
 				woostify_version(),
 				true
@@ -467,7 +465,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Product gallery zoom handle.
 			wp_register_script(
 				'easyzoom-handle',
-				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/easyzoom-handle' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/easyzoom-handle' . woostify_suffix() . '.js',
 				array( 'easyzoom' ),
 				woostify_version(),
 				true
@@ -476,7 +474,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Product varitions.
 			wp_register_script(
 				'woostify-product-variation',
-				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/product-variation' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/product-variation' . woostify_suffix() . '.js',
 				array( 'jquery', 'easyzoom-handle' ),
 				woostify_version(),
 				true
@@ -485,7 +483,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Tiny slider js.
 			wp_register_script(
 				'tiny-slider',
-				WOOSTIFY_THEME_URI . 'assets/js/tiny-slider' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/tiny-slider' . woostify_suffix() . '.js',
 				array(),
 				woostify_version(),
 				true
@@ -494,7 +492,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Product images ( Tiny slider ).
 			wp_register_script(
 				'woostify-product-images',
-				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/product-images' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/product-images' . woostify_suffix() . '.js',
 				array( 'jquery', 'tiny-slider' ),
 				woostify_version(),
 				true
@@ -503,7 +501,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			// Photoswipe init js.
 			wp_register_script(
 				'photoswipe-init',
-				WOOSTIFY_THEME_URI . 'assets/js/photoswipe-init' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/photoswipe-init' . woostify_suffix() . '.js',
 				array( 'photoswipe', 'photoswipe-ui-default' ),
 				woostify_version(),
 				true
@@ -533,12 +531,10 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Elementor pewview scripts
 		 */
 		public function woostify_elementor_preview_scripts() {
-			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-
 			// Elementor widgets js.
 			wp_enqueue_script(
 				'woostify-elementor-live-preview',
-				WOOSTIFY_THEME_URI . 'assets/js/elementor-preview' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/elementor-preview' . woostify_suffix() . '.js',
 				array(),
 				woostify_version()
 			);
@@ -671,11 +667,9 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Customizer live preview
 		 */
 		public function woostify_customize_live_preview() {
-			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-
 			wp_enqueue_script(
 				'woostify-customizer-preview',
-				WOOSTIFY_THEME_URI . 'assets/js/customizer-preview' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/customizer-preview' . woostify_suffix() . '.js',
 				array( 'jquery' ),
 				woostify_version(),
 				true

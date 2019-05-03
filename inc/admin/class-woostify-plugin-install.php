@@ -29,11 +29,9 @@ if ( ! class_exists( 'Woostify_Plugin_Install' ) ) :
 		 * @return void
 		 */
 		public function woostify_plugin_install_scripts( $hook_suffix ) {
-			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-
 			wp_enqueue_script(
 				'woostify-plugin-install',
-				WOOSTIFY_THEME_URI . 'assets/js/admin/plugin-install' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/admin/plugin-install' . woostify_suffix() . '.js',
 				array( 'jquery', 'updates' ),
 				woostify_version(),
 				'all'

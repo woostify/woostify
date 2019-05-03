@@ -109,12 +109,10 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * Load welcome screen script and css
 		 */
 		public function woostify_welcome_static() {
-			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-
 			// Dismiss admin notice.
 			wp_enqueue_script(
 				'woostify-dismiss-admin-notice',
-				WOOSTIFY_THEME_URI . 'assets/js/admin/dismiss-admin-notice' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/admin/dismiss-admin-notice' . woostify_suffix() . '.js',
 				array(),
 				woostify_version(),
 				true
@@ -140,7 +138,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			// Install plugin import demo.
 			wp_enqueue_script(
 				'woostify-install-demo',
-				WOOSTIFY_THEME_URI . 'assets/js/admin/install-demo' . $suffix . '.js',
+				WOOSTIFY_THEME_URI . 'assets/js/admin/install-demo' . woostify_suffix() . '.js',
 				array(),
 				woostify_version(),
 				true
