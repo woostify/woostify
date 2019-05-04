@@ -4629,6 +4629,11 @@ dd {
   position: relative;
 }
 
+.site-tools .shopping-bag-button.cart-icon-rotate:before {
+  position: relative;
+  transform: rotate3d(0, 1, 0, 180deg);
+}
+
 .site-tools .shop-cart-count {
   position: absolute;
   top: -6px;

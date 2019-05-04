@@ -259,6 +259,13 @@
 
 	.shopping-bag-button{
 		position: relative;
+
+		&.cart-icon-rotate{
+			&:before{
+				position: relative;
+				transform: rotate3d( 0, 1, 0, 180deg );
+			}
+		}
 	}
 
 	.shop-cart-count{
