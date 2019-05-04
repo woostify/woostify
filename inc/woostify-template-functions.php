@@ -1579,7 +1579,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			$search_icon     = apply_filters( 'woostify_header_search_icon', 'ti-search' );
 			$wishlist_icon   = apply_filters( 'woostify_header_wishlist_icon', 'ti-heart' );
 			$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
-			$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-bag' );
+			$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-shopping-cart' );
 			?>
 
 			<div class="site-tools">
