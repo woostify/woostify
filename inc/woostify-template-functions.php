@@ -1308,7 +1308,7 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 
 		<div class="site-dialog-search">
 			<div class="dialog-search-content">
-				<?php do_action( 'woostify_dialog_search_before' ); ?>
+				<?php do_action( 'woostify_dialog_search_content_start' ); ?>
 
 				<div class="dialog-search-header">
 					<?php if ( $image_icon ) { ?>
@@ -1321,17 +1321,18 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 
 					<span class="dialog-search-close-icon <?php echo esc_attr( $close_icon ); ?>"></span>
 				</div>
+
 				<div class="dialog-search-main">
 					<?php
-					if ( false == $options['header_search_only_product'] ) {
-						get_search_form();
-					} elseif ( woostify_is_woocommerce_activated() ) {
+					if ( woostify_is_woocommerce_activated() && $options['header_search_only_product'] ) {
 						the_widget( 'WC_Widget_Product_Search', 'title=' );
+					} else {
+						get_search_form();
 					}
 					?>
 				</div>
 
-				<?php do_action( 'woostify_dialog_search_after' ); ?>
+				<?php do_action( 'woostify_dialog_search_content_end' ); ?>
 			</div>
 		</div>
 		<?php
@@ -1563,9 +1564,9 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 	 * @return void
 	 */
 	function woostify_header_action() {
-		if ( woostify_is_woocommerce_activated() ) {
-			$options = woostify_options( false );
+		$options = woostify_options( false );
 
+		if ( woostify_is_woocommerce_activated() ) {
 			global $woocommerce;
 			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
 			$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
@@ -1575,31 +1576,33 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			}
 
 			$count = $woocommerce->cart->cart_contents_count;
+		}
 
-			$search_icon     = apply_filters( 'woostify_header_search_icon', 'ti-search' );
-			$wishlist_icon   = apply_filters( 'woostify_header_wishlist_icon', 'ti-heart' );
-			$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
-			$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-shopping-cart cart-icon-rotate' );
-			?>
+		$search_icon     = apply_filters( 'woostify_header_search_icon', 'ti-search' );
+		$wishlist_icon   = apply_filters( 'woostify_header_wishlist_icon', 'ti-heart' );
+		$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
+		$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-shopping-cart cart-icon-rotate' );
+		?>
 
-			<div class="site-tools">
+		<div class="site-tools">
 
-				<?php do_action( 'woostify_site_tool_before_first_item' ); ?>
+			<?php do_action( 'woostify_site_tool_before_first_item' ); ?>
 
-				<?php // Search icon. ?>
-				<?php if ( true == $options['header_search_icon'] ) { ?>
-					<span class="tools-icon header-search-icon <?php echo esc_attr( $search_icon ); ?>"></span>
-				<?php } ?>
+			<?php // Search icon. ?>
+			<?php if ( true == $options['header_search_icon'] ) { ?>
+				<span class="tools-icon header-search-icon <?php echo esc_attr( $search_icon ); ?>"></span>
+			<?php } ?>
 
-				<?php do_action( 'woostify_site_tool_before_second_item' ); ?>
+			<?php do_action( 'woostify_site_tool_before_second_item' ); ?>
 
-				<?php // Wishlist icon. ?>
-				<?php if ( defined( 'YITH_WCWL' ) && true == $options['header_wishlist_icon'] ) { ?>
-					<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>"></a>
-				<?php } ?>
+			<?php // Wishlist icon. ?>
+			<?php if ( defined( 'YITH_WCWL' ) && true == $options['header_wishlist_icon'] ) { ?>
+				<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>"></a>
+			<?php } ?>
 
-				<?php do_action( 'woostify_site_tool_before_third_item' ); ?>
+			<?php do_action( 'woostify_site_tool_before_third_item' ); ?>
 
+			<?php if ( woostify_is_woocommerce_activated() ) { ?>
 				<?php // My account icon. ?>
 				<?php if ( true == $options['header_account_icon'] ) { ?>
 					<div class="tools-icon my-account">
@@ -1629,9 +1632,9 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 				<?php } ?>
 
 				<?php do_action( 'woostify_site_tool_after_last_item' ); ?>
-			</div>
-			<?php
-		}
+			<?php } ?>
+		</div>
+		<?php
 	}
 }
 

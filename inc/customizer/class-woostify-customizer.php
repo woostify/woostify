@@ -86,7 +86,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'header_primary_menu'                     => true,
 					'header_search_icon'                      => true,
 					'header_wishlist_icon'                    => false,
-					'header_search_only_product'              => false,
+					'header_search_only_product'              => true,
 					'header_account_icon'                     => false,
 					'header_shop_cart_icon'                   => false,
 

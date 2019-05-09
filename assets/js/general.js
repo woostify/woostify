@@ -50,30 +50,32 @@ function closeAll() {
 // Dialog search form.
 function dialogSearch() {
 	var headerSearchIcon = document.getElementsByClassName( 'header-search-icon' ),
-		dialogSearchForm = document.getElementsByClassName( 'site-dialog-search' ),
-		closeBtn         = dialogSearchForm.length ? dialogSearchForm[0].getElementsByClassName( 'dialog-search-close-icon' )[0] : false;
+		dialogSearchForm = document.querySelector( '.site-dialog-search' ),
+		searchField      = document.querySelector( '.site-dialog-search .search-field' ),
+		closeBtn         = document.querySelector( '.site-dialog-search .dialog-search-close-icon' );
 
-	if ( ! headerSearchIcon.length || ! dialogSearchForm.length || ! closeBtn ) {
+	if ( ! headerSearchIcon.length || ! dialogSearchForm || ! searchField || ! closeBtn ) {
 		return;
 	}
 
-	var fieldFocus = function() {
+	// Disabled field suggestions.
+	searchField.setAttribute( 'autocomplete', 'off' );
+
+	// Field must not empty.
+	searchField.setAttribute( 'required', 'required' );
+
+	var dialogOpen = function() {
+		document.documentElement.classList.add( 'dialog-search-open' );
+		document.documentElement.classList.remove( 'dialog-search-close' );
+
 		if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
-			var searchField = dialogSearchForm[0].getElementsByClassName( 'search-field' )[0];
 			searchField.focus();
 		}
 	}
 
-	var dialogOpen = function() {
-		document.body.classList.add( 'dialog-search-open' );
-		document.body.classList.remove( 'dialog-search-close' );
-
-		fieldFocus();
-	}
-
 	var dialogClose = function() {
-		document.body.classList.add( 'dialog-search-close' );
-		document.body.classList.remove( 'dialog-search-open' );
+		document.documentElement.classList.add( 'dialog-search-close' );
+		document.documentElement.classList.remove( 'dialog-search-open' );
 	}
 
 	for ( var i = 0, j = headerSearchIcon.length; i < j; i++ ) {
@@ -88,7 +90,7 @@ function dialogSearch() {
 			} );
 
 			// Use dialog overlay.
-			dialogSearchForm[0].addEventListener( 'click', function( e ) {
+			dialogSearchForm.addEventListener( 'click', function( e ) {
 				if ( this !== e.target ) {
 					return;
 				}
