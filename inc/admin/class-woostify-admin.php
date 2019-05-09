@@ -20,7 +20,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 */
 		public function __construct() {
 			add_action( 'admin_notices', array( $this, 'woostify_admin_notice' ) );
-			add_action( 'admin_init', array( $this, 'woostify_dismiss_admin_notice' ) );
+			add_action( 'wp_ajax_dismiss_admin_notice', array( $this, 'woostify_dismiss_admin_notice' ) );
 			add_action( 'admin_menu', array( $this, 'woostify_welcome_register_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'woostify_welcome_static' ) );
 			add_action( 'admin_body_class', array( $this, 'woostify_admin_classes' ) );
@@ -42,13 +42,10 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * Add admin notice
 		 */
 		public function woostify_admin_notice() {
-			global $current_user;
-			$user_id = $current_user->ID;
-
 			// For theme options box.
-			if ( is_admin() && ! get_user_meta( $user_id, 'woostify_print_option_box_admin_notice' ) ) {
+			if ( is_admin() && ! get_user_meta( get_current_user_id(), 'welcome_box' ) ) {
 				?>
-				<div class="woostify-admin-notice woostify-options-notice notice is-dismissible">
+				<div class="woostify-admin-notice woostify-options-notice notice is-dismissible" data-notice="welcome_box">
 					<div class="woostify-notice-content">
 						<div class="woostify-notice-img">
 							<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'logo', 'woostify' ); ?>">
@@ -60,26 +57,9 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								printf( // WPCS: XSS OK.
 									/* translators: Theme options */
 									__( 'To fully take advantage of the best our theme can offer please make sure you visit our <a href="%1$s">Woostify Options</a>.', 'woostify' ),
-									esc_url( admin_url( 'themes.php?page=woostify-welcome' ) )
+									esc_url( admin_url( 'admin.php?page=woostify-welcome' ) )
 								);
 								?>
-							</p>
-						</div>
-					</div>
-				</div>
-				<?php
-			}
-
-			// For pro version release box.
-			if ( is_admin() && ! get_user_meta( $user_id, 'woostify_print_pro_release_admin_notice' ) ) {
-				?>
-				<div class="woostify-admin-notice woostify-pro-release-notice notice notice-warning is-dismissible">
-					<div class="woostify-notice-content">
-						<div class="woostify-notice-text">
-							<p>
-								<?php
-									/* translators: Theme options */
-									echo 'Woostify Pro has been released. We have special discount UP to 40% OFF for a very limited time. <a href="https://woostify.com/pricing/" target="_blank">Get It Now</a>.'; ?>
 							</p>
 						</div>
 					</div>
@@ -93,16 +73,14 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 */
 		public function woostify_dismiss_admin_notice() {
 
-			global $current_user;
-			$user_id = $current_user->ID;
+			$notice = isset( $_POST['notice'] ) ? sanitize_text_field( wp_unslash( $_POST['notice'] ) ) : ''; // phpcs:ignore
 
-			if ( isset( $_GET['woostify-dismiss-option-box-notice'] ) ) {
-				add_user_meta( $user_id, 'woostify_print_option_box_admin_notice', 'true', true );
+			if ( $notice ) {
+				update_user_meta( get_current_user_id(), $notice, true );
+				wp_send_json_success();
 			}
 
-			if ( isset( $_GET['woostify-dismiss-pro-release-box-notice'] ) ) {
-				add_user_meta( $user_id, 'woostify_print_pro_release_admin_notice', 'true', true );
-			}
+			wp_send_json_error();
 		}
 
 		/**
@@ -116,15 +94,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				array(),
 				woostify_version(),
 				true
-			);
-
-			wp_localize_script(
-				'woostify-dismiss-admin-notice',
-				'woostify_dismiss_admin_notice',
-				array(
-					'option_notice_url'      => get_admin_url() . '?woostify-dismiss-option-box-notice',
-					'pro_release_notice_url' => get_admin_url() . '?woostify-dismiss-pro-release-box-notice',
-				)
 			);
 
 			// Welcome screen style.
@@ -151,7 +120,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * @see  add_theme_page()
 		 */
 		public function woostify_welcome_register_menu() {
-			$page = add_theme_page( 'Woostify Options', 'Woostify Options', 'activate_plugins', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ) );
+			$page = add_menu_page( 'Woostify Options', 'Woostify Options', 'activate_plugins', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ), 'none', 60 );
 			add_action( 'admin_print_styles-' . $page, array( $this, 'woostify_welcome_static' ) );
 		}
 
@@ -219,7 +188,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			require_once( ABSPATH . 'wp-admin/admin-header.php' );
 			?>
 
-			<div class="woostify-wrap">
+			<div class="woostify-options-wrap admin-welcome-screen">
 
 				<section class="woostify-welcome-nav">
 					<div class="woostify-welcome-container">
@@ -360,7 +329,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									<?php
 									$plugin_slug = 'woostify-sites-library';
 									$slug        = 'woostify-sites-library/woostify-sites.php';
-									$redirect    = admin_url( 'themes.php?page=woostify-sites' );
+									$redirect    = admin_url( 'admin.php?page=woostify-sites' );
 									$nonce       = add_query_arg(
 										array(
 											'action'        => 'activate',
@@ -380,7 +349,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									}
 
 									// Generate button.
-									$button = '<a href="' . esc_url( admin_url( 'themes.php?page=woostify-sites' ) ) . '" class="woostify-button button-primary" target="_blank">' . esc_html__( 'Import Demo', 'woostify' ) . '</a>';
+									$button = '<a href="' . esc_url( admin_url( 'admin.php?page=woostify-sites' ) ) . '" class="woostify-button button-primary" target="_blank">' . esc_html__( 'Import Demo', 'woostify' ) . '</a>';
 
 									// If Woostifu Site install.
 									if ( ! defined( 'WOOSTIFY_SITES_VER' ) ) {
@@ -451,7 +420,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						</div>
 					</div>
 				</div>
-
 			</div>
 			<?php
 		}

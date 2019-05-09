@@ -4,12 +4,23 @@ $green: #45b964;
 	outline: none !important;
 }
 
-.appearance_page_woostify-welcome {
+/* Set icon for admin_menu */
+#toplevel_page_woostify-welcome {
+	.wp-menu-image {
+		&:before {
+			content: url( ../../../../assets/images/logo.svg );
+			transform: rotate( -30deg );
+			filter: grayscale( 90% );
+		}
+	}
+}
+
+body.toplevel_page_woostify-welcome {
 	#wpcontent {
 		padding: 0;
 	}
 
-	.woostify-wrap {
+	.woostify-options-wrap {
 		a {
 			text-decoration: none;
 			outline: none !important;

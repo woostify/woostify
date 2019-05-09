@@ -4146,6 +4146,10 @@ dd {
   transition-duration: 0.4s;
 }
 
+.site-dialog-search form {
+  margin: 0;
+}
+
 .dialog-search-content {
   opacity: 0;
   width: 50%;

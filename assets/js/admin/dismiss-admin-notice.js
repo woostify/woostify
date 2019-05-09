@@ -6,43 +6,41 @@
 
 'use strict';
 
-// Show theme option notice.
-var optionsNotice = function() {
-	var notice = document.getElementsByClassName( 'woostify-options-notice' )[0];
-	if ( ! notice ) {
+// Dismiss admin notice.
+var dismiss = function() {
+	var notice = document.querySelectorAll( '.woostify-admin-notice' );
+	if ( ! notice.length ) {
 		return;
 	}
 
-	var dismissButton = notice.getElementsByClassName( 'notice-dismiss' )[0];
-	if ( ! dismissButton ) {
-		return;
-	}
+	notice.forEach( function( element ) {
+		var button = element.querySelector( '.notice-dismiss' ),
+			slug   = element.getAttribute( 'data-notice' );
 
-	dismissButton.addEventListener( 'click', function() {
-		// Fetch API.
-		fetch( woostify_dismiss_admin_notice.option_notice_url );
-	} );
-}
+		if ( ! button || ! slug ) {
+			return;
+		}
 
-// Show pro version release notice.
-var proReleaseNotice = function() {
-	var notice = document.getElementsByClassName( 'woostify-pro-release-notice' )[0];
-	if ( ! notice ) {
-		return;
-	}
+		button.addEventListener( 'click', function() {
+			// Request.
+			var request = new Request(
+				ajaxurl,
+				{
+					method: 'POST',
+					body: 'action=dismiss_admin_notice&notice=' + slug,
+					credentials: 'same-origin',
+					headers: new Headers({
+						'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+					})
+				}
+			);
 
-	var dismissButton = notice.getElementsByClassName( 'notice-dismiss' )[0];
-	if ( ! dismissButton ) {
-		return;
-	}
-
-	dismissButton.addEventListener( 'click', function() {
-		// Fetch API.
-		fetch( woostify_dismiss_admin_notice.pro_release_notice_url );
-	} );
+			// Fetch API.
+			fetch( request );
+		} );
+	});
 }
 
 document.addEventListener( 'DOMContentLoaded', function() {
-	optionsNotice();
-	proReleaseNotice();
+	dismiss();
 } );
