@@ -28,6 +28,10 @@ add_action( 'woostify_theme_footer', 'woostify_overlay', 130 );
 add_action( 'woostify_theme_footer', 'woostify_footer_action', 140 );
 add_action( 'woostify_footer_action', 'woostify_scroll_to_top', 40 );
 
+// Head tag.
+add_action( 'woostify_head', 'woostify_facebook_social', 10 );
+add_action( 'woostify_head', 'woostify_pingback', 20 );
+
 // Performance.
 add_action( 'wp_enqueue_scripts', 'woostify_dequeue_scripts_and_styles' );
 
