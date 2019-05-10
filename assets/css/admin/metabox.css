@@ -19,12 +19,6 @@
   padding: 0;
 }
 
-/* CONTENT BOX */
-/*content tab */
-.woostify-metabox-content:not(.current) {
-  display: none;
-}
-
 /* metabox option */
 .woostify-metabox-option {
   border-bottom: 1px solid #eee;
