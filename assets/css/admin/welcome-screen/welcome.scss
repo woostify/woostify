@@ -15,19 +15,22 @@ $green: #45b964;
 	}
 }
 
-body.toplevel_page_woostify-welcome {
-	#wpcontent {
-		padding: 0;
+body{
+	&.toplevel_page_woostify-welcome,
+	&.woostify-options_page_ajax-search-product-settings {
+		#wpcontent {
+			padding: 0;
+		}
 	}
+}
 
-	.woostify-options-wrap {
-		a {
-			text-decoration: none;
-			outline: none !important;
+.woostify-options-wrap {
+	a {
+		text-decoration: none;
+		outline: none !important;
 
-			&:focus{
-				box-shadow: none !important;
-			}
+		&:focus{
+			box-shadow: none !important;
 		}
 	}
 

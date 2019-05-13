@@ -16,6 +16,23 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 	class Woostify_Admin {
 
 		/**
+		 * Instance
+		 *
+		 * @var instance
+		 */
+		private static $instance;
+
+		/**
+		 *  Initiator
+		 */
+		public static function get_instance() {
+			if ( ! isset( self::$instance ) ) {
+				self::$instance = new self();
+			}
+			return self::$instance;
+		}
+
+		/**
 		 * Setup class.
 		 */
 		public function __construct() {
@@ -120,7 +137,14 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * @see  add_theme_page()
 		 */
 		public function woostify_welcome_register_menu() {
-			$page = add_menu_page( 'Woostify Options', 'Woostify Options', 'activate_plugins', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ), 'none', 60 );
+			$page = add_menu_page( 'Woostify Theme Options', 'Woostify Options', 'manage_options', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ), 'none', 60 );
+
+			// If has submenu.
+			$submenu_label = apply_filters( 'woostify_options_admin_submenu_label', false );
+			if ( true === $submenu_label ) {
+				add_submenu_page( 'woostify-welcome', 'Woostify Theme Options', 'Dashboard', 'manage_options', 'woostify-welcome' );
+			}
+
 			add_action( 'admin_print_styles-' . $page, array( $this, 'woostify_welcome_static' ) );
 		}
 
@@ -180,16 +204,10 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		}
 
 		/**
-		 * The welcome screen
+		 * The welcome screen Header
 		 */
-		public function woostify_welcome_screen() {
-			require_once( ABSPATH . 'wp-load.php' );
-			require_once( ABSPATH . 'wp-admin/admin.php' );
-			require_once( ABSPATH . 'wp-admin/admin-header.php' );
+		public function woostify_welcome_screen_header() {
 			?>
-
-			<div class="woostify-options-wrap admin-welcome-screen">
-
 				<section class="woostify-welcome-nav">
 					<div class="woostify-welcome-container">
 						<a class="woostify-welcome-theme-brand" href="https://woostify.com/" target="_blank" rel="noopener">
@@ -204,6 +222,17 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						</ul>
 					</div>
 				</section>
+			<?php
+		}
+
+		/**
+		 * The welcome screen
+		 */
+		public function woostify_welcome_screen() {
+			?>
+			<div class="woostify-options-wrap admin-welcome-screen">
+
+				<?php $this->woostify_welcome_screen_header(); ?>
 
 				<div class="woostify-enhance">
 					<div class="woostify-welcome-container">
@@ -498,20 +527,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		}
 
 		/**
-		 * Welcome screen enhance section
-		 */
-		public function woostify_welcome_enhance() {
-			require_once( WOOSTIFY_THEME_DIR . 'inc/admin/welcome-screen/component-enhance.php' );
-		}
-
-		/**
-		 * Welcome screen contribute section
-		 */
-		public function woostify_welcome_contribute() {
-			require_once( WOOSTIFY_THEME_DIR . 'inc/admin/welcome-screen/component-contribute.php' );
-		}
-
-		/**
 		 * Get product data from json
 		 *
 		 * @param  string $url       URL to the json file.
@@ -530,6 +545,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		}
 	}
 
-endif;
+	Woostify_Admin::get_instance();
 
-return new Woostify_Admin();
+endif;
