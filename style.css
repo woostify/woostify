@@ -4162,6 +4162,13 @@ dd {
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .dialog-search-content {
+    max-width: 80%;
+    width: 100%;
+  }
+}
+
 .dialog-search-content .dialog-search-header {
   padding-left: 20px;
   font-weight: 700;

@@ -58,6 +58,11 @@
 	border-radius: 4px;
 	overflow: hidden;
 
+	@media ( max-width: $screen-sm ) {
+		max-width: 80%;
+		width: 100%;
+	}
+
 	.dialog-search-header{
 		padding-left: 20px;
 		font-weight: 700;
