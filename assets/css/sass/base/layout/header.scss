@@ -195,55 +195,6 @@
 .site-tools{
 	@include flex( flex, flex-end, center );
 
-	.my-account{
-		position: relative;
-		.my-account-icon{
-			padding: 10px 0;
-		}
-		&.tools-icon{
-			ul a{
-				font-size: 14px;
-				padding: 10px 20px;
-				display: block;
-			}
-		}
-
-		&:hover{
-			ul{
-				opacity: 1;
-				visibility: visible;
-				pointer-events: auto;
-				@include translatey( 0px );
-			}
-		}
-
-		ul{
-			min-width: 160px;
-			margin: 0;
-			padding-left: 0;
-			visibility: hidden;
-			opacity: 0;
-			position: absolute;
-			z-index: 2;
-			left: -20px;
-			top: 100%;
-			background-color: #fff;
-			border-radius: 4px;
-			pointer-events: none;
-			@include duration( 0.2s );
-			@include translatey( 10px );
-			@include shadow( 0px 1px 4px 0 rgba(0, 0, 0, 0.2) );
-		}
-
-		li{
-			list-style: none;
-
-			+li{
-				border-top: 1px solid #eee;
-			}
-		}
-	}
-
 	.tools-icon{
 		font-size: 24px;
 		display: flex;
@@ -251,10 +202,6 @@
 		.tools-icon{
 			margin-left: 0;
 		}
-	}
-
-	.header-search-icon{
-		cursor: pointer;
 	}
 
 	.shopping-bag-button{
@@ -273,6 +220,65 @@
 		top: -6px;
 		right: -15px;
 	}
+}
+
+.my-account{
+	position: relative;
+	.my-account-icon{
+		padding: 10px 0;
+		font-size: 24px;
+		display: inline-block;
+	}
+
+	&:hover{
+		.subbox{
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+			@include translatey( 0px );
+		}
+	}
+
+	.subbox{
+		min-width: 160px;
+		margin: 0;
+		padding-left: 0;
+		visibility: hidden;
+		opacity: 0;
+		position: absolute;
+		z-index: 2;
+		left: -20px;
+		top: 100%;
+		background-color: #fff;
+		border-radius: 4px;
+		pointer-events: none;
+		@include duration( 0.2s );
+		@include translatey( 10px );
+		@include shadow( 0px 1px 4px 0 rgba(0, 0, 0, 0.2) );
+
+		a {
+			font-size: 14px;
+			padding: 10px 20px;
+			display: block;
+		}
+	}
+
+	ul{
+		padding-left: 0;
+		margin: 0;
+		text-align: left;
+		li:first-child{
+			border-top: 0;
+		}
+	}
+	li{
+		list-style: none;
+		border-top: 1px solid #eee;
+	}
+}
+
+.header-search-icon{
+	cursor: pointer;
 }
 
 /* mobile menu toggle button */

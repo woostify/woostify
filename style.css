@@ -4571,21 +4571,42 @@ dd {
   align-items: center;
 }
 
-.site-tools .my-account {
+.site-tools .tools-icon {
+  font-size: 24px;
+  display: flex;
+  margin-left: 15px;
+}
+
+.site-tools .tools-icon .tools-icon {
+  margin-left: 0;
+}
+
+.site-tools .shopping-bag-button {
   position: relative;
 }
 
-.site-tools .my-account .my-account-icon {
+.site-tools .shopping-bag-button.cart-icon-rotate:before {
+  position: relative;
+  transform: rotate3d(0, 1, 0, 180deg);
+}
+
+.site-tools .shop-cart-count {
+  position: absolute;
+  top: -6px;
+  right: -15px;
+}
+
+.my-account {
+  position: relative;
+}
+
+.my-account .my-account-icon {
   padding: 10px 0;
+  font-size: 24px;
+  display: inline-block;
 }
 
-.site-tools .my-account.tools-icon ul a {
-  font-size: 14px;
-  padding: 10px 20px;
-  display: block;
-}
-
-.site-tools .my-account:hover ul {
+.my-account:hover .subbox {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -4593,7 +4614,7 @@ dd {
   transform: translateY(0px);
 }
 
-.site-tools .my-account ul {
+.my-account .subbox {
   min-width: 160px;
   margin: 0;
   padding-left: 0;
@@ -4614,41 +4635,29 @@ dd {
   box-shadow: 0px 1px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-.site-tools .my-account li {
-  list-style: none;
+.my-account .subbox a {
+  font-size: 14px;
+  padding: 10px 20px;
+  display: block;
 }
 
-.site-tools .my-account li + li {
+.my-account ul {
+  padding-left: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.my-account ul li:first-child {
+  border-top: 0;
+}
+
+.my-account li {
+  list-style: none;
   border-top: 1px solid #eee;
 }
 
-.site-tools .tools-icon {
-  font-size: 24px;
-  display: flex;
-  margin-left: 15px;
-}
-
-.site-tools .tools-icon .tools-icon {
-  margin-left: 0;
-}
-
-.site-tools .header-search-icon {
+.header-search-icon {
   cursor: pointer;
-}
-
-.site-tools .shopping-bag-button {
-  position: relative;
-}
-
-.site-tools .shopping-bag-button.cart-icon-rotate:before {
-  position: relative;
-  transform: rotate3d(0, 1, 0, 180deg);
-}
-
-.site-tools .shop-cart-count {
-  position: absolute;
-  top: -6px;
-  right: -15px;
 }
 
 /* mobile menu toggle button */

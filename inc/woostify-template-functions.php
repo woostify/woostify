@@ -1607,18 +1607,19 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 				<?php if ( true == $options['header_account_icon'] ) { ?>
 					<div class="tools-icon my-account">
 						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon <?php echo esc_attr( $my_account_icon ); ?>"></a>
-
-						<ul>
-							<?php if ( ! is_user_logged_in() ) : ?>
-								<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
-							<?php else : ?>
-								<li>
-									<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-								</li>
-								<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
-								</li>
-							<?php endif; ?>
-						</ul>
+						<div class="subbox">
+							<ul>
+								<?php if ( ! is_user_logged_in() ) : ?>
+									<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
+								<?php else : ?>
+									<li>
+										<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
+									</li>
+									<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
+									</li>
+								<?php endif; ?>
+							</ul>
+						</div>
 					</div>
 				<?php } ?>
 
