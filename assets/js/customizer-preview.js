@@ -262,7 +262,7 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	woostify_colors_live_update( 'header_transparent_border_color', '.has-header-transparent .site-header-inner', 'border-bottom-color' );
 
 	// Logo width.
-	woostify_range_slider_update( ['logo_width', 'tablet_logo_width', 'mobile_logo_width'], '.site-header .site-branding img', 'max-width', 'px' );
+	woostify_range_slider_update( ['logo_width', 'tablet_logo_width', 'mobile_logo_width'], '.site-branding img', 'max-width', 'px' );
 
 	// Header transparent enable on...
 	woostify_update_element_class( 'header_transparent_enable_on', 'body', 'header-transparent-for-' );

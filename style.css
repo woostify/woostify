@@ -4384,7 +4384,6 @@ dd {
 
 .site-header-inner {
   border-bottom: 1px solid #eaeaea;
-  /* logo */
   /* menu */
   /* search form */
 }
@@ -4407,21 +4406,6 @@ dd {
 
 .site-header-inner .woostify-container:after {
   content: none;
-}
-
-.site-header-inner .logo {
-  margin: 0;
-}
-
-.site-header-inner .site-branding .beta.site-title {
-  margin: 0;
-  font-size: 24px;
-}
-
-@media (max-width: 992px) {
-  .site-header-inner .site-branding {
-    text-align: center;
-  }
 }
 
 @media (min-width: 992px) {
@@ -4462,6 +4446,22 @@ dd {
 
 .site-header-inner .site-search form button[type="submit"] {
   width: 40px;
+}
+
+/* logo */
+.site-branding .beta.site-title {
+  margin: 0;
+  font-size: 24px;
+}
+
+.site-branding .logo {
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  .site-branding {
+    text-align: center;
+  }
 }
 
 /* main primary menu */
