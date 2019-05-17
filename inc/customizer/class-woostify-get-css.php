@@ -135,13 +135,13 @@ class Woostify_Get_CSS {
 					text-transform: ' . esc_attr( $options['menu_font_transform'] ) . ';
 				}
 
-				.site-header .primary-navigation > li > a{
+				.primary-navigation > li > a{
 					font-size: ' . esc_attr( $options['parent_menu_font_size'] ) . 'px;
 					line-height: ' . esc_attr( $options['parent_menu_line_height'] ) . 'px;
 					color: ' . esc_attr( $options['primary_menu_color'] ) . ';
 				}
 
-				.site-header .primary-navigation .sub-menu a{
+				.primary-navigation .sub-menu a{
 					line-height: ' . esc_attr( $options['sub_menu_line_height'] ) . 'px;
 					font-size: ' . esc_attr( $options['sub_menu_font_size'] ) . 'px;
 					color: ' . esc_attr( $options['primary_sub_menu_color'] ) . ';
@@ -303,16 +303,16 @@ class Woostify_Get_CSS {
 
 		// Theme color.
 		$styles .= '
-			.site-header .primary-navigation li.current-menu-item a,
-			.site-header .primary-navigation > li.current-menu-ancestor > a,
-			.site-header .primary-navigation > li.current-menu-parent > a,
-			.site-header .primary-navigation > li.current_page_parent > a,
-			.site-header .primary-navigation > li.current_page_ancestor > a,
+			.primary-navigation li.current-menu-item a,
+			.primary-navigation > li.current-menu-ancestor > a,
+			.primary-navigation > li.current-menu-parent > a,
+			.primary-navigation > li.current_page_parent > a,
+			.primary-navigation > li.current_page_ancestor > a,
 			.woocommerce-cart-form__contents .product-subtotal,
 			.woocommerce-checkout-review-order-table .order-total,
 			.woocommerce-table--order-details .product-name a,
-			.site-header .primary-navigation a:hover,
-			.site-header .primary-navigation .menu-item-has-children:hover > a,
+			.primary-navigation a:hover,
+			.primary-navigation .menu-item-has-children:hover > a,
 			.default-widget a strong,
 			.woocommerce-mini-cart__total .amount,
 			.woocommerce-form-login-toggle .woocommerce-info a:hover,

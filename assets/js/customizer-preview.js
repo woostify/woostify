@@ -325,7 +325,7 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	woostify_unit_live_update( 'parent_menu_font_size', '.site-header .primary-navigation > li > a', 'font-size', 14 );
 
 	// Parent menu line-height.
-	woostify_unit_live_update( 'parent_menu_line_height', '.site-header .primary-navigation > li > a', 'line-height', 90 );
+	woostify_unit_live_update( 'parent_menu_line_height', '.site-header .primary-navigation > li > a', 'line-height', 50 );
 
 	// Sub-menu font-size.
 	woostify_unit_live_update( 'sub_menu_font_size', '.site-header .primary-navigation .sub-menu a', 'font-size', 12 );

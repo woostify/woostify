@@ -114,7 +114,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				'menu_font_family_variants'    => '',
 				'menu_font_weight'             => 500,
 				'parent_menu_font_size'        => 14,
-				'parent_menu_line_height'      => 90,
+				'parent_menu_line_height'      => 50,
 				'sub_menu_font_size'           => 12,
 				'sub_menu_line_height'         => 24,
 				'menu_font_category'           => '',
