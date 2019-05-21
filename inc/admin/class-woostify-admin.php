@@ -137,14 +137,13 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * @see  add_theme_page()
 		 */
 		public function woostify_welcome_register_menu() {
-			$page = add_menu_page( 'Woostify Theme Options', 'Woostify Options', 'manage_options', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ), 'none', 60 );
-
-			// If has submenu.
-			$submenu_label = apply_filters( 'woostify_options_admin_submenu_label', false );
-			if ( true === $submenu_label ) {
-				add_submenu_page( 'woostify-welcome', 'Woostify Theme Options', 'Dashboard', 'manage_options', 'woostify-welcome' );
+			// Filter to remove Admin menu.
+			$admin_menu = apply_filters( 'woostify_options_admin_menu', false );
+			if ( true === $admin_menu ) {
+				return;
 			}
 
+			$page = add_theme_page( 'Woostify Theme Options', 'Woostify Options', 'manage_options', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ) );
 			add_action( 'admin_print_styles-' . $page, array( $this, 'woostify_welcome_static' ) );
 		}
 
