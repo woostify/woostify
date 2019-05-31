@@ -87,8 +87,8 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @param      array $defaults  The defaults.
 		 */
 		public function woostify_columns_head( $defaults ) {
+			// See: https://codex.wordpress.org/Plugin_API/Filter_Reference/manage_$post_type_posts_columns.
 			$order    = array();
-			// `cb`   = checkbox.
 			$checkbox = 'cb';
 			foreach ( $defaults as $key => $value ) {
 				$order[ $key ] = $value;
