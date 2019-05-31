@@ -1,5 +1,5 @@
 .gutenberg-version{
-	#woostify_settings_meta_box{
+	[id^="woostify_metabox_settings_"]{
 		&.closed {
 			.hndle {
 				&:hover{
@@ -20,10 +20,11 @@
 	}
 }
 
-#woostify_settings_meta_box{
+[id^="woostify_metabox_settings_"]{
 	.inside {
-		margin: 0;
-		padding: 0;
+		margin: 0 !important;
+		padding: 0 !important;
+		border-bottom: 0 !important;
 	}
 }
 

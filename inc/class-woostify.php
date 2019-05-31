@@ -24,12 +24,14 @@ if ( ! class_exists( 'woostify' ) ) :
 			$this->woostify_content_width();
 
 			add_action( 'after_setup_theme', array( $this, 'woostify_setup' ) );
+			add_action( 'wp', array( $this, 'woostify_init' ) );
 			add_action( 'widgets_init', array( $this, 'woostify_widgets_init' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'woostify_scripts' ), 10 );
 			add_filter( 'wpcf7_load_css', '__return_false' );
 			add_filter( 'excerpt_length', array( $this, 'woostify_limit_excerpt_character' ), 99 );
 
-			// Elementor.
+			// ELEMENTOR.
+			add_action( 'elementor/theme/register_locations', array( $this, 'woostify_register_elementor_locations' ) );
 			add_action( 'elementor/elements/categories_registered', array( $this, 'woostify_widget_categories' ) );
 			add_action( 'elementor/preview/enqueue_scripts', array( $this, 'woostify_elementor_preview_scripts' ) );
 
@@ -318,6 +320,39 @@ if ( ! class_exists( 'woostify' ) ) :
 		}
 
 		/**
+		 * Init
+		 */
+		public function woostify_init() {
+			if ( defined( 'ELEMENTOR_PRO_VERSION' ) ) { // Support Elementor Pro - Theme Builder.
+				if ( woostify_elementor_has_location( 'header' ) && woostify_elementor_has_location( 'footer' ) ) {
+					add_action( 'woostify_theme_header', 'woostify_container_open', 20 );
+					add_action( 'woostify_theme_footer', 'woostify_container_close', 0 );
+				} elseif ( woostify_elementor_has_location( 'header' ) && ! woostify_elementor_has_location( 'footer' ) ) {
+					add_action( 'woostify_theme_header', 'woostify_view_open', 20 );
+					add_action( 'woostify_theme_header', 'woostify_content_open', 30 );
+					add_action( 'woostify_theme_header', 'woostify_container_open', 40 );
+				} elseif ( ! woostify_elementor_has_location( 'header' ) && woostify_elementor_has_location( 'footer' ) ) {
+					add_action( 'woostify_theme_footer', 'woostify_container_close', 0 );
+					add_action( 'woostify_theme_footer', 'woostify_content_close', 2 );
+					add_action( 'woostify_theme_footer', 'woostify_view_close', 4 );
+				}
+			} elseif ( defined( 'HFE_VER' ) ) { // Support Elementor - Header, Footer & Blocks plugin.
+				if ( hfe_header_enabled() && hfe_footer_enabled() ) {
+					add_action( 'woostify_hfe_render_header', 'woostify_container_open', 10 );
+					add_action( 'woostify_hfe_render_footer', 'woostify_container_close', 10 );
+				} elseif ( hfe_header_enabled() && ! hfe_footer_enabled() ) { // Only Header template.
+					add_action( 'woostify_hfe_render_header', 'woostify_view_open', 10 );
+					add_action( 'woostify_hfe_render_header', 'woostify_content_open', 20 );
+					add_action( 'woostify_hfe_render_header', 'woostify_container_open', 30 );
+				} elseif ( ! hfe_header_enabled() && hfe_footer_enabled() ) { // Only Footer template.
+					add_action( 'woostify_hfe_render_footer', 'woostify_container_close', 10 );
+					add_action( 'woostify_hfe_render_footer', 'woostify_content_close', 20 );
+					add_action( 'woostify_hfe_render_footer', 'woostify_view_close', 30 );
+				}
+			}
+		}
+
+		/**
 		 * Register widget area.
 		 *
 		 * @link https://codex.wordpress.org/Function_Reference/register_sidebar
@@ -514,6 +549,50 @@ if ( ! class_exists( 'woostify' ) ) :
 		}
 
 		/**
+		 * Support Elementor Location
+		 *
+		 * @param      array|object $elementor_theme_manager  The elementor theme manager.
+		 */
+		public function woostify_register_elementor_locations( $elementor_theme_manager ) {
+			$elementor_theme_manager->register_location(
+				'header',
+				[
+					'hook'         => 'woostify_theme_header',
+					'remove_hooks' => [ 'woostify_template_header' ],
+				]
+			);
+			$elementor_theme_manager->register_location(
+				'footer',
+				[
+					'hook'         => 'woostify_theme_footer',
+					'remove_hooks' => [ 'woostify_template_footer' ],
+				]
+			);
+			$elementor_theme_manager->register_location(
+				'single',
+				[
+					'hook'         => 'woostify_theme_single',
+					'remove_hooks' => [ 'woostify_template_single' ],
+				]
+			);
+			$elementor_theme_manager->register_location(
+				'product_archive',
+				[
+					'hook'         => 'woostify_theme_archive',
+					'remove_hooks' => [ 'woostify_template_archive' ],
+				]
+			);
+			$elementor_theme_manager->register_location(
+				'404',
+				[
+					'hook'         => 'woostify_theme_404',
+					'remove_hooks' => [ 'woostify_template_404' ],
+					'label'        => __( 'Woostify 404', 'woostify' ),
+				]
+			);
+		}
+
+		/**
 		 * Add Elementor Category
 		 *
 		 * @param      Elements_Manager $elements_manager The elements manager.
@@ -609,7 +688,7 @@ if ( ! class_exists( 'woostify' ) ) :
 
 			// Site container layout.
 			$customizer_container = $options['default_container'];
-			$metabox_container    = woostify_get_metabox( 'site-container' );
+			$metabox_container    = woostify_get_metabox( false, 'site-container' );
 			$container            = 'default' != $metabox_container ? $metabox_container : $customizer_container;
 			$classes[]            = 'site-' . $container . '-container';
 

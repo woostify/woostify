@@ -635,7 +635,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		$page_id       = woostify_get_page_id();
 		$options       = woostify_options( false );
 		$page_header   = $options['page_header_display'];
-		$metabox       = woostify_get_metabox( 'site-page-header' );
+		$metabox       = woostify_get_metabox( false, 'site-page-header' );
 		$title         = get_the_title( $page_id );
 		$disable_title = $options['blog_single_title'];
 
@@ -1244,7 +1244,7 @@ if ( ! function_exists( 'woostify_topbar_section' ) ) {
 	 */
 	function woostify_topbar() {
 		$options = woostify_options( false );
-		$topbar  = woostify_get_metabox( 'site-topbar' );
+		$topbar  = woostify_get_metabox( false, 'site-topbar' );
 		if ( 'disabled' == $topbar ) {
 			return;
 		}
@@ -1429,7 +1429,7 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		$options         = woostify_options( false );
 
 		// Metabox options.
-		$metabox_sidebar = woostify_get_metabox( 'site-sidebar' );
+		$metabox_sidebar = woostify_get_metabox( false, 'site-sidebar' );
 
 		// Customize options.
 		$sidebar             = '';
@@ -1515,12 +1515,62 @@ if ( ! function_exists( 'woostify_overlay' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_toggle_sidebar' ) ) {
+	/**
+	 * Toogle sidebar
+	 */
+	function woostify_toggle_sidebar() {
+		do_action( 'woostify_toggle_sidebar' );
+	}
+}
+
 if ( ! function_exists( 'woostify_sidebar_menu_open' ) ) {
 	/**
 	 * Sidebar menu open
 	 */
 	function woostify_sidebar_menu_open() {
 		echo '<div class="sidebar-menu">';
+	}
+}
+
+if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
+	/**
+	 * Sidebar menu action
+	 */
+	function woostify_sidebar_menu_action() {
+		if ( woostify_is_woocommerce_activated() ) {
+
+			global $woocommerce;
+			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
+			$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
+
+			if ( 'yes' == get_option( 'woocommerce_force_ssl_checkout' ) ) {
+				$logout_url = str_replace( 'http:', 'https:', $logout_url );
+			}
+			?>
+			<div class="sidebar-menu-bottom">
+				<?php do_action( 'woostify_sidebar_account_before' ); ?>
+
+				<ul class="sidebar-account">
+					<?php do_action( 'woostify_sidebar_account_top' ); ?>
+
+					<?php if ( ! is_user_logged_in() ) : ?>
+						<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
+					<?php else : ?>
+						<li>
+							<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
+						</li>
+						<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
+						</li>
+					<?php endif; ?>
+
+					<?php do_action( 'woostify_sidebar_account_bottom' ); ?>
+				</ul>
+
+				<?php do_action( 'woostify_sidebar_account_after' ); ?>
+			</div>
+			<?php
+		}
 	}
 }
 
@@ -1639,47 +1689,6 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
-	/**
-	 * Sidebar menu action
-	 */
-	function woostify_sidebar_menu_action() {
-		if ( woostify_is_woocommerce_activated() ) {
-
-			global $woocommerce;
-			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
-			$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
-
-			if ( 'yes' == get_option( 'woocommerce_force_ssl_checkout' ) ) {
-				$logout_url = str_replace( 'http:', 'https:', $logout_url );
-			}
-			?>
-			<div class="sidebar-menu-bottom">
-				<?php do_action( 'woostify_sidebar_account_before' ); ?>
-
-				<ul class="sidebar-account">
-					<?php do_action( 'woostify_sidebar_account_top' ); ?>
-
-					<?php if ( ! is_user_logged_in() ) : ?>
-						<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
-					<?php else : ?>
-						<li>
-							<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-						</li>
-						<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
-						</li>
-					<?php endif; ?>
-
-					<?php do_action( 'woostify_sidebar_account_bottom' ); ?>
-				</ul>
-
-				<?php do_action( 'woostify_sidebar_account_after' ); ?>
-			</div>
-			<?php
-		}
-	}
-}
-
 if ( ! function_exists( 'woostify_get_page_id' ) ) {
 	/**
 	 * Get page id
@@ -1697,6 +1706,50 @@ if ( ! function_exists( 'woostify_get_page_id' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_view_open' ) ) {
+	/**
+	 * Open #view
+	 */
+	function woostify_view_open() {
+		?>
+		<div id="view">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_view_close' ) ) {
+	/**
+	 * Close #view
+	 */
+	function woostify_view_close() {
+		?>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_content_open' ) ) {
+	/**
+	 * Open #content
+	 */
+	function woostify_content_open() {
+		?>
+		<div id="content" class="site-content" tabindex="-1">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_content_close' ) ) {
+	/**
+	 * Close #content
+	 */
+	function woostify_content_close() {
+		?>
+		</div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_site_container' ) ) {
 
 	/**
@@ -1710,7 +1763,7 @@ if ( ! function_exists( 'woostify_site_container' ) ) {
 
 		// Metabox.
 		$page_id           = woostify_get_page_id();
-		$metabox_container = woostify_get_metabox( 'site-container' );
+		$metabox_container = woostify_get_metabox( false, 'site-container' );
 
 		if ( 'default' != $metabox_container && 'full-width' == $metabox_container ) {
 			$container = 'woostify-container container-fluid';
@@ -1727,7 +1780,7 @@ if ( ! function_exists( 'woostify_site_header' ) ) {
 	 * Display header
 	 */
 	function woostify_site_header() {
-		$header = woostify_get_metabox( 'site-header' );
+		$header = woostify_get_metabox( false, 'site-header' );
 		if ( 'disabled' == $header ) {
 			return;
 		}
@@ -1764,7 +1817,7 @@ if ( ! function_exists( 'woostify_site_footer' ) ) {
 		$footer_display = $options['footer_display'];
 
 		// Metabox disable footer.
-		$metabox_footer = woostify_get_metabox( 'site-footer' );
+		$metabox_footer = woostify_get_metabox( false, 'site-footer' );
 		if ( 'disabled' == $metabox_footer ) {
 			$footer_display = false;
 		}
@@ -1802,6 +1855,15 @@ if ( ! function_exists( 'woostify_footer_action' ) ) {
 		?>
 		<div class="footer-action"><?php do_action( 'woostify_footer_action' ); ?></div>
 		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_after_footer' ) ) {
+	/**
+	 * After footer
+	 */
+	function woostify_after_footer() {
+		do_action( 'woostify_after_footer' );
 	}
 }
 

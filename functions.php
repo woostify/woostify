@@ -14,6 +14,7 @@ define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );
 // Woostify functions, hooks.
 require_once WOOSTIFY_THEME_DIR . 'inc/woostify-functions.php';
 require_once WOOSTIFY_THEME_DIR . 'inc/woostify-template-hooks.php';
+require_once WOOSTIFY_THEME_DIR . 'inc/woostify-template-builder.php';
 require_once WOOSTIFY_THEME_DIR . 'inc/woostify-template-functions.php';
 
 // Woostify generate css.
@@ -40,9 +41,6 @@ if ( is_admin() ) {
 
 // Woostify widgets.
 require_once WOOSTIFY_THEME_DIR . 'inc/widget/class-woostify-recent-post-thumbnail.php';
-
-// Woostify elementor.
-require_once WOOSTIFY_THEME_DIR . 'inc/elementor.php';
 
 /**
  * Note: Do not add any custom code here. Please use a custom plugin so that your customizations aren't lost during updates.

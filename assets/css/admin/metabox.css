@@ -1,22 +1,23 @@
-.gutenberg-version #woostify_settings_meta_box.closed .hndle:hover {
+.gutenberg-version [id^="woostify_metabox_settings_"].closed .hndle:hover {
   background-color: #f8f9f9;
 }
 
-.gutenberg-version #woostify_settings_meta_box .handlediv {
+.gutenberg-version [id^="woostify_metabox_settings_"] .handlediv {
   position: relative;
   z-index: 99;
 }
 
-.gutenberg-version #woostify_settings_meta_box .hndle {
+.gutenberg-version [id^="woostify_metabox_settings_"] .hndle {
   cursor: pointer;
   color: #191e23 !important;
   border-bottom: 0 !important;
   transition: 0.1s background ease-in-out;
 }
 
-#woostify_settings_meta_box .inside {
-  margin: 0;
-  padding: 0;
+[id^="woostify_metabox_settings_"] .inside {
+  margin: 0 !important;
+  padding: 0 !important;
+  border-bottom: 0 !important;
 }
 
 /* metabox option */

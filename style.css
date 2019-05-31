@@ -3468,6 +3468,10 @@ video {
   overflow: hidden;
 }
 
+[data-elementor-type] {
+  clear: both;
+}
+
 /* sticky style - author
 ------------------------------------------------->*/
 .sticky,
@@ -4044,10 +4048,6 @@ dd {
 }
 
 /* Site container */
-.site-boxed-container #page {
-  overflow: hidden;
-}
-
 .site-boxed-container #view {
   margin: 50px;
 }
@@ -4994,8 +4994,7 @@ dd {
   }
 }
 
-footer#colophon,
-[data-elementor-type=footer] {
+footer#colophon {
   clear: both;
 }
 

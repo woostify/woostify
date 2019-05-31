@@ -106,11 +106,30 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_is_elementor_edit_mode' ) ) {
+if ( ! function_exists( 'woostify_elementor_has_location' ) ) {
+	/**
+	 * Detect if a page has Elementor location template.
+	 *
+	 * @param      string $location The location.
+	 * @return     boolean
+	 */
+	function woostify_elementor_has_location( $location ) {
+		if ( ! did_action( 'elementor_pro/init' ) ) {
+			return false;
+		}
+
+		$conditions_manager = \ElementorPro\Plugin::instance()->modules_manager->get_modules( 'theme-builder' )->get_conditions_manager();
+		$documents          = $conditions_manager->get_documents_for_location( $location );
+
+		return ! empty( $documents );
+	}
+}
+
+if ( ! function_exists( 'woostify_is_elementor_editor' ) ) {
 	/**
 	 * Condition if Current screen is Edit mode || Preview mode.
 	 */
-	function woostify_is_elementor_edit_mode() {
+	function woostify_is_elementor_editor() {
 		if ( ! woostify_is_elementor_activated() ) {
 			return false;
 		}
@@ -477,10 +496,11 @@ if ( ! function_exists( 'woostify_get_metabox' ) ) {
 	/**
 	 * Get metabox option
 	 *
+	 * @param int    $page_id      The page ID.
 	 * @param string $metabox_name Metabox option name.
 	 */
-	function woostify_get_metabox( $metabox_name ) {
-		$page_id = woostify_get_page_id();
+	function woostify_get_metabox( $page_id = false, $metabox_name ) {
+		$page_id = $page_id ? intval( $page_id ) : woostify_get_page_id();
 		$metabox = get_post_meta( $page_id, $metabox_name, true );
 
 		if ( '' === $metabox || false === $metabox ) {
@@ -504,7 +524,7 @@ if ( ! function_exists( 'woostify_header_transparent' ) ) {
 		$post_transparent    = $options['header_transparent_disable_post'];
 		$shop_transparent    = $options['header_transparent_disable_shop'];
 		$product_transparent = $options['header_transparent_disable_product'];
-		$metabox_transparent = woostify_get_metabox( 'site-header-transparent' );
+		$metabox_transparent = woostify_get_metabox( false, 'site-header-transparent' );
 
 		// Disable header transparent on Shop page.
 		if ( class_exists( 'woocommerce' ) && is_shop() && $shop_transparent ) {

@@ -1,6 +1,7 @@
 .clear{
 	clear: both;
 }
+
 .clearfix {
     &:after{
         content: '';
@@ -81,4 +82,8 @@
     height: 1px;
     width: 1px;
     overflow: hidden;
+}
+
+[data-elementor-type] {
+	clear: both;
 }

@@ -18,8 +18,15 @@
 
 	<body <?php body_class(); ?>>
 		<?php
-			the_content();
-			wp_footer();
+		if ( have_posts() ) {
+			while ( have_posts() ) {
+				the_post();
+
+				the_content();
+			}
+		}
+
+		wp_footer();
 		?>
 	</body>
 </html>
