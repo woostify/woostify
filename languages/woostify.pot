@@ -136,51 +136,51 @@ msgstr ""
 msgid "H1"
 msgstr ""
 
-#: inc/class-woostify.php:364
+#: inc/class-woostify.php:362
 msgid "Main Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:366
+#: inc/class-woostify.php:364
 msgid "Appears in the sidebar of the site."
 msgstr ""
 
-#: inc/class-woostify.php:373
+#: inc/class-woostify.php:371
 msgid "Woocommerce Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:375
+#: inc/class-woostify.php:373
 msgid " Appears in the sidebar of shop/product page."
 msgstr ""
 
-#: inc/class-woostify.php:382, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
+#: inc/class-woostify.php:380, inc/woostify-template-functions.php:185, inc/woostify-template-functions.php:200, inc/woostify-template-functions.php:215
 msgid "Footer Widget"
 msgstr ""
 
-#: inc/class-woostify.php:384
+#: inc/class-woostify.php:382
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:592
+#: inc/class-woostify.php:590
 msgid "Woostify 404"
 msgstr ""
 
-#: inc/class-woostify.php:606
+#: inc/class-woostify.php:604
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:739
+#: inc/class-woostify.php:737
 msgid "Post Pagination"
 msgstr ""
 
-#: inc/woostify-functions.php:132, inc/admin/class-woostify-admin.php:214
+#: inc/woostify-functions.php:151, inc/admin/class-woostify-admin.php:214
 msgid "Woostify"
 msgstr ""
 
-#: inc/woostify-functions.php:364
+#: inc/woostify-functions.php:383
 msgid "Placeholder image"
 msgstr ""
 
-#: inc/woostify-functions.php:366
+#: inc/woostify-functions.php:385
 msgid "Error image"
 msgstr ""
 
@@ -292,98 +292,98 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:705, inc/woostify-template-functions.php:961
+#: inc/woostify-template-functions.php:706, inc/woostify-template-functions.php:962
 msgid "Pages:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:838
+#: inc/woostify-template-functions.php:839
 msgid "by Unknown author"
 msgstr ""
 
-#: inc/woostify-template-functions.php:840
+#: inc/woostify-template-functions.php:841
 msgid "by"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: inc/woostify-template-functions.php:858, inc/woostify-template-functions.php:1005
+#: inc/woostify-template-functions.php:859, inc/woostify-template-functions.php:1006
 msgid ", "
 msgstr ""
 
-#: inc/woostify-template-functions.php:864
+#: inc/woostify-template-functions.php:865
 msgid "Posted in"
 msgstr ""
 
-#: inc/woostify-template-functions.php:880
+#: inc/woostify-template-functions.php:881
 msgid "No comments yet"
 msgstr ""
 
-#: inc/woostify-template-functions.php:881
+#: inc/woostify-template-functions.php:882
 msgid "1 Comment"
 msgstr ""
 
-#: inc/woostify-template-functions.php:882
+#: inc/woostify-template-functions.php:883
 msgid "% Comments"
 msgstr ""
 
-#: inc/woostify-template-functions.php:941, inc/woostify-template-functions.php:987
+#: inc/woostify-template-functions.php:942, inc/woostify-template-functions.php:988
 msgid "Read More"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1005, inc/customizer/sections/shop/shop-single.php:205
+#: inc/woostify-template-functions.php:1006, inc/customizer/sections/shop/shop-single.php:205
 msgid "Tags"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1027
+#: inc/woostify-template-functions.php:1028
 msgctxt "Next post"
 msgid "Next"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1028
+#: inc/woostify-template-functions.php:1029
 msgctxt "Previous post"
 msgid "Prev"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1041
+#: inc/woostify-template-functions.php:1042
 msgid "Next post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1042
+#: inc/woostify-template-functions.php:1043
 msgid "Previous post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1068
+#: inc/woostify-template-functions.php:1069
 msgid "Author Avatar"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1073
+#: inc/woostify-template-functions.php:1074
 msgid "Written by"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1103
+#: inc/woostify-template-functions.php:1104
 msgid "Posted on"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1316
+#: inc/woostify-template-functions.php:1317
 msgid "Dialog search icon"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1320
+#: inc/woostify-template-functions.php:1321
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1558, inc/woostify-template-functions.php:1663
+#: inc/woostify-template-functions.php:1559, inc/woostify-template-functions.php:1664
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1561, inc/woostify-template-functions.php:1666
+#: inc/woostify-template-functions.php:1562, inc/woostify-template-functions.php:1667
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1563, inc/woostify-template-functions.php:1668
+#: inc/woostify-template-functions.php:1564, inc/woostify-template-functions.php:1669
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1882, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:1883, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 

@@ -669,6 +669,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		if ( false == $page_header ) {
 			return;
 		}
+
 		?>
 
 		<div class="page-header">

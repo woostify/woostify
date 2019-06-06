@@ -43,7 +43,7 @@ button{
     &:disabled{
 		pointer-events: none;
 		opacity: 0.5;
-		@include filter( grayscale, 100% )
+		@include filter( grayscale, 100% );
 	}
 }
 
@@ -98,7 +98,7 @@ blockquote {
 
     p {
         margin-bottom: 1.6667em;
-        
+
         &:last-child {
             margin-bottom: 0;
         }

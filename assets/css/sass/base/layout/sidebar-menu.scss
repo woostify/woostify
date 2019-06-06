@@ -113,28 +113,6 @@
 		.menu-item-has-children {
 			position: relative;
 		}
-		.arrow-icon{
-			cursor: pointer;
-			position: absolute;
-			right: -20px;
-			top: 1em;
-			width: 30px;
-			height: 30px;
-			z-index: 5;
-			@extend .flex;
-			&:after {
-				content: "\e649";
-				font-family: $icon;
-				font-size: 10px;
-				font-weight: 700;
-				@extend .duration;
-			}
-			&.active{
-				&:after{
-					@include rotate( 90 );
-				}
-			}
-		}
 		a {
 			display: block;
 			font-size: 1.2em;
@@ -176,6 +154,28 @@
 	}
 	ul {
 		list-style: none;
+	}
+}
+.arrow-icon{
+	cursor: pointer;
+	position: absolute;
+	right: -20px;
+	top: 1em;
+	width: 30px;
+	height: 30px;
+	z-index: 5;
+	@extend .flex;
+	&:after {
+		content: "\e649";
+		font-family: $icon;
+		font-size: 10px;
+		font-weight: 700;
+		@extend .duration;
+	}
+	&.active{
+		&:after{
+			@include rotate( 90 );
+		}
 	}
 }
 

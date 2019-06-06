@@ -31,8 +31,7 @@ add_action( 'woostify_template_part_header', 'woostify_content_open', 60 ); // O
 add_action( 'woostify_template_part_header', 'woostify_container_open', 70 ); // Open .container.
 add_action( 'woostify_template_part_header', 'woostify_content_top_open', 80 );
 add_action( 'woostify_template_part_header', 'woostify_shop_messages', 90 );
-add_action( 'woostify_template_part_header', 'woostify_breadcrumb', 100 );
-add_action( 'woostify_template_part_header', 'woostify_content_top_close', 110 );
+add_action( 'woostify_template_part_header', 'woostify_content_top_close', 100 );
 
 // Inside @woostify_site_header hook.
 add_action( 'woostify_header', 'woostify_default_container_open', 0 );

@@ -292,6 +292,22 @@
 	cursor: pointer;
 }
 
+/* Support Nav Menu widget */
+.woostify-nav-menu-widget {
+	@media ( min-width: $screen-md ) {
+		.woostify-toggle-nav-menu-button,
+		.arrow-icon {
+			display: none;
+		}
+	}
+	@media ( max-width: $screen-md - 1 ) {
+		.main-navigation {
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+}
+
 /* responsive */
 @media ( min-width: $screen-md ) {
 	.has-header-layout-1 {
@@ -308,7 +324,6 @@
 			}
 		}
 	}
-
 }
 
 @media ( max-width: $screen-md - 1 ) {
