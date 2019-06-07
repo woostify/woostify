@@ -4674,13 +4674,15 @@ dd {
 /* Support Nav Menu widget */
 @media (min-width: 992px) {
   .woostify-nav-menu-widget .woostify-toggle-nav-menu-button,
-  .woostify-nav-menu-widget .arrow-icon {
+  .woostify-nav-menu-widget .arrow-icon,
+  .woostify-nav-menu-widget .site-search,
+  .woostify-nav-menu-widget .woostify-nav-menu-account-action {
     display: none;
   }
 }
 
 @media (max-width: 991px) {
-  .woostify-nav-menu-widget .main-navigation {
+  .woostify-nav-menu-widget .woostify-nav-menu-inner {
     opacity: 0;
     visibility: hidden;
   }

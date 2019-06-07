@@ -51,7 +51,7 @@ add_action( 'woostify_page_header_end', 'woostify_breadcrumb', 10 );
  * Footer
  */
 add_action( 'woostify_theme_footer', 'woostify_template_footer' );
-add_action( 'woostify_theme_footer', 'woostify_after_footer', 50 );
+add_action( 'woostify_theme_footer', 'woostify_after_footer', 100 );
 
 // Footer template part.
 add_action( 'woostify_template_part_footer', 'woostify_container_close', 10 ); // Close .container.
