@@ -21,26 +21,29 @@ add_action( 'wp_enqueue_scripts', 'woostify_dequeue_scripts_and_styles' );
  * Header
  */
 add_action( 'woostify_theme_header', 'woostify_template_header' );
+add_action( 'woostify_theme_header', 'woostify_after_header', 100 );
 
 // Header template part.
 add_action( 'woostify_template_part_header', 'woostify_view_open', 10 ); // Open #view.
 add_action( 'woostify_template_part_header', 'woostify_topbar', 20 );
 add_action( 'woostify_template_part_header', 'woostify_site_header', 30 );
-add_action( 'woostify_template_part_header', 'woostify_page_header', 40 );
-add_action( 'woostify_template_part_header', 'woostify_content_open', 60 ); // Open #content.
-add_action( 'woostify_template_part_header', 'woostify_container_open', 70 ); // Open .container.
-add_action( 'woostify_template_part_header', 'woostify_content_top_open', 80 );
-add_action( 'woostify_template_part_header', 'woostify_shop_messages', 90 );
-add_action( 'woostify_template_part_header', 'woostify_content_top_close', 100 );
 
 // Inside @woostify_site_header hook.
-add_action( 'woostify_header', 'woostify_default_container_open', 0 );
-add_action( 'woostify_header', 'woostify_skip_links', 5 );
-add_action( 'woostify_header', 'woostify_menu_toggle_btn', 10 );
-add_action( 'woostify_header', 'woostify_site_branding', 20 );
-add_action( 'woostify_header', 'woostify_primary_navigation', 30 );
-add_action( 'woostify_header', 'woostify_header_action', 50 );
-add_action( 'woostify_header', 'woostify_default_container_close', 200 );
+add_action( 'woostify_site_header', 'woostify_default_container_open', 0 );
+add_action( 'woostify_site_header', 'woostify_skip_links', 5 );
+add_action( 'woostify_site_header', 'woostify_menu_toggle_btn', 10 );
+add_action( 'woostify_site_header', 'woostify_site_branding', 20 );
+add_action( 'woostify_site_header', 'woostify_primary_navigation', 30 );
+add_action( 'woostify_site_header', 'woostify_header_action', 50 );
+add_action( 'woostify_site_header', 'woostify_default_container_close', 200 );
+
+// Inside @woostify_after_header hook.
+add_action( 'woostify_after_header', 'woostify_page_header', 10 );
+add_action( 'woostify_after_header', 'woostify_content_open', 20 ); // Open #content.
+add_action( 'woostify_after_header', 'woostify_container_open', 30 ); // Open .container.
+add_action( 'woostify_after_header', 'woostify_content_top_open', 40 );
+add_action( 'woostify_after_header', 'woostify_shop_messages', 50 );
+add_action( 'woostify_after_header', 'woostify_content_top_close', 60 );
 
 /**
  * Page Header
@@ -50,16 +53,19 @@ add_action( 'woostify_page_header_end', 'woostify_breadcrumb', 10 );
 /**
  * Footer
  */
+add_action( 'woostify_theme_footer', 'woostify_before_footer', 0 );
 add_action( 'woostify_theme_footer', 'woostify_template_footer' );
 add_action( 'woostify_theme_footer', 'woostify_after_footer', 100 );
 
 // Footer template part.
-add_action( 'woostify_template_part_footer', 'woostify_container_close', 10 ); // Close .container.
-add_action( 'woostify_template_part_footer', 'woostify_content_close', 20 ); // Close #content.
-add_action( 'woostify_template_part_footer', 'woostify_site_footer', 30 );
-add_action( 'woostify_template_part_footer', 'woostify_view_close', 40 ); // Close #view.
+add_action( 'woostify_template_part_footer', 'woostify_site_footer', 10 );
+
+// Inside @woostify_before_footer hook.
+add_action( 'woostify_before_footer', 'woostify_container_close', 10 ); // Close .container.
+add_action( 'woostify_before_footer', 'woostify_content_close', 10 ); // Close #content.
 
 // Inside @woostify_after_footer hook.
+add_action( 'woostify_after_footer', 'woostify_view_close', 0 ); // Close #view.
 add_action( 'woostify_after_footer', 'woostify_toggle_sidebar', 10 );
 add_action( 'woostify_after_footer', 'woostify_overlay', 20 );
 add_action( 'woostify_after_footer', 'woostify_footer_action', 20 );

@@ -13,7 +13,6 @@ if ( ! function_exists( 'woostify_template_header' ) ) {
 		if ( function_exists( 'hfe_render_header' ) && hfe_header_enabled() ) {
 			// Support Header & Footer Elementor plugin.
 			hfe_render_header();
-			do_action( 'woostify_hfe_render_header' );
 		} else {
 			get_template_part( 'template-parts/header' );
 		}
@@ -27,7 +26,6 @@ if ( ! function_exists( 'woostify_template_footer' ) ) {
 	function woostify_template_footer() {
 		// Support Header & Footer Elementor plugin.
 		if ( function_exists( 'hfe_render_footer' ) && hfe_footer_enabled() ) {
-			do_action( 'woostify_hfe_render_footer' );
 			hfe_render_footer();
 		} else {
 			get_template_part( 'template-parts/footer' );

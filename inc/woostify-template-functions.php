@@ -173,59 +173,58 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 
 		if ( is_active_sidebar( 'footer' ) ) {
 			?>
-
-		<div class="site-footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
-			<?php dynamic_sidebar( 'footer' ); ?>
-		</div>
+			<div class="site-footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
+				<?php dynamic_sidebar( 'footer' ); ?>
+			</div>
 			<?php
 		} elseif ( is_user_logged_in() ) {
 			?>
-		<div class="site-footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
-			<div class="widget widget_text default-widget">
-				<h6 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h6>
-				<div class="textwidget">
-					<p>
-						<?php
-						printf(
-							/* translators: 1: admin URL */
-							__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
-							esc_url( admin_url( 'widgets.php' ) )
-						);  // WPCS: XSS ok.
-						?>
-					</p>
+			<div class="site-footer-widget footer-widget-col-<?php echo esc_attr( $footer_column ); ?>">
+				<div class="widget widget_text default-widget">
+					<h6 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h6>
+					<div class="textwidget">
+						<p>
+							<?php
+							printf(
+								/* translators: 1: admin URL */
+								__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
+								esc_url( admin_url( 'widgets.php' ) )
+							);  // WPCS: XSS ok.
+							?>
+						</p>
+					</div>
 				</div>
-			</div>
 
-			<div class="widget widget_text default-widget">
-				<h6 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h6>
-				<div class="textwidget">
-					<p>
-						<?php
-						printf(
-							/* translators: 1: admin URL */
-							__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
-							esc_url( admin_url( 'widgets.php' ) )
-						);  // WPCS: XSS ok.
-						?>
-					</p>
+				<div class="widget widget_text default-widget">
+					<h6 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h6>
+					<div class="textwidget">
+						<p>
+							<?php
+							printf(
+								/* translators: 1: admin URL */
+								__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
+								esc_url( admin_url( 'widgets.php' ) )
+							);  // WPCS: XSS ok.
+							?>
+						</p>
+					</div>
 				</div>
-			</div>
 
-			<div class="widget widget_text default-widget">
-				<h6 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h6>
-				<div class="textwidget">
-					<p>
-						<?php
-						printf(
-							/* translators: 1: admin URL */
-							__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
-							esc_url( admin_url( 'widgets.php' ) )
-						);  // WPCS: XSS ok.
-						?>
-					</p>
+				<div class="widget widget_text default-widget">
+					<h6 class="widgettitle"><?php esc_html_e( 'Footer Widget', 'woostify' ); ?></h6>
+					<div class="textwidget">
+						<p>
+							<?php
+							printf(
+								/* translators: 1: admin URL */
+								__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
+								esc_url( admin_url( 'widgets.php' ) )
+							);  // WPCS: XSS ok.
+							?>
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
 			<?php
 		}
 	}
@@ -1790,7 +1789,7 @@ if ( ! function_exists( 'woostify_site_header' ) ) {
 				<div class="site-header-inner">
 					<?php
 						/**
-						 * Functions hooked into woostify_header action
+						 * Functions hooked into woostify_site_header action
 						 *
 						 * @hooked woostify_container_open     - 0
 						 * @hooked woostify_skip_links         - 5
@@ -1799,11 +1798,29 @@ if ( ! function_exists( 'woostify_site_header' ) ) {
 						 * @hooked woostify_header_action      - 50
 						 * @hooked woostify_container_close    - 200
 						 */
-						do_action( 'woostify_header' );
+						do_action( 'woostify_site_header' );
 					?>
 				</div>
 			</header>
 		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_after_header' ) ) {
+	/**
+	 * After header
+	 */
+	function woostify_after_header() {
+		do_action( 'woostify_after_header' );
+	}
+}
+
+if ( ! function_exists( 'woostify_before_footer' ) ) {
+	/**
+	 * After header
+	 */
+	function woostify_before_footer() {
+		do_action( 'woostify_before_footer' );
 	}
 }
 

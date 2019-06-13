@@ -315,7 +315,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				)
 			);
 
-			// Header Footer Elementor support.
+			// Header Footer Elementor plugin support.
 			add_theme_support( 'header-footer-elementor' );
 		}
 
@@ -323,32 +323,15 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Init
 		 */
 		public function woostify_init() {
-			if ( defined( 'ELEMENTOR_PRO_VERSION' ) ) { // Support Elementor Pro - Theme Builder.
-				if ( woostify_elementor_has_location( 'header' ) && woostify_elementor_has_location( 'footer' ) ) {
-					add_action( 'woostify_theme_header', 'woostify_container_open', 20 );
-					add_action( 'woostify_theme_footer', 'woostify_container_close', 0 );
-				} elseif ( woostify_elementor_has_location( 'header' ) && ! woostify_elementor_has_location( 'footer' ) ) {
-					add_action( 'woostify_theme_header', 'woostify_view_open', 20 );
-					add_action( 'woostify_theme_header', 'woostify_content_open', 30 );
-					add_action( 'woostify_theme_header', 'woostify_container_open', 40 );
-				} elseif ( ! woostify_elementor_has_location( 'header' ) && woostify_elementor_has_location( 'footer' ) ) {
-					add_action( 'woostify_theme_footer', 'woostify_container_close', 0 );
-					add_action( 'woostify_theme_footer', 'woostify_content_close', 2 );
-					add_action( 'woostify_theme_footer', 'woostify_view_close', 4 );
-				}
-			} elseif ( defined( 'HFE_VER' ) ) { // Support Elementor - Header, Footer & Blocks plugin.
-				if ( hfe_header_enabled() && hfe_footer_enabled() ) {
-					add_action( 'woostify_hfe_render_header', 'woostify_container_open', 10 );
-					add_action( 'woostify_hfe_render_footer', 'woostify_container_close', 10 );
-				} elseif ( hfe_header_enabled() && ! hfe_footer_enabled() ) { // Only Header template.
-					add_action( 'woostify_hfe_render_header', 'woostify_view_open', 10 );
-					add_action( 'woostify_hfe_render_header', 'woostify_content_open', 20 );
-					add_action( 'woostify_hfe_render_header', 'woostify_container_open', 30 );
-				} elseif ( ! hfe_header_enabled() && hfe_footer_enabled() ) { // Only Footer template.
-					add_action( 'woostify_hfe_render_footer', 'woostify_container_close', 10 );
-					add_action( 'woostify_hfe_render_footer', 'woostify_content_close', 20 );
-					add_action( 'woostify_hfe_render_footer', 'woostify_view_close', 30 );
-				}
+			// Support Elementor Pro - Theme Builder.
+			if ( ! defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+				return;
+			}
+
+			if ( woostify_elementor_has_location( 'header' ) && ! woostify_elementor_has_location( 'footer' ) ) {
+				add_action( 'woostify_theme_header', 'woostify_view_open', 0 );
+			} elseif ( ! woostify_elementor_has_location( 'header' ) && woostify_elementor_has_location( 'footer' ) ) {
+				add_action( 'woostify_after_footer', 'woostify_view_close', 0 );
 			}
 		}
 
