@@ -4280,7 +4280,7 @@ dd {
 }
 
 .single-product .woostify-breadcrumb {
-  padding-bottom: 35px;
+  padding-bottom: 20px;
 }
 
 .woostify-breadcrumb .item-bread:after {
@@ -7202,13 +7202,7 @@ footer#colophon {
 }
 
 .single-product .content-top {
-  padding-top: 35px;
-}
-
-@media (max-width: 991px) {
-  .single-product .content-top {
-    padding-bottom: 35px;
-  }
+  padding: 35px 0 15px 0;
 }
 
 .single-product .summary .star-rating {

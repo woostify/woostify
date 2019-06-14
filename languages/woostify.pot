@@ -136,39 +136,39 @@ msgstr ""
 msgid "H1"
 msgstr ""
 
-#: inc/class-woostify.php:362
+#: inc/class-woostify.php:345
 msgid "Main Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:364
+#: inc/class-woostify.php:347
 msgid "Appears in the sidebar of the site."
 msgstr ""
 
-#: inc/class-woostify.php:371
+#: inc/class-woostify.php:354
 msgid "Woocommerce Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:373
+#: inc/class-woostify.php:356
 msgid " Appears in the sidebar of shop/product page."
 msgstr ""
 
-#: inc/class-woostify.php:380, inc/woostify-template-functions.php:184, inc/woostify-template-functions.php:199, inc/woostify-template-functions.php:214
+#: inc/class-woostify.php:363, inc/woostify-template-functions.php:184, inc/woostify-template-functions.php:199, inc/woostify-template-functions.php:214
 msgid "Footer Widget"
 msgstr ""
 
-#: inc/class-woostify.php:382
+#: inc/class-woostify.php:365
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:590
+#: inc/class-woostify.php:573
 msgid "Woostify 404"
 msgstr ""
 
-#: inc/class-woostify.php:604
+#: inc/class-woostify.php:587
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:737
+#: inc/class-woostify.php:720
 msgid "Post Pagination"
 msgstr ""
 
@@ -363,27 +363,27 @@ msgstr ""
 msgid "Posted on"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1316
+#: inc/woostify-template-functions.php:1325
 msgid "Dialog search icon"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1320
+#: inc/woostify-template-functions.php:1329
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1558, inc/woostify-template-functions.php:1663
+#: inc/woostify-template-functions.php:1567, inc/woostify-template-functions.php:1672
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1561, inc/woostify-template-functions.php:1666
+#: inc/woostify-template-functions.php:1570, inc/woostify-template-functions.php:1675
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1563, inc/woostify-template-functions.php:1668
+#: inc/woostify-template-functions.php:1572, inc/woostify-template-functions.php:1677
 msgid "Logout"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1882, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:1909, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 

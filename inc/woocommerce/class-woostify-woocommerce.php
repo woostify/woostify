@@ -301,7 +301,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			add_action( 'woocommerce_before_main_content', 'woostify_before_content', 10 );
 			add_action( 'woocommerce_after_main_content', 'woostify_after_content', 10 );
-			add_action( 'woostify_content_top', 'woostify_shop_messages', 30 );
+			add_action( 'woostify_content_top', 'woostify_shop_messages', 20 );
 
 			add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper', 9 );
 			add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper_close', 31 );

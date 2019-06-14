@@ -41,9 +41,11 @@ add_action( 'woostify_site_header', 'woostify_default_container_close', 200 );
 add_action( 'woostify_after_header', 'woostify_page_header', 10 );
 add_action( 'woostify_after_header', 'woostify_content_open', 20 ); // Open #content.
 add_action( 'woostify_after_header', 'woostify_container_open', 30 ); // Open .container.
-add_action( 'woostify_after_header', 'woostify_content_top_open', 40 );
-add_action( 'woostify_after_header', 'woostify_shop_messages', 50 );
-add_action( 'woostify_after_header', 'woostify_content_top_close', 60 );
+add_action( 'woostify_after_header', 'woostify_content_top', 40 );
+
+// Inside @woostify_content_top hook.
+add_action( 'woostify_content_top', 'woostify_content_top_open', 10 );
+add_action( 'woostify_content_top', 'woostify_content_top_close', 40 );
 
 /**
  * Page Header

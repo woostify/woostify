@@ -44,12 +44,9 @@
 		}
 	}
 	.content-top{
-		padding-top: 35px;
+		padding: 35px 0 15px 0;
 		.woocommerce{
 			@extend .container;
-		}
-		@media ( max-width: $screen-md - 1 ) {
-			padding-bottom: 35px;
 		}
 	}
 	.summary {

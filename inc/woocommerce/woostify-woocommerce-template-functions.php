@@ -223,7 +223,7 @@ if ( ! function_exists( 'woostify_breadcrumb_for_product_page' ) ) {
 
 		// Hooked to `woostify_content_top` only Product page.
 		if ( is_singular( 'product' ) && true == $options['shop_single_breadcrumb'] ) {
-			add_action( 'woostify_content_top', 'woostify_breadcrumb', 40 );
+			add_action( 'woostify_content_top', 'woostify_breadcrumb', 30 );
 		}
 	}
 }

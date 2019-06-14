@@ -1201,6 +1201,15 @@ if ( ! function_exists( 'woostify_container_close' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_content_top' ) ) {
+	/**
+	 * Content top, after Header
+	 */
+	function woostify_content_top() {
+		do_action( 'woostify_content_top' );
+	}
+}
+
 if ( ! function_exists( 'woostify_content_top_open' ) ) {
 	/**
 	 * Woostify .content-top open
