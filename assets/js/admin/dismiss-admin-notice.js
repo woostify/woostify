@@ -29,7 +29,7 @@ var dismiss = function() {
 				ajaxurl,
 				{
 					method: 'POST',
-					body: 'action=dismiss_admin_notice&nonce=' + woostify_dismiss_admin_notice.nonce + 'notice=' + slug,
+					body: 'action=dismiss_admin_notice&nonce=' + woostify_dismiss_admin_notice.nonce + '&notice=' + slug,
 					credentials: 'same-origin',
 					headers: new Headers({
 						'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
