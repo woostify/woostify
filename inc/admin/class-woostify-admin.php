@@ -90,7 +90,13 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 */
 		public function woostify_dismiss_admin_notice() {
 
+			// Nonce check.
 			check_ajax_referer( 'woostify_dismiss_admin_notice', 'nonce' );
+
+			// Bail if user can't edit theme options.
+			if ( ! current_user_can( 'edit_theme_options' ) ) {
+				wp_send_json_error();
+			}
 
 			$notice = isset( $_POST['notice'] ) ? sanitize_text_field( wp_unslash( $_POST['notice'] ) ) : '';
 

@@ -45,11 +45,14 @@
 }
 
 .site-content{
-	margin-top: 3.5em;
+	margin: 3.5em 0;
 	@extend .clearfix;
 
-	.single-product &,
 	.elementor-page &{
+		margin: 0;
+	}
+
+	.single-product & {
 		margin-top: 0;
 	}
 }

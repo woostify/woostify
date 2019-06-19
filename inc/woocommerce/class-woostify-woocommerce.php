@@ -1013,7 +1013,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Get product item in cart
 		 */
 		public function woostify_get_product_item_incart() {
-			check_ajax_referer( 'woostify_ajax_mini_cart', 'nonce' );
+			check_ajax_referer( 'woostify_ajax_mini_cart', 'nonce', false );
+
+			// Bail if user can't edit theme options.
+			if ( ! current_user_can( 'edit_theme_options' ) ) {
+				wp_send_json_error();
+			}
 
 			$response = array(
 				'item' => 0,

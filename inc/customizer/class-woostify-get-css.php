@@ -249,6 +249,22 @@ class Woostify_Get_CSS {
 
 		// Buttons.
 		$styles .= '
+			.woostify-button-color {
+				color: ' . esc_attr( $options['button_text_color'] ) . ';
+			}
+
+			.woostify-button-bg-color {
+				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
+			}
+
+			.woostify-button-hover-color {
+				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
+			}
+
+			.woostify-button-hover-bg-color {
+				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
+			}
+
 			.button,
 			.woocommerce-widget-layered-nav-dropdown__submit,
 			.form-submit .submit,
@@ -306,6 +322,7 @@ class Woostify_Get_CSS {
 
 		// Theme color.
 		$styles .= '
+			.woostify-theme-color,
 			.primary-navigation li.current-menu-item a,
 			.primary-navigation > li.current-menu-ancestor > a,
 			.primary-navigation > li.current-menu-parent > a,

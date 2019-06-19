@@ -503,7 +503,7 @@ if ( ! function_exists( 'woostify_get_metabox' ) ) {
 		$page_id = $page_id ? intval( $page_id ) : woostify_get_page_id();
 		$metabox = get_post_meta( $page_id, $metabox_name, true );
 
-		if ( '' === $metabox || false === $metabox ) {
+		if ( ! $metabox ) {
 			$metabox = 'default';
 		}
 
