@@ -90,7 +90,9 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 */
 		public function woostify_dismiss_admin_notice() {
 
-			$notice = isset( $_POST['notice'] ) ? sanitize_text_field( wp_unslash( $_POST['notice'] ) ) : ''; // phpcs:ignore
+			check_ajax_referer( 'woostify_dismiss_admin_notice', 'nonce' );
+
+			$notice = isset( $_POST['notice'] ) ? sanitize_text_field( wp_unslash( $_POST['notice'] ) ) : '';
 
 			if ( $notice ) {
 				update_user_meta( get_current_user_id(), $notice, true );
@@ -108,16 +110,24 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			wp_enqueue_script(
 				'woostify-dismiss-admin-notice',
 				WOOSTIFY_THEME_URI . 'assets/js/admin/dismiss-admin-notice' . woostify_suffix() . '.js',
-				array(),
+				[],
 				woostify_version(),
 				true
+			);
+
+			wp_localize_script(
+				'woostify-dismiss-admin-notice',
+				'woostify_dismiss_admin_notice',
+				[
+					'nonce' => wp_create_nonce( 'woostify_dismiss_admin_notice' ),
+				]
 			);
 
 			// Welcome screen style.
 			wp_enqueue_style(
 				'woostify-welcome-screen',
 				WOOSTIFY_THEME_URI . 'assets/css/admin/welcome-screen/welcome.css',
-				array(),
+				[],
 				woostify_version()
 			);
 
@@ -125,7 +135,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			wp_enqueue_script(
 				'woostify-install-demo',
 				WOOSTIFY_THEME_URI . 'assets/js/admin/install-demo' . woostify_suffix() . '.js',
-				array(),
+				[],
 				woostify_version(),
 				true
 			);
@@ -450,97 +460,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				</div>
 			</div>
 			<?php
-		}
-
-		/**
-		 * Output a button that will install or activate a plugin if it doesn't exist, or display a disabled button if the
-		 * plugin is already activated.
-		 *
-		 * @param string $plugin_slug The plugin slug.
-		 * @param string $plugin_file The plugin file.
-		 */
-		public function woostify_install_plugin_button( $plugin_slug, $plugin_file ) {
-			if ( current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) ) {
-				if ( is_plugin_active( $plugin_slug . '/' . $plugin_file ) ) {
-					// The plugin is already active.
-					$button = array(
-						'message' => esc_html__( 'Activated', 'woostify' ),
-						'url'     => '#',
-						'classes' => 'disabled',
-					);
-				} elseif ( $this->woostify_is_plugin_installed( $plugin_slug ) ) {
-					$url = $this->woostify_is_plugin_installed( $plugin_slug );
-
-					// The plugin exists but isn't activated yet.
-					$button = array(
-						'message' => esc_html__( 'Activate', 'woostify' ),
-						'url'     => $url,
-						'classes' => 'activate-now',
-					);
-				} else {
-					// The plugin doesn't exist.
-					$url = wp_nonce_url(
-						add_query_arg(
-							array(
-								'action' => 'install-plugin',
-								'plugin' => $plugin_slug,
-							), self_admin_url( 'update.php' )
-						), 'install-plugin_' . $plugin_slug
-					);
-					$button = array(
-						'message' => esc_html__( 'Install now', 'woostify' ),
-						'url'     => $url,
-						'classes' => ' install-now install-' . $plugin_slug,
-					);
-				}
-				?>
-				<a href="<?php echo esc_url( $button['url'] ); ?>" class="woostify-button button-primary <?php echo esc_attr( $button['classes'] ); ?>" data-originaltext="<?php echo esc_attr( $button['message'] ); ?>" data-slug="<?php echo esc_attr( $plugin_slug ); ?>" aria-label="<?php echo esc_attr( $button['message'] ); ?>"><?php echo esc_html( $button['message'] ); ?></a>
-				<a href="//wordpress.org/plugins/<?php echo esc_attr( $plugin_slug ); ?>" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-				<?php
-			}
-		}
-
-		/**
-		 * Check if a plugin is installed and return the url to activate it if so.
-		 *
-		 * @param string $plugin_slug The plugin slug.
-		 */
-		public function woostify_is_plugin_installed( $plugin_slug ) {
-			if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_slug ) ) {
-				$plugins = get_plugins( '/' . $plugin_slug );
-				if ( ! empty( $plugins ) ) {
-					$keys        = array_keys( $plugins );
-					$plugin_file = $plugin_slug . '/' . $keys[0];
-					$url         = wp_nonce_url(
-						add_query_arg(
-							array(
-								'action' => 'activate',
-								'plugin' => $plugin_file,
-							), admin_url( 'plugins.php' )
-						), 'activate-plugin_' . $plugin_file
-					);
-					return $url;
-				}
-			}
-			return false;
-		}
-
-		/**
-		 * Get product data from json
-		 *
-		 * @param  string $url       URL to the json file.
-		 * @param  string $transient Name the transient.
-		 * @return [type]            [description]
-		 */
-		public function woostify_get_woostify_product_data( $url, $transient ) {
-			$raw_products = wp_safe_remote_get( $url );
-			$products     = json_decode( wp_remote_retrieve_body( $raw_products ) );
-
-			if ( ! empty( $products ) ) {
-				set_transient( $transient, $products, DAY_IN_SECONDS );
-			}
-
-			return $products;
 		}
 	}
 
