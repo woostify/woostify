@@ -4512,10 +4512,7 @@ dd {
 }
 
 /* main primary menu */
-@media (min-width: 991px) {
-  .main-navigation {
-    padding: 0 20px;
-  }
+@media (min-width: 992px) {
   .main-navigation .primary-navigation {
     padding-left: 0;
     margin: 0;
@@ -4578,22 +4575,14 @@ dd {
   .main-navigation .primary-navigation .sub-menu {
     pointer-events: none;
     background-color: #fff;
+    -webkit-box-shadow: 0 2px 8px 0 rgba(125, 122, 122, 0.2);
+    box-shadow: 0 2px 8px 0 rgba(125, 122, 122, 0.2);
+    border-radius: 4px;
     -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
     -webkit-transform: translateY(10px);
     transform: translateY(10px);
   }
-}
-
-@media (min-width: 991px) and (min-width: 992px) {
-  .main-navigation .primary-navigation .sub-menu {
-    -webkit-box-shadow: 0 2px 8px 0 rgba(125, 122, 122, 0.2);
-    box-shadow: 0 2px 8px 0 rgba(125, 122, 122, 0.2);
-    border-radius: 4px;
-  }
-}
-
-@media (min-width: 991px) {
   .main-navigation .primary-navigation .sub-menu > li > ul {
     -webkit-transform: translateY(0px);
     transform: translateY(0px);
@@ -4940,13 +4929,53 @@ dd {
   margin: 0;
 }
 
+.sidebar-menu .primary-navigation .menu-item-has-children {
+  position: relative;
+}
+
+.sidebar-menu .primary-navigation .sub-menu {
+  display: none;
+  transform: none;
+  box-shadow: none;
+  border-radius: 0;
+  pointer-events: auto;
+  margin-left: 20px;
+  transition-duration: 0s;
+}
+
+.sidebar-menu .primary-navigation .sub-menu a {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar-menu .primary-navigation .sub-menu a:hover {
+  background-color: transparent;
+}
+
+.sidebar-menu .primary-navigation > li {
+  display: block;
+}
+
 .sidebar-menu .primary-navigation > li.current-menu-ancestor > a:before, .sidebar-menu .primary-navigation > li.current-menu-parent > a:before, .sidebar-menu .primary-navigation > li.current_page_parent > a:before, .sidebar-menu .primary-navigation > li.current_page_ancestor > a:before {
   content: '';
   width: 40px;
 }
 
-.sidebar-menu .primary-navigation .menu-item-has-children {
-  position: relative;
+.sidebar-menu .primary-navigation > li > a {
+  padding: 0;
+}
+
+.sidebar-menu .primary-navigation > li ul {
+  opacity: 1;
+  visibility: visible;
+  position: static;
+  text-align: left;
+  z-index: 5;
+  transform: none;
+}
+
+.sidebar-menu .primary-navigation li:hover ul {
+  transform: none;
 }
 
 .sidebar-menu .primary-navigation a {
@@ -4967,10 +4996,6 @@ dd {
   bottom: 8px;
   height: 2px;
   width: 0;
-}
-
-.sidebar-menu .sub-menu {
-  display: none;
 }
 
 .sidebar-menu .sidebar-menu-bottom {
