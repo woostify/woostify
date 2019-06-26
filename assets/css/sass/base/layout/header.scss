@@ -86,10 +86,8 @@
 }
 
 /* main primary menu */
-@media ( min-width: $screen-md - 1 ) {
+@media ( min-width: $screen-md ) {
 	.main-navigation{
-        padding: 0 20px;
-
         .primary-navigation{
             padding-left: 0;
             margin: 0;
@@ -159,13 +157,9 @@
             }
             .sub-menu{
                 pointer-events: none;
-                background-color: #fff;
-
-                @media ( min-width: $screen-md ) {
-                    @include shadow( 0 2px 8px 0 rgba(125, 122, 122, 0.2) );
-                    border-radius: 4px;
-                }
-
+                background-color: #fff;                
+				@include shadow( 0 2px 8px 0 rgba(125, 122, 122, 0.2) );
+				border-radius: 4px;
                 @include duration( 0.2s );
                 @include translatey( 10px );
 
