@@ -36,7 +36,7 @@ var activatePlugin = function( url, redirect ) {
 
 // Download and Install plugin.
 var installPlugin = function() {
-	var installBtn = document.getElementsByClassName( 'woostify-install-demo' )[0];
+	var installBtn = document.querySelector( '.woostify-install-demo' );
 	if ( ! installBtn ) {
 		return;
 	}
@@ -66,7 +66,7 @@ var installPlugin = function() {
 
 // Activate plugin manual.
 var handleActivate = function() {
-	var activeButton = document.getElementsByClassName( 'woostify-active-now' )[0];
+	var activeButton = document.querySelector( '.woostify-active-now' );
 	if ( ! activeButton ) {
 		return;
 	}

@@ -141,7 +141,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			wp_enqueue_script(
 				'woostify-install-demo',
 				WOOSTIFY_THEME_URI . 'assets/js/admin/install-demo' . woostify_suffix() . '.js',
-				[],
+				[ 'updates' ],
 				woostify_version(),
 				true
 			);
