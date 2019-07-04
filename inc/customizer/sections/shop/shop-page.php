@@ -77,6 +77,27 @@ $wp_customize->add_control(
 	)
 );
 
+// Hover effect.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_image_hover]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_page_image_hover'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_image_hover]',
+		array(
+			'label'        => __( 'Product Hover Effect', 'woostify' ),
+			'section'      => 'woostify_shop_page',
+			'settings'     => 'woostify_setting[shop_page_image_hover]',
+		)
+	)
+);
+
 // Structure title.
 $wp_customize->add_setting(
 	'shop_page_structute_meta_title',

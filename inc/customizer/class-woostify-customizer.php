@@ -140,6 +140,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					// Shop.
 					'shop_columns'                            => 3,
 					'shop_product_per_page'                   => 9,
+					'shop_page_image_hover'                   => true,
 					'shop_page_title'                         => true,
 					'shop_page_breadcrumb'                    => true,
 					'shop_page_product_title'                 => true,
@@ -153,6 +154,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					// Shop single.
 					'shop_single_content_background'          => '#f3f3f3',
 					'shop_single_gallery_layout'              => 'vertical',
+					'shop_single_image_zoom'                  => true,
+					'shop_single_image_lightbox'              => true,
 					'shop_single_breadcrumb'                  => true,
 					'shop_single_skus'                        => true,
 					'shop_single_categories'                  => true,

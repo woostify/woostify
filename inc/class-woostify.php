@@ -328,7 +328,10 @@ if ( ! class_exists( 'woostify' ) ) :
 				return;
 			}
 
-			if ( woostify_elementor_has_location( 'header' ) && ! woostify_elementor_has_location( 'footer' ) ) {
+			if ( woostify_elementor_has_location( 'header' ) && woostify_elementor_has_location( 'footer' ) ) {
+				add_action( 'woostify_theme_header', 'woostify_view_open', 0 );
+				add_action( 'woostify_after_footer', 'woostify_view_close', 0 );
+			} elseif ( woostify_elementor_has_location( 'header' ) && ! woostify_elementor_has_location( 'footer' ) ) {
 				add_action( 'woostify_theme_header', 'woostify_view_open', 0 );
 			} elseif ( ! woostify_elementor_has_location( 'header' ) && woostify_elementor_has_location( 'footer' ) ) {
 				add_action( 'woostify_after_footer', 'woostify_view_close', 0 );
@@ -392,6 +395,8 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * Enqueue scripts and styles.
 		 */
 		public function woostify_scripts() {
+			$options = woostify_options( false );
+
 			/**
 			 * Styles
 			 */
@@ -471,23 +476,25 @@ if ( ! class_exists( 'woostify' ) ) :
 				true
 			);
 
-			// Product gallery zoom.
-			wp_register_script(
-				'easyzoom',
-				WOOSTIFY_THEME_URI . 'assets/js/easyzoom' . woostify_suffix() . '.js',
-				array( 'jquery' ),
-				woostify_version(),
-				true
-			);
+			if ( $options['shop_single_image_zoom'] ) {
+				// Product gallery zoom.
+				wp_register_script(
+					'easyzoom',
+					WOOSTIFY_THEME_URI . 'assets/js/easyzoom' . woostify_suffix() . '.js',
+					array( 'jquery' ),
+					woostify_version(),
+					true
+				);
 
-			// Product gallery zoom handle.
-			wp_register_script(
-				'easyzoom-handle',
-				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/easyzoom-handle' . woostify_suffix() . '.js',
-				array( 'easyzoom' ),
-				woostify_version(),
-				true
-			);
+				// Product gallery zoom handle.
+				wp_register_script(
+					'easyzoom-handle',
+					WOOSTIFY_THEME_URI . 'assets/js/woocommerce/easyzoom-handle' . woostify_suffix() . '.js',
+					array( 'easyzoom' ),
+					woostify_version(),
+					true
+				);
+			}
 
 			// Product varitions.
 			wp_register_script(
@@ -516,14 +523,16 @@ if ( ! class_exists( 'woostify' ) ) :
 				true
 			);
 
-			// Photoswipe init js.
-			wp_register_script(
-				'photoswipe-init',
-				WOOSTIFY_THEME_URI . 'assets/js/photoswipe-init' . woostify_suffix() . '.js',
-				array( 'photoswipe', 'photoswipe-ui-default' ),
-				woostify_version(),
-				true
-			);
+			if ( $options['shop_single_image_lightbox'] ) {
+				// Photoswipe init js.
+				wp_register_script(
+					'photoswipe-init',
+					WOOSTIFY_THEME_URI . 'assets/js/photoswipe-init' . woostify_suffix() . '.js',
+					array( 'photoswipe', 'photoswipe-ui-default' ),
+					woostify_version(),
+					true
+				);
+			}
 
 			// Comment reply.
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

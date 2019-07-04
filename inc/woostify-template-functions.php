@@ -1163,16 +1163,16 @@ if ( ! function_exists( 'woostify_post_meta_author' ) ) {
 	 */
 	function woostify_post_meta_author( $echo = true ) {
 		$author = '<span class="post-meta-item vcard author">';
-			if ( ! get_the_author() ) {
-				$author .= esc_html_e( 'by Unknown author', 'woostify' );
-			} else {
-				$author .= '<span class="label">' . esc_html__( 'by', 'woostify' ) . '</span>';
-				$author .= sprintf(
-					' <a href="%1$s" class="url fn" rel="author">%2$s</a>',
-					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-					get_the_author()
-				);
-			}
+		if ( ! get_the_author() ) {
+			$author .= esc_html_e( 'by Unknown author', 'woostify' );
+		} else {
+			$author .= '<span class="label">' . esc_html__( 'by', 'woostify' ) . '</span>';
+			$author .= sprintf(
+				' <a href="%1$s" class="url fn" rel="author">%2$s</a>',
+				esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+				get_the_author()
+			);
+		}
 		$author .= '</span>';
 
 		if ( $echo ) {

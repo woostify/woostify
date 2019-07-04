@@ -597,6 +597,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Loop product hover image
 		 */
 		public function woostify_loop_product_hover_image() {
+			$options = woostify_options( false );
+			if ( ! $options['shop_page_image_hover'] ) {
+				return;
+			}
+
 			global $product;
 			$gallery    = $product->get_gallery_image_ids();
 			$size       = 'woocommerce_thumbnail';
@@ -889,10 +894,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			$gallery_id        = $product->get_gallery_image_ids();
 			?>
 			<div class="product-images">
-				<div id="product-images" itemscope itemtype="http://schema.org/ImageGallery">
-					<figure class="image-item ez-zoom" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-						<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" itemprop="contentUrl" data-elementor-open-lightbox="no">
-							<img src="<?php echo esc_url( $image_medium_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" itemprop="thumbnail">
+				<div id="product-images">
+					<figure class="image-item ez-zoom">
+						<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
+							<img src="<?php echo esc_url( $image_medium_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
 						</a>
 					</figure>
 
@@ -904,9 +909,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 							$g_image_size     = $g_medium_img_src[1] . 'x' . $g_medium_img_src[2];
 							$g_img_alt        = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
 							?>
-							<figure class="image-item ez-zoom" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-								<a href="<?php echo esc_url( $g_full_img_src[0] ); ?>" data-size="<?php echo esc_attr( $g_image_size ); ?>" itemprop="contentUrl" data-elementor-open-lightbox="no">
-									<img src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>" itemprop="thumbnail">
+							<figure class="image-item ez-zoom">
+								<a href="<?php echo esc_url( $g_full_img_src[0] ); ?>" data-size="<?php echo esc_attr( $g_image_size ); ?>" data-elementor-open-lightbox="no">
+									<img src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>">
 								</a>
 							</figure>
 							<?php
@@ -973,6 +978,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Single gallery product gallery script and style dependency
 		 */
 		public function woostify_single_product_gallery_dependency() {
+			$options = woostify_options( false );
+			if ( ! $options['shop_single_image_lightbox'] ) {
+				return;
+			}
+
 			// Photoswipe markup html.
 			get_template_part( 'template-parts/content', 'photoswipe' );
 		}

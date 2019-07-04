@@ -78,6 +78,48 @@ $wp_customize->add_control(
 	)
 );
 
+// Image zoom.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_image_zoom]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_single_image_zoom'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_image_zoom]',
+		array(
+			'label'        => __( 'Gallery Zoom Effect', 'woostify' ),
+			'section'      => 'woostify_shop_single',
+			'settings'     => 'woostify_setting[shop_single_image_zoom]',
+		)
+	)
+);
+
+// Image lightbox.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_image_lightbox]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_single_image_lightbox'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_image_lightbox]',
+		array(
+			'label'        => __( 'Gallery Lightbox Effect', 'woostify' ),
+			'section'      => 'woostify_shop_single',
+			'settings'     => 'woostify_setting[shop_single_image_lightbox]',
+		)
+	)
+);
+
 // Structure title.
 $wp_customize->add_setting(
 	'shop_single_structute_meta_title',
