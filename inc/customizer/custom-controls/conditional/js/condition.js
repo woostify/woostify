@@ -120,6 +120,64 @@
 			} );
 		}
 
+		/**
+		 * Condition controls.
+		 *
+		 * @param string  id            Setting id.
+		 * @param array   dependencies  Setting id dependencies.
+		 * @param string  value         Setting value.
+		 * @param array   parentvalue   Parent setting id and value.
+		 * @param boolean operator      Operator.
+		 */
+		var arrayCondition = function( id, dependencies, value ) {
+			var value    = undefined !== arguments[2] ? arguments[2] : false,
+				operator = undefined !== arguments[3] ? arguments[3] : false;
+
+			api( id, function( setting ) {
+
+				/**
+				 * Update a control's active setting value.
+				 *
+				 * @param {api.Control} control
+				 */
+				var dependency = function( control ) {
+					var visibility = function() {
+						if ( setting.get().includes( value ) ) {
+							control.container.show( 200 );
+						} else {
+							control.container.hide( 200 );
+						}
+					}
+
+					// Set initial active state.
+					visibility();
+
+					// Update activate state whenever the setting is changed.
+					setting.bind( visibility );
+				};
+
+				// Call dependency on the setting controls when they exist.
+				for ( var i = 0, j = dependencies.length; i < j; i++ ) {
+					api.control( dependencies[i], dependency );
+				}
+			} );
+		}
+
+		// POST.
+		// Post structure.
+		arrayCondition(
+			'woostify_setting[blog_list_structure]',
+			[ 'woostify_setting[blog_list_post_meta]' ],
+			'post-meta'
+		);
+
+		// Post single structure.
+		arrayCondition(
+			'woostify_setting[blog_single_structure]',
+			[ 'woostify_setting[blog_single_post_meta]' ],
+			'post-meta'
+		);
+
 		// HEADER SECTION.
 		// Search product only.
 		condition(

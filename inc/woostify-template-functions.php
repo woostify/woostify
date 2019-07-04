@@ -109,9 +109,11 @@ if ( ! function_exists( 'woostify_comment' ) ) {
 
 		<<?php echo esc_attr( $tag ); ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> id="comment-<?php comment_ID(); ?>">
 			<div class="comment-body">
-				<div class="comment-author vcard">
-					<?php echo get_avatar( $comment, 70 ); ?>
-				</div>
+				<?php if ( get_avatar( get_the_author_meta( 'ID' ) ) ) { ?>
+					<div class="comment-author vcard">
+						<?php echo get_avatar( $comment, 70 ); ?>
+					</div>
+				<?php } ?>
 
 				<?php if ( 'div' != $args['style'] ) : ?>
 				<div id="div-comment-<?php comment_ID(); ?>" class="comment-content">
@@ -636,7 +638,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		$page_header   = $options['page_header_display'];
 		$metabox       = woostify_get_metabox( false, 'site-page-header' );
 		$title         = get_the_title( $page_id );
-		$disable_title = $options['blog_single_title'];
+		$disable_title = $options['page_header_title'];
 
 		$classes[]     = 'woostify-container';
 		$classes[]     = 'content-align-' . $options['page_header_text_align'];
@@ -711,184 +713,207 @@ if ( ! function_exists( 'woostify_page_content' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_post_header_wrapper' ) ) {
+if ( ! function_exists( 'woostify_post_header_open' ) ) {
 	/**
 	 * Post header wrapper
 	 *
 	 * @return void
 	 */
-	function woostify_post_header_wrapper() {
+	function woostify_post_header_open() {
 		?>
 			<header class="entry-header">
 		<?php
 	}
 }
 
-if ( ! function_exists( 'woostify_post_thumbnail' ) ) {
-	/**
-	 * Display post thumbnail
-	 *
-	 * @var $size thumbnail size. thumbnail|medium|large|full|$custom
-	 * @uses has_post_thumbnail()
-	 * @uses the_post_thumbnail
-	 * @param string $size the post thumbnail size.
-	 */
-	function woostify_post_thumbnail( $size = 'full' ) {
-		if ( has_post_thumbnail() ) {
-			$options = woostify_options( false );
-
-			if ( ! is_single() ) {
-				if ( true == $options['blog_list_feature_image'] ) {
-					?>
-					<div class="post-cover-image">
-						<a href="<?php echo esc_url( get_permalink() ); ?>">
-							<?php the_post_thumbnail( $size ); ?>
-						</a>
-					</div>
-					<?php
-				}
-			} else {
-				if ( true == $options['blog_single_feature_image'] ) {
-					?>
-					<div class="post-cover-image">
-						<?php the_post_thumbnail( $size ); ?>
-					</div>
-					<?php
-				}
-			}
-		}
-	}
-}
-
-if ( ! function_exists( 'woostify_post_title' ) ) {
-	/**
-	 * Display the post header with a link to the single post
-	 */
-	function woostify_post_title() {
-		$options = woostify_options( false );
-
-		if ( ! is_single() && true == $options['blog_list_title'] ) {
-			the_title( sprintf( '<h2 class="alpha entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
-		}
-	}
-}
-
-if ( ! function_exists( 'woostify_post_header_wrapper_close' ) ) {
+if ( ! function_exists( 'woostify_post_header_close' ) ) {
 	/**
 	 * Post header wrapper close
 	 *
 	 * @return void
 	 */
-	function woostify_post_header_wrapper_close() {
+	function woostify_post_header_close() {
 		?>
 			</header>
 		<?php
 	}
 }
 
-if ( ! function_exists( 'woostify_post_info_start' ) ) {
+if ( ! function_exists( 'woostify_get_post_thumbnail' ) ) {
 	/**
-	 * Blog info start
+	 * Get post thumbnail
+	 *
+	 * @var $size thumbnail size. thumbnail|medium|large|full|$custom
+	 * @uses has_post_thumbnail()
+	 * @uses the_post_thumbnail
+	 * @param string  $size The post thumbnail size.
+	 * @param boolean $echo Echo.
 	 */
-	function woostify_post_info_start() {
-		?>
-		<div class="post-info">
-		<?php
-	}
-}
+	function woostify_get_post_thumbnail( $size = 'full', $echo = true ) {
+		if ( ! has_post_thumbnail() ) {
+			return;
+		}
 
-if ( ! function_exists( 'woostify_post_info_end' ) ) {
-	/**
-	 * Blog info end
-	 */
-	function woostify_post_info_end() {
-		?>
-		</div>
-		<?php
-	}
-}
+		$image = '';
 
-if ( ! function_exists( 'woostify_post_meta' ) ) {
-	/**
-	 * Display the post meta
-	 */
-	function woostify_post_meta() {
-		$options = woostify_options( false );
-		?>
-		<aside class="entry-meta">
-			<?php
-			if ( 'post' == get_post_type() ) {
-				// Publish date meta.
-				if (
-					! is_single() && true == $options['blog_list_publish_date'] ||
-					is_single() && true == $options['blog_single_publish_date']
-				) {
-					woostify_posted_on();
-				}
+		ob_start();
 
-				// Author meta.
-				if (
-					! is_single() && true == $options['blog_list_author'] ||
-					is_single() && true == $options['blog_single_author']
-				) {
-					?>
-					<span class="post-meta-item vcard author">
-						<?php
-						if ( '' === get_the_author() ) {
-							esc_html_e( 'by Unknown author', 'woostify' );
-						} else {
-							echo '<span class="label">' . esc_html__( 'by', 'woostify' ) . '</span>';
-							echo sprintf(
-								' <a href="%1$s" class="url fn" rel="author">%2$s</a>',
-								esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-								get_the_author()
-							);
-						}
-						?>
-					</span>
-					<?php
-				}
-
-				// Category meta.
-				if (
-					! is_single() && true == $options['blog_list_category'] ||
-					is_single() && true == $options['blog_single_category']
-				) {
-					/* translators: used between list items, there is a space after the comma */
-					$categories_list = get_the_category_list( __( ', ', 'woostify' ) );
-
-					if ( $categories_list ) :
-						?>
-							<span class="post-meta-item cat-links">
-								<?php
-									echo '<span class="label sr-only">' . esc_html( __( 'Posted in', 'woostify' ) ) . '</span>';
-									echo wp_kses_post( $categories_list );
-								?>
-							</span>
-						<?php
-					endif; // End if categories.
-				}
-			} // End if 'post' == get_post_type().
-
-			// Comment meta.
-			if ( ! is_single() && true == $options['blog_list_comment'] || is_single() && true == $options['blog_single_comment'] ) {
-				if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-					?>
-					<span class="post-meta-item comments-link">
-						<?php
-							comments_popup_link(
-								__( 'No comments yet', 'woostify' ),
-								__( '1 Comment', 'woostify' ),
-								__( '% Comments', 'woostify' )
-							);
-						?>
-					</span>
-					<?php
-				}
-			}
+		if ( ! is_single() ) {
 			?>
-		</aside>
+			<div class="entry-header-item post-cover-image">
+				<a href="<?php echo esc_url( get_permalink() ); ?>">
+					<?php the_post_thumbnail( $size ); ?>
+				</a>
+			</div>
+		<?php } else { ?>
+			<div class="entry-header-item post-cover-image">
+				<?php the_post_thumbnail( $size ); ?>
+			</div>
 		<?php
+		}
+
+		$image = ob_get_clean();
+
+		if ( $echo ) {
+			echo $image; // WPCS XSS: ok.
+		} else {
+			return $image;
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_get_post_title' ) ) {
+	/**
+	 * Display the post header with a link to the single post
+	 *
+	 * @param boolean $echo Echo.
+	 */
+	function woostify_get_post_title( $echo = true ) {
+		$title_tag = apply_filters( 'woostify_post_title_html_tag', 'h2' );
+
+		$title = '<' . esc_attr( $title_tag ) . ' class="entry-header-item alpha entry-title">';
+		$title .= '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">';
+		$title .= get_the_title();
+		$title .= '</a>';
+		$title .= '</' . esc_attr( $title_tag ) . '>';
+
+		if ( $echo ) {
+			echo $title; // WPCS XSS: ok.
+		} else {
+			return $title;
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_get_post_structure' ) ) {
+	/**
+	 * Get post structure
+	 *
+	 * @param string  $option_name The option name.
+	 * @param boolean $echo        Echo.
+	 */
+	function woostify_get_post_structure( $option_name, $echo = true ) {
+		$output    = '';
+		$options   = woostify_options( false );
+		$meta_data = $options[ $option_name ];
+
+		if ( ! $meta_data || empty( $meta_data ) ) {
+			return $output;
+		}
+
+		$filter_key  = is_single() ? 'woostify_post_single_structure_' : 'woostify_post_structure_';
+		$option_name = is_single() ? 'blog_single_post_meta' : 'blog_list_post_meta';
+
+		foreach ( $meta_data as $key ) {
+			switch ( $key ) {
+				case 'image':
+					$output .= woostify_get_post_thumbnail( 'full', false );
+					break;
+				case 'title-meta':
+					$output .= woostify_get_post_title( false );
+					break;
+				case 'post-meta':
+					$output .= woostify_get_post_meta( $option_name, false );
+					break;
+				default:
+					$output = apply_filters( $filter_key . $key, $output );
+					break;
+			}
+		}
+
+		if ( $echo ) {
+			echo $output; // WPCS XSS: ok.
+		} else {
+			return $output;
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_get_post_meta' ) ) {
+	/**
+	 * Get output order post meta
+	 *
+	 * @param string  $option_name The option name.
+	 * @param boolean $echo        Echo.
+	 */
+	function woostify_get_post_meta( $option_name, $echo = true ) {
+		$output    = '';
+		$options   = woostify_options( false );
+		$meta_data = $options[ $option_name ];
+
+		if ( ! $meta_data || empty( $meta_data ) ) {
+			return $output;
+		}
+
+		$separator = apply_filters( 'woostify_post_meta_separator', '<span class="post-meta-separator">.</span>' );
+
+		$output .= '<aside class="entry-header-item entry-meta">';
+
+		foreach ( $meta_data as $key ) {
+			switch ( $key ) {
+				case 'date':
+					$output .= woostify_post_meta_posted_on( false ) . $separator;
+					break;
+				case 'author':
+					$output .= woostify_post_meta_author( false ) . $separator;
+					break;
+				case 'comments':
+					$output .= woostify_post_meta_comments( false ) . $separator;
+					break;
+				case 'category':
+					$output .= woostify_post_meta_category( false ) . $separator;
+					break;
+				default:
+					$output = apply_filters( 'woostify_post_meta_' . $key, $output, $separator );
+					break;
+			}
+		}
+
+		$output .= '</aside>';
+
+		if ( $echo ) {
+			echo $output; // WPCS XSS: ok.
+		} else {
+			return $output;
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_post_structure' ) ) {
+	/**
+	 * Display post structure
+	 */
+	function woostify_post_structure() {
+		woostify_get_post_structure( 'blog_list_structure' );
+	}
+}
+
+if ( ! function_exists( 'woostify_post_single_structure' ) ) {
+	/**
+	 * Display the single post structure
+	 */
+	function woostify_post_single_structure() {
+		woostify_get_post_structure( 'blog_single_structure' );
 	}
 }
 
@@ -1082,11 +1107,13 @@ if ( ! function_exists( 'woostify_post_author_box' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_posted_on' ) ) {
+if ( ! function_exists( 'woostify_post_meta_posted_on' ) ) {
 	/**
 	 * Prints HTML with meta information for the current post-date/time and author.
+	 *
+	 * @param boolean $echo Echo posted on.
 	 */
-	function woostify_posted_on() {
+	function woostify_post_meta_posted_on( $echo = true ) {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time> <time class="updated" datetime="%3$s">%4$s</time>';
@@ -1103,7 +1130,7 @@ if ( ! function_exists( 'woostify_posted_on' ) ) {
 		$posted_on = '<span class="sr-only">' . esc_html__( 'Posted on', 'woostify' ) . '</span>';
 		$posted_on .= '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>';
 
-		echo wp_kses(
+		$data = wp_kses(
 			apply_filters( 'woostify_single_post_posted_on_html', '<span class="post-meta-item posted-on">' . $posted_on . '</span>', $posted_on ), array(
 				'span' => array(
 					'class'  => array(),
@@ -1119,6 +1146,101 @@ if ( ! function_exists( 'woostify_posted_on' ) ) {
 				),
 			)
 		);
+
+		if ( $echo ) {
+			echo $data; // WPCS XSS: ok.
+		} else {
+			return $data;
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_post_meta_author' ) ) {
+	/**
+	 * Post meta author
+	 *
+	 * @param boolean $echo Echo author meta.
+	 */
+	function woostify_post_meta_author( $echo = true ) {
+		$author = '<span class="post-meta-item vcard author">';
+			if ( ! get_the_author() ) {
+				$author .= esc_html_e( 'by Unknown author', 'woostify' );
+			} else {
+				$author .= '<span class="label">' . esc_html__( 'by', 'woostify' ) . '</span>';
+				$author .= sprintf(
+					' <a href="%1$s" class="url fn" rel="author">%2$s</a>',
+					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+					get_the_author()
+				);
+			}
+		$author .= '</span>';
+
+		if ( $echo ) {
+			echo $author; // WPCS XSS: ok.
+		} else {
+			return $author;
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_post_meta_category' ) ) {
+	/**
+	 * Post meta category
+	 *
+	 * @param boolean $echo Echo post category.
+	 */
+	function woostify_post_meta_category( $echo = true ) {
+		$categories = get_the_category_list( __( ', ', 'woostify' ) );
+		if ( ! $categories ) {
+			return;
+		}
+
+		$category = '<span class="post-meta-item cat-links">';
+		$category .= '<span class="label sr-only">' . esc_html( __( 'Posted in', 'woostify' ) ) . '</span>';
+		$category .= wp_kses_post( $categories );
+		$category .= '</span>';
+
+		if ( $echo ) {
+			echo $category; // WPCS XSS: ok.
+		} else {
+			return $category;
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_post_meta_comments' ) ) {
+	/**
+	 * Post meta comment
+	 *
+	 * @param boolean $echo Echo post comment.
+	 */
+	function woostify_post_meta_comments( $echo = true ) {
+		$comments = '';
+		if ( post_password_required() || ! comments_open() ) {
+			return $comments;
+		}
+
+		ob_start();
+		?>
+
+		<span class="post-meta-item comments-link">
+		<?php
+			comments_popup_link(
+				__( 'No comments yet', 'woostify' ),
+				__( '1 Comment', 'woostify' ),
+				__( '% Comments', 'woostify' )
+			);
+		?>
+		</span>
+
+		<?php
+		$comments = ob_get_clean();
+
+		if ( $echo ) {
+			echo $comments; // WPCS XSS: ok.
+		} else {
+			return $comments;
+		}
 	}
 }
 

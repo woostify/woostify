@@ -90,25 +90,17 @@ add_action( 'woostify_toggle_sidebar', 'woostify_sidebar_menu_close', 50 );
 /**
  * Posts
  */
-add_action( 'woostify_loop_post', 'woostify_post_header_wrapper', 10 );
-add_action( 'woostify_loop_post', 'woostify_post_thumbnail', 20 );
-
-add_action( 'woostify_loop_post', 'woostify_post_info_start', 30 );
-add_action( 'woostify_loop_post', 'woostify_post_meta', 40 );
-add_action( 'woostify_loop_post', 'woostify_post_title', 50 );
-add_action( 'woostify_loop_post', 'woostify_post_info_end', 60 );
-
-add_action( 'woostify_loop_post', 'woostify_post_header_wrapper_close', 70 );
-add_action( 'woostify_loop_post', 'woostify_post_content', 80 );
+add_action( 'woostify_loop_post', 'woostify_post_header_open', 10 );
+add_action( 'woostify_loop_post', 'woostify_post_structure', 20 );
+add_action( 'woostify_loop_post', 'woostify_post_header_close', 30 );
+add_action( 'woostify_loop_post', 'woostify_post_content', 40 );
 
 add_action( 'woostify_loop_after', 'woostify_paging_nav', 10 );
 add_action( 'woostify_post_content_after', 'woostify_post_read_more_button', 10 );
 
-add_action( 'woostify_single_post', 'woostify_post_meta', 10 );
-add_action( 'woostify_single_post', 'woostify_post_title', 20 );
-add_action( 'woostify_single_post', 'woostify_post_thumbnail', 30 );
-add_action( 'woostify_single_post', 'woostify_post_content', 40 );
-add_action( 'woostify_single_post', 'woostify_post_tags', 50 );
+add_action( 'woostify_single_post', 'woostify_post_single_structure', 10 );
+add_action( 'woostify_single_post', 'woostify_post_content', 20 );
+add_action( 'woostify_single_post', 'woostify_post_tags', 30 );
 
 add_action( 'woostify_single_post_after', 'woostify_post_nav', 10 );
 add_action( 'woostify_single_post_after', 'woostify_post_author_box', 20 );

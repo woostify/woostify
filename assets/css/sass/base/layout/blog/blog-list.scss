@@ -45,26 +45,24 @@
     	.post-meta-item{
     		margin: 0 5px;
 
-    		&:before{
-                content: '.';
-                margin-right: 7px;
-                font-size: 20px;
-                position: relative;
-                top: -3px;
-            }
-
     		&:first-child{
     			margin-left: 0;
-
-    			&:before{
-    				content: none
-    			}
     		}
 
     		&:last-child{
     			margin-right: 0;
     		}
-    	}
+		}
+		.post-meta-separator {
+			margin-right: 7px;
+			font-size: 20px;
+			position: relative;
+			top: -3px;
+
+			&:last-child {
+				display: none;
+			}
+		}
     }
 
     .alpha.entry-title{

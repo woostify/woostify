@@ -276,16 +276,15 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		 * Return an array of all of our Google Fonts.
 		 */
 		public function woostify_get_all_google_fonts_ajax() {
-			/*Bail if the nonce doesn't check out*/
-			if ( ! isset( $_POST['woostify_customize_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['woostify_customize_nonce'] ), 'woostify_customize_nonce' ) ) {
-				wp_die();
-			}
-
 			/*Do another nonce check*/
 			check_ajax_referer( 'woostify_customize_nonce', 'woostify_customize_nonce' );
 
-			/*Bail if user can't edit theme options*/
-			if ( ! current_user_can( 'edit_theme_options' ) ) {
+			/*Bail if the nonce doesn't check out*/
+			if (
+				! isset( $_POST['woostify_customize_nonce'] ) ||
+				! wp_verify_nonce( sanitize_key( $_POST['woostify_customize_nonce'] ), 'woostify_customize_nonce' ) ||
+				! current_user_can( 'edit_theme_options' )
+			) {
 				wp_die();
 			}
 

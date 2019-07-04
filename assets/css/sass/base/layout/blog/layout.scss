@@ -21,7 +21,7 @@ $sidebar_width: percentage( 270 / 1170 );
 	        }
 	    }
     }
-    
+
     .left-sidebar,
     .right-sidebar{
     	.content-area{;
@@ -67,12 +67,8 @@ $sidebar_width: percentage( 270 / 1170 );
 			margin-bottom: 0;
 		}
 
-		.post-info{
-			padding: 15px 20px 0 20px;
-
-			.entry-title{
-				font-size: 18px;
-			}
+		.entry-title{
+			font-size: 18px;
 		}
 
 		.summary-text{

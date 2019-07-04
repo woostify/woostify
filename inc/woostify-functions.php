@@ -175,6 +175,22 @@ if ( ! function_exists( 'woostify_do_shortcode' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_sanitize_array' ) ) {
+	/**
+	 * Sanitize integer value
+	 *
+	 * @param      array $value  The array.
+	 */
+	function woostify_sanitize_array( $value ) {
+		$data = [];
+		foreach ( $value as $key ) {
+			$data[] = sanitize_text_field( $key );
+		}
+
+		return $data;
+	}
+}
+
 if ( ! function_exists( 'woostify_sanitize_choices' ) ) {
 	/**
 	 * Sanitizes choices (selects / radios)

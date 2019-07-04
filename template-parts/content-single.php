@@ -10,18 +10,14 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<?php
-	do_action( 'woostify_single_post_top' );
-
 	/**
 	 * Functions hooked into woostify_single_post add_action
 	 *
-	 * @hooked woostify_post_header          - 10
-	 * @hooked woostify_post_meta            - 20
-	 * @hooked woostify_post_content         - 30
+	 * @hooked woostify_post_single_structure   - 10
+	 * @hooked woostify_post_content            - 20
+	 * @hooked woostify_post_tags               - 30
 	 */
 	do_action( 'woostify_single_post' );
-
-	do_action( 'woostify_single_post_bottom' );
 	?>
 
 </article><!-- #post-## -->

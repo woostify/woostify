@@ -136,11 +136,13 @@
         min-width: 70px;
         img{
             border-radius: 50%;
-        }
+		}
+		+.comment-content {
+			margin-left: 30px;
+		}
     }
     .comment-content{
         flex-grow: 1;
-        margin-left: 30px;
         border-bottom: 1px solid #e8e8e8;
         padding-bottom: 33px;
         @include calc( max-width, '100% - 100px' );

@@ -112,7 +112,7 @@ $wp_customize->add_control(
 		'woostify_setting[shop_page_title]',
 		array(
 			'type'     => 'checkbox',
-			'label'    => __( 'Shop Title', 'woostify' ),
+			'label'    => __( 'Page Title', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_title]',
 		)

@@ -65,7 +65,7 @@ class Woostify_Switch_Control extends WP_Customize_Control {
 					<?php echo esc_html( $label ); ?>
 				</span>
 			<?php } ?>
-			
+
 			<div class="woostify-switch-toggle">
 				<input
 					id="<?php echo esc_attr( $id ); ?>"
@@ -82,7 +82,7 @@ class Woostify_Switch_Control extends WP_Customize_Control {
 				<label for="<?php echo esc_attr( $id ); ?>" class="switch-control-label">
 					<span class="on-off-label"></span>
 				</label>
-				
+
 				<span class="switch-label left-switch"><?php echo esc_html( $this->left_switch ); ?></span>
 				<span class="switch-label right-switch"><?php echo esc_html( $this->right_switch ); ?></span>
 			</div>
