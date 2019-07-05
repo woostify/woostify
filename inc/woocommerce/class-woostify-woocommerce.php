@@ -122,10 +122,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_after_single_product_summary', array( $this, 'woostify_single_product_after_summary_open' ), 8 );
 			add_action( 'woocommerce_after_single_product_summary', array( $this, 'woostify_single_product_after_summary_close' ), 100 );
 
-			// Removed on cart action.
-			add_action( 'wp_ajax_get_product_item_incart', array( $this, 'woostify_get_product_item_incart' ) );
-			add_action( 'wp_ajax_nopriv_get_product_item_incart', array( $this, 'woostify_get_product_item_incart' ) );
-
 			// CART PAGE.
 			add_action( 'woocommerce_after_cart_table', array( $this, 'woostify_clear_shop_cart' ) );
 
@@ -1017,33 +1013,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_single_product_after_summary_close() {
 			echo '</div>';
-		}
-
-		/**
-		 * Get product item in cart
-		 */
-		public function woostify_get_product_item_incart() {
-			check_ajax_referer( 'woostify_ajax_mini_cart', 'ajax_nonce' );
-
-			$response = array(
-				'item' => 0,
-			);
-
-			if ( ! isset( $_POST['product_id'] ) ) {
-				echo json_encode( $response );
-				exit();
-			}
-
-			$product_id = intval( $_POST['product_id'] );
-			$item       = woostify_product_check_in( $product_id, $in_cart = false, $qty_in_cart = true );
-
-			ob_start();
-
-			$response['item'] = $item;
-
-			ob_get_clean();
-
-			wp_send_json( $response );
 		}
 
 		/**
