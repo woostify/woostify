@@ -20,8 +20,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * Setup class.
 		 */
 		public function __construct() {
-			add_action( 'customize_register', array( $this, 'woostify_customize_register' ) );
-			add_action( 'customize_controls_enqueue_scripts', array( $this, 'woostify_customize_controls_scripts' ) );
+			add_action( 'customize_register', [ $this, 'woostify_customize_register' ] );
+			add_action( 'customize_controls_enqueue_scripts', [ $this, 'woostify_customize_controls_scripts' ] );
+			add_action( 'customize_controls_print_styles', [ $this, 'woostify_customize_controls_styles' ] );
 		}
 
 		/**
@@ -31,9 +32,21 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			wp_enqueue_script(
 				'woostify-condition-control',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/conditional/js/condition.js',
-				array(),
+				[],
 				woostify_version(),
 				true
+			);
+		}
+
+		/**
+		 * Add style for customize controls
+		 */
+		public function woostify_customize_controls_styles() {
+			wp_enqueue_style(
+				'woostify-condition-control',
+				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/conditional/css/condition.css',
+				[],
+				woostify_version()
 			);
 		}
 

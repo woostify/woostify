@@ -100,11 +100,9 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[blog_single_author_box]',
 		array(
-			'label'        => __( 'Author Box', 'woostify' ),
-			'section'      => 'woostify_blog_single',
-			'settings'     => 'woostify_setting[blog_single_author_box]',
-			'left_switch'  => __( 'Hide', 'woostify' ),
-			'right_switch' => __( 'Show', 'woostify' ),
+			'label'    => __( 'Author Box', 'woostify' ),
+			'section'  => 'woostify_blog_single',
+			'settings' => 'woostify_setting[blog_single_author_box]',
 		)
 	)
 );
@@ -123,11 +121,9 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[blog_single_related_post]',
 		array(
-			'label'        => __( 'Related Post', 'woostify' ),
-			'section'      => 'woostify_blog_single',
-			'settings'     => 'woostify_setting[blog_single_related_post]',
-			'left_switch'  => __( 'Hide', 'woostify' ),
-			'right_switch' => __( 'Show', 'woostify' ),
+			'label'    => __( 'Related Post', 'woostify' ),
+			'section'  => 'woostify_blog_single',
+			'settings' => 'woostify_setting[blog_single_related_post]',
 		)
 	)
 );

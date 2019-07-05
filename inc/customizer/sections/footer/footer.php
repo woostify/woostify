@@ -22,11 +22,9 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[scroll_to_top]',
 		array(
-			'label'        => __( 'Scroll To Top', 'woostify' ),
-			'settings'     => 'woostify_setting[scroll_to_top]',
-			'section'      => 'woostify_footer',
-			'left_switch'  => __( 'No', 'woostify' ),
-			'right_switch' => __( 'Yes', 'woostify' ),
+			'label'    => __( 'Scroll To Top', 'woostify' ),
+			'settings' => 'woostify_setting[scroll_to_top]',
+			'section'  => 'woostify_footer',
 		)
 	)
 );
@@ -64,11 +62,9 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[footer_display]',
 		array(
-			'label'        => __( 'Footer Display', 'woostify' ),
-			'settings'     => 'woostify_setting[footer_display]',
-			'section'      => 'woostify_footer',
-			'left_switch'  => __( 'No', 'woostify' ),
-			'right_switch' => __( 'Yes', 'woostify' ),
+			'label'    => __( 'Footer Display', 'woostify' ),
+			'settings' => 'woostify_setting[footer_display]',
+			'section'  => 'woostify_footer',
 		)
 	)
 );

@@ -22,11 +22,9 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[header_transparent]',
 		array(
-			'label'        => __( 'Enable Transparent Header', 'woostify' ),
-			'settings'     => 'woostify_setting[header_transparent]',
-			'section'      => 'woostify_header_transparent',
-			'left_switch'  => __( 'No', 'woostify' ),
-			'right_switch' => __( 'Yes', 'woostify' ),
+			'label'    => __( 'Enable Transparent Header', 'woostify' ),
+			'settings' => 'woostify_setting[header_transparent]',
+			'section'  => 'woostify_header_transparent',
 		)
 	)
 );

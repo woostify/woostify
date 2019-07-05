@@ -34,15 +34,15 @@
 						// wp.customize.control( parentValue[0] ).setting.get();.
 						if ( operator ) {
 							if ( value === setting.get() ) {
-								control.container.show( 200 );
+								control.container.removeClass( 'hide' );
 							} else {
-								control.container.hide( 200 );
+								control.container.addClass( 'hide' );
 							}
 						} else {
 							if ( value === setting.get() ) {
-								control.container.hide( 200 );
+								control.container.addClass( 'hide' );
 							} else {
-								control.container.show( 200 );
+								control.container.removeClass( 'hide' );
 							}
 						}
 					}
@@ -93,15 +93,15 @@
 
 						if ( operator ) {
 							if ( value === setting.get() ) {
-								control.container.show( 200 );
+								control.container.removeClass( 'hide' );
 							} else {
-								control.container.hide( 200 );
+								control.container.addClass( 'hide' );
 							}
 						} else {
 							if ( value === setting.get() ) {
-								control.container.hide( 200 );
+								control.container.addClass( 'hide' );
 							} else {
-								control.container.show( 200 );
+								control.container.removeClass( 'hide' );
 							}
 						}
 					}
@@ -127,7 +127,6 @@
 		 * @param array   dependencies  Setting id dependencies.
 		 * @param string  value         Setting value.
 		 * @param array   parentvalue   Parent setting id and value.
-		 * @param boolean operator      Operator.
 		 */
 		var arrayCondition = function( id, dependencies, value ) {
 			var value    = undefined !== arguments[2] ? arguments[2] : false,
@@ -143,9 +142,9 @@
 				var dependency = function( control ) {
 					var visibility = function() {
 						if ( setting.get().includes( value ) ) {
-							control.container.show( 200 );
+							control.container.removeClass( 'hide' );
 						} else {
-							control.container.hide( 200 );
+							control.container.addClass( 'hide' );
 						}
 					}
 
@@ -216,6 +215,7 @@
 		condition(
 			'woostify_setting[page_header_display]',
 			[
+				'woostify_setting[page_header_title]',
 				'woostify_setting[page_header_breadcrumb]',
 				'woostify_setting[page_header_text_align]',
 				'woostify_setting[page_header_title_color]',

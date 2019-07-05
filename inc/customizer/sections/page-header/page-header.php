@@ -22,11 +22,9 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[page_header_display]',
 		array(
-			'label'        => __( 'Page Header Display', 'woostify' ),
-			'settings'     => 'woostify_setting[page_header_display]',
-			'section'      => 'woostify_page_header',
-			'left_switch'  => __( 'No', 'woostify' ),
-			'right_switch' => __( 'Yes', 'woostify' ),
+			'label'    => __( 'Page Header Display', 'woostify' ),
+			'settings' => 'woostify_setting[page_header_display]',
+			'section'  => 'woostify_page_header',
 		)
 	)
 );
@@ -46,6 +44,48 @@ $wp_customize->add_control(
 			'section'  => 'woostify_page_header',
 			'settings' => 'page_header_breadcrumb_divider',
 			'type'     => 'divider',
+		)
+	)
+);
+
+// Page title.
+$wp_customize->add_setting(
+	'woostify_setting[page_header_title]',
+	array(
+		'default'           => $defaults['page_header_title'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[page_header_title]',
+		array(
+			'label'    => __( 'Title', 'woostify' ),
+			'settings' => 'woostify_setting[page_header_title]',
+			'section'  => 'woostify_page_header',
+		)
+	)
+);
+
+// Breadcrumb.
+$wp_customize->add_setting(
+	'woostify_setting[page_header_breadcrumb]',
+	array(
+		'default'           => $defaults['page_header_breadcrumb'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[page_header_breadcrumb]',
+		array(
+			'label'    => __( 'Breadcrumb', 'woostify' ),
+			'settings' => 'woostify_setting[page_header_breadcrumb]',
+			'section'  => 'woostify_page_header',
 		)
 	)
 );
@@ -75,52 +115,6 @@ $wp_customize->add_control(
 				'right'   => __( 'Right', 'woostify' ),
 				'justify' => __( 'Page Title / Breadcrumb', 'woostify' ),
 			),
-		)
-	)
-);
-
-// Page title.
-$wp_customize->add_setting(
-	'woostify_setting[page_header_title]',
-	array(
-		'default'           => $defaults['page_header_title'],
-		'type'              => 'option',
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Switch_Control(
-		$wp_customize,
-		'woostify_setting[page_header_title]',
-		array(
-			'label'        => __( 'Page Title', 'woostify' ),
-			'settings'     => 'woostify_setting[page_header_title]',
-			'section'      => 'woostify_page_header',
-			'left_switch'  => __( 'No', 'woostify' ),
-			'right_switch' => __( 'Yes', 'woostify' ),
-		)
-	)
-);
-
-// Breadcrumb.
-$wp_customize->add_setting(
-	'woostify_setting[page_header_breadcrumb]',
-	array(
-		'default'           => $defaults['page_header_breadcrumb'],
-		'type'              => 'option',
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Switch_Control(
-		$wp_customize,
-		'woostify_setting[page_header_breadcrumb]',
-		array(
-			'label'        => __( 'Breadcrumb', 'woostify' ),
-			'settings'     => 'woostify_setting[page_header_breadcrumb]',
-			'section'      => 'woostify_page_header',
-			'left_switch'  => __( 'No', 'woostify' ),
-			'right_switch' => __( 'Yes', 'woostify' ),
 		)
 	)
 );
