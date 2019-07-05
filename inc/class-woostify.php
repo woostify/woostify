@@ -500,7 +500,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			wp_register_script(
 				'woostify-product-variation',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/product-variation' . woostify_suffix() . '.js',
-				array( 'jquery', 'easyzoom-handle' ),
+				array( 'jquery' ),
 				woostify_version(),
 				true
 			);

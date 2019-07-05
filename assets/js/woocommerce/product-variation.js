@@ -37,7 +37,9 @@ function productVariation( selector ) {
 				image.removeClass( 'image-loading' );
 			} );
 		// Zoom handle.
-		easyZoomHandle();
+		if ( 'function' === typeof( easyZoomHandle ) ) {
+			easyZoomHandle();
+		}
 	} );
 
 	// Reset variation.
@@ -49,7 +51,9 @@ function productVariation( selector ) {
 		// Photoswipe + zoom.
 		photoSwipe.prop( 'href', photoSwipeSrc );
 		// Zoom handle.
-		easyZoomHandle();
+		if ( 'function' === typeof( easyZoomHandle ) ) {
+			easyZoomHandle();
+		}
 	} );
 }
 

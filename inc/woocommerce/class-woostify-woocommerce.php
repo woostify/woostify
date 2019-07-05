@@ -171,16 +171,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Main woocommerce js file.
 			wp_enqueue_script( 'woostify-woocommerce' );
 
-			// Removed from mini cart.
-			wp_localize_script(
-				'woostify-woocommerce',
-				'woostify_woocommerce_data',
-				array(
-					'ajax_url'     => admin_url( 'admin-ajax.php' ),
-					'ajax_nonce'   => wp_create_nonce( 'woostify_ajax_mini_cart' ),
-				)
-			);
-
 			// Product variations.
 			wp_enqueue_script( 'woostify-product-variation' );
 
