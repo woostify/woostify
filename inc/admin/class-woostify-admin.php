@@ -59,6 +59,10 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * Add admin notice
 		 */
 		public function woostify_admin_notice() {
+			if ( ! current_user_can( 'update_plugins' ) ) {
+				return;
+			}
+
 			// For theme options box.
 			if ( is_admin() && ! get_user_meta( get_current_user_id(), 'welcome_box' ) ) {
 				?>
