@@ -38,12 +38,19 @@ class Woostify_Radio_Image_Control extends WP_Customize_Control {
 	 * at 'customize_controls_print_styles'.
 	 */
 	public function enqueue() {
-		wp_enqueue_script( 'jquery-ui-button' );
 		wp_enqueue_style(
 			'woostify-radio-image-control',
 			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/radio-image/css/radio-image.css',
-			array(),
+			[],
 			woostify_version()
+		);
+
+		wp_enqueue_script(
+			'woostify-radio-image',
+			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/radio-image/js/radio-image.js',
+			[],
+			woostify_version(),
+			true
 		);
 	}
 
@@ -58,39 +65,34 @@ class Woostify_Radio_Image_Control extends WP_Customize_Control {
 		$name = '_customize-radio-' . $this->id;
 		?>
 
-		<span class="customize-control-title">
-			<?php echo esc_html( $this->label ); ?>
-		</span>
+		<?php if ( ! empty( $this->label ) ) { ?>
+			<span class="customize-control-title">
+				<?php echo esc_html( $this->label ); ?>
+			</span>
+		<?php } ?>
 
-		<?php if ( ! empty( $this->description ) ) : ?>
+		<?php if ( ! empty( $this->description ) ) { ?>
 			<span class="description customize-control-description"><?php echo esc_html( $this->description ); ?></span>
-		<?php endif; ?>
+		<?php } ?>
 
 		<div id="input_<?php echo esc_attr( $this->id ); ?>" class="image">
-			<?php foreach ( $this->choices as $value => $label ) : ?>
-				<input
-				class="image-select"
-				type="radio"
-				value="<?php echo esc_attr( $value ); ?>"
-				id="<?php echo esc_attr( $this->id . $value ); ?>"
-				name="<?php echo esc_attr( $name ); ?>"
-				<?php
-					$this->link();
-					checked( $this->value(), $value );
-				?>
-				>
-
-				<label for="<?php echo esc_attr( $this->id ) . esc_attr( $value ); ?>">
+			<?php foreach ( $this->choices as $value => $label ) { ?>
+				<label for="<?php echo esc_attr( $this->id ) . esc_attr( $value ); ?>" class="radio-image-item <?php echo ( $this->value() === $value ) ? 'active' : ''; ?>">
 					<img src="<?php echo esc_url( $label ); ?>" alt="<?php echo esc_attr( $value ); ?>" title="<?php echo esc_attr( ucwords( str_replace( '-', ' ', $value ) ) ); ?>">
+					<input
+						class="image-select"
+						type="radio"
+						value="<?php echo esc_attr( $value ); ?>"
+						id="<?php echo esc_attr( $this->id . $value ); ?>"
+						name="<?php echo esc_attr( $name ); ?>"
+						<?php
+							$this->link();
+							checked( $this->value(), $value );
+						?>
+						>
 				</label>
-			<?php endforeach; ?>
+			<?php } ?>
 		</div>
-
-		<script>
-			jQuery(document).ready(function($) {
-				$( '[id="input_<?php echo esc_attr( $this->id ); ?>"]' ).buttonset();
-			});
-		</script>
 		<?php
 	}
 }
