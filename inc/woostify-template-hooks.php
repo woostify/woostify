@@ -90,10 +90,13 @@ add_action( 'woostify_toggle_sidebar', 'woostify_sidebar_menu_close', 50 );
 /**
  * Posts
  */
-add_action( 'woostify_loop_post', 'woostify_post_header_open', 10 );
-add_action( 'woostify_loop_post', 'woostify_post_structure', 20 );
-add_action( 'woostify_loop_post', 'woostify_post_header_close', 30 );
-add_action( 'woostify_loop_post', 'woostify_post_content', 40 );
+add_action( 'woostify_loop_post', 'woostify_post_loop_image_thumbnail', 10 );
+add_action( 'woostify_loop_post', 'woostify_post_loop_inner_open', 20 );
+add_action( 'woostify_loop_post', 'woostify_post_header_open', 30 );
+add_action( 'woostify_loop_post', 'woostify_post_structure', 40 );
+add_action( 'woostify_loop_post', 'woostify_post_header_close', 50 );
+add_action( 'woostify_loop_post', 'woostify_post_content', 60 );
+add_action( 'woostify_loop_post', 'woostify_post_loop_inner_close', 70 );
 
 add_action( 'woostify_loop_after', 'woostify_paging_nav', 10 );
 add_action( 'woostify_post_content_after', 'woostify_post_read_more_button', 10 );

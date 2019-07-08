@@ -713,11 +713,51 @@ if ( ! function_exists( 'woostify_page_content' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_post_loop_inner_open' ) ) {
+	/**
+	 * Post inner open
+	 */
+	function woostify_post_loop_inner_open() {
+		?>
+			<div class="loop-post-inner">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_post_loop_inner_close' ) ) {
+	/**
+	 * Post inner close
+	 */
+	function woostify_post_loop_inner_close() {
+		?>
+			</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_post_loop_image_thumbnail' ) ) {
+	/**
+	 * Display thumbnail image for Blog layout: Standard and Zigzag
+	 *
+	 * @param string $dedium The image size.
+	 */
+	function woostify_post_loop_image_thumbnail( $size = 'full' ) {
+		$options = woostify_options( false );
+		$value   = [ 'zigzag', 'standard' ];
+		if ( ! in_array( $options['blog_list_layout'], $value ) || ! has_post_thumbnail() ) {
+			return;
+		}
+		?>
+			<a class="entry-image-link" href="<?php the_permalink(); ?>">
+				<?php the_post_thumbnail( $size ); ?>
+			</a>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_post_header_open' ) ) {
 	/**
 	 * Post header wrapper
-	 *
-	 * @return void
 	 */
 	function woostify_post_header_open() {
 		?>
@@ -729,8 +769,6 @@ if ( ! function_exists( 'woostify_post_header_open' ) ) {
 if ( ! function_exists( 'woostify_post_header_close' ) ) {
 	/**
 	 * Post header wrapper close
-	 *
-	 * @return void
 	 */
 	function woostify_post_header_close() {
 		?>
@@ -754,7 +792,13 @@ if ( ! function_exists( 'woostify_get_post_thumbnail' ) ) {
 			return;
 		}
 
-		$image = '';
+		$image   = '';
+		$options = woostify_options( false );
+		$value   = [ 'zigzag', 'standard' ];
+		if ( in_array( $options['blog_list_layout'], $value ) ) {
+			// Return if Blog layout is: Zigzag and Standard.
+			return $image;
+		}
 
 		ob_start();
 

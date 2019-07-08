@@ -18,19 +18,20 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Radio_Image_Control(
 		$wp_customize,
 		'woostify_setting[blog_list_layout]',
 		array(
 			'section'  => 'woostify_blog',
 			'settings' => 'woostify_setting[blog_list_layout]',
-			'type'     => 'select',
 			'label'    => __( 'Blog Layout', 'woostify' ),
 			'choices'  => apply_filters(
 				'woostify_setting_blog_list_layout_choices',
 				array(
-					'list' => __( 'List', 'woostify' ),
-					'grid' => __( 'Grid', 'woostify' ),
+					'standard' => WOOSTIFY_THEME_URI . 'assets/images/customizer/blog/standard.jpg',
+					'list'     => WOOSTIFY_THEME_URI . 'assets/images/customizer/blog/list.jpg',
+					'grid'     => WOOSTIFY_THEME_URI . 'assets/images/customizer/blog/grid.jpg',
+					'zigzag'   => WOOSTIFY_THEME_URI . 'assets/images/customizer/blog/zigzag.jpg',
 				)
 			),
 		)

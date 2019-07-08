@@ -274,7 +274,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Custom Text', 'woostify' ),
 			'type'     => 'textarea',
 			'section'  => 'woostify_footer',
-			'settings' => 'woostify_setting[footer_custom_text]',
+			'settings' => 'woostify_setting[footer_custom_text]'
 		)
 	)
 );
