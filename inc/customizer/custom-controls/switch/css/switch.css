@@ -26,6 +26,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-content: center;
+	flex-wrap: wrap;
 }
 
 .woostify-switch-control + .switch-control-label {
@@ -39,6 +40,9 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+.woostify-switch-customize-control .description {
+	flex: 0 0 100%;
 }
 
 .woostify-switch-control + .switch-control-label:after,
