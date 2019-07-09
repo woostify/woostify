@@ -110,13 +110,12 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Switch_Control(
 		$wp_customize,
 		'woostify_setting[header_primary_menu]',
 		array(
 			'priority' => 70,
-			'type'     => 'checkbox',
-			'label'    => __( 'Header Primary Menu', 'woostify' ),
+			'label'    => __( 'Header Menu', 'woostify' ),
 			'section'  => 'woostify_header',
 			'settings' => 'woostify_setting[header_primary_menu]',
 		)
@@ -133,12 +132,11 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Switch_Control(
 		$wp_customize,
 		'woostify_setting[header_search_icon]',
 		array(
 			'priority' => 90,
-			'type'     => 'checkbox',
 			'label'    => __( 'Search Icon', 'woostify' ),
 			'section'  => 'woostify_header',
 			'settings' => 'woostify_setting[header_search_icon]',
@@ -158,12 +156,11 @@ if ( class_exists( 'woocommerce' ) ) {
 		)
 	);
 	$wp_customize->add_control(
-		new WP_Customize_Control(
+		new Woostify_Switch_Control(
 			$wp_customize,
 			'woostify_setting[header_search_only_product]',
 			array(
 				'priority' => 110,
-				'type'     => 'checkbox',
 				'label'    => __( 'Search Only Product', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_search_only_product]',
@@ -182,12 +179,11 @@ if ( class_exists( 'woocommerce' ) ) {
 			)
 		);
 		$wp_customize->add_control(
-			new WP_Customize_Control(
+			new Woostify_Switch_Control(
 				$wp_customize,
 				'woostify_setting[header_wishlist_icon]',
 				array(
 					'priority' => 130,
-					'type'     => 'checkbox',
 					'label'    => __( 'Wishlist Icon', 'woostify' ),
 					'section'  => 'woostify_header',
 					'settings' => 'woostify_setting[header_wishlist_icon]',
@@ -206,12 +202,11 @@ if ( class_exists( 'woocommerce' ) ) {
 		)
 	);
 	$wp_customize->add_control(
-		new WP_Customize_Control(
+		new Woostify_Switch_Control(
 			$wp_customize,
 			'woostify_setting[header_account_icon]',
 			array(
 				'priority' => 150,
-				'type'     => 'checkbox',
 				'label'    => __( 'Account Icon', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_account_icon]',
@@ -229,12 +224,11 @@ if ( class_exists( 'woocommerce' ) ) {
 		)
 	);
 	$wp_customize->add_control(
-		new WP_Customize_Control(
+		new Woostify_Switch_Control(
 			$wp_customize,
 			'woostify_setting[header_shop_cart_icon]',
 			array(
 				'priority' => 170,
-				'type'     => 'checkbox',
 				'label'    => __( 'Shopping Cart Icon', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_shop_cart_icon]',

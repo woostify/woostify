@@ -46,11 +46,10 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Switch_Control(
 		$wp_customize,
 		'woostify_setting[product_style_defaut_add_to_cart]',
 		array(
-			'type'     => 'checkbox',
 			'label'    => __( 'Always Show Add To Cart', 'woostify' ),
 			'section'  => 'woostify_product_style',
 			'settings' => 'woostify_setting[product_style_defaut_add_to_cart]',

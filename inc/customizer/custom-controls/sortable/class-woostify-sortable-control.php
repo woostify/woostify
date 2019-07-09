@@ -121,7 +121,7 @@ class Woostify_Sortable_Control extends WP_Customize_Control {
 						}
 					#>
 					<div class="woostify-sortable-list-item" data-value="{{{ value }}}">
-						<label class="sortable-item-icon-visibility dashicons dashicons-visibility" for="{{{ _id }}}">
+						<label class="sortable-item-icon-visibility dashicons dashicons-hidden" for="{{{ _id }}}">
 							<input class="sortable-item-input" type="checkbox" name="{{{ _id }}}" id="{{{ _id }}}">
 						</label>
 						<span class="sortable-item-name">{{ key }}</span>

@@ -65,15 +65,22 @@ wp.customize.controlConstructor['woostify-sortable'] = wp.customize.Control.exte
 		}
 
 		input.forEach( function( el ) {
-			var parentInput = el.closest( '.woostify-sortable-list-item' );
+			var parentInput = el.closest( '.woostify-sortable-list-item' ),
+				label       = el.closest( '.sortable-item-icon-visibility' );
 
 			el.addEventListener( 'click', function() {
 				if ( el.checked ) {
 					el.setAttribute( 'checked', 'checked' );
 					parentInput.classList.add( 'checked' );
+
+					label.classList.remove( 'dashicons-hidden' );
+					label.classList.add( 'dashicons-visibility' );
 				} else {
 					el.removeAttribute( 'checked' );
 					parentInput.classList.remove( 'checked' );
+
+					label.classList.add( 'dashicons-hidden' );
+					label.classList.remove( 'dashicons-visibility' );
 				}
 
 				// Update sort list.

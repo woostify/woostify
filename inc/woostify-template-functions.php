@@ -5,6 +5,29 @@
  * @package woostify
  */
 
+if ( ! function_exists( 'woostify_replace_text' ) ) {
+	/**
+	 * Print dynamic tag like Current year, blog name...
+	 *
+	 * @param string $output The output value.
+	 */
+	function woostify_replace_text( $output ) {
+		$output = str_replace( '[current_year]', date_i18n( 'Y' ), $output );
+		$output = str_replace( '[site_title]', '<span class="woostify-site-title">' . get_bloginfo( 'name' ) . '</span>', $output );
+
+		$theme_author = apply_filters(
+			'woostify_theme_author',
+			array(
+				'theme_name'       => __( 'Woostify', 'woostify' ),
+				'theme_author_url' => 'https://woositfy.com/',
+			)
+		);
+		$output = str_replace( '[theme_author]', '<a href="' . esc_url( $theme_author['theme_author_url'] ) . '">' . $theme_author['theme_name'] . '</a>', $output );
+
+		return $output;
+	}
+}
+
 if ( ! function_exists( 'woostify_post_related' ) ) {
 	/**
 	 * Display related post.
@@ -266,10 +289,14 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 			return;
 		}
 		?>
+
 		<div class="site-info">
-			<?php if ( '' != $options['footer_custom_text'] ) { ?>
+			<?php
+				if ( $options['footer_custom_text'] ) {
+					$footer_text = woostify_replace_text( $options['footer_custom_text'] );
+					?>
 				<div class="site-infor-col">
-					<?php echo wp_kses_post( $options['footer_custom_text'] ); ?>
+					<?php echo wp_kses_post( $footer_text ); ?>
 				</div>
 			<?php } ?>
 
@@ -1423,13 +1450,17 @@ if ( ! function_exists( 'woostify_topbar_section' ) ) {
 		if ( 'disabled' == $topbar ) {
 			return;
 		}
+
+		$topbar_left   = woostify_replace_text( $options['topbar_left'] );
+		$topbar_center = woostify_replace_text( $options['topbar_center'] );
+		$topbar_right  = woostify_replace_text( $options['topbar_right'] );
 		?>
 
 		<div class="topbar">
 			<div class="woostify-container">
-				<div class="topbar-item topbar-left"><?php echo wp_kses_post( $options['topbar_left'] ); ?></div>
-				<div class="topbar-item topbar-center"><?php echo wp_kses_post( $options['topbar_center'] ); ?></div>
-				<div class="topbar-item topbar-right"><?php echo wp_kses_post( $options['topbar_right'] ); ?></div>
+				<div class="topbar-item topbar-left"><?php echo wp_kses_post( $topbar_left ); ?></div>
+				<div class="topbar-item topbar-center"><?php echo wp_kses_post( $topbar_center ); ?></div>
+				<div class="topbar-item topbar-right"><?php echo wp_kses_post( $topbar_right ); ?></div>
 			</div>
 		</div>
 		<?php
