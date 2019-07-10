@@ -8,6 +8,29 @@
 // Default values.
 $defaults = woostify_options();
 
+// GENERAL SECTION.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_general_section]',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Section_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_general_section]',
+		array(
+			'label'      => __( 'General', 'woostify' ),
+			'section'    => 'woostify_shop_page',
+			'dependency' => [
+				'woostify_setting[shop_columns]',
+				'woostify_setting[shop_product_per_page]',
+			]
+		)
+	)
+);
+
 // Shop columns.
 $wp_customize->add_setting(
 	'woostify_setting[shop_columns]',
@@ -77,21 +100,26 @@ $wp_customize->add_control(
 	)
 );
 
-// Structure title.
+// SHOP STRUCTURE SECTION.
 $wp_customize->add_setting(
-	'shop_page_structute_meta_title',
+	'woostify_setting[shop_page_demo_section_hihi]',
 	array(
 		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
+
 $wp_customize->add_control(
-	new Woostify_Divider_Control(
+	new Woostify_Section_Control(
 		$wp_customize,
-		'shop_page_structute_meta_title',
+		'woostify_setting[shop_page_demo_section_hihi]',
 		array(
-			'section'  => 'woostify_shop_page',
-			'settings' => 'shop_page_structute_meta_title',
-			'type'     => 'divider',
+			'label'      => __( 'Shop Structure', 'woostify' ),
+			'section'    => 'woostify_shop_page',
+			'dependency' => [
+				'woostify_setting[shop_page_title]',
+				'woostify_setting[shop_page_breadcrumb]',
+				'woostify_setting[shop_page_image_hover]',
+			]
 		)
 	)
 );
@@ -110,7 +138,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_page_title]',
 		array(
-			'label'    => __( 'Page Title', 'woostify' ),
+			'label'    => __( 'Shop Title', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_title]',
 		)
@@ -159,21 +187,27 @@ $wp_customize->add_control(
 	)
 );
 
-// Product meta title.
+// PRODUCT META SECTION.
 $wp_customize->add_setting(
-	'shop_page_product_meta_title',
+	'woostify_setting[shop_page_demo_section]',
 	array(
 		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Divider_Control(
+	new Woostify_Section_Control(
 		$wp_customize,
-		'shop_page_product_meta_title',
+		'woostify_setting[shop_page_demo_section]',
 		array(
-			'section'  => 'woostify_shop_page',
-			'settings' => 'shop_page_product_meta_title',
-			'type'     => 'divider',
+			'label'      => __( 'Product Meta', 'woostify' ),
+			'section'    => 'woostify_shop_page',
+			'dependency' => [
+				'woostify_setting[shop_page_product_title]',
+				'woostify_setting[shop_page_product_category]',
+				'woostify_setting[shop_page_product_rating]',
+				'woostify_setting[shop_page_product_add_to_cart_button]',
+				'woostify_setting[shop_page_product_price]',
+			]
 		)
 	)
 );

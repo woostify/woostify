@@ -4,9 +4,9 @@
  * @package woostify
  */
 
-( function( api ) {
-	'use strict';
+'use strict';
 
+( function( api ) {
 	api.bind( 'ready', function() {
 
 		/**
@@ -290,7 +290,6 @@
 				'footer_background_color_divider'
 			]
 		);
-
 	} );
 
 }( wp.customize ) );

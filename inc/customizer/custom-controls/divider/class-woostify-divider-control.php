@@ -1,4 +1,4 @@
-<?php // @codingStandardsIgnoreLine.
+<?php
 /**
  * Class to create a custom arbitrary html control for dividers etc
  *
@@ -47,8 +47,12 @@ class Woostify_Divider_Control extends WP_Customize_Control {
 					break;
 
 				case 'divider':
-				default:
 					echo '<hr style="margin: 1em 0;" />';
+					break;
+
+				case 'space':
+					default:
+					echo '<div style="margin: 1em 0;"></div>';
 					break;
 			}
 			?>

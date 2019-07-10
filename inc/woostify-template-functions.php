@@ -19,7 +19,7 @@ if ( ! function_exists( 'woostify_replace_text' ) ) {
 			'woostify_theme_author',
 			array(
 				'theme_name'       => __( 'Woostify', 'woostify' ),
-				'theme_author_url' => 'https://woositfy.com/',
+				'theme_author_url' => 'https://woostify.com/',
 			)
 		);
 		$output = str_replace( '[theme_author]', '<a href="' . esc_url( $theme_author['theme_author_url'] ) . '">' . $theme_author['theme_name'] . '</a>', $output );
