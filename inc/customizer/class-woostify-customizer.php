@@ -151,8 +151,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'blog_single_author_box'                  => false,
 					'blog_single_related_post'                => true,
 					// Shop.
-					'shop_columns'                            => 3,
-					'shop_product_per_page'                   => 9,
 					'shop_page_image_hover'                   => true,
 					'shop_page_title'                         => true,
 					'shop_page_breadcrumb'                    => true,

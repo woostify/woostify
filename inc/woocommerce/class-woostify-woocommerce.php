@@ -56,9 +56,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// GENERAL.
 			// Product related.
 			add_filter( 'woocommerce_output_related_products_args', array( $this, 'woostify_related_products_args' ) );
-			// Shop columns.
-			add_filter( 'loop_shop_columns', array( $this, 'woostify_shop_columns' ) );
-			add_filter( 'loop_shop_per_page', array( $this, 'woostify_products_per_page' ) );
 			// Pagination arrow.
 			add_filter( 'woocommerce_pagination_args', array( $this, 'woostify_change_woocommerce_arrow_pagination' ) );
 			// Change sale flash.
@@ -152,7 +149,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 					array(
 						'product_grid' => array(
 							'default_columns' => 3,
-							'default_rows'    => 4,
+							'default_rows'    => 3,
 							'min_columns'     => 1,
 							'max_columns'     => 6,
 							'min_rows'        => 1,
@@ -297,7 +294,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			// Legacy WooCommerce columns filter.
 			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.3', '<' ) ) {
-				add_filter( 'loop_shop_columns', 'woostify_loop_columns' );
 				add_action( 'woocommerce_before_shop_loop', 'woostify_product_columns_wrapper', 40 );
 				add_action( 'woocommerce_after_shop_loop', 'woostify_product_columns_wrapper_close', 40 );
 			}
@@ -357,30 +353,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			);
 
 			return $args;
-		}
-
-		/**
-		 * Product gallery thumbnail columns
-		 *
-		 * @return integer number of columns
-		 */
-		public function woostify_shop_columns() {
-			$options = self::woostify_options();
-			$columns = $options['shop_columns'];
-
-			return absint( apply_filters( 'woostify_shop_columns', $columns ) );
-		}
-
-		/**
-		 * Products per page
-		 *
-		 * @return integer number of products
-		 */
-		public function woostify_products_per_page() {
-			$options  = self::woostify_options();
-			$per_page = $options['shop_product_per_page'];
-
-			return absint( apply_filters( 'woostify_shop_products_per_page', $per_page ) );
 		}
 
 		/**

@@ -72,7 +72,9 @@ class Woostify_Section_Control extends WP_Customize_Control {
 	public function content_template() {
 		?>
 		<div class="woostify-section-control">
+			<# if ( data.label ) { #>
 			<span class="woostify-section-control-label">{{ data.label }}</span>
+			<# } #>
 			<span class="woostify-section-control-arrow dashicons dashicons-arrow-down-alt2"></span>
 		</div>
 		<?php
