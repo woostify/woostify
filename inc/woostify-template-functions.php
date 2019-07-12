@@ -1440,7 +1440,7 @@ if ( ! function_exists( 'woostify_is_product_archive' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_topbar_section' ) ) {
+if ( ! function_exists( 'woostify_topbar' ) ) {
 	/**
 	 * Display topbar
 	 */
