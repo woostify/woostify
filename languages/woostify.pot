@@ -533,7 +533,7 @@ msgstr ""
 msgid "Activating"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:428, inc/customizer/class-woostify-customizer.php:273, inc/customizer/class-woostify-customizer.php:289, inc/customizer/class-woostify-customizer.php:305, inc/customizer/class-woostify-customizer.php:321
+#: inc/admin/class-woostify-admin.php:428, inc/customizer/class-woostify-customizer.php:271, inc/customizer/class-woostify-customizer.php:287, inc/customizer/class-woostify-customizer.php:303, inc/customizer/class-woostify-customizer.php:319
 msgid "Learn More"
 msgstr ""
 
@@ -641,15 +641,15 @@ msgstr ""
 msgid "Disable Footer"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:185
+#: inc/customizer/class-woostify-customizer.php:183
 msgid "Opps! The page you’re looking for is missing for some reasons. Please come back to homepage"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:256
+#: inc/customizer/class-woostify-customizer.php:254
 msgid "Pro Version Is Coming Soon"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:274, inc/customizer/class-woostify-customizer.php:290, inc/customizer/class-woostify-customizer.php:306, inc/customizer/class-woostify-customizer.php:322
+#: inc/customizer/class-woostify-customizer.php:272, inc/customizer/class-woostify-customizer.php:288, inc/customizer/class-woostify-customizer.php:304, inc/customizer/class-woostify-customizer.php:320
 msgid "More options are coming for this section in our pro version."
 msgstr ""
 
@@ -725,31 +725,31 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:259
+#: inc/woocommerce/class-woostify-woocommerce.php:256
 msgid "Filter"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:392
+#: inc/woocommerce/class-woostify-woocommerce.php:364
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:393
+#: inc/woocommerce/class-woostify-woocommerce.php:365
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:416
+#: inc/woocommerce/class-woostify-woocommerce.php:388
 msgid "Sale!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:572, inc/woocommerce/class-woostify-woocommerce.php:865, inc/woocommerce/class-woostify-woocommerce.php:896, inc/woocommerce/class-woostify-woocommerce.php:927, inc/woocommerce/class-woostify-woocommerce.php:951
+#: inc/woocommerce/class-woostify-woocommerce.php:544, inc/woocommerce/class-woostify-woocommerce.php:837, inc/woocommerce/class-woostify-woocommerce.php:868, inc/woocommerce/class-woostify-woocommerce.php:899, inc/woocommerce/class-woostify-woocommerce.php:923
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1016
+#: inc/woocommerce/class-woostify-woocommerce.php:988
 msgid "Clear cart"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:142
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:124
 msgid "Shopping cart"
 msgstr ""
 
@@ -1001,7 +1001,7 @@ msgstr ""
 msgid "Page Header Display"
 msgstr ""
 
-#: inc/customizer/sections/page-header/page-header.php:86, inc/customizer/sections/shop/shop-page.php:162, inc/customizer/sections/shop/shop-single.php:25
+#: inc/customizer/sections/page-header/page-header.php:86, inc/customizer/sections/shop/shop-page.php:69, inc/customizer/sections/shop/shop-single.php:25
 msgid "Breadcrumb"
 msgstr ""
 
@@ -1141,56 +1141,56 @@ msgstr ""
 msgid "Always Show Add To Cart"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:24
-msgid "General"
-msgstr ""
-
-#: inc/customizer/sections/shop/shop-page.php:49
-msgid "Product Columns"
-msgstr ""
-
-#: inc/customizer/sections/shop/shop-page.php:84
-msgid "Products Per Row"
-msgstr ""
-
-#: inc/customizer/sections/shop/shop-page.php:85
-msgid "How many products should be shown per row?"
-msgstr ""
-
-#: inc/customizer/sections/shop/shop-page.php:116
+#: inc/customizer/sections/shop/shop-page.php:23
 msgid "Shop Structure"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:141
+#: inc/customizer/sections/shop/shop-page.php:48
 msgid "Shop Title"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:183
+#: inc/customizer/sections/shop/shop-page.php:90
 msgid "Product Hover Effect"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:202
+#: inc/customizer/sections/shop/shop-page.php:109
 msgid "Product Meta"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:229
+#: inc/customizer/sections/shop/shop-page.php:136
 msgid "Product Title"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:250
+#: inc/customizer/sections/shop/shop-page.php:157
 msgid "Product Category"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:271
+#: inc/customizer/sections/shop/shop-page.php:178
 msgid "Product Rating"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:292
+#: inc/customizer/sections/shop/shop-page.php:199
 msgid "Product Add To Cart Button"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:313
+#: inc/customizer/sections/shop/shop-page.php:220
 msgid "Product Price"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-page.php:239
+msgid "Product Card"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-page.php:257
+msgid "Product Image"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-page.php:275
+msgid "Product Content"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-page.php:293
+msgid "Sale Tag"
 msgstr ""
 
 #: inc/customizer/sections/shop/shop-single.php:66

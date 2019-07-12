@@ -66,26 +66,8 @@ if ( ! function_exists( 'woostify_product_columns_wrapper' ) ) {
 	 * @return  void
 	 */
 	function woostify_product_columns_wrapper() {
-		$columns = woostify_loop_columns();
-		echo '<div class="columns-' . absint( $columns ) . '">';
-	}
-}
-
-if ( ! function_exists( 'woostify_loop_columns' ) ) {
-	/**
-	 * Default loop columns on product archives
-	 *
-	 * @return integer products per
-	 */
-	function woostify_loop_columns() {
-		$options = woostify_options( false );
-		$columns = $options['shop_columns'];
-
-		if ( function_exists( 'wc_get_default_products_per_row' ) ) {
-			$columns = wc_get_default_products_per_row();
-		}
-
-		return apply_filters( 'woostify_loop_columns', $columns );
+		$columns = wc_get_loop_prop( 'columns' );
+		echo '<div class="columns-' . esc_attr( $columns ) . '">';
 	}
 }
 
