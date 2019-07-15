@@ -1744,39 +1744,43 @@ if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
 	 * Sidebar menu action
 	 */
 	function woostify_sidebar_menu_action() {
-		if ( woostify_is_woocommerce_activated() ) {
+		$options = woostify_options( false );
 
-			global $woocommerce;
-			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
-			$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
-
-			if ( 'yes' == get_option( 'woocommerce_force_ssl_checkout' ) ) {
-				$logout_url = str_replace( 'http:', 'https:', $logout_url );
-			}
-			?>
-			<div class="sidebar-menu-bottom">
-				<?php do_action( 'woostify_sidebar_account_before' ); ?>
-
-				<ul class="sidebar-account">
-					<?php do_action( 'woostify_sidebar_account_top' ); ?>
-
-					<?php if ( ! is_user_logged_in() ) : ?>
-						<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
-					<?php else : ?>
-						<li>
-							<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-						</li>
-						<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
-						</li>
-					<?php endif; ?>
-
-					<?php do_action( 'woostify_sidebar_account_bottom' ); ?>
-				</ul>
-
-				<?php do_action( 'woostify_sidebar_account_after' ); ?>
-			</div>
-			<?php
+		if ( ! woostify_is_woocommerce_activated() || ! $options['header_account_icon'] ) {
+			return;
 		}
+
+		global $woocommerce;
+		$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
+		$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
+
+		if ( 'yes' == get_option( 'woocommerce_force_ssl_checkout' ) ) {
+			$logout_url = str_replace( 'http:', 'https:', $logout_url );
+		}
+		?>
+
+		<div class="sidebar-menu-bottom">
+			<?php do_action( 'woostify_sidebar_account_before' ); ?>
+
+			<ul class="sidebar-account">
+				<?php do_action( 'woostify_sidebar_account_top' ); ?>
+
+				<?php if ( ! is_user_logged_in() ) : ?>
+					<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
+				<?php else : ?>
+					<li>
+						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
+					</li>
+					<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
+					</li>
+				<?php endif; ?>
+
+				<?php do_action( 'woostify_sidebar_account_bottom' ); ?>
+			</ul>
+
+			<?php do_action( 'woostify_sidebar_account_after' ); ?>
+		</div>
+		<?php
 	}
 }
 
