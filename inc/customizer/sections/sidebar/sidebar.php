@@ -17,7 +17,6 @@ $wp_customize->add_setting(
 		'type'              => 'option',
 	)
 );
-
 $wp_customize->add_control(
 	new WP_Customize_Control(
 		$wp_customize,
@@ -48,7 +47,6 @@ $wp_customize->add_setting(
 		'type'              => 'option',
 	)
 );
-
 $wp_customize->add_control(
 	new WP_Customize_Control(
 		$wp_customize,
@@ -99,7 +97,6 @@ $wp_customize->add_setting(
 		'type'              => 'option',
 	)
 );
-
 $wp_customize->add_control(
 	new WP_Customize_Control(
 		$wp_customize,
@@ -131,7 +128,6 @@ $wp_customize->add_setting(
 		'type'              => 'option',
 	)
 );
-
 $wp_customize->add_control(
 	new WP_Customize_Control(
 		$wp_customize,

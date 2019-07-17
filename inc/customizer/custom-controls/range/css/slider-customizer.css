@@ -31,14 +31,6 @@
 	width: 30px;
 }
 
-.customize-control-woostify-range-slider .woostify_range_value.hide-value {
-	display: none;
-}
-
-.customize-control-woostify-range-slider .woostify_range_value.hide-value + .woostify-slider {
-	width: 100%;
-}
-
 .customize-control-woostify-range-slider .woostify-slider .ui-slider-handle {
 	height: 16px;
 	width: 16px;

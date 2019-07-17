@@ -460,8 +460,52 @@ class Woostify_Get_CSS {
 			}
 		';
 
-		// Woocommerce.
-		// Shop single.
+		// SHOP PAGE.
+		// Product card.
+		if ( 'none' != $options['shop_page_product_card_border_style'] ) {
+			$styles .= '
+				.products .product {
+					border-style: ' . esc_attr( $options['shop_page_product_card_border_style'] ) . ';
+					border-width: ' . esc_attr( $options['shop_page_product_card_border_width'] ) . 'px;
+					border-color: ' . esc_attr( $options['shop_page_product_card_border_color'] ) . ';
+				}
+			';
+		}
+
+		// Product image.
+		if ( 'none' != $options['shop_page_product_image_border_style'] ) {
+			$styles .= '
+				.product-loop-image-wrapper {
+					border-style: ' . esc_attr( $options['shop_page_product_image_border_style'] ) . ';
+					border-width: ' . esc_attr( $options['shop_page_product_image_border_width'] ) . 'px;
+					border-color: ' . esc_attr( $options['shop_page_product_image_border_color'] ) . ';
+				}
+			';
+		}
+
+		// Equal image height.
+		if ( $options['shop_page_product_image_equal_height'] ) {
+			$styles .= '
+				.has-equal-image-height {
+					height: ' . $options['shop_page_product_image_height'] . 'px;
+				}
+			';
+		}
+
+		// Sale tag.
+		$sale_square = '';
+		if ( $options['shop_page_sale_square'] ) {
+			$sale_square .= 'width: ' . esc_attr( $options['shop_page_sale_size'] ) . 'px;';
+			$sale_square .= 'height: ' . esc_attr( $options['shop_page_sale_size'] ) . 'px;';
+		}
+		$styles .= '
+			.onsale {
+				color: ' . esc_attr( $options['shop_page_sale_color'] ) . ';
+				border-radius: ' . esc_attr( $options['shop_page_sale_border_radius'] ) . 'px;' . $sale_square . '
+			}
+		';
+
+		// SHOP SINGLE.
 		$styles .= '
 			.single-product .content-top,
 			.product-page-container{

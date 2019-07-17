@@ -21,8 +21,7 @@ wp.customize.controlConstructor['woostify-range-slider'] = wp.customize.Control.
 		// Set up the sliders.
 		jQuery( '.woostify-slider' ).each( function() {
 			var _this  = jQuery( this ),
-				_input = _this.closest( 'label' ).find( 'input[type="number"]' ),
-				_text  = _input.next( '.value' );
+				_input = _this.closest( 'label' ).find( 'input[type="number"]' );
 
 			_this.slider({
 				value: _input.val(),
@@ -31,7 +30,6 @@ wp.customize.controlConstructor['woostify-range-slider'] = wp.customize.Control.
 				step: _this.data( 'step' ),
 				slide: function( event, ui ) {
 					_input.val( ui.value ).change();
-					_text.text( ui.value );
 				}
 			});
 		});
@@ -58,7 +56,6 @@ wp.customize.controlConstructor['woostify-range-slider'] = wp.customize.Control.
 
 			input.val( reset_value ).change();
 			visual_value.find( 'input' ).val( reset_value );
-			visual_value.find( '.value' ).text( reset_value );
 
 			if ( '' == reset_value ) {
 				reset_value = -1;

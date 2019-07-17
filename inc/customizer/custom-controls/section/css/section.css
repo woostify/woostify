@@ -1,4 +1,18 @@
+.customize-control-woostify-section {
+	transition-duration: 0.3s;
+}
+
+.customize-control-woostify-section.active,
+.customize-control-woostify-section:hover {
+	box-shadow: 0 3px 8px -7px #777;
+}
+
+.customize-control-woostify-section.active .woostify-section-control-arrow:before {
+	transform: rotate( 90deg );
+}
+
 .woostify-section-control {
+	user-select: none;
 	background-color: #fff;
 	margin: 0 -12px;
 	padding: 10px 15px;
@@ -6,6 +20,7 @@
 	border-top: 1px solid #e9e9e9;
 	border-bottom: 1px solid #e9e9e9;
 	padding-right: 50px;
+	cursor: pointer;
 }
 
 .woostify-section-control .woostify-section-control-label {
@@ -13,25 +28,18 @@
 }
 
 .woostify-section-control .woostify-section-control-arrow {
-	user-select: none;
 	position: absolute;
 	right: 0;
 	top: 0;
 	bottom: 0;
 	width: 40px;
-	border-left: 1px solid #e9e9e9;
 	font-size: 16px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: auto;
-	cursor: pointer;
 }
 
 .woostify-section-control .woostify-section-control-arrow:before {
-	transition-duration: 0.2s;
-}
-
-.woostify-section-control .woostify-section-control-arrow.active:before {
-	transform: rotate( 180deg );
+	transition-duration: 0.1s;
 }

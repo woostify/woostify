@@ -184,14 +184,6 @@
 			['woostify_setting[header_search_only_product]']
 		);
 
-		// Always show add to cart button.
-		condition(
-			'woostify_setting[product_style]',
-			['woostify_setting[product_style_defaut_add_to_cart]'],
-			'layout-1',
-			true
-		);
-
 		// HEADER TRANSPARENT SECTION.
 		// Enable transparent header.
 		condition(
@@ -273,6 +265,54 @@
 				}
 			} );
 		} );
+
+		// SHOP.
+		// Add to cart.
+		condition(
+			'woostify_setting[shop_page_add_to_cart]',
+			[
+				'woostify_setting[shop_product_add_to_cart_icon]',
+				'woostify_setting[shop_page_add_to_cart_button_position]',
+			]
+		);
+
+		// Equal image height.
+		condition(
+			'woostify_setting[shop_page_product_image_equal_height]',
+			[
+				'woostify_setting[shop_page_product_image_height]',
+			],
+			false
+		);
+
+		// Sale square.
+		condition(
+			'woostify_setting[shop_page_sale_square]',
+			[
+				'woostify_setting[shop_page_sale_size]',
+			],
+			false
+		);
+
+		// Product card border.
+		condition(
+			'woostify_setting[shop_page_product_card_border_style]',
+			[
+				'woostify_setting[shop_page_product_card_border_width]',
+				'woostify_setting[shop_page_product_card_border_color]',
+			],
+			'none'
+		);
+
+		// Product image border.
+		condition(
+			'woostify_setting[shop_page_product_image_border_style]',
+			[
+				'woostify_setting[shop_page_product_image_border_width]',
+				'woostify_setting[shop_page_product_image_border_color]',
+			],
+			'none'
+		);
 
 		// FOOTER SECTION.
 		// Disable footer.

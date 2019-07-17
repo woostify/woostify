@@ -13,10 +13,9 @@ wp.customize.controlConstructor['woostify-section'] = wp.customize.Control.exten
 	ready: function() {
 		var control    = this,
 			selector   = document.querySelector( control.selector ),
-			arrow      = selector.querySelector( '.woostify-section-control-arrow' ),
 			state      = 1;
 
-		if ( ! arrow ) {
+		if ( ! selector ) {
 			return;
 		}
 
@@ -26,12 +25,12 @@ wp.customize.controlConstructor['woostify-section'] = wp.customize.Control.exten
 		} );
 
 		// Arrow event.
-		arrow.addEventListener( 'click', function() {
+		selector.addEventListener( 'click', function() {
 			if ( 1 === state ) {
-				arrow.classList.add( 'active' );
+				selector.classList.add( 'active' );
 				state = 2;
 			} else {
-				arrow.classList.remove( 'active' );
+				selector.classList.remove( 'active' );
 				state = 1;
 			}
 
@@ -55,9 +54,9 @@ wp.customize.controlConstructor['woostify-section'] = wp.customize.Control.exten
 				depenSelector = document.querySelector( depen.selector );
 
 			if ( 1 === state ) {
-				depenSelector.classList.add( 'hide' );
+				depenSelector.classList.add( 'woostify-section-hide' );
 			} else {
-				depenSelector.classList.remove( 'hide' );
+				depenSelector.classList.remove( 'woostify-section-hide' );
 			}
 		}
 	}

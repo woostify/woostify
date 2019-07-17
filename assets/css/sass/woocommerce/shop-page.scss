@@ -1,14 +1,45 @@
-.products{
-	.product{
-		.product-loop-image-wrapper{
-			margin-bottom: 20px;
-		}
-	}
-}
-
 .product-loop-image-wrapper{
 	position: relative;
 	overflow: hidden;
+
+	// Zoom effect.
+	&.zoom-hover {
+		img {
+			@extend .duration;
+		}
+		&:hover {
+			img {
+				@include scale( 1.1 );
+			}
+		}
+	}
+
+	// Swap effect.
+	.product-loop-hover-image{
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		background-size: cover;
+		opacity: 0;
+		@include transition( all .3s ease-in-out );
+	}
+
+	/* Add to cart ( On image ) */
+	.loop-add-to-cart-btn {
+		opacity: 0;
+		visibility: hidden;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		line-height: 1.8em;
+		transform: translate( -50%, -50% );
+		white-space: nowrap;
+		&:before {
+			margin-right: 7px;
+		}
+	}
 
 	&:hover{
 		.product-loop-hover-image{
@@ -21,15 +52,13 @@
 	}
 }
 
-.product-loop-hover-image{
-	position: absolute;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	background-size: cover;
-	opacity: 0;
-	@include transition( all .3s ease-in-out );
+.has-equal-image-height {
+	img {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+	}
 }
 
 .product-loop-meta{
@@ -116,6 +145,10 @@
 			}
 		}
 	}
+}
+
+.product-loop-content {
+	padding: 25px 15px;
 }
 
 #secondary{

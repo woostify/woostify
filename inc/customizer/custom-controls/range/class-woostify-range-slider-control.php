@@ -129,13 +129,14 @@ class Woostify_Range_Slider_Control extends WP_Customize_Control {
 			</div>
 
 			<div class="woostify-range-slider-areas">
-				<# if ( 'undefined' !== typeof ( data.desktop ) ) { #>
+				<# if
+					( 'undefined' !== typeof ( data.desktop ) ) {
+					var attrDesktop = ! data.choices['desktop']['edit'] ? 'disabled' : '';
+				#>
 				<label class="range-option-area" data-option="desktop" style="display: none;">
 					<div class="wrapper <# if ( '' !== data.choices['desktop']['unit'] ) { #>has-unit<# } #>">
-						<div class="woostify_range_value <# if ( '' == data.choices['desktop']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
-							<input <# if ( data.choices['desktop']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['desktop']['step'] }}" class="desktop-range value" value="{{ data.desktop.value }}" min="{{ data.choices['desktop']['min'] }}" max="{{ data.choices['desktop']['max'] }}" {{{ data.desktop.link }}} data-reset_value="{{ data.desktop.default }}" />
-
-							<span <# if ( ! data.choices['desktop']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.desktop.value }}</span>
+						<div class="woostify_range_value">
+							<input {{{ attrDesktop }}} type="number" step="{{ data.choices['desktop']['step'] }}" class="desktop-range value" value="{{ data.desktop.value }}" min="{{ data.choices['desktop']['min'] }}" max="{{ data.choices['desktop']['max'] }}" {{{ data.desktop.link }}} data-reset_value="{{ data.desktop.default }}" />
 
 							<# if ( data.choices['desktop']['unit'] ) { #>
 								<span class="unit">{{ data.choices['desktop']['unit'] }}</span>
@@ -147,12 +148,14 @@ class Woostify_Range_Slider_Control extends WP_Customize_Control {
 				</label>
 				<# } #>
 
-				<# if ( 'undefined' !== typeof ( data.tablet ) ) { #>
+				<# if
+					( 'undefined' !== typeof ( data.tablet ) ) {
+					var attrTablet = ! data.choices['tablet']['edit'] ? 'disabled' : '';
+				#>
 				<label class="range-option-area" data-option="tablet" style="display:none">
 					<div class="wrapper <# if ( '' !== data.choices['tablet']['unit'] ) { #>has-unit<# } #>">
-						<div class="woostify_range_value <# if ( '' == data.choices['tablet']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
-							<input <# if ( data.choices['tablet']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['tablet']['step'] }}" class="tablet-range value" value="{{ data.tablet.value }}" min="{{ data.choices['tablet']['min'] }}" max="{{ data.choices['tablet']['max'] }}" {{{ data.tablet.link }}} data-reset_value="{{ data.tablet.default }}" />
-							<span <# if ( ! data.choices['tablet']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.tablet.value }}</span>
+						<div class="woostify_range_value">
+							<input {{{ attrTablet }}} type="number" step="{{ data.choices['tablet']['step'] }}" class="tablet-range value" value="{{ data.tablet.value }}" min="{{ data.choices['tablet']['min'] }}" max="{{ data.choices['tablet']['max'] }}" {{{ data.tablet.link }}} data-reset_value="{{ data.tablet.default }}" />
 
 							<# if ( data.choices['tablet']['unit'] ) { #>
 							<span class="unit">{{ data.choices['tablet']['unit'] }}</span>
@@ -164,12 +167,14 @@ class Woostify_Range_Slider_Control extends WP_Customize_Control {
 				</label>
 				<# } #>
 
-				<# if ( 'undefined' !== typeof ( data.mobile ) ) { #>
+				<# if
+					( 'undefined' !== typeof ( data.mobile ) ) {
+					var attrMobile = ! data.choices['mobile']['edit'] ? 'disabled' : '';
+				#>
 				<label class="range-option-area" data-option="mobile" style="display:none;">
 					<div class="wrapper <# if ( '' !== data.choices['mobile']['unit'] ) { #>has-unit<# } #>">
-						<div class="woostify_range_value <# if ( '' == data.choices['mobile']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
-							<input <# if ( data.choices['mobile']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['mobile']['step'] }}" class="mobile-range value" value="{{ data.mobile.value }}" min="{{ data.choices['mobile']['min'] }}" max="{{ data.choices['mobile']['max'] }}" {{{ data.mobile.link }}} data-reset_value="{{ data.mobile.default }}" />
-							<span <# if ( ! data.choices['mobile']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.mobile.value }}</span>
+						<div class="woostify_range_value">
+							<input {{{ attrMobile }}} type="number" step="{{ data.choices['mobile']['step'] }}" class="mobile-range value" value="{{ data.mobile.value }}" min="{{ data.choices['mobile']['min'] }}" max="{{ data.choices['mobile']['max'] }}" {{{ data.mobile.link }}} data-reset_value="{{ data.mobile.default }}" />
 
 							<# if ( data.choices['mobile']['unit'] ) { #>
 							<span class="unit">{{ data.choices['mobile']['unit'] }}</span>

@@ -94,14 +94,7 @@ $wp_customize->add_section(
 );
 
 // WOOCOMMERCE.
-$wp_customize->add_section(
-	'woostify_product_style',
-	array(
-		'title'      => __( 'Product Style', 'woostify' ),
-		'panel'      => 'woocommerce',
-	)
-);
-
+// Shop page.
 $wp_customize->add_section(
 	'woostify_shop_page',
 	array(
@@ -110,6 +103,7 @@ $wp_customize->add_section(
 	)
 );
 
+// Shop single.
 $wp_customize->add_section(
 	'woostify_shop_single',
 	array(

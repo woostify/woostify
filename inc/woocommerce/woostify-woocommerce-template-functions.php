@@ -140,13 +140,15 @@ if ( ! function_exists( 'woostify_modify_loop_add_to_cart_class' ) ) {
 	 */
 	function woostify_modify_loop_add_to_cart_class() {
 		global $product;
+		$options    = woostify_options( false );
+		$icon_class = $options['shop_product_add_to_cart_icon'] ? apply_filters( 'woostify_pro_loop_add_to_cart_icon', 'ti-shopping-cart' ) : '';
 
 		$args = array(
 			'class' => implode(
 				' ',
 				array_filter(
 					array(
-						apply_filters( 'woostify_pro_loop_add_to_cart_icon', 'ti-shopping-cart' ),
+						$icon_class,
 						'loop-add-to-cart-btn',
 						'button',
 						'product_type_' . $product->get_type(),
@@ -204,7 +206,7 @@ if ( ! function_exists( 'woostify_breadcrumb_for_product_page' ) ) {
 		$options = woostify_options( false );
 
 		// Hooked to `woostify_content_top` only Product page.
-		if ( is_singular( 'product' ) && true == $options['shop_single_breadcrumb'] ) {
+		if ( is_singular( 'product' ) && $options['shop_single_breadcrumb'] ) {
 			add_action( 'woostify_content_top', 'woostify_breadcrumb', 30 );
 		}
 	}

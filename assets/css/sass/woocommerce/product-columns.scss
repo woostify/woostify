@@ -8,51 +8,74 @@
     .product {
         list-style: none;
         float: left;
-        margin: 0 30px 56px 0;
+        margin-right: 30px;
+        margin-bottom: 30px;
         position: relative;
-        text-align: center;
+    }
 
-        @media ( min-width: #{ $screen-ios } ) and ( max-width: #{ $screen-md - 1 } ) {
-	        width: calc( ( 100% - 30px ) / 2 );
-
-	        &:nth-of-type( 2n ) {
+	@media ( min-width: $screen-md ) {
+		&.columns-1 {
+	        .product{
+	            width: 100%;
 	            margin-right: 0;
 	        }
-
-	        &:nth-of-type( 2n + 3 ) {
-	            clear: both;
-	        }
 	    }
+	}
 
-	    @media ( max-width: #{ $screen-ios - 1 } ) {
-	        width: 100%;
-	        clear: both;
-	    }
-    }
+	/* Desktop */
+    @for $i from 1 through 6 {
+    	@if ( $i > 1 ) {
+    		@media ( min-width: $screen-md ) {
+	    		&.columns-#{ $i } {
+		            .product{
+	                    width: calc( ( 100% - #{ 30px * ( $i - 1 ) } ) / #{ $i } );
 
-    &.columns-1 {
-        .product{
-            width: 100%;
-            margin-right: 0;
-        }
-    }
+	                    &:nth-of-type( #{ $i }n ) {
+	                    	margin-right: 0;
+	                    }
 
-    
-    @for $i from 2 through 6 {
-        &.columns-#{ $i } {
-            .product{
-            	@media ( min-width: $screen-md ) {
-                    width: calc( ( 100% - #{ 30px * ( $i - 1 ) } ) / #{ $i } );
+	                    &:nth-of-type( #{ $i }n + #{ $i + 1 } ) {
+	                        clear: both;
+	                    }
+		            }
+		        }
+	    	}
+    	}
 
-                    &:nth-of-type( #{ $i }n ) {
-                    	margin-right: 0;
-                    }
-                    
-                    &:nth-of-type( #{ $i }n + #{ $i + 1 } ) {
-                        clear: both;
-                    }
-                }
-            }
-        }
+    	@if ( $i <= 4 ) {
+    		@media ( min-width: 601px ) and ( max-width: $screen-md - 1 ) {
+	    		&.tablet-columns-#{ $i } {
+		            .product{
+	                    width: calc( ( 100% - #{ 30px * ( $i - 1 ) } ) / #{ $i } );
+
+	                    &:nth-of-type( #{ $i }n ) {
+	                    	margin-right: 0;
+	                    }
+
+	                    &:nth-of-type( #{ $i }n + #{ $i + 1 } ) {
+	                        clear: both;
+	                    }
+		            }
+		        }
+	    	}
+    	}
+
+    	@if ( $i <= 3 ) {
+    		@media ( max-width: 600px ) {
+	    		&.mobile-columns-#{ $i } {
+		            .product{
+	                    width: calc( ( 100% - #{ 30px * ( $i - 1 ) } ) / #{ $i } );
+
+	                    &:nth-of-type( #{ $i }n ) {
+	                    	margin-right: 0;
+	                    }
+
+	                    &:nth-of-type( #{ $i }n + #{ $i + 1 } ) {
+	                        clear: both;
+	                    }
+		            }
+		        }
+	    	}
+    	}
     }
 }
