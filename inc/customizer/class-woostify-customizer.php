@@ -270,15 +270,15 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				$wp_customize->register_section_type( 'Woostify_Get_Pro_Section' );
 			}
 
-			// Get pro version area.
+			// Get Pro Extensions area.
 			if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) {
-				// Add get pro version section.
+				// Add get Pro Extensions section.
 				$wp_customize->add_section(
 					new Woostify_Get_Pro_Section(
 						$wp_customize,
 						'woostify_get_pro_section',
 						array(
-							'pro_text'   => __( 'Get The Woostify Pro Version!', 'woostify' ),
+							'pro_text'   => __( 'Get The Woostify Pro Extensions!', 'woostify' ),
 							'pro_url'    => woostify_get_pro_url(),
 							'capability' => 'edit_theme_options',
 							'priority'   => 0,
@@ -296,7 +296,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 							'section'     => 'woostify_header',
 							'type'        => 'addon',
 							'label'       => __( 'Learn More', 'woostify' ),
-							'description' => __( 'More options are coming for this section in our pro version.', 'woostify' ),
+							'description' => __( 'More options are coming for this section in our Pro Extensions.', 'woostify' ),
 							'url'         => woostify_get_pro_url(),
 							'priority'    => 200,
 							'settings'    => isset( $wp_customize->selective_refresh ) ? array() : 'blogname',
@@ -312,7 +312,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 							'section'     => 'woostify_product_style',
 							'type'        => 'addon',
 							'label'       => __( 'Learn More', 'woostify' ),
-							'description' => __( 'More options are coming for this section in our pro version.', 'woostify' ),
+							'description' => __( 'More options are coming for this section in our Pro Extensions.', 'woostify' ),
 							'url'         => woostify_get_pro_url(),
 							'priority'    => 200,
 							'settings'    => isset( $wp_customize->selective_refresh ) ? array() : 'blogname',
@@ -328,7 +328,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 							'section'     => 'woostify_shop_single',
 							'type'        => 'addon',
 							'label'       => __( 'Learn More', 'woostify' ),
-							'description' => __( 'More options are coming for this section in our pro version.', 'woostify' ),
+							'description' => __( 'More options are coming for this section in our Pro Extensions.', 'woostify' ),
 							'url'         => woostify_get_pro_url(),
 							'priority'    => 200,
 							'settings'    => isset( $wp_customize->selective_refresh ) ? array() : 'blogname',
@@ -344,7 +344,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 							'section'     => 'woostify_footer',
 							'type'        => 'addon',
 							'label'       => __( 'Learn More', 'woostify' ),
-							'description' => __( 'More options are coming for this section in our pro version.', 'woostify' ),
+							'description' => __( 'More options are coming for this section in our Pro Extensions.', 'woostify' ),
 							'url'         => woostify_get_pro_url(),
 							'priority'    => 200,
 							'settings'    => isset( $wp_customize->selective_refresh ) ? array() : 'blogname',
