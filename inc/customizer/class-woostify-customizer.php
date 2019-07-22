@@ -186,9 +186,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'mobile_products_per_row'                 => 1,
 					'products_per_page'                       => 12,
 					// Add to cart button.
-					'shop_page_add_to_cart'                   => true,
-					'shop_product_add_to_cart_icon'           => true,
 					'shop_page_add_to_cart_button_position'   => 'bottom',
+					'shop_product_add_to_cart_icon'           => true,
 					// SHOP SINGLE.
 					'shop_single_content_background'          => '#f3f3f3',
 					'shop_single_gallery_layout'              => 'vertical',

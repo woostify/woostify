@@ -140,8 +140,21 @@ if ( ! function_exists( 'woostify_modify_loop_add_to_cart_class' ) ) {
 	 */
 	function woostify_modify_loop_add_to_cart_class() {
 		global $product;
-		$options    = woostify_options( false );
-		$icon_class = $options['shop_product_add_to_cart_icon'] ? apply_filters( 'woostify_pro_loop_add_to_cart_icon', 'ti-shopping-cart' ) : '';
+		$options      = woostify_options( false );
+		$button_class = 'loop-add-to-cart-btn';
+		$icon_class   = '';
+		if (
+			( ! in_array( $options['shop_page_add_to_cart_button_position'], [ 'none', 'icon' ] ) && $options['shop_product_add_to_cart_icon'] ) ||
+			'icon' == $options['shop_page_add_to_cart_button_position']
+		) {
+			$icon_class = apply_filters( 'woostify_pro_loop_add_to_cart_icon', 'ti-shopping-cart' );
+		}
+
+		if ( 'image' == $options['shop_page_add_to_cart_button_position'] ) {
+			$button_class = 'loop-add-to-cart-on-image';
+		} elseif ( 'icon' == $options['shop_page_add_to_cart_button_position'] ) {
+			$button_class = 'loop-add-to-cart-icon-btn';
+		}
 
 		$args = array(
 			'class' => implode(
@@ -149,13 +162,19 @@ if ( ! function_exists( 'woostify_modify_loop_add_to_cart_class' ) ) {
 				array_filter(
 					array(
 						$icon_class,
-						'loop-add-to-cart-btn',
+						$button_class,
 						'button',
 						'product_type_' . $product->get_type(),
 						$product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
 						$product->supports( 'ajax_add_to_cart' ) && $product->is_purchasable() && $product->is_in_stock() ? 'ajax_add_to_cart' : '',
 					)
 				)
+			),
+			'attributes' => array(
+				'data-product_id'  => $product->get_id(),
+				'data-product_sku' => $product->get_sku(),
+				'title'            => $product->add_to_cart_description(),
+				'rel'              => 'nofollow',
 			),
 		);
 

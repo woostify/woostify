@@ -297,58 +297,75 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 							<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
 								<div class="woostify-enhance__column woostify-pro-featured pro-featured-list">
 									<h3>
-										<?php esc_html_e( 'More Features are coming with Woostify Pro', 'woostify' ); ?>
-										<a class="woostify-learn-more wp-ui-text-highlight" href="https://www.facebook.com/WoostifyWP" target="_blank"><?php esc_html_e( 'Follow here!', 'woostify' ); ?></a>
+										<a class="woostify-learn-more wp-ui-text-highlight" href="https://woostify.com/" target="_blank"><?php esc_html_e( 'Get The Woostify Pro Version!', 'woostify' ); ?></a>
 									</h3>
 
 									<div class="wf-quick-setting-section">
 										<div class="pro-featured-item">
-											<strong class="pro-featured-name wp-ui-text-highlight">
+											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Multiple Headers', 'woostify' ); ?>
 											</strong>
 											<a href="https://woostify.com/docs/pro-modules/multiple-header-styles/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
-											<strong class="pro-featured-name wp-ui-text-highlight">
+											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Elementor Bundle', 'woostify' ); ?>
 											</strong>
 											<a href="https://woostify.com/docs/pro-modules/elementor-bundle/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
-											<strong class="pro-featured-name wp-ui-text-highlight">
+											<strong class="pro-featured-name">
+												<?php esc_html_e( 'Header & Footer Builder', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/pro-modules/header-footer-builder/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name">
+												<?php esc_html_e( 'Ajax WooCommerce Search', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/pro-modules/ajax-search-auto-complete/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name">
+												<?php esc_html_e( 'Size Guide', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/pro-modules/size-guide/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Advanced Shop Widgets', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="https://woostify.com/docs/pro-modules/advanced-shop-widgets/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
-											<strong class="pro-featured-name wp-ui-text-highlight">
-												<?php esc_html_e( 'Product Style', 'woostify' ); ?>
-											</strong>
-											<a href="https://woostify.com/docs/pro-modules/multiple-product-layouts/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-										</div>
-										<div class="pro-featured-item">
-											<strong class="pro-featured-name wp-ui-text-highlight">
+											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Buy Now Button', 'woostify' ); ?>
 											</strong>
 											<a href="https://woostify.com/docs/pro-modules/buy-now-button/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
-											<strong class="pro-featured-name wp-ui-text-highlight">
-												<?php esc_html_e( 'Sticky Button', 'woostify' ); ?>
+											<strong class="pro-featured-name">
+												<?php esc_html_e( 'Sticky Header', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="https://woostify.com/docs/pro-modules/sticky-header/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
-											<strong class="pro-featured-name wp-ui-text-highlight">
+											<strong class="pro-featured-name">
+												<?php esc_html_e( 'Sticky Button', 'woostify' ); ?>
+											</strong>
+											<a href="https://woostify.com/docs/pro-modules/sticky-button/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Ajax Single Add To Cart', 'woostify' ); ?>
 											</strong>
 											<a href="https://woostify.com/docs/pro-modules/ajax-single-add-to-cart/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
-											<strong class="pro-featured-name wp-ui-text-highlight">
+											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Quick View', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="https://woostify.com/docs/pro-modules/quick-view/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 									</div>
 								</div>

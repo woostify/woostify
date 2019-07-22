@@ -7,7 +7,7 @@
 
 // Define constants.
 define( 'WOOSTIFY_VERSION', '1.2.3' );
-define( 'WOOSTIFY_PRO_MIN_VERSION', '1.0.6' );
+define( 'WOOSTIFY_PRO_MIN_VERSION', '1.0.7' );
 define( 'WOOSTIFY_THEME_DIR', get_template_directory() . '/' );
 define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );
 
@@ -37,9 +37,6 @@ if ( is_admin() ) {
 	require_once WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-admin.php';
 	require_once WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-meta-boxes.php';
 }
-
-// Woostify widgets.
-require_once WOOSTIFY_THEME_DIR . 'inc/widget/class-woostify-recent-post-thumbnail.php';
 
 /**
  * Note: Do not add any custom code here. Please use a custom plugin so that your customizations aren't lost during updates.

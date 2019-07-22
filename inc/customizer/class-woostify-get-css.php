@@ -110,7 +110,8 @@ class Woostify_Get_CSS {
 			.breadcrumb-separator,
 			#secondary .widget a,
 			.has-woostify-text-color,
-			.clear-cart-btn{
+			.clear-cart-btn,
+			.button.loop-add-to-cart-icon-btn{
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
@@ -237,31 +238,26 @@ class Woostify_Get_CSS {
 			.woostify-icon-bar span{
 				background-color: ' . esc_attr( $options['accent_color'] ) . ';
 			}
-
-			.site-tools .header-search-icon:hover,
-			a:hover,
-			.ps-layout-1 .product-loop-meta .button:hover,
-			#secondary .widget a:not(.tag-cloud-link):hover,
-			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout):hover{
-				color: ' . esc_attr( $options['theme_color'] ) . ';
-			}
 		';
 
 		// Buttons.
 		$styles .= '
-			.woostify-button-color {
+			.woostify-button-color,
+			.loop-add-to-cart-on-image+.added_to_cart {
 				color: ' . esc_attr( $options['button_text_color'] ) . ';
 			}
 
-			.woostify-button-bg-color {
+			.woostify-button-bg-color,
+			.loop-add-to-cart-on-image+.added_to_cart {
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 			}
 
-			.woostify-button-hover-color {
+			.woostify-button-hover-color{
 				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
 			}
 
-			.woostify-button-hover-bg-color {
+			.woostify-button-hover-bg-color,
+			.loop-add-to-cart-on-image+.added_to_cart:hover {
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
 			}
 
@@ -279,7 +275,8 @@ class Woostify_Get_CSS {
 			}
 
 			.cart .quantity,
-			.clear-cart-btn{
+			.clear-cart-btn,
+			.loop-add-to-cart-on-image+.added_to_cart{
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
 			}
 
@@ -288,7 +285,8 @@ class Woostify_Get_CSS {
 			#commentform input[type="submit"]:hover,
 			.form-submit .submit:hover,
 			#secondary .widget a.button:hover,
-			.woostify-contact-form input[type="submit"]:hover{
+			.woostify-contact-form input[type="submit"]:hover,
+			.loop-add-to-cart-on-image+.added_to_cart:hover{
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
 				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
 			}
@@ -342,7 +340,12 @@ class Woostify_Get_CSS {
 			.woostify-simple-subsbrice-form input[type="submit"],
 			.woocommerce-tabs li.active a,
 			#secondary .widget .current-cat > a,
-			#secondary .widget .current-cat > span{
+			#secondary .widget .current-cat > span,
+			.site-tools .header-search-icon:hover,
+			.ps-layout-1 .product-loop-meta .button:hover,
+			#secondary .widget a:not(.tag-cloud-link):hover,
+			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout):hover,
+			a:hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
@@ -360,7 +363,12 @@ class Woostify_Get_CSS {
 			#scroll-to-top,
 			.woocommerce-store-notice,
 			.has-woostify-primary-background-color,
-			.woostify-simple-subsbrice-form input[type="submit"]:hover{
+			.woostify-simple-subsbrice-form input[type="submit"]:hover,
+			.button.loop-add-to-cart-icon-btn:hover,
+			.product-loop-action .yith-wcwl-add-to-wishlist:hover,
+			.product-loop-action .yith-wcwl-wishlistaddedbrowse.show,
+			.product-loop-action .yith-wcwl-wishlistexistsbrowse.show,
+			.product-loop-action .added_to_cart{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 

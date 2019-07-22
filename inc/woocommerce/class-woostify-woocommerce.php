@@ -47,8 +47,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_filter( 'woocommerce_available_variation', array( $this, 'woostify_available_variation_gallery' ), 90, 3 );
 
 			// Remove Woo-Commerce Default actions.
-			add_action( 'init', array( $this, 'woostify_init_action' ) );
-			add_action( 'wp', array( $this, 'woostify_wp_action' ) );
+			add_action( 'init', array( $this, 'woostify_woocommerce_init_action' ) );
+			add_action( 'wp', array( $this, 'woostify_woocommerce_wp_action' ) );
 			// Custom breadcrumb for Product page.
 			add_action( 'wp', 'woostify_breadcrumb_for_product_page' );
 
@@ -70,6 +70,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_filter( 'loop_shop_columns', array( $this, 'woostify_products_per_row' ) );
 			// Products per page.
 			add_filter( 'loop_shop_per_page', array( $this, 'woostify_products_per_page' ) );
+			// Add add to cart icon into Loop action area.
+			add_action( 'woostify_product_loop_item_action_item', array( $this, 'woostify_product_loop_item_add_to_cart_icon' ), 10 );
 			// Add wishlist icon into Loop action area.
 			add_action( 'woostify_product_loop_item_action_item', array( $this, 'woostify_product_loop_item_wishlist_icon' ), 30 );
 			// Clear shop cart.
@@ -303,7 +305,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		/**
 		 * WP action
 		 */
-		public function woostify_wp_action() {
+		public function woostify_woocommerce_wp_action() {
 			$options = self::woostify_options();
 
 			// SHOP PAGE.
@@ -321,7 +323,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		/**
 		 * Init action
 		 */
-		public function woostify_init_action() {
+		public function woostify_woocommerce_init_action() {
 			remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 			remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
 			remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
@@ -453,6 +455,18 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			?>
 			<div class="product-loop-action"><?php do_action( 'woostify_product_loop_item_action_item' ); ?></div>
 			<?php
+		}
+
+		/**
+		 * Add to cart icon
+		 */
+		public function woostify_product_loop_item_add_to_cart_icon() {
+			$options = self::woostify_options();
+			if ( 'icon' != $options['shop_page_add_to_cart_button_position'] ) {
+				return;
+			}
+
+			$this->woostify_modified_add_to_cart_button();
 		}
 
 		/**
@@ -642,20 +656,23 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
+		 * Woostify add to cart button
+		 */
+		public function woostify_modified_add_to_cart_button() {
+			$args = woostify_modify_loop_add_to_cart_class();
+			woocommerce_template_loop_add_to_cart( $args );
+		}
+
+		/**
 		 * Product add to cart ( On image )
 		 */
 		public function woostify_loop_product_add_to_cart_on_image() {
 			$options = self::woostify_options();
-			if ( ! $options['shop_page_add_to_cart'] ) {
-				return;
-			}
-
 			if ( 'image' != $options['shop_page_add_to_cart_button_position'] ) {
 				return;
 			}
 
-			$args = woostify_modify_loop_add_to_cart_class();
-			woocommerce_template_loop_add_to_cart( $args );
+			$this->woostify_modified_add_to_cart_button();
 		}
 
 		/**
@@ -692,8 +709,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			$class = (
 				! $options['shop_page_product_price'] ||
 				( 'external' === $product->get_type() && '' === $product->get_price() ) ||
-				! $options['shop_page_add_to_cart'] ||
-				( $options['shop_page_add_to_cart'] && 'bottom' !== $options['shop_page_add_to_cart_button_position'] ) ||
+				'bottom' != $options['shop_page_add_to_cart_button_position'] ||
 				defined( 'YITH_WCQV_VERSION' )
 			) ? 'no-transform' : '';
 
@@ -725,11 +741,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_loop_product_add_to_cart_button() {
 			$options = self::woostify_options();
-			if ( ! $options['shop_page_add_to_cart'] ) {
-				return;
-			}
-
-			if ( 'image' == $options['shop_page_add_to_cart_button_position'] ) {
+			if ( in_array( $options['shop_page_add_to_cart_button_position'], [ 'none', 'image', 'icon' ] ) ) {
 				return;
 			}
 

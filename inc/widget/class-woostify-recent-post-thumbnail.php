@@ -20,7 +20,7 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 		public function __construct() {
 			parent::__construct(
 				'woostify_recent_post_with_thumbnail',
-				__( 'Recent Post With Thumbnail', 'woostify' ),
+				__( 'Woostify Recent Post With Thumbnail', 'woostify' ),
 				array(
 					'classname'   => 'woostify_recent_post_with_thumbnail',
 					'description' => __( 'List the most recent posts with post titles, thumbnail', 'woostify' ),

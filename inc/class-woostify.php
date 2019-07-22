@@ -24,7 +24,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			$this->woostify_content_width();
 
 			add_action( 'after_setup_theme', array( $this, 'woostify_setup' ) );
-			add_action( 'wp', array( $this, 'woostify_init' ) );
+			add_action( 'wp', array( $this, 'woostify_wp_action' ) );
 			add_action( 'widgets_init', array( $this, 'woostify_widgets_init' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'woostify_scripts' ), 10 );
 			add_filter( 'wpcf7_load_css', '__return_false' );
@@ -320,9 +320,9 @@ if ( ! class_exists( 'woostify' ) ) :
 		}
 
 		/**
-		 * Init
+		 * WP Action
 		 */
-		public function woostify_init() {
+		public function woostify_wp_action() {
 			// Support Elementor Pro - Theme Builder.
 			if ( ! defined( 'ELEMENTOR_PRO_VERSION' ) ) {
 				return;
@@ -344,6 +344,10 @@ if ( ! class_exists( 'woostify' ) ) :
 		 * @link https://codex.wordpress.org/Function_Reference/register_sidebar
 		 */
 		public function woostify_widgets_init() {
+			// Woostify widgets.
+			require_once WOOSTIFY_THEME_DIR . 'inc/widget/class-woostify-recent-post-thumbnail.php';
+
+			// Setup.
 			$sidebar_args['sidebar'] = array(
 				'name'          => __( 'Main Sidebar', 'woostify' ),
 				'id'            => 'sidebar',
@@ -387,7 +391,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				}
 			}
 
-			// Recent post with thumbnail.
+			// Register.
 			register_widget( 'Woostify_Recent_Post_Thumbnail' );
 		}
 

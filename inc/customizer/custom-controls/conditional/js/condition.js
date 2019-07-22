@@ -32,14 +32,24 @@
 				var dependency = function( control ) {
 					var visibility = function() {
 						// wp.customize.control( parentValue[0] ).setting.get();.
+						var compare = false;
+
+						// Support array || string || boolean.
+						if ( Array.isArray( value ) ) {
+							compare = value.includes( setting.get() );
+						} else {
+							compare = value === setting.get();
+						}
+
+						// Is NOT of value.
 						if ( operator ) {
-							if ( value === setting.get() ) {
+							if ( compare ) {
 								control.container.removeClass( 'hide' );
 							} else {
 								control.container.addClass( 'hide' );
 							}
 						} else {
-							if ( value === setting.get() ) {
+							if ( compare ) {
 								control.container.addClass( 'hide' );
 							} else {
 								control.container.removeClass( 'hide' );
@@ -267,13 +277,14 @@
 		} );
 
 		// SHOP.
-		// Add to cart.
+		// Position Add to cart.
 		condition(
-			'woostify_setting[shop_page_add_to_cart]',
+			'woostify_setting[shop_page_add_to_cart_button_position]',
 			[
 				'woostify_setting[shop_product_add_to_cart_icon]',
-				'woostify_setting[shop_page_add_to_cart_button_position]',
-			]
+			],
+			[ 'icon', 'none' ],
+			false
 		);
 
 		// Equal image height.

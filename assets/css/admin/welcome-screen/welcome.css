@@ -329,12 +329,6 @@ body.toplevel_page_woostify-welcome #wpcontent, body.woostify-options_page_ajax-
   border-bottom: 0;
 }
 
-@media (min-width: 720px) {
-  .woostify-options-wrap .woostify-learn-more {
-    float: right;
-  }
-}
-
 .woostify-options-wrap #wpbody-content .notice {
   margin-bottom: 10px;
 }

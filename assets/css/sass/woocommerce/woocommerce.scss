@@ -496,7 +496,7 @@ $icon_size: 40px;
 		background-color: #fff;
 		@extend .flex;
 		+.yith-wcwl-add-to-wishlist{
-			margin-top: 1px;
+			border-top: 1px solid #e7e7e7;
 		}
 	}
 
@@ -512,6 +512,11 @@ $icon_size: 40px;
 						opacity: 1;
 						visibility: visible;
 					}
+				}
+				.loop-add-to-cart-on-image,
+				.loop-add-to-cart-on-image+.added_to_cart {
+					opacity: 1;
+					visibility: visible;
 				}
 			}
 			/* Fix issue not showing on IE */
