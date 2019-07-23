@@ -287,6 +287,15 @@
 			false
 		);
 
+		// Equal product content.
+		condition(
+			'woostify_setting[shop_page_product_content_equal]',
+			[
+				'woostify_setting[shop_page_product_content_min_height]',
+			],
+			false
+		);
+
 		// Equal image height.
 		condition(
 			'woostify_setting[shop_page_product_image_equal_height]',

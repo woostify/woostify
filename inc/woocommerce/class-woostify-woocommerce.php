@@ -92,6 +92,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_link_close' ), 60 );
 			// Product add to cart ( Display on image ).
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_add_to_cart_on_image' ), 70 );
+			// Wishlist icon on bottom right.
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_product_loop_item_wishlist_icon_bottom' ), 80 );
 			// Close wrapper product loop image.
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_image_wrapper_close' ), 90 );
 			// Open product loop content.
@@ -478,11 +480,26 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_product_loop_item_wishlist_icon() {
 			$options = self::woostify_options();
-			if ( ! defined( 'YITH_WCWL' ) ) {
+			if ( 'top-right' != $options['shop_page_wishlist_position'] || ! defined( 'YITH_WCWL' ) ) {
 				return;
 			}
 
 			echo do_shortcode( '[yith_wcwl_add_to_wishlist]' );
+		}
+
+		/**
+		 * Product loop wishlist icon on bottom right
+		 */
+		public function woostify_product_loop_item_wishlist_icon_bottom() {
+			$options = self::woostify_options();
+			if ( 'bottom-right' != $options['shop_page_wishlist_position'] || ! defined( 'YITH_WCWL' ) ) {
+				return;
+			}
+			?>
+			<div class="loop-wrapper-wishlist">
+				<?php echo do_shortcode( '[yith_wcwl_add_to_wishlist]' ); ?>
+			</div>
+			<?php
 		}
 
 		/**

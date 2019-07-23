@@ -111,11 +111,14 @@ class Woostify_Get_CSS {
 			#secondary .widget a,
 			.has-woostify-text-color,
 			.clear-cart-btn,
-			.button.loop-add-to-cart-icon-btn{
+			.button.loop-add-to-cart-icon-btn,
+			.loop-wrapper-wishlist a{
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
-			.price_slider_wrapper .price_slider,
+	,
+	.loop-wrapper-wishlist a:hover,
+	.loop-wrapper-wishlist .yith-wcwl-wishlistexistsbrowse show		.price_slider_wrapper .price_s.ider,
 			.has-woostify-text-background-color{
 				background-color: ' . esc_attr( $options['text_color'] ) . ';
 			}
@@ -476,6 +479,15 @@ class Woostify_Get_CSS {
 					border-style: ' . esc_attr( $options['shop_page_product_card_border_style'] ) . ';
 					border-width: ' . esc_attr( $options['shop_page_product_card_border_width'] ) . 'px;
 					border-color: ' . esc_attr( $options['shop_page_product_card_border_color'] ) . ';
+				}
+			';
+		}
+
+		// Product content.
+		if ( $options['shop_page_product_content_equal'] ) {
+			$styles .= '
+				.product-loop-content {
+					min-height: ' . esc_attr( $options['shop_page_product_content_min_height'] ) . 'px;
 				}
 			';
 		}

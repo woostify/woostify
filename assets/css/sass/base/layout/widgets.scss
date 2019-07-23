@@ -491,6 +491,10 @@
         &[href*="tumblr.com"]:before {
             content: "\e72c";
         }
+
+        &[href*="mailto"]:before {
+            content: "\e75a";
+        }
     }
 }
 

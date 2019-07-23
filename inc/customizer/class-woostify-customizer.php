@@ -156,11 +156,18 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shop_page_breadcrumb'                    => true,
 					'shop_page_result_count'                  => true,
 					'shop_page_product_filter'                => true,
+					// Product catalog.
+					'products_per_row'                        => 3,
+					'tablet_products_per_row'                 => 2,
+					'mobile_products_per_row'                 => 1,
+					'products_per_page'                       => 12,
 					// Product card.
 					'shop_page_product_card_border_style'     => 'none',
 					'shop_page_product_card_border_width'     => 1,
 					'shop_page_product_card_border_color'     => '#cccccc',
 					// Product content.
+					'shop_page_product_content_equal'         => false,
+					'shop_page_product_content_min_height'    => 160,
 					'shop_page_product_title'                 => true,
 					'shop_page_product_category'              => false,
 					'shop_page_product_rating'                => true,
@@ -172,6 +179,11 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shop_page_product_image_border_color'    => '#cccccc',
 					'shop_page_product_image_equal_height'    => false,
 					'shop_page_product_image_height'          => 300,
+					// Add to cart button.
+					'shop_page_add_to_cart_button_position'   => 'bottom',
+					'shop_product_add_to_cart_icon'           => true,
+					// Wishlist.
+					'shop_page_wishlist_position'             => 'top-right',
 					// Sale tag.
 					'shop_page_sale_tag_position'             => 'left',
 					'shop_page_sale_percent'                  => true,
@@ -180,14 +192,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shop_page_sale_square'                   => false,
 					'shop_page_sale_size'                     => 40,
 					'shop_page_sale_color'                    => '#ffffff',
-					// Products per page.
-					'products_per_row'                        => 3,
-					'tablet_products_per_row'                 => 2,
-					'mobile_products_per_row'                 => 1,
-					'products_per_page'                       => 12,
-					// Add to cart button.
-					'shop_page_add_to_cart_button_position'   => 'bottom',
-					'shop_product_add_to_cart_icon'           => true,
 					// SHOP SINGLE.
 					'shop_single_content_background'          => '#f3f3f3',
 					'shop_single_gallery_layout'              => 'vertical',
