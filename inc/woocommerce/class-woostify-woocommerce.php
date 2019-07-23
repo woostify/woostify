@@ -427,9 +427,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			if ( $sale ) {
 				// For simple product.
-				if ( $simple && $sale_percent ) {
-					$final_price = ( ( $price - $price_sale ) / $price ) * 100;
-					$final_price = '-' . round( $final_price ) . '%';
+				if ( $simple ) {
+					if ( $sale_percent ) {
+						$final_price = ( ( $price - $price_sale ) / $price ) * 100;
+						$final_price = '-' . round( $final_price ) . '%';
+					} elseif ( $sale_text ) {
+						$final_price = $sale_text;
+					}
 				} elseif ( $variable && $sale_text ) {
 					// For variable product.
 					$final_price = $sale_text;
@@ -473,6 +477,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Product loop wishlist icon
 		 */
 		public function woostify_product_loop_item_wishlist_icon() {
+			$options = self::woostify_options();
 			if ( ! defined( 'YITH_WCWL' ) ) {
 				return;
 			}
