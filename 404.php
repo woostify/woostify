@@ -7,6 +7,8 @@
 
 get_header();
 
-do_action( 'woostify_theme_404' );
+if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) {
+	do_action( 'woostify_theme_404' );
+}
 
 get_footer();
