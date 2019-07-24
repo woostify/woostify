@@ -514,7 +514,7 @@ $size: 40px;
 			display: none;
 			color: #fff;
 		}
-		+ .product-quick-view-btn,
+		+ .quick-view-with-icon,
 		+ .yith-wcwl-add-to-wishlist{
 			border-top: 1px solid #e7e7e7;
 		}
@@ -526,7 +526,7 @@ $size: 40px;
 			content: "\e60e"
 		}
 
-		+ .product-quick-view-btn,
+		+ .quick-view-with-icon,
 		+ .yith-wcwl-add-to-wishlist{
 			border-top: 1px solid #e7e7e7;
 		}
@@ -584,7 +584,7 @@ $size: 40px;
 		}
 	}
 	/* Quickview btn */
-	.product-quick-view-btn {
+	.quick-view-with-icon {
 		height: $size;
 		width: $size;
 		background-color: #fff;
@@ -611,6 +611,7 @@ $size: 40px;
 				.loop-add-to-cart-on-image+.added_to_cart {
 					opacity: 1;
 					visibility: visible;
+					bottom: 46%;
 				}
 			}
 			/* Fix issue not showing on IE */

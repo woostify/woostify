@@ -678,7 +678,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			}
 
 			// Broser detection.
-			if ( '' != woostify_browser_detection() ) {
+			if ( woostify_browser_detection() ) {
 				$classes[] = woostify_browser_detection() . '-detected';
 			}
 
@@ -693,7 +693,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			$classes[] = 'has-header-' . $header_class_name;
 
 			// Header transparent.
-			if ( true == woostify_header_transparent() ) {
+			if ( woostify_header_transparent() ) {
 				$classes[] = 'has-header-transparent header-transparent-for-' . $options['header_transparent_enable_on'];
 			}
 
@@ -701,8 +701,7 @@ if ( ! class_exists( 'woostify' ) ) :
 			$classes[] = woostify_sidebar_class();
 
 			// Product style layout.
-			$product_style_class_name = defined( 'WOOSTIFY_PRO_PRODUCT_STYLE' ) ? $options['product_style'] : 'layout-1';
-			$classes[] = 'ps-' . $product_style_class_name;
+			$classes[] = 'ps-layout-1';
 
 			// Blog page layout.
 			if ( woostify_is_blog() && ! is_singular( 'post' ) ) {

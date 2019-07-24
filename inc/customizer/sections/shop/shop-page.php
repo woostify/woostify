@@ -839,80 +839,6 @@ $wp_customize->add_control(
 	)
 );
 
-// ADD TO CART SECTION.
-$wp_customize->add_setting(
-	'shop_page_add_to_cart_section',
-	array(
-		'sanitize_callback' => 'sanitize_text_field',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Section_Control(
-		$wp_customize,
-		'shop_page_add_to_cart_section',
-		array(
-			'label'      => __( 'Add To Cart Button', 'woostify' ),
-			'section'    => 'woostify_shop_page',
-			'dependency' => [
-				'woostify_setting[shop_product_add_to_cart_icon]',
-				'woostify_setting[shop_page_add_to_cart_button_position]',
-			],
-		)
-	)
-);
-
-// Position.
-$wp_customize->add_setting(
-	'woostify_setting[shop_page_add_to_cart_button_position]',
-	array(
-		'default'           => $defaults['shop_page_add_to_cart_button_position'],
-		'sanitize_callback' => 'woostify_sanitize_choices',
-		'type'              => 'option',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Radio_Image_Control(
-		$wp_customize,
-		'woostify_setting[shop_page_add_to_cart_button_position]',
-		array(
-			'label'    => __( 'Position', 'woostify' ),
-			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_add_to_cart_button_position]',
-			'choices'  => apply_filters(
-				'woostify_setting_shop_page_position_choices',
-				array(
-					'none'           => WOOSTIFY_THEME_URI . 'assets/images/customizer/add-to-cart/add-cart-1.jpg',
-					'bottom'         => WOOSTIFY_THEME_URI . 'assets/images/customizer/add-to-cart/add-cart-2.jpg',
-					'bottom-visible' => WOOSTIFY_THEME_URI . 'assets/images/customizer/add-to-cart/add-cart-3.jpg',
-					'image'          => WOOSTIFY_THEME_URI . 'assets/images/customizer/add-to-cart/add-cart-4.jpg',
-					'icon'           => WOOSTIFY_THEME_URI . 'assets/images/customizer/add-to-cart/add-cart-5.jpg',
-				)
-			),
-		)
-	)
-);
-
-// Button icon.
-$wp_customize->add_setting(
-	'woostify_setting[shop_product_add_to_cart_icon]',
-	array(
-		'type'              => 'option',
-		'default'           => $defaults['shop_product_add_to_cart_icon'],
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Switch_Control(
-		$wp_customize,
-		'woostify_setting[shop_product_add_to_cart_icon]',
-		array(
-			'label'    => __( 'Button Icon', 'woostify' ),
-			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_product_add_to_cart_icon]',
-		)
-	)
-);
-
 // WISHLIST SECTION.
 if ( defined( 'YITH_WCWL' ) ) {
 	$wp_customize->add_setting(
@@ -953,7 +879,7 @@ if ( defined( 'YITH_WCWL' ) ) {
 				'section'  => 'woostify_shop_page',
 				'settings' => 'woostify_setting[shop_page_wishlist_position]',
 				'choices'  => apply_filters(
-					'woostify_setting_shop_page_position_choices',
+					'woostify_setting_shop_page_wishlist_position_choices',
 					array(
 						'none'         => WOOSTIFY_THEME_URI . 'assets/images/customizer/wishlist/wishlist-1.jpg',
 						'top-right'    => WOOSTIFY_THEME_URI . 'assets/images/customizer/wishlist/wishlist-2.jpg',
@@ -964,3 +890,77 @@ if ( defined( 'YITH_WCWL' ) ) {
 		)
 	);
 }
+
+// ADD TO CART SECTION.
+$wp_customize->add_setting(
+	'shop_page_add_to_cart_section',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Section_Control(
+		$wp_customize,
+		'shop_page_add_to_cart_section',
+		array(
+			'label'      => __( 'Add To Cart Button', 'woostify' ),
+			'section'    => 'woostify_shop_page',
+			'dependency' => [
+				'woostify_setting[shop_product_add_to_cart_icon]',
+				'woostify_setting[shop_page_add_to_cart_button_position]',
+			],
+		)
+	)
+);
+
+// Position.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_add_to_cart_button_position]',
+	array(
+		'default'           => $defaults['shop_page_add_to_cart_button_position'],
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Radio_Image_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_add_to_cart_button_position]',
+		array(
+			'label'    => __( 'Position', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_add_to_cart_button_position]',
+			'choices'  => apply_filters(
+				'woostify_setting_shop_page_add_to_cart_button_position_choices',
+				array(
+					'none'           => WOOSTIFY_THEME_URI . 'assets/images/customizer/add-to-cart/add-cart-1.jpg',
+					'bottom'         => WOOSTIFY_THEME_URI . 'assets/images/customizer/add-to-cart/add-cart-2.jpg',
+					'bottom-visible' => WOOSTIFY_THEME_URI . 'assets/images/customizer/add-to-cart/add-cart-3.jpg',
+					'image'          => WOOSTIFY_THEME_URI . 'assets/images/customizer/add-to-cart/add-cart-4.jpg',
+					'icon'           => WOOSTIFY_THEME_URI . 'assets/images/customizer/add-to-cart/add-cart-5.jpg',
+				)
+			),
+		)
+	)
+);
+
+// Button icon.
+$wp_customize->add_setting(
+	'woostify_setting[shop_product_add_to_cart_icon]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_product_add_to_cart_icon'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_product_add_to_cart_icon]',
+		array(
+			'label'    => __( 'Button Icon', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_product_add_to_cart_icon]',
+		)
+	)
+);

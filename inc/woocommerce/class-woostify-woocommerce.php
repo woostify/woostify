@@ -611,6 +611,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			$class[] = 'product-loop-image-wrapper';
 			$class[] = 'zoom' == $options['shop_page_product_image_hover'] ? $options['shop_page_product_image_hover'] . '-hover' : '';
 			$class[] = $options['shop_page_product_image_equal_height'] ? 'has-equal-image-height' : '';
+			$class[] = apply_filters( 'woostify_additional_class_loop_product_image', '' );
 			$class   = trim( implode( ' ', $class ) );
 
 			echo '<div class="' . esc_attr( $class ) . '">';

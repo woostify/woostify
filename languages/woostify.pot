@@ -168,7 +168,7 @@ msgstr ""
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:733
+#: inc/class-woostify.php:732
 msgid "Post Pagination"
 msgstr ""
 
@@ -749,11 +749,11 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:639, inc/woocommerce/class-woostify-woocommerce.php:961, inc/woocommerce/class-woostify-woocommerce.php:992, inc/woocommerce/class-woostify-woocommerce.php:1023, inc/woocommerce/class-woostify-woocommerce.php:1047
+#: inc/woocommerce/class-woostify-woocommerce.php:640, inc/woocommerce/class-woostify-woocommerce.php:962, inc/woocommerce/class-woostify-woocommerce.php:993, inc/woocommerce/class-woostify-woocommerce.php:1024, inc/woocommerce/class-woostify-woocommerce.php:1048
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1112
+#: inc/woocommerce/class-woostify-woocommerce.php:1113
 msgid "Clear cart"
 msgstr ""
 
@@ -1261,7 +1261,7 @@ msgstr ""
 msgid "Sale Tag"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:677, inc/customizer/sections/shop/shop-page.php:878, inc/customizer/sections/shop/shop-page.php:952
+#: inc/customizer/sections/shop/shop-page.php:677, inc/customizer/sections/shop/shop-page.php:878, inc/customizer/sections/shop/shop-page.php:930
 msgid "Position"
 msgstr ""
 
@@ -1281,16 +1281,16 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:854
+#: inc/customizer/sections/shop/shop-page.php:855
+msgid "Wishlist Button"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-page.php:906
 msgid "Add To Cart Button"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:909
+#: inc/customizer/sections/shop/shop-page.php:961
 msgid "Button Icon"
-msgstr ""
-
-#: inc/customizer/sections/shop/shop-page.php:929
-msgid "Wishlist Button"
 msgstr ""
 
 #: inc/customizer/sections/shop/shop-single.php:66
