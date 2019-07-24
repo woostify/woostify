@@ -6394,6 +6394,11 @@ footer#colophon {
   font-weight: normal;
 }
 
+.woocommerce-loop-category__title {
+  font-size: 18px;
+  text-align: center;
+}
+
 /* woocommerce sidebar mobile */
 .sidebar-mobile-open {
   overflow: hidden;
