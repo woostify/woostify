@@ -737,23 +737,23 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:330
+#: inc/woocommerce/class-woostify-woocommerce.php:307
 msgid "Filter"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:435
+#: inc/woocommerce/class-woostify-woocommerce.php:412
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:436
+#: inc/woocommerce/class-woostify-woocommerce.php:413
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:667, inc/woocommerce/class-woostify-woocommerce.php:989, inc/woocommerce/class-woostify-woocommerce.php:1020, inc/woocommerce/class-woostify-woocommerce.php:1051, inc/woocommerce/class-woostify-woocommerce.php:1075
+#: inc/woocommerce/class-woostify-woocommerce.php:644, inc/woocommerce/class-woostify-woocommerce.php:966, inc/woocommerce/class-woostify-woocommerce.php:997, inc/woocommerce/class-woostify-woocommerce.php:1028, inc/woocommerce/class-woostify-woocommerce.php:1052
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1140
+#: inc/woocommerce/class-woostify-woocommerce.php:1117
 msgid "Clear cart"
 msgstr ""
 

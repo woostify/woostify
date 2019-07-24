@@ -275,30 +275,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			<?php
 
 			// If displaying categories, append to the loop.
-			$display_type = woocommerce_get_loop_display_mode();
-			$loop_html    = '';
-			if ( in_array( $display_type, [ 'subcategories', 'both' ] ) ) {
-				ob_start();
-				woocommerce_output_product_categories(
-					array(
-						'parent_id' => is_product_category() ? get_queried_object_id() : 0,
-					)
-				);
-				$loop_html = ob_get_clean();
-
-				if ( 'subcategories' === $display_type ) {
-					wc_set_loop_prop( 'total', 0 );
-
-					// This removes pagination and products from display for themes not using wc_get_loop_prop in their product loops.  @todo Remove in future major version.
-					global $wp_query;
-
-					if ( $wp_query->is_main_query() ) {
-						$wp_query->post_count    = 0;
-						$wp_query->max_num_pages = 0;
-					}
-				}
-			}
-
+			$loop_html = woocommerce_maybe_show_product_subcategories();
 			echo $loop_html; // WPCS: XSS ok.
 		}
 
