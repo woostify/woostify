@@ -1290,7 +1290,7 @@ msgid "Add To Cart Button"
 msgstr ""
 
 #: inc/customizer/sections/shop/shop-page.php:961
-msgid "Button Icon"
+msgid "Cart Icon"
 msgstr ""
 
 #: inc/customizer/sections/shop/shop-single.php:66

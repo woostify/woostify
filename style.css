@@ -7368,6 +7368,10 @@ footer#colophon {
   margin-right: 7px;
 }
 
+.product-loop-image-wrapper .loop-add-to-cart-on-image {
+  text-align: center;
+}
+
 .product-loop-image-wrapper .loop-add-to-cart-on-image.added {
   display: none;
 }

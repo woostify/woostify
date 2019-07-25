@@ -944,7 +944,7 @@ $wp_customize->add_control(
 	)
 );
 
-// Button icon.
+// Cart icon.
 $wp_customize->add_setting(
 	'woostify_setting[shop_product_add_to_cart_icon]',
 	array(
@@ -958,7 +958,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_product_add_to_cart_icon]',
 		array(
-			'label'    => __( 'Button Icon', 'woostify' ),
+			'label'    => __( 'Cart Icon', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_product_add_to_cart_icon]',
 		)
