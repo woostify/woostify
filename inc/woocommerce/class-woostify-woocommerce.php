@@ -968,18 +968,17 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			$image_size = $get_size['width'] . 'x' . ( ! empty( $get_size['height'] ) ? $get_size['height'] : $get_size['width'] );
 
 			if ( $image_id ) {
-				$image_small_src  = wp_get_attachment_image_src( $image_id, 'thumbnail' );
 				$image_medium_src = wp_get_attachment_image_src( $image_id, 'woocommerce_single' );
 				$image_full_src   = wp_get_attachment_image_src( $image_id, 'full' );
 				$image_size       = $image_full_src[1] . 'x' . $image_full_src[2];
 			} else {
-				$image_small_src[0]  = wc_placeholder_img_src();
-				$image_medium_src[0] = wc_placeholder_img_src();
-				$image_full_src[0]   = wc_placeholder_img_src();
+				$image_medium_src = wc_placeholder_img_src();
+				$image_full_src   = wc_placeholder_img_src();
 			}
 
 			$gallery_id        = $product->get_gallery_image_ids();
 			?>
+
 			<div class="product-images">
 				<div id="product-images">
 					<figure class="image-item ez-zoom">
@@ -1024,21 +1023,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				$product = wc_get_product( $id );
 			}
 
-			$image_id   = $product->get_image_id();
-			$image_alt  = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
-
-			if ( $image_id ) {
-				$image_small_src  = wp_get_attachment_image_src( $image_id, 'thumbnail' );
-				$image_medium_src = wp_get_attachment_image_src( $image_id, 'woocommerce_single' );
-				$image_full_src   = wp_get_attachment_image_src( $image_id, 'full' );
-			} else {
-				$image_small_src[0]  = wc_placeholder_img_src();
-				$image_medium_src[0] = wc_placeholder_img_src();
-				$image_full_src[0]   = wc_placeholder_img_src();
-			}
-
-			$gallery_id = $product->get_gallery_image_ids();
+			$image_id        = $product->get_image_id();
+			$image_alt       = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
+			$image_small_src = $image_id ? wp_get_attachment_image_src( $image_id, 'thumbnail' ) : wc_placeholder_img_src();
+			$gallery_id      = $product->get_gallery_image_ids();
 			?>
+
 			<div class="product-thumbnail-images">
 				<?php if ( ! empty( $gallery_id ) ) { ?>
 				<div id="product-thumbnail-images">
