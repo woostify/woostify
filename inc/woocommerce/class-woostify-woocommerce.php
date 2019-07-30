@@ -992,7 +992,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 						foreach ( $gallery_id as $key ) :
 							$g_full_img_src   = wp_get_attachment_image_src( $key, 'full' );
 							$g_medium_img_src = wp_get_attachment_image_src( $key, 'woocommerce_single' );
-							$g_image_size     = $g_medium_img_src[1] . 'x' . $g_medium_img_src[2];
+							$g_image_size     = $g_full_img_src[1] . 'x' . $g_full_img_src[2];
 							$g_img_alt        = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
 							?>
 							<figure class="image-item ez-zoom">
