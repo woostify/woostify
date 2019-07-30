@@ -21,14 +21,15 @@ function productVariation( selector ) {
 	// event when variation changed.
 	jQuery( document.body ).on( 'found_variation', 'form.variations_form', function( event, variation ) {
 		// get image url form `variation`.
-		var imgSrc   = variation.image.src,
+		var fullSrc  = variation.image.full_src,
+			imgSrc   = variation.image.src,
 			thumbSrc = variation.image.thumb_src;
 
 		// Change src image.
 		image.find( 'img' ).prop( 'src', imgSrc );
 		thumb.find( 'img' ).prop( 'src', thumbSrc );
 		// Photoswipe + zoom.
-		photoSwipe.prop( 'href', imgSrc );
+		photoSwipe.prop( 'href', fullSrc );
 		// Image loading.
 		image.addClass( 'image-loading' );
 		image.find( 'img' )
