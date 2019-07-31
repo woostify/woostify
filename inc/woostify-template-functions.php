@@ -672,9 +672,12 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		$classes       = implode( $classes, ' ' );
 
 		if ( class_exists( 'woocommerce' ) && is_shop() ) {
-			if ( true != $options['shop_page_title'] ) {
+			if ( ! $options['shop_page_title'] ) {
 				$disable_title = false;
 			}
+		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'order-received' ) ) {
+			// Endpoint for the "Checkout &rarr; Order received" page.
+			$title = __( 'Order received', 'woostify' );
 		} elseif ( is_archive() ) {
 			$title = get_the_archive_title( $page_id );
 		} elseif ( is_home() ) {
@@ -694,10 +697,9 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			}
 		}
 
-		if ( false == $page_header ) {
+		if ( ! $page_header ) {
 			return;
 		}
-
 		?>
 
 		<div class="page-header">
