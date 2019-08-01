@@ -675,9 +675,20 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			if ( ! $options['shop_page_title'] ) {
 				$disable_title = false;
 			}
+		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'orders' ) ) {
+			$title = __( 'Orders', 'woostify' );
+		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'downloads' ) ) {
+			$title = __( 'Downloads', 'woostify' );
 		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'order-received' ) ) {
-			// Endpoint for the "Checkout &rarr; Order received" page.
 			$title = __( 'Order received', 'woostify' );
+		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'edit-account' ) ) {
+			$title = __( 'Account details', 'woostify' );
+		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'edit-address' ) ) {
+			$title = __( 'Addresses', 'woostify' );
+		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'customer-logout' ) ) {
+			$title = __( 'Logout', 'woostify' );
+		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'lost-password' ) ) {
+			$title = __( 'Lost password', 'woostify' );
 		} elseif ( is_archive() ) {
 			$title = get_the_archive_title( $page_id );
 		} elseif ( is_home() ) {

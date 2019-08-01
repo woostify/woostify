@@ -247,7 +247,7 @@ msgstr ""
 msgid "Shop"
 msgstr ""
 
-#: inc/woostify-template-functions.php:587, inc/woostify-template-functions.php:684, inc/customizer/register-sections.php:16
+#: inc/woostify-template-functions.php:587, inc/woostify-template-functions.php:695, inc/customizer/register-sections.php:16
 msgid "Blog"
 msgstr ""
 
@@ -288,105 +288,125 @@ msgstr ""
 msgid "Archives"
 msgstr ""
 
-#: inc/woostify-template-functions.php:680
+#: inc/woostify-template-functions.php:679
+msgid "Orders"
+msgstr ""
+
+#: inc/woostify-template-functions.php:681
+msgid "Downloads"
+msgstr ""
+
+#: inc/woostify-template-functions.php:683
 msgid "Order received"
 msgstr ""
 
-#: inc/woostify-template-functions.php:686
+#: inc/woostify-template-functions.php:685
+msgid "Account details"
+msgstr ""
+
+#: inc/woostify-template-functions.php:687
+msgid "Addresses"
+msgstr ""
+
+#: inc/woostify-template-functions.php:689, inc/woostify-template-functions.php:1787, inc/woostify-template-functions.php:1891
+msgid "Logout"
+msgstr ""
+
+#: inc/woostify-template-functions.php:691
+msgid "Lost password"
+msgstr ""
+
+#: inc/woostify-template-functions.php:697
 msgid "Search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:736, inc/woostify-template-functions.php:1059
+#: inc/woostify-template-functions.php:747, inc/woostify-template-functions.php:1070
 msgid "Pages:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1039, inc/woostify-template-functions.php:1085
+#: inc/woostify-template-functions.php:1050, inc/woostify-template-functions.php:1096
 msgid "Read More"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1103, inc/customizer/sections/shop/shop-single.php:251
+#: inc/woostify-template-functions.php:1114, inc/customizer/sections/shop/shop-single.php:251
 msgid "Tags"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1103, inc/woostify-template-functions.php:1266
+#: inc/woostify-template-functions.php:1114, inc/woostify-template-functions.php:1277
 msgid ", "
 msgstr ""
 
-#: inc/woostify-template-functions.php:1125
+#: inc/woostify-template-functions.php:1136
 msgctxt "Next post"
 msgid "Next"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1126
+#: inc/woostify-template-functions.php:1137
 msgctxt "Previous post"
 msgid "Prev"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1139
+#: inc/woostify-template-functions.php:1150
 msgid "Next post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1140
+#: inc/woostify-template-functions.php:1151
 msgid "Previous post:"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1166
+#: inc/woostify-template-functions.php:1177
 msgid "Author Avatar"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1171
+#: inc/woostify-template-functions.php:1182
 msgid "Written by"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1203
+#: inc/woostify-template-functions.php:1214
 msgid "Posted on"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1240
+#: inc/woostify-template-functions.php:1251
 msgid "by Unknown author"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1242
+#: inc/woostify-template-functions.php:1253
 msgid "by"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1272
+#: inc/woostify-template-functions.php:1283
 msgid "Posted in"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1302
+#: inc/woostify-template-functions.php:1313
 msgid "No comments yet"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1303
+#: inc/woostify-template-functions.php:1314
 msgid "1 Comment"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1304
+#: inc/woostify-template-functions.php:1315
 msgid "% Comments"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1524
+#: inc/woostify-template-functions.php:1535
 msgid "Dialog search icon"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1528
+#: inc/woostify-template-functions.php:1539
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1771, inc/woostify-template-functions.php:1875
+#: inc/woostify-template-functions.php:1782, inc/woostify-template-functions.php:1886
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1774, inc/woostify-template-functions.php:1878
+#: inc/woostify-template-functions.php:1785, inc/woostify-template-functions.php:1889
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1776, inc/woostify-template-functions.php:1880
-msgid "Logout"
-msgstr ""
-
-#: inc/woostify-template-functions.php:2112, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:2123, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 

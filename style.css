@@ -9240,6 +9240,10 @@ footer#colophon {
   margin-bottom: 50px;
 }
 
+.woocommerce-account .page-header .entry-title {
+  margin-bottom: 0;
+}
+
 .woocommerce-account .woocommerce-form.woocommerce-form-login {
   border-top: 2px dashed #e8e8e8;
   width: 100%;
