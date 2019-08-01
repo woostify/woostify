@@ -309,6 +309,7 @@
 	}
 	.tawcvs-swatches{
 		.swatch{
+			border: 1px solid #ddd;
 			&.selected{
 				box-shadow: none;
 			}

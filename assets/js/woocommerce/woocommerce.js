@@ -57,8 +57,8 @@ document.addEventListener( 'DOMContentLoaded', function() {
 		eventCartSidebarClose();
 		closeAll();
 	} ).on( 'updated_cart_totals', function() {
-		if ( 'function' === typeof quantity ) {
-			quantity();
+		if ( 'function' === typeof( customQuantity ) ) {
+			customQuantity();
 		}
 	} );
 } );

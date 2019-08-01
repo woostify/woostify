@@ -135,6 +135,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			// Container after summary.
 			add_action( 'woocommerce_after_single_product_summary', array( $this, 'woostify_single_product_after_summary_open' ), 8 );
 			add_action( 'woocommerce_after_single_product_summary', array( $this, 'woostify_single_product_after_summary_close' ), 100 );
+			// Some product info.
+			add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'woostify_product_info' ), 20 );
 
 			// CART PAGE.
 			add_action( 'woocommerce_after_cart_table', array( $this, 'woostify_clear_shop_cart' ) );
@@ -961,22 +963,22 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 				$product = wc_get_product( $id );
 			}
-			$product_id = $product->get_id();
-			$image_id   = $product->get_image_id();
-			$image_alt  = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
-			$get_size   = wc_get_image_size( 'shop_catalog' );
-			$image_size = $get_size['width'] . 'x' . ( ! empty( $get_size['height'] ) ? $get_size['height'] : $get_size['width'] );
+
+			$product_id       = $product->get_id();
+			$image_id         = $product->get_image_id();
+			$image_alt        = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
+			$get_size         = wc_get_image_size( 'shop_catalog' );
+			$image_size       = $get_size['width'] . 'x' . ( ! empty( $get_size['height'] ) ? $get_size['height'] : $get_size['width'] );
+			$image_medium_src = wc_placeholder_img_src();
+			$image_full_src   = $image_medium_src;
 
 			if ( $image_id ) {
 				$image_medium_src = wp_get_attachment_image_src( $image_id, 'woocommerce_single' );
 				$image_full_src   = wp_get_attachment_image_src( $image_id, 'full' );
 				$image_size       = $image_full_src[1] . 'x' . $image_full_src[2];
-			} else {
-				$image_medium_src = wc_placeholder_img_src();
-				$image_full_src   = wc_placeholder_img_src();
 			}
 
-			$gallery_id        = $product->get_gallery_image_ids();
+			$gallery_id = $product->get_gallery_image_ids();
 			?>
 
 			<div class="product-images">
@@ -1094,6 +1096,36 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_single_product_after_summary_close() {
 			echo '</div>';
+		}
+
+		/**
+		 * Product info
+		 */
+		public function woostify_product_info() {
+			global $product;
+			$pid = $product->get_id();
+
+			// Return `yes` || `no`.
+			$in_stock = get_post_meta( $pid, '_manage_stock', true );
+
+			// Return INT value.
+			$stock_qty = $product->get_stock_quantity();
+
+			/*CHECK PRODUCT IN CART && CHECK QUANTITY IF IT ALREADY IN CART*/
+			$in_cart_qty  = woostify_product_check_in( $pid, $in_cart = true, $qty_in_cart = false ) ? woostify_product_check_in( $pid, $in_cart = false, $qty_in_cart = true ) : 0;
+			$not_enough   = __( 'You cannot add that amount of this product to the cart because there is not enough stock.', 'woostify' );
+
+			/* translators: %1$d: stock quantity */
+			$out_stock    = sprintf( __( 'You cannot add that amount to the cart - we have %1$d in stock and you already have %1$d in your cart', 'woostify' ), $stock_qty );
+			$valid_qty    = __( 'Please enter a valid quantity for this product', 'woostify' );
+			?>
+
+			<input class="additional-product" type="hidden" value="<?php echo esc_attr( $in_cart_qty ); ?>"
+				data-in_stock="<?php echo esc_attr( $in_stock ); ?>"
+				data-out_of_stock="<?php echo esc_attr( $out_stock ); ?>"
+				data-valid_quantity="<?php echo esc_attr( $valid_qty ); ?>"
+				data-not_enough="<?php echo esc_attr( $not_enough ); ?>">
+			<?php
 		}
 
 		/**

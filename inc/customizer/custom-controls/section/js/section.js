@@ -51,7 +51,11 @@ wp.customize.controlConstructor['woostify-section'] = wp.customize.Control.exten
 
 		for ( var i = 0, j = dependency.length; i < j; i ++ ) {
 			var depen         = wp.customize.control( dependency[i] ),
-				depenSelector = document.querySelector( depen.selector );
+				depenSelector = depen ? document.querySelector( depen.selector ) : false;
+
+			if ( ! depenSelector ) {
+				continue;
+			}
 
 			if ( 1 === state ) {
 				depenSelector.classList.add( 'woostify-section-hide' );

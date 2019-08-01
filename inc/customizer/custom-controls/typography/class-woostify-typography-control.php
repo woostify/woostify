@@ -104,7 +104,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 			<# if ( '' !== data.label ) { #>
 				<span class="customize-control-title">{{ data.label }}</span>
 			<# } #>
-			<# if ( 'undefined' !== typeof ( data.family ) ) { #>
+			<# if ( 'undefined' !== typeof( data.family ) ) { #>
 				<div class="woostify-font-family">
 					<label>
 						<select {{{ data.family.link }}} data-category="{{{ data.category.id }}}" data-variants="{{{ data.variant.id }}}" style="width:100%;">
@@ -127,7 +127,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 				</div>
 			<# } #>
 
-			<# if ( 'undefined' !== typeof ( data.variant ) ) { #>
+			<# if ( 'undefined' !== typeof( data.variant ) ) { #>
 				<#
 				var id = data.family.value.split(' ').join('_').toLowerCase();
 				var font_data = data.google_fonts[id];
@@ -155,7 +155,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 				</div>
 			<# } #>
 
-			<# if ( 'undefined' !== typeof ( data.category ) ) { #>
+			<# if ( 'undefined' !== typeof( data.category ) ) { #>
 				<div class="woostify-font-category">
 					<label>
 							<input name="{{{ data.category.id }}}" type="hidden" {{{ data.category.link }}} value="{{{ data.category.value }}}" class="woostify-hidden-input" />
@@ -166,7 +166,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 				</div>
 			<# } #>
 
-			<# if ( 'undefined' !== typeof ( data.weight ) ) { #>
+			<# if ( 'undefined' !== typeof( data.weight ) ) { #>
 				<div class="woostify-font-weight">
 					<label>
 						<select {{{ data.weight.link }}}>
@@ -185,7 +185,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 				</div>
 			<# } #>
 
-			<# if ( 'undefined' !== typeof ( data.transform ) ) { #>
+			<# if ( 'undefined' !== typeof( data.transform ) ) { #>
 				<div class="woostify-font-transform">
 					<label>
 						<select {{{ data.transform.link }}}>

@@ -326,6 +326,22 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				$wp_customize->add_control(
 					new Woostify_Get_Pro_Control(
 						$wp_customize,
+						'woostify_shop_addon',
+						array(
+							'section'     => 'woostify_shop_page',
+							'type'        => 'addon',
+							'label'       => __( 'Learn More', 'woostify' ),
+							'description' => __( 'More options are coming for this section in our Pro Extensions.', 'woostify' ),
+							'url'         => woostify_get_pro_url(),
+							'priority'    => 200,
+							'settings'    => isset( $wp_customize->selective_refresh ) ? array() : 'blogname',
+						)
+					)
+				);
+
+				$wp_customize->add_control(
+					new Woostify_Get_Pro_Control(
+						$wp_customize,
 						'woostify_shop_single_addon',
 						array(
 							'section'     => 'woostify_shop_single',

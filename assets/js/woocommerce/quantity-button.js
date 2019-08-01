@@ -6,102 +6,134 @@
 
 'use strict';
 
-// Add Minus and Plus button on Product Quantity.
-function quantity() {
-	// Selector form.
-	var params    = arguments.length > 0 && undefined !== arguments[ 0 ] ? arguments[ 0 ] : 'form.cart, form.woocommerce-cart-form',
-		selectors = document.querySelectorAll( params );
+// Create Minus button.
+var minusBtn = function() {
+	var minusBtn = document.createElement( 'span' );
 
-	// Return if empty.
-	if ( ! selectors.length ) {
+	minusBtn.setAttribute( 'class', 'product-qty' );
+	minusBtn.setAttribute( 'data-qty', 'minus' );
+
+	return minusBtn;
+}
+
+// Create Plus button.
+var plusBtn = function() {
+	var plusBtn = document.createElement( 'span' );
+
+	plusBtn.setAttribute( 'class', 'product-qty' );
+	plusBtn.setAttribute( 'data-qty', 'plus' );
+
+	return plusBtn;
+}
+
+// Add Minus and Plus button on Product Quantity.
+function customQuantity() {
+	var quantity = document.querySelectorAll( '.quantity' );
+	if ( ! quantity.length ) {
 		return;
 	}
 
-	// Create Minus button.
-	function minusBtn() {
-		var minusBtn = document.createElement( 'span' );
-
-		minusBtn.setAttribute( 'class', 'product-qty' );
-		minusBtn.setAttribute( 'data-qty', 'minus' );
-
-		return minusBtn;
-	}
-
-	// Create Plus button.
-	function plusBtn() {
-		var plusBtn = document.createElement( 'span' );
-
-		plusBtn.setAttribute( 'class', 'product-qty' );
-		plusBtn.setAttribute( 'data-qty', 'plus' );
-
-		return plusBtn;
-	}
-
-	// Foreach.
-	selectors.forEach( function( ele ) {
-		var quantity = ele.querySelectorAll( '.quantity' );
-		if ( ! quantity.length ) {
+	// Foreach again, sorry :(.
+	quantity.forEach( function( ele ) {
+		// Input.
+		var input = ele.querySelector( 'input.qty' );
+		if ( ! input ) {
 			return;
 		}
 
-		// Foreach again, sorry :(.
-		quantity.forEach( function( ele ) {
-			// Quantity Input.
-			var input = ele.querySelector( 'input.qty' );
+		// Add class ajax-ready on first load.
+		input.classList.add( 'ajax-ready' );
 
-			// Append Minus button before Input.
-			ele.insertBefore( minusBtn(), input );
+		// Append Minus button before Input.
+		ele.insertBefore( minusBtn(), input );
 
-			// Append Plus button after Input.
-			ele.appendChild( plusBtn() );
+		// Append Plus button after Input.
+		ele.appendChild( plusBtn() );
 
-			// Get all Button was created above.
-			var qtyButton = ele.querySelectorAll( '.product-qty' );
+		// Vars.
+		var cart        = ele.closest( 'form.cart' ),
+			buttons     = ele.querySelectorAll( '.product-qty' ),
+			maxInput    = parseInt( input.getAttribute( 'max' ) ),
+			eventChange = new Event( 'change' );
 
-			// Create new custom event.
-			var eventChange = new Event( 'change' );
+		// Get product info.
+		var productInfo    = cart ? cart.querySelector( '.additional-product' ) : false,
+			inStock        = productInfo ? productInfo.getAttribute( 'data-in_stock' ) : 'no',
+			outStock       = productInfo ? productInfo.getAttribute( 'data-out_of_stock' ) : 'Out of stock',
+			notEnough      = productInfo ? productInfo.getAttribute( 'data-not_enough' ) : '',
+			quantityValid  = productInfo ? productInfo.getAttribute( 'data-valid_quantity' ) : '';
 
-			// For.
-			for ( var i = 0, j = qtyButton.length; i < j; i++ ) {
-				qtyButton[i].addEventListener( 'click', function() {
-					// Variables.
-					var t       = this,
-						current = parseInt( input.value ),
-						min     = parseInt( input.getAttribute( 'min' ) ),
-						max     = parseInt( input.getAttribute( 'max' ) ),
-						dataQty = t.getAttribute( 'data-qty' );
+		// Check valid quantity.
+		input.addEventListener( 'change', function() {
+			var inputVal  = input.value,
+				inCartQty = productInfo ? parseInt( productInfo.value ) : 0,
+				ajaxReady = function() {
+					input.classList.remove( 'ajax-ready' );
+				};
 
-					// Action when hit Minus button.
-					if ( 'minus' === dataQty && current > 1 ) {
-						if ( current <= min ) {
-							return;
-						}
-						input.value = current - 1;
+			// When quantity updated.
+			input.classList.add( 'ajax-ready' );
 
-						// Trigger event.
-						input.dispatchEvent( eventChange );
-					}
+			// Valid quantity.
+			if ( inputVal < 1 || isNaN( inputVal ) ) {
+				alert( quantityValid );
+				ajaxReady();
+				return;
+			}
 
-					// Action when hit Plus button.
-					if ( 'plus' === dataQty ) {
-						if ( max && current >= max ) {
-							return;
-						}
-						input.value = current + 1;
+			// Stock status.
+			if ( 'yes' == inStock ) {
+				// Out of stock.
+				if ( inCartQty == maxInput ) {
+					alert( outStock );
+					ajaxReady();
+					return;
+				}
 
-						// Trigger event.
-						input.dispatchEvent( eventChange );
-					}
-
-					// Remove disable attribute on Update Cart button on Cart page.
-					var updateCart = document.querySelector( '[name=\'update_cart\']' );
-					if ( updateCart ) {
-						updateCart.disabled = false;
-					}
-				} );
+				// Not enough quantity.
+				if ( +inputVal + +inCartQty > maxInput ) {
+					alert( notEnough );
+					ajaxReady();
+					return;
+				}
 			}
 		} );
-	});
+
+		// Minus & Plus button click.
+		for ( var i = 0, j = buttons.length; i < j; i++ ) {
+			buttons[i].addEventListener( 'click', function() {
+				// Variables.
+				var t        = this,
+					current  = parseInt( input.value ),
+					min      = parseInt( input.getAttribute( 'min' ) ),
+					max      = parseInt( input.getAttribute( 'max' ) ),
+					dataType = t.getAttribute( 'data-qty' );
+
+				if ( 'minus' === dataType && current > 1 ) { // Minus button.
+					if ( current <= min ) {
+						return;
+					}
+
+					input.value = current - 1;
+				} else if ( 'plus' === dataType ) { // Plus button.
+					if ( max && current >= max ) {
+						return;
+					}
+
+					input.value = current + 1;
+				}
+
+				// Trigger event.
+				input.dispatchEvent( eventChange );
+
+				// Remove disable attribute on Update Cart button on Cart page.
+				var updateCart = document.querySelector( '[name=\'update_cart\']' );
+				if ( updateCart ) {
+					updateCart.disabled = false;
+				}
+			} );
+		}
+	} );
 }
 
 document.addEventListener( 'DOMContentLoaded', function() {
@@ -109,11 +141,11 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	if ( 'function' === typeof( onElementorLoaded ) ) {
 		onElementorLoaded( function() {
 			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/global', function() {
-				quantity();
+				customQuantity();
 			} );
 		} );
 	}
 
 	// For frontend mode.
-	quantity();
+	customQuantity();
 } );

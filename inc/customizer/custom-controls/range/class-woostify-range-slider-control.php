@@ -111,15 +111,15 @@ class Woostify_Range_Slider_Control extends WP_Customize_Control {
 
 				<div class="woostify-range-slider-controls">
 					<span class="woostify-device-controls">
-						<# if ( 'undefined' !== typeof ( data.desktop ) ) { #>
+						<# if ( 'undefined' !== typeof( data.desktop ) ) { #>
 							<span class="woostify-device-desktop dashicons dashicons-desktop" data-option="desktop" title="{{ data.desktop_label }}"></span>
 						<# } #>
 
-						<# if ( 'undefined' !== typeof ( data.tablet ) ) { #>
+						<# if ( 'undefined' !== typeof( data.tablet ) ) { #>
 							<span class="woostify-device-tablet dashicons dashicons-tablet" data-option="tablet" title="{{ data.tablet_label }}"></span>
 						<# } #>
 
-						<# if ( 'undefined' !== typeof ( data.mobile ) ) { #>
+						<# if ( 'undefined' !== typeof( data.mobile ) ) { #>
 							<span class="woostify-device-mobile dashicons dashicons-smartphone" data-option="mobile" title="{{ data.mobile_label }}"></span>
 						<# } #>
 					</span>
@@ -130,7 +130,7 @@ class Woostify_Range_Slider_Control extends WP_Customize_Control {
 
 			<div class="woostify-range-slider-areas">
 				<# if
-					( 'undefined' !== typeof ( data.desktop ) ) {
+					( 'undefined' !== typeof( data.desktop ) ) {
 					var attrDesktop = ! data.choices['desktop']['edit'] ? 'disabled' : '';
 				#>
 				<label class="range-option-area" data-option="desktop" style="display: none;">
@@ -149,7 +149,7 @@ class Woostify_Range_Slider_Control extends WP_Customize_Control {
 				<# } #>
 
 				<# if
-					( 'undefined' !== typeof ( data.tablet ) ) {
+					( 'undefined' !== typeof( data.tablet ) ) {
 					var attrTablet = ! data.choices['tablet']['edit'] ? 'disabled' : '';
 				#>
 				<label class="range-option-area" data-option="tablet" style="display:none">
@@ -168,7 +168,7 @@ class Woostify_Range_Slider_Control extends WP_Customize_Control {
 				<# } #>
 
 				<# if
-					( 'undefined' !== typeof ( data.mobile ) ) {
+					( 'undefined' !== typeof( data.mobile ) ) {
 					var attrMobile = ! data.choices['mobile']['edit'] ? 'disabled' : '';
 				#>
 				<label class="range-option-area" data-option="mobile" style="display:none;">

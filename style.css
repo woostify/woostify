@@ -5243,7 +5243,7 @@ footer#colophon {
   height: 40px;
   color: #fff;
   font-size: 1.2em;
-  z-index: 10;
+  z-index: 200;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -7785,6 +7785,10 @@ footer#colophon {
 
 .variations .value {
   max-width: 50%;
+}
+
+.variations .tawcvs-swatches .swatch {
+  border: 1px solid #ddd;
 }
 
 .variations .tawcvs-swatches .swatch.selected {
