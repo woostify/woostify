@@ -8,6 +8,27 @@
 // Default values.
 $defaults = woostify_options();
 
+// Display topbar.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_display]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['topbar_display'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[topbar_display]',
+		array(
+			'label'    => __( 'Topbar Display', 'woostify' ),
+			'section'  => 'woostify_topbar',
+			'settings' => 'woostify_setting[topbar_display]',
+		)
+	)
+);
+
 // Topbar color.
 $wp_customize->add_setting(
 	'woostify_setting[topbar_text_color]',

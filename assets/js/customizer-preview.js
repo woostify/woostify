@@ -229,7 +229,7 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	} );
 }
 
-( function( $ ) {
+document.addEventListener( 'DOMContentLoaded', function() {
 	// Refresh Preview when remove Custom Logo.
 	wp.customize( 'custom_logo', function( value ) {
 		value.bind( function( newval ) {
@@ -381,4 +381,4 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 
 	// Footer.
 	woostify_range_slider_update( ['footer_space'], '.site-footer', 'margin-top', 'px' );
-} )( jQuery );
+} );

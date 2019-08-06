@@ -135,7 +135,7 @@ class Woostify_Get_CSS {
 
 		// Primary menu css.
 		$styles .= '
-			@media ( min-width: 991px ) {
+			@media ( min-width: 992px ) {
 				.primary-navigation a{
 					font-family: ' . esc_attr( $options['menu_font_family'] ) . ';
 					font-weight: ' . esc_attr( $options['menu_font_weight'] ) . ';

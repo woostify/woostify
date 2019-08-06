@@ -93,7 +93,7 @@ if ( ! function_exists( 'woostify_shop_messages' ) ) {
 			return;
 		}
 
-		echo wp_kses_post( woostify_do_shortcode( 'woocommerce_messages' ) );
+		echo do_shortcode( '[woocommerce_messages]' );
 	}
 }
 

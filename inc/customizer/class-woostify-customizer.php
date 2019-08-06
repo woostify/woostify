@@ -75,6 +75,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'text_color'                              => '#8f8f8f',
 					'accent_color'                            => '#2b2b2b',
 					// TOPBAR.
+					'topbar_display'                          => true,
 					'topbar_text_color'                       => '#ffffff',
 					'topbar_background_color'                 => '#292f34',
 					'topbar_space'                            => 0,

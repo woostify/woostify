@@ -251,7 +251,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				$classes[] = 'hid-tags';
 			}
 
-			return $classes;
+			return array_filter( $classes );
 		}
 
 		/**
@@ -522,21 +522,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			?>
 				<span class="shop-cart-count"><?php echo esc_html( $total ); ?></span>
 			<?php
-
 			$fragments['span.shop-cart-count'] = ob_get_clean();
 
 			return $fragments;
-		}
-
-		/**
-		 * Clear cart button.
-		 */
-		public function woostify_detect_clear_cart_submit() {
-			global $woocommerce;
-
-			if ( isset( $_GET['empty-cart'] ) ) {
-				$woocommerce->cart->empty_cart();
-			}
 		}
 
 		/**
@@ -559,11 +547,22 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
+		 * Clear cart button.
+		 */
+		public function woostify_detect_clear_cart_submit() {
+			global $woocommerce;
+
+			if ( isset( $_GET['empty-cart'] ) ) {
+				$woocommerce->cart->empty_cart();
+			}
+		}
+
+		/**
 		 * Loop product category.
 		 */
 		public function woostify_add_template_loop_product_category() {
 			$options = self::woostify_options();
-			if ( false == $options['shop_page_product_category'] ) {
+			if ( ! $options['shop_page_product_category'] ) {
 				return;
 			}
 			?>
@@ -582,7 +581,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_loop_product_rating() {
 			$options = self::woostify_options();
-			if ( false == $options['shop_page_product_rating'] ) {
+			if ( ! $options['shop_page_product_rating'] ) {
 				return;
 			}
 
@@ -595,7 +594,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_add_template_loop_product_title() {
 			$options = self::woostify_options();
-			if ( false == $options['shop_page_product_title'] ) {
+			if ( ! $options['shop_page_product_title'] ) {
 				return;
 			}
 			?>

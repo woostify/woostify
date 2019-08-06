@@ -24,7 +24,7 @@ if ( ! function_exists( 'woostify_replace_text' ) ) {
 		);
 		$output = str_replace( '[theme_author]', '<a href="' . esc_url( $theme_author['theme_author_url'] ) . '">' . $theme_author['theme_name'] . '</a>', $output );
 
-		return $output;
+		return do_shortcode( $output );
 	}
 }
 
@@ -35,7 +35,7 @@ if ( ! function_exists( 'woostify_post_related' ) ) {
 	function woostify_post_related() {
 		$options = woostify_options( false );
 
-		if ( false == $options['blog_single_related_post'] ) {
+		if ( ! $options['blog_single_related_post'] ) {
 			return;
 		}
 
@@ -285,7 +285,7 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 	 */
 	function woostify_credit() {
 		$options = woostify_options( false );
-		if ( '' == $options['footer_custom_text'] && ! has_nav_menu( 'footer' ) ) {
+		if ( ! $options['footer_custom_text'] && ! has_nav_menu( 'footer' ) ) {
 			return;
 		}
 		?>
@@ -695,7 +695,9 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			$title = __( 'Blog', 'woostify' );
 		} elseif ( is_search() ) {
 			$title = __( 'Search', 'woostify' );
-		} elseif ( is_404() ) {
+		}
+
+		if ( is_404() ) {
 			$disable_title = false;
 		}
 
@@ -1328,45 +1330,18 @@ if ( ! function_exists( 'woostify_post_meta_comments' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_get_header_class' ) ) {
+if ( ! function_exists( 'woostify_header_class' ) ) {
 	/**
 	 * Header class
-	 *
-	 * @param string|array $class One or more classes to add to the class list.
 	 */
-	function woostify_get_header_class( $class = '' ) {
-		$classes = array();
+	function woostify_header_class() {
+		$options = woostify_options( false );
+		$class[] = 'site-header';
+		$class[] = 'header-' . ( defined( 'WOOSTIFY_PRO_VERSION' ) ? $options['header_layout'] : 'layout-1' );
+		$class[] = apply_filters( 'woostify_header_class', '' );
+		$class   = implode( ' ', array_filter( $class ) );
 
-		$classes[] = 'site-header';
-
-		if ( ! empty( $class ) ) {
-			if ( ! is_array( $class ) ) {
-				$class = preg_split( '#\s+#', $class );
-			}
-			$classes = array_merge( $classes, $class );
-		} else {
-			// Ensure that we always coerce class to being an array.
-			$class = array();
-		}
-
-		$classes = array_map( 'esc_attr', $classes );
-
-		$classes = apply_filters( 'woostify_header_class', $classes, $class );
-
-		return array_unique( $classes );
-	}
-}
-
-if ( ! function_exists( 'woostify_header_class' ) ) {
-
-	/**
-	 * Display the classes for the header element.
-	 *
-	 * @param string|array $class One or more classes to add to the class list.
-	 */
-	function woostify_header_class( $class = '' ) {
-		// Separates classes with a single space, collates classes for body element.
-		echo 'class="' . join( ' ', woostify_get_header_class( $class ) ) . '"'; // WPCS: XSS ok.
+		echo esc_attr( $class );
 	}
 }
 
@@ -1459,8 +1434,14 @@ if ( ! function_exists( 'woostify_topbar' ) ) {
 	 */
 	function woostify_topbar() {
 		$options = woostify_options( false );
+		$display = $options['topbar_display'];
 		$topbar  = woostify_get_metabox( false, 'site-topbar' );
+
 		if ( 'disabled' == $topbar ) {
+			$display = false;
+		}
+
+		if ( ! $display ) {
 			return;
 		}
 
@@ -1838,6 +1819,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 	 */
 	function woostify_header_action() {
 		$options = woostify_options( false );
+		$count = 0;
 
 		if ( woostify_is_woocommerce_activated() ) {
 			global $woocommerce;
@@ -1862,14 +1844,14 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			<?php do_action( 'woostify_site_tool_before_first_item' ); ?>
 
 			<?php // Search icon. ?>
-			<?php if ( true == $options['header_search_icon'] ) { ?>
+			<?php if ( $options['header_search_icon'] ) { ?>
 				<span class="tools-icon header-search-icon <?php echo esc_attr( $search_icon ); ?>"></span>
 			<?php } ?>
 
 			<?php do_action( 'woostify_site_tool_before_second_item' ); ?>
 
 			<?php // Wishlist icon. ?>
-			<?php if ( defined( 'YITH_WCWL' ) && true == $options['header_wishlist_icon'] ) { ?>
+			<?php if ( defined( 'YITH_WCWL' ) && $options['header_wishlist_icon'] ) { ?>
 				<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>"></a>
 			<?php } ?>
 
@@ -1877,7 +1859,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 
 			<?php if ( woostify_is_woocommerce_activated() ) { ?>
 				<?php // My account icon. ?>
-				<?php if ( true == $options['header_account_icon'] ) { ?>
+				<?php if ( $options['header_account_icon'] ) { ?>
 					<div class="tools-icon my-account">
 						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon <?php echo esc_attr( $my_account_icon ); ?>"></a>
 						<div class="subbox">
@@ -1899,7 +1881,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 				<?php do_action( 'woostify_site_tool_before_fourth_item' ); ?>
 
 				<?php // Shopping cart icon. ?>
-				<?php if ( true == $options['header_shop_cart_icon'] ) { ?>
+				<?php if ( $options['header_shop_cart_icon'] ) { ?>
 					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
 						<span class="shop-cart-count"><?php echo esc_html( $count ); ?></span>
 					</a>
@@ -2008,18 +1990,19 @@ if ( ! function_exists( 'woostify_site_header' ) ) {
 			return;
 		}
 		?>
-			<header id="masthead" <?php woostify_header_class(); ?>>
+			<header id="masthead" class="<?php woostify_header_class(); ?>">
 				<div class="site-header-inner">
 					<?php
 						/**
 						 * Functions hooked into woostify_site_header action
 						 *
-						 * @hooked woostify_container_open     - 0
-						 * @hooked woostify_skip_links         - 5
-						 * @hooked woostify_site_branding      - 20
-						 * @hooked woostify_primary_navigation - 30
-						 * @hooked woostify_header_action      - 50
-						 * @hooked woostify_container_close    - 200
+						 * @hooked woostify_default_container_open  - 0
+						 * @hooked woostify_skip_links              - 5
+						 * @hooked woostify_menu_toggle_btn         - 10
+						 * @hooked woostify_site_branding           - 20
+						 * @hooked woostify_primary_navigation      - 30
+						 * @hooked woostify_header_action           - 50
+						 * @hooked woostify_default_container_close - 200
 						 */
 						do_action( 'woostify_site_header' );
 					?>

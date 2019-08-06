@@ -5,12 +5,9 @@
  * @package  woostify
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'woostify' ) ) :
-
+if ( ! class_exists( 'Woostify' ) ) {
 	/**
 	 * The main Woostify class
 	 */
@@ -43,12 +40,14 @@ if ( ! class_exists( 'woostify' ) ) :
 			add_action( 'wp_enqueue_scripts', array( $this, 'woostify_child_scripts' ), 30 );
 
 			add_filter( 'body_class', array( $this, 'woostify_body_classes' ) );
-			add_filter( 'woostify_header_class', array( $this, 'woostify_header_classes' ) );
 			add_filter( 'wp_page_menu_args', array( $this, 'woostify_page_menu_args' ) );
 			add_filter( 'navigation_markup_template', array( $this, 'woostify_navigation_markup_template' ) );
 			add_action( 'customize_preview_init', array( $this, 'woostify_customize_live_preview' ) );
 			add_filter( 'wp_tag_cloud', array( $this, 'woostify_remove_tag_inline_style' ) );
 			add_filter( 'excerpt_more', array( $this, 'woostify_modify_excerpt_more' ) );
+
+			// Header shortcode.
+			add_shortcode( 'header_content_block', [ $this, 'header_content_block' ] );
 		}
 
 		/**
@@ -708,21 +707,7 @@ if ( ! class_exists( 'woostify' ) ) :
 				$classes[] = 'blog-layout-' . $options['blog_list_layout'];
 			}
 
-			return $classes;
-		}
-
-		/**
-		 * Adds custom classes to the array of header classes.
-		 *
-		 * @param array $classes Classes for the header element.
-		 */
-		public function woostify_header_classes( $classes ) {
-			$options           = woostify_options( false );
-			$header_class_name = defined( 'WOOSTIFY_PRO_VERSION' ) ? $options['header_layout'] : 'layout-1';
-
-			$classes[] = 'header-' . $header_class_name;
-
-			return $classes;
+			return array_filter( $classes );
 		}
 
 		/**
@@ -774,7 +759,71 @@ if ( ! class_exists( 'woostify' ) ) :
 			$more = apply_filters( 'woostify_excerpt_more', '...' );
 			return $more;
 		}
-	}
-endif;
 
-$woostify = new Woostify();
+		/**
+		 * Add shortcode
+		 *
+		 * @param array $atts The atts.
+		 */
+		public function header_content_block( $atts ) {
+			$atts = shortcode_atts(
+				[
+					'my_account'  => true,
+					'support'     => true,
+					'support_url' => '#',
+					'checkout'    => true,
+				],
+				$atts
+			);
+
+			if ( woostify_is_woocommerce_activated() ) {
+				global $woocommerce;
+				$account_url  = wc_get_page_permalink( 'myaccount' );
+				$checkout_url = wc_get_page_permalink( 'checkout' );
+			}
+
+			ob_start();
+			?>
+
+			<div class="header-content-block">
+				<?php
+				if ( filter_var( $atts['my_account'], FILTER_VALIDATE_BOOLEAN ) && woostify_is_woocommerce_activated() ) {
+					$account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
+					?>
+					<a class="header-block-item" href="<?php echo esc_url( $account_url ); ?>">
+						<span class="header-block-item-icon <?php echo esc_attr( $account_icon ); ?>"></span>
+						<span class="header-block-item-label"><?php esc_html_e( 'My Account', 'woostify' ); ?></span>
+					</a>
+					<?php
+				}
+
+				if ( filter_var( $atts['support'], FILTER_VALIDATE_BOOLEAN ) ) {
+					$support_icon = apply_filters( 'woostify_header_support_icon', 'ti-face-smile' );
+					$support_url  = $atts['support_url'];
+					?>
+					<a class="header-block-item" href="<?php echo esc_url( $support_url ); ?>">
+						<span class="header-block-item-icon <?php echo esc_attr( $support_icon ); ?>"></span>
+						<span class="header-block-item-label"><?php esc_html_e( 'Customer Help', 'woostify' ); ?></span>
+					</a>
+					<?php
+				}
+
+				if ( filter_var( $atts['checkout'], FILTER_VALIDATE_BOOLEAN ) && woostify_is_woocommerce_activated() ) {
+					$checkout_icon = apply_filters( 'woostify_header_checkout_icon', 'ti-arrow-circle-right' );
+					?>
+					<a class="header-block-item" href="<?php echo esc_url( $checkout_url ); ?>">
+						<span class="header-block-item-icon <?php echo esc_attr( $checkout_icon ); ?>"></span>
+						<span class="header-block-item-label"><?php esc_html_e( 'Checkout', 'woostify' ); ?></span>
+					</a>
+					<?php
+				}
+				?>
+			</div>
+
+			<?php
+			return ob_get_clean();
+		}
+	}
+
+	$woostify = new Woostify();
+}

@@ -494,8 +494,38 @@ $size: 40px;
 	}
 }
 
+/* Quickview btn */
+.quick-view-with-icon {
+	height: $size;
+	width: $size;
+	background-color: #fff;
+	@extend .flex;
+	+.yith-wcwl-add-to-wishlist{
+		border-top: 1px solid #e7e7e7;
+	}
+}
+
 /* Product loop action */
 .product-loop-action {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 2;
+	@extend .duration;
+	@media ( min-width: $screen-md ) {
+		opacity: 0;
+		@include translatey( -100% );
+	}
+
+	/* Add to wishlist btn */
+	.yith-wcwl-add-to-wishlist {
+		a {
+			width: $size;
+			height: $size;
+			@extend .flex;
+		}
+	}
+
 	.button{
 		padding: 0;
 		border-radius: 0;
@@ -584,64 +614,32 @@ $size: 40px;
 	}
 }
 
-/* Layout 1 */
-.ps-layout-1 {
-	.product-loop-action {
-		position: absolute;
-		right: 0;
-		top: 0;
-		z-index: 2;
-		@extend .duration;
-		@media ( min-width: $screen-md ) {
-			opacity: 0;
-			@include translatey( -100% );
-		}
-		/* Add to wishlist btn */
-		.yith-wcwl-add-to-wishlist {
-			a {
-				width: $size;
-				height: $size;
-				@extend .flex;
+/* HOVER */
+.products{
+	.product{
+		&:hover{
+			.product-loop-action{
+				@include translatey( 0 );
+				opacity: 1;
 			}
-		}
-	}
-	/* Quickview btn */
-	.quick-view-with-icon {
-		height: $size;
-		width: $size;
-		background-color: #fff;
-		@extend .flex;
-		+.yith-wcwl-add-to-wishlist{
-			border-top: 1px solid #e7e7e7;
-		}
-	}
-
-	.products{
-		.product{
-			&:hover{
-				.product-loop-action{
-					@include translatey( 0 );
-					opacity: 1;
-				}
-				.product-loop-image-wrapper {
-					.loop-add-to-cart-btn {
-						opacity: 1;
-						visibility: visible;
-					}
-				}
-				.loop-add-to-cart-on-image,
-				.loop-add-to-cart-on-image+.added_to_cart {
+			.product-loop-image-wrapper {
+				.loop-add-to-cart-btn {
 					opacity: 1;
 					visibility: visible;
-					bottom: 46%;
 				}
 			}
-			/* Fix issue not showing on IE */
-			&:focus-within{
-				.product-loop-action{
-					@include translatey( 0 );
-					opacity: 1;
-				}
+			.loop-add-to-cart-on-image,
+			.loop-add-to-cart-on-image+.added_to_cart {
+				opacity: 1;
+				visibility: visible;
+				bottom: 46%;
+			}
+		}
+		/* Fix issue not showing on IE */
+		&:focus-within{
+			.product-loop-action{
+				@include translatey( 0 );
+				opacity: 1;
 			}
 		}
 	}

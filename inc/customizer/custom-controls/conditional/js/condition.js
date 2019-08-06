@@ -188,6 +188,21 @@
 		);
 
 		// HEADER SECTION.
+		// Topbar.
+		condition(
+			'woostify_setting[topbar_display]',
+			[
+				'woostify_setting[topbar_text_color]',
+				'woostify_setting[topbar_background_color]',
+				'woostify_setting[topbar_space]',
+				'topbar_content_divider',
+				'woostify_setting[topbar_left]',
+				'woostify_setting[topbar_center]',
+				'woostify_setting[topbar_right]',
+			],
+			false
+		);
+
 		// Search product only.
 		condition(
 			'woostify_setting[header_search_icon]',

@@ -35,6 +35,7 @@
 
 .sidebar-menu-open {
 	overflow: hidden;
+
 	.woostify-icon-bar{
 		span {
 			@include rotate(180);
@@ -45,6 +46,42 @@
 			&:after {
 				width: 50%;
 				@include transform(rotate(-45deg) translate(14px, 11px));
+			}
+		}
+	}
+
+	@media ( max-width: $screen-md - 1 ) {
+		#woostify-overlay {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+		}
+
+		#view {
+			@include translatex( 300px );
+		}
+
+		.sidebar-menu {
+			@include translatex( 0 );
+		}
+
+		@media ( min-width: $screen-md ) {
+			#view {
+				@include translatex( 50% );
+			}
+
+			.sidebar-menu {
+				padding: 40px 60px;
+				width: 50%;
+
+				.site-navigation {
+					left: 60px;
+					right: 60px;
+				}
+
+				.sidebar-menu-bottom {
+					padding: 30px 60px 10px 60px;
+				}
 			}
 		}
 	}
@@ -96,7 +133,7 @@
 	.site-navigation{
 		margin-bottom: 40px;
 	}
-	.primary-navigation{			
+	.primary-navigation{
 		padding-left: 0;
 		margin: 0;
 		.menu-item-has-children {
@@ -169,6 +206,7 @@
 			}
 		}
 	}
+
 	/* sidebar bottom */
 	.sidebar-menu-bottom {
 		border-top: 1px solid #eee;
@@ -177,6 +215,7 @@
 			margin: 0;
 		}
 	}
+
 	.sidebar-account {
 		a {
 			display: block;
@@ -188,6 +227,7 @@
 		list-style: none;
 	}
 }
+
 .arrow-icon{
 	cursor: pointer;
 	position: absolute;
@@ -212,45 +252,10 @@
 }
 
 /* Header Layout 1 */
-
 .has-header-layout-1 {
-	@media ( min-width: $screen-md) {
+	@media ( min-width: $screen-md ) {
 		.sidebar-menu {
 			display: none;
-		}
-	}
-	@media ( max-width: $screen-md - 1) {
-		/* menu open */
-		.sidebar-menu-open &{
-			#woostify-overlay {
-				opacity: 1;
-				visibility: visible;
-				pointer-events: auto;
-			}
-			#view {
-				@include translatex( 300px);
-			}
-			.sidebar-menu {
-				@include translatex( 0);
-			}
-		}
-		@media ( min-width: $screen-md) {
-			.sidebar-menu-open &{
-				#view {
-					@include translatex( 50%);
-				}
-			}
-			.sidebar-menu {
-				padding: 40px 60px;
-				width: 50%;
-				.site-navigation {
-					left: 60px;
-					right: 60px;
-				}
-				.sidebar-menu-bottom {
-					padding: 30px 60px 10px 60px;
-				}
-			}
 		}
 	}
 }
