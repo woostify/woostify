@@ -4726,15 +4726,15 @@ dd {
 /* Header shortcode */
 .header-content-block .header-block-item {
   flex-direction: column;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
 .header-content-block .header-block-item + .header-block-item {
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .header-content-block .header-block-item-icon {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 /* Responsive */
@@ -5383,7 +5383,6 @@ footer#colophon {
   padding-left: 20px;
   padding-right: 50px;
   border-radius: 50px;
-  font-size: 12px;
 }
 
 .search-form .search-field::-webkit-search-cancel-button,

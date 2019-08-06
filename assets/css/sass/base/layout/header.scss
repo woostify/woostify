@@ -307,15 +307,15 @@
 	.header-block-item {
 		@extend .inline-flex;
 		flex-direction: column;
-		padding: 0 15px;
+		padding: 0 10px;
 
 		+.header-block-item {
-			border-left: 1px solid rgba( 255, 255, 255, 0.3 );
+			border-left: 1px solid rgba(0, 0, 0, 0.05);
 		}
 	}
 
 	.header-block-item-icon {
-		font-size: 18px;
+		font-size: 22px;
 	}
 
 	.header-block-item-label {}
