@@ -71,7 +71,7 @@
     }
 }
 
-/* logo */
+/* Logo */
 .site-branding{
     .beta.site-title{
         margin: 0;
@@ -85,7 +85,7 @@
     }
 }
 
-/* main primary menu */
+/* Main primary menu */
 @media ( min-width: $screen-md ) {
 	.main-navigation{
         .primary-navigation{
@@ -99,7 +99,6 @@
 
                 > a{
                     padding: 20px;
-                    font-size: 14px;
                 }
 
                 ul{
@@ -134,7 +133,6 @@
                     a{
                         display: block;
                         padding: 10px 20px;
-                        font-size: 14px;
 
                         &:hover{
                             background: rgba(239, 239, 239, 0.28)
@@ -157,7 +155,7 @@
             }
             .sub-menu{
                 pointer-events: none;
-                background-color: #fff;                
+                background-color: #fff;
 				@include shadow( 0 2px 8px 0 rgba(125, 122, 122, 0.2) );
 				border-radius: 4px;
                 @include duration( 0.2s );
@@ -190,7 +188,7 @@
     }
 }
 
-/* site tools */
+/* Site tools */
 .site-tools{
 	@include flex( flex, flex-end, center );
 
@@ -280,7 +278,7 @@
 	cursor: pointer;
 }
 
-/* mobile menu toggle button */
+/* Mobile menu toggle button */
 .toggle-sidebar-menu-btn{
 	font-size: 24px;
 	cursor: pointer;
@@ -304,7 +302,26 @@
 	}
 }
 
-/* responsive */
+/* Header shortcode */
+.header-content-block {
+	.header-block-item {
+		@extend .inline-flex;
+		flex-direction: column;
+		padding: 0 15px;
+
+		+.header-block-item {
+			border-left: 1px solid rgba( 255, 255, 255, 0.3 );
+		}
+	}
+
+	.header-block-item-icon {
+		font-size: 18px;
+	}
+
+	.header-block-item-label {}
+}
+
+/* Responsive */
 @media ( min-width: $screen-md ) {
 	.has-header-layout-1 {
 		.wrap-toggle-sidebar-menu{
