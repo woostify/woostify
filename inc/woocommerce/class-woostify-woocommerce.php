@@ -223,8 +223,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * @return array $classes modified to include 'woocommerce-active' class
 		 */
 		public function woocommerce_body_class( $classes ) {
-			$options   = woostify_options( false );
-			$classes[] = 'woocommerce-active';
+			$options = woostify_options( false );
 
 			// Product gallery.
 			$page_id = woostify_get_page_id();

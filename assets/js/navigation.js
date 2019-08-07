@@ -10,7 +10,7 @@
 function nav() {
 	var menuToggleBtn = document.getElementsByClassName( 'toggle-sidebar-menu-btn' );
 
-	if ( ! menuToggleBtn ) {
+	if ( ! menuToggleBtn.length ) {
 		return;
 	}
 

@@ -168,31 +168,31 @@ msgstr ""
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:717
+#: inc/class-woostify.php:709
 msgid "Post Pagination"
 msgstr ""
 
-#: inc/class-woostify.php:795
+#: inc/class-woostify.php:787
 msgid "My Account"
 msgstr ""
 
-#: inc/class-woostify.php:806
+#: inc/class-woostify.php:798
 msgid "Customer Help"
 msgstr ""
 
-#: inc/class-woostify.php:816
+#: inc/class-woostify.php:808
 msgid "Checkout"
 msgstr ""
 
-#: inc/woostify-functions.php:151, inc/woostify-template-functions.php:21, inc/admin/class-woostify-admin.php:234
+#: inc/woostify-functions.php:164, inc/woostify-template-functions.php:21, inc/admin/class-woostify-admin.php:234
 msgid "Woostify"
 msgstr ""
 
-#: inc/woostify-functions.php:378
+#: inc/woostify-functions.php:391
 msgid "Placeholder image"
 msgstr ""
 
-#: inc/woostify-functions.php:380
+#: inc/woostify-functions.php:393
 msgid "Error image"
 msgstr ""
 
@@ -773,36 +773,36 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:309
+#: inc/woocommerce/class-woostify-woocommerce.php:308
 msgid "Filter"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:414
+#: inc/woocommerce/class-woostify-woocommerce.php:413
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:415
+#: inc/woocommerce/class-woostify-woocommerce.php:414
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:645, inc/woocommerce/class-woostify-woocommerce.php:968, inc/woocommerce/class-woostify-woocommerce.php:997, inc/woocommerce/class-woostify-woocommerce.php:1028, inc/woocommerce/class-woostify-woocommerce.php:1043
+#: inc/woocommerce/class-woostify-woocommerce.php:644, inc/woocommerce/class-woostify-woocommerce.php:967, inc/woocommerce/class-woostify-woocommerce.php:996, inc/woocommerce/class-woostify-woocommerce.php:1027, inc/woocommerce/class-woostify-woocommerce.php:1042
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1115
+#: inc/woocommerce/class-woostify-woocommerce.php:1114
 msgid "You cannot add that amount of this product to the cart because there is not enough stock."
 msgstr ""
 
 #. translators: %1$d: stock quantity
-#: inc/woocommerce/class-woostify-woocommerce.php:1118
+#: inc/woocommerce/class-woostify-woocommerce.php:1117
 msgid "You cannot add that amount to the cart - we have %1$d in stock and you already have %1$d in your cart"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1119
+#: inc/woocommerce/class-woostify-woocommerce.php:1118
 msgid "Please enter a valid quantity for this product"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1138
+#: inc/woocommerce/class-woostify-woocommerce.php:1137
 msgid "Clear cart"
 msgstr ""
 

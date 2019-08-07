@@ -5027,7 +5027,7 @@ dd {
 
 .sidebar-menu .primary-navigation a {
   display: block;
-  font-size: 1.2em;
+  font-size: 16px;
   line-height: 3em;
   position: relative;
 }
@@ -5057,7 +5057,7 @@ dd {
 .sidebar-menu .sidebar-account a {
   display: block;
   line-height: 3em;
-  font-size: 1.2em;
+  font-size: 16px;
 }
 
 .sidebar-menu ul {

@@ -12,7 +12,20 @@ if ( ! function_exists( 'woostify_version' ) ) {
 	 * @return string Woostify Version.
 	 */
 	function woostify_version() {
-		return WOOSTIFY_VERSION;
+		return esc_attr( WOOSTIFY_VERSION );
+	}
+}
+
+if ( ! function_exists( 'woostify_info' ) ) {
+	/**
+	 * Woostify Information.
+	 */
+	function woostify_info() {
+		$info[] = 'data-woostify-version="' . woostify_version() . '"';
+		$info[] = defined( 'WOOSTIFY_PRO_VERSION' ) ?  'data-woostify-pro-version="' . esc_attr( WOOSTIFY_PRO_VERSION ) . '"' : '';
+		$info   = implode( ' ', array_filter( $info ) );
+
+		echo apply_filters( 'woostify_information', $info ); // WPCS: XSS ok.
 	}
 }
 

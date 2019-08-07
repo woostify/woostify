@@ -668,14 +668,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 			// Get theme options.
 			$options   = woostify_options( false );
 
-			// Theme version.
-			$classes[] = 'woostify-' . woostify_version();
-
-			// Woostify Pro Version.
-			if ( defined( 'WOOSTIFY_PRO_VERSION' ) ) {
-				$classes[] = 'woostify-pro-' . WOOSTIFY_PRO_VERSION;
-			}
-
 			// Broser detection.
 			if ( woostify_browser_detection() ) {
 				$classes[] = woostify_browser_detection() . '-detected';
