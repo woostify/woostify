@@ -322,6 +322,18 @@
 			padding-right: 10px;
 		}
 	}
+
+	@media ( max-width: 720px ) {
+		.label {
+			width: 100%;
+		}
+		.value {
+			max-width: none;
+		}
+		select {
+			min-width: 100%;
+		}
+	}
 }
 
 .single_variation{
@@ -487,6 +499,15 @@
 			list-style: none;
 			display: inline-block;
 			margin: 0 30px;
+			@media ( max-width: 720px ) {
+				margin: 5px 0;
+				width: 100%;
+				a {
+					display: block;
+					padding: 5px 15px;
+					border: 1px solid #efefef;
+				}
+			}
 		}
 		a {
 			font-size: 18px;
