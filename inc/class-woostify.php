@@ -680,8 +680,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			$classes[]            = 'site-' . $container . '-container';
 
 			// Header layout.
-			$header_class_name = defined( 'WOOSTIFY_PRO_MULTIPLE_HEADER' ) ? $options['header_layout'] : 'layout-1';
-			$classes[] = 'has-header-' . $header_class_name;
+			$classes[] = apply_filters( 'woostify_has_header_layout_classes', 'has-header-layout-1' );
 
 			// Header transparent.
 			if ( woostify_header_transparent() ) {
@@ -690,9 +689,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			// Sidebar class detected.
 			$classes[] = woostify_sidebar_class();
-
-			// Product style layout.
-			$classes[] = 'ps-layout-1';
 
 			// Blog page layout.
 			if ( woostify_is_blog() && ! is_singular( 'post' ) ) {
@@ -758,21 +754,27 @@ if ( ! class_exists( 'Woostify' ) ) {
 		 * @param array $atts The atts.
 		 */
 		public function header_content_block( $atts ) {
-			$atts = shortcode_atts(
-				[
-					'my_account'  => true,
-					'support'     => true,
-					'support_url' => '#',
-					'checkout'    => true,
-				],
-				$atts
-			);
+			$defaults = [
+				'my_account'       => true,
+				'my_account_url'   => '#',
+				'my_account_label' => __( 'My Account', 'woostify' ),
+
+				'support'          => true,
+				'support_url'      => '#',
+				'support_label'    => __( 'Customer Help', 'woostify' ),
+
+				'checkout'         => true,
+				'checkout_url'     => '#',
+				'checkout_label'   => __( 'Checkout', 'woostify' ),
+			];
 
 			if ( woostify_is_woocommerce_activated() ) {
 				global $woocommerce;
-				$account_url  = wc_get_page_permalink( 'myaccount' );
-				$checkout_url = wc_get_page_permalink( 'checkout' );
+				$defaults['my_account_url'] = wc_get_page_permalink( 'myaccount' );
+				$defaults['checkout_url']   = wc_get_page_permalink( 'checkout' );
 			}
+
+			$atts = shortcode_atts( $defaults, $atts );
 
 			ob_start();
 			?>
@@ -780,32 +782,37 @@ if ( ! class_exists( 'Woostify' ) ) {
 			<div class="header-content-block">
 				<?php
 				if ( filter_var( $atts['my_account'], FILTER_VALIDATE_BOOLEAN ) && woostify_is_woocommerce_activated() ) {
-					$account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
+					$account_icon     = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
+					$my_account_url   = $atts['my_account_url'];
+					$my_account_label = $atts['my_account_label'];
 					?>
-					<a class="header-block-item" href="<?php echo esc_url( $account_url ); ?>">
+					<a class="header-block-item" href="<?php echo esc_url( $my_account_url ); ?>">
 						<span class="header-block-item-icon <?php echo esc_attr( $account_icon ); ?>"></span>
-						<span class="header-block-item-label"><?php esc_html_e( 'My Account', 'woostify' ); ?></span>
+						<span class="header-block-item-label"><?php echo esc_html( $my_account_label ); ?></span>
 					</a>
 					<?php
 				}
 
 				if ( filter_var( $atts['support'], FILTER_VALIDATE_BOOLEAN ) ) {
-					$support_icon = apply_filters( 'woostify_header_support_icon', 'ti-face-smile' );
-					$support_url  = $atts['support_url'];
+					$support_icon  = apply_filters( 'woostify_header_support_icon', 'ti-face-smile' );
+					$support_url   = $atts['support_url'];
+					$support_label = $atts['support_label'];
 					?>
 					<a class="header-block-item" href="<?php echo esc_url( $support_url ); ?>">
 						<span class="header-block-item-icon <?php echo esc_attr( $support_icon ); ?>"></span>
-						<span class="header-block-item-label"><?php esc_html_e( 'Customer Help', 'woostify' ); ?></span>
+						<span class="header-block-item-label"><?php echo esc_html( $support_label ); ?></span>
 					</a>
 					<?php
 				}
 
 				if ( filter_var( $atts['checkout'], FILTER_VALIDATE_BOOLEAN ) && woostify_is_woocommerce_activated() ) {
-					$checkout_icon = apply_filters( 'woostify_header_checkout_icon', 'ti-arrow-circle-right' );
+					$checkout_icon  = apply_filters( 'woostify_header_checkout_icon', 'ti-arrow-circle-right' );
+					$checkout_url   = $atts['checkout_url'];
+					$checkout_label = $atts['checkout_label'];
 					?>
 					<a class="header-block-item" href="<?php echo esc_url( $checkout_url ); ?>">
 						<span class="header-block-item-icon <?php echo esc_attr( $checkout_icon ); ?>"></span>
-						<span class="header-block-item-label"><?php esc_html_e( 'Checkout', 'woostify' ); ?></span>
+						<span class="header-block-item-label"><?php echo esc_html( $checkout_label ); ?></span>
 					</a>
 					<?php
 				}

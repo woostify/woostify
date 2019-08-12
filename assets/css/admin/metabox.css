@@ -20,7 +20,7 @@
   border-bottom: 0 !important;
 }
 
-/* metabox option */
+/* Metabox option */
 .woostify-metabox-option {
   border-bottom: 1px solid #eee;
   padding: 15px;
@@ -46,4 +46,67 @@ body.old-version .woostify-metabox-option {
 
 .woostify-metabox-option-title {
   margin-bottom: 4px;
+}
+
+/* Multi select */
+.woostify-multi-selection {
+  position: relative;
+}
+
+.woostify-multi-selection.active .woostify-multi-select-dropdown {
+  display: block;
+}
+
+.woostify-multi-select-selection {
+  border: 1px solid #ddd;
+  padding: 5px 5px 0 5px;
+  min-height: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.woostify-multi-select-selection .woostify-multi-select-id {
+  background-color: #f4f4f8;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  padding: 0 5px;
+  margin-right: 7px;
+}
+
+.woostify-multi-select-id {
+  cursor: pointer;
+  word-break: break-all;
+}
+
+.woostify-multi-select-id.disabled {
+  cursor: default;
+}
+
+.woostify-multi-select-dropdown {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 100%;
+  border: 1px solid #ddd;
+  border-top: 0;
+  background-color: #fff;
+  max-height: 145px;
+  overflow-y: scroll;
+  border-radius: 0 0 3px 3px;
+  display: none;
+}
+
+.woostify-multi-select-dropdown .woostify-multi-select-id {
+  padding: 5px;
+  display: block;
+}
+
+.woostify-multi-select-dropdown .woostify-multi-select-id + .woostify-multi-select-id {
+  border-top: 1px solid #fff;
+}
+
+.woostify-multi-select-dropdown .woostify-multi-select-id.disabled, .woostify-multi-select-dropdown .woostify-multi-select-id:hover {
+  background-color: #efefef;
 }

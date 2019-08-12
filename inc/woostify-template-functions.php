@@ -1476,11 +1476,15 @@ if ( ! function_exists( 'woostify_search' ) ) {
 
 		<div class="site-search">
 			<?php
+			do_action( 'woostify_site_search_start' );
+
 			if ( false == $options['header_search_only_product'] ) {
 				get_search_form();
 			} elseif ( woostify_is_woocommerce_activated() ) {
 				the_widget( 'WC_Widget_Product_Search', 'title=' );
 			}
+
+			do_action( 'woostify_site_search_end' );
 			?>
 		</div>
 		<?php
