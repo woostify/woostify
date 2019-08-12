@@ -1337,8 +1337,7 @@ if ( ! function_exists( 'woostify_header_class' ) ) {
 	function woostify_header_class() {
 		$options = woostify_options( false );
 		$class[] = 'site-header';
-		$class[] = 'header-' . ( defined( 'WOOSTIFY_PRO_VERSION' ) ? $options['header_layout'] : 'layout-1' );
-		$class[] = apply_filters( 'woostify_header_class', '' );
+		$class[] = apply_filters( 'woostify_header_layout_classes', 'header-layout-1' );
 		$class   = implode( ' ', array_filter( $class ) );
 
 		echo esc_attr( $class );

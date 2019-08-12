@@ -233,7 +233,7 @@ class Woostify_Get_CSS {
 		$styles .= '
 			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout),
 			.site-tools .header-search-icon,
-			.ps-layout-1 .product-loop-meta .button,
+			.product-loop-meta .button,
 			a{
 				color: ' . esc_attr( $options['accent_color'] ) . ';
 			}
@@ -275,8 +275,8 @@ class Woostify_Get_CSS {
 			.elementor-button-wrapper .elementor-button,
 			.has-woostify-contact-form input[type="submit"],
 			#secondary .widget a.button,
-			.ps-layout-1 .product-loop-meta.no-transform .button,
-			.ps-layout-1 .product-loop-meta.no-transform .added_to_cart{
+			.product-loop-meta.no-transform .button,
+			.product-loop-meta.no-transform .added_to_cart{
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 				color: ' . esc_attr( $options['button_text_color'] ) . ';
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
@@ -350,7 +350,7 @@ class Woostify_Get_CSS {
 			#secondary .widget .current-cat > a,
 			#secondary .widget .current-cat > span,
 			.site-tools .header-search-icon:hover,
-			.ps-layout-1 .product-loop-meta .button:hover,
+			.product-loop-meta .button:hover,
 			#secondary .widget a:not(.tag-cloud-link):hover,
 			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout):hover,
 			a:hover{

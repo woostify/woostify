@@ -5050,7 +5050,7 @@ dd {
 }
 
 .sidebar-menu .sidebar-menu-bottom {
-  border-top: 1px solid #eee;
+  border-top: 1px solid 0.12156862745098039;
 }
 
 .sidebar-menu .sidebar-menu-bottom ul {

@@ -255,7 +255,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 	// HEADER.
 	// Header background.
-	woostify_colors_live_update( 'header_background_color', '.site-header-inner', 'background-color' );
+	woostify_colors_live_update( 'header_background_color', '.site-header-inner, .has-header-layout-7 .sidebar-menu', 'background-color' );
 	// Header transparent: border bottom width.
 	woostify_unit_live_update( 'header_transparent_border_width', '.has-header-transparent .site-header-inner', 'border-bottom-width', 0 );
 	// Header transparent: border bottom color.
@@ -369,7 +369,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	// Border radius.
 	woostify_unit_live_update(
 		'buttons_border_radius',
-		'.cart .quantity, .button, .woocommerce-widget-layered-nav-dropdown__submit, .clear-cart-btn, .form-submit .submit, .elementor-button-wrapper .elementor-button, .has-woostify-contact-form input[type="submit"], #secondary .widget a.button, .ps-layout-1 .product-loop-meta.no-transform .button',
+		'.cart .quantity, .button, .woocommerce-widget-layered-nav-dropdown__submit, .clear-cart-btn, .form-submit .submit, .elementor-button-wrapper .elementor-button, .has-woostify-contact-form input[type="submit"], #secondary .widget a.button, .product-loop-meta.no-transform .button',
 		'border-radius',
 		4
 	);

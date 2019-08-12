@@ -168,19 +168,19 @@ msgstr ""
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:709
+#: inc/class-woostify.php:705
 msgid "Post Pagination"
 msgstr ""
 
-#: inc/class-woostify.php:787
+#: inc/class-woostify.php:760
 msgid "My Account"
 msgstr ""
 
-#: inc/class-woostify.php:798
+#: inc/class-woostify.php:764
 msgid "Customer Help"
 msgstr ""
 
-#: inc/class-woostify.php:808
+#: inc/class-woostify.php:768
 msgid "Checkout"
 msgstr ""
 
@@ -320,7 +320,7 @@ msgstr ""
 msgid "Addresses"
 msgstr ""
 
-#: inc/woostify-template-functions.php:689, inc/woostify-template-functions.php:1768, inc/woostify-template-functions.php:1873
+#: inc/woostify-template-functions.php:689, inc/woostify-template-functions.php:1767, inc/woostify-template-functions.php:1872
 msgid "Logout"
 msgstr ""
 
@@ -402,23 +402,23 @@ msgstr ""
 msgid "% Comments"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1516
+#: inc/woostify-template-functions.php:1515
 msgid "Dialog search icon"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1520
+#: inc/woostify-template-functions.php:1519
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1763, inc/woostify-template-functions.php:1868
+#: inc/woostify-template-functions.php:1762, inc/woostify-template-functions.php:1867
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1766, inc/woostify-template-functions.php:1871
+#: inc/woostify-template-functions.php:1765, inc/woostify-template-functions.php:1870
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:2106, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:2105, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 
