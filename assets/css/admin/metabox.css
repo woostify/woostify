@@ -75,12 +75,12 @@ body.old-version .woostify-metabox-option {
 }
 
 .woostify-multi-select-id {
-  cursor: pointer;
+  cursor: default;
   word-break: break-all;
 }
 
-.woostify-multi-select-id.disabled {
-  cursor: default;
+.woostify-multi-select-id .woostify-multi-remove-id {
+  cursor: pointer;
 }
 
 .woostify-multi-select-dropdown {
@@ -107,6 +107,15 @@ body.old-version .woostify-metabox-option {
   border-top: 1px solid #fff;
 }
 
-.woostify-multi-select-dropdown .woostify-multi-select-id.disabled, .woostify-multi-select-dropdown .woostify-multi-select-id:hover {
+.woostify-multi-select-dropdown .woostify-multi-select-id.disabled {
   background-color: #efefef;
+}
+
+.woostify-multi-select-dropdown .woostify-multi-select-id:not(.disabled):hover {
+  background-color: #fff3f3;
+}
+
+/* Remove overflow Metabox Sidebar Gutenberg */
+.wp-editor .components-panel {
+  overflow: visible;
 }
