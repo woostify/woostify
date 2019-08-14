@@ -50,38 +50,35 @@
 		}
 	}
 
-	@media ( max-width: $screen-md - 1 ) {
-		#woostify-overlay {
-			opacity: 1;
-			visibility: visible;
-			pointer-events: auto;
-		}
+	#woostify-overlay {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
 
+	#view {
+		@include translatex( 300px );
+	}
+
+	.sidebar-menu {
+		@include translatex( 0 );
+	}
+
+	@media ( min-width: $screen-md ) {
 		#view {
 			@include translatex( 300px );
 		}
 
 		.sidebar-menu {
-			@include translatex( 0 );
-		}
+			padding: 40px 60px;
 
-		@media ( min-width: $screen-md ) {
-			#view {
-				@include translatex( 50% );
+			.site-navigation {
+				left: 60px;
+				right: 60px;
 			}
 
-			.sidebar-menu {
-				padding: 40px 60px;
-				width: 50%;
-
-				.site-navigation {
-					left: 60px;
-					right: 60px;
-				}
-
-				.sidebar-menu-bottom {
-					padding: 30px 60px 10px 60px;
-				}
+			.sidebar-menu-bottom {
+				padding: 30px 60px 10px 60px;
 			}
 		}
 	}

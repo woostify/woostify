@@ -81,15 +81,18 @@
 		margin-bottom: 5px;
 		padding: 0 5px;
 		margin-right: 7px;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
 	}
 }
 
 .woostify-multi-select-id {
-	cursor: pointer;
+	cursor: default;
 	word-break: break-all;
 
-	&.disabled {
-		cursor: default;
+	.woostify-multi-remove-id {
+		cursor: pointer;
 	}
 }
 
@@ -115,9 +118,22 @@
 			border-top: 1px solid #fff;
 		}
 
-		&.disabled,
-		&:hover {
+		&.disabled {
 			background-color: #efefef;
 		}
+
+		&:not(.disabled) {
+			&:hover {
+				background-color: #fff3f3;
+			}
+		}
+	}
+}
+
+
+/* Remove overflow Metabox Sidebar Gutenberg */
+.wp-editor {
+	.components-panel {
+		overflow: visible;
 	}
 }

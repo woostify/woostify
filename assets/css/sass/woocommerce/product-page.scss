@@ -230,7 +230,7 @@
 	float: left;
 	max-width: 100%;
 	@media ( min-width: $screen-md) {
-		width: calc( ( 100% - 30px) / 2);
+		width: calc( ( 100% - 30px ) / 2);
 		margin-left: 30px;
 	}
 	.price {

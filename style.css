@@ -3315,9 +3315,7 @@ Reset
 
 html {
   -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   overflow-x: hidden;
@@ -7703,7 +7701,7 @@ footer#colophon {
 
 @media (min-width: 992px) {
   .summary.entry-summary {
-    width: calc( ( 100% - 30px) / 2);
+    width: calc( ( 100% - 30px ) / 2);
     margin-left: 30px;
   }
 }

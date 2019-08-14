@@ -72,6 +72,9 @@ body.old-version .woostify-metabox-option {
   margin-bottom: 5px;
   padding: 0 5px;
   margin-right: 7px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .woostify-multi-select-id {
