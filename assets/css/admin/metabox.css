@@ -119,6 +119,6 @@ body.old-version .woostify-metabox-option {
 }
 
 /* Remove overflow Metabox Sidebar Gutenberg */
-.wp-editor .components-panel {
+.wp-admin .components-panel {
   overflow: visible;
 }
