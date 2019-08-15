@@ -4898,15 +4898,9 @@ dd {
     -webkit-transform: translateX(300px);
     transform: translateX(300px);
   }
-  .sidebar-menu-open .sidebar-menu {
-    padding: 40px 60px;
-  }
   .sidebar-menu-open .sidebar-menu .site-navigation {
     left: 60px;
     right: 60px;
-  }
-  .sidebar-menu-open .sidebar-menu .sidebar-menu-bottom {
-    padding: 30px 60px 10px 60px;
   }
 }
 
@@ -5047,7 +5041,7 @@ dd {
 }
 
 .sidebar-menu .sidebar-menu-bottom {
-  border-top: 1px solid 0.12156862745098039;
+  border-top: 1px solid rgba(0, 0, 0, 0.121569);
 }
 
 .sidebar-menu .sidebar-menu-bottom ul {
