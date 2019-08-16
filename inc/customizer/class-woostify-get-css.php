@@ -329,7 +329,7 @@ class Woostify_Get_CSS {
 		// Theme color.
 		$styles .= '
 			.woostify-theme-color,
-			.primary-navigation li.current-menu-item a,
+			.primary-navigation li.current-menu-item > a,
 			.primary-navigation > li.current-menu-ancestor > a,
 			.primary-navigation > li.current-menu-parent > a,
 			.primary-navigation > li.current_page_parent > a,
