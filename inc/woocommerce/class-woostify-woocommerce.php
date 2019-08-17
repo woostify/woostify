@@ -974,7 +974,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			if ( $image_id ) {
 				$image_medium_src = wp_get_attachment_image_src( $image_id, 'woocommerce_single' );
-				$image_full_src   = wp_get_attachment_image_src( $image_id, 'full' )[0];
+				$image_full_src   = wp_get_attachment_image_src( $image_id, 'full' );
 				$image_size       = $image_full_src[1] . 'x' . $image_full_src[2];
 			}
 
