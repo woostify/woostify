@@ -1,21 +1,3 @@
-.woostify-breadcrumb{
-	.single-product &{
-		padding-bottom: 20px;
-	}
-	.item-bread{
-		&:after{
-			content: "/";
-			font-size: 10px;
-			margin: 0 4px;
-		}
-		&:last-of-type{
-			&:after{
-				content: none
-			}
-		}
-	}
-}
-
 .page-header{
 	.woostify-container{
 		display: flex;
@@ -64,5 +46,140 @@
 		margin: 0;
 		font-size: 2em;
 		font-weight: normal;
+	}
+}
+
+/* Breadcrumb */
+.woostify-breadcrumb{
+	.single-product &{
+		padding-bottom: 20px;
+	}
+	.item-bread{
+		&:after{
+			content: "/";
+			font-size: 10px;
+			margin: 0 4px;
+		}
+		&:last-of-type{
+			&:after{
+				content: none
+			}
+		}
+	}
+}
+
+/* Product navigation */
+.woostify-product-navigation {
+	display: flex;
+	align-items: center;
+
+	@media ( max-width: $screen-md - 1 ) {
+		width: 100%;
+		justify-content: space-between;
+
+		&.product-nav-first {
+			justify-content: flex-end;
+		}
+	}
+
+	.product-nav-item {
+		position: relative;
+		padding-bottom: 20px;
+
+		@media ( min-width: $screen-md ) {
+			+.product-nav-item {
+				margin-left: 3px;
+				&:before {
+					content: '|';
+					margin: 0 7px;
+				}
+			}
+		}
+
+		&:hover {
+			.product-nav-item-content {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0px);
+				pointer-events: auto;
+			}
+		}
+	}
+
+	.product-nav-item-text {
+		text-transform: uppercase;
+		@media ( min-width: $screen-md ) {
+			padding-bottom: 15px;
+		}
+	}
+
+	.product-nav-item-content {
+		position: absolute;
+		top: 80%;
+		display: flex;
+		opacity: 0;
+		visibility: hidden;
+		box-shadow: 0px 10px 10px -5px #ddd;
+		pointer-events: none;
+		transform: translateY(10px);
+		@extend .duration;
+
+		@media ( max-width: $screen-md - 1 ) {
+			display: none;
+		}
+
+		img {
+			max-width: 60px;
+			object-fit: cover;
+		}
+
+		.product-nav-item-inner {
+			flex-grow: 1;
+			min-width: 180px;
+			background-color: #fff;
+			padding: 10px 15px;
+		}
+	}
+
+	.product-nav-item-link {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+		z-index: 5;
+		background-color: transparent;
+	}
+
+	.product-nav-item-title {
+		margin: 0;
+		line-height: 1.2em;
+		font-size: 1em;
+		margin-bottom: 5px;
+	}
+
+	.product-nav-item-price {
+		white-space: nowrap;
+	}
+
+	.prev-product-navigation {
+		.product-nav-icon {
+			margin-right: 7px;
+		}
+
+		.product-nav-item-content {
+			left: 0;
+		}
+	}
+
+	.next-product-navigation {
+		.product-nav-icon {
+			margin-left: 7px;
+		}
+
+		.product-nav-item-content {
+			right: 0;
+			text-align: right;
+		}
 	}
 }

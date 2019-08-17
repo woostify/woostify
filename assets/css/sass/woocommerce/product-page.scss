@@ -1,4 +1,4 @@
-/* hidden product meta */
+/* Hidden product meta */
 .hid{
 	&-skus{
 		.product_meta{
@@ -43,12 +43,25 @@
 			padding: 0;
 		}
 	}
+
 	.content-top{
 		padding: 35px 0 15px 0;
-		.woocommerce{
-			@extend .container;
+
+		.woostify-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+
+			&:after {
+				content: none;
+			}
+		}
+
+		.woocommerce {
+			flex: 0 0 100%;
 		}
 	}
+
 	.summary {
 		.star-rating{
 			vertical-align: text-top;
@@ -68,7 +81,6 @@
 }
 
 /* SIDEBAR */
-
 .single-product {
 	&:not(.site-full-width-container) {
 		&.left-sidebar,
@@ -86,7 +98,6 @@
 }
 
 /* ONSALE */
-
 .has-gallery-layout-vertical {
 	.product-page-container {
 		.onsale {
@@ -98,7 +109,6 @@
 }
 
 /* GALLERY */
-
 .product-gallery {
 	position: relative;
 	float: left;
@@ -137,8 +147,7 @@
 	}
 }
 
-/* product images */
-
+/* Product images */
 .product-images {
 	overflow: hidden;
 	.image-item {
@@ -147,7 +156,7 @@
 	}
 }
 
-/* product thumbnail images */
+/* Product thumbnail images */
 .product-gallery{
     &.vertical-style.has-product-thumbnails {
         @media ( min-width: $screen-sm ) {
@@ -183,7 +192,7 @@
 	}
 }
 
-/* spinner gallery */
+/* Spinner gallery */
 .product-gallery.has-product-thumbnails {
 	#product-images {
 		&:not(.tns-slider) {
@@ -217,7 +226,7 @@
 	}
 }
 
-/* image loading */
+/* Image loading */
 .image-loading{
 	position: relative;
 
@@ -225,7 +234,6 @@
 }
 
 /* SUMMARY */
-
 .summary.entry-summary {
 	float: left;
 	max-width: 100%;
@@ -257,7 +265,7 @@
 	}
 }
 
-// Group product.
+/* Group product */
 .woocommerce-grouped-product-list {
 	border: 0;
 	margin-top: 0;
@@ -272,7 +280,7 @@
 	}
 }
 
-// table variations.
+/* Table variations */
 .variations {
 	border: 0;
 	margin-top: 0;
@@ -484,7 +492,6 @@
 }
 
 /* TABS */
-
 .woocommerce-tabs {
 	display: block;
 	clear: both;
@@ -616,7 +623,6 @@
 }
 
 /* RESPONSIVE */
-
 @media ( max-width: $screen-md - 1 ) {
 	.summary.entry-summary {
 		margin-top: 50px;
@@ -624,9 +630,6 @@
 	}
 
 	.single-product{
-		.content-top{
-			padding-top: 0;
-		}
 		.woostify-breadcrumb{
 			display: none;
 		}

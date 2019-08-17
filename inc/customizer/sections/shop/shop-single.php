@@ -24,6 +24,7 @@ $wp_customize->add_control(
 			'section'    => 'woostify_shop_single',
 			'dependency' => [
 				'woostify_setting[shop_single_breadcrumb]',
+				'woostify_setting[shop_single_product_navigation]',
 				'woostify_setting[shop_single_content_background]',
 			]
 		)
@@ -47,6 +48,27 @@ $wp_customize->add_control(
 			'label'    => __( 'Breadcrumb', 'woostify' ),
 			'section'  => 'woostify_shop_single',
 			'settings' => 'woostify_setting[shop_single_breadcrumb]',
+		)
+	)
+);
+
+// Product navigation.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_navigation]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_single_product_navigation'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_navigation]',
+		array(
+			'label'    => __( 'Product Navigation', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_product_navigation]',
 		)
 	)
 );

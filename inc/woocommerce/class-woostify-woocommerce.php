@@ -354,7 +354,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 
 			add_action( 'woocommerce_before_main_content', 'woostify_before_content', 10 );
 			add_action( 'woocommerce_after_main_content', 'woostify_after_content', 10 );
-			add_action( 'woostify_content_top', 'woostify_shop_messages', 20 );
+			add_action( 'woostify_content_top', 'woostify_shop_messages', 30 );
 
 			add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper', 9 );
 			add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper_close', 31 );
@@ -962,17 +962,17 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				$product = wc_get_product( $id );
 			}
 
-			$product_id       = $product->get_id();
-			$image_id         = $product->get_image_id();
-			$image_alt        = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
-			$get_size         = wc_get_image_size( 'shop_catalog' );
-			$image_size       = $get_size['width'] . 'x' . ( ! empty( $get_size['height'] ) ? $get_size['height'] : $get_size['width'] );
-			$image_medium_src = wc_placeholder_img_src();
-			$image_full_src   = $image_medium_src;
+			$product_id          = $product->get_id();
+			$image_id            = $product->get_image_id();
+			$image_alt           = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
+			$get_size            = wc_get_image_size( 'shop_catalog' );
+			$image_size          = $get_size['width'] . 'x' . ( ! empty( $get_size['height'] ) ? $get_size['height'] : $get_size['width'] );
+			$image_medium_src[0] = wc_placeholder_img_src();
+			$image_full_src[0]   = wc_placeholder_img_src();
 
 			if ( $image_id ) {
 				$image_medium_src = wp_get_attachment_image_src( $image_id, 'woocommerce_single' );
-				$image_full_src   = wp_get_attachment_image_src( $image_id, 'full' );
+				$image_full_src   = wp_get_attachment_image_src( $image_id, 'full' )[0];
 				$image_size       = $image_full_src[1] . 'x' . $image_full_src[2];
 			}
 

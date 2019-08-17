@@ -530,7 +530,6 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 		if ( class_exists( 'woocommerce' ) ) {
 			if ( is_singular( 'product' ) ) {
 				$breadcrumb  = $options['shop_single_breadcrumb'];
-				$container[] = woostify_site_container();
 			} elseif ( woostify_is_woocommerce_page() ) {
 				$breadcrumb = $options['shop_page_breadcrumb'];
 			}
@@ -538,7 +537,7 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 
 		$container = implode( $container, ' ' );
 
-		if ( is_front_page() || false == $breadcrumb ) {
+		if ( is_front_page() || ! $breadcrumb ) {
 			return;
 		}
 		?>
@@ -665,29 +664,30 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		$page_header   = $options['page_header_display'];
 		$metabox       = woostify_get_metabox( false, 'site-page-header' );
 		$title         = get_the_title( $page_id );
-		$disable_title = $options['page_header_title'];
+		$display_title = $options['page_header_title'];
 
-		$classes[]     = 'woostify-container';
-		$classes[]     = 'content-align-' . $options['page_header_text_align'];
-		$classes       = implode( $classes, ' ' );
+		$classes[] = 'woostify-container';
+		$classes[] = 'content-align-' . $options['page_header_text_align'];
+		$classes   = implode( $classes, ' ' );
+		$wc        = class_exists( 'woocommerce' );
 
-		if ( class_exists( 'woocommerce' ) && is_shop() ) {
+		if ( $wc && is_shop() ) {
 			if ( ! $options['shop_page_title'] ) {
-				$disable_title = false;
+				$display_title = false;
 			}
-		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'orders' ) ) {
+		} elseif ( $wc && is_wc_endpoint_url( 'orders' ) ) {
 			$title = __( 'Orders', 'woostify' );
-		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'downloads' ) ) {
+		} elseif ( $wc && is_wc_endpoint_url( 'downloads' ) ) {
 			$title = __( 'Downloads', 'woostify' );
-		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'order-received' ) ) {
+		} elseif ( $wc && is_wc_endpoint_url( 'order-received' ) ) {
 			$title = __( 'Order received', 'woostify' );
-		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'edit-account' ) ) {
+		} elseif ( $wc && is_wc_endpoint_url( 'edit-account' ) ) {
 			$title = __( 'Account details', 'woostify' );
-		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'edit-address' ) ) {
+		} elseif ( $wc && is_wc_endpoint_url( 'edit-address' ) ) {
 			$title = __( 'Addresses', 'woostify' );
-		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'customer-logout' ) ) {
+		} elseif ( $wc && is_wc_endpoint_url( 'customer-logout' ) ) {
 			$title = __( 'Logout', 'woostify' );
-		} elseif ( class_exists( 'woocommerce' ) && is_wc_endpoint_url( 'lost-password' ) ) {
+		} elseif ( $wc && is_wc_endpoint_url( 'lost-password' ) ) {
 			$title = __( 'Lost password', 'woostify' );
 		} elseif ( is_archive() ) {
 			$title = get_the_archive_title( $page_id );
@@ -698,7 +698,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		}
 
 		if ( is_404() ) {
-			$disable_title = false;
+			$display_title = false;
 		}
 
 		// Metabox option.
@@ -719,7 +719,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			<div class="<?php echo esc_attr( $classes ); ?>">
 				<?php do_action( 'woostify_page_header_start' ); ?>
 
-				<?php if ( $disable_title ) { ?>
+				<?php if ( $display_title ) { ?>
 					<h1 class="entry-title"><?php echo wp_kses_post( $title ); ?></h1>
 				<?php } ?>
 

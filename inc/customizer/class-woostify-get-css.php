@@ -353,6 +353,8 @@ class Woostify_Get_CSS {
 			.product-loop-meta .button:hover,
 			#secondary .widget a:not(.tag-cloud-link):hover,
 			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout):hover,
+			.product-nav-item:hover > a,
+			.product-nav-item .product-nav-item-price,
 			a:hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
