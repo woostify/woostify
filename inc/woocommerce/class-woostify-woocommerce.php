@@ -137,6 +137,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_after_single_product_summary', array( $this, 'woostify_single_product_after_summary_close' ), 100 );
 			// Some product info.
 			add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'woostify_product_info' ), 20 );
+			// Trust badge image
+			add_action( 'woocommerce_single_product_summary', array( $this, 'woostify_trust_badge_image' ), 200 );
 
 			// CART PAGE.
 			add_action( 'woocommerce_after_cart_table', array( $this, 'woostify_clear_shop_cart' ) );
@@ -1123,6 +1125,23 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 				data-out_of_stock="<?php echo esc_attr( $out_stock ); ?>"
 				data-valid_quantity="<?php echo esc_attr( $valid_qty ); ?>"
 				data-not_enough="<?php echo esc_attr( $not_enough ); ?>">
+			<?php
+		}
+
+		/**
+		 * Trust badge image
+		 */
+		public function woostify_trust_badge_image() {
+			$options   = woostify_options( false );
+			$image_url = $options['shop_single_trust_badge_image'];
+
+			if ( ! $image_url ) {
+				return;
+			}
+			?>
+			<div class="woostify-trust-badge-box">
+				<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php esc_attr_e( 'Trust Badge Image', 'woostify' ); ?>">
+			</div>
 			<?php
 		}
 

@@ -7158,6 +7158,12 @@ footer#colophon {
   background-color: #e33333;
 }
 
+/* Trust badge image */
+.woostify-trust-badge-box {
+  text-align: center;
+  margin-top: 30px;
+}
+
 /* HOVER */
 .products .product {
   /* Fix issue not showing on IE */

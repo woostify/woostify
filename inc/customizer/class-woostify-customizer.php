@@ -197,6 +197,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shop_single_breadcrumb'                  => true,
 					'shop_single_product_navigation'          => true,
 					'shop_single_content_background'          => '#f3f3f3',
+					'shop_single_trust_badge_image'           => '',
 					'shop_single_gallery_layout'              => 'vertical',
 					'shop_single_image_zoom'                  => true,
 					'shop_single_image_lightbox'              => true,
