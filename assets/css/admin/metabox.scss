@@ -61,13 +61,20 @@
 	position: relative;
 
 	&.active {
+		.woostify-multi-select-selection {
+			border-radius: 3px 3px 0 0;
+			border-color: #aea9a9;
+			border-bottom-color: #e5e3e3;
+		}
 		.woostify-multi-select-dropdown {
 			display: block;
+			border-color: #aea9a9;
 		}
 	}
 }
 
 .woostify-multi-select-selection {
+	border-radius: 3px;
 	border: 1px solid #ddd;
 	padding: 5px 5px 0 5px;
 	min-height: 30px;
