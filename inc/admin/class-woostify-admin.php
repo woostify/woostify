@@ -226,18 +226,20 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * The welcome screen Header
 		 */
 		public function woostify_welcome_screen_header() {
+			$woostify_url = 'https://woostify.com';
+			$facebook_url = 'https://facebook.com';
 			?>
 				<section class="woostify-welcome-nav">
 					<div class="woostify-welcome-container">
-						<a class="woostify-welcome-theme-brand" href="https://woostify.com/" target="_blank" rel="noopener">
+						<a class="woostify-welcome-theme-brand" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank" rel="noopener">
 							<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . '/assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
 							<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
 							<span class="woostify-welcome-theme-version"><?php echo woostify_version(); // WPCS: XSS ok. ?></span>
 						</a>
 
 						<ul class="woostify-welcome-nav_link">
-							<li><a href="https://woostify.com/changelog/" target="_blank"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a></li>
-							<li><a href="https://www.facebook.com/WoostifyWP" target="_blank"><strong><?php esc_html_e( 'Join FB Page', 'woostify' ); ?></strong></a></li>
+							<li><a href="<?php echo esc_url( $woostify_url ); ?>/changelog/" target="_blank"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a></li>
+							<li><a href="<?php echo esc_url( $facebook_url ); ?>/WoostifyWP" target="_blank"><strong><?php esc_html_e( 'Join FB Page', 'woostify' ); ?></strong></a></li>
 						</ul>
 					</div>
 				</section>
@@ -248,6 +250,8 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * The welcome screen
 		 */
 		public function woostify_welcome_screen() {
+			$woostify_url = 'https://woostify.com';
+			$facebook_url = 'https://facebook.com';
 			?>
 			<div class="woostify-options-wrap admin-welcome-screen">
 
@@ -288,7 +292,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 									<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
 										<p>
-											<a href="https://woostify.com/docs/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Read more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/" class="woostify-button button-primary" target="_blank"><?php esc_html_e( 'Read more', 'woostify' ); ?></a>
 										</p>
 									<?php endif; ?>
 								</div>
@@ -297,7 +301,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 							<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
 								<div class="woostify-enhance__column woostify-pro-featured pro-featured-list">
 									<h3>
-										<a class="woostify-learn-more wp-ui-text-highlight" href="https://woostify.com/" target="_blank"><?php esc_html_e( 'Get The Woostify Pro Version!', 'woostify' ); ?></a>
+										<a class="woostify-learn-more wp-ui-text-highlight" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank"><?php esc_html_e( 'Get The Woostify Pro Version!', 'woostify' ); ?></a>
 									</h3>
 
 									<div class="wf-quick-setting-section">
@@ -305,67 +309,67 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Multiple Headers', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/pro-modules/multiple-header-styles/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/multiple-header-styles/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Elementor Bundle', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/pro-modules/elementor-bundle/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/elementor-bundle/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Header & Footer Builder', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/pro-modules/header-footer-builder/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/header-footer-builder/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Ajax WooCommerce Search', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/pro-modules/ajax-search-auto-complete/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/ajax-search-auto-complete/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Size Guide', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/pro-modules/size-guide/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/size-guide/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Advanced Shop Widgets', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/pro-modules/advanced-shop-widgets/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/advanced-shop-widgets/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Buy Now Button', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/pro-modules/buy-now-button/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/buy-now-button/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Sticky Header', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/pro-modules/sticky-header/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/sticky-header/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Sticky Button', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/pro-modules/sticky-button/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/sticky-button/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Ajax Single Add To Cart', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/pro-modules/ajax-single-add-to-cart/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/ajax-single-add-to-cart/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Quick View', 'woostify' ); ?>
 											</strong>
-											<a href="https://woostify.com/docs/pro-modules/quick-view/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/quick-view/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 									</div>
 								</div>
@@ -450,7 +454,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									</p>
 
 									<p>
-										<a href="https://woostify.com/" class="woostify-button"><?php esc_html_e( 'Visit Us', 'woostify' ); ?></a>
+										<a href="<?php echo esc_url( $woostify_url ); ?>" class="woostify-button"><?php esc_html_e( 'Visit Us', 'woostify' ); ?></a>
 									</p>
 								</div>
 							</div>
@@ -464,7 +468,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									</p>
 
 									<p>
-										<a href="https://www.facebook.com/groups/2245150649099616/" class="woostify-button"><?php esc_html_e( 'Join Our Facebook Group', 'woostify' ); ?></a>
+										<a href="<?php echo esc_url( $facebook_url ); ?>/groups/2245150649099616/" class="woostify-button"><?php esc_html_e( 'Join Our Facebook Group', 'woostify' ); ?></a>
 									</p>
 								</div>
 							</div>
@@ -478,7 +482,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									</p>
 
 									<p>
-										<a href="https://woostify.com/contact/" class="woostify-button"><?php esc_html_e( 'Submit a Ticket', 'woostify' ); ?></a>
+										<a href="<?php echo esc_url( $woostify_url ); ?>/contact/" class="woostify-button"><?php esc_html_e( 'Submit a Ticket', 'woostify' ); ?></a>
 									</p>
 								</div>
 							</div>

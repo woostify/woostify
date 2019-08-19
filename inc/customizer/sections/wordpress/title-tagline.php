@@ -22,7 +22,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[retina_logo]',
 		array(
-			'label'    => __( 'Retina Logo', 'woostify' ),
+			'label'    => __( 'Retina Logo (Optional)', 'woostify' ),
 			'section'  => 'title_tagline',
 			'settings' => 'woostify_setting[retina_logo]',
 			'priority' => 8,

@@ -213,7 +213,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'sidebar_shop_single'                     => 'full',
 					// 404.
 					'error_404_image'                         => '',
-					'error_404_text'                          => __( 'Opps! The page you’re looking for is missing for some reasons. Please come back to homepage', 'woostify' ),
+					'error_404_text'                          => __( 'Opps! The page you are looking for is missing for some reasons. Please come back to homepage', 'woostify' ),
 				]
 			);
 		}
