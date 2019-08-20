@@ -88,100 +88,88 @@ msgstr ""
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Main Sidebar</strong></a> and dragging widgets into this widget area."
 msgstr ""
 
-#: inc/class-woostify.php:95
+#: inc/class-woostify.php:92
 msgid "Image"
 msgstr ""
 
-#: inc/class-woostify.php:192
+#: inc/class-woostify.php:189
 msgid "Primary Menu"
 msgstr ""
 
-#: inc/class-woostify.php:193
+#: inc/class-woostify.php:190
 msgid "Footer Menu"
 msgstr ""
 
-#: inc/class-woostify.php:263
+#: inc/class-woostify.php:260
 msgid "Primary Color"
 msgstr ""
 
-#: inc/class-woostify.php:268, inc/customizer/sections/color/color.php:88, inc/customizer/sections/footer/footer.php:192
+#: inc/class-woostify.php:265, inc/customizer/sections/color/color.php:88, inc/customizer/sections/footer/footer.php:192
 msgid "Heading Color"
 msgstr ""
 
-#: inc/class-woostify.php:273, inc/customizer/sections/buttons/button.php:25, inc/customizer/sections/color/color.php:109, inc/customizer/sections/footer/footer.php:234, inc/customizer/sections/header/topbar.php:47, inc/customizer/sections/shop/shop-page.php:729
+#: inc/class-woostify.php:270, inc/customizer/sections/buttons/button.php:25, inc/customizer/sections/color/color.php:109, inc/customizer/sections/footer/footer.php:234, inc/customizer/sections/header/topbar.php:47, inc/customizer/sections/shop/shop-page.php:729
 msgid "Text Color"
 msgstr ""
 
-#: inc/class-woostify.php:285, inc/customizer/sections/typography/heading.php:352
+#: inc/class-woostify.php:282, inc/customizer/sections/typography/heading.php:352
 msgid "H6"
 msgstr ""
 
-#: inc/class-woostify.php:290, inc/customizer/sections/typography/heading.php:317
+#: inc/class-woostify.php:287, inc/customizer/sections/typography/heading.php:317
 msgid "H5"
 msgstr ""
 
-#: inc/class-woostify.php:295, inc/customizer/sections/typography/heading.php:282
+#: inc/class-woostify.php:292, inc/customizer/sections/typography/heading.php:282
 msgid "H4"
 msgstr ""
 
-#: inc/class-woostify.php:300, inc/customizer/sections/typography/heading.php:247
+#: inc/class-woostify.php:297, inc/customizer/sections/typography/heading.php:247
 msgid "H3"
 msgstr ""
 
-#: inc/class-woostify.php:305, inc/customizer/sections/typography/heading.php:212
+#: inc/class-woostify.php:302, inc/customizer/sections/typography/heading.php:212
 msgid "H2"
 msgstr ""
 
-#: inc/class-woostify.php:310, inc/customizer/sections/typography/heading.php:177
+#: inc/class-woostify.php:307, inc/customizer/sections/typography/heading.php:177
 msgid "H1"
 msgstr ""
 
-#: inc/class-woostify.php:351
+#: inc/class-woostify.php:348
 msgid "Main Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:353
+#: inc/class-woostify.php:350
 msgid "Appears in the sidebar of the site."
 msgstr ""
 
-#: inc/class-woostify.php:360
+#: inc/class-woostify.php:357
 msgid "Woocommerce Sidebar"
 msgstr ""
 
-#: inc/class-woostify.php:362
+#: inc/class-woostify.php:359
 msgid " Appears in the sidebar of shop/product page."
 msgstr ""
 
-#: inc/class-woostify.php:369, inc/woostify-template-functions.php:209, inc/woostify-template-functions.php:224, inc/woostify-template-functions.php:239
+#: inc/class-woostify.php:366, inc/woostify-template-functions.php:209, inc/woostify-template-functions.php:224, inc/woostify-template-functions.php:239
 msgid "Footer Widget"
 msgstr ""
 
-#: inc/class-woostify.php:371
+#: inc/class-woostify.php:368
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:585
+#: inc/class-woostify.php:582
 msgid "Woostify 404"
 msgstr ""
 
-#: inc/class-woostify.php:599
+#: inc/class-woostify.php:596
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:705
+#: inc/class-woostify.php:702
 msgid "Post Pagination"
-msgstr ""
-
-#: inc/class-woostify.php:760
-msgid "My Account"
-msgstr ""
-
-#: inc/class-woostify.php:764
-msgid "Customer Help"
-msgstr ""
-
-#: inc/class-woostify.php:768
-msgid "Checkout"
 msgstr ""
 
 #: inc/woostify-functions.php:164, inc/woostify-template-functions.php:21, inc/admin/class-woostify-admin.php:236

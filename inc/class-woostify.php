@@ -45,9 +45,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_action( 'customize_preview_init', array( $this, 'woostify_customize_live_preview' ) );
 			add_filter( 'wp_tag_cloud', array( $this, 'woostify_remove_tag_inline_style' ) );
 			add_filter( 'excerpt_more', array( $this, 'woostify_modify_excerpt_more' ) );
-
-			// Header shortcode.
-			add_shortcode( 'header_content_block', [ $this, 'header_content_block' ] );
 		}
 
 		/**
@@ -746,81 +743,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			$more = apply_filters( 'woostify_excerpt_more', '...' );
 			return $more;
-		}
-
-		/**
-		 * Add shortcode
-		 *
-		 * @param array $atts The atts.
-		 */
-		public function header_content_block( $atts ) {
-			$defaults = [
-				'my_account'       => true,
-				'my_account_url'   => '#',
-				'my_account_label' => __( 'My Account', 'woostify' ),
-
-				'support'          => true,
-				'support_url'      => '#',
-				'support_label'    => __( 'Customer Help', 'woostify' ),
-
-				'checkout'         => true,
-				'checkout_url'     => '#',
-				'checkout_label'   => __( 'Checkout', 'woostify' ),
-			];
-
-			if ( woostify_is_woocommerce_activated() ) {
-				global $woocommerce;
-				$defaults['my_account_url'] = wc_get_page_permalink( 'myaccount' );
-				$defaults['checkout_url']   = wc_get_page_permalink( 'checkout' );
-			}
-
-			$atts = shortcode_atts( $defaults, $atts );
-
-			ob_start();
-			?>
-
-			<div class="header-content-block">
-				<?php
-				if ( filter_var( $atts['my_account'], FILTER_VALIDATE_BOOLEAN ) && woostify_is_woocommerce_activated() ) {
-					$account_icon     = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
-					$my_account_url   = $atts['my_account_url'];
-					$my_account_label = $atts['my_account_label'];
-					?>
-					<a class="header-block-item" href="<?php echo esc_url( $my_account_url ); ?>">
-						<span class="header-block-item-icon <?php echo esc_attr( $account_icon ); ?>"></span>
-						<span class="header-block-item-label"><?php echo esc_html( $my_account_label ); ?></span>
-					</a>
-					<?php
-				}
-
-				if ( filter_var( $atts['support'], FILTER_VALIDATE_BOOLEAN ) ) {
-					$support_icon  = apply_filters( 'woostify_header_support_icon', 'ti-face-smile' );
-					$support_url   = $atts['support_url'];
-					$support_label = $atts['support_label'];
-					?>
-					<a class="header-block-item" href="<?php echo esc_url( $support_url ); ?>">
-						<span class="header-block-item-icon <?php echo esc_attr( $support_icon ); ?>"></span>
-						<span class="header-block-item-label"><?php echo esc_html( $support_label ); ?></span>
-					</a>
-					<?php
-				}
-
-				if ( filter_var( $atts['checkout'], FILTER_VALIDATE_BOOLEAN ) && woostify_is_woocommerce_activated() ) {
-					$checkout_icon  = apply_filters( 'woostify_header_checkout_icon', 'ti-arrow-circle-right' );
-					$checkout_url   = $atts['checkout_url'];
-					$checkout_label = $atts['checkout_label'];
-					?>
-					<a class="header-block-item" href="<?php echo esc_url( $checkout_url ); ?>">
-						<span class="header-block-item-icon <?php echo esc_attr( $checkout_icon ); ?>"></span>
-						<span class="header-block-item-label"><?php echo esc_html( $checkout_label ); ?></span>
-					</a>
-					<?php
-				}
-				?>
-			</div>
-
-			<?php
-			return ob_get_clean();
 		}
 	}
 
