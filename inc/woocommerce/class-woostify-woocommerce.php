@@ -333,6 +333,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 * Init action
 		 */
 		public function woostify_woocommerce_init_action() {
+			// Remove wc notice on checkout page, when login error.
+			remove_action( 'woocommerce_before_checkout_form_cart_notices', 'woocommerce_output_all_notices', 10 );
+
 			remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 			remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
 			remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
