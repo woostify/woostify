@@ -1383,9 +1383,13 @@ if ( ! function_exists( 'woostify_container_close' ) ) {
 
 if ( ! function_exists( 'woostify_content_top' ) ) {
 	/**
-	 * Content top, after Header
+	 * Content top, after Header. Apply only for Single Product
 	 */
 	function woostify_content_top() {
+		if ( ! is_singular( 'product' ) ) {
+			return;
+		}
+
 		do_action( 'woostify_content_top' );
 	}
 }
