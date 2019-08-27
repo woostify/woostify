@@ -87,8 +87,6 @@ footer#colophon{
 .site-info {
 	clear: both;
 	padding: 11px 0;
-	font-size: 11px;
-	text-transform: uppercase;
 	@include flex( flex, space-between, center);
 	&:not(:first-child) {
 		border-top: 1px solid #e3e3e3;

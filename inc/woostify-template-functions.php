@@ -262,18 +262,17 @@ if ( ! function_exists( 'woostify_footer_custom_text' ) ) {
 	 * @return string $content Footer custom text
 	 */
 	function woostify_footer_custom_text() {
-		$content = '&copy; ' . date( 'Y' ) . ' ' . get_bloginfo( 'name' ) . ' ';
+		$content = __( '&copy; [current_year] [site_title]. All rights reserved. Designed & developed by [theme_author]&trade;', 'woostify' );
 
 		if ( apply_filters( 'woostify_credit_info', true ) ) {
 
 			if ( apply_filters( 'woostify_privacy_policy_link', true ) && function_exists( 'the_privacy_policy_link' ) ) {
 				$content .= get_the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>' );
 			}
-
-			$content .= __( 'All rights reserved. Designed &amp; developed by woostify&trade;', 'woostify' );
 		}
 
 		return $content;
+
 	}
 }
 
