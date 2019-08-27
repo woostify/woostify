@@ -49,6 +49,16 @@
 	}
 }
 
+/* Remove customizer background content on single product */
+.single-product {
+	&.right-sidebar,
+	&.left-sidebar {
+		.content-top {
+			background-color: #fff;
+		}
+	}
+}
+
 /* Breadcrumb */
 .woostify-breadcrumb{
 	.single-product &{
@@ -72,6 +82,8 @@
 .woostify-product-navigation {
 	display: flex;
 	align-items: center;
+	position: relative;
+	z-index: 9;
 
 	@media ( max-width: $screen-md - 1 ) {
 		width: 100%;

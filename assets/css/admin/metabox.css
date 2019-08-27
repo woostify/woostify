@@ -71,6 +71,7 @@ body.old-version .woostify-metabox-option {
   min-height: 30px;
   display: flex;
   flex-wrap: wrap;
+  background-color: #fff;
 }
 
 .woostify-multi-select-selection .woostify-multi-select-id {

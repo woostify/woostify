@@ -115,7 +115,17 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		/**
 		 * Load welcome screen script and css
 		 */
-		public function woostify_welcome_static() {
+		public function woostify_welcome_static( $hook ) {
+			$is_welcome  = false !== strpos( $hook, 'woostify-welcome' );
+
+			// Dismiss admin notice.
+			wp_enqueue_style(
+				'woostify-admin-general',
+				WOOSTIFY_THEME_URI . 'assets/css/admin/general.css',
+				[],
+				woostify_version()
+			);
+
 			// Dismiss admin notice.
 			wp_enqueue_script(
 				'woostify-dismiss-admin-notice',
@@ -134,12 +144,14 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			);
 
 			// Welcome screen style.
-			wp_enqueue_style(
-				'woostify-welcome-screen',
-				WOOSTIFY_THEME_URI . 'assets/css/admin/welcome-screen/welcome.css',
-				[],
-				woostify_version()
-			);
+			if ( $is_welcome ) {
+				wp_enqueue_style(
+					'woostify-welcome-screen',
+					WOOSTIFY_THEME_URI . 'assets/css/admin/welcome.css',
+					[],
+					woostify_version()
+				);
+			}
 
 			// Install plugin import demo.
 			wp_enqueue_script(
@@ -164,7 +176,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			}
 
 			$page = add_theme_page( 'Woostify Theme Options', 'Woostify Options', 'manage_options', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ) );
-			add_action( 'admin_print_styles-' . $page, array( $this, 'woostify_welcome_static' ) );
 		}
 
 		/**
