@@ -262,7 +262,7 @@ if ( ! function_exists( 'woostify_footer_custom_text' ) ) {
 	 * @return string $content Footer custom text
 	 */
 	function woostify_footer_custom_text() {
-		$content = __( '&copy; [current_year] [site_title]. All rights reserved. Designed & developed by [theme_author]&trade;', 'woostify' );
+		$content = __( 'Copyright &copy; [current_year] [site_title] | Powered by [theme_author]', 'woostify' );
 
 		if ( apply_filters( 'woostify_credit_info', true ) ) {
 
