@@ -212,7 +212,7 @@ msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearan
 msgstr ""
 
 #: inc/woostify-template-functions.php:265
-msgid "&copy; [current_year] [site_title]. All rights reserved. Designed & developed by [theme_author]&trade;"
+msgid "Copyright &copy; [current_year] [site_title] | Powered by [theme_author]"
 msgstr ""
 
 #: inc/woostify-template-functions.php:344

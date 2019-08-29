@@ -7,19 +7,20 @@
 
 'use strict';
 
-function productVariation( selector ) {
-	var gallery       = jQuery( selector ),
-		image         = gallery.find( '.image-item:eq(0)' ),
-		imageSrc      = image.find( 'img' ).prop( 'src' ),
+function productVariation( selector, form ) {
+	var gallery        = jQuery( selector ),
+		variationsForm = form ? jQuery( form ) : jQuery( '.summary form.variations_form' ),
+		image          = gallery.find( '.image-item:eq(0)' ),
+		imageSrc       = image.find( 'img' ).prop( 'src' ),
 		// Photoswipe + zoom.
-		photoSwipe    = image.find( 'a' ),
-		photoSwipeSrc = photoSwipe.prop( 'href' ),
+		photoSwipe     = image.find( 'a' ),
+		photoSwipeSrc  = photoSwipe.prop( 'href' ),
 		// Product thumbnail.
-		thumb         = gallery.find( '.thumbnail-item:eq(0)' ),
-		thumbSrc      = thumb.find( 'img' ).prop( 'src' );
+		thumb          = gallery.find( '.thumbnail-item:eq(0)' ),
+		thumbSrc       = thumb.find( 'img' ).prop( 'src' );
 
 	// event when variation changed.
-	jQuery( document.body ).on( 'found_variation', 'form.variations_form', function( event, variation ) {
+	jQuery( variationsForm ).on( 'found_variation', function( event, variation ) {
 		// get image url form `variation`.
 		var fullSrc  = variation.image.full_src,
 			imgSrc   = variation.image.src,
@@ -28,8 +29,10 @@ function productVariation( selector ) {
 		// Change src image.
 		image.find( 'img' ).prop( 'src', imgSrc );
 		thumb.find( 'img' ).prop( 'src', thumbSrc );
+
 		// Photoswipe + zoom.
 		photoSwipe.prop( 'href', fullSrc );
+
 		// Image loading.
 		image.addClass( 'image-loading' );
 		image.find( 'img' )
@@ -37,6 +40,7 @@ function productVariation( selector ) {
 			.one( 'load', function() {
 				image.removeClass( 'image-loading' );
 			} );
+
 		// Zoom handle.
 		if ( 'function' === typeof( easyZoomHandle ) ) {
 			easyZoomHandle();
@@ -46,11 +50,14 @@ function productVariation( selector ) {
 	// Reset variation.
 	jQuery( '.reset_variations' ).on( 'click', function( e ) {
 		e.preventDefault();
+
 		// Change src image.
 		image.find( 'img' ).prop( 'src', imageSrc );
 		thumb.find( 'img' ).prop( 'src', thumbSrc );
+
 		// Photoswipe + zoom.
 		photoSwipe.prop( 'href', photoSwipeSrc );
+
 		// Zoom handle.
 		if ( 'function' === typeof( easyZoomHandle ) ) {
 			easyZoomHandle();

@@ -204,7 +204,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
 	// Carousel action.
 	function carouselAction() {
 		// Trigger variation.
-		jQuery( document.body ).on( 'found_variation', 'form.variations_form', function() {
+		jQuery( 'form.variations_form' ).on( 'found_variation', function() {
 			resetCarousel();
 			if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
 				updateGallery( woostify_variation_gallery );
