@@ -85,6 +85,13 @@
 	position: relative;
 	z-index: 9;
 
+	.woocommerce +& {
+		@media ( min-width: $screen-md ) {
+			justify-content: flex-end;
+		}
+		flex-grow: 1;
+	}
+
 	@media ( max-width: $screen-md - 1 ) {
 		width: 100%;
 		justify-content: space-between;

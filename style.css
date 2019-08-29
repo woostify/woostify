@@ -4399,6 +4399,16 @@ dd {
   z-index: 9;
 }
 
+.woocommerce + .woostify-product-navigation {
+  flex-grow: 1;
+}
+
+@media (min-width: 992px) {
+  .woocommerce + .woostify-product-navigation {
+    justify-content: flex-end;
+  }
+}
+
 @media (max-width: 991px) {
   .woostify-product-navigation {
     width: 100%;
@@ -8073,7 +8083,6 @@ footer#colophon {
 
 .woocommerce-variation-add-to-cart {
   display: flex;
-  flex-wrap: wrap;
 }
 
 .single_add_to_cart_button {
