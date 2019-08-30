@@ -497,7 +497,7 @@ msgstr ""
 msgid "Multiple Headers"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:323, inc/admin/class-woostify-admin.php:329, inc/admin/class-woostify-admin.php:335, inc/admin/class-woostify-admin.php:341, inc/admin/class-woostify-admin.php:347, inc/admin/class-woostify-admin.php:353, inc/admin/class-woostify-admin.php:359, inc/admin/class-woostify-admin.php:365, inc/admin/class-woostify-admin.php:371, inc/admin/class-woostify-admin.php:377, inc/admin/class-woostify-admin.php:383
+#: inc/admin/class-woostify-admin.php:323, inc/admin/class-woostify-admin.php:329, inc/admin/class-woostify-admin.php:335, inc/admin/class-woostify-admin.php:341, inc/admin/class-woostify-admin.php:347, inc/admin/class-woostify-admin.php:353, inc/admin/class-woostify-admin.php:359, inc/admin/class-woostify-admin.php:365, inc/admin/class-woostify-admin.php:371, inc/admin/class-woostify-admin.php:377, inc/admin/class-woostify-admin.php:383, inc/admin/class-woostify-admin.php:389
 msgid "Learn more"
 msgstr ""
 
@@ -541,63 +541,67 @@ msgstr ""
 msgid "Quick View"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:396, inc/admin/class-woostify-admin.php:432
+#: inc/admin/class-woostify-admin.php:387
+msgid "Countdown Cart"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:402, inc/admin/class-woostify-admin.php:438
 msgid "Import Demo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:402
+#: inc/admin/class-woostify-admin.php:408
 msgid "Quickly and easily transform your shops appearance with Woostify Demo Sites."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:406
+#: inc/admin/class-woostify-admin.php:412
 msgid "It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:437
+#: inc/admin/class-woostify-admin.php:443
 msgid "Activate"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:439
+#: inc/admin/class-woostify-admin.php:445
 msgid "Install Woostify Library"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:448
+#: inc/admin/class-woostify-admin.php:454
 msgid "Activating"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:460, inc/customizer/class-woostify-customizer.php:304, inc/customizer/class-woostify-customizer.php:320, inc/customizer/class-woostify-customizer.php:336, inc/customizer/class-woostify-customizer.php:352, inc/customizer/class-woostify-customizer.php:368
+#: inc/admin/class-woostify-admin.php:466, inc/customizer/class-woostify-customizer.php:304, inc/customizer/class-woostify-customizer.php:320, inc/customizer/class-woostify-customizer.php:336, inc/customizer/class-woostify-customizer.php:352, inc/customizer/class-woostify-customizer.php:368
 msgid "Learn More"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:464
+#: inc/admin/class-woostify-admin.php:470
 msgid "Want to know how it works, take a look on this and get whole knowledge about Woostify. Learn Woostify."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:468
+#: inc/admin/class-woostify-admin.php:474
 msgid "Visit Us"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:474
+#: inc/admin/class-woostify-admin.php:480
 msgid "Woostify Community"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:478
+#: inc/admin/class-woostify-admin.php:484
 msgid "Join the community of generous Woostify users. Get connected, share opinion, ask questions and help each other!"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:482
+#: inc/admin/class-woostify-admin.php:488
 msgid "Join Our Facebook Group"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:488
+#: inc/admin/class-woostify-admin.php:494
 msgid "Customer Support"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:492
+#: inc/admin/class-woostify-admin.php:498
 msgid "We start with what the customer needs and we work backwards. You're absolutely free to contact us and Woostify team will be happy to help you."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:496
+#: inc/admin/class-woostify-admin.php:502
 msgid "Submit a Ticket"
 msgstr ""
 
