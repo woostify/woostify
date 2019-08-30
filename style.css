@@ -4396,7 +4396,7 @@ dd {
   display: flex;
   align-items: center;
   position: relative;
-  z-index: 9;
+  z-index: 1;
 }
 
 .woocommerce + .woostify-product-navigation {
