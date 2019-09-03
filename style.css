@@ -7232,7 +7232,7 @@ footer#colophon {
 
 @media (min-width: 601px) and (max-width: 991px) {
   .products.tablet-columns-1 .product {
-    width: calc( ( 100% - 0px ) / 1);
+    width: calc( ( 100% - 0px ) / 1 - 0.01px);
   }
   .products.tablet-columns-1 .product:nth-of-type(1n) {
     margin-right: 0;
@@ -7244,7 +7244,7 @@ footer#colophon {
 
 @media (max-width: 600px) {
   .products.mobile-columns-1 .product {
-    width: calc( ( 100% - 0px ) / 1);
+    width: calc( ( 100% - 0px ) / 1 - 0.01px);
   }
   .products.mobile-columns-1 .product:nth-of-type(1n) {
     margin-right: 0;
@@ -7256,7 +7256,7 @@ footer#colophon {
 
 @media (min-width: 992px) {
   .products.columns-2 .product {
-    width: calc( ( 100% - 30px ) / 2);
+    width: calc( ( 100% - 30px ) / 2 - 0.01px);
   }
   .products.columns-2 .product:nth-of-type(2n) {
     margin-right: 0;
@@ -7268,7 +7268,7 @@ footer#colophon {
 
 @media (min-width: 601px) and (max-width: 991px) {
   .products.tablet-columns-2 .product {
-    width: calc( ( 100% - 30px ) / 2);
+    width: calc( ( 100% - 30px ) / 2 - 0.01px);
   }
   .products.tablet-columns-2 .product:nth-of-type(2n) {
     margin-right: 0;
@@ -7280,7 +7280,7 @@ footer#colophon {
 
 @media (max-width: 600px) {
   .products.mobile-columns-2 .product {
-    width: calc( ( 100% - 30px ) / 2);
+    width: calc( ( 100% - 30px ) / 2 - 0.01px);
   }
   .products.mobile-columns-2 .product:nth-of-type(2n) {
     margin-right: 0;
@@ -7292,7 +7292,7 @@ footer#colophon {
 
 @media (min-width: 992px) {
   .products.columns-3 .product {
-    width: calc( ( 100% - 60px ) / 3);
+    width: calc( ( 100% - 60px ) / 3 - 0.01px);
   }
   .products.columns-3 .product:nth-of-type(3n) {
     margin-right: 0;
@@ -7304,7 +7304,7 @@ footer#colophon {
 
 @media (min-width: 601px) and (max-width: 991px) {
   .products.tablet-columns-3 .product {
-    width: calc( ( 100% - 60px ) / 3);
+    width: calc( ( 100% - 60px ) / 3 - 0.01px);
   }
   .products.tablet-columns-3 .product:nth-of-type(3n) {
     margin-right: 0;
@@ -7316,7 +7316,7 @@ footer#colophon {
 
 @media (max-width: 600px) {
   .products.mobile-columns-3 .product {
-    width: calc( ( 100% - 60px ) / 3);
+    width: calc( ( 100% - 60px ) / 3 - 0.01px);
   }
   .products.mobile-columns-3 .product:nth-of-type(3n) {
     margin-right: 0;
@@ -7328,7 +7328,7 @@ footer#colophon {
 
 @media (min-width: 992px) {
   .products.columns-4 .product {
-    width: calc( ( 100% - 90px ) / 4);
+    width: calc( ( 100% - 90px ) / 4 - 0.01px);
   }
   .products.columns-4 .product:nth-of-type(4n) {
     margin-right: 0;
@@ -7340,7 +7340,7 @@ footer#colophon {
 
 @media (min-width: 601px) and (max-width: 991px) {
   .products.tablet-columns-4 .product {
-    width: calc( ( 100% - 90px ) / 4);
+    width: calc( ( 100% - 90px ) / 4 - 0.01px);
   }
   .products.tablet-columns-4 .product:nth-of-type(4n) {
     margin-right: 0;
@@ -7352,7 +7352,7 @@ footer#colophon {
 
 @media (min-width: 992px) {
   .products.columns-5 .product {
-    width: calc( ( 100% - 120px ) / 5);
+    width: calc( ( 100% - 120px ) / 5 - 0.01px);
   }
   .products.columns-5 .product:nth-of-type(5n) {
     margin-right: 0;
@@ -7364,7 +7364,7 @@ footer#colophon {
 
 @media (min-width: 992px) {
   .products.columns-6 .product {
-    width: calc( ( 100% - 150px ) / 6);
+    width: calc( ( 100% - 150px ) / 6 - 0.01px);
   }
   .products.columns-6 .product:nth-of-type(6n) {
     margin-right: 0;
