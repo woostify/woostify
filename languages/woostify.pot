@@ -777,28 +777,28 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:649, inc/woocommerce/class-woostify-woocommerce.php:972, inc/woocommerce/class-woostify-woocommerce.php:1001, inc/woocommerce/class-woostify-woocommerce.php:1032, inc/woocommerce/class-woostify-woocommerce.php:1047
+#: inc/woocommerce/class-woostify-woocommerce.php:649, inc/woocommerce/class-woostify-woocommerce.php:973, inc/woocommerce/class-woostify-woocommerce.php:1002, inc/woocommerce/class-woostify-woocommerce.php:1033, inc/woocommerce/class-woostify-woocommerce.php:1048
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1119
+#: inc/woocommerce/class-woostify-woocommerce.php:1120
 msgid "You cannot add that amount of this product to the cart because there is not enough stock."
 msgstr ""
 
 #. translators: %1$d: stock quantity
-#: inc/woocommerce/class-woostify-woocommerce.php:1122
+#: inc/woocommerce/class-woostify-woocommerce.php:1123
 msgid "You cannot add that amount to the cart - we have %1$d in stock and you already have %1$d in your cart"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1123
+#: inc/woocommerce/class-woostify-woocommerce.php:1124
 msgid "Please enter a valid quantity for this product"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1146, inc/customizer/sections/shop/shop-single.php:112
+#: inc/woocommerce/class-woostify-woocommerce.php:1147, inc/customizer/sections/shop/shop-single.php:112
 msgid "Trust Badge Image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1159
+#: inc/woocommerce/class-woostify-woocommerce.php:1160
 msgid "Clear cart"
 msgstr ""
 

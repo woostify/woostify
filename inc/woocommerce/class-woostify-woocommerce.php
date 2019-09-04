@@ -84,10 +84,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_product_loop_item_action' ), 25 );
 			// Product link open.
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_link_open' ), 30 );
-			// Product loop image.
-			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_image' ), 40 );
 			// Product loop hover image.
-			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_hover_image' ), 50 );
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_hover_image' ), 40 );
+			// Product loop image.
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_image' ), 50 );
 			// Product link close.
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_link_close' ), 60 );
 			// Product add to cart ( Display on image ).
@@ -651,6 +651,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			$image_attr = array(
 				'alt'             => $img_alt,
 				'data-origin_src' => $img_origin[0],
+				'class'           => 'attachment-' . $size . ' size-' . $size .  ' product-loop-image',
 			);
 
 			echo $product->get_image( $size, $image_attr ); // WPCS: XSS ok.

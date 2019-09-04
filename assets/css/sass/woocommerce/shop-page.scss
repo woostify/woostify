@@ -31,9 +31,18 @@
 		@include transition( all .3s ease-in-out );
 	}
 
+	// Origin image.
+	.product-loop-image {
+		@include transition( all .3s ease-in-out );
+	}
+
 	&:hover{
-		.product-loop-hover-image{
+		.product-loop-hover-image {
 			opacity: 1;
+
+			&+.product-loop-image {
+				opacity: 0;
+			}
 		}
 	}
 
