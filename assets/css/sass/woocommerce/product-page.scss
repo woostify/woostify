@@ -315,19 +315,29 @@
 	.value{
 		max-width: 50%;
 	}
-	.tawcvs-swatches{
-		.swatch{
+	.tawcvs-swatches,
+	.woostify-variation-swatches {
+		.swatch {
 			border: 1px solid #ddd;
-			&.selected{
+			&.selected {
 				box-shadow: none;
 			}
 		}
-		.swatch-label{
+		.swatch-color {
+			border-color: transparent;
+		}
+		.swatch-label {
 			width: auto;
 			height: auto;
 			border-radius: 4px;
 			padding-left: 10px;
 			padding-right: 10px;
+		}
+	}
+
+	.tawcvs-swatches {
+		.swatch {
+			opacity: 1;
 		}
 	}
 

@@ -160,6 +160,38 @@ function scrollingDetect() {
 	window.oldScroll = window.scrollY;
 }
 
+// Get all Prev element siblings.
+function prevSiblings( target ) {
+	var siblings = [],
+		n        = target;
+
+	while ( n = n.previousElementSibling ) {
+		siblings.push( n );
+	}
+
+	return siblings;
+}
+
+// Get all Next element siblings.
+function nextSiblings( target ) {
+	var siblings = [],
+		n        = target;
+
+	while ( n = n.nextElementSibling ) {
+		siblings.push( n );
+	}
+
+	return siblings;
+}
+
+// Get all element siblings.
+function siblings( target ) {
+	var prev = prevSiblings( target ) || [],
+		next = nextSiblings( target ) || [];
+
+	return prev.concat( next );
+}
+
 document.addEventListener( 'DOMContentLoaded', function() {
 	dialogSearch();
 	footerAction();
