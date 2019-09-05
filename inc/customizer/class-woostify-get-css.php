@@ -294,7 +294,9 @@ class Woostify_Get_CSS {
 			.form-submit .submit:hover,
 			#secondary .widget a.button:hover,
 			.woostify-contact-form input[type="submit"]:hover,
-			.loop-add-to-cart-on-image+.added_to_cart:hover{
+			.loop-add-to-cart-on-image+.added_to_cart:hover,
+			.product-loop-meta.no-transform .button:hover,
+			.product-loop-meta.no-transform .added_to_cart:hover{
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
 				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
 			}
