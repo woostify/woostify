@@ -17,7 +17,7 @@
 	border-width: 0;
 	border-collapse: separate;
 	table-layout: auto;
-	@media ( max-width: 600px ) {
+	@media ( max-width: $screen-sm - 1 ) {
 		margin-bottom: 0;
 	}
 	thead {
@@ -39,10 +39,10 @@
 			}
 			&:focus {
 				color: $tr;
-				@extend .circle-loading
+				@extend .circle-loading;
 			}
 		}
-		@media ( max-width: 600px ) {
+		@media ( max-width: $screen-sm - 1 ) {
 			a{
 				background-color: firebrick;
 				color: #fff $i;
@@ -55,7 +55,7 @@
 		margin-right: 0;
 	}
 
-	@media ( min-width: 601px ) {
+	@media ( min-width: $screen-sm ) {
 		tbody {
 			tr {
 				+ tr {
@@ -95,10 +95,14 @@
 			text-align: center;
 		}
 		.quantity {
-			width: 140px;
+			min-width: 140px;
 		}
 		.product-subtotal {
 			text-align: right;
+		}
+		.product-price,
+		.product-subtotal {
+			min-width: 100px;
 		}
 
 		/* actions */
@@ -171,7 +175,7 @@
 		}
 	}
 
-	@media ( max-width: 600px ) {
+	@media ( max-width: $screen-sm - 1 ) {
 		.product-thumbnail{
 			display: none;
 		}
@@ -213,7 +217,7 @@
 	clear: both;
 	text-align: center;
 	@extend .clearfix;
-	@media ( min-width: 601px ) {
+	@media ( min-width: $screen-sm ) {
 		text-align: right;
 	}
 	.clear-cart-btn{
@@ -223,7 +227,7 @@
 		padding-top: 0;
 		padding-bottom: 0;
 		font-weight: 600;
-		@media ( max-width: 600px ) {
+		@media ( max-width: $screen-sm - 1 ) {
 			width: 100%;
 			float: left;
 		}

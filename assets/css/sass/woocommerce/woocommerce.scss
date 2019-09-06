@@ -324,7 +324,7 @@ $size: 40px;
 	}
 }
 .shop_table_responsive{
-	@media ( max-width: 600px ) {
+	@media ( max-width: $screen-sm - 1 ) {
 		th{
 			display: none;
 		}
