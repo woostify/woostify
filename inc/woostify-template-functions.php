@@ -556,7 +556,7 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 				if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 					?>
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-						<a itemprop="item" href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_shop_page_id' ) ) ); ?>">
+						<a itemprop="item" href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>">
 							<span itemprop="name"><?php esc_html_e( 'Shop', 'woostify' ); ?></span>
 						</a>
 						<meta itemprop="position" content="2"></span>

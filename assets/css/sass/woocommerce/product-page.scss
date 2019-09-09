@@ -311,9 +311,13 @@
 	}
 	.label{
 		width: 30%;
+		vertical-align: middle;
 	}
 	.value{
 		max-width: 50%;
+		select {
+			width: 50%;
+		}
 	}
 	.tawcvs-swatches,
 	.woostify-variation-swatches {
@@ -326,18 +330,18 @@
 		.swatch-color {
 			border-color: transparent;
 		}
-		.swatch-label {
-			width: auto;
-			height: auto;
-			border-radius: 4px;
-			padding-left: 10px;
-			padding-right: 10px;
-		}
 	}
 
 	.tawcvs-swatches {
 		.swatch {
 			opacity: 1;
+			border-radius: 20px;
+		}
+	}
+
+	.reset_variations {
+		&[style*="visibility: hidden;"] {
+			display: none !important;
 		}
 	}
 
@@ -346,7 +350,7 @@
 			width: 100%;
 		}
 		.value {
-			max-width: none;
+			max-width: 100%;
 		}
 		select {
 			min-width: 100%;

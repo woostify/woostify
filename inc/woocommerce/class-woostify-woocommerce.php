@@ -649,9 +649,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			$img_alt    = woostify_image_alt( $img_id, esc_attr__( 'Product image', 'woostify' ) );
 			$img_origin = wp_get_attachment_image_src( $img_id, $size );
 			$image_attr = array(
-				'alt'             => $img_alt,
-				'data-origin_src' => $img_origin[0],
-				'class'           => 'attachment-' . $size . ' size-' . $size .  ' product-loop-image',
+				'alt'      => $img_alt,
+				'data-src' => $img_origin[0],
+				'class'    => 'attachment-' . $size . ' size-' . $size .  ' product-loop-image',
 			);
 
 			echo $product->get_image( $size, $image_attr ); // WPCS: XSS ok.

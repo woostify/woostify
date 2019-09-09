@@ -1,9 +1,26 @@
 .elementor-add-to-cart {
 	&.elementor-product-variable {
 		.variations {
+			tr {
+				margin-bottom: 0 $i;
+			}
+			td {
+				width: 30% $i;
+				padding: 10px 0 $i;
+				line-height: 24px $i;
+				vertical-align: middle;
+			}
+			select {
+				border: 1px solid #e8e8e8 $i;
+				width: 100% $i;
+				height: 40px $i;
+				position: static $i;
+			}
 			.value {
+				width: 40% $i;
+				flex-wrap: wrap;
 				&:before{
-					content: none !important;
+					content: none $i;
 				}
 			}
 		}

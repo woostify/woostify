@@ -7938,10 +7938,15 @@ footer#colophon {
 
 .variations .label {
   width: 30%;
+  vertical-align: middle;
 }
 
 .variations .value {
   max-width: 50%;
+}
+
+.variations .value select {
+  width: 50%;
 }
 
 .variations .tawcvs-swatches .swatch,
@@ -7964,12 +7969,16 @@ footer#colophon {
   border-radius: 20px;
 }
 
+.variations .reset_variations[style*="visibility: hidden;"] {
+  display: none !important;
+}
+
 @media (max-width: 720px) {
   .variations .label {
     width: 100%;
   }
   .variations .value {
-    max-width: none;
+    max-width: 100%;
   }
   .variations select {
     min-width: 100%;
@@ -9846,6 +9855,29 @@ footer#colophon {
   width: 30px;
   height: 30px;
   border: 1px solid #ddd;
+}
+
+.elementor-add-to-cart.elementor-product-variable .variations tr {
+  margin-bottom: 0 !important;
+}
+
+.elementor-add-to-cart.elementor-product-variable .variations td {
+  width: 30% !important;
+  padding: 10px 0 !important;
+  line-height: 24px !important;
+  vertical-align: middle;
+}
+
+.elementor-add-to-cart.elementor-product-variable .variations select {
+  border: 1px solid #e8e8e8 !important;
+  width: 100% !important;
+  height: 40px !important;
+  position: static !important;
+}
+
+.elementor-add-to-cart.elementor-product-variable .variations .value {
+  width: 40% !important;
+  flex-wrap: wrap;
 }
 
 .elementor-add-to-cart.elementor-product-variable .variations .value:before {
