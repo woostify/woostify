@@ -363,7 +363,8 @@
 			font-size: 12px;
 		}
 
-		&[style*="visibility: hidden;"] {
+		/* For first time load */
+		&:not([style*="visibility"]) {
 			display: none !important;
 		}
 	}
@@ -384,6 +385,9 @@
 
 .single_variation{
 	margin-bottom: 40px;
+	&:empty {
+		display: none;
+	}
 }
 
 .shop_table {
