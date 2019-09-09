@@ -3,22 +3,34 @@
 		.variations {
 			tr {
 				margin-bottom: 0 $i;
+				@media ( max-width: $screen-tablet - 1 ) {
+					display: block $i;
+				}
 			}
 			td {
 				width: 30% $i;
 				padding: 10px 0 $i;
 				line-height: 24px $i;
 				vertical-align: middle;
+				@media ( max-width: $screen-tablet - 1 ) {
+					padding: 0 $i;
+				}
 			}
 			select {
 				border: 1px solid #e8e8e8 $i;
-				width: 100% $i;
+				width: 75% $i;
 				height: 40px $i;
 				position: static $i;
+				@media ( max-width: $screen-tablet - 1 ) {
+					width: 100% $i;
+				}
 			}
 			.value {
-				width: 40% $i;
-				flex-wrap: wrap;
+				width: 55% $i;
+				@media ( max-width: $screen-tablet - 1 ) {
+					display: block $i;
+					width: 100% $i;
+				}
 				&:before{
 					content: none $i;
 				}
