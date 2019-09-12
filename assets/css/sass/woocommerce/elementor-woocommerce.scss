@@ -37,4 +37,15 @@
 			}
 		}
 	}
+
+	.quantity {
+		border: 1px solid #e8e8e8 $i;
+	}
+}
+
+
+.elementor-widget-wc-add-to-cart {
+	.quantity {
+		border: 1px solid #e8e8e8;
+	}
 }

@@ -316,6 +316,10 @@
 	.value{
 		max-width: 70%;
 
+		&:before {
+			content: none $i
+		}
+
 		@media ( min-width: $screen-tablet ) {
 			display: flex;
 			align-items: center;
@@ -349,6 +353,7 @@
 		padding: 2px 10px;
 		margin-top: 10px;
 		float: left;
+		transition-duration: 0s;
 
 		@media ( min-width: $screen-tablet ) {
 			margin-left: 10px;
@@ -365,7 +370,7 @@
 
 		/* For first time load */
 		&:not([style*="visibility"]) {
-			display: none !important;
+			display: none $i;
 		}
 	}
 
