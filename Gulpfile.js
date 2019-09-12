@@ -89,11 +89,11 @@ gulp.task( 'min-js', () => {
 } );
 
 // Watch task.
-gulp.task( 'watch', [ 'browser-sync' ], () => {
-	gulp.watch( ['assets/css/sass/**/*.scss', 'style.scss' ], ['sass'] );
-	gulp.watch( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'], ['sass-admin'] );
-	gulp.watch( ['assets/js/**/*.js', '!assets/js/**/*.min.js'], ['min-js'] );
-	gulp.watch( '**/*.php', ['pot'] );
+gulp.task( 'watch', gulp.series( 'browser-sync' ), () => {
+	gulp.watch( ['assets/css/sass/**/*.scss', 'style.scss' ], gulp.series( 'sass' ) );
+	gulp.watch( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'], gulp.series( 'sass-admin' ) );
+	gulp.watch( ['assets/js/**/*.js', '!assets/js/**/*.min.js'], gulp.series( 'min-js' ) );
+	gulp.watch( '**/*.php', gulp.series( 'pot' ) );
 } );
 
 // Zip task.
@@ -117,7 +117,7 @@ gulp.task( 'zip', () =>
 );
 
 // Default task.
-gulp.task( 'default', ['watch', 'min-js'] );
+gulp.task( 'default', gulp.series( 'watch', 'min-js' ) );
 
 // Clean.
 gulp.task( 'clean', del.bind( null, ['build'] ) );
