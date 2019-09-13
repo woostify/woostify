@@ -15,7 +15,7 @@ let theme       = 'woostify',
 	autoLoad    = require( 'gulp-load-plugins' )(),
 	del         = require( 'del' ),
 	wpPot       = require( 'gulp-wp-pot' ),
-	browserSync = require( 'browser-sync' ),
+	browserSync = require( 'browser-sync' ).create(),
 	runSequence = require( 'run-sequence' ),
 	sass        = require( 'gulp-sass' ),
 	sourcemaps  = require( 'gulp-sourcemaps' ),
@@ -26,9 +26,8 @@ let theme       = 'woostify',
 	vinylBuffer = require( 'vinyl-buffer' ),
 	debug       = require( 'gulp-debug' );
 
-
 // Sass `compressed` `expanded` `compact` `nested`.
-gulp.task( 'sass', () =>
+let _sass = ( done ) => {
 	gulp.src( 'style.scss' )
 		.pipe( globbing( {
 			extensions: [ '.scss' ]
@@ -38,37 +37,40 @@ gulp.task( 'sass', () =>
 		.on( 'error', sass.logError ) )
 		.pipe( sourcemaps.write( '.' ) )
 		.pipe( gulp.dest( '.' ) )
-		.pipe( browserSync.reload( { stream: true } ) )
-);
+		.pipe( browserSync.stream() );
+
+	done();
+}
 
 // Sass admin.
-gulp.task( 'sass-admin', () =>
+let _sassAdmin = ( done ) => {
 	gulp.src( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'] )
 		.pipe( globbing( {
 			extensions: [ '.scss' ]
 		} ) )
 		.pipe( sass( { outputStyle: 'expanded' } )
 		.on( 'error', sass.logError ) )
-		.pipe( gulp.dest( 'assets/css/admin' ) )
-);
+		.pipe( gulp.dest( 'assets/css/admin' ) );
+
+	done();
+}
 
 // Handle console.
-function handleError( e ) {
+let handleError = function( e ) {
 	console.log( e.toString() );
 	this.emit( 'end' );
 }
 
 // Broswer sync task.
-gulp.task( 'browser-sync', () =>
-	browserSync( {
-		files: 'style.css',
-		proxy: "http://" + site_name + ".io",
-		notify: false
-	} )
-);
+let _browserSync = ( done ) => {
+	browserSync.init( {
+		proxy: 'http://' + site_name + '.io'
+	} );
+	done();
+}
 
 // Create .post file.
-gulp.task( 'pot', () => {
+let _pot = ( done ) => {
 	gulp.src( '**/*.php' )
 		.pipe( wpPot( {
 			domain: theme,
@@ -76,29 +78,25 @@ gulp.task( 'pot', () => {
 		} ) )
 		.on( 'error', handleError )
 		.pipe( gulp.dest( 'languages/' + theme + '.pot' ) );
-} );
 
+	done();
+}
+gulp.task( 'pot', _pot );
 
 // Min js file.
-gulp.task( 'min-js', () => {
+let _minJs = ( done ) => {
 	gulp.src( [ 'assets/js/**/*.js', '!assets/js/**/*.min.js'] )
 		.pipe( uglify() )
 		.on( 'error', err => { console.log( err ) } )
 		.pipe( rename( { suffix: '.min' } ) )
 		.pipe( gulp.dest( 'assets/js' ) );
-} );
 
-// Watch task.
-gulp.task( 'watch', gulp.series( 'browser-sync' ), () => {
-	gulp.watch( ['assets/css/sass/**/*.scss', 'style.scss' ], gulp.series( 'sass' ) );
-	gulp.watch( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'], gulp.series( 'sass-admin' ) );
-	gulp.watch( ['assets/js/**/*.js', '!assets/js/**/*.min.js'], gulp.series( 'min-js' ) );
-	gulp.watch( '**/*.php', gulp.series( 'pot' ) );
-} );
+	done();
+}
 
 // Zip task.
-gulp.task( 'zip', () =>
-	gulp.src([
+let _zip = () => {
+	gulp.src( [
 		'**/*',
 		'!./{node_modules,node_modules/**/*}',
 		'!./*.cache',
@@ -114,10 +112,24 @@ gulp.task( 'zip', () =>
 	/*.pipe( debug( { title: 'src' } ) )*/
 	.pipe( zip( theme + '-' + theme_ver + '.zip' ) )
 	.pipe( gulp.dest( '.' ) )
-);
+}
+gulp.task( 'zip', _zip );
 
-// Default task.
-gulp.task( 'default', gulp.series( 'watch', 'min-js' ) );
+// Watch task.
+let _watch = ( done ) => {
+	gulp.watch( ['assets/css/sass/**/*.scss', 'style.scss' ], _sass );
+	gulp.watch( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'], _sassAdmin );
+	gulp.watch( ['assets/js/**/*.js', '!assets/js/**/*.min.js'], _minJs );
+	gulp.watch( '**/*.php', _pot );
+
+	done();
+}
 
 // Clean.
-gulp.task( 'clean', del.bind( null, ['build'] ) );
+let clean = () => del( null );
+
+// Build.
+gulp.task( 'build', gulp.series( clean, gulp.parallel( _sass, _sassAdmin, _minJs, _pot ) ) );
+
+// Default task.
+gulp.task( 'default', gulp.parallel( _watch, _browserSync ) );
