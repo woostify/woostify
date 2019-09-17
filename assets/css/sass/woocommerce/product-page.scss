@@ -328,18 +328,15 @@
 	.tawcvs-swatches,
 	.woostify-variation-swatches {
 		.swatch {
-			border: 1px solid #ddd;
 			&.selected {
 				box-shadow: none;
 			}
-		}
-		.swatch-color {
-			border-color: transparent;
 		}
 	}
 
 	.tawcvs-swatches {
 		.swatch {
+			border: 1px solid #ddd;
 			opacity: 1;
 			border-radius: 20px;
 		}

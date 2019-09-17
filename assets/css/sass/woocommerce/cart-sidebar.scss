@@ -2,7 +2,6 @@ $space: 30px;
 $space_mobile: 15px;
 $media: 599px;
 
-
 .cart-sidebar-open {
 	.updating-cart {
         #shop-cart-sidebar {
@@ -252,31 +251,6 @@ $media: 599px;
         padding: $space 0;
     }
 
-    .product_list_widget.woocommerce-mini-cart{
-    	li{
-    		padding: $space $space $space 0;
-    		@extend .clearfix;
-
-    		@media ( max-width: $media ) {
-    			padding: $space_mobile $space_mobile $space_mobile 0;
-    		}
-    	}
-    	img{
-    		max-width: 75px;
-    		max-height: 75px;
-    		object-fit: cover;
-    		position: static;
-    		float: left;
-    		margin-right: 20px;
-
-    		@media ( max-width: $media ) {
-    			max-width: 60px;
-    			max-height: 60px;
-    			margin-right: $space_mobile;
-    		}
-    	}
-    }
-
     .variation {
         margin: 5px 0;
         font-size: 13px;
@@ -316,7 +290,22 @@ $media: 599px;
 /* CART ITEM */
 .cart-sidebar-content{
 	.mini_cart_item{
-		padding-left: 95px;
+		@media ( min-width: $media - 1 ) {
+			min-height: 95px;
+			padding-left: 95px;
+		}
+
+    	img{
+    		max-width: 75px;
+    		max-height: 75px;
+    		object-fit: cover;
+
+    		@media ( max-width: $media ) {
+    			max-width: 60px;
+    			max-height: 60px;
+    			margin-right: $space_mobile;
+    		}
+    	}
 
 		&:hover{
 			.remove_from_cart_button{
@@ -346,6 +335,11 @@ $media: 599px;
 		right: 0;
 		top: 50%;
         @include transforms( translateY( -50% ) translateX( 10px ) rotate( 0deg ) );
+
+       @media ( max-width: $screen-md ) {
+       		opacity: 1;
+			@include transforms( translateY( -50% ) translateX( 0px ) rotate( 0deg ) );
+       }
 
         &:focus {
             &:before{
