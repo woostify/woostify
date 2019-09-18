@@ -364,11 +364,6 @@
 			margin-right: 7px;
 			font-size: 12px;
 		}
-
-		/* For first time load */
-		&:not([style*="visibility"]) {
-			display: none $i;
-		}
 	}
 
 	@media ( max-width: $screen-tablet - 1 ) {

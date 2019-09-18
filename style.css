@@ -7980,7 +7980,6 @@ footer#colophon {
   margin-top: 10px;
   float: left;
   transition-duration: 0s;
-  /* For first time load */
 }
 
 @media (min-width: 720px) {
@@ -7996,10 +7995,6 @@ footer#colophon {
   font-family: "themify";
   margin-right: 7px;
   font-size: 12px;
-}
-
-.variations .reset_variations:not([style*="visibility"]) {
-  display: none !important;
 }
 
 @media (max-width: 719px) {
