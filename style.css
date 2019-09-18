@@ -4916,6 +4916,9 @@ dd {
 }
 
 @media (max-width: 767px) {
+  .site-header .shopping-bag-button {
+    margin-right: 15px;
+  }
   .has-custom-mobile-logo a:not(.custom-mobile-logo-url) {
     display: none;
   }
