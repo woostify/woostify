@@ -298,3 +298,91 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+// SHOP SINGLE RECENTLY VIEW SECTION.
+$wp_customize->add_setting(
+	'shop_single_recently_viewed_section',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Section_Control(
+		$wp_customize,
+		'shop_single_recently_viewed_section',
+		array(
+			'label'      => __( 'Recently Viewed', 'woostify' ),
+			'section'    => 'woostify_shop_single',
+			'dependency' => [
+				'woostify_setting[shop_single_product_recently_viewed]',
+				'woostify_setting[shop_single_recently_viewed_title]',
+				'woostify_setting[shop_single_recently_viewed_count]',
+			]
+		)
+	)
+);
+
+// Product recently viewed.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_recently_viewed]',
+	array(
+		'default'           => $defaults['shop_single_product_recently_viewed'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_recently_viewed]',
+		array(
+			'label'    => __( 'Display', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_recently_viewed]',
+			'section'  => 'woostify_shop_single',
+		)
+	)
+);
+
+// Section title.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_recently_viewed_title]',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+		'default'           => $defaults['shop_single_recently_viewed_title'],
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_recently_viewed_title]',
+		array(
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_recently_viewed_title]',
+			'type'     => 'text',
+			'label'    => __( 'Section Title', 'woostify' ),
+		)
+	)
+);
+
+// Total product.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_recently_viewed_count]',
+	array(
+		'sanitize_callback' => 'absint',
+		'default'           => $defaults['shop_single_recently_viewed_count'],
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_recently_viewed_count]',
+		array(
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_recently_viewed_count]',
+			'type'     => 'number',
+			'label'    => __( 'Total Product', 'woostify' ),
+		)
+	)
+);

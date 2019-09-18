@@ -139,6 +139,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'woostify_product_info' ), 20 );
 			// Trust badge image
 			add_action( 'woocommerce_single_product_summary', array( $this, 'woostify_trust_badge_image' ), 200 );
+			// Recently viewed.
+			add_action( 'template_redirect', [ $this, 'woostify_product_recently_viewed' ], 20 );
+			add_action( 'woocommerce_after_single_product', [ $this, 'woostify_product_recently_viewed_template' ], 20 );
 
 			// CART PAGE.
 			add_action( 'woocommerce_after_cart_table', array( $this, 'woostify_clear_shop_cart' ) );
@@ -262,7 +265,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			return false;
 		}
 
-
 		/**
 		 * Modify: Loop start
 		 */
@@ -281,7 +283,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			$loop_html = woocommerce_maybe_show_product_subcategories();
 			echo $loop_html; // WPCS: XSS ok.
 		}
-
 
 		/**
 		 * Products per row
@@ -789,7 +790,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			echo '</div></div>';
 		}
 
-
 		/**
 		 * Product container open
 		 */
@@ -1189,6 +1189,81 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			}
 
 			return $id;
+		}
+
+		/**
+		 * Product recently viewed
+		 */
+		public function woostify_product_recently_viewed() {
+			if ( ! is_singular( 'product' ) ) {
+				return;
+			}
+
+			global $post;
+			$options         = self::woostify_options();
+			$viewed_products = [];
+
+			if ( ! empty( $_COOKIE['woostify_product_recently_viewed'] ) ) {
+				$viewed_products = (array) explode( '|', $_COOKIE['woostify_product_recently_viewed'] );
+			}
+
+			if ( ! in_array( $post->ID, $viewed_products ) ) {
+				$viewed_products[] = $post->ID;
+			}
+
+			if ( sizeof( $viewed_products ) > $options['shop_single_recently_viewed_count'] ) {
+				array_shift( $viewed_products );
+			}
+
+			// Store for session only.
+			wc_setcookie( 'woostify_product_recently_viewed', implode( '|', array_filter( $viewed_products ) ) );
+		}
+
+		/**
+		 * Display product recently viewed
+		 */
+		public function woostify_product_recently_viewed_template() {
+			$options = self::woostify_options();
+			$ids     = explode( '|', $_COOKIE['woostify_product_recently_viewed'] );
+
+			if ( ! $_COOKIE['woostify_product_recently_viewed'] || ! $options['shop_single_product_recently_viewed'] || empty( $ids ) ) {
+				return;
+			}
+
+			$container = woostify_site_container();
+			$args      = [
+				'post_type'      => 'product',
+				'post_status'    => 'publish',
+				'posts_per_page' => -1,
+				'post__in'       => $ids,
+			];
+
+			$products_query = new WP_Query( $args );
+			if ( ! $products_query->have_posts() ) {
+				return;
+			}
+			?>
+
+			<div class="woostify-product-recently-viewed-section">
+				<div class="<?php echo esc_attr( $container ); ?>">
+					<div class="woostify-product-recently-viewed-inner">
+						<h2 class="woostify-product-recently-viewed-title"><?php echo esc_html( $options['shop_single_recently_viewed_title'] ); ?></h2>
+						<?php
+							global $woocommerce_loop;
+							woocommerce_product_loop_start();
+
+							while ( $products_query->have_posts() ) :
+								$products_query->the_post();
+
+								wc_get_template_part( 'content', 'product' );
+							endwhile;
+
+							woocommerce_product_loop_end();
+						?>
+					</div>
+				</div>
+			</div>
+			<?php
 		}
 	}
 	Woostify_WooCommerce::get_instance();

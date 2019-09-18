@@ -319,4 +319,3 @@ if ( ! function_exists( 'woostify_breadcrumb_for_product_page' ) ) {
 		}
 	}
 }
-

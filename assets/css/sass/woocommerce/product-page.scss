@@ -649,7 +649,8 @@
 /* RELATED && UPSELL */
 
 .related,
-.up-sells {
+.up-sells,
+.woostify-product-recently-viewed-section {
 	> h2 {
 		text-align: center;
 		font-size: 18px;
@@ -662,6 +663,21 @@
 .woostify-product-images-widget{
 	.product-gallery{
 		width: 100%;
+	}
+}
+
+/* RECENTLY VIEWED */
+.woostify-product-recently-viewed-section {
+
+	.woostify-product-recently-viewed-inner {
+		border-top: 1px solid #efefef;
+	}
+
+	.woostify-product-recently-viewed-title {
+		text-align: center;
+		font-size: 18px;
+		font-weight: normal;
+		padding: 25px 0;
 	}
 }
 

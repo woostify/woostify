@@ -569,7 +569,7 @@ msgstr ""
 msgid "Activating"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:466, inc/customizer/class-woostify-customizer.php:304, inc/customizer/class-woostify-customizer.php:320, inc/customizer/class-woostify-customizer.php:336, inc/customizer/class-woostify-customizer.php:352, inc/customizer/class-woostify-customizer.php:368
+#: inc/admin/class-woostify-admin.php:466, inc/customizer/class-woostify-customizer.php:307, inc/customizer/class-woostify-customizer.php:323, inc/customizer/class-woostify-customizer.php:339, inc/customizer/class-woostify-customizer.php:355, inc/customizer/class-woostify-customizer.php:371
 msgid "Learn More"
 msgstr ""
 
@@ -681,15 +681,19 @@ msgstr ""
 msgid "Sale!"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:216
+#: inc/customizer/class-woostify-customizer.php:208
+msgid "Product Recently Viewed"
+msgstr ""
+
+#: inc/customizer/class-woostify-customizer.php:219
 msgid "Opps! The page you are looking for is missing for some reasons. Please come back to homepage"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:287
+#: inc/customizer/class-woostify-customizer.php:290
 msgid "Get The Woostify Pro Extensions!"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:305, inc/customizer/class-woostify-customizer.php:321, inc/customizer/class-woostify-customizer.php:337, inc/customizer/class-woostify-customizer.php:353, inc/customizer/class-woostify-customizer.php:369
+#: inc/customizer/class-woostify-customizer.php:308, inc/customizer/class-woostify-customizer.php:324, inc/customizer/class-woostify-customizer.php:340, inc/customizer/class-woostify-customizer.php:356, inc/customizer/class-woostify-customizer.php:372
 msgid "More options are coming for this section in our Pro Extensions."
 msgstr ""
 
@@ -765,19 +769,19 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:310
+#: inc/woocommerce/class-woostify-woocommerce.php:311
 msgid "Filter"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:418
+#: inc/woocommerce/class-woostify-woocommerce.php:419
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:419, inc/woocommerce/woostify-woocommerce-template-functions.php:277
+#: inc/woocommerce/class-woostify-woocommerce.php:420, inc/woocommerce/woostify-woocommerce-template-functions.php:277
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:649, inc/woocommerce/class-woostify-woocommerce.php:973, inc/woocommerce/class-woostify-woocommerce.php:1002, inc/woocommerce/class-woostify-woocommerce.php:1033, inc/woocommerce/class-woostify-woocommerce.php:1048
+#: inc/woocommerce/class-woostify-woocommerce.php:650, inc/woocommerce/class-woostify-woocommerce.php:973, inc/woocommerce/class-woostify-woocommerce.php:1002, inc/woocommerce/class-woostify-woocommerce.php:1033, inc/woocommerce/class-woostify-woocommerce.php:1048
 msgid "Product image"
 msgstr ""
 
@@ -1392,6 +1396,22 @@ msgstr ""
 
 #: inc/customizer/sections/shop/shop-single.php:273
 msgid "Categories"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-single.php:314
+msgid "Recently Viewed"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-single.php:339
+msgid "Display"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-single.php:363
+msgid "Section Title"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-single.php:385
+msgid "Total Product"
 msgstr ""
 
 #: inc/customizer/sections/sidebar/sidebar.php:32, inc/customizer/sections/sidebar/sidebar.php:63, inc/customizer/sections/sidebar/sidebar.php:113, inc/customizer/sections/sidebar/sidebar.php:144, inc/customizer/sections/sidebar/sidebar.php:196, inc/customizer/sections/sidebar/sidebar.php:228

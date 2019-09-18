@@ -349,6 +349,17 @@
 			'none'
 		);
 
+		// SHOP SINGLE.
+		// Product recently viewed.
+		condition(
+			'woostify_setting[shop_single_product_recently_viewed]',
+			[
+				'woostify_setting[shop_single_recently_viewed_title]',
+				'woostify_setting[shop_single_recently_viewed_count]',
+			],
+			false
+		);
+
 		// FOOTER SECTION.
 		// Disable footer.
 		condition(

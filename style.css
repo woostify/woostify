@@ -8310,7 +8310,8 @@ footer#colophon {
 
 /* RELATED && UPSELL */
 .related > h2,
-.up-sells > h2 {
+.up-sells > h2,
+.woostify-product-recently-viewed-section > h2 {
   text-align: center;
   font-size: 18px;
   font-weight: normal;
@@ -8320,6 +8321,18 @@ footer#colophon {
 /* Support for Woostify - Product Images */
 .woostify-product-images-widget .product-gallery {
   width: 100%;
+}
+
+/* RECENTLY VIEWED */
+.woostify-product-recently-viewed-section .woostify-product-recently-viewed-inner {
+  border-top: 1px solid #efefef;
+}
+
+.woostify-product-recently-viewed-section .woostify-product-recently-viewed-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 25px 0;
 }
 
 /* RESPONSIVE */
