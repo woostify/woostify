@@ -328,6 +328,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			if ( ! $options['shop_page_product_filter'] ) {
 				remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 			}
+
+			// SHOP SINGLE.
+			// Related product.
+			if ( ! $options['shop_single_related_product'] ) {
+				remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+			}
 		}
 
 		/**
@@ -1224,12 +1230,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		 */
 		public function woostify_product_recently_viewed_template() {
 			$options = self::woostify_options();
-			$ids     = explode( '|', $_COOKIE['woostify_product_recently_viewed'] );
-
-			if ( ! $_COOKIE['woostify_product_recently_viewed'] || ! $options['shop_single_product_recently_viewed'] || empty( $ids ) ) {
+			$cookies = isset( $_COOKIE['woostify_product_recently_viewed'] ) ? $_COOKIE['woostify_product_recently_viewed'] : false;
+			if ( ! $cookies || ! $options['shop_single_product_recently_viewed'] ) {
 				return;
 			}
 
+			$ids       = explode( '|', $cookies );
 			$container = woostify_site_container();
 			$args      = [
 				'post_type'      => 'product',

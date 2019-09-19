@@ -8180,7 +8180,6 @@ footer#colophon {
   display: block;
   clear: both;
   padding-top: 54px;
-  border-bottom: 1px solid #efefef;
   padding-bottom: 50px;
 }
 
@@ -8307,9 +8306,13 @@ footer#colophon {
 }
 
 /* RELATED && UPSELL */
+.related,
+.up-sells {
+  border-top: 1px solid #efefef;
+}
+
 .related > h2,
-.up-sells > h2,
-.woostify-product-recently-viewed-section > h2 {
+.up-sells > h2 {
   text-align: center;
   font-size: 18px;
   font-weight: normal;

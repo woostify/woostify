@@ -25,6 +25,7 @@ $wp_customize->add_control(
 			'dependency' => [
 				'woostify_setting[shop_single_breadcrumb]',
 				'woostify_setting[shop_single_product_navigation]',
+				'woostify_setting[shop_single_related_product]',
 				'woostify_setting[shop_single_content_background]',
 				'woostify_setting[shop_single_trust_badge_image]',
 			]
@@ -70,6 +71,27 @@ $wp_customize->add_control(
 			'label'    => __( 'Product Navigation', 'woostify' ),
 			'section'  => 'woostify_shop_single',
 			'settings' => 'woostify_setting[shop_single_product_navigation]',
+		)
+	)
+);
+
+// Related product.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_related_product]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_single_related_product'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_related_product]',
+		array(
+			'label'    => __( 'Related Product', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_related_product]',
 		)
 	)
 );
@@ -311,7 +333,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'shop_single_recently_viewed_section',
 		array(
-			'label'      => __( 'Recently Viewed', 'woostify' ),
+			'label'      => __( 'Product Recently Viewed', 'woostify' ),
 			'section'    => 'woostify_shop_single',
 			'dependency' => [
 				'woostify_setting[shop_single_product_recently_viewed]',

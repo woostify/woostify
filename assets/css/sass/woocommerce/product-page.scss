@@ -534,7 +534,6 @@
 	display: block;
 	clear: both;
 	padding-top: 54px;
-	border-bottom: 1px solid #efefef;
 	padding-bottom: 50px;
 	.tabs {
 		margin: 0;
@@ -644,8 +643,9 @@
 /* RELATED && UPSELL */
 
 .related,
-.up-sells,
-.woostify-product-recently-viewed-section {
+.up-sells {
+	border-top: 1px solid #efefef;
+
 	> h2 {
 		text-align: center;
 		font-size: 18px;
