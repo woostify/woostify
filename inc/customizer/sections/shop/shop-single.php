@@ -333,7 +333,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'shop_single_recently_viewed_section',
 		array(
-			'label'      => __( 'Product Recently Viewed', 'woostify' ),
+			'label'      => __( 'Recently Viewed Products', 'woostify' ),
 			'section'    => 'woostify_shop_single',
 			'dependency' => [
 				'woostify_setting[shop_single_product_recently_viewed]',

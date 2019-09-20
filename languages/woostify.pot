@@ -682,7 +682,7 @@ msgid "Sale!"
 msgstr ""
 
 #: inc/customizer/class-woostify-customizer.php:208
-msgid "Product Recently Viewed"
+msgid "Recently Viewed Products"
 msgstr ""
 
 #: inc/customizer/class-woostify-customizer.php:219
