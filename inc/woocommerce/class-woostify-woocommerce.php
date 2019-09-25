@@ -78,6 +78,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'init', array( $this, 'woostify_detect_clear_cart_submit' ) );
 
 			// SHOP PAGE.
+			// Open product loop wrapper.
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_wrapper_open' ), 10 );
 			// Open wrapper product loop image.
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_image_wrapper_open' ), 20 );
 			// Add product Loop action area.
@@ -100,6 +102,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woostify_loop_product_content_open' ), 100 );
 			// Close product loop content.
 			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'woostify_loop_product_content_close' ), 50 );
+			// Close product loop wrapper.
+			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'woostify_loop_product_wrapper_close' ), 100 );
 
 			// Add product category.
 			add_action( 'woocommerce_shop_loop_item_title', array( $this, 'woostify_add_template_loop_product_category' ), 5 );
@@ -271,9 +275,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		public function woostify_woocommerce_loop_start() {
 			$options = self::woostify_options();
 			$class[] = 'products';
-			$class[] = 'columns-' . wc_get_loop_prop( 'columns' );
-			$class[] = 'tablet-columns-' . $options['tablet_products_per_row'];
-			$class[] = 'mobile-columns-' . $options['mobile_products_per_row'];
+			$class[] = apply_filters( 'woostify_product_columns_desktop', 'columns-' . wc_get_loop_prop( 'columns' ) );
+			$class[] = apply_filters( 'woostify_product_columns_tablet', 'tablet-columns-' . $options['tablet_products_per_row'] );
+			$class[] = apply_filters( 'woostify_product_columns_mobile', 'mobile-columns-' . $options['mobile_products_per_row'] );
 			$class   = implode( ' ', $class );
 			?>
 			<ul class="<?php echo esc_attr( $class ); ?>">
@@ -620,6 +624,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 		}
 
 		/**
+		 * Loop product wrapper open tag
+		 */
+		public function woostify_loop_product_wrapper_open() {
+			?>
+			<div class="product-loop-wrapper">
+			<?php
+		}
+
+		/**
 		 * Loop product image wrapper open tag
 		 */
 		public function woostify_loop_product_image_wrapper_open() {
@@ -730,6 +743,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) :
 			$class   = 'text-' . $options['shop_page_product_alignment'];
 
 			echo '<div class="product-loop-content ' . esc_attr( $class ) . '">';
+		}
+
+		/**
+		 * Loop product wrapper close tag
+		 */
+		public function woostify_loop_product_wrapper_close() {
+			?>
+			</div>
+			<?php
 		}
 
 		/**

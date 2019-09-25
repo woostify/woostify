@@ -328,7 +328,7 @@ msgstr ""
 msgid "Read More"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1115, inc/customizer/sections/shop/shop-single.php:295
+#: inc/woostify-template-functions.php:1115, inc/customizer/sections/shop/shop-single.php:317
 msgid "Tags"
 msgstr ""
 
@@ -569,7 +569,7 @@ msgstr ""
 msgid "Activating"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:466, inc/customizer/class-woostify-customizer.php:307, inc/customizer/class-woostify-customizer.php:323, inc/customizer/class-woostify-customizer.php:339, inc/customizer/class-woostify-customizer.php:355, inc/customizer/class-woostify-customizer.php:371
+#: inc/admin/class-woostify-admin.php:466, inc/customizer/class-woostify-customizer.php:308, inc/customizer/class-woostify-customizer.php:324, inc/customizer/class-woostify-customizer.php:340, inc/customizer/class-woostify-customizer.php:356, inc/customizer/class-woostify-customizer.php:372
 msgid "Learn More"
 msgstr ""
 
@@ -681,19 +681,19 @@ msgstr ""
 msgid "Sale!"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:208
+#: inc/customizer/class-woostify-customizer.php:209, inc/customizer/sections/shop/shop-single.php:336
 msgid "Product Recently Viewed"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:219
+#: inc/customizer/class-woostify-customizer.php:220
 msgid "Opps! The page you are looking for is missing for some reasons. Please come back to homepage"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:290
+#: inc/customizer/class-woostify-customizer.php:291
 msgid "Get The Woostify Pro Extensions!"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:308, inc/customizer/class-woostify-customizer.php:324, inc/customizer/class-woostify-customizer.php:340, inc/customizer/class-woostify-customizer.php:356, inc/customizer/class-woostify-customizer.php:372
+#: inc/customizer/class-woostify-customizer.php:309, inc/customizer/class-woostify-customizer.php:325, inc/customizer/class-woostify-customizer.php:341, inc/customizer/class-woostify-customizer.php:357, inc/customizer/class-woostify-customizer.php:373
 msgid "More options are coming for this section in our Pro Extensions."
 msgstr ""
 
@@ -769,40 +769,40 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:311
+#: inc/woocommerce/class-woostify-woocommerce.php:315
 msgid "Filter"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:419
+#: inc/woocommerce/class-woostify-woocommerce.php:429
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:420, inc/woocommerce/woostify-woocommerce-template-functions.php:277
+#: inc/woocommerce/class-woostify-woocommerce.php:430, inc/woocommerce/woostify-woocommerce-template-functions.php:277
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:650, inc/woocommerce/class-woostify-woocommerce.php:973, inc/woocommerce/class-woostify-woocommerce.php:1002, inc/woocommerce/class-woostify-woocommerce.php:1033, inc/woocommerce/class-woostify-woocommerce.php:1048
+#: inc/woocommerce/class-woostify-woocommerce.php:669, inc/woocommerce/class-woostify-woocommerce.php:1001, inc/woocommerce/class-woostify-woocommerce.php:1030, inc/woocommerce/class-woostify-woocommerce.php:1061, inc/woocommerce/class-woostify-woocommerce.php:1076
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1120
+#: inc/woocommerce/class-woostify-woocommerce.php:1148
 msgid "You cannot add that amount of this product to the cart because there is not enough stock."
 msgstr ""
 
 #. translators: %1$d: stock quantity
-#: inc/woocommerce/class-woostify-woocommerce.php:1123
+#: inc/woocommerce/class-woostify-woocommerce.php:1151
 msgid "You cannot add that amount to the cart - we have %1$d in stock and you already have %1$d in your cart"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1124
+#: inc/woocommerce/class-woostify-woocommerce.php:1152
 msgid "Please enter a valid quantity for this product"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1147, inc/customizer/sections/shop/shop-single.php:112
+#: inc/woocommerce/class-woostify-woocommerce.php:1175, inc/customizer/sections/shop/shop-single.php:134
 msgid "Trust Badge Image"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1160
+#: inc/woocommerce/class-woostify-woocommerce.php:1188
 msgid "Clear cart"
 msgstr ""
 
@@ -1074,7 +1074,7 @@ msgstr ""
 msgid "Page Header Display"
 msgstr ""
 
-#: inc/customizer/sections/page-header/page-header.php:86, inc/customizer/sections/shop/shop-page.php:70, inc/customizer/sections/shop/shop-single.php:49
+#: inc/customizer/sections/page-header/page-header.php:86, inc/customizer/sections/shop/shop-page.php:70, inc/customizer/sections/shop/shop-single.php:50
 msgid "Breadcrumb"
 msgstr ""
 
@@ -1362,55 +1362,55 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:70
+#: inc/customizer/sections/shop/shop-single.php:71
 msgid "Product Navigation"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:91
+#: inc/customizer/sections/shop/shop-single.php:92
+msgid "Related Product"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-single.php:113
 msgid "Content Background"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:131
+#: inc/customizer/sections/shop/shop-single.php:153
 msgid "Product Images"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:157
+#: inc/customizer/sections/shop/shop-single.php:179
 msgid "Gallery Layout"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:185
+#: inc/customizer/sections/shop/shop-single.php:207
 msgid "Gallery Zoom Effect"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:206
+#: inc/customizer/sections/shop/shop-single.php:228
 msgid "Gallery Lightbox Effect"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:225
+#: inc/customizer/sections/shop/shop-single.php:247
 msgid "Product Meta"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:251
+#: inc/customizer/sections/shop/shop-single.php:273
 msgid "SKU"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:273
+#: inc/customizer/sections/shop/shop-single.php:295
 msgid "Categories"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:314
-msgid "Recently Viewed"
-msgstr ""
-
-#: inc/customizer/sections/shop/shop-single.php:339
+#: inc/customizer/sections/shop/shop-single.php:361
 msgid "Display"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:363
+#: inc/customizer/sections/shop/shop-single.php:385
 msgid "Section Title"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:385
+#: inc/customizer/sections/shop/shop-single.php:407
 msgid "Total Product"
 msgstr ""
 
