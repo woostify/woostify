@@ -5,6 +5,8 @@
  * @package woostify
  */
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! function_exists( 'woostify_replace_text' ) ) {
 	/**
 	 * Print dynamic tag like Current year, blog name...

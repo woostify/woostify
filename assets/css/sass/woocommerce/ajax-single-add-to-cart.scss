@@ -1,0 +1,16 @@
+.updating-cart {
+	&.ajax-single-add-to-cart {
+		.single_add_to_cart_button {
+			&.loading {
+				filter: grayscale( 100%);
+
+				@extend .circle-loading;
+
+				&:before {
+					left: 2em;
+					border-width: 2px;
+				}
+			}
+		}
+	}
+}

@@ -5,6 +5,8 @@
  * @package woostify
  */
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! function_exists( 'woostify_template_header' ) ) {
 	/**
 	 * Header template

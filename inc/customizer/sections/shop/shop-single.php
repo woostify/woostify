@@ -26,6 +26,7 @@ $wp_customize->add_control(
 				'woostify_setting[shop_single_breadcrumb]',
 				'woostify_setting[shop_single_product_navigation]',
 				'woostify_setting[shop_single_related_product]',
+				'woostify_setting[shop_single_ajax_add_to_cart]',
 				'woostify_setting[shop_single_content_background]',
 				'woostify_setting[shop_single_trust_badge_image]',
 			]
@@ -92,6 +93,27 @@ $wp_customize->add_control(
 			'label'    => __( 'Related Product', 'woostify' ),
 			'section'  => 'woostify_shop_single',
 			'settings' => 'woostify_setting[shop_single_related_product]',
+		)
+	)
+);
+
+// Ajax single add to cart.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_ajax_add_to_cart]',
+	array(
+		'default'           => $defaults['shop_single_ajax_add_to_cart'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'type'              => 'option',
+	)
+	);
+	$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_ajax_add_to_cart]',
+		array(
+			'label'    => __( 'Ajax Single Add To Cart', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_ajax_add_to_cart]',
 		)
 	)
 );
