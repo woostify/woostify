@@ -192,6 +192,28 @@ function siblings( target ) {
 	return prev.concat( next );
 }
 
+// Remove class with prefix.
+function woostifyRemoveClassPrefix() {
+	var selector = ( arguments.length > 0 && undefined !== arguments[0] ) ? arguments[0] : false,
+		prefix   = ( arguments.length > 0 && undefined !== arguments[1] ) ? arguments[1] : false;
+
+	if ( ! selector || ! prefix ) {
+		return false;
+	}
+
+	var _classList = Array.from( selector.classList );
+
+	if ( ! _classList.length ) {
+		return false;
+	}
+
+	var results = _classList.filter( function( item ) {
+		return ! item.includes( prefix );
+	} );
+
+	return results.join( ' ' );
+}
+
 document.addEventListener( 'DOMContentLoaded', function() {
 	dialogSearch();
 	footerAction();

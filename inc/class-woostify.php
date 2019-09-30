@@ -534,6 +534,17 @@ if ( ! class_exists( 'Woostify' ) ) {
 				);
 			}
 
+			// Ajax single add to cart.
+			if ( $options['shop_single_ajax_add_to_cart'] ) {
+				wp_register_script(
+					'woostify-single-add-to-cart',
+					WOOSTIFY_THEME_URI . 'assets/js/woocommerce/ajax-single-add-to-cart' . woostify_suffix() . '.js',
+					[],
+					woostify_version(),
+					true
+				);
+			}
+
 			// Comment reply.
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 				wp_enqueue_script( 'comment-reply' );

@@ -5,6 +5,50 @@
  * @package woostify
  */
 
+defined( 'ABSPATH' ) || exit;
+
+if ( ! function_exists( 'woostify_get_last_product_id' ) ) {
+	/**
+	 * Get the last ID of product
+	 */
+	function woostify_get_last_product_id() {
+		$args = array(
+			'post_type'           => 'product',
+			'posts_per_page'      => 1,
+			'post_status'         => 'publish',
+			'ignore_sticky_posts' => 1,
+		);
+
+		$query = new WP_Query( $args );
+
+		$id = false;
+
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$id = get_the_ID();
+			}
+
+			wp_reset_postdata();
+		}
+
+		return $id;
+	}
+}
+
+if ( ! function_exists( 'woostify_elementor_preview_product_page_scripts' ) ) {
+	/**
+	 * Global variation gallery
+	 */
+	function woostify_elementor_preview_product_page_scripts() {
+		$product = wc_get_product( woostify_get_last_product_id() );
+		if ( ! is_object( $product ) ) {
+			woostify_global_for_vartiation_gallery( $product );
+		}
+	}
+}
+
 if ( ! function_exists( 'woostify_before_content' ) ) {
 	/**
 	 * Before Content
@@ -317,5 +361,247 @@ if ( ! function_exists( 'woostify_breadcrumb_for_product_page' ) ) {
 		if ( $options['shop_single_product_navigation'] ) {
 			add_action( 'woostify_content_top', 'woostify_product_navigation', 50 );
 		}
+	}
+}
+
+
+if ( ! function_exists( 'woostify_related_products_args' ) ) {
+	/**
+	 * Related Products Args
+	 *
+	 * @param  array $args related products args.
+	 * @return  array $args related products args
+	 */
+	function woostify_related_products_args( $args ) {
+		$args = apply_filters(
+			'woostify_related_products_args',
+			array(
+				'posts_per_page' => 4,
+				'columns'        => 4,
+			)
+		);
+
+		return $args;
+	}
+}
+
+if ( ! function_exists( 'woostify_change_woocommerce_arrow_pagination' ) ) {
+	/**
+	 * Change arrow for pagination
+	 *
+	 * @param array $args Woocommerce pagination.
+	 */
+	function woostify_change_woocommerce_arrow_pagination( $args ) {
+		$args['prev_text'] = __( 'Prev', 'woostify' );
+		$args['next_text'] = __( 'Next', 'woostify' );
+		return $args;
+	}
+}
+
+if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
+	/**
+	 * Change sale flash
+	 */
+	function woostify_change_sale_flash() {
+		global $product;
+
+		$options       = woostify_options( false );
+		$sale          = $product->is_on_sale();
+		$price_sale    = $product->get_sale_price();
+		$price         = $product->get_regular_price();
+		$simple        = $product->is_type( 'simple' );
+		$variable      = $product->is_type( 'variable' );
+		$sale_text     = $options['shop_page_sale_text'];
+		$sale_percent  = $options['shop_page_sale_percent'];
+		$sale_position = $options['shop_page_sale_tag_position'];
+		$final_price   = '';
+
+		if ( $sale ) {
+			// For simple product.
+			if ( $simple ) {
+				if ( $sale_percent ) {
+					$final_price = ( ( $price - $price_sale ) / $price ) * 100;
+					$final_price = '-' . round( $final_price ) . '%';
+				} elseif ( $sale_text ) {
+					$final_price = $sale_text;
+				}
+			} elseif ( $variable && $sale_text ) {
+				// For variable product.
+				$final_price = $sale_text;
+			}
+
+			if ( ! $final_price ) {
+				return;
+			}
+			?>
+			<span class="onsale sale-<?php echo esc_attr( $sale_position ); ?>">
+				<?php
+					echo esc_html( $final_price );
+				?>
+			</span>
+			<?php
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_cart_total_number_fragments' ) ) {
+	/**
+	 * Update cart total item via ajax
+	 *
+	 * @param      array $fragments Fragments to refresh via AJAX.
+	 * @return     array $fragments Fragments to refresh via AJAX
+	 */
+	function woostify_cart_total_number_fragments( $fragments ) {
+		global $woocommerce;
+		$total = $woocommerce->cart->cart_contents_count;
+
+		ob_start();
+		?>
+			<span class="shop-cart-count"><?php echo esc_html( $total ); ?></span>
+		<?php
+		$fragments['span.shop-cart-count'] = ob_get_clean();
+
+		return $fragments;
+	}
+}
+
+if ( ! function_exists( 'woostify_cart_sidebar_content_fragments' ) ) {
+	/**
+	 * Update cart sidebar content via ajax
+	 *
+	 * @param      array $fragments Fragments to refresh via AJAX.
+	 * @return     array $fragments Fragments to refresh via AJAX
+	 */
+	function woostify_cart_sidebar_content_fragments( $fragments ) {
+		ob_start();
+		?>
+			<div class="cart-sidebar-content">
+				<?php woocommerce_mini_cart(); ?>
+			</div>
+		<?php
+
+		$fragments['div.cart-sidebar-content'] = ob_get_clean();
+
+		return $fragments;
+	}
+}
+
+if ( ! function_exists( 'woostify_woocommerce_loop_start' ) ) {
+	/**
+	 * Modify: Loop start
+	 */
+	function woostify_woocommerce_loop_start() {
+		$options = woostify_options( false );
+		$class[] = 'products';
+		$class[] = apply_filters( 'woostify_product_columns_desktop', 'columns-' . wc_get_loop_prop( 'columns' ) );
+		$class[] = apply_filters( 'woostify_product_columns_tablet', 'tablet-columns-' . $options['tablet_products_per_row'] );
+		$class[] = apply_filters( 'woostify_product_columns_mobile', 'mobile-columns-' . $options['mobile_products_per_row'] );
+		$class   = implode( ' ', $class );
+		?>
+		<ul class="<?php echo esc_attr( $class ); ?>">
+		<?php
+
+		// If displaying categories, append to the loop.
+		$loop_html = woocommerce_maybe_show_product_subcategories();
+		echo $loop_html; // WPCS: XSS ok.
+	}
+}
+
+if ( ! function_exists( 'woostify_products_per_row' ) ) {
+	/**
+	 * Products per row
+	 */
+	function woostify_products_per_row() {
+		$options = woostify_options( false );
+
+		return $options['products_per_row'];
+	}
+}
+
+if ( ! function_exists( 'woostify_products_per_page' ) ) {
+	/**
+	 * Products per page
+	 */
+	function woostify_products_per_page() {
+		$options = woostify_options( false );
+
+		return $options['products_per_page'];
+	}
+}
+
+if ( ! function_exists( 'woostify_product_loop_item_add_to_cart_icon' ) ) {
+	/**
+	 * Add to cart icon
+	 */
+	function woostify_product_loop_item_add_to_cart_icon() {
+		$options = woostify_options( false );
+		if ( 'icon' != $options['shop_page_add_to_cart_button_position'] ) {
+			return;
+		}
+
+		woostify_modified_add_to_cart_button();
+	}
+}
+
+if ( ! function_exists( 'woostify_product_loop_item_wishlist_icon' ) ) {
+	/**
+	 * Product loop wishlist icon
+	 */
+	function woostify_product_loop_item_wishlist_icon() {
+		$options = woostify_options( false );
+		if ( 'top-right' != $options['shop_page_wishlist_position'] || ! defined( 'YITH_WCWL' ) ) {
+			return;
+		}
+
+		echo do_shortcode( '[yith_wcwl_add_to_wishlist]' );
+	}
+}
+
+if ( ! function_exists( 'woostify_detect_clear_cart_submit' ) ) {
+	/**
+	 * Clear cart button.
+	 */
+	function woostify_detect_clear_cart_submit() {
+		global $woocommerce;
+
+		if ( isset( $_GET['empty-cart'] ) ) {
+			$woocommerce->cart->empty_cart();
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_remove_woocommerce_shop_title' ) ) {
+	/**
+	 * Removes a woocommerce shop title.
+	 */
+	function woostify_remove_woocommerce_shop_title() {
+		return false;
+	}
+}
+
+if ( ! function_exists( 'woostify_change_cross_sells_columns' ) ) {
+	/**
+	 * Change cross sell column
+	 *
+	 * @param      int $columns  The columns.
+	 */
+	function woostify_change_cross_sells_columns( $columns ) {
+		return 3;
+	}
+}
+
+if ( ! function_exists( 'woostify_clear_shop_cart' ) ) {
+	/**
+	 * Add clear shop cart button
+	 */
+	function woostify_clear_shop_cart() {
+		$clear = wc_get_cart_url() . '?empty-cart';
+		?>
+		<div class="clear-cart-box">
+			<a class="clear-cart-btn" href="<?php echo esc_url( $clear ); ?>">
+				<?php esc_html_e( 'Clear cart', 'woostify' ); ?>
+			</a>
+		</div>
+		<?php
 	}
 }

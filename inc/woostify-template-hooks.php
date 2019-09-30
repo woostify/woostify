@@ -5,6 +5,8 @@
  * @package woostify
  */
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * General
  */
