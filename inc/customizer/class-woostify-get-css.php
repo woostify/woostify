@@ -232,7 +232,6 @@ class Woostify_Get_CSS {
 		// Link color.
 		$styles .= '
 			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout),
-			.site-tools .header-search-icon,
 			.product-loop-meta .button,
 			a{
 				color: ' . esc_attr( $options['accent_color'] ) . ';

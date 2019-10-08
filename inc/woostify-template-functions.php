@@ -965,10 +965,14 @@ if ( ! function_exists( 'woostify_get_post_meta' ) ) {
 					$output .= woostify_post_meta_author( false ) . $separator;
 					break;
 				case 'comments':
-					$output .= woostify_post_meta_comments( false ) . $separator;
+					if ( woostify_post_meta_comments( false ) ) {
+						$output .= woostify_post_meta_comments( false ) . $separator;
+					}
 					break;
 				case 'category':
-					$output .= woostify_post_meta_category( false ) . $separator;
+					if ( woostify_post_meta_category( false ) ) {
+						$output .= woostify_post_meta_category( false ) . $separator;
+					}
 					break;
 				default:
 					$output = apply_filters( 'woostify_post_meta_' . $key, $output, $separator );
@@ -1279,7 +1283,7 @@ if ( ! function_exists( 'woostify_post_meta_category' ) ) {
 	function woostify_post_meta_category( $echo = true ) {
 		$categories = get_the_category_list( __( ', ', 'woostify' ) );
 		if ( ! $categories ) {
-			return;
+			return false;
 		}
 
 		$category = '<span class="post-meta-item cat-links">';
@@ -1304,7 +1308,7 @@ if ( ! function_exists( 'woostify_post_meta_comments' ) ) {
 	function woostify_post_meta_comments( $echo = true ) {
 		$comments = '';
 		if ( post_password_required() || ! comments_open() ) {
-			return $comments;
+			return false;
 		}
 
 		ob_start();
@@ -1648,11 +1652,11 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		$sidebar_shop        = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop'];
 		$sidebar_shop_single = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop_single'];
 
-		if ( true == woostify_is_elementor_page() || is_404() ) {
+		if ( woostify_is_elementor_page() || is_404() ) {
 			return $sidebar;
 		}
 
-		if ( true == woostify_is_product_archive() ) {
+		if ( woostify_is_product_archive() ) {
 			// Product archive.
 			$sidebar = woostify_get_sidebar_id( 'sidebar-shop', $sidebar_shop, $sidebar_default );
 		} elseif ( is_singular( 'product' ) ) {
@@ -1685,11 +1689,11 @@ if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 	function woostify_get_sidebar() {
 		$sidebar = woostify_sidebar_class();
 
-		if ( false !== strpos( $sidebar, 'no-sidebar' ) || '' == $sidebar || true == woostify_is_elementor_page() ) {
+		if ( false !== strpos( $sidebar, 'no-sidebar' ) || '' == $sidebar || woostify_is_elementor_page() ) {
 			return;
 		}
 
-		if ( false !== strpos( $sidebar, 'woocommerce-sidebar' ) || true == woostify_is_product_archive() || is_singular( 'product' ) ) {
+		if ( false !== strpos( $sidebar, 'woocommerce-sidebar' ) || woostify_is_product_archive() || is_singular( 'product' ) ) {
 			get_sidebar( 'shop' );
 		} else {
 			get_sidebar();
