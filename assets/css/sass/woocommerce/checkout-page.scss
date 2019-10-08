@@ -211,10 +211,25 @@
 	background-color: #f9f9f9;
 	padding: 30px;
 	border-radius: 4px;
+
 	@media ( min-width: $screen-md ) {
 		float: left;
 		width: 470px;
 	}
+
+	#shipping_method {
+		li {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
+		.shipping_method {
+			order: 2;
+			margin: 0px 0px 0px 10px;
+		}
+	}
+
 	.shop_table{
 		margin: 0;
 		border: 0;
@@ -355,11 +370,21 @@
 }
 
 /* responsive */
+@media ( min-width: $screen-md ) {
+	.woocommerce-order-pay {
+		#order_review {
+			float: none;
+			margin: 0 ato;
+		}
+	}
+}
+
 @media ( max-width: $screen-md - 1 ) {
 	#order_review{
 		clear: both;
 		margin-top: 30px;
 	}
+
 }
 
 @media ( max-width: 600px ) {

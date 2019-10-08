@@ -9302,6 +9302,17 @@ footer#colophon {
   }
 }
 
+#order_review #shipping_method li {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#order_review #shipping_method .shipping_method {
+  order: 2;
+  margin: 0px 0px 0px 10px;
+}
+
 #order_review .shop_table {
   margin: 0;
   border: 0;
@@ -9432,6 +9443,13 @@ footer#colophon {
 }
 
 /* responsive */
+@media (min-width: 992px) {
+  .woocommerce-order-pay #order_review {
+    float: none;
+    margin: 0 ato;
+  }
+}
+
 @media (max-width: 991px) {
   #order_review {
     clear: both;
