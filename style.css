@@ -7476,6 +7476,7 @@ footer#colophon {
 
 .product-loop-image-wrapper .woocommerce-loop-product__link {
   display: block;
+  text-align: center;
 }
 
 .product-loop-image-wrapper.zoom-hover:hover img {
@@ -8053,6 +8054,7 @@ footer#colophon {
 
 .cart .quantity {
   margin-right: 8px;
+  border: 1px solid #e8e8e8;
 }
 
 @media (max-width: 600px) {
@@ -9970,10 +9972,6 @@ footer#colophon {
 
 .elementor-add-to-cart.elementor-product-variable .variations .value:before {
   content: none !important;
-}
-
-.elementor-add-to-cart .quantity {
-  border: 1px solid #e8e8e8 !important;
 }
 
 .elementor-widget-wc-add-to-cart .quantity {

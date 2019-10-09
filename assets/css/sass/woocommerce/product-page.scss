@@ -421,6 +421,7 @@
 	flex-wrap: wrap $i;
 	.quantity {
 		margin-right: 8px;
+		border: 1px solid #e8e8e8;
 
 		@media ( max-width: 600px ) {
 			width: 90px;
