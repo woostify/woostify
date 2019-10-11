@@ -231,10 +231,28 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// SHOP SINGLE.
+			// Stock label.
+			if ( ! $options['shop_single_stock_label'] ) {
+				add_filter( 'woocommerce_get_stock_html', '__return_empty_string' );
+			}
+
+			// Product tab additional information.
+			if ( ! $options['shop_single_additional_information'] ) {
+				add_filter( 'woocommerce_product_tabs', [ $this, 'woostify_remove_additional_information_tabs' ], 98 );
+			}
+
 			// Related product.
 			if ( ! $options['shop_single_related_product'] ) {
 				remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 			}
+		}
+
+		/**
+		 * Remove additional informaltion
+		 */
+		function woostify_remove_additional_information_tabs( $tabs ) {
+			unset( $tabs['additional_information'] );
+			return $tabs;
 		}
 
 		/**
