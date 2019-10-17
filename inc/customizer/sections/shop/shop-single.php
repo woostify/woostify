@@ -27,6 +27,8 @@ $wp_customize->add_control(
 				'woostify_setting[shop_single_product_navigation]',
 				'woostify_setting[shop_single_related_product]',
 				'woostify_setting[shop_single_ajax_add_to_cart]',
+				'woostify_setting[shop_single_stock_label]',
+				'woostify_setting[shop_single_additional_information]',
 				'woostify_setting[shop_single_content_background]',
 				'woostify_setting[shop_single_trust_badge_image]',
 			]
@@ -76,27 +78,6 @@ $wp_customize->add_control(
 	)
 );
 
-// Related product.
-$wp_customize->add_setting(
-	'woostify_setting[shop_single_related_product]',
-	array(
-		'type'              => 'option',
-		'default'           => $defaults['shop_single_related_product'],
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Switch_Control(
-		$wp_customize,
-		'woostify_setting[shop_single_related_product]',
-		array(
-			'label'    => __( 'Related Product', 'woostify' ),
-			'section'  => 'woostify_shop_single',
-			'settings' => 'woostify_setting[shop_single_related_product]',
-		)
-	)
-);
-
 // Ajax single add to cart.
 $wp_customize->add_setting(
 	'woostify_setting[shop_single_ajax_add_to_cart]',
@@ -114,6 +95,69 @@ $wp_customize->add_setting(
 			'label'    => __( 'Ajax Single Add To Cart', 'woostify' ),
 			'section'  => 'woostify_shop_single',
 			'settings' => 'woostify_setting[shop_single_ajax_add_to_cart]',
+		)
+	)
+);
+
+// Stock label.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_stock_label]',
+	array(
+		'default'           => $defaults['shop_single_stock_label'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'type'              => 'option',
+	)
+	);
+	$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_stock_label]',
+		array(
+			'label'    => __( 'Stock Label', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_stock_label]',
+		)
+	)
+);
+
+// Additional information.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_additional_information]',
+	array(
+		'default'           => $defaults['shop_single_additional_information'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'type'              => 'option',
+	)
+	);
+	$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_additional_information]',
+		array(
+			'label'    => __( 'Additional Information Tab', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_additional_information]',
+		)
+	)
+);
+
+// Related product.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_related_product]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_single_related_product'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_related_product]',
+		array(
+			'label'    => __( 'Related Product', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_related_product]',
 		)
 	)
 );
