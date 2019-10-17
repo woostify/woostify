@@ -4653,6 +4653,12 @@ dd {
   .main-navigation .primary-navigation > li {
     display: inline-flex;
     line-height: 1;
+    align-items: center;
+  }
+  .main-navigation .primary-navigation > li.menu-item-has-children:after {
+    content: "\e64b";
+    font-family: "themify";
+    font-size: 10px !important;
   }
   .main-navigation .primary-navigation > li > a {
     padding: 20px;

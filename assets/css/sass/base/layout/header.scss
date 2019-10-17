@@ -97,6 +97,15 @@
             > li{
                 display: inline-flex;
                 line-height: 1;
+                align-items: center;
+
+                &.menu-item-has-children{
+                    &:after{
+                        content: "\e64b";
+                        font-family: $icon;
+                        font-size: 10px $i;
+                    }
+                }
 
                 > a{
                     padding: 20px;
