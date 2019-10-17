@@ -490,7 +490,7 @@ msgid "%s not activated."
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:315
-msgid "Get The Woostify Pro Version!"
+msgid "Get Woostify  Pro Add-ons!"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:321
@@ -686,7 +686,7 @@ msgid "Opps! The page you are looking for is missing for some reasons. Please co
 msgstr ""
 
 #: inc/customizer/class-woostify-customizer.php:292
-msgid "Get The Woostify Pro Extensions!"
+msgid "Get Woostify  Pro Extensions!"
 msgstr ""
 
 #: inc/customizer/class-woostify-customizer.php:310, inc/customizer/class-woostify-customizer.php:326, inc/customizer/class-woostify-customizer.php:342, inc/customizer/class-woostify-customizer.php:358, inc/customizer/class-woostify-customizer.php:374

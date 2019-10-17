@@ -289,7 +289,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 						$wp_customize,
 						'woostify_get_pro_section',
 						array(
-							'pro_text'   => __( 'Get The Woostify Pro Extensions!', 'woostify' ),
+							'pro_text'   => __( 'Get Woostify  Pro Extensions!', 'woostify' ),
 							'pro_url'    => woostify_get_pro_url(),
 							'capability' => 'edit_theme_options',
 							'priority'   => 0,
