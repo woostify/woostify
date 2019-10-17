@@ -487,13 +487,18 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 			<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary navigation', 'woostify' ); ?>">
 				<?php
 				if ( has_nav_menu( 'primary' ) ) {
-					wp_nav_menu(
-						array(
-							'theme_location' => 'primary',
-							'menu_class'     => 'primary-navigation',
-							'container'      => '',
-						)
-					);
+					$args = [
+						'theme_location' => 'primary',
+						'menu_class'     => 'primary-navigation',
+						'container'      => '',
+					];
+
+					// Support mega-menu.
+					if ( defined( 'WOOSTIFY_PRO_VERSION' ) && class_exists( 'Woostify_Walker_Menu' ) ) {
+						$args['walker'] = new Woostify_Walker_Menu();
+					}
+
+					wp_nav_menu( $args );
 				} elseif ( is_user_logged_in() ) {
 					?>
 					<a class="add-menu" href="<?php echo esc_url( get_admin_url() . 'nav-menus.php' ); ?>"><?php esc_html_e( 'Add a Primary Menu', 'woostify' ); ?></a>

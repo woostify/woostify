@@ -1,0 +1,13 @@
+/* For Elementor preview mode */
+.elementor-editor-active,
+.elementor-editor-preview {
+	.elementor-widget-wp-widget-nav_menu {
+		.menu,
+		.sub-menu {
+			list-style: none;
+			padding-left: 0;
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+}

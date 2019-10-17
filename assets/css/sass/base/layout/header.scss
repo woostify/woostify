@@ -102,7 +102,7 @@
                     padding: 20px;
                 }
 
-                ul{
+                ul:not(.sub-mega-menu){
                     opacity: 0;
                     visibility: hidden;
                     position: absolute;
@@ -111,7 +111,7 @@
                     margin-left: 0;
                     min-width: 180px;
                     text-align: left;
-                    z-index: 5;
+                    z-index: -1;
                     @include scaleY(0);
 
                     ul{
@@ -145,16 +145,17 @@
                 position: relative;
 
                 &:hover{
-                    > ul{
+                    > ul:not(.sub-mega-menu) {
                         pointer-events: auto;
                         opacity: 1;
                         visibility: visible;
                         top: 100%;
+                        z-index: 5;
                         @include translatey( 0px );
                     }
                 }
             }
-            .sub-menu{
+            .sub-menu:not(.sub-mega-menu){
                 pointer-events: none;
                 background-color: #fff;
 				@include shadow( 0 2px 8px 0 rgba(125, 122, 122, 0.2) );
