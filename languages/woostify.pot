@@ -497,107 +497,111 @@ msgstr ""
 msgid "Multiple Headers"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:323, inc/admin/class-woostify-admin.php:329, inc/admin/class-woostify-admin.php:335, inc/admin/class-woostify-admin.php:341, inc/admin/class-woostify-admin.php:347, inc/admin/class-woostify-admin.php:353, inc/admin/class-woostify-admin.php:359, inc/admin/class-woostify-admin.php:365, inc/admin/class-woostify-admin.php:371, inc/admin/class-woostify-admin.php:377, inc/admin/class-woostify-admin.php:383
+#: inc/admin/class-woostify-admin.php:323, inc/admin/class-woostify-admin.php:329, inc/admin/class-woostify-admin.php:335, inc/admin/class-woostify-admin.php:341, inc/admin/class-woostify-admin.php:347, inc/admin/class-woostify-admin.php:353, inc/admin/class-woostify-admin.php:359, inc/admin/class-woostify-admin.php:365, inc/admin/class-woostify-admin.php:371, inc/admin/class-woostify-admin.php:377, inc/admin/class-woostify-admin.php:383, inc/admin/class-woostify-admin.php:389
 msgid "Learn more"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:327
-msgid "Elementor Bundle"
+msgid "Mega Menu"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:333
-msgid "Header & Footer Builder"
+msgid "Elementor Bundle"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:339
-msgid "Ajax WooCommerce Search"
+msgid "Header & Footer Builder"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:345
-msgid "Size Guide"
+msgid "Ajax WooCommerce Search"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:351
-msgid "Advanced Shop Widgets"
+msgid "Size Guide"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:357
-msgid "Buy Now Button"
+msgid "Advanced Shop Widgets"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:363
-msgid "Sticky Header"
+msgid "Buy Now Button"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:369
-msgid "Sticky Button"
+msgid "Sticky Header"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:375
-msgid "Quick View"
+msgid "Sticky Button"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:381
+msgid "Quick View"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:387
 msgid "Countdown Urgency"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:396, inc/admin/class-woostify-admin.php:432
+#: inc/admin/class-woostify-admin.php:402, inc/admin/class-woostify-admin.php:438
 msgid "Import Demo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:402
+#: inc/admin/class-woostify-admin.php:408
 msgid "Quickly and easily transform your shops appearance with Woostify Demo Sites."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:406
+#: inc/admin/class-woostify-admin.php:412
 msgid "It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:437
+#: inc/admin/class-woostify-admin.php:443
 msgid "Activate"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:439
+#: inc/admin/class-woostify-admin.php:445
 msgid "Install Woostify Library"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:448
+#: inc/admin/class-woostify-admin.php:454
 msgid "Activating"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:460, inc/customizer/class-woostify-customizer.php:311, inc/customizer/class-woostify-customizer.php:327, inc/customizer/class-woostify-customizer.php:343, inc/customizer/class-woostify-customizer.php:359, inc/customizer/class-woostify-customizer.php:375
+#: inc/admin/class-woostify-admin.php:466, inc/customizer/class-woostify-customizer.php:311, inc/customizer/class-woostify-customizer.php:327, inc/customizer/class-woostify-customizer.php:343, inc/customizer/class-woostify-customizer.php:359, inc/customizer/class-woostify-customizer.php:375
 msgid "Learn More"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:464
+#: inc/admin/class-woostify-admin.php:470
 msgid "How it works. Learn Woostify."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:468
+#: inc/admin/class-woostify-admin.php:474
 msgid "Visit Documentation"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:474
+#: inc/admin/class-woostify-admin.php:480
 msgid "Woostify Community"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:478
+#: inc/admin/class-woostify-admin.php:484
 msgid "Join Our Facebook Group"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:484
+#: inc/admin/class-woostify-admin.php:490
 msgid "Customer Support"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:488
+#: inc/admin/class-woostify-admin.php:494
 msgid "Submit a Ticket"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:494
+#: inc/admin/class-woostify-admin.php:500
 msgid "Love Woostify?"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:498
+#: inc/admin/class-woostify-admin.php:504
 msgid "Give us 5 stars!"
 msgstr ""
 

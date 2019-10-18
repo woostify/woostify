@@ -320,7 +320,13 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Multiple Headers', 'woostify' ); ?>
 											</strong>
-											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/multiple-header-styles/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/multiple-headers/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name">
+												<?php esc_html_e( 'Mega Menu', 'woostify' ); ?>
+											</strong>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/mega-menu/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
@@ -456,7 +462,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								</div>
 							</div>
 
-							<div class="woostify-enhance__column">
+							<div class="woostify-enhance__column list-section-wrapper">
 								<h3><?php esc_html_e( 'Learn More', 'woostify' ); ?></h3>
 
 								<div class="wf-quick-setting-section">
@@ -465,7 +471,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									</p>
 
 									<p>
-										<a href="<?php echo esc_url( $woostify_url ).'/docs'; ?>" class="woostify-button"><?php esc_html_e( 'Visit Documentation', 'woostify' ); ?></a>
+										<a href="<?php echo esc_url( $woostify_url ); ?>/docs" class="woostify-button"><?php esc_html_e( 'Visit Documentation', 'woostify' ); ?></a>
 									</p>
 								</div>
 

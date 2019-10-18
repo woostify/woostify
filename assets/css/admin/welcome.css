@@ -1,5 +1,6 @@
 .woostify-options-wrap {
   /* List pro feature */
+  /* List other section */
 }
 
 .woostify-options-wrap .woostify-enhance {
@@ -165,5 +166,13 @@
 }
 
 .woostify-options-wrap .pro-featured-list .pro-featured-item:last-of-type {
+  border-bottom: 0;
+}
+
+.woostify-options-wrap .list-section-wrapper .wf-quick-setting-section {
+  border-bottom: 1px solid #eee;
+}
+
+.woostify-options-wrap .list-section-wrapper .wf-quick-setting-section:last-of-type {
   border-bottom: 0;
 }

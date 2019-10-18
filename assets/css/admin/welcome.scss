@@ -164,4 +164,15 @@
 			}
 		}
 	}
+
+	/* List other section */
+	.list-section-wrapper {
+		.wf-quick-setting-section {
+			border-bottom: 1px solid #eee;
+
+			&:last-of-type {
+				border-bottom: 0;
+			}
+		}
+	}
 }
