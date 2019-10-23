@@ -336,7 +336,7 @@
         height: 2px;
         margin-left: .5em;
 		margin-right: .5em;
-        @extend .clearfix
+        @extend .clearfix;
     }
 
     .ui-widget-header{

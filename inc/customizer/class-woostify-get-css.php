@@ -116,9 +116,8 @@ class Woostify_Get_CSS {
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
-	,
-	.loop-wrapper-wishlist a:hover,
-	.loop-wrapper-wishlist .yith-wcwl-wishlistexistsbrowse show		.price_slider_wrapper .price_s.ider,
+			.loop-wrapper-wishlist a:hover,
+			.price_slider_wrapper .price_slider,
 			.has-woostify-text-background-color{
 				background-color: ' . esc_attr( $options['text_color'] ) . ';
 			}
@@ -216,7 +215,9 @@ class Woostify_Get_CSS {
 			.cart-collaterals th,
 			.woocommerce-mini-cart__total strong,
 			.woocommerce-form-login-toggle .woocommerce-info a,
-			.has-woostify-heading-color{
+			.has-woostify-heading-color,
+			.woocommerce-table--order-details td,
+			.woocommerce-table--order-details td.product-name a{
 				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 
@@ -356,6 +357,7 @@ class Woostify_Get_CSS {
 			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout):hover,
 			.product-nav-item:hover > a,
 			.product-nav-item .product-nav-item-price,
+			.woocommerce-thankyou-order-received,
 			a:hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
@@ -376,6 +378,10 @@ class Woostify_Get_CSS {
 			.has-woostify-primary-background-color,
 			.woostify-simple-subsbrice-form input[type="submit"]:hover{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
+			}
+
+			.woocommerce-thankyou-order-received {
+				border-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
 			/* Fix issue not showing on IE */
