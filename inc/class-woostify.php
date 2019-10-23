@@ -19,6 +19,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 		public function __construct() {
 			// Set the content width based on the theme's design and stylesheet.
 			$this->woostify_content_width();
+			add_action( 'init', [ $this, 'woostify_includes' ] );
 
 			add_action( 'after_setup_theme', array( $this, 'woostify_setup' ) );
 			add_action( 'wp', array( $this, 'woostify_wp_action' ) );
@@ -45,6 +46,14 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_action( 'customize_preview_init', array( $this, 'woostify_customize_live_preview' ) );
 			add_filter( 'wp_tag_cloud', array( $this, 'woostify_remove_tag_inline_style' ) );
 			add_filter( 'excerpt_more', array( $this, 'woostify_modify_excerpt_more' ) );
+		}
+
+		/**
+		 * Includes
+		 */
+		public function woostify_includes() {
+			// Nav menu walker.
+			require_once WOOSTIFY_THEME_DIR . 'inc/class-woostify-walker-menu.php';
 		}
 
 		/**

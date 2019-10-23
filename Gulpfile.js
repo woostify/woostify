@@ -129,7 +129,7 @@ let _watch = ( done ) => {
 let clean = () => del( null );
 
 // Build.
-gulp.task( 'build', gulp.series( clean, gulp.parallel( _sass, _sassAdmin, _minJs, _pot ) ) );
+// gulp.task( 'build', gulp.series( clean, gulp.parallel( _sass, _sassAdmin, _minJs, _pot ) ) );.
 
 // Default task.
 gulp.task( 'default', gulp.parallel( _watch, _browserSync ) );

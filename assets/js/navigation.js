@@ -25,21 +25,14 @@ function nav() {
 // Accordion menu on sidebar.
 function sidebarMenu( node ) {
 	var selector = ( arguments.length > 0 && undefined !== arguments[0] ) ? jQuery( node ) : jQuery( '.sidebar-menu .primary-navigation' ),
-		hasChild = selector.find( '.menu-item-has-children' );
-
-	if ( hasChild.length ) {
-		hasChild.prepend( '<span class="arrow-icon"></span>' );
-	}
-
-	var arrow = selector.find( '.arrow-icon' );
+		arrow    = selector.find( '.arrow-icon' );
 
 	jQuery( arrow ).on( 'click', function( e ) {
-
 		e.preventDefault();
 
 		var t        = jQuery( this ),
-			siblings = t.siblings( 'ul' ),
-			arrow    = t.parent().parent().find( '.arrow-icon' ),
+			siblings = t.parent().siblings( 'ul' ),
+			arrow    = t.parent().parent().parent().find( '.arrow-icon' ),
 			subMenu  = t.parent().parent().find( 'li .sub-menu' );
 
 		if ( siblings.hasClass( 'show' ) ) {
