@@ -215,6 +215,7 @@ class Woostify_Get_CSS {
 			.cart-collaterals th,
 			.woocommerce-mini-cart__total strong,
 			.woocommerce-form-login-toggle .woocommerce-info a,
+			.woocommerce-form-coupon-toggle .woocommerce-info a,
 			.has-woostify-heading-color,
 			.woocommerce-table--order-details td,
 			.woocommerce-table--order-details td.product-name a{
@@ -314,14 +315,12 @@ class Woostify_Get_CSS {
 			@media ( max-width: 600px ) {
 				.woocommerce-cart-form__contents [name="update_cart"],
 				.woocommerce-cart-form__contents .coupon button,
-				.checkout_coupon.woocommerce-form-coupon [name="apply_coupon"],
 				.clear-cart-btn{
 					background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 					filter: grayscale(100%);
 				}
 				.woocommerce-cart-form__contents [name="update_cart"],
 				.woocommerce-cart-form__contents .coupon button,
-				.checkout_coupon.woocommerce-form-coupon [name="apply_coupon"],
 				.clear-cart-box .clear-cart-btn{
 					color: ' . esc_attr( $options['button_text_color'] ) . ';
 				}
@@ -344,6 +343,7 @@ class Woostify_Get_CSS {
 			.default-widget a strong,
 			.woocommerce-mini-cart__total .amount,
 			.woocommerce-form-login-toggle .woocommerce-info a:hover,
+			.woocommerce-form-coupon-toggle .woocommerce-info a:hover,
 			.has-woostify-primary-color,
 			.blog-layout-grid .site-main .post-read-more a,
 			.site-footer a:hover,
