@@ -4660,7 +4660,8 @@ dd {
     align-items: center;
   }
   .main-navigation .primary-navigation > li > a {
-    padding: 20px;
+    padding: 20px 0;
+    margin: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -4697,6 +4698,9 @@ dd {
   }
   .main-navigation .primary-navigation li {
     position: relative;
+  }
+  .main-navigation .primary-navigation li ul {
+    margin-left: 0;
   }
   .main-navigation .primary-navigation li:hover > ul:not(.sub-mega-menu) {
     pointer-events: auto;

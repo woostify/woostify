@@ -104,7 +104,8 @@
                 align-items: center;
 
                 > a{
-                    padding: 20px;
+                    padding: 20px 0;
+                    margin: 0 20px;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
@@ -147,6 +148,10 @@
             }
             li{
                 position: relative;
+
+                ul {
+                	margin-left: 0;
+                }
 
                 &:hover{
                     > ul:not(.sub-mega-menu) {
