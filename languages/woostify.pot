@@ -930,7 +930,7 @@ msgstr ""
 msgid "Blog Post Meta"
 msgstr ""
 
-#: inc/customizer/sections/buttons/button.php:46, inc/customizer/sections/footer/footer.php:171, inc/customizer/sections/header/header.php:54, inc/customizer/sections/header/topbar.php:69, inc/customizer/sections/page-header/page-header.php:200
+#: inc/customizer/sections/buttons/button.php:46, inc/customizer/sections/footer/footer.php:171, inc/customizer/sections/header/topbar.php:69, inc/customizer/sections/page-header/page-header.php:200
 msgid "Background Color"
 msgstr ""
 
@@ -1024,6 +1024,10 @@ msgstr ""
 
 #: inc/customizer/sections/header/header.php:25
 msgid "Header Layout"
+msgstr ""
+
+#: inc/customizer/sections/header/header.php:54
+msgid "Header Background"
 msgstr ""
 
 #: inc/customizer/sections/header/header.php:97

@@ -51,7 +51,7 @@ $wp_customize->add_control(
 		'woostify_setting[header_background_color]',
 		array(
 			'priority' => 30,
-			'label'    => __( 'Background Color', 'woostify' ),
+			'label'    => __( 'Header Background', 'woostify' ),
 			'section'  => 'woostify_header',
 			'settings' => 'woostify_setting[header_background_color]',
 		)
