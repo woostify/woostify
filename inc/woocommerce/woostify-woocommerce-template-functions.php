@@ -30,7 +30,7 @@ if ( ! function_exists( 'woostify_get_last_product_id' ) ) {
 				$id = get_the_ID();
 			}
 
-			wp_reset_postdata();
+			$query->reset_postdata();
 		}
 
 		return $id;

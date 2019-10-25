@@ -124,7 +124,7 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 
 					<?php
 				endwhile;
-				wp_reset_postdata();
+				$query->reset_postdata();
 			endif;
 
 			echo wp_kses_post( $args['after_widget'] );

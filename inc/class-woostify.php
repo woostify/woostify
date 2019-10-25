@@ -19,7 +19,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 		public function __construct() {
 			// Set the content width based on the theme's design and stylesheet.
 			$this->woostify_content_width();
-			add_action( 'init', [ $this, 'woostify_includes' ] );
+			$this->woostify_includes();
 
 			add_action( 'after_setup_theme', array( $this, 'woostify_setup' ) );
 			add_action( 'wp', array( $this, 'woostify_wp_action' ) );

@@ -122,13 +122,12 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 							the_content();
 						}
 					$item_output .= ob_get_clean();
+					$query->reset_postdata();
 				}
 
-				wp_reset_postdata();
 				$item_output .= '</div>';
 				$item_output .= '</ul>';
-			}
-			// End Mega menu content.
+			} // End Mega menu content.
 
 			$item_output .= $args->after;
 
