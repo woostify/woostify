@@ -121,8 +121,10 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 
 							the_content();
 						}
+
+					// Reset post data.
+					wp_reset_postdata();
 					$item_output .= ob_get_clean();
-					$query->reset_postdata();
 				}
 
 				$item_output .= '</div>';

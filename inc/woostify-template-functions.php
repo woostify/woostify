@@ -79,7 +79,7 @@ if ( ! function_exists( 'woostify_post_related' ) ) {
 				</div>
 			</div>
 			<?php
-			$query->reset_postdata();
+			wp_reset_postdata();
 		endif;
 	}
 }
