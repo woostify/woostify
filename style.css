@@ -7592,6 +7592,8 @@ footer#colophon {
 
 .has-equal-image-height img {
   position: absolute;
+  left: 0;
+  top: 0;
   height: 100% !important;
   width: 100%;
   object-fit: cover;
