@@ -524,12 +524,19 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 	 * Woostify breadcrumb
 	 */
 	function woostify_breadcrumb() {
-		$page_id     = woostify_get_page_id();
-		$options     = woostify_options( false );
-		$breadcrumb  = $options['page_header_breadcrumb'];
-		$container[] = 'woostify-breadcrumb';
+		$object        = get_queried_object();
+		$home_url      = home_url( '/' );
+		$page_id       = woostify_get_page_id();
+		$options       = woostify_options( false );
+		$blog_page_url = get_option( 'page_for_posts' );
+		$blog_page_url = 0 != $blog_page_url ? get_permalink( $blog_page_url ) : $home_url;
+		$shop_page_url = '#';
+		$breadcrumb    = $options['page_header_breadcrumb'];
+		$container[]   = 'woostify-breadcrumb';
 
 		if ( class_exists( 'woocommerce' ) ) {
+			$shop_page_url = wc_get_page_permalink( 'shop' );
+
 			if ( is_singular( 'product' ) ) {
 				$breadcrumb  = $options['shop_single_breadcrumb'];
 			} elseif ( woostify_is_woocommerce_page() ) {
@@ -546,20 +553,21 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 
 		<nav class="<?php echo esc_attr( $container ); ?>" itemscope itemtype="http://schema.org/BreadcrumbList">
 			<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-				<a itemprop="item" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<a itemprop="item" href="<?php echo esc_url( $home_url ); ?>">
 					<span itemprop="name"><?php echo esc_html( apply_filters( 'woostify_breadcrumb_home', get_bloginfo( 'name' ) ) ); ?></span>
 				</a>
 				<meta itemprop="position" content="1"></span>
 			</span>
 
 			<?php
+			// Single product.
 			if ( class_exists( 'woocommerce' ) && is_singular( 'product' ) ) {
 				$terms = get_the_terms( $page_id, 'product_cat' );
 
 				if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 					?>
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-						<a itemprop="item" href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>">
+						<a itemprop="item" href="<?php echo esc_url( $shop_page_url ); ?>">
 							<span itemprop="name"><?php esc_html_e( 'Shop', 'woostify' ); ?></span>
 						</a>
 						<meta itemprop="position" content="2"></span>
@@ -573,18 +581,19 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 					</span>
 
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-						<a itemprop="item" href="<?php echo esc_url( home_url( '/' ) ); ?>"></a>
+						<a itemprop="item" href="<?php echo esc_url( $home_url ); ?>"></a>
 						<span itemprop="name"><?php echo get_the_title( $page_id ); ?></span>
 						<meta itemprop="position" content="4"></span>
 					</span>
 					<?php
 				}
+			// Single blog.
 			} elseif ( is_single() ) {
 				$cat = get_the_category();
 				if ( ! empty( $cat ) && ! is_wp_error( $cat ) ) {
 					?>
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-						<a itemprop="item" href="<?php echo esc_url( get_permalink( $page_id ) ); ?>">
+						<a itemprop="item" href="<?php echo esc_url( $blog_page_url ); ?>">
 							<span itemprop="name"><?php esc_html_e( 'Blog', 'woostify' ); ?></span>
 						</a>
 						<meta itemprop="position" content="2"></span>
@@ -598,16 +607,63 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 					</span>
 
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-						<a itemprop="item" href="<?php echo esc_url( home_url( '/' ) ); ?>"></a>
+						<a itemprop="item" href="<?php echo esc_url( $home_url ); ?>"></a>
 						<span itemprop="name"><?php echo get_the_title(); ?></span>
 						<meta itemprop="position" content="4"></span>
 					</span>
 					<?php
 				}
 			} else {
+				// Product category.
+				if ( class_exists( 'woocommerce' ) && is_product_category() ) {
+					?>
+					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<a itemprop="item" href="<?php echo esc_url( $shop_page_url ); ?>">
+							<span itemprop="name"><?php esc_html_e( 'Shop', 'woostify' ); ?></span>
+						</a>
+						<meta itemprop="position" content="2"></span>
+					</span>
+
+					<?php
+					$parent_cat_id = $object->parent;
+					if ( $parent_cat_id ) {
+						$parent_category = get_term( $parent_cat_id, 'product_cat' );
+						?>
+						<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+							<a itemprop="item" href="<?php echo esc_url( get_term_link( $parent_category->term_id ) ); ?>">
+								<span itemprop="name"><?php echo esc_html( $parent_category->name ); ?></span>
+							</a>
+							<meta itemprop="position" content="3"></span>
+						</span>
+						<?php
+					}
+				// Blog category.
+				} elseif ( is_category() ) {
+					?>
+					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<a itemprop="item" href="<?php echo esc_url( $blog_page_url ); ?>">
+							<span itemprop="name"><?php esc_html_e( 'Blog', 'woostify' ); ?></span>
+						</a>
+						<meta itemprop="position" content="2"></span>
+					</span>
+
+					<?php
+					$parent_cat_id = $object->category_parent;
+					if ( $parent_cat_id ) {
+						$parent_category = get_category( $parent_cat_id );
+						?>
+						<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+							<a itemprop="item" href="<?php echo esc_url( get_term_link( $parent_category->term_id ) ); ?>">
+								<span itemprop="name"><?php echo esc_html( $parent_category->name ); ?></span>
+							</a>
+							<meta itemprop="position" content="2"></span>
+						</span>
+						<?php
+					}
+				}
 				?>
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-						<a itemprop="item" href="<?php echo esc_url( home_url( '/' ) ); ?>"></a>
+						<a itemprop="item" href="<?php echo esc_url( $home_url ); ?>"></a>
 						<span itemprop="name">
 							<?php
 							if ( is_day() ) {
@@ -641,7 +697,13 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 							}
 							?>
 						</span>
-						<meta itemprop="position" content="2"></span>
+						<?php
+							$index = 2;
+							if ( class_exists( 'woocommerce' ) && is_product_category() ) {
+								$index = 4;
+							}
+						?>
+						<meta itemprop="position" content="<?php echo esc_attr( $index ); ?>"></span>
 					</span>
 				<?php
 			}
