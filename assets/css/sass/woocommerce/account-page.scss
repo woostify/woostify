@@ -3,6 +3,7 @@
 	h2{
 		font-size: 20px;
 		font-weight: normal;
+		text-align: center;
 	}
 
 	.entry-title{
@@ -18,7 +19,7 @@
 	.woocommerce-form.woocommerce-form-login{
 		border-top: 2px dashed #e8e8e8;
 		width: 100%;
-		margin-right: 0;
+		margin: 0 auto;
 		@media ( min-width: $screen-md ) {
 			max-width: 50%;
 		}
