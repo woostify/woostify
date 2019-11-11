@@ -108,6 +108,48 @@
             }
         }
 
+        &--dashboard{
+	        a:before{
+	            content: "\e6aa";
+	        }
+	    }
+
+	    &--orders{
+	        a:before{
+	            content: "\e694";
+	        }
+	    }
+
+	    &--downloads{
+	        a:before{
+	            content: "\e6a7";
+	        }
+	    }
+
+	    &--edit-address{
+	        a:before{
+	            content: "\e6a8";
+	        }
+	    }
+
+	    &--payment-methods {
+	    	a:before{
+	            content: "\e721";
+	        }
+	    }
+
+	    &--edit-account{
+	        a:before{
+	            content: "\e602";
+	        }
+	    }
+
+	    &--customer-logout{
+	        a:before{
+	            content: "\e61d";
+	        }
+	    }
+
         a{
             font-size: 15px;
             @include flex( flex, flex-start, center );
@@ -118,42 +160,6 @@
                 margin-right: 15px;
                 line-height: 0;
             }
-        }
-    }
-
-    .woocommerce-MyAccount-navigation-link--dashboard{
-        a:before{
-            content: "\e6aa";
-        }
-    }
-
-    .woocommerce-MyAccount-navigation-link--orders{
-        a:before{
-            content: "\e694";
-        }
-    }
-
-    .woocommerce-MyAccount-navigation-link--downloads{
-        a:before{
-            content: "\e6a7";
-        }
-    }
-
-    .woocommerce-MyAccount-navigation-link--edit-address{
-        a:before{
-            content: "\e6a8";
-        }
-    }
-
-    .woocommerce-MyAccount-navigation-link--edit-account{
-        a:before{
-            content: "\e721";
-        }
-    }
-
-    .woocommerce-MyAccount-navigation-link--customer-logout{
-        a:before{
-            content: "\e61d";
         }
     }
 }
