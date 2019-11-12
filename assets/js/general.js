@@ -106,17 +106,17 @@ function dialogSearch() {
 	}
 }
 
-// Footer action.
-function footerAction() {
+// Scroll action.
+function scrollAction( selector, position ) {
 	var scroll = function() {
-		var item = document.getElementsByClassName( 'footer-action' )[0];
+		var item = document.querySelector( selector );
 		if ( ! item ) {
 			return;
 		}
 
 		var pos = arguments.length > 0 && undefined !== arguments[0] ? arguments[0] : window.scrollY;
 
-		if ( pos > 200 ) {
+		if ( pos > position ) {
 			item.classList.add( 'active' );
 		} else {
 			item.classList.remove( 'active' );
@@ -132,8 +132,8 @@ function footerAction() {
 	} );
 }
 
-// Scroll to top.
-function scrollToTop() {
+// Go to top button.
+function toTopButton() {
 	var top = jQuery( '#scroll-to-top' );
 	if ( ! top.length ) {
 		return;
@@ -216,6 +216,6 @@ function woostifyRemoveClassPrefix() {
 
 document.addEventListener( 'DOMContentLoaded', function() {
 	dialogSearch();
-	footerAction();
-	scrollToTop();
+	scrollAction( '#scroll-to-top', 200 );
+	toTopButton();
 } );

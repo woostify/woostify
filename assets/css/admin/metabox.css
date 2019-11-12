@@ -53,6 +53,11 @@ body.old-version .woostify-metabox-option {
   position: relative;
 }
 
+.woostify-multi-selection .no-posts-found {
+  padding: 10px;
+  display: block;
+}
+
 .woostify-multi-selection.active .woostify-multi-select-selection {
   border-radius: 3px 3px 0 0;
   border-color: #aea9a9;
@@ -79,11 +84,27 @@ body.old-version .woostify-metabox-option {
   border: 1px solid #ddd;
   border-radius: 3px;
   margin-bottom: 5px;
-  padding: 0 5px;
+  padding: 5px 10px;
   margin-right: 7px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+}
+
+.woostify-multi-select-selection .woostify-multi-select-search {
+  border: 0;
+  box-shadow: none;
+  flex-grow: 1;
+  margin-bottom: 5px;
+}
+
+.woostify-multi-select-selection .woostify-multi-select-search[type="text"] {
+  min-height: 25px;
+  padding: 0;
+}
+
+.woostify-multi-select-selection .woostify-multi-select-search:focus {
+  box-shadow: none;
 }
 
 .woostify-multi-select-id {
@@ -111,7 +132,7 @@ body.old-version .woostify-metabox-option {
 }
 
 .woostify-multi-select-dropdown .woostify-multi-select-id {
-  padding: 5px;
+  padding: 7px 10px;
   display: block;
 }
 

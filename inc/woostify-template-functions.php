@@ -2151,9 +2151,7 @@ if ( ! function_exists( 'woostify_footer_action' ) ) {
 	 * Footer action
 	 */
 	function woostify_footer_action() {
-		?>
-		<div class="footer-action"><?php do_action( 'woostify_footer_action' ); ?></div>
-		<?php
+		do_action( 'woostify_footer_action' );
 	}
 }
 
@@ -2178,7 +2176,7 @@ if ( ! function_exists( 'woostify_scroll_to_top' ) ) {
 
 		$icon = apply_filters( 'woostify_scroll_to_top_icon', 'ti-angle-up' );
 		?>
-		<span id="scroll-to-top" class="ft-action-item <?php echo esc_attr( $icon ); ?>" title="<?php esc_attr_e( 'Scroll To Top', 'woostify' ); ?>"></span>
+		<span id="scroll-to-top" class="<?php echo esc_attr( $icon ); ?>" title="<?php esc_attr_e( 'Scroll To Top', 'woostify' ); ?>"></span>
 		<?php
 	}
 }

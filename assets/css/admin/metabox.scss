@@ -1,17 +1,19 @@
-.gutenberg-version{
-	[id^="woostify_metabox_settings_"]{
+.gutenberg-version {
+	[id^="woostify_metabox_settings_"] {
 		&.closed {
 			.hndle {
-				&:hover{
+				&:hover {
 					background-color: #f8f9f9;
 				}
 			}
 		}
-		.handlediv{
+
+		.handlediv {
 			position: relative;
 			z-index: 99;
 		}
-		.hndle{
+
+		.hndle {
 			cursor: pointer;
 			color: #191e23 !important;
 			border-bottom: 0 !important;
@@ -20,7 +22,7 @@
 	}
 }
 
-[id^="woostify_metabox_settings_"]{
+[id^="woostify_metabox_settings_"] {
 	.inside {
 		margin: 0 !important;
 		padding: 0 !important;
@@ -29,30 +31,30 @@
 }
 
 /* Metabox option */
-.woostify-metabox-option{
+.woostify-metabox-option {
 	border-bottom: 1px solid #eee;
 	padding: 15px;
 
-	body.old-version &{
+	body.old-version & {
 		padding: 12px;
 	}
 
-	select{
+	select {
 		width: 100%;
 	}
 
-	&:after{
+	&:after {
 		content: '';
 		display: block;
 		clear: both;
 	}
 
-	&:last-of-type{
+	&:last-of-type {
 		border-bottom: 0;
 	}
 }
 
-.woostify-metabox-option-title{
+.woostify-metabox-option-title {
 	margin-bottom: 4px;
 }
 
@@ -60,12 +62,18 @@
 .woostify-multi-selection {
 	position: relative;
 
+	.no-posts-found {
+		padding: 10px;
+		display: block;
+	}
+
 	&.active {
 		.woostify-multi-select-selection {
 			border-radius: 3px 3px 0 0;
 			border-color: #aea9a9;
 			border-bottom-color: #e5e3e3;
 		}
+
 		.woostify-multi-select-dropdown {
 			display: block;
 			border-color: #aea9a9;
@@ -87,11 +95,27 @@
 		border: 1px solid #ddd;
 		border-radius: 3px;
 		margin-bottom: 5px;
-		padding: 0 5px;
+		padding: 5px 10px;
 		margin-right: 7px;
 		display: inline-flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.woostify-multi-select-search {
+		border: 0;
+		box-shadow: none;
+		flex-grow: 1;
+		margin-bottom: 5px;
+
+		&[type="text"] {
+			min-height: 25px;
+			padding: 0;
+		}
+
+		&:focus {
+			box-shadow: none;
+		}
 	}
 }
 
@@ -119,7 +143,7 @@
 	display: none;
 
 	.woostify-multi-select-id {
-		padding: 5px;
+		padding: 7px 10px;
 		display: block;
 
 		+.woostify-multi-select-id {
@@ -137,7 +161,6 @@
 		}
 	}
 }
-
 
 /* Remove overflow Metabox Sidebar Gutenberg */
 .wp-admin {

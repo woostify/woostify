@@ -231,6 +231,11 @@
 			display: flex;
 			justify-content: flex-end;
 			align-items: center;
+			flex-wrap: wrap;
+
+			>:not(input):not(label) {
+				flex: 0 0 100%;
+			}
 		}
 
 		.shipping_method {

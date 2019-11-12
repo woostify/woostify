@@ -108,3 +108,9 @@ video {
     display: inline;
     zoom: 1;
 }
+
+.rtl {
+	ul {
+		padding-inline-start: 0px;
+	}
+}

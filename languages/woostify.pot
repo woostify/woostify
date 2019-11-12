@@ -406,7 +406,7 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:2181, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:2179, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 

@@ -570,6 +570,39 @@ if ( ! function_exists( 'woostify_header_transparent' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_meta_charset' ) ) {
+	/**
+	 * Meta charset
+	 */
+	function woostify_meta_charset() {
+		?>
+		<meta charset="<?php bloginfo( 'charset' ); ?>">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_meta_viewport' ) ) {
+	/**
+	 * Meta viewport
+	 */
+	function woostify_meta_viewport() {
+		?>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_rel_profile' ) ) {
+	/**
+	 * Rel profile
+	 */
+	function woostify_rel_profile() {
+		?>
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_pingback' ) ) {
 	/**
 	 * Pingback
