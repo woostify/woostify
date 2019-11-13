@@ -388,6 +388,12 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 											</strong>
 											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/countdown/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name">
+												<?php esc_html_e( 'Sale Notification', 'woostify' ); ?>
+											</strong>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/sale-notification/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
 									</div>
 								</div>
 							<?php endif; ?>
