@@ -1,13 +1,12 @@
 .customize-control-woostify-color .wp-color-result span {
 	background: #f7f7f7;
 }
-.customize-control-woostify-color .wp-color-result span.color-alpha {
-	max-height: 22px;
-}
+
 .customize-control-woostify-color .woostify-color-picker-alpha.wp-color-picker {
-    max-width: 96px;
-    line-height: 17px;
+	max-width: 96px;
+	line-height: 17px;
 }
+
 .customize-control-woostify-color .wp-picker-clear {
-    margin-left: 2%;
+	margin-left: 2%;
 }
