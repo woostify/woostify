@@ -1,8 +1,9 @@
-.customize-control-woostify-range-slider .woostify-range-slider-areas .range-option-area .wrapper{
+.customize-control-woostify-range-slider .woostify-range-slider-areas .range-option-area .wrapper {
 	display: flex;
 	width: 100%;
 	align-items: center;
 }
+
 .customize-control-woostify-range-slider .woostify-slider {
 	flex-grow: 1;
 	position: relative;
@@ -21,14 +22,11 @@
 	order: 2;
 	display: flex;
 	flex-wrap: nowrap;
+	align-items: center;
 }
 
-.customize-control-woostify-range-slider .woostify_range_value input{
+.customize-control-woostify-range-slider .woostify_range_value input {
 	min-width: 50px;
-}
-
-.customize-control-woostify-range-slider .woostify_range_value .unit {
-	width: 30px;
 }
 
 .customize-control-woostify-range-slider .woostify-slider .ui-slider-handle {
@@ -73,6 +71,7 @@
 	text-transform: uppercase;
 	font-size: 10px;
 	line-height: 22px;
+	margin-left: 5px;
 }
 
 .customize-control-woostify-range-slider .woostify-range-slider-reset span {
@@ -116,6 +115,6 @@
 	float: right;
 }
 
-.customize-control-woostify-range-slider .woostify-device-controls > span:first-child:last-child {
+.customize-control-woostify-range-slider .woostify-device-controls>span:first-child:last-child {
 	display: none;
 }
