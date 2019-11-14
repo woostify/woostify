@@ -3412,10 +3412,6 @@ video {
   zoom: 1;
 }
 
-.rtl ul {
-  padding-inline-start: 0px;
-}
-
 .clear {
   clear: both;
 }
@@ -4400,7 +4396,7 @@ dd {
   display: flex;
   align-items: center;
   position: relative;
-  z-index: 1;
+  z-index: 11;
 }
 
 .woocommerce + .woostify-product-navigation {
@@ -4829,7 +4825,7 @@ dd {
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  z-index: 2;
+  z-index: 12;
   left: -20px;
   top: 100%;
   background-color: #fff;
@@ -5053,10 +5049,6 @@ dd {
 }
 
 @media (min-width: 992px) {
-  .sidebar-menu-open #view {
-    -webkit-transform: translateX(300px);
-    transform: translateX(300px);
-  }
   .sidebar-menu-open .sidebar-menu .site-navigation {
     left: 60px;
     right: 60px;
@@ -6820,6 +6812,7 @@ footer#colophon {
   font-size: 12px;
   z-index: 2;
   line-height: 1;
+  direction: ltr;
 }
 
 .onsale.sale-left {

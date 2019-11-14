@@ -1,0 +1,46 @@
+.rtl {
+	ul {
+		padding-inline-start: 0px;
+	}
+
+	figure {
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
+	}
+
+	ul,
+	ol {
+		padding-left: 0;
+		padding-right: 20px;
+	}
+
+	li {
+		ul, ol {
+			margin-left: 0;
+			margin-right: 20px;
+		}
+	}
+
+	caption,
+	th,
+	td {
+		text-align: right;
+	}
+
+	/* Topbar */
+	@media (min-width: 992px) {
+		.topbar {
+			.topbar-right {
+				text-align: left;
+			}
+		}
+	}
+
+	/* Search */
+	.dialog-search-content {
+		.dialog-search-header {
+			padding-left: 0;
+			padding-right: 20px;
+		}
+	}
+}

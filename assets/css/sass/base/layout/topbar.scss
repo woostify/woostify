@@ -1,30 +1,37 @@
-.topbar{
-	.woostify-container{
-		@include flex( flex, space-between, center );
+.topbar {
+	.woostify-container {
+		@include flex(flex, space-between, center);
 		flex-wrap: wrap;
-		&:after{
+
+		&:after {
 			content: none;
 		}
 	}
-	.topbar-item{
+
+	.topbar-item {
 		flex-grow: 1;
-		p{
-			&:empty{
+
+		p {
+			&:empty {
 				display: none;
 			}
-			&:last-child{
+
+			&:last-child {
 				margin-bottom: 0;
 			}
 		}
-		@media ( max-width: $screen-md ) {
+
+		@media (max-width: $screen-md) {
 			text-align: center;
 		}
 	}
-	@media ( min-width: $screen-md - 1 ) {
-		.topbar-center{
+
+	@media (min-width: $screen-md - 1) {
+		.topbar-center {
 			text-align: center;
 		}
-		.topbar-right{
+
+		.topbar-right {
 			text-align: right;
 		}
 	}

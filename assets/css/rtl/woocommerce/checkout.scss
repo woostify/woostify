@@ -1,0 +1,37 @@
+.rtl {
+	#order_review {
+		#shipping_method {
+			li {
+				display: block;
+			}
+		}
+	}
+
+	.lost_reset_password {
+		.form-row {
+			float: right;
+		}
+	}
+
+	/* Thank you page */
+	.woocommerce-table--order-details,
+	.woocommerce-table--order-details,
+	.woocommerce-table--order-details {
+		th,
+		tr,
+		td {
+			&:nth-child(2) {
+				text-align: left;
+			}
+		}
+	}
+
+	.woocommerce-thankyou-order-details {
+		li {
+			+ li {
+				border-right: 1px dashed #e8e8e8;
+				border-left: 0;
+			}
+		}
+	}
+}

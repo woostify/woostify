@@ -55,6 +55,19 @@ let _sassAdmin = ( done ) => {
 	done();
 }
 
+// Sass rtl.
+let _sassRtl = ( done ) => {
+	gulp.src( 'rtl.scss' )
+		.pipe( globbing( {
+			extensions: [ '.scss' ]
+		} ) )
+		.pipe( sass( { outputStyle: 'expanded' } )
+		.on( 'error', sass.logError ) )
+		.pipe( gulp.dest( '.' ) );
+
+	done();
+}
+
 // Handle console.
 let handleError = function( e ) {
 	console.log( e.toString() );
@@ -107,6 +120,8 @@ let _zip = () => {
 		'!./*.map',
 		'!./**/*.scss',
 		'!./{assets/css/sass,assets/css/sass/**/*}',
+		'!./{assets/css/rtl,assets/css/rtl/**/*}',
+		'!./assets/css/admin/**/*.scss}',
 		'!./Gulpfile.js'
 	] )
 	/*.pipe( debug( { title: 'src' } ) )*/
@@ -118,6 +133,7 @@ gulp.task( 'zip', _zip );
 // Watch task.
 let _watch = ( done ) => {
 	gulp.watch( ['assets/css/sass/**/*.scss', 'style.scss' ], _sass );
+	gulp.watch( ['assets/css/rtl/**/*.scss', 'rtl.scss' ], _sassRtl );
 	gulp.watch( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'], _sassAdmin );
 	gulp.watch( ['assets/js/**/*.js', '!assets/js/**/*.min.js'], _minJs );
 	gulp.watch( '**/*.php', _pot );
@@ -127,9 +143,6 @@ let _watch = ( done ) => {
 
 // Clean.
 let clean = () => del( null );
-
-// Build.
-// gulp.task( 'build', gulp.series( clean, gulp.parallel( _sass, _sassAdmin, _minJs, _pot ) ) );.
 
 // Default task.
 gulp.task( 'default', gulp.parallel( _watch, _browserSync ) );

@@ -1,0 +1,36 @@
+.rtl {
+	#wp-calendar {
+		#prev {
+			text-align: right;
+		}
+
+		#next {
+			text-align: left;
+		}
+	}
+
+	.widget {
+		ul {
+			padding-right: 0;
+
+			&.menu {
+				padding-right: 0;
+			}
+		}
+
+		&.widget_archive,
+		&.widget_categories {
+			a {
+				float: right;
+				margin-left: 5px;
+			}
+		}
+	}
+
+	.widget_recent_post_thumbnail_item {
+		.recent-post-thumbnail-img {
+			margin-left: 20px;
+			margin-right: 0;
+		}
+	}
+}

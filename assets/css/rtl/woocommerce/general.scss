@@ -1,0 +1,35 @@
+.rtl {
+	.cart {
+		.quantity {
+			margin-left: 8px;
+			margin-right: 0;
+		}
+	}
+
+	.woocommerce-error {
+		li {
+			width: auto;
+			margin-right: 15px;
+			margin-left: 15px;
+		}
+	}
+
+	// Cart sidebar
+	@media (max-width: 599px) {
+		.cart-sidebar-content {
+			.mini_cart_item {
+				img {
+					margin-left: 15px;
+					margin-right: 0;
+				}
+			}
+		}
+	}
+
+	// Cart page
+	.woocommerce-cart-form__contents {
+		.product-subtotal {
+			text-align: left;
+		}
+	}
+}

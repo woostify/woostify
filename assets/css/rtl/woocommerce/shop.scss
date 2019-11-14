@@ -1,0 +1,19 @@
+.rtl {
+	.woostify-sorting {
+		.woocommerce-ordering {
+			&:after {
+				left: 5px;
+				right: auto;
+			}
+		}
+	}
+
+	.product-loop-meta {
+		a{
+			&:before {
+				margin-left: 5px;
+				margin-right: 0;
+			}
+		}
+	}
+}
