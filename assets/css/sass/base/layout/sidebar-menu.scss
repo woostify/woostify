@@ -72,10 +72,6 @@
 	}
 
 	@media (min-width: $screen-md) {
-		#view {
-			@include translatex(300px);
-		}
-
 		.sidebar-menu {
 			.site-navigation {
 				left: 60px;

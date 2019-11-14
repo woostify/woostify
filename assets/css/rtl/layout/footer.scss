@@ -1,0 +1,12 @@
+.rtl {
+	.site-info {
+		ul {
+			> li {
+				+ li {
+					margin-left: 0;
+					margin-right: 30px;
+				}
+			}
+		}
+	}
+}

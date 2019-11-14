@@ -1,0 +1,18 @@
+.rtl {
+	.comment-list {
+		padding-right: 0;
+	}
+	.comment-body {
+		#respond {
+			margin-left: 0;
+			margin-right: 100px;
+		}
+
+		.comment-author {
+			+ .comment-content {
+				margin-left: 0;
+				margin-right: 30px;
+			}
+		}
+	}
+}
