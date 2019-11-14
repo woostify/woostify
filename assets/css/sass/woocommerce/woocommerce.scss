@@ -718,3 +718,65 @@ $size: 40px;
 		}
 	}
 }
+
+// Sticky button on Cart page, Checkout page.
+@mixin fixed() {
+	margin: 0;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	line-height: 50px;
+	z-index: 500;
+	width: 100%;
+	border-radius: 0 !important;
+	opacity: 0;
+	visibility: hidden;
+	@include translatey( 100% );
+}
+@media ( max-width: $screen-sm - 1 ) {
+	.scrolling-up {
+		&.has-proceed-sticky-button {
+			.wc-proceed-to-checkout .button {
+				@include translatey( 100% );
+			}
+		}
+
+		&.has-order-sticky-button {
+			#place_order {
+				@include translatey( 100% );
+			}
+		}
+	}
+	.scrolling-down {
+		&.has-proceed-sticky-button {
+			.wc-proceed-to-checkout .button {
+				@include translatey( 0 );
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+
+		&.has-order-sticky-button {
+			#place_order {
+				@include translatey( 0 );
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+	/* Sticky single add to cart button */
+	.has-proceed-sticky-button {
+		.wc-proceed-to-checkout .button {
+			@include fixed();
+		}
+	}
+
+	/* Sticky place order button */
+	.has-order-sticky-button {
+		#place_order {
+			@include fixed();
+			line-height: normal;
+		}
+	}
+}

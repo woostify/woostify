@@ -215,6 +215,18 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				$classes[] = 'ajax-single-add-to-cart';
 			}
 
+			// Cart page.
+			$proceed_button = $options['cart_page_sticky_proceed_button'];
+			if ( is_cart() && $proceed_button ) {
+				$classes[] = 'has-proceed-sticky-button';
+			}
+
+			// Checkout page.
+			$order_button = $options['checkout_sticky_place_order_button'];
+			if ( is_checkout() && $order_button ) {
+				$classes[] = 'has-order-sticky-button';
+			}
+
 			return array_filter( $classes );
 		}
 

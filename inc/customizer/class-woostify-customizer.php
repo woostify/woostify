@@ -211,6 +211,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shop_single_product_recently_viewed'     => false,
 					'shop_single_recently_viewed_title'       => __( 'Recently Viewed Products', 'woostify' ),
 					'shop_single_recently_viewed_count'       => 4,
+					// CART PAGE.
+					'cart_page_sticky_proceed_button'         => true,
+					// CHECKOUT PAGE.
+					'checkout_sticky_place_order_button'      => true,
 					// SIDEBAR.
 					'sidebar_default'                         => is_rtl() ? 'left' : 'right',
 					'sidebar_page'                            => 'full',

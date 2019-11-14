@@ -111,3 +111,12 @@ $wp_customize->add_section(
 		'panel'      => 'woocommerce',
 	)
 );
+
+// Cart page.
+$wp_customize->add_section(
+	'woostify_cart_page',
+	array(
+		'title'      => __( 'Cart Page', 'woostify' ),
+		'panel'      => 'woocommerce',
+	)
+);

@@ -5,6 +5,10 @@
  * @package woostify
  */
 
+if ( ! woostify_is_woocommerce_activated() ) {
+	return;
+}
+
 // Default values.
 $defaults = woostify_options();
 
