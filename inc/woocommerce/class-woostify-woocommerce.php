@@ -216,9 +216,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// Cart page.
-			$proceed_button = $options['cart_page_sticky_proceed_button'];
-			if ( is_cart() && $proceed_button ) {
-				$classes[] = 'has-proceed-sticky-button';
+			if ( is_cart() ) {
+				$proceed_button = $options['cart_page_sticky_proceed_button'];
+				if ( $proceed_button ) {
+					$classes[] = 'has-proceed-sticky-button';
+				}
+
+				$classes[] = 'cart-page-' . $options['cart_page_layout'];
 			}
 
 			// Checkout page.

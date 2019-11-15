@@ -573,7 +573,7 @@ msgstr ""
 msgid "Activating"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:472, inc/customizer/class-woostify-customizer.php:315, inc/customizer/class-woostify-customizer.php:331, inc/customizer/class-woostify-customizer.php:347, inc/customizer/class-woostify-customizer.php:363, inc/customizer/class-woostify-customizer.php:379
+#: inc/admin/class-woostify-admin.php:472, inc/customizer/class-woostify-customizer.php:316, inc/customizer/class-woostify-customizer.php:332, inc/customizer/class-woostify-customizer.php:348, inc/customizer/class-woostify-customizer.php:364, inc/customizer/class-woostify-customizer.php:380
 msgid "Learn More"
 msgstr ""
 
@@ -689,15 +689,15 @@ msgstr ""
 msgid "Recently Viewed Products"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:227
+#: inc/customizer/class-woostify-customizer.php:228
 msgid "Opps! The page you are looking for is missing for some reasons. Please come back to homepage"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:298
+#: inc/customizer/class-woostify-customizer.php:299
 msgid "Get Woostify  Pro Extensions!"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:316, inc/customizer/class-woostify-customizer.php:332, inc/customizer/class-woostify-customizer.php:348, inc/customizer/class-woostify-customizer.php:364, inc/customizer/class-woostify-customizer.php:380
+#: inc/customizer/class-woostify-customizer.php:317, inc/customizer/class-woostify-customizer.php:333, inc/customizer/class-woostify-customizer.php:349, inc/customizer/class-woostify-customizer.php:365, inc/customizer/class-woostify-customizer.php:381
 msgid "More options are coming for this section in our Pro Extensions."
 msgstr ""
 
@@ -1222,11 +1222,15 @@ msgstr ""
 msgid "Margin Bottom"
 msgstr ""
 
-#: inc/customizer/sections/shop/cart-page.php:30
+#: inc/customizer/sections/shop/cart-page.php:29
+msgid "Cart Page Layout"
+msgstr ""
+
+#: inc/customizer/sections/shop/cart-page.php:58
 msgid "Sticky Proceed To Checkout Button"
 msgstr ""
 
-#: inc/customizer/sections/shop/cart-page.php:31
+#: inc/customizer/sections/shop/cart-page.php:59
 msgid "This option only available on mobile devices"
 msgstr ""
 

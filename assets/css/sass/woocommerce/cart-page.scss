@@ -3,13 +3,76 @@
 		font-size: 24px;
 		font-weight: normal;
 	}
-	#content {
-		> .woostify-container {
-			@media ( min-width: $screen-sm) {
-				width: 970px;
-				max-width: 100%;
+
+	&.cart-page-layout-1 {
+		#content {
+			>.woostify-container {
+				@media (min-width: $screen-sm) {
+					width: 970px;
+					max-width: 100%;
+				}
 			}
 		}
+
+		@media (min-width: $screen-md) {
+			.cross-sells {
+				width: 48.5%;
+				float: left;
+				margin-bottom: 30px;
+			}
+
+			.cart_totals {
+				width: 48.5%;
+				float: right;
+			}
+		}
+
+		.cart-collaterals {
+			.shop_table,
+			th {
+				background-color: #fcfcfc;
+			}
+
+			th {
+				background-color: #f8f8f8;
+			}
+		}
+	}
+
+	&.cart-page-layout-2 {
+		.woocommerce-cart-form__contents {
+			margin-top: 0;
+		}
+
+		@media (min-width:$screen-md) {
+			.woocommerce-cart-form {
+				width: 65%;
+				float: left;
+			}
+
+			.cart-collaterals {
+				width: calc( 35% - 40px );
+				float: right;
+			}
+		}
+
+		.cart-collaterals {
+			border: 2px solid #efefef;
+			padding: 10px 20px 30px 20px;
+
+			th,
+			td {
+				padding: 15px 15px 15px 0;
+
+				&:nth-child(2) {
+					text-align: right;
+				}
+			}
+		}
+	}
+
+	.woocommerce-cart-form {
+		margin-bottom: 50px;
 	}
 }
 
@@ -17,16 +80,20 @@
 	border-width: 0;
 	border-collapse: separate;
 	table-layout: auto;
-	@media ( max-width: $screen-sm - 1 ) {
+
+	@media (max-width: $screen-sm - 1) {
 		margin-bottom: 0;
 	}
+
 	thead {
 		display: none;
 	}
+
 	th,
 	td {
 		padding: 20px 0;
 	}
+
 	.product-remove {
 		a {
 			font-size: 1.5em;
@@ -34,37 +101,42 @@
 			width: 1.2em;
 			height: 1.2em;
 			@extend .inline-flex;
+
 			&:hover {
 				color: firebrick
 			}
+
 			&:focus {
 				color: $tr;
 				@extend .circle-loading;
 			}
 		}
-		@media ( max-width: $screen-sm - 1 ) {
-			a{
+
+		@media (max-width: $screen-sm - 1) {
+			a {
 				background-color: firebrick;
 				color: #fff $i;
 			}
 		}
 	}
+
 	.quantity {
 		border: 1px solid #e8e8e8;
 		width: 100px;
 		margin-right: 0;
 	}
 
-	@media ( min-width: $screen-sm ) {
+	@media (min-width: $screen-sm) {
 		tbody {
 			tr {
-				+ tr {
+				+tr {
 					td {
 						border-top-width: 1px;
 					}
 				}
 			}
 		}
+
 		tr {
 			&:nth-last-child(2) {
 				td {
@@ -72,34 +144,43 @@
 				}
 			}
 		}
+
 		th,
 		td {
 			padding: 30px 0;
 			border-width: 0;
+
 			&:not(:first-child):not(:last-child):not(.product-thumbnail) {
 				padding-left: 20px;
 				padding-right: 20px;
 			}
 		}
+
 		.product-remove {
 			width: 40px;
 		}
+
 		.product-thumbnail {
 			width: 70px;
 		}
+
 		.product-name,
 		.product-subtotal {
 			font-weight: 700;
 		}
+
 		.product-quantity {
 			text-align: center;
 		}
+
 		.quantity {
 			min-width: 140px;
 		}
+
 		.product-subtotal {
 			text-align: right;
 		}
+
 		.product-price,
 		.product-subtotal {
 			min-width: 100px;
@@ -110,14 +191,16 @@
 			text-align: right;
 			border: 2px dashed #e8e8e8;
 			padding: 0;
-			@media ( max-width: $screen-sm - 1 ) {
-			}
+
+			@media (max-width: $screen-sm - 1) {}
+
 			[name="update_cart"] {
 				border-width: 0 0 0 1px;
 				border-style: dashed;
 				border-color: #e2e2e2;
 			}
 		}
+
 		.coupon {
 			float: left;
 			height: 100px;
@@ -126,22 +209,27 @@
 			background-repeat: no-repeat;
 			background-size: 40px 40px;
 			background-position: center left 30px;
-			@media ( min-width: $screen-sm ) {
+
+			@media (min-width: $screen-sm) {
 				padding-left: 100px;
 				background-image: url(assets/images/coupon.svg);
 			}
-			@media ( max-width: $screen-sm - 1 ) {
+
+			@media (max-width: $screen-sm - 1) {
 				width: 100%;
 				justify-content: center;
 			}
+
 			label {
 				display: none;
 			}
 		}
+
 		[name="coupon_code"] {
 			border-width: 0 0 1px 0;
 			height: 30px;
 		}
+
 		[name="apply_coupon"] {
 			font-weight: 600;
 			font-size: 12px;
@@ -151,10 +239,12 @@
 			padding: 0 10px;
 			border-radius: 0;
 			background-color: $tr;
-			&:hover{
+
+			&:hover {
 				background-color: $tr;
 			}
 		}
+
 		[name="update_cart"] {
 			height: 100%;
 			min-width: 300px;
@@ -163,9 +253,11 @@
 			font-weight: 600;
 			background-color: #f9f9f9;
 			height: 100px;
-			@media ( max-width: $screen-sm - 1 ) {
+
+			@media (max-width: $screen-sm - 1) {
 				width: 100%;
 			}
+
 			&:before {
 				font-family: $icon;
 				content: "\e619";
@@ -175,37 +267,43 @@
 		}
 	}
 
-	@media ( max-width: $screen-sm - 1 ) {
-		.product-thumbnail{
+	@media (max-width: $screen-sm - 1) {
+		.product-thumbnail {
 			display: none;
 		}
+
 		.product-remove {
-			a{
+			a {
 				background-color: firebrick;
-				filter: grayscale( 70% );
+				filter: grayscale(70%);
 				color: #fff $i;
 			}
 		}
-		.actions{
+
+		.actions {
 			padding-top: 30px;
 			padding-bottom: 0;
 		}
-		.coupon{
-			label{
+
+		.coupon {
+			label {
 				display: none;
 			}
+
 			input,
-			button{
-				width: calc( 50% - 5px );
+			button {
+				width: calc(50% - 5px);
 				float: left;
 				padding: 10px 15px;
 			}
-			input{
+
+			input {
 				margin-right: 10px;
 				height: 48px;
 			}
 		}
-		[name="update_cart"]{
+
+		[name="update_cart"] {
 			width: 100%;
 			padding: 10px;
 			margin: 10px 0;
@@ -213,21 +311,24 @@
 	}
 }
 
-.clear-cart-box{
+.clear-cart-box {
 	clear: both;
 	text-align: center;
 	@extend .clearfix;
-	@media ( min-width: $screen-sm ) {
+
+	@media (min-width: $screen-sm) {
 		text-align: right;
 	}
-	.clear-cart-btn{
+
+	.clear-cart-btn {
 		height: 48px;
 		line-height: 48px;
 		display: inline-block;
 		padding-top: 0;
 		padding-bottom: 0;
 		font-weight: 600;
-		@media ( max-width: $screen-sm - 1 ) {
+
+		@media (max-width: $screen-sm - 1) {
 			width: 100%;
 			float: left;
 		}
@@ -235,39 +336,35 @@
 }
 
 .cart-collaterals {
-	margin-top: 50px;
 	@extend .clearfix;
-	@media ( min-width: $screen-md) {
-		.cross-sells {
-			width: 48.5%;
-			float: left;
-			margin-bottom: 30px;
-		}
-		.cart_totals {
-			width: 48.5%;
-			float: right;
-		}
-	}
-	.cart_totals{
 
-	}
 	.shop_table,
-	th{
-		background-color: #fcfcfc;
+	th {
 		border: 0;
 	}
 
-	th{
+	th {
 		font-weight: 700;
-		background-color: #f8f8f8;
 	}
 
-	th, td{
+	th,
+	td {
 		padding: 15px;
 		border: 0;
+
+		&:nth-child(2) {
+			text-align: right;
+		}
 	}
 
-	[name="calc_shipping"]{
+	input[type="radio"] {
+		float: right;
+		margin-right: 0;
+		margin-left: 10px;
+		margin-top: 4px;
+	}
+
+	[name="calc_shipping"] {
 		width: 100%;
 		height: 50px;
 	}
