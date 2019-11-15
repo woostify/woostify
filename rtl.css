@@ -264,6 +264,32 @@
   text-align: left;
 }
 
+.rtl #shipping_method {
+  padding-right: 0;
+  text-align: left;
+}
+
+.rtl #shipping_method input[type="radio"] {
+  float: left;
+  margin-left: 0;
+  margin-right: 7px;
+}
+
+.rtl .cart-collaterals th:nth-child(2),
+.rtl .cart-collaterals td:nth-child(2) {
+  text-align: left;
+}
+
+.rtl #order_review th:last-child,
+.rtl #order_review td:last-child {
+  text-align: left;
+}
+
+.rtl .payment_box:before {
+  left: auto;
+  right: 30px;
+}
+
 .rtl .woostify-product-navigation .product-nav-item-text {
   display: flex;
   align-items: center;
