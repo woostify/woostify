@@ -10,17 +10,8 @@
 
 /* login form */
 .woocommerce-form-login-toggle {
-	border: 2px dashed #e8e8e8;
-	border-radius: 2px;
-	height: 100px;
-	padding-right: 30px;
-	padding-left: 100px;
-	background-image: url(assets/images/login.svg);
-	background-repeat: no-repeat;
-	background-size: 40px 40px;
-	background-position: center left 30px;
 	max-width: 600px;
-	margin: 0 auto 30px auto;
+	margin: 0 auto 10px auto;
 	@extend .flex;
 
 	.woocommerce-info {
@@ -81,17 +72,8 @@
 
 /* coupon form */
 .woocommerce-form-coupon-toggle {
-	border: 2px dashed #e8e8e8;
-	border-radius: 2px;
-	height: 100px;
-	padding-right: 30px;
-	padding-left: 100px;
-	background-image: url(assets/images/coupon.svg);
-	background-repeat: no-repeat;
-	background-size: 40px 40px;
-	background-position: center left 30px;
 	max-width: 600px;
-	margin: 0 auto 30px auto;
+	margin: 0 auto 15px auto;
 	@extend .flex;
 
 	.woocommerce-info {
@@ -117,7 +99,7 @@
 	}
 
 	.form-row-first,
-	.form-row-last{
+	.form-row-last {
 		width: 100%;
 		text-align: center;
 	}
@@ -226,24 +208,6 @@
 		width: 470px;
 	}
 
-	#shipping_method {
-		li {
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
-			flex-wrap: wrap;
-
-			>:not(input):not(label) {
-				flex: 0 0 100%;
-			}
-		}
-
-		.shipping_method {
-			order: 2;
-			margin: 0px 0px 0px 10px;
-		}
-	}
-
 	.shop_table {
 		margin: 0;
 		border: 0;
@@ -297,6 +261,17 @@
 			padding: 30px 0;
 		}
 	}
+
+	#shipping_method {
+		text-align: right;
+
+		input[type="radio"] {
+			float: right;
+			margin-right: 0;
+			margin-top: 4px;
+			margin-left: 10px;
+		}
+	}
 }
 
 #ship-to-different-address {
@@ -328,10 +303,27 @@
 }
 
 .payment_box {
-	padding: 10px;
-	background-color: #fff;
+	padding: 10px 10px 10px 15px;
+	background-color: #ebebeb;
 	border-radius: 4px;
-	margin: 1em 0px 1em 1.8em;
+	margin: 1em 0;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+	position: relative;
+
+	&:before {
+		bottom: 100%;
+		left: 30px;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-color: rgba(221, 221, 221, 0);
+		border-bottom-color: #ebebeb;
+		border-width: 8px;
+		margin-left: -8px;
+	}
 
 	p {
 		&:last-child {
