@@ -266,6 +266,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			if ( ! $options['shop_single_related_product'] ) {
 				remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 			}
+
+			// Multi step checkout. Replace default Page header.
+			if ( is_cart() || is_checkout() || ( is_checkout() && ! empty( is_wc_endpoint_url( 'order-received' ) ) ) ) {
+				add_action( 'woostify_after_header', 'woostify_multi_step_checkout', 10 );
+			}
 		}
 
 		/**

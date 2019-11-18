@@ -599,8 +599,39 @@ if ( ! function_exists( 'woostify_clear_shop_cart' ) ) {
 		?>
 		<div class="clear-cart-box">
 			<a class="clear-cart-btn" href="<?php echo esc_url( $clear ); ?>">
-				<?php esc_html_e( 'Clear cart', 'woostify' ); ?>
+				<?php esc_html_e( 'Clear Shopping Cart', 'woostify' ); ?>
 			</a>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_multi_step_checkout' ) ) {
+	/**
+	 * Multi step checkout
+	 */
+	function woostify_multi_step_checkout() {
+		$container   = woostify_site_container();
+		$is_cart     = is_cart() ? 'active' : '';
+		$is_thankyou = is_checkout() && ! empty( is_wc_endpoint_url( 'order-received' ) ) ? 'active' : '';
+		$is_checkout = 'active' != $is_thankyou && is_checkout() ? 'active' : '';
+		?>
+		<div class="multi-step-checkout">
+			<div class="<?php echo esc_attr( $container ); ?>">
+				<div class="multi-step-inner">
+					<a class="multi-step-item <?php echo esc_attr( $is_cart ); ?>" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+						<span class="item-text"><?php esc_html_e( 'Shopping Cart', 'woostify-pro' ); ?></span>
+					</a>
+
+					<a class="multi-step-item <?php echo esc_attr( $is_checkout ); ?>" href="<?php echo esc_url( wc_get_checkout_url() ); ?>">
+						<span class="item-text"><?php esc_html_e( 'Checkout', 'woostify-pro' ); ?></span>
+					</a>
+
+					<span class="multi-step-item <?php echo esc_attr( $is_thankyou ); ?>">
+						<span class="item-text"><?php esc_html_e( 'Order Complete', 'woostify-pro' ); ?></span>
+					</span>
+				</div>
+			</div>
 		</div>
 		<?php
 	}

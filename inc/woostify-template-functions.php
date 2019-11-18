@@ -774,7 +774,10 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			}
 		}
 
-		if ( ! $page_header ) {
+		// Not show page header on pages.
+		$disable_page_header = class_exists( 'woocommerce' ) && ( is_cart() || is_checkout() );
+
+		if ( ! $page_header || $disable_page_header ) {
 			return;
 		}
 		?>

@@ -143,6 +143,13 @@
 		border-top: 1px solid #e8e8e8;
 	}
 
+	.woocommerce-column {
+		.woocommerce-column__title,
+		address {
+			padding: 1em;
+		}
+	}
+
 	.woocommerce-column--1 {
 		float: left;
 		width: 48.5%;

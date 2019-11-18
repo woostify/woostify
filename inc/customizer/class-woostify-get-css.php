@@ -376,7 +376,10 @@ class Woostify_Get_CSS {
 			#scroll-to-top,
 			.woocommerce-store-notice,
 			.has-woostify-primary-background-color,
-			.woostify-simple-subsbrice-form input[type="submit"]:hover{
+			.woostify-simple-subsbrice-form input[type="submit"]:hover,
+			.multi-step-inner .multi-step-item,
+			.multi-step-inner .multi-step-item:before,
+			.multi-step-inner .multi-step-item:after{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
