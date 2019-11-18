@@ -218,7 +218,8 @@ class Woostify_Get_CSS {
 			.woocommerce-form-coupon-toggle .woocommerce-info a,
 			.has-woostify-heading-color,
 			.woocommerce-table--order-details td,
-			.woocommerce-table--order-details td.product-name a{
+			.woocommerce-table--order-details td.product-name a,
+			.has-distraction-free-checkout .site-header .site-branding:after{
 				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 

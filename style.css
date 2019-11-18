@@ -9298,7 +9298,6 @@ footer#colophon {
   clear: both;
 }
 
-/* login form */
 .woocommerce-form-login-toggle {
   max-width: 600px;
   margin: 0 auto 10px auto;
@@ -9359,7 +9358,6 @@ footer#colophon {
   height: 40px;
 }
 
-/* coupon form */
 .woocommerce-form-coupon-toggle {
   max-width: 600px;
   margin: 0 auto 15px auto;
@@ -9417,7 +9415,6 @@ footer#colophon {
   margin-top: 30px;
 }
 
-/* customer details */
 @media (min-width: 992px) {
   #customer_details {
     float: left;
@@ -9476,7 +9473,6 @@ footer#colophon {
   display: none;
 }
 
-/* order review */
 #order_review {
   background-color: #f9f9f9;
   padding: 30px;
@@ -9622,7 +9618,29 @@ footer#colophon {
   margin-top: 30px;
 }
 
-/* select 2 */
+.has-distraction-free-checkout .site-header .wrap-toggle-sidebar-menu,
+.has-distraction-free-checkout .site-header .site-navigation,
+.has-distraction-free-checkout .site-header .site-tools {
+  display: none;
+}
+
+.has-distraction-free-checkout .site-header .woostify-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+  .has-distraction-free-checkout .site-header .site-branding:after {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    font-weight: 700;
+    font-size: 1.2em;
+    transform: translateY(-50%);
+    content: attr(data-checkout);
+  }
+}
+
 .select2-container .select2-selection--single {
   height: 50px;
   margin: 0;
@@ -9651,7 +9669,6 @@ footer#colophon {
   border-color: #e8e8e8;
 }
 
-/* responsive */
 @media (min-width: 992px) {
   .woocommerce-order-pay #order_review {
     float: none;

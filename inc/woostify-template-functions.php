@@ -328,15 +328,20 @@ if ( ! function_exists( 'woostify_site_branding' ) ) {
 		// Default values.
 		$class           = '';
 		$mobile_logo_src = '';
+		$data_checkout   = '';
 		$options         = woostify_options( false );
 
-		if ( '' != $options['logo_mobile'] ) {
+		if ( ! empty( $options['logo_mobile'] ) ) {
 			$mobile_logo_src = $options['logo_mobile'];
 			$class           = 'has-custom-mobile-logo';
 		}
 
+		if ( class_exists( 'woocommerce' ) && is_checkout() && $options['checkout_distraction_free'] ) {
+			$data_checkout = 'data-checkout="' . __( 'Checkout', 'woostify' ) . '"';
+		}
+
 		?>
-		<div class="site-branding <?php echo esc_attr( $class ); ?>">
+		<div class="site-branding <?php echo esc_attr( $class ); ?>" <?php echo wp_kses_post( $data_checkout ); ?>>
 			<?php
 			woostify_site_title_or_logo();
 

@@ -8,7 +8,7 @@
 	}
 }
 
-/* login form */
+// login form
 .woocommerce-form-login-toggle {
 	max-width: 600px;
 	margin: 0 auto 10px auto;
@@ -70,7 +70,7 @@
 	}
 }
 
-/* coupon form */
+// coupon form
 .woocommerce-form-coupon-toggle {
 	max-width: 600px;
 	margin: 0 auto 15px auto;
@@ -132,7 +132,7 @@
 	margin-top: 30px;
 }
 
-/* customer details */
+// customer details
 #customer_details {
 	@extend .clearfix;
 
@@ -197,7 +197,7 @@
 	display: none;
 }
 
-/* order review */
+// order review
 #order_review {
 	background-color: #f9f9f9;
 	padding: 30px;
@@ -359,7 +359,37 @@
 	margin-top: 30px;
 }
 
-/* select 2 */
+// Distraction free
+.has-distraction-free-checkout {
+	.site-header {
+		.wrap-toggle-sidebar-menu,
+		.site-navigation,
+		.site-tools {
+			display: none;
+		}
+
+		.woostify-container {
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+
+		@media (min-width: $screen-md) {
+			.site-branding {
+				&:after {
+					position: absolute;
+					top: 50%;
+					right: 15px;
+					font-weight: 700;
+					font-size: 1.2em;
+					transform: translateY(-50%);
+					content: attr(data-checkout);
+				}
+			}
+		}
+	}
+}
+
+// select 2
 .select2-container {
 	.select2-selection--single {
 		height: 50px;
@@ -397,7 +427,7 @@
 	border-color: #e8e8e8;
 }
 
-/* responsive */
+// responsive
 @media (min-width: $screen-md) {
 	.woocommerce-order-pay {
 		#order_review {

@@ -226,9 +226,17 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// Checkout page.
-			$order_button = $options['checkout_sticky_place_order_button'];
-			if ( is_checkout() && $order_button ) {
-				$classes[] = 'has-order-sticky-button';
+			if ( is_checkout() ) {
+				$order_button     = $options['checkout_sticky_place_order_button'];
+				$distraction_free = $options['checkout_distraction_free'];
+
+				if ( $order_button ) {
+					$classes[] = 'has-order-sticky-button';
+				}
+
+				if ( $distraction_free ) {
+					$classes[] = 'has-distraction-free-checkout';
+				}
 			}
 
 			return array_filter( $classes );
