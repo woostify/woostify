@@ -1,3 +1,4 @@
+// YITH
 .cart.wishlist_table {
 	@extend .woocommerce-cart-form__contents;
 	@media ( max-width: 768px ) {
@@ -59,6 +60,15 @@
 			height: 30px;
 			border: 1px solid #ddd;
 			@extend .flex;
+		}
+	}
+}
+
+// TI
+.tinvwl-table-manage-list {
+	.product-action {
+		.button {
+			white-space: nowrap;
 		}
 	}
 }

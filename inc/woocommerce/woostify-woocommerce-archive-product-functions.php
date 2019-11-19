@@ -145,12 +145,19 @@ if ( ! function_exists( 'woostify_product_loop_item_wishlist_icon_bottom' ) ) {
 	 */
 	function woostify_product_loop_item_wishlist_icon_bottom() {
 		$options = woostify_options( false );
-		if ( 'bottom-right' != $options['shop_page_wishlist_position'] || ! defined( 'YITH_WCWL' ) ) {
+		if ( 'bottom-right' != $options['shop_page_wishlist_position'] || ! woostify_support_wishlist_plugin() ) {
 			return;
 		}
+
+		$shortcode = '[yith_wcwl_add_to_wishlist]';
+
+		if ( 'ti' == $options['shop_page_wishlist_support_plugin'] ) {
+			$shortcode = '[ti_wishlists_addtowishlist]';
+		}
 		?>
+
 		<div class="loop-wrapper-wishlist">
-			<?php echo do_shortcode( '[yith_wcwl_add_to_wishlist]' ); ?>
+			<?php echo do_shortcode( $shortcode ); ?>
 		</div>
 		<?php
 	}

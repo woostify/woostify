@@ -844,56 +844,84 @@ $wp_customize->add_control(
 );
 
 // WISHLIST SECTION.
-if ( defined( 'YITH_WCWL' ) ) {
-	$wp_customize->add_setting(
+$wp_customize->add_setting(
+	'shop_page_wishlist_section',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Section_Control(
+		$wp_customize,
 		'shop_page_wishlist_section',
 		array(
-			'sanitize_callback' => 'sanitize_text_field',
+			'label'      => __( 'Wishlist Button', 'woostify' ),
+			'section'    => 'woostify_shop_page',
+			'dependency' => [
+				'woostify_setting[shop_page_wishlist_support_plugin]',
+				'woostify_setting[shop_page_wishlist_position]',
+			],
 		)
-	);
-	$wp_customize->add_control(
-		new Woostify_Section_Control(
-			$wp_customize,
-			'shop_page_wishlist_section',
-			array(
-				'label'      => __( 'Wishlist Button', 'woostify' ),
-				'section'    => 'woostify_shop_page',
-				'dependency' => [
-					'woostify_setting[shop_page_wishlist_position]',
-				],
-			)
-		)
-	);
+	)
+);
 
-	// Position.
-	$wp_customize->add_setting(
+// Support plugin.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_wishlist_support_plugin]',
+	array(
+		'default'           => $defaults['shop_page_wishlist_support_plugin'],
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_wishlist_support_plugin]',
+		array(
+			'label'    => __( 'Support For Plugin', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_wishlist_support_plugin]',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_shop_page_wishlist_support_plugin_choices',
+				array(
+					'yith' => __( 'YITH WooCommerce Wishlist', 'woostify-pro' ),
+					'ti'   => __( 'TI WooCommerce Wishlist', 'woostify' ),
+				)
+			),
+		)
+	)
+);
+
+// Position.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_wishlist_position]',
+	array(
+		'default'           => $defaults['shop_page_wishlist_position'],
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Radio_Image_Control(
+		$wp_customize,
 		'woostify_setting[shop_page_wishlist_position]',
 		array(
-			'default'           => $defaults['shop_page_wishlist_position'],
-			'sanitize_callback' => 'woostify_sanitize_choices',
-			'type'              => 'option',
+			'label'    => __( 'Position', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_wishlist_position]',
+			'choices'  => apply_filters(
+				'woostify_setting_shop_page_wishlist_position_choices',
+				array(
+					'none'         => WOOSTIFY_THEME_URI . 'assets/images/customizer/wishlist/wishlist-1.jpg',
+					'top-right'    => WOOSTIFY_THEME_URI . 'assets/images/customizer/wishlist/wishlist-2.jpg',
+					'bottom-right' => WOOSTIFY_THEME_URI . 'assets/images/customizer/wishlist/wishlist-3.jpg',
+				)
+			),
 		)
-	);
-	$wp_customize->add_control(
-		new Woostify_Radio_Image_Control(
-			$wp_customize,
-			'woostify_setting[shop_page_wishlist_position]',
-			array(
-				'label'    => __( 'Position', 'woostify' ),
-				'section'  => 'woostify_shop_page',
-				'settings' => 'woostify_setting[shop_page_wishlist_position]',
-				'choices'  => apply_filters(
-					'woostify_setting_shop_page_wishlist_position_choices',
-					array(
-						'none'         => WOOSTIFY_THEME_URI . 'assets/images/customizer/wishlist/wishlist-1.jpg',
-						'top-right'    => WOOSTIFY_THEME_URI . 'assets/images/customizer/wishlist/wishlist-2.jpg',
-						'bottom-right' => WOOSTIFY_THEME_URI . 'assets/images/customizer/wishlist/wishlist-3.jpg',
-					)
-				),
-			)
-		)
-	);
-}
+	)
+);
 
 // ADD TO CART SECTION.
 $wp_customize->add_setting(

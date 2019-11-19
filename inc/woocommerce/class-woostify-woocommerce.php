@@ -293,6 +293,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		 * Init action
 		 */
 		public function woostify_woocommerce_init_action() {
+			// Remove default add to wishlist button TI wishlist plugin.
+			remove_action( 'woocommerce_after_shop_loop_item', 'tinvwl_view_addto_htmlloop', 10 );
+
 			// Remove wc notice on checkout page, when login error.
 			remove_action( 'woocommerce_before_checkout_form_cart_notices', 'woocommerce_output_all_notices', 10 );
 

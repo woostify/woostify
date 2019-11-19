@@ -312,7 +312,7 @@ msgstr ""
 msgid "Addresses"
 msgstr ""
 
-#: inc/woostify-template-functions.php:758, inc/woostify-template-functions.php:1851, inc/woostify-template-functions.php:1956
+#: inc/woostify-template-functions.php:758, inc/woostify-template-functions.php:1851, inc/woostify-template-functions.php:1933
 msgid "Logout"
 msgstr ""
 
@@ -402,15 +402,15 @@ msgstr ""
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1846, inc/woostify-template-functions.php:1951
+#: inc/woostify-template-functions.php:1846, inc/woostify-template-functions.php:1928
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1849, inc/woostify-template-functions.php:1954
+#: inc/woostify-template-functions.php:1849, inc/woostify-template-functions.php:1931
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:2187, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:2164, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 
@@ -577,7 +577,7 @@ msgstr ""
 msgid "Activating"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:472, inc/customizer/class-woostify-customizer.php:317, inc/customizer/class-woostify-customizer.php:333, inc/customizer/class-woostify-customizer.php:349, inc/customizer/class-woostify-customizer.php:365, inc/customizer/class-woostify-customizer.php:381
+#: inc/admin/class-woostify-admin.php:472, inc/customizer/class-woostify-customizer.php:318, inc/customizer/class-woostify-customizer.php:334, inc/customizer/class-woostify-customizer.php:350, inc/customizer/class-woostify-customizer.php:366, inc/customizer/class-woostify-customizer.php:382
 msgid "Learn More"
 msgstr ""
 
@@ -685,23 +685,23 @@ msgstr ""
 msgid "Disable Footer"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:191
+#: inc/customizer/class-woostify-customizer.php:192
 msgid "Sale!"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:212, inc/customizer/sections/shop/shop-single.php:406
+#: inc/customizer/class-woostify-customizer.php:213, inc/customizer/sections/shop/shop-single.php:406
 msgid "Recently Viewed Products"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:229
+#: inc/customizer/class-woostify-customizer.php:230
 msgid "Opps! The page you are looking for is missing for some reasons. Please come back to homepage"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:300
+#: inc/customizer/class-woostify-customizer.php:301
 msgid "Get Woostify  Pro Extensions!"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:318, inc/customizer/class-woostify-customizer.php:334, inc/customizer/class-woostify-customizer.php:350, inc/customizer/class-woostify-customizer.php:366, inc/customizer/class-woostify-customizer.php:382
+#: inc/customizer/class-woostify-customizer.php:319, inc/customizer/class-woostify-customizer.php:335, inc/customizer/class-woostify-customizer.php:351, inc/customizer/class-woostify-customizer.php:367, inc/customizer/class-woostify-customizer.php:383
 msgid "More options are coming for this section in our Pro Extensions."
 msgstr ""
 
@@ -785,7 +785,7 @@ msgstr ""
 msgid "Product image"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-archive-product-functions.php:329
+#: inc/woocommerce/woostify-woocommerce-archive-product-functions.php:336
 msgid "Filter"
 msgstr ""
 
@@ -830,7 +830,7 @@ msgstr ""
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:602
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:608
 msgid "Clear Shopping Cart"
 msgstr ""
 
@@ -1354,7 +1354,7 @@ msgstr ""
 msgid "Sale Tag"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:681, inc/customizer/sections/shop/shop-page.php:882, inc/customizer/sections/shop/shop-page.php:934
+#: inc/customizer/sections/shop/shop-page.php:681, inc/customizer/sections/shop/shop-page.php:911, inc/customizer/sections/shop/shop-page.php:962
 msgid "Position"
 msgstr ""
 
@@ -1374,15 +1374,23 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:859
+#: inc/customizer/sections/shop/shop-page.php:858
 msgid "Wishlist Button"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:910
+#: inc/customizer/sections/shop/shop-page.php:882
+msgid "Support For Plugin"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-page.php:890
+msgid "TI WooCommerce Wishlist"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-page.php:938
 msgid "Add To Cart Button"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:965
+#: inc/customizer/sections/shop/shop-page.php:993
 msgid "Cart Icon"
 msgstr ""
 

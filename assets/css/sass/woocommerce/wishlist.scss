@@ -1,0 +1,57 @@
+// TI plugin
+$size: 40px;
+
+ul.products {
+	li.product {
+		.product-loop-image-wrapper {
+			.tinvwl_add_to_wishlist_button {
+				margin: 0;
+			}
+		}
+	}
+}
+
+.product-loop-image-wrapper {
+	.tinvwl_add_to_wishlist-text {
+		display: none;
+	}
+
+	.tinv-wraper {
+		.tinvwl_add_to_wishlist_button {
+			background-color: #fff;
+			@extend .flex;
+
+			&:before {
+				margin: 0;
+			}
+		}
+	}
+
+	// For Top-right position
+	.product-loop-action {
+		.tinvwl_add_to_wishlist_button {
+			width: $size;
+			height: $size;
+
+			&:hover {
+				color: #fff;
+			}
+		}
+
+		.product-quick-view-btn {
+			+.tinv-wraper {
+				border-top: 1px solid #e7e7e7;
+			}
+		}
+	}
+
+	// For bottom-right position
+	.loop-wrapper-wishlist {
+		.tinv-wraper {
+			.tinvwl_add_to_wishlist_button {
+				width: 30px;
+				height: 30px;
+			}
+		}
+	}
+}

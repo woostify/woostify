@@ -664,3 +664,57 @@ if ( ! function_exists( 'woostify_array_insert' ) ) {
 		return $result;
 	}
 }
+
+if ( ! function_exists( 'woostify_support_wishlist_plugin' ) ) {
+	/**
+	 * Detect wishlist plugin
+	 */
+	function woostify_support_wishlist_plugin() {
+		if ( ! woostify_is_woocommerce_activated() ) {
+			return false;
+		}
+
+		$options = woostify_options( false );
+		$plugin  = $options['shop_page_wishlist_support_plugin'];
+
+		// Ti plugin.
+		if ( defined( 'TINVWL_URL' ) && 'ti' == $plugin ) {
+			return true;
+		} elseif ( defined( 'YITH_WCWL' ) && 'ti' != $plugin ) {
+			// Yith plugin.
+			return true;
+		}
+
+		return false;
+	}
+}
+
+if ( ! function_exists( 'woostify_wishlist_page_url' ) ) {
+	/**
+	 * Get wishlist page url
+	 */
+	function woostify_wishlist_page_url() {
+		if ( ! woostify_support_wishlist_plugin() ) {
+			return '#';
+		}
+
+		$options   = woostify_options( false );
+		$shortcode = '[yith_wcwl_wishlist]';
+
+		if ( 'ti' == $options['shop_page_wishlist_support_plugin'] ) {
+			$shortcode = '[ti_wishlistsview]';
+		}
+
+		global $wpdb;
+		$id = $wpdb->get_results( 'SELECT ID FROM ' . $wpdb->prefix . 'posts WHERE post_content LIKE "%' . $shortcode . '%" AND post_parent = 0' );
+
+		if ( $id ) {
+			$id  = intval( $id[0]->ID );
+			$url = get_the_permalink( $id );
+
+			return $url;
+		}
+
+		return '#';
+	}
+}

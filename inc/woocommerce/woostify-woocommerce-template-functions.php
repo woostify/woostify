@@ -549,11 +549,17 @@ if ( ! function_exists( 'woostify_product_loop_item_wishlist_icon' ) ) {
 	 */
 	function woostify_product_loop_item_wishlist_icon() {
 		$options = woostify_options( false );
-		if ( 'top-right' != $options['shop_page_wishlist_position'] || ! defined( 'YITH_WCWL' ) ) {
+		if ( 'top-right' != $options['shop_page_wishlist_position'] || ! woostify_support_wishlist_plugin() ) {
 			return;
 		}
 
-		echo do_shortcode( '[yith_wcwl_add_to_wishlist]' );
+		$shortcode = '[yith_wcwl_add_to_wishlist]';
+
+		if ( 'ti' == $options['shop_page_wishlist_support_plugin'] ) {
+			$shortcode = '[ti_wishlists_addtowishlist]';
+		}
+
+		echo do_shortcode( $shortcode );
 	}
 }
 

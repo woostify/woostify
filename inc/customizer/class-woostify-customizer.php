@@ -184,6 +184,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shop_page_add_to_cart_button_position'   => 'bottom',
 					'shop_product_add_to_cart_icon'           => true,
 					// Wishlist.
+					'shop_page_wishlist_support_plugin'       => 'ti',
 					'shop_page_wishlist_position'             => 'top-right',
 					// Sale tag.
 					'shop_page_sale_tag_position'             => 'left',

@@ -169,7 +169,7 @@ if ( class_exists( 'woocommerce' ) ) {
 	);
 
 	// Wishlist icon.
-	if ( defined( 'YITH_WCWL' ) ) {
+	if ( woostify_support_wishlist_plugin() ) {
 		$wp_customize->add_setting(
 			'woostify_setting[header_wishlist_icon]',
 			array(

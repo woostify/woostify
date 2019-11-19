@@ -1495,7 +1495,7 @@ if ( ! function_exists( 'woostify_is_product_archive' ) ) {
 	 * @return boolean
 	 */
 	function woostify_is_product_archive() {
-		if ( ! class_exists( 'woocommerce' ) || ! woostify_is_woocommerce_activated() ) {
+		if ( ! woostify_is_woocommerce_activated() ) {
 			return false;
 		}
 
@@ -1870,29 +1870,6 @@ if ( ! function_exists( 'woostify_sidebar_menu_close' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_wishlist_page_url' ) ) {
-	/**
-	 * Get YTH wishlist page url
-	 */
-	function woostify_wishlist_page_url() {
-		if ( ! defined( 'YITH_WCWL' ) ) {
-			return '#';
-		}
-
-		global $wpdb;
-		$id = $wpdb->get_results( 'SELECT ID FROM ' . $wpdb->prefix . 'posts WHERE post_content LIKE "%[yith_wcwl_wishlist]%" AND post_parent = 0' );
-
-		if ( $id ) {
-			$id  = intval( $id[0]->ID );
-			$url = get_the_permalink( $id );
-
-			return $url;
-		}
-
-		return '#';
-	}
-}
-
 if ( ! function_exists( 'woostify_header_action' ) ) {
 	/**
 	 * Display header action
@@ -1934,7 +1911,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			<?php do_action( 'woostify_site_tool_before_second_item' ); ?>
 
 			<?php // Wishlist icon. ?>
-			<?php if ( defined( 'YITH_WCWL' ) && $options['header_wishlist_icon'] ) { ?>
+			<?php if ( woostify_support_wishlist_plugin() && $options['header_wishlist_icon'] ) { ?>
 				<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>"></a>
 			<?php } ?>
 

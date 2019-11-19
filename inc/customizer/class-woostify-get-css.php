@@ -267,7 +267,8 @@ class Woostify_Get_CSS {
 			.product-loop-action .yith-wcwl-add-to-wishlist:hover,
 			.product-loop-action .yith-wcwl-wishlistaddedbrowse.show,
 			.product-loop-action .yith-wcwl-wishlistexistsbrowse.show,
-			.product-loop-action .added_to_cart {
+			.product-loop-action .added_to_cart,
+			.product-loop-image-wrapper .tinv-wraper .tinvwl_add_to_wishlist_button:hover {
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
 			}
 
