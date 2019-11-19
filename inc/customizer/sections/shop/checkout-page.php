@@ -46,7 +46,6 @@ $wp_customize->add_control(
 		'woostify_setting[checkout_distraction_free]',
 		array(
 			'label'       => __( 'Distraction Free Checkout', 'woostify-pro' ),
-			'description' => __( 'This option only available on mobile devices', 'woostify-pro' ),
 			'settings'    => 'woostify_setting[checkout_distraction_free]',
 			'section'     => 'woocommerce_checkout',
 		)

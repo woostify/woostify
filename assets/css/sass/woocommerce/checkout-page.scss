@@ -361,6 +361,10 @@
 
 // Distraction free
 .has-distraction-free-checkout {
+	.topbar {
+		display: none;
+	}
+
 	.site-header {
 		.wrap-toggle-sidebar-menu,
 		.site-navigation,
@@ -371,20 +375,11 @@
 		.woostify-container {
 			padding-top: 20px;
 			padding-bottom: 20px;
+			justify-content: center;
 		}
 
-		@media (min-width: $screen-md) {
-			.site-branding {
-				&:after {
-					position: absolute;
-					top: 50%;
-					right: 15px;
-					font-weight: 700;
-					font-size: 1.2em;
-					transform: translateY(-50%);
-					content: attr(data-checkout);
-				}
-			}
+		.site-branding {
+			text-align: center;
 		}
 	}
 }
@@ -395,7 +390,7 @@
 		height: 50px;
 		margin: 0;
 		border-radius: 0;
-		border-color: #e8e8e8;
+		border-color: #ccc;
 	}
 }
 
@@ -424,7 +419,7 @@
 }
 
 .select2-dropdown {
-	border-color: #e8e8e8;
+	border-color: #ccc;
 }
 
 // responsive
