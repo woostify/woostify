@@ -87,10 +87,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'header_background_color'                 => '#ffffff',
 					'header_primary_menu'                     => true,
 					'header_search_icon'                      => true,
-					'header_wishlist_icon'                    => false,
+					'header_wishlist_icon'                    => true,
 					'header_search_only_product'              => true,
-					'header_account_icon'                     => false,
-					'header_shop_cart_icon'                   => false,
+					'header_account_icon'                     => true,
+					'header_shop_cart_icon'                   => true,
 					// Header transparent.
 					'header_transparent'                      => false,
 					'header_transparent_enable_on'            => 'all-devices',
@@ -216,7 +216,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'cart_page_layout'                        => 'layout-2',
 					'cart_page_sticky_proceed_button'         => true,
 					// CHECKOUT PAGE.
-					'checkout_distraction_free'               => false,
+					'checkout_distraction_free'               => true,
+					'checkout_multi_step'                     => true,
 					'checkout_sticky_place_order_button'      => true,
 					// SIDEBAR.
 					'sidebar_default'                         => is_rtl() ? 'left' : 'right',

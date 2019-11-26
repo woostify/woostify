@@ -152,6 +152,10 @@ class Woostify_Get_CSS {
 					font-size: ' . esc_attr( $options['sub_menu_font_size'] ) . 'px;
 					color: ' . esc_attr( $options['primary_sub_menu_color'] ) . ';
 				}
+
+				.site-tools .tools-icon {
+					color: ' . esc_attr( $options['primary_menu_color'] ) . ';
+				}
 			}
 		';
 
@@ -200,6 +204,7 @@ class Woostify_Get_CSS {
 			.select2-container--default .select2-selection--single .select2-selection__rendered,
 			.form-row .input-text:focus,
 			.wc_payment_method label,
+			.shipping-methods-modified-label,
 			.woocommerce-checkout-review-order-table thead th,
 			.woocommerce-checkout-review-order-table .product-name,
 			.woocommerce-thankyou-order-details strong,
@@ -236,6 +241,8 @@ class Woostify_Get_CSS {
 		$styles .= '
 			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout),
 			.product-loop-meta .button,
+			.multi-step-checkout-button[data-action="back"],
+			.review-information-link,
 			a{
 				color: ' . esc_attr( $options['accent_color'] ) . ';
 			}
@@ -270,6 +277,12 @@ class Woostify_Get_CSS {
 			.product-loop-action .added_to_cart,
 			.product-loop-image-wrapper .tinv-wraper .tinvwl_add_to_wishlist_button:hover {
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
+			}
+
+			@media (min-width: 992px) {
+				.main-navigation .primary-navigation > .menu-item ul:not(.sub-mega-menu) a.tinvwl_add_to_wishlist_button:hover {
+					background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
+				}
 			}
 
 			.button,
@@ -360,6 +373,11 @@ class Woostify_Get_CSS {
 			.product-nav-item:hover > a,
 			.product-nav-item .product-nav-item-price,
 			.woocommerce-thankyou-order-received,
+			.site-tools .tools-icon:hover,
+			.tools-icon.my-account:hover > a,
+			.multi-step-checkout-button[data-action="back"]:hover,
+			.review-information-link:hover,
+			.has-multi-step-checkout .multi-step-item,
 			a:hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
@@ -379,9 +397,10 @@ class Woostify_Get_CSS {
 			.woocommerce-store-notice,
 			.has-woostify-primary-background-color,
 			.woostify-simple-subsbrice-form input[type="submit"]:hover,
-			.multi-step-inner .multi-step-item,
-			.multi-step-inner .multi-step-item:before,
-			.multi-step-inner .multi-step-item:after{
+			.has-multi-step-checkout .multi-step-item .item-text:before,
+			.has-multi-step-checkout .multi-step-item:before,
+			.has-multi-step-checkout .multi-step-item:after,
+			.has-multi-step-checkout .multi-step-item.active:before {
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 

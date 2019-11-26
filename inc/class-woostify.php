@@ -467,6 +467,15 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
+			// Multi step checkout.
+			wp_register_script(
+				'woostify-multi-step-checkout',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/multi-step-checkout' . woostify_suffix() . '.js',
+				array(),
+				woostify_version(),
+				true
+			);
+
 			// Woocommerce sidebar for mobile.
 			wp_register_script(
 				'woostify-woocommerce-sidebar',

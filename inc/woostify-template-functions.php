@@ -743,8 +743,6 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			$title = __( 'Orders', 'woostify' );
 		} elseif ( $wc && is_wc_endpoint_url( 'downloads' ) ) {
 			$title = __( 'Downloads', 'woostify' );
-		} elseif ( $wc && is_wc_endpoint_url( 'order-received' ) ) {
-			$title = __( 'Order received', 'woostify' );
 		} elseif ( $wc && is_wc_endpoint_url( 'edit-account' ) ) {
 			$title = __( 'Account details', 'woostify' );
 		} elseif ( $wc && is_wc_endpoint_url( 'edit-address' ) ) {
@@ -774,8 +772,8 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			}
 		}
 
-		// Not show page header on pages.
-		$disable_page_header = class_exists( 'woocommerce' ) && ( is_cart() || is_checkout() );
+		// Hide default page header on Multi step checkout.
+		$disable_page_header = class_exists( 'woocommerce' ) && is_checkout() && $options['checkout_multi_step'];
 
 		if ( ! $page_header || $disable_page_header ) {
 			return;

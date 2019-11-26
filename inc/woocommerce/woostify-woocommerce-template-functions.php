@@ -364,7 +364,6 @@ if ( ! function_exists( 'woostify_breadcrumb_for_product_page' ) ) {
 	}
 }
 
-
 if ( ! function_exists( 'woostify_related_products_args' ) ) {
 	/**
 	 * Related Products Args
@@ -612,32 +611,223 @@ if ( ! function_exists( 'woostify_clear_shop_cart' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_add_product_thumbnail_to_checkout_order' ) ) {
+	function woostify_add_product_thumbnail_to_checkout_order( $product_name, $cart_item, $cart_item_key ) {
+		if ( ! is_checkout() ) {
+			return $product_name;
+		}
+
+		$data      = $cart_item['data'];
+		$image_id  = ! empty( $data ) ? $data->get_image_id() : false;
+		$image_alt = woostify_image_alt( $image_id, __( 'Product Image', 'woostify' ) );
+		$image_src = $image_id ? wp_get_attachment_image_url( $image_id, 'thumbnail' ) : wc_placeholder_img_src();
+
+		ob_start();
+		?>
+		<img class="review-order-product-image" src="<?php echo esc_url( wp_get_attachment_image_url( $image_id ) ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
+
+		<span class="review-order-product-name">
+			<?php echo esc_html( $product_name ); ?>
+		</span>
+		<?php
+		return ob_get_clean();
+	}
+}
+
+if ( ! function_exists( 'woostify_check_shipping_method' ) ) {
+	/**
+	 * Check shipping method
+	 */
+	function woostify_check_shipping_method() {
+		if ( ! woostify_is_woocommerce_activated() ) {
+			return false;
+		}
+
+		return WC()->cart->needs_shipping() && WC()->cart->show_shipping();
+	}
+}
+
 if ( ! function_exists( 'woostify_multi_step_checkout' ) ) {
 	/**
 	 * Multi step checkout
 	 */
 	function woostify_multi_step_checkout() {
-		$container   = woostify_site_container();
-		$is_cart     = is_cart() ? 'active' : '';
-		$is_thankyou = is_checkout() && ! empty( is_wc_endpoint_url( 'order-received' ) ) ? 'active' : '';
-		$is_checkout = 'active' != $is_thankyou && is_checkout() ? 'active' : '';
+		$container = woostify_site_container();
 		?>
 		<div class="multi-step-checkout">
 			<div class="<?php echo esc_attr( $container ); ?>">
 				<div class="multi-step-inner">
-					<a class="multi-step-item <?php echo esc_attr( $is_cart ); ?>" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
-						<span class="item-text"><?php esc_html_e( 'Shopping Cart', 'woostify-pro' ); ?></span>
-					</a>
+					<span class="multi-step-item active">
+						<span class="item-text"><?php esc_html_e( 'Billing Details', 'woostify' ); ?></span>
+					</span>
 
-					<a class="multi-step-item <?php echo esc_attr( $is_checkout ); ?>" href="<?php echo esc_url( wc_get_checkout_url() ); ?>">
-						<span class="item-text"><?php esc_html_e( 'Checkout', 'woostify-pro' ); ?></span>
-					</a>
+					<?php if ( woostify_check_shipping_method() ) { ?>
+						<span class="multi-step-item">
+							<span class="item-text"><?php esc_html_e( 'Delivery', 'woostify' ); ?></span>
+						</span>
+					<?php } ?>
 
-					<span class="multi-step-item <?php echo esc_attr( $is_thankyou ); ?>">
-						<span class="item-text"><?php esc_html_e( 'Order Complete', 'woostify-pro' ); ?></span>
+					<span class="multi-step-item">
+						<span class="item-text"><?php esc_html_e( 'Payment', 'woostify' ); ?></span>
 					</span>
 				</div>
 			</div>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_multi_checkout_wrapper_start' ) ) {
+	/**
+	 * Wrapper start
+	 */
+	function woostify_multi_checkout_wrapper_start() {
+		?>
+		<div class="multi-step-checkout-wrapper first">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_multi_checkout_wrapper_end' ) ) {
+	/**
+	 * First step end
+	 */
+	function woostify_multi_checkout_wrapper_end() {
+		?>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_multi_checkout_first_wrapper_start' ) ) {
+	/**
+	 * First wrapper start
+	 */
+	function woostify_multi_checkout_first_wrapper_start() {
+		?>
+		<div class="multi-step-checkout-content active" data-step="first">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_multi_checkout_first_wrapper_end' ) ) {
+	/**
+	 * First wrapper end
+	 */
+	function woostify_multi_checkout_first_wrapper_end() {
+		?>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_multi_checkout_second' ) ) {
+	/**
+	 * Second step
+	 */
+	function woostify_multi_checkout_second() {
+		if ( ! woostify_check_shipping_method() ) {
+			return;
+		}
+		?>
+		<div class="multi-step-checkout-content" data-step="second">
+			<div class="multi-step-review-information">
+				<div class="multi-step-review-information-row" data-type="email">
+					<div class="review-information-inner">
+						<div class="review-information-label"><?php esc_html_e( 'Contact', 'woostify' ); ?></div>
+						<div class="review-information-content"></div>
+					</div>
+					<span class="review-information-link"><?php esc_html_e( 'Change', 'woostify' ); ?></span>
+				</div>
+
+				<div class="multi-step-review-information-row" data-type="address">
+					<div class="review-information-inner">
+						<div class="review-information-label"><?php esc_html_e( 'Ship to', 'woostify-pro' ); ?></div>
+						<div class="review-information-content"></div>
+					</div>
+					<span class="review-information-link"><?php esc_html_e( 'Change', 'woostify' ); ?></span>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_multi_checkout_third' ) ) {
+	/**
+	 * Third step
+	 */
+	function woostify_multi_checkout_third() {
+		$index = woostify_check_shipping_method() ? 'last' : 'second';
+		?>
+		<div class="multi-step-checkout-content" data-step="<?php echo esc_attr( $index ); ?>">
+			<div class="multi-step-review-information">
+				<div class="multi-step-review-information-row" data-type="email">
+					<div class="review-information-inner">
+						<div class="review-information-label"><?php esc_html_e( 'Contact', 'woostify' ); ?></div>
+						<div class="review-information-content"></div>
+					</div>
+					<span class="review-information-link"><?php esc_html_e( 'Change', 'woostify' ); ?></span>
+				</div>
+
+				<div class="multi-step-review-information-row" data-type="address">
+					<div class="review-information-inner">
+						<div class="review-information-label"><?php esc_html_e( 'Ship to', 'woostify-pro' ); ?></div>
+						<div class="review-information-content"></div>
+					</div>
+					<span class="review-information-link"><?php esc_html_e( 'Change', 'woostify' ); ?></span>
+				</div>
+
+				<?php if ( woostify_check_shipping_method() ) { ?>
+					<div class="multi-step-review-information-row" data-type="shipping">
+						<div class="review-information-inner">
+							<div class="review-information-label"><?php esc_html_e( 'Method', 'woostify-pro' ); ?></div>
+							<div class="review-information-content"></div>
+						</div>
+						<span class="review-information-link"><?php esc_html_e( 'Change', 'woostify' ); ?></span>
+					</div>
+				<?php } ?>
+			</div>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_multi_checkout_button_action' ) ) {
+	/**
+	 * First step end
+	 */
+	function woostify_multi_checkout_button_action() {
+		?>
+			<div class="multi-step-checkout-button-wrapper">
+				<span class="multi-step-checkout-button ti-angle-left" data-action="back"><?php esc_html_e( 'Back', 'woostify' ); ?></span>
+				<span class="multi-step-checkout-button button" data-action="continue"><?php esc_html_e( 'Continue to shipping', 'woostify' ); ?></span>
+				<span class="multi-step-checkout-button button" data-action="place_order"><?php esc_html_e( 'Place Order', 'woostify' ); ?></span>
+			</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_before_order_review' ) ) {
+	/**
+	 * Before order review
+	 */
+	function woostify_checkout_before_order_review() {
+		$cart = WC()->cart->get_cart();
+		if ( empty( $cart ) ) {
+			return;
+		}
+
+		$cart_count = sprintf( _n( '%s item', '%s items', count( $cart ), 'woostify' ), count( $cart ) );
+		?>
+
+		<div class="woostify-before-order-review">
+			<div class="woostify-before-order-review-summary">
+				<strong><?php esc_html_e( 'Order Summary', 'woostify' ); ?></strong>
+				<span class="woostify-before-order-review-cart-count">(<?php echo esc_html( $cart_count ); ?>)</span>
+			</div>
+			<span class="woostify-before-order-review-total-price"><?php wc_cart_totals_order_total_html(); ?></span>
+			<span class="woostify-before-order-review-icon ti-angle-down"></span>
 		</div>
 		<?php
 	}

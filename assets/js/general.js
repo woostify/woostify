@@ -211,7 +211,7 @@ function woostifyRemoveClassPrefix() {
 		return ! item.includes( prefix );
 	} );
 
-	return results.join( ' ' );
+	selector.className = results.join( ' ' );
 }
 
 document.addEventListener( 'DOMContentLoaded', function() {

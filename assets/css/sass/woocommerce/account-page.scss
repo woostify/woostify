@@ -151,6 +151,12 @@
 	        }
 	    }
 
+	    &--tinv_wishlist {
+	    	a:before{
+	            content: "\e634";
+	        }
+	    }
+
         a{
             font-size: 15px;
             @include flex( flex, flex-start, center );

@@ -50,7 +50,7 @@
 
 	/* Add to cart ( On image ) */
 	.loop-add-to-cart-on-image,
-	.added_to_cart {
+	.loop-add-to-cart-on-image+.added_to_cart {
 		opacity: 0;
 		visibility: hidden;
 		position: absolute;

@@ -18,10 +18,19 @@
 
 .woocommerce-thankyou-order-details {
 	padding-left: 0;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 	display: flex;
 	justify-content: space-between;
 	text-align: center;
+
+	+ p {
+		display: none;
+	}
+
+	.woocommerce-order-overview__email {
+		display: none;
+	}
+
 	@media ( max-width: $screen-md - 1 ) {
 		flex-wrap: wrap;
 	}
@@ -65,7 +74,7 @@
 }
 
 .woocommerce-table--order-details {
-	margin-bottom: 50px;
+	margin-bottom: 70px;
 	margin-top: 0;
 	border: 0;
 
@@ -152,13 +161,22 @@
 
 	.woocommerce-column--1 {
 		float: left;
-		width: 48.5%;
 		border: 1px solid #e8e8e8;
+		width: 100%;
+		margin-bottom: 30px;
+
+		@media (min-width: $screen-sm) {
+			width: 48.5%;
+		}
 	}
 
 	.woocommerce-column--2 {
 		float: right;
-		width: 48.5%;
+		width: 100%;
 		border: 1px solid #e8e8e8;
+
+		@media (min-width: $screen-sm) {
+			width: 48.5%;
+		}
 	}
 }

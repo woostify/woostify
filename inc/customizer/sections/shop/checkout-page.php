@@ -52,6 +52,27 @@ $wp_customize->add_control(
 	)
 );
 
+// Multi step checkout.
+$wp_customize->add_setting(
+	'woostify_setting[checkout_multi_step]',
+	array(
+		'default'           => $defaults['checkout_multi_step'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[checkout_multi_step]',
+		array(
+			'label'       => __( 'Multi Step Checkout', 'woostify-pro' ),
+			'settings'    => 'woostify_setting[checkout_multi_step]',
+			'section'     => 'woocommerce_checkout',
+		)
+	)
+);
+
 // Sticky place order button.
 $wp_customize->add_setting(
 	'woostify_setting[checkout_sticky_place_order_button]',
