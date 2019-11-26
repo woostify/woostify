@@ -59,7 +59,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * Add admin notice
 		 */
 		public function woostify_admin_notice() {
-			if ( ! current_user_can( 'update_plugins' ) ) {
+			if ( ! current_user_can( 'edit_theme_options' ) ) {
 				return;
 			}
 
@@ -82,6 +82,23 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								);
 								?>
 							</p>
+						</div>
+					</div>
+				</div>
+				<?php
+			}
+
+			// Banner Black Friday.
+			if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) && is_admin() && ! get_user_meta( get_current_user_id(), 'black_friday_2019' ) ) {
+				?>
+				<div class="woostify-admin-notice notice notice-warning is-dismissible" data-notice="black_friday_2019">
+					<div class="woostify-notice-content">
+						<div class="woostify-notice-text">
+							<?php
+								$theme_message = '<p>' . __( 'Woostify is offering 40% OFF for Black Friday. Don\'t miss it!', 'woostify-pro' ) . ' <a href="//woostify.com/" target="_blank">' . __( 'Read more', 'woostify' ) . '</a>.</p>';
+
+								echo $theme_message; // WPCS XSS: ok.
+							?>
 						</div>
 					</div>
 				</div>
@@ -403,6 +420,14 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 						<div class="woostify-enhance-sidebar">
 							<?php do_action( 'woostify_pro_panel_sidebar' ); ?>
+
+							<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) { ?>
+								<div class="woostify-enhance__column">
+									<a href="<?php echo esc_url( $woostify_url ); ?>" target="_blank">
+										<img style="margin: 0; display: block;" src="<?php echo WOOSTIFY_THEME_URI . 'assets/images/banner/bf-420x260.jpg'; ?>" alt="<?php esc_attr_e( 'Black Friday Sale Off', 'woostify' ); ?>">
+									</a>
+								</div>
+							<?php } ?>
 
 							<div class="woostify-enhance__column">
 								<h3><?php esc_html_e( 'Import Demo', 'woostify' ); ?></h3>
