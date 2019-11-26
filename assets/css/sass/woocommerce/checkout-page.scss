@@ -132,9 +132,11 @@
 	width: 100%;
 	margin-top: 30px;
 
-	@media (max-width: $screen-md) {
-		display: flex;
-		flex-direction: column-reverse;
+	.has-multi-step-checkout & {
+		@media (max-width: $screen-md) {
+			display: flex;
+			flex-direction: column-reverse;
+		}
 	}
 }
 

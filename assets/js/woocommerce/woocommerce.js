@@ -42,7 +42,16 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	shoppingBag();
 
 	window.addEventListener( 'scroll', function() {
-		if ( document.body.classList.contains( 'woocommerce-demo-store' ) && -1 === document.cookie.indexOf( 'store_notice' ) ) {
+		if (
+			( document.body.classList.contains( 'woocommerce-demo-store' ) && -1 === document.cookie.indexOf( 'store_notice' ) ) ||
+			(
+				(
+					document.body.classList.contains( 'has-order-sticky-button' ) ||
+					document.body.classList.contains( 'has-proceed-sticky-button' )
+				) &&
+				window.innerWidth < 768
+			)
+		) {
 			scrollingDetect();
 		}
 	} );

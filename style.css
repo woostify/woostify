@@ -9347,7 +9347,7 @@ footer#colophon {
 }
 
 @media (max-width: 992px) {
-  [name="checkout"] {
+  .has-multi-step-checkout [name="checkout"] {
     display: flex;
     flex-direction: column-reverse;
   }
