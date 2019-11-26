@@ -106,20 +106,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// CART PAGE.
 			add_action( 'woocommerce_after_cart_table', 'woostify_clear_shop_cart' );
-
-			// CHECKOUT PAGE.
-			add_action( 'woocommerce_checkout_before_customer_details', 'woostify_multi_checkout_wrapper_start', 10 ); // Wrapper start.
-
-			add_action( 'woocommerce_checkout_before_customer_details', 'woostify_multi_checkout_first_wrapper_start', 20 ); // First step wrapper start.
-			add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_first_wrapper_end', 10 ); // First step wrapper end.
-
-			add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_second', 20 ); // Second step.
-			add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_third', 30 ); // Third step.
-			add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_button_action', 40 ); // Button action
-
-			add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_wrapper_end', 100 ); // Wrapper end.
-
-			add_action( 'woocommerce_checkout_after_order_review', 'woostify_checkout_before_order_review', 10 );
 		}
 
 		/**
@@ -303,6 +289,19 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$is_checkout = is_checkout() && ! is_wc_endpoint_url( 'order-received' ); // Is Checkout page only, not Thank you page.
 			if ( $is_checkout && $options['checkout_multi_step'] ) {
 				add_action( 'woostify_after_header', 'woostify_multi_step_checkout', 10 );
+
+				add_action( 'woocommerce_checkout_before_customer_details', 'woostify_multi_checkout_wrapper_start', 10 ); // Wrapper start.
+
+				add_action( 'woocommerce_checkout_before_customer_details', 'woostify_multi_checkout_first_wrapper_start', 20 ); // First step wrapper start.
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_first_wrapper_end', 10 ); // First step wrapper end.
+
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_second', 20 ); // Second step.
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_third', 30 ); // Third step.
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_button_action', 40 ); // Button action
+
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_wrapper_end', 100 ); // Wrapper end.
+
+				add_action( 'woocommerce_checkout_after_order_review', 'woostify_checkout_before_order_review', 10 );
 			}
 
 			// Add product thumbnail to review order.
