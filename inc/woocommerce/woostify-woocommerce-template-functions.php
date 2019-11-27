@@ -758,9 +758,8 @@ if ( ! function_exists( 'woostify_multi_checkout_third' ) ) {
 	 * Third step
 	 */
 	function woostify_multi_checkout_third() {
-		$index = woostify_check_shipping_method() ? 'last' : 'second';
 		?>
-		<div class="multi-step-checkout-content" data-step="<?php echo esc_attr( $index ); ?>">
+		<div class="multi-step-checkout-content" data-step="last">
 			<div class="multi-step-review-information">
 				<div class="multi-step-review-information-row" data-type="email">
 					<div class="review-information-inner">

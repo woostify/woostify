@@ -302,7 +302,6 @@ var woostifyMultiStepCheckout = function() {
 }
 
 document.addEventListener( 'DOMContentLoaded', function() {
-	// console.log( document.cookie );
 	woostifyMultiStepCheckout();
 	woostifyExpandOrderReview();
 } );

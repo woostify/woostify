@@ -846,33 +846,33 @@ msgstr ""
 msgid "Payment"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:737, inc/woocommerce/woostify-woocommerce-template-functions.php:767
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:737, inc/woocommerce/woostify-woocommerce-template-functions.php:766
 msgid "Contact"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:740, inc/woocommerce/woostify-woocommerce-template-functions.php:748, inc/woocommerce/woostify-woocommerce-template-functions.php:770, inc/woocommerce/woostify-woocommerce-template-functions.php:778, inc/woocommerce/woostify-woocommerce-template-functions.php:787
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:740, inc/woocommerce/woostify-woocommerce-template-functions.php:748, inc/woocommerce/woostify-woocommerce-template-functions.php:769, inc/woocommerce/woostify-woocommerce-template-functions.php:777, inc/woocommerce/woostify-woocommerce-template-functions.php:786
 msgid "Change"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:803
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:802
 msgid "Back"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:804
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:803
 msgid "Continue to shipping"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:805
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:804
 msgid "Place Order"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:821
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:820
 msgid "%s item"
 msgid_plural "%s items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:826
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:825
 msgid "Order Summary"
 msgstr ""
 
