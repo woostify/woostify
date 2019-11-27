@@ -416,10 +416,31 @@
 						}
 					}
 				}
+
+				.product-name {
+					display: flex;
+					padding-right: 10px;
+					align-items: center;
+				}
+
+				.review-order-product-image {
+					max-width: 50px;
+				}
+
+				.review-order-product-name {
+					margin: 0 10px;
+				}
+
+				.product-quantity,
+				.product-total {
+					white-space: nowrap;
+				}
 			}
 		}
 
 		.cart-subtotal {
+			white-space: nowrap;
+
 			th,
 			td {
 				border: 0;
@@ -429,6 +450,8 @@
 		}
 
 		.cart-discount {
+			white-space: nowrap;
+
 			th,
 			td {
 				border: 0;
@@ -437,6 +460,8 @@
 		}
 
 		.order-total {
+			white-space: nowrap;
+
 			th,
 			td {
 				border: 0;
@@ -815,11 +840,6 @@
 			@extend .duration;
 		}
 	}
-}
-
-.review-order-product-image {
-	max-width: 50px;
-	margin-right: 5px;
 }
 
 // Distraction free

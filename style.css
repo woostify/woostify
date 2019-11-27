@@ -9600,6 +9600,29 @@ footer#colophon {
   padding-bottom: 20px;
 }
 
+.has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .product-name {
+  display: flex;
+  padding-right: 10px;
+  align-items: center;
+}
+
+.has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .review-order-product-image {
+  max-width: 50px;
+}
+
+.has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .review-order-product-name {
+  margin: 0 10px;
+}
+
+.has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .product-quantity,
+.has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .product-total {
+  white-space: nowrap;
+}
+
+.has-multi-step-checkout #order_review .cart-subtotal {
+  white-space: nowrap;
+}
+
 .has-multi-step-checkout #order_review .cart-subtotal th,
 .has-multi-step-checkout #order_review .cart-subtotal td {
   border: 0;
@@ -9607,10 +9630,18 @@ footer#colophon {
   padding: 15px 0 5px 0;
 }
 
+.has-multi-step-checkout #order_review .cart-discount {
+  white-space: nowrap;
+}
+
 .has-multi-step-checkout #order_review .cart-discount th,
 .has-multi-step-checkout #order_review .cart-discount td {
   border: 0;
   padding: 0 0 5px 0;
+}
+
+.has-multi-step-checkout #order_review .order-total {
+  white-space: nowrap;
 }
 
 .has-multi-step-checkout #order_review .order-total th,
@@ -9957,11 +9988,6 @@ footer#colophon {
   flex-grow: 1;
   text-align: right;
   margin-right: 10px;
-}
-
-.review-order-product-image {
-  max-width: 50px;
-  margin-right: 5px;
 }
 
 .has-distraction-free-checkout .topbar {
