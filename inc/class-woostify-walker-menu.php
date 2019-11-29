@@ -104,27 +104,33 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			if ( 'mega_menu' == $item->object && 0 == $depth ) {
 				$item_output .= '<ul class="sub-menu sub-mega-menu">';
 				$item_output .= '<div class="mega-menu-wrapper">';
-				$mega_args   = [
-					'p'                   => $item->object_id,
-					'post_type'           => 'mega_menu',
-					'post_status'         => 'publish',
-					'posts_per_page'      => 1,
-					'ignore_sticky_posts' => 1,
-				];
 
-				$query = new WP_Query( $mega_args );
+				if ( woostify_is_elementor_page( $item->object_id ) ) {
+					$frontend    = new \Elementor\Frontend();
+					$item_output .= $frontend->get_builder_content( $item->object_id, true );
+				} else {
+					$mega_args = [
+						'p'                   => $item->object_id,
+						'post_type'           => 'mega_menu',
+						'post_status'         => 'publish',
+						'posts_per_page'      => 1,
+						'ignore_sticky_posts' => 1,
+					];
 
-				if ( $query->have_posts() ) {
-					ob_start();
-						while ( $query->have_posts() ) {
-							$query->the_post();
+					$query = new WP_Query( $mega_args );
 
-							the_content();
-						}
+					if ( $query->have_posts() ) {
+						ob_start();
+							while ( $query->have_posts() ) {
+								$query->the_post();
 
-					// Reset post data.
-					wp_reset_postdata();
-					$item_output .= ob_get_clean();
+								the_content();
+							}
+						$item_output .= ob_get_clean();
+
+						// Reset post data.
+						wp_reset_postdata();
+					}
 				}
 
 				$item_output .= '</div>';
