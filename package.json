@@ -1,20 +1,18 @@
 {
     "devDependencies": {
-        "babel-core": "^6.26.3",
         "browser-sync": "^2.24.5",
         "del": "^3.0.0",
-        "gulp-babel": "^7.0.1",
         "gulp-concat": "^2.6.1",
         "gulp-css-globbing": "^0.2.2",
         "gulp-debug": "^4.0.0",
         "gulp-load-plugins": "^1.5.0",
-        "gulp-rename": "^1.4.2",
+        "gulp-rename": "^1.4.0",
         "gulp-sass": "^4.0.1",
         "gulp-sourcemaps": "^2.6.4",
         "gulp-uglify": "^3.0.0",
         "gulp-wp-pot": "^2.3.2",
         "gulp-zip": "^4.2.0",
-        "node-sass": "~4.5.2",
+        "node-sass": "^4.5.2",
         "run-sequence": "^2.2.1",
         "vinyl-buffer": "^1.0.1"
     },
