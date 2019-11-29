@@ -181,8 +181,20 @@ var woostifyMultiStepCheckout = function() {
 						return;
 					}
 
-					if ( input.value.trim() ) {
-						field.classList.remove( 'field-required' );
+					var inputValue = input.value.trim();
+
+					if ( inputValue ) {
+						if ( 'email' == input.type ) {
+							if ( woostifyValidateEmail( inputValue ) ) {
+								field.classList.remove( 'field-required' );
+							} else {
+								validate = true;
+								field.classList.add( 'field-required' );
+								return;
+							}
+						} else {
+							field.classList.remove( 'field-required' );
+						}
 					} else {
 						validate = true;
 						field.classList.add( 'field-required' );
