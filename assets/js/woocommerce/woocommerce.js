@@ -63,7 +63,10 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 	jQuery( document.body ).on( 'adding_to_cart', function() {
 		eventCartSidebarOpen();
-		cartSidebarOpen();
+
+		if ( 'function' === typeof( woostifyAjaxSingleAddToCartButton ) ) {
+			cartSidebarOpen();
+		}
 	} ).on( 'added_to_cart', function() {
 		eventCartSidebarClose();
 		closeAll();
