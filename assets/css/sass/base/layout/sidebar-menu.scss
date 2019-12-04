@@ -177,7 +177,7 @@
 					}
 				}
 
-				> li {
+				> .menu-item {
 					ul {
 						&:not(.sub-mega-menu) {
 							opacity: 1;
@@ -225,7 +225,7 @@
 			}
 		}
 
-		>li {
+		> .menu-item {
 			display: block;
 
 			&.current-menu-ancestor,
