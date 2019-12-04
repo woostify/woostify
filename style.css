@@ -3993,6 +3993,7 @@ table {
 
 .woocommerce table {
   width: 100%;
+  table-layout: auto;
 }
 
 caption,

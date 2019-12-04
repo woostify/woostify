@@ -13,7 +13,73 @@
 		}
 	}
 
-	/* Thank you page */
+	// Multi step checkout
+	&.has-multi-step-checkout {
+		.multi-step-item {
+			&:first-of-type {
+				&:after {
+					left: -30px;
+					right: 50%;
+				}
+			}
+
+			&:not(:first-of-type):not(:last-of-type) {
+				&:before {
+					left: 50%;
+					right: -30px;
+				}
+
+				&:after {
+					left: -30px;
+					right: 50%;
+				}
+			}
+
+			&:last-of-type {
+				&:before {
+					left: 50%;
+					right: -30px;
+				}
+			}
+		}
+
+		.multi-step-checkout-wrapper {
+			float: right;
+
+			@media (min-width: 992px) {
+				padding-right: 0;
+				padding-left: 40px;
+			}
+		}
+
+		.shipping-methods-modified {
+			.shipping-methods-modified-input {
+				margin: 0 0 0 10px;
+			}
+		}
+
+		.multi-step-checkout-button {
+			&[data-action="continue"],
+			&[data-action="place_order"] {
+				float: left;
+			}
+
+			&[data-action="back"] {
+				&:before {
+					content: none;
+				}
+
+				&:after {
+					content: "\e649";
+					font-family: 'themify';
+					margin-left: 5px;
+					font-size: 0.8em;
+				}
+			}
+		}
+	}
+
+	// Thank you page
 	.woocommerce-table--order-details,
 	.woocommerce-table--order-details,
 	.woocommerce-table--order-details {

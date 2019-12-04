@@ -213,16 +213,62 @@
   margin-right: 0;
 }
 
-.rtl {
-  /* Thank you page */
-}
-
 .rtl #order_review #shipping_method li {
   display: block;
 }
 
 .rtl .lost_reset_password .form-row {
   float: right;
+}
+
+.rtl.has-multi-step-checkout .multi-step-item:first-of-type:after {
+  left: -30px;
+  right: 50%;
+}
+
+.rtl.has-multi-step-checkout .multi-step-item:not(:first-of-type):not(:last-of-type):before {
+  left: 50%;
+  right: -30px;
+}
+
+.rtl.has-multi-step-checkout .multi-step-item:not(:first-of-type):not(:last-of-type):after {
+  left: -30px;
+  right: 50%;
+}
+
+.rtl.has-multi-step-checkout .multi-step-item:last-of-type:before {
+  left: 50%;
+  right: -30px;
+}
+
+.rtl.has-multi-step-checkout .multi-step-checkout-wrapper {
+  float: right;
+}
+
+@media (min-width: 992px) {
+  .rtl.has-multi-step-checkout .multi-step-checkout-wrapper {
+    padding-right: 0;
+    padding-left: 40px;
+  }
+}
+
+.rtl.has-multi-step-checkout .shipping-methods-modified .shipping-methods-modified-input {
+  margin: 0 0 0 10px;
+}
+
+.rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="continue"], .rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="place_order"] {
+  float: left;
+}
+
+.rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="back"]:before {
+  content: none;
+}
+
+.rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="back"]:after {
+  content: "\e649";
+  font-family: 'themify';
+  margin-left: 5px;
+  font-size: 0.8em;
 }
 
 .rtl .woocommerce-table--order-details th:nth-child(2),
@@ -247,6 +293,10 @@
   margin-right: 0;
 }
 
+.rtl .wc_payment_methods {
+  padding-right: 0;
+}
+
 .rtl .woocommerce-error li {
   width: auto;
   margin-right: 15px;
@@ -266,18 +316,6 @@
 
 .rtl #shipping_method {
   padding-right: 0;
-  text-align: left;
-}
-
-.rtl #shipping_method input[type="radio"] {
-  float: left;
-  margin-left: 0;
-  margin-right: 7px;
-}
-
-.rtl .cart-collaterals th:nth-child(2),
-.rtl .cart-collaterals td:nth-child(2) {
-  text-align: left;
 }
 
 .rtl #order_review th:last-child,

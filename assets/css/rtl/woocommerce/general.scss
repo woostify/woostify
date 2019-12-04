@@ -6,6 +6,10 @@
 		}
 	}
 
+	.wc_payment_methods {
+		padding-right: 0;
+	}
+
 	.woocommerce-error {
 		li {
 			width: auto;
@@ -35,22 +39,6 @@
 
 	#shipping_method {
 		padding-right: 0;
-		text-align: left;
-
-		input[type="radio"] {
-			float: left;
-			margin-left: 0;
-			margin-right: 7px;
-		}
-	}
-
-	.cart-collaterals {
-		th,
-		td {
-			&:nth-child(2) {
-				text-align: left;
-			}
-		}
 	}
 
 	// Checkout page
