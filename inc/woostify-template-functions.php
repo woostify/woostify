@@ -2023,9 +2023,10 @@ if ( ! function_exists( 'woostify_site_container' ) ) {
 		$page_id           = woostify_get_page_id();
 		$metabox_container = woostify_get_metabox( false, 'site-container' );
 
-		if ( 'default' != $metabox_container && 'full-width' == $metabox_container ) {
-			$container = 'woostify-container container-fluid';
-		} elseif ( 'default' == $metabox_container && 'full-width' == $options['default_container'] ) {
+		if (
+			( 'default' != $metabox_container && 'full-width' == $metabox_container ) ||
+			( 'default' == $metabox_container && 'full-width' == $options['default_container'] )
+		) {
 			$container = 'woostify-container container-fluid';
 		}
 

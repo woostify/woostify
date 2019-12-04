@@ -1,0 +1,37 @@
+body {
+	&.dokan-dashboard {
+		.dokan-dash-sidebar {
+			ul.dokan-dashboard-menu {
+				li.active {
+					&:after {
+						left: auto;
+						right: 0;
+					}
+				}
+			}
+		}
+
+		.dokan-settings-content {
+			.dokan-settings-area {
+				.dokan-banner {
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+		}
+
+		.entry-title {
+			font-size: 20px;
+		}
+	}
+
+	&:not(.has-dokan-sidebar) {
+		&.dokan-store {
+			&.no-sidebar {
+				.dokan-single-store {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
