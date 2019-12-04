@@ -378,6 +378,8 @@ class Woostify_Get_CSS {
 			.multi-step-checkout-button[data-action="back"]:hover,
 			.review-information-link:hover,
 			.has-multi-step-checkout .multi-step-item,
+			#secondary .chosen a,
+			#secondary .chosen .count,
 			a:hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}

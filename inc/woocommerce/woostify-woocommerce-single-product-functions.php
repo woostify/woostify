@@ -445,7 +445,7 @@ if ( ! function_exists( 'woostify_product_recently_viewed_template' ) ) {
 	function woostify_product_recently_viewed_template() {
 		$options = woostify_options( false );
 		$cookies = isset( $_COOKIE['woostify_product_recently_viewed'] ) ? $_COOKIE['woostify_product_recently_viewed'] : false;
-		if ( ! $cookies || ! $options['shop_single_product_recently_viewed'] ) {
+		if ( ! $cookies || ! $options['shop_single_product_recently_viewed'] || ! is_singular( 'product' ) ) {
 			return;
 		}
 

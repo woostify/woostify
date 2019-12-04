@@ -565,7 +565,9 @@
 		margin-right: auto $i;
 		display: none;
 		> h2 {
-			display: none;
+			&:first-child {
+				display: none;
+			}
 		}
 		table {
 			margin: 0;
