@@ -8,7 +8,7 @@
 ?>
 
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> <?php woostify_info(); ?>>
+<html <?php language_attributes(); ?>>
 	<head>
 		<?php
 			do_action( 'woostify_head' );

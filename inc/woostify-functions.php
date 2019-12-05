@@ -22,12 +22,11 @@ if ( ! function_exists( 'woostify_info' ) ) {
 	/**
 	 * Woostify Information.
 	 */
-	function woostify_info() {
-		$info[] = 'data-woostify-version="' . woostify_version() . '"';
-		$info[] = defined( 'WOOSTIFY_PRO_VERSION' ) ?  'data-woostify-pro-version="' . esc_attr( WOOSTIFY_PRO_VERSION ) . '"' : '';
-		$info   = implode( ' ', array_filter( $info ) );
+	function woostify_info( $output ) {
+		$output .= ' data-woostify-version="' . woostify_version() . '"';
+		$output .= defined( 'WOOSTIFY_PRO_VERSION' ) ?  ' data-woostify-pro-version="' . esc_attr( WOOSTIFY_PRO_VERSION ) . '"' : '';
 
-		echo apply_filters( 'woostify_information', $info ); // WPCS: XSS ok.
+		return $output;
 	}
 }
 
