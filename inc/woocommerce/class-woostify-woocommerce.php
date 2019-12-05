@@ -173,9 +173,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'woostify-single-add-to-cart',
 					'woostify_ajax_single_add_to_cart_data',
 					[
-						'ajax_url'     => admin_url( 'admin-ajax.php' ),
-						'ajax_error'   => __( 'Sorry, something went wrong. Please try again!', 'woostify-pro' ),
-						'ajax_nonce'   => wp_create_nonce( 'woostify_ajax_single_add_to_cart' ),
+						'ajax_url'   => admin_url( 'admin-ajax.php' ),
+						'ajax_error' => __( 'Sorry, something went wrong. Please try again!', 'woostify-pro' ),
+						'ajax_nonce' => wp_create_nonce( 'woostify_ajax_single_add_to_cart' ),
 					]
 				);
 			}
@@ -194,6 +194,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$page_id = woostify_get_page_id();
 			$product = wc_get_product( $page_id );
 			$gallery = $product ? $product->get_gallery_image_ids() : false;
+
+			if ( in_array( $options['shop_single_gallery_layout'], [ 'vertical', 'horizontal' ] ) ) {
+				$classes[] = 'has-gallery-slider-layout';
+			}
+
 			if ( $gallery || is_singular( 'elementor_library' ) ) {
 				$classes[] = 'has-gallery-layout-' . $options['shop_single_gallery_layout'];
 			}

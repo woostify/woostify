@@ -45,8 +45,24 @@ function createThumbnails( src ) {
 	return item;
 }
 
+// For Grid layout on mobile.
+function woostifyGridGalleryMobile() {
+	var gallery = document.querySelector( '.product-gallery.has-product-thumbnails' );
+	if ( ! gallery || window.innerWidth > 991 ) {
+		return;
+	}
+
+	var slider = tns({
+	    container: gallery.querySelector( '#product-images' ),
+	    items: 1,
+	    loop: false,
+		autoHeight: true,
+		mouseDrag: true
+	} );
+}
+
 document.addEventListener( 'DOMContentLoaded', function(){
-	var gallery           = document.getElementsByClassName( 'product-gallery' )[0],
+	var gallery           = document.querySelector( '.product-gallery' ),
 		productThumbnails = document.getElementById( 'product-thumbnail-images' );
 
 	// Product images.
@@ -228,6 +244,9 @@ document.addEventListener( 'DOMContentLoaded', function(){
 		});
 	}
 	carouselAction();
+
+	// Grid to caousel layout on mobile.
+	woostifyGridGalleryMobile();
 
 	// Load event.
 	window.addEventListener( 'load', arrowsEvent );

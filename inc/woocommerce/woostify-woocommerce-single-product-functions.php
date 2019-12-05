@@ -234,10 +234,10 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 						<img src="<?php echo esc_url( $image_medium_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
 					</a>
 				</figure>
-
 				<?php
-				if ( ! empty( $gallery_id ) ) :
-					foreach ( $gallery_id as $key ) :
+
+				if ( ! empty( $gallery_id ) ) {
+					foreach ( $gallery_id as $key ) {
 						$g_full_img_src   = wp_get_attachment_image_src( $key, 'full' );
 						$g_medium_img_src = wp_get_attachment_image_src( $key, 'woocommerce_single' );
 						$g_image_size     = $g_full_img_src[1] . 'x' . $g_full_img_src[2];
@@ -249,8 +249,8 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 							</a>
 						</figure>
 						<?php
-						endforeach;
-					endif;
+					}
+				}
 				?>
 			</div>
 		</div>
@@ -263,6 +263,11 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 	 * Product gallery product thumbnail slider
 	 */
 	function woostify_single_product_gallery_thumb_slide() {
+		$options = woostify_options( false );
+		if ( ! in_array( $options['shop_single_gallery_layout'], [ 'vertical', 'horizontal' ] ) ) {
+			return;
+		}
+
 		global $product;
 		if ( ! is_object( $product ) ) {
 			$id = woostify_get_last_product_id();
