@@ -134,7 +134,9 @@ add_action( 'woostify_theme_archive', 'woostify_template_archive' );
 add_action( 'woostify_theme_404', 'woostify_template_404' );
 
 // Add Cart sidebar for Page using Elementor Canvas.
-add_action( 'elementor/page_templates/canvas/after_content', 'woostify_woocommerce_cart_sidebar', 20 );
+if ( woostify_is_woocommerce_activated() ) {
+	add_action( 'elementor/page_templates/canvas/after_content', 'woostify_woocommerce_cart_sidebar', 20 );
+}
 add_action( 'elementor/page_templates/canvas/after_content', 'woostify_overlay', 30 );
 add_action( 'elementor/page_templates/canvas/after_content', 'woostify_footer_action', 40 );
 add_action( 'elementor/page_templates/canvas/after_content', 'woostify_dialog_search', 50 );
