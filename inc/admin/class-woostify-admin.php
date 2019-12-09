@@ -87,23 +87,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				</div>
 				<?php
 			}
-
-			// Banner Black Friday.
-			if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) && is_admin() && ! get_user_meta( get_current_user_id(), 'black_friday_2019' ) ) {
-				?>
-				<div class="woostify-admin-notice notice notice-warning is-dismissible" data-notice="black_friday_2019">
-					<div class="woostify-notice-content">
-						<div class="woostify-notice-text">
-							<?php
-								$theme_message = '<p>' . __( 'Woostify is offering 40% OFF for Black Friday. Don\'t miss it!', 'woostify-pro' ) . ' <a href="//woostify.com/" target="_blank">' . __( 'Read more', 'woostify' ) . '</a>.</p>';
-
-								echo $theme_message; // WPCS XSS: ok.
-							?>
-						</div>
-					</div>
-				</div>
-				<?php
-			}
 		}
 
 		/**
