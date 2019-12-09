@@ -2,6 +2,7 @@
     "devDependencies": {
         "browser-sync": "^2.24.5",
         "del": "^3.0.0",
+        "gulp": "^4.0.2",
         "gulp-concat": "^2.6.1",
         "gulp-css-globbing": "^0.2.2",
         "gulp-debug": "^4.0.0",
@@ -21,7 +22,6 @@
         "npm": ">=1.1.0"
     },
     "dependencies": {
-        "gulp": "^4.0.2",
         "npm": "^6.4.1"
     }
 }
