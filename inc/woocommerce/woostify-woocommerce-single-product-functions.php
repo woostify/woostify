@@ -217,11 +217,14 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 		$image_size          = $get_size['width'] . 'x' . ( ! empty( $get_size['height'] ) ? $get_size['height'] : $get_size['width'] );
 		$image_medium_src[0] = wc_placeholder_img_src();
 		$image_full_src[0]   = wc_placeholder_img_src();
+		$image_srcset        = '';
+
 
 		if ( $image_id ) {
 			$image_medium_src = wp_get_attachment_image_src( $image_id, 'woocommerce_single' );
 			$image_full_src   = wp_get_attachment_image_src( $image_id, 'full' );
 			$image_size       = $image_full_src[1] . 'x' . $image_full_src[2];
+			$image_srcset    = function_exists( 'wp_get_attachment_image_srcset' ) ? wp_get_attachment_image_srcset( $image_id, 'woocommerce_single' ) : '';
 		}
 
 		$gallery_id = $product->get_gallery_image_ids();
@@ -231,7 +234,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 			<div id="product-images">
 				<figure class="image-item ez-zoom">
 					<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
-						<img src="<?php echo esc_url( $image_medium_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
+						<img src="<?php echo esc_url( $image_medium_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" srcset="<?php echo wp_kses_post( $image_srcset ); ?>">
 					</a>
 				</figure>
 				<?php
@@ -242,10 +245,11 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 						$g_medium_img_src = wp_get_attachment_image_src( $key, 'woocommerce_single' );
 						$g_image_size     = $g_full_img_src[1] . 'x' . $g_full_img_src[2];
 						$g_img_alt        = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
+						$g_img_srcset     = function_exists( 'wp_get_attachment_image_srcset' ) ? wp_get_attachment_image_srcset( $key, 'woocommerce_single' ) : '';
 						?>
 						<figure class="image-item ez-zoom">
 							<a href="<?php echo esc_url( $g_full_img_src[0] ); ?>" data-size="<?php echo esc_attr( $g_image_size ); ?>" data-elementor-open-lightbox="no">
-								<img src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>">
+								<img src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>" srcset="<?php echo wp_kses_post( $g_img_srcset ); ?>">
 							</a>
 						</figure>
 						<?php

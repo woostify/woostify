@@ -10,10 +10,12 @@
 function productVariation( selector, form ) {
 	var gallery        = jQuery( selector ),
 		variationsForm = form ? jQuery( form ) : jQuery( '.summary form.variations_form' ),
-		image          = gallery.find( '.image-item:eq(0)' ),
-		imageSrc       = image.find( 'img' ).prop( 'src' ),
+		imageWrapper   = gallery.find( '.image-item:eq(0)' ),
+		image          = imageWrapper.find( 'img' ),
+		imageSrc       = image.prop( 'src' ),
+		imageSrcset    = image.prop( 'srcset' ) || '',
 		// Photoswipe + zoom.
-		photoSwipe     = image.find( 'a' ),
+		photoSwipe     = imageWrapper.find( 'a' ),
 		photoSwipeSrc  = photoSwipe.prop( 'href' ),
 		// Product thumbnail.
 		thumb          = gallery.find( '.thumbnail-item:eq(0)' ),
@@ -27,18 +29,18 @@ function productVariation( selector, form ) {
 			thumbSrc = variation.image.thumb_src;
 
 		// Change src image.
-		image.find( 'img' ).prop( 'src', imgSrc );
+		image.removeAttr( 'srcset' );
 		thumb.find( 'img' ).prop( 'src', thumbSrc );
 
 		// Photoswipe + zoom.
 		photoSwipe.prop( 'href', fullSrc );
 
 		// Image loading.
-		image.addClass( 'image-loading' );
-		image.find( 'img' )
-			.prop( 'src', imgSrc )
+		imageWrapper.addClass( 'image-loading' );
+		image
+			.prop( 'src', fullSrc )
 			.one( 'load', function() {
-				image.removeClass( 'image-loading' );
+				imageWrapper.removeClass( 'image-loading' );
 			} );
 
 		// Zoom handle.
@@ -52,7 +54,8 @@ function productVariation( selector, form ) {
 		e.preventDefault();
 
 		// Change src image.
-		image.find( 'img' ).prop( 'src', imageSrc );
+		image.prop( 'src', imageSrc );
+		image.attr( 'srcset', imageSrcset );
 		thumb.find( 'img' ).prop( 'src', thumbSrc );
 
 		// Photoswipe + zoom.
