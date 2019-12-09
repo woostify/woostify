@@ -254,7 +254,6 @@ $wp_customize->add_control(
 				array(
 					'vertical'   => WOOSTIFY_THEME_URI . 'assets/images/customizer/product-images/vertical.jpg',
 					'horizontal' => WOOSTIFY_THEME_URI . 'assets/images/customizer/product-images/horizontal.jpg',
-					'grid'       => WOOSTIFY_THEME_URI . 'assets/images/customizer/product-images/vertical.jpg',
 				)
 			),
 		)
