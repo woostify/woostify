@@ -335,7 +335,7 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 		}
 		?>
 
-		<div class="woostifyduct-navigation <?php echo esc_attr( $classes ); ?>">
+		<div class="woostify-product-navigation <?php echo esc_attr( $classes ); ?>">
 			<?php echo $content; // WPCS: XSS ok. ?>
 		</div>
 		<?php
