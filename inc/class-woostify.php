@@ -526,6 +526,15 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
+			// Sticky sidebar js.
+			wp_register_script(
+				'sticky-sidebar',
+				WOOSTIFY_THEME_URI . 'assets/js/sticky-sidebar' . woostify_suffix() . '.js',
+				array(),
+				woostify_version(),
+				true
+			);
+
 			// Tiny slider js.
 			wp_register_script(
 				'tiny-slider',

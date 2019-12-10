@@ -180,15 +180,15 @@ msgstr ""
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:614
+#: inc/class-woostify.php:623
 msgid "Woostify 404"
 msgstr ""
 
-#: inc/class-woostify.php:628
+#: inc/class-woostify.php:637
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:734
+#: inc/class-woostify.php:743
 msgid "Post Pagination"
 msgstr ""
 
@@ -344,7 +344,7 @@ msgstr ""
 msgid "Read More"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1185, inc/customizer/sections/shop/shop-single.php:388
+#: inc/woostify-template-functions.php:1185, inc/customizer/sections/shop/shop-single.php:389
 msgid "Tags"
 msgstr ""
 
@@ -705,7 +705,7 @@ msgstr ""
 msgid "Sale!"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:213, inc/customizer/sections/shop/shop-single.php:407
+#: inc/customizer/class-woostify-customizer.php:213, inc/customizer/sections/shop/shop-single.php:408
 msgid "Recently Viewed Products"
 msgstr ""
 
@@ -805,20 +805,20 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:385
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:407
 msgid "You cannot add that amount of this product to the cart because there is not enough stock."
 msgstr ""
 
 #. translators: %1$d: stock quantity
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:388
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:410
 msgid "You cannot add that amount to the cart - we have %1$d in stock and you already have %1$d in your cart"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:389
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:411
 msgid "Please enter a valid quantity for this product"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:414, inc/customizer/sections/shop/shop-single.php:204
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:436, inc/customizer/sections/shop/shop-single.php:204
 msgid "Trust Badge Image"
 msgstr ""
 
@@ -1488,35 +1488,35 @@ msgstr ""
 msgid "Gallery Layout"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:278
+#: inc/customizer/sections/shop/shop-single.php:279
 msgid "Gallery Zoom Effect"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:299
+#: inc/customizer/sections/shop/shop-single.php:300
 msgid "Gallery Lightbox Effect"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:318
+#: inc/customizer/sections/shop/shop-single.php:319
 msgid "Product Meta"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:344
+#: inc/customizer/sections/shop/shop-single.php:345
 msgid "SKU"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:366
+#: inc/customizer/sections/shop/shop-single.php:367
 msgid "Categories"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:432
+#: inc/customizer/sections/shop/shop-single.php:433
 msgid "Display"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:456
+#: inc/customizer/sections/shop/shop-single.php:457
 msgid "Section Title"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-single.php:478
+#: inc/customizer/sections/shop/shop-single.php:479
 msgid "Total Product"
 msgstr ""
 

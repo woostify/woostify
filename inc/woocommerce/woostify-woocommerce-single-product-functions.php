@@ -233,8 +233,8 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 		<div class="product-images">
 			<div id="product-images">
 				<figure class="image-item ez-zoom">
-					<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
-						<img src="<?php echo esc_url( $image_medium_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" srcset="<?php echo wp_kses_post( $image_srcset ); ?>">
+					<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no" style="--width: <?php echo esc_attr( $image_medium_src[1] ); ?>px; --height: <?php echo esc_attr( $image_medium_src[2] ); ?>px;">
+						<img srcset="<?php echo wp_kses_post( $image_srcset ); ?>" src="<?php echo esc_url( $image_medium_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
 					</a>
 				</figure>
 				<?php
@@ -363,6 +363,28 @@ if ( ! function_exists( 'woostify_single_product_after_summary_close' ) ) {
 	 */
 	function woostify_single_product_after_summary_close() {
 		echo '</div>';
+	}
+}
+
+if ( ! function_exists( 'woostify_single_product_wrapper_summary_open' ) ) {
+	/**
+	 * Wrapper product summary open
+	 */
+	function woostify_single_product_wrapper_summary_open() {
+		?>
+		<div class="product-summary">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_single_product_wrapper_summary_close' ) ) {
+	/**
+	 * Wrapper product summary close
+	 */
+	function woostify_single_product_wrapper_summary_close() {
+		?>
+		</div>
+		<?php
 	}
 }
 
