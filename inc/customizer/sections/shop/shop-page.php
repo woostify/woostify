@@ -886,7 +886,7 @@ $wp_customize->add_control(
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_wishlist_support_plugin_choices',
 				array(
-					'yith' => __( 'YITH WooCommerce Wishlist', 'woostify-pro' ),
+					'yith' => __( 'YITH WooCommerce Wishlist', 'woostify' ),
 					'ti'   => __( 'TI WooCommerce Wishlist', 'woostify' ),
 				)
 			),

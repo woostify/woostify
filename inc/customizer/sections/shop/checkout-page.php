@@ -45,7 +45,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[checkout_distraction_free]',
 		array(
-			'label'       => __( 'Distraction Free Checkout', 'woostify-pro' ),
+			'label'       => __( 'Distraction Free Checkout', 'woostify' ),
 			'settings'    => 'woostify_setting[checkout_distraction_free]',
 			'section'     => 'woocommerce_checkout',
 		)
@@ -66,7 +66,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[checkout_multi_step]',
 		array(
-			'label'       => __( 'Multi Step Checkout', 'woostify-pro' ),
+			'label'       => __( 'Multi Step Checkout', 'woostify' ),
 			'settings'    => 'woostify_setting[checkout_multi_step]',
 			'section'     => 'woocommerce_checkout',
 		)
@@ -87,8 +87,8 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[checkout_sticky_place_order_button]',
 		array(
-			'label'       => __( 'Sticky Place Order Button', 'woostify-pro' ),
-			'description' => __( 'This option only available on mobile devices', 'woostify-pro' ),
+			'label'       => __( 'Sticky Place Order Button', 'woostify' ),
+			'description' => __( 'This option only available on mobile devices', 'woostify' ),
 			'settings'    => 'woostify_setting[checkout_sticky_place_order_button]',
 			'section'     => 'woocommerce_checkout',
 		)

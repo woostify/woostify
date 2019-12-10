@@ -335,7 +335,7 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 		}
 		?>
 
-		<div class="woostify-product-navigation <?php echo esc_attr( $classes ); ?>">
+		<div class="woostifyduct-navigation <?php echo esc_attr( $classes ); ?>">
 			<?php echo $content; // WPCS: XSS ok. ?>
 		</div>
 		<?php
@@ -742,7 +742,7 @@ if ( ! function_exists( 'woostify_multi_checkout_second' ) ) {
 
 				<div class="multi-step-review-information-row" data-type="address">
 					<div class="review-information-inner">
-						<div class="review-information-label"><?php esc_html_e( 'Ship to', 'woostify-pro' ); ?></div>
+						<div class="review-information-label"><?php esc_html_e( 'Ship to', 'woostify' ); ?></div>
 						<div class="review-information-content"></div>
 					</div>
 					<span class="review-information-link"><?php esc_html_e( 'Change', 'woostify' ); ?></span>
@@ -771,7 +771,7 @@ if ( ! function_exists( 'woostify_multi_checkout_third' ) ) {
 
 				<div class="multi-step-review-information-row" data-type="address">
 					<div class="review-information-inner">
-						<div class="review-information-label"><?php esc_html_e( 'Ship to', 'woostify-pro' ); ?></div>
+						<div class="review-information-label"><?php esc_html_e( 'Ship to', 'woostify' ); ?></div>
 						<div class="review-information-content"></div>
 					</div>
 					<span class="review-information-link"><?php esc_html_e( 'Change', 'woostify' ); ?></span>
@@ -780,7 +780,7 @@ if ( ! function_exists( 'woostify_multi_checkout_third' ) ) {
 				<?php if ( woostify_check_shipping_method() ) { ?>
 					<div class="multi-step-review-information-row" data-type="shipping">
 						<div class="review-information-inner">
-							<div class="review-information-label"><?php esc_html_e( 'Method', 'woostify-pro' ); ?></div>
+							<div class="review-information-label"><?php esc_html_e( 'Method', 'woostify' ); ?></div>
 							<div class="review-information-content"></div>
 						</div>
 						<span class="review-information-link"><?php esc_html_e( 'Change', 'woostify' ); ?></span>

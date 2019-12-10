@@ -797,6 +797,18 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
+#: inc/woocommerce/class-woostify-woocommerce.php:184
+msgid "Sorry, something went wrong. Please try again!"
+msgstr ""
+
+#: inc/woocommerce/class-woostify-woocommerce.php:394
+msgid "Product Video"
+msgstr ""
+
+#: inc/woocommerce/class-woostify-woocommerce.php:416
+msgid "Enter Youtube or Vimeo video url"
+msgstr ""
+
 #: inc/woocommerce/woostify-woocommerce-archive-product-functions.php:96, inc/woocommerce/woostify-woocommerce-single-product-functions.php:215, inc/woocommerce/woostify-woocommerce-single-product-functions.php:247, inc/woocommerce/woostify-woocommerce-single-product-functions.php:286, inc/woocommerce/woostify-woocommerce-single-product-functions.php:301
 msgid "Product image"
 msgstr ""
@@ -872,6 +884,14 @@ msgstr ""
 
 #: inc/woocommerce/woostify-woocommerce-template-functions.php:740, inc/woocommerce/woostify-woocommerce-template-functions.php:748, inc/woocommerce/woostify-woocommerce-template-functions.php:769, inc/woocommerce/woostify-woocommerce-template-functions.php:777, inc/woocommerce/woostify-woocommerce-template-functions.php:786
 msgid "Change"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:745, inc/woocommerce/woostify-woocommerce-template-functions.php:774
+msgid "Ship to"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:783
+msgid "Method"
 msgstr ""
 
 #: inc/woocommerce/woostify-woocommerce-template-functions.php:802
@@ -1296,8 +1316,20 @@ msgstr ""
 msgid "Sticky Proceed To Checkout Button"
 msgstr ""
 
-#: inc/customizer/sections/shop/cart-page.php:59
+#: inc/customizer/sections/shop/cart-page.php:59, inc/customizer/sections/shop/checkout-page.php:91
 msgid "This option only available on mobile devices"
+msgstr ""
+
+#: inc/customizer/sections/shop/checkout-page.php:48
+msgid "Distraction Free Checkout"
+msgstr ""
+
+#: inc/customizer/sections/shop/checkout-page.php:69
+msgid "Multi Step Checkout"
+msgstr ""
+
+#: inc/customizer/sections/shop/checkout-page.php:90
+msgid "Sticky Place Order Button"
 msgstr ""
 
 #: inc/customizer/sections/shop/product-catalog.php:46
@@ -1438,6 +1470,10 @@ msgstr ""
 
 #: inc/customizer/sections/shop/shop-page.php:882
 msgid "Support For Plugin"
+msgstr ""
+
+#: inc/customizer/sections/shop/shop-page.php:889
+msgid "YITH WooCommerce Wishlist"
 msgstr ""
 
 #: inc/customizer/sections/shop/shop-page.php:890
