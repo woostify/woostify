@@ -406,7 +406,8 @@ class Woostify_Get_CSS {
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
-			.woocommerce-thankyou-order-received {
+			.woocommerce-thankyou-order-received,
+			.woostify-lightbox-button:hover {
 				border-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 

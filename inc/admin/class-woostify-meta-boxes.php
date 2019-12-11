@@ -165,9 +165,9 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 			$site_header_transparent = isset( $meta['site-header-transparent']['default'] ) ? $meta['site-header-transparent']['default'] : 'default';
 			$site_page_header        = isset( $meta['site-page-header']['default'] ) ? $meta['site-page-header']['default'] : 'default';
 
-			$site_header             = isset( $meta['site-header']['default'] ) ? $meta['site-header']['default'] : 'default';
-			$site_topbar             = isset( $meta['site-topbar']['default'] ) ? $meta['site-topbar']['default'] : 'default';
-			$site_footer             = isset( $meta['site-footer']['default'] ) ? $meta['site-footer']['default'] : 'default';
+			$site_header = isset( $meta['site-header']['default'] ) ? $meta['site-header']['default'] : 'default';
+			$site_topbar = isset( $meta['site-topbar']['default'] ) ? $meta['site-topbar']['default'] : 'default';
+			$site_footer = isset( $meta['site-footer']['default'] ) ? $meta['site-footer']['default'] : 'default';
 			?>
 
 			<div class="woostify-metabox-setting">

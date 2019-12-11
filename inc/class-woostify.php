@@ -526,6 +526,24 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
+			// Lightbox js.
+			wp_register_script(
+				'glightbox',
+				WOOSTIFY_THEME_URI . 'assets/js/glightbox' . woostify_suffix() . '.js',
+				array(),
+				woostify_version(),
+				true
+			);
+
+			// Lightbox handle js.
+			wp_register_script(
+				'woostify-lightbox-handle',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/lightbox-handle' . woostify_suffix() . '.js',
+				array( 'glightbox' ),
+				woostify_version(),
+				true
+			);
+
 			// Sticky sidebar js.
 			wp_register_script(
 				'sticky-sidebar',

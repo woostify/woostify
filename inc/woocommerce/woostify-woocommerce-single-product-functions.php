@@ -227,7 +227,11 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 			$image_srcset    = function_exists( 'wp_get_attachment_image_srcset' ) ? wp_get_attachment_image_srcset( $image_id, 'woocommerce_single' ) : '';
 		}
 
+		// Gallery.
 		$gallery_id = $product->get_gallery_image_ids();
+
+		// Metabox.
+		$video_url = woostify_get_metabox( $product_id, 'woostify_product_video_metabox' );
 		?>
 
 		<div class="product-images">
@@ -257,6 +261,10 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 				}
 				?>
 			</div>
+
+			<?php if ( 'default' != $video_url ) { ?>
+				<a href="<?php echo esc_url( $video_url ); ?>" class="ti-video-camera woostify-lightbox-button"></a>
+			<?php } ?>
 		</div>
 		<?php
 	}

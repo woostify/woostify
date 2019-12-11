@@ -108,6 +108,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// CART PAGE.
 			add_action( 'woocommerce_after_cart_table', 'woostify_clear_shop_cart' );
+
+			// METABOXS.
+			add_action( 'add_meta_boxes', [ $this, 'woostify_add_product_metaboxes' ] );
+			add_action( 'save_post', [ $this, 'woostify_save_product_metaboxes' ] );
 		}
 
 		/**
@@ -150,6 +154,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			if ( in_array( $options['shop_single_gallery_layout'], [ 'column', 'grid' ] ) ) {
 				wp_enqueue_script( 'sticky-sidebar' );
 			}
+
+			// Lightbox.
+			wp_enqueue_script( 'woostify-lightbox-handle' );
 
 			// Tiny slider: product images.
 			wp_enqueue_script( 'woostify-product-images' );
@@ -391,7 +398,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		public function woostify_add_product_metaboxes() {
 			add_meta_box(
 				'woostify-product-video-metabox',
-				__( 'Product Video', 'woostify' ),
+				__( 'Product video url', 'woostify' ),
 				[ $this, 'woostify_product_metabox_content' ],
 				'product',
 				'side'
@@ -405,15 +412,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		 */
 		public function woostify_product_metabox_content( $post ) {
 			// Add a nonce field so we can check for it later.
-			wp_nonce_field( basename( __FILE__ ), 'woostify_product_video_metabox' );
+			wp_nonce_field( basename( __FILE__ ), 'woostify_product_video_metabox_nonce' );
 			$value = get_post_meta( $post->ID, 'woostify_product_video_metabox', true );
-			var_export( $value );
 			?>
 
 			<div class="woostify-metabox-setting">
 				<div class="woostify-metabox-option-content">
-					<label for="woostify-product-video-url">
-						<textarea class="widefat" id="woostify-product-video-url" name="woostify-product-video-metabox" placeholder="<?php esc_attr_e( 'Enter Youtube or Vimeo video url', 'woostify' ); ?>" ><?php echo esc_attr( $value ); ?></textarea>
+					<label for="woostify-product-video-url" style="margin-top: 10px; display: block;">
+						<textarea class="widefat" id="woostify-product-video-url" name="woostify_product_video_metabox" rows="4" placeholder="<?php esc_attr_e( 'Enter Youtube or Vimeo video url', 'woostify' ); ?>" ><?php echo esc_attr( $value ); ?></textarea>
 					</label>
 				</div>
 			</div>
@@ -428,10 +434,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		public function woostify_save_product_metaboxes( $post_id ) {
 			$is_autosave    = wp_is_post_autosave( $post_id );
 			$is_revision    = wp_is_post_revision( $post_id );
-			$is_valid_nonce = ( isset( $_POST['woostify_product_video_metabox'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['woostify_product_video_metabox'] ) ), basename( __FILE__ ) ) ) ? true : false;
+			$is_valid_nonce = ( isset( $_POST['woostify_product_video_metabox_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['woostify_product_video_metabox_nonce'] ) ), basename( __FILE__ ) ) ) ? true : false;
 
 			// Exits script depending on save status.
-			if ( $is_autosave || $is_revision || ! $is_valid_nonce || ! isset( $_POST['woostify_product_video_metabox'] ) ) {
+			if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {
 				return;
 			}
 

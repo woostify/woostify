@@ -208,9 +208,10 @@
 	}
 }
 
-// Product images
+// PRODUCT IMAGES
 .product-images {
 	overflow: hidden;
+	position: relative;
 
 	.image-item {
 		margin: 0;
@@ -330,7 +331,7 @@
 	@extend .circle-loading;
 }
 
-// SUMMARY
+// PRODUCT SUMMARY
 .product-summary {
 	float: left;
 	max-width: 100%;
@@ -344,6 +345,22 @@
 		font-size: 24px;
 		margin-bottom: 18px;
 	}
+}
+
+// Video lightbox
+.woostify-lightbox-button {
+	position: absolute;
+	z-index: 100;
+	right: 15px;
+	top: 15px;
+	font-size: 20px;
+	width: 40px;
+	height: 40px;
+	color: #aaa;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	@extend .flex;
+	display: flex $i;
 }
 
 .woocommerce-product-rating {

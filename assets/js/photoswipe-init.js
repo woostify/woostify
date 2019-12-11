@@ -21,14 +21,14 @@ function initPhotoSwipe( gallerySelector ) {
 
 		for ( var i = 0; i < numNodes; i++ ) {
 
-			figureEl = thumbElements[ i ]; // <figure> element
+			figureEl = thumbElements[ i ]; // <figure> element.
 
 			// include only element nodes.
-			if ( figureEl.nodeType !== 1 ) {
+			if ( 1 !== figureEl.nodeType ) {
 				continue;
 			}
 
-			linkEl = figureEl.children[ 0 ]; // <a> element
+			linkEl = figureEl.children[ 0 ]; // <a> element.
 
 			size = linkEl.getAttribute( 'data-size' ).split( 'x' );
 
@@ -40,7 +40,7 @@ function initPhotoSwipe( gallerySelector ) {
 			};
 
 			if ( linkEl.children.length > 0 ) {
-				// <img> thumbnail element, retrieving thumbnail url
+				// <img> thumbnail element, retrieving thumbnail url.
 				item.msrc = linkEl.children[ 0 ].getAttribute( 'src' );
 			}
 
@@ -63,9 +63,13 @@ function initPhotoSwipe( gallerySelector ) {
 
 		var eTarget = e.target || e.srcElement;
 
+		if ( 'A' === eTarget.tagName.toUpperCase() ) {
+			return;
+		}
+
 		// find root element of slide.
 		var clickedListItem = closest( eTarget, function( el ) {
-			return ( el.tagName && el.tagName.toUpperCase() === 'FIGURE' );
+			return ( el.tagName && 'FIGURE' === el.tagName.toUpperCase() );
 		} );
 
 		if ( ! clickedListItem ) {
@@ -130,7 +134,7 @@ function initPhotoSwipe( gallerySelector ) {
 	};
 
 	var openPhotoSwipe = function( index, galleryElement, disableAnimation, fromURL ) {
-		var pswpElement = document.querySelectorAll( '.pswp' )[ 0 ],
+		var pswpElement = document.querySelector( '.pswp' ),
 			gallery,
 			options,
 			items;
@@ -193,7 +197,6 @@ function initPhotoSwipe( gallerySelector ) {
 
 	// loop through all gallery elements and bind events.
 	var galleryElements = document.querySelectorAll( gallerySelector );
-
 	for ( var i = 0, l = galleryElements.length; i < l; i++ ) {
 		galleryElements[ i ].setAttribute( 'data-pswp-uid', i + 1 );
 		galleryElements[ i ].onclick = onThumbnailsClick;
