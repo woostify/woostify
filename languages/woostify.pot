@@ -180,15 +180,15 @@ msgstr ""
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:641
+#: inc/class-woostify.php:632
 msgid "Woostify 404"
 msgstr ""
 
-#: inc/class-woostify.php:655
+#: inc/class-woostify.php:646
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/class-woostify.php:761
+#: inc/class-woostify.php:752
 msgid "Post Pagination"
 msgstr ""
 
@@ -817,20 +817,20 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:415
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:417
 msgid "You cannot add that amount of this product to the cart because there is not enough stock."
 msgstr ""
 
 #. translators: %1$d: stock quantity
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:418
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:420
 msgid "You cannot add that amount to the cart - we have %1$d in stock and you already have %1$d in your cart"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:419
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:421
 msgid "Please enter a valid quantity for this product"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:444, inc/customizer/sections/shop/shop-single.php:204
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:446, inc/customizer/sections/shop/shop-single.php:204
 msgid "Trust Badge Image"
 msgstr ""
 

@@ -433,7 +433,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 					true
 				);
 
-				// foreach polyfill.
+				// Foreach polyfill.
 				wp_enqueue_script(
 					'woostify-for-each-polyfill',
 					WOOSTIFY_THEME_URI . 'assets/js/for-each-polyfill' . woostify_suffix() . '.js',
@@ -528,18 +528,9 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			// Lightbox js.
 			wp_register_script(
-				'glightbox',
-				WOOSTIFY_THEME_URI . 'assets/js/glightbox' . woostify_suffix() . '.js',
-				array(),
-				woostify_version(),
-				true
-			);
-
-			// Lightbox handle js.
-			wp_register_script(
-				'woostify-lightbox-handle',
-				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/lightbox-handle' . woostify_suffix() . '.js',
-				array( 'glightbox' ),
+				'lity',
+				WOOSTIFY_THEME_URI . 'assets/js/lity' . woostify_suffix() . '.js',
+				array( 'jquery' ),
 				woostify_version(),
 				true
 			);

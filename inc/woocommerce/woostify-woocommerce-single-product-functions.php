@@ -263,7 +263,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 			</div>
 
 			<?php if ( 'default' != $video_url ) { ?>
-				<a href="<?php echo esc_url( $video_url ); ?>" class="ti-video-camera woostify-lightbox-button"></a>
+				<a href="<?php echo esc_url( $video_url ); ?>" data-lity class="ti-video-camera woostify-lightbox-button"></a>
 			<?php } ?>
 		</div>
 		<?php
@@ -321,15 +321,17 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 
 if ( ! function_exists( 'woostify_single_product_gallery_dependency' ) ) {
 	/**
-	 * Single gallery product gallery script and style dependency
+	 * Html markup for photo swipe lightbox
 	 */
 	function woostify_single_product_gallery_dependency() {
+		// Theme options.
 		$options = woostify_options( false );
+
+		// Photoswipe markup html.
 		if ( ! $options['shop_single_image_lightbox'] ) {
 			return;
 		}
 
-		// Photoswipe markup html.
 		get_template_part( 'template-parts/content', 'photoswipe' );
 	}
 }

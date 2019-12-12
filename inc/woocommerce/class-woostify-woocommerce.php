@@ -156,7 +156,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// Lightbox.
-			wp_enqueue_script( 'woostify-lightbox-handle' );
+			wp_enqueue_script( 'lity' );
 
 			// Tiny slider: product images.
 			wp_enqueue_script( 'woostify-product-images' );
