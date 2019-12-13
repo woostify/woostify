@@ -116,6 +116,12 @@
 		@extend .duration;
 	}
 
+	.media-toolbar & {
+		&:after {
+			content: none;
+		}
+	}
+
 	.search-field {
 		border-color: $tr;
 		height: 100%;

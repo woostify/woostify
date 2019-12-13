@@ -49,6 +49,11 @@ button {
 	}
 }
 
+input[type="file"] {
+	display: flex;
+	padding: 10px;
+}
+
 h1,
 h2,
 h3,

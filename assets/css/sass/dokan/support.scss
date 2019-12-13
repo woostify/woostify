@@ -12,8 +12,26 @@
 		}
 	}
 
-	.dokan-table {
+	@media (min-width: $screen-md) {
+		.dokan-dashboard-wrap {
+			min-height: 700px;
+			min-height: 90vh;
+		}
+	}
+
+	fieldset {
+		border: 0;
+		padding: 0;
+	}
+
+	table {
+		width: auto;
+	}
+
+	.dokan-table,
+	.table {
 		table-layout: auto;
+		width: 100%;
 
 		thead {
 			th {
@@ -22,9 +40,22 @@
 		}
 	}
 
-	fieldset {
-		border: 0;
-		padding: 0;
+	.btn {
+		padding-left: 15px;
+		padding-right: 15px;
+		background-color: #efefef;
+	}
+
+	.dokan-form-control {
+		border-radius: 4px;
+	}
+
+	.col-link {
+		white-space: nowrap;
+
+		a {
+			white-space: nowrap;
+		}
 	}
 }
 

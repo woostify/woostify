@@ -23,6 +23,29 @@ body {
 		.entry-title {
 			font-size: 20px;
 		}
+
+		.dokan-form-group {
+			.datepicker {
+				height: 36px;
+				padding: 0 10px $i;
+				position: relative;
+				top: 1px;
+				border-radius: 4px;
+			}
+
+			.select2-container--default {
+				.select2-selection--single {
+					height: 36px;
+					border-color: #ccc;
+					border-radius: 4px;
+
+					.select2-selection__rendered {
+						height: 36px;
+						line-height: 36px;
+					}
+				}
+			}
+		}
 	}
 
 	&:not(.has-dokan-sidebar) {
