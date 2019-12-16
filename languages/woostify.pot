@@ -324,7 +324,7 @@ msgstr ""
 msgid "Addresses"
 msgstr ""
 
-#: inc/woostify-template-functions.php:751, inc/woostify-template-functions.php:1844, inc/woostify-template-functions.php:1926
+#: inc/woostify-template-functions.php:751, inc/woostify-template-functions.php:1854, inc/woostify-template-functions.php:1936
 msgid "Logout"
 msgstr ""
 
@@ -414,15 +414,15 @@ msgstr ""
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1839, inc/woostify-template-functions.php:1921
+#: inc/woostify-template-functions.php:1849, inc/woostify-template-functions.php:1931
 msgid "Login / Register"
 msgstr ""
 
-#: inc/woostify-template-functions.php:1842, inc/woostify-template-functions.php:1924
+#: inc/woostify-template-functions.php:1852, inc/woostify-template-functions.php:1934
 msgid "Dashboard"
 msgstr ""
 
-#: inc/woostify-template-functions.php:2158, inc/customizer/sections/footer/footer.php:25
+#: inc/woostify-template-functions.php:2168, inc/customizer/sections/footer/footer.php:25
 msgid "Scroll To Top"
 msgstr ""
 

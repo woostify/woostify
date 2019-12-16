@@ -11070,29 +11070,6 @@ body:not(.has-dokan-sidebar).dokan-store.no-sidebar .dokan-single-store {
   white-space: nowrap;
 }
 
-@media (min-width: 992px) {
-  .dokan-store.has-sidebar.left-sidebar .content-area {
-    padding-left: 30px;
-  }
-  .dokan-store.has-sidebar.right-sidebar .content-area {
-    padding-right: 30px;
-  }
-}
-
-@media (min-width: 992px) {
-  .dokan-store:not(.has-dokan-sidebar).has-sidebar.left-sidebar .content-area {
-    padding-left: 0;
-    width: 100%;
-  }
-  .dokan-store:not(.has-dokan-sidebar).has-sidebar.left-sidebar #dokan-primary {
-    float: right;
-  }
-  .dokan-store:not(.has-dokan-sidebar).has-sidebar.right-sidebar .content-area {
-    padding-right: 0;
-    width: 100%;
-  }
-}
-
 .dokan-store .dokan-widget-area .widget-title {
   font-size: 20px;
 }
@@ -11100,6 +11077,31 @@ body:not(.has-dokan-sidebar).dokan-store.no-sidebar .dokan-single-store {
 .dokan-store .dokan-widget-area ul,
 .dokan-store .dokan-widget-area ol {
   padding-left: 0;
+}
+
+@media (min-width: 992px) {
+  .has-sidebar.has-dokan-sidebar .content-area {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .has-sidebar.left-sidebar .content-area {
+    padding-left: 30px;
+  }
+  .has-sidebar.right-sidebar .content-area {
+    padding-right: 30px;
+  }
+  .has-sidebar.dokan-with-theme-sidebar.left-sidebar .content-area {
+    padding-left: 0;
+    width: 100%;
+  }
+  .has-sidebar.dokan-with-theme-sidebar.left-sidebar #dokan-primary {
+    float: right;
+  }
+  .has-sidebar.dokan-with-theme-sidebar.right-sidebar .content-area {
+    padding-right: 0;
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

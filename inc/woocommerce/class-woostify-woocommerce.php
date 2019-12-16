@@ -272,7 +272,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Dokan support.
 			if ( class_exists( 'WeDevs_Dokan' ) && dokan_is_store_page() ) {
-				$classes[] = 'off' == dokan_get_option( 'enable_theme_store_sidebar', 'dokan_appearance', 'off' ) ? 'has-dokan-sidebar' : '';
+				$classes[] = 'off' == dokan_get_option( 'enable_theme_store_sidebar', 'dokan_appearance', 'off' ) ? 'has-dokan-sidebar' : 'dokan-with-theme-sidebar';
 			}
 
 			return array_filter( $classes );

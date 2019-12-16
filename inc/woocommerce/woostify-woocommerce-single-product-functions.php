@@ -263,7 +263,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 			</div>
 
 			<?php if ( 'default' != $video_url ) { ?>
-				<a href="<?php echo esc_url( $video_url ); ?>" data-lity class="ti-video-camera woostify-lightbox-button"></a>
+				<a href="<?php echo esc_url( $video_url ); ?>" data-lity class="ti-control-play woostify-lightbox-button"></a>
 			<?php } ?>
 		</div>
 		<?php

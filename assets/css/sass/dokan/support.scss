@@ -61,46 +61,6 @@
 
 // Store
 .dokan-store {
-	@media (min-width: 992px) {
-		&.has-sidebar {
-			&.left-sidebar {
-				.content-area {
-					padding-left: 30px;
-				}
-			}
-
-			&.right-sidebar {
-				.content-area {
-					padding-right: 30px;
-				}
-			}
-		}
-	}
-
-	&:not(.has-dokan-sidebar) {
-		@media (min-width: 992px) {
-			&.has-sidebar{
-				&.left-sidebar {
-					.content-area {
-						padding-left: 0;
-						width: 100%;
-					}
-
-					#dokan-primary {
-						float: right;
-					}
-				}
-
-				&.right-sidebar {
-					.content-area {
-						padding-right: 0;
-						width: 100%;
-					}
-				}
-			}
-		}
-	}
-
 	.dokan-widget-area {
 		.widget-title {
 			font-size: 20px;
@@ -109,6 +69,52 @@
 		ul,
 		ol {
 			padding-left: 0;
+		}
+	}
+}
+
+@media (min-width: $screen-md) {
+	.has-sidebar {
+		// Dokan sidebar
+		&.has-dokan-sidebar {
+			.content-area {
+				width: 100%;
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+
+		&.left-sidebar {
+			.content-area {
+				padding-left: 30px;
+			}
+		}
+
+		&.right-sidebar {
+			.content-area {
+				padding-right: 30px;
+			}
+		}
+
+		// Theme sidebar
+		&.dokan-with-theme-sidebar {
+			&.left-sidebar {
+				.content-area {
+					padding-left: 0;
+					width: 100%;
+				}
+
+				#dokan-primary {
+					float: right;
+				}
+			}
+
+			&.right-sidebar {
+				.content-area {
+					padding-right: 0;
+					width: 100%;
+				}
+			}
 		}
 	}
 }
