@@ -801,11 +801,11 @@ msgstr ""
 msgid "Sorry, something went wrong. Please try again!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:401
+#: inc/woocommerce/class-woostify-woocommerce.php:403
 msgid "Product video url"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:422
+#: inc/woocommerce/class-woostify-woocommerce.php:424
 msgid "Enter Youtube or Vimeo video url"
 msgstr ""
 
@@ -830,7 +830,11 @@ msgstr ""
 msgid "Please enter a valid quantity for this product"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:446, inc/customizer/sections/shop/shop-single.php:204
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:450
+msgid "Hurry! only %s left in stock."
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:473, inc/customizer/sections/shop/shop-single.php:204
 msgid "Trust Badge Image"
 msgstr ""
 

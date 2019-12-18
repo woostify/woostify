@@ -52,6 +52,20 @@ var woostifyConditionScrolling = function() {
 	return false;
 }
 
+// Stock progress bar.
+var woostifyStockQuantityProgressBar = function() {
+	var selector = document.querySelectorAll( '.woostify-single-product-stock-progress-bar' );
+	if ( ! selector.length ) {
+		return;
+	}
+
+	selector.forEach( function( element, index ) {
+		var number = element.getAttribute( 'data-number' ) || 0;
+		element.style.width = number + '%';
+		element.removeAttribute( 'data-number' );
+	});
+}
+
 document.addEventListener( 'DOMContentLoaded', function() {
 	shoppingBag();
 
@@ -59,6 +73,10 @@ document.addEventListener( 'DOMContentLoaded', function() {
 		if ( woostifyConditionScrolling() ) {
 			scrollingDetect();
 		}
+	} );
+
+	window.addEventListener( 'load', function() {
+		woostifyStockQuantityProgressBar();
 	} );
 
 	jQuery( document.body ).on( 'adding_to_cart', function() {

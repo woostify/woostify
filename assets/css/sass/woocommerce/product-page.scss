@@ -539,15 +539,32 @@
 	}
 }
 
-.stock {
-	margin-top: 10px;
-}
-
 .product_title {
 	font-size: 24px;
 	margin-top: 0;
 	font-weight: normal;
 	margin-bottom: 10px;
+}
+
+// Stock
+.woostify-single-product-stock {
+	margin-bottom: 35px;
+
+	.woostify-single-product-stock-label {
+		margin-bottom: 10px;
+		display: block;
+	}
+
+	.woostify-product-stock-progress {
+		background-color: #efefef;
+	}
+
+	.woostify-single-product-stock-progress-bar {
+		height: 10px;
+		display: block;
+		width: 0;
+		transition-duration: 0.3s;
+	}
 }
 
 .cart {

@@ -1,40 +1,41 @@
 //ios
-$screen-ios                                    : 375px !default;
+$screen-ios : 375px !default;
 //Tablet
-$screen-tablet                                 : 720px !default;
+$screen-tablet : 720px !default;
 
 //Small screen / tablet
-$screen-sm                                     : 768px !default;
-$screen-sm-min                                 : $screen-sm !default;
+$screen-sm : 768px !default;
+$screen-sm-min : $screen-sm !default;
 
 // Medium screen / desktop
-$screen-md                                     : 992px !default;
-$screen-md-min                                 : $screen-md !default;
+$screen-md : 992px !default;
+$screen-md-min : $screen-md !default;
 
 // Large screen / wide desktop
-$screen-lg                                     : 1200px !default;
-$screen-lg-min                                 : $screen-lg !default;
+$screen-lg : 1200px !default;
+$screen-lg-min : $screen-lg !default;
 
 // So media queries don't overlap when required, provide a maximum
-$screen-xs-max                                 : ($screen-sm-min - 1) !default;
-$screen-sm-max                                 : ($screen-md-min - 1) !default;
-$screen-md-max                                 : ($screen-lg-min - 1) !default;
+$screen-xs-max : ($screen-sm-min - 1) !default;
+$screen-sm-max : ($screen-md-min - 1) !default;
+$screen-md-max : ($screen-lg-min - 1) !default;
 
 //Grid system
-$grid-columns                                  : 12 !default;
-$grid-gutter-width                             : 30px !default;
-$container-tablet                              : (720px + $grid-gutter-width) !default;
-$container-sm                                  : $container-tablet !default;
-$container-desktop                             : (940px + $grid-gutter-width) !default;
-$container-md                                  : $container-desktop !default;
-$container-large-desktop                       : (1170px + $grid-gutter-width) !default;
-$container-lg                                  : $container-large-desktop !default;
+$grid-columns : 12 !default;
+$grid-gutter-width : 30px !default;
+$container-tablet : (720px + $grid-gutter-width) !default;
+$container-sm : $container-tablet !default;
+$container-desktop : (940px + $grid-gutter-width) !default;
+$container-md : $container-desktop !default;
+$container-large-desktop : (1170px + $grid-gutter-width) !default;
+$container-lg : $container-large-desktop !default;
 
 //Framework grid generation
 @mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
 	@for $i from (1 + 1) through $grid-columns {
 		$list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
 	}
+
 	#{$list} {
 		position: relative;
 		min-height: 1px;
@@ -63,6 +64,7 @@ $container-lg                                  : $container-large-desktop !defau
 	@for $i from (1 + 1) through $grid-columns {
 		$list: "#{$list}, .col-#{$class}-#{$i}";
 	}
+
 	#{$list} {
 		float: left;
 	}
@@ -96,12 +98,15 @@ $container-lg                                  : $container-large-desktop !defau
 //container
 .container {
 	@include container-fixed;
+
 	@media (min-width: $screen-sm-min) {
 		width: $container-sm;
 	}
+
 	@media (min-width: $screen-md-min) {
 		width: $container-md;
 	}
+
 	@media (min-width: $screen-lg-min) {
 		width: $container-lg;
 	}

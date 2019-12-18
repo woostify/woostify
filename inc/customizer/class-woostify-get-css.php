@@ -402,7 +402,8 @@ class Woostify_Get_CSS {
 			.has-multi-step-checkout .multi-step-item .item-text:before,
 			.has-multi-step-checkout .multi-step-item:before,
 			.has-multi-step-checkout .multi-step-item:after,
-			.has-multi-step-checkout .multi-step-item.active:before {
+			.has-multi-step-checkout .multi-step-item.active:before,
+			.woostify-single-product-stock .woostify-single-product-stock-progress-bar {
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
@@ -411,7 +412,7 @@ class Woostify_Get_CSS {
 				border-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
-			/* Fix issue not showing on IE */
+			/* Fix issue not showing on IE - Must use single line css */
 			.woostify-simple-subsbrice-form:focus-within input[type="submit"]{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}

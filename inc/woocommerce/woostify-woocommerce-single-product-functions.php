@@ -430,6 +430,33 @@ if ( ! function_exists( 'woostify_product_info' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_modified_stock_label' ) ) {
+	/**
+	 * Modify stock label
+	 *
+	 * @param string $html Default html markup
+	 */
+	function woostify_modified_stock_label( $html ) {
+		global $product;
+		$stock_quantity = $product->get_stock_quantity();
+
+		if ( ! $stock_quantity ) {
+			return;
+		}
+
+		$number = $stock_quantity <= 10 ? $stock_quantity : rand( 10, 75 );
+		?>
+		<div class="woostify-single-product-stock stock">
+			<span class="woostify-single-product-stock-label"><?php echo sprintf( __( 'Hurry! only %s left in stock.', 'woostify' ), $stock_quantity ); ?></span>
+
+			<div class="woostify-product-stock-progress">
+				<span class="woostify-single-product-stock-progress-bar" data-number="<?php echo esc_attr( $number ); ?>"></span>
+			</div>
+		</div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_trust_badge_image' ) ) {
 	/**
 	 * Trust badge image

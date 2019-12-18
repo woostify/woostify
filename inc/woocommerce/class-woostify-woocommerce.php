@@ -297,7 +297,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// SHOP SINGLE.
 			// Stock label.
-			if ( ! $options['shop_single_stock_label'] ) {
+			if ( $options['shop_single_stock_label'] ) {
+				add_filter( 'woocommerce_get_stock_html', 'woostify_modified_stock_label' );
+			} else {
 				add_filter( 'woocommerce_get_stock_html', '__return_empty_string' );
 			}
 
