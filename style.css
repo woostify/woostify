@@ -4615,6 +4615,10 @@ dd {
   padding-bottom: 20px;
 }
 
+.woostify-breadcrumb .item-bread {
+  display: inline-block;
+}
+
 .woostify-breadcrumb .item-bread:after {
   content: "/";
   font-size: 10px;

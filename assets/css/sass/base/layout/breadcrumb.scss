@@ -1,32 +1,32 @@
-.page-header{
-	.woostify-container{
+.page-header {
+	.woostify-container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		flex-wrap: wrap;
 
-		&:after{
+		&:after {
 			content: none;
 		}
 
-		&.content-align-left{
+		&.content-align-left {
 			align-items: flex-start;
 		}
 
-		&.content-align-center{
+		&.content-align-center {
 			align-items: center;
 		}
 
-		&.content-align-right{
+		&.content-align-right {
 			align-items: flex-end;
 		}
 
-		&.content-align-justify{
+		&.content-align-justify {
 			flex-direction: row;
 			justify-content: space-between;
 
-			.entry-title{
-				&:first-child:last-child{
+			.entry-title {
+				&:first-child:last-child {
 					flex-grow: 1;
 					text-align: center;
 				}
@@ -34,15 +34,15 @@
 		}
 	}
 
-	.single-product &{
+	.single-product & {
 		margin-bottom: 0;
 	}
 
-	+.site-content{
+	+.site-content {
 		margin-top: 0;
 	}
 
-	.entry-title{
+	.entry-title {
 		margin: 0;
 		font-size: 2em;
 		font-weight: normal;
@@ -51,6 +51,7 @@
 
 /* Remove customizer background content on single product */
 .single-product {
+
 	&.right-sidebar,
 	&.left-sidebar {
 		.content-top {
@@ -60,18 +61,22 @@
 }
 
 /* Breadcrumb */
-.woostify-breadcrumb{
-	.single-product &{
+.woostify-breadcrumb {
+	.single-product & {
 		padding-bottom: 20px;
 	}
-	.item-bread{
-		&:after{
+
+	.item-bread {
+		display: inline-block;
+
+		&:after {
 			content: "/";
 			font-size: 10px;
 			margin: 0 4px;
 		}
-		&:last-of-type{
-			&:after{
+
+		&:last-of-type {
+			&:after {
 				content: none
 			}
 		}
@@ -85,14 +90,15 @@
 	position: relative;
 	z-index: 11;
 
-	.woocommerce +& {
-		@media ( min-width: $screen-md ) {
+	.woocommerce+& {
+		@media (min-width: $screen-md) {
 			justify-content: flex-end;
 		}
+
 		flex-grow: 1;
 	}
 
-	@media ( max-width: $screen-md - 1 ) {
+	@media (max-width: $screen-md - 1) {
 		width: 100%;
 		justify-content: space-between;
 
@@ -105,9 +111,10 @@
 		position: relative;
 		padding-bottom: 20px;
 
-		@media ( min-width: $screen-md ) {
+		@media (min-width: $screen-md) {
 			+.product-nav-item {
 				margin-left: 3px;
+
 				&:before {
 					content: '|';
 					margin: 0 7px;
@@ -127,7 +134,8 @@
 
 	.product-nav-item-text {
 		text-transform: uppercase;
-		@media ( min-width: $screen-md ) {
+
+		@media (min-width: $screen-md) {
 			padding-bottom: 15px;
 		}
 	}
@@ -143,7 +151,7 @@
 		transform: translateY(10px);
 		@extend .duration;
 
-		@media ( max-width: $screen-md - 1 ) {
+		@media (max-width: $screen-md - 1) {
 			display: none;
 		}
 
