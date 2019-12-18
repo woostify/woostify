@@ -512,7 +512,7 @@ class Woostify_Get_CSS {
 		// Product card.
 		if ( 'none' != $options['shop_page_product_card_border_style'] ) {
 			$styles .= '
-				.products .product {
+				.products .product:not(.product-category) {
 					border-style: ' . esc_attr( $options['shop_page_product_card_border_style'] ) . ';
 					border-width: ' . esc_attr( $options['shop_page_product_card_border_width'] ) . 'px;
 					border-color: ' . esc_attr( $options['shop_page_product_card_border_color'] ) . ';
