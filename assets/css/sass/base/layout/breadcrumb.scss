@@ -68,18 +68,27 @@
 
 	.item-bread {
 		display: inline-block;
+	}
 
-		&:after {
-			content: "/";
-			font-size: 10px;
-			margin: 0 4px;
-		}
-
-		&:last-of-type {
+	// If website not install woocommerce
+	&.woostify-theme-breadcrumb {
+		.item-bread {
 			&:after {
-				content: none
+				content: "/";
+				font-size: 0.9em;
+				margin: 0 5px;
+			}
+
+			&:last-of-type {
+				&:after {
+					content: none
+				}
 			}
 		}
+	}
+
+	.delimiter {
+		margin: 0 5px;
 	}
 }
 

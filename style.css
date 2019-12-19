@@ -4619,14 +4619,18 @@ dd {
   display: inline-block;
 }
 
-.woostify-breadcrumb .item-bread:after {
+.woostify-breadcrumb.woostify-theme-breadcrumb .item-bread:after {
   content: "/";
-  font-size: 10px;
-  margin: 0 4px;
+  font-size: 0.9em;
+  margin: 0 5px;
 }
 
-.woostify-breadcrumb .item-bread:last-of-type:after {
+.woostify-breadcrumb.woostify-theme-breadcrumb .item-bread:last-of-type:after {
   content: none;
+}
+
+.woostify-breadcrumb .delimiter {
+  margin: 0 5px;
 }
 
 /* Product navigation */

@@ -342,6 +342,59 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_modifided_woocommerce_breadcrumb' ) ) {
+	/**
+	 * Modify breadcrumb item
+	 *
+	 * @param      array $default The breadcrumb item
+	 */
+	function woostify_modifided_woocommerce_breadcrumb( $default ) {
+		$default['delimiter']   = '<span class="item-bread delimiter">' . apply_filters( 'woostify_breadcrumb_delimiter', '&#47;' ) . '</span>';
+		$default['wrap_before'] = '<nav class="woostify-breadcrumb">';
+		$default['wrap_after']  = '</nav>';
+		$default['before']      = '<span class="item-bread">';
+		$default['after']       = '</span>';
+
+		return $default;
+	}
+}
+
+if ( ! function_exists( 'woostify_get_modifided_woocommerce_breadcrumb' ) ) {
+	/**
+	 * Woocommerce crumbs
+	 *
+	 * @param      array $crumbs The woocommerce crumbs
+	 */
+	function woostify_get_modifided_woocommerce_breadcrumb( $crumbs ) {
+		$home = [
+			0 => apply_filters( 'woostify_breadcrumb_home', get_bloginfo( 'name' ) ),
+			1 => get_home_url( '/' ),
+		];
+
+		$blog = [
+			0 => apply_filters( 'woostify_breadcrumb_blog', __( 'Blog', 'woostify' ) ),
+			1 => get_permalink( get_option( 'page_for_posts' ) ),
+		];
+
+		$shop = [
+			0 => apply_filters( 'woostify_breadcrumb_shop', __( 'Shop', 'woostify' ) ),
+			1 => woostify_is_woocommerce_activated() ? wc_get_page_permalink( 'shop' ) : '#',
+		];
+
+		// For all blog page.
+		if ( is_home() || is_category() || is_singular( 'post' ) ) {
+			array_splice( $crumbs, 0, 1, [ $home, $blog ] );
+		}
+
+		// For all shop page.
+		if ( woostify_is_woocommerce_activated() && ( is_shop() || is_singular( 'product' ) || is_product_category() ) ) {
+			array_splice( $crumbs, 0, 1, [ $home, $shop ] );
+		}
+
+		return $crumbs;
+	}
+}
+
 if ( ! function_exists( 'woostify_breadcrumb_for_product_page' ) ) {
 	/**
 	 * Add breadcrumb for Product page
@@ -355,7 +408,7 @@ if ( ! function_exists( 'woostify_breadcrumb_for_product_page' ) ) {
 		$options = woostify_options( false );
 
 		if ( $options['shop_single_breadcrumb'] ) {
-			add_action( 'woostify_content_top', 'woostify_breadcrumb', 40 );
+			add_action( 'woostify_content_top', 'woocommerce_breadcrumb', 40 );
 		}
 
 		if ( $options['shop_single_product_navigation'] ) {

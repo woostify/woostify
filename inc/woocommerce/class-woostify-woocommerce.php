@@ -61,6 +61,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Ajax single add to cart.
 			add_action( 'wp_ajax_single_add_to_cart', 'woostify_ajax_single_add_to_cart' );
 			add_action( 'wp_ajax_nopriv_single_add_to_cart', 'woostify_ajax_single_add_to_cart' );
+			// Modified woocommerce breadcrumb.
+			add_filter( 'woocommerce_breadcrumb_defaults', 'woostify_modifided_woocommerce_breadcrumb' );
+			add_filter( 'woocommerce_get_breadcrumb', 'woostify_get_modifided_woocommerce_breadcrumb' );
 
 			// SHOP PAGE.
 			add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_wrapper_open', 10 );
@@ -271,7 +274,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// Dokan support.
-			if ( class_exists( 'WeDevs_Dokan' ) && dokan_is_store_page() ) {
+			if ( class_exists( 'WeDevs_Dokan' ) && woostify_is_woocommerce_activated() && dokan_is_store_page() ) {
 				$classes[] = 'off' == dokan_get_option( 'enable_theme_store_sidebar', 'dokan_appearance', 'off' ) ? 'has-dokan-sidebar' : 'dokan-with-theme-sidebar';
 			}
 
