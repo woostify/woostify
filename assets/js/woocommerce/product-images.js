@@ -56,8 +56,7 @@ function woostifyGalleryCarouselMobile() {
 	    container: gallery.querySelector( '#product-images' ),
 	    items: 1,
 	    loop: false,
-		autoHeight: true,
-		mouseDrag: true
+		autoHeight: true
 	} );
 }
 
@@ -96,8 +95,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
 			navContainer: '#product-thumbnail-images',
 			items: 1,
 			navAsThumbnails: true,
-			autoHeight: true,
-			mouseDrag: true
+			autoHeight: true
 	}
 
 	// Product thumbnails.
@@ -107,7 +105,6 @@ document.addEventListener( 'DOMContentLoaded', function(){
 			container: '#product-thumbnail-images',
 			gutter: 10,
 			items: 5,
-			mouseDrag: true,
 			nav: false,
 			controls: true
 	}
