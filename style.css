@@ -6812,6 +6812,19 @@ footer#colophon {
   font-style: normal;
 }
 
+.woostify-out-of-stock-label {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 2;
+  background-color: #818486;
+  color: #fff;
+  padding: 5px;
+  line-height: 1;
+  font-size: 12px;
+  pointer-events: none;
+}
+
 .processing {
   pointer-events: none;
   position: relative;
@@ -7829,6 +7842,10 @@ footer#colophon {
 .checkout-button {
   border: 0;
   padding: .35em 1.5em;
+}
+
+.product-loop-wrapper {
+  position: relative;
 }
 
 .product-loop-image-wrapper {

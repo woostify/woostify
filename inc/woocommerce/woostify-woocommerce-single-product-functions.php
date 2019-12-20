@@ -229,9 +229,6 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 
 		// Gallery.
 		$gallery_id = $product->get_gallery_image_ids();
-
-		// Metabox.
-		$video_url = woostify_get_metabox( $product_id, 'woostify_product_video_metabox' );
 		?>
 
 		<div class="product-images">
@@ -262,9 +259,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 				?>
 			</div>
 
-			<?php if ( 'default' != $video_url ) { ?>
-				<a href="<?php echo esc_url( $video_url ); ?>" data-lity class="ti-control-play woostify-lightbox-button"></a>
-			<?php } ?>
+			<?php do_action( 'woostify_product_images_box_end' ); ?>
 		</div>
 		<?php
 	}

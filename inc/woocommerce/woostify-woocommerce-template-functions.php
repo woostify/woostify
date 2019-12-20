@@ -381,13 +381,11 @@ if ( ! function_exists( 'woostify_get_modifided_woocommerce_breadcrumb' ) ) {
 			1 => woostify_is_woocommerce_activated() ? wc_get_page_permalink( 'shop' ) : '#',
 		];
 
-		// For all blog page.
 		if ( is_tag() || is_category() || is_singular( 'post' ) ) {
+			// For all blog page.
 			array_splice( $crumbs, 0, 1, [ $home, $blog ] );
-		}
-
-		// For all shop page.
-		if ( woostify_is_woocommerce_activated() && ( is_product_tag() || is_singular( 'product' ) || is_product_category() ) ) {
+		} elseif ( woostify_is_woocommerce_activated() && ( is_product_tag() || is_singular( 'product' ) || is_product_category() ) ) {
+			// For all shop page.
 			array_splice( $crumbs, 0, 1, [ $home, $shop ] );
 		}
 
@@ -450,6 +448,46 @@ if ( ! function_exists( 'woostify_change_woocommerce_arrow_pagination' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_product_out_of_stock' ) ) {
+	/**
+	 * Check product out of stock
+	 *
+	 * @param      object $product The product.
+	 */
+	function woostify_product_out_of_stock( $product ) {
+		if ( ! $product || ! is_object( $product ) ) {
+			return false;
+		}
+
+		$in_stock     = $product->is_in_stock();
+		$manage_stock = $product->managing_stock();
+		$quantity     = $product->get_stock_quantity();
+
+		if ( ! $in_stock || ( $manage_stock && 0 == $quantity ) ) {
+			return true;
+		}
+
+		return false;
+	}
+}
+
+if ( ! function_exists( 'woostify_print_out_of_stock_label' ) ) {
+	/**
+	 * Print out of stock label
+	 */
+	function woostify_print_out_of_stock_label() {
+		global $product;
+		$out_of_stock = woostify_product_out_of_stock( $product );
+
+		if ( ! $out_of_stock ) {
+			return;
+		}
+		?>
+		<span class="woostify-out-of-stock-label"><?php esc_html_e( 'Out Of Stock', 'woostify' ); ?></span>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 	/**
 	 * Change sale flash
@@ -467,6 +505,12 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 		$sale_percent  = $options['shop_page_sale_percent'];
 		$sale_position = $options['shop_page_sale_tag_position'];
 		$final_price   = '';
+		$out_of_stock  = woostify_product_out_of_stock( $product );
+
+		// Out of stock.
+		if ( $out_of_stock ) {
+			return;
+		}
 
 		if ( $sale ) {
 			// For simple product.
@@ -492,6 +536,27 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 				?>
 			</span>
 			<?php
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_product_video_button_play' ) ) {
+	/**
+	 * Add button play video lightbox for product
+	 */
+	function woostify_product_video_button_play() {
+		global $product;
+		if ( ! $product || ! is_object( $product ) ) {
+			return;
+		}
+
+		$product_id = $product->get_id();
+		$video_url  = woostify_get_metabox( $product_id, 'woostify_product_video_metabox' );
+
+		if ( 'default' != $video_url ) {
+		?>
+			<a href="<?php echo esc_url( $video_url ); ?>" data-lity class="ti-control-play woostify-lightbox-button"></a>
+		<?php
 		}
 	}
 }
