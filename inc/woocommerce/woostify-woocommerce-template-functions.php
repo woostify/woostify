@@ -382,12 +382,12 @@ if ( ! function_exists( 'woostify_get_modifided_woocommerce_breadcrumb' ) ) {
 		];
 
 		// For all blog page.
-		if ( is_home() || is_category() || is_singular( 'post' ) ) {
+		if ( is_tag() || is_category() || is_singular( 'post' ) ) {
 			array_splice( $crumbs, 0, 1, [ $home, $blog ] );
 		}
 
 		// For all shop page.
-		if ( woostify_is_woocommerce_activated() && ( is_shop() || is_singular( 'product' ) || is_product_category() ) ) {
+		if ( woostify_is_woocommerce_activated() && ( is_product_tag() || is_singular( 'product' ) || is_product_category() ) ) {
 			array_splice( $crumbs, 0, 1, [ $home, $shop ] );
 		}
 
