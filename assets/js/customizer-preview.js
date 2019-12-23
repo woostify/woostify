@@ -42,7 +42,7 @@ function woostify_colors_live_update( id, selector, property, fullId ) {
 }
 
 // Units.
-function woostify_unit_live_update( id, selector, property, unit ) {
+function woostify_unit_live_update( id, selector, property, unit, fullId ) {
 	var unit    = 'undefined' !== typeof( unit ) ? unit : 'px',
 		setting = fullId ? id : 'woostify_setting[' + id + ']';
 
