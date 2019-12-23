@@ -659,6 +659,7 @@ $wp_customize->add_control(
 				'woostify_setting[shop_page_sale_square]',
 				'woostify_setting[shop_page_sale_size]',
 				'woostify_setting[shop_page_sale_color]',
+				'woostify_setting[shop_page_sale_bg_color]',
 			],
 		)
 	)
@@ -671,6 +672,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_page_sale_tag_position'],
 		'sanitize_callback' => 'woostify_sanitize_choices',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -700,6 +702,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_page_sale_text'],
 		'sanitize_callback' => 'sanitize_text_field',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -722,6 +725,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_page_sale_color'],
 		'sanitize_callback' => 'sanitize_hex_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 
@@ -737,6 +741,29 @@ $wp_customize->add_control(
 	)
 );
 
+// Background color.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_sale_bg_color]',
+	array(
+		'default'           => $defaults['shop_page_sale_bg_color'],
+		'sanitize_callback' => 'sanitize_hex_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new WP_Customize_Color_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_sale_bg_color]',
+		array(
+			'label'    => __( 'Background Color', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_sale_bg_color]',
+		)
+	)
+);
+
 // Border radius.
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_sale_border_radius]',
@@ -744,6 +771,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_page_sale_border_radius'],
 		'sanitize_callback' => 'absint',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -797,6 +825,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_page_sale_square'],
 		'type'              => 'option',
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -818,6 +847,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_page_sale_size'],
 		'sanitize_callback' => 'absint',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(

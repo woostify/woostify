@@ -41,7 +41,7 @@ function woostify_colors_live_update( id, selector, property ) {
 
 // Units.
 function woostify_unit_live_update( id, selector, property, unit ) {
-	// Default parameters.
+	// Default unit.
 	var unit = 'undefined' !== typeof( unit ) ? unit : 'px';
 
 	// Wordpress customize.
@@ -388,6 +388,15 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	);
 
 	// SHOP PAGE.
+	// Sale tag.
+	woostify_update_element_class( 'shop_page_sale_tag_position', '.woostify-tag-on-sale', 'sale-' );
+	woostify_html_live_update( 'shop_page_sale_text', '.woostify-tag-on-sale' );
+	woostify_colors_live_update( 'shop_page_sale_color', '.woostify-tag-on-sale', 'color' );
+	woostify_colors_live_update( 'shop_page_sale_bg_color', '.woostify-tag-on-sale', 'background-color' );
+	woostify_unit_live_update( 'shop_page_sale_border_radius', '.woostify-tag-on-sale', 'border-radius' );
+	woostify_update_element_class( 'shop_page_sale_square', '.woostify-tag-on-sale', 'is-square' );
+	woostify_unit_live_update( 'shop_page_sale_size', '.woostify-tag-on-sale.is-square', [ 'width', 'height' ] );
+
 	// Out of stock label.
 	woostify_update_element_class( 'shop_page_out_of_stock_position', '.woostify-out-of-stock-label', 'position-' );
 	woostify_html_live_update( 'shop_page_out_of_stock_text', '.woostify-out-of-stock-label' );

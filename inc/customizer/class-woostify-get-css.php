@@ -550,15 +550,19 @@ class Woostify_Get_CSS {
 		}
 
 		// Sale tag.
-		$sale_square = '';
 		if ( $options['shop_page_sale_square'] ) {
-			$sale_square .= 'width: ' . esc_attr( $options['shop_page_sale_size'] ) . 'px;';
-			$sale_square .= 'height: ' . esc_attr( $options['shop_page_sale_size'] ) . 'px;';
+			$styles .= '
+				.woostify-tag-on-sale.is-square {
+					width: ' . esc_attr( $options['shop_page_sale_size'] ) . 'px;
+					height: ' . esc_attr( $options['shop_page_sale_size'] ) . 'px;
+				}
+			';
 		}
 		$styles .= '
 			.onsale {
 				color: ' . esc_attr( $options['shop_page_sale_color'] ) . ';
-				border-radius: ' . esc_attr( $options['shop_page_sale_border_radius'] ) . 'px;' . $sale_square . '
+				background-color: ' . esc_attr( $options['shop_page_sale_bg_color'] ) . ';
+				border-radius: ' . esc_attr( $options['shop_page_sale_border_radius'] ) . 'px;
 			}
 		';
 

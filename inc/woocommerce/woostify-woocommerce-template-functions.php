@@ -506,7 +506,6 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 		$variable      = $product->is_type( 'variable' );
 		$sale_text     = $options['shop_page_sale_text'];
 		$sale_percent  = $options['shop_page_sale_percent'];
-		$sale_position = $options['shop_page_sale_tag_position'];
 		$final_price   = '';
 		$out_of_stock  = woostify_product_out_of_stock( $product );
 
@@ -532,11 +531,13 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 			if ( ! $final_price ) {
 				return;
 			}
+
+			$classes[] = 'woostify-tag-on-sale onsale';
+			$classes[] = 'sale-' . $options['shop_page_sale_tag_position'];
+			$classes[] = $options['shop_page_sale_square'] ? 'is-square' : '';
 			?>
-			<span class="onsale sale-<?php echo esc_attr( $sale_position ); ?>">
-				<?php
-					echo esc_html( $final_price );
-				?>
+			<span class="<?php echo implode( ' ', array_filter( $classes ) ); ?>">
+				<?php echo esc_html( $final_price ); ?>
 			</span>
 			<?php
 		}
