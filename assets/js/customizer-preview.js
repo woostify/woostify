@@ -77,19 +77,6 @@ function woostify_unit_live_update( id, selector, property, unit ) {
 	} );
 }
 
-// Append data.
-function woostify_append_data( id, selector, property ) {
-	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
-		value.bind( function( newval ) {
-			jQuery( 'head' ).append( '<style id="' + id + '">' + selector + '{' + property + ':' + newval + ';}</style>' );
-
-			setTimeout( function() {
-				jQuery( 'style#' + id ).not( ':last' ).remove();
-			}, 100 );
-		} );
-	} );
-}
-
 // Html.
 function woostify_html_live_update( id, selector, fullId ) {
 	var fullId  = ( arguments.length > 0 && undefined !== arguments[2] ) ? arguments[2] : false,
@@ -323,17 +310,17 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	woostify_unit_live_update( 'body_line_height', 'body', 'line-height' );
 
 	// Body font weight.
-	woostify_append_data( 'body_font_weight', 'body, button, input, select, textarea', 'font-weight' );
+	woostify_unit_live_update( 'body_font_weight', 'body, button, input, select, textarea', 'font-weight', false );
 
 	// Body text transform.
-	woostify_append_data( 'body_font_transform', 'body, button, input, select, textarea', 'text-transform' );
+	woostify_unit_live_update( 'body_font_transform', 'body, button, input, select, textarea', 'text-transform', false );
 
 	// MENU.
 	// Menu font weight.
-	woostify_append_data( 'menu_font_weight', '.primary-navigation a', 'font-weight' );
+	woostify_unit_live_update( 'menu_font_weight', '.primary-navigation a', 'font-weight', false );
 
 	// Menu text transform.
-	woostify_append_data( 'menu_font_transform', '.primary-navigation a', 'text-transform' );
+	woostify_unit_live_update( 'menu_font_transform', '.primary-navigation a', 'text-transform', false );
 
 	// Parent menu font size.
 	woostify_unit_live_update( 'parent_menu_font_size', '.site-header .primary-navigation > li > a', 'font-size' );
@@ -352,10 +339,10 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	woostify_unit_live_update( 'heading_line_height', 'h1, h2, h3, h4, h5, h6', 'line-height', false );
 
 	// Heading font weight.
-	woostify_append_data( 'heading_font_weight', 'h1, h2, h3, h4, h5, h6', 'font-weight' );
+	woostify_unit_live_update( 'heading_font_weight', 'h1, h2, h3, h4, h5, h6', 'font-weight', false );
 
 	// Heading text transform.
-	woostify_append_data( 'heading_font_transform', 'h1, h2, h3, h4, h5, h6', 'text-transform' );
+	woostify_unit_live_update( 'heading_font_transform', 'h1, h2, h3, h4, h5, h6', 'text-transform', false );
 
 	// H1 font size.
 	woostify_unit_live_update( 'heading_h1_font_size', 'h1', 'font-size' );
