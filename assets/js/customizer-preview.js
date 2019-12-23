@@ -59,17 +59,17 @@ function woostify_unit_live_update( id, selector, property, unit, fullId ) {
 			var data = '';
 			if ( Array.isArray( property ) ) {
 				for ( var i = 0, j = property.length; i < j; i ++ ) {
-					data += newval ? selector + '{ ' + property[i] + ': ' + newval + unit + '}' : '';
+					data += newval ? selector + '{' + property[i] + ': ' + newval + unit + '}' : '';
 				}
 			} else {
-				data += newval ? selector + '{ ' + property + ': ' + newval + unit + '}' : '';
+				data += newval ? selector + '{' + property + ': ' + newval + unit + '}' : '';
 			}
 
 			// Append style.
 			if ( jQuery( 'style#' + id ).length ) {
 				jQuery( 'style#' + id ).html( data );
 			} else {
-				jQuery( 'head' ).append( '<style id="' + id + '">' + data + ' }</style>' );
+				jQuery( 'head' ).append( '<style id="' + id + '">' + data + '</style>' );
 
 				setTimeout( function() {
 					jQuery( 'style#' + id ).not( ':last' ).remove();
@@ -204,11 +204,11 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 				var styles = '';
 				if ( arr.length > 1 ) {
 					if ( 0 == i ) {
-						styles = '@media ( min-width: 769px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
+						styles = '@media ( min-width: 769px ) {' + selector + ' {' + property + ': ' + newval + unit + '}}';
 					} else if ( 1 == i ) {
-						styles = '@media ( min-width: 321px ) and ( max-width: 768px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
+						styles = '@media ( min-width: 321px ) and ( max-width: 768px ) {' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
 					} else {
-						styles = '@media ( max-width: 320px ) { ' + selector + ' { ' + property + ': ' + newval + unit + ' } }';
+						styles = '@media ( max-width: 320px ) {' + selector + ' {' + property + ': ' + newval + unit + '}}';
 					}
 				} else {
 					styles = selector + ' { ' + property + ': ' + newval + unit + ' }';
@@ -218,7 +218,7 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 				if ( jQuery( 'style#woostify_setting-' + el ).length ) {
 					jQuery( 'style#woostify_setting-' + el ).html( styles );
 				} else {
-					jQuery( 'head' ).append( '<style id="woostify_setting-' + el + '">' + styles + ' }</style>' );
+					jQuery( 'head' ).append( '<style id="woostify_setting-' + el + '">' + styles + '</style>' );
 
 					setTimeout( function() {
 						jQuery( 'style#woostify_setting-' + el ).not( ':last' ).remove();
