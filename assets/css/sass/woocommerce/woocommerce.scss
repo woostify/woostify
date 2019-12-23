@@ -4,7 +4,6 @@ $size: 40px;
 // Out of stock label
 .woostify-out-of-stock-label {
 	position: absolute;
-	left: 10px;
 	top: 10px;
 	z-index: 2;
 	background-color: #818486;
@@ -13,6 +12,16 @@ $size: 40px;
 	line-height: 1;
 	font-size: 12px;
 	pointer-events: none;
+	text-align: center;
+	@extend .flex;
+
+	&.position-left {
+		left: 10px;
+	}
+
+	&.position-right {
+		right: 10px;
+	}
 }
 
 // Updating...

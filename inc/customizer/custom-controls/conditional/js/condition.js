@@ -329,6 +329,15 @@
 			false
 		);
 
+		// Out of stock square.
+		condition(
+			'woostify_setting[shop_page_out_of_stock_square]',
+			[
+				'woostify_setting[shop_page_out_of_stock_size]',
+			],
+			false
+		);
+
 		// Product card border.
 		condition(
 			'woostify_setting[shop_page_product_card_border_style]',

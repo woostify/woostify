@@ -843,6 +843,220 @@ $wp_customize->add_control(
 	)
 );
 
+// OUT OF STOCK TAG SECTION.
+$wp_customize->add_setting(
+	'shop_page_out_of_stock_section',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Section_Control(
+		$wp_customize,
+		'shop_page_out_of_stock_section',
+		array(
+			'label'      => __( 'Out Of Stock Label', 'woostify' ),
+			'section'    => 'woostify_shop_page',
+			'dependency' => [
+				'woostify_setting[shop_page_out_of_stock_position]',
+				'woostify_setting[shop_page_out_of_stock_text]',
+				'woostify_setting[shop_page_out_of_stock_color]',
+				'woostify_setting[shop_page_out_of_stock_bg_color]',
+				'woostify_setting[shop_page_out_of_stock_border_radius]',
+				'woostify_setting[shop_page_out_of_stock_square]',
+				'woostify_setting[shop_page_out_of_stock_size]',
+			],
+		)
+	)
+);
+
+// Position.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_out_of_stock_position]',
+	array(
+		'default'           => $defaults['shop_page_out_of_stock_position'],
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_out_of_stock_position]',
+		array(
+			'label'    => __( 'Position', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_out_of_stock_position]',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_shop_page_out_of_stock_position_choices',
+				array(
+					'left'    => __( 'Left', 'woostify' ),
+					'right'   => __( 'Right', 'woostify' ),
+				)
+			),
+		)
+	)
+);
+
+// Text.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_out_of_stock_text]',
+	array(
+		'default'           => $defaults['shop_page_out_of_stock_text'],
+		'sanitize_callback' => 'sanitize_text_field',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_out_of_stock_text]',
+		array(
+			'label'    => __( 'Text', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_out_of_stock_text]',
+			'type'     => 'text',
+		)
+	)
+);
+
+// Text color.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_out_of_stock_color]',
+	array(
+		'default'           => $defaults['shop_page_out_of_stock_color'],
+		'sanitize_callback' => 'sanitize_hex_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new WP_Customize_Color_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_out_of_stock_color]',
+		array(
+			'label'    => __( 'Text Color', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_out_of_stock_color]',
+		)
+	)
+);
+
+// Background color.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_out_of_stock_bg_color]',
+	array(
+		'default'           => $defaults['shop_page_out_of_stock_bg_color'],
+		'sanitize_callback' => 'sanitize_hex_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new WP_Customize_Color_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_out_of_stock_bg_color]',
+		array(
+			'label'    => __( 'Background Color', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_out_of_stock_bg_color]',
+		)
+	)
+);
+
+// Border radius.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_out_of_stock_border_radius]',
+	array(
+		'default'           => $defaults['shop_page_out_of_stock_border_radius'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_out_of_stock_border_radius]',
+		array(
+			'label'    => __( 'Border Radius', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => array(
+				'desktop' => 'woostify_setting[shop_page_out_of_stock_border_radius]',
+			),
+			'choices' => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_out_of_stock_border_radius_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_out_of_stock_border_radius_max_step', 200 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+// Square.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_out_of_stock_square]',
+	array(
+		'default'           => $defaults['shop_page_out_of_stock_square'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_out_of_stock_square]',
+		array(
+			'label'    => __( 'Square', 'woostify' ),
+			'settings' => 'woostify_setting[shop_page_out_of_stock_square]',
+			'section'  => 'woostify_shop_page',
+		)
+	)
+);
+
+// Size.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_out_of_stock_size]',
+	array(
+		'default'           => $defaults['shop_page_out_of_stock_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_out_of_stock_size]',
+		array(
+			'label'    => __( 'Size', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => array(
+				'desktop' => 'woostify_setting[shop_page_out_of_stock_size]',
+			),
+			'choices' => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_out_of_stock_size_min_step', 20 ),
+					'max'  => apply_filters( 'woostify_out_of_stock_size_max_step', 200 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
 // WISHLIST SECTION.
 $wp_customize->add_setting(
 	'shop_page_wishlist_section',

@@ -16,20 +16,16 @@ jQuery.fn.removeClassPrefix = function ( prefix ) {
 			return j;
 		});
 
-		it.className = classes.join( ' ' );
+		it.className = jQuery.trim( classes.join( ' ' ) );
 	});
 
 	return this;
 };
 
 // Colors.
-function woostify_colors_live_update( id, selector, property, default_value ) {
-	default_value = 'undefined' !== typeof default_value ? default_value : 'initial';
-
+function woostify_colors_live_update( id, selector, property ) {
 	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
-			newval = ( '' !== newval ) ? newval : default_value;
-
 			if ( jQuery( 'style#' + id ).length ) {
 				jQuery( 'style#' + id ).html( selector + '{' + property + ':' + newval + ';}' );
 			} else {
@@ -44,30 +40,27 @@ function woostify_colors_live_update( id, selector, property, default_value ) {
 }
 
 // Units.
-function woostify_unit_live_update( id, selector, property, default_value, unit, default_unit ) {
+function woostify_unit_live_update( id, selector, property, unit ) {
 	// Default parameters.
-	unit         = 'undefined' !== typeof unit ? unit : 'px';
-	default_unit = 'undefined' !== typeof default_unit ? default_unit : 'px';
+	var unit = 'undefined' !== typeof( unit ) ? unit : 'px';
 
 	// Wordpress customize.
 	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
 
-			// Sometime `unit` and `default_unit` are not use.
-			if ( false == unit ) {
+			// Sometime 'unit' is not use.
+			if ( ! unit ) {
 				unit = '';
 			}
 
-			if ( false == default_unit ) {
-				default_unit = '';
-			}
-
 			// Get style.
-			var data = ! newval ? '' : selector + '{ ' + property + ': ' + newval + unit + '}';
-
-			// Default value.
-			if ( ! newval && 'undefined' !== typeof default_value && '' != default_value ) {
-				data = selector + '{ ' + property + ': ' + default_value + default_unit + '}';
+			var data = '';
+			if ( Array.isArray( property ) ) {
+				for ( var i = 0, j = property.length; i < j; i ++ ) {
+					data += newval ? selector + '{ ' + property[i] + ': ' + newval + unit + '}' : '';
+				}
+			} else {
+				data += newval ? selector + '{ ' + property + ': ' + newval + unit + '}' : '';
 			}
 
 			// Append style.
@@ -108,10 +101,14 @@ function woostify_html_live_update( id, selector, fullId ) {
 
 	wp.customize( setting, function( value ) {
 		value.bind( function( newval ) {
-			var element = document.querySelector( selector );
-			if ( element ) {
-				element.innerHTML = newval;
+			var element = document.querySelectorAll( selector );
+			if ( ! element.length ) {
+				return;
 			}
+
+			element.forEach( function( ele ) {
+				ele.innerHTML = newval;
+			});
 		} );
 	} );
 }
@@ -129,11 +126,23 @@ function woostify_hidden_product_meta( id, selector ) {
 	} );
 }
 
-// Update body class.
+// Update element class.
 function woostify_update_element_class( id, selector, prefix ) {
 	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
-			jQuery( selector ).removeClassPrefix( prefix ).addClass( prefix + newval );
+			var newClass = '';
+			switch ( newval ) {
+				case true:
+					newClass = prefix;
+					break;
+				case false:
+					newClass = '';
+					break;
+				default:
+					newClass = prefix + newval;
+					break;
+			}
+			jQuery( selector ).removeClassPrefix( prefix ).addClass( newClass );
 		} );
 	} );
 }
@@ -168,18 +177,23 @@ function woostify_background_image_live_upload( id, dependencies, selector ) {
 		dep.forEach( function( el, i ) {
 			wp.customize( 'woostify_setting[' + el + ']', function( value ) {
 				value.bind( function( newval ) {
-					if ( 0 == i ) {
-						// Set background size.
-						element.style.backgroundSize = newval;
-					} else if ( 1 == i ) {
-						// Set background repeat.
-						element.style.backgroundRepeat = newval;
-					} else if ( 2 == i ) {
-						// Set background position.
-						element.style.backgroundPosition = newval.replace( '-', ' ' );
-					} else {
-						// Set background attachment.
-						element.style.backgroundAttachment = newval;
+					switch ( i ) {
+						case 0:
+							// Set background size.
+							element.style.backgroundSize = newval;
+							break;
+						case 1:
+							// Set background repeat.
+							element.style.backgroundRepeat = newval;
+							break;
+						case 2:
+							// Set background position.
+							element.style.backgroundPosition = newval.replace( '-', ' ' );
+							break;
+						default:
+							// Set background attachment.
+							element.style.backgroundAttachment = newval;
+							break;
 					}
 				} );
 			} );
@@ -257,7 +271,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	// Header background.
 	woostify_colors_live_update( 'header_background_color', '.site-header-inner, .has-header-layout-7 .sidebar-menu', 'background-color' );
 	// Header transparent: border bottom width.
-	woostify_unit_live_update( 'header_transparent_border_width', '.has-header-transparent .site-header-inner', 'border-bottom-width', 0 );
+	woostify_unit_live_update( 'header_transparent_border_width', '.has-header-transparent .site-header-inner', 'border-bottom-width' );
 	// Header transparent: border bottom color.
 	woostify_colors_live_update( 'header_transparent_border_color', '.has-header-transparent .site-header-inner', 'border-bottom-color' );
 
@@ -303,10 +317,10 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 	// BODY.
 	// Body font size.
-	woostify_unit_live_update( 'body_font_size', 'body, button, input, select, textarea, .woocommerce-loop-product__title', 'font-size', 14 );
+	woostify_unit_live_update( 'body_font_size', 'body, button, input, select, textarea, .woocommerce-loop-product__title', 'font-size' );
 
 	// Body line height.
-	woostify_unit_live_update( 'body_line_height', 'body', 'line-height', 28 );
+	woostify_unit_live_update( 'body_line_height', 'body', 'line-height' );
 
 	// Body font weight.
 	woostify_append_data( 'body_font_weight', 'body, button, input, select, textarea', 'font-weight' );
@@ -322,20 +336,20 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	woostify_append_data( 'menu_font_transform', '.primary-navigation a', 'text-transform' );
 
 	// Parent menu font size.
-	woostify_unit_live_update( 'parent_menu_font_size', '.site-header .primary-navigation > li > a', 'font-size', 14 );
+	woostify_unit_live_update( 'parent_menu_font_size', '.site-header .primary-navigation > li > a', 'font-size' );
 
 	// Parent menu line-height.
-	woostify_unit_live_update( 'parent_menu_line_height', '.site-header .primary-navigation > li > a', 'line-height', 50 );
+	woostify_unit_live_update( 'parent_menu_line_height', '.site-header .primary-navigation > li > a', 'line-height' );
 
 	// Sub-menu font-size.
-	woostify_unit_live_update( 'sub_menu_font_size', '.site-header .primary-navigation .sub-menu a', 'font-size', 12 );
+	woostify_unit_live_update( 'sub_menu_font_size', '.site-header .primary-navigation .sub-menu a', 'font-size' );
 
 	// Sub-menu line-height.
-	woostify_unit_live_update( 'sub_menu_line_height', '.site-header .primary-navigation .sub-menu a', 'line-height', 24 );
+	woostify_unit_live_update( 'sub_menu_line_height', '.site-header .primary-navigation .sub-menu a', 'line-height' );
 
 	// HEADING.
 	// Heading line height.
-	woostify_unit_live_update( 'heading_line_height', 'h1, h2, h3, h4, h5, h6', 'line-height', '1.5', false, false );
+	woostify_unit_live_update( 'heading_line_height', 'h1, h2, h3, h4, h5, h6', 'line-height', false );
 
 	// Heading font weight.
 	woostify_append_data( 'heading_font_weight', 'h1, h2, h3, h4, h5, h6', 'font-weight' );
@@ -344,22 +358,22 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	woostify_append_data( 'heading_font_transform', 'h1, h2, h3, h4, h5, h6', 'text-transform' );
 
 	// H1 font size.
-	woostify_unit_live_update( 'heading_h1_font_size', 'h1', 'font-size', 48 );
+	woostify_unit_live_update( 'heading_h1_font_size', 'h1', 'font-size' );
 
 	// H2 font size.
-	woostify_unit_live_update( 'heading_h2_font_size', 'h2', 'font-size', 36 );
+	woostify_unit_live_update( 'heading_h2_font_size', 'h2', 'font-size' );
 
 	// H3 font size.
-	woostify_unit_live_update( 'heading_h3_font_size', 'h3', 'font-size', 30 );
+	woostify_unit_live_update( 'heading_h3_font_size', 'h3', 'font-size' );
 
 	// H4 font size.
-	woostify_unit_live_update( 'heading_h4_font_size', 'h4', 'font-size', 28 );
+	woostify_unit_live_update( 'heading_h4_font_size', 'h4', 'font-size' );
 
 	// H5 font size.
-	woostify_unit_live_update( 'heading_h5_font_size', 'h5', 'font-size', 26 );
+	woostify_unit_live_update( 'heading_h5_font_size', 'h5', 'font-size' );
 
 	// H6 font size.
-	woostify_unit_live_update( 'heading_h6_font_size', 'h6', 'font-size', 18 );
+	woostify_unit_live_update( 'heading_h6_font_size', 'h6', 'font-size' );
 
 	// BUTTONS.
 	// Color.
@@ -370,10 +384,20 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	woostify_unit_live_update(
 		'buttons_border_radius',
 		'.cart .quantity, .button, .woocommerce-widget-layered-nav-dropdown__submit, .clear-cart-btn, .form-submit .submit, .elementor-button-wrapper .elementor-button, .has-woostify-contact-form input[type="submit"], #secondary .widget a.button, .product-loop-meta.no-transform .button',
-		'border-radius',
-		4
+		'border-radius'
 	);
 
+	// SHOP PAGE.
+	// Out of stock label.
+	woostify_update_element_class( 'shop_page_out_of_stock_position', '.woostify-out-of-stock-label', 'position-' );
+	woostify_html_live_update( 'shop_page_out_of_stock_text', '.woostify-out-of-stock-label' );
+	woostify_colors_live_update( 'shop_page_out_of_stock_color', '.woostify-out-of-stock-label', 'color' );
+	woostify_colors_live_update( 'shop_page_out_of_stock_bg_color', '.woostify-out-of-stock-label', 'background-color' );
+	woostify_unit_live_update( 'shop_page_out_of_stock_border_radius', '.woostify-out-of-stock-label', 'border-radius' );
+	woostify_update_element_class( 'shop_page_out_of_stock_square', '.woostify-out-of-stock-label', 'is-square' );
+	woostify_unit_live_update( 'shop_page_out_of_stock_size', '.woostify-out-of-stock-label.is-square', [ 'width', 'height' ] );
+
+	// SHOP SINGLE.
 	// Hidden product meta.
 	woostify_hidden_product_meta( 'shop_single_skus', 'hid-skus' );
 	woostify_hidden_product_meta( 'shop_single_categories', 'hid-categories' );

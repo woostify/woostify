@@ -194,6 +194,14 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shop_page_sale_square'                   => false,
 					'shop_page_sale_size'                     => 40,
 					'shop_page_sale_color'                    => '#ffffff',
+					// Out of stock label.
+					'shop_page_out_of_stock_position'         => 'left',
+					'shop_page_out_of_stock_text'             => __( 'Out Of Stock', 'woostify' ),
+					'shop_page_out_of_stock_border_radius'    => 0,
+					'shop_page_out_of_stock_square'           => false,
+					'shop_page_out_of_stock_size'             => 40,
+					'shop_page_out_of_stock_color'            => '#ffffff',
+					'shop_page_out_of_stock_bg_color'         => '#818486',
 					// SHOP SINGLE.
 					'shop_single_breadcrumb'                  => true,
 					'shop_single_product_navigation'          => true,

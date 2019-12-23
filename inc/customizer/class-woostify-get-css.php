@@ -562,6 +562,23 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// Out of stock label.
+		if ( $options['shop_page_out_of_stock_square'] ) {
+			$styles .= '
+				.woostify-out-of-stock-label.is-square {
+					width: ' . esc_attr( $options['shop_page_out_of_stock_size'] ) . 'px;
+					height: ' . esc_attr( $options['shop_page_out_of_stock_size'] ) . 'px;
+				}
+			';
+		}
+		$styles .= '
+			.woostify-out-of-stock-label {
+				color: ' . esc_attr( $options['shop_page_out_of_stock_color'] ) . ';
+				background-color: ' . esc_attr( $options['shop_page_out_of_stock_bg_color'] ) . ';
+				border-radius: ' . esc_attr( $options['shop_page_out_of_stock_border_radius'] ) . 'px;
+			}
+		';
+
 		// SHOP SINGLE.
 		$styles .= '
 			.single-product .content-top,
