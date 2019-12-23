@@ -23,8 +23,10 @@ jQuery.fn.removeClassPrefix = function ( prefix ) {
 };
 
 // Colors.
-function woostify_colors_live_update( id, selector, property ) {
-	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
+function woostify_colors_live_update( id, selector, property, fullId ) {
+	var setting = fullId ? id : 'woostify_setting[' + id + ']';
+
+	wp.customize( setting, function( value ) {
 		value.bind( function( newval ) {
 			if ( jQuery( 'style#' + id ).length ) {
 				jQuery( 'style#' + id ).html( selector + '{' + property + ':' + newval + ';}' );
@@ -41,11 +43,11 @@ function woostify_colors_live_update( id, selector, property ) {
 
 // Units.
 function woostify_unit_live_update( id, selector, property, unit ) {
-	// Default unit.
-	var unit = 'undefined' !== typeof( unit ) ? unit : 'px';
+	var unit    = 'undefined' !== typeof( unit ) ? unit : 'px',
+		setting = fullId ? id : 'woostify_setting[' + id + ']';
 
 	// Wordpress customize.
-	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
+	wp.customize( setting, function( value ) {
 		value.bind( function( newval ) {
 
 			// Sometime 'unit' is not use.
@@ -79,12 +81,7 @@ function woostify_unit_live_update( id, selector, property, unit ) {
 
 // Html.
 function woostify_html_live_update( id, selector, fullId ) {
-	var fullId  = ( arguments.length > 0 && undefined !== arguments[2] ) ? arguments[2] : false,
-		setting = 'woostify_setting[' + id + ']';
-
-	if ( fullId ) {
-		setting = id;
-	}
+	var setting = fullId ? id : 'woostify_setting[' + id + ']';
 
 	wp.customize( setting, function( value ) {
 		value.bind( function( newval ) {
@@ -114,8 +111,10 @@ function woostify_hidden_product_meta( id, selector ) {
 }
 
 // Update element class.
-function woostify_update_element_class( id, selector, prefix ) {
-	wp.customize( 'woostify_setting[' + id + ']', function( value ) {
+function woostify_update_element_class( id, selector, prefix, fullId ) {
+	var setting = fullId ? id : 'woostify_setting[' + id + ']';
+
+	wp.customize( setting, function( value ) {
 		value.bind( function( newval ) {
 			var newClass = '';
 			switch ( newval ) {
