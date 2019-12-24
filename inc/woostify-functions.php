@@ -82,6 +82,27 @@ if ( ! function_exists( 'woostify_is_woocommerce_activated' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_elementor_theme_builder' ) ) {
+	/**
+	 * Get
+	 *
+	 * @param      string $type The elementor type. Ex: header, footer, single ( product ).
+	 */
+	function woostify_elementor_theme_builder( $type = 'header' ) {
+		if ( ! woostify_is_woocommerce_activated() ) {
+			return false;
+		}
+
+		if ( ! defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+			return false;
+		}
+
+		$manager = \ElementorPro\Plugin::instance()->modules_manager->get_modules( 'theme-builder' )->get_conditions_manager();
+
+		return $manager->get_documents_for_location( $type );
+	}
+}
+
 if ( ! function_exists( 'woostify_is_elementor_activated' ) ) {
 	/**
 	 * Check Elementor active

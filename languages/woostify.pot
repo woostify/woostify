@@ -192,15 +192,15 @@ msgstr ""
 msgid "Post Pagination"
 msgstr ""
 
-#: inc/woostify-functions.php:165, inc/woostify-template-functions.php:23, inc/admin/class-woostify-admin.php:247
+#: inc/woostify-functions.php:186, inc/woostify-template-functions.php:23, inc/admin/class-woostify-admin.php:247
 msgid "Woostify"
 msgstr ""
 
-#: inc/woostify-functions.php:392
+#: inc/woostify-functions.php:413
 msgid "Placeholder image"
 msgstr ""
 
-#: inc/woostify-functions.php:394
+#: inc/woostify-functions.php:415
 msgid "Error image"
 msgstr ""
 

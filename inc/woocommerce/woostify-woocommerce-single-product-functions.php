@@ -508,7 +508,7 @@ if ( ! function_exists( 'woostify_product_recently_viewed_template' ) ) {
 	function woostify_product_recently_viewed_template() {
 		$options = woostify_options( false );
 		$cookies = isset( $_COOKIE['woostify_product_recently_viewed'] ) ? $_COOKIE['woostify_product_recently_viewed'] : false;
-		if ( ! $cookies || ! $options['shop_single_product_recently_viewed'] || ! is_singular( 'product' ) ) {
+		if ( ! $cookies || ! $options['shop_single_product_recently_viewed'] || ! is_singular( 'product' ) || woostify_elementor_theme_builder( 'single' ) ) {
 			return;
 		}
 
@@ -532,7 +532,6 @@ if ( ! function_exists( 'woostify_product_recently_viewed_template' ) ) {
 				<div class="woostify-product-recently-viewed-inner">
 					<h2 class="woostify-product-recently-viewed-title"><?php echo esc_html( $options['shop_single_recently_viewed_title'] ); ?></h2>
 					<?php
-						global $woocommerce_loop;
 						woocommerce_product_loop_start();
 
 						while ( $products_query->have_posts() ) :
@@ -540,6 +539,8 @@ if ( ! function_exists( 'woostify_product_recently_viewed_template' ) ) {
 
 							wc_get_template_part( 'content', 'product' );
 						endwhile;
+
+						wp_reset_postdata();
 
 						woocommerce_product_loop_end();
 					?>
