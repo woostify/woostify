@@ -508,7 +508,7 @@ if ( ! function_exists( 'woostify_product_recently_viewed_template' ) ) {
 	function woostify_product_recently_viewed_template() {
 		$options = woostify_options( false );
 		$cookies = isset( $_COOKIE['woostify_product_recently_viewed'] ) ? $_COOKIE['woostify_product_recently_viewed'] : false;
-		if ( ! $cookies || ! $options['shop_single_product_recently_viewed'] || ! is_singular( 'product' ) || woostify_elementor_theme_builder( 'single' ) ) {
+		if ( ! $cookies || ! $options['shop_single_product_recently_viewed'] || ! is_singular( 'product' ) || woostify_elementor_has_location( 'single' ) ) {
 			return;
 		}
 
@@ -556,7 +556,7 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 	 * Ajax single add to cart
 	 */
 	function woostify_ajax_single_add_to_cart() {
-		check_ajax_referer( 'woostify_ajax_single_add_to_cart', 'ajax_nonce', false );
+		check_ajax_referer( 'woostify_ajax_single_add_to_cart', 'ajax_nonce' );
 
 		$response = [];
 
