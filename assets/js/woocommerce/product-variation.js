@@ -9,7 +9,7 @@
 
 function productVariation( selector, form ) {
 	var gallery        = jQuery( selector ),
-		variationsForm = form ? jQuery( form ) : jQuery( '.summary form.variations_form' ),
+		variationsForm = form ? jQuery( form ) : jQuery( '.summary form.variations_form, .elementor-widget-woostify-product-add-to-cart form.variations_form' ),
 		imageWrapper   = gallery.find( '.image-item:eq(0)' ),
 		image          = imageWrapper.find( 'img' ),
 		imageSrc       = image.prop( 'src' ),
@@ -27,6 +27,8 @@ function productVariation( selector, form ) {
 		var fullSrc  = variation.image.full_src,
 			imgSrc   = variation.image.src,
 			thumbSrc = variation.image.thumb_src;
+
+		console.log( image );
 
 		// Change src image.
 		image.removeAttr( 'srcset' );

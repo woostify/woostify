@@ -37,23 +37,12 @@ if ( ! function_exists( 'woostify_single_product_gallery_open' ) ) {
 	 * Single gallery product open
 	 */
 	function woostify_single_product_gallery_open() {
-		global $product;
-
-		if ( ! is_object( $product ) ) {
-			$id = woostify_get_last_product_id();
-			if ( ! $id ) {
-				return;
-			}
-
-			$product = wc_get_product( $id );
-		}
-
+		$product_id = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
+		$product    = wc_get_product( $product_id );
 		$options    = woostify_options( false );
-		$gallery_id = $product->get_gallery_image_ids();
+		$gallery_id = ! empty( $product ) ? $product->get_gallery_image_ids() : [];
 		$classes[]  = $options['shop_single_gallery_layout'] . '-style';
-		if ( ! empty( $gallery_id ) ) {
-			$classes[] = 'has-product-thumbnails';
-		}
+		$classes[]  = ! empty( $gallery_id ) ? 'has-product-thumbnails' : '';
 
 		// Global variation gallery.
 		woostify_global_for_vartiation_gallery( $product );
@@ -71,7 +60,7 @@ if ( ! function_exists( 'woostify_get_default_gallery' ) ) {
 	 */
 	function woostify_get_default_gallery( $product ) {
 		$images = array();
-		if ( ! is_object( $product ) ) {
+		if ( empty( $product ) ) {
 			return $images;
 		}
 
@@ -199,18 +188,13 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 	 * Product gallery product image slider
 	 */
 	function woostify_single_product_gallery_image_slide() {
-		global $product;
+		$product_id = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
+		$product    = wc_get_product( $product_id );
 
-		if ( ! is_object( $product ) ) {
-			$id = woostify_get_last_product_id();
-			if ( ! $id ) {
-				return;
-			}
-
-			$product = wc_get_product( $id );
+		if ( empty( $product ) ) {
+			return;
 		}
 
-		$product_id          = $product->get_id();
 		$image_id            = $product->get_image_id();
 		$image_alt           = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
 		$get_size            = wc_get_image_size( 'shop_catalog' );
@@ -275,14 +259,11 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 			return;
 		}
 
-		global $product;
-		if ( ! is_object( $product ) ) {
-			$id = woostify_get_last_product_id();
-			if ( ! $id ) {
-				return;
-			}
+		$product_id      = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
+		$product         = wc_get_product( $product_id );
 
-			$product = wc_get_product( $id );
+		if ( empty( $product ) ) {
+			return;
 		}
 
 		$image_id        = $product->get_image_id();

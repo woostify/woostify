@@ -242,6 +242,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
 		// Trigger variation.
 		jQuery( 'form.variations_form' ).on( 'found_variation', function() {
 			resetCarousel();
+
 			if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
 				updateGallery( woostify_variation_gallery );
 			}
@@ -255,6 +256,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
 			}
 
 			resetCarousel();
+
 			if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
 				updateGallery( woostify_default_gallery, true );
 			}

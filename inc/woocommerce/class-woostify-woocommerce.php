@@ -223,7 +223,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				$classes[] = 'has-gallery-list-layout';
 			}
 
-			if ( $gallery || is_singular( 'elementor_library' ) ) {
+			if ( $gallery || is_singular( 'elementor_library' ) || is_singular( 'woo_builder' ) ) {
 				$classes[] = 'has-gallery-layout-' . $options['shop_single_gallery_layout'];
 			}
 

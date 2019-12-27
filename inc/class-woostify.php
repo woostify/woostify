@@ -33,7 +33,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			// ELEMENTOR.
 			add_action( 'elementor/theme/register_locations', array( $this, 'woostify_register_elementor_locations' ) );
-			add_action( 'elementor/elements/categories_registered', array( $this, 'woostify_widget_categories' ) );
 			add_action( 'elementor/preview/enqueue_scripts', array( $this, 'woostify_elementor_preview_scripts' ) );
 
 			// Add Image column on blog list in admin screen.
@@ -631,20 +630,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 					'remove_hooks' => [ 'woostify_template_404' ],
 					'label'        => __( 'Woostify 404', 'woostify' ),
 				]
-			);
-		}
-
-		/**
-		 * Add Elementor Category
-		 *
-		 * @param      Elements_Manager $elements_manager The elements manager.
-		 */
-		public function woostify_widget_categories( $elements_manager ) {
-			$elements_manager->add_category(
-				'woostify-theme',
-				array(
-					'title' => esc_html__( 'Woostify Theme', 'woostify' ),
-				)
 			);
 		}
 

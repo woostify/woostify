@@ -64,12 +64,12 @@
 		}
 	}
 
-	.summary {
-		.star-rating {
-			vertical-align: text-top;
-			margin-right: 7px;
-		}
+	.star-rating {
+		vertical-align: text-top;
+		margin-right: 7px;
+	}
 
+	.summary {
 		.yith-wcwl-add-to-wishlist {
 			display: block;
 			margin: 20px 0;
@@ -233,6 +233,10 @@
 	.thumbnail-item {
 		cursor: pointer;
 		position: relative;
+
+		@media (max-width: $screen-md - 1) {
+			padding: 1px;
+		}
 	}
 
 	img {

@@ -9,15 +9,22 @@ defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'woostify_get_last_product_id' ) ) {
 	/**
-	 * Get the last ID of product
+	 * Get the last ID of product, exclude Group and External Product.
 	 */
 	function woostify_get_last_product_id() {
-		$args = array(
-			'post_type'           => 'product',
-			'posts_per_page'      => 1,
-			'post_status'         => 'publish',
-			'ignore_sticky_posts' => 1,
-		);
+		$args = [
+			'post_type'      => 'product',
+			'posts_per_page' => 1,
+			'post_status'    => 'publish',
+			'tax_query'      => [
+		        [
+					'taxonomy' => 'product_type',
+					'field'    => 'slug',
+					'terms'    => [ 'simple', 'variable' ],
+					'operator' => 'IN',
+		        ],
+		    ],
+		];
 
 		$query = new WP_Query( $args );
 

@@ -386,6 +386,10 @@ $size: 40px;
 	}
 }
 
+.shop_attributes {
+	width: 100%;
+}
+
 .shop_table_responsive {
 	@media (max-width: $screen-sm - 1) {
 		th {

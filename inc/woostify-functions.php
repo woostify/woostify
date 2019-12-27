@@ -148,9 +148,9 @@ if ( ! function_exists( 'woostify_is_elementor_editor' ) ) {
 			return false;
 		}
 
-		$support_old_php_version = ( \Elementor\Plugin::$instance->editor->is_edit_mode() || \Elementor\Plugin::$instance->preview->is_preview_mode() );
+		$editor = ( \Elementor\Plugin::$instance->editor->is_edit_mode() || \Elementor\Plugin::$instance->preview->is_preview_mode() );
 
-		return $support_old_php_version;
+		return $editor;
 	}
 }
 

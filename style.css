@@ -7199,6 +7199,10 @@ footer#colophon {
   list-style: none;
 }
 
+.shop_attributes {
+  width: 100%;
+}
+
 @media (max-width: 767px) {
   .shop_table_responsive th {
     display: none;
@@ -8112,7 +8116,7 @@ footer#colophon {
   flex: 0 0 100%;
 }
 
-.single-product .summary .star-rating {
+.single-product .star-rating {
   vertical-align: text-top;
   margin-right: 7px;
 }
@@ -8231,6 +8235,12 @@ footer#colophon {
 .product-thumbnail-images .thumbnail-item {
   cursor: pointer;
   position: relative;
+}
+
+@media (max-width: 991px) {
+  .product-thumbnail-images .thumbnail-item {
+    padding: 1px;
+  }
 }
 
 .product-thumbnail-images img {
