@@ -50,7 +50,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 * @return array
 		 */
 		public function woostify_admin_classes( $classes ) {
-			$classes .= version_compare( get_bloginfo( 'version' ), '5.0', '>=' ) ? 'gutenberg-version' : 'old-version';
+			$classes .= version_compare( get_bloginfo( 'version' ), '5.0', '>=' ) ? ' gutenberg-version ' : ' old-version ';
 
 			return $classes;
 		}
