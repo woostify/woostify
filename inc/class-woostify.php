@@ -39,9 +39,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_filter( 'manage_post_posts_columns', array( $this, 'woostify_columns_head' ), 10 );
 			add_action( 'manage_post_posts_custom_column', array( $this, 'woostify_columns_content' ), 10, 2 );
 
-			// After WooCommerce.
-			add_action( 'wp_enqueue_scripts', array( $this, 'woostify_child_scripts' ), 30 );
-
 			add_filter( 'body_class', array( $this, 'woostify_body_classes' ) );
 			add_filter( 'wp_page_menu_args', array( $this, 'woostify_page_menu_args' ) );
 			add_filter( 'navigation_markup_template', array( $this, 'woostify_navigation_markup_template' ) );
@@ -383,8 +380,8 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			foreach ( $sidebar_args as $sidebar => $args ) {
 				$widget_tags = array(
-					'before_title'  => '<h6 class="widget-title">',
-					'after_title'   => '</h6>',
+					'before_title' => '<h6 class="widget-title">',
+					'after_title'  => '</h6>',
 				);
 
 				/**
@@ -408,13 +405,23 @@ if ( ! class_exists( 'Woostify' ) ) {
 		public function woostify_scripts() {
 			$options = woostify_options( false );
 
+			// Import parent theme if using child-theme.
+			if ( is_child_theme() ) {
+				wp_enqueue_style(
+					'woostify-parent-style',
+					get_template_directory_uri() . '/style.css',
+					[],
+					woostify_version()
+				);
+			}
+
 			/**
 			 * Styles
 			 */
 			wp_enqueue_style(
 				'woostify-style',
 				get_stylesheet_uri(),
-				array(),
+				[],
 				woostify_version()
 			);
 
@@ -660,23 +667,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 			$options = woostify_options( false );
 			$length  = $options['blog_list_limit_exerpt'];
 			return $length;
-		}
-
-		/**
-		 * Enqueue child theme stylesheet.
-		 * A separate function woostify_is required as the child theme css needs to be enqueued _after_ the parent theme
-		 * primary css and the separate WooCommerce css.
-		 */
-		public function woostify_child_scripts() {
-			if ( is_child_theme() ) {
-				$child_theme = wp_get_theme( get_stylesheet() );
-				wp_enqueue_style(
-					'woostify-child-style',
-					get_stylesheet_uri(),
-					array(),
-					$child_theme->get( 'Version' )
-				);
-			}
 		}
 
 		/**
