@@ -701,7 +701,7 @@ msgstr ""
 msgid "Sale!"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:200, inc/woocommerce/woostify-woocommerce-template-functions.php:496
+#: inc/customizer/class-woostify-customizer.php:200
 msgid "Out Of Stock"
 msgstr ""
 
