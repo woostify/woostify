@@ -209,15 +209,20 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shop_single_ajax_add_to_cart'            => true,
 					'shop_single_stock_label'                 => true,
 					'shop_single_additional_information'      => true,
-					'shop_single_related_product'             => true,
 					'shop_single_content_background'          => '#f3f3f3',
 					'shop_single_trust_badge_image'           => '',
 					'shop_single_gallery_layout'              => 'vertical',
 					'shop_single_image_zoom'                  => true,
 					'shop_single_image_lightbox'              => true,
+					// Meta.
 					'shop_single_skus'                        => true,
 					'shop_single_categories'                  => true,
 					'shop_single_tags'                        => true,
+					// Related.
+					'shop_single_related_product'             => true,
+					'shop_single_product_related_total'       => 4,
+					'shop_single_product_related_columns'     => 4,
+					// Recently view.
 					'shop_single_product_recently_viewed'     => false,
 					'shop_single_recently_viewed_title'       => __( 'Recently Viewed Products', 'woostify' ),
 					'shop_single_recently_viewed_count'       => 4,

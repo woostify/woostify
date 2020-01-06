@@ -8198,6 +8198,14 @@ footer#colophon {
   height: 30px;
 }
 
+.vertical-style .product-thumbnail-images .tns-ovh:not([style*="height"]) {
+  max-height: 300px;
+}
+
+.horizontal-style .product-thumbnail-images .tns-ovh:not([style*="height"]) {
+  max-width: 300px;
+}
+
 @media (min-width: 992px) {
   .has-gallery-layout-vertical .product-thumbnail-images .tns-controls [data-controls] {
     top: auto;
@@ -8696,8 +8704,8 @@ footer#colophon {
 .woocommerce-tabs .woocommerce-Tabs-panel {
   padding: 23px 0;
   max-width: 770px;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  margin-left: auto;
+  margin-right: auto;
   display: none;
 }
 

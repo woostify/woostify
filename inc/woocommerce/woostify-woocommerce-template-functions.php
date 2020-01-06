@@ -430,11 +430,12 @@ if ( ! function_exists( 'woostify_related_products_args' ) ) {
 	 * @return  array $args related products args
 	 */
 	function woostify_related_products_args( $args ) {
-		$args = apply_filters(
+		$options = woostify_options( false );
+		$args    = apply_filters(
 			'woostify_related_products_args',
 			array(
-				'posts_per_page' => 4,
-				'columns'        => 4,
+				'posts_per_page' => $options['shop_single_product_related_total'],
+				'columns'        => $options['shop_single_product_related_columns'],
 			)
 		);
 

@@ -359,6 +359,16 @@
 		);
 
 		// SHOP SINGLE.
+		// Product related.
+		condition(
+			'woostify_setting[shop_single_related_product]',
+			[
+				'woostify_setting[shop_single_product_related_total]',
+				'woostify_setting[shop_single_product_related_columns]',
+			],
+			false
+		);
+
 		// Product recently viewed.
 		condition(
 			'woostify_setting[shop_single_product_recently_viewed]',

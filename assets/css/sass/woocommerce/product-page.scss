@@ -183,6 +183,22 @@
 			height: 30px;
 		}
 	}
+
+	.vertical-style & {
+		.tns-ovh {
+			&:not([style*="height"]) {
+				max-height: 300px;
+			}
+		}
+	}
+
+	.horizontal-style & {
+		.tns-ovh {
+			&:not([style*="height"]) {
+				max-width: 300px;
+			}
+		}
+	}
 }
 
 .has-gallery-layout-vertical {
@@ -732,8 +748,8 @@
 	.woocommerce-Tabs-panel {
 		padding: 23px 0;
 		max-width: 770px;
-		margin-left: auto $i;
-		margin-right: auto $i;
+		margin-left: auto;
+		margin-right: auto;
 		display: none;
 
 		>h2 {

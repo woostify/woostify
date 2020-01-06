@@ -291,7 +291,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
 					thumbOptions.axis = document.getElementsByClassName( 'product-gallery' )[0].classList.contains( 'vertical-style' ) ? 'vertical' : 'horizontal';
 					renderSlider( '#product-thumbnail-images', thumbOptions );
 				}
-				carouselAction( true );
+				carouselAction();
 				arrowsEvent();
 			} );
 		} );

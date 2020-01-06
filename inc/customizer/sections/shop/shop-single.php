@@ -145,27 +145,6 @@ $wp_customize->add_setting(
 	)
 );
 
-// Related product.
-$wp_customize->add_setting(
-	'woostify_setting[shop_single_related_product]',
-	array(
-		'type'              => 'option',
-		'default'           => $defaults['shop_single_related_product'],
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Switch_Control(
-		$wp_customize,
-		'woostify_setting[shop_single_related_product]',
-		array(
-			'label'    => __( 'Related Product', 'woostify' ),
-			'section'  => 'woostify_shop_single',
-			'settings' => 'woostify_setting[shop_single_related_product]',
-		)
-	)
-);
-
 // Product content background.
 $wp_customize->add_setting(
 	'woostify_setting[shop_single_content_background]',
@@ -389,6 +368,105 @@ $wp_customize->add_control(
 			'label'    => __( 'Tags', 'woostify' ),
 			'section'  => 'woostify_shop_single',
 			'settings' => 'woostify_setting[shop_single_tags]',
+		)
+	)
+);
+
+// SHOP SINGLE RELATED PRODUCT SECTION.
+$wp_customize->add_setting(
+	'shop_single_product_related_section',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Section_Control(
+		$wp_customize,
+		'shop_single_product_related_section',
+		array(
+			'label'      => __( 'Related Products', 'woostify' ),
+			'section'    => 'woostify_shop_single',
+			'dependency' => [
+				'woostify_setting[shop_single_related_product]',
+				'woostify_setting[shop_single_product_related_total]',
+				'woostify_setting[shop_single_product_related_columns]',
+			]
+		)
+	)
+);
+
+// Product related.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_related_product]',
+	array(
+		'default'           => $defaults['shop_single_related_product'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_related_product]',
+		array(
+			'label'    => __( 'Display', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_related_product]',
+			'section'  => 'woostify_shop_single',
+		)
+	)
+);
+
+// Related product total.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_related_total]',
+	array(
+		'default'           => $defaults['shop_single_product_related_total'],
+		'type'              => 'option',
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_related_total]',
+		array(
+			'label'    => __( 'Total Products', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_related_total]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'number',
+		)
+	)
+);
+
+// Related columns.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_related_columns]',
+	array(
+		'default'           => $defaults['shop_single_product_related_columns'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_related_columns]',
+		array(
+			'label'       => __( 'Columns', 'woostify' ),
+			'settings'    => 'woostify_setting[shop_single_product_related_columns]',
+			'section'     => 'woostify_shop_single',
+			'type'        => 'select',
+			'choices'     => apply_filters(
+				'woostify_setting_shop_single_product_related_columns_choices',
+				array(
+					1 => 1,
+					2 => 2,
+					3 => 3,
+					4 => 4,
+					5 => 5,
+					6 => 6,
+				)
+			),
 		)
 	)
 );
