@@ -10,10 +10,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 	<head>
-		<?php
-			do_action( 'woostify_head' );
-			wp_head();
-		?>
+		<?php wp_head(); ?>
 	</head>
 
 	<body <?php body_class(); ?>>

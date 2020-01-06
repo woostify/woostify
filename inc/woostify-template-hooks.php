@@ -13,11 +13,11 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'woostify_sidebar', 'woostify_get_sidebar', 10 );
 
 // Head tag.
-add_action( 'woostify_head', 'woostify_meta_charset', 10 );
-add_action( 'woostify_head', 'woostify_meta_viewport', 20 );
-add_action( 'woostify_head', 'woostify_rel_profile', 30 );
-add_action( 'woostify_head', 'woostify_facebook_social', 40 );
-add_action( 'woostify_head', 'woostify_pingback', 50 );
+add_action( 'wp_head', 'woostify_meta_charset', 0 );
+add_action( 'wp_head', 'woostify_meta_viewport', 220 );
+add_action( 'wp_head', 'woostify_rel_profile', 230 );
+add_action( 'wp_head', 'woostify_facebook_social', 240 );
+add_action( 'wp_head', 'woostify_pingback', 250 );
 
 // Performance.
 add_action( 'wp_enqueue_scripts', 'woostify_dequeue_scripts_and_styles' );
