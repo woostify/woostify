@@ -114,6 +114,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'template_redirect', 'woostify_product_recently_viewed', 20 );
 			add_action( 'woocommerce_after_single_product', 'woostify_product_recently_viewed_template', 20 );
 
+			// Modify product quantity.
+			add_filter( 'woocommerce_get_stock_html', 'woostify_modified_quantity_stock' );
+
 			// CART PAGE.
 			add_action( 'woocommerce_after_cart_table', 'woostify_clear_shop_cart' );
 
@@ -304,13 +307,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// SHOP SINGLE.
-			// Stock label.
-			if ( $options['shop_single_stock_label'] ) {
-				add_filter( 'woocommerce_get_stock_html', 'woostify_modified_stock_label' );
-			} else {
-				add_filter( 'woocommerce_get_stock_html', '__return_empty_string' );
-			}
-
 			// Product tab additional information.
 			if ( ! $options['shop_single_additional_information'] ) {
 				add_filter( 'woocommerce_product_tabs', 'woostify_remove_additional_information_tabs', 98 );

@@ -486,12 +486,12 @@ if ( ! function_exists( 'woostify_print_out_of_stock_label' ) ) {
 	function woostify_print_out_of_stock_label() {
 		global $product;
 		$out_of_stock = woostify_product_out_of_stock( $product );
+		$options      = woostify_options( false );
 
-		if ( ! $out_of_stock ) {
+		if ( ! $out_of_stock || 'none' == $options['shop_page_out_of_stock_position'] ) {
 			return;
 		}
 
-		$options   = woostify_options( false );
 		$is_square = $options['shop_page_out_of_stock_square'] ? 'is-square' : '';
 		?>
 		<span class="woostify-out-of-stock-label position-<?php echo esc_attr( $options['shop_page_out_of_stock_position'] ); ?> <?php echo esc_attr( $is_square ); ?>"><?php echo esc_html( $options['shop_page_out_of_stock_text'] ); ?></span>

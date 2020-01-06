@@ -6833,6 +6833,10 @@ footer#colophon {
   right: 10px;
 }
 
+.woostify-out-of-stock-label.position-none {
+  display: none;
+}
+
 .processing {
   pointer-events: none;
   position: relative;

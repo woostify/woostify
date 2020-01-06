@@ -62,7 +62,6 @@ var woostifyStockQuantityProgressBar = function() {
 	selector.forEach( function( element, index ) {
 		var number = element.getAttribute( 'data-number' ) || 0;
 		element.style.width = number + '%';
-		element.removeAttribute( 'data-number' );
 	});
 }
 

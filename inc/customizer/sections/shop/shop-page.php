@@ -900,7 +900,7 @@ $wp_customize->add_control(
 	)
 );
 
-// Position.
+// Display.
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_out_of_stock_position]',
 	array(
@@ -915,15 +915,16 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_page_out_of_stock_position]',
 		array(
-			'label'    => __( 'Position', 'woostify' ),
+			'label'    => __( 'Display', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_out_of_stock_position]',
 			'type'     => 'select',
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_out_of_stock_position_choices',
 				array(
-					'left'    => __( 'Left', 'woostify' ),
-					'right'   => __( 'Right', 'woostify' ),
+					'left'  => __( 'Left', 'woostify' ),
+					'right' => __( 'Right', 'woostify' ),
+					'none'  => __( 'None', 'woostify' ),
 				)
 			),
 		)

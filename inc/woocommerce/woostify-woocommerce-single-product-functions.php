@@ -406,21 +406,29 @@ if ( ! function_exists( 'woostify_product_info' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_modified_stock_label' ) ) {
+if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 	/**
 	 * Modify stock label
 	 *
 	 * @param string $html Default html markup
 	 */
-	function woostify_modified_stock_label( $html ) {
+	function woostify_modified_quantity_stock( $html ) {
+		$options = woostify_options( false );
+		// Remove quantity stock label if this option disabled.
+		if ( ! $options['shop_single_stock_label'] ) {
+			return '';
+		}
+
 		global $product;
 		$stock_quantity = $product->get_stock_quantity();
 
-		if ( ! $stock_quantity ) {
-			return;
+		// Only for simple product, variable work with javascript.
+		if ( ! $stock_quantity || $product->is_type( 'variable' ) ) {
+			return $html;
 		}
 
 		$number = $stock_quantity <= 10 ? $stock_quantity : rand( 10, 75 );
+		ob_start();
 		?>
 		<div class="woostify-single-product-stock stock">
 			<span class="woostify-single-product-stock-label"><?php echo sprintf( __( 'Hurry! only %s left in stock.', 'woostify' ), $stock_quantity ); ?></span>
@@ -430,6 +438,7 @@ if ( ! function_exists( 'woostify_modified_stock_label' ) ) {
 			</div>
 		</div>
 		<?php
+		return ob_get_clean();
 	}
 }
 

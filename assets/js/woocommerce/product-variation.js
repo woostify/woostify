@@ -29,7 +29,8 @@ function productVariation( selector, form ) {
 		// get image url form `variation`.
 		var fullSrc  = variation.image.full_src,
 			imgSrc   = variation.image.src,
-			thumbSrc = variation.image.thumb_src;
+			thumbSrc = variation.image.thumb_src,
+			inStock  = variation.is_in_stock;
 
 		// Change src image.
 		image.removeAttr( 'srcset' );
@@ -46,9 +47,35 @@ function productVariation( selector, form ) {
 				imageWrapper.removeClass( 'image-loading' );
 			} );
 
-		// Zoom handle.
+		// Re-init zoom handle.
 		if ( 'function' === typeof( easyZoomHandle ) ) {
 			easyZoomHandle();
+		}
+
+		// Update quantity for variation.
+		if ( inStock && variation.max_qty ) {
+			var inStock      = variation.max_qty <= 10 ? variation.max_qty : ( Math.floor( Math.random() * 66 ) + 10 ),
+				availability = event.currentTarget.querySelector( '.woocommerce-variation-availability' ),
+				markupHtml   = '';
+
+			markupHtml += '<div class="woostify-single-product-stock stock">';
+			markupHtml += '<span class="woostify-single-product-stock-label">Hurry! only ' + variation.max_qty + ' left in stock.</span>';
+			markupHtml += '<div class="woostify-product-stock-progress">';
+			markupHtml += '<span class="woostify-single-product-stock-progress-bar" data-number="' + inStock + '"></span>';
+			markupHtml += '</div>';
+			markupHtml += '</div>';
+
+			availability.innerHTML = markupHtml;
+
+			// Re-init stock progress bar.
+			if ( 'function' === typeof( woostifyStockQuantityProgressBar ) ) {
+				setTimeout(
+					function() {
+						woostifyStockQuantityProgressBar();
+					},
+					200
+				)
+			}
 		}
 	} );
 
