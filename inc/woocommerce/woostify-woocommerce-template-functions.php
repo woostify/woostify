@@ -471,7 +471,10 @@ if ( ! function_exists( 'woostify_product_out_of_stock' ) ) {
 		$manage_stock = $product->managing_stock();
 		$quantity     = $product->get_stock_quantity();
 
-		if ( ! $in_stock || ( $manage_stock && 0 == $quantity ) ) {
+		if (
+			( $product->is_type( 'simple' ) && ( ! $in_stock || ( $manage_stock && 0 == $quantity ) ) ) ||
+			( $product->is_type( 'variable' ) && $manage_stock && 0 == $quantity )
+		) {
 			return true;
 		}
 
@@ -505,17 +508,17 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 	 */
 	function woostify_change_sale_flash() {
 		global $product;
-
-		$options       = woostify_options( false );
-		$sale          = $product->is_on_sale();
-		$price_sale    = $product->get_sale_price();
-		$price         = $product->get_regular_price();
-		$simple        = $product->is_type( 'simple' );
-		$variable      = $product->is_type( 'variable' );
-		$sale_text     = $options['shop_page_sale_text'];
-		$sale_percent  = $options['shop_page_sale_percent'];
-		$final_price   = '';
-		$out_of_stock  = woostify_product_out_of_stock( $product );
+		$options      = woostify_options( false );
+		$sale         = $product->is_on_sale();
+		$price_sale   = $product->get_sale_price();
+		$price        = $product->get_regular_price();
+		$simple       = $product->is_type( 'simple' );
+		$variable     = $product->is_type( 'variable' );
+		$external     = $product->is_type( 'external' );
+		$sale_text    = $options['shop_page_sale_text'];
+		$sale_percent = $options['shop_page_sale_percent'];
+		$final_price  = '';
+		$out_of_stock = woostify_product_out_of_stock( $product );
 
 		// Out of stock.
 		if ( $out_of_stock ) {
@@ -524,7 +527,7 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 
 		if ( $sale ) {
 			// For simple product.
-			if ( $simple ) {
+			if ( $simple || $external ) {
 				if ( $sale_percent ) {
 					$final_price = ( ( $price - $price_sale ) / $price ) * 100;
 					$final_price = '-' . round( $final_price ) . '%';

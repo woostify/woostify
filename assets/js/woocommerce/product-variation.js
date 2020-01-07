@@ -1,12 +1,19 @@
 /**
  * Product variation
  *
- * @global easyZoom
  * @package woostify
  */
 
+ /* global woostify_woocommerce_variable_product_data */
+
 'use strict';
 
+/**
+ * Variation product
+ *
+ * @param      string selector  The selector.
+ * @param      string form      The form.
+ */
 function productVariation( selector, form ) {
 	var gallery        = jQuery( selector ),
 		variationsForm = form ? form : 'form.variations_form',
@@ -32,6 +39,8 @@ function productVariation( selector, form ) {
 			thumbSrc = variation.image.thumb_src,
 			inStock  = variation.is_in_stock;
 
+		console.log( variation );
+
 		// Change src image.
 		image.removeAttr( 'srcset' );
 		thumb.find( 'img' ).prop( 'src', thumbSrc );
@@ -52,29 +61,53 @@ function productVariation( selector, form ) {
 			easyZoomHandle();
 		}
 
-		// Update quantity for variation.
-		if ( inStock && variation.max_qty ) {
-			var inStock      = variation.max_qty <= 10 ? variation.max_qty : ( Math.floor( Math.random() * 66 ) + 10 ),
-				availability = event.currentTarget.querySelector( '.woocommerce-variation-availability' ),
-				markupHtml   = '';
+		var jsSelector    = document.querySelector( selector ),
+			productImages = jsSelector ? jsSelector.querySelector( '.product-images' ) : false,
+			outStockLabel = productImages ? productImages.querySelector( '.woostify-out-of-stock-label' ) : false,
+			onSaleLabel   = productImages ? productImages.querySelector( '.woostify-tag-on-sale' ) : false;
 
-			markupHtml += '<div class="woostify-single-product-stock stock">';
-			markupHtml += '<span class="woostify-single-product-stock-label">Hurry! only ' + variation.max_qty + ' left in stock.</span>';
-			markupHtml += '<div class="woostify-product-stock-progress">';
-			markupHtml += '<span class="woostify-single-product-stock-progress-bar" data-number="' + inStock + '"></span>';
-			markupHtml += '</div>';
-			markupHtml += '</div>';
+		// In stock.
+		if ( inStock ) {
+			// Update quantity for variation.
+			if ( variation.max_qty ) {
+				var inStock      = variation.max_qty <= 10 ? variation.max_qty : ( Math.floor( Math.random() * 66 ) + 10 ),
+					availability = event.currentTarget.querySelector( '.woocommerce-variation-availability' ),
+					markupHtml   = '';
 
-			availability.innerHTML = markupHtml;
+				markupHtml += '<div class="woostify-single-product-stock stock">';
+				markupHtml += '<span class="woostify-single-product-stock-label">Hurry! only ' + variation.max_qty + ' left in stock.</span>';
+				markupHtml += '<div class="woostify-product-stock-progress">';
+				markupHtml += '<span class="woostify-single-product-stock-progress-bar" data-number="' + inStock + '"></span>';
+				markupHtml += '</div>';
+				markupHtml += '</div>';
 
-			// Re-init stock progress bar.
-			if ( 'function' === typeof( woostifyStockQuantityProgressBar ) ) {
-				setTimeout(
-					function() {
-						woostifyStockQuantityProgressBar();
-					},
-					200
-				)
+				availability.innerHTML = markupHtml;
+
+				// Re-init stock progress bar.
+				if ( 'function' === typeof( woostifyStockQuantityProgressBar ) ) {
+					setTimeout(
+						function() {
+							woostifyStockQuantityProgressBar();
+						},
+						200
+					)
+				}
+			}
+
+			// Remove label out of stock.
+			if ( outStockLabel ) {
+				outStockLabel.remove();
+			}
+
+			// Update sale tag.
+			if ( onSaleLabel && woostify_woocommerce_variable_product_data.sale_tag_percent && variation.display_price != variation.display_regular_price ) {
+				onSaleLabel.innerHTML = '-' + Math.round( ( ( variation.display_regular_price - variation.display_price ) / variation.display_regular_price ) * 100 ) + '%';
+			}
+		} else if ( woostify_woocommerce_variable_product_data ) {
+			var outStockLabelHtml = '<span class="woostify-out-of-stock-label position-' + woostify_woocommerce_variable_product_data.out_of_stock_display + ' ' + woostify_woocommerce_variable_product_data.out_of_stock_square + '">' + woostify_woocommerce_variable_product_data.out_of_stock_text + '</span>';
+
+			if ( ! outStockLabel ) {
+				productImages.insertAdjacentHTML( 'beforeend', outStockLabelHtml );
 			}
 		}
 	} );
