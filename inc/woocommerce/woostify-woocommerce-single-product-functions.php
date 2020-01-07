@@ -410,16 +410,16 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 	/**
 	 * Modify stock label
 	 *
-	 * @param string $html Default html markup
+	 * @param string $html    Default html markup.
+	 * @param object $product The product.
 	 */
-	function woostify_modified_quantity_stock( $html ) {
+	function woostify_modified_quantity_stock( $html, $product ) {
 		$options = woostify_options( false );
 		// Remove quantity stock label if this option disabled.
 		if ( ! $options['shop_single_stock_label'] ) {
 			return '';
 		}
 
-		global $product;
 		$stock_quantity = $product->get_stock_quantity();
 
 		// Only for simple product, variable work with javascript.

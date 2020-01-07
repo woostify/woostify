@@ -115,7 +115,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_after_single_product', 'woostify_product_recently_viewed_template', 20 );
 
 			// Modify product quantity.
-			add_filter( 'woocommerce_get_stock_html', 'woostify_modified_quantity_stock' );
+			add_filter( 'woocommerce_get_stock_html', 'woostify_modified_quantity_stock', 10, 2 );
 
 			// CART PAGE.
 			add_action( 'woocommerce_after_cart_table', 'woostify_clear_shop_cart' );
