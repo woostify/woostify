@@ -221,6 +221,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 						'out_of_stock_display' => $options['shop_page_out_of_stock_position'],
 						'out_of_stock_square'  => $options['shop_page_out_of_stock_square'] ? 'is-square' : '',
 						'out_of_stock_text'    => $options['shop_page_out_of_stock_text'],
+						// Stock label.
+						'stock_label'          => __( 'Hurry! only %s left in stock.', 'woostify' ),
 					]
 				);
 			}

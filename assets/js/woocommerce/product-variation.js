@@ -75,13 +75,17 @@ function productVariation( selector, form ) {
 					markupHtml   = '';
 
 				markupHtml += '<div class="woostify-single-product-stock stock">';
-				markupHtml += '<span class="woostify-single-product-stock-label">Hurry! only ' + variation.max_qty + ' left in stock.</span>';
+				if ( woostify_woocommerce_variable_product_data && woostify_woocommerce_variable_product_data.stock_label ) {
+					markupHtml += '<span class="woostify-single-product-stock-label">' + woostify_woocommerce_variable_product_data.stock_label.replace( '%s', variation.max_qty ) + '</span>';
+				}
 				markupHtml += '<div class="woostify-product-stock-progress">';
 				markupHtml += '<span class="woostify-single-product-stock-progress-bar" data-number="' + inStock + '"></span>';
 				markupHtml += '</div>';
 				markupHtml += '</div>';
 
-				availability.innerHTML = markupHtml;
+				if ( availability ) {
+					availability.innerHTML = markupHtml;
+				}
 
 				// Re-init stock progress bar.
 				if ( 'function' === typeof( woostifyStockQuantityProgressBar ) ) {

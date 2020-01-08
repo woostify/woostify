@@ -103,17 +103,6 @@
 	}
 }
 
-// ONSALE
-.has-gallery-layout-vertical {
-	.product-page-container {
-		.onsale {
-			@media (min-width: $screen-md) {
-				left: 80px;
-			}
-		}
-	}
-}
-
 // GALLERY
 .product-gallery {
 	position: relative;

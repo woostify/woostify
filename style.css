@@ -8143,12 +8143,6 @@ footer#colophon {
   width: 100%;
 }
 
-@media (min-width: 992px) {
-  .has-gallery-layout-vertical .product-page-container .onsale {
-    left: 80px;
-  }
-}
-
 .product-gallery {
   position: relative;
   float: left;

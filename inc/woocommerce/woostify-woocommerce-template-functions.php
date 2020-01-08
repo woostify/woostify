@@ -508,6 +508,9 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 	 */
 	function woostify_change_sale_flash() {
 		global $product;
+		if ( empty( $product ) ) {
+			return;
+		}
 		$options      = woostify_options( false );
 		$sale         = $product->is_on_sale();
 		$price_sale   = $product->get_sale_price();
@@ -745,6 +748,13 @@ if ( ! function_exists( 'woostify_clear_shop_cart' ) ) {
 }
 
 if ( ! function_exists( 'woostify_add_product_thumbnail_to_checkout_order' ) ) {
+	/**
+	 * Add thumbnail image for checkout detail
+	 *
+	 * @param      string       $product_name   The product name.
+	 * @param      array|object $cart_item      The cartesian item.
+	 * @param      string       $cart_item_key  The cartesian item key.
+	 */
 	function woostify_add_product_thumbnail_to_checkout_order( $product_name, $cart_item, $cart_item_key ) {
 		if ( ! is_checkout() ) {
 			return $product_name;
