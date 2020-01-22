@@ -8257,13 +8257,6 @@ footer#colophon {
   border: 1px solid #555;
 }
 
-@media (min-width: 992px) {
-  .has-gallery-slider-layout .has-product-thumbnails #product-images:not(.tns-slider) .image-item:first-of-type a {
-    width: var(--width);
-    height: var(--height);
-  }
-}
-
 .has-gallery-slider-layout .has-product-thumbnails #product-images:not(.tns-slider) .image-item:first-of-type img {
   visibility: hidden;
 }

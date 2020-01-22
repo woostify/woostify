@@ -264,13 +264,6 @@
 					&:first-of-type {
 						@extend .circle-loading;
 
-						@media (min-width: $screen-md) {
-							a {
-								width: var(--width);
-								height: var(--height);
-							}
-						}
-
 						img {
 							visibility: hidden;
 						}
