@@ -684,6 +684,33 @@
 					}
 				}
 			}
+
+			// Terms and conditions
+			.woocommerce-terms-and-conditions-wrapper {
+				border-radius: 5px;
+				border: 1px solid #d9d9d9;
+				margin-top: 30px;
+				padding: 15px;
+
+				p {
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+
+				.form-row {
+					float: none;
+				}
+			}
+
+			// For terms and conditions.
+			.required-item {
+				color: #f00;
+
+				* {
+					color: #f00;
+				}
+			}
 		}
 	}
 

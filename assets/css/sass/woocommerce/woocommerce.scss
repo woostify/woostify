@@ -274,6 +274,10 @@ $size: 40px;
 	direction: ltr;
 	@extend .flex;
 
+	.elementor-element & {
+		padding: 5px !important;
+	}
+
 	&.sale-left {
 		left: 10px;
 	}

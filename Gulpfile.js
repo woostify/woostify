@@ -107,7 +107,7 @@ let _minJs = ( done ) => {
 }
 
 // Zip task.
-let _zip = () => {
+let _zip = ( done ) => {
 	gulp.src( [
 		'**/*',
 		'!./{node_modules,node_modules/**/*}',
@@ -125,7 +125,9 @@ let _zip = () => {
 	] )
 	/*.pipe( debug( { title: 'src' } ) )*/
 	.pipe( zip( theme + '-' + theme_ver + '.zip' ) )
-	.pipe( gulp.dest( '.' ) )
+	.pipe( gulp.dest( '.' ) );
+
+	done();
 }
 gulp.task( 'zip', _zip );
 
