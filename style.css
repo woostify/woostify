@@ -7083,6 +7083,10 @@ footer#colophon {
   direction: ltr;
 }
 
+.elementor-element .onsale {
+  padding: 5px !important;
+}
+
 .onsale.sale-left {
   left: 10px;
 }
@@ -10136,6 +10140,10 @@ footer#colophon {
   }
 }
 
+.has-multi-step-checkout .multi-step-checkout-wrapper li {
+  list-style: none;
+}
+
 .has-multi-step-checkout .multi-step-checkout-wrapper.first [data-action="back"] {
   display: none;
 }
@@ -10199,6 +10207,34 @@ footer#colophon {
 
 .has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .wc_payment_methods .payment_box:before {
   content: none;
+}
+
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .woocommerce-terms-and-conditions-wrapper {
+  border-radius: 5px;
+  border: 1px solid #d9d9d9;
+  margin-top: 30px;
+  padding: 15px;
+}
+
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .woocommerce-terms-and-conditions-wrapper p:last-child {
+  margin-bottom: 0;
+}
+
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .woocommerce-terms-and-conditions-wrapper .form-row {
+  float: none;
+}
+
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .woocommerce-terms-and-conditions-link {
+  transition-duration: 0s;
+}
+
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .required-item {
+  border-color: #f00;
+}
+
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .required-item .woocommerce-terms-and-conditions-checkbox-text,
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .required-item .woocommerce-terms-and-conditions-link {
+  color: #f00;
 }
 
 .has-multi-step-checkout .field-required [name] {

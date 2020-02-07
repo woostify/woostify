@@ -606,6 +606,10 @@
 			}
 		}
 
+		li {
+			list-style: none;
+		}
+
 		&.first {
 			[data-action="back"] {
 				display: none;
@@ -704,10 +708,14 @@
 			}
 
 			// For terms and conditions.
+			.woocommerce-terms-and-conditions-link {
+				transition-duration: 0s;
+			}
 			.required-item {
-				color: #f00;
+				border-color: #f00;
 
-				* {
+				.woocommerce-terms-and-conditions-checkbox-text,
+				.woocommerce-terms-and-conditions-link {
 					color: #f00;
 				}
 			}
