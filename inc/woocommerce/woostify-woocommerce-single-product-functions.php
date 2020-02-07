@@ -547,7 +547,7 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 	 * Ajax single add to cart
 	 */
 	function woostify_ajax_single_add_to_cart() {
-		check_ajax_referer( 'woostify_ajax_single_add_to_cart', 'ajax_nonce' );
+		check_ajax_referer( 'woostify_ajax_single_add_to_cart', 'ajax_nonce', false );
 
 		$response = array();
 
