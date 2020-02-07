@@ -16,11 +16,11 @@ if ( post_password_required() ) {
 	<?php if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
-				printf( // WPCS: XSS OK.
+				printf(
 					/* translators: 1: number of comments, 2: post title */
 					esc_html( _nx( '%1$s comment', '%1$s comments', get_comments_number(), 'comments title', 'woostify' ) ),
-					number_format_i18n( get_comments_number() ),
-					'<span>' . get_the_title() . '</span>'
+					esc_html( number_format_i18n( get_comments_number() ) ),
+					'<span>' . esc_html( get_the_title() ) . '</span>'
 				);
 			?>
 		</h2>
@@ -47,7 +47,7 @@ if ( post_password_required() ) {
 
 	<?php endif; ?>
 
-	<?php if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+	<?php if ( ! comments_open() && '0' !== get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'woostify' ); ?></p>
 		<?php
 	endif;

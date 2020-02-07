@@ -76,7 +76,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			$img_src = WOOSTIFY_THEME_URI . 'assets/images/thumbnail-default.jpg';
 
 			if ( $img_id ) {
-				$src     = wp_get_attachment_image_src( $img_id, 'thumbnail' );
+				$src = wp_get_attachment_image_src( $img_id, 'thumbnail' );
 				if ( $src ) {
 					$img_src = $src[0];
 				}
@@ -287,34 +287,34 @@ if ( ! class_exists( 'Woostify' ) ) {
 				'editor-font-sizes',
 				array(
 					array(
-						'name'      => __( 'H6', 'woostify' ),
-						'size'      => $options['heading_h6_font_size'],
-						'slug'      => 'woostify-heading-6',
+						'name' => __( 'H6', 'woostify' ),
+						'size' => $options['heading_h6_font_size'],
+						'slug' => 'woostify-heading-6',
 					),
 					array(
-						'name'      => __( 'H5', 'woostify' ),
-						'size'      => $options['heading_h5_font_size'],
-						'slug'      => 'woostify-heading-5',
+						'name' => __( 'H5', 'woostify' ),
+						'size' => $options['heading_h5_font_size'],
+						'slug' => 'woostify-heading-5',
 					),
 					array(
-						'name'      => __( 'H4', 'woostify' ),
-						'size'      => $options['heading_h4_font_size'],
-						'slug'      => 'woostify-heading-4',
+						'name' => __( 'H4', 'woostify' ),
+						'size' => $options['heading_h4_font_size'],
+						'slug' => 'woostify-heading-4',
 					),
 					array(
-						'name'      => __( 'H3', 'woostify' ),
-						'size'      => $options['heading_h3_font_size'],
-						'slug'      => 'woostify-heading-3',
+						'name' => __( 'H3', 'woostify' ),
+						'size' => $options['heading_h3_font_size'],
+						'slug' => 'woostify-heading-3',
 					),
 					array(
-						'name'      => __( 'H2', 'woostify' ),
-						'size'      => $options['heading_h2_font_size'],
-						'slug'      => 'woostify-heading-2',
+						'name' => __( 'H2', 'woostify' ),
+						'size' => $options['heading_h2_font_size'],
+						'slug' => 'woostify-heading-2',
 					),
 					array(
-						'name'      => __( 'H1', 'woostify' ),
-						'size'      => $options['heading_h1_font_size'],
-						'slug'      => 'woostify-heading-1',
+						'name' => __( 'H1', 'woostify' ),
+						'size' => $options['heading_h1_font_size'],
+						'slug' => 'woostify-heading-1',
 					),
 				)
 			);
@@ -410,7 +410,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 				wp_enqueue_style(
 					'woostify-parent-style',
 					get_template_directory_uri() . '/style.css',
-					[],
+					array(),
 					woostify_version()
 				);
 			}
@@ -421,7 +421,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			wp_enqueue_style(
 				'woostify-style',
 				get_stylesheet_uri(),
-				[],
+				array(),
 				woostify_version()
 			);
 
@@ -429,7 +429,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			 * Scripts
 			 */
 			// For IE.
-			if ( 'ie' == woostify_browser_detection() ) {
+			if ( 'ie' === woostify_browser_detection() ) {
 				// Fetch API polyfill.
 				wp_enqueue_script(
 					'woostify-fetch-api-polyfill',
@@ -584,7 +584,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 				wp_register_script(
 					'woostify-single-add-to-cart',
 					WOOSTIFY_THEME_URI . 'assets/js/woocommerce/ajax-single-add-to-cart' . woostify_suffix() . '.js',
-					[],
+					array(),
 					woostify_version(),
 					true
 				);
@@ -604,39 +604,39 @@ if ( ! class_exists( 'Woostify' ) ) {
 		public function woostify_register_elementor_locations( $elementor_theme_manager ) {
 			$elementor_theme_manager->register_location(
 				'header',
-				[
+				array(
 					'hook'         => 'woostify_theme_header',
-					'remove_hooks' => [ 'woostify_template_header' ],
-				]
+					'remove_hooks' => array( 'woostify_template_header' ),
+				)
 			);
 			$elementor_theme_manager->register_location(
 				'footer',
-				[
+				array(
 					'hook'         => 'woostify_theme_footer',
-					'remove_hooks' => [ 'woostify_template_footer' ],
-				]
+					'remove_hooks' => array( 'woostify_template_footer' ),
+				)
 			);
 			$elementor_theme_manager->register_location(
 				'single',
-				[
+				array(
 					'hook'         => 'woostify_theme_single',
-					'remove_hooks' => [ 'woostify_template_single' ],
-				]
+					'remove_hooks' => array( 'woostify_template_single' ),
+				)
 			);
 			$elementor_theme_manager->register_location(
 				'product_archive',
-				[
+				array(
 					'hook'         => 'woostify_theme_archive',
-					'remove_hooks' => [ 'woostify_template_archive' ],
-				]
+					'remove_hooks' => array( 'woostify_template_archive' ),
+				)
 			);
 			$elementor_theme_manager->register_location(
 				'404',
-				[
+				array(
 					'hook'         => 'woostify_theme_404',
-					'remove_hooks' => [ 'woostify_template_404' ],
+					'remove_hooks' => array( 'woostify_template_404' ),
 					'label'        => __( 'Woostify 404', 'woostify' ),
-				]
+				)
 			);
 		}
 
@@ -649,7 +649,8 @@ if ( ! class_exists( 'Woostify' ) ) {
 				'woostify-elementor-live-preview',
 				WOOSTIFY_THEME_URI . 'assets/js/elementor-preview' . woostify_suffix() . '.js',
 				array(),
-				woostify_version()
+				woostify_version(),
+				true
 			);
 		}
 
@@ -688,7 +689,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 		 */
 		public function woostify_body_classes( $classes ) {
 			// Get theme options.
-			$options   = woostify_options( false );
+			$options = woostify_options( false );
 
 			// Broser detection.
 			if ( woostify_browser_detection() ) {
@@ -698,7 +699,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			// Site container layout.
 			$customizer_container = $options['default_container'];
 			$metabox_container    = woostify_get_metabox( false, 'site-container' );
-			$container            = 'default' != $metabox_container ? $metabox_container : $customizer_container;
+			$container            = 'default' !== $metabox_container ? $metabox_container : $customizer_container;
 			$classes[]            = 'site-' . $container . '-container';
 
 			// Header layout.

@@ -24,6 +24,7 @@ if ( ! function_exists( 'woostify_replace_text' ) ) {
 				'theme_author_url' => 'https://woostify.com/',
 			)
 		);
+
 		$output = str_replace( '[theme_author]', '<a href="' . esc_url( $theme_author['theme_author_url'] ) . '">' . $theme_author['theme_name'] . '</a>', $output );
 
 		return do_shortcode( $output );
@@ -72,7 +73,7 @@ if ( ! function_exists( 'woostify_post_related' ) ) {
 							<?php } ?>
 
 							<div class="posted-on"><?php echo get_the_date(); ?></div>
-							<h2 class="entry-title"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo get_the_title(); ?></a></h2>
+							<h2 class="entry-title"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a></h2>
 							<a class="post-read-more" href="<?php echo esc_url( get_permalink() ); ?>"><?php esc_html_e( 'Read more', 'woostify' ); ?></a>
 						</div>
 					<?php endwhile; ?>
@@ -107,8 +108,8 @@ if ( ! function_exists( 'woostify_relative_time' ) ) {
 	 * @return     string real_time relative time
 	 */
 	function woostify_relative_time( $type = 'comment' ) {
-		$time      = 'comment' == $type ? 'get_comment_time' : 'get_post_time';
-		$real_time = human_time_diff( $time( 'U' ), current_time( 'timestamp' ) ) . ' ' . esc_html__( 'ago', 'woostify' );
+		$time      = 'comment' === $type ? 'get_comment_time' : 'get_post_time';
+		$real_time = human_time_diff( $time( 'U' ), current_time( 'timestamp' ) ) . ' ' . esc_html__( 'ago', 'woostify' ); // phpcs:ignore
 
 		return apply_filters( 'woostify_real_time_comment', $real_time );
 	}
@@ -123,11 +124,11 @@ if ( ! function_exists( 'woostify_comment' ) ) {
 	 * @param int   $depth the comment depth.
 	 */
 	function woostify_comment( $comment, $args, $depth ) {
-		if ( 'div' == $args['style'] ) {
-			$tag = 'div';
+		if ( 'div' === $args['style'] ) {
+			$tag       = 'div';
 			$add_below = 'comment';
 		} else {
-			$tag = 'li';
+			$tag       = 'li';
 			$add_below = 'div-comment';
 		}
 		?>
@@ -140,14 +141,14 @@ if ( ! function_exists( 'woostify_comment' ) ) {
 					</div>
 				<?php } ?>
 
-				<?php if ( 'div' != $args['style'] ) : ?>
+				<?php if ( 'div' !== $args['style'] ) : ?>
 				<div id="div-comment-<?php comment_ID(); ?>" class="comment-content">
 				<?php endif; ?>
 
 					<div class="comment-meta commentmetadata">
 						<?php printf( wp_kses_post( '<cite class="fn">%s</cite>', 'woostify' ), get_comment_author_link() ); ?>
 
-						<?php if ( '0' == $comment->comment_approved ) : ?>
+						<?php if ( 0 === $comment->comment_approved ) : ?>
 							<em class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'woostify' ); ?></em>
 						<?php endif; ?>
 
@@ -158,16 +159,17 @@ if ( ! function_exists( 'woostify_comment' ) ) {
 					</div>
 
 					<div class="comment-text">
-					  <?php comment_text(); ?>
+						<?php comment_text(); ?>
 					</div>
 
 					<div class="reply">
 						<?php
 							comment_reply_link(
 								array_merge(
-									$args, array(
+									$args,
+									array(
 										'add_below' => $add_below,
-										'depth' => $depth,
+										'depth'     => $depth,
 										'max_depth' => $args['max_depth'],
 									)
 								)
@@ -176,7 +178,7 @@ if ( ! function_exists( 'woostify_comment' ) ) {
 						<?php edit_comment_link( __( 'Edit', 'woostify' ), '  ', '' ); ?>
 					</div>
 
-				<?php if ( 'div' != $args['style'] ) : ?>
+				<?php if ( 'div' !== $args['style'] ) : ?>
 				</div>
 				<?php endif; ?>
 			</div>
@@ -194,7 +196,7 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 		$option        = woostify_options( false );
 		$footer_column = (int) $option['footer_column'];
 
-		if ( 0 == $footer_column ) {
+		if ( 0 === $footer_column ) {
 			return;
 		}
 
@@ -214,9 +216,9 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 							<?php
 							printf(
 								/* translators: 1: admin URL */
-								__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
+								__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ), // phpcs:ignore
 								esc_url( admin_url( 'widgets.php' ) )
-							);  // WPCS: XSS ok.
+							);  // phpcs:ignore
 							?>
 						</p>
 					</div>
@@ -229,9 +231,9 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 							<?php
 							printf(
 								/* translators: 1: admin URL */
-								__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
+								__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ), // phpcs:ignore
 								esc_url( admin_url( 'widgets.php' ) )
-							);  // WPCS: XSS ok.
+							);
 							?>
 						</p>
 					</div>
@@ -244,9 +246,9 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 							<?php
 							printf(
 								/* translators: 1: admin URL */
-								__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ),
+								__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ), // phpcs:ignore
 								esc_url( admin_url( 'widgets.php' ) )
-							);  // WPCS: XSS ok.
+							);
 							?>
 						</p>
 					</div>
@@ -293,9 +295,9 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 
 		<div class="site-info">
 			<?php
-				if ( $options['footer_custom_text'] ) {
-					$footer_text = woostify_replace_text( $options['footer_custom_text'] );
-					?>
+			if ( $options['footer_custom_text'] ) {
+				$footer_text = woostify_replace_text( $options['footer_custom_text'] );
+				?>
 				<div class="site-infor-col">
 					<?php echo wp_kses_post( $footer_text ); ?>
 				</div>
@@ -304,12 +306,14 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 			<?php
 			if ( has_nav_menu( 'footer' ) ) {
 				echo '<div class="site-infor-col">';
-					wp_nav_menu( array(
-						'theme_location' => 'footer',
-						'menu_class'     => 'woostify-footer-menu',
-						'container'      => '',
-						'depth'          => 1,
-					));
+					wp_nav_menu(
+						array(
+							'theme_location' => 'footer',
+							'menu_class'     => 'woostify-footer-menu',
+							'container'      => '',
+							'depth'          => 1,
+						)
+					);
 				echo '</div>';
 			}
 			?>
@@ -371,7 +375,7 @@ if ( ! function_exists( 'woostify_replace_logo_attr' ) ) {
 		$custom_logo_id = get_theme_mod( 'custom_logo' );
 		$options        = woostify_options( false );
 
-		if ( $custom_logo_id == $attachment->ID ) {
+		if ( $custom_logo_id === $attachment->ID ) {
 
 			$attr['alt'] = woostify_image_alt( $custom_logo_id, __( 'Woostify logo', 'woostify' ) );
 
@@ -387,7 +391,7 @@ if ( ! function_exists( 'woostify_replace_logo_attr' ) ) {
 			$file_type      = wp_check_filetype( $attr['src'] );
 			$file_extension = $file_type['ext'];
 
-			if ( 'svg' == $file_extension ) {
+			if ( 'svg' === $file_extension ) {
 				$attr['width']  = '100%';
 				$attr['height'] = '100%';
 				$attr['class']  = 'woostify-logo-svg';
@@ -404,7 +408,7 @@ if ( ! function_exists( 'woostify_replace_logo_attr' ) ) {
 				$attr['alt']    = woostify_image_alt( $custom_logo_id, __( 'Woostify retina logo', 'woostify' ) );
 
 				// Replace logo src on IE.
-				if ( 'ie' == woostify_browser_detection() ) {
+				if ( 'ie' === woostify_browser_detection() ) {
 					$attr['src'] = $retina_logo;
 				}
 
@@ -455,7 +459,7 @@ if ( ! function_exists( 'woostify_site_title_or_logo' ) ) {
 		} else {
 			$tag = is_home() ? 'h1' : 'div';
 
-			$html = '<' . esc_attr( $tag ) . ' class="beta site-title"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a></' . esc_attr( $tag ) . '>';
+			$html  = '<' . esc_attr( $tag ) . ' class="beta site-title"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a></' . esc_attr( $tag ) . '>';
 			$html .= '<span class="site-description">' . esc_html( get_bloginfo( 'description' ) ) . '</span>';
 		}
 
@@ -463,7 +467,7 @@ if ( ! function_exists( 'woostify_site_title_or_logo' ) ) {
 			return $html;
 		}
 
-		echo $html; // WPCS: XSS ok.
+		echo $html; // phpcs:ignore
 	}
 }
 
@@ -487,12 +491,12 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 			<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary navigation', 'woostify' ); ?>">
 				<?php
 				if ( has_nav_menu( 'primary' ) ) {
-					$args = [
+					$args = array(
 						'theme_location' => 'primary',
 						'menu_class'     => 'primary-navigation',
 						'container'      => '',
 						'walker'         => new Woostify_Walker_Menu(),
-					];
+					);
 
 					wp_nav_menu( $args );
 				} elseif ( is_user_logged_in() ) {
@@ -529,7 +533,7 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 		$page_id       = woostify_get_page_id();
 		$options       = woostify_options( false );
 		$blog_page_url = get_option( 'page_for_posts' );
-		$blog_page_url = 0 != $blog_page_url ? get_permalink( $blog_page_url ) : $home_url;
+		$blog_page_url = 0 !== $blog_page_url ? get_permalink( $blog_page_url ) : $home_url;
 		$shop_page_url = '#';
 		$breadcrumb    = $options['page_header_breadcrumb'];
 		$container[]   = 'woostify-breadcrumb woostify-theme-breadcrumb';
@@ -538,7 +542,7 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 			$shop_page_url = wc_get_page_permalink( 'shop' );
 
 			if ( is_singular( 'product' ) ) {
-				$breadcrumb  = $options['shop_single_breadcrumb'];
+				$breadcrumb = $options['shop_single_breadcrumb'];
 			} elseif ( woostify_is_woocommerce_page() ) {
 				$breadcrumb = $options['shop_page_breadcrumb'];
 			}
@@ -582,13 +586,12 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 						<a itemprop="item" href="<?php echo esc_url( $home_url ); ?>"></a>
-						<span itemprop="name"><?php echo get_the_title( $page_id ); ?></span>
+						<span itemprop="name"><?php echo esc_html( get_the_title( $page_id ) ); ?></span>
 						<meta itemprop="position" content="4"></span>
 					</span>
 					<?php
 				}
-			// Single blog.
-			} elseif ( is_single() ) {
+			} elseif ( is_single() ) { // Single blog.
 				$cat = get_the_category();
 				if ( ! empty( $cat ) && ! is_wp_error( $cat ) ) {
 					?>
@@ -608,7 +611,7 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 						<a itemprop="item" href="<?php echo esc_url( $home_url ); ?>"></a>
-						<span itemprop="name"><?php echo get_the_title(); ?></span>
+						<span itemprop="name"><?php echo esc_html( get_the_title() ); ?></span>
 						<meta itemprop="position" content="4"></span>
 					</span>
 					<?php
@@ -637,8 +640,7 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 						</span>
 						<?php
 					}
-				// Blog category.
-				} elseif ( is_category() ) {
+				} elseif ( is_category() ) { // Blog category.
 					?>
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 						<a itemprop="item" href="<?php echo esc_url( $blog_page_url ); ?>">
@@ -691,17 +693,17 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 								esc_html_e( 'Tags: ', 'woostify' );
 								single_tag_title();
 							} elseif ( is_page() ) {
-								echo get_the_title();
+								echo esc_html( get_the_title() );
 							} else {
 								esc_html_e( 'Archives', 'woostify' );
 							}
 							?>
 						</span>
 						<?php
-							$index = 2;
-							if ( class_exists( 'woocommerce' ) && is_product_category() ) {
-								$index = 4;
-							}
+						$index = 2;
+						if ( class_exists( 'woocommerce' ) && is_product_category() ) {
+							$index = 4;
+						}
 						?>
 						<meta itemprop="position" content="<?php echo esc_attr( $index ); ?>"></span>
 					</span>
@@ -764,8 +766,8 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		}
 
 		// Metabox option.
-		if ( 'default' != $metabox ) {
-			if ( 'enabled' == $metabox ) {
+		if ( 'default' !== $metabox ) {
+			if ( 'enabled' === $metabox ) {
 				$page_header = true;
 			} else {
 				$page_header = false;
@@ -846,12 +848,12 @@ if ( ! function_exists( 'woostify_post_loop_image_thumbnail' ) ) {
 	/**
 	 * Display thumbnail image for Blog layout: Standard and Zigzag
 	 *
-	 * @param string $dedium The image size.
+	 * @param string $size The image size.
 	 */
 	function woostify_post_loop_image_thumbnail( $size = 'full' ) {
 		$options = woostify_options( false );
-		$value   = [ 'zigzag', 'standard' ];
-		if ( ! in_array( $options['blog_list_layout'], $value ) || ! has_post_thumbnail() ) {
+		$value   = array( 'zigzag', 'standard' );
+		if ( ! in_array( $options['blog_list_layout'], $value, true ) || ! has_post_thumbnail() ) {
 			return;
 		}
 		?>
@@ -901,8 +903,7 @@ if ( ! function_exists( 'woostify_get_post_thumbnail' ) ) {
 
 		$image   = '';
 		$options = woostify_options( false );
-		$value   = [ 'zigzag', 'standard' ];
-		if ( in_array( $options['blog_list_layout'], $value ) ) {
+		if ( in_array( $options['blog_list_layout'], array( 'zigzag', 'standard' ), true ) ) {
 			// Return if Blog layout is: Zigzag and Standard.
 			return $image;
 		}
@@ -920,13 +921,13 @@ if ( ! function_exists( 'woostify_get_post_thumbnail' ) ) {
 			<div class="entry-header-item post-cover-image">
 				<?php the_post_thumbnail( $size ); ?>
 			</div>
-		<?php
+			<?php
 		}
 
 		$image = ob_get_clean();
 
 		if ( $echo ) {
-			echo $image; // WPCS XSS: ok.
+			echo $image; // phpcs:ignore
 		} else {
 			return $image;
 		}
@@ -942,14 +943,14 @@ if ( ! function_exists( 'woostify_get_post_title' ) ) {
 	function woostify_get_post_title( $echo = true ) {
 		$title_tag = apply_filters( 'woostify_post_title_html_tag', 'h2' );
 
-		$title = '<' . esc_attr( $title_tag ) . ' class="entry-header-item alpha entry-title">';
+		$title  = '<' . esc_attr( $title_tag ) . ' class="entry-header-item alpha entry-title">';
 		$title .= '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">';
 		$title .= get_the_title();
 		$title .= '</a>';
 		$title .= '</' . esc_attr( $title_tag ) . '>';
 
 		if ( $echo ) {
-			echo $title; // WPCS XSS: ok.
+			echo $title; // phpcs:ignore
 		} else {
 			return $title;
 		}
@@ -993,7 +994,7 @@ if ( ! function_exists( 'woostify_get_post_structure' ) ) {
 		}
 
 		if ( $echo ) {
-			echo $output; // WPCS XSS: ok.
+			echo $output; // phpcs:ignore
 		} else {
 			return $output;
 		}
@@ -1047,7 +1048,7 @@ if ( ! function_exists( 'woostify_get_post_meta' ) ) {
 		$output .= '</aside>';
 
 		if ( $echo ) {
-			echo $output; // WPCS XSS: ok.
+			echo $output; // phpcs:ignore
 		} else {
 			return $output;
 		}
@@ -1085,10 +1086,10 @@ if ( ! function_exists( 'woostify_show_excerpt' ) ) {
 		$more_tag = apply_filters( 'woostify_more_tag', strpos( $post->post_content, '<!--more-->' ) );
 
 		// Check the post format.
-		$format = false != get_post_format() ? get_post_format() : 'standard';
+		$format = get_post_format() ? get_post_format() : 'standard';
 
 		// If our post format isn't standard, show the full content.
-		$show_excerpt = 'standard' != $format ? false : true;
+		$show_excerpt = 'standard' !== $format ? false : true;
 
 		// If the more tag is found, show the full content.
 		$show_excerpt = $more_tag ? false : $show_excerpt;
@@ -1117,7 +1118,7 @@ if ( ! function_exists( 'woostify_post_content' ) ) {
 
 					// Add 'Read More' button in Grid layout.
 					$options = woostify_options( false );
-					if ( 'grid' == $options['blog_list_layout'] ) {
+					if ( 'grid' === $options['blog_list_layout'] ) {
 						$read_more_text = apply_filters( 'woostify_read_more_text', __( 'Read More', 'woostify' ) );
 						?>
 						<span class="post-read-more">
@@ -1231,7 +1232,7 @@ if ( ! function_exists( 'woostify_post_author_box' ) ) {
 	 */
 	function woostify_post_author_box() {
 		$options = woostify_options( false );
-		if ( true != $options['blog_single_author_box'] ) {
+		if ( ! $options['blog_single_author_box'] ) {
 			return;
 		}
 
@@ -1282,13 +1283,18 @@ if ( ! function_exists( 'woostify_post_meta_posted_on' ) ) {
 			esc_html( get_the_modified_date() )
 		);
 
-		$posted_on = '<span class="sr-only">' . esc_html__( 'Posted on', 'woostify' ) . '</span>';
+		$posted_on  = '<span class="sr-only">' . esc_html__( 'Posted on', 'woostify' ) . '</span>';
 		$posted_on .= '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>';
 
 		$data = wp_kses(
-			apply_filters( 'woostify_single_post_posted_on_html', '<span class="post-meta-item posted-on">' . $posted_on . '</span>', $posted_on ), array(
+			apply_filters(
+				'woostify_single_post_posted_on_html',
+				'<span class="post-meta-item posted-on">' . $posted_on . '</span>',
+				$posted_on
+			),
+			array(
 				'span' => array(
-					'class'  => array(),
+					'class' => array(),
 				),
 				'a'    => array(
 					'href'  => array(),
@@ -1303,7 +1309,7 @@ if ( ! function_exists( 'woostify_post_meta_posted_on' ) ) {
 		);
 
 		if ( $echo ) {
-			echo $data; // WPCS XSS: ok.
+			echo $data; // phpcs:ignore
 		} else {
 			return $data;
 		}
@@ -1331,7 +1337,7 @@ if ( ! function_exists( 'woostify_post_meta_author' ) ) {
 		$author .= '</span>';
 
 		if ( $echo ) {
-			echo $author; // WPCS XSS: ok.
+			echo $author; // phpcs:ignore
 		} else {
 			return $author;
 		}
@@ -1350,13 +1356,13 @@ if ( ! function_exists( 'woostify_post_meta_category' ) ) {
 			return false;
 		}
 
-		$category = '<span class="post-meta-item cat-links">';
+		$category  = '<span class="post-meta-item cat-links">';
 		$category .= '<span class="label sr-only">' . esc_html( __( 'Posted in', 'woostify' ) ) . '</span>';
 		$category .= wp_kses_post( $categories );
 		$category .= '</span>';
 
 		if ( $echo ) {
-			echo $category; // WPCS XSS: ok.
+			echo $category; // phpcs:ignore
 		} else {
 			return $category;
 		}
@@ -1392,7 +1398,7 @@ if ( ! function_exists( 'woostify_post_meta_comments' ) ) {
 		$comments = ob_get_clean();
 
 		if ( $echo ) {
-			echo $comments; // WPCS XSS: ok.
+			echo $comments; // phpcs:ignore
 		} else {
 			return $comments;
 		}
@@ -1509,7 +1515,7 @@ if ( ! function_exists( 'woostify_topbar' ) ) {
 		$display = $options['topbar_display'];
 		$topbar  = woostify_get_metabox( false, 'site-topbar' );
 
-		if ( 'disabled' == $topbar ) {
+		if ( 'disabled' === $topbar ) {
 			$display = false;
 		}
 
@@ -1551,7 +1557,7 @@ if ( ! function_exists( 'woostify_search' ) ) {
 			<?php
 			do_action( 'woostify_site_search_start' );
 
-			if ( false == $options['header_search_only_product'] ) {
+			if ( ! $options['header_search_only_product'] ) {
 				get_search_form();
 			} elseif ( woostify_is_woocommerce_activated() ) {
 				the_widget( 'WC_Widget_Product_Search', 'title=' );
@@ -1574,7 +1580,7 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 	function woostify_dialog_search() {
 		$options = woostify_options( false );
 
-		if ( false == $options['header_search_icon'] ) {
+		if ( ! $options['header_search_icon'] ) {
 			return;
 		}
 
@@ -1630,11 +1636,11 @@ if ( ! function_exists( 'woostify_product_check_in' ) ) {
 		$variable = $_product->is_type( 'variable' );
 
 		// Check product already in cart. Return boolean.
-		if ( true == $in_cart ) {
+		if ( $in_cart ) {
 			foreach ( $_cart as $key ) {
 				$product_id = $key['product_id'];
 
-				if ( $product_id == $pid ) {
+				if ( $product_id === $pid ) {
 					return true;
 				}
 			}
@@ -1643,11 +1649,11 @@ if ( ! function_exists( 'woostify_product_check_in' ) ) {
 		}
 
 		// Get product quantity in cart. Return INT.
-		if ( true == $qty_in_cart ) {
+		if ( $qty_in_cart ) {
 			if ( $variable ) {
 				$arr = array();
 				foreach ( $_cart as $key ) {
-					if ( $key['product_id'] == $pid ) {
+					if ( $key['product_id'] === $pid ) {
 						$qty   = $key['quantity'];
 						$arr[] = $qty;
 					}
@@ -1656,7 +1662,7 @@ if ( ! function_exists( 'woostify_product_check_in' ) ) {
 				return array_sum( $arr );
 			} else {
 				foreach ( $_cart as $key ) {
-					if ( $key['product_id'] == $pid ) {
+					if ( $key['product_id'] === $pid ) {
 						$qty = $key['quantity'];
 
 						return $qty;
@@ -1680,11 +1686,11 @@ if ( ! function_exists( 'woostify_get_sidebar_id' ) ) {
 	 */
 	function woostify_get_sidebar_id( $sidebar_id, $sidebar_layout, $sidebar_default, $wc_sidebar = false ) {
 
-		$wc_sidebar_class      = true == $wc_sidebar ? ' woocommerce-sidebar' : '';
-		$sidebar_layout_class  = 'full' == $sidebar_layout ? 'no-sidebar' : $sidebar_layout . '-sidebar has-sidebar' . $wc_sidebar_class;
-		$sidebar_default_class = 'full' == $sidebar_default ? 'no-sidebar' : $sidebar_default . '-sidebar has-sidebar default-sidebar' . $wc_sidebar_class;
+		$wc_sidebar_class      = $wc_sidebar ? ' woocommerce-sidebar' : '';
+		$sidebar_layout_class  = 'full' === $sidebar_layout ? 'no-sidebar' : $sidebar_layout . '-sidebar has-sidebar' . $wc_sidebar_class;
+		$sidebar_default_class = 'full' === $sidebar_default ? 'no-sidebar' : $sidebar_default . '-sidebar has-sidebar default-sidebar' . $wc_sidebar_class;
 
-		if ( 'default' != $sidebar_layout ) {
+		if ( 'default' !== $sidebar_layout ) {
 			$sidebar = $sidebar_layout_class;
 		} else {
 			$sidebar = $sidebar_default_class;
@@ -1702,7 +1708,7 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 	 */
 	function woostify_sidebar_class() {
 		// All theme options.
-		$options         = woostify_options( false );
+		$options = woostify_options( false );
 
 		// Metabox options.
 		$metabox_sidebar = woostify_get_metabox( false, 'site-sidebar' );
@@ -1710,16 +1716,16 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		// Customize options.
 		$sidebar             = '';
 		$sidebar_default     = $options['sidebar_default'];
-		$sidebar_page        = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_page'];
-		$sidebar_blog        = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_blog'];
-		$sidebar_blog_single = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_blog_single'];
-		$sidebar_shop        = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop'];
-		$sidebar_shop_single = 'default' != $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop_single'];
+		$sidebar_page        = 'default' !== $metabox_sidebar ? $metabox_sidebar : $options['sidebar_page'];
+		$sidebar_blog        = 'default' !== $metabox_sidebar ? $metabox_sidebar : $options['sidebar_blog'];
+		$sidebar_blog_single = 'default' !== $metabox_sidebar ? $metabox_sidebar : $options['sidebar_blog_single'];
+		$sidebar_shop        = 'default' !== $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop'];
+		$sidebar_shop_single = 'default' !== $metabox_sidebar ? $metabox_sidebar : $options['sidebar_shop_single'];
 
 		// Dokan support.
 		$dokan_store_sidebar = false;
 		$is_dokan_store      = class_exists( 'WeDevs_Dokan' ) && woostify_is_woocommerce_activated() && dokan_is_store_page();
-		if ( $is_dokan_store && 'off' == dokan_get_option( 'enable_theme_store_sidebar', 'dokan_appearance', 'off' ) ) {
+		if ( $is_dokan_store && 'off' === dokan_get_option( 'enable_theme_store_sidebar', 'dokan_appearance', 'off' ) ) {
 			$dokan_store_sidebar = true;
 		}
 
@@ -1761,11 +1767,11 @@ if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 		$sidebar             = woostify_sidebar_class();
 		$dokan_store_sidebar = false;
 		$is_dokan_store      = class_exists( 'WeDevs_Dokan' ) && woostify_is_woocommerce_activated() && dokan_is_store_page();
-		if ( $is_dokan_store && 'off' == dokan_get_option( 'enable_theme_store_sidebar', 'dokan_appearance', 'off' ) ) {
+		if ( $is_dokan_store && 'off' === dokan_get_option( 'enable_theme_store_sidebar', 'dokan_appearance', 'off' ) ) {
 			$dokan_store_sidebar = true;
 		}
 
-		if ( false !== strpos( $sidebar, 'no-sidebar' ) || '' == $sidebar || woostify_is_elementor_page() || $dokan_store_sidebar ) {
+		if ( false !== strpos( $sidebar, 'no-sidebar' ) || ! $sidebar || woostify_is_elementor_page() || $dokan_store_sidebar ) {
 			return;
 		}
 
@@ -1836,7 +1842,7 @@ if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
 		$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
 		$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
 
-		if ( 'yes' == get_option( 'woocommerce_force_ssl_checkout' ) ) {
+		if ( 'yes' === get_option( 'woocommerce_force_ssl_checkout' ) ) {
 			$logout_url = str_replace( 'http:', 'https:', $logout_url );
 		}
 		?>
@@ -1884,14 +1890,14 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 	 */
 	function woostify_header_action() {
 		$options = woostify_options( false );
-		$count = 0;
+		$count   = 0;
 
 		if ( woostify_is_woocommerce_activated() ) {
 			global $woocommerce;
 			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
 			$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
 
-			if ( 'yes' == get_option( 'woocommerce_force_ssl_checkout' ) ) {
+			if ( 'yes' === get_option( 'woocommerce_force_ssl_checkout' ) ) {
 				$logout_url = str_replace( 'http:', 'https:', $logout_url );
 			}
 
@@ -2036,8 +2042,8 @@ if ( ! function_exists( 'woostify_site_container' ) ) {
 		$metabox_container = woostify_get_metabox( false, 'site-container' );
 
 		if (
-			( 'default' != $metabox_container && 'full-width' == $metabox_container ) ||
-			( 'default' == $metabox_container && 'full-width' == $options['default_container'] )
+			( 'default' !== $metabox_container && 'full-width' === $metabox_container ) ||
+			( 'default' === $metabox_container && 'full-width' === $options['default_container'] )
 		) {
 			$container = 'woostify-container container-fluid';
 		}
@@ -2052,7 +2058,7 @@ if ( ! function_exists( 'woostify_site_header' ) ) {
 	 */
 	function woostify_site_header() {
 		$header = woostify_get_metabox( false, 'site-header' );
-		if ( 'disabled' == $header ) {
+		if ( 'disabled' === $header ) {
 			return;
 		}
 		?>
@@ -2108,12 +2114,12 @@ if ( ! function_exists( 'woostify_site_footer' ) ) {
 
 		// Metabox disable footer.
 		$metabox_footer = woostify_get_metabox( false, 'site-footer' );
-		if ( 'disabled' == $metabox_footer ) {
+		if ( 'disabled' === $metabox_footer ) {
 			$footer_display = false;
 		}
 
 		// Return.
-		if ( false == $footer_display ) {
+		if ( $footer_display ) {
 			return;
 		}
 
@@ -2161,7 +2167,7 @@ if ( ! function_exists( 'woostify_scroll_to_top' ) ) {
 	 */
 	function woostify_scroll_to_top() {
 		$options = woostify_options( false );
-		if ( true != $options['scroll_to_top'] ) {
+		if ( ! $options['scroll_to_top'] ) {
 			return;
 		}
 

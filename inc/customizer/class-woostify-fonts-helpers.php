@@ -193,7 +193,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 					$value = ! empty( $variants ) ? $value . ':' . $variants : $value;
 
 					// Make sure we don't add the same font twice.
-					if ( ! in_array( $value, $google_fonts ) ) {
+					if ( ! in_array( $value, $google_fonts, true ) ) {
 						$google_fonts[] = $value;
 					}
 				}
@@ -212,10 +212,10 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			$subset = apply_filters( 'woostify_fonts_subset', '' );
 
 			// Set up our arguments.
-			$font_args = array();
+			$font_args           = array();
 			$font_args['family'] = $google_fonts;
-			if ( '' !== $subset ) {
-				$font_args['subset'] = urlencode( $subset );
+			if ( $subset ) {
+				$font_args['subset'] = rawurlencode( $subset );
 			}
 
 			// Create our URL using the arguments.
@@ -259,7 +259,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				$fonts[ $id ] = $atts;
 			}
 
-			if ( 'all' != $amount ) {
+			if ( 'all' !== $amount ) {
 				$fonts = array_slice( $fonts, 0, $amount );
 			}
 
@@ -308,7 +308,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		 */
 		public static function woostify_get_google_font_category( $font, $key = '' ) {
 			// Don't need a category if we're using a system font.
-			if ( in_array( $font, self::woostify_typography_default_fonts() ) ) {
+			if ( in_array( $font, self::woostify_typography_default_fonts(), true ) ) {
 				return;
 			}
 
@@ -321,7 +321,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			$defaults = self::woostify_get_default_fonts();
 
 			// If our default font is selected and the category isn't saved, we already know the category.
-			if ( $defaults[ $key ] == $font ) {
+			if ( $defaults[ $key ] === $font ) {
 				return ', ' . $defaults[ $key . '_category' ];
 			}
 
@@ -352,7 +352,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		 */
 		public function woostify_get_google_font_variants( $font, $key = '' ) {
 			// Don't need variants if we're using a system font.
-			if ( in_array( $font, self::woostify_typography_default_fonts() ) ) {
+			if ( in_array( $font, self::woostify_typography_default_fonts(), true ) ) {
 				return;
 			}
 
@@ -365,7 +365,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			$defaults = self::woostify_get_default_fonts();
 
 			// If our default font is selected and the category isn't saved, we already know the category.
-			if ( $defaults[ $key ] == $font ) {
+			if ( $defaults[ $key ] === $font ) {
 				return $defaults[ $key . '_variants' ];
 			}
 
@@ -424,7 +424,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 
 				$id = strtolower( str_replace( ' ', '_', $woostify_settings[ $setting ] ) );
 
-				if ( array_key_exists( $id, $select_fonts ) || in_array( $woostify_settings[ $setting ], self::woostify_typography_default_fonts() ) ) {
+				if ( array_key_exists( $id, $select_fonts ) || in_array( $woostify_settings[ $setting ], self::woostify_typography_default_fonts(), true ) ) {
 					continue;
 				}
 
@@ -468,7 +468,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			/*Get our font*/
 			$font_family = $woostify_settings[ $font ];
 
-			if ( 'System Stack' == $font_family ) {
+			if ( 'System Stack' === $font_family ) {
 				$font_family = apply_filters( 'woostify_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' );
 			}
 
@@ -478,7 +478,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			}
 
 			/*Set up our wrapper*/
-			if ( in_array( $font_family, $no_quotes ) ) {
+			if ( in_array( $font_family, $no_quotes, true ) ) {
 				$wrapper_start = null;
 				$wrapper_end   = null;
 			} else {
@@ -487,7 +487,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			}
 
 			/*Output the CSS*/
-			$output = 'inherit' == $font_family ? '' : $wrapper_start . $font_family . $wrapper_end;
+			$output = 'inherit' === $font_family ? '' : $wrapper_start . $font_family . $wrapper_end;
 
 			return $output;
 		}

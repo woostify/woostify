@@ -510,7 +510,7 @@ class Woostify_Get_CSS {
 
 		// SHOP PAGE.
 		// Product card.
-		if ( 'none' != $options['shop_page_product_card_border_style'] ) {
+		if ( 'none' !== $options['shop_page_product_card_border_style'] ) {
 			$styles .= '
 				.products .product:not(.product-category) .product-loop-wrapper {
 					border-style: ' . esc_attr( $options['shop_page_product_card_border_style'] ) . ';
@@ -530,7 +530,7 @@ class Woostify_Get_CSS {
 		}
 
 		// Product image.
-		if ( 'none' != $options['shop_page_product_image_border_style'] ) {
+		if ( 'none' !== $options['shop_page_product_image_border_style'] ) {
 			$styles .= '
 				.product-loop-image-wrapper {
 					border-style: ' . esc_attr( $options['shop_page_product_image_border_style'] ) . ';

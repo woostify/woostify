@@ -13,25 +13,27 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 	 */
 	class Woostify_Walker_Menu extends Walker_Nav_Menu {
 		/**
+		 * Walker menu
+		 *
 		 * @see Walker::start_el()
 		 *
 		 * @param string $output Passed by reference. Used to append additional content.
 		 * @param object $item Menu item data object.
-		 * @param int $depth Depth of menu item. Used for padding.
-		 * @param int $current_page Menu item ID.
-		 * @param object $args
+		 * @param int    $depth Depth of menu item. Used for padding.
+		 * @param object $args The array.
+		 * @param int    $id The id.
 		 */
-		public function start_el( &$output, $item, $depth = 0, $args = [], $id = 0 ) {
+		public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 			$indent      = $depth ? str_repeat( "\t", $depth ) : '';
 			$class_names = '';
 			$value       = '';
 
 			// Classes name.
-			$classes   = empty( $item->classes ) ? [] : (array) $item->classes;
+			$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
 			$classes[] = 'menu-item-' . $item->ID;
-			if ( 'mega_menu' == $item->object ) {
+			if ( 'mega_menu' === $item->object ) {
 				$this->megamenu_width = get_post_meta( $item->ID, 'woostify_mega_menu_item_width', true );
-				$this->megamenu_width = '' != $this->megamenu_width ? $this->megamenu_width : 'content';
+				$this->megamenu_width = '' !== $this->megamenu_width ? $this->megamenu_width : 'content';
 				$this->megamenu_icon  = get_post_meta( $item->ID, 'woostify_mega_menu_item_icon', true );
 
 				$classes[] = 'menu-item-has-children';
@@ -43,7 +45,7 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 
 			// Check this item has children.
 			$has_child = false;
-			if ( in_array( 'menu-item-has-children', $classes ) ) {
+			if ( in_array( 'menu-item-has-children', $classes, true ) ) {
 				$has_child = true;
 			}
 
@@ -52,14 +54,14 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
 
 			// Ids.
-			$id = apply_filters( 'woostify_mega_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
+			$id = apply_filters( 'woostify_mega_menu_item_id', 'menu-item-' . $item->ID, $item, $args );
 			$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
 
 			// Start output.
 			$output .= $indent . '<li' . $id . $value . $class_names . '>';
 
 			// Attributes.
-			$atts           = [];
+			$atts           = array();
 			$atts['target'] = ! empty( $item->target ) ? $item->target : '';
 			$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn : '';
 			$atts['href']   = ! empty( $item->url ) ? $item->url : '';
@@ -68,8 +70,8 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			$attributes = '';
 			foreach ( $atts as $attr => $value ) {
 				if ( ! empty( $value ) ) {
-					$value      = 'href' === $attr ? esc_url( $value ) : esc_attr( $value );
-					$value      = 'mega_menu' == $item->object ? '#' : $value;
+					$value       = 'href' === $attr ? esc_url( $value ) : esc_attr( $value );
+					$value       = 'mega_menu' === $item->object ? '#' : $value;
 					$attributes .= ' ' . $attr . '="' . $value . '"';
 				}
 			}
@@ -83,7 +85,7 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			}
 
 			// Menu icon.
-			if ( 'mega_menu' == $item->object && $this->megamenu_icon ) {
+			if ( 'mega_menu' === $item->object && $this->megamenu_icon ) {
 				$item_output .= '<span class="menu-item-icon ' . esc_attr( $this->megamenu_icon ) . '"></span>';
 			}
 
@@ -101,31 +103,31 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			$item_output .= '</a>';
 
 			// Start Mega menu content.
-			if ( 'mega_menu' == $item->object && 0 == $depth ) {
+			if ( 'mega_menu' === $item->object && 0 === $depth ) {
 				$item_output .= '<ul class="sub-menu sub-mega-menu">';
 				$item_output .= '<div class="mega-menu-wrapper">';
 
 				if ( woostify_is_elementor_page( $item->object_id ) ) {
-					$frontend    = new \Elementor\Frontend();
+					$frontend     = new \Elementor\Frontend();
 					$item_output .= $frontend->get_builder_content( $item->object_id, true );
 				} else {
-					$mega_args = [
+					$mega_args = array(
 						'p'                   => $item->object_id,
 						'post_type'           => 'mega_menu',
 						'post_status'         => 'publish',
 						'posts_per_page'      => 1,
 						'ignore_sticky_posts' => 1,
-					];
+					);
 
 					$query = new WP_Query( $mega_args );
 
 					if ( $query->have_posts() ) {
 						ob_start();
-							while ( $query->have_posts() ) {
-								$query->the_post();
+						while ( $query->have_posts() ) {
+							$query->the_post();
 
-								the_content();
-							}
+							the_content();
+						}
 						$item_output .= ob_get_clean();
 
 						// Reset post data.

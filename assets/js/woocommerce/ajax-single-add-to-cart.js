@@ -141,14 +141,19 @@ function woostifyAjaxSingleAddToCartButton() {
 						}
 					});
 				} )
-				.catch( function( err ) {
-					alert( woostify_ajax_single_add_to_cart_data.ajax_error );
-					console.log( err );
-				});
+				.catch(
+					function( err ) {
+						alert( woostify_ajax_single_add_to_cart_data.ajax_error );
+						console.log( err );
+					}
+				);
 		} );
 	} );
 }
 
-document.addEventListener( 'DOMContentLoaded', function() {
-	woostifyAjaxSingleAddToCartButton();
-} );
+document.addEventListener(
+	'DOMContentLoaded',
+	function() {
+		woostifyAjaxSingleAddToCartButton();
+	}
+);

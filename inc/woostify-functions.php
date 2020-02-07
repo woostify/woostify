@@ -21,10 +21,12 @@ if ( ! function_exists( 'woostify_version' ) ) {
 if ( ! function_exists( 'woostify_info' ) ) {
 	/**
 	 * Woostify Information.
+	 *
+	 * @param      string $output  The output.
 	 */
 	function woostify_info( $output ) {
 		$output .= ' data-woostify-version="' . woostify_version() . '"';
-		$output .= defined( 'WOOSTIFY_PRO_VERSION' ) ?  ' data-woostify-pro-version="' . esc_attr( WOOSTIFY_PRO_VERSION ) . '"' : '';
+		$output .= defined( 'WOOSTIFY_PRO_VERSION' ) ? ' data-woostify-pro-version="' . esc_attr( WOOSTIFY_PRO_VERSION ) . '"' : '';
 
 		return $output;
 	}
@@ -54,10 +56,13 @@ if ( ! function_exists( 'woostify_get_pro_url' ) ) {
 	function woostify_get_pro_url( $url = 'https://woostify.com' ) {
 		$url = trailingslashit( $url );
 
-		$args = apply_filters( 'woostify_premium_url_args', array(
-			'ref'      => null,
-			'campaign' => null,
-		) );
+		$args = apply_filters(
+			'woostify_premium_url_args',
+			array(
+				'ref'      => null,
+				'campaign' => null,
+			)
+		);
 
 		// Set up our URL if we have an ID.
 		if ( isset( $args['ref'] ) ) {
@@ -175,7 +180,7 @@ if ( ! function_exists( 'woostify_sanitize_array' ) ) {
 	 * @param      array $value  The array.
 	 */
 	function woostify_sanitize_array( $value ) {
-		$data = [];
+		$data = array();
 		foreach ( $value as $key ) {
 			$data[] = sanitize_text_field( $key );
 		}
@@ -194,7 +199,7 @@ if ( ! function_exists( 'woostify_sanitize_choices' ) ) {
 	 */
 	function woostify_sanitize_choices( $input, $setting ) {
 		// Ensure input is a slug.
-		$input   = sanitize_key( $input );
+		$input = sanitize_key( $input );
 
 		// Get list of choices from the control associated with the setting.
 		$choices = $setting->manager->get_control( $setting->id )->choices;
@@ -215,7 +220,7 @@ if ( ! function_exists( 'woostify_sanitize_checkbox' ) ) {
 	 * @return bool Whether the checkbox is checked.
 	 */
 	function woostify_sanitize_checkbox( $checked ) {
-		return ( ( isset( $checked ) && true == $checked ) ? true : false );
+		return ( ( isset( $checked ) && true === $checked ) ? true : false );
 	}
 }
 
@@ -279,7 +284,7 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 		$content = wp_kses(
 			$value,
 			array(
-				'a' => array(
+				'a'      => array(
 					'class'  => array(),
 					'href'   => array(),
 					'rel'    => array(),
@@ -287,33 +292,33 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 					'target' => array(),
 					'style'  => array(),
 				),
-				'code' => array(),
-				'div'  => array(
+				'code'   => array(),
+				'div'    => array(
 					'class' => array(),
 					'style' => array(),
 				),
-				'em' => array(),
-				'h1' => array(),
-				'h2' => array(),
-				'h3' => array(),
-				'h4' => array(),
-				'h5' => array(),
-				'h6' => array(),
-				'i'  => array(),
-				'li' => array(
+				'em'     => array(),
+				'h1'     => array(),
+				'h2'     => array(),
+				'h3'     => array(),
+				'h4'     => array(),
+				'h5'     => array(),
+				'h6'     => array(),
+				'i'      => array(),
+				'li'     => array(
 					'class' => array(),
 				),
-				'ul' => array(
+				'ul'     => array(
 					'class' => array(),
 				),
-				'ol' => array(
+				'ol'     => array(
 					'class' => array(),
 				),
-				'p' => array(
+				'p'      => array(
 					'class' => array(),
 					'style' => array(),
 				),
-				'span' => array(
+				'span'   => array(
 					'class' => array(),
 					'style' => array(),
 				),
@@ -321,7 +326,7 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 					'class' => array(),
 					'style' => array(),
 				),
-				'b'    => array(
+				'b'      => array(
 					'class' => array(),
 					'style' => array(),
 				),
@@ -342,7 +347,7 @@ if ( ! function_exists( 'woostify_is_blog' ) ) {
 
 		$post_type = get_post_type( $post );
 
-		$is_blog = ( 'post' == $post_type && ( is_archive() || is_author() || is_category() || is_home() || is_single() || is_tag() ) ) ? true : false;
+		$is_blog = ( 'post' === $post_type && ( is_archive() || is_author() || is_category() || is_home() || is_single() || is_tag() ) ) ? true : false;
 
 		return apply_filters( 'woostify_is_blog', $is_blog );
 	}
@@ -362,7 +367,7 @@ if ( ! function_exists( 'woostify_options' ) ) {
 		$default_fonts    = Woostify_Fonts_Helpers::woostify_get_default_fonts();
 		$default_options  = array_merge( $default_settings, $default_fonts );
 
-		if ( true == $defaults ) {
+		if ( $defaults ) {
 			return $default_options;
 		}
 
@@ -394,7 +399,7 @@ if ( ! function_exists( 'woostify_image_alt' ) ) {
 			return esc_attr__( 'Error image', 'woostify' );
 		}
 
-		$data = get_post_meta( $id, '_wp_attachment_image_alt', true );
+		$data    = get_post_meta( $id, '_wp_attachment_image_alt', true );
 		$img_alt = ! empty( $data ) ? $data : $alt;
 
 		return $img_alt;
@@ -412,7 +417,7 @@ if ( ! function_exists( 'woostify_hex_to_rgba' ) ) {
 	function woostify_hex_to_rgba( $hex, $alpha = 1 ) {
 		$hex = str_replace( '#', '', $hex );
 
-		if ( 3 == strlen( $hex ) ) {
+		if ( 3 === strlen( $hex ) ) {
 			$r = hexdec( substr( $hex, 0, 1 ) . substr( $hex, 0, 1 ) );
 			$g = hexdec( substr( $hex, 1, 1 ) . substr( $hex, 1, 1 ) );
 			$b = hexdec( substr( $hex, 2, 1 ) . substr( $hex, 2, 1 ) );
@@ -557,8 +562,8 @@ if ( ! function_exists( 'woostify_header_transparent' ) ) {
 		}
 
 		// Metabox option for single post or page. Priority highest.
-		if ( 'default' != $metabox_transparent ) {
-			if ( 'enabled' == $metabox_transparent ) {
+		if ( 'default' !== $metabox_transparent ) {
+			if ( 'enabled' === $metabox_transparent ) {
 				$transparent = true;
 			} else {
 				$transparent = false;
@@ -648,7 +653,7 @@ if ( ! function_exists( 'woostify_array_insert' ) ) {
 	 * @return array
 	 */
 	function woostify_array_insert( $array, $pairs, $key, $position = 'after' ) {
-		$key_pos = array_search( $key, array_keys( $array ) );
+		$key_pos = array_search( $key, array_keys( $array ), true );
 		if ( 'after' === $position ) {
 			$key_pos++;
 			if ( false !== $key_pos ) {
@@ -677,9 +682,9 @@ if ( ! function_exists( 'woostify_support_wishlist_plugin' ) ) {
 		$plugin  = $options['shop_page_wishlist_support_plugin'];
 
 		// Ti plugin.
-		if ( defined( 'TINVWL_URL' ) && 'ti' == $plugin ) {
+		if ( defined( 'TINVWL_URL' ) && 'ti' === $plugin ) {
 			return true;
-		} elseif ( defined( 'YITH_WCWL' ) && 'ti' != $plugin ) {
+		} elseif ( defined( 'YITH_WCWL' ) && 'ti' !== $plugin ) {
 			// Yith plugin.
 			return true;
 		}
@@ -700,12 +705,12 @@ if ( ! function_exists( 'woostify_wishlist_page_url' ) ) {
 		$options   = woostify_options( false );
 		$shortcode = '[yith_wcwl_wishlist]';
 
-		if ( 'ti' == $options['shop_page_wishlist_support_plugin'] ) {
+		if ( 'ti' === $options['shop_page_wishlist_support_plugin'] ) {
 			$shortcode = '[ti_wishlistsview]';
 		}
 
 		global $wpdb;
-		$id = $wpdb->get_results( 'SELECT ID FROM ' . $wpdb->prefix . 'posts WHERE post_content LIKE "%' . $shortcode . '%" AND post_parent = 0' );
+		$id = $wpdb->get_results( 'SELECT ID FROM ' . $wpdb->prefix . 'posts WHERE post_content LIKE "%' . $shortcode . '%" AND post_parent = 0' ); // phpcs:ignore
 
 		if ( $id ) {
 			$id  = intval( $id[0]->ID );

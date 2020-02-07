@@ -24,14 +24,14 @@ $layout_sections = apply_filters(
 $wp_customize->add_panel(
 	'woostify_layout',
 	array(
-		'title'      => __( 'Layout', 'woostify' ),
-		'priority'   => 30,
+		'title'    => __( 'Layout', 'woostify' ),
+		'priority' => 30,
 	)
 );
 
-foreach ( $layout_sections as $id => $name ) {
+foreach ( $layout_sections as $section_id => $name ) {
 	$wp_customize->add_section(
-		$id,
+		$section_id,
 		array(
 			'title' => $name,
 			'panel' => 'woostify_layout',
@@ -61,8 +61,8 @@ $wp_customize->add_section(
 $wp_customize->add_panel(
 	'woostify_typography',
 	array(
-		'title'      => __( 'Typography', 'woostify' ),
-		'priority'   => 35,
+		'title'    => __( 'Typography', 'woostify' ),
+		'priority' => 35,
 	)
 );
 
@@ -70,8 +70,8 @@ $wp_customize->add_panel(
 $wp_customize->add_section(
 	'body_font_section',
 	array(
-		'title'      => __( 'Body', 'woostify' ),
-		'panel'      => 'woostify_typography',
+		'title' => __( 'Body', 'woostify' ),
+		'panel' => 'woostify_typography',
 	)
 );
 
@@ -79,8 +79,8 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'menu_font_section',
 	array(
-		'title'      => __( 'Primary menu', 'woostify' ),
-		'panel'      => 'woostify_typography',
+		'title' => __( 'Primary menu', 'woostify' ),
+		'panel' => 'woostify_typography',
 	)
 );
 
@@ -88,8 +88,8 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'heading_font_section',
 	array(
-		'title'      => __( 'Heading', 'woostify' ),
-		'panel'      => 'woostify_typography',
+		'title' => __( 'Heading', 'woostify' ),
+		'panel' => 'woostify_typography',
 	)
 );
 
@@ -98,8 +98,8 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'woostify_shop_page',
 	array(
-		'title'      => __( 'Shop Archive', 'woostify' ),
-		'panel'      => 'woocommerce',
+		'title' => __( 'Shop Archive', 'woostify' ),
+		'panel' => 'woocommerce',
 	)
 );
 
@@ -107,8 +107,8 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'woostify_shop_single',
 	array(
-		'title'      => __( 'Product Single', 'woostify' ),
-		'panel'      => 'woocommerce',
+		'title' => __( 'Product Single', 'woostify' ),
+		'panel' => 'woocommerce',
 	)
 );
 
@@ -116,7 +116,7 @@ $wp_customize->add_section(
 $wp_customize->add_section(
 	'woostify_cart_page',
 	array(
-		'title'      => __( 'Cart Page', 'woostify' ),
-		'panel'      => 'woocommerce',
+		'title' => __( 'Cart Page', 'woostify' ),
+		'panel' => 'woocommerce',
 	)
 );

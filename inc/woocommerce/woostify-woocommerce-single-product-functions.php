@@ -40,7 +40,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_open' ) ) {
 		$product_id = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
 		$product    = wc_get_product( $product_id );
 		$options    = woostify_options( false );
-		$gallery_id = ! empty( $product ) ? $product->get_gallery_image_ids() : [];
+		$gallery_id = ! empty( $product ) ? $product->get_gallery_image_ids() : array();
 		$classes[]  = $options['shop_single_gallery_layout'] . '-style';
 		$classes[]  = ! empty( $gallery_id ) ? 'has-product-thumbnails' : '';
 
@@ -120,7 +120,7 @@ if ( ! function_exists( 'woostify_available_variation_gallery' ) ) {
 			array_unshift( $gallery_images, get_post_thumbnail_id( $product_id ) );
 		}
 
-		$available_variation['woostify_variation_gallery_images'] = [];
+		$available_variation['woostify_variation_gallery_images'] = array();
 		foreach ( $gallery_images as $k => $v ) {
 			$available_variation['woostify_variation_gallery_images'][ $k ] = wc_get_product_attachment_props( $v );
 		}
@@ -203,12 +203,11 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 		$image_full_src[0]   = wc_placeholder_img_src();
 		$image_srcset        = '';
 
-
 		if ( $image_id ) {
 			$image_medium_src = wp_get_attachment_image_src( $image_id, 'woocommerce_single' );
 			$image_full_src   = wp_get_attachment_image_src( $image_id, 'full' );
 			$image_size       = $image_full_src[1] . 'x' . $image_full_src[2];
-			$image_srcset    = function_exists( 'wp_get_attachment_image_srcset' ) ? wp_get_attachment_image_srcset( $image_id, 'woocommerce_single' ) : '';
+			$image_srcset     = function_exists( 'wp_get_attachment_image_srcset' ) ? wp_get_attachment_image_srcset( $image_id, 'woocommerce_single' ) : '';
 		}
 
 		// Gallery.
@@ -255,12 +254,12 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 	 */
 	function woostify_single_product_gallery_thumb_slide() {
 		$options = woostify_options( false );
-		if ( ! in_array( $options['shop_single_gallery_layout'], [ 'vertical', 'horizontal' ] ) ) {
+		if ( ! in_array( $options['shop_single_gallery_layout'], array( 'vertical', 'horizontal' ), true ) ) {
 			return;
 		}
 
-		$product_id      = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
-		$product         = wc_get_product( $product_id );
+		$product_id = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
+		$product    = wc_get_product( $product_id );
 
 		if ( empty( $product ) ) {
 			return;
@@ -382,19 +381,19 @@ if ( ! function_exists( 'woostify_product_info' ) ) {
 		global $product;
 		$pid = $product->get_id();
 
-		// Return `yes` || `no`.
+		// Return yes || no.
 		$in_stock = get_post_meta( $pid, '_manage_stock', true );
 
 		// Return INT value.
 		$stock_qty = $product->get_stock_quantity();
 
 		/*CHECK PRODUCT IN CART && CHECK QUANTITY IF IT ALREADY IN CART*/
-		$in_cart_qty  = woostify_product_check_in( $pid, $in_cart = true, $qty_in_cart = false ) ? woostify_product_check_in( $pid, $in_cart = false, $qty_in_cart = true ) : 0;
-		$not_enough   = __( 'You cannot add that amount of this product to the cart because there is not enough stock.', 'woostify' );
+		$in_cart_qty = woostify_product_check_in( $pid, $in_cart = true, $qty_in_cart = false ) ? woostify_product_check_in( $pid, $in_cart = false, $qty_in_cart = true ) : 0; // phpcs:ignore
+		$not_enough  = __( 'You cannot add that amount of this product to the cart because there is not enough stock.', 'woostify' );
 
 		/* translators: %1$d: stock quantity */
-		$out_stock    = sprintf( __( 'You cannot add that amount to the cart - we have %1$d in stock and you already have %1$d in your cart', 'woostify' ), $stock_qty );
-		$valid_qty    = __( 'Please enter a valid quantity for this product', 'woostify' );
+		$out_stock = sprintf( __( 'You cannot add that amount to the cart - we have %1$d in stock and you already have %1$d in your cart', 'woostify' ), $stock_qty );
+		$valid_qty = __( 'Please enter a valid quantity for this product', 'woostify' );
 		?>
 
 		<input class="additional-product" type="hidden" value="<?php echo esc_attr( $in_cart_qty ); ?>"
@@ -427,11 +426,13 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 			return $html;
 		}
 
-		$number = $stock_quantity <= 10 ? $stock_quantity : rand( 10, 75 );
+		$number = $stock_quantity <= 10 ? $stock_quantity : wp_rand( 10, 75 );
 		ob_start();
 		?>
 		<div class="woostify-single-product-stock stock">
-			<span class="woostify-single-product-stock-label"><?php echo sprintf( __( 'Hurry! only %s left in stock.', 'woostify' ), $stock_quantity ); ?></span>
+			<span class="woostify-single-product-stock-label">
+				<?php echo esc_html( sprintf( /* translators: %s stock quantity */ __( 'Hurry! only %s left in stock.', 'woostify' ), $stock_quantity ) ); ?>
+			</span>
 
 			<div class="woostify-product-stock-progress">
 				<span class="woostify-single-product-stock-progress-bar" data-number="<?php echo esc_attr( $number ); ?>"></span>
@@ -472,17 +473,17 @@ if ( ! function_exists( 'woostify_product_recently_viewed' ) ) {
 
 		global $post;
 		$options         = woostify_options( false );
-		$viewed_products = [];
+		$viewed_products = array();
 
 		if ( ! empty( $_COOKIE['woostify_product_recently_viewed'] ) ) {
-			$viewed_products = (array) explode( '|', $_COOKIE['woostify_product_recently_viewed'] );
+			$viewed_products = (array) explode( '|', sanitize_text_field( wp_unslash( $_COOKIE['woostify_product_recently_viewed'] ) ) );
 		}
 
-		if ( ! in_array( $post->ID, $viewed_products ) ) {
+		if ( ! in_array( $post->ID, $viewed_products, true ) ) {
 			$viewed_products[] = $post->ID;
 		}
 
-		if ( sizeof( $viewed_products ) > $options['shop_single_recently_viewed_count'] ) {
+		if ( count( $viewed_products ) > $options['shop_single_recently_viewed_count'] ) {
 			array_shift( $viewed_products );
 		}
 
@@ -497,19 +498,19 @@ if ( ! function_exists( 'woostify_product_recently_viewed_template' ) ) {
 	 */
 	function woostify_product_recently_viewed_template() {
 		$options = woostify_options( false );
-		$cookies = isset( $_COOKIE['woostify_product_recently_viewed'] ) ? $_COOKIE['woostify_product_recently_viewed'] : false;
+		$cookies = isset( $_COOKIE['woostify_product_recently_viewed'] ) ? sanitize_text_field( wp_unslash( $_COOKIE['woostify_product_recently_viewed'] ) ) : false;
 		if ( ! $cookies || ! $options['shop_single_product_recently_viewed'] || ! is_singular( 'product' ) || woostify_elementor_has_location( 'single' ) ) {
 			return;
 		}
 
 		$ids       = explode( '|', $cookies );
 		$container = woostify_site_container();
-		$args      = [
+		$args      = array(
 			'post_type'      => 'product',
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
 			'post__in'       => $ids,
-		];
+		);
 
 		$products_query = new WP_Query( $args );
 		if ( ! $products_query->have_posts() ) {
@@ -522,17 +523,17 @@ if ( ! function_exists( 'woostify_product_recently_viewed_template' ) ) {
 				<div class="woostify-product-recently-viewed-inner">
 					<h2 class="woostify-product-recently-viewed-title"><?php echo esc_html( $options['shop_single_recently_viewed_title'] ); ?></h2>
 					<?php
-						woocommerce_product_loop_start();
+					woocommerce_product_loop_start();
 
-						while ( $products_query->have_posts() ) :
-							$products_query->the_post();
+					while ( $products_query->have_posts() ) :
+						$products_query->the_post();
 
-							wc_get_template_part( 'content', 'product' );
-						endwhile;
+						wc_get_template_part( 'content', 'product' );
+					endwhile;
 
-						wp_reset_postdata();
+					wp_reset_postdata();
 
-						woocommerce_product_loop_end();
+					woocommerce_product_loop_end();
 					?>
 				</div>
 			</div>
@@ -548,7 +549,7 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 	function woostify_ajax_single_add_to_cart() {
 		check_ajax_referer( 'woostify_ajax_single_add_to_cart', 'ajax_nonce' );
 
-		$response = [];
+		$response = array();
 
 		if ( ! isset( $_POST['product_id'] ) || ! isset( $_POST['product_qty'] ) ) {
 			wp_send_json_error();

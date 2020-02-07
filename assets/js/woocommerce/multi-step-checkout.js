@@ -69,9 +69,9 @@ var woostifyMultiStepCheckout = function() {
 						prevStep      = currentActive ? currentActive.previousElementSibling : false,
 						nextStep      = currentActive ? currentActive.nextElementSibling : false,
 						// Term copy.
-						terms        = checkout.querySelector( '.multi-step-checkout-content [name="terms"]' ),
-						termsChecked = terms ? terms.checked : true,
-						termsText    = checkout.querySelector( '.multi-step-checkout-content .woocommerce-terms-and-conditions-checkbox-text' );
+						termConditionsCopy = checkout.querySelector( '.multi-step-checkout-content .woocommerce-terms-and-conditions-wrapper' ),
+						terms              = termConditionsCopy ? termConditionsCopy.querySelector( '.multi-step-checkout-content [name="terms"]' ) : false,
+						termsChecked       = terms ? terms.checked : true;
 
 					if ( 'back' == buttonAction && prevStep ) {
 						prevStep.click();
@@ -82,12 +82,12 @@ var woostifyMultiStepCheckout = function() {
 					}
 
 					if ( 'place_order' == buttonAction ) {
-						if ( terms && termsText ) {
+						if ( termConditionsCopy ) {
 							if ( ! termsChecked ) {
-								termsText.classList.add( 'required-item' );
+								termConditionsCopy.classList.add( 'required-item' );
 								return;
 							} else {
-								termsText.classList.remove( 'required-item' );
+								termConditionsCopy.classList.remove( 'required-item' );
 							}
 						}
 
@@ -255,14 +255,14 @@ var woostifyMultiStepCheckout = function() {
 					);
 				}
 
-				var terms     = checkout.querySelector( '.multi-step-checkout-content [name="terms"]' ),
-					termsText = checkout.querySelector( '.multi-step-checkout-content .woocommerce-terms-and-conditions-checkbox-text' );
-				if ( terms && termsText ) {
+				var termConditionsCopy = checkout.querySelector( '.multi-step-checkout-content .woocommerce-terms-and-conditions-wrapper' ),
+					terms              = termConditionsCopy ? termConditionsCopy.querySelector( '.multi-step-checkout-content [name="terms"]' ) : false;
+				if ( terms ) {
 					terms.addEventListener(
 						'change',
 						function() {
 							if ( this.checked ) {
-								termsText.classList.remove( 'required-item' );
+								termConditionsCopy.classList.remove( 'required-item' );
 							}
 						}
 					);

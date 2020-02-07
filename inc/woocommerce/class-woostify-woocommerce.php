@@ -33,12 +33,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		 * Setup class.
 		 */
 		public function __construct() {
-			add_action( 'wp', [ $this, 'woostify_woocommerce_wp_action' ] );
-			add_action( 'init', [ $this, 'woostify_woocommerce_init_action' ] );
-			add_action( 'after_setup_theme', [ $this, 'woostify_woocommerce_setup' ] );
+			add_action( 'wp', array( $this, 'woostify_woocommerce_wp_action' ) );
+			add_action( 'init', array( $this, 'woostify_woocommerce_init_action' ) );
+			add_action( 'after_setup_theme', array( $this, 'woostify_woocommerce_setup' ) );
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
-			add_action( 'wp_enqueue_scripts', [ $this, 'woocommerce_scripts' ], 200 );
-			add_filter( 'body_class', [ $this, 'woocommerce_body_class' ] );
+			add_action( 'wp_enqueue_scripts', array( $this, 'woocommerce_scripts' ), 200 );
+			add_filter( 'body_class', array( $this, 'woocommerce_body_class' ) );
 
 			// GENERAL.
 			add_action( 'wp', 'woostify_breadcrumb_for_product_page' );
@@ -122,8 +122,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_after_cart_table', 'woostify_clear_shop_cart' );
 
 			// METABOXS.
-			add_action( 'add_meta_boxes', [ $this, 'woostify_add_product_metaboxes' ] );
-			add_action( 'save_post', [ $this, 'woostify_save_product_metaboxes' ] );
+			add_action( 'add_meta_boxes', array( $this, 'woostify_add_product_metaboxes' ) );
+			add_action( 'save_post', array( $this, 'woostify_save_product_metaboxes' ) );
 		}
 
 		/**
@@ -134,15 +134,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				'woocommerce',
 				apply_filters(
 					'woostify_woocommerce_args',
-					[
-						'product_grid' => [
+					array(
+						'product_grid' => array(
 							'default_columns' => 4,
 							'default_rows'    => 3,
 							'min_columns'     => 1,
 							'max_columns'     => 6,
 							'min_rows'        => 1,
-						],
-					]
+						),
+					)
 				)
 			);
 		}
@@ -165,7 +165,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			wp_enqueue_script( 'woostify-quantity-button' );
 
 			// Sticky sidebar.
-			if ( in_array( $options['shop_single_gallery_layout'], [ 'column', 'grid' ] ) ) {
+			if ( in_array( $options['shop_single_gallery_layout'], array( 'column', 'grid' ), true ) ) {
 				wp_enqueue_script( 'sticky-sidebar' );
 			}
 
@@ -200,11 +200,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				wp_localize_script(
 					'woostify-single-add-to-cart',
 					'woostify_ajax_single_add_to_cart_data',
-					[
+					array(
 						'ajax_url'   => admin_url( 'admin-ajax.php' ),
 						'ajax_error' => __( 'Sorry, something went wrong. Please try again!', 'woostify' ),
 						'ajax_nonce' => wp_create_nonce( 'woostify_ajax_single_add_to_cart' ),
-					]
+					)
 				);
 			}
 
@@ -213,7 +213,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				wp_localize_script(
 					'woostify-woocommerce',
 					'woostify_woocommerce_variable_product_data',
-					[
+					array(
 						'ajax_url'             => admin_url( 'admin-ajax.php' ),
 						// Sale tag.
 						'sale_tag_percent'     => $options['shop_page_sale_percent'],
@@ -221,9 +221,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 						'out_of_stock_display' => $options['shop_page_out_of_stock_position'],
 						'out_of_stock_square'  => $options['shop_page_out_of_stock_square'] ? 'is-square' : '',
 						'out_of_stock_text'    => $options['shop_page_out_of_stock_text'],
-						// Stock label.
+						/* translators: %s number of product */
 						'stock_label'          => __( 'Hurry! only %s left in stock.', 'woostify' ),
-					]
+					)
 				);
 			}
 		}
@@ -242,7 +242,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$product = wc_get_product( $page_id );
 			$gallery = $product ? $product->get_gallery_image_ids() : false;
 
-			if ( in_array( $options['shop_single_gallery_layout'], [ 'vertical', 'horizontal' ] ) ) {
+			if ( in_array( $options['shop_single_gallery_layout'], array( 'vertical', 'horizontal' ), true ) ) {
 				$classes[] = 'has-gallery-slider-layout';
 			} else {
 				$classes[] = 'has-gallery-list-layout';
@@ -281,7 +281,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					$classes[] = 'has-proceed-sticky-button';
 				}
 
-				$classes[] = 'cart-page-' . $options['cart_page_layout'];
+				$classes[] = apply_filters( 'woostify_cart_page_layout_class_name', 'cart-page-' . $options['cart_page_layout'] );
 			}
 
 			// Checkout page.
@@ -305,7 +305,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Dokan support.
 			if ( class_exists( 'WeDevs_Dokan' ) && woostify_is_woocommerce_activated() && dokan_is_store_page() ) {
-				$classes[] = 'off' == dokan_get_option( 'enable_theme_store_sidebar', 'dokan_appearance', 'off' ) ? 'has-dokan-sidebar' : 'dokan-with-theme-sidebar';
+				$classes[] = 'off' === dokan_get_option( 'enable_theme_store_sidebar', 'dokan_appearance', 'off' ) ? 'has-dokan-sidebar' : 'dokan-with-theme-sidebar';
 			}
 
 			return array_filter( $classes );
@@ -351,7 +351,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_second', 20 ); // Second step.
 				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_third', 30 ); // Third step.
-				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_button_action', 40 ); // Button action
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_button_action', 40 ); // Button action.
 
 				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_wrapper_end', 100 ); // Wrapper end.
 
@@ -426,7 +426,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_meta_box(
 				'woostify-product-video-metabox',
 				__( 'Product video url', 'woostify' ),
-				[ $this, 'woostify_product_metabox_content' ],
+				array( $this, 'woostify_product_metabox_content' ),
 				'product',
 				'side'
 			);
@@ -450,7 +450,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					</label>
 				</div>
 			</div>
-		<?php
+			<?php
 		}
 
 		/**
@@ -469,7 +469,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// Sanitize user input.
-			$video = sanitize_text_field( $_POST['woostify_product_video_metabox'] );
+			$video = empty( $_POST['woostify_product_video_metabox'] ) ? '' : sanitize_text_field( wp_unslash( $_POST['woostify_product_video_metabox'] ) );
 			update_post_meta( $post_id, 'woostify_product_video_metabox', $video );
 		}
 	}
