@@ -696,6 +696,11 @@ if ( ! class_exists( 'Woostify' ) ) {
 				$classes[] = woostify_browser_detection() . '-detected';
 			}
 
+			// Detect site using child theme.
+			if ( is_child_theme() ) {
+				$classes[] = 'child-theme-detected';
+			}
+
 			// Site container layout.
 			$customizer_container = $options['default_container'];
 			$metabox_container    = woostify_get_metabox( false, 'site-container' );

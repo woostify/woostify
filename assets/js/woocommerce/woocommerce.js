@@ -29,12 +29,15 @@ function shoppingBag() {
 	}
 
 	for ( var i = 0, j = shoppingBag.length; i < j; i++ ) {
-		shoppingBag[i].addEventListener( 'click', function( e ) {
-			e.preventDefault();
+		shoppingBag[i].addEventListener(
+			'click',
+			function( e ) {
+				e.preventDefault();
 
-			cartSidebarOpen();
-			closeAll();
-		} );
+				cartSidebarOpen();
+				closeAll();
+			}
+		);
 	}
 }
 
@@ -59,37 +62,60 @@ var woostifyStockQuantityProgressBar = function() {
 		return;
 	}
 
-	selector.forEach( function( element, index ) {
-		var number = element.getAttribute( 'data-number' ) || 0;
-		element.style.width = number + '%';
-	});
+	selector.forEach(
+		function( element, index ) {
+			var number = element.getAttribute( 'data-number' ) || 0;
+
+			element.style.width = number + '%';
+		}
+	);
 }
 
-document.addEventListener( 'DOMContentLoaded', function() {
-	shoppingBag();
+document.addEventListener(
+	'DOMContentLoaded',
+	function() {
+		shoppingBag();
 
-	window.addEventListener( 'scroll', function() {
-		if ( woostifyConditionScrolling() ) {
-			scrollingDetect();
-		}
-	} );
+		window.addEventListener(
+			'scroll',
+			function() {
+				if ( woostifyConditionScrolling() ) {
+					scrollingDetect();
+				}
+			}
+		);
 
-	window.addEventListener( 'load', function() {
-		woostifyStockQuantityProgressBar();
-	} );
+		window.addEventListener(
+			'load',
+			function() {
+				woostifyStockQuantityProgressBar();
+			}
+		);
 
-	jQuery( document.body ).on( 'adding_to_cart', function() {
-		eventCartSidebarOpen();
+		jQuery( document.body ).on(
+			'adding_to_cart',
+			function() {
+				eventCartSidebarOpen();
 
-		if ( 'function' === typeof( woostifyAjaxSingleAddToCartButton ) ) {
-			cartSidebarOpen();
-		}
-	} ).on( 'added_to_cart', function() {
-		eventCartSidebarClose();
-		closeAll();
-	} ).on( 'updated_cart_totals', function() {
-		if ( 'function' === typeof( customQuantity ) ) {
-			customQuantity();
-		}
-	} );
-} );
+				if ( 'function' === typeof( woostifyAjaxSingleAddToCartButton ) ) {
+					cartSidebarOpen();
+				}
+			}
+		).on(
+			'added_to_cart',
+			function() {
+				eventCartSidebarClose();
+				closeAll();
+			}
+		).on(
+			'updated_cart_totals',
+			function( event ) {
+				if ( 'function' === typeof( customQuantity ) ) {
+					customQuantity();
+				}
+
+				console.log( event );
+			}
+		);
+	}
+);

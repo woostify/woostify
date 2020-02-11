@@ -9274,7 +9274,7 @@ footer#colophon {
     float: left;
   }
   .woocommerce-cart.cart-page-layout-2 .cart-collaterals {
-    width: calc( 35% - 40px);
+    width: calc(35% - 40px);
     float: right;
   }
 }
@@ -9582,6 +9582,10 @@ footer#colophon {
   text-align: center;
 }
 
+.cart_totals .shop_table th {
+  white-space: nowrap;
+}
+
 .woocommerce-checkout .woocommerce {
   position: relative;
 }
@@ -9824,6 +9828,10 @@ footer#colophon {
 
 #order_review li {
   list-style: none;
+}
+
+.woocommerce-checkout-review-order-table th {
+  white-space: nowrap;
 }
 
 .woocommerce-checkout-review-order-table .product-name strong {

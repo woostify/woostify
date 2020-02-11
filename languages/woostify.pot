@@ -184,7 +184,7 @@ msgstr ""
 msgid "Woostify 404"
 msgstr ""
 
-#: inc/class-woostify.php:728
+#: inc/class-woostify.php:733
 msgid "Post Pagination"
 msgstr ""
 

@@ -555,8 +555,6 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 			wp_send_json_error();
 		}
 
-		global $woocommerce;
-
 		$product_id        = absint( $_POST['product_id'] );
 		$product_qty       = absint( $_POST['product_qty'] );
 		$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $product_qty );
@@ -580,7 +578,7 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		ob_start();
 		woocommerce_mini_cart();
 		$response['item']    = $count;
-		$response['total']   = $woocommerce->cart->get_cart_total();
+		$response['total']   = WC()->cart->get_cart_total();
 		$response['content'] = ob_get_clean();
 
 		wp_send_json( $response );

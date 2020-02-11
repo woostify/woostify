@@ -13,19 +13,29 @@ var pleaseFixIt = function() {
 		return;
 	}
 
-	products.forEach( function( el ) {
-		el.classList.add( 'product' );
-	} );
+	products.forEach(
+		function( el ) {
+			el.classList.add( 'product' );
+		}
+	);
 }
 
 // DOM loaded.
-document.addEventListener( 'DOMContentLoaded', function() {
-	// Only for Preview mode.
-	if ( 'function' === typeof( onElementorLoaded ) ) {
-		onElementorLoaded( function() {
-			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/global', function() {
-				pleaseFixIt();
-			} );
-		} );
+document.addEventListener(
+	'DOMContentLoaded',
+	function() {
+		// Only for Preview mode.
+		if ( 'function' === typeof( onElementorLoaded ) ) {
+			onElementorLoaded(
+				function() {
+					window.elementorFrontend.hooks.addAction(
+						'frontend/element_ready/global',
+						function() {
+							pleaseFixIt();
+						}
+					);
+				}
+			);
+		}
 	}
-} );
+);

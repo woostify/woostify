@@ -9,9 +9,11 @@
 // Run scripts only elementor loaded.
 function onElementorLoaded( callback ) {
 	if ( undefined === window.elementorFrontend || undefined === window.elementorFrontend.hooks ) {
-		setTimeout( function() {
-			onElementorLoaded( callback )
-		} );
+		setTimeout(
+			function() {
+				onElementorLoaded( callback )
+			}
+		);
 
 		return;
 	}
@@ -22,28 +24,37 @@ function onElementorLoaded( callback ) {
 // Disable popup/sidebar/menumobile.
 function closeAll() {
 	// Use ESC key.
-	document.body.addEventListener( 'keyup', function( e ) {
-		if ( 27 === e.keyCode ) {
-			document.documentElement.classList.remove( 'cart-sidebar-open' );
+	document.body.addEventListener(
+		'keyup',
+		function( e ) {
+			if ( 27 === e.keyCode ) {
+				document.documentElement.classList.remove( 'cart-sidebar-open' );
+			}
 		}
-	} );
+	);
 
 	// Use `X` close button.
 	var closeCartSidebarBtn = document.getElementById( 'close-cart-sidebar-btn' );
 
 	if ( closeCartSidebarBtn ) {
-		closeCartSidebarBtn.addEventListener( 'click', function() {
-			document.documentElement.classList.remove( 'cart-sidebar-open' );
-		} );
+		closeCartSidebarBtn.addEventListener(
+			'click',
+			function() {
+				document.documentElement.classList.remove( 'cart-sidebar-open' );
+			}
+		);
 	}
 
 	// Use overlay.
 	var overlay = document.getElementById( 'woostify-overlay' );
 
 	if ( overlay ) {
-		overlay.addEventListener( 'click', function() {
-			document.documentElement.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
-		} );
+		overlay.addEventListener(
+			'click',
+			function() {
+				document.documentElement.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
+			}
+		);
 	}
 }
 
@@ -79,30 +90,42 @@ function dialogSearch() {
 	}
 
 	for ( var i = 0, j = headerSearchIcon.length; i < j; i++ ) {
-		headerSearchIcon[i].addEventListener( 'click', function() {
-			dialogOpen();
+		headerSearchIcon[i].addEventListener(
+			'click',
+			function() {
+				dialogOpen();
 
-			// Use ESC key.
-			document.body.addEventListener( 'keyup', function( e ) {
-				if ( 27 === e.keyCode ) {
-					dialogClose();
-				}
-			} );
+				// Use ESC key.
+				document.body.addEventListener(
+					'keyup',
+					function( e ) {
+						if ( 27 === e.keyCode ) {
+							dialogClose();
+						}
+					}
+				);
 
-			// Use dialog overlay.
-			dialogSearchForm.addEventListener( 'click', function( e ) {
-				if ( this !== e.target ) {
-					return;
-				}
+				// Use dialog overlay.
+				dialogSearchForm.addEventListener(
+					'click',
+					function( e ) {
+						if ( this !== e.target ) {
+							return;
+						}
 
-				dialogClose();
-			} );
+						dialogClose();
+					}
+				);
 
-			// Use closr button.
-			closeBtn.addEventListener( 'click', function() {
-				dialogClose();
-			} );
-		} );
+				// Use closr button.
+				closeBtn.addEventListener(
+					'click',
+					function() {
+						dialogClose();
+					}
+				);
+			}
+		);
 	}
 }
 
@@ -123,13 +146,19 @@ function scrollAction( selector, position ) {
 		}
 	}
 
-	window.addEventListener( 'load', function() {
-		scroll();
-	} );
+	window.addEventListener(
+		'load',
+		function() {
+			scroll();
+		}
+	);
 
-	window.addEventListener( 'scroll', function() {
-		scroll();
-	} );
+	window.addEventListener(
+		'scroll',
+		function() {
+			scroll();
+		}
+	);
 }
 
 // Go to top button.
@@ -139,9 +168,12 @@ function toTopButton() {
 		return;
 	}
 
-	top.on( 'click', function() {
-		jQuery( 'html, body' ).animate( { scrollTop: 0 }, 300 );
-	} );
+	top.on(
+		'click',
+		function() {
+			jQuery( 'html, body' ).animate( { scrollTop: 0 }, 300 );
+		}
+	);
 }
 
 // Scrolling detect direction.
@@ -207,15 +239,20 @@ function woostifyRemoveClassPrefix() {
 		return false;
 	}
 
-	var results = _classList.filter( function( item ) {
-		return ! item.includes( prefix );
-	} );
+	var results = _classList.filter(
+		function( item ) {
+			return ! item.includes( prefix );
+		}
+	);
 
 	selector.className = results.join( ' ' );
 }
 
-document.addEventListener( 'DOMContentLoaded', function() {
-	dialogSearch();
-	scrollAction( '#scroll-to-top', 200 );
-	toTopButton();
-} );
+document.addEventListener(
+	'DOMContentLoaded',
+	function() {
+		dialogSearch();
+		scrollAction( '#scroll-to-top', 200 );
+		toTopButton();
+	}
+);

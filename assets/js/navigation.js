@@ -15,10 +15,13 @@ function nav() {
 	}
 
 	for ( var i = 0, j = menuToggleBtn.length; i < j; i++ ) {
-		menuToggleBtn[i].addEventListener( 'click', function() {
-			document.documentElement.classList.add( 'sidebar-menu-open' );
-			closeAll();
-		} );
+		menuToggleBtn[i].addEventListener(
+			'click',
+			function() {
+				document.documentElement.classList.add( 'sidebar-menu-open' );
+				closeAll();
+			}
+		);
 	}
 }
 
@@ -27,37 +30,52 @@ function sidebarMenu( node ) {
 	var selector = ( arguments.length > 0 && undefined !== arguments[0] ) ? jQuery( node ) : jQuery( '.sidebar-menu .primary-navigation' ),
 		arrow    = selector.find( '.arrow-icon' );
 
-	jQuery( arrow ).on( 'click', function( e ) {
-		e.preventDefault();
+	jQuery( arrow ).on(
+		'click',
+		function( e ) {
+			e.preventDefault();
 
-		var t        = jQuery( this ),
-			siblings = t.parent().siblings( 'ul' ),
-			arrow    = t.parent().parent().parent().find( '.arrow-icon' ),
-			subMenu  = t.parent().parent().parent().find( 'li .sub-menu' );
+			var t        = jQuery( this ),
+				siblings = t.parent().siblings( 'ul' ),
+				arrow    = t.parent().parent().parent().find( '.arrow-icon' ),
+				subMenu  = t.parent().parent().parent().find( 'li .sub-menu' );
 
-		if ( siblings.hasClass( 'show' ) ) {
-			siblings.slideUp( 200, function() {
-				jQuery( this ).removeClass( 'show' );
-			} );
+			if ( siblings.hasClass( 'show' ) ) {
+				siblings.slideUp(
+					200,
+					function() {
+						jQuery( this ).removeClass( 'show' );
+					}
+				);
 
-			// Remove active state.
-			t.removeClass( 'active' );
-		} else {
-			subMenu.slideUp( 200, function() {
-				jQuery( this ).removeClass( 'show' );
-			} );
-			siblings.slideToggle( 200, function() {
-				jQuery( this ).toggleClass( 'show' );
-			} );
+				// Remove active state.
+				t.removeClass( 'active' );
+			} else {
+				subMenu.slideUp(
+					200,
+					function() {
+						jQuery( this ).removeClass( 'show' );
+					}
+				);
+				siblings.slideToggle(
+					200,
+					function() {
+						jQuery( this ).toggleClass( 'show' );
+					}
+				);
 
-			// Add active state for current arrow.
-			arrow.removeClass( 'active' );
-			t.addClass( 'active' );
+				// Add active state for current arrow.
+				arrow.removeClass( 'active' );
+				t.addClass( 'active' );
+			}
 		}
-	});
+	);
 }
 
-document.addEventListener( 'DOMContentLoaded', function() {
-	nav();
-	sidebarMenu();
-} );
+document.addEventListener(
+	'DOMContentLoaded',
+	function() {
+		nav();
+		sidebarMenu();
+	}
+);

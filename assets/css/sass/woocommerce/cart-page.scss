@@ -28,6 +28,7 @@
 		}
 
 		.cart-collaterals {
+
 			.shop_table,
 			th {
 				background-color: #fcfcfc;
@@ -51,7 +52,7 @@
 			}
 
 			.cart-collaterals {
-				width: calc( 35% - 40px );
+				width: calc(35% - 40px);
 				float: right;
 			}
 		}
@@ -378,4 +379,13 @@
 	padding-bottom: 0;
 	display: block;
 	text-align: center;
+}
+
+// Cart total from Cart page
+.cart_totals {
+	.shop_table {
+		th {
+			white-space: nowrap;
+		}
+	}
 }

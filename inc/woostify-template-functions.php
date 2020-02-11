@@ -548,7 +548,7 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 			}
 		}
 
-		$container = implode( $container, ' ' );
+		$container = implode( ' ', $container );
 
 		if ( is_front_page() || ! $breadcrumb ) {
 			return;
@@ -734,7 +734,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 
 		$classes[] = 'woostify-container';
 		$classes[] = 'content-align-' . $options['page_header_text_align'];
-		$classes   = implode( $classes, ' ' );
+		$classes   = implode( ' ', $classes );
 		$wc        = class_exists( 'woocommerce' );
 
 		if ( $wc && is_shop() ) {

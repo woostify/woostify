@@ -12,8 +12,8 @@ function initPhotoSwipe( gallerySelector ) {
 	// (children of gallerySelector).
 	var parseThumbnailElements = function( el ) {
 		var thumbElements = el.childNodes,
-			numNodes = thumbElements.length,
-			items = [],
+			numNodes      = thumbElements.length,
+			items         = [],
 			figureEl,
 			linkEl,
 			size,
@@ -68,9 +68,12 @@ function initPhotoSwipe( gallerySelector ) {
 		}
 
 		// find root element of slide.
-		var clickedListItem = closest( eTarget, function( el ) {
-			return ( el.tagName && 'FIGURE' === el.tagName.toUpperCase() );
-		} );
+		var clickedListItem = closest(
+			eTarget,
+			function( el ) {
+				return ( el.tagName && 'FIGURE' === el.tagName.toUpperCase() );
+			}
+		);
 
 		if ( ! clickedListItem ) {
 			return;
@@ -79,9 +82,9 @@ function initPhotoSwipe( gallerySelector ) {
 		// find index of clicked item by looping through all child nodes
 		// alternatively, you may define index via data- attribute.
 		var clickedGallery = clickedListItem.parentNode,
-			childNodes = clickedListItem.parentNode.childNodes,
-			numChildNodes = childNodes.length,
-			nodeIndex = 0,
+			childNodes     = clickedListItem.parentNode.childNodes,
+			numChildNodes  = childNodes.length,
+			nodeIndex      = 0,
 			index;
 
 		for ( var i = 0; i < numChildNodes; i++ ) {
@@ -96,8 +99,6 @@ function initPhotoSwipe( gallerySelector ) {
 			nodeIndex++;
 		}
 
-
-
 		if ( index >= 0 ) {
 			// open PhotoSwipe if valid index found.
 			openPhotoSwipe( index, clickedGallery );
@@ -107,7 +108,7 @@ function initPhotoSwipe( gallerySelector ) {
 
 	// parse picture index and gallery index from URL (#&pid=1&gid=2).
 	var photoswipeParseHash = function() {
-		var hash = window.location.hash.substring( 1 ),
+		var hash   = window.location.hash.substring( 1 ),
 			params = {};
 
 		if ( hash.length < 5 ) {
@@ -149,9 +150,9 @@ function initPhotoSwipe( gallerySelector ) {
 
 			getThumbBoundsFn: function( index ) {
 				// See Options -> getThumbBoundsFn section of documentation for more info.
-				var thumbnail = items[ index ].el.getElementsByTagName( 'img' )[ 0 ], // find thumbnail.
+				var thumbnail   = items[ index ].el.getElementsByTagName( 'img' )[ 0 ], // find thumbnail.
 					pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
-					rect = thumbnail.getBoundingClientRect();
+					rect        = thumbnail.getBoundingClientRect();
 
 				return {
 					x: rect.left,
