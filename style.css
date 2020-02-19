@@ -9348,6 +9348,43 @@ footer#colophon {
   margin-right: 0;
 }
 
+.woocommerce-cart-form__contents .actions .coupon, .cart.wishlist_table .actions .coupon {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .woocommerce-cart-form__contents .actions .coupon, .cart.wishlist_table .actions .coupon {
+    float: left;
+    width: 60%;
+  }
+  .woocommerce-cart-form__contents .actions .coupon + [name="update_cart"], .cart.wishlist_table .actions .coupon + [name="update_cart"] {
+    width: 40%;
+  }
+}
+
+@media (max-width: 991px) {
+  .woocommerce-cart-form__contents .actions .coupon, .cart.wishlist_table .actions .coupon {
+    justify-content: center;
+  }
+  .woocommerce-cart-form__contents .actions .coupon [name="apply_coupon"], .cart.wishlist_table .actions .coupon [name="apply_coupon"] {
+    color: #fff;
+  }
+}
+
+.woocommerce-cart-form__contents .actions .coupon [name="apply_coupon"], .cart.wishlist_table .actions .coupon [name="apply_coupon"] {
+  white-space: nowrap;
+}
+
+.woocommerce-cart-form__contents .actions [name="coupon_code"], .cart.wishlist_table .actions [name="coupon_code"] {
+  background-color: transparent;
+}
+
+@media (max-width: 991px) {
+  .woocommerce-cart-form__contents .actions [name="update_cart"], .cart.wishlist_table .actions [name="update_cart"] {
+    color: #fff;
+  }
+}
+
 @media (min-width: 768px) {
   .woocommerce-cart-form__contents, .cart.wishlist_table {
     /* actions */
@@ -9408,7 +9445,6 @@ footer#colophon {
     border-color: #e2e2e2;
   }
   .woocommerce-cart-form__contents .coupon, .cart.wishlist_table .coupon {
-    float: left;
     height: 100px;
     display: flex;
     align-items: center;
@@ -9422,13 +9458,6 @@ footer#colophon {
   .woocommerce-cart-form__contents .coupon, .cart.wishlist_table .coupon {
     padding-left: 100px;
     background-image: url(assets/images/coupon.svg);
-  }
-}
-
-@media (min-width: 768px) and (max-width: 767px) {
-  .woocommerce-cart-form__contents .coupon, .cart.wishlist_table .coupon {
-    width: 100%;
-    justify-content: center;
   }
 }
 
@@ -9455,22 +9484,12 @@ footer#colophon {
   }
   .woocommerce-cart-form__contents [name="update_cart"], .cart.wishlist_table [name="update_cart"] {
     height: 100%;
-    min-width: 300px;
-    max-width: 100%;
+    width: 100%;
     border-radius: 0;
     font-weight: 600;
     background-color: #f9f9f9;
     height: 100px;
   }
-}
-
-@media (min-width: 768px) and (max-width: 767px) {
-  .woocommerce-cart-form__contents [name="update_cart"], .cart.wishlist_table [name="update_cart"] {
-    width: 100%;
-  }
-}
-
-@media (min-width: 768px) {
   .woocommerce-cart-form__contents [name="update_cart"]:before, .cart.wishlist_table [name="update_cart"]:before {
     font-family: "themify";
     content: "\e619";
@@ -9495,16 +9514,15 @@ footer#colophon {
   .woocommerce-cart-form__contents .coupon label, .cart.wishlist_table .coupon label {
     display: none;
   }
-  .woocommerce-cart-form__contents .coupon input, .cart.wishlist_table .coupon input,
-  .woocommerce-cart-form__contents .coupon button,
-  .cart.wishlist_table .coupon button {
-    width: calc(50% - 5px);
-    float: left;
+  .woocommerce-cart-form__contents .coupon [name="coupon_code"], .cart.wishlist_table .coupon [name="coupon_code"],
+  .woocommerce-cart-form__contents .coupon [name="apply_coupon"],
+  .cart.wishlist_table .coupon [name="apply_coupon"] {
+    width: 100%;
     padding: 10px 15px;
   }
-  .woocommerce-cart-form__contents .coupon input, .cart.wishlist_table .coupon input {
-    margin-right: 10px;
+  .woocommerce-cart-form__contents .coupon [name="coupon_code"], .cart.wishlist_table .coupon [name="coupon_code"] {
     height: 48px;
+    margin-bottom: 10px;
   }
   .woocommerce-cart-form__contents [name="update_cart"], .cart.wishlist_table [name="update_cart"] {
     width: 100%;
@@ -9802,6 +9820,7 @@ footer#colophon {
 #order_review .shop_table {
   margin: 0;
   border: 0;
+  width: 100%;
 }
 
 #order_review .shop_table tbody td,
@@ -10246,7 +10265,7 @@ footer#colophon {
 }
 
 .has-multi-step-checkout .field-required [name] {
-  border-color: #f00;
+  border-color: #f00 !important;
 }
 
 .has-multi-step-checkout .shipping-methods-modified .shipping-methods-modified-item {
@@ -10426,9 +10445,10 @@ footer#colophon {
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   right: 0;
-  top: 0;
+  top: 50%;
   width: 20px;
   height: 50px;
+  transform: translateY(-50%);
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {

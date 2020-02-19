@@ -232,6 +232,7 @@
 	.shop_table {
 		margin: 0;
 		border: 0;
+		width: 100%;
 
 		tbody {
 
@@ -730,7 +731,7 @@
 	// Validate
 	.field-required {
 		[name] {
-			border-color: #f00;
+			border-color: #f00 !important;
 		}
 	}
 
@@ -929,9 +930,10 @@
 
 		.select2-selection__arrow {
 			right: 0;
-			top: 0;
+			top: 50%;
 			width: 20px;
 			height: 50px;
+			transform: translateY(-50%);
 			@extend .flex;
 		}
 	}
