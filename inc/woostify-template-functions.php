@@ -2119,7 +2119,7 @@ if ( ! function_exists( 'woostify_site_footer' ) ) {
 		}
 
 		// Return.
-		if ( $footer_display ) {
+		if ( ! $footer_display ) {
 			return;
 		}
 
