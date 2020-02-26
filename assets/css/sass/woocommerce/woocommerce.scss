@@ -142,6 +142,10 @@ $size: 40px;
 	border-radius: 2px;
 	@extend .duration;
 
+	.no-sidebar & {
+		display: none;
+	}
+
 	&.active {
 		@include translatex(-20px);
 		opacity: 0;
@@ -792,6 +796,7 @@ $size: 40px;
 
 			&.has-multi-step-checkout {
 				.multi-step-checkout-button-wrapper {
+
 					.multi-step-checkout-button[data-action="continue"],
 					.multi-step-checkout-button[data-action="place_order"] {
 						@include translatey(100%);
@@ -819,6 +824,7 @@ $size: 40px;
 
 			&.has-multi-step-checkout {
 				.multi-step-checkout-button-wrapper {
+
 					.multi-step-checkout-button[data-action="continue"],
 					.multi-step-checkout-button[data-action="place_order"] {
 						@include translatey(0);
@@ -846,6 +852,7 @@ $size: 40px;
 
 		&.has-multi-step-checkout {
 			.multi-step-checkout-button-wrapper {
+
 				.multi-step-checkout-button[data-action="continue"],
 				.multi-step-checkout-button[data-action="place_order"] {
 					@include fixed();
