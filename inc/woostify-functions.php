@@ -330,6 +330,13 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 					'class' => array(),
 					'style' => array(),
 				),
+				'img'      => array(
+					'class'   => array(),
+					'alt'     => array(),
+					'width'   => array(),
+					'height'  => array(),
+					'src'     => array()
+				),
 			)
 		);
 		return $content;

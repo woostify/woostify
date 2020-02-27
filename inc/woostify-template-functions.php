@@ -1530,9 +1530,9 @@ if ( ! function_exists( 'woostify_topbar' ) ) {
 
 		<div class="topbar">
 			<div class="woostify-container">
-				<div class="topbar-item topbar-left"><?php echo wp_kses_post( $topbar_left ); ?></div>
-				<div class="topbar-item topbar-center"><?php echo wp_kses_post( $topbar_center ); ?></div>
-				<div class="topbar-item topbar-right"><?php echo wp_kses_post( $topbar_right ); ?></div>
+				<div class="topbar-item topbar-left"><?php echo do_shortcode( $topbar_left ); ?></div>
+				<div class="topbar-item topbar-center"><?php echo do_shortcode( $topbar_center ); ?></div>
+				<div class="topbar-item topbar-right"><?php echo do_shortcode( $topbar_right ); ?></div>
 			</div>
 		</div>
 		<?php
