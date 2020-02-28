@@ -729,7 +729,7 @@ if ( ! function_exists( 'woostify_change_cross_sells_columns' ) ) {
 	 * @param      int $columns  The columns.
 	 */
 	function woostify_change_cross_sells_columns( $columns ) {
-		return 3;
+		return 2;
 	}
 }
 
