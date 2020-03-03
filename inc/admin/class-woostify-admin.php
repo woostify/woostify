@@ -405,14 +405,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						<div class="woostify-enhance-sidebar">
 							<?php do_action( 'woostify_pro_panel_sidebar' ); ?>
 
-							<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) { ?>
-								<div class="woostify-enhance__column">
-									<a href="<?php echo esc_url( $woostify_url ); ?>" target="_blank">
-										<img style="margin: 0; display: block;" src="<?php echo WOOSTIFY_THEME_URI . 'assets/images/banner/bf-420x260.jpg'; ?>" alt="<?php esc_attr_e( 'Black Friday Sale Off', 'woostify' ); ?>">
-									</a>
-								</div>
-							<?php } ?>
-
 							<div class="woostify-enhance__column">
 								<h3><?php esc_html_e( 'Import Demo', 'woostify' ); ?></h3>
 
