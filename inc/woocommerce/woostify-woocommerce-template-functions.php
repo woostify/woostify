@@ -722,6 +722,17 @@ if ( ! function_exists( 'woostify_remove_woocommerce_shop_title' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_change_cross_sells_total' ) ) {
+	/**
+	 * Change cross sell total
+	 *
+	 * @param      int $limit  The total product.
+	 */
+	function woostify_change_cross_sells_total( $limit ) {
+		return 4;
+	}
+}
+
 if ( ! function_exists( 'woostify_change_cross_sells_columns' ) ) {
 	/**
 	 * Change cross sell column

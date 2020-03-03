@@ -46,6 +46,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_filter( 'loop_shop_columns', 'woostify_products_per_row' );
 			add_filter( 'loop_shop_per_page', 'woostify_products_per_page' );
 			add_action( 'elementor/preview/enqueue_scripts', 'woostify_elementor_preview_product_page_scripts' );
+			add_filter( 'woocommerce_cross_sells_total', 'woostify_change_cross_sells_total' );
 			add_filter( 'woocommerce_cross_sells_columns', 'woostify_change_cross_sells_columns' );
 			add_filter( 'woocommerce_show_page_title', 'woostify_remove_woocommerce_shop_title' );
 			add_filter( 'woocommerce_available_variation', 'woostify_available_variation_gallery', 90, 3 );
