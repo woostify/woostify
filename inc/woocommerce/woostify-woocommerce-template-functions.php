@@ -270,25 +270,55 @@ if ( ! function_exists( 'woostify_is_woocommerce_page' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_get_product_navigation_data' ) ) {
+	/**
+	 * Get ID of prev and next product
+	 */
+	function woostify_get_product_navigation_data() {
+		global $post;
+		$product_id = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
+		$post       = get_post( $product_id ); // phpcs:ignore
+		if ( ! $post ) {
+			return false;
+		}
+
+		$prev = get_previous_post();
+		$next = get_next_post();
+
+		$prev_id = $prev ? $prev->ID : false;
+		$next_id = $next ? $next->ID : false;
+
+		$data = array(
+			'prev_id' => $prev_id,
+			'next_id' => $next_id,
+		);
+
+		return $data;
+	}
+}
+
 if ( ! function_exists( 'woostify_product_navigation' ) ) {
 	/**
 	 * Product navigation
 	 */
 	function woostify_product_navigation() {
-		global $post;
-		$prev = get_previous_post();
-		$next = get_next_post();
+		$data = woostify_get_product_navigation_data();
+		if ( ! $data ) {
+			return;
+		}
 
-		if ( ! $prev && ! $next ) {
+		$prev_id = $data['prev_id'];
+		$next_id = $data['next_id'];
+
+		if ( ! $prev_id && ! $next_id ) {
 			return;
 		}
 
 		$content = '';
 		$classes = '';
 
-		if ( $prev ) {
-			$classes        = ! $next ? 'product-nav-last' : '';
-			$prev_id        = $prev->ID;
+		if ( $prev_id ) {
+			$classes        = ! $next_id ? 'product-nav-last' : '';
 			$prev_product   = wc_get_product( $prev_id );
 			$prev_icon      = apply_filters( 'woostify_product_navigation_prev_icon', 'ti-arrow-circle-left' );
 			$prev_image_id  = $prev_product->get_image_id();
@@ -315,9 +345,8 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 
 		}
 
-		if ( $next ) {
-			$classes        = ! $prev ? 'product-nav-first' : '';
-			$next_id        = $next->ID;
+		if ( $next_id ) {
+			$classes        = ! $prev_id ? 'product-nav-first' : '';
 			$next_product   = wc_get_product( $next_id );
 			$next_icon      = apply_filters( 'woostify_product_navigation_next_icon', 'ti-arrow-circle-right' );
 			$next_image_id  = $next_product->get_image_id();
