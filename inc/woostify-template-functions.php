@@ -721,7 +721,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 	 */
 	function woostify_page_header() {
 		// Not showing page title on Product page.
-		if ( is_singular( 'product' ) ) {
+		if ( is_singular( 'product' ) || woostify_is_elementor_page() ) {
 			return;
 		}
 
