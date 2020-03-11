@@ -45,10 +45,14 @@ function customQuantity() {
 		input.classList.add( 'ajax-ready' );
 
 		// Append Minus button before Input.
-		ele.insertBefore( minusBtn(), input );
+		if ( ! document.querySelector( '.product-qty[data-qty="minus"]' ) ) {
+			ele.insertBefore( minusBtn(), input );
+		}
 
 		// Append Plus button after Input.
-		ele.appendChild( plusBtn() );
+		if ( ! document.querySelector( '.product-qty[data-qty="plus"]' ) ) {
+			ele.appendChild( plusBtn() );
+		}
 
 		// Vars.
 		var cart        = ele.closest( 'form.cart' ),

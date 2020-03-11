@@ -109,53 +109,59 @@ function woostifyAjaxSingleAddToCartButton() {
 								if ( 200 !== res.status ) {
 									alert( woostify_ajax_single_add_to_cart_data.ajax_error );
 									console.log( 'Status Code: ' + res.status );
+									throw res;
+								}
+
+								return res.json();
+							}
+						).then(
+							function( json ) {
+								if ( ! json.success ) {
 									return;
 								}
 
-								res.json().then(
-									function( data ) {
-										// Update product count.
-										if ( productCount.length ) {
-											for ( var c = 0, n = productCount.length; c < n; c++ ) {
-												productCount[c].innerHTML = data.item;
-											}
-										}
+								var data = json.data;
 
-										// Append Cart sidebar content.
-										if ( cartSidebar ) {
-											cartSidebar.innerHTML = data.content;
-										}
-
-										// Event when added to cart.
-										if ( 'function' === typeof( eventCartSidebarClose ) ) {
-											eventCartSidebarClose();
-										}
-
-										// Remove loading.
-										button.classList.remove( 'loading' );
-
-										// Hide quick view popup when product added to cart.
-										document.documentElement.classList.remove( 'quick-view-open' );
-
-										// Redirect to checkout page.
-										if ( button.classList.contains( 'woostify-buy-now' ) ) {
-											var checkoutUrl = button.getAttribute( 'data-checkout_url' );
-											window.location = checkoutUrl;
-										}
-
-										// Update total price, for header-layout-6.
-										var totalPrice = document.querySelector( '.woostify-total-price' );
-										if ( totalPrice ) {
-											totalPrice.innerHTML = data.total;
-										}
+								// Update product count.
+								if ( productCount.length ) {
+									for ( var c = 0, n = productCount.length; c < n; c++ ) {
+										productCount[c].innerHTML = data.item;
 									}
-								);
+								}
+
+								// Append Cart sidebar content.
+								if ( cartSidebar ) {
+									cartSidebar.innerHTML = data.content;
+								}
+
+								// Redirect to checkout page.
+								if ( button.classList.contains( 'woostify-buy-now' ) ) {
+									var checkoutUrl = button.getAttribute( 'data-checkout_url' );
+									window.location = checkoutUrl;
+								}
+
+								// Update total price, for header-layout-6.
+								var totalPrice = document.querySelector( '.woostify-total-price' );
+								if ( totalPrice ) {
+									totalPrice.innerHTML = data.total;
+								}
 							}
-						)
-						.catch(
+						).catch(
 							function( err ) {
-								alert( woostify_ajax_single_add_to_cart_data.ajax_error );
 								console.log( err );
+							}
+						).finally(
+							function() {
+								// Event when added to cart.
+								if ( 'function' === typeof( eventCartSidebarClose ) ) {
+									eventCartSidebarClose();
+								}
+
+								// Remove loading.
+								button.classList.remove( 'loading' );
+
+								// Hide quick view popup when product added to cart.
+								document.documentElement.classList.remove( 'quick-view-open' );
 							}
 						);
 				}

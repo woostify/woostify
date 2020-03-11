@@ -549,11 +549,11 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 	function woostify_ajax_single_add_to_cart() {
 		check_ajax_referer( 'woostify_ajax_single_add_to_cart', 'ajax_nonce', false );
 
-		$response = array();
-
 		if ( ! isset( $_POST['product_id'] ) || ! isset( $_POST['product_qty'] ) ) {
 			wp_send_json_error();
 		}
+
+		$response = array();
 
 		$product_id        = absint( $_POST['product_id'] );
 		$product_qty       = absint( $_POST['product_qty'] );
@@ -581,6 +581,6 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		$response['total']   = WC()->cart->get_cart_total();
 		$response['content'] = ob_get_clean();
 
-		wp_send_json( $response );
+		wp_send_json_success( $response );
 	}
 }
