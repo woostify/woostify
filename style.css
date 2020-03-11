@@ -8112,6 +8112,8 @@ footer#colophon {
 
 .single-product .content-top {
   padding: 35px 0 15px 0;
+  position: relative;
+  z-index: 2;
 }
 
 .single-product .content-top .woostify-container {
