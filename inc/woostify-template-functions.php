@@ -109,9 +109,14 @@ if ( ! function_exists( 'woostify_relative_time' ) ) {
 	 */
 	function woostify_relative_time( $type = 'comment' ) {
 		$time      = 'comment' === $type ? 'get_comment_time' : 'get_post_time';
-		$real_time = human_time_diff( $time( 'U' ), current_time( 'timestamp' ) ) . ' ' . esc_html__( 'ago', 'woostify' ); // phpcs:ignore
+		$timestamp = time() + (int) ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS );
+		$time      = sprintf(
+			/* translators: Date time */
+			__( '%s ago', 'woostify' ),
+			human_time_diff( $time( 'U' ), $timestamp )
+		);
 
-		return apply_filters( 'woostify_real_time_comment', $real_time );
+		return apply_filters( 'woostify_real_time_comment', $time );
 	}
 }
 
@@ -218,7 +223,7 @@ if ( ! function_exists( 'woostify_footer_widgets' ) ) {
 								/* translators: 1: admin URL */
 								__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area.', 'woostify' ), // phpcs:ignore
 								esc_url( admin_url( 'widgets.php' ) )
-							);  // phpcs:ignore
+							);
 							?>
 						</p>
 					</div>
