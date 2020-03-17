@@ -197,7 +197,6 @@ class Woostify_Get_CSS {
 			.variations label,
 			.woocommerce-review__author,
 			.button[name="apply_coupon"],
-			.button[name="apply_coupon"]:hover,
 			.button[name="update_cart"],
 			.quantity .qty,
 			.form-row label,
@@ -264,7 +263,8 @@ class Woostify_Get_CSS {
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 			}
 
-			.woostify-button-hover-color{
+			.woostify-button-hover-color,
+			.button[name="apply_coupon"]:hover{
 				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
 			}
 

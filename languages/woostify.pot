@@ -902,7 +902,7 @@ msgid "Back"
 msgstr ""
 
 #: inc/woocommerce/woostify-woocommerce-template-functions.php:988
-msgid "Continue to shipping"
+msgid "Continue to shopping"
 msgstr ""
 
 #: inc/woocommerce/woostify-woocommerce-template-functions.php:989

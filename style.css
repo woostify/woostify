@@ -9717,7 +9717,7 @@ footer#colophon {
   margin-bottom: 0;
 }
 
-.checkout_coupon.woocommerce-form-coupon button[type="submit"] {
+.checkout_coupon.woocommerce-form-coupon [name="apply_coupon"] {
   margin-top: 10px;
   padding: .35em 40px;
   height: auto;
@@ -9930,6 +9930,12 @@ footer#colophon {
   border-bottom-color: #ebebeb;
   border-width: 8px;
   margin-left: -8px;
+}
+
+.payment_box:after {
+  content: '';
+  display: block;
+  clear: both;
 }
 
 .payment_box p:last-child {
