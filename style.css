@@ -9983,7 +9983,22 @@ footer#colophon {
   }
 }
 
-.has-multi-step-checkout #order_review .woocommerce-shipping-totals,
+.has-multi-step-checkout #order_review .woocommerce-shipping-totals.shipping td {
+  border-top-width: 1px;
+}
+
+.has-multi-step-checkout #order_review .woocommerce-shipping-totals.shipping .shipping_method {
+  display: none;
+}
+
+.has-multi-step-checkout #order_review .woocommerce-shipping-totals.shipping .shipping_method + label {
+  display: none;
+}
+
+.has-multi-step-checkout #order_review .woocommerce-shipping-totals.shipping .shipping_method:checked + label {
+  display: block;
+}
+
 .has-multi-step-checkout #order_review .wc_payment_methods {
   display: none;
 }

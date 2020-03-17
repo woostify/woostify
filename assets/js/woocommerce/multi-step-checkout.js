@@ -15,11 +15,12 @@ var woostifyValidateEmail = function( email ) {
 
 // Expand order review on mobile.
 var woostifyExpandOrderReview = function() {
-	var checkout = document.querySelector( 'form.woocommerce-checkout' ),
-		expand   = checkout ? checkout.querySelector( '.woostify-before-order-review' ) : false,
-		state    = 1;
+	var multiStep = document.querySelector( '.has-multi-step-checkout' ),
+		checkout  = document.querySelector( 'form.woocommerce-checkout' ),
+		expand    = checkout ? checkout.querySelector( '.woostify-before-order-review' ) : false,
+		state     = 1;
 
-	if ( ! expand ) {
+	if ( ! multiStep || ! expand ) {
 		return;
 	}
 
@@ -36,8 +37,10 @@ var woostifyExpandOrderReview = function() {
 
 // Multi step checkout.
 var woostifyMultiStepCheckout = function() {
-	var box = document.querySelector( '.multi-step-checkout' );
-	if ( ! box ) {
+	var multiStep = document.querySelector( '.has-multi-step-checkout' ),
+		box       = document.querySelector( '.multi-step-checkout' );
+
+	if ( ! multiStep || ! box ) {
 		return;
 	}
 

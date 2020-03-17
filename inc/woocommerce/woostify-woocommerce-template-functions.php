@@ -837,8 +837,14 @@ if ( ! function_exists( 'woostify_multi_step_checkout' ) ) {
 	 * Multi step checkout
 	 */
 	function woostify_multi_step_checkout() {
-		$container = woostify_site_container();
+		$container          = woostify_site_container();
+		$disable_multi_step = apply_filters( 'woostify_disable_multi_step_checkout', false );
+
+		if ( $disable_multi_step ) {
+			return;
+		}
 		?>
+
 		<div class="multi-step-checkout">
 			<div class="<?php echo esc_attr( $container ); ?>">
 				<div class="multi-step-inner">
@@ -915,6 +921,7 @@ if ( ! function_exists( 'woostify_multi_checkout_second' ) ) {
 			return;
 		}
 		?>
+
 		<div class="multi-step-checkout-content" data-step="second">
 			<div class="multi-step-review-information">
 				<div class="multi-step-review-information-row" data-type="email">
