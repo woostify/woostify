@@ -8682,7 +8682,7 @@ footer#colophon {
 
 .woocommerce-tabs .tabs li {
   list-style: none;
-  display: inline-block;
+  display: inline-flex;
   margin: 0 30px;
 }
 
