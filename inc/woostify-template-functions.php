@@ -1636,6 +1636,10 @@ if ( ! function_exists( 'woostify_product_check_in' ) ) {
 	 */
 	function woostify_product_check_in( $pid = null, $in_cart = true, $qty_in_cart = false ) {
 		global $woocommerce;
+		if ( empty( $woocommerce->cart ) ) {
+			return;
+		}
+
 		$_cart    = $woocommerce->cart->get_cart();
 		$_product = wc_get_product( $pid );
 		$variable = $_product->is_type( 'variable' );
