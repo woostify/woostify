@@ -98,6 +98,19 @@ if ( ! function_exists( 'woostify_is_elementor_activated' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_prevent_elementor_pro_modify_mini_cart' ) ) {
+	/**
+	 * Prevent Elementor Pro modify mini cart WC.
+	 */
+	function woostify_prevent_elementor_pro_modify_mini_cart() {
+		if ( ! defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+			return;
+		}
+
+		delete_option( 'elementor_use_mini_cart_template' );
+	}
+}
+
 if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 	/**
 	 * Detect Elementor Page editor with current page

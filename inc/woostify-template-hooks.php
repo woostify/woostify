@@ -10,6 +10,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * General
  */
+add_action( 'init', 'woostify_prevent_elementor_pro_modify_mini_cart', 0 );
 add_action( 'woostify_sidebar', 'woostify_get_sidebar', 10 );
 
 // Head tag.
