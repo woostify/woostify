@@ -260,11 +260,11 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: inc/woostify-template-functions.php:580, inc/woostify-template-functions.php:630, inc/woostify-template-functions.php:696, inc/admin/class-woostify-admin.php:226, inc/woocommerce/woostify-woocommerce-template-functions.php:418
+#: inc/woostify-template-functions.php:580, inc/woostify-template-functions.php:630, inc/woostify-template-functions.php:696, inc/admin/class-woostify-admin.php:226, inc/woocommerce/woostify-woocommerce-template-functions.php:308
 msgid "Shop"
 msgstr ""
 
-#: inc/woostify-template-functions.php:605, inc/woostify-template-functions.php:652, inc/woostify-template-functions.php:764, inc/customizer/register-sections.php:16, inc/woocommerce/woostify-woocommerce-template-functions.php:413
+#: inc/woostify-template-functions.php:605, inc/woostify-template-functions.php:652, inc/woostify-template-functions.php:764, inc/customizer/register-sections.php:16, inc/woocommerce/woostify-woocommerce-template-functions.php:303
 msgid "Blog"
 msgstr ""
 
@@ -800,7 +800,7 @@ msgstr ""
 
 #. translators: %s number of product
 #. translators: %s stock quantity
-#: inc/woocommerce/class-woostify-woocommerce.php:226, inc/woocommerce/woostify-woocommerce-single-product-functions.php:434
+#: inc/woocommerce/class-woostify-woocommerce.php:226, inc/woocommerce/woostify-woocommerce-single-product-functions.php:545
 msgid "Hurry! only %s left in stock."
 msgstr ""
 
@@ -812,7 +812,7 @@ msgstr ""
 msgid "Enter Youtube or Vimeo video url"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-archive-product-functions.php:96, inc/woocommerce/woostify-woocommerce-single-product-functions.php:199, inc/woocommerce/woostify-woocommerce-single-product-functions.php:231, inc/woocommerce/woostify-woocommerce-single-product-functions.php:269, inc/woocommerce/woostify-woocommerce-single-product-functions.php:284
+#: inc/woocommerce/woostify-woocommerce-archive-product-functions.php:96, inc/woocommerce/woostify-woocommerce-single-product-functions.php:310, inc/woocommerce/woostify-woocommerce-single-product-functions.php:342, inc/woocommerce/woostify-woocommerce-single-product-functions.php:380, inc/woocommerce/woostify-woocommerce-single-product-functions.php:395
 msgid "Product image"
 msgstr ""
 
@@ -820,20 +820,36 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:392
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:65
+msgid "Previous Product Image"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:70
+msgid "Previous"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:92
+msgid "Next Product Image"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:97, inc/woocommerce/woostify-woocommerce-template-functions.php:375
+msgid "Next"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:503
 msgid "You cannot add that amount of this product to the cart because there is not enough stock."
 msgstr ""
 
 #. translators: %1$d: stock quantity
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:395
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:506
 msgid "You cannot add that amount to the cart - we have %1$d in stock and you already have %1$d in your cart"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:396
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:507
 msgid "Please enter a valid quantity for this product"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:459, inc/customizer/sections/shop/shop-single.php:183
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:570, inc/customizer/sections/shop/shop-single.php:183
 msgid "Trust Badge Image"
 msgstr ""
 
@@ -841,82 +857,66 @@ msgstr ""
 msgid "Shopping cart"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:326
-msgid "Previous Product Image"
-msgstr ""
-
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:331
-msgid "Previous"
-msgstr ""
-
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:354
-msgid "Next Product Image"
-msgstr ""
-
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:359, inc/woocommerce/woostify-woocommerce-template-functions.php:485
-msgid "Next"
-msgstr ""
-
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:484
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:374
 msgid "Prev"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:785
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:675
 msgid "Clear Shopping Cart"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:807, inc/customizer/sections/shop/shop-page.php:457
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:697, inc/customizer/sections/shop/shop-page.php:457
 msgid "Product Image"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:852
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:742
 msgid "Billing Details"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:857
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:747
 msgid "Delivery"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:862
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:752
 msgid "Payment"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:929, inc/woocommerce/woostify-woocommerce-template-functions.php:958
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:819, inc/woocommerce/woostify-woocommerce-template-functions.php:848
 msgid "Contact"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:932, inc/woocommerce/woostify-woocommerce-template-functions.php:940, inc/woocommerce/woostify-woocommerce-template-functions.php:961, inc/woocommerce/woostify-woocommerce-template-functions.php:969, inc/woocommerce/woostify-woocommerce-template-functions.php:978
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:822, inc/woocommerce/woostify-woocommerce-template-functions.php:830, inc/woocommerce/woostify-woocommerce-template-functions.php:851, inc/woocommerce/woostify-woocommerce-template-functions.php:859, inc/woocommerce/woostify-woocommerce-template-functions.php:868
 msgid "Change"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:937, inc/woocommerce/woostify-woocommerce-template-functions.php:966
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:827, inc/woocommerce/woostify-woocommerce-template-functions.php:856
 msgid "Ship to"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:975
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:865
 msgid "Method"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:994
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:884
 msgid "Back"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:995
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:885
 msgid "Continue to shopping"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:996
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:886
 msgid "Place Order"
 msgstr ""
 
 #. translators: 1: single item, 2: plural items
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:1012
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:902
 msgid "%s item"
 msgid_plural "%s items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:1017
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:907
 msgid "Order Summary"
 msgstr ""
 

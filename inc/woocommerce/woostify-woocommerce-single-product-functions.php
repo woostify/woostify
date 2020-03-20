@@ -7,6 +7,114 @@
 
 defined( 'ABSPATH' ) || exit;
 
+if ( ! function_exists( 'woostify_get_prev_product' ) ) {
+	/**
+	 * Retrieves the previous product.
+	 *
+	 * @param bool         $in_same_term   Optional. Whether post should be in a same taxonomy term. Default false.
+	 * @param array|string $excluded_terms Optional. Comma-separated list of excluded term IDs. Default empty.
+	 * @param string       $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'product_cat'.
+	 * @return WC_Product|false Product object if successful. False if no valid product is found.
+	 */
+	function woostify_get_prev_product( $in_same_term = false, $excluded_terms = '', $taxonomy = 'product_cat' ) {
+		$product = new Woostify_Adjacent_Products( $in_same_term, $excluded_terms, $taxonomy, true );
+		return $product->get_product();
+	}
+}
+
+if ( ! function_exists( 'woostify_get_next_product' ) ) {
+	/**
+	 * Retrieves the next product.
+	 *
+	 * @param bool         $in_same_term   Optional. Whether post should be in a same taxonomy term. Default false.
+	 * @param array|string $excluded_terms Optional. Comma-separated list of excluded term IDs. Default empty.
+	 * @param string       $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'product_cat'.
+	 * @return WC_Product|false Product object if successful. False if no valid product is found.
+	 */
+	function woostify_get_next_product( $in_same_term = false, $excluded_terms = '', $taxonomy = 'product_cat' ) {
+		$product = new Woostify_Adjacent_Products( $in_same_term, $excluded_terms, $taxonomy );
+		return $product->get_product();
+	}
+}
+
+if ( ! function_exists( 'woostify_product_navigation' ) ) {
+	/**
+	 * Product navigation
+	 */
+	function woostify_product_navigation() {
+		$prev_product = woostify_get_prev_product();
+		$prev_id      = $prev_product ? $prev_product->get_id() : false;
+		$next_product = woostify_get_next_product();
+		$next_id      = $next_product ? $next_product->get_id() : false;
+
+		if ( ! $prev_id && ! $next_id ) {
+			return;
+		}
+
+		$content = '';
+		$classes = '';
+
+		if ( $prev_id ) {
+			$classes        = ! $next_id ? 'product-nav-last' : '';
+			$prev_icon      = apply_filters( 'woostify_product_navigation_prev_icon', 'ti-arrow-circle-left' );
+			$prev_image_id  = $prev_product->get_image_id();
+			$prev_image_src = wp_get_attachment_image_src( $prev_image_id );
+			$prev_image_alt = woostify_image_alt( $prev_image_id, __( 'Previous Product Image', 'woostify' ) );
+
+			ob_start();
+			?>
+				<div class="prev-product-navigation product-nav-item">
+					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $prev_id ) ); ?>"><span class="product-nav-icon <?php echo esc_attr( $prev_icon ); ?>"></span><?php esc_html_e( 'Previous', 'woostify' ); ?></a>
+					<div class="product-nav-item-content">
+						<a class="product-nav-item-link" href="<?php echo esc_url( get_permalink( $prev_id ) ); ?>"></a>
+						<?php if ( $prev_image_src ) { ?>
+							<img src="<?php echo esc_url( $prev_image_src[0] ); ?>" alt="<?php echo esc_attr( $prev_image_alt ); ?>">
+						<?php } ?>
+						<div class="product-nav-item-inner">
+							<h4 class="product-nav-item-title"><?php echo esc_html( get_the_title( $prev_id ) ); ?></h4>
+							<span class="product-nav-item-price"><?php echo wp_kses_post( $prev_product->get_price_html() ); ?></span>
+						</div>
+					</div>
+				</div>
+			<?php
+			$content .= ob_get_clean();
+
+		}
+
+		if ( $next_id ) {
+			$classes        = ! $prev_id ? 'product-nav-first' : '';
+			$next_icon      = apply_filters( 'woostify_product_navigation_next_icon', 'ti-arrow-circle-right' );
+			$next_image_id  = $next_product->get_image_id();
+			$next_image_src = wp_get_attachment_image_src( $next_image_id );
+			$next_image_alt = woostify_image_alt( $next_image_id, __( 'Next Product Image', 'woostify' ) );
+
+			ob_start();
+			?>
+				<div class="next-product-navigation product-nav-item">
+					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $next_id ) ); ?>"><?php esc_html_e( 'Next', 'woostify' ); ?><span class="product-nav-icon <?php echo esc_attr( $next_icon ); ?>"></span></a>
+					<div class="product-nav-item-content">
+						<a class="product-nav-item-link" href="<?php echo esc_url( get_permalink( $next_id ) ); ?>"></a>
+						<div class="product-nav-item-inner">
+							<h4 class="product-nav-item-title"><?php echo esc_html( get_the_title( $next_id ) ); ?></h4>
+							<span class="product-nav-item-price"><?php echo wp_kses_post( $next_product->get_price_html() ); ?></span>
+						</div>
+						<?php if ( $next_image_src ) { ?>
+							<img src="<?php echo esc_url( $next_image_src[0] ); ?>" alt="<?php echo esc_attr( $next_image_alt ); ?>">
+						<?php } ?>
+					</div>
+				</div>
+			<?php
+			$content .= ob_get_clean();
+		}
+		?>
+
+		<div class="woostify-product-navigation <?php echo esc_attr( $classes ); ?>">
+			<?php echo $content; // phpcs:ignore ?>
+		</div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_remove_additional_information_tabs' ) ) {
 	/**
 	 * Remove additional informaltion
