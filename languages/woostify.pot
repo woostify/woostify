@@ -800,7 +800,7 @@ msgstr ""
 
 #. translators: %s number of product
 #. translators: %s stock quantity
-#: inc/woocommerce/class-woostify-woocommerce.php:226, inc/woocommerce/woostify-woocommerce-single-product-functions.php:545
+#: inc/woocommerce/class-woostify-woocommerce.php:226, inc/woocommerce/woostify-woocommerce-single-product-functions.php:546
 msgid "Hurry! only %s left in stock."
 msgstr ""
 
@@ -812,7 +812,7 @@ msgstr ""
 msgid "Enter Youtube or Vimeo video url"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-archive-product-functions.php:96, inc/woocommerce/woostify-woocommerce-single-product-functions.php:310, inc/woocommerce/woostify-woocommerce-single-product-functions.php:342, inc/woocommerce/woostify-woocommerce-single-product-functions.php:380, inc/woocommerce/woostify-woocommerce-single-product-functions.php:395
+#: inc/woocommerce/woostify-woocommerce-archive-product-functions.php:96, inc/woocommerce/woostify-woocommerce-single-product-functions.php:307, inc/woocommerce/woostify-woocommerce-single-product-functions.php:339, inc/woocommerce/woostify-woocommerce-single-product-functions.php:377, inc/woocommerce/woostify-woocommerce-single-product-functions.php:392
 msgid "Product image"
 msgstr ""
 
@@ -820,36 +820,36 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:65
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:62
 msgid "Previous Product Image"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:70
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:67
 msgid "Previous"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:92
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:89
 msgid "Next Product Image"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:97, inc/woocommerce/woostify-woocommerce-template-functions.php:375
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:94, inc/woocommerce/woostify-woocommerce-template-functions.php:375
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:503
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:504
 msgid "You cannot add that amount of this product to the cart because there is not enough stock."
 msgstr ""
 
 #. translators: %1$d: stock quantity
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:506
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:507
 msgid "You cannot add that amount to the cart - we have %1$d in stock and you already have %1$d in your cart"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:507
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:508
 msgid "Please enter a valid quantity for this product"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:570, inc/customizer/sections/shop/shop-single.php:183
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:571, inc/customizer/sections/shop/shop-single.php:183
 msgid "Trust Badge Image"
 msgstr ""
 

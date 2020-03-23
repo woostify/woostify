@@ -487,6 +487,10 @@ if ( ! function_exists( 'woostify_product_info' ) ) {
 	 */
 	function woostify_product_info() {
 		global $product;
+		if ( ! $product ) {
+			return;
+		}
+
 		$pid = $product->get_id();
 
 		// Return yes || no.
