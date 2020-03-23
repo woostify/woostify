@@ -45,12 +45,12 @@ function customQuantity() {
 		input.classList.add( 'ajax-ready' );
 
 		// Append Minus button before Input.
-		if ( ! document.querySelector( '.product-qty[data-qty="minus"]' ) ) {
+		if ( ! ele.querySelector( '.product-qty[data-qty="minus"]' ) ) {
 			ele.insertBefore( minusBtn(), input );
 		}
 
 		// Append Plus button after Input.
-		if ( ! document.querySelector( '.product-qty[data-qty="plus"]' ) ) {
+		if ( ! ele.querySelector( '.product-qty[data-qty="plus"]' ) ) {
 			ele.appendChild( plusBtn() );
 		}
 
@@ -144,7 +144,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	// For preview mode.
 	if ( 'function' === typeof( onElementorLoaded ) ) {
 		onElementorLoaded( function() {
-			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/global', function() {
+			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/woostify-product-add-to-cart.default', function() {
 				customQuantity();
 			} );
 		} );
