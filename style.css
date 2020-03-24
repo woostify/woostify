@@ -9493,8 +9493,10 @@ footer#colophon {
     width: 100%;
     border-radius: 0;
     font-weight: 600;
-    background-color: #f9f9f9;
     height: 100px;
+  }
+  .woocommerce-cart-form__contents [name="update_cart"]:disabled, .cart.wishlist_table [name="update_cart"]:disabled {
+    color: #fff;
   }
   .woocommerce-cart-form__contents [name="update_cart"]:before, .cart.wishlist_table [name="update_cart"]:before {
     font-family: "themify";

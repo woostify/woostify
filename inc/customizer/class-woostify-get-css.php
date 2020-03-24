@@ -197,7 +197,6 @@ class Woostify_Get_CSS {
 			.variations label,
 			.woocommerce-review__author,
 			.button[name="apply_coupon"],
-			.button[name="update_cart"],
 			.quantity .qty,
 			.form-row label,
 			.select2-container--default .select2-selection--single .select2-selection__rendered,
