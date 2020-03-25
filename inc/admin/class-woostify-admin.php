@@ -313,7 +313,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 							<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
 								<div class="woostify-enhance__column woostify-pro-featured pro-featured-list">
 									<h3>
-										<a class="woostify-learn-more wp-ui-text-highlight" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank"><?php esc_html_e( 'Get Woostify  Pro Add-ons!', 'woostify' ); ?></a>
+										<a class="woostify-learn-more wp-ui-text-highlight" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank"><?php esc_html_e( 'Get Woostify  Pro Extensions!', 'woostify' ); ?></a>
 									</h3>
 
 									<div class="wf-quick-setting-section">
@@ -327,13 +327,13 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Mega Menu', 'woostify' ); ?>
 											</strong>
-											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/mega-menu/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/elementor-mega-menu/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Elementor Bundle', 'woostify' ); ?>
 											</strong>
-											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/elementor-bundle/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/elementor-addons/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
@@ -345,7 +345,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Ajax WooCommerce Search', 'woostify' ); ?>
 											</strong>
-											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/ajax-search-auto-complete/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/woocommerce-product-search/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
@@ -357,7 +357,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Advanced Shop Widgets', 'woostify' ); ?>
 											</strong>
-											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/advanced-shop-widgets/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/advanced-widgets/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
@@ -375,7 +375,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 											<strong class="pro-featured-name">
 												<?php esc_html_e( 'Sticky Button', 'woostify' ); ?>
 											</strong>
-											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/sticky-button/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/sticky-add-to-cart-button/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 										<div class="pro-featured-item">
 											<strong class="pro-featured-name">
@@ -394,6 +394,13 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 												<?php esc_html_e( 'Sale Notification', 'woostify' ); ?>
 											</strong>
 											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/sale-notification/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+										</div>
+
+										<div class="pro-featured-item">
+											<strong class="pro-featured-name">
+												<?php esc_html_e( 'WooBuilder', 'woostify' ); ?>
+											</strong>
+											<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/woobuider/" class="learn-more-featured" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
 										</div>
 									</div>
 								</div>
