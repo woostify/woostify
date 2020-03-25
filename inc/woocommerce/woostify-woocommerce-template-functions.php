@@ -882,7 +882,7 @@ if ( ! function_exists( 'woostify_multi_checkout_button_action' ) ) {
 		?>
 			<div class="multi-step-checkout-button-wrapper">
 				<span class="multi-step-checkout-button ti-angle-left" data-action="back"><?php esc_html_e( 'Back', 'woostify' ); ?></span>
-				<span class="multi-step-checkout-button button" data-action="continue"><?php esc_html_e( 'Continue to shopping', 'woostify' ); ?></span>
+				<span class="multi-step-checkout-button button" data-action="continue"><?php esc_html_e( 'Continue', 'woostify' ); ?></span>
 				<span class="multi-step-checkout-button button" data-action="place_order"><?php esc_html_e( 'Place Order', 'woostify' ); ?></span>
 			</div>
 		<?php
