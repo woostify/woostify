@@ -4017,12 +4017,13 @@ input {
   border: 1px solid #ccc;
 }
 
-input[type=search] {
+input[type="search"], input[type="email"], input[type="number"], input[type="url"], input[type="text"], input[type="tel"], input[type="password"] {
   -webkit-appearance: none;
 }
 
 textarea {
   border: 1px solid #ccc;
+  -webkit-appearance: none;
 }
 
 input,
@@ -9974,6 +9975,7 @@ footer#colophon {
 }
 
 .has-multi-step-checkout #order_review {
+  margin-bottom: 50px;
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #d9d9d9;
   padding: 15px;
@@ -10181,11 +10183,11 @@ footer#colophon {
 .has-multi-step-checkout .multi-step-checkout-wrapper {
   float: left;
   width: 100%;
+  margin-bottom: 50px;
 }
 
 @media (min-width: 992px) {
   .has-multi-step-checkout .multi-step-checkout-wrapper {
-    margin-bottom: 50px;
     width: calc(100% - 400px);
     padding-right: 40px;
   }

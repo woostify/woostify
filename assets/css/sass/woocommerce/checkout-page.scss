@@ -399,6 +399,8 @@
 	}
 
 	#order_review {
+		margin-bottom: 50px;
+
 		@media (max-width: $screen-md - 1) {
 			display: none;
 		}
@@ -623,9 +625,9 @@
 	.multi-step-checkout-wrapper {
 		float: left;
 		width: 100%;
+		margin-bottom: 50px;
 
 		@media (min-width: $screen-md) {
-			margin-bottom: 50px;
 			width: calc(100% - 400px);
 			padding-right: 40px;
 

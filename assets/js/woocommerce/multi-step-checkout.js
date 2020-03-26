@@ -60,7 +60,9 @@ var woostifyMultiStepCheckout = function() {
 		lastStep       = checkout.querySelector( '.multi-step-checkout-content[data-step="last"]' ), // Last step.
 		wrapperButton  = checkout.querySelector( '.multi-step-checkout-button-wrapper' ), // Wrapper button action.
 		fields         = checkout.querySelectorAll( '.woocommerce-billing-fields__field-wrapper .validate-required' ), // Required input.
-		buttonAction   = wrapperButton ? wrapperButton.querySelectorAll( '.multi-step-checkout-button' ) : []; // Back and continue action.
+		buttonAction   = wrapperButton ? wrapperButton.querySelectorAll( '.multi-step-checkout-button' ) : [], // Back and continue action.
+		contineButton  = wrapperButton ? wrapperButton.querySelector( '.multi-step-checkout-button[data-action="continue"]' ) : false, // Get Contine button.
+		continueText   = contineButton ? contineButton.getAttribute( 'data-continue' ) : ''; // Get "Continue to" text.
 
 	// Button action.
 	if ( buttonAction.length ) {
@@ -94,7 +96,14 @@ var woostifyMultiStepCheckout = function() {
 							}
 						}
 
-						document.getElementById( 'place_order' ).click();
+						if ( document.getElementById( 'place_order' ) ) {
+							document.getElementById( 'place_order' ).click();
+						}
+					}
+
+					// Scroll to top.
+					if ( window.matchMedia( '(max-width: 992px)' ).matches ) {
+						jQuery( 'html, body' ).animate( { scrollTop: jQuery( box ).offset().top }, 300 );
 					}
 				}
 			}
@@ -210,6 +219,13 @@ var woostifyMultiStepCheckout = function() {
 	items.forEach(
 		function( ele, i ) {
 			ele.onclick = function() {
+				var nextStep      = ele.nextElementSibling,
+					nextStateText = nextStep ? nextStep.innerText : '';
+
+				if ( contineButton ) {
+					contineButton.innerHTML = continueText + ' ' + nextStateText;
+				}
+
 				// Check validate.
 				var validate = false;
 				if ( fields.length ) {

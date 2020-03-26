@@ -738,17 +738,17 @@ if ( ! function_exists( 'woostify_multi_step_checkout' ) ) {
 		<div class="multi-step-checkout">
 			<div class="<?php echo esc_attr( $container ); ?>">
 				<div class="multi-step-inner">
-					<span class="multi-step-item active">
+					<span class="multi-step-item active" data-state="billing">
 						<span class="item-text"><?php esc_html_e( 'Billing Details', 'woostify' ); ?></span>
 					</span>
 
 					<?php if ( woostify_check_shipping_method() ) { ?>
-						<span class="multi-step-item">
+						<span class="multi-step-item" data-state="delivery">
 							<span class="item-text"><?php esc_html_e( 'Delivery', 'woostify' ); ?></span>
 						</span>
 					<?php } ?>
 
-					<span class="multi-step-item">
+					<span class="multi-step-item" data-state="payment">
 						<span class="item-text"><?php esc_html_e( 'Payment', 'woostify' ); ?></span>
 					</span>
 				</div>
@@ -882,7 +882,11 @@ if ( ! function_exists( 'woostify_multi_checkout_button_action' ) ) {
 		?>
 			<div class="multi-step-checkout-button-wrapper">
 				<span class="multi-step-checkout-button ti-angle-left" data-action="back"><?php esc_html_e( 'Back', 'woostify' ); ?></span>
-				<span class="multi-step-checkout-button button" data-action="continue"><?php esc_html_e( 'Continue', 'woostify' ); ?></span>
+				<?php if ( woostify_check_shipping_method() ) { ?>
+					<span class="multi-step-checkout-button button" data-action="continue" data-continue="<?php esc_attr_e( 'Continue to', 'woostify' ); ?>"><?php esc_html_e( 'Continue to Delivery', 'woostify' ); ?></span>
+				<?php } else { ?>
+					<span class="multi-step-checkout-button button" data-action="continue" data-continue="<?php esc_attr_e( 'Continue to', 'woostify' ); ?>"><?php esc_html_e( 'Continue to Payment', 'woostify' ); ?></span>
+				<?php } ?>
 				<span class="multi-step-checkout-button button" data-action="place_order"><?php esc_html_e( 'Place Order', 'woostify' ); ?></span>
 			</div>
 		<?php

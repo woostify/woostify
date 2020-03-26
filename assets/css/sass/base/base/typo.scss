@@ -14,13 +14,20 @@ select {
 input {
 	border: 1px solid #ccc;
 
-	&[type=search] {
+	&[type="search"],
+	&[type="email"],
+	&[type="number"],
+	&[type="url"],
+	&[type="text"],
+	&[type="tel"],
+	&[type="password"] {
 		-webkit-appearance: none;
 	}
 }
 
 textarea {
 	border: 1px solid #ccc;
+	-webkit-appearance: none;
 }
 
 input,

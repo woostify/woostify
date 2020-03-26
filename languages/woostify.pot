@@ -901,22 +901,30 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:885
-msgid "Continue"
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:886, inc/woocommerce/woostify-woocommerce-template-functions.php:888
+msgid "Continue to"
 msgstr ""
 
 #: inc/woocommerce/woostify-woocommerce-template-functions.php:886
+msgid "Continue to Delivery"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:888
+msgid "Continue to Payment"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:890
 msgid "Place Order"
 msgstr ""
 
 #. translators: 1: single item, 2: plural items
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:902
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:906
 msgid "%s item"
 msgid_plural "%s items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:907
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:911
 msgid "Order Summary"
 msgstr ""
 
