@@ -138,6 +138,17 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_get_product_id' ) ) {
+	/**
+	 * Get product id
+	 */
+	function woostify_get_product_id() {
+		$product_id = ( is_singular( 'woo_builder' ) || woostify_is_elementor_editor() ) ? woostify_get_last_product_id() : woostify_get_page_id();
+
+		return apply_filters( 'woostify_get_product_id', $product_id );
+	}
+}
+
 if ( ! function_exists( 'woostify_elementor_has_location' ) ) {
 	/**
 	 * Detect if a page has Elementor location template.
@@ -701,11 +712,8 @@ if ( ! function_exists( 'woostify_support_wishlist_plugin' ) ) {
 		$options = woostify_options( false );
 		$plugin  = $options['shop_page_wishlist_support_plugin'];
 
-		// Ti plugin.
-		if ( defined( 'TINVWL_URL' ) && 'ti' === $plugin ) {
-			return true;
-		} elseif ( defined( 'YITH_WCWL' ) && 'ti' !== $plugin ) {
-			// Yith plugin.
+		// Ti plugin or YITH plugin.
+		if ( ( defined( 'TINVWL_URL' ) && 'ti' === $plugin ) || ( defined( 'YITH_WCWL' ) && 'yith' === $plugin ) ) {
 			return true;
 		}
 
