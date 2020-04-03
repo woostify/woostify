@@ -12,25 +12,6 @@ if ( ! woostify_is_woocommerce_activated() ) {
 // Default values.
 $defaults = woostify_options();
 
-// Theme checkout divider.
-$wp_customize->add_setting(
-	'woostify_checkout_start',
-	array(
-		'sanitize_callback' => 'sanitize_text_field',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Divider_Control(
-		$wp_customize,
-		'woostify_checkout_start',
-		array(
-			'section'  => 'woocommerce_checkout',
-			'settings' => 'woostify_checkout_start',
-			'type'     => 'divider',
-		)
-	)
-);
-
 // Distraction Free Checkout.
 $wp_customize->add_setting(
 	'woostify_setting[checkout_distraction_free]',
@@ -45,9 +26,10 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[checkout_distraction_free]',
 		array(
-			'label'       => __( 'Distraction Free Checkout', 'woostify' ),
-			'settings'    => 'woostify_setting[checkout_distraction_free]',
-			'section'     => 'woocommerce_checkout',
+			'label'    => __( 'Distraction Free Checkout', 'woostify' ),
+			'settings' => 'woostify_setting[checkout_distraction_free]',
+			'section'  => 'woocommerce_checkout',
+			'priority' => 0,
 		)
 	)
 );
@@ -66,9 +48,10 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[checkout_multi_step]',
 		array(
-			'label'       => __( 'Multi Step Checkout', 'woostify' ),
-			'settings'    => 'woostify_setting[checkout_multi_step]',
-			'section'     => 'woocommerce_checkout',
+			'label'    => __( 'Multi Step Checkout', 'woostify' ),
+			'settings' => 'woostify_setting[checkout_multi_step]',
+			'section'  => 'woocommerce_checkout',
+			'priority' => 0,
 		)
 	)
 );
@@ -91,6 +74,27 @@ $wp_customize->add_control(
 			'description' => __( 'This option only available on mobile devices', 'woostify' ),
 			'settings'    => 'woostify_setting[checkout_sticky_place_order_button]',
 			'section'     => 'woocommerce_checkout',
+			'priority'    => 0,
+		)
+	)
+);
+
+// Theme checkout divider.
+$wp_customize->add_setting(
+	'woostify_checkout_start',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'woostify_checkout_start',
+		array(
+			'section'  => 'woocommerce_checkout',
+			'settings' => 'woostify_checkout_start',
+			'type'     => 'divider',
+			'priority' => 0,
 		)
 	)
 );

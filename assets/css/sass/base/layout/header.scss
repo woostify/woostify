@@ -250,6 +250,7 @@
 		font-size: 24px;
 		display: flex;
 		margin-left: 15px;
+		position: relative;
 
 		.tools-icon {
 			margin-left: 0;
@@ -267,7 +268,8 @@
 		}
 	}
 
-	.shop-cart-count {
+	.shop-cart-count,
+	.wishlist-item-count {
 		position: absolute;
 		top: -6px;
 		right: -15px;

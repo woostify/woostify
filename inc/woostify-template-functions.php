@@ -1890,6 +1890,26 @@ if ( ! function_exists( 'woostify_sidebar_menu_close' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_get_wishlist_count' ) ) {
+	/**
+	 * Get wishlist count
+	 */
+	function woostify_get_wishlist_count() {
+		$options = woostify_options( false );
+		$plugin  = $options['shop_page_wishlist_support_plugin'];
+		$count   = 0;
+
+		if ( 'ti' === $plugin && class_exists( 'TInvWL_Public_WishlistCounter' ) ) {
+			$ti    = TInvWL_Public_WishlistCounter::instance();
+			$count = $ti->counter();
+		} elseif ( 'yith' === $plugin && function_exists( 'yith_wcwl_count_all_products' ) ) {
+			$count = yith_wcwl_count_all_products();
+		}
+
+		return $count;
+	}
+}
+
 if ( ! function_exists( 'woostify_header_action' ) ) {
 	/**
 	 * Display header action
@@ -1926,20 +1946,27 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			<?php // Search icon. ?>
 			<?php if ( $options['header_search_icon'] ) { ?>
 				<span class="tools-icon header-search-icon <?php echo esc_attr( $search_icon ); ?>"></span>
-			<?php } ?>
+				<?php
+			}
 
-			<?php do_action( 'woostify_site_tool_before_second_item' ); ?>
+			if ( woostify_is_woocommerce_activated() ) {
+				do_action( 'woostify_site_tool_before_second_item' );
 
-			<?php // Wishlist icon. ?>
-			<?php if ( woostify_support_wishlist_plugin() && $options['header_wishlist_icon'] ) { ?>
-				<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>"></a>
-			<?php } ?>
+				// Wishlist icon.
+				if ( $options['header_wishlist_icon'] ) {
+					$wishlist_item_count = woostify_get_wishlist_count();
+					?>
+					<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>">
+						<span class="theme-item-count wishlist-item-count"><?php echo esc_html( $wishlist_item_count ); ?></span>
+					</a>
+					<?php
+				}
 
-			<?php do_action( 'woostify_site_tool_before_third_item' ); ?>
+				do_action( 'woostify_site_tool_before_third_item' );
 
-			<?php if ( woostify_is_woocommerce_activated() ) { ?>
-				<?php // My account icon. ?>
-				<?php if ( $options['header_account_icon'] ) { ?>
+				// My account icon.
+				if ( $options['header_account_icon'] ) {
+					?>
 					<div class="tools-icon my-account">
 						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon <?php echo esc_attr( $my_account_icon ); ?>"></a>
 						<div class="subbox">
@@ -1956,19 +1983,23 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 							</ul>
 						</div>
 					</div>
-				<?php } ?>
+					<?php
+				}
 
-				<?php do_action( 'woostify_site_tool_before_fourth_item' ); ?>
+				do_action( 'woostify_site_tool_before_fourth_item' );
 
-				<?php // Shopping cart icon. ?>
-				<?php if ( $options['header_shop_cart_icon'] ) { ?>
+				// Shopping cart icon.
+				if ( $options['header_shop_cart_icon'] ) {
+					?>
 					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
 						<span class="shop-cart-count"><?php echo esc_html( $count ); ?></span>
 					</a>
-				<?php } ?>
+					<?php
+				}
 
-				<?php do_action( 'woostify_site_tool_after_last_item' ); ?>
-			<?php } ?>
+				do_action( 'woostify_site_tool_after_last_item' );
+			}
+			?>
 		</div>
 		<?php
 	}

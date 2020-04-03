@@ -85,7 +85,8 @@
   margin-right: 0;
 }
 
-.rtl .site-tools .shop-cart-count {
+.rtl .site-tools .shop-cart-count,
+.rtl .site-tools .wishlist-item-count {
   left: -10px;
   right: auto;
 }

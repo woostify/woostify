@@ -500,43 +500,32 @@ if ( ! function_exists( 'woostify_product_video_button_play' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_cart_total_number_fragments' ) ) {
+if ( ! function_exists( 'woostify_content_fragments' ) ) {
 	/**
-	 * Update cart total item via ajax
+	 * Update content via ajax
 	 *
 	 * @param      array $fragments Fragments to refresh via AJAX.
 	 * @return     array $fragments Fragments to refresh via AJAX
 	 */
-	function woostify_cart_total_number_fragments( $fragments ) {
-		global $woocommerce;
-		$total = $woocommerce->cart->cart_contents_count;
+	function woostify_content_fragments( $fragments ) {
+		$options         = woostify_options( false );
+		$cart_item_count = WC()->cart->cart_contents_count;
 
+		// Get mini cart content.
 		ob_start();
-		?>
-			<span class="shop-cart-count"><?php echo esc_html( $total ); ?></span>
-		<?php
-		$fragments['span.shop-cart-count'] = ob_get_clean();
+		woocommerce_mini_cart();
+		$mini_cart = ob_get_clean();
 
-		return $fragments;
-	}
-}
+		// Cart item count.
+		$fragments['span.shop-cart-count'] = sprintf( '<span class="shop-cart-count">%s</span>', $cart_item_count );
 
-if ( ! function_exists( 'woostify_cart_sidebar_content_fragments' ) ) {
-	/**
-	 * Update cart sidebar content via ajax
-	 *
-	 * @param      array $fragments Fragments to refresh via AJAX.
-	 * @return     array $fragments Fragments to refresh via AJAX
-	 */
-	function woostify_cart_sidebar_content_fragments( $fragments ) {
-		ob_start();
-		?>
-			<div class="cart-sidebar-content">
-				<?php woocommerce_mini_cart(); ?>
-			</div>
-		<?php
+		// Cart sidebar.
+		$fragments['div.cart-sidebar-content'] = sprintf( '<div class="cart-sidebar-content">%s</div>', $mini_cart );
 
-		$fragments['div.cart-sidebar-content'] = ob_get_clean();
+		// Wishlist counter.
+		if ( 'ti' === $options['shop_page_wishlist_support_plugin'] && class_exists( 'TInvWL_Public_WishlistCounter' ) ) {
+			$fragments['span.theme-item-count.wishlist-item-count'] = sprintf( '<span class="theme-item-count wishlist-item-count">%s</span>', woostify_get_wishlist_count() );
+		}
 
 		return $fragments;
 	}
@@ -609,11 +598,7 @@ if ( ! function_exists( 'woostify_product_loop_item_wishlist_icon' ) ) {
 			return;
 		}
 
-		$shortcode = '[yith_wcwl_add_to_wishlist]';
-
-		if ( 'ti' === $options['shop_page_wishlist_support_plugin'] ) {
-			$shortcode = '[ti_wishlists_addtowishlist]';
-		}
+		$shortcode = ( 'ti' === $options['shop_page_wishlist_support_plugin'] ) ? '[ti_wishlists_addtowishlist]' : '[yith_wcwl_add_to_wishlist]';
 
 		echo do_shortcode( $shortcode );
 	}

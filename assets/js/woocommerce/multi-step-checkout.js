@@ -216,6 +216,7 @@ var woostifyMultiStepCheckout = function() {
 		);
 	}
 
+	// Multi step checkout.
 	items.forEach(
 		function( ele, i ) {
 			ele.onclick = function() {

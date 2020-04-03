@@ -390,6 +390,7 @@ class Woostify_Get_CSS {
 			.price_slider_wrapper .ui-widget-header,
 			.price_slider_wrapper .ui-slider-handle,
 			.cart-sidebar-head .shop-cart-count,
+			.wishlist-item-count,
 			.shop-cart-count,
 			.sidebar-menu .primary-navigation a:before,
 			.woocommerce-message,

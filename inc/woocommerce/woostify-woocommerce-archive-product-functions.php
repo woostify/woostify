@@ -149,11 +149,7 @@ if ( ! function_exists( 'woostify_product_loop_item_wishlist_icon_bottom' ) ) {
 			return;
 		}
 
-		$shortcode = '[yith_wcwl_add_to_wishlist]';
-
-		if ( 'ti' === $options['shop_page_wishlist_support_plugin'] ) {
-			$shortcode = '[ti_wishlists_addtowishlist]';
-		}
+		$shortcode = ( 'ti' === $options['shop_page_wishlist_support_plugin'] ) ? '[ti_wishlists_addtowishlist]' : '[yith_wcwl_add_to_wishlist]';
 		?>
 
 		<div class="loop-wrapper-wishlist">
