@@ -105,10 +105,10 @@ function customQuantity() {
 
 		// Minus & Plus button click.
 		for ( var i = 0, j = buttons.length; i < j; i++ ) {
-			buttons[i].addEventListener( 'click', function() {
+			buttons[i].onclick = function() {
 				// Variables.
 				var t        = this,
-					current  = parseInt( input.value ),
+					current  = parseInt( input.value || 0 ),
 					min      = parseInt( input.getAttribute( 'min' ) ),
 					max      = parseInt( input.getAttribute( 'max' ) ),
 					dataType = t.getAttribute( 'data-qty' );
@@ -135,7 +135,7 @@ function customQuantity() {
 				if ( updateCart ) {
 					updateCart.disabled = false;
 				}
-			} );
+			}
 		}
 	} );
 }
