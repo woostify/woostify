@@ -223,10 +223,6 @@ var woostifyMultiStepCheckout = function() {
 				var nextStep      = ele.nextElementSibling,
 					nextStateText = nextStep ? nextStep.innerText : '';
 
-				if ( contineButton ) {
-					contineButton.innerHTML = continueText + ' ' + nextStateText;
-				}
-
 				// Check validate.
 				var validate = false;
 				if ( fields.length ) {
@@ -262,6 +258,11 @@ var woostifyMultiStepCheckout = function() {
 
 				if ( validate ) {
 					return;
+				}
+
+				// Update next step text.
+				if ( contineButton ) {
+					contineButton.innerHTML = continueText + ' ' + nextStateText;
 				}
 
 				// Active for step.
