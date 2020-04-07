@@ -9995,6 +9995,10 @@ footer#colophon {
   border-top-width: 1px;
 }
 
+.has-multi-step-checkout #order_review .woocommerce-shipping-totals.shipping .woocommerce-shipping-methods li:first-of-type:last-of-type label {
+  display: block;
+}
+
 .has-multi-step-checkout #order_review .woocommerce-shipping-totals.shipping .shipping_method {
   display: none;
 }

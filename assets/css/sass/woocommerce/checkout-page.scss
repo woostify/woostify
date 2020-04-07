@@ -414,6 +414,16 @@
 				border-top-width: 1px;
 			}
 
+			.woocommerce-shipping-methods {
+				li {
+					&:first-of-type:last-of-type {
+						label {
+							display: block;
+						}
+					}
+				}
+			}
+
 			.shipping_method {
 				display: none;
 
