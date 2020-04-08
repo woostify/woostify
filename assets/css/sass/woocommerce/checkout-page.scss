@@ -136,6 +136,10 @@
 		@media (max-width: $screen-md) {
 			display: flex;
 			flex-direction: column-reverse;
+
+			.woocommerce-NoticeGroup {
+				order: 1;
+			}
 		}
 	}
 }

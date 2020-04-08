@@ -9747,6 +9747,9 @@ footer#colophon {
     display: flex;
     flex-direction: column-reverse;
   }
+  .has-multi-step-checkout [name="checkout"] .woocommerce-NoticeGroup {
+    order: 1;
+  }
 }
 
 @media (min-width: 992px) {
