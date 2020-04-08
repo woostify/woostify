@@ -184,7 +184,37 @@ var woostifyMultiStepCheckout = function() {
 	}
 
 	// Validate input.
-	if ( fields.length ) {
+	var validateInput = function( param ) {
+		var fields = ( arguments.length > 0 && undefined !== arguments[0] ) ? arguments[0] : [];
+		if ( ! fields.length ) {
+			return;
+		}
+
+		// Check input.
+		var checkInput = function( iparam, iparam2 ) {
+			var input = ( arguments.length > 0 && undefined !== arguments[0] ) ? arguments[0] : false,
+				field = ( arguments.length > 0 && undefined !== arguments[1] ) ? arguments[1] : false,
+				ipv   = input ? input.value.trim() : '';
+
+			if ( ! field ) {
+				return;
+			}
+
+			if ( ipv ) {
+				if ( 'email' == input.type ) {
+					if ( woostifyValidateEmail( ipv ) ) {
+						field.classList.remove( 'field-required' );
+					} else {
+						field.classList.add( 'field-required' );
+					}
+				} else {
+					field.classList.remove( 'field-required' );
+				}
+			} else {
+				field.classList.add( 'field-required' );
+			}
+		}
+
 		fields.forEach(
 			function( field ) {
 				var input = field.querySelector( '[name]' );
@@ -192,29 +222,61 @@ var woostifyMultiStepCheckout = function() {
 					return;
 				}
 
+				// checkInput( input, field ); Yes or no.
+
 				input.addEventListener(
 					'input',
 					function() {
-						var inputValue = input.value.trim();
-
-						if ( inputValue ) {
-							if ( 'email' == input.type ) {
-								if ( woostifyValidateEmail( inputValue ) ) {
-									field.classList.remove( 'field-required' );
-								} else {
-									field.classList.add( 'field-required' );
-								}
-							} else {
-								field.classList.remove( 'field-required' );
-							}
-						} else {
-							field.classList.add( 'field-required' );
-						}
+						checkInput( input, field );
 					}
 				);
 			}
 		);
 	}
+
+	// Get required fields.
+	var getRequiredFields = function( param ) {
+		var requiredFields = checkout.querySelectorAll( '.woocommerce-billing-fields__field-wrapper .validate-required' ),
+			shippingTo     = document.getElementById( 'ship-to-different-address-checkbox' ),
+			echo           = ( arguments.length > 0 && undefined !== arguments[0] ) ? arguments[0] : false;;
+
+		// Validate input.
+		if ( ! echo ) {
+			validateInput( requiredFields );
+		}
+
+		// Shipping to different address.
+		if ( shippingTo ) {
+			if ( shippingTo.checked ) {
+				requiredFields = checkout.querySelectorAll( '.woocommerce-billing-fields__field-wrapper .validate-required, .woocommerce-shipping-fields__field-wrapper .validate-required' );
+			} else {
+				requiredFields = checkout.querySelectorAll( '.woocommerce-billing-fields__field-wrapper .validate-required' );
+			}
+
+			shippingTo.addEventListener(
+				'change',
+				function() {
+					if ( this.checked ) {
+						requiredFields = checkout.querySelectorAll( '.woocommerce-billing-fields__field-wrapper .validate-required, .woocommerce-shipping-fields__field-wrapper .validate-required' );
+					} else {
+						requiredFields = checkout.querySelectorAll( '.woocommerce-billing-fields__field-wrapper .validate-required' );
+					}
+
+					// Validate input.
+					if ( ! echo ) {
+						validateInput( requiredFields );
+					}
+				}
+			);
+		}
+
+		// Return all required field.
+		if ( echo ) {
+			return requiredFields;
+		}
+	}
+
+	getRequiredFields();
 
 	// Multi step checkout.
 	items.forEach(
@@ -224,9 +286,11 @@ var woostifyMultiStepCheckout = function() {
 					nextStateText = nextStep ? nextStep.innerText : '';
 
 				// Check validate.
-				var validate = false;
-				if ( fields.length ) {
-					fields.forEach(
+				var validate       = false,
+					requiredFields = getRequiredFields( true );
+
+				if ( requiredFields.length ) {
+					requiredFields.forEach(
 						function( field ) {
 							var input = field.querySelector( '[name]' );
 							if ( ! input ) {
@@ -262,6 +326,12 @@ var woostifyMultiStepCheckout = function() {
 					}
 
 					return;
+				}
+
+				// Hide Notice Group error.
+				var noticeGroup = document.querySelector( '.woocommerce-NoticeGroup' );
+				if ( noticeGroup ) {
+					noticeGroup.style.display = 'none';
 				}
 
 				// Update next step text.
