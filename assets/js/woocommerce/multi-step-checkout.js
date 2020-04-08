@@ -257,6 +257,10 @@ var woostifyMultiStepCheckout = function() {
 				}
 
 				if ( validate ) {
+					if ( document.getElementById( 'place_order' ) ) {
+						document.getElementById( 'place_order' ).click();
+					}
+
 					return;
 				}
 
