@@ -465,10 +465,25 @@ var woostifyMultiStepCheckout = function() {
 	);
 }
 
+// Update total price on mobile.
+var woostifyTotalPriceMobile = function() {
+	var totalPrice      = document.querySelector( '.order-total td' ),
+		totalPriceInner = totalPrice ? totalPrice.innerText : '',
+		mobilePrice     = document.querySelector( '.woostify-before-order-review .woostify-before-order-review-total-price strong' );
+
+	if ( ! mobilePrice || ! totalPriceInner ) {
+		return;
+	}
+
+	mobilePrice.innerText = totalPriceInner;
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
 		woostifyMultiStepCheckout();
 		woostifyExpandOrderReview();
+
+		jQuery( document.body ).on( 'updated_checkout', woostifyTotalPriceMobile );
 	}
 );
