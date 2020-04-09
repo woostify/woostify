@@ -586,6 +586,10 @@
 
 	.woocommerce-variation-add-to-cart {
 		flex-wrap: wrap $i;
+
+		.tinvwl-after-add-to-cart {
+			width: 100%;
+		}
 	}
 }
 

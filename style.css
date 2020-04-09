@@ -8562,6 +8562,10 @@ footer#colophon {
   flex-wrap: wrap !important;
 }
 
+.cart .woocommerce-variation-add-to-cart .tinvwl-after-add-to-cart {
+  width: 100%;
+}
+
 .woocommerce-variation-price {
   margin-bottom: 10px;
 }

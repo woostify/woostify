@@ -40,6 +40,9 @@ if ( is_admin() ) {
 	require_once WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-meta-boxes.php';
 }
 
+// Compatibility.
+require_once WOOSTIFY_THEME_DIR . 'compatibility/class-woostify-divi-builder.php';
+
 /**
  * Note: Do not add any custom code here. Please use a custom plugin so that your customizations aren't lost during updates.
  */
