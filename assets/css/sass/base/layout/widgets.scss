@@ -506,6 +506,10 @@
 		&[href*="mailto"]:before {
 			content: "\e75a";
 		}
+
+		&[href*="whatsapp"]:before {
+			content: "\e6d2";
+		}
 	}
 }
 

@@ -1,40 +1,52 @@
 // YITH
 .cart.wishlist_table {
 	@extend .woocommerce-cart-form__contents;
-	@media ( max-width: 768px ) {
+
+	.product-name {
+		padding: 0 20px !important;
+	}
+
+	@media (max-width: 768px) {
 		.product-thumbnail {
 			display: none;
 		}
+
 		.product-remove {
 			a {
 				background-color: #e33;
 				color: #fff;
 			}
 		}
-		th{
+
+		th {
 			display: none;
 		}
-		tr{
-			&:first-of-type{
+
+		tr {
+			&:first-of-type {
 				td {
 					border-bottom-width: 1px;
+
 					&:last-of-type {
 						border-bottom: 0;
 					}
 				}
 			}
-			&:last-of-type{
+
+			&:last-of-type {
 				td {
 					border-bottom: 0;
 				}
 			}
 		}
-		td{
+
+		td {
 			display: block;
 			width: 100% $i;
 			border-right: 0;
 			padding: 10px 0px $i;
-			&:before{
+
+			&:before {
 				float: left;
 				font-weight: bold;
 				content: attr(data-title)
@@ -43,7 +55,26 @@
 	}
 }
 
-.wishlist-title *{
+.yith-wcwl-form {
+	.button {
+		cursor: pointer;
+	}
+}
+
+.hidden-title-form {
+	display: none;
+
+	.button {
+		padding: 10px 15px;
+	}
+
+	input {
+		padding: 5px 10px;
+		border-radius: 3px;
+	}
+}
+
+.wishlist-title * {
 	font-size: 24px;
 }
 
@@ -52,9 +83,15 @@
 		font-size: small;
 		display: inline-block;
 	}
+
 	ul {
 		margin: 0;
-		display: inline-block;
+		padding: 0;
+
+		li {
+			display: inline-block;
+		}
+
 		a {
 			width: 30px;
 			height: 30px;

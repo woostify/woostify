@@ -794,21 +794,21 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:205
+#: inc/woocommerce/class-woostify-woocommerce.php:210
 msgid "Sorry, something went wrong. Please try again!"
 msgstr ""
 
 #. translators: %s number of product
 #. translators: %s stock quantity
-#: inc/woocommerce/class-woostify-woocommerce.php:225, inc/woocommerce/woostify-woocommerce-single-product-functions.php:546
+#: inc/woocommerce/class-woostify-woocommerce.php:230, inc/woocommerce/woostify-woocommerce-single-product-functions.php:546
 msgid "Hurry! only %s left in stock."
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:430
+#: inc/woocommerce/class-woostify-woocommerce.php:435
 msgid "Product video url"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:451
+#: inc/woocommerce/class-woostify-woocommerce.php:456
 msgid "Enter Youtube or Vimeo video url"
 msgstr ""
 

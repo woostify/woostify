@@ -155,6 +155,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$product    = $product_id ? wc_get_product( $product_id ) : false;
 			$options    = woostify_options( false );
 
+			// Remove Divi css on TI wishlist page.
+			if ( function_exists( 'is_wishlist' ) && is_wishlist() && function_exists( 'et_is_builder_plugin_active' ) && et_is_builder_plugin_active() ) {
+				wp_dequeue_style( 'et-builder-modules-style' );
+			}
+
 			// Main woocommerce js file.
 			wp_enqueue_script( 'woostify-woocommerce' );
 
