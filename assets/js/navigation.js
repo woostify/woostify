@@ -38,7 +38,7 @@ function sidebarMenu( node ) {
 			var t        = jQuery( this ),
 				siblings = t.parent().siblings( 'ul' ),
 				arrow    = t.parent().parent().parent().find( '.arrow-icon' ),
-				subMenu  = t.parent().parent().parent().find( 'li .sub-menu' );
+				subMenu  = t.parent().parent().parent().find( 'li .sub-menu, li .sub-mega-menu' );
 
 			if ( siblings.hasClass( 'show' ) ) {
 				siblings.slideUp(

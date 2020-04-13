@@ -104,7 +104,7 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 
 			// Start Mega menu content.
 			if ( 'mega_menu' === $item->object && 0 === $depth ) {
-				$item_output .= '<ul class="sub-menu sub-mega-menu">';
+				$item_output .= '<ul class="sub-mega-menu">';
 				$item_output .= '<div class="mega-menu-wrapper">';
 
 				if ( woostify_is_elementor_page( $item->object_id ) ) {
