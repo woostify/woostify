@@ -7,6 +7,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
+if ( ! function_exists( 'wp_body_open' ) ) {
+	/**
+	 * Backwards compatibility for site WP < 5.2
+	 */
+	function wp_body_open() {
+		do_action( 'wp_body_open' );
+	}
+}
+
 if ( ! function_exists( 'woostify_version' ) ) {
 	/**
 	 * Woostify Version

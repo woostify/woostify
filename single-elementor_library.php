@@ -18,6 +18,7 @@
 
 	<body <?php body_class(); ?>>
 		<?php
+		wp_body_open();
 		if ( have_posts() ) {
 			while ( have_posts() ) {
 				the_post();
