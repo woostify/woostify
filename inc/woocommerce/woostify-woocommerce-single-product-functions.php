@@ -534,7 +534,7 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 		$stock_quantity = $product->get_stock_quantity();
 
 		// Only for simple product, variable work with javascript.
-		if ( ! $stock_quantity || $product->is_type( 'variable' ) ) {
+		if ( $stock_quantity < 1 || $product->is_type( 'variable' ) ) {
 			return $html;
 		}
 
