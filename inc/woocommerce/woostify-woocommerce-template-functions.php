@@ -58,6 +58,32 @@ if ( ! function_exists( 'woostify_elementor_preview_product_page_scripts' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
+	/**
+	 * Update quantity in mini cart
+	 *
+	 * @param string $output        Output.
+	 * @param array  $cart_item     Cart item.
+	 * @param string $cart_item_key Cart item key.
+	 */
+	function woostify_update_quantity_mini_cart( $output, $cart_item, $cart_item_key ) {
+		$product_price = WC()->cart->get_product_price( $cart_item['data'] );
+		ob_start();
+		?>
+		<span class="mini-cart-product-infor">
+			<span class="mini-cart-quantity">
+				<span class="mini-cart-product-qty ti-minus" data-qty="minus"></span>
+				<input type="number" id="quantity-<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+				<span class="mini-cart-product-qty ti-plus" data-qty="plus"></span>
+			</span>
+
+			<span class="mini-cart-product-price"><?php echo wp_kses_post( $product_price ); ?></span>
+		</span>
+		<?php
+		return ob_get_clean();
+	}
+}
+
 if ( ! function_exists( 'woostify_before_content' ) ) {
 	/**
 	 * Before Content
@@ -523,7 +549,7 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 		$fragments['div.cart-sidebar-content'] = sprintf( '<div class="cart-sidebar-content">%s</div>', $mini_cart );
 
 		// Wishlist counter.
-		if ( 'ti' === $options['shop_page_wishlist_support_plugin'] && class_exists( 'TInvWL_Public_WishlistCounter' ) ) {
+		if ( 'ti' === $options['shop_page_wishlist_support_plugin'] && function_exists( 'tinv_get_option' ) && tinv_get_option( 'topline', 'show_counter' ) ) {
 			$fragments['span.theme-item-count.wishlist-item-count'] = sprintf( '<span class="theme-item-count wishlist-item-count">%s</span>', woostify_get_wishlist_count() );
 		}
 

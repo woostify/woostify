@@ -1957,7 +1957,9 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 					$wishlist_item_count = woostify_get_wishlist_count();
 					?>
 					<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>">
+						<?php if ( 'ti' === $options['shop_page_wishlist_support_plugin'] && function_exists( 'tinv_get_option' ) && tinv_get_option( 'topline', 'show_counter' ) ) { ?>
 						<span class="theme-item-count wishlist-item-count"><?php echo esc_html( $wishlist_item_count ); ?></span>
+						<?php } ?>
 					</a>
 					<?php
 				}
