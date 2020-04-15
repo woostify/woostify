@@ -1953,7 +1953,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 				do_action( 'woostify_site_tool_before_second_item' );
 
 				// Wishlist icon.
-				if ( $options['header_wishlist_icon'] ) {
+				if ( $options['header_wishlist_icon'] && woostify_support_wishlist_plugin() ) {
 					$wishlist_item_count = woostify_get_wishlist_count();
 					?>
 					<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>">
