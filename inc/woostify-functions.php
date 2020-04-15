@@ -518,10 +518,11 @@ if ( ! function_exists( 'woostify_narrow_data' ) ) {
 	 *
 	 * @param      string $type   The type 'post' || 'term'.
 	 * @param      string $terms  The terms post, category, product, product_cat, custom_post_type...
+	 * @param      intval $total  The total.
 	 *
 	 * @return     array
 	 */
-	function woostify_narrow_data( $type = 'post', $terms = 'category' ) {
+	function woostify_narrow_data( $type = 'post', $terms = 'category', $total = 100 ) {
 		$output = array();
 		switch ( $type ) {
 			case 'post':
@@ -529,16 +530,20 @@ if ( ! function_exists( 'woostify_narrow_data' ) ) {
 					'post_type'           => $terms,
 					'post_status'         => 'publish',
 					'ignore_sticky_posts' => 1,
-					'posts_per_page'      => -1,
+					'posts_per_page'      => $total,
 				);
 
-				$qr     = new WP_Query( $args );
-				$output = wp_list_pluck( $qr->posts, 'post_title', 'ID' );
+				$qr = new WP_Query( $args );
+				if ( $qr->have_posts() ) {
+					$output = wp_list_pluck( $qr->posts, 'post_title', 'ID' );
+				}
 				break;
 
 			case 'term':
-				$terms  = get_terms( $terms );
-				$output = wp_list_pluck( $terms, 'name', 'term_id' );
+				$terms = get_terms( $terms );
+				if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+					$output = wp_list_pluck( $terms, 'name', 'term_id' );
+				}
 				break;
 		}
 
