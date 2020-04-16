@@ -796,12 +796,14 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 				<?php } ?>
 
 				<?php
-					/**
-					 * Functions hooked in to woostify_page_header_end
-					 *
-					 * @hooked woostify_breadcrumb   - 10
-					 */
-					do_action( 'woostify_page_header_end' );
+					if ( $options['page_header_breadcrumb'] ) {
+						/**
+						 * Functions hooked in to woostify_page_header_end
+						 *
+						 * @hooked woostify_breadcrumb   - 10
+						 */
+						do_action( 'woostify_page_header_end' );
+					}
 				?>
 			</div>
 		</div>
