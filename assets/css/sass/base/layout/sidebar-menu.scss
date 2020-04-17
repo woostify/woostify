@@ -87,7 +87,7 @@
 	bottom: 0;
 	top: 0;
 	background-color: #fff;
-	/* higher #woostify-overlay: 199 */
+	// higher #woostify-overlay: 199
 	z-index: 200;
 	padding: 30px;
 	width: 300px;
@@ -112,7 +112,7 @@
 		}
 	}
 
-	/* search form */
+	// search form
 	.ajax-category-filter-box {
 		background-color: #f8f8f8;
 		border-right: 0;
@@ -149,7 +149,7 @@
 		}
 	}
 
-	/* menu */
+	// menu
 	.site-navigation {
 		margin-bottom: 40px;
 	}
@@ -242,7 +242,7 @@
 				}
 			}
 
-			/* Hide custom arrow */
+			// Hide custom arrow
 			&:after {
 				content: none $i;
 			}
@@ -278,7 +278,7 @@
 		}
 	}
 
-	/* sidebar bottom */
+	// sidebar bottom
 	.sidebar-menu-bottom {
 		border-top: 1px solid rgba(0, 0, 0, 0.12156862745098039);
 
@@ -301,9 +301,14 @@
 	}
 }
 
-/* Header Layout 1 */
-.has-header-layout-1 {
+@media (max-width: $screen-md - 1) {
+	.sub-mega-menu {
+		display: none;
+	}
+}
 
+// Header Layout 1
+.has-header-layout-1 {
 	@media (min-width: $screen-md) {
 		.sidebar-menu {
 			display: none;
