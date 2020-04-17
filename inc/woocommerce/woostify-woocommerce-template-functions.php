@@ -58,6 +58,35 @@ if ( ! function_exists( 'woostify_elementor_preview_product_page_scripts' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
+	/**
+	 * Update product quantity in minicart
+	 */
+	function woostify_ajax_update_quantity_in_mini_cart() {
+		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce', false );
+
+		if ( ! isset( $_POST['key'] ) || ! isset( $_POST['qty'] ) ) {
+			wp_send_json_error();
+		}
+
+		$response = array();
+
+		$cart_item_key = sanitize_text_field( wp_unslash( $_POST['key'] ) );
+		$product_qty   = absint( $_POST['qty'] );
+
+		WC()->cart->set_quantity( $cart_item_key, $product_qty );
+
+		$count = WC()->cart->get_cart_contents_count();
+
+		ob_start();
+		$response['item']        = $count;
+		$response['total_price'] = WC()->cart->get_cart_total();
+		$response['content']     = ob_get_clean();
+
+		wp_send_json_success( $response );
+	}
+}
+
 if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 	/**
 	 * Update quantity in mini cart
@@ -67,13 +96,17 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 	 * @param string $cart_item_key Cart item key.
 	 */
 	function woostify_update_quantity_mini_cart( $output, $cart_item, $cart_item_key ) {
-		$product_price = WC()->cart->get_product_price( $cart_item['data'] );
+		$product_id      = $cart_item['data'];
+		$product_instock = get_post_meta( $product_id, '_stock', true );
+		$product_price   = WC()->cart->get_product_price( $product_id );
 		ob_start();
 		?>
 		<span class="mini-cart-product-infor">
 			<span class="mini-cart-quantity">
 				<span class="mini-cart-product-qty ti-minus" data-qty="minus"></span>
-				<input type="number" id="quantity-<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+
+				<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" max="<?php echo esc_attr( $product_instock ? $product_instock : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+
 				<span class="mini-cart-product-qty ti-plus" data-qty="plus"></span>
 			</span>
 

@@ -60,9 +60,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Ajax single add to cart.
 			add_action( 'wp_ajax_single_add_to_cart', 'woostify_ajax_single_add_to_cart' );
 			add_action( 'wp_ajax_nopriv_single_add_to_cart', 'woostify_ajax_single_add_to_cart' );
+			// Update product quantity in minicart.
+			add_action( 'wp_ajax_update_quantity_in_mini_cart', 'woostify_ajax_update_quantity_in_mini_cart' );
+			add_action( 'wp_ajax_nopriv_update_quantity_in_mini_cart', 'woostify_ajax_update_quantity_in_mini_cart' );
 			// Modified woocommerce breadcrumb.
 			add_filter( 'woocommerce_breadcrumb_defaults', 'woostify_modifided_woocommerce_breadcrumb' );
 			add_filter( 'woocommerce_get_breadcrumb', 'woostify_get_modifided_woocommerce_breadcrumb' );
+
+			add_filter( 'woocommerce_widget_cart_item_quantity', 'woostify_update_quantity_mini_cart', 10, 3 );
 
 			// SHOP PAGE.
 			add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_wrapper_open', 10 );
@@ -162,6 +167,17 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Main woocommerce js file.
 			wp_enqueue_script( 'woostify-woocommerce' );
+			// Quantity minicart.
+			wp_localize_script(
+				'woostify-woocommerce',
+				'woostify_woocommerce_general',
+				array(
+					'ajax_url'    => admin_url( 'admin-ajax.php' ),
+					'ajax_nonce'  => wp_create_nonce( 'woostify_woocommerce_general_nonce' ),
+					'ajax_error'  => __( 'Sorry, something went wrong. Please try again!', 'woostify' ),
+					'qty_warning' => __( 'Please enter a valid quantity for this product', 'woostify' ),
+				)
+			);
 
 			// Product variations.
 			wp_enqueue_script( 'woostify-product-variation' );
