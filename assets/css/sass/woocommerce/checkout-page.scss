@@ -708,6 +708,11 @@
 					border: 1px solid #d9d9d9;
 					padding: 10px;
 
+					img {
+						max-width: 40px;
+						margin-right: 5px;
+					}
+
 					&:first-of-type {
 						border-radius: 4px 4px 0 0;
 					}

@@ -10292,6 +10292,11 @@ footer#colophon {
   padding: 10px;
 }
 
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .wc_payment_methods .wc_payment_method img {
+  max-width: 40px;
+  margin-right: 5px;
+}
+
 .has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .wc_payment_methods .wc_payment_method:first-of-type {
   border-radius: 4px 4px 0 0;
 }
