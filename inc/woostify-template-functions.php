@@ -1585,12 +1585,7 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 	 * @return void
 	 */
 	function woostify_dialog_search() {
-		$options = woostify_options( false );
-
-		if ( ! $options['header_search_icon'] ) {
-			return;
-		}
-
+		$options    = woostify_options( false );
 		$image_icon = woostify_get_logo_image_url();
 		$close_icon = apply_filters( 'woostify_dialog_search_close_icon', 'ti-close' );
 		?>
