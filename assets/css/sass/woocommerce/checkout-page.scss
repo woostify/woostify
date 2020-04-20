@@ -448,7 +448,7 @@
 		}
 
 		.woocommerce-checkout-review-order-table {
-			table-layout: auto;
+			table-layout: fixed;
 
 			thead {
 				display: none;
@@ -475,6 +475,10 @@
 
 				.review-order-product-name {
 					margin: 0 10px;
+				}
+
+				.product-total {
+					width: 100px;
 				}
 
 				.product-quantity,

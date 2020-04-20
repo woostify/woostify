@@ -371,15 +371,35 @@ var woostifyMultiStepCheckout = function() {
 					_address2      = document.getElementById( 'billing_address_2' ),
 					_city          = document.getElementById( 'billing_city' ),
 					_countryField  = document.getElementById( 'billing_country' ),
-					_country       = _countryField ? _countryField.querySelector( '#billing_country option[' + _countryField.value + ']' ) : false,
+					_country       = _countryField ? document.querySelector( '#billing_country option[value="' + _countryField.value + '"]' ) : false,
+					_shippingTo    = document.getElementById( 'ship-to-different-address-checkbox' ),
+					_shippingAdd1  = document.getElementById( 'shipping_address_1' ),
+					_shippingAdd2  = document.getElementById( 'shipping_address_2' ),
+					_city2         = document.getElementById( 'shipping_city' ),
+					_countryField2 = document.getElementById( 'shipping_country' ),
+					_country2      = _countryField2 ? document.querySelector( '#shipping_country option[value="' + _countryField2.value + '"]' ) : false,
 					_shippingField = document.querySelector( '#shipping_method .shipping_method[checked="checked"]' ),
 					_shippingID    = _shippingField ? _shippingField.id : false,
 					_shipping      = _shippingID ? document.querySelector( '#shipping_method label[for="' + _shippingID + '"]' ) : false,
-					_addressValue  = _address1 ? _address1.value.trim() : '';
+					_addressBill   = '',
+					_addressShip   = '',
+					_addressValue  = '';
 
-					_addressValue += _address2 ? ' ' + _address2.value.trim() : '';
-					_addressValue += _city ? ' ' + _city.value.trim() : '';
-					_addressValue += _country ? ' ' + _country.value.trim() : '';
+					_addressBill += _address1 ? _address1.value.trim() : '';
+					_addressBill += _address2 ? ' ' + _address2.value.trim() : '';
+					_addressBill += _city ? ' ' + _city.value.trim() : '';
+					_addressBill += _country ? ' ' + _country.innerText.trim() : '';
+
+					_addressValue = _addressBill;
+
+				if ( _shippingTo && _shippingTo.checked ) {
+					_addressShip += _shippingAdd1 ? _shippingAdd1.value.trim() : '';
+					_addressShip += _shippingAdd2 ? ' ' + _shippingAdd2.value.trim() : '';
+					_addressShip += _city2 ? ' ' + _city2.value.trim() : '';
+					_addressShip += _country2 ? ' ' + _country2.innerText.trim() : '';
+
+					_addressValue = _addressShip;
+				}
 
 				if ( reviewBlock.length ) {
 					reviewBlock.forEach(
@@ -423,7 +443,9 @@ var woostifyMultiStepCheckout = function() {
 											break;
 										case 'address':
 											items[0].click();
-											if ( _address1 ) {
+											if ( _shippingTo && _shippingTo.checked && _shippingAdd1 ) {
+												_shippingAdd1.focus();
+											} else if ( _address1 ) {
 												_address1.focus();
 											}
 											break;

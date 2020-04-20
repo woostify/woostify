@@ -10056,7 +10056,7 @@ footer#colophon {
 }
 
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table {
-  table-layout: auto;
+  table-layout: fixed;
 }
 
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table thead {
@@ -10079,6 +10079,10 @@ footer#colophon {
 
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .review-order-product-name {
   margin: 0 10px;
+}
+
+.has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .product-total {
+  width: 100px;
 }
 
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .product-quantity,
