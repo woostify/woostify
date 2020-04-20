@@ -49,8 +49,7 @@
 	@extend .clearfix;
 
 	.elementor-page &,
-	body.et-fb &,
-	body.et-db &{
+	.edited-by-divi-builder &{
 		margin: 0;
 	}
 

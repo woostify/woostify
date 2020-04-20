@@ -4352,8 +4352,7 @@ dd {
 }
 
 .elementor-page .site-content,
-body.et-fb .site-content,
-body.et-db .site-content {
+.edited-by-divi-builder .site-content {
   margin: 0;
 }
 

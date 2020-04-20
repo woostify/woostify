@@ -723,6 +723,11 @@ if ( ! class_exists( 'Woostify' ) ) {
 				$classes[] = 'blog-layout-' . $options['blog_list_layout'];
 			}
 
+			// Detect page created by Divi builder.
+			if ( defined( 'ET_BUILDER_PLUGIN_VERSION' ) && is_singular() && false !== strpos( get_queried_object()->post_content, '_builder_version' ) ) {
+				$classes[] = 'edited-by-divi-builder';
+			}
+
 			return array_filter( $classes );
 		}
 
