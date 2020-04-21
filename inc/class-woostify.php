@@ -319,8 +319,8 @@ if ( ! class_exists( 'Woostify' ) ) {
 				)
 			);
 
-			// Header Footer Elementor plugin support.
-			add_theme_support( 'header-footer-elementor' );
+			// Boostify Header Footer plugin support.
+			add_theme_support( 'boostify-header-footer' );
 		}
 
 		/**
