@@ -99,8 +99,6 @@ var woostifyQuantityMiniCart = function() {
 						max      = parseInt( input.getAttribute( 'max' ) ),
 						dataType = t.getAttribute( 'data-qty' );
 
-					console.log( min );
-
 					if ( current < 1 || isNaN( current ) ) {
 						alert( woostify_woocommerce_general.qty_warning );
 						return;
@@ -119,8 +117,6 @@ var woostifyQuantityMiniCart = function() {
 
 						input.value = ( current + 1 );
 					}
-
-					console.log( 123 );
 
 					// Trigger event.
 					input.dispatchEvent( eventChange );

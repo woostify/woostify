@@ -162,6 +162,8 @@ function woostifyAjaxSingleAddToCartButton() {
 
 								// Hide quick view popup when product added to cart.
 								document.documentElement.classList.remove( 'quick-view-open' );
+
+								jQuery( document.body ).trigger( 'added_to_cart' );
 							}
 						);
 				}
