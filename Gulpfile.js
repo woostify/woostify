@@ -137,7 +137,6 @@ let _watch = ( done ) => {
 	gulp.watch( ['assets/css/rtl/**/*.scss', 'rtl.scss' ], _sassRtl );
 	gulp.watch( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'], _sassAdmin );
 	gulp.watch( ['assets/js/**/*.js', '!assets/js/**/*.min.js'], _minJs );
-	gulp.watch( '**/*.php', _pot );
 
 	done();
 }
