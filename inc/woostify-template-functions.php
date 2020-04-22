@@ -2013,8 +2013,12 @@ if ( ! function_exists( 'woostify_get_page_id' ) ) {
 	function woostify_get_page_id() {
 		$page_id = get_queried_object_id();
 
-		if ( class_exists( 'woocommerce' ) && is_shop() ) {
-			$page_id = get_option( 'woocommerce_shop_page_id' );
+		if ( class_exists( 'woocommerce' ) ) {
+			if ( is_shop() ) {
+				$page_id = get_option( 'woocommerce_shop_page_id' );
+			} elseif ( is_product_category() ) {
+				$page_id = false;
+			}
 		}
 
 		return $page_id;

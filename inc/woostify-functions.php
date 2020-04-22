@@ -139,7 +139,7 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 		$edit_mode = get_post_meta( $page_id, '_elementor_edit_mode', true );
 		$edit_mode = 'builder' === $edit_mode ? true : false;
 
-		if ( class_exists( 'woocommerce' ) && is_product_category() ) {
+		if ( ! $page_id ) {
 			$edit_mode = false;
 		}
 
