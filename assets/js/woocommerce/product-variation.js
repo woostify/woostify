@@ -72,37 +72,14 @@ function productVariation( selector, form ) {
 
 			// In stock.
 			if ( inStock ) {
-				// Update quantity for variation.
-				if ( variation.max_qty ) {
-					var inStock          = variation.max_qty <= 10 ? variation.max_qty : ( Math.floor( Math.random() * 66 ) + 10 ),
-						availability     = event.currentTarget.querySelector( '.woocommerce-variation-availability' ),
-						markupHtml       = '',
-						soldIndividually = event.currentTarget.closest( '.sold-individually' );
-
-					if ( ! soldIndividually ) {
-						markupHtml += '<div class="woostify-single-product-stock stock">';
-						if ( woostify_woocommerce_variable_product_data && woostify_woocommerce_variable_product_data.stock_label ) {
-							markupHtml += '<span class="woostify-single-product-stock-label">' + woostify_woocommerce_variable_product_data.stock_label.replace( '%s', variation.max_qty ) + '</span>';
-						}
-						markupHtml += '<div class="woostify-product-stock-progress">';
-						markupHtml += '<span class="woostify-single-product-stock-progress-bar" data-number="' + inStock + '"></span>';
-						markupHtml += '</div>';
-						markupHtml += '</div>';
-
-						if ( availability ) {
-							availability.innerHTML = markupHtml;
-						}
-					}
-
-					// Re-init stock progress bar.
-					if ( 'function' === typeof( woostifyStockQuantityProgressBar ) ) {
-						setTimeout(
-							function() {
-								woostifyStockQuantityProgressBar();
-							},
-							200
-						)
-					}
+				// Re-init stock progress bar.
+				if ( variation.max_qty && 'function' === typeof( woostifyStockQuantityProgressBar ) ) {
+					setTimeout(
+						function() {
+							woostifyStockQuantityProgressBar();
+						},
+						200
+					);
 				}
 
 				// Remove label out of stock.
