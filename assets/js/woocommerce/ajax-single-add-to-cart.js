@@ -40,6 +40,21 @@ function woostifyAjaxSingleAddToCartButton() {
 				function( e ) {
 					e.preventDefault();
 
+					var giftWrap     = form.querySelector( '[name="wcgwp_action"]' ),
+						cartItemData = {};
+					if ( giftWrap ) {
+						var giftProduct = form.querySelector( '[name="wcgwp_single_product"]:checked' ),
+							giftNote    = form.querySelector( '[name="wcgwp_single_product_note"]' );
+
+						if ( giftProduct ) {
+							cartItemData['gift_product_id'] = giftProduct.value;
+						}
+
+						if ( giftNote ) {
+							cartItemData['gift_product_note'] = giftNote.value.trim();
+						}
+					}
+
 					var quantity = input ? parseInt( input.value ) : 0;
 
 					// For variations product.
@@ -92,7 +107,7 @@ function woostifyAjaxSingleAddToCartButton() {
 						woostify_ajax_single_add_to_cart_data.ajax_url,
 						{
 							method: 'POST',
-							body: 'action=single_add_to_cart&ajax_nonce=' + woostify_ajax_single_add_to_cart_data.ajax_nonce + '&product_id=' + productId + '&product_qty=' + quantity + '&variation_id=' + variationId + '&variations=' + JSON.stringify( items ),
+							body: 'action=single_add_to_cart&ajax_nonce=' + woostify_ajax_single_add_to_cart_data.ajax_nonce + '&product_id=' + productId + '&product_qty=' + quantity + '&variation_id=' + variationId + '&variations=' + JSON.stringify( items ) + '&cart_item_data=' + JSON.stringify( cartItemData ),
 							credentials: 'same-origin',
 							headers: new Headers(
 								{
