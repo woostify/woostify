@@ -137,8 +137,12 @@ class Woostify_Get_CSS {
 			@media ( min-width: 992px ) {
 				.primary-navigation a{
 					font-family: ' . esc_attr( $options['menu_font_family'] ) . ';
-					font-weight: ' . esc_attr( $options['menu_font_weight'] ) . ';
 					text-transform: ' . esc_attr( $options['menu_font_transform'] ) . ';
+				}
+
+				.primary-navigation > li > a,
+				.primary-navigation .sub-menu a {
+					font-weight: ' . esc_attr( $options['menu_font_weight'] ) . ';
 				}
 
 				.primary-navigation > li > a{
