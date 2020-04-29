@@ -192,7 +192,11 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 							</option>
 
 							<option value="full-width" <?php selected( $site_container, 'full-width' ); ?> >
-								<?php esc_html_e( 'Full Width', 'woostify' ); ?>
+								<?php esc_html_e( 'Full Width / Contained', 'woostify' ); ?>
+							</option>
+
+							<option value="full-width-stretched" <?php selected( $site_container, 'full-width' ); ?> >
+								<?php esc_html_e( 'Full Width / Stretched', 'woostify' ); ?>
 							</option>
 						</select>
 					</div>
