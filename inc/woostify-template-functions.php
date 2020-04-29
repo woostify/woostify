@@ -2069,8 +2069,47 @@ if ( ! function_exists( 'woostify_content_close' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_site_container' ) ) {
+if ( ! function_exists( 'woostify_get_site_container_class' ) ) {
+	/**
+	 * Get site container class
+	 */
+	function woostify_get_site_container_class() {
+		$options   = woostify_options( false );
+		$metabox   = woostify_get_metabox( false, 'site-container' ); // Metabox container.
+		$container = 'default';
 
+		if ( woostify_is_woocommerce_activated() && is_shop() ) {
+			$container = $options['shop_container'];
+		} elseif ( woostify_is_woocommerce_activated() && is_singular( 'product' ) ) {
+			$container = $options['shop_single_container'];
+		} elseif ( is_page() ) {
+			$container = $options['page_container'];
+		} elseif ( is_singular( 'post' ) ) {
+			$container = $options['blog_single_container'];
+		} elseif ( is_archive() || is_search() || is_author() || is_category() || is_home() || is_tag() ) {
+			$container = $options['archive_container'];
+		}
+
+		// Customizer container.
+		if ( 'default' === $container ) {
+			$container = $options['default_container'];
+		}
+
+		// Metabox in post and page.
+		if ( 'default' !== $metabox ) {
+			$container = $metabox;
+		}
+
+		// Fallback.
+		if ( ! in_array( $container, array( 'normal', 'boxed', 'full-width', 'full-width-stretched' ), true ) ) {
+			$container = $options['default_container'];
+		}
+
+		return 'site-' . $container . '-container';
+	}
+}
+
+if ( ! function_exists( 'woostify_site_container' ) ) {
 	/**
 	 * Woostify site container
 	 *
@@ -2084,10 +2123,7 @@ if ( ! function_exists( 'woostify_site_container' ) ) {
 		$page_id           = woostify_get_page_id();
 		$metabox_container = woostify_get_metabox( false, 'site-container' );
 
-		if (
-			( 'default' !== $metabox_container && 'full-width' === $metabox_container ) ||
-			( 'default' === $metabox_container && 'full-width' === $options['default_container'] )
-		) {
+		if ( 'full-width' === $metabox_container || ( 'default' === $metabox_container && 'full-width' === $options['default_container'] ) ) {
 			$container = 'woostify-container container-fluid';
 		}
 

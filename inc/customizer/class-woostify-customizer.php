@@ -58,7 +58,13 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		public static function woostify_get_woostify_default_setting_values() {
 			$args = array(
 				// CONTAINER.
+				'container_width'                         => '1200',
 				'default_container'                       => 'normal',
+				'page_container'                          => 'default',
+				'blog_single_container'                   => 'default',
+				'archive_container'                       => 'default',
+				'shop_container'                          => 'default',
+				'shop_single_container'                   => 'default',
 				// LOGO.
 				'retina_logo'                             => '',
 				'logo_mobile'                             => '',

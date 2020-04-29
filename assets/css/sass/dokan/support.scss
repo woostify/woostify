@@ -9,10 +9,6 @@
 .dokan-dashboard {
 	&.single-product {
 		#content {
-			.woostify-container {
-				@extend .container;
-			}
-
 			.content-top {
 				margin-bottom: 3.5em;
 			}

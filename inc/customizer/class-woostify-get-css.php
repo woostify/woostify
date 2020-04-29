@@ -36,6 +36,17 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// Container.
+		$styles .= '
+			@media (min-width: 992px) {
+				.site-normal-container .woostify-container,
+				.site-boxed-container #view,
+				.single-product.site-normal-container .site-content > .woostify-container {
+					max-width: ' . esc_attr( $options['container_width'] ) . 'px;
+				}
+			}
+		';
+
 		// Logo width.
 		$logo_width        = $options['logo_width'];
 		$tablet_logo_width = $options['tablet_logo_width'];

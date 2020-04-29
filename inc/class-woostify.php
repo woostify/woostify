@@ -702,10 +702,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			}
 
 			// Site container layout.
-			$customizer_container = $options['default_container'];
-			$metabox_container    = woostify_get_metabox( false, 'site-container' );
-			$container            = 'default' !== $metabox_container ? $metabox_container : $customizer_container;
-			$classes[]            = 'site-' . $container . '-container';
+			$classes[] = woostify_get_site_container_class();
 
 			// Header layout.
 			$classes[] = apply_filters( 'woostify_has_header_layout_classes', 'has-header-layout-1' );

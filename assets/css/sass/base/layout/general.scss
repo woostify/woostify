@@ -1,9 +1,9 @@
-/* Content full-width */
-.elementor-template-full-width{
-	&:not(.single-product){
-		#content{
-			.woostify-container{
-				width: 100%;
+// Content full-width
+.elementor-template-full-width {
+	&:not(.single-product) {
+		#content {
+			.woostify-container {
+				max-width: 100%;
 				padding-left: 0;
 				padding-right: 0;
 			}
@@ -11,45 +11,43 @@
 	}
 }
 
-/* Site container */
-.site-boxed-container{
-	#view{
-		margin: 50px;
-	}
-}
-
-.site-normal-container,
-.site-boxed-container {
-	.woostify-container{
-		@extend .container;
-	}
-}
-
-.woostify-container{
-	@extend .clearfix;
-	max-width: 100%;
-	&:not(.container-fluid) {
-		@extend .container;
-	}
-	&.container-fluid{
+// Site container
+.site-full-width-stretched-container {
+	.woostify-container {
 		padding-left: 0;
 		padding-right: 0;
 	}
 }
 
-#view{
+.site-boxed-container {
+	#view {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.woostify-container {
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+	@extend .clearfix;
+}
+
+#view {
 	position: relative;
 	overflow-x: hidden;
 	background-color: #fff;
-	@include transition( all 0.3s );
+	@include transition(all 0.3s);
 }
 
-.site-content{
+.site-content {
 	margin: 3.5em 0;
 	@extend .clearfix;
 
 	.elementor-page &,
-	.edited-by-divi-builder &{
+	.edited-by-divi-builder & {
 		margin: 0;
 	}
 
@@ -57,9 +55,10 @@
 		margin-top: 0;
 	}
 }
-/* 404 */
-.error404{
-	.site-content{
+
+// 404
+.error404 {
+	.site-content {
 		margin-top: 0;
 		min-height: 500px;
 		background-repeat: no-repeat;
@@ -67,10 +66,12 @@
 		background-size: cover;
 		@extend .flex;
 	}
-	.site-footer{
+
+	.site-footer {
 		margin-top: 0;
 	}
-	.error-404-text{
+
+	.error-404-text {
 		max-width: 320px;
 		margin: 0 auto;
 		font-size: 18px;
@@ -79,11 +80,12 @@
 }
 
 
-/* search */
-.search-no-results{
+// search
+.search-no-results {
+
 	.search-form,
-	.woocommerce-product-search{
-		.search-field{
+	.woocommerce-product-search {
+		.search-field {
 			border-radius: 5px;
 		}
 	}
