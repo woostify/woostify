@@ -238,29 +238,40 @@
 		border: 0;
 		width: 100%;
 
+		tr {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: nowrap;
+			border-bottom: 1px solid #ddd;
+
+			th,
+			td {
+				border: 0;
+				padding-left: 0;
+				padding-right: 0;
+				display: block;
+
+				&:last-child {
+					text-align: right;
+				}
+			}
+		}
+
 		tbody {
-
-			td,
-			th {
-				border: 0;
+			th,
+			td {
+				&:last-child {
+					white-space: nowrap;
+					margin-left: 10px;
+				}
 			}
 		}
 
-		.cart-subtotal {
-			th {
-				border: 0;
-			}
-		}
+		.woocommerce-shipping-totals {
+			flex-direction: column;
 
-		td,
-		th {
-			padding-left: 0;
-			padding-right: 0;
-			border-left: 0;
-			border-right: 0;
-
-			&:last-child {
-				text-align: right
+			td {
+				text-align: left !important;
 			}
 		}
 	}
@@ -293,13 +304,8 @@
 	}
 
 	#shipping_method {
-		text-align: right;
-
 		input[type="radio"] {
-			float: right;
-			margin-right: 0;
-			margin-top: 4px;
-			margin-left: 10px;
+			margin-right: 10px;
 		}
 	}
 }

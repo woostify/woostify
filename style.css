@@ -9886,26 +9886,38 @@ footer#colophon {
   width: 100%;
 }
 
-#order_review .shop_table tbody td,
-#order_review .shop_table tbody th {
-  border: 0;
+#order_review .shop_table tr {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid #ddd;
 }
 
-#order_review .shop_table .cart-subtotal th {
+#order_review .shop_table tr th,
+#order_review .shop_table tr td {
   border: 0;
-}
-
-#order_review .shop_table td,
-#order_review .shop_table th {
   padding-left: 0;
   padding-right: 0;
-  border-left: 0;
-  border-right: 0;
+  display: block;
 }
 
-#order_review .shop_table td:last-child,
-#order_review .shop_table th:last-child {
+#order_review .shop_table tr th:last-child,
+#order_review .shop_table tr td:last-child {
   text-align: right;
+}
+
+#order_review .shop_table tbody th:last-child,
+#order_review .shop_table tbody td:last-child {
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+#order_review .shop_table .woocommerce-shipping-totals {
+  flex-direction: column;
+}
+
+#order_review .shop_table .woocommerce-shipping-totals td {
+  text-align: left !important;
 }
 
 #order_review li {
@@ -9929,15 +9941,8 @@ footer#colophon {
   padding: 30px 0;
 }
 
-.woocommerce-checkout-review-order-table #shipping_method {
-  text-align: right;
-}
-
 .woocommerce-checkout-review-order-table #shipping_method input[type="radio"] {
-  float: right;
-  margin-right: 0;
-  margin-top: 4px;
-  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #ship-to-different-address {
