@@ -41,7 +41,6 @@ class Woostify_Get_CSS {
 			@media (min-width: 992px) {
 				.site-normal-container .woostify-container,
 				.site-boxed-container #view,
-				.single-product.site-normal-container .site-content > .woostify-container,
 				.site-header .woostify-container {
 					max-width: ' . esc_attr( $options['container_width'] ) . 'px;
 				}
