@@ -8147,7 +8147,7 @@ footer#colophon {
 
 .single-product .star-rating {
   vertical-align: text-top;
-  margin-right: 7px;
+  margin-right: 17px;
 }
 
 .single-product .summary .yith-wcwl-add-to-wishlist {
@@ -8749,6 +8749,11 @@ footer#colophon {
   display: none;
 }
 
+.woocommerce-tabs .woocommerce-verification-required {
+  font-weight: 700;
+  margin-top: 40px;
+}
+
 .woocommerce-tabs .commentlist {
   padding-left: 0;
   margin: 0;
@@ -8759,6 +8764,10 @@ footer#colophon {
 }
 
 .woocommerce-tabs .commentlist li + li {
+  margin-top: 30px;
+}
+
+.woocommerce-tabs .commentlist .children {
   margin-top: 30px;
 }
 
@@ -8784,7 +8793,6 @@ footer#colophon {
 }
 
 .woocommerce-tabs .comment_container .meta {
-  margin-left: 10px;
   margin-bottom: 0;
   display: inline-block;
   height: 16px;

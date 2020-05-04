@@ -93,7 +93,7 @@
 
 	.star-rating {
 		vertical-align: text-top;
-		margin-right: 7px;
+		margin-right: 17px;
 	}
 
 	.summary {
@@ -778,6 +778,11 @@
 		display: none;
 	}
 
+	.woocommerce-verification-required {
+		font-weight: 700;
+		margin-top: 40px;
+	}
+
 	.commentlist {
 		padding-left: 0;
 		margin: 0;
@@ -788,6 +793,10 @@
 			+li {
 				margin-top: 30px;
 			}
+		}
+
+		.children {
+			margin-top: 30px;
 		}
 	}
 
@@ -812,7 +821,6 @@
 		}
 
 		.meta {
-			margin-left: 10px;
 			margin-bottom: 0;
 			display: inline-block;
 			height: 16px;
