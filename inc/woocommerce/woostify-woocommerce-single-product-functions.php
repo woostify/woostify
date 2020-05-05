@@ -701,7 +701,7 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		$count = WC()->cart->get_cart_contents_count();
 
 		ob_start();
-		woocommerce_mini_cart();
+		woostify_mini_cart();
 		$response['item']    = $count;
 		$response['total']   = WC()->cart->get_cart_total();
 		$response['content'] = ob_get_clean();

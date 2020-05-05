@@ -223,13 +223,101 @@ if ( ! function_exists( 'woostify_woocommerce_pagination' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_mini_cart' ) ) {
+	/**
+	 * Mini cart
+	 */
+	function woostify_mini_cart() {
+		if ( ! woostify_is_woocommerce_activated() ) {
+			return;
+		}
+
+		do_action( 'woostify_before_mini_cart' );
+
+		if ( ! WC()->cart->is_empty() ) {
+			?>
+			<ul class="woocommerce-mini-cart cart_list product_list_widget">
+				<?php
+				do_action( 'woostify_before_mini_cart_contents' );
+
+				foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+					$_product   = apply_filters( 'woostify_mini_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+					$product_id = apply_filters( 'woostify_mini_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+
+					if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 ) {
+						$product_name      = apply_filters( 'woostify_mini_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
+						$thumbnail         = apply_filters( 'woostify_mini_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+						$product_price     = apply_filters( 'woostify_mini_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+						$product_permalink = apply_filters( 'woostify_mini_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+						?>
+						<li class="woocommerce-mini-cart-item mini_cart_item">
+							<?php
+							echo wp_kses_post(
+								apply_filters(
+									'woostify_mini_cart_item_remove_link',
+									sprintf(
+										'<a href="%s" class="remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times;</a>',
+										esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
+										esc_attr__( 'Remove this item', 'woostify' ),
+										esc_attr( $product_id ),
+										esc_attr( $cart_item_key ),
+										esc_attr( $_product->get_sku() )
+									),
+									$cart_item_key
+								)
+							);
+							?>
+							<?php if ( empty( $product_permalink ) ) : ?>
+								<?php echo $thumbnail . $product_name; // phpcs:ignore ?>
+							<?php else : ?>
+								<a href="<?php echo esc_url( $product_permalink ); ?>">
+									<?php echo $thumbnail . $product_name; // phpcs:ignore ?>
+								</a>
+							<?php endif; ?>
+							<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore ?>
+							<?php echo apply_filters( 'woostify_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); // phpcs:ignore ?>
+						</li>
+						<?php
+					}
+				}
+
+				do_action( 'woostify_mini_cart_contents' );
+				?>
+			</ul>
+
+			<p class="woocommerce-mini-cart__total total">
+				<?php
+				/**
+				 * Hook: woocommerce_widget_shopping_cart_total.
+				 *
+				 * @hooked woocommerce_widget_shopping_cart_subtotal - 10
+				 */
+				do_action( 'woocommerce_widget_shopping_cart_total' );
+				?>
+			</p>
+
+			<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
+
+			<p class="woocommerce-mini-cart__buttons buttons"><?php do_action( 'woocommerce_widget_shopping_cart_buttons' ); ?></p>
+
+			<?php
+			do_action( 'woostify_widget_shopping_cart_after_buttons' );
+		} else {
+			?>
+			<p class="woocommerce-mini-cart__empty-message"><?php esc_html_e( 'No products in the cart.', 'woostify' ); ?></p>
+			<?php
+		}
+
+		do_action( 'woostify_after_mini_cart' );
+	}
+}
+
 if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 	/**
 	 * Cart sidebar
 	 */
 	function woostify_woocommerce_cart_sidebar() {
-		global $woocommerce;
-		$total = $woocommerce->cart->cart_contents_count;
+		$total = WC()->cart->cart_contents_count;
 		?>
 			<div id="shop-cart-sidebar">
 				<div class="cart-sidebar-head">
@@ -239,7 +327,7 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 				</div>
 
 				<div class="cart-sidebar-content">
-					<?php woocommerce_mini_cart(); ?>
+					<?php woostify_mini_cart(); ?>
 				</div>
 			</div>
 		<?php
@@ -572,7 +660,7 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 
 		// Get mini cart content.
 		ob_start();
-		woocommerce_mini_cart();
+		woostify_mini_cart();
 		$mini_cart = ob_get_clean();
 
 		// Cart item count.
