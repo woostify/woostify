@@ -123,7 +123,8 @@ class Woostify_Get_CSS {
 			.has-woostify-text-color,
 			.clear-cart-btn,
 			.button.loop-add-to-cart-icon-btn,
-			.loop-wrapper-wishlist a{
+			.loop-wrapper-wishlist a,
+			#order_review .shop_table .product-name {
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
@@ -237,7 +238,11 @@ class Woostify_Get_CSS {
 			.has-woostify-heading-color,
 			.woocommerce-table--order-details td,
 			.woocommerce-table--order-details td.product-name a,
-			.has-distraction-free-checkout .site-header .site-branding:after{
+			.has-distraction-free-checkout .site-header .site-branding:after,
+			#order_review .shop_table th,
+			#order_review .shop_table th.product-name,
+			#order_review .shop_table .woocommerce-Price-amount,
+			#order_review .shop_table .product-quantity{
 				color: ' . esc_attr( $options['heading_color'] ) . ';
 			}
 
@@ -394,6 +399,7 @@ class Woostify_Get_CSS {
 			.has-multi-step-checkout .multi-step-item,
 			#secondary .chosen a,
 			#secondary .chosen .count,
+			#order_review .shop_table .order-total .woocommerce-Price-amount,
 			a:hover{
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}

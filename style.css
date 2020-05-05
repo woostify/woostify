@@ -9891,6 +9891,10 @@ footer#colophon {
   width: 100%;
 }
 
+#order_review .shop_table th {
+  font-weight: 600;
+}
+
 #order_review .shop_table tr {
   display: flex;
   justify-content: space-between;
@@ -9913,6 +9917,11 @@ footer#colophon {
 
 #order_review .shop_table thead th {
   margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+#order_review .shop_table tbody tr {
+  align-items: center;
 }
 
 #order_review .shop_table tbody th,
@@ -9927,10 +9936,19 @@ footer#colophon {
   margin-left: 10px;
 }
 
+#order_review .shop_table tfoot th {
+  font-size: 15px;
+}
+
 #order_review .shop_table .cart-subtotal th,
 #order_review .shop_table .cart-subtotal td {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+#order_review .shop_table .order-total th,
+#order_review .shop_table .order-total td {
+  font-size: 18px;
 }
 
 #order_review .shop_table .woocommerce-shipping-totals {
@@ -9956,10 +9974,6 @@ footer#colophon {
 
 .woocommerce-checkout-review-order-table .product-name strong {
   font-weight: normal;
-}
-
-.woocommerce-checkout-review-order-table .order-total th {
-  font-weight: 700;
 }
 
 .woocommerce-checkout-review-order-table .order-total th,

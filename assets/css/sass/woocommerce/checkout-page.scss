@@ -238,6 +238,10 @@
 		border: 0;
 		width: 100%;
 
+		th {
+			font-weight: 600;
+		}
+
 		tr {
 			display: flex;
 			justify-content: space-between;
@@ -260,10 +264,15 @@
 		thead {
 			th {
 				margin-bottom: 10px;
+				text-transform: uppercase;
 			}
 		}
 
 		tbody {
+			tr {
+				align-items: center;
+			}
+
 			th,
 			td {
 				padding-top: 10px;
@@ -276,11 +285,24 @@
 			}
 		}
 
+		tfoot {
+			th {
+				font-size: 15px;
+			}
+		}
+
 		.cart-subtotal {
 			th,
 			td {
 				padding-top: 10px;
 				padding-bottom: 10px;
+			}
+		}
+
+		.order-total {
+			th,
+			td {
+				font-size: 18px;
 			}
 		}
 
@@ -315,10 +337,6 @@
 	}
 
 	.order-total {
-		th {
-			font-weight: 700;
-		}
-
 		th,
 		td {
 			padding: 20px 0;
