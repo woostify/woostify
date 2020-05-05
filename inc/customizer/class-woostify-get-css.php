@@ -312,7 +312,7 @@ class Woostify_Get_CSS {
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
 			}
 
-			.cart .quantity,
+			.cart:not(.elementor-menu-cart__products) .quantity,
 			.clear-cart-btn,
 			.loop-add-to-cart-on-image+.added_to_cart{
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;

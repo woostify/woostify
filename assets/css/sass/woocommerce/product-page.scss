@@ -577,7 +577,7 @@
 	}
 }
 
-.cart {
+.cart:not(.elementor-menu-cart__products) {
 	flex-wrap: wrap $i;
 
 	.quantity {

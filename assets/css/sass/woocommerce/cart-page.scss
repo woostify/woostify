@@ -77,7 +77,7 @@
 	}
 }
 
-.woocommerce-cart-form__contents {
+.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) {
 	border-width: 0;
 	border-collapse: separate;
 	table-layout: auto;

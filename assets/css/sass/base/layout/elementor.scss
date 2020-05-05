@@ -1,4 +1,4 @@
-/* For Elementor preview mode */
+// For Elementor preview mode
 .elementor-editor-active,
 .elementor-editor-preview {
 	.elementor-widget-wp-widget-nav_menu {
@@ -9,5 +9,14 @@
 			margin-top: 0;
 			margin-bottom: 0;
 		}
+	}
+}
+
+// For Elementor Mini cart
+.elementor-menu-cart__products {
+	.quantity {
+		width: auto;
+		height: auto;
+		background: none;
 	}
 }
