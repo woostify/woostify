@@ -341,11 +341,6 @@ class Woostify_Get_CSS {
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ' !important;
 			}
 
-			.single_add_to_cart_button:not(.disabled),
-			.checkout-button{
-				box-shadow: 0px 10px 40px 0px ' . woostify_hex_to_rgba( esc_attr( $options['button_background_color'] ), 0.3 ) . ';
-			}
-
 			@media ( max-width: 600px ) {
 				.woocommerce-cart-form__contents [name="update_cart"],
 				.woocommerce-cart-form__contents .coupon button,
