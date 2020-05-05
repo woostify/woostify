@@ -257,9 +257,18 @@
 			}
 		}
 
+		thead {
+			th {
+				margin-bottom: 10px;
+			}
+		}
+
 		tbody {
 			th,
 			td {
+				padding-top: 10px;
+				padding-bottom: 10px;
+
 				&:last-child {
 					white-space: nowrap;
 					margin-left: 10px;
@@ -267,13 +276,26 @@
 			}
 		}
 
+		.cart-subtotal {
+			th,
+			td {
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+		}
+
 		.woocommerce-shipping-totals {
 			flex-direction: column;
+			padding-top: 5px;
 
 			td {
 				text-align: left !important;
 			}
 		}
+	}
+
+	#shipping_method {
+		margin-top: 0;
 	}
 
 	li {
@@ -299,7 +321,7 @@
 
 		th,
 		td {
-			padding: 30px 0;
+			padding: 20px 0;
 		}
 	}
 
