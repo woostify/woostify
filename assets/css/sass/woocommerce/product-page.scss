@@ -41,10 +41,13 @@
 .single-product {
 	// Site container
 	&.site-normal-container {
-		.site-content {
-			> .woostify-container {
-				@media (min-width: $screen-md) {
-					max-width: 100%;
+		// No sidebar
+		&.no-sidebar {
+			.site-content {
+				> .woostify-container {
+					@media (min-width: $screen-md) {
+						max-width: 100%;
+					}
 				}
 			}
 		}
