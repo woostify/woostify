@@ -1965,33 +1965,37 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 
 				// My account icon.
 				if ( $options['header_account_icon'] ) {
+					$subbox = apply_filters( 'woostify_header_account_subbox', false );
 					?>
 					<div class="tools-icon my-account">
 						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon <?php echo esc_attr( $my_account_icon ); ?>"></a>
-						<div class="subbox">
-							<ul>
-								<?php
-								do_action( 'woostify_header_account_subbox_start' );
 
-								if ( ! is_user_logged_in() ) {
-									?>
-									<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
-								<?php } else { ?>
-									<li>
-										<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-									</li>
-
-									<?php do_action( 'woostify_header_account_subbox_before_logout' ); ?>
-
-									<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
-									</li>
+						<?php if ( $subbox ) { ?>
+							<div class="subbox">
+								<ul>
 									<?php
+									do_action( 'woostify_header_account_subbox_start' );
 
-									do_action( 'woostify_header_account_subbox_end' );
-								}
-								?>
-							</ul>
-						</div>
+									if ( ! is_user_logged_in() ) {
+										?>
+										<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
+									<?php } else { ?>
+										<li>
+											<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
+										</li>
+
+										<?php do_action( 'woostify_header_account_subbox_before_logout' ); ?>
+
+										<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
+										</li>
+										<?php
+
+										do_action( 'woostify_header_account_subbox_end' );
+									}
+									?>
+								</ul>
+							</div>
+						<?php } ?>
 					</div>
 					<?php
 				}
