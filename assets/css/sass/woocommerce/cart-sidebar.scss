@@ -84,6 +84,7 @@ $media: 599px;
     background: #fff;
     visibility: hidden;
     pointer-events: none;
+    will-change: transform;
     @include translatex( 100% );
     @include transition( all 0.3s );
 

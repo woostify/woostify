@@ -346,20 +346,6 @@
 	@media (min-width: $screen-sm) {
 		text-align: right;
 	}
-
-	.clear-cart-btn {
-		height: 40px;
-		line-height: 40px;
-		display: inline-block;
-		padding-top: 0;
-		padding-bottom: 0;
-		font-weight: 600;
-
-		@media (max-width: $screen-sm - 1) {
-			width: 100%;
-			float: left;
-		}
-	}
 }
 
 .cart-collaterals {
