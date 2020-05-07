@@ -9578,7 +9578,7 @@ footer#colophon {
     justify-content: space-between;
     align-items: center;
     text-align: left !important;
-    padding: 10px 0;
+    padding: 5px 0;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) tbody tr td:before, .cart.wishlist_table:not(.elementor-menu-cart__products) tbody tr td:before {
     content: attr(data-title);
@@ -9623,7 +9623,17 @@ footer#colophon {
     font-weight: 700;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .quantity, .cart.wishlist_table:not(.elementor-menu-cart__products) .quantity {
-    height: 40px;
+    height: 30px;
+    font-size: 12px;
+    max-width: 80px;
+  }
+  .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .quantity .product-qty, .cart.wishlist_table:not(.elementor-menu-cart__products) .quantity .product-qty {
+    max-width: 30px;
+  }
+  .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .quantity .qty, .cart.wishlist_table:not(.elementor-menu-cart__products) .quantity .qty {
+    text-align: center;
+    padding: 0;
+    font-size: 12px;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions, .cart.wishlist_table:not(.elementor-menu-cart__products) .actions {
     padding-top: 30px;

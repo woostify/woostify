@@ -237,7 +237,7 @@ class Woostify_Get_CSS {
 			.woocommerce-table--order-details td,
 			.woocommerce-table--order-details td.product-name a,
 			.has-distraction-free-checkout .site-header .site-branding:after,
-			.woocommerce-cart-form__contents thead th:not(.product-subtotal),
+			.woocommerce-cart-form__contents thead th,
 			#order_review .shop_table th,
 			#order_review .shop_table th.product-name,
 			#order_review .shop_table .product-quantity {
@@ -359,7 +359,7 @@ class Woostify_Get_CSS {
 			.primary-navigation > li.current-menu-parent > a,
 			.primary-navigation > li.current_page_parent > a,
 			.primary-navigation > li.current_page_ancestor > a,
-			.woocommerce-cart-form__contents .product-subtotal,
+			.woocommerce-cart-form__contents tbody .product-subtotal,
 			.woocommerce-checkout-review-order-table .order-total,
 			.woocommerce-table--order-details .product-name a,
 			.primary-navigation a:hover,
