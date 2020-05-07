@@ -9598,19 +9598,17 @@ footer#colophon {
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-remove, .cart.wishlist_table:not(.elementor-menu-cart__products) .product-remove, .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-thumbnail, .cart.wishlist_table:not(.elementor-menu-cart__products) .product-thumbnail {
     position: absolute;
     border-bottom: 0;
+    top: 0;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-thumbnail, .cart.wishlist_table:not(.elementor-menu-cart__products) .product-thumbnail {
     justify-content: center;
     left: 0;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-thumbnail img, .cart.wishlist_table:not(.elementor-menu-cart__products) .product-thumbnail img {
     max-width: 70px;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-remove, .cart.wishlist_table:not(.elementor-menu-cart__products) .product-remove {
     right: 0;
-    top: 0;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-remove a, .cart.wishlist_table:not(.elementor-menu-cart__products) .product-remove a {
     background-color: rgba(0, 0, 0, 0);

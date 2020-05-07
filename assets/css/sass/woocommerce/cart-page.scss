@@ -345,13 +345,12 @@
 		.product-thumbnail {
 			position: absolute;
 			border-bottom: 0;
+			top: 0;
 		}
 
 		.product-thumbnail {
 			justify-content: center;
 			left: 0;
-			top: 50%;
-			transform: translateY(-50%);
 
 			img {
 				max-width: 70px;
@@ -360,7 +359,6 @@
 
 		.product-remove {
 			right: 0;
-			top: 0;
 
 			a {
 				background-color: $tr;
