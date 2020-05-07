@@ -1965,7 +1965,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 
 				// My account icon.
 				if ( $options['header_account_icon'] ) {
-					$subbox = apply_filters( 'woostify_header_account_subbox', false );
+					$subbox = apply_filters( 'woostify_header_account_subbox', true );
 					?>
 					<div class="tools-icon my-account">
 						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon <?php echo esc_attr( $my_account_icon ); ?>"></a>
