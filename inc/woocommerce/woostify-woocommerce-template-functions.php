@@ -232,39 +232,37 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 			return;
 		}
 
-		do_action( 'woostify_before_mini_cart' );
+		do_action( 'woocommerce_before_mini_cart' );
 
 		if ( ! WC()->cart->is_empty() ) {
 			?>
 			<ul class="woocommerce-mini-cart cart_list product_list_widget">
 				<?php
-				do_action( 'woostify_before_mini_cart_contents' );
+				do_action( 'woocommerce_before_mini_cart_contents' );
 
 				foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-					$_product   = apply_filters( 'woostify_mini_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-					$product_id = apply_filters( 'woostify_mini_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+					$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+					$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
 					if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 ) {
-						$product_name      = apply_filters( 'woostify_mini_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
-						$thumbnail         = apply_filters( 'woostify_mini_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
-						$product_price     = apply_filters( 'woostify_mini_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
-						$product_permalink = apply_filters( 'woostify_mini_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+						$product_name      = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
+						$thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+						$product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+						$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 						?>
 						<li class="woocommerce-mini-cart-item mini_cart_item">
 							<?php
-							echo wp_kses_post(
-								apply_filters(
-									'woostify_mini_cart_item_remove_link',
-									sprintf(
-										'<a href="%s" class="remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times;</a>',
-										esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
-										esc_attr__( 'Remove this item', 'woostify' ),
-										esc_attr( $product_id ),
-										esc_attr( $cart_item_key ),
-										esc_attr( $_product->get_sku() )
-									),
-									$cart_item_key
-								)
+							echo apply_filters( // phpcs:ignore
+								'woocommerce_cart_item_remove_link',
+								sprintf(
+									'<a href="%s" class="remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times;</a>',
+									esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
+									esc_attr__( 'Remove this item', 'woostify' ),
+									esc_attr( $product_id ),
+									esc_attr( $cart_item_key ),
+									esc_attr( $_product->get_sku() )
+								),
+								$cart_item_key
 							);
 							?>
 							<?php if ( empty( $product_permalink ) ) : ?>
@@ -275,13 +273,13 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 								</a>
 							<?php endif; ?>
 							<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore ?>
-							<?php echo apply_filters( 'woostify_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); // phpcs:ignore ?>
+							<?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); // phpcs:ignore ?>
 						</li>
 						<?php
 					}
 				}
 
-				do_action( 'woostify_mini_cart_contents' );
+				do_action( 'woocommerce_mini_cart_contents' );
 				?>
 			</ul>
 
@@ -301,14 +299,14 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 			<p class="woocommerce-mini-cart__buttons buttons"><?php do_action( 'woocommerce_widget_shopping_cart_buttons' ); ?></p>
 
 			<?php
-			do_action( 'woostify_widget_shopping_cart_after_buttons' );
+			do_action( 'woocommerce_widget_shopping_cart_after_buttons' );
 		} else {
 			?>
 			<p class="woocommerce-mini-cart__empty-message"><?php esc_html_e( 'No products in the cart.', 'woostify' ); ?></p>
 			<?php
 		}
 
-		do_action( 'woostify_after_mini_cart' );
+		do_action( 'woocommerce_after_mini_cart' );
 	}
 }
 
@@ -660,7 +658,7 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 
 		// Get mini cart content.
 		ob_start();
-		woostify_mini_cart();
+		woocommerce_mini_cart();
 		$mini_cart = ob_get_clean();
 
 		// Cart item count.
@@ -795,22 +793,6 @@ if ( ! function_exists( 'woostify_change_cross_sells_columns' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_clear_shop_cart' ) ) {
-	/**
-	 * Add clear shop cart button
-	 */
-	function woostify_clear_shop_cart() {
-		$clear = wc_get_cart_url() . '?empty-cart';
-		?>
-		<div class="clear-cart-box">
-			<a class="clear-cart-btn" href="<?php echo esc_url( $clear ); ?>">
-				<?php esc_html_e( 'Clear Shopping Cart', 'woostify' ); ?>
-			</a>
-		</div>
-		<?php
-	}
-}
-
 if ( ! function_exists( 'woostify_add_product_thumbnail_to_checkout_order' ) ) {
 	/**
 	 * Add thumbnail image for checkout detail
@@ -854,6 +836,20 @@ if ( ! function_exists( 'woostify_check_shipping_method' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_is_multi_checkout' ) ) {
+	/**
+	 * Detect multi checkout page
+	 */
+	function woostify_is_multi_checkout() {
+		if ( ! woostify_is_woocommerce_activated() || is_singular( array( 'cartflows_flow', 'cartflows_step' ) ) ) {
+			return false;
+		}
+
+		$options = woostify_options( false );
+		return ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && $options['checkout_multi_step'] );
+	}
+}
+
 if ( ! function_exists( 'woostify_multi_step_checkout' ) ) {
 	/**
 	 * Multi step checkout
@@ -862,7 +858,7 @@ if ( ! function_exists( 'woostify_multi_step_checkout' ) ) {
 		$container          = woostify_site_container();
 		$disable_multi_step = apply_filters( 'woostify_disable_multi_step_checkout', false );
 
-		if ( $disable_multi_step ) {
+		if ( $disable_multi_step || ! woostify_is_multi_checkout() ) {
 			return;
 		}
 		?>
@@ -895,6 +891,9 @@ if ( ! function_exists( 'woostify_multi_checkout_wrapper_start' ) ) {
 	 * Wrapper start
 	 */
 	function woostify_multi_checkout_wrapper_start() {
+		if ( ! woostify_is_multi_checkout() ) {
+			return;
+		}
 		?>
 		<div class="multi-step-checkout-wrapper first">
 		<?php
@@ -906,6 +905,9 @@ if ( ! function_exists( 'woostify_multi_checkout_wrapper_end' ) ) {
 	 * First step end
 	 */
 	function woostify_multi_checkout_wrapper_end() {
+		if ( ! woostify_is_multi_checkout() ) {
+			return;
+		}
 		?>
 		</div>
 		<?php
@@ -917,6 +919,9 @@ if ( ! function_exists( 'woostify_multi_checkout_first_wrapper_start' ) ) {
 	 * First wrapper start
 	 */
 	function woostify_multi_checkout_first_wrapper_start() {
+		if ( ! woostify_is_multi_checkout() ) {
+			return;
+		}
 		?>
 		<div class="multi-step-checkout-content active" data-step="first">
 		<?php
@@ -928,6 +933,9 @@ if ( ! function_exists( 'woostify_multi_checkout_first_wrapper_end' ) ) {
 	 * First wrapper end
 	 */
 	function woostify_multi_checkout_first_wrapper_end() {
+		if ( ! woostify_is_multi_checkout() ) {
+			return;
+		}
 		?>
 		</div>
 		<?php
@@ -939,7 +947,7 @@ if ( ! function_exists( 'woostify_multi_checkout_second' ) ) {
 	 * Second step
 	 */
 	function woostify_multi_checkout_second() {
-		if ( ! woostify_check_shipping_method() ) {
+		if ( ! woostify_check_shipping_method() || ! woostify_is_multi_checkout() ) {
 			return;
 		}
 		?>
@@ -972,6 +980,9 @@ if ( ! function_exists( 'woostify_multi_checkout_third' ) ) {
 	 * Third step
 	 */
 	function woostify_multi_checkout_third() {
+		if ( ! woostify_is_multi_checkout() ) {
+			return;
+		}
 		?>
 		<div class="multi-step-checkout-content" data-step="last">
 			<div class="multi-step-review-information">
@@ -1011,6 +1022,9 @@ if ( ! function_exists( 'woostify_multi_checkout_button_action' ) ) {
 	 * First step end
 	 */
 	function woostify_multi_checkout_button_action() {
+		if ( ! woostify_is_multi_checkout() ) {
+			return;
+		}
 		?>
 			<div class="multi-step-checkout-button-wrapper">
 				<span class="multi-step-checkout-button ti-angle-left" data-action="back"><?php esc_html_e( 'Back', 'woostify' ); ?></span>
@@ -1031,7 +1045,7 @@ if ( ! function_exists( 'woostify_checkout_before_order_review' ) ) {
 	 */
 	function woostify_checkout_before_order_review() {
 		$cart = WC()->cart->get_cart();
-		if ( empty( $cart ) ) {
+		if ( empty( $cart ) || ! woostify_is_multi_checkout() ) {
 			return;
 		}
 
