@@ -25,6 +25,25 @@ $other_container = array(
 	'full-width-stretched' => __( 'Full Width / Stretched', 'woostify' ),
 );
 
+// Divider.
+$wp_customize->add_setting(
+	'site_container_other_element_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'site_container_other_element_divider',
+		array(
+			'section'  => 'background_image',
+			'settings' => 'site_container_other_element_divider',
+			'type'     => 'divider',
+		)
+	)
+);
+
 // Container width.
 $wp_customize->add_setting(
 	'woostify_setting[container_width]',
@@ -206,22 +225,3 @@ if ( woostify_is_woocommerce_activated() ) {
 		)
 	);
 }
-
-// Divider.
-$wp_customize->add_setting(
-	'site_container_other_element_divider',
-	array(
-		'sanitize_callback' => 'sanitize_text_field',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Divider_Control(
-		$wp_customize,
-		'site_container_other_element_divider',
-		array(
-			'section'  => 'background_image',
-			'settings' => 'site_container_other_element_divider',
-			'type'     => 'divider',
-		)
-	)
-);
