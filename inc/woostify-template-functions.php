@@ -796,14 +796,17 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 				<?php } ?>
 
 				<?php
-				if ( $options['page_header_breadcrumb'] ) {
+				$breadcrumb = class_exists( 'woocommerce' ) && is_shop() ? $options['shop_page_breadcrumb'] : $options['page_header_breadcrumb'];
+				if ( $breadcrumb ) {
 					/**
-					 * Functions hooked in to woostify_page_header_end
+					 * Functions hooked in to woostify_page_header_breadcrumb
 					 *
 					 * @hooked woostify_breadcrumb   - 10
 					 */
-					do_action( 'woostify_page_header_end' );
+					do_action( 'woostify_page_header_breadcrumb' );
 				}
+
+				do_action( 'woostify_page_header_end' );
 				?>
 			</div>
 		</div>
