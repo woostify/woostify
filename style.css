@@ -4381,6 +4381,10 @@ dd {
   border-radius: 5px;
 }
 
+.safari-detected .woostify-product-navigation .product-nav-item-content {
+  align-items: center;
+}
+
 .dialog-search-open {
   overflow: hidden;
 }
