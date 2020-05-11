@@ -8797,13 +8797,20 @@ footer#colophon {
 
 .woocommerce-tabs .comment_container .comment-text {
   flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.woocommerce-tabs .comment_container .comment-text .description {
+  flex: 0 0 100%;
+  margin-top: 15px;
 }
 
 .woocommerce-tabs .comment_container .meta {
   margin-bottom: 0;
   display: inline-block;
-  height: 16px;
-  line-height: 16px;
   vertical-align: text-top;
 }
 
