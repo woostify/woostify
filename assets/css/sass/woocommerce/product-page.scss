@@ -453,8 +453,6 @@
 	}
 
 	.value {
-		max-width: 70%;
-
 		&:before {
 			content: none $i
 		}
@@ -462,6 +460,7 @@
 		@media (min-width: $screen-tablet) {
 			display: flex;
 			align-items: center;
+			flex-wrap: wrap;
 		}
 	}
 
@@ -557,6 +556,10 @@
 	margin-top: 0;
 	font-weight: normal;
 	margin-bottom: 10px;
+
+	&.bundled_product_title {
+		font-size: 1em;
+	}
 }
 
 // Stock
@@ -894,6 +897,13 @@
 		font-size: 18px;
 		font-weight: normal;
 		padding: 25px 0;
+	}
+}
+
+// Product bundle
+.bundled_item_cart_content {
+	.price {
+		font-size: 1em;
 	}
 }
 

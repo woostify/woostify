@@ -43,3 +43,7 @@
 .woostify-section-control .woostify-section-control-arrow:before {
 	transition-duration: 0.1s;
 }
+
+.customize-control {
+	position: relative;
+}

@@ -8436,10 +8436,6 @@ footer#colophon {
   vertical-align: middle;
 }
 
-.variations .value {
-  max-width: 70%;
-}
-
 .variations .value:before {
   content: none !important;
 }
@@ -8448,6 +8444,7 @@ footer#colophon {
   .variations .value {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
   }
 }
 
@@ -8532,6 +8529,10 @@ footer#colophon {
   margin-top: 0;
   font-weight: normal;
   margin-bottom: 10px;
+}
+
+.product_title.bundled_product_title {
+  font-size: 1em;
 }
 
 .woostify-single-product-stock {
@@ -8857,6 +8858,10 @@ footer#colophon {
   font-size: 18px;
   font-weight: normal;
   padding: 25px 0;
+}
+
+.bundled_item_cart_content .price {
+  font-size: 1em;
 }
 
 @media (max-width: 991px) {
