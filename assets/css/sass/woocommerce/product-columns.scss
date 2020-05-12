@@ -1,7 +1,7 @@
 $fake: 0.01px;
 .products {
     clear: both;
-    padding-left: 0;
+    padding: 0;
     margin: 0;
 
     @extend .clearfix;
