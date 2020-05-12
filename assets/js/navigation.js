@@ -72,6 +72,15 @@ function sidebarMenu( node ) {
 	);
 }
 
+// Fallback for other dev.
+function navFallback() {
+	if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
+		return;
+	}
+
+	document.documentElement.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
@@ -79,3 +88,5 @@ document.addEventListener(
 		sidebarMenu();
 	}
 );
+
+window.addEventListener( 'resize', navFallback );
