@@ -379,7 +379,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// Add product thumbnail to review order.
-			if ( $options['checkout_multi_step'] && ! $disable_multi_step ) {
+			if ( $options['checkout_multi_step'] && ! $disable_multi_step && ! is_singular( array( 'cartflows_flow', 'cartflows_step' ) ) ) {
 				add_filter( 'woocommerce_cart_item_name', 'woostify_add_product_thumbnail_to_checkout_order', 10, 3 );
 			}
 		}
