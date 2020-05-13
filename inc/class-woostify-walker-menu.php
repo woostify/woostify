@@ -110,6 +110,7 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 				if ( woostify_is_elementor_page( $item->object_id ) ) {
 					$frontend     = new \Elementor\Frontend();
 					$item_output .= $frontend->get_builder_content( $item->object_id, true );
+					wp_enqueue_style( 'elementor-frontend' );
 				} else {
 					$mega_args = array(
 						'p'                   => $item->object_id,
@@ -123,11 +124,13 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 
 					if ( $query->have_posts() ) {
 						ob_start();
+						echo '<div class="mega-menu-inner-wrapper">';
 						while ( $query->have_posts() ) {
 							$query->the_post();
 
 							the_content();
 						}
+						echo '</div>';
 						$item_output .= ob_get_clean();
 
 						// Reset post data.

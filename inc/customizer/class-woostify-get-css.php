@@ -36,6 +36,17 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// For mega menu.
+		$styles = '
+			.main-navigation .mega-menu-inner-wrapper {
+				width: 100%;
+				max-width: ' . esc_attr( $options['container_width'] ) . 'px;
+				margin: 0 auto;
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+		';
+
 		// Container.
 		$styles .= '
 			@media (min-width: 992px) {
