@@ -45,6 +45,22 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_action( 'customize_preview_init', array( $this, 'woostify_customize_live_preview' ) );
 			add_filter( 'wp_tag_cloud', array( $this, 'woostify_remove_tag_inline_style' ) );
 			add_filter( 'excerpt_more', array( $this, 'woostify_modify_excerpt_more' ) );
+
+			// Compatibility.
+			add_filter( 'the_content', array( $this, 'woostify_modify_the_content' ) );
+		}
+
+		/**
+		 * Modify content
+		 *
+		 * @param      object $content The content.
+		 */
+		public function woostify_modify_the_content( $content ) {
+			if ( ! defined( 'ET_BUILDER_PLUGIN_VERSION' ) ) {
+				return $content;
+			}
+
+			return et_builder_get_layout_opening_wrapper() . $content . et_builder_get_layout_closing_wrapper();
 		}
 
 		/**
