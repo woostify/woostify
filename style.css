@@ -5512,6 +5512,7 @@ footer#colophon {
   clear: both;
 }
 
+.edited-by-divi-builder .site-footer,
 .elementor-page .site-footer {
   margin-top: 0;
 }

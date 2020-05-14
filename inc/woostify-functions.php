@@ -179,17 +179,32 @@ if ( ! function_exists( 'woostify_is_elementor_editor' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_theme_name' ) ) {
+if ( ! function_exists( 'woostify_is_divi_page' ) ) {
 	/**
-	 * Get theme name.
+	 * Get Divi page content
 	 *
-	 * @return string Theme Name.
+	 * @param int $id The page id.
 	 */
-	function woostify_theme_name() {
+	function woostify_is_divi_page( $id = false ) {
+		if ( ! defined( 'ET_BUILDER_PLUGIN_VERSION' ) ) {
+			return false;
+		}
 
-		$theme_name = __( 'Woostify', 'woostify' );
+		if ( ! $id ) {
+			$id = woostify_get_page_id();
+		}
 
-		return apply_filters( 'woostify_theme_name', $theme_name );
+		if ( ! $id ) {
+			return false;
+		}
+
+		$content_post = get_post( $id );
+		$content      = $content_post->post_content;
+		if ( false !== strpos( $content, '<!-- wp:divi/placeholder -->' ) || false !== strpos( $content, '[et_pb_' ) ) {
+			return true;
+		}
+
+		return false;
 	}
 }
 

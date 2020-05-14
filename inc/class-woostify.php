@@ -48,6 +48,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			// Compatibility.
 			add_filter( 'the_content', array( $this, 'woostify_modify_the_content' ) );
+			add_action( 'init', array( $this, 'woostify_override_divi_color_pciker' ), 12 );
 		}
 
 		/**
@@ -61,6 +62,28 @@ if ( ! class_exists( 'Woostify' ) ) {
 			}
 
 			return et_builder_get_layout_opening_wrapper() . $content . et_builder_get_layout_closing_wrapper();
+		}
+
+		/**
+		 * Modify again for Divi, lol
+		 */
+		public function woostify_override_divi_color_pciker() {
+			if ( ! defined( 'ET_BUILDER_PLUGIN_VERSION' ) || ! is_customize_preview() ) {
+				return;
+			}
+
+			wp_localize_script(
+				'wp-color-picker',
+				'wpColorPickerL10n',
+				array(
+					'clear'            => __( 'Clear', 'woostify' ),
+					'clearAriaLabel'   => __( 'Clear color', 'woostify' ),
+					'defaultString'    => __( 'Default', 'woostify' ),
+					'defaultAriaLabel' => __( 'Select default color', 'woostify' ),
+					'pick'             => __( 'Select Color', 'woostify' ),
+					'defaultLabel'     => __( 'Color value', 'woostify' ),
+				)
+			);
 		}
 
 		/**
@@ -737,7 +760,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			}
 
 			// Detect page created by Divi builder.
-			if ( defined( 'ET_BUILDER_PLUGIN_VERSION' ) && is_singular() && false !== strpos( get_queried_object()->post_content, '_builder_version' ) ) {
+			if ( woostify_is_divi_page() ) {
 				$classes[] = 'edited-by-divi-builder';
 			}
 
