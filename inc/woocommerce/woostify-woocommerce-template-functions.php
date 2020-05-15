@@ -243,6 +243,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 				foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 					$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 					$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+					// $bundled_cart_items = wc_pb_get_bundled_cart_items( $cart_item );
 
 					if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 ) {
 						$product_name      = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
@@ -683,12 +684,12 @@ if ( ! function_exists( 'woostify_woocommerce_loop_start' ) ) {
 	function woostify_woocommerce_loop_start() {
 		$options = woostify_options( false );
 		$class[] = 'products';
-		$class[] = apply_filters( 'woostify_product_columns_desktop', 'columns-' . wc_get_loop_prop( 'columns' ) );
-		$class[] = apply_filters( 'woostify_product_columns_tablet', 'tablet-columns-' . $options['tablet_products_per_row'] );
-		$class[] = apply_filters( 'woostify_product_columns_mobile', 'mobile-columns-' . $options['mobile_products_per_row'] );
+		$class[] = 'columns-' . wc_get_loop_prop( 'columns' );
+		$class[] = 'tablet-columns-' . $options['tablet_products_per_row'];
+		$class[] = 'mobile-columns-' . $options['mobile_products_per_row'];
 		$class   = implode( ' ', $class );
 		?>
-		<ul class="<?php echo esc_attr( $class ); ?>">
+		<ul class="<?php echo esc_attr( apply_filters( 'woostify_product_catalog_columns', $class ) ); ?>">
 		<?php
 
 		// If displaying categories, append to the loop.

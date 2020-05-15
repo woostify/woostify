@@ -1,82 +1,77 @@
 $fake: 0.01px;
+
 .products {
-    clear: both;
-    padding: 0;
-    margin: 0;
+	clear: both;
+	padding: 0;
+	margin: 0;
 
-    @extend .clearfix;
+	@extend .clearfix;
 
-    .product {
-        list-style: none;
-        float: left;
-        margin-right: 30px;
-        margin-bottom: 30px;
-        position: relative;
-    }
+	.product {
+		list-style: none;
+		float: left;
+		margin-right: 30px;
+		margin-bottom: 30px;
+		position: relative;
+	}
 
-	@media ( min-width: $screen-md ) {
+	@media (min-width: $screen-md) {
 		&.columns-1 {
-	        .product{
-	            width: 100%;
-	            margin-right: 0;
-	        }
-	    }
+			.product {
+				width: 100%;
+				margin-right: 0;
+			}
+		}
 	}
 
 	/* Desktop */
-    @for $i from 1 through 6 {
-    	@if ( $i > 1 ) {
-    		@media ( min-width: $screen-md ) {
-	    		&.columns-#{ $i } {
-		            .product{
-	                    width: calc( ( 100% - #{ 30px * ( $i - 1 ) } ) / #{ $i } - #{ $fake  } );
+	@for $i from 2 through 6 {
+		@media (min-width: $screen-md) {
+			&.columns-#{ $i } {
+				.product {
+					width: calc((100% - #{ 30px * ( $i - 1 ) }) / #{ $i } - #{ $fake  });
 
-	                    &:nth-of-type( #{ $i }n ) {
-	                    	margin-right: 0;
-	                    }
+					&:nth-of-type(#{ $i }n) {
+						margin-right: 0;
+					}
 
-	                    &:nth-of-type( #{ $i }n + #{ $i + 1 } ) {
-	                        clear: both;
-	                    }
-		            }
-		        }
-	    	}
-    	}
+					&:nth-of-type(#{ $i }n + #{ $i + 1 }) {
+						clear: both;
+					}
+				}
+			}
+		}
 
-    	@if ( $i <= 4 ) {
-    		@media ( min-width: 601px ) and ( max-width: $screen-md - 1 ) {
-	    		&.tablet-columns-#{ $i } {
-		            .product{
-	                    width: calc( ( 100% - #{ 30px * ( $i - 1 ) } ) / #{ $i } - #{ $fake  } );
+		@media (min-width: 601px) and (max-width: $screen-md - 1) {
+			&.tablet-columns-#{ $i } {
+				.product {
+					width: calc((100% - #{ 30px * ( $i - 1 ) }) / #{ $i } - #{ $fake  });
 
-	                    &:nth-of-type( #{ $i }n ) {
-	                    	margin-right: 0;
-	                    }
+					&:nth-of-type(#{ $i }n) {
+						margin-right: 0;
+					}
 
-	                    &:nth-of-type( #{ $i }n + #{ $i + 1 } ) {
-	                        clear: both;
-	                    }
-		            }
-		        }
-	    	}
-    	}
+					&:nth-of-type(#{ $i }n + #{ $i + 1 }) {
+						clear: both;
+					}
+				}
+			}
+		}
 
-    	@if ( $i <= 3 ) {
-    		@media ( max-width: 600px ) {
-	    		&.mobile-columns-#{ $i } {
-		            .product{
-	                    width: calc( ( 100% - #{ 30px * ( $i - 1 ) } ) / #{ $i } - #{ $fake  } );
+		@media (max-width: 600px) {
+			&.mobile-columns-#{ $i } {
+				.product {
+					width: calc((100% - #{ 30px * ( $i - 1 ) }) / #{ $i } - #{ $fake  });
 
-	                    &:nth-of-type( #{ $i }n ) {
-	                    	margin-right: 0;
-	                    }
+					&:nth-of-type(#{ $i }n) {
+						margin-right: 0;
+					}
 
-	                    &:nth-of-type( #{ $i }n + #{ $i + 1 } ) {
-	                        clear: both;
-	                    }
-		            }
-		        }
-	    	}
-    	}
-    }
+					&:nth-of-type(#{ $i }n + #{ $i + 1 }) {
+						clear: both;
+					}
+				}
+			}
+		}
+	}
 }
