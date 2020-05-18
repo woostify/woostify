@@ -4349,6 +4349,7 @@ dd {
 }
 
 .elementor-page .site-content,
+.elementor-default.woocommerce .site-content,
 .edited-by-divi-builder .site-content {
   margin: 0;
 }
