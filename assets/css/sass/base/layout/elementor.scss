@@ -20,3 +20,14 @@
 		background: none;
 	}
 }
+
+// Posts widget pro issue
+.site-main{
+	.elementor-widget-posts {
+		.post{
+	        +.post{
+	            margin-top: 0;
+	        }
+	    }
+	}
+}

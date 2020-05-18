@@ -6280,6 +6280,10 @@ footer#colophon {
   background: none;
 }
 
+.site-main .elementor-widget-posts .post + .post {
+  margin-top: 0;
+}
+
 .home.blog .site-main .post:first-child:last-child {
   border-bottom: 0;
 }
