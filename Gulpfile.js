@@ -20,7 +20,7 @@ let theme       = 'woostify',
 	sourcemaps  = require( 'gulp-sourcemaps' ),
 	globbing    = require( 'gulp-css-globbing' ),
 	concat      = require( 'gulp-concat' ),
-	uglify      = require( 'gulp-uglify' ),
+	uglify      = require( 'gulp-uglify-es' ).default,
 	rename      = require( 'gulp-rename' ),
 	vinylBuffer = require( 'vinyl-buffer' ),
 	debug       = require( 'gulp-debug' );
@@ -98,9 +98,9 @@ gulp.task( 'pot', _pot );
 // Min js file.
 let _minJs = ( done ) => {
 	gulp.src( [ 'assets/js/**/*.js', '!assets/js/**/*.min.js'] )
-		.pipe( uglify() )
-		.on( 'error', err => { console.log( err ) } )
 		.pipe( rename( { suffix: '.min' } ) )
+		.on( 'error', err => { console.log( err ) } )
+		.pipe( uglify() )
 		.pipe( gulp.dest( 'assets/js' ) );
 
 	done();
