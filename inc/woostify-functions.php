@@ -194,7 +194,7 @@ if ( ! function_exists( 'woostify_is_divi_page' ) ) {
 			$id = woostify_get_page_id();
 		}
 
-		if ( ! $id ) {
+		if ( ! $id || is_tax() ) {
 			return false;
 		}
 
