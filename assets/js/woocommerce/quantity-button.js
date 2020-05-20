@@ -113,22 +113,23 @@ function customQuantity() {
 					// Variables.
 					var t        = this,
 						current  = parseInt( input.value || 0 ),
-						min      = parseInt( input.getAttribute( 'min' ) ),
+						step     = parseInt( input.getAttribute( 'step' ) || 1 ),
+						min      = parseInt( input.getAttribute( 'min' ) || 1 ),
 						max      = parseInt( input.getAttribute( 'max' ) ),
 						dataType = t.getAttribute( 'data-qty' );
 
-					if ( 'minus' === dataType && current > 1 ) { // Minus button.
-						if ( current <= min ) {
+					if ( 'minus' === dataType && current > step ) { // Minus button.
+						if ( current <= min || ( current - step ) < min ) {
 							return;
 						}
 
-						input.value = current - 1;
+						input.value = current - step;
 					} else if ( 'plus' === dataType ) { // Plus button.
-						if ( max && current >= max ) {
+						if ( max && ( current >= max || ( current + step ) >= max ) ) {
 							return;
 						}
 
-						input.value = current + 1;
+						input.value = current + step;
 					}
 
 					// Trigger event.
