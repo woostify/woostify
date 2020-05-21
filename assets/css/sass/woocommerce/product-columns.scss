@@ -4,7 +4,6 @@ $fake: 0.01px;
 	clear: both;
 	padding: 0;
 	margin: 0;
-
 	@extend .clearfix;
 
 	.product {
@@ -13,19 +12,11 @@ $fake: 0.01px;
 		margin-right: 30px;
 		margin-bottom: 30px;
 		position: relative;
+		width: 100%;
 	}
 
-	@media (min-width: $screen-md) {
-		&.columns-1 {
-			.product {
-				width: 100%;
-				margin-right: 0;
-			}
-		}
-	}
-
-	/* Desktop */
-	@for $i from 2 through 6 {
+	@for $i from 1 through 6 {
+		// Desktop
 		@media (min-width: $screen-md) {
 			&.columns-#{ $i } {
 				.product {
@@ -42,6 +33,7 @@ $fake: 0.01px;
 			}
 		}
 
+		// Tablet
 		@media (min-width: 601px) and (max-width: $screen-md - 1) {
 			&.tablet-columns-#{ $i } {
 				.product {
@@ -58,6 +50,7 @@ $fake: 0.01px;
 			}
 		}
 
+		// Mobile
 		@media (max-width: 600px) {
 			&.mobile-columns-#{ $i } {
 				.product {

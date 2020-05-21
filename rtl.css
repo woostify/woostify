@@ -392,6 +392,11 @@
   }
 }
 
+.rtl .products {
+  padding: 0;
+  margin: 0;
+}
+
 .rtl .woostify-sorting .woocommerce-ordering:after {
   left: 5px;
   right: auto;
