@@ -19,6 +19,12 @@
 	<body <?php body_class(); ?>>
 		<?php
 		wp_body_open();
+
+		// Do not display content on single Woo Builder post type.
+		if ( ! woostify_is_elementor_editor() && is_singular( 'woo_builder' ) ) {
+			return;
+		}
+
 		if ( have_posts() ) {
 			while ( have_posts() ) {
 				the_post();
