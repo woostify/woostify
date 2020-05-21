@@ -464,6 +464,15 @@ if ( ! class_exists( 'Woostify' ) ) {
 				woostify_version()
 			);
 
+			if ( is_rtl() ) {
+				wp_enqueue_style(
+					'woostify-rtl',
+					WOOSTIFY_THEME_URI . 'rtl.css',
+					array(),
+					woostify_version()
+				);
+			}
+
 			/**
 			 * Scripts
 			 */
