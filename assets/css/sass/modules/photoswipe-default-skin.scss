@@ -59,6 +59,7 @@
 	cursor: -webkit-zoom-in;
 	cursor: -moz-zoom-in;
 	cursor: zoom-in;
+	max-width: none;
 }
 
 .pswp--zoomed-in .pswp__img {
@@ -237,7 +238,7 @@
 */
 
 /*
-	
+
 	1. Buttons
 
  */
@@ -544,7 +545,7 @@ a.pswp__share--download:hover {
 }
 
 /*
-	
+
 	4. Caption
 
  */
@@ -645,8 +646,8 @@ a.pswp__share--download:hover {
 }
 
 .pswp--css_animation .pswp__preloader__cut {
-	/* 
-			The idea of animating inner circle is based on Polymer ("material") loading indicator 
+	/*
+			The idea of animating inner circle is based on Polymer ("material") loading indicator
 			 by Keanu Lee https://blog.keanulee.com/2014/10/20/the-tale-of-three-spinners.html
 		*/
 	position: relative;
@@ -734,7 +735,7 @@ a.pswp__share--download:hover {
 }
 
 /*
-	
+
 	6. Additional styles
 
  */
