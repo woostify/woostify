@@ -115,7 +115,7 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 	 * @return     bool
 	 */
 	function woostify_is_elementor_page( $page_id = false ) {
-		if ( ! woostify_is_elementor_activated() ) {
+		if ( ! woostify_is_elementor_activated() || is_singular( 'product' ) ) {
 			return false;
 		}
 
