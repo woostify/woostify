@@ -142,7 +142,8 @@ $size: 40px;
 	border-radius: 2px;
 	@extend .duration;
 
-	.no-sidebar & {
+	.no-sidebar &,
+	.shop-page-with-bulder & {
 		display: none;
 	}
 

@@ -6975,7 +6975,8 @@ footer#colophon {
   border-radius: 2px;
 }
 
-.no-sidebar #toggle-sidebar-mobile-button {
+.no-sidebar #toggle-sidebar-mobile-button,
+.shop-page-with-bulder #toggle-sidebar-mobile-button {
   display: none;
 }
 
