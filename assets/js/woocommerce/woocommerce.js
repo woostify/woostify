@@ -95,6 +95,7 @@ var woostifyQuantityMiniCart = function() {
 				quantityBtn[i].onclick = function() {
 					var t        = this,
 						current  = parseInt( input.value || 0 ),
+						step     = parseInt( input.getAttribute( 'step' ) || 1 ),
 						min      = parseInt( input.getAttribute( 'min' ) || 1 ),
 						max      = parseInt( input.getAttribute( 'max' ) ),
 						dataType = t.getAttribute( 'data-qty' );
@@ -105,17 +106,17 @@ var woostifyQuantityMiniCart = function() {
 					}
 
 					if ( 'minus' === dataType ) { // Minus button.
-						if ( current <= min ) {
+						if ( current <= min || ( current - step ) < min || current <= step ) {
 							return;
 						}
 
-						input.value = ( current - 1 );
+						input.value = ( current - step );
 					} else if ( 'plus' === dataType ) { // Plus button.
-						if ( max && current >= max ) {
+						if ( max && ( current >= max || ( current + step ) >= max ) ) {
 							return;
 						}
 
-						input.value = ( current + 1 );
+						input.value = ( current + step );
 					}
 
 					// Trigger event.

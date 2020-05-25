@@ -327,6 +327,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				$classes[] = 'off' === dokan_get_option( 'enable_theme_store_sidebar', 'dokan_appearance', 'off' ) ? 'has-dokan-sidebar' : 'dokan-with-theme-sidebar';
 			}
 
+			// Shop builder.
+			$woo_builder = class_exists( 'Woostify_Woo_Builder' ) ? Woostify_Woo_Builder::init()->template_exist( 'woostify_shop_page' ) : false;
+			if ( is_shop() && ( $woo_builder || woostify_elementor_has_location( 'archive' ) ) ) {
+				$classes[] = 'shop-page-with-bulder';
+			}
+
 			return array_filter( $classes );
 		}
 

@@ -96,9 +96,11 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 	 * @param string $cart_item_key Cart item key.
 	 */
 	function woostify_update_quantity_mini_cart( $output, $cart_item, $cart_item_key ) {
-		$product_id      = $cart_item['data'];
+		$product         = $cart_item['data'];
+		$product_id      = $cart_item['product_id'];
 		$product_instock = get_post_meta( $product_id, '_stock', true );
-		$product_price   = WC()->cart->get_product_price( $product_id );
+		$product_price   = WC()->cart->get_product_price( $product );
+
 		ob_start();
 		?>
 		<span class="mini-cart-product-infor">
@@ -243,7 +245,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 				foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 					$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 					$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-					// $bundled_cart_items = wc_pb_get_bundled_cart_items( $cart_item );
+					// $bundled_cart_items = wc_pb_get_bundled_cart_items( $cart_item ); This is template code.
 
 					if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 ) {
 						$product_name      = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );

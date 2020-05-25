@@ -44,10 +44,7 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			$classes = array_filter( $classes );
 
 			// Check this item has children.
-			$has_child = false;
-			if ( in_array( 'menu-item-has-children', $classes, true ) ) {
-				$has_child = true;
-			}
+			$has_child = in_array( 'menu-item-has-children', $classes, true ) ? true : false;
 
 			// Join classes name.
 			$class_names = join( ' ', apply_filters( 'woostify_mega_menu_css_class', $classes, $item, $args ) );
