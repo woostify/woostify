@@ -4477,14 +4477,6 @@ dd {
   align-items: center;
 }
 
-.dialog-search-content .dialog-search-icon {
-  width: 30px;
-}
-
-.dialog-search-content .dialog-search-icon + .dialog-search-title {
-  padding-left: 15px;
-}
-
 .dialog-search-content .dialog-search-title {
   flex-grow: 1;
   text-transform: uppercase;

@@ -72,13 +72,6 @@
 		@include flex( flex, space-between, center );
 	}
 
-	.dialog-search-icon{
-		width: 30px;
-		+.dialog-search-title{
-			padding-left: 15px;
-		}
-	}
-
 	.dialog-search-title{
 		flex-grow: 1;
 		text-transform: uppercase;

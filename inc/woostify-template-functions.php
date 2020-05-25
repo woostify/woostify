@@ -1589,7 +1589,6 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 	 */
 	function woostify_dialog_search() {
 		$options    = woostify_options( false );
-		$image_icon = woostify_get_logo_image_url();
 		$close_icon = apply_filters( 'woostify_dialog_search_close_icon', 'ti-close' );
 		?>
 
@@ -1598,14 +1597,7 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 				<?php do_action( 'woostify_dialog_search_content_start' ); ?>
 
 				<div class="dialog-search-header">
-					<?php if ( $image_icon ) { ?>
-						<span class="dialog-search-icon">
-							<img src="<?php echo esc_url( $image_icon ); ?>" alt="<?php esc_attr_e( 'Dialog search icon', 'woostify' ); ?>">
-						</span>
-					<?php } ?>
-
 					<span class="dialog-search-title"><?php esc_html_e( 'Type to search', 'woostify' ); ?></span>
-
 					<span class="dialog-search-close-icon <?php echo esc_attr( $close_icon ); ?>"></span>
 				</div>
 
