@@ -12,6 +12,7 @@ $defaults = woostify_options();
 $default_container = array(
 	'normal'               => __( 'Normal', 'woostify' ),
 	'boxed'                => __( 'Boxed', 'woostify' ),
+	'content-boxed'        => __( 'Content Boxed', 'woostify' ),
 	'full-width'           => __( 'Full Width / Contained', 'woostify' ),
 	'full-width-stretched' => __( 'Full Width / Stretched', 'woostify' ),
 );
@@ -21,6 +22,7 @@ $other_container = array(
 	'default'              => __( 'Default', 'woostify' ),
 	'normal'               => __( 'Normal', 'woostify' ),
 	'boxed'                => __( 'Boxed', 'woostify' ),
+	'content-boxed'        => __( 'Content Boxed', 'woostify' ),
 	'full-width'           => __( 'Full Width / Contained', 'woostify' ),
 	'full-width-stretched' => __( 'Full Width / Stretched', 'woostify' ),
 );

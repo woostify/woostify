@@ -2111,7 +2111,7 @@ if ( ! function_exists( 'woostify_get_site_container_class' ) ) {
 		}
 
 		// Fallback.
-		if ( ! in_array( $container, array( 'normal', 'boxed', 'full-width', 'full-width-stretched' ), true ) ) {
+		if ( ! in_array( $container, array( 'normal', 'boxed', 'content-boxed', 'full-width', 'full-width-stretched' ), true ) ) {
 			$container = $options['default_container'];
 		}
 

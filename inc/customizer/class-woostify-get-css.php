@@ -50,10 +50,9 @@ class Woostify_Get_CSS {
 		// Container.
 		$styles .= '
 			@media (min-width: 992px) {
-				.site-normal-container .woostify-container,
+				.woostify-container,
 				.site-boxed-container #view,
-				.topbar .woostify-container,
-				.site-header .woostify-container {
+				.site-content-boxed-container .site-content {
 					max-width: ' . esc_attr( $options['container_width'] ) . 'px;
 				}
 			}

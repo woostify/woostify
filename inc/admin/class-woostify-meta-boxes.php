@@ -191,11 +191,15 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 								<?php esc_html_e( 'Boxed', 'woostify' ); ?>
 							</option>
 
+							<option value="content-boxed" <?php selected( $site_container, 'content-boxed' ); ?> >
+								<?php esc_html_e( 'Content Boxed', 'woostify' ); ?>
+							</option>
+
 							<option value="full-width" <?php selected( $site_container, 'full-width' ); ?> >
 								<?php esc_html_e( 'Full Width / Contained', 'woostify' ); ?>
 							</option>
 
-							<option value="full-width-stretched" <?php selected( $site_container, 'full-width' ); ?> >
+							<option value="full-width-stretched" <?php selected( $site_container, 'full-width-stretched' ); ?> >
 								<?php esc_html_e( 'Full Width / Stretched', 'woostify' ); ?>
 							</option>
 						</select>
