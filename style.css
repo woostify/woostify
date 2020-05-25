@@ -7250,6 +7250,10 @@ footer#colophon {
   width: 100%;
 }
 
+.shop_attributes th {
+  white-space: nowrap;
+}
+
 @media (max-width: 767px) {
   .shop_table_responsive th {
     display: none;

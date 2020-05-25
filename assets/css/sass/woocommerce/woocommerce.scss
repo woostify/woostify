@@ -401,6 +401,10 @@ $size: 40px;
 
 .shop_attributes {
 	width: 100%;
+
+	th {
+		white-space: nowrap;
+	}
 }
 
 .shop_table_responsive {
