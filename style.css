@@ -5006,6 +5006,7 @@ dd {
 
 .menu-item .menu-item-text {
   flex-grow: 1;
+  word-break: normal;
 }
 
 .menu-item .menu-item-arrow {
