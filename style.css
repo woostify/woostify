@@ -4372,6 +4372,7 @@ dd {
   margin: 3.5em 0;
 }
 
+.woobuilder-page .site-content,
 .elementor-page .site-content,
 .edited-by-divi-builder .site-content {
   margin: 0;
@@ -5529,6 +5530,7 @@ footer#colophon {
   clear: both;
 }
 
+.woobuilder-page .site-footer,
 .edited-by-divi-builder .site-footer,
 .elementor-page .site-footer {
   margin-top: 0;
@@ -9595,7 +9597,7 @@ footer#colophon {
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .quantity, .cart.wishlist_table:not(.elementor-menu-cart__products) .quantity {
     min-width: 140px;
   }
-  
+
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-subtotal,
   .cart.wishlist_table:not(.elementor-menu-cart__products) .product-subtotal {
     text-align: right;

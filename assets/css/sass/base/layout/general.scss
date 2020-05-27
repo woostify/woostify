@@ -79,6 +79,7 @@
 	margin: 3.5em 0;
 	@extend .clearfix;
 
+	.woobuilder-page &,
 	.elementor-page &,
 	.edited-by-divi-builder & {
 		margin: 0;

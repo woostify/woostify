@@ -328,9 +328,17 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// Shop builder.
-			$woo_builder = class_exists( 'Woostify_Woo_Builder' ) ? Woostify_Woo_Builder::init()->template_exist( 'woostify_shop_page' ) : false;
+			$woo_builder  = class_exists( 'Woostify_Woo_Builder' ) ? true : false;
+			$woo_shop     = $woo_builder ? Woostify_Woo_Builder::init()->template_exist( 'woostify_shop_page' ) : false;
+			$woo_product  = $woo_builder ? Woostify_Woo_Builder::init()->template_exist( 'woostify_product_page' ) : false;
+			$woo_cart     = $woo_builder ? Woostify_Woo_Builder::init()->template_exist( 'woostify_cart_page' ) : false;
+			$woo_checkout = $woo_builder ? Woostify_Woo_Builder::init()->template_exist( 'woostify_checkout_page' ) : false;
 			if ( is_shop() && ( $woo_builder || woostify_elementor_has_location( 'archive' ) ) ) {
 				$classes[] = 'shop-page-with-bulder';
+			}
+
+			if ( $woo_shop || $woo_product || $woo_cart || $woo_checkout ) {
+				$classes[] = 'woobuilder-page';
 			}
 
 			return array_filter( $classes );
