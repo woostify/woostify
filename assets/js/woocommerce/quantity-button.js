@@ -125,7 +125,7 @@ function customQuantity() {
 
 						input.value = current - step;
 					} else if ( 'plus' === dataType ) { // Plus button.
-						if ( max && ( current >= max || ( current + step ) >= max ) ) {
+						if ( max && ( current >= max || ( current + step ) > max ) ) {
 							return;
 						}
 
