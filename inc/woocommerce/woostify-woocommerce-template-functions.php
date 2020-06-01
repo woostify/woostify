@@ -443,7 +443,7 @@ if ( ! function_exists( 'woostify_get_modifided_woocommerce_breadcrumb' ) ) {
 	 */
 	function woostify_get_modifided_woocommerce_breadcrumb( $crumbs ) {
 		$home = array(
-			0 => apply_filters( 'woostify_breadcrumb_home', get_bloginfo( 'name' ) ),
+			0 => apply_filters( 'woostify_breadcrumb_home', __( 'Home', 'woostify' ) ),
 			1 => get_home_url( '/' ),
 		);
 
