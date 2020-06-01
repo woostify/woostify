@@ -111,38 +111,60 @@ var woostifyMultiStepCheckout = function() {
 	}
 
 	// Shipping methods.
-	if ( shipping && secondStep ) {
-		var methods         = shipping.querySelectorAll( '.shipping_method' ),
+	var getShippingMethods = function() {
+		if ( ! secondStep ) {
+			return;
+		}
+
+		var methods         = document.querySelectorAll( '#shipping_method .shipping_method' ),
 			shippingContent = '';
 
 		if ( methods.length ) {
-			shippingContent += '<div class="shipping-methods-modified">';
+			wrapperContent.classList.remove( 'no-shipping-available' );
 			methods.forEach(
 				function( method, ix ) {
 					var checked = 'checked' == method.getAttribute( 'checked' ) ? 'checked="checked"' : '',
 						label   = method.nextElementSibling;
 
 					shippingContent += '<div class="shipping-methods-modified-item">';
-					shippingContent += '<label class="shipping-methods-modified-label" for="shipping-methods-index-' + ix + '"><input type="radio" ' + checked + ' name="ahihi-dongu-name" id="shipping-methods-index-' + ix + '" class="shipping-methods-modified-input"><span>' + label.innerHTML + '</span></label>';
+					shippingContent += '<label class="shipping-methods-modified-label" for="shipping-methods-index-' + ix + '"><input type="radio" ' + checked + ' name="shipping-method-modified[0]" id="shipping-methods-index-' + ix + '" class="shipping-methods-modified-input" value="' + method.value + '"><span>' + label.innerHTML + '</span></label>';
 					shippingContent += '</div>';
 				}
 			);
-			shippingContent += '</div>';
+		} else {
+			wrapperContent.classList.add( 'no-shipping-available' );
 		}
 
-		secondStep.insertAdjacentHTML( 'beforeend', shippingContent );
+		if ( document.querySelector( '.shipping-methods-modified' ) ) {
+			console.log( 1 );
+			document.querySelector( '.shipping-methods-modified' ).innerHTML = shippingContent;
+		} else {
+			console.log( 2 );
+			secondStep.insertAdjacentHTML( 'beforeend', '<div class="shipping-methods-modified">' + shippingContent + '</div>' );
+		}
 
 		// Trigger shipping method change.
 		var modifiedInput = document.querySelectorAll( '.shipping-methods-modified-input' );
 		if ( modifiedInput.length ) {
 			modifiedInput.forEach(
 				function( _inputed, _i ) {
+					// Set first checked.
+					if ( _inputed.checked && _inputed.value.includes( 'local_pickup' ) ) {
+						wrapperContent.classList.add( 'has-local-pickup' );
+					}
+
 					_inputed.onclick = function() {
 						var currentIndex = _i + 1,
 							currentInput = document.querySelector( '#shipping_method li:nth-of-type(' + currentIndex + ') input[type="radio"]' );
 
 						if ( currentInput ) {
 							currentInput.click();
+						}
+
+						if ( _inputed.value.includes( 'local_pickup' ) ) {
+							wrapperContent.classList.add( 'has-local-pickup' );
+						} else {
+							wrapperContent.classList.remove( 'has-local-pickup' );
 						}
 					}
 				}
@@ -422,6 +444,9 @@ var woostifyMultiStepCheckout = function() {
 						}
 					);
 				}
+
+				// Get shipping methods.
+				getShippingMethods();
 
 				// Update review information.
 				var updateReview = document.querySelectorAll( '.review-information-link' );

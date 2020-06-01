@@ -665,6 +665,30 @@
 		width: 100%;
 		margin-bottom: 50px;
 
+		&.has-local-pickup {
+			.multi-step-review-information-row[data-type="address"] {
+				display: none;
+			}
+
+			.multi-step-checkout-content[data-step="second"] {
+				[data-type="email"] {
+					border-bottom: 0;
+				}
+			}
+		}
+
+		&.no-shipping-available {
+			.multi-step-checkout-content[data-step="last"] {
+				[data-type="address"] {
+					border-bottom: 0;
+				}
+			}
+
+			.multi-step-review-information-row[data-type="shipping"] {
+				display: none;
+			}
+		}
+
 		@media (min-width: $screen-md) {
 			width: calc(100% - 400px);
 			padding-right: 40px;
@@ -683,6 +707,12 @@
 		&.first {
 			[data-action="back"] {
 				display: none;
+			}
+
+			~ #order_review {
+				.woocommerce-shipping-totals {
+					display: none;
+				}
 			}
 		}
 
