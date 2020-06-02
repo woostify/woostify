@@ -169,10 +169,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				'woostify-woocommerce',
 				'woostify_woocommerce_general',
 				array(
-					'ajax_url'    => admin_url( 'admin-ajax.php' ),
-					'ajax_nonce'  => wp_create_nonce( 'woostify_woocommerce_general_nonce' ),
-					'ajax_error'  => __( 'Sorry, something went wrong. Please try again!', 'woostify' ),
-					'qty_warning' => __( 'Please enter a valid quantity for this product', 'woostify' ),
+					'ajax_url'      => admin_url( 'admin-ajax.php' ),
+					'ajax_nonce'    => wp_create_nonce( 'woostify_woocommerce_general_nonce' ),
+					'ajax_error'    => __( 'Sorry, something went wrong. Please try again!', 'woostify' ),
+					'qty_warning'   => __( 'Please enter a valid quantity for this product', 'woostify' ),
+					'shipping_text' => __( 'Shipping', 'woostify' ),
+					'shipping_next' => __( 'Calculated at next step', 'woostify' ),
 				)
 			);
 

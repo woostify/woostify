@@ -4,8 +4,9 @@
  * @package woostify
  */
 
-'use strict';
+/* global woostify_woocommerce_general */
 
+'use strict';
 
 // Email input validate.
 var woostifyValidateEmail = function( email ) {
@@ -52,6 +53,7 @@ var woostifyMultiStepCheckout = function() {
 	}
 
 	var shipping       = checkout.querySelector( '#shipping_method' ), // Shipping methods.
+		cartSubtotal   = checkout.querySelector( '.cart-subtotal' ), // Cart subtotal.
 		payment        = checkout.querySelector( '.wc_payment_methods' ), // Payment methods.
 		termConditions = checkout.querySelector( '.woocommerce-terms-and-conditions-wrapper' ), // Terms and conditions.
 		wrapperContent = checkout.querySelector( '.multi-step-checkout-wrapper' ), // Wrapper content.
@@ -136,10 +138,8 @@ var woostifyMultiStepCheckout = function() {
 		}
 
 		if ( document.querySelector( '.shipping-methods-modified' ) ) {
-			console.log( 1 );
 			document.querySelector( '.shipping-methods-modified' ).innerHTML = shippingContent;
 		} else {
-			console.log( 2 );
 			secondStep.insertAdjacentHTML( 'beforeend', '<div class="shipping-methods-modified">' + shippingContent + '</div>' );
 		}
 
@@ -297,18 +297,15 @@ var woostifyMultiStepCheckout = function() {
 			return requiredFields;
 		}
 	}
-
 	getRequiredFields();
 
 	// Multi step checkout.
 	items.forEach(
 		function( ele, i ) {
 			ele.onclick = function() {
-				var nextStep      = ele.nextElementSibling,
-					nextStateText = nextStep ? nextStep.innerText : '';
-
-				// Check validate.
-				var validate       = false,
+				var nextStep       = ele.nextElementSibling,
+					nextStateText  = nextStep ? nextStep.innerText : '',
+					validate       = false, // Check validate.
 					requiredFields = getRequiredFields( true );
 
 				if ( requiredFields.length ) {
@@ -507,9 +504,76 @@ var woostifyMultiStepCheckout = function() {
 				} else if ( lastStep ) {
 					wrapperContent.classList.add( 'last' );
 				}
+
+				if ( 0 == i ) {
+					resetCartTotal();
+					window.updateOrderState = false;
+				} else if ( 1 == i ) {
+					jQuery( document.body ).trigger( 'update_checkout' );
+				}
 			}
 		}
 	);
+
+	// Shipping placeholder.
+	var resetCartTotal = function() {
+		if ( ! cartSubtotal ) {
+			return;
+		}
+
+		var subTotalPrice   = cartSubtotal.querySelector( '.amount' ),
+			subTotalPrice   = subTotalPrice ? subTotalPrice.innerHTML : '',
+			orderTotalPrice = checkout.querySelector( '.order-total .amount' ),
+			afterSubtotal   = '<tr class="shipping-placeholder">';
+
+		afterSubtotal += '<th>' + woostify_woocommerce_general.shipping_text + '</th>';
+		afterSubtotal += '<td>' + woostify_woocommerce_general.shipping_next + '</td>';
+		afterSubtotal += '</tr>';
+
+		// Add text.
+		if ( ! document.querySelector( '.shipping-placeholder' ) && document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ) ) {
+			document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ).insertAdjacentHTML( 'afterend', afterSubtotal );
+		}
+
+		// Reset total price.
+		if ( orderTotalPrice ) {
+			orderTotalPrice.innerHTML = subTotalPrice;
+		}
+
+		jQuery( document.body ).on(
+			'updated_checkout',
+			function( e, data ) {
+				console.log( 'Updated Cart!' );
+
+				var firstStep          = document.querySelector( '.multi-step-checkout-wrapper.first' ),
+					renderCheckout     = firstStep ? firstStep.closest( 'form.woocommerce-checkout' ) : false,
+					getCartTotal       = renderCheckout ? renderCheckout.querySelector( '.cart-subtotal' ) : false,
+					getCartTotalPrice  = getCartTotal ? getCartTotal.querySelector( '.amount' ) : false,
+					getCartTotalPrice  = getCartTotalPrice ? getCartTotalPrice.innerHTML : '',
+					getOrderTotal      = renderCheckout ? renderCheckout.querySelector( '.order-total' ) : false,
+					getOrderTotalPrice = getOrderTotal ? getOrderTotal.querySelector( '.amount' ) : false;
+
+				// Add placeholder text. Always render this.
+				if ( document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ) && ! document.querySelector( '.shipping-placeholder' ) ) {
+					document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ).insertAdjacentHTML( 'afterend', afterSubtotal );
+				}
+
+				// Reset order total price.
+				if ( getOrderTotalPrice ) {
+					getOrderTotalPrice.innerHTML = getCartTotalPrice;
+				} else if ( ! window.updateOrderState ) {
+					var updateOrderTable = document.querySelector( '.woocommerce-checkout-review-order-table' );
+
+					if ( updateOrderTable ) {
+						updateOrderTable.innerHTML = data.fragments['.woocommerce-checkout-review-order-table'];
+					}
+
+					window.updateOrderState = true;
+				}
+			}
+		);
+	}
+	resetCartTotal();
 }
 
 // Update total price on mobile.

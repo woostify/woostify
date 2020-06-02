@@ -459,6 +459,19 @@
 		border: 1px solid #d9d9d9;
 		padding: 15px;
 
+		.woocommerce-shipping-totals {
+			flex-direction: row;
+			padding-bottom: 5px;
+
+			th {
+				margin-right: 20px;
+			}
+
+			ul {
+				margin: 0;
+			}
+		}
+
 		.woocommerce-shipping-totals.shipping {
 			.woocommerce-shipping-methods {
 				li {
@@ -728,6 +741,14 @@
 			}
 		}
 
+		&:not(.first) {
+			~ #order_review {
+				.shipping-placeholder {
+					display: none;
+				}
+			}
+		}
+
 		.multi-step-checkout-content {
 			display: none;
 
@@ -982,6 +1003,11 @@
 			@extend .duration;
 		}
 	}
+}
+
+// Shipping placeholder text
+.shipping-placeholder {
+	padding: 5px 0;
 }
 
 // Distraction free

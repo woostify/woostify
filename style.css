@@ -10284,6 +10284,19 @@ footer#colophon {
   }
 }
 
+.has-multi-step-checkout #order_review .woocommerce-shipping-totals {
+  flex-direction: row;
+  padding-bottom: 5px;
+}
+
+.has-multi-step-checkout #order_review .woocommerce-shipping-totals th {
+  margin-right: 20px;
+}
+
+.has-multi-step-checkout #order_review .woocommerce-shipping-totals ul {
+  margin: 0;
+}
+
 .has-multi-step-checkout #order_review .woocommerce-shipping-totals.shipping .woocommerce-shipping-methods li:first-of-type:last-of-type label {
   display: block;
 }
@@ -10510,6 +10523,10 @@ footer#colophon {
 }
 
 .has-multi-step-checkout .multi-step-checkout-wrapper:not(.last) [data-action="place_order"] {
+  display: none;
+}
+
+.has-multi-step-checkout .multi-step-checkout-wrapper:not(.first) ~ #order_review .shipping-placeholder {
   display: none;
 }
 
@@ -10743,6 +10760,10 @@ footer#colophon {
   flex-grow: 1;
   text-align: right;
   margin-right: 10px;
+}
+
+.shipping-placeholder {
+  padding: 5px 0;
 }
 
 .has-distraction-free-checkout .topbar {
