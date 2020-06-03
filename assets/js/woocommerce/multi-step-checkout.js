@@ -543,8 +543,6 @@ var woostifyMultiStepCheckout = function() {
 		jQuery( document.body ).on(
 			'updated_checkout',
 			function( e, data ) {
-				console.log( 'Updated Cart!' );
-
 				var firstStep          = document.querySelector( '.multi-step-checkout-wrapper.first' ),
 					renderCheckout     = firstStep ? firstStep.closest( 'form.woocommerce-checkout' ) : false,
 					getCartTotal       = renderCheckout ? renderCheckout.querySelector( '.cart-subtotal' ) : false,
