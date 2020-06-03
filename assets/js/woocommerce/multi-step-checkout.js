@@ -515,6 +515,16 @@ var woostifyMultiStepCheckout = function() {
 		}
 	);
 
+	// Remove default WC payment mothods.
+	var removeDefaultPayment = function() {
+		var paymentPro = document.querySelector( '.woocommerce-checkout-payment .wc_payment_methods' );
+		if ( ! paymentPro ) {
+			return;
+		}
+
+		paymentPro.remove();
+	}
+
 	// Shipping placeholder.
 	var resetCartTotal = function() {
 		if ( ! cartSubtotal ) {
@@ -539,6 +549,9 @@ var woostifyMultiStepCheckout = function() {
 		if ( orderTotalPrice ) {
 			orderTotalPrice.innerHTML = subTotalPrice;
 		}
+
+		// Remove default WC payment.
+		removeDefaultPayment();
 
 		jQuery( document.body ).on(
 			'updated_checkout',
@@ -568,6 +581,9 @@ var woostifyMultiStepCheckout = function() {
 
 					window.updateOrderState = true;
 				}
+
+				// Remove default WC payment.
+				removeDefaultPayment();
 			}
 		);
 	}
