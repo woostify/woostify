@@ -12,31 +12,34 @@
 
 get_header();
 
-?>
+if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'single' ) && woostify_elementor_has_location( 'single' ) ) {
+	get_template_part( 'template-parts/single' );
+} else {
+	?>
+		<div id="primary" class="content-area">
+			<main id="main" class="site-main">
+				<?php
+				while ( have_posts() ) :
+					the_post();
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
-			<?php
-			while ( have_posts() ) :
-				the_post();
+					do_action( 'woostify_page_before' );
 
-				do_action( 'woostify_page_before' );
+					get_template_part( 'template-parts/content', 'page' );
 
-				get_template_part( 'template-parts/content', 'page' );
+					/**
+					 * Functions hooked in to woostify_page_after action
+					 *
+					 * @hooked woostify_display_comments - 10
+					 */
+					do_action( 'woostify_page_after' );
 
-				/**
-				 * Functions hooked in to woostify_page_after action
-				 *
-				 * @hooked woostify_display_comments - 10
-				 */
-				do_action( 'woostify_page_after' );
+				endwhile;
+				?>
+			</main>
+		</div>
+	<?php
+}
 
-			endwhile;
-			?>
-		</main>
-	</div>
-
-<?php
 do_action( 'woostify_sidebar' );
 
 get_footer();
