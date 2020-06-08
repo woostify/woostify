@@ -6303,6 +6303,11 @@ footer#colophon {
   margin-top: 0;
 }
 
+header.elementor-element {
+  position: relative;
+  z-index: 6;
+}
+
 .home.blog .site-main .post:first-child:last-child {
   border-bottom: 0;
 }

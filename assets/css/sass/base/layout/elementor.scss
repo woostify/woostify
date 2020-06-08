@@ -31,3 +31,11 @@
 	    }
 	}
 }
+
+// Header elementor builder
+header {
+	&.elementor-element {
+		position: relative;
+		z-index: 6; // Higher multi step checkout item, arrow product slider in single product
+	}
+}
