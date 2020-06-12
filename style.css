@@ -5065,6 +5065,11 @@ dd {
   right: -15px;
 }
 
+.shop-cart-count:empty,
+.wishlist-item-count:empty {
+  display: none;
+}
+
 .my-account {
   position: relative;
 }
@@ -11158,10 +11163,6 @@ header.elementor-element {
   display: flex;
   justify-content: space-between;
   text-align: center;
-}
-
-.woocommerce-thankyou-order-details + p {
-  display: none;
 }
 
 .woocommerce-thankyou-order-details .woocommerce-order-overview__email {
