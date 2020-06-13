@@ -913,24 +913,25 @@ if ( ! function_exists( 'woostify_get_post_thumbnail' ) ) {
 
 		$image   = '';
 		$options = woostify_options( false );
-		if ( in_array( $options['blog_list_layout'], array( 'zigzag', 'standard' ), true ) ) {
-			// Return if Blog layout is: Zigzag and Standard.
-			return $image;
-		}
-
 		ob_start();
 
 		if ( ! is_single() ) {
+			if ( in_array( $options['blog_list_layout'], array( 'zigzag', 'standard' ), true ) ) {
+				return $image;
+			} else {
+				?>
+					<div class="entry-header-item post-cover-image">
+						<a href="<?php echo esc_url( get_permalink() ); ?>">
+							<?php the_post_thumbnail( $size ); ?>
+						</a>
+					</div>
+				<?php
+			}
+		} else {
 			?>
-			<div class="entry-header-item post-cover-image">
-				<a href="<?php echo esc_url( get_permalink() ); ?>">
+				<div class="entry-header-item post-cover-image">
 					<?php the_post_thumbnail( $size ); ?>
-				</a>
-			</div>
-		<?php } else { ?>
-			<div class="entry-header-item post-cover-image">
-				<?php the_post_thumbnail( $size ); ?>
-			</div>
+				</div>
 			<?php
 		}
 
