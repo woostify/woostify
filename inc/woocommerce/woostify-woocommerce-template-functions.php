@@ -661,7 +661,7 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 
 		// Get mini cart content.
 		ob_start();
-		woocommerce_mini_cart();
+		woostify_mini_cart();
 		$mini_cart = ob_get_clean();
 
 		// Cart item count.
