@@ -13,7 +13,7 @@
 get_header();
 
 if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'single' ) && woostify_elementor_has_location( 'single' ) ) {
-	get_template_part( 'template-parts/single' );
+	the_content();
 } else {
 	?>
 		<div id="primary" class="content-area">
@@ -38,8 +38,8 @@ if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_loca
 			</main>
 		</div>
 	<?php
-}
 
-do_action( 'woostify_sidebar' );
+	do_action( 'woostify_sidebar' );
+}
 
 get_footer();
