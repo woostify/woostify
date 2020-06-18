@@ -1509,7 +1509,7 @@ if ( ! function_exists( 'woostify_is_product_archive' ) ) {
 			return false;
 		}
 
-		if ( is_shop() || is_product_taxonomy() || is_product_category() || is_product_tag() || is_tax() ) {
+		if ( is_shop() || is_product_taxonomy() || is_product_category() || is_product_tag() ) {
 			return true;
 		} else {
 			return false;
@@ -1840,7 +1840,6 @@ if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
 			return;
 		}
 
-		global $woocommerce;
 		$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
 		$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
 

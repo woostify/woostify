@@ -3738,6 +3738,7 @@ video {
 }
 
 [data-elementor-type] {
+  overflow: scroll;
   clear: both;
 }
 
@@ -5066,11 +5067,6 @@ dd {
   position: absolute;
   top: -6px;
   right: -15px;
-}
-
-.shop-cart-count:empty,
-.wishlist-item-count:empty {
-  display: none;
 }
 
 .my-account {
