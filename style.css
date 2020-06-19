@@ -3738,7 +3738,8 @@ video {
 }
 
 [data-elementor-type] {
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   clear: both;
 }
 
@@ -6993,7 +6994,7 @@ header.elementor-element {
 }
 
 .no-sidebar #toggle-sidebar-mobile-button,
-.shop-page-with-bulder #toggle-sidebar-mobile-button {
+.has-elementor-location-shop-archive #toggle-sidebar-mobile-button {
   display: none;
 }
 

@@ -335,11 +335,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$woo_product  = $woo_builder ? Woostify_Woo_Builder::init()->template_exist( 'woostify_product_page' ) : false;
 			$woo_cart     = $woo_builder ? Woostify_Woo_Builder::init()->template_exist( 'woostify_cart_page' ) : false;
 			$woo_checkout = $woo_builder ? Woostify_Woo_Builder::init()->template_exist( 'woostify_checkout_page' ) : false;
-			if ( is_shop() && ( $woo_builder || woostify_elementor_has_location( 'archive' ) ) ) {
-				$classes[] = 'shop-page-with-bulder';
+			if ( is_shop() && woostify_elementor_has_location( 'archive' ) ) {
+				$classes[] = 'has-elementor-location-shop-archive';
 			}
 
-			if ( $woo_shop || $woo_product || $woo_cart || $woo_checkout ) {
+			if ( $woo_product || $woo_cart || $woo_checkout ) {
 				$classes[] = 'woobuilder-page';
 			}
 
