@@ -9554,7 +9554,7 @@ header.elementor-element {
   background-color: transparent;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions, .cart.wishlist_table:not(.elementor-menu-cart__products) .actions {
     display: flex;
     flex-direction: column-reverse;
