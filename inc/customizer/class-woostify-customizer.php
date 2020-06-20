@@ -212,6 +212,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_product_navigation'          => true,
 				'shop_single_ajax_add_to_cart'            => true,
 				'shop_single_stock_label'                 => true,
+				'shop_single_stock_product_limit'         => 0,
+				'shop_single_loading_bar'                 => true,
 				'shop_single_additional_information'      => true,
 				'shop_single_content_background'          => '#f3f3f3',
 				'shop_single_trust_badge_image'           => '',
@@ -244,6 +246,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'sidebar_blog_single'                     => 'default',
 				'sidebar_shop'                            => 'default',
 				'sidebar_shop_single'                     => 'full',
+				'sidebar_width'                            => 20,
 				// 404.
 				'error_404_image'                         => '',
 				'error_404_text'                          => __( 'Opps! The page you are looking for is missing for some reasons. Please come back to homepage', 'woostify' ),
