@@ -375,7 +375,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 
 		$image_id        = $product->get_image_id();
 		$image_alt       = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
-		$image_small_src = $image_id ? wp_get_attachment_image_src( $image_id, 'thumbnail' ) : wc_placeholder_img_src();
+		$image_small_src = $image_id ? wp_get_attachment_image_src( $image_id, 'woocommerce_gallery_thumbnail' ) : wc_placeholder_img_src();
 		$gallery_id      = $product->get_gallery_image_ids();
 		?>
 
