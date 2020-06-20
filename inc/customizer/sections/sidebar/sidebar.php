@@ -259,8 +259,9 @@ $wp_customize->add_setting(
 	'woostify_setting[sidebar_width]',
 	array(
 		'default'           => $defaults['sidebar_width'],
-		'sanitize_callback' => 'woostify_sanitize_choices',
+		'sanitize_callback' => 'absint',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(

@@ -6715,14 +6715,6 @@ header.elementor-element {
   .has-sidebar.right-sidebar .widget-area {
     float: right;
   }
-  .left-sidebar .content-area,
-  .right-sidebar .content-area {
-    width: 76.92308%;
-  }
-  .left-sidebar .widget-area,
-  .right-sidebar .widget-area {
-    width: 23.07692%;
-  }
 }
 
 /* Grid Layout */

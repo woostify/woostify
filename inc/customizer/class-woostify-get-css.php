@@ -491,8 +491,15 @@ class Woostify_Get_CSS {
 
 		// Sidebar Width.
 		$styles .= '
-			#secondary {
+			@media (min-width: 992px) {
+
+				.has-sidebar #secondary {
 				width: ' . esc_attr( $options['sidebar_width'] ) . '%;
+				}
+
+				.has-sidebar #primary {
+					width: calc( 100% - ' . esc_attr( $options['sidebar_width'] ) . '%);
+				}
 			}
 		';
 
