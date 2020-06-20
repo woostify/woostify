@@ -285,6 +285,8 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	);
 }
 
+
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
@@ -304,6 +306,9 @@ document.addEventListener(
 
 		// Update the site title in real time...
 		woostify_html_live_update( 'blogname', '.site-title.beta a', true );
+
+		// Sidebar Width.
+		woostify_range_slider_update( ['sidebar_width'], '#secondary', 'width', '%' );
 
 		// Update the site description in real time...
 		woostify_html_live_update( 'blogdescription', '.site-description', true );

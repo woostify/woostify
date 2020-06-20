@@ -32,6 +32,8 @@ $wp_customize->add_control(
 				'woostify_setting[shop_single_related_product]',
 				'woostify_setting[shop_single_ajax_add_to_cart]',
 				'woostify_setting[shop_single_stock_label]',
+				'woostify_setting[shop_single_stock_product_limit]',
+				'woostify_setting[shop_single_loading_bar]',
 				'woostify_setting[shop_single_additional_information]',
 				'woostify_setting[shop_single_content_background]',
 				'woostify_setting[shop_single_trust_badge_image]',
@@ -111,15 +113,60 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
 		'type'              => 'option',
 	)
+);
+$wp_customize->add_control(
+new Woostify_Switch_Control(
+	$wp_customize,
+	'woostify_setting[shop_single_stock_label]',
+	array(
+		'label'    => __( 'Stock Label', 'woostify' ),
+		'section'  => 'woostify_shop_single',
+		'settings' => 'woostify_setting[shop_single_stock_label]',
+	)
+	)
+);
+
+
+// Loading Bar.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_loading_bar]',
+	array(
+		'default'           => $defaults['shop_single_loading_bar'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'type'              => 'option',
+	)
 	);
 	$wp_customize->add_control(
 	new Woostify_Switch_Control(
 		$wp_customize,
-		'woostify_setting[shop_single_stock_label]',
+		'woostify_setting[shop_single_loading_bar]',
 		array(
-			'label'    => __( 'Stock Label', 'woostify' ),
+			'label'    => __( 'Loading Bar', 'woostify' ),
 			'section'  => 'woostify_shop_single',
-			'settings' => 'woostify_setting[shop_single_stock_label]',
+			'settings' => 'woostify_setting[shop_single_loading_bar]',
+		)
+	)
+);
+
+// Stock product limit.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_stock_product_limit]',
+	array(
+		'default'           => $defaults['shop_single_stock_product_limit'],
+		'type'              => 'option',
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_stock_product_limit]',
+		array(
+			'label'    => __( 'Min stock to show', 'woostify' ),
+			'description' => __( 'Default = 0 show stock', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_stock_product_limit]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'number',
 		)
 	)
 );

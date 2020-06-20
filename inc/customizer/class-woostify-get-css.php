@@ -489,6 +489,13 @@ class Woostify_Get_CSS {
 			';
 		}
 
+		// Sidebar Width.
+		$styles .= '
+			#secondary {
+				width: ' . esc_attr( $options['sidebar_width'] ) . '%;
+			}
+		';
+
 		// Footer.
 		$styles .= '
 			.site-footer{
