@@ -234,3 +234,55 @@ if ( class_exists( 'woocommerce' ) ) {
 		)
 	);
 }
+
+// Blog sidebar divider.
+$wp_customize->add_setting(
+	'width_sidebar_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'width_sidebar_divider',
+		array(
+			'section'  => 'woostify_sidebar',
+			'settings' => 'width_sidebar_divider',
+			'type'     => 'divider',
+		)
+	)
+);
+
+// Width.
+$wp_customize->add_setting(
+	'woostify_setting[sidebar_width]',
+	array(
+		'default'           => $defaults['sidebar_width'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[sidebar_width]',
+		array(
+			'label'    => __( 'Sidebar Width', 'woostify' ),
+			'section'  => 'woostify_sidebar',
+			'settings' => array(
+				'desktop' => 'woostify_setting[sidebar_width]',
+			),
+			'choices' => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_sidebar_width_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_sidebar_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => '%',
+				),
+			),
+		)
+	)
+);

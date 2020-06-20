@@ -285,6 +285,47 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 	);
 }
 
+/**
+ * Dynamic Internal/Embedded Style for a Control
+ */
+function woostify_add_dynamic_css( control, style ) {
+	control = control.replace( '[', '-' );
+	control = control.replace( ']', '' );
+	jQuery( 'style' + control ).remove();
+
+	jQuery( 'head' ).append(
+		'<style id="' + control + '">' + style + '</style>'
+	);
+}
+
+( function( $ ) {
+	/**
+	 * Primary Width Option
+	 */
+	wp.customize(
+		'woostify_setting[sidebar_width]',
+		function( setting ) {
+			setting.bind(
+				function( width ) {
+
+					if ( ! jQuery( 'body' ).hasClass( 'site-full-width-container' ) ) {
+
+						var dynamicStyle = '@media (min-width: 992px) {';
+
+						dynamicStyle += '.has-sidebar #primary { width: ' + ( 100 - parseInt( width ) ) + '% } ';
+						dynamicStyle += '.has-sidebar #secondary { width: ' + width + '% } ';
+						dynamicStyle += '}';
+
+						woostify_add_dynamic_css( 'sidebar_width', dynamicStyle );
+					}
+				}
+			);
+		}
+	);
+
+} )( jQuery );
+
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {

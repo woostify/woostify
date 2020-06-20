@@ -21,16 +21,6 @@ $sidebar_width: percentage( 270 / 1170 );
 	        }
 	    }
     }
-
-    .left-sidebar,
-    .right-sidebar{
-    	.content-area{;
-            width: 100% - $sidebar_width;
-        }
-        .widget-area{
-            width: $sidebar_width;
-        }
-    }
 }
 
 .container{
