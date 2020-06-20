@@ -3737,12 +3737,6 @@ video {
   overflow: hidden;
 }
 
-[data-elementor-type] {
-  overflow-x: hidden;
-  overflow-y: auto;
-  clear: both;
-}
-
 /* sticky style - author
 ------------------------------------------------->*/
 .sticky,
