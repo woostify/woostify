@@ -3743,7 +3743,9 @@ video {
 .bypostauthor {
   background: rgba(0, 0, 0, 0);
 }
-
+[data-elementor-type] {
+  clear: both;
+}
 /* caption
 ------------------------------------------------->*/
 .wp-caption {
