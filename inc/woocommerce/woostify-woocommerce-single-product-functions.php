@@ -375,7 +375,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 
 		$image_id        = $product->get_image_id();
 		$image_alt       = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
-		$image_small_src = $image_id ? wp_get_attachment_image_src( $image_id, 'thumbnail' ) : wc_placeholder_img_src();
+		$image_small_src = $image_id ? wp_get_attachment_image_src( $image_id, 'woocommerce_gallery_thumbnail' ) : wc_placeholder_img_src();
 		$gallery_id      = $product->get_gallery_image_ids();
 		?>
 
@@ -527,9 +527,7 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 	function woostify_modified_quantity_stock( $html, $product ) {
 		$options = woostify_options( false );
 		// Remove quantity stock label if this option disabled.
-		if ( ! $options['shop_single_stock_label'] ) {
-			return '';
-		}
+		$limit = $options['shop_single_stock_product_limit'];
 
 		$stock_quantity = $product->get_stock_quantity();
 
@@ -540,17 +538,31 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 
 		$number = $stock_quantity <= 10 ? $stock_quantity : wp_rand( 10, 75 );
 		ob_start();
-		?>
-		<div class="woostify-single-product-stock stock">
-			<span class="woostify-single-product-stock-label">
-				<?php echo esc_html( sprintf( /* translators: %s stock quantity */ __( 'Hurry! only %s left in stock.', 'woostify' ), $stock_quantity ) ); ?>
-			</span>
+		if ( $limit >= $number || 0 == $limit ) {
+			?>
+				<div class="woostify-single-product-stock stock">
 
-			<div class="woostify-product-stock-progress">
-				<span class="woostify-single-product-stock-progress-bar" data-number="<?php echo esc_attr( $number ); ?>"></span>
-			</div>
-		</div>
-		<?php
+					<?php
+					if ( true == $options['shop_single_stock_label'] ) {
+						?>
+							<span class="woostify-single-product-stock-label">
+								<?php echo esc_html( sprintf( /* translators: %s stock quantity */ __( 'Hurry! only %s left in stock.', 'woostify' ), $stock_quantity ) ); ?>
+							</span>
+						<?php
+					}
+
+					if ( true == $options['shop_single_loading_bar'] ) {
+						?>
+							<div class="woostify-product-stock-progress">
+								<span class="woostify-single-product-stock-progress-bar" data-number="<?php echo esc_attr( $number ); ?>"></span>
+							</div>
+						<?php
+					}
+					?>
+
+				</div>
+			<?php
+		}
 		return ob_get_clean();
 	}
 }

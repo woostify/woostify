@@ -4,7 +4,7 @@ Theme URI:    https://woostify.com
 Author:       Woostify
 Author URI:   https://woostify.com/about
 Description:  Woostify is fast, lightweight, responsive and super flexible WooCommerce theme built with SEO, speed, and usability in mind. The theme works great with any of your favorite page builder likes Elementor, Beaver Builder, SiteOrigin, Thrive Architect, Divi, Visual Composer, etc. Therefore, you can build any type of websites like shop, business agencies, corporate, portfolio, education, university portal, consulting, church, restaurant, medical and so on. Woostify is compatible with all well-coded plugins, including major ones like WooCommerce, OrbitFox, Yoast, BuddyPress, bbPress, etc. Learn more about the theme and ready to import demo sites at https://woostify.com
-Version:      1.6.2
+Version:      1.6.3
 Requires at least: 4.7
 Tested up to: 5.4
 Requires PHP: 5.2.4
@@ -3737,19 +3737,15 @@ video {
   overflow: hidden;
 }
 
-[data-elementor-type] {
-  overflow-x: hidden;
-  overflow-y: auto;
-  clear: both;
-}
-
 /* sticky style - author
 ------------------------------------------------->*/
 .sticky,
 .bypostauthor {
   background: rgba(0, 0, 0, 0);
 }
-
+[data-elementor-type] {
+  clear: both;
+}
 /* caption
 ------------------------------------------------->*/
 .wp-caption {
@@ -6715,14 +6711,6 @@ header.elementor-element {
   }
   .has-sidebar.right-sidebar .widget-area {
     float: right;
-  }
-  .left-sidebar .content-area,
-  .right-sidebar .content-area {
-    width: 76.92308%;
-  }
-  .left-sidebar .widget-area,
-  .right-sidebar .widget-area {
-    width: 23.07692%;
   }
 }
 
