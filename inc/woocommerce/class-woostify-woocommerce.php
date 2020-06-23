@@ -482,7 +482,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			<div class="woostify-metabox-setting">
 				<div class="woostify-metabox-option-content">
 					<label for="woostify-product-video-url" style="margin-top: 10px; display: block;">
-						<textarea class="widefat" id="woostify-product-video-url" name="woostify_product_video_metabox" rows="4" placeholder="<?php esc_attr_e( 'Enter Youtube or Vimeo video url', 'woostify' ); ?>" ><?php echo esc_attr( $value ); ?></textarea>
+						<textarea class="widefat" id="woostify-product-video-url" name="woostify_product_video_metabox" rows="4" placeholder="<?php esc_attr_e( 'Enter Youtube or Vimeo video url', 'woostify' ); ?>" ><?php echo esc_html( $value ); ?></textarea>
 					</label>
 				</div>
 			</div>

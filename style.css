@@ -3737,15 +3737,17 @@ video {
   overflow: hidden;
 }
 
+[data-elementor-type] {
+  clear: both;
+}
+
 /* sticky style - author
 ------------------------------------------------->*/
 .sticky,
 .bypostauthor {
   background: rgba(0, 0, 0, 0);
 }
-[data-elementor-type] {
-  clear: both;
-}
+
 /* caption
 ------------------------------------------------->*/
 .wp-caption {
