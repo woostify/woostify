@@ -78,6 +78,10 @@ function navFallback() {
 		return;
 	}
 
+	if ( navigator.userAgent && ( navigator.userAgent.include( 'Android' ) || navigator.userAgent.include( 'Mobile' ) ) ) {
+		return;
+	}
+
 	document.documentElement.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
 }
 
