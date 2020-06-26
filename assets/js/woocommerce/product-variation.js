@@ -32,6 +32,13 @@ function productVariation( selector, form ) {
 		return;
 	}
 
+	// Support Product meta widget.
+	var productMetaSku        = document.querySelector( '.elementor-widget-woostify-product-meta .sku' ),
+		productMetaSkuDefault = '';
+	if ( productMetaSku ) {
+		productMetaSkuDefault = productMetaSku.innerHTML;
+	}
+
 	jQuery( document.body ).on(
 		'found_variation',
 		variationsForm,
@@ -41,6 +48,11 @@ function productVariation( selector, form ) {
 				imgSrc   = variation.image.src,
 				thumbSrc = variation.image.thumb_src,
 				inStock  = variation.is_in_stock;
+
+			// Support Product meta widget.
+			if ( productMetaSku ) {
+				productMetaSku.innerHTML = variation.sku;
+			}
 
 			// Change src image.
 			image.removeAttr( 'srcset' );
@@ -106,6 +118,11 @@ function productVariation( selector, form ) {
 		'click',
 		function( e ) {
 			e.preventDefault();
+
+			// Support Product meta widget.
+			if ( productMetaSkuDefault ) {
+				productMetaSku.innerHTML = productMetaSkuDefault;
+			}
 
 			// Change src image.
 			image.prop( 'src', imageSrc );
