@@ -524,6 +524,15 @@
 					align-items: center;
 				}
 
+				.variation {
+					order: 2;
+					margin-right: 5px;
+				}
+
+				.product-quantity {
+					order: 3;
+				}
+
 				.review-order-product-image {
 					max-width: 50px;
 				}

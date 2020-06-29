@@ -8523,6 +8523,7 @@ header.elementor-element {
   height: 40px;
   min-width: 75%;
   background-color: #fff;
+  position: static !important;
 }
 
 .variations label {
@@ -8542,6 +8543,11 @@ header.elementor-element {
   .variations .value {
     display: flex;
     align-items: center;
+  }
+}
+
+@media (max-width: 719px) {
+  .variations .value {
     flex-wrap: wrap;
   }
 }
@@ -10333,6 +10339,15 @@ header.elementor-element {
   display: flex;
   padding-right: 10px;
   align-items: center;
+}
+
+.has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .variation {
+  order: 2;
+  margin-right: 5px;
+}
+
+.has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .product-quantity {
+  order: 3;
 }
 
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .review-order-product-image {
