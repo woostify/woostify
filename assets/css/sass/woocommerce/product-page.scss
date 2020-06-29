@@ -441,6 +441,7 @@
 		height: 40px;
 		min-width: 75%;
 		background-color: #fff;
+		position: static !important;
 	}
 
 	label {
@@ -460,6 +461,9 @@
 		@media (min-width: $screen-tablet) {
 			display: flex;
 			align-items: center;
+		}
+
+		@media (max-width: $screen-tablet - 1) {
 			flex-wrap: wrap;
 		}
 	}
