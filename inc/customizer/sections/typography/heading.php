@@ -88,7 +88,7 @@ $wp_customize->add_setting(
 	'woostify_setting[heading_line_height]',
 	array(
 		'default'           => $defaults['heading_line_height'],
-		'sanitize_callback' => 'absint',
+		'sanitize_callback' => 'sanitize_text_field',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
