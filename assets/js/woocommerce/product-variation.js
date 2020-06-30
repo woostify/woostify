@@ -34,9 +34,11 @@ function productVariation( selector, form ) {
 
 	// Support Product meta widget.
 	var productMetaSku        = document.querySelector( '.elementor-widget-woostify-product-meta .sku' ),
-		productMetaSkuDefault = '';
-	if ( productMetaSku ) {
-		productMetaSkuDefault = productMetaSku.innerHTML;
+		productMetaSkuDefault = productMetaSku ? productMetaSku.innerHTML : '',
+		wpmGtinCodeWrapper    = document.querySelector( '.wpm_gtin_code_wrapper .wpm_pgw_code' );
+
+	if ( wpmGtinCodeWrapper ) {
+		wpmGtinCodeWrapper.innerHTML = productMetaSkuDefault;
 	}
 
 	jQuery( document.body ).on(
@@ -52,6 +54,10 @@ function productVariation( selector, form ) {
 			// Support Product meta widget.
 			if ( productMetaSku ) {
 				productMetaSku.innerHTML = variation.sku;
+			}
+
+			if ( wpmGtinCodeWrapper ) {
+				wpmGtinCodeWrapper.innerHTML = variation.sku;
 			}
 
 			// Change src image.
@@ -122,6 +128,10 @@ function productVariation( selector, form ) {
 			// Support Product meta widget.
 			if ( productMetaSkuDefault ) {
 				productMetaSku.innerHTML = productMetaSkuDefault;
+			}
+
+			if ( wpmGtinCodeWrapper ) {
+				wpmGtinCodeWrapper.innerHTML = productMetaSkuDefault;
 			}
 
 			// Change src image.
