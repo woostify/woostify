@@ -10859,6 +10859,12 @@ header.elementor-element {
   }
 }
 
+@media (max-width: 991px) {
+  .woostify-before-order-review-total-price .includes_tax {
+    display: none;
+  }
+}
+
 .woocommerce-account h2 {
   font-size: 20px;
   font-weight: normal;
