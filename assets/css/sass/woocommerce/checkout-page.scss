@@ -1120,3 +1120,11 @@
 		padding: 15px 15px 30px 15px;
 	}
 }
+
+@media ( max-width: 991px ) {
+	.woostify-before-order-review-total-price {
+		.includes_tax {
+			display: none;
+		}
+	}
+}
