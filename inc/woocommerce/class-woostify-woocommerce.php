@@ -398,6 +398,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			if ( $options['checkout_multi_step'] && ! $disable_multi_step && ! is_singular( array( 'cartflows_flow', 'cartflows_step' ) ) ) {
 				add_filter( 'woocommerce_cart_item_name', 'woostify_add_product_thumbnail_to_checkout_order', 10, 3 );
 			}
+
+			if ( ! is_cart() ) {
+				remove_action( 'woostify_page_header_breadcrumb', 'woostify_breadcrumb', 10 );
+				add_action( 'woostify_page_header_breadcrumb', 'woocommerce_breadcrumb', 10 );
+			}
 		}
 
 		/**

@@ -697,6 +697,8 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 							} elseif ( class_exists( 'woocommerce' ) && ( is_product_tag() || is_tag() ) ) {
 								esc_html_e( 'Tags: ', 'woostify' );
 								single_tag_title();
+							} elseif ( class_exists( 'woocommerce' ) && is_cart() ) {
+								echo esc_html( $object->post_title );
 							} elseif ( is_page() ) {
 								echo esc_html( get_the_title() );
 							} else {

@@ -57,11 +57,7 @@ add_action( 'woostify_content_top', 'woostify_content_top_close', 70 );
 /**
  * Page Header
  */
-if ( woostify_is_woocommerce_activated() ) {
-	add_action( 'woostify_page_header_breadcrumb', 'woocommerce_breadcrumb', 10 );
-} else {
-	add_action( 'woostify_page_header_breadcrumb', 'woostify_breadcrumb', 10 );
-}
+add_action( 'woostify_page_header_breadcrumb', 'woostify_breadcrumb', 10 );
 
 /**
  * Footer
