@@ -75,9 +75,9 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 		 * @param      array $instance  The instance.
 		 */
 		public function widget( $args, $instance ) {
-			$title  = ! empty( $instance['title'] ) ? $instance['title'] : '';
+			$title  = ! empty( $instance['title'] ) ? $instance['title'] : 'Recent Posts';
 			$title  = apply_filters( 'widget_title', $title, $instance, $this->id_base );
-			$number = absint( $instance['number'] );
+			$number = isset( $instance['number'] ) ? $instance['number'] : '3';
 
 			if ( $number <= 0 ) {
 				return;
