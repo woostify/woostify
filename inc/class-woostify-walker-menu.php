@@ -108,6 +108,7 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 					$frontend     = new \Elementor\Frontend();
 					$item_output .= $frontend->get_builder_content_for_display( $item->object_id, true );
 					wp_enqueue_style( 'elementor-frontend' );
+					wp_reset_postdata();
 				} else {
 					$mega_args = array(
 						'p'                   => $item->object_id,

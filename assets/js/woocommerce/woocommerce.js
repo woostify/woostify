@@ -242,13 +242,13 @@ document.addEventListener(
 				closeAll();
 			}
 		).on(
-			'removed_from_cart',
+			'removed_from_cart', /* For mini cart */
 			function() {
 				woostifyQuantityMiniCart();
 			}
 		).on(
 			'updated_cart_totals',
-			function( event ) {
+			function() {
 				if ( 'function' === typeof( customQuantity ) ) {
 					customQuantity();
 				}
@@ -258,6 +258,11 @@ document.addEventListener(
 			'wc_fragments_loaded wc_fragments_refreshed',
 			function() {
 				woostifyQuantityMiniCart();
+			}
+		).on(
+			'wc_cart_emptied', /* Reload Cart page if it's empty */
+			function() {
+				location.reload();
 			}
 		);
 	}

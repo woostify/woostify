@@ -13,7 +13,9 @@
 get_header();
 
 if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'single' ) && woostify_elementor_has_location( 'single' ) ) {
-	the_content();
+	$frontend = new \Elementor\Frontend();
+	echo $frontend->get_builder_content_for_display( get_the_ID(), true ); // phpcs:ignore
+	wp_reset_postdata();
 } else {
 	?>
 		<div id="primary" class="content-area">

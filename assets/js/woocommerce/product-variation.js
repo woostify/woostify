@@ -56,27 +56,29 @@ function productVariation( selector, form ) {
 				productMetaSku.innerHTML = variation.sku;
 			}
 
-			if ( wpmGtinCodeWrapper ) {
-				wpmGtinCodeWrapper.innerHTML = variation.sku;
+			if ( wpmGtinCodeWrapper && variation.wpm_pgw_code ) {
+				wpmGtinCodeWrapper.innerHTML = variation.wpm_pgw_code;
 			}
-
-			// Change src image.
-			image.removeAttr( 'srcset' );
-			thumb.find( 'img' ).prop( 'src', thumbSrc );
 
 			// Photoswipe + zoom.
 			photoSwipe.prop( 'href', fullSrc );
 
-			// Image loading.
-			imageWrapper.addClass( 'image-loading' );
-			image
-				.prop( 'src', fullSrc )
-				.one(
-					'load',
-					function() {
-						imageWrapper.removeClass( 'image-loading' );
-					}
-				);
+			// Change image src image.
+			if ( imageSrc !== imgSrc ) {
+				image.removeAttr( 'srcset' );
+				imageWrapper.addClass( 'image-loading' );
+				image
+					.prop( 'src', imgSrc )
+					.one(
+						'load',
+						function() {
+							imageWrapper.removeClass( 'image-loading' );
+						}
+					);
+			}
+
+			// Change thumb src image.
+			thumb.find( 'img' ).prop( 'src', thumbSrc );
 
 			// Re-init zoom handle.
 			if ( 'function' === typeof( easyZoomHandle ) ) {
