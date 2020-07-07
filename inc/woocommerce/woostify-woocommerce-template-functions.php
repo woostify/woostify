@@ -565,6 +565,10 @@ if ( ! function_exists( 'woostify_print_out_of_stock_label' ) ) {
 		}
 
 		$is_square = $options['shop_page_out_of_stock_square'] ? 'is-square' : '';
+
+		if ( $product->backorders_allowed() ) {
+			return;
+		}
 		?>
 		<span class="woostify-out-of-stock-label position-<?php echo esc_attr( $options['shop_page_out_of_stock_position'] ); ?> <?php echo esc_attr( $is_square ); ?>"><?php echo esc_html( $options['shop_page_out_of_stock_text'] ); ?></span>
 		<?php
