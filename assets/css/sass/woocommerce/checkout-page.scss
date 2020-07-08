@@ -233,101 +233,106 @@
 		width: 400px;
 	}
 
-	.shop_table {
-		margin: 0;
-		border: 0;
-		width: 100%;
-
-		th {
-			font-weight: 600;
-		}
-
-		tr {
-			display: flex;
-			justify-content: space-between;
-			flex-wrap: nowrap;
-			border-bottom: 1px solid #ddd;
-
-			th,
-			td {
-				border: 0;
-				padding-left: 0;
-				padding-right: 0;
-				display: block;
-
-				&:last-child {
-					text-align: right;
-				}
-			}
-		}
-
-		thead {
-			th {
-				margin-bottom: 10px;
-				text-transform: uppercase;
-			}
-		}
-
-		tbody {
-			tr {
-				align-items: center;
-			}
-
-			th,
-			td {
-				padding-top: 10px;
-				padding-bottom: 10px;
-
-				&:last-child {
-					white-space: nowrap;
-					margin-left: 10px;
-				}
-			}
-		}
-
-		tfoot {
-			th {
-				font-size: 15px;
-			}
-		}
-
-		.cart-subtotal {
-			th,
-			td {
-				padding-top: 10px;
-				padding-bottom: 10px;
-			}
-		}
-
-		.order-total {
-			th,
-			td {
-				font-size: 18px;
-			}
-		}
-
-		.woocommerce-shipping-totals {
-			flex-direction: column;
-			padding-top: 5px;
-
-			td {
-				text-align: left !important;
-			}
-		}
-	}
-
-	#shipping_method {
-		margin-top: 0;
-	}
-
 	li {
 		list-style: none;
 	}
 }
 
 .woocommerce-checkout-review-order-table {
+	margin: 0;
+	border: 0;
+	width: 100%;
+
 	th {
 		white-space: nowrap;
+	}
+
+	tr {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: nowrap;
+		border-bottom: 1px solid #ddd;
+
+		th,
+		td {
+			border: 0;
+			padding-left: 0;
+			padding-right: 0;
+			display: block;
+
+			&:last-child {
+				text-align: right;
+			}
+		}
+	}
+
+	thead {
+		th {
+			margin-bottom: 10px;
+			text-transform: uppercase;
+			font-weight: 600;
+		}
+	}
+
+	tbody {
+		tr {
+			align-items: center;
+		}
+
+		th,
+		td {
+			padding-top: 10px;
+			padding-bottom: 10px;
+
+			&:last-child {
+				white-space: nowrap;
+				margin-left: 10px;
+			}
+		}
+	}
+
+	tfoot {
+		th {
+			font-size: 15px;
+		}
+	}
+
+	#shipping_method {
+		margin: 0;
+	}
+
+	.woocommerce-shipping-totals {
+		th {
+			padding-bottom: 5px !important;
+		}
+
+		td {
+			padding-top: 5px !important;
+		}
+	}
+
+	.cart-subtotal {
+		th,
+		td {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+	}
+
+	.order-total {
+		th,
+		td {
+			font-size: 18px;
+		}
+	}
+
+	.woocommerce-shipping-totals {
+		flex-direction: column;
+		padding-top: 5px;
+
+		td {
+			text-align: left !important;
+		}
 	}
 
 	.product-name {
