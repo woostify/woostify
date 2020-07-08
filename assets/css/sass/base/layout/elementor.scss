@@ -39,3 +39,10 @@ header {
 		z-index: 6; // Higher multi step checkout item, arrow product slider in single product
 	}
 }
+
+// Set full width for table inside elementor widget
+.elementor-widget-woostify-product-add-to-cart {
+	.variations {
+		width: 100%;
+	}
+}

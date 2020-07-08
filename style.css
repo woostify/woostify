@@ -6311,6 +6311,10 @@ header.elementor-element {
   z-index: 6;
 }
 
+.elementor-widget-woostify-product-add-to-cart .variations {
+  width: 100%;
+}
+
 .home.blog .site-main .post:first-child:last-child {
   border-bottom: 0;
 }
