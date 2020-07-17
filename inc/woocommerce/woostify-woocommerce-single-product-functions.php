@@ -388,7 +388,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 
 				<?php
 				foreach ( $gallery_id as $key ) :
-					$g_thumb_src = wp_get_attachment_image_src( $key, 'thumbnail' );
+					$g_thumb_src = wp_get_attachment_image_src( $key, 'woocommerce_gallery_thumbnail' );
 					$g_thumb_alt = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
 					?>
 					<div class="thumbnail-item">
@@ -538,12 +538,12 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 
 		$number = $stock_quantity <= 10 ? $stock_quantity : wp_rand( 10, 75 );
 		ob_start();
-		if ( $limit >= $number || 0 == $limit ) {
+		if ( $limit >= $number || ! $limit ) {
 			?>
 				<div class="woostify-single-product-stock stock">
 
 					<?php
-					if ( true == $options['shop_single_stock_label'] ) {
+					if ( $options['shop_single_stock_label'] ) {
 						?>
 							<span class="woostify-single-product-stock-label">
 								<?php echo esc_html( sprintf( /* translators: %s stock quantity */ __( 'Hurry! only %s left in stock.', 'woostify' ), $stock_quantity ) ); ?>
@@ -551,7 +551,7 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 						<?php
 					}
 
-					if ( true == $options['shop_single_loading_bar'] ) {
+					if ( $options['shop_single_loading_bar'] ) {
 						?>
 							<div class="woostify-product-stock-progress">
 								<span class="woostify-single-product-stock-progress-bar" data-number="<?php echo esc_attr( $number ); ?>"></span>
@@ -688,7 +688,7 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		$cart_item_data = array();
 
 		// Support woocommerce-gift-wrapper-plus plugin.
-		if ( isset( $_POST['gift_wrap_data'] ) ) {
+		if ( ! empty( $_POST['gift_wrap_data'] ) ) {
 			$product_data = (array) json_decode( sanitize_text_field( wp_unslash( $_POST['gift_wrap_data'] ) ), true );
 
 			if ( ! empty( $product_data['gift_product_id'] ) ) {
@@ -713,25 +713,6 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		}
 
 		$count = WC()->cart->get_cart_contents_count();
-
-		// Support woocommerce-product-bundles plugin.
-		if ( isset( $_POST['product_bundle_data'] ) ) {
-			$cart = WC()->cart->get_cart();
-			if ( ! empty( $cart ) ) {
-				foreach ( $cart as $k => $v ) {
-					if ( class_exists( 'WC_PB_Display' ) ) {
-						$bundle = WC_PB_Display::instance()->get_bundle_container_cart_item_data( $v );
-					}
-				}
-			}
-			/*$product_data = (array) json_decode( sanitize_text_field( wp_unslash( $_POST['product_bundle_data'] ) ), true );
-
-			$cart_item_data[] = array(
-				'key'     => __( 'Engraving', 'woostify' ),
-				'value'   => 'Minh thich thi minh nhich thoi :))',
-				'display' => '',
-			);*/
-		}
 
 		ob_start();
 		woostify_mini_cart();

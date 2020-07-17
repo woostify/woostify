@@ -253,7 +253,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 						$product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 						$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 						?>
-						<li class="woocommerce-mini-cart-item mini_cart_item">
+						<li class="woocommerce-mini-cart-item mini_cart_item <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>">
 							<?php
 							echo apply_filters( // phpcs:ignore
 								'woocommerce_cart_item_remove_link',

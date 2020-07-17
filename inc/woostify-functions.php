@@ -140,9 +140,9 @@ if ( ! function_exists( 'woostify_get_product_id' ) ) {
 	 */
 	function woostify_get_product_id() {
 		$last_product_id = woostify_get_last_product_id();
-		$post            = isset( $_REQUEST['post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['post'] ) ) : null; // phpcs:ignore
-		$editor_post_id  = isset( $_REQUEST['editor_post_id'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['editor_post_id'] ) ) : null; // phpcs:ignore
-		$post_id         = $post ?? $editor_post_id;
+		$post            = isset( $_REQUEST['post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['post'] ) ) : false; // phpcs:ignore
+		$editor_post_id  = isset( $_REQUEST['editor_post_id'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['editor_post_id'] ) ) : false; // phpcs:ignore
+		$post_id         = $post ? $post : $editor_post_id;
 		if ( $post_id ) {
 			$selected_id = get_post_meta( $post_id, 'woostify_woo_builder_select_product_preview', true );
 
