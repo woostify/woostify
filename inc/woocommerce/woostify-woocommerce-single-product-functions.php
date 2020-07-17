@@ -688,7 +688,7 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		$cart_item_data = array();
 
 		// Support woocommerce-gift-wrapper-plus plugin.
-		if ( isset( $_POST['gift_wrap_data'] ) ) {
+		if ( ! empty( $_POST['gift_wrap_data'] ) ) {
 			$product_data = (array) json_decode( sanitize_text_field( wp_unslash( $_POST['gift_wrap_data'] ) ), true );
 
 			if ( ! empty( $product_data['gift_product_id'] ) ) {
@@ -713,25 +713,6 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		}
 
 		$count = WC()->cart->get_cart_contents_count();
-
-		// Support woocommerce-product-bundles plugin.
-		if ( isset( $_POST['product_bundle_data'] ) ) {
-			$cart = WC()->cart->get_cart();
-			if ( ! empty( $cart ) ) {
-				foreach ( $cart as $k => $v ) {
-					if ( class_exists( 'WC_PB_Display' ) ) {
-						$bundle = WC_PB_Display::instance()->get_bundle_container_cart_item_data( $v );
-					}
-				}
-			}
-			/*$product_data = (array) json_decode( sanitize_text_field( wp_unslash( $_POST['product_bundle_data'] ) ), true );
-
-			$cart_item_data[] = array(
-				'key'     => __( 'Engraving', 'woostify' ),
-				'value'   => 'Minh thich thi minh nhich thoi :))',
-				'display' => '',
-			);*/
-		}
 
 		ob_start();
 		woostify_mini_cart();

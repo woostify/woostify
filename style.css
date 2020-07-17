@@ -9357,6 +9357,10 @@ header.elementor-element {
   visibility: hidden;
 }
 
+.woocommerce-mini-cart .bundled_mini_cart_item {
+  display: none;
+}
+
 .mini-cart-updating .mini-cart-quantity,
 .mini-cart-updating .woocommerce-mini-cart__total,
 .mini-cart-updating .woocommerce-mini-cart__buttons {
