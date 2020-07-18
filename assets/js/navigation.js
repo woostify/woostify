@@ -72,19 +72,6 @@ function sidebarMenu( node ) {
 	);
 }
 
-// Fallback for other dev.
-function navFallback() {
-	if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
-		return;
-	}
-
-	if ( navigator.userAgent && ( navigator.userAgent.include( 'Android' ) || navigator.userAgent.include( 'Mobile' ) ) ) {
-		return;
-	}
-
-	document.documentElement.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
-}
-
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
@@ -92,5 +79,3 @@ document.addEventListener(
 		sidebarMenu();
 	}
 );
-
-window.addEventListener( 'resize', navFallback );
