@@ -7522,7 +7522,7 @@ header.elementor-element {
 
 .loop-wrapper-wishlist {
   position: absolute;
-  z-index: 15;
+  z-index: 1;
   right: 5px;
   bottom: 5px;
 }
