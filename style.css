@@ -5436,6 +5436,10 @@ dd {
   position: relative;
 }
 
+.sidebar-menu .primary-navigation .mega-menu-wrapper .sub-menu {
+  display: block;
+}
+
 .sidebar-menu .primary-navigation .sub-mega-menu {
   display: none;
 }
