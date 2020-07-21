@@ -130,6 +130,33 @@
 	.woostify-product-navigation {
 		.product-nav-item-content {
 			align-items: center;
+
+			img {
+				position: absolute;
+				top: 50%;
+				min-height: 100%;
+				transform: translateY(-50%);
+			}
+		}
+
+		.next-product-navigation {
+			.product-nav-item-content {
+				padding-right: 60px;
+			}
+
+			img {
+				right: 0;
+			}
+		}
+
+		.prev-product-navigation {
+			.product-nav-item-content {
+				padding-left: 60px;
+			}
+
+			img {
+				left: 0;
+			}
 		}
 	}
 }

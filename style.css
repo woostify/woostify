@@ -4413,6 +4413,29 @@ dd {
   align-items: center;
 }
 
+.safari-detected .woostify-product-navigation .product-nav-item-content img {
+  position: absolute;
+  top: 50%;
+  min-height: 100%;
+  transform: translateY(-50%);
+}
+
+.safari-detected .woostify-product-navigation .next-product-navigation .product-nav-item-content {
+  padding-right: 60px;
+}
+
+.safari-detected .woostify-product-navigation .next-product-navigation img {
+  right: 0;
+}
+
+.safari-detected .woostify-product-navigation .prev-product-navigation .product-nav-item-content {
+  padding-left: 60px;
+}
+
+.safari-detected .woostify-product-navigation .prev-product-navigation img {
+  left: 0;
+}
+
 .dialog-search-open {
   overflow: hidden;
 }
