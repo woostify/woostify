@@ -651,9 +651,14 @@ if ( ! class_exists( 'Woostify' ) ) {
 		 * @param string $template The path of the template to include.
 		 */
 		public function woostify_elementor_library_template( $template ) {
-			$elementor_lib = WOOSTIFY_THEME_DIR . 'inc/elementor/elementor-library.php';
-			if ( is_singular( 'elementor_library' ) && file_exists( $elementor_lib ) ) {
-				return $elementor_lib;
+			if ( is_singular( 'elementor_library' ) ) {
+				$page_template = get_post_meta( woostify_get_page_id(), '_elementor_page_settings', true );
+				$page_template = isset( $page_template ) && isset( $page_template['page_template'] ) ? $page_template['page_template'] : '';
+				$elementor_lib = WOOSTIFY_THEME_DIR . 'inc/elementor/elementor-library.php';
+
+				if ( file_exists( $elementor_lib ) && 'elementor_canvas' !== $page_template ) {
+					return $elementor_lib;
+				}
 			}
 
 			return $template;
