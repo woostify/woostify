@@ -1,0 +1,17 @@
+.product-loop-action {
+	.tinvwl-product-in-list {
+		&.tinvwl-product-make-remove {
+			.tinvwl_remove_from_wishlist-text,
+			.tinvwl_already_on_wishlist-text {
+				display: none !important;
+			}
+		}
+
+		&.tinvwl-product-already-on-wishlist {
+			.tinvwl_remove_from_wishlist-text,
+			.tinvwl_already_on_wishlist-text {
+				display: none !important;
+			}
+		}
+	}
+}

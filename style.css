@@ -5436,10 +5436,6 @@ dd {
   position: relative;
 }
 
-.sidebar-menu .primary-navigation .mega-menu-wrapper .sub-menu {
-  display: block;
-}
-
 .sidebar-menu .primary-navigation .sub-mega-menu {
   display: none;
 }
@@ -11519,6 +11515,16 @@ ul.products li.product .product-loop-image-wrapper .tinvwl_add_to_wishlist_butto
 .updating-cart.ajax-single-add-to-cart .single_add_to_cart_button.loading:before {
   left: 2em;
   border-width: 2px;
+}
+
+.product-loop-action .tinvwl-product-in-list.tinvwl-product-make-remove .tinvwl_remove_from_wishlist-text,
+.product-loop-action .tinvwl-product-in-list.tinvwl-product-make-remove .tinvwl_already_on_wishlist-text {
+  display: none !important;
+}
+
+.product-loop-action .tinvwl-product-in-list.tinvwl-product-already-on-wishlist .tinvwl_remove_from_wishlist-text,
+.product-loop-action .tinvwl-product-in-list.tinvwl-product-already-on-wishlist .tinvwl_already_on_wishlist-text {
+  display: none !important;
 }
 
 body.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.active:after {
