@@ -9,13 +9,15 @@
 // Woocommerce sidebar on mobile.
 function woostifySidebarMobile() {
 	var sidebar = document.querySelector( '#secondary.shop-widget' ),
-		button  = document.getElementById( 'toggle-sidebar-mobile-button' ),
+		button  = document.querySelector( '#toggle-sidebar-mobile-button' ),
 		overlay = document.getElementById( 'woostify-overlay' ),
 		html    = document.documentElement;
 
 	if ( ! sidebar || ! button ) {
 		return;
 	}
+
+	button.classList.add( 'show' );
 
 	button.onclick = function() {
 		sidebar.classList.add( 'active' );
