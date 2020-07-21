@@ -5573,6 +5573,12 @@ footer#colophon {
   float: left;
 }
 
+@media (max-width: 600px) {
+  .site-footer-widget .widget_custom_html {
+    margin-bottom: 25px;
+  }
+}
+
 .footer-widget-col-1 .widget {
   width: 100%;
 }
