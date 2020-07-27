@@ -682,34 +682,14 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		$product_id        = intval( $_POST['product_id'] );
 		$product_qty       = intval( $_POST['product_qty'] );
 		$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $product_qty );
-
-		$variation_id   = isset( $_POST['variation_id'] ) ? intval( $_POST['variation_id'] ) : false;
-		$variations     = isset( $_POST['variations'] ) ? (array) json_decode( sanitize_text_field( wp_unslash( $_POST['variations'] ) ), true ) : array();
-		$cart_item_data = array();
-
-		// Support woocommerce-gift-wrapper-plus plugin.
-		if ( ! empty( $_POST['gift_wrap_data'] ) ) {
-			$product_data = (array) json_decode( sanitize_text_field( wp_unslash( $_POST['gift_wrap_data'] ) ), true );
-
-			if ( ! empty( $product_data['gift_product_id'] ) ) {
-				$gift_product = wc_get_product( $product_data['gift_product_id'] );
-
-				$gift_wrap_data['wcgwp_single_product_selection'] = $gift_product->get_title();
-				$gift_wrap_data['wcgwp_single_product_price']     = $gift_product->get_price();
-			}
-
-			if ( ! empty( $product_data['gift_product_note'] ) ) {
-				$gift_wrap_data['wcgwp_single_product_note'] = $product_data['gift_product_note'];
-			}
-
-			$cart_item_data[] = $gift_wrap_data;
-		}
+		$variation_id      = isset( $_POST['variation_id'] ) ? intval( $_POST['variation_id'] ) : false;
+		$variations        = isset( $_POST['variations'] ) ? (array) json_decode( sanitize_text_field( wp_unslash( $_POST['variations'] ) ), true ) : array();
 
 		// Add to cart.
 		if ( $variation_id && $passed_validation ) {
-			WC()->cart->add_to_cart( $product_id, $product_qty, $variation_id, $variations, $cart_item_data );
+			WC()->cart->add_to_cart( $product_id, $product_qty, $variation_id, $variations );
 		} else {
-			WC()->cart->add_to_cart( $product_id, $product_qty, 0, array(), $cart_item_data );
+			WC()->cart->add_to_cart( $product_id, $product_qty );
 		}
 
 		$count = WC()->cart->get_cart_contents_count();
