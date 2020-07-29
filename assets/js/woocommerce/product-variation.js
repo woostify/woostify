@@ -67,14 +67,15 @@ function productVariation( selector, form ) {
 			if ( imageSrc !== imgSrc ) {
 				image.removeAttr( 'srcset' );
 				imageWrapper.addClass( 'image-loading' );
-				image
-					.prop( 'src', imgSrc )
+				image.prop( 'src', imgSrc )
 					.one(
 						'load',
 						function() {
 							imageWrapper.removeClass( 'image-loading' );
 						}
 					);
+			} else {
+				image.prop( 'src', imgSrc );
 			}
 
 			// Change thumb src image.
