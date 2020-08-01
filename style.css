@@ -8232,6 +8232,12 @@ header.elementor-element {
   }
 }
 
+@media (min-width: 991px) {
+  .woostify-sorting #toggle-sidebar-mobile-button.show {
+    display: none;
+  }
+}
+
 .hid-skus .product_meta .sku_wrapper {
   display: none;
 }
