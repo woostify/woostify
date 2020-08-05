@@ -94,3 +94,5 @@ document.addEventListener(
 		sidebarMenu();
 	}
 );
+
+window.addEventListener( 'resize', navFallback );
