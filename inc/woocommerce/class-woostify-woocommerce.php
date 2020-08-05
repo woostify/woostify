@@ -153,7 +153,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		 * Woocommerce enqueue scripts and styles.
 		 */
 		public function woocommerce_scripts() {
-			$product_id = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
+			$product_id = woostify_get_product_id();
 			$product    = $product_id ? wc_get_product( $product_id ) : false;
 			$options    = woostify_options( false );
 

@@ -388,7 +388,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 
 				<?php
 				foreach ( $gallery_id as $key ) :
-					$g_thumb_src = wp_get_attachment_image_src( $key, 'thumbnail' );
+					$g_thumb_src = wp_get_attachment_image_src( $key, 'woocommerce_gallery_thumbnail' );
 					$g_thumb_alt = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
 					?>
 					<div class="thumbnail-item">
@@ -538,12 +538,12 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 
 		$number = $stock_quantity <= 10 ? $stock_quantity : wp_rand( 10, 75 );
 		ob_start();
-		if ( $limit >= $number || 0 == $limit ) {
+		if ( $limit >= $number || ! $limit ) {
 			?>
 				<div class="woostify-single-product-stock stock">
 
 					<?php
-					if ( true == $options['shop_single_stock_label'] ) {
+					if ( $options['shop_single_stock_label'] ) {
 						?>
 							<span class="woostify-single-product-stock-label">
 								<?php echo esc_html( sprintf( /* translators: %s stock quantity */ __( 'Hurry! only %s left in stock.', 'woostify' ), $stock_quantity ) ); ?>
@@ -551,7 +551,7 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 						<?php
 					}
 
-					if ( true == $options['shop_single_loading_bar'] ) {
+					if ( $options['shop_single_loading_bar'] ) {
 						?>
 							<div class="woostify-product-stock-progress">
 								<span class="woostify-single-product-stock-progress-bar" data-number="<?php echo esc_attr( $number ); ?>"></span>
@@ -677,61 +677,20 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 			wp_send_json_error();
 		}
 
-		$response = array();
-
 		$product_id        = intval( $_POST['product_id'] );
 		$product_qty       = intval( $_POST['product_qty'] );
 		$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $product_qty );
-
-		$variation_id   = isset( $_POST['variation_id'] ) ? intval( $_POST['variation_id'] ) : false;
-		$variations     = isset( $_POST['variations'] ) ? (array) json_decode( sanitize_text_field( wp_unslash( $_POST['variations'] ) ), true ) : array();
-		$cart_item_data = array();
-
-		// Support woocommerce-gift-wrapper-plus plugin.
-		if ( isset( $_POST['gift_wrap_data'] ) ) {
-			$product_data = (array) json_decode( sanitize_text_field( wp_unslash( $_POST['gift_wrap_data'] ) ), true );
-
-			if ( ! empty( $product_data['gift_product_id'] ) ) {
-				$gift_product = wc_get_product( $product_data['gift_product_id'] );
-
-				$gift_wrap_data['wcgwp_single_product_selection'] = $gift_product->get_title();
-				$gift_wrap_data['wcgwp_single_product_price']     = $gift_product->get_price();
-			}
-
-			if ( ! empty( $product_data['gift_product_note'] ) ) {
-				$gift_wrap_data['wcgwp_single_product_note'] = $product_data['gift_product_note'];
-			}
-
-			$cart_item_data[] = $gift_wrap_data;
-		}
+		$variation_id      = isset( $_POST['variation_id'] ) ? intval( $_POST['variation_id'] ) : false;
+		$variations        = isset( $_POST['variations'] ) ? (array) json_decode( sanitize_text_field( wp_unslash( $_POST['variations'] ) ), true ) : array();
 
 		// Add to cart.
 		if ( $variation_id && $passed_validation ) {
-			WC()->cart->add_to_cart( $product_id, $product_qty, $variation_id, $variations, $cart_item_data );
+			WC()->cart->add_to_cart( $product_id, $product_qty, $variation_id, $variations );
 		} else {
-			WC()->cart->add_to_cart( $product_id, $product_qty, 0, array(), $cart_item_data );
+			WC()->cart->add_to_cart( $product_id, $product_qty );
 		}
 
 		$count = WC()->cart->get_cart_contents_count();
-
-		// Support woocommerce-product-bundles plugin.
-		if ( isset( $_POST['product_bundle_data'] ) ) {
-			$cart = WC()->cart->get_cart();
-			if ( ! empty( $cart ) ) {
-				foreach ( $cart as $k => $v ) {
-					if ( class_exists( 'WC_PB_Display' ) ) {
-						$bundle = WC_PB_Display::instance()->get_bundle_container_cart_item_data( $v );
-					}
-				}
-			}
-			/*$product_data = (array) json_decode( sanitize_text_field( wp_unslash( $_POST['product_bundle_data'] ) ), true );
-
-			$cart_item_data[] = array(
-				'key'     => __( 'Engraving', 'woostify' ),
-				'value'   => 'Minh thich thi minh nhich thoi :))',
-				'display' => '',
-			);*/
-		}
 
 		ob_start();
 		woostify_mini_cart();

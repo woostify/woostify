@@ -246,3 +246,9 @@
 		}
 	}
 }
+
+@media ( min-width: 991px ) {
+	.woostify-sorting #toggle-sidebar-mobile-button.show {
+		display: none;
+	}
+}

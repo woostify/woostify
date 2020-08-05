@@ -361,6 +361,13 @@ $media: 599px;
     @extend .duration;
 }
 
+// Mini cart
+.woocommerce-mini-cart {
+	.bundled_mini_cart_item {
+		display: none;
+	}
+}
+
 // Quanity input in mini cart sidebar
 .mini-cart-updating {
 	.mini-cart-quantity,

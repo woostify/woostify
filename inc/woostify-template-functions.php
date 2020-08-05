@@ -38,7 +38,7 @@ if ( ! function_exists( 'woostify_post_related' ) ) {
 	function woostify_post_related() {
 		$options = woostify_options( false );
 
-		if ( ! $options['blog_single_related_post'] ) {
+		if ( ! $options['blog_single_related_post'] || is_singular( 'elementor_library' ) ) {
 			return;
 		}
 
@@ -954,6 +954,10 @@ if ( ! function_exists( 'woostify_get_post_title' ) ) {
 	 * @param boolean $echo Echo.
 	 */
 	function woostify_get_post_title( $echo = true ) {
+		if ( is_singular( 'elementor_library' ) ) {
+			return;
+		}
+
 		$title_tag = apply_filters( 'woostify_post_title_html_tag', 'h2' );
 
 		$title  = '<' . esc_attr( $title_tag ) . ' class="entry-header-item alpha entry-title">';
@@ -1022,6 +1026,10 @@ if ( ! function_exists( 'woostify_get_post_meta' ) ) {
 	 * @param boolean $echo        Echo.
 	 */
 	function woostify_get_post_meta( $option_name, $echo = true ) {
+		if ( is_singular( 'elementor_library' ) ) {
+			return;
+		}
+
 		$output    = '';
 		$options   = woostify_options( false );
 		$meta_data = $options[ $option_name ];
@@ -1231,6 +1239,10 @@ if ( ! function_exists( 'woostify_post_nav' ) ) {
 	 * Display navigation to next/previous post when applicable.
 	 */
 	function woostify_post_nav() {
+		if ( is_singular( 'elementor_library' ) ) {
+			return;
+		}
+
 		$args = array(
 			'next_text' => '<span class="screen-reader-text">' . esc_html__( 'Next post:', 'woostify' ) . ' </span>%title',
 			'prev_text' => '<span class="screen-reader-text">' . esc_html__( 'Previous post:', 'woostify' ) . ' </span>%title',
@@ -1245,7 +1257,7 @@ if ( ! function_exists( 'woostify_post_author_box' ) ) {
 	 */
 	function woostify_post_author_box() {
 		$options = woostify_options( false );
-		if ( ! $options['blog_single_author_box'] ) {
+		if ( ! $options['blog_single_author_box'] || is_singular( 'elementor_library' ) ) {
 			return;
 		}
 

@@ -74,6 +74,7 @@ function customQuantity() {
 				function() {
 					var inputVal  = input.value,
 						inCartQty = productInfo ? parseInt( productInfo.value ) : 0,
+						min       = parseInt( input.getAttribute( 'min' ) || 0 ),
 						ajaxReady = function() {
 							input.classList.remove( 'ajax-ready' );
 						};
@@ -82,7 +83,7 @@ function customQuantity() {
 					input.classList.add( 'ajax-ready' );
 
 					// Valid quantity.
-					if ( inputVal < 1 || isNaN( inputVal ) ) {
+					if ( inputVal < min || isNaN( inputVal ) ) {
 						alert( quantityValid );
 						ajaxReady();
 						return;
@@ -114,11 +115,11 @@ function customQuantity() {
 					var t        = this,
 						current  = parseInt( input.value || 0 ),
 						step     = parseInt( input.getAttribute( 'step' ) || 1 ),
-						min      = parseInt( input.getAttribute( 'min' ) || 1 ),
+						min      = parseInt( input.getAttribute( 'min' ) || 0 ),
 						max      = parseInt( input.getAttribute( 'max' ) ),
 						dataType = t.getAttribute( 'data-qty' );
 
-					if ( 'minus' === dataType && current > step ) { // Minus button.
+					if ( 'minus' === dataType && current >= step ) { // Minus button.
 						if ( current <= min || ( current - step ) < min ) {
 							return;
 						}

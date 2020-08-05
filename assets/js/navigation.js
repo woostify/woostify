@@ -72,6 +72,21 @@ function sidebarMenu( node ) {
 	);
 }
 
+// Fallback for other dev.
+function navFallback() {
+	if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
+		return;
+	}
+
+	var userArgent = navigator.userAgent;
+
+	if ( userArgent && ( userArgent.includes( 'Android' ) || userArgent.includes( 'Mobile' ) ) ) {
+		return;
+	}
+
+	document.documentElement.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
