@@ -96,10 +96,10 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 	 * @param string $cart_item_key Cart item key.
 	 */
 	function woostify_update_quantity_mini_cart( $output, $cart_item, $cart_item_key ) {
-		$product         = $cart_item['data'];
-		$product_id      = $cart_item['product_id'];
-		$product_instock = get_post_meta( $product_id, '_stock', true );
-		$product_price   = WC()->cart->get_product_price( $product );
+		$product        = $cart_item['data'];
+		$product_id     = $cart_item['product_id'];
+		$stock_quantity = $product->get_stock_quantity();
+		$product_price  = WC()->cart->get_product_price( $product );
 
 		ob_start();
 		?>
@@ -107,7 +107,7 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 			<span class="mini-cart-quantity">
 				<span class="mini-cart-product-qty ti-minus" data-qty="minus"></span>
 
-				<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" max="<?php echo esc_attr( $product_instock ? $product_instock : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+				<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
 
 				<span class="mini-cart-product-qty ti-plus" data-qty="plus"></span>
 			</span>

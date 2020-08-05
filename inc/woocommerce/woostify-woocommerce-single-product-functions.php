@@ -677,8 +677,6 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 			wp_send_json_error();
 		}
 
-		$response = array();
-
 		$product_id        = intval( $_POST['product_id'] );
 		$product_qty       = intval( $_POST['product_qty'] );
 		$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $product_qty );
