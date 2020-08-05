@@ -78,7 +78,9 @@ function navFallback() {
 		return;
 	}
 
-	if ( navigator.userAgent && ( navigator.userAgent.include( 'Android' ) || navigator.userAgent.include( 'Mobile' ) ) ) {
+	var userArgent = navigator.userAgent;
+
+	if ( userArgent && ( userArgent.includes( 'Android' ) || userArgent.includes( 'Mobile' ) ) ) {
 		return;
 	}
 
