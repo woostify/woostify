@@ -95,9 +95,16 @@ if ( ! function_exists( 'woostify_loop_product_image' ) ) {
 		$img_id     = $product->get_image_id();
 		$img_alt    = woostify_image_alt( $img_id, esc_attr__( 'Product image', 'woostify' ) );
 		$img_origin = wp_get_attachment_image_src( $img_id, $size );
+
+		if ( ! $img_origin ) {
+			$img_ori = '';
+		} else {
+			$img_ori = $img_origin[0];
+		}
+
 		$image_attr = array(
 			'alt'      => $img_alt,
-			'data-src' => $img_origin[0],
+			'data-src' => $img_ori,
 			'class'    => 'attachment-' . $size . ' size-' . $size . ' product-loop-image',
 		);
 
