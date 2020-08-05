@@ -85,7 +85,8 @@ var woostifyQuantityMiniCart = function() {
 			var quantityBtn = ele.querySelectorAll( '.mini-cart-product-qty' ),
 				input       = ele.querySelector( 'input.qty' ),
 				cartItemKey = input.getAttribute( 'data-cart_item_key' ) || '',
-				eventChange = new Event( 'change' );
+				eventChange = new Event( 'change' ),
+				qtyUpdate   = new Event( 'quantity_updated' );
 
 			if ( ! quantityBtn.length || ! input ) {
 				return;
@@ -195,6 +196,7 @@ var woostifyQuantityMiniCart = function() {
 						).finally(
 							function() {
 								document.documentElement.classList.remove( 'mini-cart-updating' );
+								document.dispatchEvent( qtyUpdate );
 							}
 						);
 				}
