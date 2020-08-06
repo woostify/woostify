@@ -212,15 +212,6 @@ document.addEventListener(
 		woostifyQuantityMiniCart();
 
 		window.addEventListener(
-			'scroll',
-			function() {
-				if ( woostifyConditionScrolling() ) {
-					scrollingDetect();
-				}
-			}
-		);
-
-		window.addEventListener(
 			'load',
 			function() {
 				woostifyStockQuantityProgressBar();

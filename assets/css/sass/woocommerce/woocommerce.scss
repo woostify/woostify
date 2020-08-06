@@ -454,20 +454,6 @@ $size: 40px;
 }
 
 // store notice
-.scrolling-down {
-	&.woocommerce-demo-store {
-		.woocommerce-store-notice {
-			visibility: visible;
-			opacity: 1;
-			@include translatey(0);
-		}
-	}
-
-	#scroll-to-top {
-		bottom: 60px;
-	}
-}
-
 .woocommerce-store-notice {
 	margin-bottom: 0;
 	padding: 10px 15px;
@@ -477,11 +463,7 @@ $size: 40px;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	visibility: hidden;
-	opacity: 0;
 	z-index: 501; // higher Sticky Button on Mobile feature.
-	@include translatey(100%);
-	@extend .duration;
 
 	&:before {
 		content: "\e717";
@@ -786,70 +768,17 @@ $size: 40px;
 	z-index: 500;
 	width: 100%;
 	border-radius: 0 !important;
-	opacity: 0;
-	visibility: hidden;
-	@include translatey(100%);
 }
 
 @media (max-width: $screen-sm - 1) {
-	.scrolling-up {
-		&.has-proceed-sticky-button {
-			.wc-proceed-to-checkout .button {
-				@include translatey(100%);
-			}
-		}
-
-		&.has-order-sticky-button {
-			#place_order {
-				@include translatey(100%);
-			}
-
-			&.has-multi-step-checkout {
-				.multi-step-checkout-button-wrapper {
-
-					.multi-step-checkout-button[data-action="continue"],
-					.multi-step-checkout-button[data-action="place_order"] {
-						@include translatey(100%);
-					}
-				}
-			}
-		}
-	}
-
-	.scrolling-down {
-		&.has-proceed-sticky-button {
-			.wc-proceed-to-checkout .button {
-				@include translatey(0);
-				opacity: 1;
-				visibility: visible;
-			}
-		}
-
-		&.has-order-sticky-button {
-			#place_order {
-				@include translatey(0);
-				opacity: 1;
-				visibility: visible;
-			}
-
-			&.has-multi-step-checkout {
-				.multi-step-checkout-button-wrapper {
-
-					.multi-step-checkout-button[data-action="continue"],
-					.multi-step-checkout-button[data-action="place_order"] {
-						@include translatey(0);
-						opacity: 1;
-						visibility: visible;
-					}
-				}
-			}
-		}
-	}
-
 	// Sticky Single add to cart button
 	.has-proceed-sticky-button {
 		.wc-proceed-to-checkout .button {
 			@include fixed();
+		}
+
+		#scroll-to-top {
+			bottom: 60px;
 		}
 	}
 
@@ -858,6 +787,10 @@ $size: 40px;
 		#place_order {
 			@include fixed();
 			line-height: normal;
+		}
+
+		#scroll-to-top {
+			bottom: 60px;
 		}
 
 		&.has-multi-step-checkout {
