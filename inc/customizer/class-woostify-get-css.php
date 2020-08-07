@@ -155,32 +155,30 @@ class Woostify_Get_CSS {
 
 		// Primary menu css.
 		$styles .= '
-			@media ( min-width: 992px ) {
-				.primary-navigation a{
-					font-family: ' . esc_attr( $options['menu_font_family'] ) . ';
-					text-transform: ' . esc_attr( $options['menu_font_transform'] ) . ';
-				}
+			.primary-navigation a{
+				font-family: ' . esc_attr( $options['menu_font_family'] ) . ';
+				text-transform: ' . esc_attr( $options['menu_font_transform'] ) . ';
+			}
 
-				.primary-navigation > li > a,
-				.primary-navigation .sub-menu a {
-					font-weight: ' . esc_attr( $options['menu_font_weight'] ) . ';
-				}
+			.primary-navigation > li > a,
+			.primary-navigation .sub-menu a {
+				font-weight: ' . esc_attr( $options['menu_font_weight'] ) . ';
+			}
 
-				.primary-navigation > li > a{
-					font-size: ' . esc_attr( $options['parent_menu_font_size'] ) . 'px;
-					line-height: ' . esc_attr( $options['parent_menu_line_height'] ) . 'px;
-					color: ' . esc_attr( $options['primary_menu_color'] ) . ';
-				}
+			.primary-navigation > li > a{
+				font-size: ' . esc_attr( $options['parent_menu_font_size'] ) . 'px;
+				line-height: ' . esc_attr( $options['parent_menu_line_height'] ) . 'px;
+				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
+			}
 
-				.primary-navigation .sub-menu a{
-					line-height: ' . esc_attr( $options['sub_menu_line_height'] ) . 'px;
-					font-size: ' . esc_attr( $options['sub_menu_font_size'] ) . 'px;
-					color: ' . esc_attr( $options['primary_sub_menu_color'] ) . ';
-				}
+			.primary-navigation .sub-menu a{
+				line-height: ' . esc_attr( $options['sub_menu_line_height'] ) . 'px;
+				font-size: ' . esc_attr( $options['sub_menu_font_size'] ) . 'px;
+				color: ' . esc_attr( $options['primary_sub_menu_color'] ) . ';
+			}
 
-				.site-tools .tools-icon {
-					color: ' . esc_attr( $options['primary_menu_color'] ) . ';
-				}
+			.site-tools .tools-icon {
+				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
 			}
 		';
 
