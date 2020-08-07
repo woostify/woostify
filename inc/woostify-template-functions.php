@@ -38,7 +38,7 @@ if ( ! function_exists( 'woostify_post_related' ) ) {
 	function woostify_post_related() {
 		$options = woostify_options( false );
 
-		if ( ! $options['blog_single_related_post'] || is_singular( 'elementor_library' ) ) {
+		if ( ! $options['blog_single_related_post'] || ! is_singular( 'post' ) ) {
 			return;
 		}
 
@@ -954,10 +954,6 @@ if ( ! function_exists( 'woostify_get_post_title' ) ) {
 	 * @param boolean $echo Echo.
 	 */
 	function woostify_get_post_title( $echo = true ) {
-		if ( is_singular( 'elementor_library' ) ) {
-			return;
-		}
-
 		$title_tag = apply_filters( 'woostify_post_title_html_tag', 'h2' );
 
 		$title  = '<' . esc_attr( $title_tag ) . ' class="entry-header-item alpha entry-title">';
@@ -982,6 +978,10 @@ if ( ! function_exists( 'woostify_get_post_structure' ) ) {
 	 * @param boolean $echo        Echo.
 	 */
 	function woostify_get_post_structure( $option_name, $echo = true ) {
+		if ( ! woostify_is_blog() ) {
+			return;
+		}
+
 		$output    = '';
 		$options   = woostify_options( false );
 		$meta_data = $options[ $option_name ];
@@ -1026,7 +1026,7 @@ if ( ! function_exists( 'woostify_get_post_meta' ) ) {
 	 * @param boolean $echo        Echo.
 	 */
 	function woostify_get_post_meta( $option_name, $echo = true ) {
-		if ( is_singular( 'elementor_library' ) ) {
+		if ( ! woostify_is_blog() ) {
 			return;
 		}
 
@@ -1239,7 +1239,7 @@ if ( ! function_exists( 'woostify_post_nav' ) ) {
 	 * Display navigation to next/previous post when applicable.
 	 */
 	function woostify_post_nav() {
-		if ( is_singular( 'elementor_library' ) ) {
+		if ( ! is_singular( 'post' ) ) {
 			return;
 		}
 
@@ -1257,7 +1257,7 @@ if ( ! function_exists( 'woostify_post_author_box' ) ) {
 	 */
 	function woostify_post_author_box() {
 		$options = woostify_options( false );
-		if ( ! $options['blog_single_author_box'] || is_singular( 'elementor_library' ) ) {
+		if ( ! $options['blog_single_author_box'] || ! is_singular( 'post' ) ) {
 			return;
 		}
 
