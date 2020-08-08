@@ -1745,28 +1745,25 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 			$dokan_store_sidebar = true;
 		}
 
-		if ( woostify_is_elementor_page() || is_404() || $dokan_store_sidebar ) {
+		if ( woostify_is_elementor_page() || is_404() || $dokan_store_sidebar || ( class_exists( 'woocommerce' ) && ( is_cart() || is_checkout() || is_account_page() ) ) ) {
 			return $sidebar;
 		}
 
-		if ( woostify_is_product_archive() ) {
-			// Product archive.
+		if ( class_exists( 'woocommerce' ) && is_shop() ) {
+			// Shop page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar-shop', $sidebar_shop, $sidebar_default );
 		} elseif ( is_singular( 'product' ) ) {
-			// Product single.
+			// Product page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar-shop', $sidebar_shop_single, $sidebar_default );
-		} elseif ( class_exists( 'woocommerce' ) && ( is_cart() || is_checkout() || is_account_page() ) ) {
-			// Cart, checkout and account page.
-			$sidebar = '';
 		} elseif ( is_page() ) {
 			// Page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_page, $sidebar_default );
 		} elseif ( is_singular( 'post' ) ) {
-			// Blog page.
+			// Post page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_blog_single, $sidebar_default );
 		} else {
 			// Other page.
-			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_blog, $sidebar_default );
+			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_default, $sidebar_default );
 		}
 
 		return $sidebar;
