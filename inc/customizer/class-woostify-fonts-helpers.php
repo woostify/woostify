@@ -43,7 +43,26 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			add_action( 'enqueue_block_editor_assets', array( $this, 'woostify_enqueue_google_fonts' ), 0 );
 			add_action( 'wp_ajax_woostify_get_all_google_fonts_ajax', array( $this, 'woostify_get_all_google_fonts_ajax' ) );
 			add_filter( 'woostify_typography_customize_list', array( $this, 'woostify_add_to_font_customizer_list' ) );
+
+			// Add custom font css.
+			add_action( 'wp_head', array( $this, 'woostify_add_custom_font_style' ) );
+			if ( is_admin() ) {
+				add_action( 'enqueue_block_assets', array( $this, 'woostify_add_custom_font_style' ) );
+			}
 		}
+
+		/**
+		 * Add custom font css
+		 */
+		public function woostify_add_custom_font_style() {
+			if ( ! class_exists( 'Bsf_Custom_Fonts_Render' ) ) {
+				return;
+			}
+
+			$custom_font = Bsf_Custom_Fonts_Render::get_instance();
+			$custom_font->add_style();
+		}
+
 		/**
 		 * Add misc inline scripts to our controls.
 		 *
@@ -73,12 +92,13 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			$fonts = array(
 				'inherit',
 				'System Stack',
-				'Arial, Helvetica, sans-serif',
+				'Arial, sans-serif',
 				'Century Gothic',
 				'Comic Sans MS',
 				'Courier New',
-				'Georgia, Times New Roman, Times, serif',
-				'Helvetica',
+				'Times, Times New Roman, serif',
+				'Georgia, serif',
+				'Helvetica, sans-serif',
 				'Impact',
 				'Lucida Console',
 				'Lucida Sans Unicode',
@@ -88,6 +108,17 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				'Trebuchet MS, Helvetica, sans-serif',
 				'Verdana, Geneva, sans-serif',
 			);
+
+			// Support Custom fonts by Astra.
+			if ( class_exists( 'Bsf_Custom_Fonts_Taxonomy' ) ) {
+				$custom_fonts = Bsf_Custom_Fonts_Taxonomy::get_fonts();
+
+				if ( ! empty( $custom_fonts ) ) {
+					foreach ( $custom_fonts as $k => $v ) {
+						array_push( $fonts, $k );
+					}
+				}
+			}
 
 			return apply_filters( 'woostify_typography_default_fonts', $fonts );
 		}
