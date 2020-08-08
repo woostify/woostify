@@ -8311,14 +8311,6 @@ header.elementor-element {
   height: 30px;
 }
 
-.vertical-style .product-thumbnail-images .tns-ovh:not([style*="height"]) {
-  max-height: 300px;
-}
-
-.horizontal-style .product-thumbnail-images .tns-ovh:not([style*="height"]) {
-  max-width: 300px;
-}
-
 @media (min-width: 992px) {
   .has-gallery-layout-vertical .product-thumbnail-images .tns-controls [data-controls] {
     top: auto;

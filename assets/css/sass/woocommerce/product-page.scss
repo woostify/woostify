@@ -183,22 +183,6 @@
 			height: 30px;
 		}
 	}
-
-	.vertical-style & {
-		.tns-ovh {
-			&:not([style*="height"]) {
-				max-height: 300px;
-			}
-		}
-	}
-
-	.horizontal-style & {
-		.tns-ovh {
-			&:not([style*="height"]) {
-				max-width: 300px;
-			}
-		}
-	}
 }
 
 .has-gallery-layout-vertical {
