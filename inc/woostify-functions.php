@@ -386,6 +386,7 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 				),
 			)
 		);
+
 		return $content;
 	}
 }

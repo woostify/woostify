@@ -27,7 +27,7 @@ if ( ! function_exists( 'woostify_replace_text' ) ) {
 
 		$output = str_replace( '[theme_author]', '<a href="' . esc_url( $theme_author['theme_author_url'] ) . '">' . $theme_author['theme_name'] . '</a>', $output );
 
-		return do_shortcode( $output );
+		return wp_specialchars_decode( $output );
 	}
 }
 
@@ -304,7 +304,7 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 				$footer_text = woostify_replace_text( $options['footer_custom_text'] );
 				?>
 				<div class="site-infor-col">
-					<?php echo wp_kses_post( $footer_text ); ?>
+					<?php echo do_shortcode( $footer_text ); ?>
 				</div>
 			<?php } ?>
 
