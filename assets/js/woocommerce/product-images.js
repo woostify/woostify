@@ -102,12 +102,12 @@ document.addEventListener(
 		}
 
 		// Product thumbnails.
-		var firstImage       = gallery.querySelector( '.image-item img' ),
+		var firstImage       = gallery ? gallery.querySelector( '.image-item img' ) : false,
 			firstImageHeight = firstImage ? firstImage.offsetHeight : 0,
 			firstImageWidth  = firstImage ? firstImage.offsetWidth : 0,
-			firstImageSize   = gallery.classList.contains( 'vertical-style' ) ? firstImageHeight : firstImageWidth,
-			imageSize        = gallery.classList.contains( 'vertical-style' ) ? 60 : 80,
-			thumbItems       = firstImageSize ? parseInt( firstImageSize / imageSize ) : 5;
+			firstImageSize   = gallery ? gallery.classList.contains( 'vertical-style' ) ? firstImageHeight : firstImageWidth : false,
+			imageSize        = gallery ? gallery.classList.contains( 'vertical-style' ) ? 60 : 80 : false,
+			thumbItems       = firstImageSize && imageSize ? parseInt( firstImageSize / imageSize ) : 5;
 
 		var thumbCarousel,
 			thumbOptions = {
