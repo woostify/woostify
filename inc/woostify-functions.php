@@ -537,7 +537,7 @@ if ( ! function_exists( 'woostify_narrow_data' ) ) {
 	 *
 	 * @return     array
 	 */
-	function woostify_narrow_data( $type = 'post', $terms = 'category', $total = 100 ) {
+	function woostify_narrow_data( $type = 'post', $terms = 'category', $total = -1 ) {
 		$output = array();
 		switch ( $type ) {
 			case 'post':
