@@ -126,7 +126,7 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 		$edit_mode = get_post_meta( $page_id, '_elementor_edit_mode', true );
 		$edit_mode = 'builder' === $edit_mode ? true : false;
 
-		if ( ! $page_id ) {
+		if ( ! $page_id || is_tax() ) {
 			$edit_mode = false;
 		}
 
@@ -386,6 +386,7 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 				),
 			)
 		);
+
 		return $content;
 	}
 }
@@ -536,7 +537,7 @@ if ( ! function_exists( 'woostify_narrow_data' ) ) {
 	 *
 	 * @return     array
 	 */
-	function woostify_narrow_data( $type = 'post', $terms = 'category', $total = 100 ) {
+	function woostify_narrow_data( $type = 'post', $terms = 'category', $total = -1 ) {
 		$output = array();
 		switch ( $type ) {
 			case 'post':
