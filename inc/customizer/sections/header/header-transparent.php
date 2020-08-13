@@ -189,6 +189,50 @@ $wp_customize->add_control(
 	)
 );
 
+// Logo Transparent.
+$wp_customize->add_setting(
+	'woostify_setting[header_transparent_logo]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['header_transparent_logo'],
+		'sanitize_callback' => 'esc_url_raw',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Image_Control(
+		$wp_customize,
+		'woostify_setting[header_transparent_logo]',
+		array(
+			'label'    => __( 'Header Transparent Logo', 'woostify' ),
+			'section'  => 'woostify_header_transparent',
+			'settings' => 'woostify_setting[header_transparent_logo]',
+		)
+	)
+);
+
+// Menu Transparent color.
+$wp_customize->add_setting(
+	'woostify_setting[header_transparent_menu_color]',
+	array(
+		'default'           => $defaults['header_transparent_menu_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[header_transparent_menu_color]',
+		array(
+			'label'    => __( 'Menu Transparent Color', 'woostify' ),
+			'section'  => 'woostify_header_transparent',
+			'settings' => 'woostify_setting[header_transparent_menu_color]',
+		)
+	)
+);
+
+
 // Border divider.
 $wp_customize->add_setting(
 	'header_transparent_border_divider',
@@ -228,7 +272,7 @@ $wp_customize->add_control(
 			'settings' => array(
 				'desktop' => 'woostify_setting[header_transparent_border_width]',
 			),
-			'choices' => array(
+			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_header_transparent_border_width_min_step', 0 ),
 					'max'  => apply_filters( 'woostify_header_transparent_border_width_max_step', 20 ),

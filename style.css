@@ -8168,6 +8168,10 @@ header.elementor-element {
   background-color: rgba(0, 0, 0, 0);
 }
 
+.product-loop-meta:not(.no-transform) .button:hover {
+  background-color: rgba(0, 0, 0, 0);
+}
+
 .product-loop-content {
   padding: 25px 15px;
 }

@@ -330,6 +330,7 @@ class Woostify_Get_CSS {
 			}
 
 			.button:hover,
+			.single_add_to_cart_button.button:not(.woostify-buy-now):hover,
 			.woocommerce-widget-layered-nav-dropdown__submit:hover,
 			#commentform input[type="submit"]:hover,
 			.form-submit .submit:hover,
@@ -453,6 +454,9 @@ class Woostify_Get_CSS {
 					border-bottom-width: ' . esc_attr( $options['header_transparent_border_width'] ) . 'px;
 					border-bottom-color: ' . esc_attr( $options['header_transparent_border_color'] ) . ';
 				}
+				.has-header-transparent .primary-navigation > li > a{
+					color: ' . esc_attr( $options['header_transparent_menu_color'] ) . ';
+				}
 			';
 		}
 
@@ -544,6 +548,18 @@ class Woostify_Get_CSS {
 		';
 
 		// SHOP PAGE.
+		$styles .= '
+			.product-loop-wrapper .button,.product-loop-meta.no-transform .button {
+				color: ' . esc_attr( $options['shop_page_button_cart_color'] ) . ';
+				background-color: ' . esc_attr( $options['shop_page_button_cart_background'] ) . ';
+				border-radius: ' . esc_attr( $options['shop_page_button_border_radius'] ) . 'px;
+			}
+			.product-loop-wrapper .button:hover, .product-loop-meta.no-transform .button:hover {
+				color: ' . esc_attr( $options['shop_page_button_color_hover'] ) . ';
+				background-color: ' . esc_attr( $options['shop_page_button_background_hover'] ) . ';
+			}
+		';
+
 		// Product card.
 		if ( 'none' !== $options['shop_page_product_card_border_style'] ) {
 			$styles .= '
@@ -623,6 +639,19 @@ class Woostify_Get_CSS {
 			.single-product .content-top,
 			.product-page-container{
 				background-color:  ' . esc_attr( $options['shop_single_content_background'] ) . ';
+			}
+		';
+
+		// Single Product Add to cart.
+		$styles .= '
+			.single_add_to_cart_button.button:not(.woostify-buy-now){
+				background-color:  ' . esc_attr( $options['shop_single_button_cart_background'] ) . ';
+				color:  ' . esc_attr( $options['shop_single_button_cart_color'] ) . ';
+				border-radius: ' . esc_attr( $options['shop_single_button_border_radius'] ) . 'px;
+			}
+			.single_add_to_cart_button.button:not(.woostify-buy-now):hover{
+				background-color:  ' . esc_attr( $options['shop_single_button_background_hover'] ) . ';
+				color:  ' . esc_attr( $options['shop_single_button_color_hover'] ) . ';
 			}
 		';
 

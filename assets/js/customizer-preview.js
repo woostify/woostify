@@ -365,6 +365,9 @@ document.addEventListener(
 		// Header transparent: border bottom color.
 		woostify_colors_live_update( 'header_transparent_border_color', '.has-header-transparent .site-header-inner', 'border-bottom-color' );
 
+		// Header menu transparent color.
+		woostify_colors_live_update( 'header_transparent_menu_color', '.has-header-transparent .primary-navigation > li > a', 'color' );
+
 		// Logo width.
 		woostify_range_slider_update( ['logo_width', 'tablet_logo_width', 'mobile_logo_width'], '.site-branding img', 'max-width', 'px' );
 
@@ -478,6 +481,11 @@ document.addEventListener(
 		);
 
 		// SHOP PAGE.
+		woostify_colors_live_update( 'shop_page_button_cart_background', '.product-loop-wrapper .button,.product-loop-meta.no-transform .button', 'background-color' );
+		woostify_colors_live_update( 'shop_page_button_cart_color', '.product-loop-wrapper .button,.product-loop-meta.no-transform .button', 'color' );
+		woostify_colors_live_update( 'shop_page_button_background_hover', '.product-loop-wrapper .button:hover,.product-loop-meta.no-transform .button:hover', 'background-color' );
+		woostify_colors_live_update( 'shop_page_button_color_hover', '.product-loop-wrapper .button:hover,.product-loop-meta.no-transform .button:hover', 'color' );
+		woostify_unit_live_update( 'shop_page_button_border_radius', '.product-loop-wrapper .button,.product-loop-meta.no-transform .button', 'border-radius' );
 		// Sale tag.
 		woostify_update_element_class( 'shop_page_sale_tag_position', '.woostify-tag-on-sale', 'sale-' );
 		woostify_html_live_update( 'shop_page_sale_text', '.woostify-tag-on-sale' );
@@ -497,6 +505,12 @@ document.addEventListener(
 		woostify_unit_live_update( 'shop_page_out_of_stock_size', '.woostify-out-of-stock-label.is-square', [ 'width', 'height' ] );
 
 		// SHOP SINGLE.
+		// Single Product Add To Cart.
+		woostify_colors_live_update( 'shop_single_button_cart_background', '.single_add_to_cart_button.button:not(.woostify-buy-now)', 'background-color' );
+		woostify_colors_live_update( 'shop_single_button_cart_color', '.single_add_to_cart_button.button:not(.woostify-buy-now)', 'color' );
+		woostify_colors_live_update( 'shop_single_button_background_hover', '.single_add_to_cart_button.button:not(.woostify-buy-now):hover', 'background-color' );
+		woostify_colors_live_update( 'shop_single_button_color_hover', '.single_add_to_cart_button.button:not(.woostify-buy-now):hover', 'color' );
+		woostify_unit_live_update( 'shop_single_button_border_radius', '.single_add_to_cart_button.button:not(.woostify-buy-now)', 'border-radius' );
 		// Hidden product meta.
 		woostify_hidden_product_meta( 'shop_single_skus', 'hid-skus' );
 		woostify_hidden_product_meta( 'shop_single_categories', 'hid-categories' );

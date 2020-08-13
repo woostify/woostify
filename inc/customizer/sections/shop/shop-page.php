@@ -1182,10 +1182,15 @@ $wp_customize->add_control(
 		array(
 			'label'      => __( 'Add To Cart Button', 'woostify' ),
 			'section'    => 'woostify_shop_page',
-			'dependency' => [
+			'dependency' => array(
 				'woostify_setting[shop_product_add_to_cart_icon]',
 				'woostify_setting[shop_page_add_to_cart_button_position]',
-			],
+				'woostify_setting[shop_page_button_cart_background]',
+				'woostify_setting[shop_page_button_cart_color]',
+				'woostify_setting[shop_page_button_background_hover]',
+				'woostify_setting[shop_page_button_color_hover]',
+				'woostify_setting[shop_page_button_border_radius]',
+			),
 		)
 	)
 );
@@ -1238,6 +1243,131 @@ $wp_customize->add_control(
 			'label'    => __( 'Cart Icon', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_product_add_to_cart_icon]',
+		)
+	)
+);
+// Button Background.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_button_cart_background]',
+	array(
+		'default'           => $defaults['shop_page_button_cart_background'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_button_cart_background]',
+		array(
+			'label'    => __( 'Background', 'woostify-pro' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_button_cart_background]',
+		)
+	)
+);
+
+// Button Color.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_button_cart_color]',
+	array(
+		'default'           => $defaults['shop_page_button_cart_color'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_button_cart_color]',
+		array(
+			'label'    => __( 'Color', 'woostify-pro' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_button_cart_color]',
+		)
+	)
+);
+
+// Button Hover Background.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_button_background_hover]',
+	array(
+		'default'           => $defaults['shop_page_button_background_hover'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_button_background_hover]',
+		array(
+			'label'    => __( 'Hover Background', 'woostify-pro' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_button_background_hover]',
+		)
+	)
+);
+
+// Button Hover Color.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_button_color_hover]',
+	array(
+		'default'           => $defaults['shop_page_button_color_hover'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_button_color_hover]',
+		array(
+			'label'    => __( 'Hover Color', 'woostify-pro' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_button_color_hover]',
+		)
+	)
+);
+
+// Border radius.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_button_border_radius]',
+	array(
+		'default'           => $defaults['shop_page_button_border_radius'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_button_border_radius]',
+		array(
+			'label'    => __( 'Border Radius', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => array(
+				'desktop' => 'woostify_setting[shop_page_button_border_radius]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_shop_page_button_border_radius_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_shop_page_button_border_radius_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
 		)
 	)
 );

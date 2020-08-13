@@ -172,6 +172,9 @@
 		.button{
 			padding: 0;
 			background-color: $tr;
+			&:hover {
+				background-color: $tr;
+			}
 		}
 	}
 }
