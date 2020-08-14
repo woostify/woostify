@@ -4375,7 +4375,7 @@ dd {
   margin: 3.5em 0;
 }
 
-.woobuilder-page .site-content,
+.woobuilder-active .site-content,
 .elementor-page .site-content,
 .edited-by-divi-builder .site-content {
   margin: 0;
@@ -5556,7 +5556,7 @@ footer#colophon {
   clear: both;
 }
 
-.woobuilder-page .site-footer,
+.woobuilder-active .site-footer,
 .edited-by-divi-builder .site-footer,
 .elementor-page .site-footer {
   margin-top: 0;
@@ -10966,7 +10966,7 @@ header.elementor-element {
 .woocommerce-MyAccount-navigation ul {
   list-style: none;
   margin: 0;
-  padding-left: 0;
+  padding: 0;
 }
 
 .woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link {
@@ -11024,9 +11024,9 @@ header.elementor-element {
 .woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link a {
   font-size: 15px;
   white-space: nowrap;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: inline-flex;
   -webkit-box-pack: justify;
   justify-content: flex-start;
   -webkit-box-align: center;
