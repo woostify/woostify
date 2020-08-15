@@ -534,6 +534,25 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// Scroll to top.
+
+		if ( 'rgba(255,255,255,0)' !== $options['scroll_to_top_background'] ) {
+			$styles .= '
+				#scroll-to-top {
+					background-color: ' . esc_attr( $options['scroll_to_top_background'] ) . ';
+				}
+			';
+		}
+
+		if ( 'rgba(255,255,255,0)' !== $options['scroll_to_top_color'] ) {
+			$styles .= '
+				#scroll-to-top {
+					color: ' . esc_attr( $options['scroll_to_top_color'] ) . ';
+				}
+			';
+		}
+
+
 		// Spinner color.
 		$styles .= '
 			.circle-loading:before,
@@ -548,15 +567,38 @@ class Woostify_Get_CSS {
 		';
 
 		// SHOP PAGE.
+		if ( 'rgba(255,255,255,0)' !== $options['shop_page_button_cart_background'] ) {
+			$styles .= '
+				.product-loop-wrapper .button,.product-loop-meta.no-transform .button {
+					background-color: ' . esc_attr( $options['shop_page_button_cart_background'] ) . ';
+				}
+			';
+		}
+		if ( 'rgba(255,255,255,0)' !== $options['shop_page_button_cart_color'] ) {
+			$styles .= '
+				.product-loop-wrapper .button,.product-loop-meta.no-transform .button {
+					color: ' . esc_attr( $options['shop_page_button_cart_color'] ) . ';
+				}
+			';
+		}
+		if ( 'rgba(255,255,255,0)' !== $options['shop_page_button_color_hover'] ) {
+			$styles .= '
+				.product-loop-wrapper .button:hover, .product-loop-meta.no-transform .button:hover {
+					color: ' . esc_attr( $options['shop_page_button_color_hover'] ) . ';
+				}
+			';
+		}
+		if ( 'rgba(255,255,255,0)' !== $options['shop_page_button_background_hover'] ) {
+			$styles .= '
+				.product-loop-wrapper .button:hover, .product-loop-meta.no-transform .button:hover {
+					background-color: ' . esc_attr( $options['shop_page_button_background_hover'] ) . ';
+				}
+			';
+		}
+
 		$styles .= '
 			.product-loop-wrapper .button,.product-loop-meta.no-transform .button {
-				color: ' . esc_attr( $options['shop_page_button_cart_color'] ) . ';
-				background-color: ' . esc_attr( $options['shop_page_button_cart_background'] ) . ';
 				border-radius: ' . esc_attr( $options['shop_page_button_border_radius'] ) . 'px;
-			}
-			.product-loop-wrapper .button:hover, .product-loop-meta.no-transform .button:hover {
-				color: ' . esc_attr( $options['shop_page_button_color_hover'] ) . ';
-				background-color: ' . esc_attr( $options['shop_page_button_background_hover'] ) . ';
 			}
 		';
 
@@ -645,15 +687,41 @@ class Woostify_Get_CSS {
 		// Single Product Add to cart.
 		$styles .= '
 			.single_add_to_cart_button.button:not(.woostify-buy-now){
-				background-color:  ' . esc_attr( $options['shop_single_button_cart_background'] ) . ';
-				color:  ' . esc_attr( $options['shop_single_button_cart_color'] ) . ';
 				border-radius: ' . esc_attr( $options['shop_single_button_border_radius'] ) . 'px;
 			}
-			.single_add_to_cart_button.button:not(.woostify-buy-now):hover{
-				background-color:  ' . esc_attr( $options['shop_single_button_background_hover'] ) . ';
-				color:  ' . esc_attr( $options['shop_single_button_color_hover'] ) . ';
-			}
 		';
+
+		if ( 'rgba(255,255,255,0)' !== $options['shop_single_button_cart_background'] ) {
+			$styles .= '
+				.single_add_to_cart_button.button:not(.woostify-buy-now){
+					background-color:  ' . esc_attr( $options['shop_single_button_cart_background'] ) . ';
+				}
+			';
+		}
+
+		if ( 'rgba(255,255,255,0)' !== $options['shop_single_button_cart_color'] ) {
+			$styles .= '
+				.single_add_to_cart_button.button:not(.woostify-buy-now){
+					color:  ' . esc_attr( $options['shop_single_button_cart_color'] ) . ';
+				}
+			';
+		}
+
+		if ( 'rgba(255,255,255,0)' !== $options['shop_single_button_color_hover'] ) {
+			$styles .= '
+				.single_add_to_cart_button.button:not(.woostify-buy-now):hover{
+					color:  ' . esc_attr( $options['shop_single_button_color_hover'] ) . ';
+				}
+			';
+		}
+
+		if ( 'rgba(255,255,255,0)' !== $options['shop_single_button_background_hover'] ) {
+			$styles .= '
+				.single_add_to_cart_button.button:not(.woostify-buy-now):hover{
+					background-color:  ' . esc_attr( $options['shop_single_button_background_hover'] ) . ';
+				}
+			';
+		}
 
 		// 404.
 		$error_404_bg = $options['error_404_image'];

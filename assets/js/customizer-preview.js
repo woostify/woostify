@@ -518,5 +518,8 @@ document.addEventListener(
 
 		// Footer.
 		woostify_range_slider_update( ['footer_space'], '.site-footer', 'margin-top', 'px' );
+		woostify_colors_live_update( 'scroll_to_top_background', '#scroll-to-top', 'background-color' );
+		woostify_colors_live_update( 'scroll_to_top_color', '#scroll-to-top', 'color' );
+
 	}
 );

@@ -46,7 +46,7 @@ wp.customize.controlConstructor[ 'woostify-color' ] = wp.customize.Control.exten
 			 * button.
 			 */
 			clear: function( event ) {
-				var element = jQuery( event.target ).closest( '.wp-picker-input-wrap' ).find( '.wp-color-picker' )[ 0 ];
+				var element = jQuery( event.target ).closest( '.wp-picker-input-wrap' ).find( '.wp-color-picker' )[0];
 				var color = '';
 
 				if ( element ) {

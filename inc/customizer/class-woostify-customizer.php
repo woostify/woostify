@@ -133,6 +133,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'page_header_margin_bottom'               => 50,
 				// FOOTER.
 				'scroll_to_top'                           => true,
+				'scroll_to_top_background'                => '',
+				'scroll_to_top_color'                     => '',
+				'scroll_to_top_position'				  => 'right',
 				'footer_display'                          => true,
 				'footer_space'                            => 100,
 				'footer_column'                           => 0,
@@ -189,10 +192,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				// Add to cart button.
 				'shop_page_add_to_cart_button_position'   => 'bottom',
 				'shop_product_add_to_cart_icon'           => true,
-				'shop_page_button_cart_background'        => '#000000',
-				'shop_page_button_cart_color'			  => '#ffffff',
-				'shop_page_button_background_hover'       => '#dd3333',
-				'shop_page_button_color_hover'            => '#ffffff',
+				'shop_page_button_cart_background'        => '',
+				'shop_page_button_cart_color'			  => '',
+				'shop_page_button_background_hover'       => '',
+				'shop_page_button_color_hover'            => '',
 				'shop_page_button_border_radius'          => 0,
 				// Wishlist.
 				'shop_page_wishlist_support_plugin'       => 'ti',
@@ -241,10 +244,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_recently_viewed_title'       => __( 'Recently Viewed Products', 'woostify' ),
 				'shop_single_recently_viewed_count'       => 4,
 				// Single Product Add To Cart.
-				'shop_single_button_cart_background'      => '#000000',
-				'shop_single_button_cart_color'           => '#ffffff',
-				'shop_single_button_background_hover'     => '#dd3333',
-				'shop_single_button_color_hover'          => '#ffffff',
+				'shop_single_button_cart_background'      => '',
+				'shop_single_button_cart_color'           => '',
+				'shop_single_button_background_hover'     => '',
+				'shop_single_button_color_hover'          => '',
 				// CART PAGE.
 				'cart_page_layout'                        => 'layout-2',
 				'cart_page_sticky_proceed_button'         => true,

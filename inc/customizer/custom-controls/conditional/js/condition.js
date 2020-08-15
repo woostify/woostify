@@ -395,6 +395,14 @@
 		);
 
 		// FOOTER SECTION.
+		condition(
+			'woostify_setting[scroll_to_top]',
+			[
+				'woostify_setting[scroll_to_top_background]',
+				'woostify_setting[scroll_to_top_color]',
+			],
+			false
+		);
 		// Disable footer.
 		condition(
 			'woostify_setting[footer_display]',

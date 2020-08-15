@@ -87,7 +87,7 @@ class Woostify_Color_Control extends WP_Customize_Control {
 		?>
 
 		<#
-		var defaultValue = '#ffffff', defaultValueAttr = '';
+		var defaultValue = '#RRGGBB', defaultValueAttr = '';
 		if ( data.default ) {
 			defaultValue     = data.default;
 			defaultValueAttr = ' data-default-color=' + data.default; // Quotes added automatically.
