@@ -212,7 +212,7 @@ $wp_customize->add_setting(
 	'woostify_setting[shop_page_product_card_border_color]',
 	array(
 		'default'           => $defaults['shop_page_product_card_border_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
@@ -567,7 +567,7 @@ $wp_customize->add_setting(
 	'woostify_setting[shop_page_product_image_border_color]',
 	array(
 		'default'           => $defaults['shop_page_product_image_border_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
@@ -723,7 +723,7 @@ $wp_customize->add_setting(
 	'woostify_setting[shop_page_sale_color]',
 	array(
 		'default'           => $defaults['shop_page_sale_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -746,7 +746,7 @@ $wp_customize->add_setting(
 	'woostify_setting[shop_page_sale_bg_color]',
 	array(
 		'default'           => $defaults['shop_page_sale_bg_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -959,7 +959,7 @@ $wp_customize->add_setting(
 	'woostify_setting[shop_page_out_of_stock_color]',
 	array(
 		'default'           => $defaults['shop_page_out_of_stock_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -982,7 +982,7 @@ $wp_customize->add_setting(
 	'woostify_setting[shop_page_out_of_stock_bg_color]',
 	array(
 		'default'           => $defaults['shop_page_out_of_stock_bg_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
@@ -1252,7 +1252,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['shop_page_button_cart_background'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'transport'         => 'postMessage',
 	)
 );
@@ -1275,7 +1275,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['shop_page_button_cart_color'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'transport'         => 'postMessage',
 	)
 );
@@ -1298,7 +1298,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['shop_page_button_background_hover'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'transport'         => 'postMessage',
 	)
 );
@@ -1321,7 +1321,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['shop_page_button_color_hover'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'transport'         => 'postMessage',
 	)
 );
