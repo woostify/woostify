@@ -5,7 +5,7 @@ footer#colophon {
 .site-footer {
 	clear: both;
 
-	.woobuilder-page &,
+	.woobuilder-active &,
 	.edited-by-divi-builder &,
 	.elementor-page & {
 		margin-top: 0;
@@ -159,6 +159,9 @@ footer#colophon {
 		pointer-events: auto;
 		cursor: pointer;
 		@include translatex(0);
+	}
+	&.scroll-to-top-position-left {
+		left: 20px;
 	}
 }
 

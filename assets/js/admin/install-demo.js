@@ -19,19 +19,24 @@ var activatePlugin = function( url, redirect ) {
 		{
 			method: 'GET',
 			credentials: 'same-origin',
-			headers: new Headers({
-				'Content-Type': 'text/xml'
-			})
+			headers: new Headers(
+				{
+					'Content-Type': 'text/xml'
+				}
+			)
 		}
 	);
 
 	fetch( request )
-		.then( function( data ) {
-			location.reload();
-		} )
-		.catch( function( error ) {
-			console.log( error );
-		} );
+		.then(
+			function( data ) {
+				location.reload();
+			}
+		).catch(
+			function( error ) {
+				console.log( error );
+			}
+		);
 }
 
 // Download and Install plugin.
@@ -41,7 +46,7 @@ var installPlugin = function() {
 		return;
 	}
 
-	installBtn.addEventListener( 'click', function( e ) {
+	installBtn.onclick = function( e ) {
 		e.preventDefault();
 
 		var t        = this,
@@ -49,7 +54,7 @@ var installPlugin = function() {
 			slug     = t.getAttribute( 'data-slug' ),
 			redirect = t.getAttribute( 'data-redirect' );
 
-		t.innerHTML = wp.updates.l10n.installing;
+		t.innerHTML = woostify_install_demo.installing;
 
 		t.classList.add( 'updating-message' );
 		wp.updates.installPlugin(
@@ -61,7 +66,7 @@ var installPlugin = function() {
 				}
 			}
 		);
-	} );
+	}
 }
 
 // Activate plugin manual.
@@ -71,7 +76,7 @@ var handleActivate = function() {
 		return;
 	}
 
-	activeButton.addEventListener( 'click', function( e ) {
+	activeButton.onclick = function( e ) {
 		e.preventDefault();
 
 		var t        = this,
@@ -82,10 +87,13 @@ var handleActivate = function() {
 		t.innerHTML = woostify_install_demo.activating + '...';
 
 		activatePlugin( url, redirect );
-	} );
+	}
 }
 
-document.addEventListener( 'DOMContentLoaded', function() {
-	installPlugin();
-	handleActivate();
-} );
+document.addEventListener(
+	'DOMContentLoaded',
+	function() {
+		installPlugin();
+		handleActivate();
+	}
+);

@@ -135,6 +135,7 @@ function customQuantity() {
 
 					// Trigger event.
 					input.dispatchEvent( eventChange );
+					jQuery( input ).trigger( 'input' );
 
 					// Remove disable attribute on Update Cart button on Cart page.
 					var updateCart = document.querySelector( '[name=\'update_cart\']' );

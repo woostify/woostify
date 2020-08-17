@@ -329,18 +329,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				$classes[] = 'off' === dokan_get_option( 'enable_theme_store_sidebar', 'dokan_appearance', 'off' ) ? 'has-dokan-sidebar' : 'dokan-with-theme-sidebar';
 			}
 
-			// Shop builder.
-			$woo_builder  = class_exists( 'Woostify_Woo_Builder' ) ? true : false;
-			$woo_shop     = $woo_builder ? Woostify_Woo_Builder::init()->template_exist( 'woostify_shop_page' ) : false;
-			$woo_product  = $woo_builder ? Woostify_Woo_Builder::init()->template_exist( 'woostify_product_page' ) : false;
-			$woo_cart     = $woo_builder ? Woostify_Woo_Builder::init()->template_exist( 'woostify_cart_page' ) : false;
-			$woo_checkout = $woo_builder ? Woostify_Woo_Builder::init()->template_exist( 'woostify_checkout_page' ) : false;
+			// Elementor theme builder shop archive.
 			if ( is_shop() && woostify_elementor_has_location( 'archive' ) ) {
 				$classes[] = 'has-elementor-location-shop-archive';
-			}
-
-			if ( $woo_product || $woo_cart || $woo_checkout ) {
-				$classes[] = 'woobuilder-page';
 			}
 
 			return array_filter( $classes );

@@ -136,6 +136,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'scroll_to_top'                           => true,
 				'scroll_to_top_background'                => '',
 				'scroll_to_top_color'                     => '',
+				'scroll_to_top_border_radius'             => 0,
+				'scroll_to_top_position'                  => 'right',
 				'footer_display'                          => true,
 				'footer_space'                            => 100,
 				'footer_column'                           => 0,

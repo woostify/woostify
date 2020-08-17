@@ -88,27 +88,27 @@ msgstr ""
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Main Sidebar</strong></a> and dragging widgets into this widget area."
 msgstr ""
 
-#: inc/class-woostify.php:79, inc/customizer/custom-controls/alpha-color-picker/class-woostify-color-control.php:86
+#: inc/class-woostify.php:79
 msgid "Clear"
 msgstr ""
 
-#: inc/class-woostify.php:80, inc/customizer/custom-controls/alpha-color-picker/class-woostify-color-control.php:87
+#: inc/class-woostify.php:80
 msgid "Clear color"
 msgstr ""
 
-#: inc/class-woostify.php:81, inc/customizer/custom-controls/alpha-color-picker/class-woostify-color-control.php:90, inc/customizer/sections/page-header/page-header.php:249, inc/customizer/sections/page-header/page-header.php:277, inc/customizer/sections/page-header/page-header.php:342, inc/customizer/sections/sidebar/sidebar.php:25, inc/customizer/sections/sidebar/sidebar.php:62, inc/customizer/sections/sidebar/sidebar.php:112, inc/customizer/sections/sidebar/sidebar.php:143, inc/customizer/sections/sidebar/sidebar.php:195, inc/customizer/sections/sidebar/sidebar.php:227, inc/customizer/sections/wordpress/background-image.php:22
+#: inc/class-woostify.php:81, inc/customizer/sections/page-header/page-header.php:249, inc/customizer/sections/page-header/page-header.php:277, inc/customizer/sections/page-header/page-header.php:342, inc/customizer/sections/sidebar/sidebar.php:25, inc/customizer/sections/sidebar/sidebar.php:62, inc/customizer/sections/sidebar/sidebar.php:112, inc/customizer/sections/sidebar/sidebar.php:143, inc/customizer/sections/sidebar/sidebar.php:195, inc/customizer/sections/sidebar/sidebar.php:227, inc/customizer/sections/wordpress/background-image.php:22
 msgid "Default"
 msgstr ""
 
-#: inc/class-woostify.php:82, inc/customizer/custom-controls/alpha-color-picker/class-woostify-color-control.php:88
+#: inc/class-woostify.php:82
 msgid "Select default color"
 msgstr ""
 
-#: inc/class-woostify.php:83, inc/customizer/custom-controls/alpha-color-picker/class-woostify-color-control.php:91
+#: inc/class-woostify.php:83
 msgid "Select Color"
 msgstr ""
 
-#: inc/class-woostify.php:84, inc/customizer/custom-controls/alpha-color-picker/class-woostify-color-control.php:89
+#: inc/class-woostify.php:84
 msgid "Color value"
 msgstr ""
 
@@ -128,11 +128,11 @@ msgstr ""
 msgid "Primary Color"
 msgstr ""
 
-#: inc/class-woostify.php:312, inc/customizer/sections/color/color.php:88, inc/customizer/sections/footer/footer.php:238
+#: inc/class-woostify.php:312, inc/customizer/sections/color/color.php:88, inc/customizer/sections/footer/footer.php:192
 msgid "Heading Color"
 msgstr ""
 
-#: inc/class-woostify.php:317, inc/customizer/sections/buttons/button.php:25, inc/customizer/sections/color/color.php:109, inc/customizer/sections/footer/footer.php:280, inc/customizer/sections/header/topbar.php:47, inc/customizer/sections/shop/shop-page.php:737, inc/customizer/sections/shop/shop-page.php:973
+#: inc/class-woostify.php:317, inc/customizer/sections/buttons/button.php:25, inc/customizer/sections/color/color.php:109, inc/customizer/sections/footer/footer.php:234, inc/customizer/sections/header/topbar.php:47, inc/customizer/sections/shop/shop-page.php:737, inc/customizer/sections/shop/shop-page.php:973
 msgid "Text Color"
 msgstr ""
 
@@ -502,7 +502,7 @@ msgstr ""
 msgid "%s not activated."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:316, inc/customizer/class-woostify-customizer.php:339
+#: inc/admin/class-woostify-admin.php:316, inc/customizer/class-woostify-customizer.php:324
 msgid "Get Woostify  Pro Extensions!"
 msgstr ""
 
@@ -590,39 +590,43 @@ msgstr ""
 msgid "Activating"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:480, inc/customizer/class-woostify-customizer.php:356, inc/customizer/class-woostify-customizer.php:372, inc/customizer/class-woostify-customizer.php:388, inc/customizer/class-woostify-customizer.php:404, inc/customizer/class-woostify-customizer.php:420
+#: inc/admin/class-woostify-admin.php:469
+msgid "Installing"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:481, inc/customizer/class-woostify-customizer.php:341, inc/customizer/class-woostify-customizer.php:357, inc/customizer/class-woostify-customizer.php:373, inc/customizer/class-woostify-customizer.php:389, inc/customizer/class-woostify-customizer.php:405
 msgid "Learn More"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:484
+#: inc/admin/class-woostify-admin.php:485
 msgid "How it works. Learn Woostify."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:488
+#: inc/admin/class-woostify-admin.php:489
 msgid "Visit Documentation"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:494
+#: inc/admin/class-woostify-admin.php:495
 msgid "Woostify Community"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:498
+#: inc/admin/class-woostify-admin.php:499
 msgid "Join Our Facebook Group"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:504
+#: inc/admin/class-woostify-admin.php:505
 msgid "Customer Support"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:508
+#: inc/admin/class-woostify-admin.php:509
 msgid "Submit a Ticket"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:514
+#: inc/admin/class-woostify-admin.php:515
 msgid "Love Woostify?"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:518
+#: inc/admin/class-woostify-admin.php:519
 msgid "Give us 5 stars!"
 msgstr ""
 
@@ -706,23 +710,23 @@ msgstr ""
 msgid "Disable Footer"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:205
+#: inc/customizer/class-woostify-customizer.php:196
 msgid "Sale!"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:213
+#: inc/customizer/class-woostify-customizer.php:204
 msgid "Out Of Stock"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:243, inc/customizer/sections/shop/shop-single.php:533
+#: inc/customizer/class-woostify-customizer.php:233, inc/customizer/sections/shop/shop-single.php:533
 msgid "Recently Viewed Products"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:267
+#: inc/customizer/class-woostify-customizer.php:252
 msgid "Opps! The page you are looking for is missing for some reasons. Please come back to homepage"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:357, inc/customizer/class-woostify-customizer.php:373, inc/customizer/class-woostify-customizer.php:389, inc/customizer/class-woostify-customizer.php:405, inc/customizer/class-woostify-customizer.php:421
+#: inc/customizer/class-woostify-customizer.php:342, inc/customizer/class-woostify-customizer.php:358, inc/customizer/class-woostify-customizer.php:374, inc/customizer/class-woostify-customizer.php:390, inc/customizer/class-woostify-customizer.php:406
 msgid "More options are coming for this section in our Pro Extensions."
 msgstr ""
 
@@ -824,11 +828,11 @@ msgstr ""
 msgid "Hurry! only %s left in stock."
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:469
+#: inc/woocommerce/class-woostify-woocommerce.php:460
 msgid "Product video url"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:490
+#: inc/woocommerce/class-woostify-woocommerce.php:481
 msgid "Enter Youtube or Vimeo video url"
 msgstr ""
 
@@ -984,7 +988,7 @@ msgstr ""
 msgid "Variants"
 msgstr ""
 
-#: inc/customizer/sections/404/error-404.php:25, inc/customizer/sections/footer/footer.php:320
+#: inc/customizer/sections/404/error-404.php:25, inc/customizer/sections/footer/footer.php:274
 msgid "Custom Text"
 msgstr ""
 
@@ -1052,7 +1056,7 @@ msgstr ""
 msgid "Blog Post Meta"
 msgstr ""
 
-#: inc/customizer/sections/buttons/button.php:46, inc/customizer/sections/footer/footer.php:217, inc/customizer/sections/header/topbar.php:69, inc/customizer/sections/page-header/page-header.php:200, inc/customizer/sections/shop/shop-page.php:760, inc/customizer/sections/shop/shop-page.php:996
+#: inc/customizer/sections/buttons/button.php:46, inc/customizer/sections/footer/footer.php:171, inc/customizer/sections/header/topbar.php:69, inc/customizer/sections/page-header/page-header.php:200, inc/customizer/sections/shop/shop-page.php:760, inc/customizer/sections/shop/shop-page.php:996
 msgid "Background Color"
 msgstr ""
 
@@ -1064,7 +1068,7 @@ msgstr ""
 msgid "Hover Background Color"
 msgstr ""
 
-#: inc/customizer/sections/buttons/button.php:148, inc/customizer/sections/shop/shop-page.php:782, inc/customizer/sections/shop/shop-page.php:1018, inc/customizer/sections/shop/shop-page.php:1353, inc/customizer/sections/shop/shop-single.php:742
+#: inc/customizer/sections/buttons/button.php:148, inc/customizer/sections/shop/shop-page.php:782, inc/customizer/sections/shop/shop-page.php:1018
 msgid "Border Radius"
 msgstr ""
 
@@ -1084,19 +1088,19 @@ msgstr ""
 msgid "Link / Accent Color"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:111
+#: inc/customizer/sections/footer/footer.php:65
 msgid "Footer Display"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:133, inc/customizer/sections/header/topbar.php:91, inc/customizer/sections/page-header/page-header.php:281
+#: inc/customizer/sections/footer/footer.php:87, inc/customizer/sections/header/topbar.php:91, inc/customizer/sections/page-header/page-header.php:281
 msgid "Space"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:165
+#: inc/customizer/sections/footer/footer.php:119
 msgid "Widget Columns"
 msgstr ""
 
-#: inc/customizer/sections/footer/footer.php:259
+#: inc/customizer/sections/footer/footer.php:213
 msgid "Link Color"
 msgstr ""
 
@@ -1136,19 +1140,11 @@ msgstr ""
 msgid "Desktop + Mobile"
 msgstr ""
 
-#: inc/customizer/sections/header/header-transparent.php:206
-msgid "Header Transparent Logo"
-msgstr ""
-
-#: inc/customizer/sections/header/header-transparent.php:228
-msgid "Menu Transparent Color"
-msgstr ""
-
-#: inc/customizer/sections/header/header-transparent.php:270
+#: inc/customizer/sections/header/header-transparent.php:226
 msgid "Bottom Border Width"
 msgstr ""
 
-#: inc/customizer/sections/header/header-transparent.php:303, inc/customizer/sections/shop/shop-page.php:224, inc/customizer/sections/shop/shop-page.php:579
+#: inc/customizer/sections/header/header-transparent.php:259, inc/customizer/sections/shop/shop-page.php:224, inc/customizer/sections/shop/shop-page.php:579
 msgid "Border Color"
 msgstr ""
 
@@ -1476,7 +1472,7 @@ msgstr ""
 msgid "Sale Tag"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:683, inc/customizer/sections/shop/shop-page.php:1156, inc/customizer/sections/shop/shop-page.php:1212
+#: inc/customizer/sections/shop/shop-page.php:683, inc/customizer/sections/shop/shop-page.php:1156, inc/customizer/sections/shop/shop-page.php:1207
 msgid "Position"
 msgstr ""
 
@@ -1528,7 +1524,7 @@ msgstr ""
 msgid "Add To Cart Button"
 msgstr ""
 
-#: inc/customizer/sections/shop/shop-page.php:1243
+#: inc/customizer/sections/shop/shop-page.php:1238
 msgid "Cart Icon"
 msgstr ""
 
@@ -1614,10 +1610,6 @@ msgstr ""
 
 #: inc/customizer/sections/shop/shop-single.php:604
 msgid "Total Product"
-msgstr ""
-
-#: inc/customizer/sections/shop/shop-single.php:621
-msgid "Button Add To Cart"
 msgstr ""
 
 #: inc/customizer/sections/sidebar/sidebar.php:32, inc/customizer/sections/sidebar/sidebar.php:63, inc/customizer/sections/sidebar/sidebar.php:113, inc/customizer/sections/sidebar/sidebar.php:144, inc/customizer/sections/sidebar/sidebar.php:196, inc/customizer/sections/sidebar/sidebar.php:228

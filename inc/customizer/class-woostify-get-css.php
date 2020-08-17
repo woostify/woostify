@@ -593,6 +593,10 @@ class Woostify_Get_CSS {
 			.woostify-footer-social-icon a {
 				border-color: ' . esc_attr( $options['footer_heading_color'] ) . ';
 			}
+
+			#scroll-to-top {
+				border-radius: ' . esc_attr( $options['scroll_to_top_border_radius'] ) . 'px;
+			}
 		';
 
 		// Scroll to top.
