@@ -18,7 +18,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[button_text_color]',
 		array(
@@ -39,7 +39,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[button_background_color]',
 		array(
@@ -79,7 +79,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[button_hover_text_color]',
 		array(
@@ -100,7 +100,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[button_hover_background_color]',
 		array(

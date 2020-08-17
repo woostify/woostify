@@ -108,7 +108,7 @@ class Woostify_Get_CSS {
 
 		// Menu Breakpoint.
 		$styles .= '
-			@media ( max-width: ' . esc_attr( $options['header_menu_breakpoint'] ) . 'px ) {
+			@media ( max-width: ' . esc_attr( $options['header_menu_breakpoint'] + 1 ) . 'px ) {
 				.has-header-layout-1 .wrap-toggle-sidebar-menu {
 					display: block;
 				}
@@ -166,6 +166,19 @@ class Woostify_Get_CSS {
 				}
 				.header-layout-1 .wrap-toggle-sidebar-menu, .header-layout-1 .site-tools {
 				    flex: 1 1 0px;
+				}
+			}
+		';
+
+		$styles .= '
+			@media ( min-width: ' . esc_attr( $options['header_menu_breakpoint'] ) . 'px ) {
+				.has-header-layout-1 .wrap-toggle-sidebar-menu {
+					display: none;
+				}
+				.main-navigation .primary-navigation > .menu-item {
+				    display: inline-flex;
+				    line-height: 1;
+				    align-items: center;
 				}
 			}
 		';
