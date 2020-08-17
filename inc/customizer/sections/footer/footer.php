@@ -29,35 +29,6 @@ $wp_customize->add_control(
 	)
 );
 
-// Scroll To Top Position.
-$wp_customize->add_setting(
-	'woostify_setting[scroll_to_top_position]',
-	array(
-		'default'           => $defaults['scroll_to_top_position'],
-		'sanitize_callback' => 'woostify_sanitize_choices',
-		'type'              => 'option',
-	)
-);
-$wp_customize->add_control(
-	new WP_Customize_Control(
-		$wp_customize,
-		'woostify_setting[scroll_to_top_position]',
-		array(
-			'label'    => __( 'Position', 'woostify' ),
-			'section'  => 'woostify_footer',
-			'settings' => 'woostify_setting[scroll_to_top_position]',
-			'type'     => 'select',
-			'choices'  => apply_filters(
-				'woostify_setting_scroll_to_top_choices',
-				array(
-					'left'  => __( 'Left', 'woostify' ),
-					'right' => __( 'Right', 'woostify' ),
-				)
-			),
-		)
-	)
-);
-
 // Scroll To Top Background.
 $wp_customize->add_setting(
 	'woostify_setting[scroll_to_top_background]',

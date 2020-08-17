@@ -1253,7 +1253,6 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_page_button_cart_background'],
 		'type'              => 'option',
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
-		'transport'         => 'postMessage',
 	)
 );
 
@@ -1276,7 +1275,6 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_page_button_cart_color'],
 		'type'              => 'option',
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
-		'transport'         => 'postMessage',
 	)
 );
 
@@ -1299,7 +1297,6 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_page_button_background_hover'],
 		'type'              => 'option',
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
-		'transport'         => 'postMessage',
 	)
 );
 
@@ -1322,7 +1319,6 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_page_button_color_hover'],
 		'type'              => 'option',
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
-		'transport'         => 'postMessage',
 	)
 );
 
