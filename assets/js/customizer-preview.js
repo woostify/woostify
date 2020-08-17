@@ -39,14 +39,14 @@ function woostify_colors_live_update( id, selector, property, fullId ) {
 						jQuery( 'style#' + id ).html( selector + '{' + property + ':' + newval + ';}' );
 					} else {
 						jQuery( 'head' ).append( '<style id="' + id + '">' + selector + '{' + property + ':' + newval + '}</style>' );
-
-						setTimeout(
-							function() {
-								jQuery( 'style#' + id ).not( ':last' ).remove();
-							},
-							1000
-						);
 					}
+
+					setTimeout(
+						function() {
+							jQuery( 'style#' + id ).not( ':last' ).remove();
+						},
+						1000
+					);
 				}
 			);
 		}
@@ -520,6 +520,5 @@ document.addEventListener(
 		woostify_range_slider_update( ['footer_space'], '.site-footer', 'margin-top', 'px' );
 		woostify_colors_live_update( 'scroll_to_top_background', '#scroll-to-top', 'background-color' );
 		woostify_colors_live_update( 'scroll_to_top_color', '#scroll-to-top', 'color' );
-
 	}
 );
