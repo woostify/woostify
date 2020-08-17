@@ -103,7 +103,7 @@
     ul{
         list-style: none;
         margin: 0;
-        padding-left: 0;
+        padding: 0;
     }
 
     .woocommerce-MyAccount-navigation-link{
@@ -184,7 +184,7 @@
         a{
             font-size: 15px;
             white-space: nowrap;
-            @include flex( flex, flex-start, center );
+            @include flex( inline-flex, flex-start, center );
 
             &:before{
                 font-size: 20px;
