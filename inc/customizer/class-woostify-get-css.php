@@ -125,6 +125,48 @@ class Woostify_Get_CSS {
 				    -webkit-transform: rotate(0deg) !important;
 				    transform: rotate(0deg) !important;
 				}
+				.has-header-layout-3 .header-layout-3 .wrap-toggle-sidebar-menu {
+					display: block !important;
+				}
+				.has-header-layout-3 .header-layout-3 .navigation-box, .has-header-layout-3 .header-layout-3 .left-content {
+					display: none;
+				}
+				.has-header-layout-4 .header-layout-4 .wrap-toggle-sidebar-menu {
+					display: block !important;
+				}
+				.has-header-layout-5 .header-layout-5 .wrap-toggle-sidebar-menu {
+					display: block !important;
+				}
+				.has-header-layout-5 .header-layout-5 .navigation-box, .has-header-layout-5 .header-layout-5 .center-content {
+					display: none;
+				}
+				.site-branding {
+					text-align: center;
+				}
+				.header-layout-6 .wrap-toggle-sidebar-menu, .header-layout-6 .header-content-top .shopping-bag-button {
+					display: block !important;
+				}
+				.header-layout-6 .content-top-right, .header-layout-6 .header-content-bottom {
+					display: none;
+				}
+				.header-layout-8 .content-top-right, .header-layout-8 .header-content-bottom {
+					display: none !important;
+				}
+				.header-layout-8 .wrap-toggle-sidebar-menu, .header-layout-8 .header-search-icon {
+					display: block !important;
+				}
+				.header-layout-8 .header-content-top .site-tools {
+					display: flex !important;
+				}
+				.main-navigation .primary-navigation > .menu-item > a {
+					margin-left: 0 !important;
+				}
+				.header-layout-1 .site-branding {
+				    flex: 0 1 auto;
+				}
+				.header-layout-1 .wrap-toggle-sidebar-menu, .header-layout-1 .site-tools {
+				    flex: 1 1 0px;
+				}
 			}
 		';
 
@@ -475,9 +517,6 @@ class Woostify_Get_CSS {
 				.has-header-transparent .site-header-inner{
 					border-bottom-width: ' . esc_attr( $options['header_transparent_border_width'] ) . 'px;
 					border-bottom-color: ' . esc_attr( $options['header_transparent_border_color'] ) . ';
-				}
-				.has-header-transparent .primary-navigation > li > a{
-					color: ' . esc_attr( $options['header_transparent_menu_color'] ) . ';
 				}
 			';
 		}
