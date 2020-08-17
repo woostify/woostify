@@ -406,6 +406,8 @@
 			[
 				'woostify_setting[scroll_to_top_background]',
 				'woostify_setting[scroll_to_top_color]',
+				'woostify_setting[scroll_to_top_position]',
+				'woostify_setting[scroll_to_top_border_radius]',
 			],
 			false
 		);

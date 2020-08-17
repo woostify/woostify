@@ -160,6 +160,9 @@ footer#colophon {
 		cursor: pointer;
 		@include translatex(0);
 	}
+	&.scroll-to-top-position-left {
+		left: 20px;
+	}
 }
 
 /* responsive */

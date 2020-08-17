@@ -2267,13 +2267,14 @@ if ( ! function_exists( 'woostify_scroll_to_top' ) ) {
 	 */
 	function woostify_scroll_to_top() {
 		$options = woostify_options( false );
+		$position = $options['scroll_to_top_position'];
 		if ( ! $options['scroll_to_top'] ) {
 			return;
 		}
 
 		$icon = apply_filters( 'woostify_scroll_to_top_icon', 'ti-angle-up' );
 		?>
-		<span id="scroll-to-top" class="<?php echo esc_attr( $icon ); ?>" title="<?php esc_attr_e( 'Scroll To Top', 'woostify' ); ?>"></span>
+		<span id="scroll-to-top" class="<?php echo esc_attr( $icon ); ?> scroll-to-top-position-<?php echo esc_attr( $position ); ?>" title="<?php esc_attr_e( 'Scroll To Top', 'woostify' ); ?>"></span>
 		<?php
 	}
 }

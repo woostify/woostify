@@ -29,6 +29,36 @@ $wp_customize->add_control(
 	)
 );
 
+// Product page sidebar.
+$wp_customize->add_setting(
+	'woostify_setting[scroll_to_top_position]',
+	array(
+		'default'           => $defaults['scroll_to_top_position'],
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'type'              => 'option',
+	)
+);
+
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[scroll_to_top_position]',
+		array(
+			'label'    => __( 'Position', 'woostify' ),
+			'section'  => 'woostify_footer',
+			'settings' => 'woostify_setting[scroll_to_top_position]',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_sidebar_shop_single_choices',
+				array(
+					'right' => __( 'Right', 'woostify' ),
+					'left'  => __( 'Left', 'woostify' ),
+				)
+			),
+		)
+	)
+);
+
 // Scroll To Top Background.
 $wp_customize->add_setting(
 	'woostify_setting[scroll_to_top_background]',
@@ -71,6 +101,41 @@ $wp_customize->add_control(
 			'label'    => __( 'Color', 'woostify-pro' ),
 			'section'  => 'woostify_footer',
 			'settings' => 'woostify_setting[scroll_to_top_color]',
+		)
+	)
+);
+
+
+// Scroll to top Border radius.
+$wp_customize->add_setting(
+	'woostify_setting[scroll_to_top_border_radius]',
+	array(
+		'default'           => $defaults['scroll_to_top_border_radius'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[scroll_to_top_border_radius]',
+		array(
+			'label'    => __( 'Border Radius', 'woostify' ),
+			'section'  => 'woostify_footer',
+			'settings' => array(
+				'desktop' => 'woostify_setting[scroll_to_top_border_radius]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_scroll_to_top_border_radius_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_scroll_to_top_border_radius_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
 		)
 	)
 );
@@ -135,7 +200,7 @@ $wp_customize->add_control(
 			'settings' => array(
 				'desktop' => 'woostify_setting[footer_space]',
 			),
-			'choices' => array(
+			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_footer_space_min_step', 0 ),
 					'max'  => apply_filters( 'woostify_footer_space_max_step', 200 ),
@@ -162,11 +227,11 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[footer_column]',
 		array(
-			'label'       => __( 'Widget Columns', 'woostify' ),
-			'settings'    => 'woostify_setting[footer_column]',
-			'section'     => 'woostify_footer',
-			'type'        => 'select',
-			'choices'     => apply_filters(
+			'label'    => __( 'Widget Columns', 'woostify' ),
+			'settings' => 'woostify_setting[footer_column]',
+			'section'  => 'woostify_footer',
+			'type'     => 'select',
+			'choices'  => apply_filters(
 				'woostify_setting_footer_column_choices',
 				array(
 					0 => 0,
@@ -320,7 +385,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Custom Text', 'woostify' ),
 			'type'     => 'textarea',
 			'section'  => 'woostify_footer',
-			'settings' => 'woostify_setting[footer_custom_text]'
+			'settings' => 'woostify_setting[footer_custom_text]',
 		)
 	)
 );

@@ -5721,6 +5721,10 @@ footer#colophon {
   transform: translateX(0);
 }
 
+#scroll-to-top.scroll-to-top-position-left {
+  left: 20px;
+}
+
 /* responsive */
 @media (max-width: 768px) {
   .site-info {
