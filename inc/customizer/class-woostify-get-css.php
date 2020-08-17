@@ -106,6 +106,28 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// Menu Breakpoint.
+		$styles .= '
+			@media ( max-width: ' . esc_attr( $options['header_menu_breakpoint'] ) . 'px ) {
+				.has-header-layout-1 .wrap-toggle-sidebar-menu {
+					display: block;
+				}
+				.site-header-inner .site-navigation, .site-header-inner .site-search {
+					display: none;
+				}
+				.has-header-layout-1 .sidebar-menu {
+					display: block;
+				}
+				.has-header-layout-1 .site-navigation {
+					text-align: left;
+				}
+				.sidebar-menu .arrow-icon.active {
+				    -webkit-transform: rotate(0deg) !important;
+				    transform: rotate(0deg) !important;
+				}
+			}
+		';
+
 		// Body css.
 		$styles .= '
 			body, select, button, input, textarea{

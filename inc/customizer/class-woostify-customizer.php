@@ -90,6 +90,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'header_layout'                           => 'layout-1',
 				'header_background_color'                 => '#ffffff',
 				'header_primary_menu'                     => true,
+				'header_menu_breakpoint'                  => 992,
 				'header_search_icon'                      => true,
 				'header_wishlist_icon'                    => true,
 				'header_search_only_product'              => true,

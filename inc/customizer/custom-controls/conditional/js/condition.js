@@ -188,6 +188,12 @@
 		);
 
 		// HEADER SECTION.
+		condition(
+			'woostify_setting[header_primary_menu]',
+			[
+				'woostify_setting[header_menu_breakpoint]',
+			]
+		);
 		// Topbar.
 		condition(
 			'woostify_setting[topbar_display]',
