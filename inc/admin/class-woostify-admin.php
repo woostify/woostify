@@ -466,6 +466,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 										'woostify_install_demo',
 										array(
 											'activating' => esc_html__( 'Activating', 'woostify' ),
+											'installing' => esc_html__( 'Installing', 'woostify' ),
 										)
 									);
 									?>
