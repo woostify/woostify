@@ -4366,7 +4366,6 @@ dd {
 #view {
   position: relative;
   overflow-x: hidden;
-  background-color: #fff;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
