@@ -408,6 +408,9 @@
 				'woostify_setting[scroll_to_top_color]',
 				'woostify_setting[scroll_to_top_position]',
 				'woostify_setting[scroll_to_top_border_radius]',
+				'woostify_setting[scroll_to_top_offset_bottom]',
+				'woostify_setting[scroll_to_top_on]',
+				'woostify_setting[scroll_to_top_icon_size]',
 			],
 			false
 		);

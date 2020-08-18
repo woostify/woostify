@@ -123,37 +123,37 @@ $wp_customize->add_control(
 );
 
 // Menu Breakpoint.
-$wp_customize->add_setting(
-	'woostify_setting[header_menu_breakpoint]',
-	array(
-		'default'           => $defaults['header_menu_breakpoint'],
-		'sanitize_callback' => 'absint',
-		'type'              => 'option',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Range_Slider_Control(
-		$wp_customize,
-		'woostify_setting[header_menu_breakpoint]',
-		array(
-			'priority' => 71,
-			'label'    => __( 'Menu Breakpoint', 'woostify' ),
-			'section'  => 'woostify_header',
-			'settings' => array(
-				'desktop' => 'woostify_setting[header_menu_breakpoint]',
-			),
-			'choices'  => array(
-				'desktop' => array(
-					'min'  => apply_filters( 'woostify_header_menu_breakpoint_min_step', 0 ),
-					'max'  => apply_filters( 'woostify_header_menu_breakpoint_max_step', 6000 ),
-					'step' => 1,
-					'edit' => true,
-					'unit' => 'px',
-				),
-			),
-		)
-	)
-);
+// $wp_customize->add_setting(
+// 	'woostify_setting[header_menu_breakpoint]',
+// 	array(
+// 		'default'           => $defaults['header_menu_breakpoint'],
+// 		'sanitize_callback' => 'absint',
+// 		'type'              => 'option',
+// 	)
+// );
+// $wp_customize->add_control(
+// 	new Woostify_Range_Slider_Control(
+// 		$wp_customize,
+// 		'woostify_setting[header_menu_breakpoint]',
+// 		array(
+// 			'priority' => 71,
+// 			'label'    => __( 'Menu Breakpoint', 'woostify' ),
+// 			'section'  => 'woostify_header',
+// 			'settings' => array(
+// 				'desktop' => 'woostify_setting[header_menu_breakpoint]',
+// 			),
+// 			'choices'  => array(
+// 				'desktop' => array(
+// 					'min'  => apply_filters( 'woostify_header_menu_breakpoint_min_step', 0 ),
+// 					'max'  => apply_filters( 'woostify_header_menu_breakpoint_max_step', 6000 ),
+// 					'step' => 1,
+// 					'edit' => true,
+// 					'unit' => 'px',
+// 				),
+// 			),
+// 		)
+// 	)
+// );
 
 // Search icon.
 $wp_customize->add_setting(

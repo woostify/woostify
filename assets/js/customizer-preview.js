@@ -518,9 +518,12 @@ document.addEventListener(
 
 		// Footer.
 		woostify_range_slider_update( ['footer_space'], '.site-footer', 'margin-top', 'px' );
+		// Scroll To Top.
 		woostify_colors_live_update( 'scroll_to_top_background', '#scroll-to-top', 'background-color' );
 		woostify_colors_live_update( 'scroll_to_top_color', '#scroll-to-top', 'color' );
 		woostify_range_slider_update( ['scroll_to_top_border_radius'], '#scroll-to-top', 'border-radius', 'px' );
+		woostify_range_slider_update( ['scroll_to_top_icon_size'], '#scroll-to-top:before', 'font-size', 'px' );
+		woostify_range_slider_update( ['scroll_to_top_offset_bottom'], '#scroll-to-top', 'bottom', 'px' );
 
 	}
 );

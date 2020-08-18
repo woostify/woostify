@@ -1,3 +1,5 @@
+
+/* Header Menu */
 .site-header-inner {
 	border-bottom: 1px solid #eaeaea;
 
@@ -101,12 +103,13 @@
 			margin: 0;
 		}
 
-		li {
-			list-style: none;
-		}
-
 		.primary-navigation {
 			font-size: 0;
+
+			>.menu-item {
+				display: inline-flex;
+				line-height: 1;
+				align-items: center;
 
 				>a {
 					padding: 20px 0;
@@ -338,13 +341,6 @@
 
 /* Support Nav Menu widget */
 .woostify-nav-menu-widget {
-	@media (min-width: $screen-md) {
-		.woostify-toggle-nav-menu-button,
-		.site-search,
-		.woostify-nav-menu-account-action {
-			display: none;
-		}
-	}
 
 	@media (max-width: $screen-md - 1) {
 		.woostify-nav-menu-inner {
@@ -357,6 +353,10 @@
 /* Responsive */
 @media (min-width: $screen-md) {
 	.has-header-layout-1 {
+		.wrap-toggle-sidebar-menu {
+			display: none;
+		}
+
 		.site-navigation {
 			flex-grow: 1;
 			text-align: right;
@@ -371,6 +371,12 @@
 
 @media (max-width: $screen-md - 1) {
 	.header-layout-1 {
+
+		.wrap-toggle-sidebar-menu,
+		.site-tools {
+			flex: 1 1 0px;
+		}
+
 		.site-branding {
 			flex: 0 1 auto;
 		}

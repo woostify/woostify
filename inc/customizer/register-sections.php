@@ -18,6 +18,7 @@ $layout_sections = apply_filters(
 		'woostify_sidebar'            => __( 'Sidebar', 'woostify' ),
 		'woostify_footer'             => __( 'Footer', 'woostify' ),
 		'woostify_error'              => __( '404', 'woostify' ),
+		'woostify_scroll_to_top'      => __( 'Scroll To Top', 'woostify' ),
 	)
 );
 
