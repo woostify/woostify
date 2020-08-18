@@ -1,3 +1,5 @@
+
+/* Header Menu */
 .site-header-inner {
 	border-bottom: 1px solid #eaeaea;
 
@@ -99,10 +101,6 @@
 		ul {
 			padding-left: 0;
 			margin: 0;
-		}
-
-		li {
-			list-style: none;
 		}
 
 		.primary-navigation {
@@ -343,13 +341,6 @@
 
 /* Support Nav Menu widget */
 .woostify-nav-menu-widget {
-	@media (min-width: $screen-md) {
-		.woostify-toggle-nav-menu-button,
-		.site-search,
-		.woostify-nav-menu-account-action {
-			display: none;
-		}
-	}
 
 	@media (max-width: $screen-md - 1) {
 		.woostify-nav-menu-inner {
@@ -396,11 +387,6 @@
 		.woostify-container {
 			padding: 15px;
 			justify-content: center;
-		}
-
-		.site-navigation,
-		.site-search {
-			display: none;
 		}
 
 		.logo {
