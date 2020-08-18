@@ -224,12 +224,6 @@ class Woostify_Get_CSS {
 				    display: none;
 				}
 
-				.main-navigation .primary-navigation > .menu-item {
-				    display: inline-flex;
-				    line-height: 1;
-				    align-items: center;
-				}
-
 				.main-navigation li {
 					list-style: none;
 				}
@@ -245,20 +239,6 @@ class Woostify_Get_CSS {
 
 				.main-navigation .primary-navigation {
 				    font-size: 0;
-				}
-
-				.main-navigation .primary-navigation > .menu-item {
-				    display: inline-flex;
-				    line-height: 1;
-				    align-items: center;
-				}
-
-				.main-navigation .primary-navigation > .menu-item > a {
-				    padding: 20px 0;
-				    margin: 0 20px;
-				    display: flex;
-				    justify-content: space-between;
-				    align-items: center;
 				}
 
 				.main-navigation .primary-navigation > .menu-item .sub-menu {
@@ -332,10 +312,6 @@ class Woostify_Get_CSS {
 
 				.main-navigation .primary-navigation .sub-menu > .menu-item:hover > .sub-menu {
 				    left: 100%;
-				}
-
-				.main-navigation .primary-navigation .sub-menu a {
-				    line-height: 24px;
 				}
 
 				.has-header-layout-1 .wrap-toggle-sidebar-menu {
