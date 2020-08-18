@@ -108,7 +108,7 @@ class Woostify_Get_CSS {
 
 		// Menu Breakpoint.
 		$styles .= '
-			@media ( max-width: ' . esc_attr( $options['header_menu_breakpoint'] + 1 ) . 'px ) {
+			@media ( max-width: ' . esc_attr( $options['header_menu_breakpoint'] ) . 'px ) {
 				.has-header-layout-1 .wrap-toggle-sidebar-menu {
 					display: block;
 				}
@@ -171,7 +171,7 @@ class Woostify_Get_CSS {
 		';
 
 		$styles .= '
-			@media ( min-width: ' . esc_attr( $options['header_menu_breakpoint'] ) . 'px ) {
+			@media ( min-width: ' . esc_attr( $options['header_menu_breakpoint'] + 1 ) . 'px ) {
 				.has-header-layout-1 .wrap-toggle-sidebar-menu {
 					display: none;
 				}

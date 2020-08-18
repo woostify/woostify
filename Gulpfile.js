@@ -7,7 +7,7 @@
 'use strict';
 
 let theme       = 'woostify',
-	site_name   = 'woostify',
+	site_name   = 'dev',
 	theme_ver   = '1.6.6',
 	gulp        = require( 'gulp' ),
 	zip         = require( 'gulp-zip' ),
