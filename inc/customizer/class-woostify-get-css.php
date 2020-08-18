@@ -613,6 +613,26 @@ class Woostify_Get_CSS {
 		';
 
 		// Scroll to top.
+		$styles .= '
+			#scroll-to-top:before {
+				font-size: ' . esc_attr( $options['scroll_to_top_icon_size'] ) . 'px;
+			}
+
+			#scroll-to-top {
+				bottom: ' . esc_attr( $options['scroll_to_top_offset_bottom'] ) . 'px;
+			}
+
+			@media (min-width: 992px) {
+				#scroll-to-top.scroll-to-top-show-mobile {
+					display: none;
+				}
+			}
+			@media (max-width: 992px) {
+				#scroll-to-top.scroll-to-top-show-desktop {
+					display: none;
+				}
+			}
+		';
 
 		if ( 'rgba(255,255,255,0)' !== $options['scroll_to_top_background'] ) {
 			$styles .= '
@@ -629,6 +649,7 @@ class Woostify_Get_CSS {
 				}
 			';
 		}
+
 
 
 		// Spinner color.

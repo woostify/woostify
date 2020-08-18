@@ -133,11 +133,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'page_header_padding_bottom'              => 50,
 				'page_header_margin_bottom'               => 50,
 				// FOOTER.
-				'scroll_to_top'                           => true,
-				'scroll_to_top_background'                => '',
-				'scroll_to_top_color'                     => '',
-				'scroll_to_top_border_radius'             => 0,
-				'scroll_to_top_position'                  => 'right',
 				'footer_display'                          => true,
 				'footer_space'                            => 100,
 				'footer_column'                           => 0,
@@ -146,6 +141,15 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'footer_link_color'                       => '#8f8f8f',
 				'footer_text_color'                       => '#8f8f8f',
 				'footer_custom_text'                      => woostify_footer_custom_text(),
+				// Scroll To Top.
+				'scroll_to_top'                           => true,
+				'scroll_to_top_background'                => '',
+				'scroll_to_top_color'                     => '',
+				'scroll_to_top_border_radius'             => 0,
+				'scroll_to_top_position'                  => 'right',
+				'scroll_to_top_offset_bottom'             => 20,
+				'scroll_to_top_on'                        => 'default',
+				'scroll_to_top_icon_size'                 => 17,
 				// BUTTONS.
 				'button_text_color'                       => '#ffffff',
 				'button_background_color'                 => '#1346af',

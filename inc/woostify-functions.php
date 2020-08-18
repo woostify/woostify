@@ -294,7 +294,7 @@ if ( ! function_exists( 'woostify_sanitize_rgba_color' ) ) {
 	 */
 	function woostify_sanitize_rgba_color( $color ) {
 		if ( empty( $color ) || is_array( $color ) ) {
-			return 'rgba(255,255,255,0)';
+			return '';
 		}
 
 		// If string does not start with 'rgba', then treat as hex sanitize the hex color and finally convert hex to rgba.
