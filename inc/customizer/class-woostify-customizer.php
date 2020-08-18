@@ -90,6 +90,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'header_layout'                           => 'layout-1',
 				'header_background_color'                 => '#ffffff',
 				'header_primary_menu'                     => true,
+				'header_menu_breakpoint'                  => 992,
 				'header_search_icon'                      => true,
 				'header_wishlist_icon'                    => true,
 				'header_search_only_product'              => true,
@@ -113,6 +114,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'header_transparent_shadow_blur'          => 0,
 				'header_transparent_shadow_spread'        => 0,
 				'header_transparent_shadow_color'         => '#000000',
+				'header_transparent_logo'                 => '',
+				'header_transparent_menu_color'           => '#000000',
 				// PAGE HEADER.
 				'page_header_display'                     => false,
 				'page_header_title'                       => true,
@@ -131,6 +134,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'page_header_margin_bottom'               => 50,
 				// FOOTER.
 				'scroll_to_top'                           => true,
+				'scroll_to_top_background'                => '',
+				'scroll_to_top_color'                     => '',
+				'scroll_to_top_border_radius'             => 0,
+				'scroll_to_top_position'                  => 'right',
 				'footer_display'                          => true,
 				'footer_space'                            => 100,
 				'footer_column'                           => 0,
@@ -187,6 +194,11 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				// Add to cart button.
 				'shop_page_add_to_cart_button_position'   => 'bottom',
 				'shop_product_add_to_cart_icon'           => true,
+				'shop_page_button_cart_background'        => '',
+				'shop_page_button_cart_color'			  => '',
+				'shop_page_button_background_hover'       => '',
+				'shop_page_button_color_hover'            => '',
+				'shop_page_button_border_radius'          => 0,
 				// Wishlist.
 				'shop_page_wishlist_support_plugin'       => 'ti',
 				'shop_page_wishlist_position'             => 'top-right',
@@ -220,6 +232,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_gallery_layout'              => 'vertical',
 				'shop_single_image_zoom'                  => true,
 				'shop_single_image_lightbox'              => true,
+				'shop_single_button_border_radius'        => 0,
 				// Meta.
 				'shop_single_skus'                        => true,
 				'shop_single_categories'                  => true,
@@ -232,6 +245,11 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_product_recently_viewed'     => false,
 				'shop_single_recently_viewed_title'       => __( 'Recently Viewed Products', 'woostify' ),
 				'shop_single_recently_viewed_count'       => 4,
+				// Single Product Add To Cart.
+				'shop_single_button_cart_background'      => '',
+				'shop_single_button_cart_color'           => '',
+				'shop_single_button_background_hover'     => '',
+				'shop_single_button_color_hover'          => '',
 				// CART PAGE.
 				'cart_page_layout'                        => 'layout-2',
 				'cart_page_sticky_proceed_button'         => true,
@@ -246,7 +264,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'sidebar_blog_single'                     => 'default',
 				'sidebar_shop'                            => 'default',
 				'sidebar_shop_single'                     => 'full',
-				'sidebar_width'                            => 20,
+				'sidebar_width'                           => 20,
 				// 404.
 				'error_404_image'                         => '',
 				'error_404_text'                          => __( 'Opps! The page you are looking for is missing for some reasons. Please come back to homepage', 'woostify' ),

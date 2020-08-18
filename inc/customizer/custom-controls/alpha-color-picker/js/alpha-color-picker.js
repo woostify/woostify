@@ -11,6 +11,7 @@
  */
 ( function( $ ) {
 	// Prevent double-init.
+	var wpColorPickerL10n = wpColorPickerL10n || woostify_customizer_color_control;
 	if ( $.wp.wpColorPicker.prototype._hasAlpha ) {
 		return;
 	}

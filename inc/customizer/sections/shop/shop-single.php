@@ -26,7 +26,7 @@ $wp_customize->add_control(
 		array(
 			'label'      => __( 'General', 'woostify' ),
 			'section'    => 'woostify_shop_single',
-			'dependency' => [
+			'dependency' => array(
 				'woostify_setting[shop_single_breadcrumb]',
 				'woostify_setting[shop_single_product_navigation]',
 				'woostify_setting[shop_single_related_product]',
@@ -37,7 +37,7 @@ $wp_customize->add_control(
 				'woostify_setting[shop_single_additional_information]',
 				'woostify_setting[shop_single_content_background]',
 				'woostify_setting[shop_single_trust_badge_image]',
-			]
+			),
 		)
 	)
 );
@@ -92,8 +92,8 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
 		'type'              => 'option',
 	)
-	);
-	$wp_customize->add_control(
+);
+$wp_customize->add_control(
 	new Woostify_Switch_Control(
 		$wp_customize,
 		'woostify_setting[shop_single_ajax_add_to_cart]',
@@ -115,14 +115,14 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-new Woostify_Switch_Control(
-	$wp_customize,
-	'woostify_setting[shop_single_stock_label]',
-	array(
-		'label'    => __( 'Stock Label', 'woostify' ),
-		'section'  => 'woostify_shop_single',
-		'settings' => 'woostify_setting[shop_single_stock_label]',
-	)
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_stock_label]',
+		array(
+			'label'    => __( 'Stock Label', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_stock_label]',
+		)
 	)
 );
 
@@ -135,8 +135,8 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
 		'type'              => 'option',
 	)
-	);
-	$wp_customize->add_control(
+);
+$wp_customize->add_control(
 	new Woostify_Switch_Control(
 		$wp_customize,
 		'woostify_setting[shop_single_loading_bar]',
@@ -162,11 +162,11 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_single_stock_product_limit]',
 		array(
-			'label'    => __( 'Min stock to show', 'woostify' ),
+			'label'       => __( 'Min stock to show', 'woostify' ),
 			'description' => __( 'Default = 0 show stock', 'woostify' ),
-			'settings' => 'woostify_setting[shop_single_stock_product_limit]',
-			'section'  => 'woostify_shop_single',
-			'type'     => 'number',
+			'settings'    => 'woostify_setting[shop_single_stock_product_limit]',
+			'section'     => 'woostify_shop_single',
+			'type'        => 'number',
 		)
 	)
 );
@@ -179,8 +179,8 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
 		'type'              => 'option',
 	)
-	);
-	$wp_customize->add_control(
+);
+$wp_customize->add_control(
 	new Woostify_Switch_Control(
 		$wp_customize,
 		'woostify_setting[shop_single_additional_information]',
@@ -197,7 +197,7 @@ $wp_customize->add_setting(
 	'woostify_setting[shop_single_content_background]',
 	array(
 		'default'           => $defaults['shop_single_content_background'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
@@ -248,11 +248,11 @@ $wp_customize->add_control(
 		array(
 			'label'      => __( 'Product Images', 'woostify' ),
 			'section'    => 'woostify_shop_single',
-			'dependency' => [
+			'dependency' => array(
 				'woostify_setting[shop_single_gallery_layout]',
 				'woostify_setting[shop_single_image_zoom]',
 				'woostify_setting[shop_single_image_lightbox]',
-			]
+			),
 		)
 	)
 );
@@ -302,9 +302,9 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_single_image_zoom]',
 		array(
-			'label'        => __( 'Gallery Zoom Effect', 'woostify' ),
-			'section'      => 'woostify_shop_single',
-			'settings'     => 'woostify_setting[shop_single_image_zoom]',
+			'label'    => __( 'Gallery Zoom Effect', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_image_zoom]',
 		)
 	)
 );
@@ -323,9 +323,9 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_single_image_lightbox]',
 		array(
-			'label'        => __( 'Gallery Lightbox Effect', 'woostify' ),
-			'section'      => 'woostify_shop_single',
-			'settings'     => 'woostify_setting[shop_single_image_lightbox]',
+			'label'    => __( 'Gallery Lightbox Effect', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_image_lightbox]',
 		)
 	)
 );
@@ -344,11 +344,11 @@ $wp_customize->add_control(
 		array(
 			'label'      => __( 'Product Meta', 'woostify' ),
 			'section'    => 'woostify_shop_single',
-			'dependency' => [
+			'dependency' => array(
 				'woostify_setting[shop_single_skus]',
 				'woostify_setting[shop_single_categories]',
 				'woostify_setting[shop_single_tags]',
-			]
+			),
 		)
 	)
 );
@@ -433,11 +433,11 @@ $wp_customize->add_control(
 		array(
 			'label'      => __( 'Related Products', 'woostify' ),
 			'section'    => 'woostify_shop_single',
-			'dependency' => [
+			'dependency' => array(
 				'woostify_setting[shop_single_related_product]',
 				'woostify_setting[shop_single_product_related_total]',
 				'woostify_setting[shop_single_product_related_columns]',
-			]
+			),
 		)
 	)
 );
@@ -499,11 +499,11 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_single_product_related_columns]',
 		array(
-			'label'       => __( 'Columns', 'woostify' ),
-			'settings'    => 'woostify_setting[shop_single_product_related_columns]',
-			'section'     => 'woostify_shop_single',
-			'type'        => 'select',
-			'choices'     => apply_filters(
+			'label'    => __( 'Columns', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_related_columns]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'select',
+			'choices'  => apply_filters(
 				'woostify_setting_shop_single_product_related_columns_choices',
 				array(
 					1 => 1,
@@ -532,11 +532,11 @@ $wp_customize->add_control(
 		array(
 			'label'      => __( 'Recently Viewed Products', 'woostify' ),
 			'section'    => 'woostify_shop_single',
-			'dependency' => [
+			'dependency' => array(
 				'woostify_setting[shop_single_product_recently_viewed]',
 				'woostify_setting[shop_single_recently_viewed_title]',
 				'woostify_setting[shop_single_recently_viewed_count]',
-			]
+			),
 		)
 	)
 );
@@ -602,6 +602,157 @@ $wp_customize->add_control(
 			'settings' => 'woostify_setting[shop_single_recently_viewed_count]',
 			'type'     => 'number',
 			'label'    => __( 'Total Product', 'woostify' ),
+		)
+	)
+);
+
+// SHOP SINGLE ADD TO CART.
+$wp_customize->add_setting(
+	'shop_single_product_button_cart',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Section_Control(
+		$wp_customize,
+		'shop_single_product_button_cart',
+		array(
+			'label'      => __( 'Button Add To Cart', 'woostify' ),
+			'section'    => 'woostify_shop_single',
+			'dependency' => array(
+				'woostify_setting[shop_single_button_cart_background]',
+				'woostify_setting[shop_single_button_cart_color]',
+				'woostify_setting[shop_single_button_background_hover]',
+				'woostify_setting[shop_single_button_color_hover]',
+				'woostify_setting[shop_single_button_border_radius]',
+			),
+		)
+	)
+);
+
+// Button Background.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_button_cart_background]',
+	array(
+		'default'           => $defaults['shop_single_button_cart_background'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_button_cart_background]',
+		array(
+			'label'    => __( 'Background', 'woostify-pro' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_button_cart_background]',
+		)
+	)
+);
+
+// Button Color.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_button_cart_color]',
+	array(
+		'default'           => $defaults['shop_single_button_cart_color'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_button_cart_color]',
+		array(
+			'label'    => __( 'Color', 'woostify-pro' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_button_cart_color]',
+		)
+	)
+);
+
+// Button Hover Background.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_button_background_hover]',
+	array(
+		'default'           => $defaults['shop_single_button_background_hover'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_button_background_hover]',
+		array(
+			'label'    => __( 'Hover Background', 'woostify-pro' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_button_background_hover]',
+		)
+	)
+);
+
+// Button Hover Color.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_button_color_hover]',
+	array(
+		'default'           => $defaults['shop_single_button_color_hover'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_button_color_hover]',
+		array(
+			'label'    => __( 'Hover Color', 'woostify-pro' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_button_color_hover]',
+		)
+	)
+);
+
+// Border radius.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_button_border_radius]',
+	array(
+		'default'           => $defaults['shop_single_button_border_radius'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_button_border_radius]',
+		array(
+			'label'    => __( 'Border Radius', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => array(
+				'desktop' => 'woostify_setting[shop_single_button_border_radius]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_shop_single_button_border_radius_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_shop_single_button_border_radius_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
 		)
 	)
 );

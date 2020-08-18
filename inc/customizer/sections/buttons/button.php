@@ -13,12 +13,12 @@ $wp_customize->add_setting(
 	'woostify_setting[button_text_color]',
 	array(
 		'default'           => $defaults['button_text_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[button_text_color]',
 		array(
@@ -34,12 +34,12 @@ $wp_customize->add_setting(
 	'woostify_setting[button_background_color]',
 	array(
 		'default'           => $defaults['button_background_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[button_background_color]',
 		array(
@@ -74,12 +74,12 @@ $wp_customize->add_setting(
 	'woostify_setting[button_hover_text_color]',
 	array(
 		'default'           => $defaults['button_hover_text_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[button_hover_text_color]',
 		array(
@@ -95,12 +95,12 @@ $wp_customize->add_setting(
 	'woostify_setting[button_hover_background_color]',
 	array(
 		'default'           => $defaults['button_hover_background_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[button_hover_background_color]',
 		array(

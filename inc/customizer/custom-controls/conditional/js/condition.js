@@ -188,6 +188,12 @@
 		);
 
 		// HEADER SECTION.
+		condition(
+			'woostify_setting[header_primary_menu]',
+			[
+				'woostify_setting[header_menu_breakpoint]',
+			]
+		);
 		// Topbar.
 		condition(
 			'woostify_setting[topbar_display]',
@@ -223,7 +229,9 @@
 				'woostify_setting[header_transparent_enable_on]',
 				'header_transparent_border_divider',
 				'woostify_setting[header_transparent_border_width]',
-				'woostify_setting[header_transparent_border_color]'
+				'woostify_setting[header_transparent_border_color]',
+				'woostify_setting[header_transparent_logo]',
+				'woostify_setting[header_transparent_menu_color]'
 			]
 		);
 
@@ -369,6 +377,19 @@
 			false
 		);
 
+		// Product Single Button Add To Cart.
+		condition(
+			'woostify_setting[shop_single_product_button_cart]',
+			[
+				'woostify_setting[shop_single_button_cart_background]',
+				'woostify_setting[shop_single_button_cart_color]',
+				'woostify_setting[shop_single_button_background_hover]',
+				'woostify_setting[shop_single_button_color_hover]',
+			],
+			false
+		);
+
+
 		// Product recently viewed.
 		condition(
 			'woostify_setting[shop_single_product_recently_viewed]',
@@ -380,6 +401,16 @@
 		);
 
 		// FOOTER SECTION.
+		condition(
+			'woostify_setting[scroll_to_top]',
+			[
+				'woostify_setting[scroll_to_top_background]',
+				'woostify_setting[scroll_to_top_color]',
+				'woostify_setting[scroll_to_top_position]',
+				'woostify_setting[scroll_to_top_border_radius]',
+			],
+			false
+		);
 		// Disable footer.
 		condition(
 			'woostify_setting[footer_display]',

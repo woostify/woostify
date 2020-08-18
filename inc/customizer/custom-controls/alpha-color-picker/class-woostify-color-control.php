@@ -78,6 +78,19 @@ class Woostify_Color_Control extends WP_Customize_Control {
 			woostify_version(),
 			true
 		);
+
+		wp_localize_script(
+			'woostify-alpha-color',
+			'woostify_customizer_color_control',
+			array(
+				'clear'            => esc_html__( 'Clear', 'woostify' ),
+				'clearAriaLabel'   => esc_html__( 'Clear color', 'woostify' ),
+				'defaultAriaLabel' => esc_html__( 'Select default color', 'woostify' ),
+				'defaultLabel'     => esc_html__( 'Color value', 'woostify' ),
+				'defaultString'    => esc_html__( 'Default', 'woostify' ),
+				'pick'             => esc_html__( 'Select Color', 'woostify' ),
+			)
+		);
 	}
 
 	/**
@@ -87,7 +100,7 @@ class Woostify_Color_Control extends WP_Customize_Control {
 		?>
 
 		<#
-		var defaultValue = '#ffffff', defaultValueAttr = '';
+		var defaultValue = '#RRGGBB', defaultValueAttr = '';
 		if ( data.default ) {
 			defaultValue     = data.default;
 			defaultValueAttr = ' data-default-color=' + data.default; // Quotes added automatically.
