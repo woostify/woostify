@@ -727,10 +727,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[shop_single_button_border_radius]',
 	array(
-		'default'           => $defaults['shop_single_button_border_radius'],
-		'sanitize_callback' => 'absint',
-		'type'              => 'option',
-		'transport'         => 'postMessage',
+		'default'   => $defaults['shop_single_button_border_radius'],
+		'type'      => 'option',
+		'transport' => 'postMessage',
 	)
 );
 

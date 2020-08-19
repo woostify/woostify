@@ -510,7 +510,6 @@ document.addEventListener(
 		woostify_colors_live_update( 'shop_single_button_cart_color', '.single_add_to_cart_button.button:not(.woostify-buy-now)', 'color' );
 		woostify_colors_live_update( 'shop_single_button_background_hover', '.single_add_to_cart_button.button:not(.woostify-buy-now):hover', 'background-color' );
 		woostify_colors_live_update( 'shop_single_button_color_hover', '.single_add_to_cart_button.button:not(.woostify-buy-now):hover', 'color' );
-		woostify_unit_live_update( 'shop_single_button_border_radius', '.single_add_to_cart_button.button:not(.woostify-buy-now)', 'border-radius' );
 		// Hidden product meta.
 		woostify_hidden_product_meta( 'shop_single_skus', 'hid-skus' );
 		woostify_hidden_product_meta( 'shop_single_categories', 'hid-categories' );
@@ -524,6 +523,7 @@ document.addEventListener(
 		woostify_range_slider_update( ['scroll_to_top_border_radius'], '#scroll-to-top', 'border-radius', 'px' );
 		woostify_range_slider_update( ['scroll_to_top_icon_size'], '#scroll-to-top:before', 'font-size', 'px' );
 		woostify_range_slider_update( ['scroll_to_top_offset_bottom'], '#scroll-to-top', 'bottom', 'px' );
+		woostify_range_slider_update( ['shop_single_button_border_radius'], '.single_add_to_cart_button.button:not(.woostify-buy-now)', 'border-radius', 'px' );
 
 	}
 );

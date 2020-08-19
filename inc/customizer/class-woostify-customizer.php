@@ -202,7 +202,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_page_button_cart_color'			  => '',
 				'shop_page_button_background_hover'       => '',
 				'shop_page_button_color_hover'            => '',
-				'shop_page_button_border_radius'          => 0,
+				'shop_page_button_border_radius'          => '',
 				// Wishlist.
 				'shop_page_wishlist_support_plugin'       => 'ti',
 				'shop_page_wishlist_position'             => 'top-right',
@@ -236,7 +236,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_gallery_layout'              => 'vertical',
 				'shop_single_image_zoom'                  => true,
 				'shop_single_image_lightbox'              => true,
-				'shop_single_button_border_radius'        => 0,
 				// Meta.
 				'shop_single_skus'                        => true,
 				'shop_single_categories'                  => true,
@@ -254,6 +253,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_button_cart_color'           => '',
 				'shop_single_button_background_hover'     => '',
 				'shop_single_button_color_hover'          => '',
+				'shop_single_button_border_radius'        => '',
 				// CART PAGE.
 				'cart_page_layout'                        => 'layout-2',
 				'cart_page_sticky_proceed_button'         => true,
