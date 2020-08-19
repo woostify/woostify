@@ -106,7 +106,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[scroll_to_top_background]',
 		array(
-			'label'    => __( 'Background', 'woostify-pro' ),
+			'label'    => __( 'Background', 'woostify' ),
 			'section'  => 'woostify_scroll_to_top',
 			'settings' => 'woostify_setting[scroll_to_top_background]',
 		)
@@ -129,7 +129,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[scroll_to_top_color]',
 		array(
-			'label'    => __( 'Color', 'woostify-pro' ),
+			'label'    => __( 'Color', 'woostify' ),
 			'section'  => 'woostify_scroll_to_top',
 			'settings' => 'woostify_setting[scroll_to_top_color]',
 		)
