@@ -211,6 +211,10 @@ class Woostify_Get_CSS {
 					display: none;
 				}
 
+				.woostify-nav-menu-widget .woostify-toggle-nav-menu-button, .woostify-nav-menu-widget .site-search, .woostify-nav-menu-widget .woostify-nav-menu-account-action {
+				    display: none;
+				}
+
 				.sidebar-menu-open .sidebar-menu .site-navigation {
 				    left: 60px;
 				    right: 60px;
