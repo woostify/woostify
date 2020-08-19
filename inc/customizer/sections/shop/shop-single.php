@@ -647,7 +647,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_single_button_cart_background]',
 		array(
-			'label'    => __( 'Background', 'woostify-pro' ),
+			'label'    => __( 'Background', 'woostify' ),
 			'section'  => 'woostify_shop_single',
 			'settings' => 'woostify_setting[shop_single_button_cart_background]',
 		)
@@ -670,7 +670,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_single_button_cart_color]',
 		array(
-			'label'    => __( 'Color', 'woostify-pro' ),
+			'label'    => __( 'Color', 'woostify' ),
 			'section'  => 'woostify_shop_single',
 			'settings' => 'woostify_setting[shop_single_button_cart_color]',
 		)
@@ -693,7 +693,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_single_button_background_hover]',
 		array(
-			'label'    => __( 'Hover Background', 'woostify-pro' ),
+			'label'    => __( 'Hover Background', 'woostify' ),
 			'section'  => 'woostify_shop_single',
 			'settings' => 'woostify_setting[shop_single_button_background_hover]',
 		)
@@ -716,7 +716,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_single_button_color_hover]',
 		array(
-			'label'    => __( 'Hover Color', 'woostify-pro' ),
+			'label'    => __( 'Hover Color', 'woostify' ),
 			'section'  => 'woostify_shop_single',
 			'settings' => 'woostify_setting[shop_single_button_color_hover]',
 		)
@@ -727,9 +727,10 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[shop_single_button_border_radius]',
 	array(
-		'default'   => $defaults['shop_single_button_border_radius'],
-		'type'      => 'option',
-		'transport' => 'postMessage',
+		'default'           => $defaults['shop_single_button_border_radius'],
+		'type'              => 'option',
+		'sanitize_callback' => 'esc_html',
+		'transport'         => 'postMessage',
 	)
 );
 
