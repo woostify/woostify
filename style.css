@@ -9824,6 +9824,15 @@ header.elementor-element {
   padding-top: 20px;
 }
 
+.cart_totals .shop_table .order-total th {
+  white-space: nowrap;
+  padding-right: 10px;
+}
+
+.cart_totals .shop_table .order-total td {
+  text-align: right;
+}
+
 .cart_totals .shop_table .woocommerce-shipping-totals {
   flex-direction: column;
   padding-top: 5px;
