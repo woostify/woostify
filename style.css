@@ -4376,7 +4376,8 @@ dd {
 
 .woobuilder-active .site-content,
 .elementor-page .site-content,
-.edited-by-divi-builder .site-content {
+.edited-by-divi-builder .site-content,
+.elementor-template-full-width .site-content {
   margin: 0;
 }
 
