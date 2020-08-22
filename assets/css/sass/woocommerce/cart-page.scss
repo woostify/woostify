@@ -494,6 +494,15 @@
 				font-size: 18px;
 				padding-top: 20px;
 			}
+
+			th {
+				white-space: nowrap;
+				padding-right: 10px;
+			}
+
+			td {
+				text-align: right;
+			}
 		}
 
 		.woocommerce-shipping-totals {
