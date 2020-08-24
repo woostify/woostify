@@ -5058,6 +5058,10 @@ dd {
   cursor: pointer;
 }
 
+.logo-header-transparent {
+  display: none;
+}
+
 .has-header-transparent .site-header {
   position: static;
   left: 0;
@@ -5202,6 +5206,14 @@ dd {
   .logged-in.admin-bar .sidebar-menu {
     top: 32px;
   }
+}
+
+.sidebar-menu .primary-navigation a {
+  line-height: 3em !important;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .sidebar-menu .ajax-category-filter-box {
