@@ -377,6 +377,17 @@
 			false
 		);
 
+		// Gallery layout.
+		condition(
+			'woostify_setting[shop_single_gallery_layout]',
+			[
+				'woostify_setting[shop_single_product_sticky_top_space]',
+				'woostify_setting[shop_single_product_sticky_bottom_space]',
+			],
+			'column',
+			true
+		);
+
 		// Product Single Button Add To Cart.
 		condition(
 			'woostify_setting[shop_single_product_button_cart]',

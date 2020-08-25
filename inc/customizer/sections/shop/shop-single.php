@@ -126,7 +126,6 @@ $wp_customize->add_control(
 	)
 );
 
-
 // Loading Bar.
 $wp_customize->add_setting(
 	'woostify_setting[shop_single_loading_bar]',
@@ -252,6 +251,8 @@ $wp_customize->add_control(
 				'woostify_setting[shop_single_gallery_layout]',
 				'woostify_setting[shop_single_image_zoom]',
 				'woostify_setting[shop_single_image_lightbox]',
+				'woostify_setting[shop_single_product_sticky_top_space]',
+				'woostify_setting[shop_single_product_sticky_bottom_space]',
 			),
 		)
 	)
@@ -326,6 +327,50 @@ $wp_customize->add_control(
 			'label'    => __( 'Gallery Lightbox Effect', 'woostify' ),
 			'section'  => 'woostify_shop_single',
 			'settings' => 'woostify_setting[shop_single_image_lightbox]',
+		)
+	)
+);
+
+// Sticky top spacing.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_sticky_top_space]',
+	array(
+		'default'           => $defaults['shop_single_product_sticky_top_space'],
+		'type'              => 'option',
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_sticky_top_space]',
+		array(
+			'label'    => __( 'Top Space', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_sticky_top_space]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'number',
+		)
+	)
+);
+
+// Sticky bottom spacing.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_sticky_bottom_space]',
+	array(
+		'default'           => $defaults['shop_single_product_sticky_bottom_space'],
+		'type'              => 'option',
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_sticky_bottom_space]',
+		array(
+			'label'    => __( 'Bottom Space', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_sticky_bottom_space]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'number',
 		)
 	)
 );

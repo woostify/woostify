@@ -73,13 +73,12 @@ function woostifyStickySummary() {
 		return;
 	}
 
-	var sidebar = new StickySidebar(
-		'.product-summary',
+	var sidebarStickCmnKy = new WSYSticky(
+		'.summary.entry-summary',
 		{
-			innerWrapperSelector: '.summary.entry-summary',
-			topSpacing: 50,
-			bottomSpacing: 50,
-			minWidth: 992
+			stickyContainer: '.product-page-container',
+			marginTop: parseInt( woostify_woocommerce_general.sticky_top_space ),
+			marginBottom: parseInt( woostify_woocommerce_general.sticky_bottom_space )
 		}
 	);
 }
