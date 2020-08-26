@@ -199,7 +199,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_page_add_to_cart_button_position'   => 'bottom',
 				'shop_product_add_to_cart_icon'           => true,
 				'shop_page_button_cart_background'        => '',
-				'shop_page_button_cart_color'			  => '',
+				'shop_page_button_cart_color'             => '',
 				'shop_page_button_background_hover'       => '',
 				'shop_page_button_color_hover'            => '',
 				'shop_page_button_border_radius'          => '',
@@ -236,6 +236,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_gallery_layout'              => 'vertical',
 				'shop_single_image_zoom'                  => true,
 				'shop_single_image_lightbox'              => true,
+				'shop_single_product_sticky_top_space'    => 50,
+				'shop_single_product_sticky_bottom_space' => 50,
 				// Meta.
 				'shop_single_skus'                        => true,
 				'shop_single_categories'                  => true,
