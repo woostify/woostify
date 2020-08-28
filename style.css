@@ -5058,10 +5058,6 @@ dd {
   cursor: pointer;
 }
 
-.logo-header-transparent {
-  display: none;
-}
-
 .has-header-transparent .site-header {
   position: static;
   left: 0;
@@ -10746,14 +10742,15 @@ header.elementor-element {
   }
 }
 
-.woocommerce-account .u-column1 {
-  float: left;
-  width: 48%;
-}
-
-.woocommerce-account .u-column2 {
-  float: right;
-  width: 48%;
+@media (min-width: 992px) {
+  .woocommerce-account .u-column1 {
+    float: left;
+    width: 48%;
+  }
+  .woocommerce-account .u-column2 {
+    float: right;
+    width: 48%;
+  }
 }
 
 .woocommerce-account .woocommerce-form.woocommerce-form-register {
@@ -11364,14 +11361,6 @@ ul.products li.product .product-loop-image-wrapper .tinvwl_add_to_wishlist_butto
 .product-loop-action .tinvwl-product-in-list.tinvwl-product-already-on-wishlist .tinvwl_remove_from_wishlist-text,
 .product-loop-action .tinvwl-product-in-list.tinvwl-product-already-on-wishlist .tinvwl_already_on_wishlist-text {
   display: none !important;
-}
-
-.woosb-qty-input .product-qty {
-  display: none;
-}
-
-.woosb-qty-input .quantity input {
-  padding: 0;
 }
 
 body.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.active:after {
