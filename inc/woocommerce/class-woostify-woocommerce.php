@@ -132,6 +132,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		 * Sets up theme defaults and registers support for various WooCommerce features.
 		 */
 		public function woostify_woocommerce_setup() {
+			add_theme_support( 'wc-product-gallery-zoom' );
+			add_theme_support( 'wc-product-gallery-lightbox' );
+			add_theme_support( 'wc-product-gallery-slider' );
+
 			add_theme_support(
 				'woocommerce',
 				apply_filters(

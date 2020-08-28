@@ -47,8 +47,20 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_filter( 'excerpt_more', array( $this, 'woostify_modify_excerpt_more' ) );
 
 			// Compatibility.
+			add_action( 'elementor/widgets/widgets_registered', array( $this, 'woostify_add_elementor_widget' ) );
 			add_filter( 'the_content', array( $this, 'woostify_modify_the_content' ) );
 			add_action( 'init', array( $this, 'woostify_override_divi_color_pciker' ), 12 );
+		}
+
+		/**
+		 * Add elementor widget
+		 */
+		public function woostify_add_elementor_widget() {
+			if ( ! woostify_is_elementor_activated() ) {
+				return;
+			}
+
+			require_once WOOSTIFY_THEME_DIR . 'inc/compatibility/elementor/class-woostify-elementor-single-product-images.php';
 		}
 
 		/**
