@@ -11362,6 +11362,20 @@ ul.products li.product .product-loop-image-wrapper .tinvwl_add_to_wishlist_butto
   padding: 0;
 }
 
+.woocommerce-mini-cart-item.woosb-item-child {
+  list-style: none;
+  margin-left: 30px;
+}
+
+.woocommerce-mini-cart-item.woosb-item-child .mini-cart-product-qty,
+.woocommerce-mini-cart-item.woosb-item-child .mini-cart-product-price {
+  display: none;
+}
+
+.woocommerce-mini-cart-item.woosb-item-child .input-text {
+  pointer-events: none;
+}
+
 .elementor-widget-woostify-default-product-images {
   position: relative;
 }

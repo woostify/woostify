@@ -1,4 +1,4 @@
-// Plugin quantity input
+// Plugin bundle product
 .woosb-qty-input {
 	.product-qty {
 		display: none;
@@ -8,6 +8,20 @@
 		input {
 			padding: 0;
 		}
+	}
+}
+
+.woocommerce-mini-cart-item.woosb-item-child {
+	list-style: none;
+	margin-left: 30px;
+
+	.mini-cart-product-qty,
+	.mini-cart-product-price {
+		display: none;
+	}
+
+	.input-text {
+		pointer-events: none;
 	}
 }
 
