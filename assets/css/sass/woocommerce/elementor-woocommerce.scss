@@ -39,9 +39,18 @@
 	}
 }
 
-
 .elementor-widget-wc-add-to-cart {
 	.quantity {
 		border: 1px solid #e8e8e8;
+	}
+}
+
+.elementor-widget-wp-widget-woocommerce_product_categories {
+	.select2-container--default {
+		.select2-selection--single {
+			.select2-selection__arrow {
+				top: 50%;
+			}
+		}
 	}
 }

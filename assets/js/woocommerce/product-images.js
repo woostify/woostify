@@ -81,6 +81,14 @@ function woostifyStickySummary() {
 			marginBottom: parseInt( woostify_woocommerce_general.sticky_bottom_space )
 		}
 	);
+
+	// Update sticky when found variation.
+	jQuery( 'form.variations_form' ).on(
+		'found_variation',
+		function() {
+			sidebarStickCmnKy.update();
+		}
+	);
 }
 
 document.addEventListener(

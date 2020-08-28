@@ -11343,6 +11343,10 @@ ul.products li.product .product-loop-image-wrapper .tinvwl_add_to_wishlist_butto
   border: 1px solid #e8e8e8;
 }
 
+.elementor-widget-wp-widget-woocommerce_product_categories .select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 50%;
+}
+
 .updating-cart.ajax-single-add-to-cart .single_add_to_cart_button.loading {
   filter: grayscale(100%);
 }
@@ -11360,6 +11364,14 @@ ul.products li.product .product-loop-image-wrapper .tinvwl_add_to_wishlist_butto
 .product-loop-action .tinvwl-product-in-list.tinvwl-product-already-on-wishlist .tinvwl_remove_from_wishlist-text,
 .product-loop-action .tinvwl-product-in-list.tinvwl-product-already-on-wishlist .tinvwl_already_on_wishlist-text {
   display: none !important;
+}
+
+.woosb-qty-input .product-qty {
+  display: none;
+}
+
+.woosb-qty-input .quantity input {
+  padding: 0;
 }
 
 body.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.active:after {
