@@ -978,7 +978,7 @@ if ( ! function_exists( 'woostify_get_post_structure' ) ) {
 	 * @param boolean $echo        Echo.
 	 */
 	function woostify_get_post_structure( $option_name, $echo = true ) {
-		if ( ! woostify_is_blog() ) {
+		if ( ! is_search() && ! woostify_is_blog() ) {
 			return;
 		}
 
@@ -1026,7 +1026,7 @@ if ( ! function_exists( 'woostify_get_post_meta' ) ) {
 	 * @param boolean $echo        Echo.
 	 */
 	function woostify_get_post_meta( $option_name, $echo = true ) {
-		if ( ! woostify_is_blog() ) {
+		if ( ! is_search() && ! woostify_is_blog() ) {
 			return;
 		}
 
@@ -2266,7 +2266,7 @@ if ( ! function_exists( 'woostify_scroll_to_top' ) ) {
 	 * Scroll to top
 	 */
 	function woostify_scroll_to_top() {
-		$options = woostify_options( false );
+		$options  = woostify_options( false );
 		$position = $options['scroll_to_top_position'];
 		$display  = $options['scroll_to_top_on'];
 
