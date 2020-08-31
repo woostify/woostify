@@ -780,6 +780,15 @@ class Woostify_Get_CSS {
 					border-bottom-width: ' . esc_attr( $options['header_transparent_border_width'] ) . 'px;
 					border-bottom-color: ' . esc_attr( $options['header_transparent_border_color'] ) . ';
 				}
+				.has-header-transparent .primary-navigation > li > a {
+					color: ' . esc_attr( $options['header_transparent_menu_color'] ) . ';
+				}
+				.has-header-transparent .site-tools .tools-icon {
+					color: ' . esc_attr( $options['header_transparent_icon_color'] ) . ';
+				}
+				.has-header-transparent .wishlist-item-count, .has-header-transparent .shop-cart-count {
+					background-color: ' . esc_attr( $options['header_transparent_count_background'] ) . ';
+				}
 			';
 		}
 

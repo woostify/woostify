@@ -224,7 +224,9 @@
 				'woostify_setting[header_transparent_border_width]',
 				'woostify_setting[header_transparent_border_color]',
 				'woostify_setting[header_transparent_logo]',
-				'woostify_setting[header_transparent_menu_color]'
+				'woostify_setting[header_transparent_menu_color]',
+				'woostify_setting[header_transparent_icon_color]',
+				'woostify_setting[header_transparent_count_background]'
 			]
 		);
 
