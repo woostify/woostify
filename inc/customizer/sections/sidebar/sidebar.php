@@ -185,7 +185,7 @@ if ( class_exists( 'woocommerce' ) ) {
 			$wp_customize,
 			'woostify_setting[sidebar_shop]',
 			array(
-				'label'    => __( 'Shop Page', 'woostify' ),
+				'label'    => __( 'Shop/Product Archive', 'woostify' ),
 				'section'  => 'woostify_sidebar',
 				'settings' => 'woostify_setting[sidebar_shop]',
 				'type'     => 'select',
@@ -274,7 +274,7 @@ $wp_customize->add_control(
 			'settings' => array(
 				'desktop' => 'woostify_setting[sidebar_width]',
 			),
-			'choices' => array(
+			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_sidebar_width_min_step', 0 ),
 					'max'  => apply_filters( 'woostify_sidebar_width_max_step', 50 ),
