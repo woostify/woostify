@@ -346,16 +346,10 @@ if ( ! function_exists( 'woostify_site_branding' ) ) {
 			$class           = 'has-custom-mobile-logo';
 		}
 
-		if ( woostify_header_transparent() ) {
-			$classes = 'logo-transparent';
-		}
-
+		$transparent_class = woostify_header_transparent();
+		$classes           = ( $transparent_class ) ? 'logo-transparent' : '';
 		?>
-		<div class="site-branding <?php echo esc_attr( $class ); ?> <?php
-		if ( woostify_header_transparent() ) {
-			echo esc_attr( $classes ); }
-		?>
-		">
+		<div class="site-branding <?php echo esc_attr( $class ); ?><?php echo esc_attr( $classes ); ?>">
 		<?php
 		if ( ! woostify_header_transparent() ) {
 			woostify_site_title_or_logo();
