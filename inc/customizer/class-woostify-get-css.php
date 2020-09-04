@@ -233,6 +233,13 @@ class Woostify_Get_CSS {
 				.sub-mega-menu {
     				display: none;
   				}
+  				.site-branding .custom-mobile-logo-url {
+					display: block;
+				}
+
+				.has-custom-mobile-logo.logo-transparent .custom-transparent-logo-url {
+					display: block;
+				}
 			}
 		';
 
@@ -241,6 +248,11 @@ class Woostify_Get_CSS {
 				.has-header-layout-1 .wrap-toggle-sidebar-menu {
 					display: none;
 				}
+
+				.site-branding .custom-mobile-logo-url {
+					display: none;
+				}
+
 				.sidebar-menu .main-navigation .primary-navigation > .menu-item {
 				    display: block;
 				}

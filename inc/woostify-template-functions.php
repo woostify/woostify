@@ -341,15 +341,18 @@ if ( ! function_exists( 'woostify_site_branding' ) ) {
 
 		$transparent_logo_src = $options['header_transparent_logo'];
 
+		$classes[] = '';
+
 		if ( ! empty( $options['logo_mobile'] ) ) {
 			$mobile_logo_src = $options['logo_mobile'];
-			$class           = 'has-custom-mobile-logo';
+			$classes[]       = 'has-custom-mobile-logo';
 		}
 
-		$transparent_class      = woostify_header_transparent();
-		$transparent_class_logo = ( $transparent_class ) ? 'logo-transparent' : '';
+		$transparent_class = woostify_header_transparent();
+		$classes[]         = ( $transparent_class ) ? 'logo-transparent' : '';
+		$classes           = implode( ' ', array_filter( $classes ) );
 		?>
-		<div class="site-branding <?php echo esc_attr( $class ); ?><?php echo esc_attr( $transparent_class_logo ); ?>">
+		<div class="site-branding <?php echo esc_attr( $classes ); ?>">
 		<?php
 		if ( ! woostify_header_transparent() ) {
 			woostify_site_title_or_logo();
