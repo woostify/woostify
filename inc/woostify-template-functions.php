@@ -341,7 +341,7 @@ if ( ! function_exists( 'woostify_site_branding' ) ) {
 
 		$transparent_logo_src = $options['header_transparent_logo'];
 
-		$classes[] = '';
+		$classes[] = 'site-branding';
 
 		if ( ! empty( $options['logo_mobile'] ) ) {
 			$mobile_logo_src = $options['logo_mobile'];
@@ -352,7 +352,7 @@ if ( ! function_exists( 'woostify_site_branding' ) ) {
 		$classes[]         = ( $transparent_class ) ? 'logo-transparent' : '';
 		$classes           = implode( ' ', array_filter( $classes ) );
 		?>
-		<div class="site-branding <?php echo esc_attr( $classes ); ?>">
+		<div class="<?php echo esc_attr( $classes ); ?>">
 		<?php
 		if ( ! woostify_header_transparent() ) {
 			woostify_site_title_or_logo();
