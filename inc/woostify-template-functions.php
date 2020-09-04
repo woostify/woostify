@@ -339,16 +339,23 @@ if ( ! function_exists( 'woostify_site_branding' ) ) {
 		$mobile_logo_src = '';
 		$options         = woostify_options( false );
 
+		$transparent_logo_src = $options['header_transparent_logo'];
+
+		$classes[] = 'site-branding';
+
 		if ( ! empty( $options['logo_mobile'] ) ) {
 			$mobile_logo_src = $options['logo_mobile'];
-			$class           = 'has-custom-mobile-logo';
+			$classes[]       = 'has-custom-mobile-logo';
 		}
 
+		$transparent_class = woostify_header_transparent();
+		$classes[]         = ( $transparent_class ) ? 'logo-transparent' : '';
+		$classes           = implode( ' ', array_filter( $classes ) );
 		?>
-		<div class="site-branding <?php echo esc_attr( $class ); ?>">
-			<?php
+		<div class="<?php echo esc_attr( $classes ); ?>">
+		<?php
+		if ( ! woostify_header_transparent() ) {
 			woostify_site_title_or_logo();
-
 			// Custom mobile logo.
 			if ( ! empty( $mobile_logo_src ) ) {
 				$mobile_logo_id  = attachment_url_to_postid( $mobile_logo_src );
@@ -359,7 +366,28 @@ if ( ! function_exists( 'woostify_site_branding' ) ) {
 					</a>
 				<?php
 			}
-			?>
+		} else {
+			if ( ! empty( $transparent_logo_src ) ) {
+				?>
+					<a class="custom-transparent-logo-url" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" itemprop="url">
+						<img class="custom-transparent-logo" src="<?php echo esc_url( $transparent_logo_src ); ?>" alt="<?php echo esc_attr( 'Logo transparent' ); ?>" itemprop="logo">
+					</a>
+				<?php
+			} else {
+				woostify_site_title_or_logo();
+				// Custom mobile logo.
+				if ( ! empty( $mobile_logo_src ) ) {
+					$mobile_logo_id  = attachment_url_to_postid( $mobile_logo_src );
+					$mobile_logo_alt = woostify_image_alt( $mobile_logo_id, __( 'Woostify mobile logo', 'woostify' ) );
+					?>
+						<a class="custom-mobile-logo-url" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" itemprop="url">
+							<img class="custom-mobile-logo" src="<?php echo esc_url( $mobile_logo_src ); ?>" alt="<?php echo esc_attr( $mobile_logo_alt ); ?>" itemprop="logo">
+						</a>
+					<?php
+				}
+			}
+		}
+		?>
 		</div>
 		<?php
 	}

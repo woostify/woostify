@@ -36,6 +36,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['scroll_to_top_on'],
 		'sanitize_callback' => 'woostify_sanitize_choices',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 
@@ -67,6 +68,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['scroll_to_top_position'],
 		'sanitize_callback' => 'woostify_sanitize_choices',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 

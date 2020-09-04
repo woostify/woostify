@@ -115,7 +115,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'header_transparent_shadow_spread'        => 0,
 				'header_transparent_shadow_color'         => '#000000',
 				'header_transparent_logo'                 => '',
-				'header_transparent_menu_color'           => '#000000',
+				'header_transparent_menu_color'           => '',
+				'header_transparent_icon_color'           => '',
+				'header_transparent_count_background'     => '',
 				// PAGE HEADER.
 				'page_header_display'                     => false,
 				'page_header_title'                       => true,

@@ -136,7 +136,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[header_menu_breakpoint]',
 		array(
-			'priority' => 71,
+			'priority' => 46,
 			'label'    => __( 'Menu Breakpoint', 'woostify' ),
 			'section'  => 'woostify_header',
 			'settings' => array(

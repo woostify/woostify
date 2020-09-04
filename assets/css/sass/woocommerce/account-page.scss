@@ -32,13 +32,16 @@
 		}
 	}
 
-	.u-column1{
+
+	@media ( min-width: $screen-md ) {
+		.u-column1{
 		float: left;
 		width: 48%;
-	}
-	.u-column2{
-		float: right;
-		width: 48%;
+		}
+		.u-column2{
+			float: right;
+			width: 48%;
+		}
 	}
 
 	.woocommerce-form.woocommerce-form-register{

@@ -368,6 +368,12 @@ document.addEventListener(
 		// Header menu transparent color.
 		woostify_colors_live_update( 'header_transparent_menu_color', '.has-header-transparent .primary-navigation > li > a', 'color' );
 
+		// Header Icon transparent color.
+		woostify_colors_live_update( 'header_transparent_icon_color', '.has-header-transparent .site-tools .tools-icon', 'color' );
+
+		// Header Icon transparent background.
+		woostify_colors_live_update( 'header_transparent_count_background', '.has-header-transparent .wishlist-item-count, .has-header-transparent .shop-cart-count', 'background-color' );
+
 		// Logo width.
 		woostify_range_slider_update( ['logo_width', 'tablet_logo_width', 'mobile_logo_width'], '.site-branding img', 'max-width', 'px' );
 
@@ -524,6 +530,7 @@ document.addEventListener(
 		woostify_range_slider_update( ['scroll_to_top_icon_size'], '#scroll-to-top:before', 'font-size', 'px' );
 		woostify_range_slider_update( ['scroll_to_top_offset_bottom'], '#scroll-to-top', 'bottom', 'px' );
 		woostify_range_slider_update( ['shop_single_button_border_radius'], '.single_add_to_cart_button.button:not(.woostify-buy-now)', 'border-radius', 'px' );
-
+		woostify_update_element_class( 'scroll_to_top_position', '#scroll-to-top', 'scroll-to-top-position-' );
+		woostify_update_element_class( 'scroll_to_top_on', '#scroll-to-top', 'scroll-to-top-show-' );
 	}
 );

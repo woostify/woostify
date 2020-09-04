@@ -232,6 +232,50 @@ $wp_customize->add_control(
 	)
 );
 
+// Icon Transparent color.
+$wp_customize->add_setting(
+	'woostify_setting[header_transparent_icon_color]',
+	array(
+		'default'           => $defaults['header_transparent_icon_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[header_transparent_icon_color]',
+		array(
+			'label'    => __( 'Icon Transparent Color', 'woostify' ),
+			'section'  => 'woostify_header_transparent',
+			'settings' => 'woostify_setting[header_transparent_icon_color]',
+		)
+	)
+);
+
+// Count Transparent background.
+$wp_customize->add_setting(
+	'woostify_setting[header_transparent_count_background]',
+	array(
+		'default'           => $defaults['header_transparent_count_background'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[header_transparent_count_background]',
+		array(
+			'label'    => __( 'Count Transparent Background', 'woostify' ),
+			'section'  => 'woostify_header_transparent',
+			'settings' => 'woostify_setting[header_transparent_count_background]',
+		)
+	)
+);
+
 
 // Border divider.
 $wp_customize->add_setting(
