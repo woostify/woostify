@@ -1780,7 +1780,7 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		if ( class_exists( 'woocommerce' ) && ( is_shop() || is_product_category() || is_product_tag() ) ) {
 			// Shop page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar-shop', $sidebar_shop, $sidebar_default );
-		} elseif ( is_singular( 'product' ) ) {
+		} elseif ( class_exists( 'woocommerce' ) && is_singular( 'product' ) ) {
 			// Product page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar-shop', $sidebar_shop_single, $sidebar_default );
 		} elseif ( is_page() ) {
