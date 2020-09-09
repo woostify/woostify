@@ -403,6 +403,11 @@
 	margin-top: 0;
 	margin-bottom: 20px;
 
+	tr {
+		display: block;
+		margin-bottom: 10px;
+	}
+
 	td {
 		border: 0;
 		padding: 2px 0;
@@ -422,8 +427,9 @@
 	select {
 		display: block;
 		clear: both;
-		height: 40px;
-		min-width: 75%;
+		height: 36px;
+		padding-left: 10px;
+		padding-right: 10px;
 		background-color: #fff;
 		position: static !important;
 	}
@@ -433,11 +439,14 @@
 	}
 
 	.label {
-		width: 30%;
 		vertical-align: middle;
+		display: block;
 	}
 
 	.value {
+		display: block;
+		padding-left: 0;
+
 		&:before {
 			content: none $i
 		}
@@ -450,6 +459,11 @@
 		@media (max-width: $screen-tablet - 1) {
 			flex-wrap: wrap;
 		}
+	}
+
+	.woostify-variation-swatches {
+		padding-left: 0;
+		padding-right: 0;
 	}
 
 	.tawcvs-swatches,
@@ -482,6 +496,7 @@
 		@media (min-width: $screen-tablet) {
 			margin-left: 10px;
 			margin-top: 0;
+			margin-bottom: 10px;
 			float: none;
 		}
 
