@@ -273,6 +273,7 @@ class Woostify_Get_CSS {
 				    display: inline-flex;
 				    line-height: 1;
 				    align-items: center;
+				    flex-direction: column;
 				}
 
 				.has-header-layout-1 .sidebar-menu {
