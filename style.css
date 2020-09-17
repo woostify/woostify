@@ -9224,7 +9224,7 @@ header.elementor-element {
   height: 100%;
   margin: 0;
   padding: 0;
-  max-width: 40px;
+  width: 40px;
   line-height: 24px;
   text-align: center;
   -moz-appearance: textfield;

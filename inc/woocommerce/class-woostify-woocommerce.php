@@ -69,6 +69,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			add_filter( 'woocommerce_widget_cart_item_quantity', 'woostify_update_quantity_mini_cart', 10, 3 );
 
+			// MY ACCOUNT PAGE.
+			add_filter( 'woocommerce_my_account_edit_address_title', '__return_empty_string' );
+
 			// SHOP PAGE.
 			add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_wrapper_open', 10 );
 			add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_print_out_of_stock_label', 15 );

@@ -35,7 +35,6 @@ function woostifyAjaxSingleAddToCartButton() {
 				addToCart     = form.querySelector( '[name="add-to-cart"]' ),
 				productId     = addToCart ? addToCart.value : false,
 				input         = form.querySelector( '.qty' ),
-				productInfo   = form.querySelector( '.additional-product' ),
 				variationId   = false,
 				variations    = {};
 
@@ -49,8 +48,40 @@ function woostifyAjaxSingleAddToCartButton() {
 				return;
 			}
 
+			// Get product info.
+			var productInfo   = form.querySelector( '.additional-product' ),
+				inStock       = productInfo ? productInfo.getAttribute( 'data-in_stock' ) : 'no',
+				outStock      = productInfo ? productInfo.getAttribute( 'data-out_of_stock' ) : 'Out of stock',
+				notEnough     = productInfo ? productInfo.getAttribute( 'data-not_enough' ) : '',
+				quantityValid = productInfo ? productInfo.getAttribute( 'data-valid_quantity' ) : '',
+				currentlyQty  = 0;
+
 			button.onclick = function( e ) {
 				e.preventDefault();
+
+				var hiddenQty = form.querySelector( '.quantity.hidden' ),
+					quantity  = input ? parseInt( input.value ) : 0,
+					inCartQty = productInfo ? parseInt( productInfo.value ) : 0,
+					minInput  = parseInt( input.getAttribute( 'min' ) || 0 ),
+					maxInput  = parseInt( input.getAttribute( 'max' ) );
+
+				// Stock status.
+				if ( 'yes' == inStock && hiddenQty && ( inCartQty > 0 || currentlyQty > 0 ) ) {
+					alert( outStock );
+					return;
+				}
+
+				// Out of stock.
+				if ( ! isNaN( maxInput ) && inCartQty >= maxInput ) {
+					alert( outStock );
+					return;
+				}
+
+				// Not enough quantity.
+				if ( ! isNaN( maxInput ) && ( +quantity + +inCartQty > maxInput ) ) {
+					alert( notEnough );
+					return;
+				}
 
 				// Support gift wrap plugin.
 				var giftWrap     = form.querySelector( '[name="wcgwp_action"]' ),
@@ -67,8 +98,6 @@ function woostifyAjaxSingleAddToCartButton() {
 						giftWrapData['gift_product_note'] = giftNote.value.trim();
 					}
 				}
-
-				var quantity = input ? parseInt( input.value ) : 0;
 
 				// For variations product.
 				if ( variationForm ) {
@@ -186,6 +215,8 @@ function woostifyAjaxSingleAddToCartButton() {
 							if ( totalPrice ) {
 								totalPrice.innerHTML = data.total;
 							}
+
+							currentlyQty++;
 						}
 					).catch(
 						function( err ) {
