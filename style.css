@@ -5748,7 +5748,7 @@ footer#colophon {
 }
 
 .product_list_widget img {
-  max-width: 60px;
+  max-width: 60px !important;
   max-height: 60px;
   position: absolute;
   left: 0;
