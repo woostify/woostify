@@ -57,4 +57,15 @@
 			right: 30px;
 		}
 	}
+	.woocommerce-MyAccount-navigation {
+		float: right;
+	}
+	.woocommerce-MyAccount-navigation {
+		.woocommerce-MyAccount-navigation-link {
+			a:before {
+				margin-left: 15px;
+				margin-right: 0;
+			}
+		}
+	}
 }

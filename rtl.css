@@ -329,6 +329,15 @@
   right: 30px;
 }
 
+.rtl .woocommerce-MyAccount-navigation {
+  float: right;
+}
+
+.rtl .woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link a:before {
+  margin-left: 15px;
+  margin-right: 0;
+}
+
 .rtl .woostify-product-navigation .product-nav-item-text {
   display: flex;
   align-items: center;
