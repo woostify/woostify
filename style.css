@@ -10693,8 +10693,8 @@ header.elementor-element {
 
 @media (min-width: 992px) {
   .woocommerce-order-pay #order_review {
-    float: none;
-    margin: 0 ato;
+    width: 100%;
+    margin: 0 auto;
   }
 }
 

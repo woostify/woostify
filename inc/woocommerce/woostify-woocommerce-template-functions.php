@@ -853,7 +853,7 @@ if ( ! function_exists( 'woostify_is_multi_checkout' ) ) {
 		}
 
 		$options = woostify_options( false );
-		return ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && $options['checkout_multi_step'] );
+		return ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && ! is_wc_endpoint_url( 'order-pay' ) && $options['checkout_multi_step'] );
 	}
 }
 

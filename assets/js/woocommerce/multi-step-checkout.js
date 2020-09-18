@@ -104,9 +104,7 @@ var woostifyMultiStepCheckout = function() {
 					}
 
 					// Scroll to top.
-					if ( window.matchMedia( '(max-width: 992px)' ).matches ) {
-						jQuery( 'html, body' ).animate( { scrollTop: jQuery( box ).offset().top }, 300 );
-					}
+					jQuery( 'html, body' ).animate( { scrollTop: jQuery( box ).offset().top }, 300 );
 				}
 			}
 		);
