@@ -121,6 +121,12 @@
   }
 }
 
+@media (max-width: 991px) {
+  .rtl .sidebar-menu .primary-navigation > .menu-item {
+    text-align: right;
+  }
+}
+
 .rtl #shop-cart-sidebar {
   left: 0;
   right: auto;
