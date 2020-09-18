@@ -220,6 +220,10 @@
   margin-right: 0;
 }
 
+.rtl .product_list_widget img {
+  max-width: 60px;
+}
+
 .rtl #order_review #shipping_method li {
   display: block;
 }
