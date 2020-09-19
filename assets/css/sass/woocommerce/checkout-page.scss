@@ -1089,16 +1089,17 @@
 	border-color: #ccc;
 }
 
-// responsive
+// Order pay
 @media (min-width: $screen-md) {
 	.woocommerce-order-pay {
 		#order_review {
-			float: none;
-			margin: 0 ato;
+			width: 100%;
+			margin: 0 auto;
 		}
 	}
 }
 
+// responsive
 @media (max-width: $screen-md - 1) {
 	#order_review {
 		clear: both;
