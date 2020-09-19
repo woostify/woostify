@@ -90,4 +90,13 @@
 			}
 		}
 	}
+	@media ( max-width: 991px ) {
+		.sidebar-menu {
+			.primary-navigation {
+				> .menu-item {
+					text-align: right;
+				}
+			}
+		}
+	}
 }

@@ -121,6 +121,12 @@
   }
 }
 
+@media (max-width: 991px) {
+  .rtl .sidebar-menu .primary-navigation > .menu-item {
+    text-align: right;
+  }
+}
+
 .rtl #shop-cart-sidebar {
   left: 0;
   right: auto;
@@ -212,6 +218,10 @@
 .rtl .widget_recent_post_thumbnail_item .recent-post-thumbnail-img {
   margin-left: 20px;
   margin-right: 0;
+}
+
+.rtl .product_list_widget img {
+  max-width: 60px;
 }
 
 .rtl #order_review #shipping_method li {
@@ -327,6 +337,15 @@
 .rtl .payment_box:before {
   left: auto;
   right: 30px;
+}
+
+.rtl .woocommerce-MyAccount-navigation {
+  float: right;
+}
+
+.rtl .woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link a:before {
+  margin-left: 15px;
+  margin-right: 0;
 }
 
 .rtl .woostify-product-navigation .product-nav-item-text {
