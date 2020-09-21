@@ -10726,7 +10726,7 @@ header.elementor-element {
   }
 }
 
-.woocommerce-account h2 {
+.woocommerce-account:not(.woobuilder-active) h2 {
   font-size: 20px;
   font-weight: normal;
   text-align: center;
