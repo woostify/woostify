@@ -121,16 +121,27 @@ var woostifyMultiStepCheckout = function() {
 
 		if ( methods.length ) {
 			wrapperContent.classList.remove( 'no-shipping-available' );
-			methods.forEach(
-				function( method, ix ) {
-					var checked = 'checked' == method.getAttribute( 'checked' ) ? 'checked="checked"' : '',
-						label   = method.nextElementSibling;
-
+			if ( 1 === methods.length ) {
+				var shippingLabel = document.querySelector( '#shipping_method .shipping_method + label' );
+				if ( shippingLabel ) {
 					shippingContent += '<div class="shipping-methods-modified-item">';
-					shippingContent += '<label class="shipping-methods-modified-label" for="shipping-methods-index-' + ix + '"><input type="radio" ' + checked + ' name="shipping-method-modified[0]" id="shipping-methods-index-' + ix + '" class="shipping-methods-modified-input" value="' + method.value + '"><span>' + label.innerHTML + '</span></label>';
+					shippingContent += '<label class="shipping-methods-modified-label"><span>' + shippingLabel.innerHTML + '</span></label>';
 					shippingContent += '</div>';
 				}
-			);
+			} else {
+				methods.forEach(
+					function( method, ix ) {
+						var checked = 'checked' == method.getAttribute( 'checked' ) ? 'checked="checked"' : '',
+							label   = method.nextElementSibling;
+
+						console.log( method );
+
+						shippingContent += '<div class="shipping-methods-modified-item">';
+						shippingContent += '<label class="shipping-methods-modified-label" for="shipping-methods-index-' + ix + '"><input type="radio" ' + checked + ' name="shipping-method-modified[0]" id="shipping-methods-index-' + ix + '" class="shipping-methods-modified-input" value="' + method.value + '"><span>' + label.innerHTML + '</span></label>';
+						shippingContent += '</div>';
+					}
+				);
+			}
 		} else {
 			wrapperContent.classList.add( 'no-shipping-available' );
 		}
