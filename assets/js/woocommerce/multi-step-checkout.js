@@ -406,7 +406,7 @@ var woostifyMultiStepCheckout = function() {
 					_city2         = document.getElementById( 'shipping_city' ),
 					_countryField2 = document.getElementById( 'shipping_country' ),
 					_country2      = _countryField2 ? document.querySelector( '#shipping_country option[value="' + _countryField2.value + '"]' ) : false,
-					_shippingField = document.querySelector( '#shipping_method .shipping_method[checked="checked"]' ),
+					_shippingField = document.querySelector( '#shipping_method .shipping_method[checked="checked"]' ) || document.querySelector( '#shipping_method .shipping_method[data-index="0"]' ),
 					_shippingID    = _shippingField ? _shippingField.id : false,
 					_shipping      = _shippingID ? document.querySelector( '#shipping_method label[for="' + _shippingID + '"]' ) : false,
 					_addressBill   = '',
