@@ -142,6 +142,9 @@
 
 			[name="apply_coupon"] {
 				white-space: nowrap;
+				height: 40px;
+				padding: 0 20px;
+				color: #ffffff;
 			}
 		}
 
@@ -228,7 +231,6 @@
 		/* actions */
 		.actions {
 			text-align: right;
-			border: 2px dashed #e8e8e8;
 			padding: 0;
 
 			[name="update_cart"] {
@@ -245,20 +247,16 @@
 			background-repeat: no-repeat;
 			background-size: 40px 40px;
 			background-position: center left 30px;
-
-			@media (min-width: $screen-sm) {
-				padding-left: 100px;
-				background-image: url(assets/images/coupon.svg);
-			}
-
 			label {
 				display: none;
 			}
 		}
 
 		[name="coupon_code"] {
-			border-width: 0 0 1px 0;
-			height: 30px;
+			border-width: 1px;
+			height: 40px;
+			margin-right: 10px;
+			padding: 0 20px;
 		}
 
 		[name="apply_coupon"] {
@@ -285,13 +283,6 @@
 
 			&:disabled {
 				color: #fff;
-			}
-
-			&:before {
-				font-family: $icon;
-				content: "\e619";
-				font-size: 15px;
-				margin-right: 15px;
 			}
 		}
 	}

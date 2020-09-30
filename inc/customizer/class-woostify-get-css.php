@@ -624,6 +624,7 @@ class Woostify_Get_CSS {
 			}
 
 			.woostify-button-bg-color,
+			.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions .coupon [name="apply_coupon"],
 			.loop-add-to-cart-on-image+.added_to_cart {
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 			}

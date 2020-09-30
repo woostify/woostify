@@ -9392,6 +9392,9 @@ header.elementor-element {
 
 .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions .coupon [name="apply_coupon"], .cart.wishlist_table:not(.elementor-menu-cart__products) .actions .coupon [name="apply_coupon"] {
   white-space: nowrap;
+  height: 40px;
+  padding: 0 20px;
+  color: #ffffff;
 }
 
 .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions [name="coupon_code"], .cart.wishlist_table:not(.elementor-menu-cart__products) .actions [name="coupon_code"] {
@@ -9462,7 +9465,6 @@ header.elementor-element {
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions, .cart.wishlist_table:not(.elementor-menu-cart__products) .actions {
     text-align: right;
-    border: 2px dashed #e8e8e8;
     padding: 0;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions [name="update_cart"], .cart.wishlist_table:not(.elementor-menu-cart__products) .actions [name="update_cart"] {
@@ -9478,22 +9480,14 @@ header.elementor-element {
     background-size: 40px 40px;
     background-position: center left 30px;
   }
-}
-
-@media (min-width: 992px) and (min-width: 768px) {
-  .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .coupon, .cart.wishlist_table:not(.elementor-menu-cart__products) .coupon {
-    padding-left: 100px;
-    background-image: url(assets/images/coupon.svg);
-  }
-}
-
-@media (min-width: 992px) {
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .coupon label, .cart.wishlist_table:not(.elementor-menu-cart__products) .coupon label {
     display: none;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="coupon_code"], .cart.wishlist_table:not(.elementor-menu-cart__products) [name="coupon_code"] {
-    border-width: 0 0 1px 0;
-    height: 30px;
+    border-width: 1px;
+    height: 40px;
+    margin-right: 10px;
+    padding: 0 20px;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="apply_coupon"], .cart.wishlist_table:not(.elementor-menu-cart__products) [name="apply_coupon"] {
     font-weight: 600;
@@ -9517,12 +9511,6 @@ header.elementor-element {
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="update_cart"]:disabled, .cart.wishlist_table:not(.elementor-menu-cart__products) [name="update_cart"]:disabled {
     color: #fff;
-  }
-  .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="update_cart"]:before, .cart.wishlist_table:not(.elementor-menu-cart__products) [name="update_cart"]:before {
-    font-family: "themify";
-    content: "\e619";
-    font-size: 15px;
-    margin-right: 15px;
   }
 }
 
