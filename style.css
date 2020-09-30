@@ -9407,7 +9407,7 @@ header.elementor-element {
     flex-direction: column-reverse;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions [name="update_cart"], .cart.wishlist_table:not(.elementor-menu-cart__products) .actions [name="update_cart"] {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 }
 
@@ -9468,9 +9468,7 @@ header.elementor-element {
     padding: 0;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions [name="update_cart"], .cart.wishlist_table:not(.elementor-menu-cart__products) .actions [name="update_cart"] {
-    border-width: 0 0 0 1px;
-    border-style: dashed;
-    border-color: #e2e2e2;
+    border-width: 1px;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .coupon, .cart.wishlist_table:not(.elementor-menu-cart__products) .coupon {
     height: 100px;
@@ -9492,7 +9490,6 @@ header.elementor-element {
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="apply_coupon"], .cart.wishlist_table:not(.elementor-menu-cart__products) [name="apply_coupon"] {
     font-weight: 600;
     font-size: 12px;
-    text-transform: uppercase;
     border-bottom: 1px solid #ccc;
     height: 30px;
     padding: 0 10px;
@@ -9607,7 +9604,6 @@ header.elementor-element {
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="update_cart"], .cart.wishlist_table:not(.elementor-menu-cart__products) [name="update_cart"] {
     width: 100%;
-    padding: 10px;
     margin: 10px 0;
   }
 }
@@ -9715,6 +9711,18 @@ header.elementor-element {
 
 .cart_totals li {
   list-style: none;
+}
+
+.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="update_cart"], .cart.wishlist_table:not(.elementor-menu-cart__products) [name="update_cart"] {
+  height: 40px;
+}
+
+@media (min-width: 992px) {
+  .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions .coupon + [name="update_cart"], .cart.wishlist_table:not(.elementor-menu-cart__products) .actions .coupon + [name="update_cart"] {
+    width: auto;
+    margin-top: 30px;
+    font-size: 12px;
+  }
 }
 
 .woocommerce-checkout .woocommerce {
