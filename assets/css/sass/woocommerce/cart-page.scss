@@ -142,6 +142,9 @@
 
 			[name="apply_coupon"] {
 				white-space: nowrap;
+				height: 40px;
+				padding: 0 20px;
+				color: #ffffff;
 			}
 		}
 
@@ -154,7 +157,7 @@
 			flex-direction: column-reverse;
 
 			[name="update_cart"] {
-				margin-bottom: 30px;
+				margin-bottom: 20px;
 			}
 		}
 	}
@@ -228,13 +231,10 @@
 		/* actions */
 		.actions {
 			text-align: right;
-			border: 2px dashed #e8e8e8;
 			padding: 0;
 
 			[name="update_cart"] {
-				border-width: 0 0 0 1px;
-				border-style: dashed;
-				border-color: #e2e2e2;
+				border-width: 1px;
 			}
 		}
 
@@ -245,26 +245,21 @@
 			background-repeat: no-repeat;
 			background-size: 40px 40px;
 			background-position: center left 30px;
-
-			@media (min-width: $screen-sm) {
-				padding-left: 100px;
-				background-image: url(assets/images/coupon.svg);
-			}
-
 			label {
 				display: none;
 			}
 		}
 
 		[name="coupon_code"] {
-			border-width: 0 0 1px 0;
-			height: 30px;
+			border-width: 1px;
+			height: 40px;
+			margin-right: 10px;
+			padding: 0 20px;
 		}
 
 		[name="apply_coupon"] {
 			font-weight: 600;
 			font-size: 12px;
-			text-transform: uppercase;
 			border-bottom: 1px solid #ccc;
 			height: 30px;
 			padding: 0 10px;
@@ -285,13 +280,6 @@
 
 			&:disabled {
 				color: #fff;
-			}
-
-			&:before {
-				font-family: $icon;
-				content: "\e619";
-				font-size: 15px;
-				margin-right: 15px;
 			}
 		}
 	}
@@ -416,7 +404,6 @@
 
 		[name="update_cart"] {
 			width: 100%;
-			padding: 10px;
 			margin: 10px 0;
 		}
 	}
@@ -538,5 +525,21 @@
 
 	li {
 		list-style: none;
+	}
+}
+.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) {
+	[name="update_cart"] {
+		height: 40px;
+	}
+}
+.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) {
+	.actions {
+		.coupon + [name="update_cart"] {
+			@media ( min-width: $screen-md ) {
+				width: auto;
+			    margin-top: 30px;
+			    font-size: 12px;
+			}
+		}
 	}
 }
