@@ -1,9 +1,10 @@
-.woocommerce-account{
-
-	h2{
-		font-size: 20px;
-		font-weight: normal;
-		text-align: center;
+.woocommerce-account {
+	&:not(.woobuilder-active) {
+		h2{
+			font-size: 20px;
+			font-weight: normal;
+			text-align: center;
+		}
 	}
 
 	@media (min-width: $screen-md) {
