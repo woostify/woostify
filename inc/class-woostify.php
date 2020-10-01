@@ -545,6 +545,17 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
+			$wc_total = WC()->cart->get_totals();
+			$price    = (float) $wc_total['subtotal'] - (float) $wc_total['discount_total'];
+
+			wp_localize_script(
+				'woostify-multi-step-checkout',
+				'woostify_multi_step_checkout',
+				array(
+					'price' => empty( $wc_total['discount_total'] ) ? false : wc_price( $price ),
+				)
+			);
+
 			// Woocommerce sidebar for mobile.
 			wp_register_script(
 				'woostify-woocommerce-sidebar',

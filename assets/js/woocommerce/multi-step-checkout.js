@@ -4,7 +4,7 @@
  * @package woostify
  */
 
-/* global woostify_woocommerce_general */
+/* global woostify_woocommerce_general, woostify_multi_step_checkout */
 
 'use strict';
 
@@ -52,7 +52,8 @@ var woostifyMultiStepCheckout = function() {
 		return;
 	}
 
-	var shipping       = checkout.querySelector( '#shipping_method' ), // Shipping methods.
+	var toggleCoupon   = document.querySelector( '.woocommerce-form-coupon-toggle' ),
+		shipping       = checkout.querySelector( '#shipping_method' ), // Shipping methods.
 		cartSubtotal   = checkout.querySelector( '.cart-subtotal' ), // Cart subtotal.
 		payment        = checkout.querySelector( '.wc_payment_methods' ), // Payment methods.
 		termConditions = checkout.querySelector( '.woocommerce-terms-and-conditions-wrapper' ), // Terms and conditions.
@@ -133,8 +134,6 @@ var woostifyMultiStepCheckout = function() {
 					function( method, ix ) {
 						var checked = 'checked' == method.getAttribute( 'checked' ) ? 'checked="checked"' : '',
 							label   = method.nextElementSibling;
-
-						console.log( method );
 
 						shippingContent += '<div class="shipping-methods-modified-item">';
 						shippingContent += '<label class="shipping-methods-modified-label" for="shipping-methods-index-' + ix + '"><input type="radio" ' + checked + ' name="shipping-method-modified[0]" id="shipping-methods-index-' + ix + '" class="shipping-methods-modified-input" value="' + method.value + '"><span>' + label.innerHTML + '</span></label>';
@@ -542,6 +541,7 @@ var woostifyMultiStepCheckout = function() {
 
 		var subTotalPrice   = cartSubtotal.querySelector( '.amount' ),
 			subTotalPrice   = subTotalPrice ? subTotalPrice.innerHTML : '',
+			totalPriceValue = document.querySelector( '.order-total td strong' ),
 			orderTotalPrice = checkout.querySelector( '.order-total .amount' ),
 			afterSubtotal   = '<tr class="shipping-placeholder">';
 
@@ -554,8 +554,10 @@ var woostifyMultiStepCheckout = function() {
 			document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ).insertAdjacentHTML( 'afterend', afterSubtotal );
 		}
 
-		// Reset total price.
-		if ( orderTotalPrice ) {
+		// Update total price on step 1.
+		if ( totalPriceValue && woostify_multi_step_checkout.price ) {
+			totalPriceValue.innerHTML = woostify_multi_step_checkout.price;
+		} else if ( orderTotalPrice ) {
 			orderTotalPrice.innerHTML = subTotalPrice;
 		}
 
@@ -600,16 +602,23 @@ var woostifyMultiStepCheckout = function() {
 }
 
 // Update total price on mobile.
-var woostifyTotalPriceMobile = function() {
+var woostifyTotalPriceMobile = function( e, data ) {
 	var totalPrice      = document.querySelector( '.order-total td' ),
 		totalPriceInner = totalPrice ? totalPrice.innerText : '',
-		mobilePrice     = document.querySelector( '.woostify-before-order-review .woostify-before-order-review-total-price strong' );
+		mobilePrice     = document.querySelector( '.woostify-before-order-review .woostify-before-order-review-total-price strong' ),
+		isFirstStep     = document.querySelector( '.multi-step-checkout-wrapper.first' ),
+		totalPriceValue = totalPrice ? totalPrice.querySelector( 'strong' ) : false;
 
 	if ( ! mobilePrice || ! totalPriceInner ) {
 		return;
 	}
 
 	mobilePrice.innerText = totalPriceInner;
+
+	// Update total price on step 1 after apply coupon.
+	if ( isFirstStep && totalPriceValue && woostify_multi_step_checkout.price ) {
+		totalPriceValue.innerHTML = woostify_multi_step_checkout.price;
+	}
 }
 
 document.addEventListener(
