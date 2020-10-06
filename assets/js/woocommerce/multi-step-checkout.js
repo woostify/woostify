@@ -601,6 +601,69 @@ var woostifyMultiStepCheckout = function() {
 	resetCartTotal();
 }
 
+var woostifyUpdateCheckout = function() {
+	// Data.
+	var data = {
+		action: 'update_checkout',
+		ajax_nonce: woostify_multi_step_checkout.ajax_nonce
+	};
+
+	data = new URLSearchParams( data ).toString();
+
+	// Request.
+	var request = new Request(
+		woostify_woocommerce_general.ajax_url,
+		{
+			method: 'POST',
+			body: data,
+			credentials: 'same-origin',
+			headers: new Headers(
+				{
+					'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+				}
+			)
+		}
+	);
+
+	// Fetch API.
+	fetch( request )
+		.then(
+			function( res ) {
+				if ( 200 !== res.status ) {
+					alert( woostify_woocommerce_general.ajax_error );
+					console.log( 'Status Code: ' + res.status );
+					throw res;
+				}
+
+				return res.json();
+			}
+		).then(
+			function( json ) {
+				if ( ! json.success ) {
+					return;
+				}
+
+				var orderTotalTd     = document.querySelector( '.order-total td' ),
+					orderTotalTdText = orderTotalTd ? orderTotalTd.innerText : '',
+					priceOnMobile    = document.querySelector( '.woostify-before-order-review .woostify-before-order-review-total-price strong' ),
+					isFirstStep      = document.querySelector( '.multi-step-checkout-wrapper.first' ),
+					getTotalPrice    = orderTotalTd ? orderTotalTd.querySelector( 'strong' ) : false;
+
+				if ( isFirstStep && getTotalPrice ) {
+					getTotalPrice.innerHTML = json.data;
+				}
+
+				if ( priceOnMobile ) {
+					priceOnMobile.innerText = json.data;
+				}
+			}
+		).catch(
+			function( err ) {
+				console.log( err );
+			}
+		);
+}
+
 // Update total price on mobile.
 var woostifyTotalPriceMobile = function( e, data ) {
 	var totalPrice      = document.querySelector( '.order-total td' ),
@@ -609,16 +672,19 @@ var woostifyTotalPriceMobile = function( e, data ) {
 		isFirstStep     = document.querySelector( '.multi-step-checkout-wrapper.first' ),
 		totalPriceValue = totalPrice ? totalPrice.querySelector( 'strong' ) : false;
 
+	// Update total price on step 1 after apply coupon.
+	if ( isFirstStep && totalPriceValue && woostify_multi_step_checkout.price ) {
+		totalPriceValue.innerHTML = woostify_multi_step_checkout.price;
+	}
+
+	// Update checkout.
+	woostifyUpdateCheckout();
+
 	if ( ! mobilePrice || ! totalPriceInner ) {
 		return;
 	}
 
 	mobilePrice.innerText = totalPriceInner;
-
-	// Update total price on step 1 after apply coupon.
-	if ( isFirstStep && totalPriceValue && woostify_multi_step_checkout.price ) {
-		totalPriceValue.innerHTML = woostify_multi_step_checkout.price;
-	}
 }
 
 document.addEventListener(
