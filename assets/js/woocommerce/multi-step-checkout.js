@@ -205,12 +205,12 @@ var woostifyMultiStepCheckout = function() {
 				}
 			);
 		}
+	}
 
-		// Terms and conditions.
-		if ( termConditions ) {
-			var termsHtml = '<div class="woocommerce-terms-and-conditions-wrapper">' + termConditions.innerHTML + '</div>';
-			lastStep.insertAdjacentHTML( 'beforeend', termsHtml );
-		}
+	// Terms and conditions.
+	if ( termConditions && lastStep ) {
+		var termsHtml = '<div class="woocommerce-terms-and-conditions-wrapper">' + termConditions.innerHTML + '</div>';
+		lastStep.insertAdjacentHTML( 'beforeend', termsHtml );
 	}
 
 	// Validate input.
