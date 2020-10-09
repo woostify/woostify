@@ -95,10 +95,10 @@ var woostifyQuantityMiniCart = function() {
 			for ( var i = 0, j = quantityBtn.length; i < j; i++ ) {
 				quantityBtn[i].onclick = function() {
 					var t        = this,
-						current  = parseInt( input.value || 0 ),
-						step     = parseInt( input.getAttribute( 'step' ) || 1 ),
-						min      = parseInt( input.getAttribute( 'min' ) || 1 ),
-						max      = parseInt( input.getAttribute( 'max' ) ),
+						current  = Number( input.value || 0 ),
+						step     = Number( input.getAttribute( 'step' ) || 1 ),
+						min      = Number( input.getAttribute( 'min' ) || 1 ),
+						max      = Number( input.getAttribute( 'max' ) ),
 						dataType = t.getAttribute( 'data-qty' );
 
 					if ( current < 1 || isNaN( current ) ) {
@@ -129,7 +129,7 @@ var woostifyQuantityMiniCart = function() {
 			input.addEventListener(
 				'change',
 				function() {
-					var inputVal = parseInt( input.value || 0 );
+					var inputVal = Number( input.value || 0 );
 
 					// Valid quantity.
 					if ( inputVal < 1 || isNaN( inputVal ) ) {

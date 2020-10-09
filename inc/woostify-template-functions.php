@@ -523,6 +523,17 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 
 			<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary navigation', 'woostify' ); ?>">
 				<?php
+				if ( has_nav_menu( 'mobile' ) ) {
+					$mobile = array(
+						'theme_location' => 'mobile',
+						'menu_class'     => 'primary-navigation primary-mobile-navigation',
+						'container'      => '',
+						'walker'         => new Woostify_Walker_Menu(),
+					);
+
+					wp_nav_menu( $mobile );
+				}
+
 				if ( has_nav_menu( 'primary' ) ) {
 					$args = array(
 						'theme_location' => 'primary',

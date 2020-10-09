@@ -247,6 +247,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 					array(
 						'primary' => __( 'Primary Menu', 'woostify' ),
 						'footer'  => __( 'Footer Menu', 'woostify' ),
+						'mobile'  => __( 'Mobile Menu', 'woostify' ),
 					)
 				)
 			);

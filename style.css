@@ -8557,6 +8557,15 @@ header.elementor-element {
   }
 }
 
+.quantity select.qty {
+  padding: 0;
+  margin: 0 20px;
+}
+
+.quantity select.qty ~ .product-qty {
+  display: none;
+}
+
 .quantity .product-qty {
   position: absolute;
   font-family: "themify";
@@ -11404,6 +11413,11 @@ ul.products li.product .product-loop-image-wrapper .tinvwl_add_to_wishlist_butto
 .elementor-editor-active .elementor-widget-woostify-default-product-images .woocommerce-product-gallery,
 .elementor-editor-preview .elementor-widget-woostify-default-product-images .woocommerce-product-gallery {
   opacity: 1 !important;
+}
+
+.elementor-editor-active .elementor-widget-woostify-default-product-images .woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image:not(:first-child),
+.elementor-editor-preview .elementor-widget-woostify-default-product-images .woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image:not(:first-child) {
+  display: none;
 }
 
 .elementor-widget-woostify-default-product-images ul, .elementor-widget-woostify-default-product-images ol {

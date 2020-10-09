@@ -639,6 +639,16 @@
 		}
 	}
 
+	// Support plugin
+	select.qty {
+		padding: 0;
+		margin: 0 20px;
+
+		~ .product-qty {
+			display: none;
+		}
+	}
+
 	.product-qty {
 		position: absolute;
 		font-family: $icon;
