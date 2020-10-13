@@ -58,7 +58,7 @@ function customQuantity() {
 			// Vars.
 			var cart        = ele.closest( 'form.cart' ),
 				buttons     = ele.querySelectorAll( '.product-qty' ),
-				maxInput    = parseInt( input.getAttribute( 'max' ) ),
+				maxInput    = Number( input.getAttribute( 'max' ) ),
 				eventChange = new Event( 'change' );
 
 			// Get product info.
@@ -73,8 +73,8 @@ function customQuantity() {
 				'change',
 				function() {
 					var inputVal  = input.value,
-						inCartQty = productInfo ? parseInt( productInfo.value ) : 0,
-						min       = parseInt( input.getAttribute( 'min' ) || 0 ),
+						inCartQty = productInfo ? Number( productInfo.value ) : 0,
+						min       = Number( input.getAttribute( 'min' ) ),
 						ajaxReady = function() {
 							input.classList.remove( 'ajax-ready' );
 						};
@@ -113,10 +113,10 @@ function customQuantity() {
 				buttons[i].onclick = function() {
 					// Variables.
 					var t        = this,
-						current  = parseInt( input.value || 0 ),
-						step     = parseInt( input.getAttribute( 'step' ) || 1 ),
-						min      = parseInt( input.getAttribute( 'min' ) || 0 ),
-						max      = parseInt( input.getAttribute( 'max' ) ),
+						current  = Number( input.value || 0 ),
+						step     = Number( input.getAttribute( 'step' ) || 1 ),
+						min      = Number( input.getAttribute( 'min' ) ),
+						max      = Number( input.getAttribute( 'max' ) ),
 						dataType = t.getAttribute( 'data-qty' );
 
 					if ( 'minus' === dataType && current >= step ) { // Minus button.

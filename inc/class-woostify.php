@@ -545,16 +545,19 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
-			$wc_total = WC()->cart->get_totals();
-			$price    = (float) $wc_total['subtotal'] - (float) $wc_total['discount_total'];
+			if ( class_exists( 'woocommerce' ) ) {
+				$wc_total = WC()->cart->get_totals();
+				$price    = (float) $wc_total['subtotal'] - (float) $wc_total['discount_total'];
 
-			wp_localize_script(
-				'woostify-multi-step-checkout',
-				'woostify_multi_step_checkout',
-				array(
-					'price' => empty( $wc_total['discount_total'] ) ? false : wc_price( $price ),
-				)
-			);
+				wp_localize_script(
+					'woostify-multi-step-checkout',
+					'woostify_multi_step_checkout',
+					array(
+						'ajax_none' => wp_create_nonce( 'woostify_update_checkout_nonce' ),
+						'price'     => empty( $wc_total['discount_total'] ) ? false : wc_price( $price ),
+					)
+				);
+			}
 
 			// Woocommerce sidebar for mobile.
 			wp_register_script(
