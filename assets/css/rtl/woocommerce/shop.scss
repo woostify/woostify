@@ -21,4 +21,16 @@
 			}
 		}
 	}
+	.sidebar-menu {
+		left: auto;
+		right: 0;
+		transform: translateX(100%);
+	}
+}
+.sidebar-menu-open {
+	.rtl {
+		.sidebar-menu {
+	    	transform: translateX(0%);
+		}
+	}
 }

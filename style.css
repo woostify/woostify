@@ -8066,7 +8066,7 @@ header.elementor-element {
 .single-product .content-top {
   padding: 35px 0 15px 0;
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 
 .single-product .content-top .woostify-container {
@@ -8126,6 +8126,10 @@ header.elementor-element {
   }
 }
 
+.product-gallery .onsale {
+  z-index: 0;
+}
+
 @media (min-width: 992px) {
   .product-gallery.grid-style.has-product-thumbnails .image-item {
     width: calc( ( 100% - 30px ) / 2);
@@ -8181,6 +8185,10 @@ header.elementor-element {
 
 .product-images .image-item a {
   display: block;
+}
+
+.product-images .tns-nav {
+  z-index: 0;
 }
 
 .has-product-thumbnails.horizontal-style .product-images {
@@ -8837,6 +8845,10 @@ header.elementor-element {
   .has-product-thumbnails .product-thumbnail-images {
     margin-top: 20px;
   }
+}
+
+.paypal-button {
+  z-index: 0;
 }
 
 .cart-sidebar-open .updating-cart #shop-cart-sidebar:after {
