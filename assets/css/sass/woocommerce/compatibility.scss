@@ -35,6 +35,14 @@
 		.woocommerce-product-gallery {
 			opacity: 1 !important;
 		}
+
+		.woocommerce-product-gallery__wrapper {
+			.woocommerce-product-gallery__image {
+				&:not(:first-child) {
+					display: none;
+				}
+			}
+		}
 	}
 
 	ul, ol {
