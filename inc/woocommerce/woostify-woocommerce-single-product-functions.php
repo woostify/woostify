@@ -683,11 +683,31 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		$variation_id      = isset( $_POST['variation_id'] ) ? intval( $_POST['variation_id'] ) : false;
 		$variations        = isset( $_POST['variations'] ) ? (array) json_decode( sanitize_text_field( wp_unslash( $_POST['variations'] ) ), true ) : array();
 
-		// Add to cart.
-		if ( $variation_id && $passed_validation ) {
-			WC()->cart->add_to_cart( $product_id, $product_qty, $variation_id, $variations );
+		// For gift_wrap plugin.
+		$product_data = isset( $_POST['gift_wrap_data'] ) ? (array) json_decode( sanitize_text_field( wp_unslash( $_POST['gift_wrap_data'] ) ), true ) : array();
+		if ( ! empty( $product_data ) && ! empty( $product_data['gift_product_id'] ) ) {
+			$gift_product = wc_get_product( $product_data['gift_product_id'] );
+
+			$gift_wrap_data['wcgwp_single_product_selection'] = $gift_product->get_title();
+			$gift_wrap_data['wcgwp_single_product_price']     = $gift_product->get_price();
+
+			if ( ! empty( $product_data['gift_product_note'] ) ) {
+				$gift_wrap_data['wcgwp_single_product_note'] = $product_data['gift_product_note'];
+			}
+
+			// Add to cart.
+			if ( $variation_id && $passed_validation ) {
+				WC()->cart->add_to_cart( $product_id, $product_qty, $variation_id, $variations, $gift_wrap_data );
+			} else {
+				WC()->cart->add_to_cart( $product_id, $product_qty, 0, array(), $gift_wrap_data );
+			}
 		} else {
-			WC()->cart->add_to_cart( $product_id, $product_qty );
+			// Add to cart.
+			if ( $variation_id && $passed_validation ) {
+				WC()->cart->add_to_cart( $product_id, $product_qty, $variation_id, $variations );
+			} else {
+				WC()->cart->add_to_cart( $product_id, $product_qty );
+			}
 		}
 
 		$count = WC()->cart->get_cart_contents_count();
