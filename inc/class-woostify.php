@@ -546,8 +546,9 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
-			if ( class_exists( 'woocommerce' ) ) {
+			if ( class_exists( 'woocommerce' ) && is_checkout() ) {
 				$wc_total = WC()->cart->get_totals();
+				var_dump($wc_total);
 				$price    = (float) $wc_total['subtotal'] - (float) $wc_total['discount_total'];
 
 				wp_localize_script(
