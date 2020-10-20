@@ -446,7 +446,7 @@ class Woostify_Get_CSS {
 				    text-align: right;
 				}
 
-				.has-header-layout-1 .site-navigation .site-search,
+				.has-header-layout-1 .site-navigation .site-search:not(.woostify-search-form-widget),
 				  .has-header-layout-1 .site-navigation .mobile-my-account {
 				    display: none;
 				}
