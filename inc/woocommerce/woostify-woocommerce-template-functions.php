@@ -823,7 +823,9 @@ if ( ! function_exists( 'woostify_add_product_thumbnail_to_checkout_order' ) ) {
 	 * @param      string       $cart_item_key  The cartesian item key.
 	 */
 	function woostify_add_product_thumbnail_to_checkout_order( $product_name, $cart_item, $cart_item_key ) {
-		if ( ! is_checkout() ) {
+		$options             = woostify_options( false );
+		$multi_step_checkout = woostify_is_multi_checkout();
+		if ( ! is_checkout() || ! ( $options['checkout_multi_step'] && $multi_step_checkout && ! is_singular( array( 'cartflows_flow', 'cartflows_step' ) ) ) ) {
 			return $product_name;
 		}
 
