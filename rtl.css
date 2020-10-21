@@ -113,7 +113,7 @@
     padding: 10px 20px 10px 0;
   }
   .rtl .main-navigation .primary-navigation .sub-menu:not(.sub-mega-menu) > li > ul {
-    right: 110%;
+    right: 90%;
   }
   .rtl .main-navigation .primary-navigation .sub-menu:not(.sub-mega-menu) > li:hover > ul {
     left: auto;
@@ -424,6 +424,16 @@
 .rtl .product-loop-meta a:before {
   margin-left: 5px;
   margin-right: 0;
+}
+
+.rtl .sidebar-menu {
+  left: auto;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.sidebar-menu-open .rtl .sidebar-menu {
+  transform: translateX(0%);
 }
 
 .rtl .widget .count {
