@@ -312,6 +312,18 @@
   margin-right: 0;
 }
 
+@media (min-width: 992px) {
+  .rtl.woocommerce-cart.cart-page-layout-1 .cart_totals {
+    float: left;
+  }
+  .rtl.woocommerce-cart.cart-page-layout-2 .woocommerce-cart-form {
+    float: right;
+  }
+  .rtl.woocommerce-cart.cart-page-layout-2 .cart-collaterals {
+    float: left;
+  }
+}
+
 .rtl .wc_payment_methods {
   padding-right: 0;
 }
