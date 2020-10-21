@@ -125,10 +125,6 @@ class Woostify_Get_CSS {
 				.has-header-layout-1 .site-navigation {
 					text-align: left;
 				}
-				.sidebar-menu .arrow-icon.active {
-				    -webkit-transform: rotate(0deg) !important;
-				    transform: rotate(0deg) !important;
-				}
 				.has-header-layout-3 .header-layout-3 .wrap-toggle-sidebar-menu {
 					display: block !important;
 				}
