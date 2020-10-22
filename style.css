@@ -5006,7 +5006,7 @@ dd {
 }
 
 .my-account .subbox {
-  min-width: 160px;
+  min-width: 180px;
   margin: 0;
   padding-left: 0;
   visibility: hidden;
@@ -5184,13 +5184,13 @@ dd {
 }
 
 .sidebar-menu .arrow-icon {
-  -webkit-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .sidebar-menu .arrow-icon.active {
-  -webkit-transform: rotate(0deg);
-  transform: rotate(0deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .logged-in.admin-bar .sidebar-menu {

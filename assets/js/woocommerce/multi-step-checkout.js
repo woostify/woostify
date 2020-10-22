@@ -654,7 +654,7 @@ var woostifyUpdateCheckout = function() {
 				}
 
 				if ( priceOnMobile ) {
-					priceOnMobile.innerText = json.data;
+					priceOnMobile.innerHTML = json.data;
 				}
 			}
 		).catch(
