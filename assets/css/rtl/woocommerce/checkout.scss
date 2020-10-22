@@ -6,6 +6,13 @@
 			}
 		}
 	}
+	@media( min-width: 991px ) {
+		#customer_details {
+			float: right;
+			padding-right: 0;
+			padding-left: 40px;
+		}
+	}
 
 	.lost_reset_password {
 		.form-row {

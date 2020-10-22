@@ -97,10 +97,10 @@
 
 	.arrow-icon {
 		@extend .duration;
-		@include rotate(-90);
+		@include rotate(0);
 
 		&.active {
-			@include rotate(0);
+			@include rotate(180);
 		}
 	}
 

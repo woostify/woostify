@@ -26,6 +26,10 @@
 		right: 0;
 		transform: translateX(100%);
 	}
+	.quick-view-with-text:before {
+		margin-right: 0;
+		margin-left: 7px;
+	}
 }
 .sidebar-menu-open {
 	.rtl {
