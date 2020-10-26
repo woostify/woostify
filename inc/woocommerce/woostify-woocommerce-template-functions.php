@@ -127,7 +127,7 @@ if ( ! function_exists( 'woostify_ajax_update_checkout' ) ) {
 		check_ajax_referer( 'woostify_update_checkout_nonce', 'ajax_nonce', false );
 
 		$wc_total = WC()->cart->get_totals();
-		$price    = (float) $wc_total['subtotal'] - (float) $wc_total['discount_total'];
+		$price    = (float) $wc_total['total'] - (float) $wc_total['discount_total'];
 
 		wp_send_json_success( wc_price( $price ) );
 	}
