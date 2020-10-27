@@ -10,8 +10,6 @@
             padding-right: 2rem;
         }
         .alignwide {
-            margin-left: -100px;
-            margin-right: -100px;
             max-width: unset;
             width: unset;
         }
@@ -32,6 +30,13 @@
 article {
     p:last-child {
         clear: both;
+    }
+}
+.category-block {
+    .entry-content {
+        p {
+            line-height: initial;
+        }
     }
 }
 
