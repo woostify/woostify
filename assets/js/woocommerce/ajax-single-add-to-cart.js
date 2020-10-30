@@ -59,11 +59,16 @@ function woostifyAjaxSingleAddToCartButton() {
 			button.onclick = function( e ) {
 				e.preventDefault();
 
-				var hiddenQty = form.querySelector( '.quantity.hidden' ),
-					quantity  = input ? parseInt( input.value ) : 0,
-					inCartQty = productInfo ? parseInt( productInfo.value ) : 0,
-					minInput  = parseInt( input.getAttribute( 'min' ) || 0 ),
-					maxInput  = parseInt( input.getAttribute( 'max' ) );
+				var isDisabled = button.classList.contains( 'disabled' ),
+					hiddenQty  = form.querySelector( '.quantity.hidden' ),
+					quantity   = input ? parseInt( input.value ) : 0,
+					inCartQty  = productInfo ? parseInt( productInfo.value ) : 0,
+					minInput   = parseInt( input.getAttribute( 'min' ) || 0 ),
+					maxInput   = parseInt( input.getAttribute( 'max' ) );
+
+				if ( isDisabled ) {
+					return;
+				}
 
 				// Stock status.
 				if ( 'yes' == inStock && hiddenQty && ( inCartQty > 0 || currentlyQty > 0 ) ) {
