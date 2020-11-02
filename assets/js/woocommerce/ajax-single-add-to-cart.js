@@ -59,11 +59,37 @@ function woostifyAjaxSingleAddToCartButton() {
 			button.onclick = function( e ) {
 				e.preventDefault();
 
-				var hiddenQty = form.querySelector( '.quantity.hidden' ),
-					quantity  = input ? parseInt( input.value ) : 0,
-					inCartQty = productInfo ? parseInt( productInfo.value ) : 0,
-					minInput  = parseInt( input.getAttribute( 'min' ) || 0 ),
-					maxInput  = parseInt( input.getAttribute( 'max' ) );
+				var selected   = true,
+					isDisabled = button.classList.contains( 'disabled' ),
+					hiddenQty  = form.querySelector( '.quantity.hidden' ),
+					quantity   = input ? parseInt( input.value ) : 0,
+					inCartQty  = productInfo ? parseInt( productInfo.value ) : 0,
+					minInput   = parseInt( input.getAttribute( 'min' ) || 0 ),
+					maxInput   = parseInt( input.getAttribute( 'max' ) );
+
+				// For variations product.
+				if ( variationForm ) {
+					productId   = productField.value;
+					variationId = variationField.value;
+
+					getProductAttr.forEach(
+						function( x ) {
+							var productName  = x.name,
+								productValue = x.value;
+
+							if ( ! productValue ) {
+								selected = false;
+								return;
+							}
+
+							variations[ productName ] = productValue;
+						}
+					);
+				}
+
+				if ( isDisabled || ! selected ) {
+					return;
+				}
 
 				// Stock status.
 				if ( 'yes' == inStock && hiddenQty && ( inCartQty > 0 || currentlyQty > 0 ) ) {
@@ -97,21 +123,6 @@ function woostifyAjaxSingleAddToCartButton() {
 					if ( giftNote ) {
 						giftWrapData['gift_product_note'] = giftNote.value.trim();
 					}
-				}
-
-				// For variations product.
-				if ( variationForm ) {
-					productId   = productField.value;
-					variationId = variationField.value;
-
-					getProductAttr.forEach(
-						function( x ) {
-							var productName  = x.name,
-								productValue = x.value;
-
-							variations[ productName ] = productValue;
-						}
-					);
 				}
 
 				// Elements.

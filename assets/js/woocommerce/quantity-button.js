@@ -92,14 +92,14 @@ function customQuantity() {
 					// Stock status.
 					if ( 'yes' == inStock ) {
 						// Out of stock.
-						if ( inCartQty == maxInput ) {
+						if ( maxInput && inCartQty == maxInput ) {
 							alert( outStock );
 							ajaxReady();
 							return;
 						}
 
 						// Not enough quantity.
-						if ( +inputVal + +inCartQty > maxInput ) {
+						if ( maxInput && ( +inputVal + +inCartQty > maxInput ) ) {
 							alert( notEnough );
 							ajaxReady();
 							return;
