@@ -2022,12 +2022,14 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 									do_action( 'woostify_header_account_subbox_start' );
 
 									if ( ! is_user_logged_in() ) {
+										$login_reg_button = '<a href="' . get_permalink( $page_account_id ) . '" class="text-center">' . esc_html__( 'Login / Register', 'woostify' ) . '</a>';
 										?>
-										<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
-									<?php } else { ?>
-										<li>
-											<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-										</li>
+										<li><?php echo wp_kses_post( apply_filters( 'woostify_header_account_subbox_login_register_link', $login_reg_button ) ); ?></li>
+										<?php
+									} else {
+										$dasboard = '<a href="' . get_permalink( $page_account_id ) . '">' . esc_html__( 'Dashboard', 'woostify' ) . '</a>';
+										?>
+										<li><?php echo wp_kses_post( apply_filters( 'woostify_header_account_subbox_dasboard_link', $dasboard ) ); ?></li>
 
 										<?php do_action( 'woostify_header_account_subbox_before_logout' ); ?>
 

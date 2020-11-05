@@ -48,38 +48,34 @@ function woostifyAjaxSingleAddToCartButton() {
 				return;
 			}
 
-			// Get product info.
-			var productInfo   = form.querySelector( '.additional-product' ),
-				inStock       = productInfo ? productInfo.getAttribute( 'data-in_stock' ) : 'no',
-				outStock      = productInfo ? productInfo.getAttribute( 'data-out_of_stock' ) : 'Out of stock',
-				notEnough     = productInfo ? productInfo.getAttribute( 'data-not_enough' ) : '',
-				quantityValid = productInfo ? productInfo.getAttribute( 'data-valid_quantity' ) : '',
-				currentlyQty  = 0;
-
 			button.onclick = function( e ) {
 				e.preventDefault();
 
-				var hiddenQty = form.querySelector( '.quantity.hidden' ),
-					quantity  = input ? parseInt( input.value ) : 0,
-					inCartQty = productInfo ? parseInt( productInfo.value ) : 0,
-					minInput  = parseInt( input.getAttribute( 'min' ) || 0 ),
-					maxInput  = parseInt( input.getAttribute( 'max' ) );
+				var selected   = true,
+					isDisabled = button.classList.contains( 'disabled' ),
+					quantity   = input ? Number( input.value || 0 ) : 0;
 
-				// Stock status.
-				if ( 'yes' == inStock && hiddenQty && ( inCartQty > 0 || currentlyQty > 0 ) ) {
-					alert( outStock );
-					return;
+				// For variations product.
+				if ( variationForm ) {
+					productId   = productField.value;
+					variationId = variationField.value;
+
+					getProductAttr.forEach(
+						function( x ) {
+							var productName  = x.name,
+								productValue = x.value;
+
+							if ( ! productValue ) {
+								selected = false;
+								return;
+							}
+
+							variations[ productName ] = productValue;
+						}
+					);
 				}
 
-				// Out of stock.
-				if ( ! isNaN( maxInput ) && inCartQty >= maxInput ) {
-					alert( outStock );
-					return;
-				}
-
-				// Not enough quantity.
-				if ( ! isNaN( maxInput ) && ( +quantity + +inCartQty > maxInput ) ) {
-					alert( notEnough );
+				if ( isDisabled || ! selected ) {
 					return;
 				}
 
@@ -99,21 +95,6 @@ function woostifyAjaxSingleAddToCartButton() {
 					}
 				}
 
-				// For variations product.
-				if ( variationForm ) {
-					productId   = productField.value;
-					variationId = variationField.value;
-
-					getProductAttr.forEach(
-						function( x ) {
-							var productName  = x.name,
-								productValue = x.value;
-
-							variations[ productName ] = productValue;
-						}
-					);
-				}
-
 				// Elements.
 				var cartSidebar  = document.querySelector( '.cart-sidebar-content' ),
 					productCount = document.querySelectorAll( '.shop-cart-count' );
@@ -125,11 +106,6 @@ function woostifyAjaxSingleAddToCartButton() {
 
 				// Add loading.
 				button.classList.add( 'loading' );
-
-				// Update product infomation value.
-				if ( productInfo ) {
-					productInfo.value = +productInfo.value + +input.value;
-				}
 
 				// Events.
 				if ( 'function' === typeof( eventCartSidebarOpen ) ) {
@@ -192,6 +168,12 @@ function woostifyAjaxSingleAddToCartButton() {
 
 							var data = json.data;
 
+							// Quantity issue.
+							if ( data.mess ) {
+								alert( data.mess );
+								return;
+							}
+
 							// Update product count.
 							if ( productCount.length ) {
 								for ( var c = 0, n = productCount.length; c < n; c++ ) {
@@ -215,8 +197,6 @@ function woostifyAjaxSingleAddToCartButton() {
 							if ( totalPrice ) {
 								totalPrice.innerHTML = data.total;
 							}
-
-							currentlyQty++;
 						}
 					).catch(
 						function( err ) {
