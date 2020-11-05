@@ -1,0 +1,15 @@
+// My Account Download
+.download-file {
+	.button {
+		@media ( min-width: 767px ) {
+			display: block;
+			padding: 10px;
+		}
+	}
+}
+.download-remaining,
+.download-expires {
+	.nobr {
+		white-space: nowrap;
+	}
+}
