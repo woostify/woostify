@@ -11480,6 +11480,18 @@ ul.products li.product .product-loop-image-wrapper .tinvwl_add_to_wishlist_butto
   border-color: #555;
 }
 
+@media (min-width: 767px) {
+  .download-file .button {
+    display: block;
+    padding: 10px;
+  }
+}
+
+.download-remaining .nobr,
+.download-expires .nobr {
+  white-space: nowrap;
+}
+
 body.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.active:after {
   left: auto;
   right: 0;
