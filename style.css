@@ -11482,14 +11482,13 @@ ul.products li.product .product-loop-image-wrapper .tinvwl_add_to_wishlist_butto
 
 @media (min-width: 767px) {
   .download-file .button {
-    display: block;
+    display: inline-block;
     padding: 10px;
   }
 }
 
-.download-remaining .nobr,
-.download-expires .nobr {
-  white-space: nowrap;
+table.shop_table {
+  word-break: normal;
 }
 
 body.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.active:after {
