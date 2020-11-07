@@ -1788,7 +1788,7 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 			return $sidebar;
 		}
 
-		if ( class_exists( 'woocommerce' ) && ( is_shop() || is_product_category() || is_product_tag() ) ) {
+		if ( class_exists( 'woocommerce' ) && ( is_shop() || is_product_taxonomy() ) ) {
 			// Shop page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar-shop', $sidebar_shop, $sidebar_default );
 		} elseif ( class_exists( 'woocommerce' ) && is_singular( 'product' ) ) {
