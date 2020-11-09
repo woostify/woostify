@@ -1904,7 +1904,7 @@ if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
 			<ul class="sidebar-account">
 				<?php
 					do_action( 'woostify_sidebar_account_top' );
-					echo woostify_logged_in_menu();
+					woostify_logged_in_menu();
 					do_action( 'woostify_sidebar_account_bottom' );
 				?>
 			</ul>
@@ -1949,7 +1949,7 @@ if ( ! function_exists( 'woostify_logged_in_menu' ) ) {
 	 * List menu account
 	 * when logged in or sign out
 	 */
-	function woostify_logged_in_menu(){
+	function woostify_logged_in_menu() {
 		if ( woostify_is_woocommerce_activated() ) {
 			global $woocommerce;
 			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
@@ -1981,7 +1981,6 @@ if ( ! function_exists( 'woostify_logged_in_menu' ) ) {
 
 		}
 	}
-
 }
 
 if ( ! function_exists( 'woostify_header_action' ) ) {
@@ -2052,7 +2051,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 								<ul>
 									<?php
 									do_action( 'woostify_header_account_subbox_start' );
-									echo woostify_logged_in_menu();
+									woostify_logged_in_menu();
 									do_action( 'woostify_header_account_subbox_end' );
 									?>
 								</ul>
