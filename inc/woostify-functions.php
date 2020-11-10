@@ -126,6 +126,10 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 		$edit_mode = get_post_meta( $page_id, '_elementor_edit_mode', true );
 		$edit_mode = 'builder' === $edit_mode ? true : false;
 
+		if ( 'mega_menu' === get_post_type( $page_id ) ) {
+			return $edit_mode;
+		}
+
 		if ( ! $page_id || is_tax() ) {
 			$edit_mode = false;
 		}
