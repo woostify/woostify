@@ -115,7 +115,7 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 	 * @return     bool
 	 */
 	function woostify_is_elementor_page( $page_id = false ) {
-		if ( ! woostify_is_elementor_activated() || is_singular( 'product' ) ) {
+		if ( ! woostify_is_elementor_activated() ) {
 			return false;
 		}
 
@@ -126,11 +126,12 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 		$edit_mode = get_post_meta( $page_id, '_elementor_edit_mode', true );
 		$edit_mode = 'builder' === $edit_mode ? true : false;
 
+		// Priority first.
 		if ( 'mega_menu' === get_post_type( $page_id ) ) {
 			return $edit_mode;
 		}
 
-		if ( ! $page_id || is_tax() ) {
+		if ( ! $page_id || is_tax() || is_singular( 'product' ) ) {
 			$edit_mode = false;
 		}
 
