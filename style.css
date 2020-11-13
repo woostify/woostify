@@ -8066,7 +8066,7 @@ header.elementor-element {
 .single-product .content-top {
   padding: 35px 0 15px 0;
   position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 
 .single-product .content-top .woostify-container {
