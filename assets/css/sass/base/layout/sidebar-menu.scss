@@ -113,12 +113,14 @@
 	}
 
 	.primary-navigation {
-		a {
-		    line-height: 3em !important;
-		    position: relative;
-		    display: flex;
-		    justify-content: space-between;
-		    align-items: center;
+		&:not(.elementor-inner) {
+			a {
+			    line-height: 3em !important;
+			    position: relative;
+			    display: flex;
+			    justify-content: space-between;
+			    align-items: center;
+			}
 		}
 	}
 
@@ -261,29 +263,30 @@
 				padding: 0;
 			}
 		}
+		&:not(.elementor-inner) {
+			a {
+				font-size: 16px;
+				line-height: 3em;
+				position: relative;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
 
-		a {
-			font-size: 16px;
-			line-height: 3em;
-			position: relative;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-
-			&:hover {
-				&:before {
-					width: 40px;
+				&:hover {
+					&:before {
+						width: 40px;
+					}
 				}
-			}
 
-			&:before {
-				content: '';
-				position: absolute;
-				left: 0;
-				bottom: 8px;
-				height: 2px;
-				width: 0;
-				@extend .duration;
+				&:before {
+					content: '';
+					position: absolute;
+					left: 0;
+					bottom: 8px;
+					height: 2px;
+					width: 0;
+					@extend .duration;
+				}
 			}
 		}
 	}
