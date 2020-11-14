@@ -712,6 +712,7 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 						<a itemprop="item" href="<?php echo esc_url( $home_url ); ?>"></a>
 						<span itemprop="name">
 							<?php
+							global $post;
 							if ( is_day() ) {
 								/* translators: post date */
 								printf( esc_html__( 'Daily Archives: %s', 'woostify' ), get_the_date() );
@@ -739,7 +740,16 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 							} elseif ( class_exists( 'woocommerce' ) && is_cart() ) {
 								echo esc_html( $object->post_title );
 							} elseif ( is_page() ) {
-								echo esc_html( get_the_title() );
+								if ( $post->post_parent ) {
+									$anc   = get_post_ancestors( $post->ID );
+									$title = get_the_title();
+									foreach ( $anc as $ancestor ) {
+										$output = ' <a href=" ' . get_permalink( $ancestor ) . ' " title=" ' . get_the_title( $ancestor ) . ' "> ' . get_the_title( $ancestor ) . '</a> <span class="item-bread delimiter"></span><span>' . $title . '</span>';
+									}
+									echo wp_kses_post( $output );
+								} else {
+									echo esc_html( get_the_title() );
+								}
 							} else {
 								esc_html_e( 'Archives', 'woostify' );
 							}
@@ -1788,7 +1798,7 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 			return $sidebar;
 		}
 
-		if ( class_exists( 'woocommerce' ) && ( is_shop() || is_product_category() || is_product_tag() ) ) {
+		if ( class_exists( 'woocommerce' ) && ( is_shop() || is_product_taxonomy() ) ) {
 			// Shop page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar-shop', $sidebar_shop, $sidebar_default );
 		} elseif ( class_exists( 'woocommerce' ) && is_singular( 'product' ) ) {
@@ -2022,12 +2032,14 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 									do_action( 'woostify_header_account_subbox_start' );
 
 									if ( ! is_user_logged_in() ) {
+										$login_reg_button = '<a href="' . get_permalink( $page_account_id ) . '" class="text-center">' . esc_html__( 'Login / Register', 'woostify' ) . '</a>';
 										?>
-										<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="text-center"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
-									<?php } else { ?>
-										<li>
-											<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-										</li>
+										<li><?php echo wp_kses_post( apply_filters( 'woostify_header_account_subbox_login_register_link', $login_reg_button ) ); ?></li>
+										<?php
+									} else {
+										$dasboard = '<a href="' . get_permalink( $page_account_id ) . '">' . esc_html__( 'Dashboard', 'woostify' ) . '</a>';
+										?>
+										<li><?php echo wp_kses_post( apply_filters( 'woostify_header_account_subbox_dasboard_link', $dasboard ) ); ?></li>
 
 										<?php do_action( 'woostify_header_account_subbox_before_logout' ); ?>
 
