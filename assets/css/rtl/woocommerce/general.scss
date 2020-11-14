@@ -5,6 +5,21 @@
 			margin-right: 0;
 		}
 	}
+	@media (min-width: 992px) {
+		&.woocommerce-cart.cart-page-layout-1 {
+			.cart_totals {
+				float: left;
+			}
+		}
+		&.woocommerce-cart.cart-page-layout-2 {
+			.woocommerce-cart-form {
+				float: right;
+			}
+			.cart-collaterals {
+				float: left;
+			}
+		}
+	}
 
 	.wc_payment_methods {
 		padding-right: 0;
