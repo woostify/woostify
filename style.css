@@ -9753,6 +9753,10 @@ header.elementor-element {
   clear: both;
 }
 
+.woocommerce-checkout input {
+  word-break: normal;
+}
+
 .woocommerce-form-login-toggle {
   max-width: 600px;
   margin: 0 auto 10px auto;
