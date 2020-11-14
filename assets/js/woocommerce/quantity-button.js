@@ -73,8 +73,8 @@ function customQuantity() {
 				'change',
 				function() {
 					var inputVal  = input.value,
-						inCartQty = productInfo ? Number( productInfo.value ) : 0,
-						min       = Number( input.getAttribute( 'min' ) ),
+						inCartQty = productInfo ? Number( productInfo.value || 0 ) : 0,
+						min       = Number( input.getAttribute( 'min' ) || 0 ),
 						ajaxReady = function() {
 							input.classList.remove( 'ajax-ready' );
 						};
@@ -92,14 +92,14 @@ function customQuantity() {
 					// Stock status.
 					if ( 'yes' == inStock ) {
 						// Out of stock.
-						if ( inCartQty == maxInput ) {
+						if ( maxInput && inCartQty == maxInput ) {
 							alert( outStock );
 							ajaxReady();
 							return;
 						}
 
 						// Not enough quantity.
-						if ( +inputVal + +inCartQty > maxInput ) {
+						if ( maxInput && ( +inputVal + +inCartQty > maxInput ) ) {
 							alert( notEnough );
 							ajaxReady();
 							return;
@@ -115,7 +115,7 @@ function customQuantity() {
 					var t        = this,
 						current  = Number( input.value || 0 ),
 						step     = Number( input.getAttribute( 'step' ) || 1 ),
-						min      = Number( input.getAttribute( 'min' ) ),
+						min      = Number( input.getAttribute( 'min' ) || 0 ),
 						max      = Number( input.getAttribute( 'max' ) ),
 						dataType = t.getAttribute( 'data-qty' );
 

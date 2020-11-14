@@ -1,0 +1,64 @@
+$fake: 0.01px;
+.rtl {
+	.products {
+		.product {
+			float: right;
+			margin-right: 0px;
+			margin-left: 30px;
+		}
+
+		@for $i from 1 through 6 {
+			// Desktop
+			@media (min-width: 992px) {
+				&.columns-#{ $i } {
+					.product {
+						width: calc((100% - #{ 30px * ( $i - 1 ) }) / #{ $i } - #{ $fake  });
+
+						&:nth-of-type(#{ $i }n) {
+							margin-left: 0;
+						}
+
+						&:nth-of-type(#{ $i }n + #{ $i + 1 }) {
+							clear: both;
+						}
+					}
+				}
+			}
+
+			// Tablet
+			@media (min-width: 601px) and (max-width: 992px - 1) {
+				&.tablet-columns-#{ $i } {
+					.product {
+						width: calc((100% - #{ 30px * ( $i - 1 ) }) / #{ $i } - #{ $fake  });
+
+						&:nth-of-type(#{ $i }n) {
+							margin-left: 0;
+						}
+
+						&:nth-of-type(#{ $i }n + #{ $i + 1 }) {
+							clear: both;
+						}
+					}
+				}
+			}
+
+			// Mobile
+			@media (max-width: 600px) {
+				&.mobile-columns-#{ $i } {
+					.product {
+						width: calc((100% - #{ 30px * ( $i - 1 ) }) / #{ $i } - #{ $fake  });
+
+						&:nth-of-type(#{ $i }n) {
+							margin-left: 0;
+						}
+
+						&:nth-of-type(#{ $i }n + #{ $i + 1 }) {
+							clear: both;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

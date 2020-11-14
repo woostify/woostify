@@ -126,8 +126,9 @@ if ( ! function_exists( 'woostify_ajax_update_checkout' ) ) {
 	function woostify_ajax_update_checkout() {
 		check_ajax_referer( 'woostify_update_checkout_nonce', 'ajax_nonce', false );
 
+		WC()->cart->calculate_totals();
 		$wc_total = WC()->cart->get_totals();
-		$price    = (float) $wc_total['subtotal'] - (float) $wc_total['discount_total'];
+		$price    = $wc_total['discount_total'] ? $wc_total['total'] : ( (float) $wc_total['total'] - (float) $wc_total['discount_total'] );
 
 		wp_send_json_success( wc_price( $price ) );
 	}
@@ -823,7 +824,9 @@ if ( ! function_exists( 'woostify_add_product_thumbnail_to_checkout_order' ) ) {
 	 * @param      string       $cart_item_key  The cartesian item key.
 	 */
 	function woostify_add_product_thumbnail_to_checkout_order( $product_name, $cart_item, $cart_item_key ) {
-		if ( ! is_checkout() ) {
+		$options             = woostify_options( false );
+		$multi_step_checkout = woostify_is_multi_checkout();
+		if ( ! is_checkout() || ! ( $options['checkout_multi_step'] && $multi_step_checkout && ! is_singular( array( 'cartflows_flow', 'cartflows_step' ) ) ) ) {
 			return $product_name;
 		}
 
