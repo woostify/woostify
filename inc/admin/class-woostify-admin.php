@@ -239,7 +239,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 */
 		public function woostify_welcome_screen_header() {
 			$woostify_url = 'https://woostify.com';
-			$facebook_url = 'https://facebook.com';
+			$facebook_url = 'https://facebook.com/groups/2245150649099616/';
 			?>
 				<section class="woostify-welcome-nav">
 					<div class="woostify-welcome-container">
@@ -251,7 +251,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 						<ul class="woostify-welcome-nav_link">
 							<li><a href="<?php echo esc_url( $woostify_url ); ?>/changelog/" target="_blank"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a></li>
-							<li><a href="<?php echo esc_url( $facebook_url ); ?>/WoostifyWP" target="_blank"><strong><?php esc_html_e( 'Join FB Page', 'woostify' ); ?></strong></a></li>
+							<li><a href="<?php echo esc_url( $facebook_url ); ?>" target="_blank"><strong><?php esc_html_e( 'Join FB Group', 'woostify' ); ?></strong></a></li>
 						</ul>
 					</div>
 				</section>
