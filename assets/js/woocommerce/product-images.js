@@ -279,6 +279,14 @@ document.addEventListener(
 				function() {
 					resetCarousel();
 
+					// Update slider height.
+					setTimeout(
+						function() {
+							imageCarousel.updateSliderHeight();
+						},
+						200
+					);
+
 					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
 						updateGallery( woostify_variation_gallery );
 					}
@@ -293,6 +301,14 @@ document.addEventListener(
 					if ( ! document.body.classList.contains( 'has-gallery-slider-layout' ) ) {
 						return;
 					}
+
+					// Update slider height.
+					setTimeout(
+						function() {
+							imageCarousel.updateSliderHeight();
+						},
+						200
+					);
 
 					resetCarousel();
 
