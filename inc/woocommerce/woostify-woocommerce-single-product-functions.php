@@ -318,7 +318,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 			$image_srcset     = function_exists( 'wp_get_attachment_image_srcset' ) ? wp_get_attachment_image_srcset( $image_id, 'woocommerce_single' ) : '';
 		}
 
-		if ( empty( $image_full_src[3] ) ) {
+		if ( ! $image_id ) {
 			$image_full_src[1] = '800';
 			$image_full_src[2] = '800';
 		}
