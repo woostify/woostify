@@ -701,8 +701,14 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 if ( ! function_exists( 'woostify_woocommerce_loop_start' ) ) {
 	/**
 	 * Modify: Loop start
+	 *
+	 * @param string $loop_start The loop start.
 	 */
-	function woostify_woocommerce_loop_start() {
+	function woostify_woocommerce_loop_start( $loop_start ) {
+		if ( defined( 'KADENCE_WOO_TEMPLATE_VERSION' ) ) {
+			return $loop_start;
+		}
+
 		$options = woostify_options( false );
 		$class[] = 'products';
 		$class[] = 'columns-' . wc_get_loop_prop( 'columns' );
