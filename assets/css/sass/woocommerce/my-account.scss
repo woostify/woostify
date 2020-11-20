@@ -10,3 +10,28 @@
 table.shop_table {
 	word-break: normal;
 }
+
+.password-input {
+	display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+}
+.show-password-input {
+	position: absolute;
+    right: .7em;
+    top: .7em;
+    cursor: pointer;
+
+}
+
+.show-password-input {
+	&:before {
+		font-family: $icon;
+    	content: "\e63d";
+	}
+}
