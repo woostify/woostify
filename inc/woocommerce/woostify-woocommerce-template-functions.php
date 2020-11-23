@@ -708,7 +708,7 @@ if ( ! function_exists( 'woostify_woocommerce_loop_start' ) ) {
 	 * @param string $loop_start The loop start.
 	 */
 	function woostify_woocommerce_loop_start( $loop_start ) {
-		if ( defined( 'KADENCE_WOO_TEMPLATE_VERSION' ) ) {
+		if ( defined( 'KADENCE_BLOCKS_VERSION' ) ) {
 			return $loop_start;
 		}
 
