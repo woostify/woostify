@@ -9562,6 +9562,7 @@ header.elementor-element {
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-thumbnail, .cart.wishlist_table:not(.elementor-menu-cart__products) .product-thumbnail {
     width: 70px;
+    min-width: 70px;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-name, .cart.wishlist_table:not(.elementor-menu-cart__products) .product-name,
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-subtotal,
@@ -9572,7 +9573,7 @@ header.elementor-element {
     text-align: center;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .quantity, .cart.wishlist_table:not(.elementor-menu-cart__products) .quantity {
-    min-width: 140px;
+    min-width: 120px;
   }
   
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-subtotal,
