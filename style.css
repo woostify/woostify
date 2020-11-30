@@ -8936,6 +8936,9 @@ header.elementor-element {
   .single-product .woostify-breadcrumb {
     display: none;
   }
+  .single-product .elementor-widget-woostify-breadcrumb .woostify-breadcrumb {
+    display: block;
+  }
 }
 
 @media (max-width: 767px) {
