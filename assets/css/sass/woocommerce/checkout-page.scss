@@ -530,6 +530,7 @@
 					display: flex;
 					padding-right: 10px;
 					align-items: center;
+					flex-wrap: wrap;
 				}
 
 				.variation {
@@ -555,7 +556,7 @@
 
 				.product-quantity,
 				.product-total {
-					white-space: nowrap;
+					white-space: normal;
 				}
 			}
 		}
@@ -817,6 +818,12 @@
 				label {
 					&[for^="payment_method"] {
 						cursor: pointer;
+
+						img {
+							max-width: 100%;
+							max-height: 40px;
+							margin-left: 5px;
+						}
 					}
 				}
 

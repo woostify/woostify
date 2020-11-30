@@ -10284,6 +10284,7 @@ header.elementor-element {
   display: flex;
   padding-right: 10px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .variation {
@@ -10309,7 +10310,7 @@ header.elementor-element {
 
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .product-quantity,
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .product-total {
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .has-multi-step-checkout #order_review .order-total {
@@ -10535,6 +10536,12 @@ header.elementor-element {
 
 .has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .wc_payment_methods label[for^="payment_method"] {
   cursor: pointer;
+}
+
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .wc_payment_methods label[for^="payment_method"] img {
+  max-width: 100%;
+  max-height: 40px;
+  margin-left: 5px;
 }
 
 .has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .wc_payment_methods .payment_box {
