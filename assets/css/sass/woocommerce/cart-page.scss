@@ -204,6 +204,7 @@
 
 		.product-thumbnail {
 			width: 70px;
+			min-width: 70px;
 		}
 
 		.product-name,
@@ -216,7 +217,7 @@
 		}
 
 		.quantity {
-			min-width: 140px;
+			min-width: 120px;
 		}
 
 		.product-subtotal {
