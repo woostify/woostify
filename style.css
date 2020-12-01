@@ -7153,6 +7153,11 @@ header.elementor-element {
   content: "\e71f";
 }
 
+.woocommerce-info input[type="submit"] {
+  padding: 0 5px;
+  margin-left: 5px;
+}
+
 .woocommerce-message:before {
   content: "\e64d";
 }
