@@ -377,6 +377,10 @@ $size: 40px;
 	&:before {
 		content: "\e71f";
 	}
+	input[type="submit"] {
+		padding: 0 5px;
+		margin-left: 5px;
+	}
 }
 
 .woocommerce-message {
