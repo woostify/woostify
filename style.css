@@ -10115,6 +10115,7 @@ header.elementor-element {
 .woocommerce-checkout-review-order-table .woocommerce-shipping-totals {
   flex-direction: column;
   padding-top: 5px;
+  display: block;
 }
 
 .woocommerce-checkout-review-order-table .woocommerce-shipping-totals td {

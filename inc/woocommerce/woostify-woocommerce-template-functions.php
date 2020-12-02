@@ -128,9 +128,11 @@ if ( ! function_exists( 'woostify_ajax_update_checkout' ) ) {
 
 		WC()->cart->calculate_totals();
 		$wc_total = WC()->cart->get_totals();
-		$price    = $wc_total['discount_total'] ? $wc_total['total'] : ( (float) $wc_total['total'] - (float) $wc_total['discount_total'] );
 
-		wp_send_json_success( wc_price( $price ) );
+		$res['content_total'] = wc_price( $wc_total['cart_contents_total'] );
+		$res['cart_total']    = wc_price( $wc_total['total'] );
+
+		wp_send_json_success( $res );
 	}
 }
 

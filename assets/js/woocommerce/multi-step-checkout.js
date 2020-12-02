@@ -649,8 +649,12 @@ var woostifyUpdateCheckout = function() {
 					isFirstStep      = document.querySelector( '.multi-step-checkout-wrapper.first' ),
 					getTotalPrice    = orderTotalTd ? orderTotalTd.querySelector( 'strong' ) : false;
 
-				if ( isFirstStep && getTotalPrice ) {
-					getTotalPrice.innerHTML = json.data;
+				if ( getTotalPrice ) {
+					if ( isFirstStep ) {
+						getTotalPrice.innerHTML = json.data.content_total;
+					} else {
+						getTotalPrice.innerHTML = json.data.cart_total;
+					}
 				}
 
 				if ( priceOnMobile ) {
