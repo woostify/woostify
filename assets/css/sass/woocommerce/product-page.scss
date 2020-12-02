@@ -939,6 +939,11 @@
 		.woostify-breadcrumb {
 			display: none;
 		}
+		.elementor-widget-woostify-breadcrumb {
+			.woostify-breadcrumb {
+				display: block;
+			}
+		}
 	}
 }
 
