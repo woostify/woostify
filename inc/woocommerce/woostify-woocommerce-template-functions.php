@@ -144,10 +144,11 @@ if ( ! function_exists( 'woostify_before_content' ) ) {
 	 * @return  void
 	 */
 	function woostify_before_content() {
+		$class = apply_filters( 'woostify_site_main_class', 'site-main' );
 		?>
 		<div id="primary" class="content-area">
-			<main id="main" class="site-main">
-		<?php
+			<main id="main" class="<?php echo esc_attr( $class ); ?>">
+			<?php
 	}
 }
 

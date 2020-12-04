@@ -7261,11 +7261,6 @@ header.elementor-element {
   }
 }
 
-.blockUI {
-  background-color: rgba(0, 0, 0, 0) !important;
-  display: none !important;
-}
-
 .woocommerce-store-notice {
   margin-bottom: 0;
   padding: 10px 15px;
