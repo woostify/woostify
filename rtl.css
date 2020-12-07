@@ -679,6 +679,10 @@
   margin-left: 7px;
 }
 
+.rtl .widget.advanced-product-categories a {
+  float: none;
+}
+
 .sidebar-menu-open .rtl .sidebar-menu {
   transform: translateX(0%);
 }

@@ -30,6 +30,13 @@
 		margin-right: 0;
 		margin-left: 7px;
 	}
+	.widget {
+		&.advanced-product-categories {
+			a {
+			    float: none;
+			}
+		}
+	}
 }
 .sidebar-menu-open {
 	.rtl {
