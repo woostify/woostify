@@ -658,7 +658,11 @@ var woostifyUpdateCheckout = function() {
 				}
 
 				if ( priceOnMobile ) {
-					getTotalPrice.innerHTML = json.data.content_total;
+					if ( isFirstStep ) {
+						priceOnMobile.innerHTML = json.data.content_total;
+					} else {
+						priceOnMobile.innerHTML = json.data.cart_total;
+					}
 				}
 			}
 		).catch(
