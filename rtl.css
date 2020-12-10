@@ -368,6 +368,11 @@
   margin-right: 0;
 }
 
+.rtl .show-password-input {
+  right: auto;
+  left: .7em;
+}
+
 .rtl .products .product {
   float: right;
   margin-right: 0px;
