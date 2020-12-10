@@ -29,7 +29,7 @@ $size: 40px;
 }
 
 // Updating...
-.processing {
+.processing:not(.um-woo-status) {
 	pointer-events: none;
 	position: relative;
 	@extend .circle-loading;
