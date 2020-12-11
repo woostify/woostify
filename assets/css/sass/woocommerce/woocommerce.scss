@@ -29,7 +29,16 @@ $size: 40px;
 }
 .single-product {
 	.product_title.entry-title {
-		pointer-events: none;
+		a {
+			pointer-events: none;
+		}
+	}
+	#woostify-quick-view-panel {
+		.product_title.entry-title {
+			a {
+				pointer-events: auto;
+			}
+		}
 	}
 }
 

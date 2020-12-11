@@ -6807,8 +6807,12 @@ header.elementor-element {
   display: none;
 }
 
-.single-product .product_title.entry-title {
+.single-product .product_title.entry-title a {
   pointer-events: none;
+}
+
+.single-product #woostify-quick-view-panel .product_title.entry-title a {
+  pointer-events: auto;
 }
 
 .processing:not(.um-woo-status) {
