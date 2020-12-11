@@ -6807,6 +6807,10 @@ header.elementor-element {
   display: none;
 }
 
+.single-product .product_title.entry-title {
+  pointer-events: none;
+}
+
 .processing:not(.um-woo-status) {
   pointer-events: none;
   position: relative;

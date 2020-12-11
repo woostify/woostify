@@ -27,6 +27,11 @@ $size: 40px;
 		display: none;
 	}
 }
+.single-product {
+	.product_title.entry-title {
+		pointer-events: none;
+	}
+}
 
 // Updating...
 .processing:not(.um-woo-status) {

@@ -1090,3 +1090,14 @@ if ( ! function_exists( 'woostify_checkout_before_order_review' ) ) {
 		<?php
 	}
 }
+
+if ( ! function_exists( 'custom_template_single_title' ) ) {
+	/**
+	 * Custom title
+	 */
+	function custom_template_single_title() {
+		?>
+			<h1 class="product_title entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h1>
+		<?php
+	}
+}
