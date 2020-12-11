@@ -282,7 +282,9 @@ document.addEventListener(
 					// Update slider height.
 					setTimeout(
 						function() {
-							imageCarousel.updateSliderHeight();
+							if ( 'object' === typeof( imageCarousel ) ) {
+								imageCarousel.updateSliderHeight();
+							}
 						},
 						200
 					);
@@ -305,7 +307,9 @@ document.addEventListener(
 					// Update slider height.
 					setTimeout(
 						function() {
-							imageCarousel.updateSliderHeight();
+							if ( 'object' === typeof( imageCarousel ) ) {
+								imageCarousel.updateSliderHeight();
+							}
 						},
 						200
 					);

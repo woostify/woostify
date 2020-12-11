@@ -653,41 +653,20 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		$variations        = isset( $_POST['variations'] ) ? (array) json_decode( sanitize_text_field( wp_unslash( $_POST['variations'] ) ), true ) : array();
 
 		// Check stock quantity first.
-		$cart = WC()->cart->get_cart();
-		$mess = '';
-		if ( ! empty( $cart ) ) {
-			foreach ( $cart as $c ) {
-				$cart_product_qty  = $c['quantity'];
-				$cart_product_id   = $c['product_id'];
-				$cart_variation_id = $c['variation_id'];
+		$quantities = WC()->cart->get_cart_item_quantities();
+		if ( ! empty( $quantities ) ) {
+			$pid         = $variation_id ? $variation_id : $product_id;
+			$in_cart_qty = isset( $quantities[ $pid ] ) ? $quantities[ $pid ] : 0;
+			$stock_count = intval( get_post_meta( $pid, '_stock', true ) );
 
-				if ( $variation_id ) {
-					$stock = intval( get_post_meta( $variation_id, '_stock', true ) );
-				} else {
-					$stock = intval( get_post_meta( $product_id, '_stock', true ) );
-				}
+			if (
+				$stock_count &&
+				( ( $product_qty + $in_cart_qty ) > $stock_count )
+			) {
+				$response['mess'] = sprintf( /* translators: stock quantity number */__( 'You cannot add that amount of this product to the cart. We have %1$s in stock and you already have %2$s in your cart', 'woostify' ), $stock_count, $in_cart_qty );
 
-				if ( ! $stock ) {
-					continue;
-				}
-
-				if (
-					(
-						( $variation_id && $variation_id === $cart_variation_id ) ||
-						( $cart_product_id === $product_id )
-					) &&
-					( $product_qty + $cart_product_qty > $stock )
-				) {
-					$mess = sprintf( /* translators: stock quantity number */__( 'You cannot add that amount of this product to the cart. We have %1$s in stock and you already have %2$s in your cart', 'woostify' ), $stock, $cart_product_qty );
-					break;
-				}
+				wp_send_json_success( $response );
 			}
-		}
-
-		// Return.
-		if ( $mess ) {
-			$response['mess'] = $mess;
-			wp_send_json_success( $response );
 		}
 
 		// For gift_wrap plugin.

@@ -8,7 +8,7 @@
 
 let theme       = 'woostify',
 	site_name   = 'dev',
-	theme_ver   = '1.7.7',
+	theme_ver   = '1.7.9',
 	gulp        = require( 'gulp' ),
 	zip         = require( 'gulp-zip' ),
 	autoLoad    = require( 'gulp-load-plugins' )(),
@@ -28,13 +28,23 @@ let theme       = 'woostify',
 // Sass `compressed` `expanded` `compact` `nested`.
 let _sass = ( done ) => {
 	gulp.src( 'style.scss' )
-		.pipe( globbing( {
-			extensions: [ '.scss' ]
-		} ) )
-		.pipe( sourcemaps.init() )
-		.pipe( sass( { outputStyle: 'expanded' } )
-		.on( 'error', sass.logError ) )
-		.pipe( sourcemaps.write( '.' ) )
+		.pipe(
+			globbing(
+				{
+					extensions: [ '.scss' ]
+				}
+			)
+		).pipe( sourcemaps.init() )
+		.pipe(
+			sass(
+				{
+					outputStyle: 'expanded'
+				}
+			).on(
+				'error',
+				sass.logError
+			)
+		).pipe( sourcemaps.write( '.' ) )
 		.pipe( gulp.dest( '.' ) )
 		.pipe( browserSync.stream() );
 
@@ -44,12 +54,22 @@ let _sass = ( done ) => {
 // Sass admin.
 let _sassAdmin = ( done ) => {
 	gulp.src( ['assets/css/admin/**/*.scss', '!assets/css/admin/**/*.css'] )
-		.pipe( globbing( {
-			extensions: [ '.scss' ]
-		} ) )
-		.pipe( sass( { outputStyle: 'expanded' } )
-		.on( 'error', sass.logError ) )
-		.pipe( gulp.dest( 'assets/css/admin' ) );
+		.pipe(
+			globbing(
+				{
+					extensions: [ '.scss' ]
+				}
+			)
+		).pipe(
+			sass(
+				{
+					outputStyle: 'expanded'
+				}
+			).on(
+				'error',
+				sass.logError
+			)
+		).pipe( gulp.dest( 'assets/css/admin' ) );
 
 	done();
 }
@@ -57,12 +77,22 @@ let _sassAdmin = ( done ) => {
 // Sass rtl.
 let _sassRtl = ( done ) => {
 	gulp.src( 'rtl.scss' )
-		.pipe( globbing( {
-			extensions: [ '.scss' ]
-		} ) )
-		.pipe( sass( { outputStyle: 'expanded' } )
-		.on( 'error', sass.logError ) )
-		.pipe( gulp.dest( '.' ) );
+		.pipe(
+			globbing(
+				{
+					extensions: [ '.scss' ]
+				}
+			)
+		).pipe(
+			sass(
+				{
+					outputStyle: 'expanded'
+				}
+			).on(
+				'error',
+				sass.logError
+			)
+		).pipe( gulp.dest( '.' ) );
 
 	done();
 }
@@ -75,21 +105,28 @@ let handleError = function( e ) {
 
 // Broswer sync task.
 let _browserSync = ( done ) => {
-	browserSync.init( {
-		proxy: 'http://' + site_name + '.io'
-	} );
+	browserSync.init(
+		{
+			proxy: 'http://' + site_name + '.io'
+		}
+	);
 	done();
 }
 
 // Create .post file.
 let _pot = ( done ) => {
 	gulp.src( '**/*.php' )
-		.pipe( wpPot( {
-			domain: theme,
-			package: 'Woostify'
-		} ) )
-		.on( 'error', handleError )
-		.pipe( gulp.dest( 'languages/' + theme + '.pot' ) );
+		.pipe(
+			wpPot(
+				{
+					domain: theme,
+					package: 'Woostify'
+				}
+			)
+		).on(
+			'error',
+			handleError
+		).pipe( gulp.dest( 'languages/' + theme + '.pot' ) );
 
 	done();
 }
@@ -108,28 +145,30 @@ let _minJs = ( done ) => {
 
 // Zip task.
 let _zip = ( done ) => {
-	gulp.src( [
-		'**/*',
-		'!./{node_modules,node_modules/**/*}',
-		'!./*.cache',
-		'!./*.log',
-		'!./*.xml',
-		'!./*.lock',
-		'!./*.json',
-		'!./*.map',
-		'!./**/*.scss',
-		'!./{assets/css/sass,assets/css/sass/**/*}',
-		'!./{assets/css/rtl,assets/css/rtl/**/*}',
-		'!./assets/css/admin/**/*.scss}',
-		'!./Gulpfile.js'
-	] )
+	gulp.src(
+		[
+			'**/*',
+			'!./{node_modules,node_modules/**/*}',
+			'!./*.cache',
+			'!./*.log',
+			'!./*.xml',
+			'!./*.lock',
+			'!./*.json',
+			'!./*.map',
+			'!./**/*.scss',
+			'!./{assets/css/sass,assets/css/sass/**/*}',
+			'!./{assets/css/rtl,assets/css/rtl/**/*}',
+			'!./assets/css/admin/**/*.scss}',
+			'!./Gulpfile.js'
+		]
+	)
 	/*.pipe( debug( { title: 'src' } ) )*/
 	.pipe( zip( theme + '-' + theme_ver + '.zip' ) )
 	.pipe( gulp.dest( '.' ) );
 
 	done();
 }
-gulp.task( 'zip', _zip );
+gulp.task( 'zip', gulp.series( _pot, _zip ) );
 
 // Watch task.
 let _watch = ( done ) => {

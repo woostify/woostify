@@ -144,10 +144,11 @@ if ( ! function_exists( 'woostify_before_content' ) ) {
 	 * @return  void
 	 */
 	function woostify_before_content() {
+		$class = apply_filters( 'woostify_site_main_class', 'site-main' );
 		?>
 		<div id="primary" class="content-area">
-			<main id="main" class="site-main">
-		<?php
+			<main id="main" class="<?php echo esc_attr( $class ); ?>">
+			<?php
 	}
 }
 
@@ -710,7 +711,7 @@ if ( ! function_exists( 'woostify_woocommerce_loop_start' ) ) {
 	 * @param string $loop_start The loop start.
 	 */
 	function woostify_woocommerce_loop_start( $loop_start ) {
-		if ( defined( 'KADENCE_WOO_TEMPLATE_VERSION' ) ) {
+		if ( defined( 'KADENCE_BLOCKS_VERSION' ) ) {
 			return $loop_start;
 		}
 

@@ -4,7 +4,7 @@ Theme URI:    https://woostify.com
 Author:       Woostify
 Author URI:   https://woostify.com/about
 Description:  Woostify is fast, lightweight, responsive and super flexible WooCommerce theme built with SEO, speed, and usability in mind. The theme works great with any of your favorite page builder likes Elementor, Beaver Builder, SiteOrigin, Thrive Architect, Divi, Visual Composer, etc. Therefore, you can build any type of websites like shop, business agencies, corporate, portfolio, education, university portal, consulting, church, restaurant, medical and so on. Woostify is compatible with all well-coded plugins, including major ones like WooCommerce, OrbitFox, Yoast, BuddyPress, bbPress, etc. Learn more about the theme and ready to import demo sites at https://woostify.com
-Version:      1.7.7
+Version:      1.7.9
 Requires at least: 4.7
 Tested up to: 5.5.0
 Requires PHP: 5.6.0
@@ -7269,11 +7269,6 @@ header.elementor-element {
   }
 }
 
-.blockUI {
-  background-color: rgba(0, 0, 0, 0) !important;
-  display: none !important;
-}
-
 .woocommerce-store-notice {
   margin-bottom: 0;
   padding: 10px 15px;
@@ -10169,6 +10164,7 @@ header.elementor-element {
 .woocommerce-checkout-review-order-table .woocommerce-shipping-totals {
   flex-direction: column;
   padding-top: 5px;
+  display: block;
 }
 
 .woocommerce-checkout-review-order-table .woocommerce-shipping-totals td {
@@ -10338,6 +10334,7 @@ header.elementor-element {
   display: flex;
   padding-right: 10px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .variation {
@@ -10363,7 +10360,7 @@ header.elementor-element {
 
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .product-quantity,
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .product-total {
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .has-multi-step-checkout #order_review .order-total {
@@ -10589,6 +10586,12 @@ header.elementor-element {
 
 .has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .wc_payment_methods label[for^="payment_method"] {
   cursor: pointer;
+}
+
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .wc_payment_methods label[for^="payment_method"] img {
+  max-width: 100%;
+  max-height: 40px;
+  margin-left: 5px;
 }
 
 .has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .wc_payment_methods .payment_box {

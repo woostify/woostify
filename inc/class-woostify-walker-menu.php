@@ -34,7 +34,13 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			if ( 'mega_menu' === $item->object ) {
 				$this->megamenu_width = get_post_meta( $item->ID, 'woostify_mega_menu_item_width', true );
 				$this->megamenu_width = '' !== $this->megamenu_width ? $this->megamenu_width : 'content';
+				$this->megamenu_url   = get_post_meta( $item->ID, 'woostify_mega_menu_item_url', true );
 				$this->megamenu_icon  = get_post_meta( $item->ID, 'woostify_mega_menu_item_icon', true );
+				$href                 = $this->megamenu_url;
+
+				if ( ! $href ) {
+					$href = '#';
+				}
 
 				$classes[] = 'menu-item-has-children';
 				$classes[] = 'menu-item-has-mega-menu';
@@ -63,12 +69,12 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn : '';
 			$atts['href']   = ! empty( $item->url ) ? $item->url : '';
 			$atts           = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
+			$attributes     = '';
 
-			$attributes = '';
 			foreach ( $atts as $attr => $value ) {
 				if ( ! empty( $value ) ) {
 					$value       = 'href' === $attr ? esc_url( $value ) : esc_attr( $value );
-					$value       = 'mega_menu' === $item->object ? '#' : $value;
+					$value       = 'mega_menu' === $item->object ? $href : $value;
 					$attributes .= ' ' . $attr . '="' . $value . '"';
 				}
 			}
