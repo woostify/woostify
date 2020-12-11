@@ -16,7 +16,7 @@ if ( ! function_exists( 'woostify_get_prev_product' ) ) {
 	 * @param string       $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'product_cat'.
 	 * @return WC_Product|false Product object if successful. False if no valid product is found.
 	 */
-	function woostify_get_prev_product( $in_same_term = false, $excluded_terms = '', $taxonomy = 'product_cat' ) {
+	function woostify_get_prev_product( $in_same_term = true, $excluded_terms = '', $taxonomy = 'product_cat' ) {
 		$product = new Woostify_Adjacent_Products( $in_same_term, $excluded_terms, $taxonomy, true );
 		return $product->get_product();
 	}
@@ -31,7 +31,7 @@ if ( ! function_exists( 'woostify_get_next_product' ) ) {
 	 * @param string       $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'product_cat'.
 	 * @return WC_Product|false Product object if successful. False if no valid product is found.
 	 */
-	function woostify_get_next_product( $in_same_term = false, $excluded_terms = '', $taxonomy = 'product_cat' ) {
+	function woostify_get_next_product( $in_same_term = true, $excluded_terms = '', $taxonomy = 'product_cat' ) {
 		$product = new Woostify_Adjacent_Products( $in_same_term, $excluded_terms, $taxonomy );
 		return $product->get_product();
 	}
