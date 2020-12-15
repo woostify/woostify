@@ -7154,10 +7154,6 @@ header.elementor-element {
   left: 1.5em;
 }
 
-.woocommerce-message:before {
-  top: 1.5em;
-}
-
 .woocommerce-error:before {
   content: "\e720";
 }
