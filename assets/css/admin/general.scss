@@ -44,6 +44,34 @@ a {
 		outline: none !important;
 		box-shadow: none !important;
 		text-decoration: none;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&.updating {
+		pointer-events: none;
+		opacity: 0.8;
+
+		.notice-dismiss {
+			&:before {
+				content: none;
+			}
+		}
+
+		.spinner {
+			visibility: visible;
+		}
+	}
+
+	.spinner {
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		margin-top: 0;
 	}
 }
 
