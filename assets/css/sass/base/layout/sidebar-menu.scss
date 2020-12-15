@@ -328,3 +328,13 @@
 		}
 	}
 }
+
+// Header Layout 2
+.sidebar-menu-open {
+	.has-header-layout-2 {
+		#view {
+		    -webkit-transform: translateX(0px);
+			transform: translateX(0px);
+		}
+	}
+}

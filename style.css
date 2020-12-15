@@ -5443,6 +5443,11 @@ article p:last-child {
   }
 }
 
+.sidebar-menu-open .has-header-layout-2 #view {
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+}
+
 footer#colophon {
   clear: both;
 }
