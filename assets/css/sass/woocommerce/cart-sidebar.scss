@@ -117,6 +117,11 @@ $media: 599px;
     ul{
     	margin: 0;
     }
+
+    // Remove wc loading
+    .blockUI {
+		display: none !important;
+	}
 }
 
 .shop-cart-count,

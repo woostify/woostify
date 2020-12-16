@@ -1098,7 +1098,7 @@ if ( ! function_exists( 'custom_template_single_title' ) ) {
 	 */
 	function custom_template_single_title() {
 		?>
-			<h1 class="product_title entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h1>
+			<h1 class="product_title entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 		<?php
 	}
 }
