@@ -48,6 +48,32 @@ a:focus {
   outline: none !important;
   box-shadow: none !important;
   text-decoration: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.woostify-options-notice.updating {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.woostify-options-notice.updating .notice-dismiss:before {
+  content: none;
+}
+
+.woostify-options-notice.updating .spinner {
+  visibility: visible;
+}
+
+.woostify-options-notice .spinner {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 0;
 }
 
 .woostify-pro-release-notice {
