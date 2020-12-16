@@ -191,20 +191,19 @@ document.addEventListener(
 		}
 
 		// Update gallery.
-		function updateGallery( data, reset ) {
+		function updateGallery( data, reset, variationId ) {
 			if ( ! data.length || document.documentElement.classList.contains( 'quick-view-open' ) ) {
 				return;
 			}
 
 			// For Elementor Preview Mode.
 			if ( ! gallery ) {
-				gallery           = document.getElementsByClassName( 'product-gallery' )[0];
+				gallery           = document.querySelector( '.product-gallery' );
 				thumbOptions.axis = gallery.classList.contains( 'vertical-style' ) ? 'vertical' : 'horizontal';
 			}
 
 			var images            = '',
 				thumbnails        = '',
-				variationId       = document.querySelector( 'form.variations_form [name=variation_id]' ),
 				defaultThumbnails = false;
 
 			for ( var i = 0, j = data.length; i < j; i++ ) {
@@ -218,7 +217,7 @@ document.addEventListener(
 					if ( data[i].has_default_thumbnails ) {
 						defaultThumbnails = true;
 					}
-				} else if ( variationId && data[i][0].variation_id && parseInt( variationId.value ) === data[i][0].variation_id ) {
+				} else if ( variationId && variationId == data[i][0].variation_id ) {
 					// Render new item for new Slider.
 					for ( var x = 1, y = data[i].length; x < y; x++ ) {
 						var size        = data[i][x].full_src_w + 'x' + data[i][x].full_src_h;
@@ -237,8 +236,8 @@ document.addEventListener(
 				var productThumbs = document.createElement( 'div' );
 
 				productThumbs.setAttribute( 'id', 'product-thumbnail-images' );
-				document.getElementsByClassName( 'product-thumbnail-images' )[0].appendChild( productThumbs );
-				document.getElementsByClassName( 'product-gallery' )[0].classList.add( 'has-product-thumbnails' );
+				document.querySelector( '.product-thumbnail-images' ).appendChild( productThumbs );
+				document.querySelector( '.product-gallery' ).classList.add( 'has-product-thumbnails' );
 			}
 
 			// Append new markup html.
@@ -246,8 +245,13 @@ document.addEventListener(
 			document.getElementById( 'product-thumbnail-images' ).innerHTML = thumbnails;
 
 			// Rebuild new slider.
-			imageCarousel = ( imageCarousel && imageCarousel.rebuild ) ? imageCarousel.rebuild() : tns( options );
-			thumbCarousel = ( thumbCarousel && thumbCarousel.rebuild ) ? thumbCarousel.rebuild() : tns( thumbOptions );
+			if ( imageCarousel && imageCarousel.rebuild ) {
+				imageCarousel.rebuild();
+			}
+
+			if ( thumbCarousel && thumbCarousel.rebuild ) {
+				thumbCarousel.rebuild();
+			}
 
 			if ( reset && ! defaultThumbnails ) {
 				( thumbCarousel && thumbCarousel.destroy ) ? thumbCarousel.destroy() : false;
@@ -276,13 +280,13 @@ document.addEventListener(
 			// Trigger variation.
 			jQuery( 'form.variations_form' ).on(
 				'found_variation',
-				function() {
+				function( e, variation ) {
 					resetCarousel();
 
 					// Update slider height.
 					setTimeout(
 						function() {
-							if ( 'object' === typeof( imageCarousel ) ) {
+							if ( 'object' === typeof( imageCarousel ) && imageCarousel.updateSliderHeight ) {
 								imageCarousel.updateSliderHeight();
 							}
 						},
@@ -290,7 +294,7 @@ document.addEventListener(
 					);
 
 					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
-						updateGallery( woostify_variation_gallery );
+						updateGallery( woostify_variation_gallery, false, variation.variation_id );
 					}
 				}
 			);
@@ -307,7 +311,7 @@ document.addEventListener(
 					// Update slider height.
 					setTimeout(
 						function() {
-							if ( 'object' === typeof( imageCarousel ) ) {
+							if ( 'object' === typeof( imageCarousel ) && imageCarousel.updateSliderHeight ) {
 								imageCarousel.updateSliderHeight();
 							}
 						},
@@ -354,7 +358,7 @@ document.addEventListener(
 							if ( document.getElementById( 'product-thumbnail-images' ) ) {
 								renderSlider( '#product-images', options );
 
-								thumbOptions.axis = document.getElementsByClassName( 'product-gallery' )[0].classList.contains( 'vertical-style' ) ? 'vertical' : 'horizontal';
+								thumbOptions.axis = document.querySelector( '.product-gallery' ).classList.contains( 'vertical-style' ) ? 'vertical' : 'horizontal';
 								renderSlider( '#product-thumbnail-images', thumbOptions );
 							}
 							carouselAction();
