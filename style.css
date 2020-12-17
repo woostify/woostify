@@ -5443,6 +5443,11 @@ article p:last-child {
   }
 }
 
+.sidebar-menu-open .has-header-layout-2 #view {
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+}
+
 footer#colophon {
   clear: both;
 }
@@ -7147,10 +7152,6 @@ header.elementor-element {
   position: absolute;
   top: 1em;
   left: 1.5em;
-}
-
-.woocommerce-message:before {
-  top: 1.5em;
 }
 
 .woocommerce-error:before {
