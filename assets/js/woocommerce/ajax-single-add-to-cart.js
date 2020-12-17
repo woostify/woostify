@@ -193,9 +193,14 @@ function woostifyAjaxSingleAddToCartButton() {
 							}
 
 							// Update total price, for header-layout-6.
-							var totalPrice = document.querySelector( '.woostify-total-price' );
+							var totalPrice   = document.querySelector( '.woostify-total-price' ),
+								bmTotalPrice = document.querySelector( '.bm-cart-total-price .amount' );
 							if ( totalPrice ) {
 								totalPrice.innerHTML = data.total;
+							}
+
+							if ( bmTotalPrice ) {
+								bmTotalPrice.innerHTML = data.total;
 							}
 						}
 					).catch(

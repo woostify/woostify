@@ -70,8 +70,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_filter( 'woocommerce_breadcrumb_defaults', 'woostify_modifided_woocommerce_breadcrumb' );
 			add_filter( 'woocommerce_get_breadcrumb', 'woostify_get_modifided_woocommerce_breadcrumb' );
 
-			add_filter( 'woocommerce_widget_cart_item_quantity', 'woostify_update_quantity_mini_cart', 10, 3 );
-
 			// MY ACCOUNT PAGE.
 			add_filter( 'woocommerce_my_account_edit_address_title', '__return_empty_string' );
 

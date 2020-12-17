@@ -696,10 +696,11 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 			}
 		}
 
+		WC()->cart->get_cart_total();
 		ob_start();
 		woostify_mini_cart();
 		$response['item']    = WC()->cart->get_cart_contents_count();
-		$response['total']   = WC()->cart->get_cart_total();
+		$response['total']   = wp_kses( WC()->cart->get_cart_total(), array() );
 		$response['content'] = ob_get_clean();
 
 		wp_send_json_success( $response );
