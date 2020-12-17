@@ -7197,6 +7197,8 @@ header.elementor-element {
 
 .woocommerce-error li a {
   float: right;
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {
