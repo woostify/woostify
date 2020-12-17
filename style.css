@@ -10380,7 +10380,7 @@ header.elementor-element {
   text-align: center;
 }
 
-.has-multi-step-checkout .multi-step-checkout-wrapper.first ~ .woocommerce-checkout-review-order .tax-rate {
+.has-multi-step-checkout .multi-step-checkout-wrapper.first ~ .woocommerce-checkout-review-order tr[class^="tax-"] {
   display: none;
 }
 

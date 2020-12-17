@@ -582,7 +582,7 @@
 	// First step
 	.multi-step-checkout-wrapper.first {
 		~ .woocommerce-checkout-review-order {
-			.tax-rate {
+			tr[class^="tax-"] {
 				display: none;
 			}
 		}
