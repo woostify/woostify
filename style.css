@@ -5443,6 +5443,11 @@ article p:last-child {
   }
 }
 
+.sidebar-menu-open .has-header-layout-2 #view {
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+}
+
 footer#colophon {
   clear: both;
 }
@@ -7149,10 +7154,6 @@ header.elementor-element {
   left: 1.5em;
 }
 
-.woocommerce-message:before {
-  top: 1.5em;
-}
-
 .woocommerce-error:before {
   content: "\e720";
 }
@@ -7196,6 +7197,8 @@ header.elementor-element {
 
 .woocommerce-error li a {
   float: right;
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {
