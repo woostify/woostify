@@ -38,7 +38,7 @@ let _sass = ( done ) => {
 		.pipe(
 			sass(
 				{
-					outputStyle: 'compressed'
+					outputStyle: 'expanded'
 				}
 			).on(
 				'error',
