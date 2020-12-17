@@ -509,6 +509,12 @@ var woostifyMultiStepCheckout = function() {
 				wrapperContent.classList.remove( 'first', 'last' );
 				if ( firstStep ) {
 					wrapperContent.classList.add( 'first' );
+
+					// Update price first step on mobile.
+					var priceMobileFirstStep = document.querySelector( '.woostify-before-order-review .woostify-before-order-review-total-price strong' );
+					if ( priceMobileFirstStep ) {
+						priceMobileFirstStep.innerText = woostify_multi_step_checkout.content_total;
+					}
 				} else if ( lastStep ) {
 					wrapperContent.classList.add( 'last' );
 				}
@@ -649,12 +655,20 @@ var woostifyUpdateCheckout = function() {
 					isFirstStep      = document.querySelector( '.multi-step-checkout-wrapper.first' ),
 					getTotalPrice    = orderTotalTd ? orderTotalTd.querySelector( 'strong' ) : false;
 
-				if ( isFirstStep && getTotalPrice ) {
-					getTotalPrice.innerHTML = json.data;
+				if ( getTotalPrice ) {
+					if ( isFirstStep ) {
+						getTotalPrice.innerHTML = json.data.content_total;
+					} else {
+						getTotalPrice.innerHTML = json.data.cart_total;
+					}
 				}
 
 				if ( priceOnMobile ) {
-					priceOnMobile.innerHTML = json.data;
+					if ( isFirstStep ) {
+						priceOnMobile.innerHTML = json.data.content_total;
+					} else {
+						priceOnMobile.innerHTML = json.data.cart_total;
+					}
 				}
 			}
 		).catch(
@@ -680,11 +694,15 @@ var woostifyTotalPriceMobile = function( e, data ) {
 	// Update checkout.
 	woostifyUpdateCheckout();
 
-	if ( ! mobilePrice || ! totalPriceInner ) {
+	if ( ! mobilePrice ) {
 		return;
 	}
 
-	mobilePrice.innerText = totalPriceInner;
+	if ( isFirstStep ) {
+		mobilePrice.innerText = woostify_multi_step_checkout.content_total;
+	} else {
+		mobilePrice.innerText = woostify_multi_step_checkout.cart_total;
+	}
 }
 
 document.addEventListener(

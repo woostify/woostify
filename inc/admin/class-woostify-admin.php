@@ -51,7 +51,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		 */
 		public function woostify_admin_classes( $classes ) {
 			$wp_version = version_compare( get_bloginfo( 'version' ), '5.0', '>=' ) ? 'gutenberg-version' : 'old-version';
-			$classes    .= " $wp_version";
+			$classes   .= " $wp_version";
 
 			return $classes;
 		}
@@ -72,19 +72,27 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						<div class="woostify-notice-img">
 							<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'logo', 'woostify' ); ?>">
 						</div>
+
 						<div class="woostify-notice-text">
 							<div class="woostify-notice-heading"><?php esc_html_e( 'Thanks for installing Woostify!', 'woostify' ); ?></div>
 							<p>
 								<?php
-								printf( // WPCS: XSS OK.
-									/* translators: Theme options */
-									__( 'To fully take advantage of the best our theme can offer please make sure you visit our <a href="%1$s">Woostify Options</a>.', 'woostify' ),
-									esc_url( admin_url( 'admin.php?page=woostify-welcome' ) )
+								echo wp_kses_post(
+									sprintf(
+										/* translators: Theme options */
+										__( 'To fully take advantage of the best our theme can offer please make sure you visit our <a href="%1$s">Woostify Options</a>.', 'woostify' ),
+										esc_url( admin_url( 'admin.php?page=woostify-welcome' ) )
+									)
 								);
 								?>
 							</p>
 						</div>
 					</div>
+
+					<button type="button" class="notice-dismiss">
+						<span class="spinner"></span>
+						<span class="screen-reader-text"><?php esc_html_e( 'Dismiss this notice.', 'woostify' ); ?></span>
+					</button>
 				</div>
 				<?php
 			}
@@ -115,15 +123,17 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 		/**
 		 * Load welcome screen script and css
+		 *
+		 * @param  obj $hook Hooks.
 		 */
 		public function woostify_welcome_static( $hook ) {
-			$is_welcome  = false !== strpos( $hook, 'woostify-welcome' );
+			$is_welcome = false !== strpos( $hook, 'woostify-welcome' );
 
 			// Dismiss admin notice.
 			wp_enqueue_style(
 				'woostify-admin-general',
 				WOOSTIFY_THEME_URI . 'assets/css/admin/general.css',
-				[],
+				array(),
 				woostify_version()
 			);
 
@@ -131,7 +141,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			wp_enqueue_script(
 				'woostify-dismiss-admin-notice',
 				WOOSTIFY_THEME_URI . 'assets/js/admin/dismiss-admin-notice' . woostify_suffix() . '.js',
-				[],
+				array(),
 				woostify_version(),
 				true
 			);
@@ -139,9 +149,9 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			wp_localize_script(
 				'woostify-dismiss-admin-notice',
 				'woostify_dismiss_admin_notice',
-				[
+				array(
 					'nonce' => wp_create_nonce( 'woostify_dismiss_admin_notice' ),
-				]
+				)
 			);
 
 			// Welcome screen style.
@@ -149,7 +159,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				wp_enqueue_style(
 					'woostify-welcome-screen',
 					WOOSTIFY_THEME_URI . 'assets/css/admin/welcome.css',
-					[],
+					array(),
 					woostify_version()
 				);
 			}
@@ -158,7 +168,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			wp_enqueue_script(
 				'woostify-install-demo',
 				WOOSTIFY_THEME_URI . 'assets/js/admin/install-demo' . woostify_suffix() . '.js',
-				[ 'updates' ],
+				array( 'updates' ),
 				woostify_version(),
 				true
 			);
@@ -193,35 +203,35 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						'setting'  => 'custom_logo',
 						'required' => '',
 					),
-					'set_color' => array(
+					'set_color'   => array(
 						'icon'     => 'dashicons dashicons-admin-appearance',
 						'name'     => __( 'Set Colors', 'woostify' ),
 						'type'     => 'section',
 						'setting'  => 'woostify_color',
 						'required' => '',
 					),
-					'layout' => array(
+					'layout'      => array(
 						'icon'     => 'dashicons dashicons-layout',
 						'name'     => __( 'Layout', 'woostify' ),
 						'type'     => 'panel',
 						'setting'  => 'woostify_layout',
 						'required' => '',
 					),
-					'button' => array(
+					'button'      => array(
 						'icon'     => 'dashicons dashicons-admin-customizer',
 						'name'     => __( 'Buttons', 'woostify' ),
 						'type'     => 'section',
 						'setting'  => 'woostify_buttons',
 						'required' => '',
 					),
-					'typo' => array(
+					'typo'        => array(
 						'icon'     => 'dashicons dashicons-editor-paragraph',
 						'name'     => __( 'Typography', 'woostify' ),
 						'type'     => 'panel',
 						'setting'  => 'woostify_typography',
 						'required' => '',
 					),
-					'shop' => array(
+					'shop'        => array(
 						'icon'     => 'dashicons dashicons-cart',
 						'name'     => __( 'Shop', 'woostify' ),
 						'type'     => 'panel',
@@ -246,7 +256,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						<a class="woostify-welcome-theme-brand" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank" rel="noopener">
 							<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
 							<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
-							<span class="woostify-welcome-theme-version"><?php echo woostify_version(); // WPCS: XSS ok. ?></span>
+							<span class="woostify-welcome-theme-version"><?php echo esc_html( woostify_version() ); ?></span>
 						</a>
 
 						<ul class="woostify-welcome-nav_link">
@@ -432,11 +442,11 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									$redirect    = admin_url( 'admin.php?page=woostify-sites' );
 									$nonce       = add_query_arg(
 										array(
-											'action'        => 'activate',
-											'plugin'        => rawurlencode( $slug ),
+											'action'   => 'activate',
+											'_wpnonce' => wp_create_nonce( 'activate-plugin_' . $slug ),
+											'plugin'   => rawurlencode( $slug ),
+											'paged'    => '1',
 											'plugin_status' => 'all',
-											'paged'         => '1',
-											'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug ),
 										),
 										network_admin_url( 'plugins.php' )
 									);
@@ -445,7 +455,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									$type = 'install';
 									if ( file_exists( ABSPATH . 'wp-content/plugins/' . $plugin_slug ) ) {
 										$activate = is_plugin_active( $plugin_slug . '/woostify-sites.php' ) ? 'activate' : 'deactivate';
-										$type = $activate;
+										$type     = $activate;
 									}
 
 									// Generate button.
@@ -453,7 +463,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 									// If Woostifu Site install.
 									if ( ! defined( 'WOOSTIFY_SITES_VER' ) ) {
-										if ( 'deactivate' == $type ) {
+										if ( 'deactivate' === $type ) {
 											$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $slug ) . '" class="woostify-button button woostify-active-now" href="' . esc_url( $nonce ) . '">' . esc_html__( 'Activate', 'woostify' ) . '</a>';
 										} else {
 											$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $plugin_slug ) . '" href="' . esc_url( $nonce ) . '" class="woostify-button install-now button woostify-install-demo">' . esc_html__( 'Install Woostify Library', 'woostify' ) . '</a>';
@@ -472,7 +482,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									?>
 
 									<p>
-										<?php echo $button; // WPCS: XSS ok. ?>
+										<?php echo wp_kses_post( $button ); ?>
 									</p>
 								</div>
 							</div>
