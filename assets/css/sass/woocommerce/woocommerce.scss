@@ -325,7 +325,8 @@ $size: 40px;
 	color: #fff;
 	border-radius: 4px;
 	margin-bottom: 20px;
-	@include flex(flex, space-between, center);
+	display: flex;
+	align-items: center;
 
 	a {
 		order: 2;
@@ -352,6 +353,7 @@ $size: 40px;
 	padding: 1em 2em 1em 3.5em;
 	color: #fff;
 	margin-bottom: 20px;
+
 	a {
 		&:hover {
 			color: #fff;
@@ -366,13 +368,15 @@ $size: 40px;
 .woocommerce-error,
 .woocommerce-info,
 .woocommerce-message {
+	a {
+		margin-left: auto;
+	}
+
 	&:before {
     	color: #fff;
     	font-family: $icon;
-	    display: inline-block;
-	    position: absolute;
-	    top: 1em;
-	    left: 1.5em;
+	    display: inline-flex;
+	    margin-right: 10px;
 	}
 }
 
