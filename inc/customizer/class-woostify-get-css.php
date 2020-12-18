@@ -405,7 +405,7 @@ class Woostify_Get_CSS {
 				    opacity: 1;
 				    visibility: visible;
 				    top: 100%;
-				    z-index: 5;
+				    z-index: 999;
 				    -webkit-transform: translateY(0px);
 				    transform: translateY(0px);
 				}
