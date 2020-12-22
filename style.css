@@ -7097,12 +7097,7 @@ header.elementor-element {
   color: #fff;
   border-radius: 4px;
   margin-bottom: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
   align-items: center;
 }
 
@@ -7143,15 +7138,19 @@ header.elementor-element {
   padding: 1em 2em 1em 3.5em;
 }
 
+.woocommerce-error a,
+.woocommerce-info a,
+.woocommerce-message a {
+  margin-left: auto;
+}
+
 .woocommerce-error:before,
 .woocommerce-info:before,
 .woocommerce-message:before {
   color: #fff;
   font-family: "themify";
-  display: inline-block;
-  position: absolute;
-  top: 1em;
-  left: 1.5em;
+  display: inline-flex;
+  margin-right: 10px;
 }
 
 .woocommerce-error:before {
@@ -7169,6 +7168,11 @@ header.elementor-element {
 
 .woocommerce-message:before {
   content: "\e64d";
+}
+
+.woocommerce-form-coupon-toggle .woocommerce-info:before,
+.woocommerce-form-login-toggle .woocommerce-info:before {
+  display: none;
 }
 
 .woocommerce-message {
@@ -7197,6 +7201,8 @@ header.elementor-element {
 
 .woocommerce-error li a {
   float: right;
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {
