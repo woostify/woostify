@@ -222,10 +222,7 @@ document.addEventListener(
 			'adding_to_cart',
 			function() {
 				eventCartSidebarOpen();
-
-				if ( 'function' === typeof( woostifyAjaxSingleAddToCartButton ) ) {
-					cartSidebarOpen();
-				}
+				cartSidebarOpen();
 			}
 		).on(
 			'added_to_cart',
