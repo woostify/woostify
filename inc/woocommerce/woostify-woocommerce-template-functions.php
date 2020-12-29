@@ -358,6 +358,11 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 	 * Cart sidebar
 	 */
 	function woostify_woocommerce_cart_sidebar() {
+		// Not print Cart sidebar if Mini Cart Template	- Elementor Pro enable || Side Cart plugin install.
+		if ( 'yes' === get_option( 'elementor_use_mini_cart_template' ) || defined( 'XOO_WSC_PLUGIN_FILE' ) ) {
+			return;
+		}
+
 		$total = WC()->cart->cart_contents_count;
 		?>
 			<div id="shop-cart-sidebar">
