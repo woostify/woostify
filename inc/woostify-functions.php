@@ -123,19 +123,19 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 			$page_id = woostify_get_page_id();
 		}
 
-		$edit_mode = get_post_meta( $page_id, '_elementor_edit_mode', true );
-		$edit_mode = 'builder' === $edit_mode ? true : false;
+		$is_elementor_page = get_post_meta( $page_id, '_elementor_edit_mode', true );
+		$is_elementor_page = 'builder' === $is_elementor_page ? true : false;
 
 		// Priority first.
-		if ( 'mega_menu' === get_post_type( $page_id ) ) {
-			return $edit_mode;
+		if ( in_array( get_post_type( $page_id ), array( 'hf_builder', 'mega_menu' ), true ) ) {
+			return $is_elementor_page;
 		}
 
 		if ( ! $page_id || is_tax() || is_singular( 'product' ) ) {
-			$edit_mode = false;
+			$is_elementor_page = false;
 		}
 
-		return $edit_mode;
+		return $is_elementor_page;
 	}
 }
 
