@@ -1901,7 +1901,7 @@ if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
 		}
 
 		$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
-		$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
+		$logout_url      = wp_logout_url( apply_filters( 'woostify_logout_redirect', get_permalink( $page_account_id ) ) );
 
 		if ( 'yes' === get_option( 'woocommerce_force_ssl_checkout' ) ) {
 			$logout_url = str_replace( 'http:', 'https:', $logout_url );
@@ -1976,7 +1976,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 		if ( woostify_is_woocommerce_activated() ) {
 			global $woocommerce;
 			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
-			$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
+			$logout_url      = wp_logout_url( apply_filters( 'woostify_logout_redirect', get_permalink( $page_account_id ) ) );
 
 			if ( 'yes' === get_option( 'woocommerce_force_ssl_checkout' ) ) {
 				$logout_url = str_replace( 'http:', 'https:', $logout_url );
