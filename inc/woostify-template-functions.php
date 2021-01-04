@@ -567,6 +567,46 @@ if ( ! function_exists( 'woostify_skip_links' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_logged_in_menu' ) ) {
+	/**
+	 * List menu account
+	 * when logged in or sign out
+	 */
+	function woostify_logged_in_menu() {
+		if ( woostify_is_woocommerce_activated() ) {
+			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
+			$logout_url      = wp_logout_url( get_permalink( $page_account_id ) );
+
+			if ( 'yes' === get_option( 'woocommerce_force_ssl_checkout' ) ) {
+				$logout_url = str_replace( 'http:', 'https:', $logout_url );
+			}
+
+			$count = WC()->cart->cart_contents_count;
+		}
+
+		if ( ! is_user_logged_in() ) {
+			do_action( 'woostify_header_account_subbox_start_default' );
+			$login_reg_button = '<a href="' . get_permalink( $page_account_id ) . '" class="text-center">' . esc_html__( 'Login / Register', 'woostify' ) . '</a>';
+			?>
+			<li class="my-account-login"><?php echo wp_kses_post( apply_filters( 'woostify_header_account_subbox_login_register_link', $login_reg_button ) ); ?></li>
+			<?php
+		} else {
+			do_action( 'woostify_header_account_subbox_start_logged_in' );
+			$dasboard = '<a href="' . get_permalink( $page_account_id ) . '">' . esc_html__( 'Dashboard', 'woostify' ) . '</a>';
+			?>
+			<li class="my-account-dashboard"><?php echo wp_kses_post( apply_filters( 'woostify_header_account_subbox_dasboard_link', $dasboard ) ); ?></li>
+
+			<?php do_action( 'woostify_header_account_subbox_before_logout' ); ?>
+
+			<li class="my-account-logout"><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
+			</li>
+			<?php
+
+		}
+	}
+}
+
+
 if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 	/**
 	 * Woostify breadcrumb
@@ -1912,19 +1952,11 @@ if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
 			<?php do_action( 'woostify_sidebar_account_before' ); ?>
 
 			<ul class="sidebar-account">
-				<?php do_action( 'woostify_sidebar_account_top' ); ?>
-
-				<?php if ( ! is_user_logged_in() ) : ?>
-					<li><a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Login / Register', 'woostify' ); ?></a></li>
-				<?php else : ?>
-					<li>
-						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-					</li>
-					<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
-					</li>
-				<?php endif; ?>
-
-				<?php do_action( 'woostify_sidebar_account_bottom' ); ?>
+				<?php
+				do_action( 'woostify_sidebar_account_top' );
+				woostify_logged_in_menu();
+				do_action( 'woostify_sidebar_account_bottom' );
+				?>
 			</ul>
 
 			<?php do_action( 'woostify_sidebar_account_after' ); ?>
@@ -2030,25 +2062,8 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 								<ul>
 									<?php
 									do_action( 'woostify_header_account_subbox_start' );
-
-									if ( ! is_user_logged_in() ) {
-										$login_reg_button = '<a href="' . get_permalink( $page_account_id ) . '" class="text-center">' . esc_html__( 'Login / Register', 'woostify' ) . '</a>';
-										?>
-										<li><?php echo wp_kses_post( apply_filters( 'woostify_header_account_subbox_login_register_link', $login_reg_button ) ); ?></li>
-										<?php
-									} else {
-										$dasboard = '<a href="' . get_permalink( $page_account_id ) . '">' . esc_html__( 'Dashboard', 'woostify' ) . '</a>';
-										?>
-										<li><?php echo wp_kses_post( apply_filters( 'woostify_header_account_subbox_dasboard_link', $dasboard ) ); ?></li>
-
-										<?php do_action( 'woostify_header_account_subbox_before_logout' ); ?>
-
-										<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Logout', 'woostify' ); ?></a>
-										</li>
-										<?php
-
-										do_action( 'woostify_header_account_subbox_end' );
-									}
+									woostify_logged_in_menu();
+									do_action( 'woostify_header_account_subbox_end' );
 									?>
 								</ul>
 							</div>
