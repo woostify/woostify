@@ -108,7 +108,7 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 
 		ob_start();
 		?>
-		<span class="mini-cart-product-infor ahihihi-dongu">
+		<span class="mini-cart-product-infor">
 			<span class="mini-cart-quantity">
 				<span class="mini-cart-product-qty ti-minus" data-qty="minus"></span>
 
