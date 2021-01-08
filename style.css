@@ -7007,7 +7007,6 @@ header.elementor-element {
   position: relative;
   border: 1px solid #ddd;
   border-radius: 2px;
-  padding: 5px 20px 5px 10px;
   margin-bottom: 40px;
 }
 
@@ -7024,6 +7023,7 @@ header.elementor-element {
 }
 
 .woostify-sorting .orderby {
+  padding: 5px 20px 5px 10px;
   border: 0;
   background-color: rgba(0, 0, 0, 0);
   -moz-appearance: none;

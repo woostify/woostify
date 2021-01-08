@@ -222,7 +222,6 @@ $size: 40px;
 		position: relative;
 		border: 1px solid #ddd;
 		border-radius: 2px;
-		padding: 5px 20px 5px 10px;
 		margin-bottom: 40px;
 
 		&:after {
@@ -238,6 +237,7 @@ $size: 40px;
 	}
 
 	.orderby {
+		padding: 5px 20px 5px 10px;
 		border: 0;
 		background-color: $tr;
 		-moz-appearance: none;
