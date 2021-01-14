@@ -106,7 +106,7 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			$item_output .= '</a>';
 
 			// Start Mega menu content.
-			if ( 'mega_menu' === $item->object && 0 === $depth ) {
+			if ( 'mega_menu' === $item->object && 0 === $depth && ! woostify_is_elementor_editor() ) {
 				$item_output .= '<ul class="sub-mega-menu">';
 				$item_output .= '<div class="mega-menu-wrapper">';
 
