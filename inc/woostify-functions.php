@@ -579,6 +579,10 @@ if ( ! function_exists( 'woostify_get_metabox' ) ) {
 	 * @param string $metabox_name Metabox option name.
 	 */
 	function woostify_get_metabox( $page_id = false, $metabox_name ) {
+		if ( is_archive() ) {
+			return 'default';
+		}
+
 		$page_id             = $page_id ? intval( $page_id ) : woostify_get_page_id();
 		$metabox             = get_post_meta( $page_id, $metabox_name, true );
 		$is_product_category = class_exists( 'woocommerce' ) && is_product_category();
