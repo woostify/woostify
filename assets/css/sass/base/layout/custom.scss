@@ -18,7 +18,7 @@
 	.contact-info-detail{
 		display: inline-block;
 		flex-grow: 1;
-	
+
 		label{
 			font-size: 10px;
 			font-weight: 600;
@@ -41,7 +41,7 @@
 	.elementor-widget-wrap{
 		>.elementor-widget-image{
 			position: relative;
-			
+
 			&:hover{
 				.wp-caption .wp-caption-text{
 					bottom: 20px;
@@ -71,3 +71,7 @@
 	min-height: 76px;
 }
 
+/* Support plugin search */
+div#siq_searchIndexResult {
+    word-break: normal;
+}

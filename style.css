@@ -6221,6 +6221,11 @@ footer#colophon {
   min-height: 76px;
 }
 
+/* Support plugin search */
+div#siq_searchIndexResult {
+  word-break: normal;
+}
+
 .elementor-editor-active .elementor-widget-wp-widget-nav_menu .menu,
 .elementor-editor-active .elementor-widget-wp-widget-nav_menu .sub-menu,
 .elementor-editor-preview .elementor-widget-wp-widget-nav_menu .menu,
