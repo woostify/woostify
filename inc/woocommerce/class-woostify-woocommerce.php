@@ -129,6 +129,20 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// METABOXS.
 			add_action( 'add_meta_boxes', array( $this, 'woostify_add_product_metaboxes' ) );
 			add_action( 'save_post', array( $this, 'woostify_save_product_metaboxes' ) );
+
+			// Custom plugin.
+			add_action( 'woostify_mini_cart_item_after_price', array( $this, 'woostify_support_german_market_plugin' ) );
+		}
+
+		/**
+		 * Demo
+		 *
+		 * @param  object $product The product.
+		 */
+		public function woostify_support_german_market_plugin( $product ) {
+			if ( class_exists( 'WGM_Tax' ) ) {
+				echo wp_kses_post( WGM_Tax::text_including_tax( $product ) );
+			}
 		}
 
 		/**

@@ -101,11 +101,6 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 		$stock_quantity = $product->get_stock_quantity();
 		$product_price  = WC()->cart->get_product_price( $product );
 
-		if ( class_exists( 'BM_Live_Price' ) ) {
-			$live_price    = new BM_Live_Price();
-			$product_price = $live_price->single_product_price( $product->get_price(), $product );
-		}
-
 		ob_start();
 		?>
 		<span class="mini-cart-product-infor">
@@ -276,11 +271,6 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 						$product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 						$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 						$stock_quantity    = $_product->get_stock_quantity();
-
-						if ( class_exists( 'BM_Live_Price' ) ) {
-							$live_price    = new BM_Live_Price();
-							$product_price = $live_price->single_product_price( $_product->get_price(), $_product );
-						}
 						?>
 						<li class="woocommerce-mini-cart-item mini_cart_item <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>">
 							<?php
@@ -316,6 +306,8 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 								</span>
 
 								<span class="mini-cart-product-price"><?php echo wp_kses_post( $product_price ); ?></span>
+
+								<?php do_action( 'woostify_mini_cart_item_after_price', $_product ); ?>
 							</span>
 						</li>
 						<?php
