@@ -3728,7 +3728,7 @@ video {
 .screen-reader-text,
 .sr-only,
 .screen-reader-response,
-.post .updated:not(.published),
+article[id*="post-"] .updated:not(.published),
 .single-post .post-navigation {
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important;
@@ -5782,7 +5782,7 @@ footer#colophon {
   position: absolute;
   right: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 5;
   border: 0;
 }
 
@@ -6250,7 +6250,7 @@ header.elementor-element {
   width: 100%;
 }
 
-.home.blog .site-main .post:first-child:last-child {
+.home.blog .site-main > article:first-child:last-child {
   border-bottom: 0;
 }
 
@@ -6260,58 +6260,58 @@ header.elementor-element {
   margin-top: 0;
 }
 
-.site-main .post {
+.site-main > article {
   border-bottom: 1px solid #e8e8e8;
   padding-bottom: 74px;
 }
 
-.site-main .post + .post {
+.site-main > article + article {
   margin-top: 80px;
 }
 
-.post .post-cover-image {
+article[id*="post-"] .post-cover-image {
   margin-bottom: 35px;
 }
 
-.post .post-cover-image a {
+article[id*="post-"] .post-cover-image a {
   display: inline-block;
 }
 
-.post .post-cover-image img {
+article[id*="post-"] .post-cover-image img {
   object-fit: cover;
 }
 
-.post .entry-header-item {
+article[id*="post-"] .entry-header-item {
   margin-bottom: 15px;
 }
 
-.post .entry-meta .post-meta-item {
+article[id*="post-"] .entry-meta .post-meta-item {
   margin: 0 5px;
 }
 
-.post .entry-meta .post-meta-item:first-child {
+article[id*="post-"] .entry-meta .post-meta-item:first-child {
   margin-left: 0;
 }
 
-.post .entry-meta .post-meta-item:last-child {
+article[id*="post-"] .entry-meta .post-meta-item:last-child {
   margin-right: 0;
 }
 
-.post .entry-meta .post-meta-separator {
+article[id*="post-"] .entry-meta .post-meta-separator {
   font-size: 20px;
   position: relative;
   top: -3px;
 }
 
-.post .entry-meta .post-meta-separator:last-child {
+article[id*="post-"] .entry-meta .post-meta-separator:last-child {
   display: none;
 }
 
-.post .entry-content {
+article[id*="post-"] .entry-content {
   margin-top: 30px;
 }
 
-.post .post-read-more {
+article[id*="post-"] .post-read-more {
   font-weight: 600;
   margin-top: 20px;
   clear: both;
@@ -6359,12 +6359,12 @@ header.elementor-element {
   }
 }
 
-.single-post .site-main .post {
+.single-post .site-main > article {
   border-bottom: 0;
   padding-bottom: 0;
 }
 
-.single-post .site-main .post .entry-title {
+.single-post .site-main > article .entry-title {
   font-size: 24px;
 }
 
@@ -6667,7 +6667,7 @@ header.elementor-element {
   flex-wrap: wrap;
 }
 
-.blog-layout-grid .site-main .post {
+.blog-layout-grid .site-main > article {
   margin-bottom: 75px;
   padding-bottom: 0;
   border-bottom: 0;
@@ -6676,18 +6676,18 @@ header.elementor-element {
 }
 
 @media (min-width: 600px) {
-  .blog-layout-grid .site-main .post {
+  .blog-layout-grid .site-main > article {
     flex-basis: calc( ( 100%  - 30px ) / 2);
   }
 }
 
 @media (min-width: 992px) {
-  .blog-layout-grid .site-main .post {
+  .blog-layout-grid .site-main > article {
     flex-basis: calc( ( 100%  - 60px ) / 3);
   }
 }
 
-.blog-layout-grid .site-main .post + .post {
+.blog-layout-grid .site-main > article + article {
   margin-top: 0;
 }
 
@@ -6720,7 +6720,7 @@ header.elementor-element {
 
 /* Grid Standard */
 @media (min-width: 768px) {
-  .blog-layout-standard .site-main .post {
+  .blog-layout-standard .site-main > article {
     display: flex;
   }
   .blog-layout-standard .site-main .entry-image-link {
@@ -6745,16 +6745,16 @@ header.elementor-element {
 
 /* Grid Zigzag */
 @media (min-width: 992px) {
-  .blog-layout-zigzag .site-main .post {
+  .blog-layout-zigzag .site-main > article {
     display: flex;
   }
-  .blog-layout-zigzag .site-main .post:nth-child(even) .loop-post-inner {
+  .blog-layout-zigzag .site-main > article:nth-child(even) .loop-post-inner {
     order: 1;
   }
-  .blog-layout-zigzag .site-main .post:nth-child(even) .entry-image-link {
+  .blog-layout-zigzag .site-main > article:nth-child(even) .entry-image-link {
     order: 2;
   }
-  .blog-layout-zigzag .site-main .post:nth-child(even) .entry-image-link {
+  .blog-layout-zigzag .site-main > article:nth-child(even) .entry-image-link {
     margin-right: 0;
     margin-left: 30px;
   }

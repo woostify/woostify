@@ -863,11 +863,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 
 		// Metabox option.
 		if ( 'default' !== $metabox ) {
-			if ( 'enabled' === $metabox ) {
-				$page_header = true;
-			} else {
-				$page_header = false;
-			}
+			$page_header = 'enabled' === $metabox ? true : false;
 		}
 
 		// Hide default page header on Multi step checkout.
@@ -1067,10 +1063,6 @@ if ( ! function_exists( 'woostify_get_post_structure' ) ) {
 	 * @param boolean $echo        Echo.
 	 */
 	function woostify_get_post_structure( $option_name, $echo = true ) {
-		if ( ! is_search() && ! woostify_is_blog() ) {
-			return;
-		}
-
 		$output    = '';
 		$options   = woostify_options( false );
 		$meta_data = $options[ $option_name ];
@@ -1115,10 +1107,6 @@ if ( ! function_exists( 'woostify_get_post_meta' ) ) {
 	 * @param boolean $echo        Echo.
 	 */
 	function woostify_get_post_meta( $option_name, $echo = true ) {
-		if ( ! is_search() && ! woostify_is_blog() ) {
-			return;
-		}
-
 		$output    = '';
 		$options   = woostify_options( false );
 		$meta_data = $options[ $option_name ];
