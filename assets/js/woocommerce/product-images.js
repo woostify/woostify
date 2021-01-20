@@ -236,13 +236,21 @@ document.addEventListener(
 				var productThumbs = document.createElement( 'div' );
 
 				productThumbs.setAttribute( 'id', 'product-thumbnail-images' );
-				document.querySelector( '.product-thumbnail-images' ).appendChild( productThumbs );
-				document.querySelector( '.product-gallery' ).classList.add( 'has-product-thumbnails' );
+				if ( document.querySelector( '.product-thumbnail-images' ) ) {
+					document.querySelector( '.product-thumbnail-images' ).appendChild( productThumbs );
+				}
+				if ( document.querySelector( '.product-gallery' ) ) {
+					document.querySelector( '.product-gallery' ).classList.add( 'has-product-thumbnails' );
+				}
 			}
 
 			// Append new markup html.
-			document.getElementById( 'product-images' ).innerHTML           = images;
-			document.getElementById( 'product-thumbnail-images' ).innerHTML = thumbnails;
+			if ( document.getElementById( 'product-images' ) ) {
+				document.getElementById( 'product-images' ).innerHTML = images;
+			}
+			if ( document.getElementById( 'product-thumbnail-images' ) ) {
+				document.getElementById( 'product-thumbnail-images' ).innerHTML = thumbnails;
+			}
 
 			// Rebuild new slider.
 			if ( imageCarousel && imageCarousel.rebuild ) {
