@@ -1,7 +1,7 @@
 .home{
 	&.blog{
 		.site-main{
-			>article{
+			.post-loop {
 				&:first-child:last-child{
 					border-bottom: 0;
 				}
@@ -17,16 +17,16 @@
 }
 
 .site-main{
-    >article{
+    .post-loop {
         border-bottom: 1px solid #e8e8e8;
         padding-bottom: 74px;
-        +article{
+        +.post-loop{
             margin-top: 80px;
         }
     }
 }
 
-article[id*="post-"] {
+.post-loop {
     .updated:not(.published){
         @extend .sr-only;
     }
