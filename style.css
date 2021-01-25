@@ -10338,7 +10338,6 @@ header.elementor-element {
   display: flex;
   padding-right: 10px;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .variation {
