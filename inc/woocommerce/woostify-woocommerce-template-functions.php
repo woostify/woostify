@@ -978,6 +978,7 @@ if ( ! function_exists( 'woostify_multi_checkout_first_wrapper_start' ) ) {
 		?>
 		<div class="multi-step-checkout-content active" data-step="first">
 		<?php
+		do_action( 'woostify_multi_step_checkout_first' );
 	}
 }
 
@@ -1023,6 +1024,8 @@ if ( ! function_exists( 'woostify_multi_checkout_second' ) ) {
 					<span class="review-information-link"><?php esc_html_e( 'Change', 'woostify' ); ?></span>
 				</div>
 			</div>
+
+			<?php do_action( 'woostify_multi_step_checkout_second' ); ?>
 		</div>
 		<?php
 	}
@@ -1063,6 +1066,8 @@ if ( ! function_exists( 'woostify_multi_checkout_third' ) ) {
 					<span class="review-information-link"><?php esc_html_e( 'Change', 'woostify' ); ?></span>
 				</div>
 			</div>
+
+			<?php do_action( 'woostify_multi_step_checkout_third' ); ?>
 		</div>
 		<?php
 	}
@@ -1076,11 +1081,14 @@ if ( ! function_exists( 'woostify_multi_checkout_button_action' ) ) {
 		if ( ! woostify_is_multi_checkout() ) {
 			return;
 		}
+
+		$label       = esc_html__( 'Place Order', 'woostify' );
+		$place_order = apply_filters( 'woostify_checkout_order_button', '<button type="submit" class="multi-step-checkout-button button" name="woocommerce_checkout_place_order" id="place_order" data-value="' . $label . '">' . $label . '</button>' );
 		?>
 			<div class="multi-step-checkout-button-wrapper">
 				<span class="multi-step-checkout-button ti-angle-left" data-action="back"><?php esc_html_e( 'Back', 'woostify' ); ?></span>
 				<span class="multi-step-checkout-button button" data-action="continue" data-continue="<?php esc_attr_e( 'Continue to', 'woostify' ); ?>"><?php esc_html_e( 'Continue to Delivery', 'woostify' ); ?></span>
-				<span class="multi-step-checkout-button button" data-action="place_order"><?php esc_html_e( 'Place Order', 'woostify' ); ?></span>
+				<?php echo wp_kses_post( $place_order ); ?>
 			</div>
 		<?php
 	}

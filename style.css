@@ -10280,10 +10280,6 @@ header.elementor-element {
   margin-top: 30px;
 }
 
-.has-multi-step-checkout .place-order {
-  display: none;
-}
-
 .has-multi-step-checkout #order_review {
   margin-bottom: 50px;
   background-color: rgba(0, 0, 0, 0);
@@ -10324,10 +10320,6 @@ header.elementor-element {
 
 .has-multi-step-checkout #order_review .woocommerce-shipping-totals.shipping .shipping_method:checked + label {
   display: block;
-}
-
-.has-multi-step-checkout #order_review .wc_payment_methods {
-  display: none;
 }
 
 .has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table {
@@ -10549,7 +10541,7 @@ header.elementor-element {
   display: none;
 }
 
-.has-multi-step-checkout .multi-step-checkout-wrapper:not(.last) [data-action="place_order"] {
+.has-multi-step-checkout .multi-step-checkout-wrapper:not(.last) #place_order {
   display: none;
 }
 
@@ -10626,6 +10618,14 @@ header.elementor-element {
   border: 1px solid #d9d9d9;
   margin-top: 30px;
   padding: 15px;
+}
+
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .woocommerce-terms-and-conditions-wrapper .woocommerce-invalid-required-field {
+  color: red;
+}
+
+.has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .woocommerce-terms-and-conditions-wrapper .woocommerce-invalid-required-field * {
+  color: inherit;
 }
 
 .has-multi-step-checkout .multi-step-checkout-wrapper .multi-step-checkout-content .woocommerce-terms-and-conditions-wrapper p:last-child {
@@ -10755,8 +10755,16 @@ header.elementor-element {
   font-size: 0.8em;
 }
 
-.has-multi-step-checkout .multi-step-checkout-button[data-action="continue"], .has-multi-step-checkout .multi-step-checkout-button[data-action="place_order"] {
+.has-multi-step-checkout .multi-step-checkout-button[data-action="continue"], .has-multi-step-checkout .multi-step-checkout-button#place_order {
   float: right;
+}
+
+.has-multi-step-checkout .multi-step-checkout-button#place_order {
+  width: auto;
+  font-weight: normal;
+  min-height: auto;
+  margin-top: 0;
+  text-transform: none;
 }
 
 .has-multi-step-checkout .expanded-order-review #order_review {

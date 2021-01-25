@@ -55,8 +55,6 @@ var woostifyMultiStepCheckout = function() {
 	var toggleCoupon   = document.querySelector( '.woocommerce-form-coupon-toggle' ),
 		shipping       = checkout.querySelector( '#shipping_method' ), // Shipping methods.
 		cartSubtotal   = checkout.querySelector( '.cart-subtotal' ), // Cart subtotal.
-		payment        = checkout.querySelector( '.wc_payment_methods' ), // Payment methods.
-		termConditions = checkout.querySelector( '.woocommerce-terms-and-conditions-wrapper' ), // Terms and conditions.
 		wrapperContent = checkout.querySelector( '.multi-step-checkout-wrapper' ), // Wrapper content.
 		firstStep      = checkout.querySelector( '.multi-step-checkout-content[data-step="first"]' ), // First step.
 		secondStep     = checkout.querySelector( '.multi-step-checkout-content[data-step="second"]' ), // Second step.
@@ -75,11 +73,7 @@ var woostifyMultiStepCheckout = function() {
 					var buttonAction  = button.getAttribute( 'data-action' ),
 						currentActive = box.querySelector( '.multi-step-item.active' ),
 						prevStep      = currentActive ? currentActive.previousElementSibling : false,
-						nextStep      = currentActive ? currentActive.nextElementSibling : false,
-						// Term copy.
-						termConditionsCopy = checkout.querySelector( '.multi-step-checkout-content .woocommerce-terms-and-conditions-wrapper' ),
-						terms              = termConditionsCopy ? termConditionsCopy.querySelector( '.multi-step-checkout-content [name="terms"]' ) : false,
-						termsChecked       = terms ? terms.checked : true;
+						nextStep      = currentActive ? currentActive.nextElementSibling : false;
 
 					if ( 'back' == buttonAction && prevStep ) {
 						prevStep.click();
@@ -87,21 +81,6 @@ var woostifyMultiStepCheckout = function() {
 
 					if ( 'continue' == buttonAction && nextStep ) {
 						nextStep.click();
-					}
-
-					if ( 'place_order' == buttonAction ) {
-						if ( termConditionsCopy ) {
-							if ( ! termsChecked ) {
-								termConditionsCopy.classList.add( 'required-item' );
-								return;
-							} else {
-								termConditionsCopy.classList.remove( 'required-item' );
-							}
-						}
-
-						if ( document.getElementById( 'place_order' ) ) {
-							document.getElementById( 'place_order' ).click();
-						}
 					}
 
 					// Scroll to top.
@@ -180,39 +159,6 @@ var woostifyMultiStepCheckout = function() {
 		}
 	}
 
-	// Payment methods.
-	if ( payment && lastStep ) {
-		var paymentContent = '<ul class="wc_payment_methods payment_methods methods">' + payment.innerHTML + '</ul>';
-		lastStep.insertAdjacentHTML( 'beforeend', paymentContent );
-
-		// Trigger payment method change.
-		var paymentMethods = document.querySelectorAll( '.multi-step-checkout-content .wc_payment_methods [name="payment_method"]' );
-		if ( paymentMethods.length ) {
-			paymentMethods.forEach(
-				function( pm ) {
-					var placeOrder        = document.querySelector( '.multi-step-checkout-button[data-action="place_order"]' ),
-						defaultButtonText = placeOrder.innerHTML;
-
-					pm.onclick = function() {
-						var buttonText = pm.getAttribute( 'data-order_button_text' );
-						if ( ! placeOrder || ! buttonText ) {
-							placeOrder.innerHTML = defaultButtonText;
-							return;
-						}
-
-						placeOrder.innerHTML = buttonText;
-					}
-				}
-			);
-		}
-	}
-
-	// Terms and conditions.
-	if ( termConditions && lastStep ) {
-		var termsHtml = '<div class="woocommerce-terms-and-conditions-wrapper">' + termConditions.innerHTML + '</div>';
-		lastStep.insertAdjacentHTML( 'beforeend', termsHtml );
-	}
-
 	// Validate input.
 	var validateInput = function( param ) {
 		var fields = ( arguments.length > 0 && undefined !== arguments[0] ) ? arguments[0] : [];
@@ -251,8 +197,6 @@ var woostifyMultiStepCheckout = function() {
 				if ( ! input ) {
 					return;
 				}
-
-				// checkInput( input, field ); Yes or no.
 
 				input.addEventListener(
 					'input',
@@ -373,19 +317,6 @@ var woostifyMultiStepCheckout = function() {
 					sib.forEach(
 						function( e ) {
 							e.classList.remove( 'active' );
-						}
-					);
-				}
-
-				var termConditionsCopy = checkout.querySelector( '.multi-step-checkout-content .woocommerce-terms-and-conditions-wrapper' ),
-					terms              = termConditionsCopy ? termConditionsCopy.querySelector( '.multi-step-checkout-content [name="terms"]' ) : false;
-				if ( terms ) {
-					terms.addEventListener(
-						'change',
-						function() {
-							if ( this.checked ) {
-								termConditionsCopy.classList.remove( 'required-item' );
-							}
 						}
 					);
 				}
@@ -529,16 +460,6 @@ var woostifyMultiStepCheckout = function() {
 		}
 	);
 
-	// Remove default WC payment mothods.
-	var removeDefaultPayment = function() {
-		var paymentPro = document.querySelector( '.woocommerce-checkout-payment .wc_payment_methods' );
-		if ( ! paymentPro ) {
-			return;
-		}
-
-		paymentPro.remove();
-	}
-
 	// Shipping placeholder.
 	var resetCartTotal = function() {
 		if ( ! cartSubtotal ) {
@@ -566,9 +487,6 @@ var woostifyMultiStepCheckout = function() {
 		} else if ( orderTotalPrice ) {
 			orderTotalPrice.innerHTML = subTotalPrice;
 		}
-
-		// Remove default WC payment.
-		removeDefaultPayment();
 
 		jQuery( document.body ).on(
 			'updated_checkout',
@@ -598,9 +516,6 @@ var woostifyMultiStepCheckout = function() {
 
 					window.updateOrderState = true;
 				}
-
-				// Remove default WC payment.
-				removeDefaultPayment();
 			}
 		);
 	}

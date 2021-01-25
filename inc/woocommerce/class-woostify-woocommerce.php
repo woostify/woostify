@@ -391,16 +391,34 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Multi step checkout. Replace default Page header.
 			$is_checkout = is_checkout() && ! is_wc_endpoint_url( 'order-received' ); // Is Checkout page only, not Thank you page.
+
+			// Remove default Place Order button.
+			if ( $options['checkout_multi_step'] ) {
+				add_filter( 'woocommerce_order_button_html', '__return_empty_string' );
+			}
+
 			if ( $is_checkout && $options['checkout_multi_step'] && $multi_step_checkout ) {
+				// Remove default woocommerce template.
+				remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
+				remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_terms_and_conditions_page_content', 30 );
+				remove_action( 'woocommerce_checkout_before_customer_details', 'wc_get_pay_buttons', 30 );
+
+				// Theme multi step.
 				add_action( 'woostify_after_header', 'woostify_multi_step_checkout', 10 );
 
 				add_action( 'woocommerce_checkout_before_customer_details', 'woostify_multi_checkout_wrapper_start', 10 ); // Wrapper start.
 
-				add_action( 'woocommerce_checkout_before_customer_details', 'woostify_multi_checkout_first_wrapper_start', 20 ); // First step wrapper start.
-				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_first_wrapper_end', 10 ); // First step wrapper end.
+				add_action( 'woocommerce_checkout_before_customer_details', 'woostify_multi_checkout_first_wrapper_start', 20 ); // First step.
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_first_wrapper_end', 10 );
 
-				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_second', 20 ); // Second step.
-				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_third', 30 ); // Third step.
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_second', 20 ); // Second.
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_third', 30 ); // Third.
+
+				// Payment content, move to step 3 of multi step.
+				add_action( 'woostify_multi_step_checkout_third', 'woocommerce_checkout_payment', 10 );
+				add_action( 'woostify_multi_step_checkout_third', 'wc_terms_and_conditions_page_content', 30 );
+				add_action( 'woostify_multi_step_checkout_third', 'wc_get_pay_buttons', 40 );
+
 				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_button_action', 40 ); // Button action.
 
 				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_wrapper_end', 100 ); // Wrapper end.

@@ -454,10 +454,6 @@
 
 // Multi step checkout
 .has-multi-step-checkout {
-	.place-order {
-		display: none;
-	}
-
 	#order_review {
 		margin-bottom: 50px;
 
@@ -506,10 +502,6 @@
 					}
 				}
 			}
-		}
-
-		.wc_payment_methods {
-			display: none;
 		}
 
 		.woocommerce-checkout-review-order-table {
@@ -765,7 +757,7 @@
 		}
 
 		&:not(.last) {
-			[data-action="place_order"] {
+			#place_order {
 				display: none;
 			}
 		}
@@ -856,6 +848,14 @@
 				border: 1px solid #d9d9d9;
 				margin-top: 30px;
 				padding: 15px;
+
+				.woocommerce-invalid-required-field {
+					color: red;
+
+					* {
+						color: inherit;
+					}
+				}
 
 				p {
 					&:last-child {
@@ -994,8 +994,16 @@
 		}
 
 		&[data-action="continue"],
-		&[data-action="place_order"] {
+		&#place_order {
 			float: right;
+		}
+
+		&#place_order {
+			width: auto;
+			font-weight: normal;
+			min-height: auto;
+			margin-top: 0;
+			text-transform: none;
 		}
 	}
 
