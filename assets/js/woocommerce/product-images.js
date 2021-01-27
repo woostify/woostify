@@ -228,8 +228,12 @@ document.addEventListener(
 			}
 
 			// Destroy current slider.
-			( imageCarousel && imageCarousel.destroy ) ? imageCarousel.destroy() : false;
-			( thumbCarousel && thumbCarousel.destroy ) ? thumbCarousel.destroy() : false;
+			if ( imageCarousel && imageCarousel.destroy ) {
+				imageCarousel.destroy();
+			}
+			if ( thumbCarousel && thumbCarousel.destroy ) {
+				thumbCarousel.destroy();
+			}
 
 			// If not have #product-thumbnail-images, create it.
 			if ( ! document.getElementById( 'product-thumbnail-images' ) ) {
@@ -253,11 +257,15 @@ document.addEventListener(
 			}
 
 			// Rebuild new slider.
-			if ( imageCarousel && imageCarousel.rebuild ) {
+			if ( 'undefined' === typeof( imageCarousel ) ) {
+				imageCarousel = tns( options );
+			} else if ( imageCarousel.rebuild ) {
 				imageCarousel.rebuild();
 			}
 
-			if ( thumbCarousel && thumbCarousel.rebuild ) {
+			if ( 'undefined' === typeof( thumbCarousel ) ) {
+				thumbCarousel = tns( thumbOptions );
+			} else if ( thumbCarousel.rebuild ) {
 				thumbCarousel.rebuild();
 			}
 
