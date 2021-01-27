@@ -515,7 +515,7 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 					if ( $options['shop_single_stock_label'] ) {
 						?>
 							<span class="woostify-single-product-stock-label">
-								<?php echo esc_html( sprintf( /* translators: %s stock quantity */ __( 'Hurry! only %s left in stock.', 'woostify' ), $stock_quantity ) ); ?>
+								<?php echo esc_html( sprintf( /* translators: %s stock quantity */ apply_filters( 'woostify_stock_message', __( 'Hurry! only %s left in stock.', 'woostify' ) ), $stock_quantity ) ); ?>
 							</span>
 						<?php
 					}
