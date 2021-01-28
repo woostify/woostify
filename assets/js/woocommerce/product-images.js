@@ -236,7 +236,7 @@ document.addEventListener(
 			}
 
 			// If not have #product-thumbnail-images, create it.
-			if ( ! document.getElementById( 'product-thumbnail-images' ) ) {
+			if ( thumbnails && ! document.getElementById( 'product-thumbnail-images' ) ) {
 				var productThumbs = document.createElement( 'div' );
 
 				productThumbs.setAttribute( 'id', 'product-thumbnail-images' );
@@ -249,24 +249,30 @@ document.addEventListener(
 			}
 
 			// Append new markup html.
-			if ( document.getElementById( 'product-images' ) ) {
+			if ( images && document.getElementById( 'product-images' ) ) {
 				document.getElementById( 'product-images' ).innerHTML = images;
 			}
-			if ( document.getElementById( 'product-thumbnail-images' ) ) {
+			if ( thumbnails && document.getElementById( 'product-thumbnail-images' ) ) {
 				document.getElementById( 'product-thumbnail-images' ).innerHTML = thumbnails;
 			}
 
 			// Rebuild new slider.
+			if ( ! thumbnails ) {
+				options.navContainer = false;
+			}
+
 			if ( 'undefined' === typeof( imageCarousel ) ) {
 				imageCarousel = tns( options );
 			} else if ( imageCarousel.rebuild ) {
 				imageCarousel.rebuild();
 			}
 
-			if ( 'undefined' === typeof( thumbCarousel ) ) {
-				thumbCarousel = tns( thumbOptions );
-			} else if ( thumbCarousel.rebuild ) {
-				thumbCarousel.rebuild();
+			if ( thumbnails ) {
+				if ( 'undefined' === typeof( thumbCarousel ) ) {
+					thumbCarousel = tns( thumbOptions );
+				} else if ( thumbCarousel.rebuild ) {
+					thumbCarousel.rebuild();
+				}
 			}
 
 			if ( reset && ! defaultThumbnails ) {
