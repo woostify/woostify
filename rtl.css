@@ -645,6 +645,10 @@
   }
 }
 
+.rtl #commentform #author {
+  margin-right: 0;
+}
+
 @media (min-width: 768px) {
   .rtl .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images {
     margin-left: 20px;
@@ -655,6 +659,12 @@
 @media (min-width: 992px) {
   .rtl.has-gallery-layout-vertical .product-page-container .onsale {
     left: 10px;
+  }
+  .rtl .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions .coupon {
+    float: right;
+  }
+  .rtl .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="coupon_code"] {
+    margin-right: 0;
   }
 }
 

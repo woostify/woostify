@@ -8220,6 +8220,10 @@ header.elementor-element {
   }
 }
 
+.single-product .comment-form-cookies-consent #wp-comment-cookies-consent {
+  width: auto;
+}
+
 .product-gallery {
   position: relative;
   float: left;

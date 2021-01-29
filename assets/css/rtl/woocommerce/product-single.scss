@@ -52,6 +52,11 @@
 			margin-left: 0;
 		}
 	}
+	#commentform {
+		#author {
+			margin-right: 0;
+		}
+	}
 
 	@media (min-width: 768px) {
 		.product-gallery {
@@ -73,6 +78,16 @@
 					left: 10px;
 				}
 			}
+		}
+		.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) {
+			.actions {
+				.coupon {
+					float: right;
+				}
+			}
+		}
+		.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="coupon_code"] {
+			margin-right: 0;
 		}
 	}
 }
