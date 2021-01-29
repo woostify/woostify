@@ -264,6 +264,10 @@ document.addEventListener(
 			if ( 'undefined' === typeof( imageCarousel ) ) {
 				imageCarousel = tns( options );
 			} else if ( imageCarousel.rebuild ) {
+				if ( document.querySelector( '.product-images' ) ) {
+					document.querySelector( '.product-images' ).innerHTML = '<div id="product-images">' + images + '</div>';;
+				}
+
 				imageCarousel.rebuild();
 			}
 
@@ -271,8 +275,20 @@ document.addEventListener(
 				if ( 'undefined' === typeof( thumbCarousel ) ) {
 					thumbCarousel = tns( thumbOptions );
 				} else if ( thumbCarousel.rebuild ) {
+					if ( document.querySelector( '.product-thumbnail-images' ) ) {
+						document.querySelector( '.product-thumbnail-images' ).innerHTML = '<div id="product-thumbnail-images">' + thumbnails + '</div>';
+					}
+
 					thumbCarousel.rebuild();
 				}
+			}
+
+			// Hide thumbnail slider if only thumbnail item.
+			var getThumbnailSlider = document.querySelectorAll( '.product-thumbnail-images .thumbnail-item' );
+			if ( getThumbnailSlider.length < 2 ) {
+				document.querySelector( '.product-thumbnail-images' ).classList.add( 'has-single-thumbnail-image' );
+			} else if ( document.querySelector( '.product-thumbnail-images' ) ) {
+				document.querySelector( '.product-thumbnail-images' ).classList.remove( 'has-single-thumbnail-image' );
 			}
 
 			if ( reset && ! defaultThumbnails ) {
@@ -283,6 +299,16 @@ document.addEventListener(
 					function( el ) {
 						el.parentNode.removeChild( el );
 					}
+				);
+			}
+
+			var mainViewSlider = document.getElementById( 'product-images-mw' );
+			if ( mainViewSlider ) {
+				setTimeout(
+					function() {
+						mainViewSlider.style.height = 'auto';
+					},
+					500
 				);
 			}
 

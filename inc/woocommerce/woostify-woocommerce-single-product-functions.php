@@ -71,7 +71,7 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 							<img src="<?php echo esc_url( $prev_image_src[0] ); ?>" alt="<?php echo esc_attr( $prev_image_alt ); ?>">
 						<?php } ?>
 						<div class="product-nav-item-inner">
-							<h4 class="product-nav-item-title"><?php echo esc_html( get_the_title( $prev_id ) ); ?></h4>
+							<h4 class="product-nav-item-title"><?php echo wp_kses_post( get_the_title( $prev_id ) ); ?></h4>
 							<span class="product-nav-item-price"><?php echo wp_kses_post( $prev_product->get_price_html() ); ?></span>
 						</div>
 					</div>
@@ -95,7 +95,7 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 					<div class="product-nav-item-content">
 						<a class="product-nav-item-link" href="<?php echo esc_url( get_permalink( $next_id ) ); ?>"></a>
 						<div class="product-nav-item-inner">
-							<h4 class="product-nav-item-title"><?php echo esc_html( get_the_title( $next_id ) ); ?></h4>
+							<h4 class="product-nav-item-title"><?php echo wp_kses_post( get_the_title( $next_id ) ); ?></h4>
 							<span class="product-nav-item-price"><?php echo wp_kses_post( $next_product->get_price_html() ); ?></span>
 						</div>
 						<?php if ( $next_image_src ) { ?>
@@ -205,9 +205,9 @@ if ( ! function_exists( 'woostify_available_variation_gallery' ) ) {
 	 * @param array  $variation Variations.
 	 */
 	function woostify_available_variation_gallery( $available_variation, $variation_product_object, $variation ) {
-		$product_id         = absint( $variation->get_parent_id() );
-		$variation_id       = absint( $variation->get_id() );
-		$variation_image_id = absint( $variation->get_image_id() );
+		$product_id         = $variation->get_parent_id();
+		$variation_id       = $variation->get_id();
+		$variation_image_id = $variation->get_image_id();
 		$product            = wc_get_product( $product_id );
 
 		if ( ! $product->is_type( 'variable' ) || ! class_exists( 'WC_Additional_Variation_Images' ) ) {
@@ -256,7 +256,8 @@ if ( ! function_exists( 'woostify_get_variation_gallery' ) ) {
 		$images = array();
 		foreach ( $variations as $k ) {
 			if ( ! isset( $k[ $key ] ) ) {
-				break;
+				$k[ $key ] = array();
+				array_push( $k[ $key ], $k['image'] );
 			}
 
 			array_unshift( $k[ $key ], array( 'variation_id' => $k['variation_id'] ) );

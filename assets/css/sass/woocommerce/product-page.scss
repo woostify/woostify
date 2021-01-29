@@ -181,6 +181,10 @@
 }
 
 .product-thumbnail-images {
+	&.has-single-thumbnail-image {
+		display: none;
+	}
+
 	.tns-controls {
 		[data-controls] {
 			width: 30px;

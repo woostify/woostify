@@ -8267,6 +8267,10 @@ header.elementor-element {
   }
 }
 
+.product-thumbnail-images.has-single-thumbnail-image {
+  display: none;
+}
+
 .product-thumbnail-images .tns-controls [data-controls] {
   width: 30px;
   height: 30px;
