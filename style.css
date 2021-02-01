@@ -6656,7 +6656,7 @@ header.elementor-element {
 }
 
 /* Grid Layout */
-.blog-layout-grid .site-main {
+.blog-layout-grid:not(.single-post) .site-main {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;

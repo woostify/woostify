@@ -29,9 +29,13 @@ $sidebar_width: percentage( 270 / 1170 );
 
 /* Grid Layout */
 .blog-layout-grid{
+	&:not(.single-post) {
+		.site-main {
+			@include flex( flex, space-between, flex-start );
+			flex-wrap: wrap;
+		}
+	}
 	.site-main{
-		@include flex( flex, space-between, flex-start );
-		flex-wrap: wrap;
 
 		.post-loop {
 			margin-bottom: 75px;
