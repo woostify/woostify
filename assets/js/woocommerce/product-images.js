@@ -228,32 +228,38 @@ document.addEventListener(
 			}
 
 			// Destroy current slider.
-			if ( imageCarousel && imageCarousel.destroy ) {
+			if ( imageCarousel && imageCarousel.version ) {
 				imageCarousel.destroy();
-			}
-			if ( thumbCarousel && thumbCarousel.destroy ) {
-				thumbCarousel.destroy();
-			}
 
-			// If not have #product-thumbnail-images, create it.
-			if ( thumbnails && ! document.getElementById( 'product-thumbnail-images' ) ) {
-				var productThumbs = document.createElement( 'div' );
-
-				productThumbs.setAttribute( 'id', 'product-thumbnail-images' );
-				if ( document.querySelector( '.product-thumbnail-images' ) ) {
-					document.querySelector( '.product-thumbnail-images' ).appendChild( productThumbs );
+				let propsImages = Object.getOwnPropertyNames( imageCarousel );
+				for ( let i = 0, j = propsImages.length; i < j; i++ ) {
+					delete imageCarousel[ propsImages[ i ] ];
 				}
-				if ( document.querySelector( '.product-gallery' ) ) {
-					document.querySelector( '.product-gallery' ).classList.add( 'has-product-thumbnails' );
+			}
+			if ( thumbCarousel && thumbCarousel.version ) {
+				thumbCarousel.destroy();
+
+				let propsThumbnail = Object.getOwnPropertyNames( thumbCarousel );
+				for ( let i = 0, j = propsThumbnail.length; i < j; i++ ) {
+					delete thumbCarousel[ propsThumbnail[ i ] ];
 				}
 			}
 
 			// Append new markup html.
-			if ( images && document.getElementById( 'product-images' ) ) {
-				document.getElementById( 'product-images' ).innerHTML = images;
+			if ( images && document.querySelector( '.product-images' ) ) {
+				document.querySelector( '.product-images' ).innerHTML = '<div id="product-images">' + images + '</div>';;
 			}
-			if ( thumbnails && document.getElementById( 'product-thumbnail-images' ) ) {
-				document.getElementById( 'product-thumbnail-images' ).innerHTML = thumbnails;
+
+			if ( document.querySelector( '.product-thumbnail-images' ) ) {
+				if ( thumbnails ) {
+					document.querySelector( '.product-thumbnail-images' ).innerHTML = '<div id="product-thumbnail-images">' + thumbnails + '</div>';
+
+					if ( document.querySelector( '.product-gallery' ) ) {
+						document.querySelector( '.product-gallery' ).classList.add( 'has-product-thumbnails' );
+					}
+				} else {
+					document.querySelector( '.product-thumbnail-images' ).innerHTML = '';
+				}
 			}
 
 			// Rebuild new slider.
@@ -261,26 +267,12 @@ document.addEventListener(
 				options.navContainer = false;
 			}
 
-			if ( 'undefined' === typeof( imageCarousel ) ) {
+			// Re-init slider.
+			if ( 'undefined' === typeof( imageCarousel ) || ! Object.getOwnPropertyNames( imageCarousel ).length ) {
 				imageCarousel = tns( options );
-			} else if ( imageCarousel.rebuild ) {
-				if ( document.querySelector( '.product-images' ) ) {
-					document.querySelector( '.product-images' ).innerHTML = '<div id="product-images">' + images + '</div>';;
-				}
-
-				imageCarousel.rebuild();
 			}
-
-			if ( thumbnails ) {
-				if ( 'undefined' === typeof( thumbCarousel ) ) {
-					thumbCarousel = tns( thumbOptions );
-				} else if ( thumbCarousel.rebuild ) {
-					if ( document.querySelector( '.product-thumbnail-images' ) ) {
-						document.querySelector( '.product-thumbnail-images' ).innerHTML = '<div id="product-thumbnail-images">' + thumbnails + '</div>';
-					}
-
-					thumbCarousel.rebuild();
-				}
+			if ( thumbnails && ( 'undefined' === typeof( thumbCarousel ) || ! Object.getOwnPropertyNames( thumbCarousel ).length ) ) {
+				thumbCarousel = tns( thumbOptions );
 			}
 
 			// Hide thumbnail slider if only thumbnail item.
@@ -291,17 +283,7 @@ document.addEventListener(
 				document.querySelector( '.product-thumbnail-images' ).classList.remove( 'has-single-thumbnail-image' );
 			}
 
-			if ( reset && ! defaultThumbnails ) {
-				( thumbCarousel && thumbCarousel.destroy ) ? thumbCarousel.destroy() : false;
-
-				// Remove all '#product-thumbnail-images' item.
-				document.querySelectorAll( '#product-thumbnail-images' ).forEach(
-					function( el ) {
-						el.parentNode.removeChild( el );
-					}
-				);
-			}
-
+			// Update main slider height.
 			var mainViewSlider = document.getElementById( 'product-images-mw' );
 			if ( mainViewSlider ) {
 				setTimeout(
