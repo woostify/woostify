@@ -275,6 +275,9 @@ if ( ! function_exists( 'woostify_global_for_vartiation_gallery' ) ) {
 	 * @param object $product The Product.
 	 */
 	function woostify_global_for_vartiation_gallery( $product ) {
+		if ( ! class_exists( 'WC_Additional_Variation_Images' ) ) {
+			return;
+		}
 
 		// Woostify Variation gallery.
 		wp_localize_script(
