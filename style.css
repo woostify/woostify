@@ -6667,7 +6667,7 @@ header.elementor-element {
   flex-wrap: wrap;
 }
 
-.blog-layout-grid .site-main .post-loop {
+.blog-layout-grid:not(.single-post) .site-main .post-loop {
   margin-bottom: 75px;
   padding-bottom: 0;
   border-bottom: 0;
@@ -6676,106 +6676,106 @@ header.elementor-element {
 }
 
 @media (min-width: 600px) {
-  .blog-layout-grid .site-main .post-loop {
+  .blog-layout-grid:not(.single-post) .site-main .post-loop {
     flex-basis: calc( ( 100%  - 30px ) / 2);
   }
 }
 
 @media (min-width: 992px) {
-  .blog-layout-grid .site-main .post-loop {
+  .blog-layout-grid:not(.single-post) .site-main .post-loop {
     flex-basis: calc( ( 100%  - 60px ) / 3);
   }
 }
 
-.blog-layout-grid .site-main .post-loop + .post-loop {
+.blog-layout-grid:not(.single-post) .site-main .post-loop + .post-loop {
   margin-top: 0;
 }
 
-.blog-layout-grid .site-main .entry-title {
+.blog-layout-grid:not(.single-post) .site-main .entry-title {
   font-size: 18px;
 }
 
-.blog-layout-grid .site-main .summary-text {
+.blog-layout-grid:not(.single-post) .site-main .summary-text {
   padding: 0 20px 20px 20px;
 }
 
-.blog-layout-grid .site-main .post-read-more {
+.blog-layout-grid:not(.single-post) .site-main .post-read-more {
   display: block;
   margin-top: 15px;
   font-weight: 700;
 }
 
-.blog-layout-grid .site-main .post-read-more a {
+.blog-layout-grid:not(.single-post) .site-main .post-read-more a {
   text-decoration: underline;
 }
 
-.blog-layout-grid .site-main .post-read-more a:hover {
+.blog-layout-grid:not(.single-post) .site-main .post-read-more a:hover {
   text-decoration: none;
 }
 
-.blog-layout-grid .site-main .post-navigation {
+.blog-layout-grid:not(.single-post) .site-main .post-navigation {
   flex: 0 0 100%;
   margin-top: 0;
 }
 
 /* Grid Standard */
 @media (min-width: 768px) {
-  .blog-layout-standard .site-main .post-loop {
+  .blog-layout-standard:not(.single-post) .site-main .post-loop {
     display: flex;
   }
-  .blog-layout-standard .site-main .entry-image-link {
+  .blog-layout-standard:not(.single-post) .site-main .entry-image-link {
     max-width: 300px;
     min-width: 300px;
     margin-right: 30px;
   }
-  .blog-layout-standard .site-main .loop-post-inner {
+  .blog-layout-standard:not(.single-post) .site-main .loop-post-inner {
     flex-grow: 1;
   }
 }
 
-.blog-layout-standard .site-main .entry-image-link {
+.blog-layout-standard:not(.single-post) .site-main .entry-image-link {
   display: block;
 }
 
 @media (max-width: 991px) {
-  .blog-layout-standard .site-main .entry-image-link {
+  .blog-layout-standard:not(.single-post) .site-main .entry-image-link {
     margin-bottom: 30px;
   }
 }
 
 /* Grid Zigzag */
 @media (min-width: 992px) {
-  .blog-layout-zigzag .site-main .post-loop {
+  .blog-layout-zigzag:not(.single-post) .site-main .post-loop {
     display: flex;
   }
-  .blog-layout-zigzag .site-main .post-loop:nth-child(even) .loop-post-inner {
+  .blog-layout-zigzag:not(.single-post) .site-main .post-loop:nth-child(even) .loop-post-inner {
     order: 1;
   }
-  .blog-layout-zigzag .site-main .post-loop:nth-child(even) .entry-image-link {
+  .blog-layout-zigzag:not(.single-post) .site-main .post-loop:nth-child(even) .entry-image-link {
     order: 2;
   }
-  .blog-layout-zigzag .site-main .post-loop:nth-child(even) .entry-image-link {
+  .blog-layout-zigzag:not(.single-post) .site-main .post-loop:nth-child(even) .entry-image-link {
     margin-right: 0;
     margin-left: 30px;
   }
-  .blog-layout-zigzag .site-main .entry-image-link {
+  .blog-layout-zigzag:not(.single-post) .site-main .entry-image-link {
     max-width: 300px;
     min-width: 300px;
     margin-right: 30px;
   }
 }
 
-.blog-layout-zigzag .site-main .entry-image-link {
+.blog-layout-zigzag:not(.single-post) .site-main .entry-image-link {
   display: block;
 }
 
 @media (max-width: 991px) {
-  .blog-layout-zigzag .site-main .entry-image-link {
+  .blog-layout-zigzag:not(.single-post) .site-main .entry-image-link {
     margin-bottom: 30px;
   }
 }
 
-.blog-layout-zigzag .site-main .loop-post-inner {
+.blog-layout-zigzag:not(.single-post) .site-main .loop-post-inner {
   flex-grow: 1;
 }
 
