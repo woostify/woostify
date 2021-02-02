@@ -351,7 +351,7 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 	 */
 	function woostify_woocommerce_cart_sidebar() {
 		// Not print Cart sidebar if Mini Cart Template	- Elementor Pro enable || Side Cart plugin install.
-		if ( 'yes' === get_option( 'elementor_use_mini_cart_template' ) || defined( 'XOO_WSC_PLUGIN_FILE' ) ) {
+		if ( ( defined( 'ELEMENTOR_PRO_VERSION' ) && 'yes' === get_option( 'elementor_use_mini_cart_template' ) ) || defined( 'XOO_WSC_PLUGIN_FILE' ) ) {
 			return;
 		}
 
