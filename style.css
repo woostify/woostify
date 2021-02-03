@@ -8317,6 +8317,7 @@ header.elementor-element {
 .product-thumbnail-images .thumbnail-item {
   cursor: pointer;
   position: relative;
+  max-width: 70px;
 }
 
 @media (max-width: 991px) {

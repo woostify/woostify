@@ -123,10 +123,8 @@ document.addEventListener(
 				gutter: 10,
 				nav: false,
 				controls: true,
+				items: 4,
 				responsive: {
-					0: {
-						items: 5
-					},
 					720: {
 						items: ( thumbItems > 7 ? 7 : thumbItems )
 					},

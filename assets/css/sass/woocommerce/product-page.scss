@@ -244,6 +244,7 @@
 	.thumbnail-item {
 		cursor: pointer;
 		position: relative;
+		max-width: 70px;
 
 		@media (max-width: $screen-md - 1) {
 			padding: 1px;
