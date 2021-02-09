@@ -9,6 +9,10 @@
 'use strict';
 
 function cartSidebarOpen() {
+	if ( document.body.classList.contains( 'no-cart-sidebar' ) ) {
+		return;
+	}
+
 	document.documentElement.classList.add( 'cart-sidebar-open' );
 }
 

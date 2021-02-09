@@ -800,6 +800,11 @@ if ( ! class_exists( 'Woostify' ) ) {
 				$classes[] = 'edited-by-divi-builder';
 			}
 
+			// Disable cart sidebar.
+			if ( defined( 'XOO_WSC_PLUGIN_FILE' ) ) {
+				$classes[] = 'no-cart-sidebar';
+			}
+
 			return array_filter( $classes );
 		}
 
