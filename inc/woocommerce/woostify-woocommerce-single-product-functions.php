@@ -151,6 +151,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_open' ) ) {
 		$gallery_id = ! empty( $product ) ? $product->get_gallery_image_ids() : array();
 		$classes[]  = $options['shop_single_gallery_layout'] . '-style';
 		$classes[]  = ! empty( $gallery_id ) ? 'has-product-thumbnails' : '';
+		$classes[]  = $options['shop_single_image_load'] ? 'has-loading-effect' : '';
 
 		// Global variation gallery.
 		woostify_global_for_vartiation_gallery( $product );
