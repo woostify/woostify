@@ -8,7 +8,6 @@
 
 // Use in product-variation.js.
 function easyZoomHandle() {
-
 	if ( window.matchMedia( '( max-width: 991px )' ).matches ) {
 		return;
 	}
@@ -19,22 +18,20 @@ function easyZoomHandle() {
 		return;
 	}
 
-	if ( 'undefined' === typeof( easyZoom ) ) {
-		return;
+	if ( jQuery().easyZoom ) {
+		var zoom = image.easyZoom(),
+			api  = zoom.data( 'easyZoom' );
+
+		api.teardown();
+		api._init();
 	}
-
-	var zoom = image.easyZoom(),
-		api  = zoom.data( 'easyZoom' );
-
-	api.teardown();
-	api._init();
 }
 
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
 		// Setup image zoom.
-		if ( window.matchMedia( '( min-width: 992px )' ).matches && 'undefined' !== typeof( easyZoom ) ) {
+		if ( window.matchMedia( '( min-width: 992px )' ).matches && jQuery().easyZoom ) {
 			jQuery( '.ez-zoom' ).easyZoom(
 				{
 					loadingNotice: ''
