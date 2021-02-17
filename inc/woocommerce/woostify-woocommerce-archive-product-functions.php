@@ -91,21 +91,13 @@ if ( ! function_exists( 'woostify_loop_product_image' ) ) {
 			return '';
 		}
 
-		$size       = 'woocommerce_thumbnail';
-		$img_id     = $product->get_image_id();
-		$img_alt    = woostify_image_alt( $img_id, esc_attr__( 'Product image', 'woostify' ) );
-		$img_origin = wp_get_attachment_image_src( $img_id, $size );
-
-		if ( ! $img_origin ) {
-			$img_ori = '';
-		} else {
-			$img_ori = $img_origin[0];
-		}
+		$size    = 'woocommerce_thumbnail';
+		$img_id  = $product->get_image_id();
+		$img_alt = woostify_image_alt( $img_id, esc_attr__( 'Product image', 'woostify' ) );
 
 		$image_attr = array(
-			'alt'      => $img_alt,
-			'data-src' => $img_ori,
-			'class'    => 'attachment-' . $size . ' size-' . $size . ' product-loop-image',
+			'alt'   => $img_alt,
+			'class' => 'attachment-' . $size . ' size-' . $size . ' product-loop-image',
 		);
 
 		echo $product->get_image( $size, $image_attr ); // phpcs:ignore
