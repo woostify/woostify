@@ -244,6 +244,7 @@
 	.thumbnail-item {
 		cursor: pointer;
 		position: relative;
+		max-width: 70px;
 
 		@media (max-width: $screen-md - 1) {
 			padding: 1px;
@@ -264,16 +265,40 @@
 // Spinner gallery slider
 .has-gallery-slider-layout {
 	.has-product-thumbnails {
+		&.has-loading-effect {
+			#product-images {
+				&:not(.tns-slider) {
+					.image-item {
+						&:first-of-type {
+							@extend .circle-loading;
+
+							img {
+								visibility: hidden;
+							}
+						}
+					}
+				}
+			}
+
+			#product-thumbnail-images {
+				&:not(.tns-slider) {
+					.thumbnail-item {
+						&:first-of-type {
+							@extend .circle-loading;
+
+							img {
+								visibility: hidden;
+							}
+						}
+					}
+				}
+			}
+		}
+
 		#product-images {
 			&:not(.tns-slider) {
 				.image-item {
 					&:first-of-type {
-						@extend .circle-loading;
-
-						img {
-							visibility: hidden;
-						}
-
 						~.image-item {
 							display: none;
 						}
@@ -286,12 +311,6 @@
 			&:not(.tns-slider) {
 				.thumbnail-item {
 					&:first-of-type {
-						@extend .circle-loading;
-
-						img {
-							visibility: hidden;
-						}
-
 						~.thumbnail-item {
 							display: none;
 						}

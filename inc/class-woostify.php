@@ -548,7 +548,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			if ( class_exists( 'woocommerce' ) && is_checkout() ) {
 				$wc_total = WC()->cart->get_totals();
-				$price    = (float) $wc_total['total'] - (float) $wc_total['discount_total'];
+				$price    = 'yes' === get_option( 'woocommerce_calc_taxes' ) ? ( (float) $wc_total['total'] - (float) $wc_total['total_tax'] ) : ( (float) $wc_total['total'] - (float) $wc_total['discount_total'] );
 
 				wp_localize_script(
 					'woostify-multi-step-checkout',
@@ -798,6 +798,11 @@ if ( ! class_exists( 'Woostify' ) ) {
 			// Detect page created by Divi builder.
 			if ( woostify_is_divi_page() ) {
 				$classes[] = 'edited-by-divi-builder';
+			}
+
+			// Disable cart sidebar.
+			if ( defined( 'XOO_WSC_PLUGIN_FILE' ) ) {
+				$classes[] = 'no-cart-sidebar';
 			}
 
 			return array_filter( $classes );

@@ -9,6 +9,10 @@
 'use strict';
 
 function cartSidebarOpen() {
+	if ( document.body.classList.contains( 'no-cart-sidebar' ) ) {
+		return;
+	}
+
 	document.documentElement.classList.add( 'cart-sidebar-open' );
 }
 
@@ -24,9 +28,10 @@ function eventCartSidebarClose() {
 
 // Event when click shopping bag button.
 function shoppingBag() {
-	var shoppingBag = document.getElementsByClassName( 'shopping-bag-button' );
+	var shoppingBag = document.getElementsByClassName( 'shopping-bag-button' ),
+		cartSidebar = document.getElementById( 'shop-cart-sidebar' );
 
-	if ( ! shoppingBag.length || document.body.classList.contains( 'woocommerce-cart' ) ) {
+	if ( ! shoppingBag.length || ! cartSidebar || document.body.classList.contains( 'woocommerce-cart' ) ) {
 		return;
 	}
 

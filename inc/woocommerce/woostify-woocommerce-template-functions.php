@@ -351,7 +351,7 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 	 */
 	function woostify_woocommerce_cart_sidebar() {
 		// Not print Cart sidebar if Mini Cart Template	- Elementor Pro enable || Side Cart plugin install.
-		if ( 'yes' === get_option( 'elementor_use_mini_cart_template' ) || defined( 'XOO_WSC_PLUGIN_FILE' ) ) {
+		if ( ( defined( 'ELEMENTOR_PRO_VERSION' ) && 'yes' === get_option( 'elementor_use_mini_cart_template' ) ) || defined( 'XOO_WSC_PLUGIN_FILE' ) ) {
 			return;
 		}
 
@@ -594,18 +594,17 @@ if ( ! function_exists( 'woostify_print_out_of_stock_label' ) ) {
 	 */
 	function woostify_print_out_of_stock_label() {
 		global $product;
-		$out_of_stock = get_post_meta( get_the_ID(), '_stock_status', true );
-		$options      = woostify_options( false );
 
-		if ( ! $out_of_stock || 'none' === $options['shop_page_out_of_stock_position'] ) {
+		$product_id   = $product->get_id();
+		$out_of_stock = get_post_meta( $product_id, '_stock_status', true );
+		$options      = woostify_options( false );
+		$product_type = WC_Product_Factory::get_product_type( $product_id );
+
+		if ( ! $out_of_stock || 'none' === $options['shop_page_out_of_stock_position'] || 'external' === $product_type || $product->backorders_allowed() ) {
 			return;
 		}
 
 		$is_square = $options['shop_page_out_of_stock_square'] ? 'is-square' : '';
-
-		if ( $product->backorders_allowed() ) {
-			return;
-		}
 
 		if ( 'outofstock' === $out_of_stock ) {
 			?>

@@ -151,6 +151,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_open' ) ) {
 		$gallery_id = ! empty( $product ) ? $product->get_gallery_image_ids() : array();
 		$classes[]  = $options['shop_single_gallery_layout'] . '-style';
 		$classes[]  = ! empty( $gallery_id ) ? 'has-product-thumbnails' : '';
+		$classes[]  = $options['shop_single_image_load'] ? 'has-loading-effect' : '';
 
 		// Global variation gallery.
 		woostify_global_for_vartiation_gallery( $product );
@@ -396,14 +397,14 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 				</div>
 
 				<?php
-				foreach ( $gallery_id as $key ) :
+				foreach ( $gallery_id as $key ) {
 					$g_thumb_src = wp_get_attachment_image_src( $key, 'woocommerce_gallery_thumbnail' );
 					$g_thumb_alt = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
 					?>
 					<div class="thumbnail-item">
 						<img src="<?php echo esc_url( $g_thumb_src[0] ); ?>" alt="<?php echo esc_attr( $g_thumb_alt ); ?>">
 					</div>
-				<?php endforeach; ?>
+				<?php } ?>
 			</div>
 			<?php } ?>
 		</div>

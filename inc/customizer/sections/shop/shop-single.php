@@ -249,6 +249,7 @@ $wp_customize->add_control(
 			'section'    => 'woostify_shop_single',
 			'dependency' => array(
 				'woostify_setting[shop_single_gallery_layout]',
+				'woostify_setting[shop_single_image_load]',
 				'woostify_setting[shop_single_image_zoom]',
 				'woostify_setting[shop_single_image_lightbox]',
 				'woostify_setting[shop_single_product_sticky_top_space]',
@@ -285,6 +286,27 @@ $wp_customize->add_control(
 					'grid'       => WOOSTIFY_THEME_URI . 'assets/images/customizer/product-images/grid.jpg',
 				)
 			),
+		)
+	)
+);
+
+// Loading effect.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_image_load]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_single_image_load'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_image_load]',
+		array(
+			'label'    => __( 'Image Loading Effect', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_image_load]',
 		)
 	)
 );

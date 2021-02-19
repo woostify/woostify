@@ -95,7 +95,8 @@ document.addEventListener(
 	'DOMContentLoaded',
 	function(){
 		var gallery           = document.querySelector( '.product-gallery' ),
-			productThumbnails = document.getElementById( 'product-thumbnail-images' );
+			productThumbnails = document.getElementById( 'product-thumbnail-images' ),
+			noSliderLayout    = gallery ? ( gallery.classList.contains( 'column-style' ) || gallery.classList.contains( 'grid-style' ) ) : false;
 
 		// Product images.
 		var imageCarousel,
@@ -123,10 +124,8 @@ document.addEventListener(
 				gutter: 10,
 				nav: false,
 				controls: true,
+				items: 4,
 				responsive: {
-					0: {
-						items: 5
-					},
 					720: {
 						items: ( thumbItems > 7 ? 7 : thumbItems )
 					},
@@ -268,19 +267,23 @@ document.addEventListener(
 			}
 
 			// Re-init slider.
-			if ( 'undefined' === typeof( imageCarousel ) || ! Object.getOwnPropertyNames( imageCarousel ).length ) {
-				imageCarousel = tns( options );
-			}
-			if ( thumbnails && ( 'undefined' === typeof( thumbCarousel ) || ! Object.getOwnPropertyNames( thumbCarousel ).length ) ) {
-				thumbCarousel = tns( thumbOptions );
+			if ( ! noSliderLayout ) {
+				if ( 'undefined' === typeof( imageCarousel ) || ! Object.getOwnPropertyNames( imageCarousel ).length ) {
+					imageCarousel = tns( options );
+				}
+				if ( thumbnails && ( 'undefined' === typeof( thumbCarousel ) || ! Object.getOwnPropertyNames( thumbCarousel ).length ) ) {
+					thumbCarousel = tns( thumbOptions );
+				}
 			}
 
 			// Hide thumbnail slider if only thumbnail item.
 			var getThumbnailSlider = document.querySelectorAll( '.product-thumbnail-images .thumbnail-item' );
-			if ( getThumbnailSlider.length < 2 ) {
-				document.querySelector( '.product-thumbnail-images' ).classList.add( 'has-single-thumbnail-image' );
-			} else if ( document.querySelector( '.product-thumbnail-images' ) ) {
-				document.querySelector( '.product-thumbnail-images' ).classList.remove( 'has-single-thumbnail-image' );
+			if ( document.querySelector( '.product-thumbnail-images' ) ) {
+				if ( getThumbnailSlider.length < 2 ) {
+					document.querySelector( '.product-thumbnail-images' ).classList.add( 'has-single-thumbnail-image' );
+				} else if ( document.querySelector( '.product-thumbnail-images' ) ) {
+					document.querySelector( '.product-thumbnail-images' ).classList.remove( 'has-single-thumbnail-image' );
+				}
 			}
 
 			// Update main slider height.
@@ -333,6 +336,10 @@ document.addEventListener(
 			jQuery( '.reset_variations' ).on(
 				'click',
 				function(){
+					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
+						updateGallery( woostify_default_gallery, true );
+					}
+
 					// Apply for slider layout.
 					if ( ! document.body.classList.contains( 'has-gallery-slider-layout' ) ) {
 						return;
@@ -349,10 +356,6 @@ document.addEventListener(
 					);
 
 					resetCarousel();
-
-					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
-						updateGallery( woostify_default_gallery, true );
-					}
 
 					if ( document.body.classList.contains( 'elementor-editor-active' ) || document.body.classList.contains( 'elementor-editor-preview' ) ) {
 						if ( ! document.getElementById( 'product-thumbnail-images' ) ) {

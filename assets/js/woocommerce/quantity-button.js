@@ -59,7 +59,7 @@ function customQuantity() {
 			var cart        = ele.closest( 'form.cart' ),
 				buttons     = ele.querySelectorAll( '.product-qty' ),
 				maxInput    = Number( input.getAttribute( 'max' ) ),
-				eventChange = new Event( 'change' );
+				eventChange = new Event( 'change', { bubbles: true } );
 
 			// Get product info.
 			var productInfo   = cart ? cart.querySelector( '.additional-product' ) : false,
@@ -135,7 +135,6 @@ function customQuantity() {
 
 					// Trigger event.
 					input.dispatchEvent( eventChange );
-					jQuery( input ).trigger( 'input' );
 
 					// Remove disable attribute on Update Cart button on Cart page.
 					var updateCart = document.querySelector( '[name=\'update_cart\']' );

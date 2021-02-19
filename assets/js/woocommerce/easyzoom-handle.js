@@ -8,7 +8,6 @@
 
 // Use in product-variation.js.
 function easyZoomHandle() {
-
 	if ( window.matchMedia( '( max-width: 991px )' ).matches ) {
 		return;
 	}
@@ -19,27 +18,39 @@ function easyZoomHandle() {
 		return;
 	}
 
-	var zoom = image.easyZoom(),
-		api  = zoom.data( 'easyZoom' );
+	if ( jQuery().easyZoom ) {
+		var zoom = image.easyZoom(),
+			api  = zoom.data( 'easyZoom' );
 
-	api.teardown();
-	api._init();
+		api.teardown();
+		api._init();
+	}
 }
 
-document.addEventListener( 'DOMContentLoaded', function() {
-	// Setup image zoom.
-	if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
-		jQuery( '.ez-zoom' ).easyZoom({
-			loadingNotice: ''
-		});
-	}
+document.addEventListener(
+	'DOMContentLoaded',
+	function() {
+		// Setup image zoom.
+		if ( window.matchMedia( '( min-width: 992px )' ).matches && jQuery().easyZoom ) {
+			jQuery( '.ez-zoom' ).easyZoom(
+				{
+					loadingNotice: ''
+				}
+			);
+		}
 
-	// For Elementor Preview Mode.
-	if ( 'function' === typeof( onElementorLoaded ) ) {
-		onElementorLoaded( function() {
-			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/global', function() {
-				easyZoomHandle();
-			} );
-		} );
+		// For Elementor Preview Mode.
+		if ( 'function' === typeof( onElementorLoaded ) ) {
+			onElementorLoaded(
+				function() {
+					window.elementorFrontend.hooks.addAction(
+						'frontend/element_ready/global',
+						function() {
+							easyZoomHandle();
+						}
+					);
+				}
+			);
+		}
 	}
-} );
+);

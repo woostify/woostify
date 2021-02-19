@@ -453,7 +453,7 @@ var woostifyMultiStepCheckout = function() {
 				if ( 0 == i ) {
 					resetCartTotal();
 					window.updateOrderState = false;
-				} else if ( 1 == i ) {
+				} else {
 					jQuery( document.body ).trigger( 'update_checkout' );
 				}
 			}
@@ -600,6 +600,10 @@ var woostifyTotalPriceMobile = function( e, data ) {
 		mobilePrice     = document.querySelector( '.woostify-before-order-review .woostify-before-order-review-total-price strong' ),
 		isFirstStep     = document.querySelector( '.multi-step-checkout-wrapper.first' ),
 		totalPriceValue = totalPrice ? totalPrice.querySelector( 'strong' ) : false;
+
+	if ( isFirstStep ) {
+		return;
+	}
 
 	// Update total price on step 1 after apply coupon.
 	if ( isFirstStep && totalPriceValue && woostify_multi_step_checkout.price ) {
