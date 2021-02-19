@@ -3303,6 +3303,10 @@ a.pswp__share--download:hover {
   border: 0;
 }
 
+.user-registration.ur-frontend-form .form-row {
+  float: none;
+}
+
 /* Lity - v2.4.0 - 2019-08-10
 * http://sorgalla.com/lity/
 * Copyright (c) 2015-2019 Jan Sorgalla; Licensed MIT */
