@@ -595,6 +595,10 @@ if ( ! function_exists( 'woostify_print_out_of_stock_label' ) ) {
 	function woostify_print_out_of_stock_label() {
 		global $product;
 
+		if ( ! $product ) {
+			return;
+		}
+
 		$product_id   = $product->get_id();
 		$out_of_stock = get_post_meta( $product_id, '_stock_status', true );
 		$options      = woostify_options( false );
