@@ -46,10 +46,8 @@ function productVariation( selector, form ) {
 		variationsForm,
 		function( event, variation ) {
 			// get image url form `variation`.
-			var fullSrc  = variation.image.full_src,
-				imgSrc   = variation.image.src,
-				thumbSrc = variation.image.thumb_src,
-				inStock  = variation.is_in_stock;
+			var imgSrc  = variation.image.src,
+				inStock = variation.is_in_stock;
 
 			// Support Product meta widget.
 			if ( productMetaSku ) {
@@ -61,11 +59,12 @@ function productVariation( selector, form ) {
 			}
 
 			// Photoswipe + zoom.
-			photoSwipe.prop( 'href', fullSrc );
+			photoSwipe.prop( 'href', variation.image.full_src );
 
 			// Change image src image.
 			if ( imageSrc !== imgSrc ) {
-				image.removeAttr( 'srcset' );
+				image.prop( 'srcset', variation.image.srcset );
+
 				imageWrapper.addClass( 'image-loading' );
 				image.prop( 'src', imgSrc )
 					.one(
@@ -76,10 +75,11 @@ function productVariation( selector, form ) {
 					);
 			} else {
 				image.prop( 'src', imgSrc );
+				image.prop( 'srcset', imageSrcset );
 			}
 
 			// Change thumb src image.
-			thumb.find( 'img' ).prop( 'src', thumbSrc );
+			thumb.find( 'img' ).prop( 'src', variation.image.thumb_src );
 
 			// Re-init zoom handle.
 			if ( 'function' === typeof( easyZoomHandle ) ) {
@@ -137,8 +137,16 @@ function productVariation( selector, form ) {
 				wpmGtinCodeWrapper.innerHTML = productMetaSkuDefault;
 			}
 
-			// Change src image.
-			image.prop( 'src', imageSrc );
+			// Reset src image.
+			imageWrapper.addClass( 'image-loading' );
+			image.prop( 'src', imageSrc )
+				.one(
+					'load',
+					function() {
+						imageWrapper.removeClass( 'image-loading' );
+					}
+				);
+
 			image.attr( 'srcset', imageSrcset );
 			thumb.find( 'img' ).prop( 'src', thumbSrc );
 
