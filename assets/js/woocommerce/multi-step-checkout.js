@@ -329,12 +329,16 @@ var woostifyMultiStepCheckout = function() {
 					_address2      = document.getElementById( 'billing_address_2' ),
 					_city          = document.getElementById( 'billing_city' ),
 					_countryField  = document.getElementById( 'billing_country' ),
+					_stateField    = document.getElementById( 'billing_state' ),
+					_state         = _stateField ? document.querySelector( '#billing_state option[value="' + _stateField.value + '"]' ) : false,
 					_country       = _countryField ? document.querySelector( '#billing_country option[value="' + _countryField.value + '"]' ) : false,
 					_shippingTo    = document.getElementById( 'ship-to-different-address-checkbox' ),
 					_shippingAdd1  = document.getElementById( 'shipping_address_1' ),
 					_shippingAdd2  = document.getElementById( 'shipping_address_2' ),
 					_city2         = document.getElementById( 'shipping_city' ),
+					_stateField2   = document.getElementById( 'shipping_state' ),
 					_countryField2 = document.getElementById( 'shipping_country' ),
+					_state2        = _stateField2 ? document.querySelector( '#shipping_country option[value="' + _stateField2.value + '"]' ) : false,
 					_country2      = _countryField2 ? document.querySelector( '#shipping_country option[value="' + _countryField2.value + '"]' ) : false,
 					_shippingField = document.querySelector( '#shipping_method .shipping_method[checked="checked"]' ) || document.querySelector( '#shipping_method .shipping_method[data-index="0"]' ),
 					_shippingID    = _shippingField ? _shippingField.id : false,
@@ -343,18 +347,20 @@ var woostifyMultiStepCheckout = function() {
 					_addressShip   = '',
 					_addressValue  = '';
 
-					_addressBill += _address1 ? _address1.value.trim() : '';
-					_addressBill += _address2 ? ' ' + _address2.value.trim() : '';
-					_addressBill += _city ? ' ' + _city.value.trim() : '';
-					_addressBill += _country ? ' ' + _country.innerText.trim() : '';
+					_addressBill += _address1.value ? _address1.value.trim() : '';
+					_addressBill += _address2.value ? ' ' + _address2.value.trim() : '';
+					_addressBill += _city.value ? ', ' + _city.value.trim() : '';
+					_addressBill += _state ? ', ' + _state.innerText.trim() : '';
+					_addressBill += _country ? ', ' + _country.innerText.trim() : '';
 
 					_addressValue = _addressBill;
 
 				if ( _shippingTo && _shippingTo.checked ) {
-					_addressShip += _shippingAdd1 ? _shippingAdd1.value.trim() : '';
-					_addressShip += _shippingAdd2 ? ' ' + _shippingAdd2.value.trim() : '';
-					_addressShip += _city2 ? ' ' + _city2.value.trim() : '';
-					_addressShip += _country2 ? ' ' + _country2.innerText.trim() : '';
+					_addressShip += _shippingAdd1.value ? _shippingAdd1.value.trim() : '';
+					_addressShip += _shippingAdd2.value ? ' ' + _shippingAdd2.value.trim() : '';
+					_addressShip += _city2.value ? ', ' + _city2.value.trim() : '';
+					_addressShip += _state2 ? ', ' + _state2.innerText.trim() : '';
+					_addressShip += _country2 ? ', ' + _country2.innerText.trim() : '';
 
 					_addressValue = _addressShip;
 				}
