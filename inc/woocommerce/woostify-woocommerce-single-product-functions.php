@@ -666,6 +666,7 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 
 			if (
 				$stock_count &&
+				$stock_count > 0 &&
 				( ( $product_qty + $in_cart_qty ) > $stock_count )
 			) {
 				$response['mess'] = sprintf( /* translators: stock quantity number */__( 'You cannot add that amount of this product to the cart. We have %1$s in stock and you already have %2$s in your cart', 'woostify' ), $stock_count, $in_cart_qty );
