@@ -68,7 +68,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'wp_ajax_nopriv_update_checkout', 'woostify_ajax_update_checkout' );
 			// Modified woocommerce breadcrumb.
 			add_filter( 'woocommerce_breadcrumb_defaults', 'woostify_modifided_woocommerce_breadcrumb' );
-			add_filter( 'woocommerce_get_breadcrumb', 'woostify_get_modifided_woocommerce_breadcrumb' );
 
 			// MY ACCOUNT PAGE.
 			add_filter( 'woocommerce_my_account_edit_address_title', '__return_empty_string' );

@@ -472,40 +472,6 @@ if ( ! function_exists( 'woostify_modifided_woocommerce_breadcrumb' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_get_modifided_woocommerce_breadcrumb' ) ) {
-	/**
-	 * Woocommerce crumbs
-	 *
-	 * @param      array $crumbs The woocommerce crumbs.
-	 */
-	function woostify_get_modifided_woocommerce_breadcrumb( $crumbs ) {
-		$home = array(
-			0 => apply_filters( 'woostify_breadcrumb_home', __( 'Home', 'woostify' ) ),
-			1 => get_home_url( '/' ),
-		);
-
-		$blog = array(
-			0 => apply_filters( 'woostify_breadcrumb_blog', __( 'Blog', 'woostify' ) ),
-			1 => get_permalink( get_option( 'page_for_posts' ) ),
-		);
-
-		$shop = array(
-			0 => apply_filters( 'woostify_breadcrumb_shop', __( 'Shop', 'woostify' ) ),
-			1 => woostify_is_woocommerce_activated() ? wc_get_page_permalink( 'shop' ) : '#',
-		);
-
-		if ( is_tag() || is_category() || is_singular( 'post' ) ) {
-			// For all blog page.
-			array_splice( $crumbs, 0, 1, array( $home, $blog ) );
-		} elseif ( woostify_is_woocommerce_activated() && ( is_product_tag() || is_singular( 'product' ) || is_product_category() ) ) {
-			// For all shop page.
-			array_splice( $crumbs, 0, 1, array( $home, $shop ) );
-		}
-
-		return $crumbs;
-	}
-}
-
 if ( ! function_exists( 'woostify_breadcrumb_for_product_page' ) ) {
 	/**
 	 * Add breadcrumb for Product page
