@@ -15,18 +15,23 @@
  * @param      string form      The form.
  */
 function productVariation( selector, form ) {
-	var gallery        = jQuery( selector ),
-		variationsForm = form ? form : 'form.variations_form',
-		imageWrapper   = gallery.find( '.image-item:eq(0)' ),
-		image          = imageWrapper.find( 'img' ),
-		imageSrc       = image.prop( 'src' ),
-		imageSrcset    = image.prop( 'srcset' ) || '',
+	var gallery        = document.querySelector( selector ),
+		variationsForm = form ? form : 'form.variations_form';
+	if ( ! gallery || ! jQuery( variationsForm ).length ) {
+		return;
+	}
+
+	var imageWrapper = gallery.querySelector( '.image-item' ),
+		image        = imageWrapper ? imageWrapper.querySelector( 'img' ) : false,
+		imageSrc     = image ? image.getAttribute( 'src' ) : '',
+		imageSrcset  = image ? image.getAttribute( 'srcset' ) : '',
 		// Photoswipe + zoom.
-		photoSwipe    = imageWrapper.find( 'a' ),
-		photoSwipeSrc = photoSwipe.prop( 'href' ),
+		photoSwipe    = imageWrapper.querySelector( 'a' ),
+		photoSwipeSrc = photoSwipe.getAttribute( 'href' ),
 		// Product thumbnail.
-		thumb    = gallery.find( '.thumbnail-item:eq(0)' ),
-		thumbSrc = thumb.find( 'img' ).prop( 'src' );
+		thumb    = gallery.querySelector( '.thumbnail-item' ),
+		thumbImg = thumb ? thumb.querySelector( 'img' ) : false,
+		thumbSrc = thumbImg ? thumbImg.getAttribute( 'src' ) : '';
 
 	if ( ! jQuery( variationsForm ).length ) {
 		return;
@@ -59,27 +64,29 @@ function productVariation( selector, form ) {
 			}
 
 			// Photoswipe + zoom.
-			photoSwipe.prop( 'href', variation.image.full_src );
+			photoSwipe.setAttribute( 'href', variation.image.full_src );
 
 			// Change image src image.
-			if ( imageSrc !== imgSrc ) {
-				image.prop( 'srcset', variation.image.srcset );
+			if ( image ) {
+				imageWrapper.classList.add( 'image-loading' );
 
-				imageWrapper.addClass( 'image-loading' );
-				image.prop( 'src', imgSrc )
-					.one(
-						'load',
-						function() {
-							imageWrapper.removeClass( 'image-loading' );
-						}
-					);
-			} else {
-				image.prop( 'src', imgSrc );
-				image.prop( 'srcset', imageSrcset );
+				var img    = new Image();
+				img.onload = function () {
+					imageWrapper.classList.remove( 'image-loading' );
+				}
+
+				img.src = imgSrc;
+				image.setAttribute( 'src', imgSrc );
+
+				if ( imageSrcset ) {
+					image.setAttribute( 'srcset', variation.image.srcset );
+				}
 			}
 
 			// Change thumb src image.
-			thumb.find( 'img' ).prop( 'src', variation.image.thumb_src );
+			if ( thumbImg ) {
+				thumbImg.setAttribute( 'src', variation.image.thumb_src );
+			}
 
 			// Re-init zoom handle.
 			if ( 'function' === typeof( easyZoomHandle ) ) {
@@ -138,20 +145,28 @@ function productVariation( selector, form ) {
 			}
 
 			// Reset src image.
-			imageWrapper.addClass( 'image-loading' );
-			image.prop( 'src', imageSrc )
-				.one(
-					'load',
-					function() {
-						imageWrapper.removeClass( 'image-loading' );
-					}
-				);
+			if ( image ) {
+				imageWrapper.classList.add( 'image-loading' );
 
-			image.attr( 'srcset', imageSrcset );
-			thumb.find( 'img' ).prop( 'src', thumbSrc );
+				var resetImg    = new Image();
+				resetImg.onload = function () {
+					imageWrapper.classList.remove( 'image-loading' );
+				}
+
+				resetImg.src = imageSrc;
+				image.setAttribute( 'src', imageSrc );
+
+				if ( imageSrcset ) {
+					image.setAttribute( 'srcset', imageSrcset );
+				}
+			}
+
+			if ( thumbSrc ) {
+				thumbImg.setAttribute( 'src', thumbSrc );
+			}
 
 			// Photoswipe + zoom.
-			photoSwipe.prop( 'href', photoSwipeSrc );
+			photoSwipe.setAttribute( 'href', photoSwipeSrc );
 
 			// Zoom handle.
 			if ( 'function' === typeof( easyZoomHandle ) ) {

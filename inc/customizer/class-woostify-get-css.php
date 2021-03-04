@@ -918,9 +918,7 @@ class Woostify_Get_CSS {
 			.product_list_widget .remove_from_cart_button:focus:before,
 			.updating-cart.ajax-single-add-to-cart .single_add_to_cart_button:before,
 			.product-loop-meta .loading:before,
-			.updating-cart #shop-cart-sidebar:before,
-			#product-images:not(.tns-slider) .image-item:first-of-type:before,
-			#product-thumbnail-images:not(.tns-slider) .thumbnail-item:first-of-type:before{
+			.updating-cart #shop-cart-sidebar:before {
 				border-top-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 		';
