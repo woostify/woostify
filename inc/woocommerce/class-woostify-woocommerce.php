@@ -415,7 +415,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 				// Payment content, move to step 3 of multi step.
 				add_action( 'woostify_multi_step_checkout_third', 'woocommerce_checkout_payment', 10 );
-				add_action( 'woostify_multi_step_checkout_third', 'wc_terms_and_conditions_page_content', 30 );
 				add_action( 'woostify_multi_step_checkout_third', 'wc_get_pay_buttons', 40 );
 
 				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_button_action', 40 ); // Button action.
