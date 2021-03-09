@@ -347,18 +347,18 @@ var woostifyMultiStepCheckout = function() {
 					_addressShip   = '',
 					_addressValue  = '';
 
-					_addressBill += _address1.value ? _address1.value.trim() : '';
-					_addressBill += _address2.value ? ' ' + _address2.value.trim() : '';
-					_addressBill += _city.value ? ', ' + _city.value.trim() : '';
+					_addressBill += _address1 ? _address1.value.trim() : '';
+					_addressBill += _address2 ? ' ' + _address2.value.trim() : '';
+					_addressBill += _city ? ', ' + _city.value.trim() : '';
 					_addressBill += _state ? ', ' + _state.innerText.trim() : '';
 					_addressBill += _country ? ', ' + _country.innerText.trim() : '';
 
 					_addressValue = _addressBill;
 
 				if ( _shippingTo && _shippingTo.checked ) {
-					_addressShip += _shippingAdd1.value ? _shippingAdd1.value.trim() : '';
-					_addressShip += _shippingAdd2.value ? ' ' + _shippingAdd2.value.trim() : '';
-					_addressShip += _city2.value ? ', ' + _city2.value.trim() : '';
+					_addressShip += _shippingAdd1 ? _shippingAdd1.value.trim() : '';
+					_addressShip += _shippingAdd2 ? ' ' + _shippingAdd2.value.trim() : '';
+					_addressShip += _city2 ? ', ' + _city2.value.trim() : '';
 					_addressShip += _state2 ? ', ' + _state2.innerText.trim() : '';
 					_addressShip += _country2 ? ', ' + _country2.innerText.trim() : '';
 
