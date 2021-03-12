@@ -7934,9 +7934,11 @@ header.elementor-element {
   text-align: center;
 }
 
-.product-loop-image-wrapper.zoom-hover:hover img {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+@media (min-width: 992px) {
+  .product-loop-image-wrapper.zoom-hover:hover img {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
 }
 
 .product-loop-image-wrapper .product-loop-hover-image {
@@ -7957,12 +7959,13 @@ header.elementor-element {
   transition: all 0.3s ease-in-out;
 }
 
-.product-loop-image-wrapper:hover .product-loop-hover-image {
-  opacity: 1;
-}
-
-.product-loop-image-wrapper:hover .product-loop-hover-image + .product-loop-image {
-  opacity: 0;
+@media (min-width: 992px) {
+  .product-loop-image-wrapper:hover .product-loop-hover-image {
+    opacity: 1;
+  }
+  .product-loop-image-wrapper:hover .product-loop-hover-image + .product-loop-image {
+    opacity: 0;
+  }
 }
 
 .product-loop-image-wrapper .loop-add-to-cart-on-image,
