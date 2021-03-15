@@ -180,11 +180,13 @@ var woostifyQuantityMiniCart = function() {
 
 								var data         = json.data,
 									totalPrice   = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
+									headerCartPriceContainer = document.querySelector( '.woostify-total-price' ),
 									productCount = document.querySelectorAll( '.shop-cart-count' );
 
 								// Update total price.
 								if ( totalPrice ) {
 									totalPrice.innerHTML = data.total_price;
+									headerCartPriceContainer.innerHTML = data.total_price;
 								}
 
 								// Update product count.
@@ -210,6 +212,16 @@ var woostifyQuantityMiniCart = function() {
 	);
 }
 
+var updateHeaderCartPrice = function () {
+	var total = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
+		headerCartPriceContainer = document.querySelector( '.woostify-total-price' );
+	if( headerCartPriceContainer ) {
+		if(total) {
+			headerCartPriceContainer.innerHTML = total.innerHTML;
+		}
+	}
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
@@ -233,6 +245,7 @@ document.addEventListener(
 			'added_to_cart',
 			function() {
 				woostifyQuantityMiniCart();
+				updateHeaderCartPrice();
 				eventCartSidebarClose();
 				closeAll();
 			}
@@ -240,6 +253,7 @@ document.addEventListener(
 			'removed_from_cart', /* For mini cart */
 			function() {
 				woostifyQuantityMiniCart();
+				updateHeaderCartPrice();
 			}
 		).on(
 			'updated_cart_totals',
@@ -248,11 +262,13 @@ document.addEventListener(
 					customQuantity();
 				}
 				woostifyQuantityMiniCart();
+				updateHeaderCartPrice();
 			}
 		).on(
 			'wc_fragments_loaded wc_fragments_refreshed',
 			function() {
 				woostifyQuantityMiniCart();
+				updateHeaderCartPrice();
 			}
 		).on(
 			'wc_cart_emptied', /* Reload Cart page if it's empty */

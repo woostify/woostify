@@ -268,4 +268,26 @@ if ( class_exists( 'woocommerce' ) ) {
 			)
 		)
 	);
+
+	// Shopping cart price.
+	$wp_customize->add_setting(
+		'woostify_setting[header_shop_cart_price]',
+		array(
+			'type'              => 'option',
+			'default'           => $defaults['header_shop_cart_price'],
+			'sanitize_callback' => 'woostify_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		new Woostify_Switch_Control(
+			$wp_customize,
+			'woostify_setting[header_shop_cart_price]',
+			array(
+				'priority' => 190,
+				'label'    => __( 'Shopping Cart Price', 'woostify' ),
+				'section'  => 'woostify_header',
+				'settings' => 'woostify_setting[header_shop_cart_price]',
+			)
+		)
+	);
 }

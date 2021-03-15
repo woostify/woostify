@@ -523,6 +523,10 @@ class Woostify_Get_CSS {
 			.site-tools .tools-icon {
 				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
 			}
+			.site-tools .tools-icon .woostify-total-price {
+				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
+				color: ' . esc_attr( $options['theme_color'] ) . ';
+			}
 		';
 
 		// Heading css.
