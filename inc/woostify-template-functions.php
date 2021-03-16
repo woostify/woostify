@@ -2063,7 +2063,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 					?>
 					<?php if( $options['header_shop_cart_price'] ) {
 						echo '<div class="tools-icon align-center">';
-						echo '<div class="woostify-total-price">';
+						echo '<div class="woostify-header-total-price">';
 						echo $sub_total;
 						echo '</div>';
 					} ?>
