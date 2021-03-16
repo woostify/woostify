@@ -524,8 +524,9 @@ class Woostify_Get_CSS {
 				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
 			}
 			.site-tools .tools-icon .woostify-header-total-price {
-				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
-				color: ' . esc_attr( $options['theme_color'] ) . ';
+				font-family: ' . esc_attr( $options['menu_font_family'] ) . ';
+				font-size: ' . esc_attr( $options['parent_menu_font_size'] ) . 'px;
+				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
 			}
 		';
 
