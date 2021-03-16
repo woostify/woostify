@@ -269,7 +269,7 @@ if ( class_exists( 'woocommerce' ) ) {
 		)
 	);
 
-	// Shopping cart price.
+	// Show subtotal.
 	$wp_customize->add_setting(
 		'woostify_setting[header_shop_cart_price]',
 		array(
@@ -284,7 +284,7 @@ if ( class_exists( 'woocommerce' ) ) {
 			'woostify_setting[header_shop_cart_price]',
 			array(
 				'priority' => 190,
-				'label'    => __( 'Shopping Cart Price', 'woostify' ),
+				'label'    => __( 'Show Subtotal', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_shop_cart_price]',
 			)
