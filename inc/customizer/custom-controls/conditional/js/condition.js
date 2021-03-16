@@ -202,6 +202,15 @@
 			false
 		);
 
+		// Shopping cart icon
+		condition(
+			'woostify_setting[header_shop_cart_icon]',
+			[
+				'woostify_setting[header_shop_cart_price]',
+			],
+			false
+		);
+
 		// Search product only.
 		condition(
 			'woostify_setting[header_search_icon]',
