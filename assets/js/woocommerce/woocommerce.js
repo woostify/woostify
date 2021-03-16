@@ -80,10 +80,14 @@ var woostifyStockQuantityProgressBar = function() {
 
 // Product quantity on mini cart.
 var woostifyQuantityMiniCart = function() {
+	var cartCountContainer = document.querySelector('.shopping-bag-button .shop-cart-count');
 	var infor = document.querySelectorAll( '.mini-cart-product-infor' );
 	if ( ! infor.length ) {
+		cartCountContainer.classList.add('hide');
 		return;
 	}
+
+	cartCountContainer.classList.remove('hide');
 
 	infor.forEach(
 		function( ele, i ) {
