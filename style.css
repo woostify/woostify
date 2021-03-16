@@ -4545,6 +4545,11 @@ article p:last-child {
   transition-duration: 0.4s;
 }
 
+.site-dialog-search .woocommerce-product-search.category-filter {
+  border-radius: 0;
+  background-color: #f1f3f5;
+}
+
 .site-dialog-search form {
   margin: 0;
 }
@@ -5035,6 +5040,14 @@ article p:last-child {
 
 .site-tools .tools-icon .tools-icon {
   margin-left: 0;
+}
+
+.site-tools .tools-icon.align-center {
+  align-items: center;
+}
+
+.site-tools .tools-icon .woostify-header-total-price {
+  margin-right: 5px;
 }
 
 .site-tools .shopping-bag-button {

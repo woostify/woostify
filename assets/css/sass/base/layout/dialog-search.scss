@@ -42,6 +42,13 @@
 	background-color: rgba(55, 58, 71, 0.9);
 	transition-duration: 0.4s;
 
+	.woocommerce-product-search {
+		&.category-filter {
+			border-radius: 0;
+			background-color: #f1f3f5;
+		}
+	}
+
 	form{
 		margin: 0;
 	}
