@@ -1986,6 +1986,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 	function woostify_header_action() {
 		$options = woostify_options( false );
 		$count   = 0;
+		$sub_total = '';
 
 		if ( woostify_is_woocommerce_activated() ) {
 			global $woocommerce;
@@ -1997,6 +1998,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			}
 
 			$count = $woocommerce->cart->cart_contents_count;
+			$sub_total = $woocommerce->cart->get_total();
 		}
 
 		$search_icon     = apply_filters( 'woostify_header_search_icon', 'ti-search' );
@@ -2059,9 +2061,18 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 				// Shopping cart icon.
 				if ( $options['header_shop_cart_icon'] ) {
 					?>
-					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
-						<span class="shop-cart-count"><?php echo esc_html( $count ); ?></span>
-					</a>
+					<?php if( $options['header_shop_cart_price'] ) {
+						echo '<div class="tools-icon align-center">';
+						echo '<div class="woostify-header-total-price">';
+						echo $sub_total;
+						echo '</div>';
+					} ?>
+						<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
+							<span class="shop-cart-count"><?php echo esc_html( $count ); ?></span>
+						</a>
+						<?php if( $options['header_shop_cart_price'] ) {
+							echo '</div>';
+						} ?>
 					<?php
 				}
 

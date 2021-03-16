@@ -184,11 +184,15 @@ var woostifyQuantityMiniCart = function() {
 
 								var data         = json.data,
 									totalPrice   = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
+									headerCartPriceContainer = document.querySelector( '.woostify-header-total-price' ),
 									productCount = document.querySelectorAll( '.shop-cart-count' );
 
 								// Update total price.
 								if ( totalPrice ) {
 									totalPrice.innerHTML = data.total_price;
+									if(headerCartPriceContainer) {
+										headerCartPriceContainer.innerHTML = data.total_price;
+									}
 								}
 
 								// Update product count.
@@ -214,6 +218,19 @@ var woostifyQuantityMiniCart = function() {
 	);
 }
 
+var updateHeaderCartPrice = function () {
+	var total = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
+		headerCartPriceContainer = document.querySelector( '.woostify-header-total-price' ),
+		currencySymbol = document.querySelector( '.woostify-header-total-price .woocommerce-Price-currencySymbol' );
+	if( headerCartPriceContainer ) {
+		if(total) {
+			headerCartPriceContainer.innerHTML = '<span class="woocommerce-Price-amount amount">'+total.innerHTML+'</span>';
+		} else {
+			headerCartPriceContainer.innerHTML = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">'+currencySymbol.innerHTML+'</span>0</bdi></span>';
+		}
+	}
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
@@ -237,6 +254,7 @@ document.addEventListener(
 			'added_to_cart',
 			function() {
 				woostifyQuantityMiniCart();
+				updateHeaderCartPrice();
 				eventCartSidebarClose();
 				closeAll();
 			}
@@ -244,6 +262,7 @@ document.addEventListener(
 			'removed_from_cart', /* For mini cart */
 			function() {
 				woostifyQuantityMiniCart();
+				updateHeaderCartPrice();
 			}
 		).on(
 			'updated_cart_totals',
@@ -252,11 +271,13 @@ document.addEventListener(
 					customQuantity();
 				}
 				woostifyQuantityMiniCart();
+				updateHeaderCartPrice();
 			}
 		).on(
 			'wc_fragments_loaded wc_fragments_refreshed',
 			function() {
 				woostifyQuantityMiniCart();
+				updateHeaderCartPrice();
 			}
 		).on(
 			'wc_cart_emptied', /* Reload Cart page if it's empty */
