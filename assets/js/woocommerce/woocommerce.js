@@ -186,7 +186,9 @@ var woostifyQuantityMiniCart = function() {
 								// Update total price.
 								if ( totalPrice ) {
 									totalPrice.innerHTML = data.total_price;
-									headerCartPriceContainer.innerHTML = data.total_price;
+									if(headerCartPriceContainer) {
+										headerCartPriceContainer.innerHTML = data.total_price;
+									}
 								}
 
 								// Update product count.
@@ -215,12 +217,12 @@ var woostifyQuantityMiniCart = function() {
 var updateHeaderCartPrice = function () {
 	var total = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
 		headerCartPriceContainer = document.querySelector( '.woostify-header-total-price' ),
-		currencySymbol = document.querySelector( '.woostify-header-total-price .woocommerce-Price-currencySymbol' ).innerHTML;
+		currencySymbol = document.querySelector( '.woostify-header-total-price .woocommerce-Price-currencySymbol' );
 	if( headerCartPriceContainer ) {
 		if(total) {
 			headerCartPriceContainer.innerHTML = '<span class="woocommerce-Price-amount amount">'+total.innerHTML+'</span>';
 		} else {
-			headerCartPriceContainer.innerHTML = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">'+currencySymbol+'</span>0</bdi></span>';
+			headerCartPriceContainer.innerHTML = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">'+currencySymbol.innerHTML+'</span>0</bdi></span>';
 		}
 	}
 }
