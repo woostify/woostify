@@ -225,13 +225,11 @@ var updateHeaderCartPrice = function () {
 		headerCartPriceContainer = document.querySelectorAll( '.woostify-header-total-price' ),
 		currencySymbol = document.querySelector( '.woostify-header-total-price .woocommerce-Price-currencySymbol' );
 	if( headerCartPriceContainer.length ) {
-		if(headerCartPriceContainer.length) {
-			for ( var si = 0, sc = headerCartPriceContainer.length; si < sc; si++ ) {
-				if(total) {
-					headerCartPriceContainer[si].innerHTML = '<span class="woocommerce-Price-amount amount">'+total.innerHTML+'</span>';
-				} else {
-					headerCartPriceContainer[si].innerHTML = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">'+currencySymbol.innerHTML+'</span>0</bdi></span>';
-				}
+		for ( var si = 0, sc = headerCartPriceContainer.length; si < sc; si++ ) {
+			if(total) {
+				headerCartPriceContainer[si].innerHTML = '<span class="woocommerce-Price-amount amount">'+total.innerHTML+'</span>';
+			} else {
+				headerCartPriceContainer[si].innerHTML = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">'+currencySymbol.innerHTML+'</span>0</bdi></span>';
 			}
 		}
 	}
