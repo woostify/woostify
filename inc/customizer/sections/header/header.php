@@ -307,7 +307,7 @@ if ( class_exists( 'woocommerce' ) ) {
 			'woostify_setting[header_shop_hide_zero_value_cart_count]',
 			array(
 				'priority' => 170,
-				'label'    => __( 'Hide Zero Value Cart Count', 'woostify' ),
+				'label'    => __( 'Hide Zero Value', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_shop_hide_zero_value_cart_count]',
 			)
