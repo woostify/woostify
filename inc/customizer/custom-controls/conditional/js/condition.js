@@ -207,6 +207,7 @@
 			'woostify_setting[header_shop_cart_icon]',
 			[
 				'woostify_setting[header_shop_cart_price]',
+				'woostify_setting[header_shop_hide_zero_value_cart_count]',
 			],
 			false
 		);
