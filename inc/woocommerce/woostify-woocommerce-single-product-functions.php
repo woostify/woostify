@@ -712,3 +712,19 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		wp_send_json_success( $response );
 	}
 }
+
+if ( ! function_exists( 'woostify_disable_variations_out_of_stock' ) ) {
+	/**
+	 * Disable Out of Stock Variations.
+	 *
+	 * @param boolean $is_active The active.
+	 * @param object  $variation The variation.
+	 */
+	function woostify_disable_variations_out_of_stock( $is_active, $variation ) {
+		if ( ! $variation->is_in_stock() ) {
+			return false;
+		}
+
+		return $is_active;
+	}
+}
