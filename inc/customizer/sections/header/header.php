@@ -290,4 +290,27 @@ if ( class_exists( 'woocommerce' ) ) {
 			)
 		)
 	);
+
+	// Hide zero value cart count.
+	$wp_customize->add_setting(
+		'woostify_setting[header_shop_hide_zero_value_cart_count]',
+		array(
+			'type'              => 'option',
+			'default'           => $defaults['header_shop_hide_zero_value_cart_count'],
+			'sanitize_callback' => 'woostify_sanitize_checkbox',
+			'transport'			=> 'postMessage'
+		)
+	);
+	$wp_customize->add_control(
+		new Woostify_Switch_Control(
+			$wp_customize,
+			'woostify_setting[header_shop_hide_zero_value_cart_count]',
+			array(
+				'priority' => 170,
+				'label'    => __( 'Hide Zero Value', 'woostify' ),
+				'section'  => 'woostify_header',
+				'settings' => 'woostify_setting[header_shop_hide_zero_value_cart_count]',
+			)
+		)
+	);
 }

@@ -5067,6 +5067,11 @@ article p:last-child {
   right: -15px;
 }
 
+.site-tools .shop-cart-count.hide-zero-val.hide,
+.site-tools .wishlist-item-count.hide-zero-val.hide {
+  display: none;
+}
+
 .my-account {
   position: relative;
 }

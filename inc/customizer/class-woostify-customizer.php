@@ -97,6 +97,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'header_account_icon'                     => true,
 				'header_shop_cart_icon'                   => true,
 				'header_shop_cart_price'                   => false,
+				'header_shop_hide_zero_value_cart_count'  => false,
 				// Header transparent.
 				'header_transparent'                      => false,
 				'header_transparent_enable_on'            => 'all-devices',

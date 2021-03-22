@@ -150,6 +150,10 @@
 		position: absolute;
 		top: -6px;
 		right: -15px;
+
+		&.hide-zero-val.hide {
+			display: none;
+		}
 	}
 }
 
