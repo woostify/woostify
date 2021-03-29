@@ -712,3 +712,76 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		wp_send_json_success( $response );
 	}
 }
+
+if ( ! function_exists( 'woostify_disable_variations_out_of_stock' ) ) {
+	/**
+	 * Disable Out of Stock Variations.
+	 *
+	 * @param boolean $is_active The active.
+	 * @param object  $variation The variation.
+	 */
+	function woostify_disable_variations_out_of_stock( $is_active, $variation ) {
+		if ( ! $variation->is_in_stock() ) {
+			return false;
+		}
+
+		return $is_active;
+	}
+}
+
+if ( ! function_exists( 'woostify_single_ajax_add_to_cart_status' ) ) {
+	/**
+	 * On/off single ajax add to cart
+	 */
+	function woostify_single_ajax_add_to_cart_status() {
+		if ( ( defined( 'ELEMENTOR_PRO_VERSION' ) && 'yes' === get_option( 'elementor_use_mini_cart_template' ) ) || defined( 'XOO_WSC_PLUGIN_FILE' ) ) {
+			return false;
+		}
+
+		$options = woostify_options( false );
+		return $options['shop_single_ajax_add_to_cart'];
+	}
+}
+
+if ( ! function_exists( 'woostify_get_term_setting' ) ) {
+	/**
+	 * Get term setting
+	 *
+	 * @param string  $name         The term setting name.
+	 * @param mix     $compare      Compare value.
+	 * @param boolean $return_value Return condition only.
+	 */
+	function woostify_get_term_setting( $name = 'cat_single_ajax_add_to_cart', $compare = 'disabled', $return_value = false ) {
+		if ( ! is_singular( 'product' ) ) {
+			return false;
+		}
+
+		$value       = false;
+		$options     = woostify_options( false );
+		$page_id     = woostify_get_page_id();
+		$product_cat = get_the_terms( $page_id, 'product_cat' );
+		$product_tag = get_the_terms( $page_id, 'product_tag' );
+
+		if ( ! empty( $product_cat ) ) {
+			foreach ( $product_cat as $cat ) {
+				$single_ajax_cat = get_term_meta( $cat->term_id, $name, true );
+				if ( $compare === $single_ajax_cat ) {
+					$value = $return_value ? $single_ajax_cat : true;
+					break;
+				}
+			}
+		}
+
+		if ( ! empty( $product_tag ) ) {
+			foreach ( $product_tag as $tag ) {
+				$single_ajax_tag = get_term_meta( $tag->term_id, $name, true );
+				if ( $compare === $single_ajax_tag ) {
+					$value = $return_value ? $single_ajax_tag : true;
+					break;
+				}
+			}
+		}
+
+		return $value;
+	}
+}

@@ -72,6 +72,18 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// MY ACCOUNT PAGE.
 			add_filter( 'woocommerce_my_account_edit_address_title', '__return_empty_string' );
 
+			// TERM METABOX.
+			// For product category.
+			add_action( 'product_cat_add_form_fields', array( $this, 'woostify_add_term_meta_field' ) );
+			add_action( 'product_cat_edit_form_fields', array( $this, 'woostify_edit_term_meta_field' ) );
+			add_action( 'created_product_cat', array( $this, 'woostify_save_term_meta_field' ) );
+			add_action( 'edited_product_cat', array( $this, 'woostify_save_term_meta_field' ) );
+			// For product tag.
+			add_action( 'product_tag_add_form_fields', array( $this, 'woostify_add_term_meta_field' ) );
+			add_action( 'product_tag_edit_form_fields', array( $this, 'woostify_edit_term_meta_field' ) );
+			add_action( 'created_product_tag', array( $this, 'woostify_save_term_meta_field' ) );
+			add_action( 'edited_product_tag', array( $this, 'woostify_save_term_meta_field' ) );
+
 			// SHOP PAGE.
 			add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_wrapper_open', 10 );
 			add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_print_out_of_stock_label', 15 );
@@ -122,6 +134,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'template_redirect', 'woostify_product_recently_viewed', 20 );
 			add_action( 'woocommerce_after_single_product', 'woostify_product_recently_viewed_template', 20 );
 
+			// Disable Out of Stock Variations.
+			add_filter( 'woocommerce_variation_is_active', 'woostify_disable_variations_out_of_stock', 10, 2 );
+
 			// Modify product quantity.
 			add_filter( 'woocommerce_get_stock_html', 'woostify_modified_quantity_stock', 10, 2 );
 
@@ -131,6 +146,68 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Custom plugin.
 			add_action( 'woostify_mini_cart_item_after_price', array( $this, 'woostify_support_german_market_plugin' ) );
+		}
+
+		/**
+		 * Add term meta field.
+		 */
+		public function woostify_add_term_meta_field() {
+			$options = woostify_options( false );
+			if ( ! $options['shop_single_ajax_add_to_cart'] ) {
+				return;
+			}
+			?>
+
+			<div class="form-field term-display-type-wrap">
+				<label for="display_type"><?php esc_html_e( 'Single ajax add to cart', 'woostify' ); ?></label>
+				<select name="cat_single_ajax_add_to_cart">
+					<option value="enabled"><?php esc_html_e( 'Enabled', 'woostify' ); ?></option>
+					<option value="disabled"><?php esc_html_e( 'Disabled', 'woostify' ); ?></option>
+				</select>
+			</div>
+			<?php
+		}
+
+		/**
+		 * Edit term meta field.
+		 *
+		 * @param      array $term The term.
+		 */
+		public function woostify_edit_term_meta_field( $term ) {
+			$options = woostify_options( false );
+			if ( ! $options['shop_single_ajax_add_to_cart'] ) {
+				return;
+			}
+
+			$single_ajax = get_term_meta( $term->term_id, 'cat_single_ajax_add_to_cart', true );
+			?>
+			<tr class="form-field">
+				<th scope="row" valign="top">
+					<label><?php esc_html_e( 'Single ajax add to cart', 'osito' ); ?></label>
+				</th>
+				<td class="theme-form-field">
+					<select name="cat_single_ajax_add_to_cart">
+						<option value="enabled" <?php selected( $single_ajax, 'enabled', true ); ?>><?php esc_html_e( 'Enabled', 'woostify' ); ?></option>
+						<option value="disabled" <?php selected( $single_ajax, 'disabled', true ); ?>><?php esc_html_e( 'Disabled', 'woostify' ); ?></option>
+					</select>
+				</td>
+			</tr>
+			<?php
+		}
+
+		/**
+		 * Save a taxonomy meta field.
+		 *
+		 * @param      array $term_id The term identifier.
+		 */
+		public function woostify_save_term_meta_field( $term_id ) {
+			$options = woostify_options( false );
+			if ( ! $options['shop_single_ajax_add_to_cart'] ) {
+				return;
+			}
+
+			$single_ajax = isset( $_POST['cat_single_ajax_add_to_cart'] ) ? $_POST['cat_single_ajax_add_to_cart'] : 'enabled'; // phpcs:ignore
+			update_term_meta( $term_id, 'cat_single_ajax_add_to_cart', $single_ajax );
 		}
 
 		/**
@@ -237,7 +314,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// Single add to cart script.
-			if ( $options['shop_single_ajax_add_to_cart'] ) {
+			if ( $options['shop_single_ajax_add_to_cart'] && woostify_single_ajax_add_to_cart_status() && ! woostify_get_term_setting( 'cat_single_ajax_add_to_cart', 'disabled', false ) ) {
 				wp_enqueue_script( 'woostify-single-add-to-cart' );
 				wp_localize_script(
 					'woostify-single-add-to-cart',

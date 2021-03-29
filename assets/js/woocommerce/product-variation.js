@@ -27,7 +27,7 @@ function productVariation( selector, form ) {
 		imageSrcset  = image ? image.getAttribute( 'srcset' ) : '',
 		// Photoswipe + zoom.
 		photoSwipe    = imageWrapper.querySelector( 'a' ),
-		photoSwipeSrc = photoSwipe.getAttribute( 'href' ),
+		photoSwipeSrc = photoSwipe ? photoSwipe.getAttribute( 'href' ) : '',
 		// Product thumbnail.
 		thumb    = gallery.querySelector( '.thumbnail-item' ),
 		thumbImg = thumb ? thumb.querySelector( 'img' ) : false,
@@ -64,7 +64,9 @@ function productVariation( selector, form ) {
 			}
 
 			// Photoswipe + zoom.
-			photoSwipe.setAttribute( 'href', variation.image.full_src );
+			if ( photoSwipe ) {
+				photoSwipe.setAttribute( 'href', variation.image.full_src );
+			}
 
 			// Change image src image.
 			if ( image ) {
@@ -166,7 +168,9 @@ function productVariation( selector, form ) {
 			}
 
 			// Photoswipe + zoom.
-			photoSwipe.setAttribute( 'href', photoSwipeSrc );
+			if ( photoSwipeSrc ) {
+				photoSwipe.setAttribute( 'href', photoSwipeSrc );
+			}
 
 			// Zoom handle.
 			if ( 'function' === typeof( easyZoomHandle ) ) {
