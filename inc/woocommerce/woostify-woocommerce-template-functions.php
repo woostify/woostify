@@ -680,12 +680,12 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 		// Cart item count.
 		$header_cart_count_class = array();
 		if ( $options['header_shop_hide_zero_value_cart_count'] ) {
-			array_push($header_cart_count_class, 'hide-zero-val');
+			array_push( $header_cart_count_class, 'hide-zero-val' );
 		}
-		if ($cart_item_count < 1) {
-			array_push($header_cart_count_class, 'hide');
+		if ( $cart_item_count < 1 ) {
+			array_push( $header_cart_count_class, 'hide' );
 		}
-		$fragments['span.shop-cart-count'] = sprintf( '<span class="shop-cart-count %s">%s</span>', implode(' ', $header_cart_count_class), $cart_item_count );
+		$fragments['span.shop-cart-count'] = sprintf( '<span class="shop-cart-count %s">%s</span>', implode( ' ', $header_cart_count_class ), $cart_item_count );
 
 		// Cart sidebar.
 		$fragments['div.cart-sidebar-content'] = sprintf( '<div class="cart-sidebar-content">%s</div>', $mini_cart );
