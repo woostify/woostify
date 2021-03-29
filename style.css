@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 Theme Name:   Woostify
 Theme URI:    https://woostify.com
@@ -6177,6 +6178,14 @@ footer#colophon {
 
 .adv-featured-product.adv-product-slider:not(.slick-initialized) {
   display: none;
+}
+
+/* Active filter */
+.widget_layered_nav_filters .chosen a:before {
+  content: '×';
+  color: #e2401c;
+  margin-right: 7px;
+  font-size: 1.2em;
 }
 
 /* Contact info */
