@@ -600,6 +600,7 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 		$simple       = $product->is_type( 'simple' );
 		$variable     = $product->is_type( 'variable' );
 		$external     = $product->is_type( 'external' );
+		$bundle       = $product->is_type( 'bundle' );
 		$sale_text    = $options['shop_page_sale_text'];
 		$sale_percent = $options['shop_page_sale_percent'];
 		$final_price  = '';
@@ -612,7 +613,7 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 
 		if ( $sale ) {
 			// For simple product.
-			if ( $simple || $external ) {
+			if ( $simple || $external || $bundle ) {
 				if ( $sale_percent ) {
 					$final_price = ( ( $price - $price_sale ) / $price ) * 100;
 					$final_price = '-' . round( $final_price ) . '%';
