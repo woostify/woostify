@@ -170,7 +170,7 @@ $wp_customize->add_control(
 		'woostify_setting[header_search_icon]',
 		array(
 			'priority' => 90,
-			'label'    => __( 'Search Icon', 'woostify' ),
+			'label'    => __( 'Search', 'woostify' ),
 			'section'  => 'woostify_header',
 			'settings' => 'woostify_setting[header_search_icon]',
 		)
@@ -240,7 +240,7 @@ if ( class_exists( 'woocommerce' ) ) {
 			'woostify_setting[header_account_icon]',
 			array(
 				'priority' => 150,
-				'label'    => __( 'Account Icon', 'woostify' ),
+				'label'    => __( 'Account/Dashboard', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_account_icon]',
 			)
