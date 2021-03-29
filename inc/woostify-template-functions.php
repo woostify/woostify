@@ -1822,7 +1822,7 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 			$dokan_store_sidebar = true;
 		}
 
-		if ( woostify_is_elementor_page() || is_404() || $dokan_store_sidebar || ( class_exists( 'woocommerce' ) && ( is_cart() || is_checkout() || is_account_page() ) ) ) {
+		if ( is_404() || $dokan_store_sidebar || ( class_exists( 'woocommerce' ) && ( is_cart() || is_checkout() || is_account_page() ) ) ) {
 			return $sidebar;
 		}
 
@@ -1861,7 +1861,7 @@ if ( ! function_exists( 'woostify_get_sidebar' ) ) {
 			$dokan_store_sidebar = true;
 		}
 
-		if ( false !== strpos( $sidebar, 'no-sidebar' ) || ! $sidebar || woostify_is_elementor_page() || $dokan_store_sidebar ) {
+		if ( false !== strpos( $sidebar, 'no-sidebar' ) || ! $sidebar || $dokan_store_sidebar ) {
 			return;
 		}
 
@@ -1984,8 +1984,8 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 	 * @return void
 	 */
 	function woostify_header_action() {
-		$options = woostify_options( false );
-		$count   = 0;
+		$options   = woostify_options( false );
+		$count     = 0;
 		$sub_total = '';
 
 		if ( woostify_is_woocommerce_activated() ) {
@@ -1997,7 +1997,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 				$logout_url = str_replace( 'http:', 'https:', $logout_url );
 			}
 
-			$count = $woocommerce->cart->cart_contents_count;
+			$count     = $woocommerce->cart->cart_contents_count;
 			$sub_total = $woocommerce->cart->get_total();
 		}
 
@@ -2060,20 +2060,20 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 
 				// Shopping cart icon.
 				if ( $options['header_shop_cart_icon'] ) {
-					?>
-					<?php if( $options['header_shop_cart_price'] ) {
+					if ( $options['header_shop_cart_price'] ) {
 						echo '<div class="tools-icon align-center">';
 						echo '<div class="woostify-header-total-price">';
-						echo $sub_total;
+						echo $sub_total; // phpcs:ignore
 						echo '</div>';
-					} ?>
+					}
+					?>
 						<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
 							<span class="shop-cart-count <?php echo $options['header_shop_hide_zero_value_cart_count'] ? 'hide-zero-val' : ''; ?>"><?php echo esc_html( $count ); ?></span>
 						</a>
-						<?php if( $options['header_shop_cart_price'] ) {
+						<?php
+						if ( $options['header_shop_cart_price'] ) {
 							echo '</div>';
-						} ?>
-					<?php
+						}
 				}
 
 				do_action( 'woostify_site_tool_after_last_item' );
