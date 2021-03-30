@@ -263,7 +263,12 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 				foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 					$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 					$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-					// $bundled_cart_items = wc_pb_get_bundled_cart_items( $cart_item ); This is template code.
+					if (
+						( function_exists( 'wc_pb_get_bundled_cart_item_container' ) && wc_pb_get_bundled_cart_item_container( $cart_item ) ) ||
+						'composite' === get_post_type( $product_id )
+					) {
+						continue;
+					}
 
 					if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 ) {
 						$product_name      = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );

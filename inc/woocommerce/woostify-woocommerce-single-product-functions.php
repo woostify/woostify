@@ -336,7 +336,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 			<div id="product-images">
 				<figure class="image-item ez-zoom">
 					<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
-						<img width="<?php echo esc_attr( $image_full_src[1] ); ?>" height="<?php echo esc_attr( $image_full_src[2] ); ?>" srcset="<?php echo wp_kses_post( $image_srcset ); ?>" src="<?php echo esc_url( $image_medium_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
+						<?php echo wp_kses_post( $product->get_image( 'woocommerce_single', array(), true ) ); ?>
 					</a>
 				</figure>
 				<?php
@@ -351,7 +351,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 						?>
 						<figure class="image-item ez-zoom">
 							<a href="<?php echo esc_url( $g_full_img_src[0] ); ?>" data-size="<?php echo esc_attr( $g_image_size ); ?>" data-elementor-open-lightbox="no">
-								<img width="<?php echo esc_attr( $g_full_img_src[1] ); ?>" height="<?php echo esc_attr( $g_full_img_src[2] ); ?>"  src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>" srcset="<?php echo wp_kses_post( $g_img_srcset ); ?>">
+								<img width="<?php echo esc_attr( $g_medium_img_src[1] ); ?>" height="<?php echo esc_attr( $g_medium_img_src[2] ); ?>"  src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>" srcset="<?php echo wp_kses_post( $g_img_srcset ); ?>">
 							</a>
 						</figure>
 						<?php
@@ -362,6 +362,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 
 			<?php do_action( 'woostify_product_images_box_end' ); ?>
 		</div>
+
 		<?php
 	}
 }
