@@ -82,8 +82,11 @@ var woostifyStockQuantityProgressBar = function() {
 var woostifyQuantityMiniCart = function() {
 	var cartCountContainer = document.querySelector( '.shopping-bag-button .shop-cart-count' );
 	var infor              = document.querySelectorAll( '.mini-cart-product-infor' );
-	if ( ! infor.length ) {
-		cartCountContainer.classList.add( 'hide' );
+
+	if ( ! infor.length || ! cartCountContainer ) {
+		if ( cartCountContainer ) {
+			cartCountContainer.classList.add( 'hide' );
+		}
 		return;
 	}
 
@@ -252,7 +255,10 @@ document.addEventListener(
 			'adding_to_cart',
 			function() {
 				eventCartSidebarOpen();
-				cartSidebarOpen();
+
+				if ( ! document.body.classList.contains( 'disabled-sidebar-cart' ) ) {
+					cartSidebarOpen();
+				}
 			}
 		).on(
 			'added_to_cart',

@@ -357,6 +357,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$options            = woostify_options( false );
 			$disable_multi_step = woostify_is_multi_checkout();
 
+			// Disabled side cart if user use elementor mini cart.
+			if ( defined( 'ELEMENTOR_PRO_VERSION' ) && 'no' !== get_option( 'elementor_use_mini_cart_template' ) ) {
+				$classes[] = 'disabled-sidebar-cart';
+			}
+
 			// Product gallery.
 			$page_id = woostify_get_page_id();
 			$product = wc_get_product( $page_id );
