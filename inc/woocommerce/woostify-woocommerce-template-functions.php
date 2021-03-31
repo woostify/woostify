@@ -264,8 +264,8 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 					$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 					$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 					if (
-						( function_exists( 'wc_pb_get_bundled_cart_item_container' ) && wc_pb_get_bundled_cart_item_container( $cart_item ) ) ||
-						'composite' === get_post_type( $product_id )
+						( function_exists( 'wc_pb_get_bundled_cart_item_container' ) && wc_pb_get_bundled_cart_item_container( $cart_item ) ) /* Support WC bundle plugin */ ||
+						defined( 'WOOCO_VERSION' ) && isset( $cart_item['wooco_pos'] ) && $cart_item['wooco_pos'] // Support WPC Composite Products for WooCommerce plugin.
 					) {
 						continue;
 					}
