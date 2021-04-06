@@ -106,6 +106,16 @@
 					label.removeClass('dashicons-hidden');
 					label.addClass('dashicons-visibility');
 				}
+				update_value($('.woostify-adv-list-items'), true)
+			} );
+			$( document ).on( 'blur', '.woostify-adv-list-input', function() {
+				update_value($('.woostify-adv-list-items'), true)
+			} )
+			$( document ).on( 'click', '.sortable-item-icon-expand', function() {
+				var btn = $(this);
+				var item_wrap = btn.closest('.woostify-sortable-list-item-wrap');
+				var item_content = item_wrap.find( '.adv-list-item-content' );
+				item_content.slideToggle();
 			} );
 		}
 	);

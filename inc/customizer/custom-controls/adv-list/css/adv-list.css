@@ -20,6 +20,7 @@
 	background: #fff;
 	border: 1px dashed #333;
 	border-top: none;
+	display: none;
 }
 
 .woostify-sortable-list-item-wrap .woostify-sortable-list-item {
