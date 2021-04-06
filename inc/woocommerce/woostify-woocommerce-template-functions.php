@@ -533,32 +533,6 @@ if ( ! function_exists( 'woostify_change_woocommerce_arrow_pagination' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_product_out_of_stock' ) ) {
-	/**
-	 * Check product out of stock
-	 *
-	 * @param      object $product The product.
-	 */
-	function woostify_product_out_of_stock( $product ) {
-		if ( ! $product || ! is_object( $product ) ) {
-			return false;
-		}
-
-		$in_stock     = $product->is_in_stock();
-		$manage_stock = $product->managing_stock();
-		$quantity     = $product->get_stock_quantity();
-
-		if (
-			( $product->is_type( 'simple' ) && ( ! $in_stock || ( $manage_stock && 0 === $quantity ) ) ) ||
-			( $product->is_type( 'variable' ) && $manage_stock && 0 === $quantity )
-		) {
-			return true;
-		}
-
-		return false;
-	}
-}
-
 if ( ! function_exists( 'woostify_print_out_of_stock_label' ) ) {
 	/**
 	 * Print out of stock label
@@ -609,10 +583,10 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 		$sale_text    = $options['shop_page_sale_text'];
 		$sale_percent = $options['shop_page_sale_percent'];
 		$final_price  = '';
-		$out_of_stock = woostify_product_out_of_stock( $product );
+		$out_of_stock = $product->get_stock_quantity();
 
 		// Out of stock.
-		if ( $out_of_stock ) {
+		if ( ! $out_of_stock ) {
 			return;
 		}
 
