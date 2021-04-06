@@ -1,0 +1,52 @@
+.woostify-sortable-list-item-wrap {
+	opacity: 0.5;
+}
+
+.woostify-sortable-list-item-wrap.checked {
+	opacity: 1;
+}
+
+.woostify-sortable-list-item-wrap .sortable-item-icon-expand {
+	cursor: pointer;
+}
+
+.woostify-sortable-list-item-wrap .woostify-sortable-list-item {
+	background: #fafafa;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content {
+	box-shadow: none;
+	padding: 10px;
+	background: #fff;
+	border: 1px dashed #333;
+	border-top: none;
+}
+
+.woostify-sortable-list-item-wrap .woostify-sortable-list-item {
+	border-color: #333;
+}
+
+.woostify-sortable-list-item-wrap .woostify-sortable-list-item * {
+	color: inherit;
+}
+
+.woostify-sortable-list-item-wrap.checked .adv-list-item-content {
+	border: 1px solid #333;
+	border-top: 0;
+}
+
+
+.woostify-adv-list-control {
+	margin-top: 7px;
+}
+
+.woostify-adv-list-control.type-field,
+.woostify-adv-list-control.icon-field {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.woostify-adv-list-control.type-field select {
+	max-width: 120px;
+}

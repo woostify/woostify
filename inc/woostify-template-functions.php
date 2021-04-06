@@ -2340,3 +2340,18 @@ if ( ! function_exists( 'woostify_scroll_to_top' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
+	function woostify_sticky_footer_bar() {
+		$options  = woostify_options( false );
+		if ( $options[ 'sticky_footer_bar_enable' ] ) {
+			return;
+		}
+
+		do_action( 'woostify_before_sticky_footer_bar_items' );
+		$items = $options['sticky_footer_bar_items'];
+
+		foreach ( $items as $item ) {
+		}
+		do_action( 'woostify_after_sticky_footer_bar_items' );
+	}
+}

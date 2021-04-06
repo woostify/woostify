@@ -56,6 +56,36 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * @return array
 		 */
 		public static function woostify_get_woostify_default_setting_values() {
+			$sticky_footer_bar_items = array(
+				array(
+					'type' => 'custom',
+					'icon'	=> '',
+					'name'	=> 'Shop',
+					'link'	=> '#',
+					'hidden'	=> false,
+				),
+				array(
+					'type' => 'wishlist',
+					'icon'	=> '',
+					'name'	=> 'Wishlist',
+					'link'	=> '#',
+					'hidden'	=> false,
+				),
+				array(
+					'type' => 'custom',
+					'icon'	=> '',
+					'name'	=> 'My Account',
+					'link'	=> '#',
+					'hidden'	=> false,
+				),
+				array(
+					'type' => 'compare',
+					'icon'	=> '',
+					'name'	=> 'Compare',
+					'link'	=> '#',
+					'hidden'	=> true,
+				)
+			);
 			$args = array(
 				// CONTAINER.
 				'container_width'                         => '1200',
@@ -145,6 +175,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'footer_link_color'                       => '#8f8f8f',
 				'footer_text_color'                       => '#8f8f8f',
 				'footer_custom_text'                      => woostify_footer_custom_text(),
+				// Sticky Footer Bar.
+				'sticky_footer_bar_enable'	=> true,
+				'sticky_footer_bar_items'	=> json_encode($sticky_footer_bar_items),
 				// Scroll To Top.
 				'scroll_to_top'                           => true,
 				'scroll_to_top_background'                => '',
