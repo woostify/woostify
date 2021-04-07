@@ -6,63 +6,61 @@
 
 	'use strict';
 
-	jQuery( document ).ready(
-		function($){
-
-			'use strict';
-
-			// Instantiates the variable that holds the media library frame.
-			var metaImageFrame;
-
-			// Runs when the media button is clicked.
-			$( 'body' ).click(
-				function(e) {
-
-					// Get the btn
-					var btn = e.target;
-
-					// Check if it's the upload button
-					if ( ! btn || ! $( btn ).attr( 'data-media-uploader-target' ) ) {
-						return;
-					}
-
-					// Get the field target
-					var field = $( btn ).data( 'media-uploader-target' );
-
-					var iconPrevWrap = $( btn ).closest('.woostify-adv-list-control').find('.icon-prev');
-
-					// Prevents the default action from occuring.
-					e.preventDefault();
-
-					// Sets up the media library frame
-					metaImageFrame = wp.media.frames.metaImageFrame = wp.media();
-
-					// Runs when an image is selected.
-					metaImageFrame.on(
-						'select',
-						function() {
-
-							// Grabs the attachment selection and creates a JSON representation of the model.
-							var media_attachment = metaImageFrame.state().get( 'selection' ).first().toJSON();
-
-							// Sends the attachment URL to our custom image input field.
-							$( field ).val( media_attachment.url );
-							iconPrevWrap.find('img').attr('src', media_attachment.url);
-							iconPrevWrap.removeClass('hide');
-						}
-					);
-
-					// Opens the media library frame.
-					metaImageFrame.open();
-
-				}
-			);
-		}
-	);
-
 	wp.customize.bind(
 		'ready',
 		function() {
+			function media() {
+				'use strict';
+
+				// Instantiates the variable that holds the media library frame.
+				var metaImageFrame;
+
+				// Runs when the media button is clicked.
+				$( 'body' ).click(
+					function(e) {
+
+						// Get the btn
+						var btn = e.target;
+
+						// Check if it's the upload button
+						if ( ! btn || ! $( btn ).attr( 'data-media-uploader-target' ) ) {
+							return;
+						}
+
+						// Get the field target
+						var field = $( btn ).data( 'media-uploader-target' );
+
+						var iconPrevWrap = $( btn ).closest('.woostify-adv-list-control').find('.icon-prev');
+
+						// Prevents the default action from occuring.
+						e.preventDefault();
+
+						// Sets up the media library frame
+						metaImageFrame = wp.media.frames.metaImageFrame = wp.media();
+
+						// Runs when an image is selected.
+						metaImageFrame.on(
+							'select',
+							function() {
+
+								// Grabs the attachment selection and creates a JSON representation of the model.
+								var media_attachment = metaImageFrame.state().get( 'selection' ).first().toJSON();
+
+								// Sends the attachment URL to our custom image input field.
+								$( field ).val( media_attachment.url );
+								iconPrevWrap.find('img').attr('src', media_attachment.url);
+								iconPrevWrap.removeClass('hide');
+								update_value($('.woostify-adv-list-items'));
+							}
+						);
+
+						// Opens the media library frame.
+						metaImageFrame.open();
+
+					}
+				);
+			}
+
 			function update_value( $el ) {
 				var value = {};
 				$el.find( '.woostify-sortable-list-item-wrap' ).each( function( item_idx, item_obj ) {
@@ -93,6 +91,8 @@
 					}
 				} );
 			}
+
+			media();
 
 			display_item_options( $('.woostify-adv-list-select') );
 

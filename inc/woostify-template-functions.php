@@ -2343,15 +2343,40 @@ if ( ! function_exists( 'woostify_scroll_to_top' ) ) {
 if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 	function woostify_sticky_footer_bar() {
 		$options  = woostify_options( false );
-		if ( $options[ 'sticky_footer_bar_enable' ] ) {
+		if ( ! $options[ 'sticky_footer_bar_enable' ] ) {
 			return;
 		}
 
-		do_action( 'woostify_before_sticky_footer_bar_items' );
-		$items = $options['sticky_footer_bar_items'];
+		$items = json_decode($options['sticky_footer_bar_items']);
 
+		echo '<div class="woostify-sticky-footer-bar">';
+		echo '<ul class="woostify-item-list">';
+		do_action( 'woostify_before_sticky_footer_bar_items' );
 		foreach ( $items as $item ) {
+			switch( $item->type ) {
+				case 'wishlist':
+					break;
+				case 'compare':
+					break;
+				case 'cart':
+					break;
+				case 'search':
+					break;
+				default:
+					echo '<li class="woostify-item-list__item">';
+					echo '<a href="'.esc_url( $item->link ).'">';
+					echo '<span class="woostify-item-list-item__icon">';
+					if ( '' !== $item->icon ) {
+						echo '<img src="'.esc_attr( $item->icon ).'" width="24" class="woostify-custom-item-img"/>';
+					}
+					echo '</span>';
+					echo '<span class="woostify-item-list-item__name">'.esc_html( $item->name ).'</span>';
+					echo '</a>';
+					echo '</li>';
+			}
 		}
 		do_action( 'woostify_after_sticky_footer_bar_items' );
+		echo '</ul>';
+		echo '</div>';
 	}
 }

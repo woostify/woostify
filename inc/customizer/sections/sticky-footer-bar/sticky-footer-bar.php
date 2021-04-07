@@ -34,6 +34,7 @@ $wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_items]',
 	array(
 		'default' => $defaults['sticky_footer_bar_items'],
+		'type'	=> 'option'
 	)
 );
 

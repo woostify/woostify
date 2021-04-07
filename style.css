@@ -6281,6 +6281,36 @@ header.elementor-element {
   width: 100%;
 }
 
+.woostify-sticky-footer-bar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.woostify-sticky-footer-bar ul.woostify-item-list {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item {
+  flex: 1 0 auto;
+  text-align: center;
+}
+
+.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a {
+  display: inline-block;
+}
+
+.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a span {
+  display: block;
+}
+
 .home.blog .site-main .post-loop:first-child:last-child {
   border-bottom: 0;
 }

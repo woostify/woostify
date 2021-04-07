@@ -1,0 +1,25 @@
+.woostify-sticky-footer-bar {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	background: #fff;
+	border-top: 1px solid #ccc;
+	ul.woostify-item-list {
+		display: flex;
+		align-items: center;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		li.woostify-item-list__item {
+			flex: 1 0 auto;
+			text-align: center;
+			a {
+				display: inline-block;
+				span {
+					display: block;
+				}
+			}
+		}
+	}
+}

@@ -127,7 +127,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 						</div>
 					</div>
 			<?php } ?>
-				<input type="hidden" class="woostify-adv-list-value" data-customize-setting-link="<?php echo esc_attr($this->id); ?>">
+				<input type="hidden" class="woostify-adv-list-value" <?php $this->link(); ?> value='<?php echo $this->value(); ?>' />
 			</div>
 		</div>
 		<?php
