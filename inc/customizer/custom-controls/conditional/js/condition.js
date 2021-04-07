@@ -433,6 +433,15 @@
 				],
 				false
 			);
+
+			// Sticky Footer  Bar section
+			condition(
+				'woostify_setting[sticky_footer_bar_enable]',
+				[
+					'woostify_setting[sticky_footer_bar_items]'
+				]
+			)
+
 			// Disable footer.
 			condition(
 				'woostify_setting[footer_display]',
