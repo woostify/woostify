@@ -54,3 +54,17 @@
 .woostify-adv-list-control.hide {
 	display: none;
 }
+.woostify-adv-list-control .icon-prev {
+	display: flex;
+	align-items: center;
+}
+.woostify-adv-list-control .icon-prev img {
+	width: 32px;
+	height: auto;
+}
+.woostify-adv-list-control .icon-prev.hide {
+	display: none;
+}
+.woostify-adv-list-control .icon-prev .woostify-icon-remove-btn {
+	cursor: pointer;
+}

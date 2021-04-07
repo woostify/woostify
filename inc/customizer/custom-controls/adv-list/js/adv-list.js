@@ -29,6 +29,8 @@
 					// Get the field target
 					var field = $( btn ).data( 'media-uploader-target' );
 
+					var iconPrevWrap = $( btn ).closest('.woostify-adv-list-control').find('.icon-prev');
+
 					// Prevents the default action from occuring.
 					e.preventDefault();
 
@@ -45,7 +47,8 @@
 
 							// Sends the attachment URL to our custom image input field.
 							$( field ).val( media_attachment.url );
-
+							iconPrevWrap.find('img').attr('src', media_attachment.url);
+							iconPrevWrap.removeClass('hide');
 						}
 					);
 
@@ -60,7 +63,7 @@
 	wp.customize.bind(
 		'ready',
 		function() {
-			function update_value( $el, trigger_change ) {
+			function update_value( $el ) {
 				var value = {};
 				$el.find( '.woostify-sortable-list-item-wrap' ).each( function( item_idx, item_obj ) {
 					var item_wrap = $( item_obj );
@@ -75,12 +78,9 @@
 						} )
 					} );
 				} );
-
-				if ( trigger_change ) {
 					wp.customize( 'woostify_setting[sticky_footer_bar_items]', function ( obj ) {
 						obj.set( JSON.stringify( value ) );
 					} );
-				}
 			}
 
 			function display_item_options( el ) {
@@ -97,7 +97,7 @@
 			display_item_options( $('.woostify-adv-list-select') );
 
 			$( document ).on( 'change', '.woostify-adv-list-select', function () {
-				update_value($('.woostify-adv-list-items'), true);
+				update_value($('.woostify-adv-list-items'));
 
 				display_item_options( $(this) );
 			} );
@@ -121,10 +121,10 @@
 					label.removeClass('dashicons-hidden');
 					label.addClass('dashicons-visibility');
 				}
-				update_value($('.woostify-adv-list-items'), true)
+				update_value($('.woostify-adv-list-items'))
 			} );
 			$( document ).on( 'blur', '.woostify-adv-list-input', function() {
-				update_value($('.woostify-adv-list-items'), true)
+				update_value($('.woostify-adv-list-items'))
 			} )
 			$( document ).on( 'click', '.sortable-item-icon-expand', function() {
 				var btn = $(this);
@@ -132,6 +132,24 @@
 				var item_content = item_wrap.find( '.adv-list-item-content' );
 				item_content.slideToggle();
 			} );
+
+			$( document ).on( 'click', '.woostify-icon-remove-btn', function() {
+				var control = $(this).closest('.woostify-adv-list-control');
+				$(this).parent().addClass('hide');
+				$(this).parent().find('img').attr('src', '');
+				control.find('input.woostify-adv-list-input').val('');
+				update_value($('.woostify-adv-list-items'))
+			} );
+
+			$(".woostify-adv-list-items").sortable(
+				{
+					handle: ".woostify-sortable-list-item",
+					update: function( event, ui ) {
+						update_value($('.woostify-adv-list-items'))
+					}
+				}
+			);
+			$(".woostify-adv-list-items").disableSelection();
 		}
 	);
 

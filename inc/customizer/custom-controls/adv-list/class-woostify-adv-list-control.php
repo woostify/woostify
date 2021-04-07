@@ -35,7 +35,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 		wp_enqueue_script(
 			'woostify-media-upload',
 			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/adv-list/js/adv-list.js',
-			[ 'jquery' ],
+			[ 'jquery', 'jquery-ui-sortable' ],
 			woostify_version(),
 			true
 		);
@@ -101,6 +101,10 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 								$icon_field_name = "{$this->id}[{$k}][icon]";
 								?>
 								<label for="<?php echo $icon_field_id; ?>"><?php esc_html_e( 'Icon', 'woostify' ); ?></label>
+								<div class="icon-prev <?php echo '' === $val->icon ? 'hide' : ''; ?>">
+									<img src="<?php echo esc_url( $val->icon ) ; ?>" alt="" class="<?php echo $icon_field_id; ?>" />
+									<span class="woostify-icon-remove-btn dashicons dashicons-no-alt"></span>
+								</div>
 								<input type="hidden" class="woostify-adv-list-input" name="<?php echo $icon_field_name; ?>" id="<?php echo $icon_field_id; ?>" value="<?php echo esc_attr( $val->icon ); ?>">
 								<button type="button" class="button" id="<?php echo "{$icon_field_id}_upload_btn"; ?>" data-media-uploader-target="#<?php echo $icon_field_id; ?>"><?php _e( 'Upload Media', 'myplugin' )?></button>
 							</div>
