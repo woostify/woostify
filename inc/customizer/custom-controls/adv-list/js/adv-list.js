@@ -83,8 +83,23 @@
 				}
 			}
 
+			function display_item_options( el ) {
+				el.each( function () {
+					var options_wrap = $(this).closest('.adv-list-item-content');
+					if( 'custom' !== $(this).val() ) {
+						options_wrap.find('.woostify-adv-list-control:not(.type-field)').addClass('hide');
+					} else {
+						options_wrap.find('.woostify-adv-list-control:not(.type-field)').removeClass('hide');
+					}
+				} );
+			}
+
+			display_item_options( $('.woostify-adv-list-select') );
+
 			$( document ).on( 'change', '.woostify-adv-list-select', function () {
-				update_value($('.woostify-adv-list-items'), true)
+				update_value($('.woostify-adv-list-items'), true);
+
+				display_item_options( $(this) );
 			} );
 			$( document ).on( 'keyup', '.woostify-adv-list-input--name', function () {
 				var item_wrap = $(this).closest( '.woostify-sortable-list-item-wrap' );

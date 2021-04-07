@@ -51,3 +51,6 @@
 .woostify-adv-list-control.type-field select {
 	max-width: 120px;
 }
+.woostify-adv-list-control.hide {
+	display: none;
+}
