@@ -89,9 +89,13 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 								<label for="<?php echo $type_field_id; ?>"><?php esc_html_e( 'Type', 'woostify' ); ?></label>
 								<select name="<?php echo $type_field_name; ?>" id="<?php echo $type_field_id; ?>" class="woostify-adv-list-input woostify-adv-list-select">
 									<option value="custom" <?php selected( $val->type, 'custom' ); ?>><?php _e( 'Custom', 'woositify' ); ?></option>
-									<option value="wishlist" <?php selected( $val->type, 'wishlist' ); ?>><?php _e( 'Wishlist', 'woositify' ); ?></option>
-									<option value="compare" <?php selected( $val->type, 'compare' ); ?>><?php _e( 'Compare', 'woositify' ); ?></option>
-									<option value="cart" <?php selected( $val->type, 'cart' ); ?>><?php _e( 'Cart', 'woositify' ); ?></option>
+									<?php if ( woostify_support_wishlist_plugin() ) { ?>
+										<option value="wishlist" <?php selected( $val->type, 'wishlist' ); ?>><?php _e( 'Wishlist', 'woositify' ); ?></option>
+									<?php } ?>
+									<?php if ( woostify_is_woocommerce_activated() ) { ?>
+										<option value="cart" <?php selected( $val->type, 'cart' ); ?>><?php _e( 'Cart', 'woositify' ); ?></option>
+									<?php } ?>
+									<option value="shortcode" <?php selected( $val->type, 'shortcode' ); ?>><?php _e( 'Shortcode', 'woositify' ); ?></option>
 									<option value="search" <?php selected( $val->type, 'search' ); ?>><?php _e( 'Search', 'woositify' ); ?></option>
 								</select>
 							</div>

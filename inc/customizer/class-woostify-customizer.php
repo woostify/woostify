@@ -72,16 +72,23 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'hidden'	=> false,
 				),
 				array(
-					'type' => 'custom',
+					'type' => 'search',
 					'icon'	=> '',
-					'name'	=> 'My Account',
+					'name'	=> 'Search',
 					'link'	=> '#',
 					'hidden'	=> false,
 				),
 				array(
-					'type' => 'compare',
+					'type' => 'cart',
 					'icon'	=> '',
-					'name'	=> 'Compare',
+					'name'	=> 'Cart',
+					'link'	=> '#',
+					'hidden'	=> false,
+				),
+				array(
+					'type' => 'shortcode',
+					'icon'	=> '',
+					'name'	=> 'Shortcode',
 					'link'	=> '#',
 					'hidden'	=> true,
 				)
@@ -178,6 +185,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				// Sticky Footer Bar.
 				'sticky_footer_bar_enable'	=> true,
 				'sticky_footer_bar_items'	=> json_encode($sticky_footer_bar_items),
+				'sticky_footer_bar_enable_on'	=> 'mobile',
 				// Scroll To Top.
 				'scroll_to_top'                           => true,
 				'scroll_to_top_background'                => '',

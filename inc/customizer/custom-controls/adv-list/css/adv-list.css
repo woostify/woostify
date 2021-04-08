@@ -40,6 +40,9 @@
 .woostify-adv-list-control {
 	margin-top: 7px;
 }
+.woostify-adv-list-control:first-child {
+	margin-top: 0;
+}
 
 .woostify-adv-list-control.type-field,
 .woostify-adv-list-control.icon-field {

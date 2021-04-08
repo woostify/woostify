@@ -87,7 +87,11 @@
 					if( 'custom' !== $(this).val() ) {
 						options_wrap.find('.woostify-adv-list-control:not(.type-field)').addClass('hide');
 					} else {
-						options_wrap.find('.woostify-adv-list-control:not(.type-field)').removeClass('hide');
+						if ( 'shortcode' === $(this).val() ) {
+							options_wrap.find('.woostify-adv-list-control:not(.shortcode-field)').addClass('hide');
+						} else {
+							options_wrap.find('.woostify-adv-list-control:not(.type-field)').removeClass('hide');
+						}
 					}
 				} );
 			}

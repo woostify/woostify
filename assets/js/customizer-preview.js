@@ -535,5 +535,8 @@ document.addEventListener(
 		woostify_range_slider_update( ['shop_single_button_border_radius'], '.single_add_to_cart_button.button:not(.woostify-buy-now)', 'border-radius', 'px' );
 		woostify_update_element_class( 'scroll_to_top_position', '#scroll-to-top', 'scroll-to-top-position-' );
 		woostify_update_element_class( 'scroll_to_top_on', '#scroll-to-top', 'scroll-to-top-show-' );
+
+		// Sticky Footer Bar.
+		woostify_update_element_class( 'sticky_footer_bar_enable_on', '.woostify-sticky-footer-bar', 'woostify-sticky-on-' );
 	}
 );

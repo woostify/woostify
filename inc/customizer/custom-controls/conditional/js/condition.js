@@ -438,6 +438,7 @@
 			condition(
 				'woostify_setting[sticky_footer_bar_enable]',
 				[
+					'woostify_setting[sticky_footer_bar_enable_on]',
 					'woostify_setting[sticky_footer_bar_items]'
 				]
 			)
