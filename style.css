@@ -7696,6 +7696,7 @@ header.elementor-element {
 }
 
 .products {
+  width: 100%;
   clear: both;
   padding: 0;
   margin: 0;
