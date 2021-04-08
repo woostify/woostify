@@ -32,7 +32,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_filter( 'excerpt_length', array( $this, 'woostify_limit_excerpt_character' ), 99 );
 
 			// Walker menu.
-			//add_filter( 'walker_nav_menu_start_el', array( $this, 'woostify_nav_menu_start_el' ), 10, 4 );
+			// add_filter( 'walker_nav_menu_start_el', array( $this, 'woostify_nav_menu_start_el' ), 10, 4 );
 
 			// ELEMENTOR.
 			add_action( 'elementor/theme/register_locations', array( $this, 'woostify_register_elementor_locations' ) );

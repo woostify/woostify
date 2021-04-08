@@ -8,7 +8,8 @@
 
 ( function( api ) {
 	api.bind(
-		'ready', function() {
+		'ready',
+		function() {
 
 			/**
 			 * Condition controls.
@@ -24,7 +25,8 @@
 				operator  = undefined !== arguments[3] ? arguments[3] : false;
 
 				api(
-					id, function( setting ) {
+					id,
+					function( setting ) {
 
 						/**
 						 * Update a control's active setting value.
@@ -90,7 +92,8 @@
 						arr      = undefined !== arguments[4] ? arguments[4] : false;
 
 					api(
-						id, function( setting ) {
+						id,
+						function( setting ) {
 
 							/**
 							 * Update a control's active setting value.
@@ -148,7 +151,8 @@
 						operator = undefined !== arguments[3] ? arguments[3] : false;
 
 					api(
-						id, function( setting ) {
+						id,
+						function( setting ) {
 
 							/**
 							 * Update a control's active setting value.
@@ -283,7 +287,8 @@
 			);
 			// And trigger if parent control update.
 			wp.customize(
-				'woostify_setting[page_header_display]', function( value ) {
+				'woostify_setting[page_header_display]',
+				function( value ) {
 					value.bind(
 						function( newval ) {
 							if ( newval ) {

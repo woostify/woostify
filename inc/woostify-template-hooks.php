@@ -72,7 +72,7 @@ add_action( 'woostify_template_part_footer', 'woostify_site_footer', 10 );
 // Inside @woostify_before_footer hook.
 add_action( 'woostify_before_footer', 'woostify_container_close', 10 ); // Close .container.
 add_action( 'woostify_before_footer', 'woostify_content_close', 10 ); // Close #content.
-add_action( 'woostify_before_footer', 'woostify_sticky_footer_bar', 15);
+add_action( 'woostify_before_footer', 'woostify_sticky_footer_bar', 15 );
 
 // Inside @woostify_after_footer hook.
 add_action( 'woostify_after_footer', 'woostify_view_close', 0 ); // Close #view.
