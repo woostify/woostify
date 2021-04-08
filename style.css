@@ -10799,9 +10799,7 @@ header.elementor-element {
 }
 
 .has-multi-step-checkout .multi-step-checkout-button#place_order {
-  width: auto;
   font-weight: normal;
-  min-height: auto;
   margin-top: 0;
   text-transform: none;
 }
