@@ -96,18 +96,16 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 								<label for="<?php echo esc_attr( $shortcode_field_id ); ?>"><?php esc_html_e( 'Shortcode', 'woostify' ); ?></label>
 								<input type="text" class="woostify-adv-list-input woostify-adv-list-input--shortcode" name="<?php echo esc_attr( $shortcode_field_name ); ?>" id="<?php echo esc_attr( $shortcode_field_id ); ?>" value="<?php echo esc_html( $val->shortcode ); ?>">
 							</div>
-							<div class="icon-field woostify-adv-list-control customize-control-media" data-field_name="icon">
+							<div class="icon-field woostify-adv-list-control customize-control-text" data-field_name="icon">
 								<?php
 								$icon_field_id   = preg_replace( '/[\[\]]/', '_', $this->id ) . $k . '_icon';
 								$icon_field_name = "{$this->id}[{$k}][icon]";
 								?>
-								<label for="<?php echo esc_attr( $icon_field_id ); ?>"><?php esc_html_e( 'Icon', 'woostify' ); ?></label>
-								<div class="icon-prev <?php echo '' === $val->icon ? 'hide' : ''; ?>">
-									<img src="<?php echo esc_url( $val->icon ); ?>" alt="" class="<?php echo esc_attr( $icon_field_id ); ?>" />
-									<span class="woostify-icon-remove-btn dashicons dashicons-no-alt"></span>
-								</div>
-								<input type="hidden" class="woostify-adv-list-input" name="<?php echo esc_attr( $icon_field_name ); ?>" id="<?php echo esc_attr( $icon_field_id ); ?>" value="<?php echo esc_url( $val->icon ); ?>">
-								<button type="button" class="button" id="<?php echo esc_attr( $icon_field_id ) . '_upload_btn'; ?>" data-media-uploader-target="#<?php echo esc_attr( $icon_field_id ); ?>"><?php echo esc_html__( 'Upload Media', 'myplugin' ); ?></button>
+								<label for="<?php echo esc_attr( $icon_field_id ); ?>">
+									<?php esc_html_e( 'Icon', 'woostify' ); ?>
+									<?php /* translators: %s: <a href="https://themify.me/themify-icons">here</a> */ ?>
+									<span class="woostify-control-desc"><?php sprintf( esc_html__( 'Get icons class %s', 'woostify' ), '<a href="https://themify.me/themify-icons">here</a>' ); ?></label></span>
+								<input type="text" class="woostify-adv-list-input woostify-adv-list-input--icon" name="<?php echo esc_attr( $icon_field_name ); ?>" id="<?php echo esc_attr( $icon_field_id ); ?>" value="<?php echo esc_html( $val->icon ); ?>">
 							</div>
 							<div class="name-field woostify-adv-list-control customize-control-text" data-field_name="name">
 								<?php

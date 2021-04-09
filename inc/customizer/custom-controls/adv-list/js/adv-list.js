@@ -106,6 +106,7 @@
 							case 'cart':
 							case 'search':
 								options_wrap.find( '.woostify-adv-list-control:not(.type-field)' ).addClass( 'hide' );
+								options_wrap.find( '.woostify-adv-list-control.name-field' ).removeClass( 'hide' );
 								break;
 							case 'shortcode':
 								options_wrap.find( '.woostify-adv-list-control:not(.type-field)' ).addClass( 'hide' );
@@ -117,8 +118,6 @@
 					}
 				);
 			}
-
-			woostify_customizer_media();
 
 			display_item_options( $( '.woostify-adv-list-select' ) );
 
@@ -152,6 +151,7 @@
 						item_wrap.removeClass( 'checked' );
 						label.removeClass( 'dashicons-visibility' );
 						label.addClass( 'dashicons-hidden' );
+						item_wrap.find( '.adv-list-item-content' ).hide();
 					} else {
 						item.addClass( 'checked' );
 						item_wrap.addClass( 'checked' );
@@ -175,7 +175,9 @@
 					var btn          = $( this );
 					var item_wrap    = btn.closest( '.woostify-sortable-list-item-wrap' );
 					var item_content = item_wrap.find( '.adv-list-item-content' );
-					item_content.slideToggle();
+					if ( item_wrap.hasClass( 'checked' ) ) {
+						item_content.slideToggle();
+					}
 				}
 			);
 
