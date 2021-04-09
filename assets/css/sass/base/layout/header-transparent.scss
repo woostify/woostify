@@ -31,4 +31,10 @@
 			position: absolute;
 		}
 	}
+
+	.site-header {
+		+ .site-content {
+			margin-top: 0;
+		}
+	}
 }
