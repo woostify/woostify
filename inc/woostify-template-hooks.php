@@ -76,6 +76,7 @@ add_action( 'woostify_before_footer', 'woostify_sticky_footer_bar', 15 );
 
 // Inside @woostify_after_footer hook.
 add_action( 'woostify_after_footer', 'woostify_view_close', 0 ); // Close #view.
+add_action( 'woostify_after_footer', 'woostify_sticky_footer_bar', 5 );
 add_action( 'woostify_after_footer', 'woostify_toggle_sidebar', 10 );
 add_action( 'woostify_after_footer', 'woostify_overlay', 20 );
 add_action( 'woostify_after_footer', 'woostify_footer_action', 20 );

@@ -32,7 +32,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_filter( 'excerpt_length', array( $this, 'woostify_limit_excerpt_character' ), 99 );
 
 			// Walker menu.
-			// add_filter( 'walker_nav_menu_start_el', array( $this, 'woostify_nav_menu_start_el' ), 10, 4 );
+			// add_filter( 'walker_nav_menu_start_el', array( $this, 'woostify_nav_menu_start_el' ), 10, 4 );.
 
 			// ELEMENTOR.
 			add_action( 'elementor/theme/register_locations', array( $this, 'woostify_register_elementor_locations' ) );
@@ -53,6 +53,8 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_action( 'elementor/widgets/widgets_registered', array( $this, 'woostify_add_elementor_widget' ) );
 			add_filter( 'the_content', array( $this, 'woostify_modify_the_content' ) );
 			add_action( 'init', array( $this, 'woostify_override_divi_color_pciker' ), 12 );
+
+			add_action( 'wp_head', array( $this, 'sticky_footer_bar' ), 15 );
 		}
 
 		/**
@@ -232,6 +234,19 @@ if ( ! class_exists( 'Woostify' ) ) {
 					'defaultLabel'     => __( 'Color value', 'woostify' ),
 				)
 			);
+		}
+
+		/**
+		 * Sticky footer bar
+		 */
+		public function sticky_footer_bar() {
+			$options       = woostify_options( false );
+			$header_layout = $options['header_layout'];
+			if ( 'layout-7' !== $header_layout ) {
+				remove_action( 'woostify_after_footer', 'woostify_sticky_footer_bar', 5 );
+			} else {
+				remove_action( 'woostify_before_footer', 'woostify_sticky_footer_bar', 15 );
+			}
 		}
 
 		/**
