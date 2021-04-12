@@ -103,8 +103,8 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 								?>
 								<label for="<?php echo esc_attr( $icon_field_id ); ?>">
 									<?php esc_html_e( 'Icon', 'woostify' ); ?>
-									<?php /* translators: %s: <a href="https://themify.me/themify-icons">here</a> */ ?>
-									<span class="woostify-control-desc"><?php echo sprintf( esc_html__( 'Get icons class %s', 'woostify' ), '<a href="https://themify.me/themify-icons">here</a>' ); ?></label></span>
+									<?php /* translators: %s: icons class */ ?>
+									<span class="woostify-control-desc"><?php echo sprintf( esc_html__( 'Get icons class %s', 'woostify' ), '<a href="https://themify.me/themify-icons" target="_blank">here</a>' ); ?></label></span>
 								<input type="text" class="woostify-adv-list-input woostify-adv-list-input--icon" name="<?php echo esc_attr( $icon_field_name ); ?>" id="<?php echo esc_attr( $icon_field_id ); ?>" value="<?php echo esc_html( $val->icon ); ?>">
 							</div>
 							<div class="name-field woostify-adv-list-control customize-control-text" data-field_name="name">

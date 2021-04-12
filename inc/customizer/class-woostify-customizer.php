@@ -67,7 +67,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				),
 				array(
 					'type'      => 'wishlist',
-					'icon'      => '',
+					'icon'      => 'ti-heart',
 					'name'      => 'Wishlist',
 					'link'      => '#',
 					'hidden'    => false,
@@ -75,7 +75,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				),
 				array(
 					'type'      => 'search',
-					'icon'      => '',
+					'icon'      => 'ti-search',
 					'name'      => 'Search',
 					'link'      => '#',
 					'hidden'    => false,
@@ -83,7 +83,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				),
 				array(
 					'type'      => 'cart',
-					'icon'      => '',
+					'icon'      => 'ti-shopping-cart',
 					'name'      => 'Cart',
 					'link'      => '#',
 					'hidden'    => false,
@@ -188,7 +188,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'footer_text_color'                       => '#8f8f8f',
 				'footer_custom_text'                      => woostify_footer_custom_text(),
 				// Sticky Footer Bar.
-				'sticky_footer_bar_enable'                => true,
+				'sticky_footer_bar_enable'                => false,
 				'sticky_footer_bar_items'                 => wp_json_encode( $sticky_footer_bar_items ),
 				'sticky_footer_bar_enable_on'             => 'mobile',
 				// Scroll To Top.
