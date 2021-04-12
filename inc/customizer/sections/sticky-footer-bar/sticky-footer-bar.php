@@ -8,7 +8,26 @@
 // Default values.
 $defaults = woostify_options();
 
-// Space.
+// Tabs
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_context_tabs]'
+);
+
+$wp_customize->add_control(
+	new Woostify_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[sticky_footer_bar_context_tabs]',
+		array(
+			'section'  => 'woostify_sticky_footer_bar',
+			'settings' => 'woostify_setting[sticky_footer_bar_context_tabs]',
+			'choices' => array(
+				'general' => __( 'General', 'woostify' ),
+				'design'	=> __( 'Design', 'woostify' )
+			)
+		)
+	)
+);
+
 $wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_enable]',
 	array(
