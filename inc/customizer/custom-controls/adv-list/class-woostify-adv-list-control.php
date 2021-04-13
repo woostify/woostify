@@ -113,16 +113,15 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 								<label for="<?php echo esc_attr( $shortcode_field_id ); ?>"><?php esc_html_e( 'Shortcode', 'woostify' ); ?></label>
 								<input type="text" class="woostify-adv-list-input woostify-adv-list-input--shortcode" name="<?php echo esc_attr( $shortcode_field_name ); ?>" id="<?php echo esc_attr( $shortcode_field_id ); ?>" value="<?php echo esc_html( $val->shortcode ); ?>">
 							</div>
-							<div class="icon-field woostify-adv-list-control customize-control-text" data-field_name="icon">
+							<div class="icon-field woostify-adv-list-control customize-control-text control-block" data-field_name="icon">
 								<?php
 								$icon_field_id   = preg_replace( '/[\[\]]/', '_', $this->id ) . $k . '_icon';
 								$icon_field_name = "{$this->id}[{$k}][icon]";
 								?>
 								<label for="<?php echo esc_attr( $icon_field_id ); ?>">
 									<?php esc_html_e( 'Icon', 'woostify' ); ?>
-									<?php /* translators: %s: icons class */ ?>
-									<span class="woostify-control-desc"><?php echo sprintf( esc_html__( 'Get icons class %s', 'woostify' ), '<a href="https://themify.me/themify-icons" target="_blank">here</a>' ); ?></label></span>
-								<input type="text" class="woostify-adv-list-input woostify-adv-list-input--icon" name="<?php echo esc_attr( $icon_field_name ); ?>" id="<?php echo esc_attr( $icon_field_id ); ?>" value="<?php echo esc_html( $val->icon ); ?>">
+								</label>
+								<textarea class="woostify-adv-list-input woostify-adv-list-input--icon" name="<?php echo esc_attr( $icon_field_name ); ?>" id="<?php echo esc_attr( $icon_field_id ); ?>" rows="4"><?php echo esc_html( $val->icon ); ?></textarea>
 							</div>
 							<div class="name-field woostify-adv-list-control customize-control-text" data-field_name="name">
 								<?php

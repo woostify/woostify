@@ -59,7 +59,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			$sticky_footer_bar_items = array(
 				array(
 					'type'      => 'custom',
-					'icon'      => 'ti-home',
+					'icon'      => '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" viewBox="0 0 17 17"><g></g><path d="M14 16h-3v-6h-5v6h-3v-9h-1v10h13v-10h-1v9zM7 16v-5h3v5h-3zM16.796 6.473l-0.592 0.807-7.704-5.66-7.704 5.658-0.592-0.806 8.296-6.092 8.296 6.093z" /></svg>',
 					'name'      => 'Shop',
 					'link'      => '#',
 					'shortcode' => '',
@@ -67,7 +67,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				),
 				array(
 					'type'      => 'wishlist',
-					'icon'      => 'ti-heart',
+					'icon'      => '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" viewBox="0 0 17 17"><g></g><path d="M12.5 0.658c-1.739 0-3.251 0.992-4 2.439-0.749-1.447-2.261-2.439-4-2.439-2.481 0-4.5 2.019-4.5 4.5 0 0.343 0.048 0.699 0.154 1.118l0.109 0.351c1.432 4.354 7.659 9.393 7.924 9.604l0.313 0.252 0.313-0.252c0.282-0.227 6.926-5.598 7.927-9.614l0.112-0.368c0.101-0.402 0.148-0.749 0.148-1.091 0-2.481-2.019-4.5-4.5-4.5zM15.889 5.98l-0.113 0.37c-0.809 3.246-5.946 7.727-7.276 8.843-1.282-1.083-6.122-5.337-7.285-8.872l-0.1-0.316c-0.077-0.311-0.115-0.588-0.115-0.847 0-1.93 1.57-3.5 3.5-3.5s3.5 1.571 3.5 3.5v0.252h1v-0.252c0-1.93 1.57-3.5 3.5-3.5s3.5 1.57 3.5 3.5c0 0.258-0.038 0.527-0.111 0.822z" /></svg>',
 					'name'      => 'Wishlist',
 					'link'      => '#',
 					'hidden'    => false,
@@ -75,7 +75,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				),
 				array(
 					'type'      => 'search',
-					'icon'      => 'ti-search',
+					'icon'      => '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" viewBox="0 0 17 17"><g></g><path d="M16.604 15.868l-5.173-5.173c0.975-1.137 1.569-2.611 1.569-4.223 0-3.584-2.916-6.5-6.5-6.5-1.736 0-3.369 0.676-4.598 1.903-1.227 1.228-1.903 2.861-1.902 4.597 0 3.584 2.916 6.5 6.5 6.5 1.612 0 3.087-0.594 4.224-1.569l5.173 5.173 0.707-0.708zM6.5 11.972c-3.032 0-5.5-2.467-5.5-5.5-0.001-1.47 0.571-2.851 1.61-3.889 1.038-1.039 2.42-1.611 3.89-1.611 3.032 0 5.5 2.467 5.5 5.5 0 3.032-2.468 5.5-5.5 5.5z" /></svg>',
 					'name'      => 'Search',
 					'link'      => '#',
 					'hidden'    => false,
@@ -83,7 +83,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				),
 				array(
 					'type'      => 'cart',
-					'icon'      => 'ti-shopping-cart',
+					'icon'      => '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" viewBox="0 0 17 17"><g></g><path d="M2.75 12.5c-0.965 0-1.75 0.785-1.75 1.75s0.785 1.75 1.75 1.75 1.75-0.785 1.75-1.75-0.785-1.75-1.75-1.75zM2.75 15c-0.414 0-0.75-0.337-0.75-0.75s0.336-0.75 0.75-0.75 0.75 0.337 0.75 0.75-0.336 0.75-0.75 0.75zM11.25 12.5c-0.965 0-1.75 0.785-1.75 1.75s0.785 1.75 1.75 1.75 1.75-0.785 1.75-1.75-0.785-1.75-1.75-1.75zM11.25 15c-0.414 0-0.75-0.337-0.75-0.75s0.336-0.75 0.75-0.75 0.75 0.337 0.75 0.75-0.336 0.75-0.75 0.75zM13.371 2l-0.302 2h-13.143l1.118 8.036h11.913l1.038-7.463 0.236-1.573h2.769v-1h-3.629zM12.926 5l-0.139 1h-11.574l-0.139-1h11.852zM1.914 11.036l-0.561-4.036h11.295l-0.561 4.036h-10.173z" /></svg>',
 					'name'      => 'Cart',
 					'link'      => '#',
 					'hidden'    => false,
@@ -191,6 +191,13 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'sticky_footer_bar_enable'                => false,
 				'sticky_footer_bar_items'                 => wp_json_encode( $sticky_footer_bar_items ),
 				'sticky_footer_bar_enable_on'             => 'mobile',
+				'sticky_footer_bar_text_font_size'			=> 13,
+				'sticky_footer_bar_icon_font_size'			=> 20,
+				'sticky_footer_bar_text_color'			=> '#111',
+				'sticky_footer_bar_text_hover_color'			=> '#111',
+				'sticky_footer_bar_icon_color'			=> '#111',
+				'sticky_footer_bar_icon_hover_color'			=> '#111',
+				'sticky_footer_bar_text_font_weight'			=> 600,
 				// Scroll To Top.
 				'scroll_to_top'                           => true,
 				'scroll_to_top_background'                => '',

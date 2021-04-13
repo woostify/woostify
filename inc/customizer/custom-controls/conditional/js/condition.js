@@ -495,6 +495,7 @@
 					'woostify_setting[sticky_footer_bar_text_hover_color]',
 					'woostify_setting[sticky_footer_bar_icon_font_size]',
 					'woostify_setting[sticky_footer_bar_text_font_size]',
+					'woostify_setting[sticky_footer_bar_text_font_weight]',
 				]
 			)
 		}

@@ -2363,17 +2363,18 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 				case 'wishlist':
 					// Wishlist icon.
 					if ( woostify_support_wishlist_plugin() ) {
-						$wishlist_icon       = apply_filters( 'woostify_header_wishlist_icon', 'ti-heart' );
 						$wishlist_item_count = woostify_get_wishlist_count();
 						?>
 						<li class="woostify-item-list__item woostify-addon">
 						<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="header-wishlist-icon">
-							<span class="woostify-item-list-item__icon ">
-							<?php if ( 'ti' === $options['shop_page_wishlist_support_plugin'] && function_exists( 'tinv_get_option' ) && tinv_get_option( 'topline', 'show_counter' ) ) { ?>
-								<span class="woositfy-sfb-icon <?php echo esc_attr( $wishlist_icon ); ?>"></span>
-								<span class="theme-item-count wishlist-item-count"><?php echo esc_html( $wishlist_item_count ); ?></span>
-							<?php } ?>
+							<?php if ( '' !== $item->icon ) { ?>
+								<span class="woostify-item-list-item__icon ">
+									<span class="woositfy-sfb-icon">
+										<?php echo $item->icon; ?>
+									</span>
+									<span class="theme-item-count wishlist-item-count"><?php echo esc_html( $wishlist_item_count ); ?></span>
 								</span>
+							<?php } ?>
 							<span class="woostify-item-list-item__name"><?php echo esc_html( $item->name ); ?></span>
 						</a>
 						</li>
@@ -2388,7 +2389,6 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 					<?php
 					break;
 				case 'cart':
-					$shop_bag_icon = apply_filters( 'woostify_header_shop_bag_icon', 'ti-shopping-cart cart-icon-rotate' );
 					$count         = 0;
 					if ( woostify_is_woocommerce_activated() ) {
 						global $woocommerce;
@@ -2397,24 +2397,31 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 					?>
 					<li class="woostify-item-list__item woostify-addon">
 					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="shopping-bag-button">
+					<?php if ( '' !== $item->icon ) { ?>
 						<span class="woostify-item-list-item__icon ">
-							<span class="woositfy-sfb-icon <?php echo esc_attr( $shop_bag_icon ); ?>"></span>
+							<span class="woositfy-sfb-icon">
+								<?php echo $item->icon; ?>
+							</span>
 							<span class="theme-item-count shop-cart-count <?php echo $options['header_shop_hide_zero_value_cart_count'] ? 'hide-zero-val' : ''; ?>"><?php echo esc_html( $count ); ?></span>
 						</span>
+					<?php } ?>
 						<span class="woostify-item-list-item__name"><?php echo esc_html( $item->name ); ?></span>
 					</a>
 					</li>
 					<?php
 					break;
 				case 'search':
-					$search_icon = apply_filters( 'woostify_header_search_icon', 'ti-search' );
 					?>
 					<li class="woostify-item-list__item woostify-addon">
 						<a href="javascript:void(0)">
+					<?php if ( '' !== $item->icon ) { ?>
 							<span class="woostify-item-list-item__icon">
-								<span class="woositfy-sfb-icon header-search-icon <?php echo esc_attr( $search_icon ); ?>"></span>
+								<span class="woositfy-sfb-icon header-search-icon">
+									<?php echo $item->icon; ?>
+								</span>
 							</span>
-							<span class="woostify-item-list-item__name"><?php echo esc_html( $item->name ); ?></span>
+					<?php } ?>
+							<span class="woostify-item-list-item__name header-search-icon"><?php echo esc_html( $item->name ); ?></span>
 						</a>
 					</li>
 					<?php
@@ -2425,7 +2432,9 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 					<a href="<?php echo esc_url( $item->link ); ?>">
 					<?php if ( '' !== $item->icon ) { ?>
 						<span class="woostify-item-list-item__icon">
-							<span class="woositfy-sfb-icon <?php echo esc_html( $item->icon ); ?>"></span>
+							<span class="woositfy-sfb-icon">
+								<?php echo $item->icon; ?>
+							</span>
 						</span>
 					<?php } ?>
 					<span class="woostify-item-list-item__name"><?php echo esc_html( $item->name ); ?></span>

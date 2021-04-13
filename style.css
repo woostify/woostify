@@ -6334,7 +6334,6 @@ header.elementor-element {
 }
 
 .woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon {
-  margin-bottom: 5px;
   font-size: 24px;
   position: relative;
   display: inline-block;
@@ -6365,10 +6364,12 @@ header.elementor-element {
   line-height: initial;
 }
 
-.has-header-layout-7 .woostify-sticky-footer-bar {
-  width: calc( 100% - 300px);
-  right: 0;
-  left: auto;
+@media (min-width: 993px) {
+  .has-header-layout-7 .woostify-sticky-footer-bar {
+    width: calc(100% - 300px);
+    right: 0;
+    left: auto;
+  }
 }
 
 .home.blog .site-main .post-loop:first-child:last-child {

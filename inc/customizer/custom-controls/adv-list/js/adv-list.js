@@ -107,6 +107,7 @@
 							case 'search':
 								options_wrap.find( '.woostify-adv-list-control:not(.type-field)' ).addClass( 'hide' );
 								options_wrap.find( '.woostify-adv-list-control.name-field' ).removeClass( 'hide' );
+								options_wrap.find( '.woostify-adv-list-control.icon-field' ).removeClass( 'hide' );
 								break;
 							case 'shortcode':
 								options_wrap.find( '.woostify-adv-list-control:not(.type-field)' ).addClass( 'hide' );

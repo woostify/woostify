@@ -106,6 +106,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['sticky_footer_bar_icon_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 
@@ -128,6 +129,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['sticky_footer_bar_icon_hover_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 
@@ -150,6 +152,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['sticky_footer_bar_text_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 
@@ -172,6 +175,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['sticky_footer_bar_text_hover_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 
@@ -249,13 +253,48 @@ $wp_customize->add_control(
 			'choices'     => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_sticky_footer_bar_text_font_size_min_step', 10 ),
-					'max'  => apply_filters( 'woostify_sticky_footer_bar_text_font_size_miã_step', 100 ),
+					'max'  => apply_filters( 'woostify_sticky_footer_bar_text_font_size_max_step', 100 ),
 					'step' => 1,
 					'edit' => true,
 					'unit' => 'px',
 				),
 			),
 			'tab'		=> 'design'
+		)
+	)
+);
+
+
+// Icon font size.
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_text_font_weight]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_text_font_weight'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Customize_Control(
+		$wp_customize,
+		'woostify_setting[sticky_footer_bar_text_font_weight]',
+		array(
+			'label'    => __( 'Text Font Weight', 'woostify' ),
+			'settings' => 'woostify_setting[sticky_footer_bar_text_font_weight]',
+			'section'  => 'woostify_sticky_footer_bar',
+			'type'     => 'select',
+			'choices'  => array(
+				'300'     => __( '300', 'woostify' ),
+				'400'     => __( '400', 'woostify' ),
+				'500'     => __( '500', 'woostify' ),
+				'600'     => __( '600', 'woostify' ),
+				'700'     => __( '700', 'woostify' ),
+				'800'     => __( '800', 'woostify' ),
+				'900'     => __( '900', 'woostify' ),
+			),
+			'tab'	=> 'design'
 		)
 	)
 );

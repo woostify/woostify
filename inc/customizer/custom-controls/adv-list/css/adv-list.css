@@ -84,6 +84,20 @@
 	align-items: center;
 }
 
+.woostify-adv-list-control.control-block {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.woostify-adv-list-control.control-block label {
+	margin-bottom: 5px;
+}
+.woostify-adv-list-control.control-block .woostify-adv-list-input {
+	width: 100%;
+	max-width: 100%;
+}
+
 .woostify-adv-list-control.type-field select {
 	max-width: 130px;
 }

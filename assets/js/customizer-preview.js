@@ -538,5 +538,14 @@ document.addEventListener(
 
 		// Sticky Footer Bar.
 		woostify_update_element_class( 'sticky_footer_bar_enable_on', '.woostify-sticky-footer-bar', 'woostify-sticky-on-' );
+		woostify_colors_live_update( 'sticky_footer_bar_icon_color', '.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon', 'color' );
+		woostify_colors_live_update( 'sticky_footer_bar_icon_hover_color', '.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon', 'color' );
+		woostify_colors_live_update( 'sticky_footer_bar_icon_color', '.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg', 'fill' );
+		woostify_colors_live_update( 'sticky_footer_bar_icon_hover_color', '.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg', 'fill' );
+		woostify_colors_live_update( 'sticky_footer_bar_text_color', '.woostify-sticky-footer-bar .woostify-item-list-item__name', 'color' );
+		woostify_colors_live_update( 'sticky_footer_bar_text_hover_color', '.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__name', 'color' );
+		woostify_range_slider_update( ['sticky_footer_bar_icon_font_size'], '.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon .woositfy-sfb-icon', 'font-size', 'px' );
+		woostify_range_slider_update( ['sticky_footer_bar_text_font_size'], '.woostify-sticky-footer-bar .woostify-item-list-item__name', 'font-size', 'px' )
+		woostify_unit_live_update( 'sticky_footer_bar_text_font_weight', '.woostify-sticky-footer-bar .woostify-item-list-item__name', 'font-weight', false );
 	}
 );
