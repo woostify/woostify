@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Woostify_Customize_Control extends WP_Customize_Control {
 
 	/**
-	 * Declare the control type.
+	 * Declare the custom param: tab.
 	 *
 	 * @var string
 	 */

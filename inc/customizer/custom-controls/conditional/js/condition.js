@@ -11,6 +11,10 @@
 		'ready',
 		function() {
 
+			/**
+			 * Update control tab data
+			 * @param ids
+			 */
 			var updateControlAttribute = function ( ids ) {
 				// Call dependency on the setting controls when they exist.
 				for ( var i = 0, j = ids.length; i < j; i++ ) {
@@ -484,7 +488,13 @@
 				[
 					'woostify_setting[sticky_footer_bar_enable]',
 					'woostify_setting[sticky_footer_bar_enable_on]',
-					'woostify_setting[sticky_footer_bar_items]'
+					'woostify_setting[sticky_footer_bar_items]',
+					'woostify_setting[sticky_footer_bar_icon_color]',
+					'woostify_setting[sticky_footer_bar_icon_hover_color]',
+					'woostify_setting[sticky_footer_bar_text_color]',
+					'woostify_setting[sticky_footer_bar_text_hover_color]',
+					'woostify_setting[sticky_footer_bar_icon_font_size]',
+					'woostify_setting[sticky_footer_bar_text_font_size]',
 				]
 			)
 		}
