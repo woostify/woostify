@@ -1,0 +1,34 @@
+<?php
+/**
+ * Woositfy Custom Customize Control Params
+ *
+ * @package woostify
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+/**
+ * Create a extend control with custom params.
+ * This control allows you to add responsive settings.
+ */
+class Woostify_Customize_Control extends WP_Customize_Control {
+
+	/**
+	 * Declare the control type.
+	 *
+	 * @var string
+	 */
+	public $tab = '';
+
+	/**
+	 * To json data
+	 */
+	public function to_json()
+	{
+		parent::to_json();
+
+		$this->json['tab'] = $this->tab;
+	}
+}

@@ -23,6 +23,23 @@ class Woostify_Switch_Control extends WP_Customize_Control {
 	public $type = 'switch';
 
 	/**
+	 * Declare the control type.
+	 *
+	 * @var string
+	 */
+	public $tab = '';
+
+	/**
+	 * To json data
+	 */
+	public function to_json()
+	{
+		parent::to_json();
+
+		$this->json['tab'] = $this->tab;
+	}
+
+	/**
 	 * Enqueue scripts and styles for the custom control.
 	 */
 	public function enqueue() {

@@ -45,6 +45,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Enable', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => 'woostify_setting[sticky_footer_bar_enable]',
+			'tab'	=> 'general'
 		)
 	)
 );
@@ -60,7 +61,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[sticky_footer_bar_enable_on]',
 		array(
@@ -73,6 +74,7 @@ $wp_customize->add_control(
 				'mobile'      => __( 'Mobile', 'woostify' ),
 				'all-devices' => __( 'Desktop + Mobile', 'woostify' ),
 			),
+			'tab'	=> 'general'
 		)
 	)
 );
@@ -93,6 +95,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Items', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => 'woostify_setting[sticky_footer_bar_items]',
+			'tab'	=> 'general'
 		)
 	)
 );

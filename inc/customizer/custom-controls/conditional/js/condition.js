@@ -11,6 +11,22 @@
 		'ready',
 		function() {
 
+			var updateControlAttribute = function ( ids ) {
+				// Call dependency on the setting controls when they exist.
+				for ( var i = 0, j = ids.length; i < j; i++ ) {
+					api.control(
+						ids[i],
+						function ( control ) {
+							var tab = control.params.tab;
+
+							if ( '' !== tab ) {
+								control.container.attr( 'data-tab', tab );
+							}
+						}
+					);
+				}
+			}
+
 			/**
 			 * Condition controls.
 			 *
@@ -463,6 +479,14 @@
 				'footer_background_color_divider'
 				]
 			);
+
+			updateControlAttribute(
+				[
+					'woostify_setting[sticky_footer_bar_enable]',
+					'woostify_setting[sticky_footer_bar_enable_on]',
+					'woostify_setting[sticky_footer_bar_items]'
+				]
+			)
 		}
 	);
 
