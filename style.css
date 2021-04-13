@@ -5170,6 +5170,10 @@ article p:last-child {
   position: absolute;
 }
 
+.has-header-transparent .site-header + .site-content {
+  margin-top: 0;
+}
+
 .woostify-icon-bar {
   width: 26px;
   height: 26px;
@@ -10885,9 +10889,7 @@ header.elementor-element {
 }
 
 .has-multi-step-checkout .multi-step-checkout-button#place_order {
-  width: auto;
   font-weight: normal;
-  min-height: auto;
   margin-top: 0;
   text-transform: none;
 }
