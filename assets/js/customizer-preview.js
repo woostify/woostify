@@ -567,6 +567,7 @@ document.addEventListener(
 
 		// Sticky Footer Bar.
 		woostify_update_element_class( 'sticky_footer_bar_enable_on', '.woostify-sticky-footer-bar', 'woostify-sticky-on-' )
+		woostify_colors_live_update( 'sticky_footer_bar_background', '.woostify-sticky-footer-bar', 'background' )
 		woostify_colors_live_update( 'sticky_footer_bar_icon_color', '.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon', 'color' )
 		woostify_colors_live_update( 'sticky_footer_bar_icon_hover_color', '.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon', 'color' )
 		woostify_colors_live_update( 'sticky_footer_bar_icon_color', '.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg', 'fill' )

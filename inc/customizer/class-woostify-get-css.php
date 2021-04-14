@@ -893,8 +893,11 @@ class Woostify_Get_CSS {
 			}
 		';
 
-		// Sticky Footer Bar
+		// Sticky Footer Bar.
 		$styles .= '
+			.woostify-sticky-footer-bar {
+				background: ' . esc_attr( $options['sticky_footer_bar_background'] ) . ';
+			}
 			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
 				color: ' . esc_attr( $options['sticky_footer_bar_icon_color'] ) . ';
 				fill: ' . esc_attr( $options['sticky_footer_bar_icon_color'] ) . ';

@@ -198,6 +198,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'sticky_footer_bar_icon_color'            => '#111',
 				'sticky_footer_bar_icon_hover_color'      => '#111',
 				'sticky_footer_bar_text_font_weight'      => 600,
+				'sticky_footer_bar_background'            => '#fff',
 				// Scroll To Top.
 				'scroll_to_top'                           => true,
 				'scroll_to_top_background'                => '',

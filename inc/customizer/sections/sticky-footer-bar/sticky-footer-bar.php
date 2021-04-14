@@ -101,6 +101,29 @@ $wp_customize->add_control(
 );
 
 $wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_background]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_background'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Control(
+		$wp_customize,
+		'woostify_setting[sticky_footer_bar_background]',
+		array(
+			'label'    => __( 'Background Color', 'woostify' ),
+			'section'  => 'woostify_sticky_footer_bar',
+			'settings' => 'woostify_setting[sticky_footer_bar_background]',
+			'tab'      => 'design',
+		)
+	)
+);
+
+$wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_icon_color]',
 	array(
 		'default'           => $defaults['sticky_footer_bar_icon_color'],
@@ -209,7 +232,7 @@ $wp_customize->add_control(
 		'woostify_setting[sticky_footer_bar_icon_font_size]',
 		array(
 			'type'     => 'woostify-range-slider',
-			'label'    => __( 'Icon Font Size', 'woostify' ),
+			'label'    => __( 'Icon Size', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => array(
 				'desktop' => 'woostify_setting[sticky_footer_bar_icon_font_size]',
