@@ -55,5 +55,5 @@
 	background: #2271b1;
 }
 .woostify-component-tabs ul li.disabled-btn {
-    opacity: .6;
+    opacity: 0;
 }
