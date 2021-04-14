@@ -27,7 +27,7 @@
 			}
 			$( document ).on(
 				'click',
-				'.woostify-tab-button',
+				'.woostify-tab-button:not(.disabled-btn)',
 				function() {
 					var curr_tab  = $( this ),
 					curr_tab_data = curr_tab.data( 'tab' ),
