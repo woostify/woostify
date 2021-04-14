@@ -13,6 +13,7 @@
 
 			/**
 			 * Update control tab data
+			 *
 			 * @param ids
 			 */
 			var updateControlAttribute = function ( ids ) {

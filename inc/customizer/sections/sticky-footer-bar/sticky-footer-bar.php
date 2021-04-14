@@ -20,10 +20,10 @@ $wp_customize->add_control(
 		array(
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => 'woostify_setting[sticky_footer_bar_context_tabs]',
-			'choices' => array(
+			'choices'  => array(
 				'general' => __( 'General', 'woostify' ),
-				'design'	=> __( 'Design', 'woostify' )
-			)
+				'design'  => __( 'Design', 'woostify' ),
+			),
 		)
 	)
 );
@@ -45,7 +45,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Enable', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => 'woostify_setting[sticky_footer_bar_enable]',
-			'tab'	=> 'general'
+			'tab'      => 'general',
 		)
 	)
 );
@@ -74,7 +74,7 @@ $wp_customize->add_control(
 				'mobile'      => __( 'Mobile', 'woostify' ),
 				'all-devices' => __( 'Desktop + Mobile', 'woostify' ),
 			),
-			'tab'	=> 'general'
+			'tab'      => 'general',
 		)
 	)
 );
@@ -95,7 +95,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Items', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => 'woostify_setting[sticky_footer_bar_items]',
-			'tab'	=> 'general'
+			'tab'      => 'general',
 		)
 	)
 );
@@ -118,7 +118,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Icon Color', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => 'woostify_setting[sticky_footer_bar_icon_color]',
-			'tab'		=> 'design'
+			'tab'      => 'design',
 		)
 	)
 );
@@ -141,7 +141,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Icon Hover Color', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => 'woostify_setting[sticky_footer_bar_icon_hover_color]',
-			'tab'		=> 'design'
+			'tab'      => 'design',
 		)
 	)
 );
@@ -164,7 +164,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => 'woostify_setting[sticky_footer_bar_text_color]',
-			'tab'		=> 'design'
+			'tab'      => 'design',
 		)
 	)
 );
@@ -187,7 +187,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Text Hover Color', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => 'woostify_setting[sticky_footer_bar_text_hover_color]',
-			'tab'		=> 'design'
+			'tab'      => 'design',
 		)
 	)
 );
@@ -208,13 +208,13 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[sticky_footer_bar_icon_font_size]',
 		array(
-			'type'        => 'woostify-range-slider',
-			'label' => __( 'Icon Font Size', 'woostify' ),
-			'section'     => 'woostify_sticky_footer_bar',
-			'settings'    => array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Icon Font Size', 'woostify' ),
+			'section'  => 'woostify_sticky_footer_bar',
+			'settings' => array(
 				'desktop' => 'woostify_setting[sticky_footer_bar_icon_font_size]',
 			),
-			'choices'     => array(
+			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_sticky_footer_bar_icon_font_size_min_step', 10 ),
 					'max'  => apply_filters( 'woostify_sticky_footer_bar_icon_font_size_max_step', 100 ),
@@ -223,7 +223,7 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
-			'tab'		=> 'design'
+			'tab'      => 'design',
 		)
 	)
 );
@@ -244,13 +244,13 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[sticky_footer_bar_text_font_size]',
 		array(
-			'type'        => 'woostify-range-slider',
-			'label' => __( 'Text Font Size', 'woostify' ),
-			'section'     => 'woostify_sticky_footer_bar',
-			'settings'    => array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Text Font Size', 'woostify' ),
+			'section'  => 'woostify_sticky_footer_bar',
+			'settings' => array(
 				'desktop' => 'woostify_setting[sticky_footer_bar_text_font_size]',
 			),
-			'choices'     => array(
+			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_sticky_footer_bar_text_font_size_min_step', 10 ),
 					'max'  => apply_filters( 'woostify_sticky_footer_bar_text_font_size_max_step', 100 ),
@@ -259,7 +259,7 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
-			'tab'		=> 'design'
+			'tab'      => 'design',
 		)
 	)
 );
@@ -286,15 +286,15 @@ $wp_customize->add_control(
 			'section'  => 'woostify_sticky_footer_bar',
 			'type'     => 'select',
 			'choices'  => array(
-				'300'     => __( '300', 'woostify' ),
-				'400'     => __( '400', 'woostify' ),
-				'500'     => __( '500', 'woostify' ),
-				'600'     => __( '600', 'woostify' ),
-				'700'     => __( '700', 'woostify' ),
-				'800'     => __( '800', 'woostify' ),
-				'900'     => __( '900', 'woostify' ),
+				'300' => __( '300', 'woostify' ),
+				'400' => __( '400', 'woostify' ),
+				'500' => __( '500', 'woostify' ),
+				'600' => __( '600', 'woostify' ),
+				'700' => __( '700', 'woostify' ),
+				'800' => __( '800', 'woostify' ),
+				'900' => __( '900', 'woostify' ),
 			),
-			'tab'	=> 'design'
+			'tab'      => 'design',
 		)
 	)
 );

@@ -2389,7 +2389,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 					<?php
 					break;
 				case 'cart':
-					$count         = 0;
+					$count = 0;
 					if ( woostify_is_woocommerce_activated() ) {
 						global $woocommerce;
 						$count = $woocommerce->cart->cart_contents_count;

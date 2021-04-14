@@ -8,8 +8,8 @@
 /**
  * Customize Tabs Control class.
  */
-class Woostify_Tabs_Control extends WP_Customize_Control
-{
+class Woostify_Tabs_Control extends WP_Customize_Control {
+
 	/**
 	 * The control type.
 	 *
@@ -54,14 +54,14 @@ class Woostify_Tabs_Control extends WP_Customize_Control
 		?>
 		<div class="woostify-component-tabs wp-clearfix">
 			<ul>
-			<?php foreach( $this->choices as $k => $choice ) { ?>
+			<?php foreach ( $this->choices as $k => $choice ) { ?>
 				<li data-tab="<?php echo esc_attr( $k ); ?>" class="woostify-tab-button"><?php echo esc_html( $choice ); ?></li>
 			<?php } ?>
 			</ul>
 		</div>
 		<style>
 			.woostify-component-tabs .woostify-tab-button {
-				width: calc( 100% / <?php echo $total_tabs; ?>);
+				width: calc( 100% / <?php echo (int) $total_tabs; ?>);
 			}
 		</style>
 		<?php
