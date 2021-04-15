@@ -693,8 +693,7 @@ class Woostify_Get_CSS {
 			}
 
 			@media ( max-width: 600px ) {
-				.woocommerce-cart-form__contents [name="update_cart"],
-				.woocommerce-cart-form__contents .coupon button {
+				.woocommerce-cart-form__contents [name="update_cart"] {
 					background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 					filter: grayscale(100%);
 				}
