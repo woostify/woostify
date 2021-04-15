@@ -8,6 +8,26 @@
 // Default values.
 $defaults = woostify_options();
 
+// Tabs.
+$wp_customize->add_setting(
+	'woostify_setting[footer_context_tabs]'
+);
+
+$wp_customize->add_control(
+	new Woostify_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[footer_context_tabs]',
+		array(
+			'section'  => 'woostify_footer',
+			'settings' => 'woostify_setting[footer_context_tabs]',
+			'choices'  => array(
+				'general' => __( 'General', 'woostify' ),
+				'design'  => __( 'Design', 'woostify' ),
+			),
+		)
+	)
+);
+
 // Footer display.
 $wp_customize->add_setting(
 	'woostify_setting[footer_display]',
@@ -25,6 +45,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Footer Display', 'woostify' ),
 			'settings' => 'woostify_setting[footer_display]',
 			'section'  => 'woostify_footer',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -58,6 +79,7 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
+			'tab'      => 'design',
 		)
 	)
 );
@@ -72,7 +94,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[footer_column]',
 		array(
@@ -91,6 +113,7 @@ $wp_customize->add_control(
 					5 => 5,
 				)
 			),
+			'tab'      => 'general',
 		)
 	)
 );
@@ -110,6 +133,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_footer',
 			'settings' => 'footer_background_color_divider',
 			'type'     => 'divider',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -131,6 +155,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Background Color', 'woostify' ),
 			'section'  => 'woostify_footer',
 			'settings' => 'woostify_setting[footer_background_color]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -145,13 +170,14 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[footer_heading_color]',
 		array(
 			'label'    => __( 'Heading Color', 'woostify' ),
 			'section'  => 'woostify_footer',
 			'settings' => 'woostify_setting[footer_heading_color]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -166,13 +192,14 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[footer_link_color]',
 		array(
 			'label'    => __( 'Link Color', 'woostify' ),
 			'section'  => 'woostify_footer',
 			'settings' => 'woostify_setting[footer_link_color]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -187,13 +214,14 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[footer_text_color]',
 		array(
 			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_footer',
 			'settings' => 'woostify_setting[footer_text_color]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -213,6 +241,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_footer',
 			'settings' => 'footer_text_divider',
 			'type'     => 'divider',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -227,7 +256,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[footer_custom_text]',
 		array(
@@ -235,6 +264,7 @@ $wp_customize->add_control(
 			'type'     => 'textarea',
 			'section'  => 'woostify_footer',
 			'settings' => 'woostify_setting[footer_custom_text]',
+			'tab'      => 'general',
 		)
 	)
 );

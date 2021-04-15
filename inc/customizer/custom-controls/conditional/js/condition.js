@@ -577,6 +577,17 @@
 						'woostify_setting[page_header_padding_top]',
 						'woostify_setting[page_header_padding_bottom]',
 						'woostify_setting[page_header_margin_bottom]',
+						// Footer.
+						'woostify_setting[footer_display]',
+						'woostify_setting[footer_space]',
+						'woostify_setting[footer_column]',
+						'footer_background_color_divider',
+						'woostify_setting[footer_background_color]',
+						'woostify_setting[footer_heading_color]',
+						'woostify_setting[footer_link_color]',
+						'woostify_setting[footer_text_color]',
+						'footer_text_divider',
+						'woostify_setting[footer_custom_text]',
 					]
 				)
 
@@ -585,6 +596,7 @@
 				hideTabLayout( 'woostify_setting[topbar_display]', 'woostify_setting[topbar_context_tabs]' )
 				hideTabLayout( 'woostify_setting[scroll_to_top]', 'woostify_setting[scroll_to_top_context_tabs]' )
 				hideTabLayout( 'woostify_setting[page_header_display]', 'woostify_setting[page_header_context_tabs]' )
+				hideTabLayout( 'woostify_setting[footer_display]', 'woostify_setting[footer_context_tabs]' )
 			}
 		)
 
