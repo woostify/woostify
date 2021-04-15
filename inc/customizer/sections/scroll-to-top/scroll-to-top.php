@@ -8,6 +8,26 @@
 // Default values.
 $defaults = woostify_options();
 
+// Tabs.
+$wp_customize->add_setting(
+	'woostify_setting[scroll_to_top_context_tabs]'
+);
+
+$wp_customize->add_control(
+	new Woostify_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[scroll_to_top_context_tabs]',
+		array(
+			'section'  => 'woostify_scroll_to_top',
+			'settings' => 'woostify_setting[scroll_to_top_context_tabs]',
+			'choices'  => array(
+				'general' => __( 'General', 'woostify' ),
+				'design'  => __( 'Design', 'woostify' ),
+			),
+		)
+	)
+);
+
 // Scroll to top.
 $wp_customize->add_setting(
 	'woostify_setting[scroll_to_top]',
@@ -17,6 +37,7 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
+
 $wp_customize->add_control(
 	new Woostify_Switch_Control(
 		$wp_customize,
@@ -25,6 +46,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Scroll To Top', 'woostify' ),
 			'settings' => 'woostify_setting[scroll_to_top]',
 			'section'  => 'woostify_scroll_to_top',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -41,7 +63,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[scroll_to_top_on]',
 		array(
@@ -57,6 +79,7 @@ $wp_customize->add_control(
 					'desktop' => __( 'Desktop', 'woostify' ),
 				)
 			),
+			'tab'      => 'general',
 		)
 	)
 );
@@ -73,7 +96,7 @@ $wp_customize->add_setting(
 );
 
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[scroll_to_top_position]',
 		array(
@@ -88,6 +111,7 @@ $wp_customize->add_control(
 					'left'  => __( 'Left', 'woostify' ),
 				)
 			),
+			'tab'      => 'general',
 		)
 	)
 );
@@ -111,6 +135,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Background', 'woostify' ),
 			'section'  => 'woostify_scroll_to_top',
 			'settings' => 'woostify_setting[scroll_to_top_background]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -134,6 +159,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Color', 'woostify' ),
 			'section'  => 'woostify_scroll_to_top',
 			'settings' => 'woostify_setting[scroll_to_top_color]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -168,6 +194,7 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
+			'tab'      => 'design',
 		)
 	)
 );
@@ -203,6 +230,7 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
+			'tab'      => 'design',
 		)
 	)
 );
@@ -237,6 +265,7 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
+			'tab'      => 'design',
 		)
 	)
 );

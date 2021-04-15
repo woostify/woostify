@@ -550,12 +550,41 @@
 						'woostify_setting[topbar_left]',
 						'woostify_setting[topbar_center]',
 						'woostify_setting[topbar_right]',
+						// Scroll to top.
+						'woostify_setting[scroll_to_top]',
+						'woostify_setting[scroll_to_top_on]',
+						'woostify_setting[scroll_to_top_position]',
+						'woostify_setting[scroll_to_top_background]',
+						'woostify_setting[scroll_to_top_color]',
+						'woostify_setting[scroll_to_top_icon_size]',
+						'woostify_setting[scroll_to_top_border_radius]',
+						'woostify_setting[scroll_to_top_offset_bottom]',
+						// Page header.
+						'woostify_setting[page_header_display]',
+						'page_header_breadcrumb_divider',
+						'woostify_setting[page_header_title]',
+						'woostify_setting[page_header_breadcrumb]',
+						'woostify_setting[page_header_text_align]',
+						'woostify_setting[page_header_title_color]',
+						'woostify_setting[page_header_breadcrumb_text_color]',
+						'woostify_setting[page_header_background_color]',
+						'woostify_setting[page_header_background_image]',
+						'woostify_setting[page_header_background_image_size]',
+						'woostify_setting[page_header_background_image_repeat]',
+						'woostify_setting[page_header_background_image_position]',
+						'woostify_setting[page_header_background_image_attachment]',
+						'page_header_spacing_divider',
+						'woostify_setting[page_header_padding_top]',
+						'woostify_setting[page_header_padding_bottom]',
+						'woostify_setting[page_header_margin_bottom]',
 					]
 				)
 
 				// And trigger if parent control update.
 				hideTabLayout( 'woostify_setting[sticky_footer_bar_enable]', 'woostify_setting[sticky_footer_bar_context_tabs]' )
 				hideTabLayout( 'woostify_setting[topbar_display]', 'woostify_setting[topbar_context_tabs]' )
+				hideTabLayout( 'woostify_setting[scroll_to_top]', 'woostify_setting[scroll_to_top_context_tabs]' )
+				hideTabLayout( 'woostify_setting[page_header_display]', 'woostify_setting[page_header_context_tabs]' )
 			}
 		)
 
