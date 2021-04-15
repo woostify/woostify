@@ -8,6 +8,26 @@
 // Default values.
 $defaults = woostify_options();
 
+// Tabs.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_context_tabs]'
+);
+
+$wp_customize->add_control(
+	new Woostify_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[topbar_context_tabs]',
+		array(
+			'section'  => 'woostify_topbar',
+			'settings' => 'woostify_setting[topbar_context_tabs]',
+			'choices'  => array(
+				'general' => __( 'General', 'woostify' ),
+				'design'  => __( 'Design', 'woostify' ),
+			),
+		)
+	)
+);
+
 // Display topbar.
 $wp_customize->add_setting(
 	'woostify_setting[topbar_display]',
@@ -25,6 +45,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Topbar Display', 'woostify' ),
 			'section'  => 'woostify_topbar',
 			'settings' => 'woostify_setting[topbar_display]',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -40,13 +61,14 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Control(
 		$wp_customize,
 		'woostify_setting[topbar_text_color]',
 		array(
 			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_topbar',
 			'settings' => 'woostify_setting[topbar_text_color]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -69,6 +91,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Background Color', 'woostify' ),
 			'section'  => 'woostify_topbar',
 			'settings' => 'woostify_setting[topbar_background_color]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -93,7 +116,7 @@ $wp_customize->add_control(
 			'settings' => array(
 				'desktop' => 'woostify_setting[topbar_space]',
 			),
-			'choices' => array(
+			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_topbar_min_step', 0 ),
 					'max'  => apply_filters( 'woostify_topbar_max_step', 50 ),
@@ -102,6 +125,7 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
+			'tab'      => 'general',
 		)
 	)
 );
@@ -121,6 +145,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_topbar',
 			'settings' => 'topbar_content_divider',
 			'type'     => 'divider',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -136,7 +161,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[topbar_left]',
 		array(
@@ -144,6 +169,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_topbar',
 			'settings' => 'woostify_setting[topbar_left]',
 			'type'     => 'textarea',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -159,7 +185,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[topbar_center]',
 		array(
@@ -167,6 +193,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_topbar',
 			'settings' => 'woostify_setting[topbar_center]',
 			'type'     => 'textarea',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -182,7 +209,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[topbar_right]',
 		array(
@@ -190,6 +217,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_topbar',
 			'settings' => 'woostify_setting[topbar_right]',
 			'type'     => 'textarea',
+			'tab'      => 'general',
 		)
 	)
 );

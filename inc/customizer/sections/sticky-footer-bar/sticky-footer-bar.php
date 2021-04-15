@@ -8,7 +8,7 @@
 // Default values.
 $defaults = woostify_options();
 
-// Tabs
+// Tabs.
 $wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_context_tabs]'
 );

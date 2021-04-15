@@ -12,6 +12,45 @@
 			'ready',
 			function () {
 
+				var hideTabLayout = function ( control_id, tab_id ) {
+					api.control(
+						control_id,
+						function ( control ) {
+							var val = control.settings['default'].get()
+							api.control(
+								tab_id,
+								function ( tab_control ) {
+									if ( ! val ) {
+										tab_control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).addClass( 'disabled-btn' )
+									} else {
+										tab_control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).removeClass( 'disabled-btn' )
+									}
+								}
+							)
+						}
+					)
+
+					wp.customize(
+						control_id,
+						function ( value ) {
+							value.bind(
+								function ( newval ) {
+									api.control(
+										tab_id,
+										function ( control ) {
+											if ( ! newval ) {
+												control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).addClass( 'disabled-btn' )
+											} else {
+												control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).removeClass( 'disabled-btn' )
+											}
+										}
+									)
+								}
+							)
+						}
+					)
+				}
+
 				/**
 				 * Update control tab data
 				 *
@@ -19,7 +58,7 @@
 				 */
 				var updateControlAttribute = function ( ids ) {
 					// Call dependency on the setting controls when they exist.
-					for ( var i = 0, j = ids.length; i < j; i++ ) {
+					for ( var i = 0, j = ids.length; i < j; i ++ ) {
 						api.control(
 							ids[i],
 							function ( control ) {
@@ -502,44 +541,21 @@
 						'woostify_setting[sticky_footer_bar_icon_font_size]',
 						'woostify_setting[sticky_footer_bar_text_font_size]',
 						'woostify_setting[sticky_footer_bar_text_font_weight]',
+						// Topbar.
+						'woostify_setting[topbar_display]',
+						'woostify_setting[topbar_text_color]',
+						'woostify_setting[topbar_background_color]',
+						'woostify_setting[topbar_space]',
+						'topbar_content_divider',
+						'woostify_setting[topbar_left]',
+						'woostify_setting[topbar_center]',
+						'woostify_setting[topbar_right]',
 					]
 				)
-				api.control(
-					'woostify_setting[sticky_footer_bar_enable]',
-					function ( control ) {
-						var val = control.settings['default'].get()
-						api.control(
-							'woostify_setting[sticky_footer_bar_context_tabs]',
-							function ( tab_control ) {
-								if ( ! val ) {
-									tab_control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).addClass( 'disabled-btn' )
-								} else {
-									tab_control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).removeClass( 'disabled-btn' )
-								}
-							}
-						)
-					}
-				)
+
 				// And trigger if parent control update.
-				wp.customize(
-					'woostify_setting[sticky_footer_bar_enable]',
-					function ( value ) {
-						value.bind(
-							function ( newval ) {
-								api.control(
-									'woostify_setting[sticky_footer_bar_context_tabs]',
-									function ( control ) {
-										if ( ! newval ) {
-											control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).addClass( 'disabled-btn' )
-										} else {
-											control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).removeClass( 'disabled-btn' )
-										}
-									}
-								)
-							}
-						)
-					}
-				)
+				hideTabLayout( 'woostify_setting[sticky_footer_bar_enable]', 'woostify_setting[sticky_footer_bar_context_tabs]' )
+				hideTabLayout( 'woostify_setting[topbar_display]', 'woostify_setting[topbar_context_tabs]' )
 			}
 		)
 
