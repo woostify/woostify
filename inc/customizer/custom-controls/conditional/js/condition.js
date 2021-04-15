@@ -588,6 +588,23 @@
 						'woostify_setting[footer_text_color]',
 						'footer_text_divider',
 						'woostify_setting[footer_custom_text]',
+						// Header transparent.
+						'woostify_setting[header_transparent]',
+						'woostify_setting[header_transparent_disable_archive]',
+						'woostify_setting[header_transparent_disable_index]',
+						'woostify_setting[header_transparent_disable_page]',
+						'woostify_setting[header_transparent_disable_post]',
+						'woostify_setting[header_transparent_disable_shop]',
+						'woostify_setting[header_transparent_disable_product]',
+						'woostify_setting[header_transparent_disable_product]',
+						'woostify_setting[header_transparent_enable_on]',
+						'woostify_setting[header_transparent_logo]',
+						'woostify_setting[header_transparent_menu_color]',
+						'woostify_setting[header_transparent_icon_color]',
+						'woostify_setting[header_transparent_count_background]',
+						'woostify_setting[header_transparent_border_width]',
+						'woostify_setting[header_transparent_border_color]',
+						'header_transparent_border_divider',
 					]
 				)
 
@@ -597,6 +614,7 @@
 				hideTabLayout( 'woostify_setting[scroll_to_top]', 'woostify_setting[scroll_to_top_context_tabs]' )
 				hideTabLayout( 'woostify_setting[page_header_display]', 'woostify_setting[page_header_context_tabs]' )
 				hideTabLayout( 'woostify_setting[footer_display]', 'woostify_setting[footer_context_tabs]' )
+				hideTabLayout( 'woostify_setting[header_transparent]', 'woostify_setting[header_transparent_context_tabs]' )
 			}
 		)
 

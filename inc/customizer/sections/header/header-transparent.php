@@ -8,6 +8,26 @@
 // Default values.
 $defaults = woostify_options();
 
+// Tabs.
+$wp_customize->add_setting(
+	'woostify_setting[header_transparent_context_tabs]'
+);
+
+$wp_customize->add_control(
+	new Woostify_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[header_transparent_context_tabs]',
+		array(
+			'section'  => 'woostify_header_transparent',
+			'settings' => 'woostify_setting[header_transparent_context_tabs]',
+			'choices'  => array(
+				'general' => __( 'General', 'woostify' ),
+				'design'  => __( 'Design', 'woostify' ),
+			),
+		)
+	)
+);
+
 // Enable/disable Header transparent.
 $wp_customize->add_setting(
 	'woostify_setting[header_transparent]',
@@ -25,6 +45,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Enable Transparent Header', 'woostify' ),
 			'settings' => 'woostify_setting[header_transparent]',
 			'section'  => 'woostify_header_transparent',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -39,7 +60,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_disable_archive]',
 		array(
@@ -47,6 +68,7 @@ $wp_customize->add_control(
 			'settings' => 'woostify_setting[header_transparent_disable_archive]',
 			'section'  => 'woostify_header_transparent',
 			'type'     => 'checkbox',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -61,7 +83,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_disable_index]',
 		array(
@@ -69,6 +91,7 @@ $wp_customize->add_control(
 			'settings' => 'woostify_setting[header_transparent_disable_index]',
 			'section'  => 'woostify_header_transparent',
 			'type'     => 'checkbox',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -83,7 +106,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_disable_page]',
 		array(
@@ -91,6 +114,7 @@ $wp_customize->add_control(
 			'settings' => 'woostify_setting[header_transparent_disable_page]',
 			'section'  => 'woostify_header_transparent',
 			'type'     => 'checkbox',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -105,7 +129,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_disable_post]',
 		array(
@@ -113,6 +137,7 @@ $wp_customize->add_control(
 			'settings' => 'woostify_setting[header_transparent_disable_post]',
 			'section'  => 'woostify_header_transparent',
 			'type'     => 'checkbox',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -127,7 +152,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_disable_shop]',
 		array(
@@ -135,6 +160,7 @@ $wp_customize->add_control(
 			'settings' => 'woostify_setting[header_transparent_disable_shop]',
 			'section'  => 'woostify_header_transparent',
 			'type'     => 'checkbox',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -149,7 +175,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_disable_product]',
 		array(
@@ -157,6 +183,7 @@ $wp_customize->add_control(
 			'settings' => 'woostify_setting[header_transparent_disable_product]',
 			'section'  => 'woostify_header_transparent',
 			'type'     => 'checkbox',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -172,7 +199,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_enable_on]',
 		array(
@@ -185,6 +212,7 @@ $wp_customize->add_control(
 				'mobile'      => __( 'Mobile', 'woostify' ),
 				'all-devices' => __( 'Desktop + Mobile', 'woostify' ),
 			),
+			'tab'      => 'general',
 		)
 	)
 );
@@ -199,13 +227,14 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Image_Control(
+	new Woostify_Image_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_logo]',
 		array(
 			'label'    => __( 'Header Transparent Logo', 'woostify' ),
 			'section'  => 'woostify_header_transparent',
 			'settings' => 'woostify_setting[header_transparent_logo]',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -228,6 +257,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Menu Transparent Color', 'woostify' ),
 			'section'  => 'woostify_header_transparent',
 			'settings' => 'woostify_setting[header_transparent_menu_color]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -250,6 +280,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Icon Transparent Color', 'woostify' ),
 			'section'  => 'woostify_header_transparent',
 			'settings' => 'woostify_setting[header_transparent_icon_color]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -272,6 +303,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Count Transparent Background', 'woostify' ),
 			'section'  => 'woostify_header_transparent',
 			'settings' => 'woostify_setting[header_transparent_count_background]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -292,6 +324,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_header_transparent',
 			'settings' => 'header_transparent_border_divider',
 			'type'     => 'divider',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -325,6 +358,7 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
+			'tab'      => 'design',
 		)
 	)
 );
@@ -347,6 +381,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Border Color', 'woostify' ),
 			'section'  => 'woostify_header_transparent',
 			'settings' => 'woostify_setting[header_transparent_border_color]',
+			'tab'      => 'design',
 		)
 	)
 );
