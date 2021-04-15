@@ -125,7 +125,7 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
-			'tab'      => 'general',
+			'tab'      => 'design',
 		)
 	)
 );
