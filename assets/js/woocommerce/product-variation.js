@@ -15,18 +15,23 @@
  * @param      string form      The form.
  */
 function productVariation( selector, form ) {
-	var gallery        = jQuery( selector ),
-		variationsForm = form ? form : 'form.variations_form',
-		imageWrapper   = gallery.find( '.image-item:eq(0)' ),
-		image          = imageWrapper.find( 'img' ),
-		imageSrc       = image.prop( 'src' ),
-		imageSrcset    = image.prop( 'srcset' ) || '',
+	var gallery        = document.querySelector( selector ),
+		variationsForm = form ? form : 'form.variations_form';
+	if ( ! gallery || ! jQuery( variationsForm ).length ) {
+		return;
+	}
+
+	var imageWrapper = gallery.querySelector( '.image-item' ),
+		image        = imageWrapper ? imageWrapper.querySelector( 'img' ) : false,
+		imageSrc     = image ? image.getAttribute( 'src' ) : '',
+		imageSrcset  = image ? image.getAttribute( 'srcset' ) : '',
 		// Photoswipe + zoom.
-		photoSwipe    = imageWrapper.find( 'a' ),
-		photoSwipeSrc = photoSwipe.prop( 'href' ),
+		photoSwipe    = imageWrapper.querySelector( 'a' ),
+		photoSwipeSrc = photoSwipe ? photoSwipe.getAttribute( 'href' ) : '',
 		// Product thumbnail.
-		thumb    = gallery.find( '.thumbnail-item:eq(0)' ),
-		thumbSrc = thumb.find( 'img' ).prop( 'src' );
+		thumb    = gallery.querySelector( '.thumbnail-item' ),
+		thumbImg = thumb ? thumb.querySelector( 'img' ) : false,
+		thumbSrc = thumbImg ? thumbImg.getAttribute( 'src' ) : '';
 
 	if ( ! jQuery( variationsForm ).length ) {
 		return;
@@ -46,10 +51,8 @@ function productVariation( selector, form ) {
 		variationsForm,
 		function( event, variation ) {
 			// get image url form `variation`.
-			var fullSrc  = variation.image.full_src,
-				imgSrc   = variation.image.src,
-				thumbSrc = variation.image.thumb_src,
-				inStock  = variation.is_in_stock;
+			var imgSrc  = variation.image.src,
+				inStock = variation.is_in_stock;
 
 			// Support Product meta widget.
 			if ( productMetaSku ) {
@@ -61,25 +64,31 @@ function productVariation( selector, form ) {
 			}
 
 			// Photoswipe + zoom.
-			photoSwipe.prop( 'href', fullSrc );
+			if ( photoSwipe ) {
+				photoSwipe.setAttribute( 'href', variation.image.full_src );
+			}
 
 			// Change image src image.
-			if ( imageSrc !== imgSrc ) {
-				image.removeAttr( 'srcset' );
-				imageWrapper.addClass( 'image-loading' );
-				image.prop( 'src', imgSrc )
-					.one(
-						'load',
-						function() {
-							imageWrapper.removeClass( 'image-loading' );
-						}
-					);
-			} else {
-				image.prop( 'src', imgSrc );
+			if ( image ) {
+				imageWrapper.classList.add( 'image-loading' );
+
+				var img    = new Image();
+				img.onload = function () {
+					imageWrapper.classList.remove( 'image-loading' );
+				}
+
+				img.src = imgSrc;
+				image.setAttribute( 'src', imgSrc );
+
+				if ( imageSrcset ) {
+					image.setAttribute( 'srcset', variation.image.srcset );
+				}
 			}
 
 			// Change thumb src image.
-			thumb.find( 'img' ).prop( 'src', thumbSrc );
+			if ( thumbImg ) {
+				thumbImg.setAttribute( 'src', variation.image.thumb_src );
+			}
 
 			// Re-init zoom handle.
 			if ( 'function' === typeof( easyZoomHandle ) ) {
@@ -137,13 +146,31 @@ function productVariation( selector, form ) {
 				wpmGtinCodeWrapper.innerHTML = productMetaSkuDefault;
 			}
 
-			// Change src image.
-			image.prop( 'src', imageSrc );
-			image.attr( 'srcset', imageSrcset );
-			thumb.find( 'img' ).prop( 'src', thumbSrc );
+			// Reset src image.
+			if ( image ) {
+				imageWrapper.classList.add( 'image-loading' );
+
+				var resetImg    = new Image();
+				resetImg.onload = function () {
+					imageWrapper.classList.remove( 'image-loading' );
+				}
+
+				resetImg.src = imageSrc;
+				image.setAttribute( 'src', imageSrc );
+
+				if ( imageSrcset ) {
+					image.setAttribute( 'srcset', imageSrcset );
+				}
+			}
+
+			if ( thumbSrc ) {
+				thumbImg.setAttribute( 'src', thumbSrc );
+			}
 
 			// Photoswipe + zoom.
-			photoSwipe.prop( 'href', photoSwipeSrc );
+			if ( photoSwipeSrc ) {
+				photoSwipe.setAttribute( 'href', photoSwipeSrc );
+			}
 
 			// Zoom handle.
 			if ( 'function' === typeof( easyZoomHandle ) ) {

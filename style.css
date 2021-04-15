@@ -1,10 +1,11 @@
+@charset "UTF-8";
 /*
 Theme Name:   Woostify
 Theme URI:    https://woostify.com
 Author:       Woostify
 Author URI:   https://woostify.com/about
 Description:  Woostify is fast, lightweight, responsive and super flexible WooCommerce theme built with SEO, speed, and usability in mind. The theme works great with any of your favorite page builder likes Elementor, Beaver Builder, SiteOrigin, Thrive Architect, Divi, Visual Composer, etc. Therefore, you can build any type of websites like shop, business agencies, corporate, portfolio, education, university portal, consulting, church, restaurant, medical and so on. Woostify is compatible with all well-coded plugins, including major ones like WooCommerce, OrbitFox, Yoast, BuddyPress, bbPress, etc. Learn more about the theme and ready to import demo sites at https://woostify.com
-Version:      1.8.2
+Version:      1.8.5
 Requires at least: 4.7
 Tested up to: 5.5.0
 Requires PHP: 5.6.20
@@ -4545,6 +4546,11 @@ article p:last-child {
   transition-duration: 0.4s;
 }
 
+.site-dialog-search .woocommerce-product-search.category-filter {
+  border-radius: 0;
+  background-color: #f1f3f5;
+}
+
 .site-dialog-search form {
   margin: 0;
 }
@@ -5037,6 +5043,14 @@ article p:last-child {
   margin-left: 0;
 }
 
+.site-tools .tools-icon.align-center {
+  align-items: center;
+}
+
+.site-tools .tools-icon .woostify-header-total-price {
+  margin-right: 5px;
+}
+
 .site-tools .shopping-bag-button {
   position: relative;
   margin-right: 15px;
@@ -5052,6 +5066,11 @@ article p:last-child {
   position: absolute;
   top: -6px;
   right: -15px;
+}
+
+.site-tools .shop-cart-count.hide-zero-val.hide,
+.site-tools .wishlist-item-count.hide-zero-val.hide {
+  display: none;
 }
 
 .my-account {
@@ -5149,6 +5168,10 @@ article p:last-child {
 
 .has-header-transparent.header-transparent-for-all-devices .site-header {
   position: absolute;
+}
+
+.has-header-transparent .site-header + .site-content {
+  margin-top: 0;
 }
 
 .woostify-icon-bar {
@@ -6159,6 +6182,14 @@ footer#colophon {
 
 .adv-featured-product.adv-product-slider:not(.slick-initialized) {
   display: none;
+}
+
+/* Active filter */
+.widget_layered_nav_filters .chosen a:before {
+  content: '×';
+  color: #e2401c;
+  margin-right: 7px;
+  font-size: 1.2em;
 }
 
 /* Contact info */
@@ -7595,6 +7626,7 @@ header.elementor-element {
 }
 
 .products {
+  width: 100%;
   clear: both;
   padding: 0;
   margin: 0;
@@ -7934,9 +7966,11 @@ header.elementor-element {
   text-align: center;
 }
 
-.product-loop-image-wrapper.zoom-hover:hover img {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+@media (min-width: 992px) {
+  .product-loop-image-wrapper.zoom-hover:hover img {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
 }
 
 .product-loop-image-wrapper .product-loop-hover-image {
@@ -7957,12 +7991,13 @@ header.elementor-element {
   transition: all 0.3s ease-in-out;
 }
 
-.product-loop-image-wrapper:hover .product-loop-hover-image {
-  opacity: 1;
-}
-
-.product-loop-image-wrapper:hover .product-loop-hover-image + .product-loop-image {
-  opacity: 0;
+@media (min-width: 992px) {
+  .product-loop-image-wrapper:hover .product-loop-hover-image {
+    opacity: 1;
+  }
+  .product-loop-image-wrapper:hover .product-loop-hover-image + .product-loop-image {
+    opacity: 0;
+  }
 }
 
 .product-loop-image-wrapper .loop-add-to-cart-on-image,

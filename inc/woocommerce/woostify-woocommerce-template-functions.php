@@ -263,7 +263,12 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 				foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 					$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 					$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-					// $bundled_cart_items = wc_pb_get_bundled_cart_items( $cart_item ); This is template code.
+					if (
+						( function_exists( 'wc_pb_get_bundled_cart_item_container' ) && wc_pb_get_bundled_cart_item_container( $cart_item ) ) /* Support WC bundle plugin */ ||
+						defined( 'WOOCO_VERSION' ) && isset( $cart_item['wooco_pos'] ) && $cart_item['wooco_pos'] // Support WPC Composite Products for WooCommerce plugin.
+					) {
+						continue;
+					}
 
 					if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 ) {
 						$product_name      = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
@@ -472,40 +477,6 @@ if ( ! function_exists( 'woostify_modifided_woocommerce_breadcrumb' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_get_modifided_woocommerce_breadcrumb' ) ) {
-	/**
-	 * Woocommerce crumbs
-	 *
-	 * @param      array $crumbs The woocommerce crumbs.
-	 */
-	function woostify_get_modifided_woocommerce_breadcrumb( $crumbs ) {
-		$home = array(
-			0 => apply_filters( 'woostify_breadcrumb_home', __( 'Home', 'woostify' ) ),
-			1 => get_home_url( '/' ),
-		);
-
-		$blog = array(
-			0 => apply_filters( 'woostify_breadcrumb_blog', __( 'Blog', 'woostify' ) ),
-			1 => get_permalink( get_option( 'page_for_posts' ) ),
-		);
-
-		$shop = array(
-			0 => apply_filters( 'woostify_breadcrumb_shop', __( 'Shop', 'woostify' ) ),
-			1 => woostify_is_woocommerce_activated() ? wc_get_page_permalink( 'shop' ) : '#',
-		);
-
-		if ( is_tag() || is_category() || is_singular( 'post' ) ) {
-			// For all blog page.
-			array_splice( $crumbs, 0, 1, array( $home, $blog ) );
-		} elseif ( woostify_is_woocommerce_activated() && ( is_product_tag() || is_singular( 'product' ) || is_product_category() ) ) {
-			// For all shop page.
-			array_splice( $crumbs, 0, 1, array( $home, $shop ) );
-		}
-
-		return $crumbs;
-	}
-}
-
 if ( ! function_exists( 'woostify_breadcrumb_for_product_page' ) ) {
 	/**
 	 * Add breadcrumb for Product page
@@ -562,38 +533,16 @@ if ( ! function_exists( 'woostify_change_woocommerce_arrow_pagination' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_product_out_of_stock' ) ) {
-	/**
-	 * Check product out of stock
-	 *
-	 * @param      object $product The product.
-	 */
-	function woostify_product_out_of_stock( $product ) {
-		if ( ! $product || ! is_object( $product ) ) {
-			return false;
-		}
-
-		$in_stock     = $product->is_in_stock();
-		$manage_stock = $product->managing_stock();
-		$quantity     = $product->get_stock_quantity();
-
-		if (
-			( $product->is_type( 'simple' ) && ( ! $in_stock || ( $manage_stock && 0 === $quantity ) ) ) ||
-			( $product->is_type( 'variable' ) && $manage_stock && 0 === $quantity )
-		) {
-			return true;
-		}
-
-		return false;
-	}
-}
-
 if ( ! function_exists( 'woostify_print_out_of_stock_label' ) ) {
 	/**
 	 * Print out of stock label
 	 */
 	function woostify_print_out_of_stock_label() {
 		global $product;
+
+		if ( ! $product ) {
+			return;
+		}
 
 		$product_id   = $product->get_id();
 		$out_of_stock = get_post_meta( $product_id, '_stock_status', true );
@@ -630,19 +579,20 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 		$simple       = $product->is_type( 'simple' );
 		$variable     = $product->is_type( 'variable' );
 		$external     = $product->is_type( 'external' );
+		$bundle       = $product->is_type( 'bundle' );
 		$sale_text    = $options['shop_page_sale_text'];
 		$sale_percent = $options['shop_page_sale_percent'];
 		$final_price  = '';
-		$out_of_stock = woostify_product_out_of_stock( $product );
+		$out_of_stock = $product->get_stock_quantity();
 
 		// Out of stock.
-		if ( $out_of_stock ) {
+		if ( ! $out_of_stock ) {
 			return;
 		}
 
 		if ( $sale ) {
 			// For simple product.
-			if ( $simple || $external ) {
+			if ( $simple || $external || $bundle ) {
 				if ( $sale_percent ) {
 					$final_price = ( ( $price - $price_sale ) / $price ) * 100;
 					$final_price = '-' . round( $final_price ) . '%';
@@ -708,7 +658,14 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 		$mini_cart = ob_get_clean();
 
 		// Cart item count.
-		$fragments['span.shop-cart-count'] = sprintf( '<span class="shop-cart-count">%s</span>', $cart_item_count );
+		$header_cart_count_class = array();
+		if ( $options['header_shop_hide_zero_value_cart_count'] ) {
+			array_push( $header_cart_count_class, 'hide-zero-val' );
+		}
+		if ( $cart_item_count < 1 ) {
+			array_push( $header_cart_count_class, 'hide' );
+		}
+		$fragments['span.shop-cart-count'] = sprintf( '<span class="shop-cart-count %s">%s</span>', implode( ' ', $header_cart_count_class ), $cart_item_count );
 
 		// Cart sidebar.
 		$fragments['div.cart-sidebar-content'] = sprintf( '<div class="cart-sidebar-content">%s</div>', $mini_cart );

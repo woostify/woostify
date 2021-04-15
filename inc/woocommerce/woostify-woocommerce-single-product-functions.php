@@ -145,7 +145,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_open' ) ) {
 	 * Single gallery product open
 	 */
 	function woostify_single_product_gallery_open() {
-		$product_id = woostify_get_product_id();
+		$product_id = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
 		$product    = wc_get_product( $product_id );
 		$options    = woostify_options( false );
 		$gallery_id = ! empty( $product ) ? $product->get_gallery_image_ids() : array();
@@ -301,7 +301,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 	 * Product gallery product image slider
 	 */
 	function woostify_single_product_gallery_image_slide() {
-		$product_id = woostify_get_product_id();
+		$product_id = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
 		$product    = wc_get_product( $product_id );
 
 		if ( empty( $product ) ) {
@@ -336,7 +336,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 			<div id="product-images">
 				<figure class="image-item ez-zoom">
 					<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
-						<img width="<?php echo esc_attr( $image_full_src[1] ); ?>" height="<?php echo esc_attr( $image_full_src[2] ); ?>" srcset="<?php echo wp_kses_post( $image_srcset ); ?>" src="<?php echo esc_url( $image_medium_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
+						<?php echo wp_kses_post( $product->get_image( 'woocommerce_single', array(), true ) ); ?>
 					</a>
 				</figure>
 				<?php
@@ -351,7 +351,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 						?>
 						<figure class="image-item ez-zoom">
 							<a href="<?php echo esc_url( $g_full_img_src[0] ); ?>" data-size="<?php echo esc_attr( $g_image_size ); ?>" data-elementor-open-lightbox="no">
-								<img width="<?php echo esc_attr( $g_full_img_src[1] ); ?>" height="<?php echo esc_attr( $g_full_img_src[2] ); ?>"  src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>" srcset="<?php echo wp_kses_post( $g_img_srcset ); ?>">
+								<img width="<?php echo esc_attr( $g_medium_img_src[1] ); ?>" height="<?php echo esc_attr( $g_medium_img_src[2] ); ?>"  src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>" srcset="<?php echo wp_kses_post( $g_img_srcset ); ?>">
 							</a>
 						</figure>
 						<?php
@@ -362,6 +362,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 
 			<?php do_action( 'woostify_product_images_box_end' ); ?>
 		</div>
+
 		<?php
 	}
 }
@@ -376,7 +377,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 			return;
 		}
 
-		$product_id = woostify_get_product_id();
+		$product_id = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
 		$product    = wc_get_product( $product_id );
 
 		if ( empty( $product ) ) {
@@ -666,6 +667,7 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 
 			if (
 				$stock_count &&
+				$stock_count > 0 &&
 				( ( $product_qty + $in_cart_qty ) > $stock_count )
 			) {
 				$response['mess'] = sprintf( /* translators: stock quantity number */__( 'You cannot add that amount of this product to the cart. We have %1$s in stock and you already have %2$s in your cart', 'woostify' ), $stock_count, $in_cart_qty );
@@ -709,5 +711,78 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		$response['content'] = ob_get_clean();
 
 		wp_send_json_success( $response );
+	}
+}
+
+if ( ! function_exists( 'woostify_disable_variations_out_of_stock' ) ) {
+	/**
+	 * Disable Out of Stock Variations.
+	 *
+	 * @param boolean $is_active The active.
+	 * @param object  $variation The variation.
+	 */
+	function woostify_disable_variations_out_of_stock( $is_active, $variation ) {
+		if ( ! $variation->is_in_stock() ) {
+			return false;
+		}
+
+		return $is_active;
+	}
+}
+
+if ( ! function_exists( 'woostify_single_ajax_add_to_cart_status' ) ) {
+	/**
+	 * On/off single ajax add to cart
+	 */
+	function woostify_single_ajax_add_to_cart_status() {
+		if ( ( defined( 'ELEMENTOR_PRO_VERSION' ) && 'yes' === get_option( 'elementor_use_mini_cart_template' ) ) || defined( 'XOO_WSC_PLUGIN_FILE' ) ) {
+			return false;
+		}
+
+		$options = woostify_options( false );
+		return $options['shop_single_ajax_add_to_cart'];
+	}
+}
+
+if ( ! function_exists( 'woostify_get_term_setting' ) ) {
+	/**
+	 * Get term setting
+	 *
+	 * @param string  $name         The term setting name.
+	 * @param mix     $compare      Compare value.
+	 * @param boolean $return_value Return condition only.
+	 */
+	function woostify_get_term_setting( $name = 'cat_single_ajax_add_to_cart', $compare = 'disabled', $return_value = false ) {
+		if ( ! is_singular( 'product' ) ) {
+			return false;
+		}
+
+		$value       = false;
+		$options     = woostify_options( false );
+		$page_id     = woostify_get_page_id();
+		$product_cat = get_the_terms( $page_id, 'product_cat' );
+		$product_tag = get_the_terms( $page_id, 'product_tag' );
+
+		if ( ! empty( $product_cat ) ) {
+			foreach ( $product_cat as $cat ) {
+				$single_ajax_cat = get_term_meta( $cat->term_id, $name, true );
+				if ( $compare === $single_ajax_cat ) {
+					$value = $return_value ? $single_ajax_cat : true;
+					break;
+				}
+			}
+		}
+
+		if ( ! empty( $product_tag ) ) {
+			foreach ( $product_tag as $tag ) {
+				$single_ajax_tag = get_term_meta( $tag->term_id, $name, true );
+				if ( $compare === $single_ajax_tag ) {
+					$value = $return_value ? $single_ajax_tag : true;
+					break;
+				}
+			}
+		}
+
+		return $value;
 	}
 }

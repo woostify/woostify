@@ -170,7 +170,7 @@ $wp_customize->add_control(
 		'woostify_setting[header_search_icon]',
 		array(
 			'priority' => 90,
-			'label'    => __( 'Search Icon', 'woostify' ),
+			'label'    => __( 'Search', 'woostify' ),
 			'section'  => 'woostify_header',
 			'settings' => 'woostify_setting[header_search_icon]',
 		)
@@ -240,7 +240,7 @@ if ( class_exists( 'woocommerce' ) ) {
 			'woostify_setting[header_account_icon]',
 			array(
 				'priority' => 150,
-				'label'    => __( 'Account Icon', 'woostify' ),
+				'label'    => __( 'Account/Dashboard', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_account_icon]',
 			)
@@ -265,6 +265,51 @@ if ( class_exists( 'woocommerce' ) ) {
 				'label'    => __( 'Shopping Cart Icon', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_shop_cart_icon]',
+			)
+		)
+	);
+
+	// Show subtotal.
+	$wp_customize->add_setting(
+		'woostify_setting[header_shop_cart_price]',
+		array(
+			'type'              => 'option',
+			'default'           => $defaults['header_shop_cart_price'],
+			'sanitize_callback' => 'woostify_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		new Woostify_Switch_Control(
+			$wp_customize,
+			'woostify_setting[header_shop_cart_price]',
+			array(
+				'priority' => 190,
+				'label'    => __( 'Show Subtotal', 'woostify' ),
+				'section'  => 'woostify_header',
+				'settings' => 'woostify_setting[header_shop_cart_price]',
+			)
+		)
+	);
+
+	// Hide zero value cart count.
+	$wp_customize->add_setting(
+		'woostify_setting[header_shop_hide_zero_value_cart_count]',
+		array(
+			'type'              => 'option',
+			'default'           => $defaults['header_shop_hide_zero_value_cart_count'],
+			'sanitize_callback' => 'woostify_sanitize_checkbox',
+			'transport'			=> 'postMessage'
+		)
+	);
+	$wp_customize->add_control(
+		new Woostify_Switch_Control(
+			$wp_customize,
+			'woostify_setting[header_shop_hide_zero_value_cart_count]',
+			array(
+				'priority' => 170,
+				'label'    => __( 'Hide Zero Value', 'woostify' ),
+				'section'  => 'woostify_header',
+				'settings' => 'woostify_setting[header_shop_hide_zero_value_cart_count]',
 			)
 		)
 	);

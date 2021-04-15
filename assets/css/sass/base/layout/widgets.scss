@@ -537,3 +537,17 @@
 		}
 	}
 }
+
+/* Active filter */
+.widget_layered_nav_filters {
+	.chosen {
+		a {
+			&:before {
+				content: '×';
+				color: #e2401c;
+				margin-right: 7px;
+				font-size: 1.2em;
+			}
+		}
+	}
+}

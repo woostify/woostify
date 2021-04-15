@@ -31,6 +31,9 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_filter( 'wpcf7_load_css', '__return_false' );
 			add_filter( 'excerpt_length', array( $this, 'woostify_limit_excerpt_character' ), 99 );
 
+			// Walker menu.
+			//add_filter( 'walker_nav_menu_start_el', array( $this, 'woostify_nav_menu_start_el' ), 10, 4 );
+
 			// ELEMENTOR.
 			add_action( 'elementor/theme/register_locations', array( $this, 'woostify_register_elementor_locations' ) );
 			add_action( 'elementor/preview/enqueue_scripts', array( $this, 'woostify_elementor_preview_scripts' ) );
@@ -50,6 +53,139 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_action( 'elementor/widgets/widgets_registered', array( $this, 'woostify_add_elementor_widget' ) );
 			add_filter( 'the_content', array( $this, 'woostify_modify_the_content' ) );
 			add_action( 'init', array( $this, 'woostify_override_divi_color_pciker' ), 12 );
+		}
+
+		/**
+		 * Ahihi
+		 *
+		 * @param string   $item_output The menu item's starting HTML output.
+		 * @param WP_Post  $item        Menu item data object.
+		 * @param int      $depth       Depth of menu item. Used for padding.
+		 * @param stdClass $args        An object of wp_nav_menu() arguments.
+		 */
+		public function woostify_nav_menu_start_el( $item_output, $item, $depth, $args ) {
+			if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
+				$t = '';
+				$n = '';
+			} else {
+				$t = "\t";
+				$n = "\n";
+			}
+
+			if ( 'mega_menu' === $item->object ) {
+				$this->megamenu_width = get_post_meta( $item->ID, 'woostify_mega_menu_item_width', true );
+				$this->megamenu_width = '' !== $this->megamenu_width ? $this->megamenu_width : 'content';
+				$this->megamenu_url   = get_post_meta( $item->ID, 'woostify_mega_menu_item_url', true );
+				$this->megamenu_icon  = get_post_meta( $item->ID, 'woostify_mega_menu_item_icon', true );
+
+				$classes[] = 'menu-item-has-children';
+				$classes[] = 'menu-item-has-mega-menu';
+				$classes[] = 'has-mega-menu-' . $this->megamenu_width . '-width';
+				$classes[] = woostify_is_elementor_page( $item->object_id ) ? 'mega-menu-elementor' : '';
+				$classes   = array_filter( $classes );
+			} else {
+				$classes = array_filter( $item->classes );
+			}
+
+			$indent      = ( $depth ) ? str_repeat( $t, $depth ) : '';
+			$classes     = array_filter( $item->classes );
+			$has_child   = in_array( 'menu-item-has-children', $classes, true ) ? true : false;
+			$class_names = implode( ' ', $classes );
+			$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+
+			// Ids.
+			$id = apply_filters( 'nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args, $depth );
+			$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+
+			// Start output.
+			$item_output = $indent . '<li' . $id . $class_names . '>';
+
+			// Attributes.
+			$atts           = array();
+			$atts['target'] = ! empty( $item->target ) ? $item->target : '';
+			$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn : '';
+			$atts['href']   = ! empty( $item->url ) ? $item->url : '';
+			$atts           = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
+			$attributes     = '';
+
+			foreach ( $atts as $attr => $value ) {
+				if ( ! empty( $value ) ) {
+					$value       = 'href' === $attr ? esc_url( $value ) : esc_attr( $value );
+					$value       = 'mega_menu' === $item->object ? $href : $value;
+					$attributes .= ' ' . $attr . '="' . $value . '"';
+				}
+			}
+
+			$item_output .= $args->before;
+
+			if ( ! empty( $item->attr_title ) ) {
+				$item_output .= '<a' . $attributes . ' title="' . esc_attr( $item->attr_title ) . '">';
+			} else {
+				$item_output .= '<a' . $attributes . '>';
+			}
+
+			// Menu icon.
+			if ( 'mega_menu' === $item->object && $this->megamenu_icon ) {
+				$item_output .= '<span class="menu-item-icon ' . esc_attr( $this->megamenu_icon ) . '"></span>';
+			}
+
+			$title = apply_filters( 'the_title', $item->title, $item->ID );
+			$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
+
+			// Menu item text.
+			$item_output .= $args->link_before . '<span class="menu-item-text">' . $title . '</span>' . $args->link_after;
+
+			// Add arrow icon.
+			if ( $has_child ) {
+				$item_output .= '<span class="menu-item-arrow arrow-icon"></span>';
+			}
+
+			$item_output .= '</a>';
+
+			// Start Mega menu content.
+			if ( 'mega_menu' === $item->object && 0 === $depth && ! woostify_is_elementor_editor() ) {
+				$item_output .= '<ul class="sub-mega-menu">';
+				$item_output .= '<div class="mega-menu-wrapper">';
+
+				if ( woostify_is_elementor_page( $item->object_id ) ) {
+					$frontend     = new \Elementor\Frontend();
+					$item_output .= $frontend->get_builder_content_for_display( $item->object_id, true );
+					wp_enqueue_style( 'elementor-frontend' );
+					wp_reset_postdata();
+				} else {
+					$mega_args = array(
+						'p'                   => $item->object_id,
+						'post_type'           => 'mega_menu',
+						'post_status'         => 'publish',
+						'posts_per_page'      => 1,
+						'ignore_sticky_posts' => 1,
+					);
+
+					$query = new WP_Query( $mega_args );
+
+					if ( $query->have_posts() ) {
+						ob_start();
+						echo '<div class="mega-menu-inner-wrapper">';
+						while ( $query->have_posts() ) {
+							$query->the_post();
+
+							the_content();
+						}
+						echo '</div>';
+						$item_output .= ob_get_clean();
+
+						// Reset post data.
+						wp_reset_postdata();
+					}
+				}
+
+				$item_output .= '</div>';
+				$item_output .= '</ul>';
+			} // End Mega menu content.
+
+			$item_output .= $args->after;
+
+			return $item_output;
 		}
 
 		/**
