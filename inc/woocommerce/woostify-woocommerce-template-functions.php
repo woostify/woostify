@@ -686,10 +686,6 @@ if ( ! function_exists( 'woostify_woocommerce_loop_start' ) ) {
 	 * @param string $loop_start The loop start.
 	 */
 	function woostify_woocommerce_loop_start( $loop_start ) {
-		if ( defined( 'KADENCE_BLOCKS_VERSION' ) ) {
-			return $loop_start;
-		}
-
 		$options = woostify_options( false );
 		$class[] = 'products';
 		$class[] = 'columns-' . wc_get_loop_prop( 'columns' );
