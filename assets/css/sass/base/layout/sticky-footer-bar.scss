@@ -8,6 +8,7 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 	z-index: 199;
+	transition: bottom .4s;
 
 	&.woostify-sticky-on-desktop {
 		display: none;
@@ -15,6 +16,7 @@
 			display: block;
 		}
 	}
+
 	&.woostify-sticky-on-mobile {
 		@media (min-width: 992px) {
 			display: none;
@@ -47,6 +49,7 @@
 						font-size: 20px;
 					}
 				}
+
 				.woostify-item-list-item__name {
 					display: block;
 				}
@@ -56,6 +59,7 @@
 				a {
 					.woostify-item-list-item__icon {
 						margin: 0;
+
 						.cart-icon-rotate:before {
 							position: relative;
 							transform: rotate3d(0, 1, 0,

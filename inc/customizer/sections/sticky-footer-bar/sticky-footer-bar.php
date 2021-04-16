@@ -79,6 +79,30 @@ $wp_customize->add_control(
 	)
 );
 
+// Hide when scroll.
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_hide_when_scroll]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_hide_when_scroll'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[sticky_footer_bar_hide_when_scroll]',
+		array(
+			'label'    => __( 'Hide When Scroll', 'woostify' ),
+			'settings' => 'woostify_setting[sticky_footer_bar_hide_when_scroll]',
+			'section'  => 'woostify_sticky_footer_bar',
+			'tab'      => 'general',
+		)
+	)
+);
+
 $wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_items]',
 	array(

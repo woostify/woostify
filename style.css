@@ -6295,6 +6295,7 @@ header.elementor-element {
   padding-top: 10px;
   padding-bottom: 10px;
   z-index: 199;
+  transition: bottom .4s;
 }
 
 .woostify-sticky-footer-bar.woostify-sticky-on-desktop {

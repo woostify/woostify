@@ -61,9 +61,9 @@ if ( ! class_exists( 'Woostify' ) ) {
 		 * Ahihi
 		 *
 		 * @param string   $item_output The menu item's starting HTML output.
-		 * @param WP_Post  $item        Menu item data object.
-		 * @param int      $depth       Depth of menu item. Used for padding.
-		 * @param stdClass $args        An object of wp_nav_menu() arguments.
+		 * @param WP_Post  $item Menu item data object.
+		 * @param int      $depth Depth of menu item. Used for padding.
+		 * @param stdClass $args An object of wp_nav_menu() arguments.
 		 */
 		public function woostify_nav_menu_start_el( $item_output, $item, $depth, $args ) {
 			if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
@@ -204,7 +204,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 		/**
 		 * Modify content
 		 *
-		 * @param      object $content The content.
+		 * @param object $content The content.
 		 */
 		public function woostify_modify_the_content( $content ) {
 			if ( ! defined( 'ET_BUILDER_PLUGIN_VERSION' ) ) {
@@ -270,7 +270,8 @@ if ( ! class_exists( 'Woostify' ) ) {
 		/**
 		 * Get featured image
 		 *
-		 * @param      int $post_ID The post id.
+		 * @param int $post_ID The post id.
+		 *
 		 * @return     string Image src.
 		 */
 		public function woostify_get_featured_image_src( $post_ID ) {
@@ -290,7 +291,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 		/**
 		 * Column head
 		 *
-		 * @param      array $defaults  The defaults.
+		 * @param array $defaults The defaults.
 		 */
 		public function woostify_columns_head( $defaults ) {
 			// See: https://codex.wordpress.org/Plugin_API/Filter_Reference/manage_$post_type_posts_columns.
@@ -309,16 +310,15 @@ if ( ! class_exists( 'Woostify' ) ) {
 		/**
 		 * Column content
 		 *
-		 * @param      string $column_name  The column name.
-		 * @param      int    $post_ID      The post id.
+		 * @param string $column_name The column name.
+		 * @param int    $post_ID The post id.
 		 */
 		public function woostify_columns_content( $column_name, $post_ID ) {
 			if ( 'thumbnail_image' === $column_name ) {
 				$_img_src = $this->woostify_get_featured_image_src( $post_ID );
 				?>
-					<a href="<?php echo esc_url( get_edit_post_link( $post_ID ) ); ?>">
-						<img src="<?php echo esc_url( $_img_src ); ?>"/>
-					</a>
+				<a href="<?php echo esc_url( get_edit_post_link( $post_ID ) ); ?>">
+					<img src="<?php echo esc_url( $_img_src ); ?>"/> </a>
 				<?php
 			}
 		}
@@ -818,6 +818,16 @@ if ( ! class_exists( 'Woostify' ) ) {
 				);
 			}
 
+			if ( $options['sticky_footer_bar_enable'] && $options['sticky_footer_bar_hide_when_scroll'] ) {
+				wp_enqueue_script(
+					'woostify-sticky-footer-bar',
+					WOOSTIFY_THEME_URI . 'assets/js/sticky-footer-bar' . woostify_suffix() . '.js',
+					array(),
+					woostify_version(),
+					true
+				);
+			}
+
 			// Comment reply.
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 				wp_enqueue_script( 'comment-reply' );
@@ -827,7 +837,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 		/**
 		 * Support Elementor Location
 		 *
-		 * @param      array|object $elementor_theme_manager  The elementor theme manager.
+		 * @param array|object $elementor_theme_manager The elementor theme manager.
 		 */
 		public function woostify_register_elementor_locations( $elementor_theme_manager ) {
 			$elementor_theme_manager->register_location(
@@ -885,7 +895,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 		/**
 		 * Limit the character length in exerpt
 		 *
-		 * @param      int $length The length.
+		 * @param int $length The length.
 		 */
 		public function woostify_limit_excerpt_character( $length ) {
 			// Don't change anything inside /wp-admin/.
@@ -895,6 +905,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			$options = woostify_options( false );
 			$length  = $options['blog_list_limit_exerpt'];
+
 			return $length;
 		}
 
@@ -902,10 +913,12 @@ if ( ! class_exists( 'Woostify' ) ) {
 		 * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
 		 *
 		 * @param array $args Configuration arguments.
+		 *
 		 * @return array
 		 */
 		public function woostify_page_menu_args( $args ) {
 			$args['show_home'] = true;
+
 			return $args;
 		}
 
@@ -913,6 +926,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 		 * Adds custom classes to the array of body classes.
 		 *
 		 * @param array $classes Classes for the body element.
+		 *
 		 * @return array
 		 */
 		public function woostify_body_classes( $classes ) {
@@ -1006,6 +1020,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			}
 
 			$more = apply_filters( 'woostify_excerpt_more', '...' );
+
 			return $more;
 		}
 	}
