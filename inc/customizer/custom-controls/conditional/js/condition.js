@@ -24,13 +24,13 @@
 										if ( ! hide_all ) {
 											tab_control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).addClass( 'disabled-btn' )
 										} else {
-											tab_control.container.addClass( 'hide' )
+											tab_control.container.addClass( 'woostify-hide' )
 										}
 									} else {
 										if ( ! hide_all ) {
 											tab_control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).removeClass( 'disabled-btn' )
 										} else {
-											tab_control.container.removeClass( 'hide' )
+											tab_control.container.removeClass( 'woostify-hide' )
 										}
 									}
 								},
@@ -50,13 +50,13 @@
 												if ( ! hide_all ) {
 													control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).addClass( 'disabled-btn' )
 												} else {
-													control.container.addClass( 'hide' )
+													control.container.addClass( 'woostify-hide' )
 												}
 											} else {
 												if ( ! hide_all ) {
 													control.container.find( 'li.woostify-tab-button[data-tab="design"]' ).removeClass( 'disabled-btn' )
 												} else {
-													control.container.removeClass( 'hide' )
+													control.container.removeClass( 'woostify-hide' )
 												}
 											}
 										},
