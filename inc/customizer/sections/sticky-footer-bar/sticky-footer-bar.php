@@ -298,7 +298,7 @@ $wp_customize->add_control(
 			),
 			'choices'  => array(
 				'desktop' => array(
-					'min'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_min_step', 10 ),
+					'min'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_min_step', 0 ),
 					'max'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_size_max_step', 100 ),
 					'step' => 1,
 					'edit' => true,
