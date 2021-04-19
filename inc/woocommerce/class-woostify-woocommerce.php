@@ -358,8 +358,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$disable_multi_step = woostify_is_multi_checkout();
 
 			// Disabled side cart if user use elementor mini cart.
-			if ( defined( 'ELEMENTOR_PRO_VERSION' ) && 'no' !== get_option( 'elementor_use_mini_cart_template' ) ) {
-				$classes[] = 'disabled-sidebar-cart';
+			if ( defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+				if ( 'no' !== get_option( 'elementor_use_mini_cart_template' ) ) {
+					$classes[] = 'disabled-sidebar-cart';
+				} else {
+					$classes[] = 'hide-added-to-cart';
+				}
 			}
 
 			// Product gallery.

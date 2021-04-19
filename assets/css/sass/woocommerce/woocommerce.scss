@@ -1,6 +1,13 @@
 // Variables
 $size: 40px;
 
+// Hide added_to_cart button
+.hide-added-to-cart {
+	.added_to_cart {
+		display: none !important;
+	}
+}
+
 // Out of stock label
 .woostify-out-of-stock-label {
 	position: absolute;
