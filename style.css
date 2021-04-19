@@ -6822,6 +6822,10 @@ header.elementor-element {
   font-style: normal;
 }
 
+.hide-added-to-cart .product-loop-meta .animated-meta .added {
+  display: flex;
+}
+
 .hide-added-to-cart .added_to_cart {
   display: none !important;
 }
