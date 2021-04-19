@@ -226,14 +226,15 @@
 					'click',
 					'.select-icon-act .open-icon-list',
 					function() {
-						var control = $( this ).closest( '.woostify-adv-list-control' )
+						var control   = $( this ).closest( '.woostify-adv-list-control' )
+						var icon_list = control.find( '.icon-list' );
 						control.find( '.icon-list' ).slideToggle(
 							500,
 							function() {
 								if ( $( this ).hasClass( 'open' ) ) {
-									$( this ).removeClass( 'open' );
+									$( this ).delay( 500 ).removeClass( 'open' );
 								} else {
-									$( this ).addClass( 'open' );
+									$( this ).delay( 500 ).addClass( 'open' );
 								}
 							}
 						)
@@ -275,11 +276,12 @@
 					'click',
 					'body',
 					function(e) {
-						var icon_list = $( '.icon-list.open' );
+						var icon_list     = $( '.icon-list.open' );
+						var icon_list_btn = $( '.select-icon-act .open-icon-list' );
 						// if the target of the click isn't the container nor a descendant of the container.
-						if ( ! icon_list.is( e.target ) && icon_list.has( e.target ).length === 0) {
-							icon_list.slideUp();
-							icon_list.removeClass( 'open' );
+						if ( ! icon_list.is( e.target ) && icon_list.has( e.target ).length === 0 && ! icon_list_btn.is( e.target ) ) {
+							icon_list.slideUp( 500 );
+							icon_list.delay( 500 ).removeClass( 'open' );
 						}
 					}
 				)
