@@ -227,7 +227,16 @@
 					'.select-icon-act .open-icon-list',
 					function() {
 						var control = $( this ).closest( '.woostify-adv-list-control' )
-						control.find( '.icon-list' ).slideToggle()
+						control.find( '.icon-list' ).slideToggle(
+							500,
+							function() {
+								if ( $( this ).hasClass( 'open' ) ) {
+									$( this ).removeClass( 'open' );
+								} else {
+									$( this ).addClass( 'open' );
+								}
+							}
+						)
 					},
 				)
 
@@ -260,6 +269,19 @@
 						control.find( '.selected-icon' ).html( '' )
 						update_value( $( '.woostify-adv-list-items' ) )
 					},
+				)
+
+				$( document ).on(
+					'click',
+					'body',
+					function(e) {
+						var icon_list = $( '.icon-list.open' );
+						// if the target of the click isn't the container nor a descendant of the container.
+						if ( ! icon_list.is( e.target ) && icon_list.has( e.target ).length === 0) {
+							icon_list.slideUp();
+							icon_list.removeClass( 'open' );
+						}
+					}
 				)
 			},
 		)
