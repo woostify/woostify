@@ -6337,11 +6337,17 @@ header.elementor-element {
 .woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon {
   font-size: 24px;
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon .woositfy-sfb-icon {
-  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon .woositfy-sfb-icon svg {
@@ -6371,6 +6377,14 @@ header.elementor-element {
     right: 0;
     left: auto;
   }
+}
+
+.woostify-inline-flex {
+  -js-display: inline-flex;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .home.blog .site-main .post-loop:first-child:last-child {
