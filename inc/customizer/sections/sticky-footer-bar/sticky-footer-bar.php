@@ -86,7 +86,6 @@ $wp_customize->add_setting(
 		'default'           => $defaults['sticky_footer_bar_hide_when_scroll'],
 		'type'              => 'option',
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
-		'transport'         => 'postMessage',
 	)
 );
 
