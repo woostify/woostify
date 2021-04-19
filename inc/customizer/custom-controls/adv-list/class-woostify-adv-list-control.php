@@ -70,7 +70,8 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 	 * @return void
 	 */
 	public function render_content() {
-		$items = json_decode( $this->value() );
+		$items     = json_decode( $this->value() );
+		$svg_icons = woostify_fetch_all_svg_icon();
 		?>
 		<div class="woostify-adv-list-container">
 			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
@@ -120,7 +121,24 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 								<label for="<?php echo esc_attr( $icon_field_id ); ?>">
 									<?php esc_html_e( 'Icon', 'woostify' ); ?>
 								</label>
-								<textarea class="woostify-adv-list-input woostify-adv-list-input--icon" name="<?php echo esc_attr( $icon_field_name ); ?>" id="<?php echo esc_attr( $icon_field_id ); ?>" rows="4"><?php echo esc_html( $val->icon ); ?></textarea>
+								<div class="select-icon-act">
+									<span class="selected-icon"><?php echo $svg_icons[ $val->icon ]; ?></span>
+									<span class="open-icon-list"><?php echo esc_html( 'Select', 'woostify' ); ?></span>
+									<span class="remove-icon"><?php echo esc_html( 'Clear', 'woostify' ); ?></span>
+								</div>
+								<input type="hidden" class="woostify-adv-list-input woostify-adv-list-input--icon" name="<?php echo esc_attr( $icon_field_name ); ?>" id="<?php echo esc_attr( $icon_field_id ); ?>" value="<?php echo esc_attr( $val->icon ); ?>">
+								<div class="icon-list">
+									<div class="icon-list__search">
+										<input type="search">
+									</div>
+									<div class="icon-list-wrap">
+										<?php foreach ( $svg_icons as $svg_icon_name => $svg_icon ) { ?>
+											<span class="icon-list__icon <?php echo $svg_icon_name === $val->icon ? 'active' : ''; ?>" data-icon="<?php echo esc_attr( $svg_icon_name ); ?>">
+											<?php echo $svg_icon; ?>
+										</span>
+										<?php } ?>
+									</div>
+								</div>
 							</div>
 							<div class="name-field woostify-adv-list-control customize-control-text" data-field_name="name">
 								<?php
@@ -140,7 +158,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 							</div>
 						</div>
 					</div>
-			<?php } ?>
+				<?php } ?>
 				<input type="hidden" class="woostify-adv-list-value" <?php $this->link(); ?> value='<?php echo $this->value(); //phpcs:ignore ?>' />
 			</div>
 		</div>

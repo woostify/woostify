@@ -783,3 +783,40 @@ if ( ! function_exists( 'woostify_wishlist_page_url' ) ) {
 		return '#';
 	}
 }
+
+if ( ! function_exists( 'woostify_fetch_svg_icon' ) ) {
+	/**
+	 * Get an SVG Icon
+	 *
+	 * @param string $icon icon.
+	 * @param bool   $base base.
+	 *
+	 * @return string
+	 */
+	function woostify_fetch_svg_icon( $icon = '' ) {
+		ob_start();
+		include_once WOOSTIFY_THEME_DIR . 'assets/svg/svgs.json';
+		$woostify_svgs = json_decode( ob_get_clean(), true );
+		$woostify_svgs = apply_filters( 'woostify_svg_icons', $woostify_svgs );
+
+		$output = isset( $woostify_svgs[ $icon ] ) ? $woostify_svgs[ $icon ] : '';
+
+		return $output;
+	}
+}
+
+if ( ! function_exists( 'woostify_fetch_all_svg_icon' ) ) {
+	/**
+	 * Get all SVG icon
+	 *
+	 * @return mixed|void
+	 */
+	function woostify_fetch_all_svg_icon() {
+		ob_start();
+		include_once WOOSTIFY_THEME_DIR . 'assets/svg/svgs.json';
+		$woostify_svgs = json_decode( ob_get_clean(), true );
+		$woostify_svgs = apply_filters( 'woostify_svg_icons', $woostify_svgs );
+
+		return $woostify_svgs;
+	}
+}

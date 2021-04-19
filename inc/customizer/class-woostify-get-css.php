@@ -898,11 +898,13 @@ class Woostify_Get_CSS {
 			.woostify-sticky-footer-bar {
 				background: ' . esc_attr( $options['sticky_footer_bar_background'] ) . ';
 			}
-			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg,
+			 .woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg path {
 				color: ' . esc_attr( $options['sticky_footer_bar_icon_color'] ) . ';
 				fill: ' . esc_attr( $options['sticky_footer_bar_icon_color'] ) . ';
 			}
-			.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+			.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg,
+			 .woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg path {
 				color: ' . esc_attr( $options['sticky_footer_bar_icon_hover_color'] ) . ';
 				fill: ' . esc_attr( $options['sticky_footer_bar_icon_hover_color'] ) . ';
 			}
