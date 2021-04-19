@@ -47,6 +47,10 @@
 
 					.woositfy-sfb-icon {
 						font-size: 20px;
+
+						svg {
+							display: block;
+						}
 					}
 				}
 
@@ -58,7 +62,6 @@
 			&.woostify-addon:not(.woostify-custom-addon) {
 				a {
 					.woostify-item-list-item__icon {
-						margin: 0;
 
 						.cart-icon-rotate:before {
 							position: relative;

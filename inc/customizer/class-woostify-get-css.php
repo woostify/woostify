@@ -916,6 +916,9 @@ class Woostify_Get_CSS {
 			.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__name {
 				color: ' . esc_attr( $options['sticky_footer_bar_text_hover_color'] ) . ';
 			}
+			.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon {
+				margin-bottom: ' . esc_attr( $options['sticky_footer_bar_icon_spacing'] ) . 'px;
+			}
 		';
 
 		// Scroll to top.

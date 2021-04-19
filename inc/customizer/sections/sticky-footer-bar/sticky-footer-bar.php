@@ -274,7 +274,43 @@ $wp_customize->add_control(
 	)
 );
 
-// Icon font size.
+// Icon spacing.
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_icon_spacing]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_icon_spacing'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[sticky_footer_bar_icon_spacing]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Item Spacing', 'woostify' ),
+			'section'  => 'woostify_sticky_footer_bar',
+			'settings' => array(
+				'desktop' => 'woostify_setting[sticky_footer_bar_icon_spacing]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_min_step', 10 ),
+					'max'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_size_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Text font size.
 $wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_text_font_size]',
 	array(
@@ -310,8 +346,7 @@ $wp_customize->add_control(
 	)
 );
 
-
-// Icon font size.
+// Text font weight.
 $wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_text_font_weight]',
 	array(

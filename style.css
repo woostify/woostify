@@ -6344,12 +6344,12 @@ header.elementor-element {
   font-size: 20px;
 }
 
-.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__name {
+.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon .woositfy-sfb-icon svg {
   display: block;
 }
 
-.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item.woostify-addon:not(.woostify-custom-addon) a .woostify-item-list-item__icon {
-  margin: 0;
+.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__name {
+  display: block;
 }
 
 .woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item.woostify-addon:not(.woostify-custom-addon) a .woostify-item-list-item__icon .cart-icon-rotate:before {

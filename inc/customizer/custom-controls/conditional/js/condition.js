@@ -504,6 +504,7 @@
 						'woostify_setting[sticky_footer_bar_text_font_size]',
 						'woostify_setting[sticky_footer_bar_text_font_weight]',
 						'woostify_setting[sticky_footer_bar_hide_when_scroll]',
+						'woostify_setting[sticky_footer_bar_icon_spacing]',
 					]
 				)
 				api.control(
