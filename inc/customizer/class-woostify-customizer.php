@@ -83,7 +83,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				),
 				array(
 					'type'      => 'cart',
-					'icon'      => 'shopping-cart',
+					'icon'      => 'shopping-cart-2',
 					'name'      => 'Cart',
 					'link'      => '#',
 					'hidden'    => false,
