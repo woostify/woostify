@@ -2390,14 +2390,15 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 					<?php
 					break;
 				case 'cart':
-					$count = 0;
-					if ( woostify_is_woocommerce_activated() ) {
-						global $woocommerce;
-						$count = $woocommerce->cart->cart_contents_count;
+					if ( ! woostify_is_woocommerce_activated() ) {
+						break;
 					}
+					global $woocommerce;
+					$count    = $woocommerce->cart->cart_contents_count;
+					$cart_url = wc_get_cart_url();
 					?>
 					<li class="woostify-item-list__item woostify-addon">
-					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="shopping-bag-button">
+					<a href="<?php echo esc_url( $cart_url ); ?>" class="shopping-bag-button">
 					<?php if ( '' !== $item->icon ) { ?>
 						<span class="woostify-item-list-item__icon ">
 							<span class="woositfy-sfb-icon">

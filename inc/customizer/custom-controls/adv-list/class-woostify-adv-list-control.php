@@ -59,7 +59,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 	 * TO json data
 	 */
 	public function to_json() {
-		 parent::to_json();
+		parent::to_json();
 
 		$this->json['tab'] = $this->tab;
 	}
@@ -95,12 +95,8 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 								<label for="<?php echo esc_attr( $type_field_id ); ?>"><?php echo esc_html__( 'Type', 'woostify' ); ?></label>
 								<select name="<?php echo esc_attr( $type_field_name ); ?>" id="<?php echo esc_attr( $type_field_id ); ?>" class="woostify-adv-list-input woostify-adv-list-select">
 									<option value="custom" <?php selected( $val->type, 'custom' ); ?>><?php esc_html_e( 'Custom', 'woositify' ); ?></option>
-									<?php if ( woostify_support_wishlist_plugin() ) { ?>
-										<option value="wishlist" <?php selected( $val->type, 'wishlist' ); ?>><?php esc_html_e( 'Wishlist', 'woositify' ); ?></option>
-									<?php } ?>
-									<?php if ( woostify_is_woocommerce_activated() ) { ?>
-										<option value="cart" <?php selected( $val->type, 'cart' ); ?>><?php esc_html_e( 'Cart', 'woositify' ); ?></option>
-									<?php } ?>
+									<option value="wishlist" <?php selected( $val->type, 'wishlist' ); ?>><?php esc_html_e( 'Wishlist', 'woositify' ); ?></option>
+									<option value="cart" <?php selected( $val->type, 'cart' ); ?>><?php esc_html_e( 'Cart', 'woositify' ); ?></option>
 									<option value="shortcode" <?php selected( $val->type, 'shortcode' ); ?>><?php esc_html_e( 'Shortcode', 'woositify' ); ?></option>
 									<option value="search" <?php selected( $val->type, 'search' ); ?>><?php esc_html_e( 'Search', 'woositify' ); ?></option>
 								</select>
@@ -123,8 +119,8 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 								</label>
 								<div class="select-icon-act">
 									<span class="selected-icon"><?php echo $svg_icons[ $val->icon ]; ?></span>
-									<span class="open-icon-list"><?php echo esc_html( 'Select', 'woostify' ); ?></span>
-									<span class="remove-icon"><?php echo esc_html( 'Clear', 'woostify' ); ?></span>
+									<span class="open-icon-list"><?php echo esc_html__( 'Select', 'woostify' ); ?></span>
+									<span class="remove-icon"><?php echo esc_html__( 'Clear', 'woostify' ); ?></span>
 								</div>
 								<input type="hidden" class="woostify-adv-list-input woostify-adv-list-input--icon" name="<?php echo esc_attr( $icon_field_name ); ?>" id="<?php echo esc_attr( $icon_field_id ); ?>" value="<?php echo esc_attr( $val->icon ); ?>">
 								<div class="icon-list">
@@ -159,7 +155,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 						</div>
 					</div>
 				<?php } ?>
-				<input type="hidden" class="woostify-adv-list-value" <?php $this->link(); ?> value='<?php echo $this->value(); //phpcs:ignore ?>' />
+				<input type="hidden" class="woostify-adv-list-value" <?php $this->link(); ?> value='<?php echo $this->value(); //phpcs:ignore ?>'/>
 			</div>
 		</div>
 		<?php
