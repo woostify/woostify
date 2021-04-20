@@ -192,6 +192,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'sticky_footer_bar_items'                 => wp_json_encode( $sticky_footer_bar_items ),
 				'sticky_footer_bar_enable_on'             => 'mobile',
 				'sticky_footer_bar_text_font_size'        => 13,
+				'tablet_sticky_footer_bar_text_font_size' => 13,
+				'mobile_sticky_footer_bar_text_font_size' => 12,
 				'sticky_footer_bar_icon_font_size'        => 20,
 				'tablet_sticky_footer_bar_icon_font_size' => 20,
 				'mobile_sticky_footer_bar_icon_font_size' => 18,
@@ -203,6 +205,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'sticky_footer_bar_background'            => '#fff',
 				'sticky_footer_bar_hide_when_scroll'      => false,
 				'sticky_footer_bar_icon_spacing'          => 5,
+				'tablet_sticky_footer_bar_icon_spacing'   => 5,
+				'mobile_sticky_footer_bar_icon_spacing'   => 5,
 				// Scroll To Top.
 				'scroll_to_top'                           => true,
 				'scroll_to_top_background'                => '',

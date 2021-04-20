@@ -2366,12 +2366,10 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 			return;
 		}
 
-		$preview_class = is_customize_preview() ? 'preview' : '';
-
 		$icons = woostify_fetch_all_svg_icon();
 		$items = json_decode( $options['sticky_footer_bar_items'] );
 
-		echo '<div class="woostify-sticky-footer-bar ' . $preview_class . ' woostify-sticky-on-' . $options['sticky_footer_bar_enable_on'] . '">'; //phpcs:ignore
+		echo '<div class="woostify-sticky-footer-bar woostify-sticky-on-' . $options['sticky_footer_bar_enable_on'] . '">'; //phpcs:ignore
 		echo '<ul class="woostify-item-list">';
 		do_action( 'woostify_before_sticky_footer_bar_items' );
 		foreach ( $items as $item ) {

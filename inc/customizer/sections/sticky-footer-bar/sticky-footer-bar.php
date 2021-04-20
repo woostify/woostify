@@ -284,8 +284,8 @@ $wp_customize->add_control(
 			),
 			'choices'  => array(
 				'desktop' => array(
-					'min'  => apply_filters( 'woostify_sticky_footer_bar_icon_font_size_desktop_min_step', 10 ),
-					'max'  => apply_filters( 'woostify_sticky_footer_bar_icon_font_size_desktop_max_step', 100 ),
+					'min'  => apply_filters( 'woostify_sticky_footer_bar_icon_font_size_min_step', 10 ),
+					'max'  => apply_filters( 'woostify_sticky_footer_bar_icon_font_size_max_step', 100 ),
 					'step' => 1,
 					'edit' => true,
 					'unit' => 'px',
@@ -320,6 +320,24 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
+$wp_customize->add_setting(
+	'woostify_setting[tablet_sticky_footer_bar_icon_spacing]',
+	array(
+		'default'           => $defaults['tablet_sticky_footer_bar_icon_spacing'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[mobile_sticky_footer_bar_icon_spacing]',
+	array(
+		'default'           => $defaults['mobile_sticky_footer_bar_icon_spacing'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
 
 $wp_customize->add_control(
 	new Woostify_Range_Slider_Control(
@@ -331,11 +349,27 @@ $wp_customize->add_control(
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => array(
 				'desktop' => 'woostify_setting[sticky_footer_bar_icon_spacing]',
+				'tablet'  => 'woostify_setting[tablet_sticky_footer_bar_icon_spacing]',
+				'mobile'  => 'woostify_setting[mobile_sticky_footer_bar_icon_spacing]',
 			),
 			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_min_step', 0 ),
-					'max'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_size_max_step', 100 ),
+					'max'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_tablet_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_tablet_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_mobile_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_sticky_footer_bar_icon_spacing_mobile_max_step', 100 ),
 					'step' => 1,
 					'edit' => true,
 					'unit' => 'px',
@@ -356,6 +390,24 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
+$wp_customize->add_setting(
+	'woostify_setting[tablet_sticky_footer_bar_text_font_size]',
+	array(
+		'default'           => $defaults['tablet_sticky_footer_bar_text_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[mobile_sticky_footer_bar_text_font_size]',
+	array(
+		'default'           => $defaults['mobile_sticky_footer_bar_text_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
 
 $wp_customize->add_control(
 	new Woostify_Range_Slider_Control(
@@ -367,11 +419,27 @@ $wp_customize->add_control(
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => array(
 				'desktop' => 'woostify_setting[sticky_footer_bar_text_font_size]',
+				'tablet'  => 'woostify_setting[tablet_sticky_footer_bar_text_font_size]',
+				'mobile'  => 'woostify_setting[mobile_sticky_footer_bar_text_font_size]',
 			),
 			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_sticky_footer_bar_text_font_size_min_step', 10 ),
 					'max'  => apply_filters( 'woostify_sticky_footer_bar_text_font_size_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_sticky_footer_bar_text_font_size_tablet_min_step', 10 ),
+					'max'  => apply_filters( 'woostify_sticky_footer_bar_text_font_size_tablet_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_sticky_footer_bar_text_font_size_mobile_min_step', 10 ),
+					'max'  => apply_filters( 'woostify_sticky_footer_bar_text_font_size_mobile_max_step', 100 ),
 					'step' => 1,
 					'edit' => true,
 					'unit' => 'px',

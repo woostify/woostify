@@ -591,15 +591,37 @@ document.addEventListener(
 				'tablet_sticky_footer_bar_icon_font_size',
 				'mobile_sticky_footer_bar_icon_font_size',
 			],
-			'.woostify-sticky-footer-bar.preview .woostify-item-list-item__icon .woositfy-sfb-icon svg',
+			'.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg',
 			[
 				'width',
 				'height',
 			],
 			'px',
 		);
-		woostify_range_slider_update( [ 'sticky_footer_bar_icon_spacing' ], '.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon', 'margin-bottom', 'px' );
-		woostify_range_slider_update( [ 'sticky_footer_bar_text_font_size' ], '.woostify-sticky-footer-bar .woostify-item-list-item__name', 'font-size', 'px' );
+		woostify_range_slider_update(
+			[
+				'sticky_footer_bar_icon_spacing',
+				'tablet_sticky_footer_bar_icon_spacing',
+				'mobile_sticky_footer_bar_icon_spacing',
+			],
+			'.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon',
+			[
+				'margin-bottom',
+			],
+			'px',
+		);
+		woostify_range_slider_update(
+			[
+				'sticky_footer_bar_text_font_size',
+				'tablet_sticky_footer_bar_text_font_size',
+				'mobile_sticky_footer_bar_text_font_size',
+			],
+			'.woostify-sticky-footer-bar .woostify-item-list-item__name',
+			[
+				'font-size',
+			],
+			'px',
+		);
 		woostify_unit_live_update( 'sticky_footer_bar_text_font_weight', '.woostify-sticky-footer-bar .woostify-item-list-item__name', 'font-weight', false );
 	},
 );
