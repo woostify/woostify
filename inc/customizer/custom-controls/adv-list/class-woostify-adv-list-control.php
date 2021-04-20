@@ -118,7 +118,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 									<?php esc_html_e( 'Icon', 'woostify' ); ?>
 								</label>
 								<div class="select-icon-act">
-									<span class="selected-icon"><?php echo $svg_icons[ $val->icon ]; ?></span>
+									<span class="selected-icon"><?php echo ! empty( $svg_icons[ $val->icon ] ) ? $svg_icons[ $val->icon ] : ''; ?></span>
 									<span class="open-icon-list"><?php echo esc_html__( 'Select', 'woostify' ); ?></span>
 									<span class="remove-icon"><?php echo esc_html__( 'Clear', 'woostify' ); ?></span>
 								</div>
