@@ -193,6 +193,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'sticky_footer_bar_enable_on'             => 'mobile',
 				'sticky_footer_bar_text_font_size'        => 13,
 				'sticky_footer_bar_icon_font_size'        => 20,
+				'tablet_sticky_footer_bar_icon_font_size' => 20,
+				'mobile_sticky_footer_bar_icon_font_size' => 18,
 				'sticky_footer_bar_text_color'            => '#111',
 				'sticky_footer_bar_text_hover_color'      => '#111',
 				'sticky_footer_bar_icon_color'            => '#111',

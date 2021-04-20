@@ -898,9 +898,41 @@ class Woostify_Get_CSS {
 			.woostify-sticky-footer-bar {
 				background: ' . esc_attr( $options['sticky_footer_bar_background'] ) . ';
 			}
-			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
-				width: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
-				height: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
+			@media ( min-width: 992px ) {
+				.woostify-sticky-footer-bar:not(.preview) .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
+			}
+			@media ( min-width: 769px ) {
+				.woostify-sticky-footer-bar.preview .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
+			}
+			@media ( min-width: 768px ) and ( max-width: 991px ) {
+				.woostify-sticky-footer-bar:not(.preview) .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
+			}
+			@media ( min-width: 321px ) and ( max-width: 768px ) {
+				.woostify-sticky-footer-bar.preview .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
+			}
+			@media ( max-width: 767px ) {
+				.woostify-sticky-footer-bar:not(.preview) .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
+			}
+			@media ( max-width: 320px ) {
+				.woostify-sticky-footer-bar.preview .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
 			}
 			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg,
 			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg path {
