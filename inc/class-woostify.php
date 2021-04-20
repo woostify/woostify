@@ -837,14 +837,14 @@ if ( ! class_exists( 'Woostify' ) ) {
 				)
 			);
 			$elementor_theme_manager->register_location(
-				'product_archive',
+				'archive',
 				array(
 					'hook'         => 'woostify_theme_archive',
 					'remove_hooks' => array( 'woostify_template_archive' ),
 				)
 			);
 			$elementor_theme_manager->register_location(
-				'404',
+				'error-404',
 				array(
 					'hook'         => 'woostify_theme_404',
 					'remove_hooks' => array( 'woostify_template_404' ),
