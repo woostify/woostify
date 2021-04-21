@@ -33,7 +33,7 @@ class Woostify_Switch_Control extends WP_Customize_Control {
 	 * To json data
 	 */
 	public function to_json() {
-		 parent::to_json();
+		parent::to_json();
 
 		$this->json['tab'] = $this->tab;
 	}
@@ -57,7 +57,7 @@ class Woostify_Switch_Control extends WP_Customize_Control {
 		$name  = '_customize-switch-' . $this->id;
 		$id    = $this->id;
 		$label = $this->label;
-		$value = false == $this->value() ? 0 : 1;
+		$value = false === $this->value() ? 0 : 1;
 		$desc  = $this->description;
 		?>
 

@@ -28,6 +28,8 @@ class Woostify_Color_Control extends WP_Customize_Control {
 
 	/**
 	 * Tab
+	 *
+	 * @var string
 	 */
 	public $tab = '';
 

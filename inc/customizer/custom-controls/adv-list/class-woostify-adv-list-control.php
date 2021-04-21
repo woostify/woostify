@@ -59,7 +59,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 	 * TO json data
 	 */
 	public function to_json() {
-		 parent::to_json();
+		parent::to_json();
 
 		$this->json['tab'] = $this->tab;
 	}

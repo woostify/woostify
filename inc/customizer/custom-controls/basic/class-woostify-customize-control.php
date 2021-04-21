@@ -26,7 +26,7 @@ class Woostify_Customize_Control extends WP_Customize_Control {
 	 * To json data
 	 */
 	public function to_json() {
-		 parent::to_json();
+		parent::to_json();
 
 		$this->json['tab'] = $this->tab;
 	}

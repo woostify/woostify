@@ -380,7 +380,7 @@ document.addEventListener(
 		// Header Icon transparent background.
 		woostify_colors_live_update( 'header_transparent_count_background', '.has-header-transparent .wishlist-item-count, .has-header-transparent .shop-cart-count', 'background-color' )
 
-		// Header Hide zero value cart count
+		// Header Hide zero value cart count.
 		woostify_update_element_class( 'header_shop_hide_zero_value_cart_count', '.shopping-bag-button .shop-cart-count', 'hide-zero-val' )
 
 		// Logo width.
