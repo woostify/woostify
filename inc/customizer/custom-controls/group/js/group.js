@@ -15,7 +15,21 @@ wp.customize.controlConstructor['woostify-group'] = wp.customize.Control.extend(
 				inputDefault,
 				changeAction,
 				controlClass  = '.customize-control-woostify-group',
-				footerActions = jQuery( '#customize-footer-actions' );
+				footerActions = jQuery( '#customize-footer-actions' ),
+				linkValues    = true;
+
+			jQuery( controlClass + ' .woostify-link-value-together-btn' ).on(
+				'click',
+				function() {
+					if (jQuery( this ).hasClass( 'dashicons-admin-links' )) {
+						jQuery( this ).closest('.woostify-group-fields-area').find('.woostify-link-value-together-btn').removeClass( 'dashicons-admin-links' ).addClass( 'dashicons-editor-unlink' );
+						linkValues = false;
+					} else {
+						jQuery( this ).closest('.woostify-group-fields-area').find('.woostify-link-value-together-btn').removeClass( 'dashicons-editor-unlink' ).addClass( 'dashicons-admin-links' );
+						linkValues = true;
+					}
+				}
+			)
 
 			// Handle the reset button.
 			jQuery( controlClass + ' .woostify-reset' ).on(
@@ -111,8 +125,11 @@ wp.customize.controlConstructor['woostify-group'] = wp.customize.Control.extend(
 					var curr_device     = field_container.data( 'option' );
 					var value           = '';
 					var negative_value  = control.params.negative_value;
+					if (linkValues) {
+						field_container.find( '.woostify-group-field input' ).val( jQuery( this ).val() ) }
 					field_container.find( '.woostify-group-field' ).each(
 						function() {
+
 							var input_val        = '' !== jQuery( this ).find( 'input.woostify-group-input' ).val() ? jQuery( this ).find( 'input.woostify-group-input' ).val() : 0;
 							var input_val_format = ! negative_value ? Math.abs( input_val ) : input_val;
 							jQuery( this ).find( 'input.woostify-group-input' ).val( input_val_format );

@@ -115,8 +115,9 @@ class Woostify_Group_Control extends WP_Customize_Control {
 	 * @return void
 	 */
 	protected function render_content() {
-		$reset_label = __( 'Reset', 'woostify' );
-		$data        = $this->settings;
+		$reset_label       = __( 'Reset', 'woostify' );
+		$data              = $this->settings;
+		$link_values_label = __( 'Link Values Together', 'woostify' );
 		?>
 		<div class="woostify-group-control">
 		<div class="woostify-responsive-title-area">
@@ -160,11 +161,16 @@ class Woostify_Group_Control extends WP_Customize_Control {
 							$input_id = preg_replace( '/[\[\]]/', '_', $setting_data->id ) . $input_k;
 							?>
 							<div class="woostify-group-field">
-								<label class="woostify-group-field-label" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_html( $input_v ); ?></label>
 								<input type="number" class="woostify-group-input" data-reset_value="<?php echo esc_attr( $reset_value[ $input_k ] ); ?>" min="<?php echo esc_attr( $this->choices[ $setting_k ]['min'] ); ?>" max="<?php echo esc_attr( $this->choices[ $setting_k ]['max'] ); ?>" step="<?php echo esc_attr( $this->choices[ $setting_k ]['step'] ); ?>" id="<?php echo esc_attr( $input_id ); ?>" value="<?php echo isset( $value[ $input_k ] ) ? esc_attr( $value[ $input_k ] ) : ''; ?>">
+								<label class="woostify-group-field-label" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_html( $input_v ); ?></label>
 							</div>
 							<?php
 						}
+						?>
+						<div class="woostify-link-value-together">
+							<span class="woostify-link-value-together-btn dashicons dashicons-admin-links" title="<?php echo esc_attr( $link_values_label ); ?>"></span>
+						</div>
+						<?php
 					}
 					?>
 					<input type="hidden" class="woostify-group-value" <?php echo $link; ?> value="<?php echo esc_attr( $this->value( $setting_k ) ); ?>">
