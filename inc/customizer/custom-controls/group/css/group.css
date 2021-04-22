@@ -1,0 +1,58 @@
+.customize-control-woostify-group .woostify-group-control .customize-control-title {
+	display: inline-block;
+}
+
+.customize-control-woostify-group .woostify-responsive-devices {
+	float: right;
+}
+
+.customize-control-woostify-group .woostify-responsive-title-area .dashicons {
+	cursor: pointer;
+	font-size: 11px;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	color: #222;
+	text-align: center;
+	position: relative;
+	top: 2px;
+}
+
+.customize-control-woostify-group .woostify-responsive-title-area .dashicons.selected {
+	background: #fff;
+	color: #222;
+}
+
+.customize-control-woostify-group .woostify-group-container {
+	display: flex;
+	margin-left: -15px;
+}
+
+.customize-control-woostify-group .woostify-group-container .woostify-group-field {
+	width: 25%;
+	padding-left: 15px;
+}
+
+.customize-control-woostify-group .woostify-group-container .woostify-group-field .woostify-group-field-label {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.customize-control-woostify-group .woostify-group-container .woostify-group-field input {
+	padding: 0 0 0 5px;
+	border-radius: 0;
+	font-size: 12px;
+	border-color: #ddd;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.customize-control-woostify-group .woostify-group-container .woostify-group-field input::-webkit-outer-spin-button,
+.customize-control-woostify-group .woostify-group-container .woostify-group-field input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+.customize-control-woostify-group .woostify-group-container .woostify-group-field input[type=number] {
+	-moz-appearance: textfield;
+}

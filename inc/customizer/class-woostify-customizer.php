@@ -207,6 +207,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'sticky_footer_bar_icon_spacing'          => 5,
 				'tablet_sticky_footer_bar_icon_spacing'   => 5,
 				'mobile_sticky_footer_bar_icon_spacing'   => 5,
+				'sticky_footer_bar_padding'               => '10 0 10 0',
 				// Scroll To Top.
 				'scroll_to_top'                           => true,
 				'scroll_to_top_background'                => '',

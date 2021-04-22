@@ -1,5 +1,5 @@
 /**
- * Load media uploader on pages with our custom metabox
+ * Advanced List JS
  *
  * @package woostify
  */

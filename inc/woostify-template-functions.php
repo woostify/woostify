@@ -650,7 +650,8 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 				<a itemprop="item" href="<?php echo esc_url( $home_url ); ?>">
 					<span itemprop="name"><?php echo esc_html( apply_filters( 'woostify_breadcrumb_home', get_bloginfo( 'name' ) ) ); ?></span>
 				</a>
-				<meta itemprop="position" content="1"></span>			</span>
+				<meta itemprop="position" content="1">
+			</span>
 
 			<?php
 			// Single product.
@@ -663,20 +664,20 @@ if ( ! function_exists( 'woostify_breadcrumb' ) ) {
 						<a itemprop="item" href="<?php echo esc_url( $shop_page_url ); ?>">
 							<span itemprop="name"><?php esc_html_e( 'Shop', 'woostify' ); ?></span>
 						</a>
-						<meta itemprop="position" content="2"></span>
+						<meta itemprop="position" content="2">
 					</span>
 
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 						<a itemprop="item" href="<?php echo esc_url( get_term_link( $terms[0]->term_id, 'product_cat' ) ); ?>">
 							<span itemprop="name"><?php echo esc_html( $terms[0]->name ); ?></span>
 						</a>
-						<meta itemprop="position" content="3"></span>
+						<meta itemprop="position" content="3">
 					</span>
 
 					<span class="item-bread" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 						<a itemprop="item" href="<?php echo esc_url( $home_url ); ?>"></a>
 						<span itemprop="name"><?php echo esc_html( get_the_title( $page_id ) ); ?></span>
-						<meta itemprop="position" content="4"></span>
+						<meta itemprop="position" content="4">
 					</span>
 					<?php
 				}
@@ -2387,7 +2388,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 								<?php if ( '' !== $item->icon ) { ?>
 									<span class="woostify-item-list-item__icon ">
 									<span class="woositfy-sfb-icon">
-										<?php echo isset( $icons[ $item->icon ] ) ? $icons[ $item->icon ] : ''; ?>
+										<?php echo isset( $icons[ $item->icon ] ) ? wp_kses( $icons[ $item->icon ], woostify_allow_tags_svg() ) : ''; ?>
 									</span>
 									<span class="theme-item-count wishlist-item-count"><?php echo esc_html( $wishlist_item_count ); ?></span>
 								</span>
@@ -2418,7 +2419,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 							<?php if ( '' !== $item->icon ) { ?>
 								<span class="woostify-item-list-item__icon ">
 							<span class="woositfy-sfb-icon">
-								<?php echo isset( $icons[ $item->icon ] ) ? $icons[ $item->icon ] : ''; ?>
+								<?php echo isset( $icons[ $item->icon ] ) ? wp_kses( $icons[ $item->icon ], woostify_allow_tags_svg() ) : ''; ?>
 							</span>
 							<span class="theme-item-count shop-cart-count <?php echo $options['header_shop_hide_zero_value_cart_count'] ? 'hide-zero-val' : ''; ?>"><?php echo esc_html( $count ); ?></span>
 						</span>
@@ -2435,7 +2436,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 							<?php if ( '' !== $item->icon ) { ?>
 								<span class="woostify-item-list-item__icon">
 								<span class="woositfy-sfb-icon header-search-icon">
-									<?php echo isset( $icons[ $item->icon ] ) ? $icons[ $item->icon ] : ''; ?>
+									<?php echo isset( $icons[ $item->icon ] ) ? wp_kses( $icons[ $item->icon ], woostify_allow_tags_svg() ) : ''; ?>
 								</span>
 							</span>
 							<?php } ?>
@@ -2451,7 +2452,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 							<?php if ( '' !== $item->icon ) { ?>
 								<span class="woostify-item-list-item__icon">
 							<span class="woositfy-sfb-icon">
-								<?php echo isset( $icons[ $item->icon ] ) ? $icons[ $item->icon ] : ''; ?>
+								<?php echo isset( $icons[ $item->icon ] ) ? wp_kses( $icons[ $item->icon ], woostify_allow_tags_svg() ) : ''; ?>
 							</span>
 						</span>
 							<?php } ?>

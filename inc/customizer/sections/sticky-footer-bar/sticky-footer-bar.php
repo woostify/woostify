@@ -8,7 +8,7 @@
 // Default values.
 $defaults = woostify_options();
 
-// Tabs
+// Tabs.
 $wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_context_tabs]'
 );
@@ -480,6 +480,82 @@ $wp_customize->add_control(
 				'900' => __( '900', 'woostify' ),
 			),
 			'tab'      => 'design',
+		)
+	)
+);
+
+// padding.
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_padding]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_padding'],
+		'type'              => 'option',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[tablet_sticky_footer_bar_padding]',
+	array(
+		'default'           => $defaults['tablet_sticky_footer_bar_padding'],
+		'type'              => 'option',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[mobile_sticky_footer_bar_padding]',
+	array(
+		'default'           => $defaults['mobile_sticky_footer_bar_padding'],
+		'type'              => 'option',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Group_Control(
+		$wp_customize,
+		'woostify_setting[sticky_footer_bar_padding]',
+		array(
+			'label'          => __( 'Padding', 'woostify' ),
+			'section'        => 'woostify_sticky_footer_bar',
+			'settings'       => array(
+				'desktop' => 'woostify_setting[sticky_footer_bar_padding]',
+				'tablet'  => 'woostify_setting[tablet_sticky_footer_bar_padding]',
+				'mobile'  => 'woostify_setting[mobile_sticky_footer_bar_padding]',
+			),
+			'choices'        => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_sticky_footer_bar_padding_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_sticky_footer_bar_padding_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_sticky_footer_bar_padding_tablet_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_sticky_footer_bar_padding_tablet_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_sticky_footer_bar_padding_mobile_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_sticky_footer_bar_padding_mobile_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+			'inputs_label'   => array(
+				__( 'Top', 'woostify' ),
+				__( 'Right', 'woostify' ),
+				__( 'Bottom', 'woostify' ),
+				__( 'Left', 'woostify' ),
+			),
+			'tab'            => 'design',
+			'negative_value' => false,
 		)
 	)
 );

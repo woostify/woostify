@@ -789,7 +789,6 @@ if ( ! function_exists( 'woostify_fetch_svg_icon' ) ) {
 	 * Get an SVG Icon
 	 *
 	 * @param string $icon icon.
-	 * @param bool   $base base.
 	 *
 	 * @return string
 	 */
@@ -818,5 +817,37 @@ if ( ! function_exists( 'woostify_fetch_all_svg_icon' ) ) {
 		$woostify_svgs = apply_filters( 'woostify_svg_icons', $woostify_svgs );
 
 		return $woostify_svgs;
+	}
+}
+
+if ( ! function_exists( 'woostify_allow_tags_svg' ) ) {
+	/**
+	 * Allow svg tags
+	 *
+	 * @return mixed|void
+	 */
+	function woostify_allow_tags_svg() {
+		$kses_defaults = wp_kses_allowed_html( 'post' );
+
+		$svg_args = array(
+			'svg'   => array(
+				'class'           => true,
+				'aria-hidden'     => true,
+				'aria-labelledby' => true,
+				'role'            => true,
+				'xmlns'           => true,
+				'width'           => true,
+				'height'          => true,
+				'viewbox'         => true, // <= Must be lower case!
+			),
+			'g'     => array( 'fill' => true ),
+			'title' => array( 'title' => true ),
+			'path'  => array(
+				'd'    => true,
+				'fill' => true,
+			),
+		);
+
+		return array_merge( $kses_defaults, $svg_args );
 	}
 }
