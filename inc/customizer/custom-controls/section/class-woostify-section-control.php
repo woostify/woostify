@@ -34,7 +34,7 @@ class Woostify_Section_Control extends WP_Customize_Control {
 	 *
 	 * @var array $description the array dependency.
 	 */
-	public $dependency = [];
+	public $dependency = array();
 
 	/**
 	 * Enqueue control related scripts/styles.
@@ -45,7 +45,7 @@ class Woostify_Section_Control extends WP_Customize_Control {
 		wp_enqueue_script(
 			'woostify-section',
 			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/section/js/section.js',
-			[],
+			array(),
 			woostify_version(),
 			true
 		);
@@ -53,7 +53,7 @@ class Woostify_Section_Control extends WP_Customize_Control {
 		wp_enqueue_style(
 			'woostify-section',
 			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/section/css/section.css',
-			[],
+			array(),
 			woostify_version()
 		);
 	}

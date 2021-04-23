@@ -62,7 +62,7 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 			 * @see http://php.net/manual/en/filter.filters.sanitize.php
 			 */
 			self::$meta_option = array(
-				'site-container' => array(
+				'site-container'          => array(
 					'default'  => 'default',
 					'sanitize' => 'FILTER_DEFAULT',
 				),
@@ -70,23 +70,23 @@ if ( ! class_exists( 'Woostify_Meta_Boxes' ) ) {
 					'default'  => 'default',
 					'sanitize' => 'FILTER_DEFAULT',
 				),
-				'site-page-header' => array(
+				'site-page-header'        => array(
 					'default'  => 'default',
 					'sanitize' => 'FILTER_DEFAULT',
 				),
-				'site-sidebar' => array(
+				'site-sidebar'            => array(
 					'default'  => 'default',
 					'sanitize' => 'FILTER_DEFAULT',
 				),
-				'site-topbar' => array(
+				'site-topbar'             => array(
 					'default'  => 'default',
 					'sanitize' => 'FILTER_DEFAULT',
 				),
-				'site-header' => array(
+				'site-header'             => array(
 					'default'  => 'default',
 					'sanitize' => 'FILTER_DEFAULT',
 				),
-				'site-footer' => array(
+				'site-footer'             => array(
 					'default'  => 'default',
 					'sanitize' => 'FILTER_DEFAULT',
 				),

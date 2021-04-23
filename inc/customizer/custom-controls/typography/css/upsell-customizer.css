@@ -1,10 +1,10 @@
 .customize-control-addon:before {
-    content: "";
-    height: 1px;
-    width: 50px;
-    background: rgba(0,0,0,.10);
-    display: block;
-    margin-bottom: 10px;
+	content: "";
+	height: 1px;
+	width: 50px;
+	background: rgba(0,0,0,.10);
+	display: block;
+	margin-bottom: 10px;
 }
 
 .customize-control-addon {

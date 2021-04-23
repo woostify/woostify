@@ -26,21 +26,21 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Get_Pro
 		 *
 		 * @var $url
 		 */
-		public $url         = '';
+		public $url = '';
 
 		/**
 		 * Type
 		 *
 		 * @var $type
 		 */
-		public $type        = 'addon';
+		public $type = 'addon';
 
 		/**
 		 * Laebl
 		 *
 		 * @var $label
 		 */
-		public $label       = '';
+		public $label = '';
 
 		/**
 		 * Add JS/CSS for our controls
