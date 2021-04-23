@@ -27,6 +27,13 @@ class Woostify_Color_Control extends WP_Customize_Control {
 	public $suffix = '';
 
 	/**
+	 * Tab
+	 *
+	 * @var string
+	 */
+	public $tab = '';
+
+	/**
 	 * Refresh the parameters passed to the JavaScript via JSON.
 	 *
 	 * @see WP_Customize_Control::to_json()
@@ -43,6 +50,7 @@ class Woostify_Color_Control extends WP_Customize_Control {
 		$this->json['id']     = $this->id;
 		$this->json['label']  = esc_html( $this->label );
 		$this->json['suffix'] = $this->suffix;
+		$this->json['tab']    = $this->tab;
 
 		$this->json['inputAttrs'] = '';
 		foreach ( $this->input_attrs as $attr => $value ) {

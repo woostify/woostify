@@ -23,6 +23,22 @@ class Woostify_Switch_Control extends WP_Customize_Control {
 	public $type = 'switch';
 
 	/**
+	 * Declare the control type.
+	 *
+	 * @var string
+	 */
+	public $tab = '';
+
+	/**
+	 * To json data
+	 */
+	public function to_json() {
+		parent::to_json();
+
+		$this->json['tab'] = $this->tab;
+	}
+
+	/**
 	 * Enqueue scripts and styles for the custom control.
 	 */
 	public function enqueue() {
@@ -38,11 +54,11 @@ class Woostify_Switch_Control extends WP_Customize_Control {
 	 * Render the control to be displayed in the Customizer.
 	 */
 	public function render_content() {
-		$name    = '_customize-switch-' . $this->id;
-		$id      = $this->id;
-		$label   = $this->label;
-		$value   = false == $this->value() ? 0 : 1;
-		$desc    = $this->description;
+		$name  = '_customize-switch-' . $this->id;
+		$id    = $this->id;
+		$label = $this->label;
+		$value = false === $this->value() ? 0 : 1;
+		$desc  = $this->description;
 		?>
 
 		<div class="woostify-switch-customize-control">

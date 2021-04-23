@@ -1,0 +1,88 @@
+.woostify-sticky-footer-bar {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	background: #fff;
+	border-top: 1px solid #eaeaea;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	z-index: 199;
+
+	&.woostify-sticky-on-desktop {
+		display: none;
+		@media (min-width: 992px) {
+			display: block;
+		}
+	}
+	&.woostify-sticky-on-mobile {
+		@media (min-width: 992px) {
+			display: none;
+		}
+	}
+
+	ul.woostify-item-list {
+		display: flex;
+		align-items: center;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		li.woostify-item-list__item {
+			flex: 1 0 auto;
+			text-align: center;
+
+			a {
+				display: inline-block;
+				vertical-align: middle;
+				line-height: 1;
+				font-size: 13px;
+
+				.woostify-item-list-item__icon {
+					font-size: 24px;
+					position: relative;
+					display: inline-block;
+
+					.woositfy-sfb-icon {
+						font-size: 20px;
+					}
+				}
+				.woostify-item-list-item__name {
+					display: block;
+				}
+			}
+
+			&.woostify-addon:not(.woostify-custom-addon) {
+				a {
+					.woostify-item-list-item__icon {
+						margin: 0;
+						.cart-icon-rotate:before {
+							position: relative;
+							transform: rotate3d(0, 1, 0,
+								180deg
+							);
+						}
+
+						.theme-item-count, .shop-cart-count {
+							position: absolute;
+							top: -6px;
+							right: -15px;
+							font-size: 12px;
+							line-height: initial;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.has-header-layout-7 {
+	.woostify-sticky-footer-bar {
+		@media (min-width: 993px) {
+			width: calc(100% - 300px);
+			right: 0;
+			left: auto;
+		}
+	}
+}
