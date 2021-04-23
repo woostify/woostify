@@ -53,6 +53,68 @@ function woostify_colors_live_update( id, selector, property, fullId ) {
 	);
 }
 
+function woostify_spacing_live_update( ids, selector, property, unit ) {
+	ids.forEach(
+		function( el, i ) {
+			wp.customize(
+				'woostify_setting[' + el + ']',
+				function( value ) {
+					value.bind(
+						function( new_val ) {
+							var spacing_values = new_val.split( ' ' );
+							var styles         = '';
+							var newval         = '';
+
+							spacing_values.forEach(
+								function(sel) {
+									newval += sel + unit + ' ';
+								}
+							)
+							if ( ids.length > 1 ) {
+								var media = '';
+								if ( 0 === i ) {
+									media = '( min-width: 769px )';
+								} else if ( 1 === i ) {
+									media = '( min-width: 321px ) and ( max-width: 768px )';
+								} else {
+									media = '( max-width: 320px )';
+
+								}
+								styles = '@media ' + media + ' {' + selector + ' {';
+								if ( Array.isArray( property ) ) {
+									var property_length = property.length;
+									for ( var j = 0; j < property_length; j++ ) {
+										styles += property[j] + ': ' + newval.trim() + ';';
+									}
+								} else {
+									styles += property + ': ' + newval.trim() + ';';
+								}
+								styles += '}}';
+							} else {
+								styles = selector + ' { ' + property + ': ' + newval.trim() + ' }';
+							}
+
+							// Append style.
+							if ( jQuery( 'style#woostify_setting-' + el ).length ) {
+								jQuery( 'style#woostify_setting-' + el ).html( styles );
+							} else {
+								jQuery( 'head' ).append( '<style id="woostify_setting-' + el + '">' + styles + '</style>' );
+
+								setTimeout(
+									function() {
+										jQuery( 'style#woostify_setting-' + el ).not( ':last' ).remove();
+									},
+									100,
+								);
+							}
+						},
+					);
+				},
+			);
+		},
+	);
+}
+
 // Units.
 function woostify_unit_live_update( id, selector, property, unit, fullId ) {
 	var unit    = 'undefined' !== typeof (
@@ -268,7 +330,8 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 								}
 								styles = '@media ' + media + ' {' + selector + ' {';
 								if ( Array.isArray( property ) ) {
-									for ( var j = 0; j < property.length; j++ ) {
+									var property_length = property.length;
+									for ( var j = 0; j < property_length; j++ ) {
 										styles += property[j] + ': ' + newval + unit + ';';
 									}
 								} else {
@@ -391,7 +454,7 @@ document.addEventListener(
 		// Header Icon transparent background.
 		woostify_colors_live_update( 'header_transparent_count_background', '.has-header-transparent .wishlist-item-count, .has-header-transparent .shop-cart-count', 'background-color' );
 
-		// Header Hide zero value cart count
+		// Header Hide zero value cart count.
 		woostify_update_element_class( 'header_shop_hide_zero_value_cart_count', '.shopping-bag-button .shop-cart-count', 'hide-zero-val' );
 
 		// Logo width.
@@ -623,5 +686,15 @@ document.addEventListener(
 			'px',
 		);
 		woostify_unit_live_update( 'sticky_footer_bar_text_font_weight', '.woostify-sticky-footer-bar .woostify-item-list-item__name', 'font-weight', false );
+		woostify_spacing_live_update(
+			[
+				'sticky_footer_bar_padding',
+				'tablet_sticky_footer_bar_padding',
+				'mobile_sticky_footer_bar_padding',
+			],
+			'.woostify-sticky-footer-bar',
+			'padding',
+			'px',
+		)
 	},
 );

@@ -919,6 +919,9 @@ class Woostify_Get_CSS {
 		if ( is_customize_preview() ) {
 			$styles .= '
 			@media ( min-width: 769px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
 				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
 					width: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
 					height: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
@@ -931,6 +934,9 @@ class Woostify_Get_CSS {
 				}
 			}
 			@media ( min-width: 321px ) and ( max-width: 768px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['tablet_sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
 				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
 					width: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
 					height: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
@@ -943,6 +949,9 @@ class Woostify_Get_CSS {
 				}
 			}
 			@media ( max-width: 320px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['mobile_sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
 				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
 					width: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;
 					height: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;
@@ -958,6 +967,9 @@ class Woostify_Get_CSS {
 		} else {
 			$styles .= '
 			@media ( min-width: 992px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
 				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
 					width: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
 					height: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
@@ -970,6 +982,9 @@ class Woostify_Get_CSS {
 				}
 			}
 			@media ( min-width: 768px ) and ( max-width: 991px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['tablet_sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
 				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
 					width: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
 					height: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
@@ -982,6 +997,9 @@ class Woostify_Get_CSS {
 				}
 			}
 			@media ( max-width: 767px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['mobile_sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
 				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
 					width: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;
 					height: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;

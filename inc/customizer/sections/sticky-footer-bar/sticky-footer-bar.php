@@ -518,7 +518,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[sticky_footer_bar_padding]',
 		array(
-			'label'          => __( 'Padding', 'woostify' ),
+			'label'          => __( 'Spacing', 'woostify' ),
 			'section'        => 'woostify_sticky_footer_bar',
 			'settings'       => array(
 				'desktop' => 'woostify_setting[sticky_footer_bar_padding]',

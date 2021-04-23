@@ -173,7 +173,7 @@ class Woostify_Group_Control extends WP_Customize_Control {
 						<?php
 					}
 					?>
-					<input type="hidden" class="woostify-group-value" <?php echo $link; ?> value="<?php echo esc_attr( $this->value( $setting_k ) ); ?>">
+					<input type="hidden" class="woostify-group-value" <?php echo $link; //phpcs:ignore ?> value="<?php echo esc_attr( $this->value( $setting_k ) ); ?>">
 				</div>
 			<?php } ?>
 		</div>

@@ -28,8 +28,24 @@ class Woostify_Color_Control extends WP_Customize_Control {
 
 	/**
 	 * Tab
+	 *
+	 * @var string
 	 */
 	public $tab = '';
+
+	/**
+	 * Renders the control wrapper and calls $this->render_content() for the internals.
+	 *
+	 * @since 3.4.0
+	 */
+	protected function render() {
+		$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
+		$class = 'customize-control customize-control-' . $this->type;
+
+		printf( '<li id="%s" class="%s" data-tab="%s">', esc_attr( $id ), esc_attr( $class ), esc_attr( $this->tab ) );
+		$this->render_content();
+		echo '</li>';
+	}
 
 	/**
 	 * Refresh the parameters passed to the JavaScript via JSON.
@@ -108,21 +124,19 @@ class Woostify_Color_Control extends WP_Customize_Control {
 		<#
 		var defaultValue = '#RRGGBB', defaultValueAttr = '';
 		if ( data.default ) {
-			defaultValue     = data.default;
-			defaultValueAttr = ' data-default-color=' + data.default; // Quotes added automatically.
+		defaultValue     = data.default;
+		defaultValueAttr = ' data-default-color=' + data.default; // Quotes added automatically.
 		}
 
 		if ( data.label ) {
 		#>
-			<label>
-				<span class="customize-control-title">{{{ data.label }}}</span>
-			</label>
+		<label> <span class="customize-control-title">{{{ data.label }}}</span> </label>
 		<# } #>
 		<# if ( data.description ) { #>
-			<span class="description customize-control-description">{{{ data.description }}}</span>
+		<span class="description customize-control-description">{{{ data.description }}}</span>
 		<# } #>
 		<div class="customize-control-content">
-			<input class="woostify-color-picker-alpha color-picker-hex" type="text" maxlength="7" data-alpha="true" placeholder="{{ defaultValue }}" {{ defaultValueAttr }} value="{{data.value}}" />
+			<input class="woostify-color-picker-alpha color-picker-hex" type="text" maxlength="7" data-alpha="true" placeholder="{{ defaultValue }}" {{ defaultValueAttr }} value="{{data.value}}"/>
 		</div>
 
 		<?php

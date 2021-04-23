@@ -490,23 +490,6 @@
 					]
 				)
 
-				updateControlAttribute(
-					[
-						'woostify_setting[sticky_footer_bar_enable]',
-						'woostify_setting[sticky_footer_bar_enable_on]',
-						'woostify_setting[sticky_footer_bar_items]',
-						'woostify_setting[sticky_footer_bar_icon_color]',
-						'woostify_setting[sticky_footer_bar_background]',
-						'woostify_setting[sticky_footer_bar_icon_hover_color]',
-						'woostify_setting[sticky_footer_bar_text_color]',
-						'woostify_setting[sticky_footer_bar_text_hover_color]',
-						'woostify_setting[sticky_footer_bar_icon_font_size]',
-						'woostify_setting[sticky_footer_bar_text_font_size]',
-						'woostify_setting[sticky_footer_bar_text_font_weight]',
-						'woostify_setting[sticky_footer_bar_hide_when_scroll]',
-						'woostify_setting[sticky_footer_bar_icon_spacing]',
-					]
-				)
 				api.control(
 					'woostify_setting[sticky_footer_bar_enable]',
 					function ( control ) {

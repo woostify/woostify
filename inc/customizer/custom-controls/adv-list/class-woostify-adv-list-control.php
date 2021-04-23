@@ -32,6 +32,20 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 	public $tab = '';
 
 	/**
+	 * Renders the control wrapper and calls $this->render_content() for the internals.
+	 *
+	 * @since 3.4.0
+	 */
+	protected function render() {
+		$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
+		$class = 'customize-control customize-control-' . $this->type;
+
+		printf( '<li id="%s" class="%s" data-tab="%s">', esc_attr( $id ), esc_attr( $class ), esc_attr( $this->tab ) );
+		$this->render_content();
+		echo '</li>';
+	}
+
+	/**
 	 * Enqueue control related scripts/styles.
 	 *
 	 * @access public
@@ -118,7 +132,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 									<?php esc_html_e( 'Icon', 'woostify' ); ?>
 								</label>
 								<div class="select-icon-act">
-									<span class="selected-icon"><?php echo ! empty( $svg_icons[ $val->icon ] ) ? $svg_icons[ $val->icon ] : ''; ?></span>
+									<span class="selected-icon"><?php echo ! empty( $svg_icons[ $val->icon ] ) ? wp_kses( $svg_icons[ $val->icon ], woostify_allow_tags_svg() ) : ''; ?></span>
 									<span class="open-icon-list"><?php echo esc_html__( 'Select', 'woostify' ); ?></span>
 									<span class="remove-icon"><?php echo esc_html__( 'Clear', 'woostify' ); ?></span>
 								</div>
@@ -130,7 +144,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 									<div class="icon-list-wrap">
 										<?php foreach ( $svg_icons as $svg_icon_name => $svg_icon ) { ?>
 											<span class="icon-list__icon <?php echo $svg_icon_name === $val->icon ? 'active' : ''; ?>" data-icon="<?php echo esc_attr( $svg_icon_name ); ?>">
-											<?php echo $svg_icon; ?>
+											<?php echo wp_kses( $svg_icon, woostify_allow_tags_svg() ); ?>
 										</span>
 										<?php } ?>
 									</div>

@@ -31,7 +31,7 @@ if ( ! function_exists( 'woostify_info' ) ) {
 	/**
 	 * Woostify Information.
 	 *
-	 * @param      string $output  The output.
+	 * @param string $output The output.
 	 */
 	function woostify_info( $output ) {
 		$output .= ' data-woostify-version="' . woostify_version() . '"';
@@ -60,6 +60,7 @@ if ( ! function_exists( 'woostify_get_pro_url' ) ) {
 	 * Allows the use of a referral ID and campaign.
 	 *
 	 * @param string $url URL to pro page.
+	 *
 	 * @return string The URL to woostify.com.
 	 */
 	function woostify_get_pro_url( $url = 'https://woostify.com' ) {
@@ -112,6 +113,7 @@ if ( ! function_exists( 'woostify_is_elementor_page' ) ) {
 	 * Detect Elementor Page editor with current page
 	 *
 	 * @param int $page_id The page id.
+	 *
 	 * @return     bool
 	 */
 	function woostify_is_elementor_page( $page_id = false ) {
@@ -166,7 +168,8 @@ if ( ! function_exists( 'woostify_elementor_has_location' ) ) {
 	/**
 	 * Detect if a page has Elementor location template.
 	 *
-	 * @param      string $location The location.
+	 * @param string $location The location.
+	 *
 	 * @return     boolean
 	 */
 	function woostify_elementor_has_location( $location ) {
@@ -229,7 +232,7 @@ if ( ! function_exists( 'woostify_sanitize_array' ) ) {
 	/**
 	 * Sanitize integer value
 	 *
-	 * @param      array $value  The array.
+	 * @param array $value The array.
 	 */
 	function woostify_sanitize_array( $value ) {
 		$data = array();
@@ -269,6 +272,7 @@ if ( ! function_exists( 'woostify_sanitize_checkbox' ) ) {
 	 * as a boolean value, either TRUE or FALSE.
 	 *
 	 * @param bool $checked Whether the checkbox is checked.
+	 *
 	 * @return bool Whether the checkbox is checked.
 	 */
 	function woostify_sanitize_checkbox( $checked ) {
@@ -280,13 +284,15 @@ if ( ! function_exists( 'woostify_sanitize_variants' ) ) {
 	/**
 	 * Sanitize our Google Font variants
 	 *
-	 * @param      string $input sanitize variants.
+	 * @param string $input sanitize variants.
+	 *
 	 * @return     sanitize_text_field( $input )
 	 */
 	function woostify_sanitize_variants( $input ) {
 		if ( is_array( $input ) ) {
 			$input = implode( ',', $input );
 		}
+
 		return sanitize_text_field( $input );
 	}
 }
@@ -295,7 +301,7 @@ if ( ! function_exists( 'woostify_sanitize_rgba_color' ) ) {
 	/**
 	 * Sanitize color || rgba color
 	 *
-	 * @param      string $color  The color.
+	 * @param string $color The color.
 	 */
 	function woostify_sanitize_rgba_color( $color ) {
 		if ( empty( $color ) || is_array( $color ) ) {
@@ -319,7 +325,7 @@ if ( ! function_exists( 'woostify_sanitize_int' ) ) {
 	/**
 	 * Sanitize integer value
 	 *
-	 * @param      integer $value  The integer number.
+	 * @param integer $value The integer number.
 	 */
 	function woostify_sanitize_int( $value ) {
 		return intval( $value );
@@ -330,7 +336,7 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 	/**
 	 * Sanitize raw html value
 	 *
-	 * @param      string $value  The raw html value.
+	 * @param string $value The raw html value.
 	 */
 	function woostify_sanitize_raw_html( $value ) {
 		$content = wp_kses(
@@ -419,7 +425,8 @@ if ( ! function_exists( 'woostify_options' ) ) {
 	 * If ( $defaults = true ) return Default value
 	 * Else return all theme option
 	 *
-	 * @param      bool $defaults  Condition check output.
+	 * @param bool $defaults Condition check output.
+	 *
 	 * @return     array $options         All theme options
 	 */
 	function woostify_options( $defaults = true ) {
@@ -445,9 +452,9 @@ if ( ! function_exists( 'woostify_image_alt' ) ) {
 	/**
 	 * Get image alt
 	 *
-	 * @param      bolean $id          The image id.
-	 * @param      string $alt         The alternate.
-	 * @param      bolean $placeholder The bolean.
+	 * @param bolean $id The image id.
+	 * @param string $alt The alternate.
+	 * @param bolean $placeholder The bolean.
 	 *
 	 * @return     string  The image alt
 	 */
@@ -456,6 +463,7 @@ if ( ! function_exists( 'woostify_image_alt' ) ) {
 			if ( $placeholder ) {
 				return esc_attr__( 'Placeholder image', 'woostify' );
 			}
+
 			return esc_attr__( 'Error image', 'woostify' );
 		}
 
@@ -470,8 +478,9 @@ if ( ! function_exists( 'woostify_hex_to_rgba' ) ) {
 	/**
 	 * Convert HEX to RGBA color
 	 *
-	 * @param      string  $hex    The hexadecimal color.
-	 * @param      integer $alpha  The alpha.
+	 * @param string  $hex The hexadecimal color.
+	 * @param integer $alpha The alpha.
+	 *
 	 * @return     string  The rgba color.
 	 */
 	function woostify_hex_to_rgba( $hex, $alpha = 1 ) {
@@ -536,13 +545,13 @@ if ( ! function_exists( 'woostify_narrow_data' ) ) {
 	/**
 	 * Get dropdown data
 	 *
-	 * @param      string $type   The type 'post' || 'term'.
-	 * @param      string $terms  The terms post, category, product, product_cat, custom_post_type...
-	 * @param      intval $total  The total.
+	 * @param string $type The type 'post' || 'term'.
+	 * @param string $terms The terms post, category, product, product_cat, custom_post_type...
+	 * @param intval $total The total.
 	 *
 	 * @return     array
 	 */
-	function woostify_narrow_data( $type = 'post', $terms = 'category', $total = -1 ) {
+	function woostify_narrow_data( $type = 'post', $terms = 'category', $total = - 1 ) {
 		$output = array();
 		switch ( $type ) {
 			case 'post':
@@ -575,7 +584,7 @@ if ( ! function_exists( 'woostify_get_metabox' ) ) {
 	/**
 	 * Get metabox option
 	 *
-	 * @param int    $page_id      The page ID.
+	 * @param int    $page_id The page ID.
 	 * @param string $metabox_name Metabox option name.
 	 */
 	function woostify_get_metabox( $page_id = false, $metabox_name ) {
@@ -714,12 +723,13 @@ if ( ! function_exists( 'woostify_array_insert' ) ) {
 	 * @param array  $pairs The array to insert.
 	 * @param string $key The certain key.
 	 * @param string $position Wether to insert the array before or after the key.
+	 *
 	 * @return array
 	 */
 	function woostify_array_insert( $array, $pairs, $key, $position = 'after' ) {
 		$key_pos = array_search( $key, array_keys( $array ), true );
 		if ( 'after' === $position ) {
-			$key_pos++;
+			$key_pos ++;
 			if ( false !== $key_pos ) {
 				$result = array_slice( $array, 0, $key_pos );
 				$result = array_merge( $result, $pairs );
@@ -849,5 +859,30 @@ if ( ! function_exists( 'woostify_allow_tags_svg' ) ) {
 		);
 
 		return array_merge( $kses_defaults, $svg_args );
+	}
+}
+
+if ( ! function_exists( 'woostify_render_css_space' ) ) {
+	/**
+	 * Render css property with value
+	 *
+	 * @param string $option option.
+	 * @param string $property property.
+	 * @param string $unit unit.
+	 *
+	 * @return string
+	 */
+	function woostify_render_css_spacing( $option, $property = '', $unit = 'px' ) {
+		if ( '' === $option ) {
+			return '';
+		}
+		$css    = '' !== $property ? $property . ': ' : '';
+		$values = explode( ' ', $option );
+		foreach ( $values as $val ) {
+			$css .= '0' !== $val ? $val . $unit : $val;
+			$css .= ' ';
+		}
+
+		return trim( $css );
 	}
 }

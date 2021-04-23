@@ -163,8 +163,8 @@ function scrollAction( selector, position ) {
 
 // Go to top button.
 function toTopButton() {
-	var top = jQuery( '#scroll-to-top' );
-	var sticky_footer_bar = jQuery('.woostify-sticky-footer-bar');
+	var top               = jQuery( '#scroll-to-top' );
+	var sticky_footer_bar = jQuery( '.woostify-sticky-footer-bar' );
 	if ( ! top.length ) {
 		return;
 	}
