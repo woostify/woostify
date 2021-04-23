@@ -46,13 +46,6 @@ class Woostify_Divider_Control extends WP_Customize_Control {
 	}
 
 	/**
-	 * Tab
-	 *
-	 * @var string
-	 */
-	public $tab = '';
-
-	/**
 	 * Renders the control wrapper and calls $this->render_content() for the internals.
 	 *
 	 * @since 3.4.0
