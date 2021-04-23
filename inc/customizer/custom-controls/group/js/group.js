@@ -10,22 +10,19 @@ wp.customize.controlConstructor['woostify-group'] = wp.customize.Control.extend(
 			'use strict';
 
 			var control       = this;
-			var value,
-				thisInput,
-				inputDefault,
-				changeAction,
-				controlClass  = '.customize-control-woostify-group',
+			var controlClass  = '.customize-control-woostify-group',
 				footerActions = jQuery( '#customize-footer-actions' ),
-				linkValues    = true;
+				linkValues    = true,
+			resetClicked      = false;
 
 			jQuery( controlClass + ' .woostify-link-value-together-btn' ).on(
 				'click',
 				function() {
 					if (jQuery( this ).hasClass( 'dashicons-admin-links' )) {
-						jQuery( this ).closest('.woostify-group-fields-area').find('.woostify-link-value-together-btn').removeClass( 'dashicons-admin-links' ).addClass( 'dashicons-editor-unlink' );
+						jQuery( this ).closest( '.woostify-group-fields-area' ).find( '.woostify-link-value-together-btn' ).removeClass( 'dashicons-admin-links' ).addClass( 'dashicons-editor-unlink' );
 						linkValues = false;
 					} else {
-						jQuery( this ).closest('.woostify-group-fields-area').find('.woostify-link-value-together-btn').removeClass( 'dashicons-editor-unlink' ).addClass( 'dashicons-admin-links' );
+						jQuery( this ).closest( '.woostify-group-fields-area' ).find( '.woostify-link-value-together-btn' ).removeClass( 'dashicons-editor-unlink' ).addClass( 'dashicons-admin-links' );
 						linkValues = true;
 					}
 				}
@@ -39,12 +36,14 @@ wp.customize.controlConstructor['woostify-group'] = wp.customize.Control.extend(
 						visible_area = icon.closest( '.woostify-responsive-title-area' ).next( '.woostify-group-fields-area' ).children( 'div:visible' ),
 						input        = visible_area.find( '.woostify-group-input' );
 
+					resetClicked = true;
 					input.each(
 						function() {
 							var reset_value = jQuery( this ).data( 'reset_value' );
-							jQuery( this ).val( reset_value ).change();
+							jQuery( this ).val( reset_value ).trigger( 'change' );
 						},
 					);
+					resetClicked = false;
 				},
 			);
 
@@ -121,15 +120,15 @@ wp.customize.controlConstructor['woostify-group'] = wp.customize.Control.extend(
 				'input change',
 				'.woostify-group-input',
 				function() {
-					var field_container = jQuery( this ).closest( '.woostify-group-container' );
+					var field_container = jQuery( this ).closest( '.woostify-group-fields-area' ).children( 'div:visible' );
 					var curr_device     = field_container.data( 'option' );
 					var value           = '';
 					var negative_value  = control.params.negative_value;
-					if (linkValues) {
-						field_container.find( '.woostify-group-field input' ).val( jQuery( this ).val() ) }
+					if (linkValues && false === resetClicked) {
+						field_container.find( '.woostify-group-field input' ).val( jQuery( this ).val() )
+					}
 					field_container.find( '.woostify-group-field' ).each(
 						function() {
-
 							var input_val        = '' !== jQuery( this ).find( 'input.woostify-group-input' ).val() ? jQuery( this ).find( 'input.woostify-group-input' ).val() : 0;
 							var input_val_format = ! negative_value ? Math.abs( input_val ) : input_val;
 							jQuery( this ).find( 'input.woostify-group-input' ).val( input_val_format );
