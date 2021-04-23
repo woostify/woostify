@@ -28,6 +28,23 @@ class Woostify_Divider_Control extends WP_Customize_Control {
 	 */
 	public $description = '';
 
+
+	/**
+	 * The tab var
+	 *
+	 * @var string $tab
+	 */
+	public $tab = '';
+
+	/**
+	 * To json data
+	 */
+	public function to_json() {
+		parent::to_json();
+
+		$this->json['tab'] = $this->tab;
+	}
+
 	/**
 	 * Tab
 	 *
@@ -72,7 +89,7 @@ class Woostify_Divider_Control extends WP_Customize_Control {
 					break;
 
 				case 'space':
-					default:
+				default:
 					echo '<div style="margin: 1em 0;"></div>';
 					break;
 			}
