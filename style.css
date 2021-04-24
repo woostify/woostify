@@ -10880,6 +10880,10 @@ header.elementor-element {
   text-align: center;
 }
 
+.has-distraction-free-checkout #colophon {
+  display: none;
+}
+
 .select2-container .select2-selection--single {
   height: 50px;
   margin: 0;
