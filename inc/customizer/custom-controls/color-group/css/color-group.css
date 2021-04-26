@@ -1,0 +1,118 @@
+.woostify-color-group-control .color-group-wrap {
+	position: relative;
+}
+
+.woostify-color-group-control .customize-control-title {
+	margin: 0;
+}
+
+.woostify-color-group-control .woostify-color-buttons {
+	display: block;
+	top: 50%;
+	transform: translateY(-50%);
+	position: absolute;
+	right: 0;
+}
+
+.woostify-color-group-control .pcr-app {
+	position: static;
+	width: auto;
+	max-width: unset;
+	height: 0;
+	display: none;
+	margin-top: 15px;
+}
+
+.woostify-color-group-control .pcr-app.visible {
+	height: auto;
+	display: flex;
+}
+
+.woostify-control-wrap .pickr .pcr-button {
+	border-radius: 50%;
+	border: 1px solid #8c8f94;
+	width: 28px;
+	height: 28px;
+}
+
+.woostify-control-wrap .pickr .pcr-button:focus {
+	box-shadow: none;
+}
+
+.woostify-control-wrap .pickr .pcr-button:before,
+.woostify-control-wrap .pickr .pcr-button:after {
+	border-radius: 50%;
+}
+
+.woostify-control-wrap .pickr .pcr-button:before {
+	background-image: linear-gradient(
+		45deg, #ddd 25%, transparent 0), linear-gradient(
+		-45deg, #ddd 25%, transparent 0), linear-gradient(
+		45deg, transparent 75%, #ddd 0), linear-gradient(
+		-45deg, transparent 75%, #ddd 0);
+	background-size: 10px 10px;
+	background-position: 0 0, 0 5px, 5px -5px, -5px 0;
+}
+
+.woostify-color-group-control .pcr-app {
+	border: 1px solid #757575;
+}
+
+.woostify-color-group-control .pcr-app .pcr-swatches {
+	margin-top: 1.5em;
+}
+
+.woostify-color-group-control .pcr-app .pcr-interaction {
+	margin-top: .75em;
+}
+
+.woostify-color-group-control .pcr-app .pcr-interaction input {
+	font-size: 12px;
+	min-height: unset;
+	height: 30px;
+}
+
+.woostify-color-group-control .pcr-app .pcr-interaction .pcr-result {
+	border: 1px solid #757575;
+	background: #fff;
+	color: #2c3338;
+}
+
+.woostify-color-group-control .pcr-app .pcr-selection .pcr-color-palette .pcr-palette:before {
+	transform: scale(1);
+	transition: none;
+	padding: 0;
+	background-image: linear-gradient(
+		45deg, #ddd 25%, transparent 0), linear-gradient(
+		-45deg, #ddd 25%, transparent 0), linear-gradient(
+		45deg, transparent 75%, #ddd 0), linear-gradient(
+		-45deg, transparent 75%, #ddd 0);
+	background-size: 10px 10px;
+	background-position: 0 0, 0 5px, 5px -5px, -5px 0;
+}
+
+.woostify-color-group-control .pcr-app .pcr-selection .pcr-color-opacity .pcr-slider {
+	background: linear-gradient(
+		90deg, transparent, #000);
+}
+
+.woostify-color-group-control .pcr-app .pcr-selection .pcr-picker {
+	box-shadow: 0 1px 4px 0 rgb(0 0 0 / 37%);
+	height: 14px;
+	width: 14px;
+}
+
+.woostify-color-group-control .pcr-app .pcr-selection .pcr-color-opacity .pcr-picker,
+.woostify-color-group-control .pcr-app .pcr-selection .pcr-color-chooser .pcr-picker {
+	background: #fff !important;
+}
+
+.woostify-color-group-control .pcr-app .pcr-selection .pcr-color-chooser,
+.woostify-color-group-control .pcr-app .pcr-selection .pcr-color-opacity {
+	height: 10px;
+}
+
+.woostify-color-group-control .pcr-app .pcr-selection .pcr-color-preview .pcr-current-color {
+	width: 30px;
+	height: 30px;
+}

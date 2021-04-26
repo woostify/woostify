@@ -559,3 +559,27 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+// color group.
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_color1]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_color1'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[sticky_footer_bar_color1]',
+		array(
+			'label'    => __( 'Color 1', 'woostify' ),
+			'section'  => 'woostify_sticky_footer_bar',
+			'settings' => 'woostify_setting[sticky_footer_bar_color1]',
+			'tab'      => 'design',
+		)
+	)
+);
