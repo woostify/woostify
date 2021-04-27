@@ -829,28 +829,8 @@ if ( ! class_exists( 'Woostify' ) ) {
 					'remove_hooks' => array( 'woostify_template_footer' ),
 				)
 			);
-			$elementor_theme_manager->register_location(
-				'single',
-				array(
-					'hook'         => 'woostify_theme_single',
-					'remove_hooks' => array( 'woostify_template_single' ),
-				)
-			);
-			$elementor_theme_manager->register_location(
-				'archive',
-				array(
-					'hook'         => 'woostify_theme_archive',
-					'remove_hooks' => array( 'woostify_template_archive' ),
-				)
-			);
-			$elementor_theme_manager->register_location(
-				'error-404',
-				array(
-					'hook'         => 'woostify_theme_404',
-					'remove_hooks' => array( 'woostify_template_404' ),
-					'label'        => __( 'Woostify 404', 'woostify' ),
-				)
-			);
+
+			$elementor_theme_manager->register_all_core_location();
 		}
 
 		/**
