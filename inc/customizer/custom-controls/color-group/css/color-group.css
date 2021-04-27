@@ -23,6 +23,7 @@
 	display: block;
 	width: 28px;
 	height: 28px;
+	cursor: pointer;
 }
 
 .woostify-color-group-control .woostify-color-buttons .woostify-color-picker-btn .btn-tooltip {
@@ -137,6 +138,10 @@
 	border: 1px solid #757575;
 	background: #fff;
 	color: #2c3338;
+}
+
+.woostify-color-group-control .pcr-app .pcr-selection .pcr-color-palette {
+	height: 10em;
 }
 
 .woostify-color-group-control .pcr-app .pcr-selection .pcr-color-palette .pcr-palette:before {

@@ -632,7 +632,10 @@ $wp_customize->add_control(
 			'label'    => __( 'Color 4', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
 			'settings' => array(
-				'Normal' => 'woostify_setting[sticky_footer_bar_color4]',
+				'woostify_setting[sticky_footer_bar_color4]',
+			),
+			'tooltips' => array(
+				'Normal',
 			),
 			'tab'      => 'design',
 		)
