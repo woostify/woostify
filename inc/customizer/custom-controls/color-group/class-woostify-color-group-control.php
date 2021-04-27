@@ -20,9 +20,18 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	/**
 	 * Tab
 	 *
+	 * @access public
 	 * @var string
 	 */
 	public $tab = '';
+
+	/**
+	 * Tooltips
+	 *
+	 * @access public
+	 * @var array
+	 */
+	public $tooltips = array();
 
 	/**
 	 * Renders the control wrapper and calls $this->render_content() for the internals.
@@ -60,28 +69,12 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 			true
 		);
 
-		/*
-		wp_enqueue_style(
-			'woostify-color-picker-group-classic',
-			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/color-group/css/classic.min.css',
-			array(),
-			woostify_version()
-		);*/
-
 		wp_enqueue_style(
 			'woostify-color-picker-group-monolith',
 			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/color-group/css/monolith.min.css',
 			array(),
 			woostify_version()
 		);
-
-		/*
-		wp_enqueue_style(
-			'woostify-color-picker-group-nano',
-			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/color-group/css/nano.min.css',
-			array(),
-			woostify_version()
-		);*/
 
 		wp_enqueue_style(
 			'woostify-color-group',
@@ -92,6 +85,16 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	}
 
 	/**
+	 * To json data
+	 */
+	public function to_json() {
+		parent::to_json();
+		$this->json['tab'] = $this->tab;
+
+		$this->json['tooltips'] = $this->tooltips;
+	}
+
+	/**
 	 * Renter the control
 	 *
 	 * @return void
@@ -99,17 +102,34 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	protected function render_content() {
 		$control_id = explode( '[', $this->id )[1];
 		$control_id = explode( ']', $control_id )[0];
+		$settings   = $this->settings;
 		?>
-		<div class="woostify-control-wrap woostify-color-group-control" data-control-id="<?php echo esc_attr( $control_id ); ?>">
+		<div class="woostify-control-wrap woostify-color-group-control woostify-color-group-control-<?php echo esc_attr( $control_id ); ?>" data-control_id="<?php echo esc_attr( $control_id ); ?>">
 			<div class="color-group-wrap">
 				<?php if ( '' !== $this->label ) { ?>
 					<label class="customize-control-title"><?php echo esc_html( $this->label ); ?></label>
 				<?php } ?>
 				<div class="woostify-color-buttons">
-					<span class="woostify-color-group-btn"></span>
-					<div id="root"></div>
+					<?php foreach ( $settings as $setting_k => $setting ) { ?>
+						<?php
+						$btn_id = explode( '[', $setting->id )[1];
+						$btn_id = explode( ']', $btn_id )[0];
+						?>
+						<div class="woostify-color-picker-btn">
+							<span class="woostify-color-group-btn btn-<?php echo esc_attr( $btn_id ); ?>"></span>
+							<span class="btn-tooltip"><?php echo esc_attr( $this->tooltips[ $setting_k ] ); ?></span>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
+			<?php
+			foreach ( $settings as $k => $setting ) {
+				$link   = $this->get_link( $k );
+				$btn_id = explode( '[', $setting->id )[1];
+				$btn_id = explode( ']', $btn_id )[0];
+				?>
+				<input type="hidden" class="color-group-value-<?php echo esc_attr( $btn_id ); ?>" <?php echo $link; //phpcs:ignore?> value="<?php echo esc_attr( $this->value( $k ) ); ?>">
+			<?php } ?>
 		</div>
 		<?php
 	}

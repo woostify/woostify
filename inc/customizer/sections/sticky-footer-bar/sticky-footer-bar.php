@@ -570,6 +570,26 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
+// color group.
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_color2]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_color2'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
+// color group.
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_color3]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_color3'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
 
 $wp_customize->add_control(
 	new Woostify_Color_Group_Control(
@@ -578,7 +598,42 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Color 1', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
-			'settings' => 'woostify_setting[sticky_footer_bar_color1]',
+			'settings' => array(
+				'woostify_setting[sticky_footer_bar_color1]',
+				'woostify_setting[sticky_footer_bar_color2]',
+				'woostify_setting[sticky_footer_bar_color3]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
+				'Active',
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// color group.
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_color4]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_color4'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[sticky_footer_bar_color4]',
+		array(
+			'label'    => __( 'Color 4', 'woostify' ),
+			'section'  => 'woostify_sticky_footer_bar',
+			'settings' => array(
+				'Normal' => 'woostify_setting[sticky_footer_bar_color4]',
+			),
 			'tab'      => 'design',
 		)
 	)
