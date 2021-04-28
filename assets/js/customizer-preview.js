@@ -53,6 +53,46 @@ function woostify_colors_live_update( id, selector, property, fullId ) {
 	);
 }
 
+// Color Group.
+function woostify_color_group_live_update( ids, selectors, properties ) {
+	ids.forEach(
+		function( el, i ) {
+			var setting = 'woostify_setting[' + el + ']';
+			wp.customize(
+				setting,
+				function( value ) {
+					value.bind(
+						function( newval ) {
+							var style = '';
+							style    += selectors[i] + '{';
+							properties.forEach(
+								function( property ) {
+									style += property + ': ' + newval + ';';
+								},
+							);
+							style += '}';
+
+							// Append style.
+							if ( jQuery( 'style#woostify_setting-' + el ).length ) {
+								jQuery( 'style#woostify_setting-' + el ).html( style );
+							} else {
+								jQuery( 'head' ).append( '<style id="woostify_setting-' + el + '">' + style + '</style>' );
+
+								setTimeout(
+									function() {
+										jQuery( 'style#woostify_setting-' + el ).not( ':last' ).remove();
+									},
+									100,
+								);
+							}
+						},
+					);
+				},
+			);
+		},
+	);
+}
+
 function woostify_spacing_live_update( ids, selector, property, unit ) {
 	ids.forEach(
 		function( el, i ) {
@@ -66,10 +106,10 @@ function woostify_spacing_live_update( ids, selector, property, unit ) {
 							var newval         = '';
 
 							spacing_values.forEach(
-								function(sel) {
+								function( sel ) {
 									newval += sel + unit + ' ';
-								}
-							)
+								},
+							);
 							if ( ids.length > 1 ) {
 								var media = '';
 								if ( 0 === i ) {
@@ -83,7 +123,7 @@ function woostify_spacing_live_update( ids, selector, property, unit ) {
 								styles = '@media ' + media + ' {' + selector + ' {';
 								if ( Array.isArray( property ) ) {
 									var property_length = property.length;
-									for ( var j = 0; j < property_length; j++ ) {
+									for ( var j = 0; j < property_length; j ++ ) {
 										styles += property[j] + ': ' + newval.trim() + ';';
 									}
 								} else {
@@ -331,7 +371,7 @@ function woostify_range_slider_update( arr, selector, property, unit ) {
 								styles = '@media ' + media + ' {' + selector + ' {';
 								if ( Array.isArray( property ) ) {
 									var property_length = property.length;
-									for ( var j = 0; j < property_length; j++ ) {
+									for ( var j = 0; j < property_length; j ++ ) {
 										styles += property[j] + ': ' + newval + unit + ';';
 									}
 								} else {
@@ -695,6 +735,36 @@ document.addEventListener(
 			'.woostify-sticky-footer-bar',
 			'padding',
 			'px',
-		)
+		);
+
+		woostify_color_group_live_update(
+			[
+				'sticky_footer_bar_color1',
+				'sticky_footer_bar_color2',
+				'sticky_footer_bar_color3',
+			],
+			[
+				'.woostify-sticky-footer-bar',
+				'.woostify-sticky-footer-bar:hover',
+				'.woostify-sticky-footer-bar:active',
+			],
+			[
+				'background',
+			],
+		);
+
+		woostify_color_group_live_update(
+			[
+				'sticky_footer_bar_color4',
+			],
+			[
+				'.search-form .search-field, .woocommerce-product-search .search-field',
+			],
+			[
+				'background',
+				'border-color',
+			],
+		);
+
 	},
 );
