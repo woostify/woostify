@@ -8,6 +8,7 @@
 
 .woostify-color-group-control .woostify-color-buttons {
 	display: flex;
+	align-items: center;
 	top: 50%;
 	transform: translateY(-50%);
 	position: absolute;
@@ -186,4 +187,12 @@
 .woostify-color-group-control .pcr-app .pcr-selection .pcr-color-preview .pcr-current-color {
 	width: 30px;
 	height: 30px;
+}
+.woostify-color-group-control .woostify-reset {
+	color: #3498D9;
+	transition: all .2s;
+	transform: scale(1);
+}
+.woostify-color-group-control .woostify-reset:hover {
+	transform: scale(1.2);
 }
