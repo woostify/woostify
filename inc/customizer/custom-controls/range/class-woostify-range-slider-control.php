@@ -30,6 +30,13 @@ class Woostify_Range_Slider_Control extends WP_Customize_Control {
 	public $description = '';
 
 	/**
+	 * Tab
+	 *
+	 * @var string
+	 */
+	public $tab = '';
+
+	/**
 	 * Refresh the parameters passed to the JavaScript via JSON.
 	 *
 	 * @see WP_Customize_Control::to_json()
@@ -53,6 +60,8 @@ class Woostify_Range_Slider_Control extends WP_Customize_Control {
 				'default' => isset( $setting_id->default ) ? $setting_id->default : '',
 			);
 		}
+
+		$this->json['tab'] = $this->tab;
 
 		$this->json['desktop_label'] = __( 'Desktop', 'woostify' );
 		$this->json['tablet_label']  = __( 'Tablet', 'woostify' );

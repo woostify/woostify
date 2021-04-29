@@ -2340,3 +2340,111 @@ if ( ! function_exists( 'woostify_scroll_to_top' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
+	/**
+	 * Sticky Footer Bar
+	 */
+	function woostify_sticky_footer_bar() {
+		$options = woostify_options( false );
+		if ( ! $options['sticky_footer_bar_enable'] ) {
+			return;
+		}
+
+		$items = json_decode( $options['sticky_footer_bar_items'] );
+
+		echo '<div class="woostify-sticky-footer-bar woostify-sticky-on-' . $options['sticky_footer_bar_enable_on'] . '">'; //phpcs:ignore
+		echo '<ul class="woostify-item-list">';
+		do_action( 'woostify_before_sticky_footer_bar_items' );
+		foreach ( $items as $item ) {
+			if ( $item->hidden ) {
+				continue;
+			}
+			switch ( $item->type ) {
+				case 'wishlist':
+					// Wishlist icon.
+					if ( woostify_support_wishlist_plugin() ) {
+						$wishlist_item_count = woostify_get_wishlist_count();
+						?>
+						<li class="woostify-item-list__item woostify-addon">
+						<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="header-wishlist-icon">
+							<?php if ( '' !== $item->icon ) { ?>
+								<span class="woostify-item-list-item__icon ">
+									<span class="woositfy-sfb-icon">
+										<?php echo $item->icon; ?>
+									</span>
+									<span class="theme-item-count wishlist-item-count"><?php echo esc_html( $wishlist_item_count ); ?></span>
+								</span>
+							<?php } ?>
+							<span class="woostify-item-list-item__name"><?php echo esc_html( $item->name ); ?></span>
+						</a>
+						</li>
+						<?php
+					}
+					break;
+				case 'shortcode':
+					?>
+					<li class="woostify-item-list__item woostify-addon woostify-shortcode-addon">
+						<?php echo do_shortcode( $item->shortcode ); ?>
+					</li>
+					<?php
+					break;
+				case 'cart':
+					$count = 0;
+					if ( woostify_is_woocommerce_activated() ) {
+						global $woocommerce;
+						$count = $woocommerce->cart->cart_contents_count;
+					}
+					?>
+					<li class="woostify-item-list__item woostify-addon">
+					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="shopping-bag-button">
+					<?php if ( '' !== $item->icon ) { ?>
+						<span class="woostify-item-list-item__icon ">
+							<span class="woositfy-sfb-icon">
+								<?php echo $item->icon; ?>
+							</span>
+							<span class="theme-item-count shop-cart-count <?php echo $options['header_shop_hide_zero_value_cart_count'] ? 'hide-zero-val' : ''; ?>"><?php echo esc_html( $count ); ?></span>
+						</span>
+					<?php } ?>
+						<span class="woostify-item-list-item__name"><?php echo esc_html( $item->name ); ?></span>
+					</a>
+					</li>
+					<?php
+					break;
+				case 'search':
+					?>
+					<li class="woostify-item-list__item woostify-addon">
+						<a href="javascript:void(0)">
+					<?php if ( '' !== $item->icon ) { ?>
+							<span class="woostify-item-list-item__icon">
+								<span class="woositfy-sfb-icon header-search-icon">
+									<?php echo $item->icon; ?>
+								</span>
+							</span>
+					<?php } ?>
+							<span class="woostify-item-list-item__name header-search-icon"><?php echo esc_html( $item->name ); ?></span>
+						</a>
+					</li>
+					<?php
+					break;
+				default:
+					?>
+					<li class="woostify-item-list__item woostify-addon woostify-custom-addon">
+					<a href="<?php echo esc_url( $item->link ); ?>">
+					<?php if ( '' !== $item->icon ) { ?>
+						<span class="woostify-item-list-item__icon">
+							<span class="woositfy-sfb-icon">
+								<?php echo $item->icon; ?>
+							</span>
+						</span>
+					<?php } ?>
+					<span class="woostify-item-list-item__name"><?php echo esc_html( $item->name ); ?></span>
+					</a>
+					</li>
+					<?php
+			}
+		}
+		do_action( 'woostify_after_sticky_footer_bar_items' );
+		echo '</ul>';
+		echo '</div>';
+	}
+}

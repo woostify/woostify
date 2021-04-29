@@ -298,7 +298,7 @@ if ( class_exists( 'woocommerce' ) ) {
 			'type'              => 'option',
 			'default'           => $defaults['header_shop_hide_zero_value_cart_count'],
 			'sanitize_callback' => 'woostify_sanitize_checkbox',
-			'transport'			=> 'postMessage'
+			'transport'         => 'postMessage',
 		)
 	);
 	$wp_customize->add_control(
