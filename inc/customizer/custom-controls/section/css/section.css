@@ -46,4 +46,15 @@
 
 .customize-control {
 	position: relative;
+	margin: 0 0 24px;
+}
+.customize-control-title {
+	font-size: 13px;
+}
+.woostify-reset {
+	cursor: pointer;
+	font-size: 11px;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
 }

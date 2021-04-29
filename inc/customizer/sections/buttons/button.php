@@ -150,10 +150,10 @@ $wp_customize->add_control(
 			'settings' => array(
 				'desktop' => 'woostify_setting[buttons_border_radius]',
 			),
-			'choices' => array(
+			'choices'  => array(
 				'desktop' => array(
-					'min'  => apply_filters( 'woostify_buttons_border-radius_min_step', 0 ),
-					'max'  => apply_filters( 'woostify_buttons_border-radius_max_step', 200 ),
+					'min'  => apply_filters( 'woostify_buttons_border_radius_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_buttons_border_radius_max_step', 200 ),
 					'step' => 1,
 					'edit' => true,
 					'unit' => 'px',

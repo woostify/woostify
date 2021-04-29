@@ -5,14 +5,16 @@
  */
 
 ( function( $, api ) {
-	api.sectionConstructor[ 'woostify-pro-section' ] = api.Section.extend( {
+	api.sectionConstructor[ 'woostify-pro-section' ] = api.Section.extend(
+		{
 
-		// No events for this type of section.
-		attachEvents: function() {},
+				// No events for this type of section.
+			attachEvents: function() {},
 
-		// Always make the section active.
-		isContextuallyActive: function() {
-			return true;
+				// Always make the section active.
+			isContextuallyActive: function() {
+				return true;
+			}
 		}
-	} );
+	);
 } )( jQuery, wp.customize );

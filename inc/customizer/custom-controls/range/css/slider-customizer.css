@@ -7,7 +7,7 @@
 .customize-control-woostify-range-slider .woostify-slider {
 	flex-grow: 1;
 	position: relative;
-	height: 6px;
+	height: 4px;
 	background-color: rgba(0, 0, 0, .10);
 	cursor: pointer;
 	transition: background .5s;
@@ -63,15 +63,14 @@
 	display: block;
 	float: left;
 	background: #FFF;
-	height: 22px;
 	border-top: 1px solid #DDD;
 	border-bottom: 1px solid #DDD;
 	border-right: 1px solid #DDD;
 	text-align: center;
 	text-transform: uppercase;
 	font-size: 10px;
-	line-height: 22px;
-	margin-left: 5px;
+	padding: 5px;
+	font-weight: 900;
 }
 
 .customize-control-woostify-range-slider .woostify-range-slider-reset span {
@@ -81,9 +80,11 @@
 
 .customize-control-woostify-range-slider .woostify_range_value input {
 	font-size: 12px;
-	padding: 0px;
+	padding: 0;
 	text-align: center;
 	height: 24px;
+	border-radius: 0;
+	border-color: #ddd;
 }
 
 .customize-control-woostify-range-slider .woostify-range-title-info {

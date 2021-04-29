@@ -105,7 +105,7 @@ $wp_customize->add_control(
 			'settings' => array(
 				'desktop' => 'woostify_setting[body_font_size]',
 			),
-			'choices' => array(
+			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_body_font_size_min_step', 5 ),
 					'max'  => apply_filters( 'woostify_body_font_size_max_step', 60 ),
@@ -134,13 +134,13 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[body_line_height]',
 		array(
-			'type'           => 'woostify-range-slider',
-			'description'    => __( 'Line Height', 'woostify' ),
-			'section'        => 'body_font_section',
-			'settings'       => array(
+			'type'        => 'woostify-range-slider',
+			'description' => __( 'Line Height', 'woostify' ),
+			'section'     => 'body_font_section',
+			'settings'    => array(
 				'desktop' => 'woostify_setting[body_line_height]',
 			),
-			'choices'        => array(
+			'choices'     => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_body_line_height_min_step', 10 ),
 					'max'  => apply_filters( 'woostify_body_line_height_max_step', 100 ),
