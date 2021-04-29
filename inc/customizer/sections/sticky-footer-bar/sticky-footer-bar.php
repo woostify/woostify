@@ -142,9 +142,6 @@ $wp_customize->add_control(
 			'settings' => array(
 				'woostify_setting[sticky_footer_bar_background]',
 			),
-			'tooltips' => array(
-				'Background',
-			),
 			'tab'      => 'design',
 		)
 	)
