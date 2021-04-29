@@ -681,13 +681,20 @@ document.addEventListener(
 
 		// Sticky Footer Bar.
 		woostify_update_element_class( 'sticky_footer_bar_enable_on', '.woostify-sticky-footer-bar', 'woostify-sticky-on-' );
-		woostify_colors_live_update( 'sticky_footer_bar_background', '.woostify-sticky-footer-bar', 'background' );
-		woostify_colors_live_update( 'sticky_footer_bar_icon_color', '.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon', 'color' );
-		woostify_colors_live_update( 'sticky_footer_bar_icon_hover_color', '.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon', 'color' );
-		woostify_colors_live_update( 'sticky_footer_bar_icon_color', '.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg, .woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg path', 'fill' );
-		woostify_colors_live_update( 'sticky_footer_bar_icon_hover_color', '.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg, .woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg path', 'fill' );
-		woostify_colors_live_update( 'sticky_footer_bar_text_color', '.woostify-sticky-footer-bar .woostify-item-list-item__name', 'color' );
-		woostify_colors_live_update( 'sticky_footer_bar_text_hover_color', '.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__name', 'color' );
+		// Sticky Footer Bar: Text color.
+		woostify_color_group_live_update(
+			[
+				'sticky_footer_bar_text_color',
+				'sticky_footer_bar_text_hover_color',
+			],
+			[
+				'.woostify-sticky-footer-bar .woostify-item-list-item__name',
+				'.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__name',
+			],
+			[
+				'color',
+			],
+		);
 		woostify_range_slider_update(
 			[
 				'sticky_footer_bar_icon_font_size',
@@ -737,34 +744,32 @@ document.addEventListener(
 			'px',
 		);
 
+		// Sticky Footer Bar: Background.
 		woostify_color_group_live_update(
 			[
-				'sticky_footer_bar_color1',
-				'sticky_footer_bar_color2',
-				'sticky_footer_bar_color3',
+				'sticky_footer_bar_background',
 			],
 			[
 				'.woostify-sticky-footer-bar',
-				'.woostify-sticky-footer-bar:hover',
-				'.woostify-sticky-footer-bar:active',
 			],
 			[
 				'background',
 			],
 		);
-
+		// Sticky Footer Bar: Icon color.
 		woostify_color_group_live_update(
 			[
-				'sticky_footer_bar_color4',
+				'sticky_footer_bar_icon_color',
+				'sticky_footer_bar_icon_hover_color',
 			],
 			[
-				'.search-form .search-field, .woocommerce-product-search .search-field',
+				'.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon, .woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg, .woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg path',
+				'.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon, .woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg, .woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg path',
 			],
 			[
-				'background',
-				'border-color',
+				'color',
+				'fill',
 			],
 		);
-
 	},
 );

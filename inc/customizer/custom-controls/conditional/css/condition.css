@@ -2,3 +2,23 @@
 .customize-control.woostify-section-hide {
 	display: none !important;
 }
+
+.customize-control {
+	position: relative;
+	margin: 0 0 30px;
+}
+
+.customize-control.customize-control-woostify-tabs {
+	margin: 0 0 15px;
+}
+
+.customize-control-title {
+	font-size: 13px;
+}
+.woostify-reset {
+	cursor: pointer;
+	font-size: 11px;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+}
