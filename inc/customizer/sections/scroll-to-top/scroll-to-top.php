@@ -122,19 +122,20 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['scroll_to_top_background'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[scroll_to_top_background]',
 		array(
 			'label'    => __( 'Background', 'woostify' ),
 			'section'  => 'woostify_scroll_to_top',
-			'settings' => 'woostify_setting[scroll_to_top_background]',
+			'settings' => array(
+				'woostify_setting[scroll_to_top_background]',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -146,19 +147,20 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['scroll_to_top_color'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[scroll_to_top_color]',
 		array(
 			'label'    => __( 'Color', 'woostify' ),
 			'section'  => 'woostify_scroll_to_top',
-			'settings' => 'woostify_setting[scroll_to_top_color]',
+			'settings' => array(
+				'woostify_setting[scroll_to_top_color]',
+			),
 			'tab'      => 'design',
 		)
 	)

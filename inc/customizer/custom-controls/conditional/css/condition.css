@@ -3,7 +3,7 @@
 	display: none !important;
 }
 
-.customize-control {
+.customize-control:not(.customize-control-woostify-section) {
 	position: relative;
 	margin: 0 0 24px;
 }

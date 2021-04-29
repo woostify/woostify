@@ -728,15 +728,16 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[shop_page_sale_color]',
 		array(
 			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_sale_color]',
+			'settings' => array(
+				'woostify_setting[shop_page_sale_color]',
+			),
 		)
 	)
 );
@@ -751,15 +752,16 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[shop_page_sale_bg_color]',
 		array(
 			'label'    => __( 'Background Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_sale_bg_color]',
+			'settings' => array(
+				'woostify_setting[shop_page_sale_bg_color]',
+			),
 		)
 	)
 );
@@ -964,15 +966,16 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[shop_page_out_of_stock_color]',
 		array(
 			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_out_of_stock_color]',
+			'settings' => array(
+				'woostify_setting[shop_page_out_of_stock_color]',
+			),
 		)
 	)
 );
@@ -987,15 +990,16 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[shop_page_out_of_stock_bg_color]',
 		array(
 			'label'    => __( 'Background Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_out_of_stock_bg_color]',
+			'settings' => array(
+				'woostify_setting[shop_page_out_of_stock_bg_color]',
+			),
 		)
 	)
 );
@@ -1246,6 +1250,7 @@ $wp_customize->add_control(
 		)
 	)
 );
+
 // Button Background.
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_button_cart_background]',
@@ -1256,15 +1261,31 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
+// Button Hover Background.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_button_background_hover]',
+	array(
+		'default'           => $defaults['shop_page_button_background_hover'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[shop_page_button_cart_background]',
 		array(
 			'label'    => __( 'Background', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_button_cart_background]',
+			'settings' => array(
+				'woostify_setting[shop_page_button_cart_background]',
+				'woostify_setting[shop_page_button_background_hover]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
+			),
 		)
 	)
 );
@@ -1279,42 +1300,6 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
-$wp_customize->add_control(
-	new Woostify_Color_Control(
-		$wp_customize,
-		'woostify_setting[shop_page_button_cart_color]',
-		array(
-			'label'    => __( 'Color', 'woostify' ),
-			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_button_cart_color]',
-		)
-	)
-);
-
-// Button Hover Background.
-$wp_customize->add_setting(
-	'woostify_setting[shop_page_button_background_hover]',
-	array(
-		'default'           => $defaults['shop_page_button_background_hover'],
-		'type'              => 'option',
-		'sanitize_callback' => 'woostify_sanitize_rgba_color',
-		'transport'         => 'postMessage',
-	)
-);
-
-$wp_customize->add_control(
-	new Woostify_Color_Control(
-		$wp_customize,
-		'woostify_setting[shop_page_button_background_hover]',
-		array(
-			'label'    => __( 'Hover Background', 'woostify' ),
-			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_button_background_hover]',
-		)
-	)
-);
-
 // Button Hover Color.
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_button_color_hover]',
@@ -1325,15 +1310,21 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
-		'woostify_setting[shop_page_button_color_hover]',
+		'woostify_setting[shop_page_button_cart_color]',
 		array(
-			'label'    => __( 'Hover Color', 'woostify' ),
+			'label'    => __( 'Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_button_color_hover]',
+			'settings' => array(
+				'woostify_setting[shop_page_button_cart_color]',
+				'woostify_setting[shop_page_button_color_hover]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
+			),
 		)
 	)
 );
