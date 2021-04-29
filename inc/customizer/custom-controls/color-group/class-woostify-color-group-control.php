@@ -34,6 +34,22 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	public $tooltips = array();
 
 	/**
+	 * Color format
+	 *
+	 * @access public
+	 * @var string
+	 */
+	public $color_format = 'rgba';
+
+	/**
+	 * Enable opacity
+	 *
+	 * @access public
+	 * @var boolean
+	 */
+	public $enable_opacity = true;
+
+	/**
 	 * Renders the control wrapper and calls $this->render_content() for the internals.
 	 *
 	 * @since 3.4.0
@@ -91,7 +107,9 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 		parent::to_json();
 		$this->json['tab'] = $this->tab;
 
-		$this->json['tooltips'] = $this->tooltips;
+		$this->json['tooltips']       = $this->tooltips;
+		$this->json['color_format']   = $this->color_format;
+		$this->json['enable_opacity'] = $this->enable_opacity;
 	}
 
 	/**
@@ -119,7 +137,9 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 						?>
 						<div class="woostify-color-picker-btn">
 							<span class="woostify-color-group-btn btn-<?php echo esc_attr( $btn_id ); ?>"></span>
-							<span class="btn-tooltip"><?php echo esc_attr( $this->tooltips[ $setting_k ] ); ?></span>
+							<?php if ( ! empty( $this->tooltips ) ) { ?>
+								<span class="btn-tooltip"><?php echo esc_attr( $this->tooltips[ $setting_k ] ); ?></span>
+							<?php } ?>
 						</div>
 					<?php } ?>
 				</div>
