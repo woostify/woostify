@@ -148,13 +148,15 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[footer_background_color]',
 		array(
 			'label'    => __( 'Background Color', 'woostify' ),
 			'section'  => 'woostify_footer',
-			'settings' => 'woostify_setting[footer_background_color]',
+			'settings' => array(
+				'woostify_setting[footer_background_color]',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -165,18 +167,20 @@ $wp_customize->add_setting(
 	'woostify_setting[footer_heading_color]',
 	array(
 		'default'           => $defaults['footer_heading_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[footer_heading_color]',
 		array(
 			'label'    => __( 'Heading Color', 'woostify' ),
 			'section'  => 'woostify_footer',
-			'settings' => 'woostify_setting[footer_heading_color]',
+			'settings' => array(
+				'woostify_setting[footer_heading_color]',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -187,18 +191,20 @@ $wp_customize->add_setting(
 	'woostify_setting[footer_link_color]',
 	array(
 		'default'           => $defaults['footer_link_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[footer_link_color]',
 		array(
 			'label'    => __( 'Link Color', 'woostify' ),
 			'section'  => 'woostify_footer',
-			'settings' => 'woostify_setting[footer_link_color]',
+			'settings' => array(
+				'woostify_setting[footer_link_color]',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -209,18 +215,20 @@ $wp_customize->add_setting(
 	'woostify_setting[footer_text_color]',
 	array(
 		'default'           => $defaults['footer_text_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[footer_text_color]',
 		array(
 			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_footer',
-			'settings' => 'woostify_setting[footer_text_color]',
+			'settings' => array(
+				'woostify_setting[footer_text_color]',
+			),
 			'tab'      => 'design',
 		)
 	)

@@ -5,11 +5,11 @@
 
 .customize-control {
 	position: relative;
-	margin: 0 0 30px;
+	margin: 0 0 24px;
 }
 
-.customize-control.customize-control-woostify-tabs {
-	margin: 0 0 15px;
+.customize-control.customize-control-woostify-color-group {
+	margin: 0 0 30px;
 }
 
 .customize-control-title {

@@ -67,7 +67,9 @@ function woostify_color_group_live_update( ids, selectors, properties ) {
 							style    += selectors[i] + '{';
 							properties.forEach(
 								function( property ) {
-									style += property + ': ' + newval + ';';
+									if ( '' !== newval) {
+										style += property + ': ' + newval + ';';
+									}
 								},
 							);
 							style += '}';
@@ -486,13 +488,43 @@ document.addEventListener(
 		woostify_colors_live_update( 'header_transparent_border_color', '.has-header-transparent .site-header-inner', 'border-bottom-color' );
 
 		// Header menu transparent color.
-		woostify_colors_live_update( 'header_transparent_menu_color', '.has-header-transparent .primary-navigation > li > a', 'color' );
+		woostify_color_group_live_update(
+			[
+				'header_transparent_menu_color',
+			],
+			[
+				'.has-header-transparent .primary-navigation > li > a',
+			],
+			[
+				'color',
+			],
+		);
 
 		// Header Icon transparent color.
-		woostify_colors_live_update( 'header_transparent_icon_color', '.has-header-transparent .site-tools .tools-icon', 'color' );
+		woostify_color_group_live_update(
+			[
+				'header_transparent_icon_color',
+			],
+			[
+				'.has-header-transparent .site-tools .tools-icon',
+			],
+			[
+				'color',
+			],
+		);
 
 		// Header Icon transparent background.
-		woostify_colors_live_update( 'header_transparent_count_background', '.has-header-transparent .wishlist-item-count, .has-header-transparent .shop-cart-count', 'background-color' );
+		woostify_color_group_live_update(
+			[
+				'header_transparent_count_background',
+			],
+			[
+				'.has-header-transparent .wishlist-item-count, .has-header-transparent .shop-cart-count',
+			],
+			[
+				'background-color',
+			],
+		);
 
 		// Header Hide zero value cart count.
 		woostify_update_element_class( 'header_shop_hide_zero_value_cart_count', '.shopping-bag-button .shop-cart-count', 'hide-zero-val' );

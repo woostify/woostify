@@ -92,6 +92,7 @@
 .woostify-color-group-control .woostify-color-buttons .woostify-color-picker-btn .woostify-color-group-btn:after{
 	transition: background .3s;
 	background: currentColor;
+	border: 1px solid #ddd;
 }
 .woostify-color-group-control .pcr-app {
 	position: static;

@@ -250,13 +250,15 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_menu_color]',
 		array(
 			'label'    => __( 'Menu Transparent Color', 'woostify' ),
 			'section'  => 'woostify_header_transparent',
-			'settings' => 'woostify_setting[header_transparent_menu_color]',
+			'settings' => array(
+				'woostify_setting[header_transparent_menu_color]',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -273,13 +275,15 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_icon_color]',
 		array(
 			'label'    => __( 'Icon Transparent Color', 'woostify' ),
 			'section'  => 'woostify_header_transparent',
-			'settings' => 'woostify_setting[header_transparent_icon_color]',
+			'settings' => array(
+				'woostify_setting[header_transparent_icon_color]',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -296,13 +300,15 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_count_background]',
 		array(
 			'label'    => __( 'Count Transparent Background', 'woostify' ),
 			'section'  => 'woostify_header_transparent',
-			'settings' => 'woostify_setting[header_transparent_count_background]',
+			'settings' => array(
+				'woostify_setting[header_transparent_count_background]',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -374,13 +380,15 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[header_transparent_border_color]',
 		array(
 			'label'    => __( 'Border Color', 'woostify' ),
 			'section'  => 'woostify_header_transparent',
-			'settings' => 'woostify_setting[header_transparent_border_color]',
+			'settings' => array(
+				'woostify_setting[header_transparent_border_color]',
+			),
 			'tab'      => 'design',
 		)
 	)

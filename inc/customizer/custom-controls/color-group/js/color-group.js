@@ -77,7 +77,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 					).on(
 						'clear',
 						function( instance ) {
-							let default_val                 = enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)';
+							let default_val                 = '';
 							instance.options.el.style.color = default_val;
 							control.settings[idx].set( default_val );
 						},
@@ -115,7 +115,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 							).on(
 								'clear',
 								function( instance ) {
-									let default_val                 = enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)';
+									let default_val                 = '';
 									instance.options.el.style.color = default_val;
 									control.settings[idx].set( default_val );
 								},

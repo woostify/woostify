@@ -61,14 +61,17 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[topbar_text_color]',
 		array(
-			'label'    => __( 'Text Color', 'woostify' ),
-			'section'  => 'woostify_topbar',
-			'settings' => 'woostify_setting[topbar_text_color]',
-			'tab'      => 'design',
+			'label'        => __( 'Text Color', 'woostify' ),
+			'section'      => 'woostify_topbar',
+			'settings'     => array(
+				'woostify_setting[topbar_text_color]',
+			),
+			'color_format' => 'hex',
+			'tab'          => 'design',
 		)
 	)
 );
@@ -84,13 +87,15 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[topbar_background_color]',
 		array(
 			'label'    => __( 'Background Color', 'woostify' ),
 			'section'  => 'woostify_topbar',
-			'settings' => 'woostify_setting[topbar_background_color]',
+			'settings' => array(
+				'woostify_setting[topbar_background_color]',
+			),
 			'tab'      => 'design',
 		)
 	)

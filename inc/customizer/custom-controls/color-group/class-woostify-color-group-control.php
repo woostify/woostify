@@ -149,7 +149,7 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 				$link        = $this->get_link( $k );
 				$btn_id      = explode( '[', $setting->id )[1];
 				$btn_id      = explode( ']', $btn_id )[0];
-				$reset_value = '' !== $setting->default ? $setting->default : 'rgba(255,255,255,0)';
+				$reset_value = $setting->default;
 				?>
 				<input type="hidden" class="color-group-value color-group-value-<?php echo esc_attr( $btn_id ); ?>" data-reset_value="<?php echo esc_attr( $reset_value ); ?>" <?php echo $link; //phpcs:ignore?> value="<?php echo esc_attr( $this->value( $k ) ); ?>">
 			<?php } ?>
