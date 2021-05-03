@@ -357,9 +357,18 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$options            = woostify_options( false );
 			$disable_multi_step = woostify_is_multi_checkout();
 
+			// Disabled Add to cart button icon.
+			if ( ! $options['shop_product_add_to_cart_icon'] ) {
+				$classes[] = 'disabled-icon-add-cart-button';
+			}
+
 			// Disabled side cart if user use elementor mini cart.
-			if ( defined( 'ELEMENTOR_PRO_VERSION' ) && 'no' !== get_option( 'elementor_use_mini_cart_template' ) ) {
-				$classes[] = 'disabled-sidebar-cart';
+			if ( defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+				if ( 'no' !== get_option( 'elementor_use_mini_cart_template' ) ) {
+					$classes[] = 'disabled-sidebar-cart';
+				} else {
+					$classes[] = 'hide-added-to-cart';
+				}
 			}
 
 			// Product gallery.

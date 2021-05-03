@@ -32,11 +32,12 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
 			$classes[] = 'menu-item-' . $item->ID;
 			if ( 'mega_menu' === $item->object ) {
-				$this->megamenu_width = get_post_meta( $item->ID, 'woostify_mega_menu_item_width', true );
-				$this->megamenu_width = '' !== $this->megamenu_width ? $this->megamenu_width : 'content';
-				$this->megamenu_url   = get_post_meta( $item->ID, 'woostify_mega_menu_item_url', true );
-				$this->megamenu_icon  = get_post_meta( $item->ID, 'woostify_mega_menu_item_icon', true );
-				$href                 = $this->megamenu_url;
+				$this->megamenu_width    = get_post_meta( $item->ID, 'woostify_mega_menu_item_width', true );
+				$this->megamenu_width    = '' !== $this->megamenu_width ? $this->megamenu_width : 'content';
+				$this->megamenu_position = get_post_meta( $item->ID, 'woostify_mega_menu_item_position', true );
+				$this->megamenu_url      = get_post_meta( $item->ID, 'woostify_mega_menu_item_url', true );
+				$this->megamenu_icon     = get_post_meta( $item->ID, 'woostify_mega_menu_item_icon', true );
+				$href                    = $this->megamenu_url;
 
 				if ( ! $href ) {
 					$href = '#';
@@ -46,6 +47,10 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 				$classes[] = 'menu-item-has-mega-menu';
 				$classes[] = 'has-mega-menu-' . $this->megamenu_width . '-width';
 				$classes[] = woostify_is_elementor_page( $item->object_id ) ? 'mega-menu-elementor' : '';
+
+				if ( 'parent' === $this->megamenu_position ) {
+					$classes[] = 'menu-item-has-children-same-position';
+				}
 			}
 			$classes = array_filter( $classes );
 

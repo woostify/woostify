@@ -62,8 +62,8 @@ function woostifyAjaxSingleAddToCartButton() {
 
 					getProductAttr.forEach(
 						function( x ) {
-							var productName  = x.name,
-								productValue = x.value;
+							var productName  = encodeURIComponent( x.name ),
+								productValue = encodeURIComponent( x.value );
 
 							if ( ! productValue ) {
 								selected = false;

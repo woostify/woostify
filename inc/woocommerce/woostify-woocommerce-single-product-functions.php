@@ -656,7 +656,7 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 		$product_qty       = intval( $_POST['product_qty'] );
 		$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $product_qty );
 		$variation_id      = isset( $_POST['variation_id'] ) ? intval( $_POST['variation_id'] ) : false;
-		$variations        = isset( $_POST['variations'] ) ? (array) json_decode( sanitize_text_field( wp_unslash( $_POST['variations'] ) ), true ) : array();
+		$variations        = isset( $_POST['variations'] ) ? (array) json_decode( urldecode( wp_unslash( $_POST['variations'] ) ), true ) : array(); // phpcs:ignore
 
 		// Check stock quantity first.
 		$quantities = WC()->cart->get_cart_item_quantities();
