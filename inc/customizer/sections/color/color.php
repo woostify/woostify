@@ -13,7 +13,7 @@ $wp_customize->add_setting(
 	'woostify_setting[theme_color]',
 	array(
 		'default'           => $defaults['theme_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
@@ -22,13 +22,11 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[theme_color]',
 		array(
-			'label'          => __( 'Theme Color', 'woostify' ),
-			'section'        => 'woostify_color',
-			'settings'       => array(
+			'label'    => __( 'Theme Color', 'woostify' ),
+			'section'  => 'woostify_color',
+			'settings' => array(
 				'woostify_setting[theme_color]',
 			),
-			'color_format'   => 'hex',
-			'enable_opacity' => false,
 		)
 	)
 );
@@ -38,7 +36,7 @@ $wp_customize->add_setting(
 	'woostify_setting[primary_menu_color]',
 	array(
 		'default'           => $defaults['primary_menu_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
@@ -47,13 +45,11 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[primary_menu_color]',
 		array(
-			'label'          => __( 'Parent Menu Color', 'woostify' ),
-			'section'        => 'woostify_color',
-			'settings'       => array(
+			'label'    => __( 'Parent Menu Color', 'woostify' ),
+			'section'  => 'woostify_color',
+			'settings' => array(
 				'woostify_setting[primary_menu_color]',
 			),
-			'color_format'   => 'hex',
-			'enable_opacity' => false,
 		)
 	)
 );
@@ -63,7 +59,7 @@ $wp_customize->add_setting(
 	'woostify_setting[primary_sub_menu_color]',
 	array(
 		'default'           => $defaults['primary_sub_menu_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
@@ -72,13 +68,11 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[primary_sub_menu_color]',
 		array(
-			'label'          => __( 'Sub-menu Color', 'woostify' ),
-			'section'        => 'woostify_color',
-			'settings'       => array(
+			'label'    => __( 'Sub-menu Color', 'woostify' ),
+			'section'  => 'woostify_color',
+			'settings' => array(
 				'woostify_setting[primary_sub_menu_color]',
 			),
-			'color_format'   => 'hex',
-			'enable_opacity' => false,
 		)
 	)
 );
@@ -88,7 +82,7 @@ $wp_customize->add_setting(
 	'woostify_setting[heading_color]',
 	array(
 		'default'           => $defaults['heading_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
@@ -97,13 +91,11 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[heading_color]',
 		array(
-			'label'          => __( 'Heading Color', 'woostify' ),
-			'section'        => 'woostify_color',
-			'settings'       => array(
+			'label'    => __( 'Heading Color', 'woostify' ),
+			'section'  => 'woostify_color',
+			'settings' => array(
 				'woostify_setting[heading_color]',
 			),
-			'color_format'   => 'hex',
-			'enable_opacity' => false,
 		)
 	)
 );
@@ -113,7 +105,7 @@ $wp_customize->add_setting(
 	'woostify_setting[text_color]',
 	array(
 		'default'           => $defaults['text_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
@@ -122,13 +114,11 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[text_color]',
 		array(
-			'label'          => __( 'Text Color', 'woostify' ),
-			'section'        => 'woostify_color',
-			'settings'       => array(
+			'label'    => __( 'Text Color', 'woostify' ),
+			'section'  => 'woostify_color',
+			'settings' => array(
 				'woostify_setting[text_color]',
 			),
-			'color_format'   => 'hex',
-			'enable_opacity' => false,
 		)
 	)
 );
@@ -138,7 +128,7 @@ $wp_customize->add_setting(
 	'woostify_setting[accent_color]',
 	array(
 		'default'           => $defaults['accent_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 	)
 );
@@ -147,13 +137,11 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[accent_color]',
 		array(
-			'label'          => __( 'Link / Accent Color', 'woostify' ),
-			'section'        => 'woostify_color',
-			'settings'       => array(
+			'label'    => __( 'Link / Accent Color', 'woostify' ),
+			'section'  => 'woostify_color',
+			'settings' => array(
 				'woostify_setting[accent_color]',
 			),
-			'color_format'   => 'hex',
-			'enable_opacity' => false,
 		)
 	)
 );
