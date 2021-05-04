@@ -217,13 +217,13 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[shop_page_product_card_border_color]',
 		array(
 			'label'    => __( 'Border Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_product_card_border_color]',
+			'settings' => array( 'woostify_setting[shop_page_product_card_border_color]' ),
 		)
 	)
 );
@@ -572,13 +572,13 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[shop_page_product_image_border_color]',
 		array(
 			'label'    => __( 'Border Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_product_image_border_color]',
+			'settings' => array( 'woostify_setting[shop_page_product_image_border_color]' ),
 		)
 	)
 );
