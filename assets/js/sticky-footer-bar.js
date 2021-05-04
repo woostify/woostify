@@ -9,10 +9,12 @@
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
-		let senseSpeed                = 5, previousScroll = 0, stickyFooterBarContainer  = document.querySelector( '.woostify-sticky-footer-bar' );
-		window.onscroll               = () => {
-			let stickyFooterBarHeight = stickyFooterBarContainer.clientHeight + 1;
-			let scroller              = window.pageYOffset | document.body.scrollTop;
+		var senseSpeed               = 5
+		var previousScroll           = 0
+		var stickyFooterBarContainer = document.querySelector( '.woostify-sticky-footer-bar' );
+		window.onscroll              = function() {
+			var stickyFooterBarHeight = stickyFooterBarContainer.clientHeight + 1;
+			var scroller              = window.pageYOffset | document.body.scrollTop;
 			if ( scroller - senseSpeed > previousScroll ) {
 				stickyFooterBarContainer.style.bottom = '-' + stickyFooterBarHeight + 'px';
 			} else if ( scroller + senseSpeed < previousScroll ) {
