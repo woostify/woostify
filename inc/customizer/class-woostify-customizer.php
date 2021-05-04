@@ -210,10 +210,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'sticky_footer_bar_padding'               => '10 0 10 0',
 				'tablet_sticky_footer_bar_padding'        => '10 0 10 0',
 				'mobile_sticky_footer_bar_padding'        => '10 0 10 0',
-				'sticky_footer_bar_color1'                => '#f90',
-				'sticky_footer_bar_color2'                => 'rgba(0,0,0,0.4)',
-				'sticky_footer_bar_color3'                => '#5F1BA2',
-				'sticky_footer_bar_color4'                => '#f00',
 				// Scroll To Top.
 				'scroll_to_top'                           => true,
 				'scroll_to_top_background'                => '',

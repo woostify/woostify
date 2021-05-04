@@ -736,35 +736,5 @@ document.addEventListener(
 			'padding',
 			'px',
 		);
-
-		woostify_color_group_live_update(
-			[
-				'sticky_footer_bar_color1',
-				'sticky_footer_bar_color2',
-				'sticky_footer_bar_color3',
-			],
-			[
-				'.woostify-sticky-footer-bar',
-				'.woostify-sticky-footer-bar:hover',
-				'.woostify-sticky-footer-bar:active',
-			],
-			[
-				'background',
-			],
-		);
-
-		woostify_color_group_live_update(
-			[
-				'sticky_footer_bar_color4',
-			],
-			[
-				'.search-form .search-field, .woocommerce-product-search .search-field',
-			],
-			[
-				'background',
-				'border-color',
-			],
-		);
-
 	},
 );
