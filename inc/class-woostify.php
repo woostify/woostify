@@ -31,9 +31,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_filter( 'wpcf7_load_css', '__return_false' );
 			add_filter( 'excerpt_length', array( $this, 'woostify_limit_excerpt_character' ), 99 );
 
-			// Walker menu.
-			//add_filter( 'walker_nav_menu_start_el', array( $this, 'woostify_nav_menu_start_el' ), 10, 4 );
-
 			// ELEMENTOR.
 			add_action( 'elementor/theme/register_locations', array( $this, 'woostify_register_elementor_locations' ) );
 			add_action( 'elementor/preview/enqueue_scripts', array( $this, 'woostify_elementor_preview_scripts' ) );
@@ -815,21 +812,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 		 * @param      array|object $elementor_theme_manager  The elementor theme manager.
 		 */
 		public function woostify_register_elementor_locations( $elementor_theme_manager ) {
-			$elementor_theme_manager->register_location(
-				'header',
-				array(
-					'hook'         => 'woostify_theme_header',
-					'remove_hooks' => array( 'woostify_template_header' ),
-				)
-			);
-			$elementor_theme_manager->register_location(
-				'footer',
-				array(
-					'hook'         => 'woostify_theme_footer',
-					'remove_hooks' => array( 'woostify_template_footer' ),
-				)
-			);
-
 			$elementor_theme_manager->register_all_core_location();
 		}
 

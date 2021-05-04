@@ -13,5 +13,8 @@
 
 	<body <?php body_class(); ?>>
 		<?php
-			wp_body_open();
+		wp_body_open();
+
+		if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'header' ) ) {
 			do_action( 'woostify_theme_header' );
+		}
