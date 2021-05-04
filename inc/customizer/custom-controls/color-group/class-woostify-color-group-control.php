@@ -118,9 +118,9 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	 * @return void
 	 */
 	protected function render_content() {
-		$control_id = explode( '[', $this->id )[1];
-		$control_id = explode( ']', $control_id )[0];
-		$settings   = $this->settings;
+		$control_id_arr = explode( '[', $this->id );
+		$control_id     = isset( $control_id_arr[1] ) ? explode( ']', $control_id_arr[1] )[0] : $control_id_arr[0];
+		$settings       = $this->settings;
 		?>
 		<div class="woostify-control-wrap woostify-color-group-control woostify-color-group-control-<?php echo esc_attr( $control_id ); ?>" data-control_id="<?php echo esc_attr( $control_id ); ?>">
 			<div class="color-group-wrap">
@@ -132,8 +132,8 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 
 					<?php foreach ( $settings as $setting_k => $setting ) { ?>
 						<?php
-						$btn_id = explode( '[', $setting->id )[1];
-						$btn_id = explode( ']', $btn_id )[0];
+						$btn_id_arr = explode( '[', $setting->id );
+						$btn_id     = isset( $btn_id_arr[1] ) ? explode( ']', $btn_id_arr[1] )[0] : $btn_id_arr[0];
 						?>
 						<div class="woostify-color-picker-btn">
 							<span class="woostify-color-group-btn btn-<?php echo esc_attr( $btn_id ); ?>"></span>
@@ -147,8 +147,8 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 			<?php
 			foreach ( $settings as $k => $setting ) {
 				$link        = $this->get_link( $k );
-				$btn_id      = explode( '[', $setting->id )[1];
-				$btn_id      = explode( ']', $btn_id )[0];
+				$btn_id_arr  = explode( '[', $setting->id );
+				$btn_id      = isset( $btn_id_arr[1] ) ? explode( ']', $btn_id_arr[1] )[0] : $btn_id_arr[0];
 				$reset_value = $setting->default;
 				?>
 				<input type="hidden" class="color-group-value color-group-value-<?php echo esc_attr( $btn_id ); ?>" data-reset_value="<?php echo esc_attr( $reset_value ); ?>" <?php echo $link; //phpcs:ignore?> value="<?php echo esc_attr( $this->value( $k ) ); ?>">

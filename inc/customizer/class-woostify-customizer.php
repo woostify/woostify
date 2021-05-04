@@ -99,6 +99,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				),
 			);
 			$args                    = array(
+				'background_color'                        => '#ffffff',
 				// CONTAINER.
 				'container_width'                         => '1200',
 				'default_container'                       => 'normal',

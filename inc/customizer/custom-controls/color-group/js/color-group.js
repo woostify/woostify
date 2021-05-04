@@ -60,7 +60,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 				control.params.settings,
 				function( idx, obj ) {
 					let btn_id_arr             = obj.split( '[' );
-					let btn_id                 = btn_id_arr[1].split( ']' )[0];
+					let btn_id                 = ('undefined' === typeof btn_id_arr[1]) ? btn_id_arr[0] : btn_id_arr[1].split( ']' )[0];
 					args.el                    = '.btn-' + btn_id
 					args.container             = '.woostify-color-group-control-' + control_id
 					args.default               = control.settings[idx].get();
@@ -133,7 +133,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 				// hsva.toHEXA() - Converts the object to a hexa-decimal array.
 				// hsva.toCMYK() - Converts the object to a cmyk array.
 				// hsva.clone() - Clones the color object.
-				let new_color = color.clone();
+				let new_color;
 				switch ( format ) {
 					case 'rgba':
 						new_color = color.toRGBA();
