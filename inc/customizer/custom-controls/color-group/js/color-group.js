@@ -70,8 +70,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 					$( args.el ).css( 'color', '' !== args.default ? args.default : ( enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)' ) );
 					pickr.on(
 						'change',
-						function( color, source, instance ) {
-							console.log( color, color.toString() );
+						function( color ) {
 							control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) );
 						},
 					).on(
@@ -109,7 +108,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 							$( args.el ).css( 'color', '' !== args.default ? args.default : ( enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)' ) );
 							pickr2.on(
 								'change',
-								function( color, source, instance ) {
+								function( color ) {
 									control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) );
 								},
 							).on(
