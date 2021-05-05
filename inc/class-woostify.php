@@ -812,6 +812,22 @@ if ( ! class_exists( 'Woostify' ) ) {
 		 * @param      array|object $elementor_theme_manager  The elementor theme manager.
 		 */
 		public function woostify_register_elementor_locations( $elementor_theme_manager ) {
+			$elementor_theme_manager->register_location(
+				'header',
+				array(
+					'hook'         => 'woostify_theme_header',
+					'remove_hooks' => array( 'woostify_template_header' ),
+				)
+			);
+
+			$elementor_theme_manager->register_location(
+				'footer',
+				array(
+					'hook'         => 'woostify_theme_footer',
+					'remove_hooks' => array( 'woostify_template_footer' ),
+				)
+			);
+
 			$elementor_theme_manager->register_all_core_location();
 		}
 
