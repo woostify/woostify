@@ -526,6 +526,9 @@
 						'woostify_setting[sticky_footer_bar_enable_on]',
 						'woostify_setting[sticky_footer_bar_items]',
 						'woostify_setting[sticky_footer_bar_hide_when_scroll]',
+						'woostify_setting[sticky_footer_bar_hide_on_product_single]',
+						'woostify_setting[sticky_footer_bar_hide_on_cart_page]',
+						'woostify_setting[sticky_footer_bar_hide_on_checkout_page]',
 					]
 				)
 
