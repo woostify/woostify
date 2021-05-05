@@ -73,6 +73,75 @@ $wp_customize->add_control(
 	)
 );
 
+// Hide on product single page.
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_hide_on_product_single]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_hide_on_product_single'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[sticky_footer_bar_hide_on_product_single]',
+		array(
+			'label'    => __( 'Hide On Product Single Page', 'woostify' ),
+			'settings' => 'woostify_setting[sticky_footer_bar_hide_on_product_single]',
+			'section'  => 'woostify_sticky_footer_bar',
+			'tab'      => 'general',
+		)
+	)
+);
+
+// Hide on cart page.
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_hide_on_cart_page]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_hide_on_cart_page'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[sticky_footer_bar_hide_on_cart_page]',
+		array(
+			'label'    => __( 'Hide On Cart Page', 'woostify' ),
+			'settings' => 'woostify_setting[sticky_footer_bar_hide_on_cart_page]',
+			'section'  => 'woostify_sticky_footer_bar',
+			'tab'      => 'general',
+		)
+	)
+);
+
+// Hide on checkout page.
+$wp_customize->add_setting(
+	'woostify_setting[sticky_footer_bar_hide_on_checkout_page]',
+	array(
+		'default'           => $defaults['sticky_footer_bar_hide_on_checkout_page'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[sticky_footer_bar_hide_on_checkout_page]',
+		array(
+			'label'    => __( 'Hide On Checkout Page', 'woostify' ),
+			'settings' => 'woostify_setting[sticky_footer_bar_hide_on_checkout_page]',
+			'section'  => 'woostify_sticky_footer_bar',
+			'tab'      => 'general',
+		)
+	)
+);
+
 // Enable on devices.
 $wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_enable_on]',
