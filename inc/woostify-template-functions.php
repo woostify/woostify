@@ -2362,6 +2362,9 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 	 * Sticky Footer Bar
 	 */
 	function woostify_sticky_footer_bar() {
+		if ( woostify_is_elementor_editor() ) {
+			return;
+		}
 		$options = woostify_options( false );
 		if ( ! $options['sticky_footer_bar_enable'] ) {
 			return;
