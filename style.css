@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 Theme Name:   Woostify
 Theme URI:    https://woostify.com
@@ -7528,6 +7529,11 @@ header.elementor-element {
 .product-loop-action .added_to_cart + .quick-view-with-icon,
 .product-loop-action .added_to_cart + .yith-wcwl-add-to-wishlist {
   border-top: 1px solid #e7e7e7;
+}
+
+.woocommerce-notices-wrapper .woocommerce-error {
+  flex-direction: unset;
+  display: flex;
 }
 
 .loop-wrapper-wishlist {
