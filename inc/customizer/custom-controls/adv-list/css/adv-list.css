@@ -31,6 +31,7 @@
 .woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control {
 	padding: 15px 15px 0;
 	margin-bottom: 15px;
+	position: relative;
 }
 
 .woostify-sortable-list-item-wrap .woostify-sortable-list-item {
@@ -130,4 +131,92 @@
 	display: block;
 	font-style: italic;
 	color: #8f8f8f;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field label {
+	margin: 0;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .select-icon-act {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	right: 15px;
+	top: 11px;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .select-icon-act span {
+	display: block;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .select-icon-act span:not(:last-child) {
+	margin-right: 8px;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .selected-icon {
+	background: #f0f0f0;
+	padding: 5px;
+	border-radius: 3px;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .open-icon-list {
+	border: 1px solid #3498D9;
+	font-size: 12px;
+	padding: 2px 5px;
+	cursor: pointer;
+	color: #2271b1;
+	border-radius: 3px;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .remove-icon {
+	font-size: 12px;
+	text-decoration: underline;
+	color: #3498D9;
+	cursor: pointer;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .selected-icon svg {
+	display: block;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .icon-list {
+	max-width: 100%;
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	margin-top: 10px;
+	display: none;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .icon-list__search {
+	padding: 10px 10px 0;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .icon-list-wrap {
+	display: grid;
+	grid-gap: 15px;
+	grid-template-columns: 20% 20% 20% 20%;
+	padding: 10px;
+	text-align: center;
+	margin-top: 10px;
+	border-top: 1px solid #ddd;
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .icon-list-wrap .icon-list__icon {
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 3px;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .icon-list-wrap .icon-list__icon:hover,
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .icon-list-wrap .icon-list__icon.active {
+	background: #f0f0f0;
+}
+
+.woostify-sortable-list-item-wrap .adv-list-item-content .woostify-adv-list-control.icon-field .icon-list-wrap .icon-list__icon svg {
+	display: block;
+	margin: 0 auto;
 }

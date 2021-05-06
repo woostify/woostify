@@ -50,20 +50,20 @@ $wp_customize->add_control(
 				'tablet'  => 'woostify_setting[tablet_products_per_row]',
 				'mobile'  => 'woostify_setting[mobile_products_per_row]',
 			),
-			'choices' => array(
+			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_products_per_row_desktop_min_step', 1 ),
 					'max'  => apply_filters( 'woostify_products_per_row_desktop_max_step', 6 ),
 					'step' => 1,
 					'edit' => false,
 				),
-				'tablet' => array(
+				'tablet'  => array(
 					'min'  => apply_filters( 'woostify_products_per_row_tablet_min_step', 1 ),
 					'max'  => apply_filters( 'woostify_products_per_row_tablet_max_step', 4 ),
 					'step' => 1,
 					'edit' => false,
 				),
-				'mobile' => array(
+				'mobile'  => array(
 					'min'  => apply_filters( 'woostify_products_per_row_mobile_min_step', 1 ),
 					'max'  => apply_filters( 'woostify_products_per_row_mobile_max_step', 3 ),
 					'step' => 1,

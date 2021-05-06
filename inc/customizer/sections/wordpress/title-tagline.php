@@ -113,7 +113,7 @@ $wp_customize->add_control(
 				'tablet'  => 'woostify_setting[tablet_logo_width]',
 				'mobile'  => 'woostify_setting[mobile_logo_width]',
 			),
-			'choices' => array(
+			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_logo_desktop_width_min_step', 50 ),
 					'max'  => apply_filters( 'woostify_logo_desktop_width_max_step', 500 ),
@@ -121,14 +121,14 @@ $wp_customize->add_control(
 					'edit' => true,
 					'unit' => 'px',
 				),
-				'tablet' => array(
+				'tablet'  => array(
 					'min'  => apply_filters( 'woostify_logo_tablet_width_min_step', 50 ),
 					'max'  => apply_filters( 'woostify_logo_tablet_width_max_step', 500 ),
 					'step' => 1,
 					'edit' => true,
 					'unit' => 'px',
 				),
-				'mobile' => array(
+				'mobile'  => array(
 					'min'  => apply_filters( 'woostify_logo_mobile_width_min_step', 50 ),
 					'max'  => apply_filters( 'woostify_logo_mobile_width_max_step', 500 ),
 					'step' => 1,

@@ -6294,6 +6294,7 @@ header.elementor-element {
   padding-top: 10px;
   padding-bottom: 10px;
   z-index: 199;
+  transition: bottom .4s;
 }
 
 .woostify-sticky-footer-bar.woostify-sticky-on-desktop {
@@ -6335,19 +6336,25 @@ header.elementor-element {
 .woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon {
   font-size: 24px;
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon .woositfy-sfb-icon {
-  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+  display: block;
 }
 
 .woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__name {
   display: block;
-}
-
-.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item.woostify-addon:not(.woostify-custom-addon) a .woostify-item-list-item__icon {
-  margin: 0;
 }
 
 .woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item.woostify-addon:not(.woostify-custom-addon) a .woostify-item-list-item__icon .cart-icon-rotate:before {
@@ -6369,6 +6376,14 @@ header.elementor-element {
     right: 0;
     left: auto;
   }
+}
+
+.woostify-inline-flex {
+  -js-display: inline-flex;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .home.blog .site-main .post-loop:first-child:last-child {

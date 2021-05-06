@@ -1,15 +1,15 @@
 .woostify-font-weight,
 .woostify-font-transform{
-    float: left;
-    width: 50%;
-    clear: none;
+	float: left;
+	width: 50%;
+	clear: none;
 }
 #customize-control-woostify_settings-body_line_height input{
-    line-height: 20px;
+	line-height: 20px;
 }
 
 .woostify-font-weight select {
-    border-right: 0;
+	border-right: 0;
 }
 
 span.select2-container.select2-container--default.select2-container--open li.select2-results__option {
@@ -21,7 +21,7 @@ span.select2-container.select2-container--default.select2-container--open{
 }
 
 .select2-selection__rendered li {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .select2-container--default .select2-selection--single,

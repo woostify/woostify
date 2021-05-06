@@ -891,29 +891,127 @@ class Woostify_Get_CSS {
 				border-radius: ' . esc_attr( $options['scroll_to_top_border_radius'] ) . 'px;
 			}
 		';
-
 		// Sticky Footer Bar.
 		$styles .= '
 			.woostify-sticky-footer-bar {
 				background: ' . esc_attr( $options['sticky_footer_bar_background'] ) . ';
 			}
-			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg,
+			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg path {
 				color: ' . esc_attr( $options['sticky_footer_bar_icon_color'] ) . ';
 				fill: ' . esc_attr( $options['sticky_footer_bar_icon_color'] ) . ';
 			}
-			.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+			.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg,
+			 .woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg path {
 				color: ' . esc_attr( $options['sticky_footer_bar_icon_hover_color'] ) . ';
 				fill: ' . esc_attr( $options['sticky_footer_bar_icon_hover_color'] ) . ';
 			}
 			.woostify-sticky-footer-bar .woostify-item-list-item__name {
 				color: ' . esc_attr( $options['sticky_footer_bar_text_color'] ) . ';
 				font-weight: ' . esc_attr( $options['sticky_footer_bar_text_font_weight'] ) . ';
-				font-size: ' . esc_attr( $options['sticky_footer_bar_text_font_size'] ) . 'px;
 			}
 			.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__name {
 				color: ' . esc_attr( $options['sticky_footer_bar_text_hover_color'] ) . ';
 			}
 		';
+
+		if ( is_customize_preview() ) {
+			$styles .= '
+			@media ( min-width: 769px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon {
+					margin-bottom: ' . esc_attr( $options['sticky_footer_bar_icon_spacing'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__name {
+					font-size: ' . esc_attr( $options['sticky_footer_bar_text_font_size'] ) . 'px;
+				}
+			}
+			@media ( min-width: 321px ) and ( max-width: 768px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['tablet_sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon {
+					margin-bottom: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_spacing'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__name {
+					font-size: ' . esc_attr( $options['tablet_sticky_footer_bar_text_font_size'] ) . 'px;
+				}
+			}
+			@media ( max-width: 320px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['mobile_sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon {
+					margin-bottom: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_spacing'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__name {
+					font-size: ' . esc_attr( $options['mobile_sticky_footer_bar_text_font_size'] ) . 'px;
+				}
+			}
+			';
+		} else {
+			$styles .= '
+			@media ( min-width: 992px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon {
+					margin-bottom: ' . esc_attr( $options['sticky_footer_bar_icon_spacing'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__name {
+					font-size: ' . esc_attr( $options['sticky_footer_bar_text_font_size'] ) . 'px;
+				}
+			}
+			@media ( min-width: 768px ) and ( max-width: 991px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['tablet_sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon {
+					margin-bottom: ' . esc_attr( $options['tablet_sticky_footer_bar_icon_spacing'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__name {
+					font-size: ' . esc_attr( $options['tablet_sticky_footer_bar_text_font_size'] ) . 'px;
+				}
+			}
+			@media ( max-width: 767px ) {
+				.woostify-sticky-footer-bar {
+					' . esc_attr( woostify_render_css_spacing( $options['mobile_sticky_footer_bar_padding'], 'padding' ) ) . ';
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
+					width: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;
+					height: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_font_size'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar ul.woostify-item-list li.woostify-item-list__item a .woostify-item-list-item__icon {
+					margin-bottom: ' . esc_attr( $options['mobile_sticky_footer_bar_icon_spacing'] ) . 'px;
+				}
+				.woostify-sticky-footer-bar .woostify-item-list-item__name {
+					font-size: ' . esc_attr( $options['mobile_sticky_footer_bar_text_font_size'] ) . 'px;
+				}
+			}
+			';
+		}
 
 		// Scroll to top.
 		$styles .= '
