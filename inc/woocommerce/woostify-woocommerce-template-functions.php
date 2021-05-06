@@ -586,7 +586,7 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 		$out_of_stock = $product->get_stock_quantity();
 
 		// Out of stock.
-		if ( ! $out_of_stock ) {
+		if ( $out_of_stock ) {
 			return;
 		}
 
