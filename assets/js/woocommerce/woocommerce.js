@@ -83,14 +83,12 @@ var woostifyQuantityMiniCart = function() {
 	var cartCountContainer = document.querySelectorAll( '.shopping-bag-button .shop-cart-count, .boostify-count-product' );
 	var infor              = document.querySelectorAll( '.mini-cart-product-infor' );
 
-	if ( ! infor.length || ! cartCountContainer ) {
+	if ( ! infor.length || ! cartCountContainer.length ) {
 		if ( cartCountContainer ) {
 			cartCountContainer.classList.add( 'hide' );
 		}
 		return;
 	}
-
-	cartCountContainer.classList.remove( 'hide' );
 
 	infor.forEach(
 		function( ele, i ) {
