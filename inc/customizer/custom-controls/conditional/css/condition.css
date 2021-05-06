@@ -22,3 +22,6 @@
 	height: 20px;
 	line-height: 20px;
 }
+#customize-theme-controls .customize-pane-child.open {
+	height: 100%;
+}

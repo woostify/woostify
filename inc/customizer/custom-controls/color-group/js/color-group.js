@@ -10,10 +10,12 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 		ready: function() {
 			'use strict';
 			let control        = this;
+			let selector       = document.querySelector( control.selector );
 			let control_wrap   = control.container.find( '.woostify-color-group-control' );
 			let control_id     = control_wrap.data( 'control_id' );
 			let color_format   = control.params.color_format;
 			let enable_opacity = control.params.enable_opacity;
+			let spacing        = 15;
 			let args           = {
 				el: '.btn',
 				theme: 'monolith',
@@ -71,25 +73,25 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 					pickr.on(
 						'init',
 						function( instance ) {
-							let appNode        = instance._root.app;
-							appNode.style.top  = '100%';
-							appNode.style.left = '0';
-						}
-					).on(
-						'show',
-						function( color, instance ) {
-							let app_node        = instance._root.app;
-							let window_height = window.innerHeight;
-							let eb = app_node.getBoundingClientRect();
-							let pane = app_node.closest('ul.customize-pane-child');
+							let pane                    = selector.closest( 'ul.customize-pane-child' );
+							let control_wrap_dom        = control_wrap.get( 0 );
+							let control_wrap_dom_offset = control_wrap_dom.querySelector( '.color-group-wrap' ).getBoundingClientRect().bottom;
+							let pane_height             = pane.scrollHeight > pane.clientHeight ? pane.scrollHeight : pane.clientHeight;
 
-							console.log(eb.height, pane.innerHeight)
-
-							app_node.style.top  = '100%';
-							app_node.style.left = '0';
+							setPopupPickerPosition( instance, pane_height, control_wrap_dom_offset );
 						}
 					)
-					.on(
+					pickr.on(
+						'show',
+						function( color, instance ) {
+							let pane                    = selector.closest( 'ul.customize-pane-child' );
+							let control_wrap_dom        = control_wrap.get( 0 );
+							let control_wrap_dom_offset = control_wrap_dom.querySelector( '.color-group-wrap' ).getBoundingClientRect().bottom;
+							let pane_height             = pane.scrollHeight > pane.clientHeight ? pane.scrollHeight : pane.clientHeight;
+
+							setPopupPickerPosition( instance, pane_height, control_wrap_dom_offset );
+						}
+					).on(
 						'change',
 						function( color ) {
 							control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) );
@@ -129,16 +131,23 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 							pickr2.on(
 								'init',
 								function( instance ) {
-									let appNode        = instance._root.app;
-									appNode.style.top  = '100%';
-									appNode.style.left = '0';
+									let pane                    = selector.closest( 'ul.customize-pane-child' );
+									let control_wrap_dom        = control_wrap.get( 0 );
+									let control_wrap_dom_offset = control_wrap_dom.querySelector( '.color-group-wrap' ).getBoundingClientRect().bottom;
+									let pane_height             = pane.scrollHeight > pane.clientHeight ? pane.scrollHeight : pane.clientHeight;
+
+									setPopupPickerPosition( instance, pane_height, control_wrap_dom_offset );
 								}
-							).on(
+							)
+							pickr2.on(
 								'show',
 								function( color, instance ) {
-									let appNode        = instance._root.app;
-									appNode.style.top  = '100%';
-									appNode.style.left = '0';
+									let pane                    = selector.closest( 'ul.customize-pane-child' );
+									let control_wrap_dom        = control_wrap.get( 0 );
+									let control_wrap_dom_offset = control_wrap_dom.querySelector( '.color-group-wrap' ).getBoundingClientRect().bottom;
+									let pane_height             = pane.scrollHeight > pane.clientHeight ? pane.scrollHeight : pane.clientHeight;
+
+									setPopupPickerPosition( instance, pane_height, control_wrap_dom_offset );
 								}
 							).on(
 								'change',
@@ -158,7 +167,24 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 				}
 			)
 
-			function colorFormat(color, format = 'rgba') {
+			function setPopupPickerPosition( instance, panel_height, control_wrap_offset) {
+				let app_node = instance._root.app;
+				let eb       = app_node.getBoundingClientRect();
+				if ( ( panel_height - ( control_wrap_offset + eb.height ) ) > 0 ) {
+					app_node.style.top          = '100%';
+					app_node.style.bottom       = 'auto';
+					app_node.style.marginTop    = '15px';
+					app_node.style.marginBottom = '0';
+				} else {
+					app_node.style.top          = 'auto';
+					app_node.style.bottom       = '100%';
+					app_node.style.marginTop    = '0';
+					app_node.style.marginBottom = '15px';
+				}
+				app_node.style.left = '0';
+			}
+
+			function colorFormat( color, format = 'rgba' ) {
 				// hsva.toHSVA() - Converts the object to a hsva array.
 				// hsva.toHSLA() - Converts the object to a hsla array.
 				// hsva.toRGBA() - Converts the object to a rgba array.
@@ -188,10 +214,10 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 				return new_color;
 			}
 
-			control_wrap.find( '.pcr-app.visible' ).css(
+			control_wrap.find( '.pcr-app' ).css(
 				{
 					'top': '100%',
-					'left': 0
+					'left': '0'
 				}
 			)
 		},
