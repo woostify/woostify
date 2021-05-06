@@ -69,6 +69,27 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 					let pickr                  = new Pickr( args );
 					$( args.el ).css( 'color', '' !== args.default ? args.default : ( enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)' ) );
 					pickr.on(
+						'init',
+						function( instance ) {
+							let appNode        = instance._root.app;
+							appNode.style.top  = '100%';
+							appNode.style.left = '0';
+						}
+					).on(
+						'show',
+						function( color, instance ) {
+							let app_node        = instance._root.app;
+							let window_height = window.innerHeight;
+							let eb = app_node.getBoundingClientRect();
+							let pane = app_node.closest('ul.customize-pane-child');
+
+							console.log(eb.height, pane.innerHeight)
+
+							app_node.style.top  = '100%';
+							app_node.style.left = '0';
+						}
+					)
+					.on(
 						'change',
 						function( color ) {
 							control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) );
@@ -76,9 +97,8 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 					).on(
 						'clear',
 						function( instance ) {
-							let default_val                 = '';
-							instance.options.el.style.color = default_val;
-							control.settings[idx].set( default_val );
+							instance.options.el.style.color = 'rgba(255,255,255,0)';
+							control.settings[idx].set( instance.options.default );
 						},
 					);
 					pickr.applyColor();
@@ -107,6 +127,20 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 							let pickr2                 = new Pickr( args );
 							$( args.el ).css( 'color', '' !== args.default ? args.default : ( enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)' ) );
 							pickr2.on(
+								'init',
+								function( instance ) {
+									let appNode        = instance._root.app;
+									appNode.style.top  = '100%';
+									appNode.style.left = '0';
+								}
+							).on(
+								'show',
+								function( color, instance ) {
+									let appNode        = instance._root.app;
+									appNode.style.top  = '100%';
+									appNode.style.left = '0';
+								}
+							).on(
 								'change',
 								function( color ) {
 									control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) );
@@ -114,9 +148,8 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 							).on(
 								'clear',
 								function( instance ) {
-									let default_val                 = '';
-									instance.options.el.style.color = default_val;
-									control.settings[idx].set( default_val );
+									instance.options.el.style.color = 'rgba(255,255,255,0)';
+									control.settings[idx].set( instance.options.default );
 								},
 							);
 							pickr2.applyColor();
@@ -154,6 +187,13 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 				}
 				return new_color;
 			}
+
+			control_wrap.find( '.pcr-app.visible' ).css(
+				{
+					'top': '100%',
+					'left': 0
+				}
+			)
 		},
 	},
 );
