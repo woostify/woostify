@@ -80,15 +80,17 @@ var woostifyStockQuantityProgressBar = function() {
 
 // Product quantity on mini cart.
 var woostifyQuantityMiniCart = function() {
-	var cartCountContainer = document.querySelectorAll( '.shopping-bag-button .shop-cart-count, .boostify-count-product' );
+	var cartCountContainer = document.querySelector( '.shopping-bag-button .shop-cart-count, .boostify-count-product' );
 	var infor              = document.querySelectorAll( '.mini-cart-product-infor' );
 
-	if ( ! infor.length || ! cartCountContainer.length ) {
+	if ( ! infor.length || ! cartCountContainer ) {
 		if ( cartCountContainer ) {
 			cartCountContainer.classList.add( 'hide' );
 		}
 		return;
 	}
+
+	cartCountContainer.classList.remove( 'hide' );
 
 	infor.forEach(
 		function( ele, i ) {
@@ -223,7 +225,7 @@ var woostifyQuantityMiniCart = function() {
 
 var updateHeaderCartPrice = function () {
 	var total                    = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
-		headerCartPriceContainer = document.querySelectorAll( '.woostify-header-total-price, .boostify-subtotal' ),
+		headerCartPriceContainer = document.querySelectorAll( '.woostify-header-total-price' ),
 		currencySymbol           = document.querySelectorAll( '.woostify-header-total-price .woocommerce-Price-currencySymbol, .boostify-subtotal .woocommerce-Price-currencySymbol' );
 	if ( headerCartPriceContainer.length ) {
 		for ( var si = 0, sc = headerCartPriceContainer.length; si < sc; si++ ) {
