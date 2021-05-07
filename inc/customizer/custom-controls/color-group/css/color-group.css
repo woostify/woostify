@@ -102,6 +102,7 @@
 	display: none;
 	margin-top: 15px;
 	box-sizing: border-box;
+	left: 0 !important
 }
 
 .woostify-color-group-control .pcr-app.visible {

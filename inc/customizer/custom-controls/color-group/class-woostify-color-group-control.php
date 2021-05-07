@@ -138,7 +138,7 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 						<div class="woostify-color-picker-btn">
 							<span class="woostify-color-group-btn btn-<?php echo esc_attr( $btn_id ); ?>"></span>
 							<?php if ( ! empty( $this->tooltips ) ) { ?>
-								<span class="btn-tooltip"><?php echo esc_attr( $this->tooltips[ $setting_k ] ); ?></span>
+								<span class="btn-tooltip"><?php echo esc_html( $this->tooltips[ $setting_k ] ); ?></span>
 							<?php } ?>
 						</div>
 					<?php } ?>

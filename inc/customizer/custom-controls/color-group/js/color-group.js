@@ -4,18 +4,16 @@
  * @package woostify
  */
 
-const $ = jQuery;
+const $ = jQuery
 wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.extend(
 	{
-		ready: function() {
-			'use strict';
-			let control        = this;
-			let selector       = document.querySelector( control.selector );
-			let control_wrap   = control.container.find( '.woostify-color-group-control' );
-			let control_id     = control_wrap.data( 'control_id' );
-			let color_format   = control.params.color_format;
-			let enable_opacity = control.params.enable_opacity;
-			let spacing        = 15;
+		ready: function () {
+			'use strict'
+			let control        = this
+			let control_wrap   = control.container.find( '.woostify-color-group-control' )
+			let control_id     = control_wrap.data( 'control_id' )
+			let color_format   = control.params.color_format
+			let enable_opacity = control.params.enable_opacity
 			let args           = {
 				el: '.btn',
 				theme: 'monolith',
@@ -57,132 +55,80 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 							clear: true,
 						},
 				},
-			};
+			}
 			$.each(
 				control.params.settings,
-				function( idx, obj ) {
-					let btn_id_arr             = obj.split( '[' );
-					let btn_id                 = ('undefined' === typeof btn_id_arr[1]) ? btn_id_arr[0] : btn_id_arr[1].split( ']' )[0];
+				function ( idx, obj ) {
+					let btn_id_arr             = obj.split( '[' )
+					let btn_id                 = (
+						'undefined' === typeof btn_id_arr[1]
+					) ? btn_id_arr[0] : btn_id_arr[1].split( ']' )[0]
 					args.el                    = '.btn-' + btn_id
 					args.container             = '.woostify-color-group-control-' + control_id
-					args.default               = control.settings[idx].get();
-					args.defaultRepresentation = color_format.toUpperCase();
-					args.lockOpacity           = ! enable_opacity;
-					let pickr                  = new Pickr( args );
-					$( args.el ).css( 'color', '' !== args.default ? args.default : ( enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)' ) );
+					args.default               = control.settings[idx].get()
+					args.defaultRepresentation = color_format.toUpperCase()
+					args.lockOpacity           = ! enable_opacity
+					let pickr                  = new Pickr( args )
+					$( args.el ).css( 'color', '' !== args.default ? args.default : ( enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)' ) )
 					pickr.on(
-						'init',
-						function( instance ) {
-							let pane                    = selector.closest( 'ul.customize-pane-child' );
-							let control_wrap_dom        = control_wrap.get( 0 );
-							let control_wrap_dom_offset = control_wrap_dom.querySelector( '.color-group-wrap' ).getBoundingClientRect().bottom;
-							let pane_height             = pane.scrollHeight > pane.clientHeight ? pane.scrollHeight : pane.clientHeight;
-
-							setPopupPickerPosition( instance, pane_height, control_wrap_dom_offset );
-						}
-					)
-					pickr.on(
-						'show',
-						function( color, instance ) {
-							let pane                    = selector.closest( 'ul.customize-pane-child' );
-							let control_wrap_dom        = control_wrap.get( 0 );
-							let control_wrap_dom_offset = control_wrap_dom.querySelector( '.color-group-wrap' ).getBoundingClientRect().bottom;
-							let pane_height             = pane.scrollHeight > pane.clientHeight ? pane.scrollHeight : pane.clientHeight;
-
-							setPopupPickerPosition( instance, pane_height, control_wrap_dom_offset );
-						}
-					).on(
 						'change',
-						function( color ) {
-							control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) );
+						function ( color ) {
+							control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) )
 						},
 					).on(
 						'clear',
-						function( instance ) {
-							instance.options.el.style.color = 'rgba(255,255,255,0)';
-							control.settings[idx].set( instance.options.default );
+						function ( instance ) {
+							instance.options.el.style.color = 'rgba(255,255,255,0)'
+							control.settings[idx].set( instance.options.default )
 						},
-					);
-					pickr.applyColor();
+					)
+					pickr.applyColor()
 				},
-			);
+			)
 			control.container.find( '.woostify-reset' ).on(
 				'click',
-				function() {
-					control.container.find( 'div.pcr-app' ).remove();
-					let inputs          = control.container.find( 'input.color-group-value' );
-					let buttons         = control.container.find( '.woostify-color-group-btn' );
-					let container       = $( this ).closest( '.woostify-color-group-control' );
-					let container_class = container.attr( 'class' ).split( ' ' )[2];
+				function () {
+					control.container.find( 'div.pcr-app' ).remove()
+					let inputs          = control.container.find( 'input.color-group-value' )
+					let buttons         = control.container.find( '.woostify-color-group-btn' )
+					let container       = $( this ).closest( '.woostify-color-group-control' )
+					let container_class = container.attr( 'class' ).split( ' ' )[2]
 					$.each(
 						control.params.settings,
-						function( idx ) {
-							let reset_value = $( inputs[idx] ).data( 'reset_value' );
-							$( buttons[idx] ).css( 'color', reset_value );
-							control.settings[idx].set( reset_value );
+						function ( idx ) {
+							let reset_value = $( inputs[idx] ).data( 'reset_value' )
+							$( buttons[idx] ).css( 'color', reset_value )
+							control.settings[idx].set( reset_value )
 
 							args.el                    = buttons[idx]
 							args.container             = '.' + container_class
 							args.default               = reset_value
 							args.defaultRepresentation = color_format.toUpperCase()
 							args.lockOpacity           = ! enable_opacity
-							let pickr2                 = new Pickr( args );
-							$( args.el ).css( 'color', '' !== args.default ? args.default : ( enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)' ) );
-							pickr2.on(
-								'init',
-								function( instance ) {
-									let pane                    = selector.closest( 'ul.customize-pane-child' );
-									let control_wrap_dom        = control_wrap.get( 0 );
-									let control_wrap_dom_offset = control_wrap_dom.querySelector( '.color-group-wrap' ).getBoundingClientRect().bottom;
-									let pane_height             = pane.scrollHeight > pane.clientHeight ? pane.scrollHeight : pane.clientHeight;
-
-									setPopupPickerPosition( instance, pane_height, control_wrap_dom_offset );
-								}
+							let pickr2                 = new Pickr( args )
+							$( args.el ).css(
+								'color',
+								'' !== args.default ? args.default : (
+								enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)'
+								)
 							)
 							pickr2.on(
-								'show',
-								function( color, instance ) {
-									let pane                    = selector.closest( 'ul.customize-pane-child' );
-									let control_wrap_dom        = control_wrap.get( 0 );
-									let control_wrap_dom_offset = control_wrap_dom.querySelector( '.color-group-wrap' ).getBoundingClientRect().bottom;
-									let pane_height             = pane.scrollHeight > pane.clientHeight ? pane.scrollHeight : pane.clientHeight;
-
-									setPopupPickerPosition( instance, pane_height, control_wrap_dom_offset );
-								}
-							).on(
 								'change',
-								function( color ) {
-									control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) );
+								function ( color ) {
+									control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) )
 								},
 							).on(
 								'clear',
-								function( instance ) {
-									instance.options.el.style.color = 'rgba(255,255,255,0)';
-									control.settings[idx].set( instance.options.default );
+								function ( instance ) {
+									instance.options.el.style.color = 'rgba(255,255,255,0)'
+									control.settings[idx].set( instance.options.default )
 								},
-							);
-							pickr2.applyColor();
-						}
-					);
-				}
+							)
+							pickr2.applyColor()
+						},
+					)
+				},
 			)
-
-			function setPopupPickerPosition( instance, panel_height, control_wrap_offset) {
-				let app_node = instance._root.app;
-				let eb       = app_node.getBoundingClientRect();
-				if ( ( panel_height - ( control_wrap_offset + eb.height ) ) > 0 ) {
-					app_node.style.top          = '100%';
-					app_node.style.bottom       = 'auto';
-					app_node.style.marginTop    = '15px';
-					app_node.style.marginBottom = '0';
-				} else {
-					app_node.style.top          = 'auto';
-					app_node.style.bottom       = '100%';
-					app_node.style.marginTop    = '0';
-					app_node.style.marginBottom = '15px';
-				}
-				app_node.style.left = '0';
-			}
 
 			function colorFormat( color, format = 'rgba' ) {
 				// hsva.toHSVA() - Converts the object to a hsva array.
@@ -191,35 +137,28 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 				// hsva.toHEXA() - Converts the object to a hexa-decimal array.
 				// hsva.toCMYK() - Converts the object to a cmyk array.
 				// hsva.clone() - Clones the color object.
-				let new_color;
+				let new_color
 				switch ( format ) {
 					case 'rgba':
-						new_color = color.toRGBA();
-						break;
+						new_color = color.toRGBA()
+						break
 					case 'hex':
-						new_color = color.toHEXA();
-						break;
+						new_color = color.toHEXA()
+						break
 					case 'hsva':
-						new_color = color.toHSVA();
-						break;
+						new_color = color.toHSVA()
+						break
 					case 'hsla':
-						new_color = color.toHSLA();
-						break;
+						new_color = color.toHSLA()
+						break
 					case 'cmyk':
-						new_color = color.toCMYK();
-						break;
+						new_color = color.toCMYK()
+						break
 					default:
-						new_color = color.clone();
+						new_color = color.clone()
 				}
-				return new_color;
+				return new_color
 			}
-
-			control_wrap.find( '.pcr-app' ).css(
-				{
-					'top': '100%',
-					'left': '0'
-				}
-			)
 		},
 	},
-);
+)
