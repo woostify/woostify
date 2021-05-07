@@ -13,5 +13,6 @@
 
 	<body <?php body_class(); ?>>
 		<?php
-			wp_body_open();
-			do_action( 'woostify_theme_header' );
+		wp_body_open();
+
+		do_action( 'woostify_theme_header' );

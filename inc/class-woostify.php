@@ -844,6 +844,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 					'remove_hooks' => array( 'woostify_template_header' ),
 				)
 			);
+
 			$elementor_theme_manager->register_location(
 				'footer',
 				array(

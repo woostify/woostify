@@ -2362,9 +2362,24 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 	 * Sticky Footer Bar
 	 */
 	function woostify_sticky_footer_bar() {
+		if ( woostify_is_elementor_editor() ) {
+			return;
+		}
 		$options = woostify_options( false );
 		if ( ! $options['sticky_footer_bar_enable'] ) {
 			return;
+		}
+
+		if ( woostify_is_woocommerce_activated() ) {
+			if ( is_cart() && $options['sticky_footer_bar_hide_on_cart_page'] ) {
+				return;
+			}
+			if ( is_product() && $options['sticky_footer_bar_hide_on_product_single'] ) {
+				return;
+			}
+			if ( is_checkout() && $options['sticky_footer_bar_hide_on_checkout_page'] ) {
+				return;
+			}
 		}
 
 		$icons = woostify_fetch_all_svg_icon();

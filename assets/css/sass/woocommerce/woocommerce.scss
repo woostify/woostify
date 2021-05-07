@@ -775,6 +775,13 @@ $size: 40px;
 	}
 }
 
+.woocommerce-notices-wrapper {
+	.woocommerce-error {
+	    flex-direction: unset;
+		display: flex;
+	}
+}
+
 // Wishlist icon bottom right
 .loop-wrapper-wishlist {
 	position: absolute;
