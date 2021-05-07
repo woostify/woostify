@@ -108,11 +108,11 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 								?>
 								<label for="<?php echo esc_attr( $type_field_id ); ?>"><?php echo esc_html__( 'Type', 'woostify' ); ?></label>
 								<select name="<?php echo esc_attr( $type_field_name ); ?>" id="<?php echo esc_attr( $type_field_id ); ?>" class="woostify-adv-list-input woostify-adv-list-select">
-									<option value="custom" <?php selected( $val->type, 'custom' ); ?>><?php esc_html_e( 'Custom', 'woositify' ); ?></option>
-									<option value="wishlist" <?php selected( $val->type, 'wishlist' ); ?>><?php esc_html_e( 'Wishlist', 'woositify' ); ?></option>
-									<option value="cart" <?php selected( $val->type, 'cart' ); ?>><?php esc_html_e( 'Cart', 'woositify' ); ?></option>
-									<option value="shortcode" <?php selected( $val->type, 'shortcode' ); ?>><?php esc_html_e( 'Shortcode', 'woositify' ); ?></option>
-									<option value="search" <?php selected( $val->type, 'search' ); ?>><?php esc_html_e( 'Search', 'woositify' ); ?></option>
+									<option value="custom" <?php selected( $val->type, 'custom' ); ?>><?php esc_html_e( 'Custom', 'woostify' ); ?></option>
+									<option value="wishlist" <?php selected( $val->type, 'wishlist' ); ?>><?php esc_html_e( 'Wishlist', 'woostify' ); ?></option>
+									<option value="cart" <?php selected( $val->type, 'cart' ); ?>><?php esc_html_e( 'Cart', 'woostify' ); ?></option>
+									<option value="shortcode" <?php selected( $val->type, 'shortcode' ); ?>><?php esc_html_e( 'Shortcode', 'woostify' ); ?></option>
+									<option value="search" <?php selected( $val->type, 'search' ); ?>><?php esc_html_e( 'Search', 'woostify' ); ?></option>
 								</select>
 							</div>
 							<div class="shortcode-field woostify-adv-list-control customize-control-text" data-field_name="shortcode">

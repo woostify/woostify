@@ -183,7 +183,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			?>
 			<tr class="form-field">
 				<th scope="row" valign="top">
-					<label><?php esc_html_e( 'Single ajax add to cart', 'osito' ); ?></label>
+					<label><?php esc_html_e( 'Single ajax add to cart', 'woostify' ); ?></label>
 				</th>
 				<td class="theme-form-field">
 					<select name="cat_single_ajax_add_to_cart">
