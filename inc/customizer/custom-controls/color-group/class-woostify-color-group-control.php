@@ -113,8 +113,19 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	 */
 	public function to_json() {
 		parent::to_json();
-		$this->json['tab'] = $this->tab;
+		$options = woostify_options( false );
 
+		$this->json['swatches']        = array(
+			$options['theme_color'],
+			$options['primary_menu_color'],
+			$options['primary_sub_menu_color'],
+			$options['heading_color'],
+			$options['text_color'],
+			$options['accent_color'],
+			$options['extra_color_1'],
+			$options['extra_color_2'],
+		);
+		$this->json['tab']             = $this->tab;
 		$this->json['tooltips']        = $this->tooltips;
 		$this->json['color_format']    = $this->color_format;
 		$this->json['enable_opacity']  = $this->enable_opacity;
