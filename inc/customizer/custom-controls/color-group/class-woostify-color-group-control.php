@@ -50,6 +50,14 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	public $enable_opacity = true;
 
 	/**
+	 * Enable Swatches
+	 *
+	 * @access public
+	 * @var boolean
+	 */
+	public $enable_swatches = true;
+
+	/**
 	 * Renders the control wrapper and calls $this->render_content() for the internals.
 	 *
 	 * @since 3.4.0
@@ -107,9 +115,10 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 		parent::to_json();
 		$this->json['tab'] = $this->tab;
 
-		$this->json['tooltips']       = $this->tooltips;
-		$this->json['color_format']   = $this->color_format;
-		$this->json['enable_opacity'] = $this->enable_opacity;
+		$this->json['tooltips']        = $this->tooltips;
+		$this->json['color_format']    = $this->color_format;
+		$this->json['enable_opacity']  = $this->enable_opacity;
+		$this->json['enable_swatches'] = $this->enable_swatches;
 	}
 
 	/**

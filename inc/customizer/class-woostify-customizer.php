@@ -99,7 +99,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				),
 			);
 			$args                    = array(
-				'background_color'                        => '#ffffff',
+				'background_color'                         => '#ffffff',
 				// CONTAINER.
 				'container_width'                          => '1200',
 				'default_container'                        => 'normal',
@@ -121,6 +121,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'heading_color'                            => '#2b2b2b',
 				'text_color'                               => '#8f8f8f',
 				'accent_color'                             => '#2b2b2b',
+				'extra_color_1'                            => '#fd0',
+				'extra_color_2'                            => '#fd0',
 				// TOPBAR.
 				'topbar_display'                           => true,
 				'topbar_text_color'                        => '#ffffff',

@@ -145,3 +145,51 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+// Extra Color 1.
+$wp_customize->add_setting(
+	'woostify_setting[extra_color_1]',
+	array(
+		'default'           => $defaults['extra_color_1'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[extra_color_1]',
+		array(
+			'label'           => __( 'Extra Color 1', 'woostify' ),
+			'section'         => 'woostify_color',
+			'settings'        => array(
+				'woostify_setting[extra_color_1]',
+			),
+			'enable_swatches' => false,
+		)
+	)
+);
+
+// Extra Color 2.
+$wp_customize->add_setting(
+	'woostify_setting[extra_color_2]',
+	array(
+		'default'           => $defaults['extra_color_2'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[extra_color_2]',
+		array(
+			'label'           => __( 'Extra Color 2', 'woostify' ),
+			'section'         => 'woostify_color',
+			'settings'        => array(
+				'woostify_setting[extra_color_2]',
+			),
+			'enable_swatches' => false,
+		)
+	)
+);

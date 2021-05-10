@@ -9,12 +9,13 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 	{
 		ready: function () {
 			'use strict'
-			let control        = this
-			let control_wrap   = control.container.find( '.woostify-color-group-control' )
-			let control_id     = control_wrap.data( 'control_id' )
-			let color_format   = control.params.color_format
-			let enable_opacity = control.params.enable_opacity
-			let args           = {
+			let control         = this
+			let control_wrap    = control.container.find( '.woostify-color-group-control' )
+			let control_id      = control_wrap.data( 'control_id' )
+			let color_format    = control.params.color_format
+			let enable_opacity  = control.params.enable_opacity
+			let enable_swatches = control.params.enable_swatches
+			let args            = {
 				el: '.btn',
 				theme: 'monolith',
 				autoReposition: false,
@@ -25,7 +26,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 				default: 'rgba(255,255,255,0)',
 					defaultRepresentation: 'RGBA',
 					adjustableNumbers: true,
-					swatches: [
+					swatches: ! enable_swatches ? false : [
 					'rgba(244, 67, 54, 1)',
 					'rgba(233, 30, 99, 0.95)',
 					'rgba(156, 39, 176, 0.9)',
