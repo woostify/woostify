@@ -330,13 +330,17 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 
 		// Gallery.
 		$gallery_id = $product->get_gallery_image_ids();
+
+		// Support <img> srcset attr.
+		$html_allowed                  = wp_kses_allowed_html( 'post' );
+		$html_allowed['img']['srcset'] = true;
 		?>
 
 		<div class="product-images">
 			<div id="product-images">
 				<figure class="image-item ez-zoom">
 					<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
-						<?php echo wp_kses_post( $product->get_image( 'woocommerce_single', array(), true ) ); ?>
+						<?php echo wp_kses( $product->get_image( 'woocommerce_single', array(), true ), $html_allowed ); ?>
 					</a>
 				</figure>
 				<?php
