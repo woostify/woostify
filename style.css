@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 Theme Name:   Woostify
 Theme URI:    https://woostify.com
@@ -7737,6 +7738,11 @@ header.elementor-element {
     padding-top: 0;
     padding-bottom: 0;
   }
+}
+
+#wc-stripe-payment-request-button-separator,
+#wc-stripe-payment-request-wrapper {
+  width: 100%;
 }
 
 .products {
