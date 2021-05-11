@@ -58,6 +58,14 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	public $enable_swatches = true;
 
 	/**
+	 * Is global color
+	 *
+	 * @access public
+	 * @var boolean
+	 */
+	public $is_global_color = false;
+
+	/**
 	 * Renders the control wrapper and calls $this->render_content() for the internals.
 	 *
 	 * @since 3.4.0
@@ -65,6 +73,10 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	protected function render() {
 		$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
 		$class = 'customize-control customize-control-' . $this->type;
+
+		if ( $this->is_global_color ) {
+			$class .= ' woostify-global-color';
+		}
 
 		printf( '<li id="%s" class="%s" data-tab="%s">', esc_attr( $id ), esc_attr( $class ), esc_attr( $this->tab ) );
 		$this->render_content();

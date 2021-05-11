@@ -28,6 +28,7 @@ $wp_customize->add_control(
 				'woostify_setting[theme_color]',
 			),
 			'enable_swatches' => false,
+			'is_global_color' => true,
 		)
 	)
 );
@@ -52,6 +53,7 @@ $wp_customize->add_control(
 				'woostify_setting[primary_menu_color]',
 			),
 			'enable_swatches' => false,
+			'is_global_color' => true,
 		)
 	)
 );
@@ -76,6 +78,7 @@ $wp_customize->add_control(
 				'woostify_setting[primary_sub_menu_color]',
 			),
 			'enable_swatches' => false,
+			'is_global_color' => true,
 		)
 	)
 );
@@ -100,6 +103,7 @@ $wp_customize->add_control(
 				'woostify_setting[heading_color]',
 			),
 			'enable_swatches' => false,
+			'is_global_color' => true,
 		)
 	)
 );
@@ -124,6 +128,7 @@ $wp_customize->add_control(
 				'woostify_setting[text_color]',
 			),
 			'enable_swatches' => false,
+			'is_global_color' => true,
 		)
 	)
 );
@@ -148,6 +153,7 @@ $wp_customize->add_control(
 				'woostify_setting[accent_color]',
 			),
 			'enable_swatches' => false,
+			'is_global_color' => true,
 		)
 	)
 );
@@ -172,6 +178,7 @@ $wp_customize->add_control(
 				'woostify_setting[extra_color_1]',
 			),
 			'enable_swatches' => false,
+			'is_global_color' => true,
 		)
 	)
 );
@@ -196,6 +203,7 @@ $wp_customize->add_control(
 				'woostify_setting[extra_color_2]',
 			),
 			'enable_swatches' => false,
+			'is_global_color' => true,
 		)
 	)
 );
