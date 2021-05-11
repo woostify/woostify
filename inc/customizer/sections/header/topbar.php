@@ -55,7 +55,7 @@ $wp_customize->add_setting(
 	'woostify_setting[topbar_text_color]',
 	array(
 		'default'           => $defaults['topbar_text_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
