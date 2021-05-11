@@ -88,19 +88,8 @@ class Woostify_Elementor_Single_Product_Images extends Widget_Base {
 	 * Render
 	 */
 	public function render() {
-		$product_id = woostify_get_product_id();
-		$product    = wc_get_product( $product_id );
-
-		if ( empty( $product ) ) {
-			return;
-		}
-
-		$GLOBALS['product'] = $product;
-
 		woocommerce_show_product_sale_flash();
 		woocommerce_show_product_images();
-
-		unset( $GLOBALS['product'] );
 	}
 }
 Plugin::instance()->widgets_manager->register_widget_type( new Woostify_Elementor_Single_Product_Images() );
