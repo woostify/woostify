@@ -23,7 +23,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 				container: '.woostify-color-group-control',
 				lockOpacity: false,
 				comparison: false,
-				default: 'rgba(255,255,255,0)',
+				default: '',
 					defaultRepresentation: 'RGBA',
 					adjustableNumbers: true,
 					swatches: ! enable_swatches ? false : swatches,
@@ -135,14 +135,15 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 						) ? btn_id_arr[0] : btn_id_arr[1].split( ']' )[0]
 						args.el                    = '.btn-' + btn_id
 						args.container             = '.woostify-color-group-control-' + control_id
-						args.default               = control.settings[idx].get()
+						args.default               = '' !== control.settings[idx].get() ? control.settings[idx].get() : 'rgba(255,255,255,0)'
 						args.defaultRepresentation = color_format.toUpperCase()
 						args.swatches              = ! enable_swatches ? false : control.params.swatches
 						let pickr                  = new Pickr( args )
-						jQuery( args.el ).css( 'color', '' !== args.default ? args.default : ( enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)' ) )
+						jQuery( args.el ).css( 'color', args.default )
 						pickr.on(
 							'change',
-							function ( color ) {
+							function ( color, source, instance ) {
+								instance.options.el.style.color = colorFormat( color, color_format ).toString( 0 )
 								control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) )
 							},
 						).on(
@@ -170,7 +171,6 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 												function( setting_control ) {
 													setting_control.container.find( 'div.pcr-app' ).remove()
 													let setting_color_format     = setting_control.params.color_format
-													let setting_enable_opacity   = setting_control.params.enable_opacity
 													let setting_enable_swatches  = setting_control.params.enable_swatches
 													let setting_swatches         = setting_control.params.swatches
 													setting_swatches[swatch_idx] = new_color
@@ -183,14 +183,15 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 															) ? btn_id_arr[0] : btn_id_arr[1].split( ']' )[0]
 															args.el                    = '.btn-' + btn_id
 															args.container             = '.woostify-color-group-control-' + control_id
-															args.default               = setting_control.settings[idx].get()
+															args.default               = '' !== setting_control.settings[idx].get() ? setting_control.settings[idx].get() : 'rgba(255,255,255,0)'
 															args.defaultRepresentation = setting_color_format.toUpperCase()
 															args.swatches              = ! setting_enable_swatches ? false : setting_swatches
 															let pickr                  = new Pickr( args )
-															jQuery( args.el ).css( 'color', '' !== args.default ? args.default : 'rgba(255,255,255,0)' )
+															jQuery( args.el ).css( 'color', args.default )
 															pickr.on(
 																'change',
-																function ( color ) {
+																function ( color, source, instance ) {
+																	instance.options.el.style.color = colorFormat( color, color_format ).toString( 0 )
 																	setting_control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) )
 																},
 															).on(
