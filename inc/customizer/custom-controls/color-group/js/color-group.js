@@ -72,13 +72,10 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 							args.container             = '.' + container_class
 							args.default               = reset_value
 							args.defaultRepresentation = color_format.toUpperCase()
-							args.lockOpacity           = ! enable_opacity
 							let pickr2                 = new Pickr( args )
 							jQuery( args.el ).css(
 								'color',
-								'' !== args.default ? args.default : (
-								enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)'
-								)
+								'' !== args.default ? args.default : 'rgba(255,255,255,0)'
 							)
 							pickr2.on(
 								'change',
@@ -140,7 +137,6 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 						args.container             = '.woostify-color-group-control-' + control_id
 						args.default               = control.settings[idx].get()
 						args.defaultRepresentation = color_format.toUpperCase()
-						args.lockOpacity           = ! enable_opacity
 						args.swatches              = ! enable_swatches ? false : control.params.swatches
 						let pickr                  = new Pickr( args )
 						jQuery( args.el ).css( 'color', '' !== args.default ? args.default : ( enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)' ) )
@@ -166,9 +162,11 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 									let pickrs    = document.querySelectorAll( '.customize-control-woostify-color-group:not(.woostify-global-color)' );
 									pickrs.forEach(
 										function( pobj, pidx ) {
-											let control_id = pobj.children[0].getAttribute( 'data-control_id' );
+											let control_id   = pobj.children[0].getAttribute( 'data-control_id' );
+											let prefix       = pobj.children[0].getAttribute( 'data-prefix' );
+											let setting_name = '' === prefix ? control_id : prefix + '[' + control_id + ']'
 											wp.customize.control(
-												'woostify_setting[' + control_id + ']',
+												setting_name,
 												function( setting_control ) {
 													setting_control.container.find( 'div.pcr-app' ).remove()
 													let setting_color_format     = setting_control.params.color_format
@@ -187,10 +185,9 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 															args.container             = '.woostify-color-group-control-' + control_id
 															args.default               = setting_control.settings[idx].get()
 															args.defaultRepresentation = setting_color_format.toUpperCase()
-															args.lockOpacity           = ! setting_enable_opacity
 															args.swatches              = ! setting_enable_swatches ? false : setting_swatches
 															let pickr                  = new Pickr( args )
-															jQuery( args.el ).css( 'color', '' !== args.default ? args.default : ( setting_enable_opacity ? 'rgba(255,255,255,0)' : 'rgb(255,255,255)' ) )
+															jQuery( args.el ).css( 'color', '' !== args.default ? args.default : 'rgba(255,255,255,0)' )
 															pickr.on(
 																'change',
 																function ( color ) {

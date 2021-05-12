@@ -24,6 +24,7 @@ $wp_customize->add_control(
 				'background_color',
 			),
 			'priority' => 5,
+			'prefix'   => '',
 		)
 	)
 );
