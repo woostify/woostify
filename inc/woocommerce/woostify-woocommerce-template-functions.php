@@ -583,12 +583,6 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 		$sale_text    = $options['shop_page_sale_text'];
 		$sale_percent = $options['shop_page_sale_percent'];
 		$final_price  = '';
-		$out_of_stock = $product->get_stock_quantity();
-
-		// Out of stock.
-		if ( $out_of_stock ) {
-			return;
-		}
 
 		if ( $sale ) {
 			// For simple product.
