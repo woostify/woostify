@@ -66,6 +66,14 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	public $is_global_color = false;
 
 	/**
+	 * Setting prefix
+	 *
+	 * @access public
+	 * @var string
+	 */
+	public $prefix = 'woostify_setting';
+
+	/**
 	 * Renders the control wrapper and calls $this->render_content() for the internals.
 	 *
 	 * @since 3.4.0
@@ -154,7 +162,7 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 		$control_id     = isset( $control_id_arr[1] ) ? explode( ']', $control_id_arr[1] )[0] : $control_id_arr[0];
 		$settings       = $this->settings;
 		?>
-		<div class="woostify-control-wrap woostify-color-group-control woostify-color-group-control-<?php echo esc_attr( $control_id ); ?>" data-control_id="<?php echo esc_attr( $control_id ); ?>">
+		<div class="woostify-control-wrap woostify-color-group-control woostify-color-group-control-<?php echo esc_attr( $control_id ); ?>" data-control_id="<?php echo esc_attr( $control_id ); ?>" data-prefix="<?php echo esc_attr( $this->prefix ); ?>">
 			<div class="color-group-wrap">
 				<?php if ( '' !== $this->label ) { ?>
 					<label class="customize-control-title"><?php echo esc_html( $this->label ); ?></label>
