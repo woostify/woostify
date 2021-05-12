@@ -190,6 +190,29 @@ $wp_customize->add_control(
 	)
 );
 
+// Primary parent menu color.
+$wp_customize->add_setting(
+	'woostify_setting[primary_menu_color]',
+	array(
+		'default'           => $defaults['primary_menu_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[primary_menu_color]',
+		array(
+			'label'    => __( 'Parent Menu Color', 'woostify' ),
+			'section'  => 'menu_font_section',
+			'settings' => array(
+				'woostify_setting[primary_menu_color]',
+			),
+		)
+	)
+);
+
 // Submenu divider.
 $wp_customize->add_setting(
 	'sub_menu_divider',
@@ -294,6 +317,29 @@ $wp_customize->add_control(
 					'edit' => true,
 					'unit' => 'px',
 				),
+			),
+		)
+	)
+);
+
+// Primary sub menu color.
+$wp_customize->add_setting(
+	'woostify_setting[primary_sub_menu_color]',
+	array(
+		'default'           => $defaults['primary_sub_menu_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[primary_sub_menu_color]',
+		array(
+			'label'    => __( 'Sub-menu Color', 'woostify' ),
+			'section'  => 'menu_font_section',
+			'settings' => array(
+				'woostify_setting[primary_sub_menu_color]',
 			),
 		)
 	)

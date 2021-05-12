@@ -137,9 +137,6 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 
 		$this->json['swatches']        = array(
 			$options['theme_color'],
-			$options['primary_menu_color'],
-			$options['primary_sub_menu_color'],
-			$options['heading_color'],
 			$options['text_color'],
 			$options['accent_color'],
 			$options['extra_color_1'],

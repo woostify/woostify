@@ -12,7 +12,6 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 			let control_wrap    = control.container.find( '.woostify-color-group-control' )
 			let control_id      = control_wrap.data( 'control_id' )
 			let color_format    = control.params.color_format
-			let enable_opacity  = control.params.enable_opacity
 			let enable_swatches = control.params.enable_swatches
 			let swatches        = control.params.swatches
 			let args            = {
@@ -44,9 +43,6 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 			}
 			let global_color_settings = [
 				'woostify_setting[theme_color]',
-				'woostify_setting[primary_menu_color]',
-				'woostify_setting[primary_sub_menu_color]',
-				'woostify_setting[heading_color]',
 				'woostify_setting[text_color]',
 				'woostify_setting[accent_color]',
 				'woostify_setting[extra_color_1]',
@@ -162,7 +158,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 									let new_color = instance._color.toHEXA().toString( 0 )
 									let pickrs    = document.querySelectorAll( '.customize-control-woostify-color-group:not(.woostify-global-color)' );
 									pickrs.forEach(
-										function( pobj, pidx ) {
+										function( pobj ) {
 											let control_id   = pobj.children[0].getAttribute( 'data-control_id' );
 											let prefix       = pobj.children[0].getAttribute( 'data-prefix' );
 											let setting_name = '' === prefix ? control_id : prefix + '[' + control_id + ']'
