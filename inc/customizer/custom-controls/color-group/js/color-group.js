@@ -14,6 +14,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 			let color_format    = control.params.color_format
 			let enable_swatches = control.params.enable_swatches
 			let swatches        = control.params.swatches
+			let swatchLabels    = control.params.swatchLabels
 			let args            = {
 				el: '.btn',
 				theme: 'monolith',
@@ -26,6 +27,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 					defaultRepresentation: 'RGBA',
 					adjustableNumbers: true,
 					swatches: ! enable_swatches ? false : swatches,
+					swatchLabels: swatchLabels,
 					useAsButton: true,
 					components: {
 						// Main components.
@@ -199,12 +201,55 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 															)
 
 															pickr.applyColor()
+
 														},
 													)
 												}
 											);
 										}
 									)
+									// Get all targets.
+									let targets = document.querySelectorAll( '[rel="tooltip"]' );
+
+									// Loop targets.
+									let target_length = targets.length;
+									for (let i = 0; i < target_length; i++) {
+										// Add listeners.
+										targets[i].addEventListener(
+											'mouseenter',
+											function ()
+											{
+												addTooltip( this, document.querySelector( '.woostify-swatch-tooltip' ) );
+											},
+											false
+										);
+										targets[i].addEventListener(
+											'mouseleave',
+											function ()
+											{
+												removeTooltip( this, document.querySelector( '.woostify-swatch-tooltip' ) );
+											},
+											false
+										);
+										targets[i].addEventListener(
+											'click',
+											function () {
+												// Get the active tooltip.
+												let tooltip = document.querySelector( '.woostify-swatch-tooltip' );
+												// Get the target.
+												let target = event.target.closest( '[rel="tooltip"]' );
+												// Check if the tooltip exists or not.
+												if (tooltip === null) {
+													// Add a tooltip.
+													addTooltip( target, tooltip );
+												} else {
+													// Remove a tooltip.
+													removeTooltip( target, tooltip );
+												}
+											},
+											false
+										);
+									}
 								}
 							)
 						}
@@ -213,6 +258,86 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 					},
 				)
 			}
+
+			// Get all targets.
+			let targets = document.querySelectorAll( '[rel="tooltip"]' );
+
+			// Loop targets.
+			let target_length = targets.length;
+			for (let i = 0; i < target_length; i++) {
+				// Add listeners.
+				targets[i].addEventListener(
+					'mouseenter',
+					function ()
+					{
+						addTooltip( this, document.querySelector( '.woostify-swatch-tooltip' ) );
+					},
+					false
+				);
+				targets[i].addEventListener(
+					'mouseleave',
+					function ()
+					{
+						removeTooltip( this, document.querySelector( '.woostify-swatch-tooltip' ) );
+					},
+					false
+				);
+				targets[i].addEventListener(
+					'click',
+					function () {
+						// Get the active tooltip.
+						let tooltip = document.querySelector( '.woostify-swatch-tooltip' );
+						// Get the target.
+						let target = event.target.closest( '[rel="tooltip"]' );
+						// Check if the tooltip exists or not.
+						if (tooltip === null) {
+							// Add a tooltip.
+							addTooltip( target, tooltip );
+						} else {
+							// Remove a tooltip.
+							removeTooltip( target, tooltip );
+						}
+					},
+					false
+				);
+			}
+			// Add a tooltip.
+			function addTooltip(target, tooltip)
+			{
+				// Get the title.
+				var title = target.getAttribute( 'title' );
+				// Make sure that title not is null or empty.
+				if (title === null || title === '' || tooltip !== null) {
+					return false;
+				}
+				// Remove the title of the target.
+				target.removeAttribute( 'title' );
+				// Add a tooltip.
+				tooltip = document.createElement( 'div' );
+				tooltip.setAttribute( 'class', 'woostify-swatch-tooltip' );
+				tooltip.innerHTML = title;
+				target.insertAdjacentElement( 'beforeend', tooltip );
+
+				// Initiate the tooltip.
+				var bounding = tooltip.getBoundingClientRect();
+				// Check if the tooltip is below the viewport.
+				if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+					tooltip.classList.add( 'top' );
+				} else {
+					tooltip.classList.add( 'bottom' );
+				}
+			}
+
+			// Remove a tooltip.
+			function removeTooltip(target, tooltip)
+			{
+				if (tooltip !== null) {
+					// Reset the title and remove the tooltip.
+					target.setAttribute( 'title', tooltip.innerHTML );
+					tooltip.remove();
+				}
+
+			} // End of the removeTooltip method.
 		},
 	},
 )
