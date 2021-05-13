@@ -317,15 +317,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 				tooltip.setAttribute( 'class', 'woostify-swatch-tooltip' );
 				tooltip.innerHTML = title;
 				target.insertAdjacentElement( 'beforeend', tooltip );
-
-				// Initiate the tooltip.
-				var bounding = tooltip.getBoundingClientRect();
-				// Check if the tooltip is below the viewport.
-				if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-					tooltip.classList.add( 'top' );
-				} else {
-					tooltip.classList.add( 'bottom' );
-				}
+				tooltip.classList.add( 'top' );
 			}
 
 			// Remove a tooltip.
