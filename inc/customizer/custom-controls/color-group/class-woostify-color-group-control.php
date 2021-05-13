@@ -135,21 +135,15 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 		parent::to_json();
 		$options = woostify_options( false );
 
-		$this->json['swatches'] = array(
-			$options['theme_color'],
-			$options['text_color'],
-			$options['accent_color'],
-			$options['extra_color_1'],
-			$options['extra_color_2'],
-		);
+		$swatches                    = array();
+		$global_color_settings       = $options['global_color_settings'];
+		$global_color_settings_count = count( $global_color_settings );
+		for ( $i = 0; $i < $global_color_settings_count; $i++ ) {
+			$swatches[ $i ] = $options[ $global_color_settings[ $i ] ];
+		}
+		$this->json['swatches'] = $swatches;
 
-		$this->json['swatchLabels']    = array(
-			__( 'Theme Color', 'woostify' ),
-			__( 'Text Color', 'woostify' ),
-			__( 'Link / Accent Color', 'woostify' ),
-			__( 'Extra Color 1', 'woostify' ),
-			__( 'Extra Color 2', 'woostify' ),
-		);
+		$this->json['swatchLabels']    = $options['global_color_labels'];
 		$this->json['tab']             = $this->tab;
 		$this->json['tooltips']        = $this->tooltips;
 		$this->json['color_format']    = $this->color_format;

@@ -98,7 +98,24 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shortcode' => '',
 				),
 			);
+			$global_color_settings   = array(
+				'theme_color',
+				'text_color',
+				'accent_color',
+				'extra_color_1',
+				'extra_color_2',
+			);
+			$global_color_labels     = array(
+				__( 'Theme Color', 'woostify' ),
+				__( 'Text Color', 'woostify' ),
+				__( 'Link / Accent Color', 'woostify' ),
+				__( 'Extra Color 1', 'woostify' ),
+				__( 'Extra Color 2', 'woostify' ),
+			);
 			$args                    = array(
+				// GLOBAL.
+				'global_color_labels'                      => $global_color_labels,
+				'global_color_settings'                    => $global_color_settings,
 				'background_color'                         => '#ffffff',
 				// CONTAINER.
 				'container_width'                          => '1200',
