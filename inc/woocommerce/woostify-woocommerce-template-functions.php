@@ -585,7 +585,7 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 		$final_price  = '';
 		$out_of_stock = get_post_meta( $product->get_id(), '_stock_status', true );
 
-		if ( ! $out_of_stock ) {
+		if ( 'outofstock' === $out_of_stock ) {
 			return;
 		}
 
