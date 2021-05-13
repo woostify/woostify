@@ -583,10 +583,9 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 		$sale_text    = $options['shop_page_sale_text'];
 		$sale_percent = $options['shop_page_sale_percent'];
 		$final_price  = '';
-		$out_of_stock = $product->get_stock_quantity();
+		$out_of_stock = get_post_meta( $product->get_id(), '_stock_status', true );
 
-		// Out of stock.
-		if ( $out_of_stock ) {
+		if ( 'outofstock' === $out_of_stock ) {
 			return;
 		}
 
