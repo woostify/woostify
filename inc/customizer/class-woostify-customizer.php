@@ -112,7 +112,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				__( 'Extra Color 1', 'woostify' ),
 				__( 'Extra Color 2', 'woostify' ),
 			);
-			$args                    = array(
+
+			$args = array(
 				// GLOBAL.
 				'global_color_labels'                      => $global_color_labels,
 				'global_color_settings'                    => $global_color_settings,

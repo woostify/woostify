@@ -53,8 +53,49 @@ function woostify_colors_live_update( id, selector, property, fullId ) {
 	);
 }
 
+// Color Group 2.
+function woostify_color_group_live_update_2( id, selectors, properties, value_mask, fullid ) {
+	var setting = fullid ? id : 'woostify_setting[' + id + ']'
+	wp.customize(
+		setting,
+		function( value ) {
+			value.bind(
+				function( newval ) {
+					var style = '';
+					selectors.forEach(
+						function ( selector, selector_idx ) {
+							style += selector + '{';
+							if ( '' !== newval ) {
+								var newval_format = newval;
+								if ( '' !== value_mask && 'undefined' !== typeof value_mask[selector_idx] && '' !== value_mask[selector_idx] ) {
+									newval_format = value_mask[selector_idx].replace( /{value}/g, newval )
+								}
+								style += properties[selector_idx] + ': ' + newval_format + ';';
+							}
+							style += '}'
+						}
+					)
+					// Append style.
+					if ( jQuery( 'style#woostify_setting-' + id ).length ) {
+						jQuery( 'style#woostify_setting-' + id ).html( style );
+					} else {
+						jQuery( 'head' ).append( '<style id="woostify_setting-' + id + '">' + style + '</style>' );
+
+						setTimeout(
+							function() {
+								jQuery( 'style#woostify_setting-' + id ).not( ':last' ).remove();
+							},
+							100,
+						);
+					}
+				},
+			);
+		},
+	);
+}
+
 // Color Group.
-function woostify_color_group_live_update( ids, selectors, properties ) {
+function woostify_color_group_live_update( ids, selectors, properties, value_mask ) {
 	ids.forEach(
 		function( el, i ) {
 			var setting = 'woostify_setting[' + el + ']';
@@ -65,13 +106,16 @@ function woostify_color_group_live_update( ids, selectors, properties ) {
 						function( newval ) {
 							var style = '';
 							style    += selectors[i] + '{';
-							properties.forEach(
-								function( property ) {
-									if ( '' !== newval) {
-										style += property + ': ' + newval + ';';
-									}
-								},
-							);
+								properties.forEach(
+									function ( property ) {
+										if ( '' !== newval ) {
+											if ( value_mask ) {
+												newval = value_mask.replace( /{value}/g, newval )
+											}
+											style += property + ': ' + newval + ';';
+										}
+									},
+								);
 							style += '}';
 
 							// Append style.
@@ -470,6 +514,145 @@ document.addEventListener(
 
 		// Update the site description in real time...
 		woostify_html_live_update( 'blogdescription', '.site-description', true );
+
+		// Global Colors.
+		woostify_color_group_live_update_2(
+			'theme_color',
+			[
+				'.woostify-theme-color,' +
+				'.primary-navigation li.current-menu-item > a,' +
+				'.primary-navigation > li.current-menu-ancestor > a,' +
+				'.primary-navigation > li.current-menu-parent > a,' +
+				'.primary-navigation > li.current_page_parent > a,' +
+				'.primary-navigation > li.current_page_ancestor > a,' +
+				'.woocommerce-cart-form__contents tbody .product-subtotal,' +
+				'.woocommerce-checkout-review-order-table .order-total,' +
+				'.woocommerce-table--order-details .product-name a,' +
+				'.primary-navigation a:hover,' +
+				'.primary-navigation .menu-item-has-children:hover > a,' +
+				'.default-widget a strong,' +
+				'.woocommerce-mini-cart__total .amount,' +
+				'.woocommerce-form-login-toggle .woocommerce-info a:hover,' +
+				'.woocommerce-form-coupon-toggle .woocommerce-info a:hover,' +
+				'.has-woostify-primary-color,' +
+				'.blog-layout-grid .site-main .post-read-more a,' +
+				'.site-footer a:hover,' +
+				'.woostify-simple-subsbrice-form input[type="submit"],' +
+				'.woocommerce-tabs li.active a,' +
+				'#secondary .widget .current-cat > a,' +
+				'#secondary .widget .current-cat > span,' +
+				'.site-tools .header-search-icon:hover,' +
+				'.product-loop-meta .button:hover,' +
+				'#secondary .widget a:not(.tag-cloud-link):hover,' +
+				'.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout):hover,' +
+				'.product-nav-item:hover > a,' +
+				'.product-nav-item .product-nav-item-price,' +
+				'.woocommerce-thankyou-order-received,' +
+				'.site-tools .tools-icon:hover,' +
+				'.tools-icon.my-account:hover > a,' +
+				'.multi-step-checkout-button[data-action="back"]:hover,' +
+				'.review-information-link:hover,' +
+				'.has-multi-step-checkout .multi-step-item,' +
+				'#secondary .chosen a,' +
+				'#secondary .chosen .count,' +
+				'.cart_totals .shop_table .woocommerce-Price-amount,' +
+				'#order_review .shop_table .woocommerce-Price-amount,' +
+				'a:hover',
+				'.onsale,' +
+				'.pagination li .page-numbers.current,' +
+				'.woocommerce-pagination li .page-numbers.current,' +
+				'.tagcloud a:hover,' +
+				'.price_slider_wrapper .ui-widget-header,' +
+				'.price_slider_wrapper .ui-slider-handle,' +
+				'.cart-sidebar-head .shop-cart-count,' +
+				'.wishlist-item-count,' +
+				'.shop-cart-count,' +
+				'.sidebar-menu .primary-navigation a:before,' +
+				'.woocommerce-message,' +
+				'.woocommerce-info,' +
+				'#scroll-to-top,' +
+				'.woocommerce-store-notice,' +
+				'.has-woostify-primary-background-color,' +
+				'.woostify-simple-subsbrice-form input[type="submit"]:hover,' +
+				'.has-multi-step-checkout .multi-step-item .item-text:before,' +
+				'.has-multi-step-checkout .multi-step-item:before,' +
+				'.has-multi-step-checkout .multi-step-item:after,' +
+				'.has-multi-step-checkout .multi-step-item.active:before,' +
+				'.woostify-single-product-stock .woostify-single-product-stock-progress-bar,' +
+				'.woostify-simple-subsbrice-form:focus-within input[type="submit"]',
+				'.woocommerce-thankyou-order-received, .woostify-lightbox-button:hover',
+				'.circle-loading:before,' +
+				'.product_list_widget .remove_from_cart_button:focus:before,' +
+				'.updating-cart.ajax-single-add-to-cart .single_add_to_cart_button:before,' +
+				'.product-loop-meta .loading:before,' +
+				'.updating-cart #shop-cart-sidebar:before',
+			],
+			[
+				'color',
+				'background-color',
+				'border-color',
+				'border-top-color',
+			],
+			''
+		)
+
+		// Text Color.
+		woostify_color_group_live_update_2(
+			'text_color',
+			[
+				'select:-moz-focusring',
+				'body, select, button, input, textarea' +
+				'.pagination a,' +
+				'.pagination a,' +
+				'.woocommerce-pagination a,' +
+				'.woocommerce-loop-product__category a,' +
+				'.woocommerce-loop-product__title,' +
+				'.price del,' +
+				'.stars a,' +
+				'.woocommerce-review-link,' +
+				'.woocommerce-tabs .tabs li:not(.active) a,' +
+				'.woocommerce-cart-form__contents .product-remove a,' +
+				'.comment-body .comment-meta .comment-date,' +
+				'.woostify-breadcrumb a,' +
+				'.breadcrumb-separator,' +
+				'#secondary .widget a,' +
+				'.has-woostify-text-color,' +
+				'.button.loop-add-to-cart-icon-btn,' +
+				'.loop-wrapper-wishlist a,' +
+				'#order_review .shop_table .product-name',
+				'.loop-wrapper-wishlist a:hover, .price_slider_wrapper .price_slider, .has-woostify-text-background-color',
+				'.elementor-add-to-cart .quantity',
+			],
+			[
+				'text-shadow',
+				'color',
+				'background-color',
+				'border',
+			],
+			[
+				'0 0 0 {value}',
+				'',
+				'',
+				'1px solid {value}',
+			]
+		)
+		// Link / Accent Color
+		woostify_color_group_live_update_2(
+			'accent_color',
+			[
+				'.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout),' +
+				'.product-loop-meta .button,' +
+				'.multi-step-checkout-button[data-action="back"],' +
+				'.review-information-link,' +
+				'a',
+				'.woostify-icon-bar span',
+			],
+			[
+				'color',
+				'background-color',
+			],
+			''
+		)
 
 		// Topbar.
 		woostify_colors_live_update( 'topbar_text_color', '.topbar *', 'color' );

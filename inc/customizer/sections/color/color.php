@@ -15,6 +15,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['theme_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -40,6 +41,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['text_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -65,6 +67,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['accent_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -90,6 +93,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['extra_color_1'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -115,6 +119,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['extra_color_2'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
