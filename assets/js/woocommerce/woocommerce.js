@@ -226,7 +226,7 @@ var woostifyQuantityMiniCart = function() {
 var updateHeaderCartPrice = function () {
 	var total                    = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
 		headerCartPriceContainer = document.querySelectorAll( '.woostify-header-total-price' ),
-		currencySymbol           = document.querySelectorAll( '.woostify-header-total-price .woocommerce-Price-currencySymbol, .boostify-subtotal .woocommerce-Price-currencySymbol' );
+		currencySymbol           = document.querySelector( '.woostify-header-total-price .woocommerce-Price-currencySymbol, .boostify-subtotal .woocommerce-Price-currencySymbol' );
 	if ( headerCartPriceContainer.length ) {
 		for ( var si = 0, sc = headerCartPriceContainer.length; si < sc; si++ ) {
 			if (total) {
