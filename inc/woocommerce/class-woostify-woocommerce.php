@@ -99,14 +99,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_image_wrapper_close', 90 );
 			add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_content_open', 100 );
 
-			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_rating', 2 );
-			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_meta_open', 5 );
-			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_price', 10 );
-			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_add_to_cart_button', 15 );
-
 			add_action( 'woocommerce_shop_loop_item_title', 'woostify_add_template_loop_product_category', 5 );
 			add_action( 'woocommerce_shop_loop_item_title', 'woostify_add_template_loop_product_title', 10 );
 
+			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_rating', 2 );
+			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_meta_open', 5 );
+			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_price', 10 );
+
+			add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_add_to_cart_button', 10 );
 			add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_meta_close', 20 );
 			add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_content_close', 50 );
 			add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_wrapper_close', 100 );
