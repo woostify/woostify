@@ -106,7 +106,8 @@ document.addEventListener(
 				navContainer: '#product-thumbnail-images',
 				items: 1,
 				navAsThumbnails: true,
-				autoHeight: true
+				autoHeight: true,
+				preventScrollOnTouch: true
 		}
 
 		// Product thumbnails.
