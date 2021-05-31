@@ -16,6 +16,7 @@ if ( ! function_exists( 'woostify_get_last_product_id' ) ) {
 			'post_type'      => 'product',
 			'posts_per_page' => 1,
 			'post_status'    => 'publish',
+			'fields'         => 'ids',
 			'tax_query'      => array( // phpcs:ignore
 				array(
 					array(
@@ -28,21 +29,14 @@ if ( ! function_exists( 'woostify_get_last_product_id' ) ) {
 			),
 		);
 
-		$query = new WP_Query( $args );
+		$query = get_posts( $args );
+		$id    = false;
 
-		$id = false;
-
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-				$id = get_the_ID();
-			}
-
-			wp_reset_postdata();
+		if ( empty( $query ) ) {
+			return false;
 		}
 
-		return $id;
+		return $query[0];
 	}
 }
 

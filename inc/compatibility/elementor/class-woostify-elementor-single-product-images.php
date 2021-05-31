@@ -88,6 +88,14 @@ class Woostify_Elementor_Single_Product_Images extends Widget_Base {
 	 * Render
 	 */
 	public function render() {
+		if ( woostify_is_elementor_editor() ) {
+			if ( ! woostify_get_last_product_id() ) {
+				return;
+			}
+
+			$GLOBALS['product'] = wc_get_product( woostify_get_last_product_id() );
+		}
+
 		woocommerce_show_product_sale_flash();
 		woocommerce_show_product_images();
 	}
