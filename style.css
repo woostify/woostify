@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 Theme Name:   Woostify
 Theme URI:    https://woostify.com
@@ -9135,6 +9136,10 @@ header.elementor-element {
 
 .paypal-button {
   z-index: 0;
+}
+
+#product-addons-total {
+  clear: both;
 }
 
 .cart-sidebar-open .updating-cart #shop-cart-sidebar:after {
