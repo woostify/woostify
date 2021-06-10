@@ -123,7 +123,7 @@ wp.customize.controlConstructor['woostify-adv-list'] = wp.customize.Control.exte
 						label.removeClass( 'dashicons-hidden' )
 						label.addClass( 'dashicons-visibility' )
 					}
-					update_value( $( '.woostify-adv-list-items' ) )
+					update_value()
 				},
 			)
 			control.container.find( '.woostify-adv-list-input' ).on(
@@ -159,7 +159,7 @@ wp.customize.controlConstructor['woostify-adv-list'] = wp.customize.Control.exte
 				{
 					handle: '.woostify-adv-list-item',
 					update: function( event, ui ) {
-						update_value( jQuery( '.woostify-adv-list-items' ) )
+						update_value()
 					},
 				},
 			)
