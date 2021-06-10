@@ -15,6 +15,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 			let enable_swatches = control.params.enable_swatches
 			let swatches        = control.params.swatches
 			let swatchLabels    = control.params.swatchLabels
+			console.log( woostify_color_group, swatches );
 			let args            = {
 				el: '.btn',
 				theme: 'monolith',
@@ -43,6 +44,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 						},
 				},
 			}
+
 			let global_color_settings = [
 				'woostify_setting[theme_color]',
 				'woostify_setting[text_color]',

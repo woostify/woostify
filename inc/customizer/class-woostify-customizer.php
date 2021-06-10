@@ -26,6 +26,27 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		}
 
 		/**
+		 * Get elementor registered schemes data
+		 *
+		 * @param string $scheme_type scheme data.
+		 *
+		 * @return array|mixed|void
+		 */
+		public function get_elementor_schemes_data( $scheme_type = '' ) {
+			if ( ! woostify_is_elementor_activated() ) {
+				return;
+			}
+
+			$plugin_elementor       = \Elementor\Plugin::instance();
+			$elementor_schemes_data = $plugin_elementor->schemes_manager->get_registered_schemes_data();
+			if ( '' === $scheme_type ) {
+				return $elementor_schemes_data;
+			}
+
+			return $elementor_schemes_data[ $scheme_type ] ?? array();
+		}
+
+		/**
 		 * Add script for customize controls
 		 */
 		public function woostify_customize_controls_scripts() {
@@ -35,6 +56,14 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				array(),
 				woostify_version(),
 				true
+			);
+
+			wp_localize_script(
+				'woostify-color-group',
+				'woostify_color_group',
+				array(
+					'elementor_colors' => $this->get_elementor_schemes_data( 'color' ),
+				)
 			);
 		}
 
