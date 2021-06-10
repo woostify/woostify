@@ -34,18 +34,18 @@
 	position: relative;
 }
 
-.woostify-sortable-list-item-wrap .woostify-sortable-list-item {
+.woostify-sortable-list-item-wrap .woostify-adv-list-item {
 	border-color: #ddd;
 	margin: 0;
 	padding: 0;
 	height: 35px;
 }
 
-.woostify-sortable-list-item-wrap .woostify-sortable-list-item * {
+.woostify-sortable-list-item-wrap .woostify-adv-list-item * {
 	color: inherit;
 }
 
-.woostify-sortable-list-item-wrap .woostify-sortable-list-item .dashicons {
+.woostify-sortable-list-item-wrap .woostify-adv-list-item .dashicons {
 	height: 35px;
 	line-height: 35px;
 	width: 35px;
@@ -53,12 +53,12 @@
 	font-size: 16px;
 }
 
-.woostify-sortable-list-item-wrap .woostify-sortable-list-item .dashicons.sortable-item-icon-expand {
+.woostify-sortable-list-item-wrap .woostify-adv-list-item .dashicons.sortable-item-icon-expand {
 	border-left: 1px solid #ddd;
 	border-right: none;
 }
 
-.woostify-sortable-list-item-wrap .woostify-sortable-list-item .sortable-item-name {
+.woostify-sortable-list-item-wrap .woostify-adv-list-item .sortable-item-name {
 	font-weight: 500;
 }
 
