@@ -15,8 +15,16 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 			let enable_swatches = control.params.enable_swatches
 			let swatches        = control.params.swatches
 			let swatchLabels    = control.params.swatchLabels
-			console.log( woostify_color_group, swatches );
-			let args            = {
+
+			jQuery.each(
+				woostify_color_group.elementor_colors.items,
+				function( c_idx, c_val ) {
+					swatches.push( c_val.value );
+					swatchLabels.push( c_val.title );
+				}
+			)
+
+			let args = {
 				el: '.btn',
 				theme: 'monolith',
 				autoReposition: false,

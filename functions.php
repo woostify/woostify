@@ -43,6 +43,12 @@ if ( is_admin() ) {
 // Compatibility.
 require_once WOOSTIFY_THEME_DIR . 'inc/compatibility/class-woostify-divi-builder.php';
 
+/*add_action( 'init', function() {
+	$plugin_elementor       = \Elementor\Plugin::instance();
+	$elementor_schemes_data = $plugin_elementor->schemes_manager->get_scheme_value( 'color', 'a');
+	var_dump($elementor_schemes_data);
+} );*/
+
 /**
  * Note: Do not add any custom code here. Please use a custom plugin so that your customizations aren't lost during updates.
  */
