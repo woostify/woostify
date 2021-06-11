@@ -26,24 +26,31 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		}
 
 		/**
-		 * Get elementor registered schemes data
+		 * Get color global elementor
 		 *
-		 * @param string $scheme_type scheme data.
-		 *
-		 * @return array|mixed|void
+		 * @return array
 		 */
-		public function get_elementor_schemes_data( $scheme_type = '' ) {
-			if ( ! woostify_is_elementor_activated() ) {
-				return;
+		public function get_color_global_elementor() {
+			$colors = array();
+			if ( ! woostify_is_elementor_activated() || isset( \Elementor\Plugin::$instance->kits_manager ) ) {
+				$kits_manager = \Elementor\Plugin::$instance->kits_manager;
+
+				$system_colors = $kits_manager->get_current_settings( 'system_colors' );
+
+				foreach ( $system_colors as $sc_k => $value ) {
+					unset( $value['_id'] );
+					array_push( $colors, $value );
+				}
+
+				$custom_colors = $kits_manager->get_current_settings( 'custom_colors' );
+
+				foreach ( $custom_colors as $cc_k => $value ) {
+					unset( $value['_id'] );
+					array_push( $colors, $value );
+				}
 			}
 
-			$plugin_elementor       = \Elementor\Plugin::instance();
-			$elementor_schemes_data = $plugin_elementor->schemes_manager->get_registered_schemes_data();
-			if ( '' === $scheme_type ) {
-				return $elementor_schemes_data;
-			}
-
-			return $elementor_schemes_data[ $scheme_type ] ?? array();
+			return $colors;
 		}
 
 		/**
@@ -62,7 +69,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'woostify-color-group',
 				'woostify_color_group',
 				array(
-					'elementor_colors' => $this->get_elementor_schemes_data( 'color' ),
+					'elementor_colors' => $this->get_color_global_elementor(),
 				)
 			);
 		}
