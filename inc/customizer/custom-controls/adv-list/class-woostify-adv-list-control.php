@@ -61,14 +61,6 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 			true
 		);
 
-		wp_localize_script(
-			'woostify-media-upload',
-			'woostify_svg_icons',
-			array(
-				'file_url' => WOOSTIFY_THEME_URI . 'assets/svg/svgs.json',
-			)
-		);
-
 		wp_enqueue_style(
 			'woostify-adv-list',
 			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/adv-list/css/adv-list.css',

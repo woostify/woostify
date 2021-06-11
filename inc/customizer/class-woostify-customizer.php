@@ -36,6 +36,14 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				woostify_version(),
 				true
 			);
+
+			wp_localize_script(
+				'woostify-media-upload',
+				'woostify_svg_icons',
+				array(
+					'file_url' => WOOSTIFY_THEME_URI . 'assets/svg/svgs.json',
+				)
+			);
 		}
 
 		/**
