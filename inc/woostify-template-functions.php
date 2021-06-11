@@ -1691,7 +1691,7 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 		$close_icon = apply_filters( 'woostify_dialog_search_close_icon', 'ti-close' );
 		?>
 
-		<div class="site-dialog-search">
+		<div class="site-dialog-search  woostify-search-wrap">
 			<div class="dialog-search-content">
 				<?php do_action( 'woostify_dialog_search_content_start' ); ?>
 
