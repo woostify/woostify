@@ -563,7 +563,7 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 	 */
 	function woostify_change_sale_flash() {
 		global $product;
-		if ( empty( $product ) ) {
+		if ( ! $product || ! is_object( $product ) ) {
 			return;
 		}
 		$options      = woostify_options( false );
