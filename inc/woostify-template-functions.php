@@ -893,7 +893,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 
 		?>
 
-		<div class="page-header" <?php echo $images; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> >
+		<div class="page-header" <?php echo wp_kses_post( $images ); ?> >
 			<div class="<?php echo esc_attr( $classes ); ?>">
 				<?php do_action( 'woostify_page_header_start' ); ?>
 
