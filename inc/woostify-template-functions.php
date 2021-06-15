@@ -879,9 +879,9 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			return;
 		}
 		if ( class_exists( 'WooCommerce' ) && is_product_category() ) {
-			global $wp_query;
-			$cat          = $wp_query->get_queried_object();
-			$thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+
+			$id           = get_queried_object_id();
+			$thumbnail_id = get_term_meta( $id, 'thumbnail_id', true );
 			$image        = wp_get_attachment_url( $thumbnail_id );
 
 			if ( $image ) {
@@ -893,7 +893,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 
 		?>
 
-		<div class="page-header" <?php echo $images; // phpcs:ignore ?> >
+		<div class="page-header" <?php echo $images; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> >
 			<div class="<?php echo esc_attr( $classes ); ?>">
 				<?php do_action( 'woostify_page_header_start' ); ?>
 
