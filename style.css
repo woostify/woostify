@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 Theme Name:   Woostify
 Theme URI:    https://woostify.com
@@ -6924,7 +6925,7 @@ header.elementor-element {
 }
 
 .hide-added-to-cart .product-loop-meta .animated-meta .added {
-  display: flex;
+  display: block;
 }
 
 .hide-added-to-cart .added_to_cart {
@@ -8205,12 +8206,6 @@ header.elementor-element {
 
 .product-loop-meta .added_to_cart:before {
   content: "\e60e";
-}
-
-.no-transform .animated-meta {
-  display: inline-flex;
-  flex-direction: column;
-  max-width: 100%;
 }
 
 .product-loop-meta.no-transform .button,
