@@ -6925,7 +6925,7 @@ header.elementor-element {
 }
 
 .hide-added-to-cart .product-loop-meta .animated-meta .added {
-  display: flex;
+  display: inline-flex;
 }
 
 .hide-added-to-cart .added_to_cart {
