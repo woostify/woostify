@@ -154,6 +154,16 @@
 	}
 }
 
+.no-transform{
+	.animated-meta{
+		display: inline-flex;
+		flex-direction: column;
+		max-width: 100%;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+}
+
 .product-loop-meta{
 	&.no-transform{
 		.button,
