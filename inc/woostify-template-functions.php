@@ -2414,7 +2414,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 								<?php if ( '' !== $item->icon ) { ?>
 									<span class="woostify-item-list-item__icon ">
 									<span class="woositfy-sfb-icon">
-										<?php echo woostify_fetch_svg_icon( $item->icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+										<?php echo wp_kses( woostify_fetch_svg_icon( $item->icon ), woostify_allow_tags_svg() ); ?>
 									</span>
 									<span class="theme-item-count wishlist-item-count"><?php echo esc_html( $wishlist_item_count ); ?></span>
 								</span>
