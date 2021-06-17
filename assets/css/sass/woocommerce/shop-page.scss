@@ -159,6 +159,8 @@
 		display: inline-flex;
 		flex-direction: column;
 		max-width: 100%;
+		flex-wrap: wrap;
+		align-items: center;
 	}
 }
 

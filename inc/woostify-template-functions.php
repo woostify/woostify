@@ -878,9 +878,22 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		if ( ! $page_header || $disable_page_header ) {
 			return;
 		}
+		if ( class_exists( 'WooCommerce' ) && is_product_category() ) {
+
+			$id           = get_queried_object_id();
+			$thumbnail_id = get_term_meta( $id, 'thumbnail_id', true );
+			$image        = wp_get_attachment_url( $thumbnail_id );
+
+			if ( $image ) {
+				$images = 'style="background-image: url(' . $image . ')"';
+			} else {
+				$images = '';
+			}
+		}
+
 		?>
 
-		<div class="page-header">
+		<div class="page-header" <?php echo wp_kses_post( $images ); ?> >
 			<div class="<?php echo esc_attr( $classes ); ?>">
 				<?php do_action( 'woostify_page_header_start' ); ?>
 
@@ -1691,7 +1704,7 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 		$close_icon = apply_filters( 'woostify_dialog_search_close_icon', 'ti-close' );
 		?>
 
-		<div class="site-dialog-search">
+		<div class="site-dialog-search  woostify-search-wrap">
 			<div class="dialog-search-content">
 				<?php do_action( 'woostify_dialog_search_content_start' ); ?>
 
@@ -2403,7 +2416,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 								<?php if ( '' !== $item->icon ) { ?>
 									<span class="woostify-item-list-item__icon ">
 									<span class="woositfy-sfb-icon">
-										<?php echo isset( $icons[ $item->icon ] ) ? wp_kses( $icons[ $item->icon ], woostify_allow_tags_svg() ) : ''; ?>
+										<?php echo wp_kses( woostify_fetch_svg_icon( $item->icon ), woostify_allow_tags_svg() ); ?>
 									</span>
 									<span class="theme-item-count wishlist-item-count"><?php echo esc_html( $wishlist_item_count ); ?></span>
 								</span>
@@ -2434,7 +2447,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 							<?php if ( '' !== $item->icon ) { ?>
 								<span class="woostify-item-list-item__icon ">
 							<span class="woositfy-sfb-icon">
-								<?php echo isset( $icons[ $item->icon ] ) ? wp_kses( $icons[ $item->icon ], woostify_allow_tags_svg() ) : ''; ?>
+								<?php echo woostify_fetch_svg_icon( $item->icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							</span>
 							<span class="theme-item-count shop-cart-count <?php echo $options['header_shop_hide_zero_value_cart_count'] ? 'hide-zero-val' : ''; ?>"><?php echo esc_html( $count ); ?></span>
 						</span>
@@ -2451,7 +2464,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 							<?php if ( '' !== $item->icon ) { ?>
 								<span class="woostify-item-list-item__icon">
 								<span class="woositfy-sfb-icon header-search-icon">
-									<?php echo isset( $icons[ $item->icon ] ) ? wp_kses( $icons[ $item->icon ], woostify_allow_tags_svg() ) : ''; ?>
+									<?php echo woostify_fetch_svg_icon( $item->icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 								</span>
 							</span>
 							<?php } ?>
@@ -2467,7 +2480,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 							<?php if ( '' !== $item->icon ) { ?>
 								<span class="woostify-item-list-item__icon">
 							<span class="woositfy-sfb-icon">
-								<?php echo isset( $icons[ $item->icon ] ) ? wp_kses( $icons[ $item->icon ], woostify_allow_tags_svg() ) : ''; ?>
+								<?php echo woostify_fetch_svg_icon( $item->icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							</span>
 						</span>
 							<?php } ?>
