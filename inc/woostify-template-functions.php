@@ -878,17 +878,15 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		if ( ! $page_header || $disable_page_header ) {
 			return;
 		}
-		if ( class_exists( 'WooCommerce' ) && is_product_category() ) {
 
-			$id           = get_queried_object_id();
-			$thumbnail_id = get_term_meta( $id, 'thumbnail_id', true );
-			$image        = wp_get_attachment_url( $thumbnail_id );
+		$id           = get_queried_object_id();
+		$thumbnail_id = get_term_meta( $id, 'thumbnail_id', true );
+		$image        = wp_get_attachment_url( $thumbnail_id );
 
-			if ( $image ) {
-				$images = 'style="background-image: url(' . $image . ')"';
-			} else {
-				$images = '';
-			}
+		if ( $image ) {
+			$images = 'style="background-image: url(' . $image . ')"';
+		} else {
+			$images = '';
 		}
 
 		?>
