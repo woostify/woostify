@@ -878,9 +878,22 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		if ( ! $page_header || $disable_page_header ) {
 			return;
 		}
+		if ( class_exists( 'WooCommerce' ) && is_product_category() ) {
+
+			$id           = get_queried_object_id();
+			$thumbnail_id = get_term_meta( $id, 'thumbnail_id', true );
+			$image        = wp_get_attachment_url( $thumbnail_id );
+
+			if ( $image ) {
+				$images = 'style="background-image: url(' . $image . ')"';
+			} else {
+				$images = '';
+			}
+		}
+
 		?>
 
-		<div class="page-header">
+		<div class="page-header" <?php echo wp_kses_post( $images ); ?> >
 			<div class="<?php echo esc_attr( $classes ); ?>">
 				<?php do_action( 'woostify_page_header_start' ); ?>
 
@@ -1691,7 +1704,7 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 		$close_icon = apply_filters( 'woostify_dialog_search_close_icon', 'ti-close' );
 		?>
 
-		<div class="site-dialog-search">
+		<div class="site-dialog-search  woostify-search-wrap">
 			<div class="dialog-search-content">
 				<?php do_action( 'woostify_dialog_search_content_start' ); ?>
 
