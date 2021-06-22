@@ -332,3 +332,24 @@ if ( ! function_exists( 'woostify_toggle_sidebar_mobile_button' ) ) {
 		<?php
 	}
 }
+
+if ( ! function_exists( 'woostify_woocommerce_toolbar_left_open_div' ) ) {
+	/**
+	 * Toolbar left open div
+	 */
+	function woostify_woocommerce_toolbar_left_open_div() {
+		?>
+		<div class="woostify-toolbar-left">
+		<?php
+	}
+}
+if ( ! function_exists( 'woostify_woocommerce_toolbar_left_close_div' ) ) {
+	/**
+	 * Toolbar left close div
+	 */
+	function woostify_woocommerce_toolbar_left_close_div() {
+		?>
+		</div>
+		<?php
+	}
+}
