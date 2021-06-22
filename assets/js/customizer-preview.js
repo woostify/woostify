@@ -431,10 +431,10 @@ function woostify_add_dynamic_css( control, style ) {
 
 							var dynamicStyle = '@media (min-width: 992px) {';
 
-							dynamicStyle += '.has-sidebar #primary { width: ' + (
+							dynamicStyle += '.has-sidebar.not(.offcanvas-sidebar) #primary { width: ' + (
 								100 - parseInt( width )
 							) + '% } ';
-							dynamicStyle += '.has-sidebar #secondary { width: ' + width + '% } ';
+							dynamicStyle += '.has-sidebar.not(.offcanvas-sidebar) #secondary { width: ' + width + '% } ';
 							dynamicStyle += '}';
 
 							woostify_add_dynamic_css( 'sidebar_width', dynamicStyle );

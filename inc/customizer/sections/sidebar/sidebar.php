@@ -192,10 +192,11 @@ if ( class_exists( 'woocommerce' ) ) {
 				'choices'  => apply_filters(
 					'woostify_setting_sidebar_shop_choices',
 					array(
-						'default' => __( 'Default', 'woostify' ),
-						'full'    => __( 'No sidebar', 'woostify' ),
-						'left'    => __( 'Left sidebar', 'woostify' ),
-						'right'   => __( 'Right sidebar', 'woostify' ),
+						'default'   => __( 'Default', 'woostify' ),
+						'full'      => __( 'No sidebar', 'woostify' ),
+						'left'      => __( 'Left sidebar', 'woostify' ),
+						'right'     => __( 'Right sidebar', 'woostify' ),
+						'offcanvas' => __( 'Offcanvas sidebar', 'woostify' ),
 					)
 				),
 			)
