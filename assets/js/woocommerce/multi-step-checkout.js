@@ -530,6 +530,8 @@ var woostifyMultiStepCheckout = function() {
 }
 
 var woostifyUpdateCheckout = function() {
+	return;
+
 	// Data.
 	var data = {
 		action: 'update_checkout',
