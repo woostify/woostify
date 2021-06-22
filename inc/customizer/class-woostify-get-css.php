@@ -849,11 +849,11 @@ class Woostify_Get_CSS {
 		$styles .= '
 			@media (min-width: 992px) {
 
-				.has-sidebar #secondary {
+				.has-sidebar:not(.offcanvas-sidebar) #secondary {
 				width: ' . esc_attr( $options['sidebar_width'] ) . '%;
 				}
 
-				.has-sidebar #primary {
+				.has-sidebar:not(.offcanvas-sidebar) #primary {
 					width: calc( 100% - ' . esc_attr( $options['sidebar_width'] ) . '%);
 				}
 			}
