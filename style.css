@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*
 Theme Name:   Woostify
 Theme URI:    https://woostify.com
@@ -6186,7 +6185,7 @@ footer#colophon {
 
 /* Active filter */
 .widget_layered_nav_filters .chosen a:before {
-  content: '×';
+  content: 'x';
   color: #e2401c;
   margin-right: 7px;
   font-size: 1.2em;
