@@ -7028,6 +7028,53 @@ header.elementor-element {
   }
 }
 
+.has-sidebar.offcanvas-sidebar #toggle-sidebar-mobile-button {
+  display: block;
+}
+
+.has-sidebar.offcanvas-sidebar .shop-widget {
+  margin-top: 0 !important;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 15px;
+  max-width: 280px;
+  z-index: 200;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+}
+
+.has-sidebar.offcanvas-sidebar .shop-widget.active {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.has-sidebar.offcanvas-sidebar.logged-in.admin-bar .shop-widget {
+  top: 46px;
+}
+
+@media (min-width: 783px) {
+  .has-sidebar.offcanvas-sidebar.logged-in.admin-bar .shop-widget {
+    top: 32px;
+  }
+}
+
+@media (min-width: 991px) {
+  .has-sidebar:not(.offcanvas-sidebar) #toggle-sidebar-mobile-button.show {
+    display: none;
+  }
+}
+
 @media (max-width: 991px) {
   .shop-widget {
     margin-top: 0 !important;
@@ -7130,7 +7177,7 @@ header.elementor-element {
   flex-wrap: wrap;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 480px) {
   .woostify-sorting {
     justify-content: center;
     flex-direction: column;
@@ -7174,8 +7221,30 @@ header.elementor-element {
   -webkit-appearance: none;
 }
 
-.woostify-sorting .woocommerce-result-count {
+.woostify-sorting .woostify-toolbar-left {
   margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 480px) {
+  .woostify-sorting .woostify-toolbar-left {
+    margin-bottom: 15px;
+  }
+}
+
+.woostify-sorting .woostify-toolbar-left #toggle-sidebar-mobile-button {
+  margin: 0 10px 0 0;
+}
+
+@media (max-width: 480px) {
+  .woostify-sorting .woostify-toolbar-left #toggle-sidebar-mobile-button {
+    margin: 0;
+  }
+}
+
+.woostify-sorting .woocommerce-result-count {
+  margin-bottom: 0;
 }
 
 @media (max-width: 767px) {
@@ -8297,12 +8366,6 @@ header.elementor-element {
   .product-loop-meta:not(.no-transform) .animated-meta:focus-within {
     -webkit-transform: translateY(-24px);
     transform: translateY(-24px);
-  }
-}
-
-@media (min-width: 991px) {
-  .woostify-sorting #toggle-sidebar-mobile-button.show {
-    display: none;
   }
 }
 
