@@ -2393,7 +2393,6 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 			}
 		}
 
-		$icons = woostify_fetch_all_svg_icon();
 		$items = json_decode( $options['sticky_footer_bar_items'] );
 
 		echo '<div class="woostify-sticky-footer-bar woostify-sticky-on-' . $options['sticky_footer_bar_enable_on'] . '">'; //phpcs:ignore
