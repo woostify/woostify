@@ -650,7 +650,7 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 	 * Ajax single add to cart
 	 */
 	function woostify_ajax_single_add_to_cart() {
-		check_ajax_referer( 'woostify_ajax_single_add_to_cart', 'ajax_nonce', false );
+		check_ajax_referer( 'woostify_ajax_single_add_to_cart', 'ajax_nonce' );
 
 		if ( ! isset( $_POST['product_id'] ) || ! isset( $_POST['product_qty'] ) ) {
 			wp_send_json_error();

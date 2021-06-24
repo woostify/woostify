@@ -57,7 +57,7 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 	 * Update product quantity in minicart
 	 */
 	function woostify_ajax_update_quantity_in_mini_cart() {
-		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce', false );
+		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
 
 		if ( ! isset( $_POST['key'] ) || ! isset( $_POST['qty'] ) ) {
 			wp_send_json_error();
@@ -118,7 +118,7 @@ if ( ! function_exists( 'woostify_ajax_update_checkout' ) ) {
 	 * Update checkout
 	 */
 	function woostify_ajax_update_checkout() {
-		check_ajax_referer( 'woostify_update_checkout_nonce', 'ajax_nonce', false );
+		check_ajax_referer( 'woostify_update_checkout_nonce', 'ajax_nonce' );
 
 		WC()->cart->calculate_totals();
 		$wc_total = WC()->cart->get_totals();
