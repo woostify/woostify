@@ -172,7 +172,7 @@ $size: 40px;
 	}
 	&:not(.offcanvas-sidebar) {
 		#toggle-sidebar-mobile-button.show {
-			@media (min-width: 991px) {
+			@media (min-width: $screen-md) {
 				display: none;
 			}
 		}

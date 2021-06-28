@@ -7069,7 +7069,7 @@ header.elementor-element {
   }
 }
 
-@media (min-width: 991px) {
+@media (min-width: 992px) {
   .has-sidebar:not(.offcanvas-sidebar) #toggle-sidebar-mobile-button.show {
     display: none;
   }
