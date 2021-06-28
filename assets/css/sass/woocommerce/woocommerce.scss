@@ -134,7 +134,7 @@ $size: 40px;
 .has-sidebar {
 	&.offcanvas-sidebar {
 		#toggle-sidebar-mobile-button {
-			display: block ;
+			display: block;
 		}
 
 		.shop-widget {
@@ -172,7 +172,7 @@ $size: 40px;
 	}
 	&:not(.offcanvas-sidebar) {
 		#toggle-sidebar-mobile-button.show {
-			@media (min-width: 992px) {
+			@media (min-width: $screen-md) {
 				display: none;
 			}
 		}
