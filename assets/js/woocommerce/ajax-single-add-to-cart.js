@@ -13,9 +13,7 @@ function woostifyAjaxSingleHandleError( button ) {
 	}
 
 	// Remove loading.
-	if ( button ) {
-		button.classList.remove( 'loading' );
-	}
+	button.classList.remove( 'loading' );
 
 	// Hide quick view popup when product added to cart.
 	document.documentElement.classList.remove( 'quick-view-open' );
@@ -64,85 +62,83 @@ function woostifyAjaxSingleUpdateFragments( button ) {
 }
 
 function woostifyAjaxSingleAddToCartButton() {
-	var forms = document.querySelectorAll( 'form.cart' );
-	if ( ! forms.length ) {
+	var buttons = document.querySelectorAll( '.single_add_to_cart_button' );
+	if ( ! buttons.length ) {
 		return;
 	}
 
-	forms.forEach(
-		function( form ) {
-			form.addEventListener(
-				'submit',
-				function( e ) {
-					e.preventDefault();
+	buttons.forEach(
+		function( ele ) {
+			ele.onclick = function( e ) {
+				e.preventDefault();
 
-					var button = form.querySelector( '.button' );
+				var form = ele.closest( 'form.cart' );
+				if ( ! form ) {
+					return;
+				}
 
-					// Add loading.
-					if ( button ) {
-						button.classList.add( 'loading' );
+				// Add loading.
+				ele.classList.add( 'loading' );
+
+				// Events.
+				if ( 'function' === typeof( eventCartSidebarOpen ) ) {
+					eventCartSidebarOpen();
+				}
+
+				if ( 'function' === typeof( cartSidebarOpen ) ) {
+					cartSidebarOpen();
+				}
+
+				if ( 'function' === typeof( closeAll ) ) {
+					closeAll();
+				}
+
+				// Send post request.
+				fetch(
+					form.action,
+					{
+						method: 'POST',
+						body: new FormData( form )
 					}
-
-					// Events.
-					if ( 'function' === typeof( eventCartSidebarOpen ) ) {
-						eventCartSidebarOpen();
+				).then(
+					function( r ) {
+						return r.text();
 					}
+				).then(
+					function( text ) {
+						var div = document.createElement( 'div' );
+						div.innerHTML = text;
 
-					if ( 'function' === typeof( cartSidebarOpen ) ) {
-						cartSidebarOpen();
-					}
+						var error = div.querySelector( '.woocommerce-error' );
+						if ( error ) {
+							var notices = document.querySelector( '.content-top .woocommerce' );
 
-					if ( 'function' === typeof( closeAll ) ) {
-						closeAll();
-					}
-
-					// Send post request.
-					fetch(
-						form.action,
-						{
-							method: 'POST',
-							body: new FormData( e.target )
-						}
-					).then(
-						function( r ) {
-							return r.text();
-						}
-					).then(
-						function( text ) {
-							var div = document.createElement( 'div' );
-							div.innerHTML = text;
-
-							var error = div.querySelector( '.woocommerce-error' );
-							if ( error ) {
-								var notices = document.querySelector( '.content-top .woocommerce' );
-
-								// Remove current error.
-								if ( notices.querySelector( '.woocommerce-error' ) ) {
-									notices.querySelector( '.woocommerce-error' ).remove();
-								}
-
-								// Update new error.
-								if ( notices ) {
-									notices.appendChild( error );
-								}
-
-								// Handle.
-								woostifyAjaxSingleHandleError( button );
-
-								return;
+							// Remove current error.
+							if ( notices.querySelector( '.woocommerce-error' ) ) {
+								notices.querySelector( '.woocommerce-error' ).remove();
 							}
 
-							// Update fragments.
-							woostifyAjaxSingleUpdateFragments( button );
-						}
-					).catch(
-						function() {
+							// Update new error.
+							if ( notices ) {
+								notices.appendChild( error );
+							}
+
 							// Handle.
-							woostifyAjaxSingleHandleError( button );
+							woostifyAjaxSingleHandleError( ele );
+
+							return;
 						}
-					);
-				}
-			);
+
+						// Update fragments.
+						woostifyAjaxSingleUpdateFragments( ele );
+					}
+				).catch(
+					function() {
+						// Handle.
+						woostifyAjaxSingleHandleError( ele );
+					}
+				);
+			}
 		}
 	);
 }
