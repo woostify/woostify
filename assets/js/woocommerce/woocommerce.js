@@ -31,7 +31,12 @@ function shoppingBag() {
 	var shoppingBag = document.getElementsByClassName( 'shopping-bag-button' ),
 		cartSidebar = document.getElementById( 'shop-cart-sidebar' );
 
-	if ( ! shoppingBag.length || ! cartSidebar || document.body.classList.contains( 'woocommerce-cart' ) ) {
+	if (
+		! shoppingBag.length ||
+		! cartSidebar ||
+		document.body.classList.contains( 'woocommerce-cart' ) ||
+		document.body.classList.contains( 'woocommerce-checkout' )
+	) {
 		return;
 	}
 
