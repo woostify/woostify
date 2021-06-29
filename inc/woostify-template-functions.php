@@ -2019,10 +2019,11 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			$sub_total = $woocommerce->cart->get_total();
 		}
 
-		$search_icon     = apply_filters( 'woostify_header_search_icon', 'ti-search' );
-		$wishlist_icon   = apply_filters( 'woostify_header_wishlist_icon', 'ti-heart' );
-		$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'ti-user' );
-		$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'ti-shopping-cart cart-icon-rotate' );
+		$search_icon         = apply_filters( 'woostify_header_search_icon', 'search' );
+		$wishlist_icon       = apply_filters( 'woostify_header_wishlist_icon', 'heart' );
+		$my_account_icon     = apply_filters( 'woostify_header_my_account_icon', 'user' );
+		$shop_bag_icon       = apply_filters( 'woostify_header_shop_bag_icon', 'shopping-cart' );
+		$shop_bag_icon_class = apply_filters( 'woostify_header_shop_bag_icon_class', 'cart-icon-rotate' );
 		?>
 
 		<div class="site-tools">
@@ -2031,7 +2032,9 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 
 			<?php // Search icon. ?>
 			<?php if ( $options['header_search_icon'] ) { ?>
-				<span class="tools-icon header-search-icon <?php echo esc_attr( $search_icon ); ?>"></span>
+				<span class="tools-icon header-search-icon">
+					<?php echo woostify_fetch_svg_icon( $search_icon, true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</span>
 				<?php
 			}
 
@@ -2042,7 +2045,8 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 				if ( $options['header_wishlist_icon'] && woostify_support_wishlist_plugin() ) {
 					$wishlist_item_count = woostify_get_wishlist_count();
 					?>
-					<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon <?php echo esc_attr( $wishlist_icon ); ?>">
+					<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon">
+						<?php echo woostify_fetch_svg_icon( $wishlist_icon, true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<?php if ( 'ti' === $options['shop_page_wishlist_support_plugin'] && function_exists( 'tinv_get_option' ) && tinv_get_option( 'topline', 'show_counter' ) ) { ?>
 							<span class="theme-item-count wishlist-item-count"><?php echo esc_html( $wishlist_item_count ); ?></span>
 						<?php } ?>
@@ -2057,7 +2061,9 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 					$subbox = apply_filters( 'woostify_header_account_subbox', true );
 					?>
 					<div class="tools-icon my-account">
-						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon <?php echo esc_attr( $my_account_icon ); ?>"></a>
+						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon">
+							<?php echo woostify_fetch_svg_icon( $my_account_icon, true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</a>
 
 						<?php if ( $subbox ) { ?>
 							<div class="subbox">
@@ -2085,7 +2091,8 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 						echo '</div>';
 					}
 					?>
-					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
+					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon_class ); ?>">
+						<?php echo woostify_fetch_svg_icon( $shop_bag_icon, true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<span class="shop-cart-count <?php echo $options['header_shop_hide_zero_value_cart_count'] ? 'hide-zero-val' : ''; ?>"><?php echo esc_html( $count ); ?></span>
 					</a>
 					<?php

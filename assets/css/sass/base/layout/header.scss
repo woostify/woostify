@@ -121,6 +121,11 @@
 		margin-left: 15px;
 		position: relative;
 
+		.woostify-svg-icon svg {
+			width: 24px;
+			height: 24px;
+		}
+
 		.tools-icon {
 			margin-left: 0;
 		}
@@ -139,6 +144,10 @@
 
 		&.cart-icon-rotate {
 			&:before {
+				position: relative;
+				transform: rotate3d(0, 1, 0, 180deg);
+			}
+			.woostify-svg-icon {
 				position: relative;
 				transform: rotate3d(0, 1, 0, 180deg);
 			}

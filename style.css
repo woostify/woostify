@@ -4503,6 +4503,14 @@ article p:last-child {
   left: 0;
 }
 
+.woostify-svg-icon {
+  display: block;
+}
+
+.woostify-svg-icon svg {
+  display: block;
+}
+
 .dialog-search-open {
   overflow: hidden;
 }
@@ -5038,6 +5046,11 @@ article p:last-child {
   position: relative;
 }
 
+.site-tools .tools-icon .woostify-svg-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
 .site-tools .tools-icon .tools-icon {
   margin-left: 0;
 }
@@ -5056,6 +5069,11 @@ article p:last-child {
 }
 
 .site-tools .shopping-bag-button.cart-icon-rotate:before {
+  position: relative;
+  transform: rotate3d(0, 1, 0, 180deg);
+}
+
+.site-tools .shopping-bag-button.cart-icon-rotate .woostify-svg-icon {
   position: relative;
   transform: rotate3d(0, 1, 0, 180deg);
 }
