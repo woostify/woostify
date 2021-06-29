@@ -880,7 +880,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		}
 
 		$id           = get_queried_object_id();
-		$thumbnail_id = get_term_meta( $id, 'thumbnail_id', true );
+		$thumbnail_id = get_term_meta( $id, 'custom_thumbnail_id', true );
 		$image        = wp_get_attachment_url( $thumbnail_id );
 
 		if ( $image ) {
