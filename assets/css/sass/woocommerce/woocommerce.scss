@@ -134,7 +134,8 @@ $size: 40px;
 .has-sidebar {
 	&.offcanvas-sidebar {
 		#toggle-sidebar-mobile-button {
-			display: block;
+			display: flex;
+			align-items: center;
 		}
 
 		.shop-widget {
@@ -221,7 +222,12 @@ $size: 40px;
 	@extend .duration;
 
 	&.show {
-		display: block;
+		display: flex;
+		align-items: center;
+	}
+
+	.woostify-svg-icon {
+		margin-right: 7px;
 	}
 
 	.no-sidebar &,

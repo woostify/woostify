@@ -7049,7 +7049,8 @@ header.elementor-element {
 }
 
 .has-sidebar.offcanvas-sidebar #toggle-sidebar-mobile-button {
-  display: block;
+  display: flex;
+  align-items: center;
 }
 
 .has-sidebar.offcanvas-sidebar .shop-widget {
@@ -7143,7 +7144,12 @@ header.elementor-element {
 }
 
 #toggle-sidebar-mobile-button.show {
-  display: block;
+  display: flex;
+  align-items: center;
+}
+
+#toggle-sidebar-mobile-button .woostify-svg-icon {
+  margin-right: 7px;
 }
 
 .no-sidebar #toggle-sidebar-mobile-button,
