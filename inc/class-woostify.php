@@ -1028,31 +1028,31 @@ if ( ! class_exists( 'Woostify' ) ) {
 					$palettes = array(
 						'woostify_color_1' => array(
 							'id'    => 'woostify_color_1',
-							'title' => __( 'Theme Color 1', 'woostify' ),
+							'title' => __( 'Theme Primary Color', 'woostify' ),
 							'value' => $options['theme_color'],
 						),
 
 						'woostify_color_2' => array(
 							'id'    => 'woostify_color_2',
-							'title' => __( 'Theme Color 2', 'woostify' ),
+							'title' => __( 'Theme Text Color', 'woostify' ),
 							'value' => $options['text_color'],
 						),
 
 						'woostify_color_3' => array(
 							'id'    => 'woostify_color_3',
-							'title' => __( 'Theme Color 3', 'woostify' ),
+							'title' => __( 'Theme Accent Color', 'woostify' ),
 							'value' => $options['accent_color'],
 						),
 
 						'woostify_color_4' => array(
 							'id'    => 'woostify_color_4',
-							'title' => __( 'Theme Color 4', 'woostify' ),
+							'title' => __( 'Theme Extra Color 1', 'woostify' ),
 							'value' => $options['extra_color_1'],
 						),
 
 						'woostify_color_5' => array(
 							'id'    => 'woostify_color_5',
-							'title' => __( 'Theme Color 5', 'woostify' ),
+							'title' => __( 'Theme Extra Color 2', 'woostify' ),
 							'value' => $options['extra_color_2'],
 						),
 					);
