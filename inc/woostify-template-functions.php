@@ -1699,7 +1699,7 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 	 */
 	function woostify_dialog_search() {
 		$options    = woostify_options( false );
-		$close_icon = apply_filters( 'woostify_dialog_search_close_icon', 'ti-close' );
+		$close_icon = apply_filters( 'woostify_dialog_search_close_icon', 'close' );
 		?>
 
 		<div class="site-dialog-search  woostify-search-wrap">
@@ -1708,7 +1708,9 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 
 				<div class="dialog-search-header">
 					<span class="dialog-search-title"><?php esc_html_e( 'Type to search', 'woostify' ); ?></span>
-					<span class="dialog-search-close-icon <?php echo esc_attr( $close_icon ); ?>"></span>
+					<span class="dialog-search-close-icon">
+						<?php echo woostify_fetch_svg_icon( $close_icon, true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</span>
 				</div>
 
 				<div class="dialog-search-main">
@@ -2368,9 +2370,11 @@ if ( ! function_exists( 'woostify_scroll_to_top' ) ) {
 			return;
 		}
 
-		$icon = apply_filters( 'woostify_scroll_to_top_icon', 'ti-angle-up' );
+		$icon = apply_filters( 'woostify_scroll_to_top_icon', 'angle-up' );
 		?>
-		<span id="scroll-to-top" class="<?php echo esc_attr( $icon ); ?> scroll-to-top-position-<?php echo esc_attr( $position ); ?> scroll-to-top-show-<?php echo esc_attr( $display ); ?>" title="<?php esc_attr_e( 'Scroll To Top', 'woostify' ); ?>"></span>
+		<span id="scroll-to-top" class="scroll-to-top-position-<?php echo esc_attr( $position ); ?> scroll-to-top-show-<?php echo esc_attr( $display ); ?>" title="<?php esc_attr_e( 'Scroll To Top', 'woostify' ); ?>">
+			<?php echo woostify_fetch_svg_icon( $icon, true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</span>
 		<?php
 	}
 }

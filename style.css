@@ -4509,6 +4509,8 @@ article p:last-child {
 
 .woostify-svg-icon svg {
   display: block;
+  width: 14px;
+  height: 14px;
 }
 
 .dialog-search-open {
@@ -9645,6 +9647,11 @@ header.elementor-element {
 
 .mini-cart-product-infor .mini-cart-product-qty[data-qty="plus"] {
   border-left: 0;
+}
+
+.mini-cart-product-infor .mini-cart-product-qty .woostify-svg-icon svg {
+  width: 10px;
+  height: 10px;
 }
 
 @media (min-width: 600px) and (max-width: 991px) {

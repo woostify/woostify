@@ -99,11 +99,15 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 		?>
 		<span class="mini-cart-product-infor">
 			<span class="mini-cart-quantity">
-				<span class="mini-cart-product-qty ti-minus" data-qty="minus"></span>
+				<span class="mini-cart-product-qty" data-qty="minus">
+				<?php echo woostify_fetch_svg_icon( 'minus', true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</span>
 
 				<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
 
-				<span class="mini-cart-product-qty ti-plus" data-qty="plus"></span>
+				<span class="mini-cart-product-qty" data-qty="plus">
+				<?php echo woostify_fetch_svg_icon( 'plus', true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</span>
 			</span>
 
 			<span class="mini-cart-product-price"><?php echo wp_kses_post( $product_price ); ?></span>
@@ -297,11 +301,15 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 
 							<span class="mini-cart-product-infor">
 								<span class="mini-cart-quantity">
-									<span class="mini-cart-product-qty ti-minus" data-qty="minus"></span>
+									<span class="mini-cart-product-qty" data-qty="minus">
+									<?php echo woostify_fetch_svg_icon( 'minus', true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									</span>
 
 									<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
 
-									<span class="mini-cart-product-qty ti-plus" data-qty="plus"></span>
+									<span class="mini-cart-product-qty" data-qty="plus">
+									<?php echo woostify_fetch_svg_icon( 'plus', true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									</span>
 								</span>
 
 								<span class="mini-cart-product-price"><?php echo wp_kses_post( $product_price ); ?></span>
@@ -360,7 +368,9 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 				<div class="cart-sidebar-head">
 					<h4 class="cart-sidebar-title"><?php esc_html_e( 'Shopping cart', 'woostify' ); ?></h4>
 					<span class="shop-cart-count"><?php echo esc_html( $total ); ?></span>
-					<button id="close-cart-sidebar-btn" class="ti-close"></button>
+					<button id="close-cart-sidebar-btn" class="close">
+					<?php echo woostify_fetch_svg_icon( 'close', true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</button>
 				</div>
 
 				<div class="cart-sidebar-content">
@@ -628,7 +638,9 @@ if ( ! function_exists( 'woostify_product_video_button_play' ) ) {
 
 		if ( 'default' !== $video_url ) {
 			?>
-			<a href="<?php echo esc_url( $video_url ); ?>" data-lity class="ti-control-play woostify-lightbox-button"></a>
+			<a href="<?php echo esc_url( $video_url ); ?>" data-lity class="woostify-lightbox-button">
+			<?php echo woostify_fetch_svg_icon( 'control-play', true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</a>
 			<?php
 		}
 	}
@@ -1058,7 +1070,9 @@ if ( ! function_exists( 'woostify_checkout_before_order_review' ) ) {
 				<span class="woostify-before-order-review-cart-count">(<?php echo esc_html( $cart_count ); ?>)</span>
 			</div>
 			<span class="woostify-before-order-review-total-price"><?php wc_cart_totals_order_total_html(); ?></span>
-			<span class="woostify-before-order-review-icon ti-angle-down"></span>
+			<span class="woostify-before-order-review-icon">
+			<?php echo woostify_fetch_svg_icon( 'angle-down', true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</span>
 		</div>
 		<?php
 	}
