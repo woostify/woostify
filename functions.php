@@ -32,6 +32,7 @@ if ( woostify_is_woocommerce_activated() ) {
 	require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-functions.php';
 	require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-archive-product-functions.php';
 	require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-single-product-functions.php';
+	require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-field-taxonomy.php';
 }
 
 // Woostify admin.
