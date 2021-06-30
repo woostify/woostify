@@ -1043,7 +1043,7 @@ if ( ! function_exists( 'woostify_multi_checkout_button_action' ) ) {
 		$place_order = apply_filters( 'woostify_checkout_order_button', '<button type="submit" class="multi-step-checkout-button button" name="woocommerce_checkout_place_order" id="place_order" data-value="' . $label . '">' . $label . '</button>' );
 		?>
 			<div class="multi-step-checkout-button-wrapper">
-				<span class="multi-step-checkout-button ti-angle-left" data-action="back"><?php esc_html_e( 'Back', 'woostify' ); ?></span>
+				<span class="multi-step-checkout-button" data-action="back"><?php echo woostify_fetch_svg_icon( 'angle-left', true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php esc_html_e( 'Back', 'woostify' ); ?></span>
 				<span class="multi-step-checkout-button button" data-action="continue" data-continue="<?php esc_attr_e( 'Continue to', 'woostify' ); ?>"><?php esc_html_e( 'Continue to Delivery', 'woostify' ); ?></span>
 				<?php echo wp_kses_post( $place_order ); ?>
 			</div>
@@ -1086,5 +1086,28 @@ if ( ! function_exists( 'custom_template_single_title' ) ) {
 		?>
 			<h1 class="product_title entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_modify_woocommerce_loop_add_to_cart_link' ) ) {
+	/**
+	 * Add custom svg icon to add to cart button in loop
+	 *
+	 * @param string $html html.
+	 * @param object $product product.
+	 * @param array  $args args.
+	 *
+	 * @return string
+	 */
+	function woostify_modify_woocommerce_loop_add_to_cart_link( $html, $product, $args ) {
+		$icon = apply_filters( 'woostify_add_to_cart_svg_icon_name', 'shopping-cart' );
+		return sprintf(
+			'<a href="%s" data-quantity="%s" class="%s" %s>%s</a>',
+			esc_url( $product->add_to_cart_url() ),
+			esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+			esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+			isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+			woostify_fetch_svg_icon( $icon, true ) . esc_html( $product->add_to_cart_text() )
+		);
 	}
 }

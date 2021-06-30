@@ -162,10 +162,18 @@
 }
 
 .woostify-svg-icon {
-	display: block;
+	display: inline-flex;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	align-self: center;
+	-webkit-align-self: center;
 	svg {
 		display: block;
 		width: 14px;
 		height: 14px;
+		fill: currentColor;
+		path {
+			fill: currentColor;
+		}
 	}
 }

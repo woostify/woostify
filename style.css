@@ -4504,13 +4504,22 @@ article p:last-child {
 }
 
 .woostify-svg-icon {
-  display: block;
+  display: inline-flex;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  align-self: center;
+  -webkit-align-self: center;
 }
 
 .woostify-svg-icon svg {
   display: block;
   width: 14px;
   height: 14px;
+  fill: currentColor;
+}
+
+.woostify-svg-icon svg path {
+  fill: currentColor;
 }
 
 .dialog-search-open {
@@ -5023,11 +5032,9 @@ article p:last-child {
   align-items: center;
 }
 
-.menu-item .menu-item-arrow:after {
-  content: "\e64b";
-  font-family: "themify";
-  font-size: 10px;
-  font-weight: 700;
+.menu-item .menu-item-arrow .woostify-svg-icon svg {
+  width: 11px;
+  height: 11px;
 }
 
 /* Site tools */
@@ -5097,9 +5104,9 @@ article p:last-child {
 }
 
 .my-account .my-account-icon {
-  padding: 10px 0;
   font-size: 24px;
-  display: inline-block;
+  display: inline-flex;
+  display: -webkit-inline-flex;
 }
 
 .my-account:hover .subbox {
@@ -5671,6 +5678,10 @@ footer#colophon {
 #scroll-to-top.scroll-to-top-position-left {
   left: 20px;
   right: auto;
+}
+
+#scroll-to-top .woostify-svg-icon {
+  color: #fff;
 }
 
 /* responsive */
@@ -8966,20 +8977,17 @@ header.elementor-element {
   }
 }
 
+.quantity .woostify-svg-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
 .quantity [data-qty="minus"] {
   left: 0;
 }
 
-.quantity [data-qty="minus"]:before {
-  content: "\e622";
-}
-
 .quantity [data-qty="plus"] {
   right: 0;
-}
-
-.quantity [data-qty="plus"]:before {
-  content: "\e61a";
 }
 
 .woocommerce-variation-add-to-cart {
@@ -9656,8 +9664,8 @@ header.elementor-element {
 }
 
 .mini-cart-product-infor .mini-cart-product-qty .woostify-svg-icon svg {
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
 }
 
 @media (min-width: 600px) and (max-width: 991px) {
@@ -11012,13 +11020,29 @@ header.elementor-element {
   margin-top: 20px;
 }
 
+.has-multi-step-checkout .multi-step-checkout-button-wrapper:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
 .has-multi-step-checkout .multi-step-checkout-button {
   cursor: pointer;
 }
 
-.has-multi-step-checkout .multi-step-checkout-button[data-action="back"]:before {
+.has-multi-step-checkout .multi-step-checkout-button[data-action="back"] {
+  display: flex;
+  float: left;
+  align-items: center;
+}
+
+.has-multi-step-checkout .multi-step-checkout-button[data-action="back"] .woostify-svg-icon {
   margin-right: 5px;
-  font-size: 0.8em;
+}
+
+.has-multi-step-checkout .multi-step-checkout-button[data-action="back"] .woostify-svg-icon svg {
+  width: 0.8em;
+  height: 0.8em;
 }
 
 .has-multi-step-checkout .multi-step-checkout-button[data-action="continue"], .has-multi-step-checkout .multi-step-checkout-button#place_order {

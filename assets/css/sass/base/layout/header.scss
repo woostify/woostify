@@ -102,11 +102,11 @@
 		justify-content: center;
 		align-items: center;
 
-		&:after {
-			content: "\e64b";
-			font-family: $icon;
-			font-size: 10px;
-			font-weight: 700;
+		.woostify-svg-icon {
+			svg {
+				width: 11px;
+				height: 11px;
+			}
 		}
 	}
 }
@@ -170,9 +170,9 @@
 	position: relative;
 
 	.my-account-icon {
-		padding: 10px 0;
 		font-size: 24px;
-		display: inline-block;
+		display: inline-flex;
+		display: -webkit-inline-flex;
 	}
 
 	&:hover {

@@ -460,6 +460,15 @@ class Woostify_Get_CSS {
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
+			.woostify-svg-icon {
+				color: ' . esc_attr( $options['text_color'] ) . ';
+			}
+
+			.woostify-svg-icon svg {
+				width:  ' . esc_attr( $options['body_font_size'] ) . 'px;
+				height:  ' . esc_attr( $options['body_font_size'] ) . 'px;
+			}
+
 			.pagination a,
 			.pagination a,
 			.woocommerce-pagination a,
@@ -508,9 +517,13 @@ class Woostify_Get_CSS {
 				font-weight: ' . esc_attr( $options['menu_font_weight'] ) . ';
 			}
 
-			.primary-navigation > li > a{
+			.primary-navigation > li > a {
 				font-size: ' . esc_attr( $options['parent_menu_font_size'] ) . 'px;
 				line-height: ' . esc_attr( $options['parent_menu_line_height'] ) . 'px;
+				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
+			}
+
+			.primary-navigation > li > a .woostify-svg-icon {
 				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
 			}
 
@@ -520,7 +533,7 @@ class Woostify_Get_CSS {
 				color: ' . esc_attr( $options['primary_sub_menu_color'] ) . ';
 			}
 
-			.site-tools .tools-icon {
+			.site-tools .tools-icon, .site-tools .tools-icon .woostify-svg-icon {
 				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
 			}
 			.site-tools .tools-icon .woostify-header-total-price {
@@ -615,6 +628,7 @@ class Woostify_Get_CSS {
 			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout),
 			.product-loop-meta .button,
 			.multi-step-checkout-button[data-action="back"],
+			.multi-step-checkout-button[data-action="back"] .woostify-svg-icon,
 			.review-information-link,
 			a{
 				color: ' . esc_attr( $options['accent_color'] ) . ';
@@ -721,7 +735,9 @@ class Woostify_Get_CSS {
 			.woocommerce-checkout-review-order-table .order-total,
 			.woocommerce-table--order-details .product-name a,
 			.primary-navigation a:hover,
+			.primary-navigation a:hover > .menu-item-arrow .woostify-svg-icon,
 			.primary-navigation .menu-item-has-children:hover > a,
+			.primary-navigation .menu-item-has-children:hover > a > .menu-item-arrow .woostify-svg-icon,
 			.default-widget a strong,
 			.woocommerce-mini-cart__total .amount,
 			.woocommerce-form-login-toggle .woocommerce-info a:hover,
@@ -741,8 +757,10 @@ class Woostify_Get_CSS {
 			.product-nav-item .product-nav-item-price,
 			.woocommerce-thankyou-order-received,
 			.site-tools .tools-icon:hover,
+			.site-tools .tools-icon:hover .woostify-svg-icon,
 			.tools-icon.my-account:hover > a,
 			.multi-step-checkout-button[data-action="back"]:hover,
+			.multi-step-checkout-button[data-action="back"]:hover .woostify-svg-icon,
 			.review-information-link:hover,
 			.has-multi-step-checkout .multi-step-item,
 			#secondary .chosen a,
@@ -1015,14 +1033,18 @@ class Woostify_Get_CSS {
 
 		// Scroll to top.
 		$styles .= '
-			#scroll-to-top:before {
-				font-size: ' . esc_attr( $options['scroll_to_top_icon_size'] ) . 'px;
-			}
-
 			#scroll-to-top {
 				bottom: ' . esc_attr( $options['scroll_to_top_offset_bottom'] ) . 'px;
 				background-color: ' . esc_attr( $options['scroll_to_top_background'] ) . ';
+			}
+
+			#scroll-to-top .woostify-svg-icon {
 				color: ' . esc_attr( $options['scroll_to_top_color'] ) . ';
+			}
+
+			#scroll-to-top svg {
+				width: ' . esc_attr( $options['scroll_to_top_icon_size'] ) . 'px;
+				height: ' . esc_attr( $options['scroll_to_top_icon_size'] ) . 'px;
 			}
 
 			@media (min-width: 992px) {

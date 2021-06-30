@@ -267,11 +267,31 @@ document.addEventListener(
 			}
 		).on(
 			'added_to_cart',
-			function() {
+			function( e, fragments, cart_hash, $button ) {
 				woostifyQuantityMiniCart();
 				updateHeaderCartPrice();
 				eventCartSidebarClose();
 				closeAll();
+
+				$button = typeof $button === 'undefined' ? false : $button;
+
+				if ( $button ) {
+					$button.removeClass( 'loading' );
+
+					if ( fragments ) {
+						$button.addClass( 'added' );
+					}
+
+					// View cart text.
+					if ( fragments && ! wc_add_to_cart_params.is_cart && $button.parent().find( '.added_to_cart' ).length === 0 ) {
+						var icon = get_svg_icon( 'shopping-cart-full', true );
+						$button.after(
+							'<a href="' + wc_add_to_cart_params.cart_url + '" class="added_to_cart wc-forward" title="' + wc_add_to_cart_params.i18n_view_cart + '">' + icon + wc_add_to_cart_params.i18n_view_cart + '</a>'
+						);
+					}
+
+					jQuery( document.body ).trigger( 'wc_cart_button_updated', [ $button ] );
+				}
 			}
 		).on(
 			'removed_from_cart', /* For mini cart */

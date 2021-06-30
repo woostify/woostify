@@ -698,20 +698,17 @@
 		}
 	}
 
+	.woostify-svg-icon svg {
+		width: 15px;
+		height: 15px;
+	}
+
 	[data-qty="minus"] {
 		left: 0;
-
-		&:before {
-			content: "\e622"
-		}
 	}
 
 	[data-qty="plus"] {
 		right: 0;
-
-		&:before {
-			content: "\e61a"
-		}
 	}
 }
 

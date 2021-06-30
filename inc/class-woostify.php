@@ -136,7 +136,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			// Add arrow icon.
 			if ( $has_child ) {
-				$item_output .= '<span class="menu-item-arrow arrow-icon"></span>';
+				$item_output .= '<span class="menu-item-arrow arrow-icon">' . woostify_fetch_svg_icon( 'angle-down', true ) . '</span>';
 			}
 
 			$item_output .= '</a>';
@@ -665,6 +665,15 @@ if ( ! class_exists( 'Woostify' ) ) {
 				array( 'jquery' ),
 				woostify_version(),
 				true
+			);
+
+			wp_localize_script(
+				'woostify-general',
+				'woostify_svg_icons',
+				array(
+					'file_url' => WOOSTIFY_THEME_URI . 'assets/svg/svgs.json',
+					'list'     => wp_json_encode( woostify_fetch_all_svg_icon() ),
+				)
 			);
 
 			// Mobile menu.

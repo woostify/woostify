@@ -806,14 +806,17 @@ if ( ! function_exists( 'woostify_fetch_svg_icon' ) ) {
 	function woostify_fetch_svg_icon( $icon = '', $wrap = false ) {
 		$output = '';
 
-		$file_content  = wp_remote_get( WOOSTIFY_THEME_URI . 'assets/svg/svgs.json' );
-		$woostify_svgs = json_decode( $file_content['body'], true );
-		$woostify_svgs = apply_filters( 'woostify_svg_icons', $woostify_svgs );
-
+		$file_content = wp_remote_get( WOOSTIFY_THEME_URI . 'assets/svg/svgs.json' );
 		if ( $wrap ) {
 			$output .= '<span class="woostify-svg-icon">';
 		}
-		$output .= isset( $woostify_svgs[ $icon ] ) ? $woostify_svgs[ $icon ] : '';
+		if ( is_wp_error( $file_content ) ) {
+			$output .= '';
+		} else {
+			$woostify_svgs = json_decode( $file_content['body'], true );
+			$woostify_svgs = apply_filters( 'woostify_svg_icons', $woostify_svgs );
+			$output       .= isset( $woostify_svgs[ $icon ] ) ? $woostify_svgs[ $icon ] : '';
+		}
 		if ( $wrap ) {
 			$output .= '</span>';
 		}
@@ -829,7 +832,12 @@ if ( ! function_exists( 'woostify_fetch_all_svg_icon' ) ) {
 	 * @return mixed|void
 	 */
 	function woostify_fetch_all_svg_icon() {
-		$file_content  = wp_remote_get( WOOSTIFY_THEME_URI . 'assets/svg/svgs.json' );
+
+		$file_content = wp_remote_get( WOOSTIFY_THEME_URI . 'assets/svg/svgs.json' );
+		if ( is_wp_error( $file_content ) ) {
+			return array();
+		}
+
 		$woostify_svgs = json_decode( $file_content['body'], true );
 		$woostify_svgs = apply_filters( 'woostify_svg_icons', $woostify_svgs );
 
