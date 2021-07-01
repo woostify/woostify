@@ -1105,3 +1105,27 @@ if ( ! function_exists( 'woostify_modify_woocommerce_loop_add_to_cart_link' ) ) 
 		);
 	}
 }
+
+if ( ! function_exists( 'woostify_wc_demo_store_notice' ) ) {
+	/**
+	 * Add icon before store notice text
+	 */
+	function woostify_wc_demo_store_notice() {
+		if ( ! is_store_notice_showing() ) {
+			return;
+		}
+
+		$notice = get_option( 'woocommerce_demo_store_notice' );
+
+		if ( empty( $notice ) ) {
+			$notice = __( 'This is a demo store for testing purposes &mdash; no orders shall be fulfilled.', 'woostify' );
+		}
+		$notice_id = md5( $notice );
+
+		$notice_icon         = apply_filters( 'woostify_demo_store_icon_before_text', 'info-alt' );
+		$dismiss_notice_icon = apply_filters( 'woostify_demo_store_icon_before_dismiss_text', 'close' );
+
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo apply_filters( 'woocommerce_demo_store', '<p class="woocommerce-store-notice demo_store" data-notice-id="' . esc_attr( $notice_id ) . '" style="display:none;">' . woostify_fetch_svg_icon( $notice_icon, true ) . wp_kses_post( $notice ) . ' <a href="#" class="woocommerce-store-notice__dismiss-link">' . woostify_fetch_svg_icon( $dismiss_notice_icon, true ) . esc_html__( 'Dismiss', 'woostify' ) . '</a></p>', $notice );
+	}
+}

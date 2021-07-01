@@ -625,10 +625,11 @@ $size: 40px;
 	bottom: 0;
 	z-index: 501; // higher Sticky Button on Mobile feature.
 
-	&:before {
-		content: "\e717";
-		font-family: $icon;
+	.woostify-svg-icon {
+		color: #fff;
 		margin-right: 7px;
+		position: relative;
+		top: 1px;
 	}
 
 	a {
@@ -642,17 +643,17 @@ $size: 40px;
 		background-color: rgba(255, 255, 255, 0.1);
 		@extend .flex;
 
-		&:before {
-			content: "\e646";
-			font-family: $icon;
+		.woostify-svg-icon {
 			margin-right: 10px;
+			top: 0;
 			@extend .duration;
 		}
 
 		&:hover {
 			color: #fff;
 
-			&:before {
+			.woostify-svg-icon {
+				color: #fff;
 				@include rotate(90);
 			}
 		}
