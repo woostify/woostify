@@ -79,6 +79,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'product_cat_edit_form_fields', array( $this, 'woostify_edit_term_meta_field' ) );
 			add_action( 'created_product_cat', array( $this, 'woostify_save_term_meta_field' ) );
 			add_action( 'edited_product_cat', array( $this, 'woostify_save_term_meta_field' ) );
+
+			// Woocommerce taxonomy.
+			add_action( 'product_cat_add_form_fields', array( $this, 'woostify_add_field_taxonomy' ) );
+			add_action( 'product_cat_edit_form_fields', array( $this, 'woostify_edit_field_taxonomy' ) );
+			add_action( 'created_product_cat', array( $this, 'woostify_save_term_field' ) );
+			add_action( 'edited_product_cat', array( $this, 'woostify_save_term_field' ) );
+
 			// For product tag.
 			add_action( 'product_tag_add_form_fields', array( $this, 'woostify_add_term_meta_field' ) );
 			add_action( 'product_tag_edit_form_fields', array( $this, 'woostify_edit_term_meta_field' ) );
@@ -210,6 +217,52 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			$single_ajax = isset( $_POST['cat_single_ajax_add_to_cart'] ) ? $_POST['cat_single_ajax_add_to_cart'] : 'enabled'; // phpcs:ignore
 			update_term_meta( $term_id, 'cat_single_ajax_add_to_cart', $single_ajax );
+		}
+
+		/**
+		 * Add term meta field.
+		 */
+		public function woostify_add_field_taxonomy() {
+			?>
+				<div class="form-field term-display-type-image">
+					<label for="display_type_image"><?php esc_html_e( 'Thumbnail Page Header', 'woostify' ); ?></label>
+					<select id="display_type_image" name="display_type_image" class="postform">
+						<option value=""><?php esc_html_e( 'Disable', 'woostify' ); ?></option>
+						<option value="enable"><?php esc_html_e( 'Enable', 'woostify' ); ?></option>
+					</select>
+				</div>
+			<?php
+		}
+
+		/**
+		 * Edit term meta field.
+		 *
+		 * @param      array $term The term.
+		 */
+		public function woostify_edit_field_taxonomy( $term ) {
+			$display_type_image = get_term_meta( $term->term_id, 'display_type_image', true );
+			?>
+				<tr class="form-field term-display-type-image">
+					<th scope="row" valign="top"><label><?php esc_html_e( 'Thumbnail Page Header', 'woostify' ); ?></label></th>
+					<td>
+						<select id="display_type_image" name="display_type_image" class="postform">
+							<option value="" <?php selected( '', $display_type_image ); ?>><?php esc_html_e( 'Disable', 'woostify' ); ?></option>
+							<option value="enable" <?php selected( 'enable', $display_type_image ); ?>><?php esc_html_e( 'Enable', 'woostify' ); ?></option>
+						</select>
+					</td>
+				</tr>
+			<?php
+		}
+
+		/**
+		 * Save a taxonomy meta field.
+		 *
+		 * @param      array $term_id The term identifier.
+		 */
+		public function woostify_save_term_field( $term_id ) {
+
+			$display_type_image = isset( $_POST['display_type_image'] ) ? $_POST['display_type_image'] : ''; // phpcs:ignore
+			update_term_meta( $term_id, 'display_type_image', $display_type_image );
 		}
 
 		/**
