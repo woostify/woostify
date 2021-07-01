@@ -812,6 +812,9 @@ $size: 40px;
 
 		&:hover {
 			color: #fff;
+			.woostify-svg-icon {
+				color: #fff;
+			}
 		}
 	}
 
@@ -836,13 +839,13 @@ $size: 40px;
 	.added_to_cart {
 		color: #fff;
 
-		&:before {
-			content: "\e60e"
-		}
-
 		+.quick-view-with-icon,
 		+.yith-wcwl-add-to-wishlist {
 			border-top: 1px solid #e7e7e7;
+		}
+
+		.woostify-svg-icon {
+			color: #fff;
 		}
 	}
 }

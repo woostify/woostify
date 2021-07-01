@@ -485,6 +485,7 @@ class Woostify_Get_CSS {
 			#secondary .widget a,
 			.has-woostify-text-color,
 			.button.loop-add-to-cart-icon-btn,
+			.button.loop-add-to-cart-icon-btn .woostify-svg-icon,
 			.loop-wrapper-wishlist a,
 			#order_review .shop_table .product-name {
 				color: ' . esc_attr( $options['text_color'] ) . ';
@@ -642,7 +643,7 @@ class Woostify_Get_CSS {
 		// Buttons.
 		$styles .= '
 			.woostify-button-color,
-			.loop-add-to-cart-on-image+.added_to_cart {
+			.loop-add-to-cart-on-image+.added_to_cart, {
 				color: ' . esc_attr( $options['button_text_color'] ) . ';
 			}
 
@@ -687,6 +688,11 @@ class Woostify_Get_CSS {
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
 			}
 
+			.button .woostify-svg-icon,
+			 .product-loop-meta.no-transform .added_to_cart .woostify-svg-icon {
+				color: ' . esc_attr( $options['button_text_color'] ) . ';
+			}
+
 			.cart:not(.elementor-menu-cart__products) .quantity,
 			.loop-add-to-cart-on-image+.added_to_cart{
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
@@ -703,6 +709,14 @@ class Woostify_Get_CSS {
 			.product-loop-meta.no-transform .button:hover,
 			.product-loop-meta.no-transform .added_to_cart:hover{
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
+				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
+			}
+
+			/*.product-loop-wrapper .button .woostify-svg-icon {
+				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
+			}*/
+
+			.loop-add-to-cart-on-image+.added_to_cart:hover .woostify-svg-icon {
 				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
 			}
 
@@ -1079,7 +1093,11 @@ class Woostify_Get_CSS {
 				border-radius: ' . esc_attr( $options['shop_page_button_border_radius'] ) . 'px;
 			}
 
-			.product-loop-wrapper .button:hover, .product-loop-meta.no-transform .button:hover {
+			.product-loop-wrapper .button .woostify-svg-icon {
+				color: ' . esc_attr( $options['shop_page_button_cart_color'] ) . ';
+			}
+
+			.product-loop-wrapper .button:hover, .product-loop-meta.no-transform .button:hover, .product-loop-wrapper .button:hover .woostify-svg-icon {
 				background-color: ' . esc_attr( $options['shop_page_button_background_hover'] ) . ';
 				color: ' . esc_attr( $options['shop_page_button_color_hover'] ) . ';
 			}

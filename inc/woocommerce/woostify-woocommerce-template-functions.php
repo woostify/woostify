@@ -390,12 +390,6 @@ if ( ! function_exists( 'woostify_modify_loop_add_to_cart_class' ) ) {
 		$options      = woostify_options( false );
 		$button_class = 'loop-add-to-cart-btn';
 		$icon_class   = '';
-		if (
-			( ! in_array( $options['shop_page_add_to_cart_button_position'], array( 'none', 'icon' ), true ) && $options['shop_product_add_to_cart_icon'] ) ||
-			'icon' === $options['shop_page_add_to_cart_button_position']
-		) {
-			$icon_class = apply_filters( 'woostify_pro_loop_add_to_cart_icon', 'ti-shopping-cart' );
-		}
 
 		if ( 'image' === $options['shop_page_add_to_cart_button_position'] ) {
 			$button_class = 'loop-add-to-cart-on-image';

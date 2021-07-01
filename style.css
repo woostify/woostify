@@ -4509,6 +4509,8 @@ article p:last-child {
   display: -ms-inline-flexbox;
   align-self: center;
   -webkit-align-self: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
 }
 
 .woostify-svg-icon svg {
@@ -7711,6 +7713,11 @@ header.elementor-element {
   color: #fff;
 }
 
+.product-loop-action .loop-add-to-cart-icon-btn:hover .woostify-svg-icon,
+.product-loop-action .added_to_cart:hover .woostify-svg-icon {
+  color: #fff;
+}
+
 .product-loop-action .loop-add-to-cart-icon-btn + .added_to_cart:before {
   margin-right: 0;
 }
@@ -7729,13 +7736,13 @@ header.elementor-element {
   color: #fff;
 }
 
-.product-loop-action .added_to_cart:before {
-  content: "\e60e";
-}
-
 .product-loop-action .added_to_cart + .quick-view-with-icon,
 .product-loop-action .added_to_cart + .yith-wcwl-add-to-wishlist {
   border-top: 1px solid #e7e7e7;
+}
+
+.product-loop-action .added_to_cart .woostify-svg-icon {
+  color: #fff;
 }
 
 .woocommerce-notices-wrapper .woocommerce-error {
@@ -8237,9 +8244,11 @@ header.elementor-element {
   white-space: nowrap;
 }
 
-.product-loop-image-wrapper .loop-add-to-cart-on-image:before,
-.product-loop-image-wrapper .loop-add-to-cart-on-image + .added_to_cart:before {
+.product-loop-image-wrapper .loop-add-to-cart-on-image .woostify-svg-icon,
+.product-loop-image-wrapper .loop-add-to-cart-on-image + .added_to_cart .woostify-svg-icon {
   margin-right: 7px;
+  position: relative;
+  top: 1px;
 }
 
 .product-loop-image-wrapper .loop-add-to-cart-on-image {
@@ -8250,11 +8259,9 @@ header.elementor-element {
   display: none;
 }
 
-.product-loop-image-wrapper .added_to_cart:before {
-  font-size: 14px;
-  font-family: "themify";
-  content: "\e60e";
-  margin-right: 7px;
+.product-loop-image-wrapper .added_to_cart .woostify-svg-icon svg {
+  width: 14px;
+  height: 14px;
 }
 
 .has-equal-image-height img {
@@ -8274,8 +8281,7 @@ header.elementor-element {
   position: relative;
 }
 
-.product-loop-meta a:before {
-  font-weight: normal;
+.product-loop-meta a .woostify-svg-icon {
   margin-right: 5px;
 }
 
@@ -8307,10 +8313,6 @@ header.elementor-element {
 
 .product-loop-meta .added {
   display: none;
-}
-
-.product-loop-meta .added_to_cart:before {
-  content: "\e60e";
 }
 
 .no-transform .animated-meta {

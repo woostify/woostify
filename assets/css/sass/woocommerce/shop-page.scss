@@ -71,8 +71,10 @@
 		line-height: 1.8em;
 		transform: translateX( -50% );
 		white-space: nowrap;
-		&:before {
+		.woostify-svg-icon {
 			margin-right: 7px;
+			position: relative;
+			top: 1px;
 		}
 	}
 
@@ -84,11 +86,9 @@
 	}
 
 	.added_to_cart {
-		&:before {
-			font-size: 14px;
-			font-family: $icon;
-			content: "\e60e";
-			margin-right: 7px;
+		.woostify-svg-icon svg {
+			width: 14px;
+			height: 14px;
 		}
 	}
 }
@@ -113,8 +113,7 @@
 		position: relative;
 		@extend .flex;
 
-		&:before{
-			font-weight: normal;
+		.woostify-svg-icon {
 			margin-right: 5px;
 		}
 
@@ -145,12 +144,6 @@
 
 	.added{
 		display: none;
-	}
-
-	.added_to_cart{
-		&:before{
-			content: "\e60e"
-		}
 	}
 }
 
