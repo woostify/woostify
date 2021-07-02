@@ -246,3 +246,6 @@
 .pcr-app .pcr-swatches > button {
 	overflow: unset;
 }
+.color-updating-class-name #customize-preview{
+	pointer-events: none;
+}

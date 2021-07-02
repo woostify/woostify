@@ -88,6 +88,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 							pickr2.on(
 								'change',
 								function ( color ) {
+									document.body.classList.add( 'color-updating-class-name' )
 									control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) )
 								},
 							).on(
@@ -96,6 +97,11 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 									instance.options.el.style.color = 'rgba(255,255,255,0)'
 									control.settings[idx].set( instance.options.default )
 								},
+							).on(
+								'changestop',
+								function( source, instance ) {
+									document.body.classList.remove( 'color-updating-class-name' );
+								}
 							)
 							pickr2.applyColor()
 						},
@@ -151,6 +157,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 						pickr.on(
 							'change',
 							function ( color, source, instance ) {
+								document.body.classList.add( 'color-updating-class-name' );
 								instance.options.el.style.color = colorFormat( color, color_format ).toString( 0 )
 								control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) )
 							},
@@ -160,6 +167,11 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 								instance.options.el.style.color = 'rgba(255,255,255,0)'
 								control.settings[idx].set( instance.options.default )
 							},
+						).on(
+							'changestop',
+							function( source, instance ) {
+								document.body.classList.remove( 'color-updating-class-name' );
+							}
 						)
 
 						if ( global_color_settings.indexOf( obj ) !== -1 ) {
@@ -169,6 +181,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 								function( source, instance ) {
 									let new_color = instance._color.toHEXA().toString( 0 )
 									let pickrs    = document.querySelectorAll( '.customize-control-woostify-color-group:not(.woostify-global-color)' );
+									document.body.classList.remove( 'color-updating-class-name' );
 									pickrs.forEach(
 										function( pobj ) {
 											let control_id   = pobj.children[0].getAttribute( 'data-control_id' );
@@ -199,6 +212,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 															pickr.on(
 																'change',
 																function ( color, source, instance ) {
+																	document.body.classList.add( 'color-updating-class-name' );
 																	instance.options.el.style.color = colorFormat( color, color_format ).toString( 0 )
 																	setting_control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) )
 																},
@@ -208,6 +222,11 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 																	instance.options.el.style.color = 'rgba(255,255,255,0)'
 																	setting_control.settings[idx].set( instance.options.default )
 																},
+															).on(
+																'changestop',
+																function( source, instance ) {
+																	document.body.classList.remove( 'color-updating-class-name' );
+																}
 															)
 
 															pickr.applyColor()
