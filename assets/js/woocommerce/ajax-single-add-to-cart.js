@@ -77,6 +77,14 @@ function woostifyAjaxSingleAddToCartButton() {
 					return;
 				}
 
+				let input      = form.querySelector( 'input.qty' ),
+					inputValue = input ? Number( input.value.trim() ) : false;
+
+				if ( ! inputValue || isNaN( inputValue ) || inputValue <= 0 ) {
+					alert( woostify_woocommerce_general.qty_warning );
+					return;
+				}
+
 				// Add loading.
 				ele.classList.add( 'loading' );
 
