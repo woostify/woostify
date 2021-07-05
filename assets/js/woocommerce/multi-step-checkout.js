@@ -610,13 +610,8 @@ var woostifyTotalPriceMobile = function( e, data ) {
 		isFirstStep     = document.querySelector( '.multi-step-checkout-wrapper.first' ),
 		totalPriceValue = totalPrice ? totalPrice.querySelector( 'strong' ) : false;
 
-	if ( isFirstStep ) {
+	if ( ! totalPriceValue ) {
 		return;
-	}
-
-	// Update total price on step 1 after apply coupon.
-	if ( isFirstStep && totalPriceValue && woostify_multi_step_checkout.price ) {
-		totalPriceValue.innerHTML = woostify_multi_step_checkout.price;
 	}
 
 	// Update checkout.
