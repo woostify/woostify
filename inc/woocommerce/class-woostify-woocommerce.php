@@ -225,7 +225,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		public function woostify_add_field_taxonomy() {
 			?>
 				<div class="form-field term-display-type-image">
-					<label for="display_type_image"><?php esc_html_e( 'Thumbnail Page Header', 'woostify' ); ?></label>
+					<label for="display_type_image"><?php esc_html_e( 'Enable thumbnail for page header BG', 'woostify' ); ?></label>
 					<select id="display_type_image" name="display_type_image" class="postform">
 						<option value=""><?php esc_html_e( 'Disable', 'woostify' ); ?></option>
 						<option value="enable"><?php esc_html_e( 'Enable', 'woostify' ); ?></option>
@@ -243,7 +243,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$display_type_image = get_term_meta( $term->term_id, 'display_type_image', true );
 			?>
 				<tr class="form-field term-display-type-image">
-					<th scope="row" valign="top"><label><?php esc_html_e( 'Thumbnail Page Header', 'woostify' ); ?></label></th>
+					<th scope="row" valign="top"><label><?php esc_html_e( 'Enable thumbnail for page header BG', 'woostify' ); ?></label></th>
 					<td>
 						<select id="display_type_image" name="display_type_image" class="postform">
 							<option value="" <?php selected( '', $display_type_image ); ?>><?php esc_html_e( 'Disable', 'woostify' ); ?></option>
