@@ -70,16 +70,18 @@ function woostifyAjaxSingleAddToCartButton() {
 	buttons.forEach(
 		function( ele ) {
 			ele.onclick = function( e ) {
-				e.preventDefault();
-
 				var form = ele.closest( 'form.cart' );
 				if ( ! form ) {
 					return;
 				}
 
+				if ( 'POST' !== form.method.toUpperCase() ) {
+					return;
+				}
+
+				e.preventDefault();
 				let input      = form.querySelector( 'input.qty' ),
 					inputValue = input ? Number( input.value.trim() ) : false;
-
 				if ( ! inputValue || isNaN( inputValue ) || inputValue <= 0 ) {
 					alert( woostify_woocommerce_general.qty_warning );
 					return;
