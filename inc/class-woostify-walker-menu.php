@@ -105,7 +105,7 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 
 			// Add arrow icon.
 			if ( $has_child ) {
-				$item_output .= '<span class="menu-item-arrow arrow-icon">' . woostify_fetch_svg_icon( 'angle-down', true ) . '</span>';
+				$item_output .= '<span class="menu-item-arrow arrow-icon">' . woostify_fetch_svg_icon( 'angle-down' ) . '</span>';
 			}
 
 			$item_output .= '</a>';
