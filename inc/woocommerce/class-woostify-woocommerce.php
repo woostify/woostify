@@ -52,6 +52,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_filter( 'woocommerce_available_variation', 'woostify_available_variation_gallery', 90, 3 );
 			add_filter( 'woocommerce_loop_add_to_cart_link', 'woostify_modify_woocommerce_loop_add_to_cart_link', 99, 3 );
 
+			add_filter( 'get_product_search_form', 'woostify_wc_custom_product_search_form' );
+
 			remove_action( 'wp_footer', 'woocommerce_demo_store' );
 			add_action( 'wp_footer', 'woostify_wc_demo_store_notice' );
 

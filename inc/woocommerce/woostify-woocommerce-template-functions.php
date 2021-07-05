@@ -1129,3 +1129,21 @@ if ( ! function_exists( 'woostify_wc_demo_store_notice' ) ) {
 		echo apply_filters( 'woocommerce_demo_store', '<p class="woocommerce-store-notice demo_store" data-notice-id="' . esc_attr( $notice_id ) . '" style="display:none;">' . woostify_fetch_svg_icon( $notice_icon ) . wp_kses_post( $notice ) . ' <a href="#" class="woocommerce-store-notice__dismiss-link">' . woostify_fetch_svg_icon( $dismiss_notice_icon, true ) . esc_html__( 'Dismiss', 'woostify' ) . '</a></p>', $notice );
 	}
 }
+
+if ( ! function_exists( 'woostify_wc_custom_product_search_form' ) ) {
+	/**
+	 * Custom product search form
+	 *
+	 * @param string $ouput Search form html.
+	 *
+	 * @return mixed
+	 */
+	function woostify_wc_custom_product_search_form( $ouput ) {
+		global $product_search_form_index;
+
+		if ( empty( $product_search_form_index ) ) {
+			$product_search_form_index = 0;
+		}
+		return $ouput;
+	}
+}
