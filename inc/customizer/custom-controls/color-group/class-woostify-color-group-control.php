@@ -190,7 +190,7 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 				$btn_id      = isset( $btn_id_arr[1] ) ? explode( ']', $btn_id_arr[1] )[0] : $btn_id_arr[0];
 				$reset_value = $setting->default;
 				?>
-				<input type="hidden" class="color-group-value color-group-value-<?php echo esc_attr( $btn_id ); ?>" data-reset_value="<?php echo esc_attr( $reset_value ); ?>" <?php echo $link; //phpcs:ignore?> value="<?php echo esc_attr( $this->value( $k ) ); ?>">
+				<input type="hidden" class="color-group-value color-group-value-<?php echo esc_attr( $btn_id ); ?>" data-reset_value="<?php echo esc_attr( $this->value( $k ) ); ?>" <?php echo $link; //phpcs:ignore?> value="<?php echo esc_attr( $this->value( $k ) ); ?>">
 			<?php } ?>
 		</div>
 		<?php
