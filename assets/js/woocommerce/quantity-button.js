@@ -9,7 +9,7 @@
 // Create Minus button.
 var minusBtn = function() {
 	var minusBtn = document.createElement( 'span' );
-	var icon     = get_svg_icon( 'minus', true );
+	var icon     = get_svg_icon( 'minus' );
 
 	minusBtn.setAttribute( 'class', 'product-qty' );
 	minusBtn.setAttribute( 'data-qty', 'minus' );
@@ -21,7 +21,7 @@ var minusBtn = function() {
 // Create Plus button.
 var plusBtn = function() {
 	var plusBtn = document.createElement( 'span' );
-	var icon    = get_svg_icon( 'plus', true );
+	var icon    = get_svg_icon( 'plus' );
 
 	plusBtn.setAttribute( 'class', 'product-qty' );
 	plusBtn.setAttribute( 'data-qty', 'plus' );

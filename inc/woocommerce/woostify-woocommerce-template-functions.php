@@ -1134,16 +1134,24 @@ if ( ! function_exists( 'woostify_wc_custom_product_search_form' ) ) {
 	/**
 	 * Custom product search form
 	 *
-	 * @param string $ouput Search form html.
-	 *
 	 * @return mixed
 	 */
-	function woostify_wc_custom_product_search_form( $ouput ) {
+	function woostify_wc_custom_product_search_form() {
 		global $product_search_form_index;
 
 		if ( empty( $product_search_form_index ) ) {
 			$product_search_form_index = 0;
 		}
-		return $ouput;
+
+		$index = $product_search_form_index++;
+
+		$output  = '<form role="search" method="get" class="woocommerce-product-search" action="' . esc_url( home_url( '/' ) ) . '">';
+		$output .= '<label class="screen-reader-text" for="woocommerce-product-search-field-' . absint( $index ) . '">' . esc_html__( 'Search for:', 'woostify' ) . '></label>';
+		$output .= '<input type="search" id="woocommerce-product-search-field-' . absint( $index ) . '" class="search-field" placeholder="' . esc_attr__( 'Search products&hellip;', 'woostify' ) . '" value="' . get_search_query() . '" name="s" />';
+		$output .= '<button type="submit" value="' . esc_attr_x( 'Search', 'submit button', 'woostify' ) . '">' . esc_html_x( 'Search', 'submit button', 'woostify' ) . '</button>';
+		$output .= '<input type="hidden" name="post_type" value="product" />';
+		$output .= '<span class="search-form-icon">' . woostify_fetch_svg_icon( 'search' ) . '</span>';
+		$output .= '</form>';
+		return $output;
 	}
 }

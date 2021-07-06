@@ -6,12 +6,11 @@
 
 'use strict';
 
-function get_svg_icon( icon, wrap = false ) {
+function get_svg_icon( icon ) {
 	var output    = '';
 	var icon_list = JSON.parse( woostify_svg_icons.list );
-	if ( wrap ) {
-		output += '<span class="woostify-svg-icon">';
-	}
+
+	output += '<span class="woostify-svg-icon">';
 
 	if ( icon_list.hasOwnProperty( icon ) ) {
 		output += icon_list[icon];
@@ -19,9 +18,7 @@ function get_svg_icon( icon, wrap = false ) {
 		output += '';
 	}
 
-	if ( wrap ) {
-		output += '</span>';
-	}
+	output += '</span>';
 
 	return output;
 }

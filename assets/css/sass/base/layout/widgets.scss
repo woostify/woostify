@@ -91,22 +91,19 @@
 	height: 50px;
 
 	&:hover {
-		&:after {
+		.search-form-icon {
 			@include rotate(90);
 		}
 	}
 
 	/* Fix issue not showing on IE */
 	&:focus-within {
-		&:after {
+		.search-form-icon {
 			@include rotate(90);
 		}
 	}
 
-	&:after {
-		content: "\e610";
-		font-family: $icon;
-		font-size: 20px;
+	.search-form-icon {
 		position: absolute;
 		right: 0;
 		bottom: 0;
@@ -114,6 +111,14 @@
 		height: 50px;
 		@extend .flex;
 		@extend .duration;
+
+		.woostify-svg-icon {
+			color: initial;
+			svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
 	}
 
 	.media-toolbar & {

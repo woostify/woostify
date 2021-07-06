@@ -31,6 +31,9 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_filter( 'wpcf7_load_css', '__return_false' );
 			add_filter( 'excerpt_length', array( $this, 'woostify_limit_excerpt_character' ), 99 );
 
+			// Search form.
+			add_filter( 'get_search_form', 'woostify_custom_search_form', 10, 2 );
+
 			// ELEMENTOR.
 			add_action( 'elementor/theme/register_locations', array( $this, 'woostify_register_elementor_locations' ) );
 			add_action( 'elementor/preview/enqueue_scripts', array( $this, 'woostify_elementor_preview_scripts' ) );

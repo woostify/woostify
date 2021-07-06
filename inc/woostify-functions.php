@@ -906,3 +906,47 @@ if ( ! function_exists( 'woostify_render_css_space' ) ) {
 		return trim( $css );
 	}
 }
+
+if ( ! function_exists( 'woostify_custom_search_form' ) ) {
+	/**
+	 * Override search with get form html
+	 *
+	 * @param string $form Form html.
+	 * @param string $args Arguments.
+	 *
+	 * @return string
+	 */
+	function woostify_custom_search_form( $form, $args ) {
+		// Build a string containing an aria-label to use for the search form.
+		if ( $args['aria_label'] ) {
+			$aria_label = 'aria-label="' . esc_attr( $args['aria_label'] ) . '" ';
+		} else {
+			/*
+			 * If there's no custom aria-label, we can set a default here. At the
+			 * moment it's empty as there's uncertainty about what the default should be.
+			 */
+			$aria_label = '';
+		}
+		$format = current_theme_supports( 'html5', 'search-form' ) ? 'html5' : 'xhtml';
+
+		if ( 'html5' === $format ) {
+			$form = '<form role="search" ' . $aria_label . 'method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
+                <label>
+                    <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'woostify' ) . '</span>
+                    <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder', 'woostify' ) . '" value="' . get_search_query() . '" name="s" />
+                </label>
+                <input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button', 'woostify' ) . '" />
+                <span class="search-form-icon">' . woostify_fetch_svg_icon( 'search' ) . '</span>
+            </form>';
+		} else {
+			$form = '<form role="search" ' . $aria_label . 'method="get" id="searchform" class="searchform" action="' . esc_url( home_url( '/' ) ) . '">
+                <div>
+                    <label class="screen-reader-text" for="s">' . _x( 'Search for:', 'label', 'woostify' ) . '</label>
+                    <input type="text" value="' . get_search_query() . '" name="s" id="s" />
+                    <input type="submit" id="searchsubmit" value="' . esc_attr_x( 'Search', 'submit button', 'woostify' ) . '" />
+                </div>
+            </form>';
+		}
+		return $form;
+	}
+}
