@@ -54,6 +54,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			add_filter( 'get_product_search_form', 'woostify_wc_custom_product_search_form' );
 
+			// WC Cart widget.
+			add_filter( 'woocommerce_cart_item_remove_link', 'woostify_filter_woocommerce_cart_item_remove_link', 10, 2 );
+
 			remove_action( 'wp_footer', 'woocommerce_demo_store' );
 			add_action( 'wp_footer', 'woostify_wc_demo_store_notice' );
 

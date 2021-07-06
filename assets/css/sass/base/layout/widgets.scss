@@ -225,11 +225,12 @@
 		color: firebrick;
 		@extend .flex;
 
-		&:before {
-			content: "\e646";
-			font-family: $icon;
-			line-height: 1;
-			font-size: 10px;
+		.woostify-svg-icon {
+			color: inherit;
+			svg {
+				width: 10px;
+				height: 10px;
+			}
 		}
 
 		&:focus {

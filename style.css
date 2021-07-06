@@ -5912,11 +5912,13 @@ footer#colophon {
   color: firebrick;
 }
 
-.product_list_widget .remove_from_cart_button:before {
-  content: "\e646";
-  font-family: "themify";
-  line-height: 1;
-  font-size: 10px;
+.product_list_widget .remove_from_cart_button .woostify-svg-icon {
+  color: inherit;
+}
+
+.product_list_widget .remove_from_cart_button .woostify-svg-icon svg {
+  width: 10px;
+  height: 10px;
 }
 
 .product_list_widget .remove_from_cart_button:focus:before {

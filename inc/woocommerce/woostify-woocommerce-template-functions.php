@@ -1155,3 +1155,20 @@ if ( ! function_exists( 'woostify_wc_custom_product_search_form' ) ) {
 		return $output;
 	}
 }
+
+if ( ! function_exists( 'woostify_filter_woocommerce_cart_item_remove_link' ) ) {
+	/**
+	 * Override WC cart item remove link
+	 *
+	 * @param string $sprintf Remove item link.
+	 * @param string $cart_item_key Cart item key.
+	 *
+	 * @return array|string|string[]
+	 */
+	function woostify_filter_woocommerce_cart_item_remove_link( $sprintf, $cart_item_key ) {
+		$icon    = woostify_fetch_svg_icon( 'close' );
+		$sprintf = str_replace( '</a>', $icon . '</a>', $sprintf );
+
+		return $sprintf;
+	}
+}
