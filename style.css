@@ -4508,9 +4508,6 @@ article p:last-child {
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   align-self: center;
-  -webkit-align-self: center;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
 }
 
 .woostify-svg-icon svg {
@@ -5111,6 +5108,7 @@ article p:last-child {
 }
 
 .my-account .my-account-icon {
+  padding: 8px 0 10px;
   font-size: 24px;
   display: inline-flex;
   display: -webkit-inline-flex;
@@ -7724,10 +7722,9 @@ header.elementor-element {
   background-color: #fff;
 }
 
-.product-loop-action .loop-add-to-cart-icon-btn:before,
-.product-loop-action .added_to_cart:before {
-  font-size: 14px;
-  font-family: "themify";
+.product-loop-action .loop-add-to-cart-icon-btn.loading .woostify-svg-icon,
+.product-loop-action .added_to_cart.loading .woostify-svg-icon {
+  display: none;
 }
 
 .product-loop-action .loop-add-to-cart-icon-btn:hover,
@@ -8304,7 +8301,9 @@ header.elementor-element {
 }
 
 .product-loop-meta a .woostify-svg-icon {
+  color: currentColor;
   margin-right: 5px;
+  transition-duration: 0s;
 }
 
 .product-loop-meta a.added_to_cart:before {
@@ -8331,6 +8330,10 @@ header.elementor-element {
   -webkit-animation: circle-loading 0.35s linear infinite;
   animation: circle-loading 0.35s linear infinite;
   position: static;
+}
+
+.product-loop-meta .ajax_add_to_cart.loading .woostify-svg-icon {
+  display: none;
 }
 
 .product-loop-meta .added {

@@ -806,9 +806,10 @@ $size: 40px;
 		background-color: #fff;
 		@extend .flex;
 
-		&:before {
-			font-size: 14px;
-			font-family: $icon;
+		&.loading {
+			.woostify-svg-icon {
+				display: none;
+			}
 		}
 
 		&:hover {

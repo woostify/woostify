@@ -114,7 +114,9 @@
 		@extend .flex;
 
 		.woostify-svg-icon {
+			color: currentColor;
 			margin-right: 5px;
+			transition-duration: 0s;
 		}
 
 		&.added_to_cart {
@@ -139,6 +141,14 @@
 		&:before{
 			@include loading( $size: 14px, $center: false, $important: !important );
 			position: static;
+		}
+	}
+
+	.ajax_add_to_cart {
+		&.loading{
+			.woostify-svg-icon {
+				display: none;
+			}
 		}
 	}
 
