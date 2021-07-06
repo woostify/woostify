@@ -4508,6 +4508,7 @@ article p:last-child {
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   align-self: center;
+  color: currentColor;
 }
 
 .woostify-svg-icon svg {
@@ -11325,54 +11326,85 @@ header.elementor-element {
 
 .woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link {
   margin-bottom: 20px;
+  /*&--dashboard{
+	        a:before{
+	            content: "\e6aa";
+	        }
+	    }
+
+	    &--orders{
+	        a:before{
+	            content: "\e694";
+	        }
+	    }
+
+	    &--downloads{
+	        a:before{
+	            content: "\e6a7";
+	        }
+	    }
+
+	    &--edit-address{
+	        a:before{
+	            content: "\e6a8";
+	        }
+	    }
+
+	    &--payment-methods {
+	    	a:before{
+	            content: "\e721";
+	        }
+	    }
+
+	    &--edit-account{
+	        a:before{
+	            content: "\e602";
+	        }
+	    }
+
+	    &--customer-logout{
+	        a:before{
+	            content: "\e61d";
+	        }
+	    }
+
+	    &--tinv_wishlist {
+	    	a:before{
+	            content: "\e634";
+	        }
+	    }
+
+	    &--support-tickets {
+	    	a:before{
+	            content: "\e63b";
+	        }
+	    }
+
+	    &--following {
+	    	a:before{
+	            content: "\e63d";
+	        }
+	    }
+
+	    &--rma-requests {
+	    	a:before{
+	            content: "\e66f";
+	        }
+	    }*/
 }
 
 .woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link.is-active a {
   font-weight: 700;
 }
 
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--dashboard a:before {
-  content: "\e6aa";
+.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link .woostify-svg-icon {
+  color: currentColor;
+  margin-right: 15px;
 }
 
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--orders a:before {
-  content: "\e694";
-}
-
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--downloads a:before {
-  content: "\e6a7";
-}
-
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--edit-address a:before {
-  content: "\e6a8";
-}
-
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--payment-methods a:before {
-  content: "\e721";
-}
-
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--edit-account a:before {
-  content: "\e602";
-}
-
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--customer-logout a:before {
-  content: "\e61d";
-}
-
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--tinv_wishlist a:before {
-  content: "\e634";
-}
-
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--support-tickets a:before {
-  content: "\e63b";
-}
-
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--following a:before {
-  content: "\e63d";
-}
-
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--rma-requests a:before {
-  content: "\e66f";
+.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link .woostify-svg-icon svg {
+  height: 20px;
+  width: 20px;
 }
 
 .woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link a {

@@ -81,6 +81,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// MY ACCOUNT PAGE.
 			add_filter( 'woocommerce_my_account_edit_address_title', '__return_empty_string' );
+			remove_action( 'woocommerce_account_navigation', 'woocommerce_account_navigation' );
+			add_action( 'woocommerce_account_navigation', 'woostify_override_woocommerce_account_navigation' );
 
 			// TERM METABOX.
 			// For product category.
