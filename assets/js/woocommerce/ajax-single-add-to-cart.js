@@ -141,6 +141,11 @@ function woostifyAjaxSingleAddToCartButton() {
 
 						// Update fragments.
 						woostifyAjaxSingleUpdateFragments( ele );
+
+						// Support Buy now addon.
+						if ( ele.getAttribute( 'data-checkout_url' ) ) {
+							window.location = ele.getAttribute( 'data-checkout_url' );
+						}
 					}
 				).catch(
 					function() {
