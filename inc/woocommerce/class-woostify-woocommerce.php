@@ -306,6 +306,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Tiny slider: product images.
 			wp_enqueue_script( 'woostify-product-images' );
+			wp_localize_script(
+				'woostify-product-images',
+				'woostify_product_images',
+				array(
+					'prev_btn_icon' => woostify_fetch_svg_icon( 'angle-left' ),
+					'next_btn_icon' => woostify_fetch_svg_icon( 'angle-right' ),
+				)
+			);
 
 			// Easyzoom.
 			wp_enqueue_script( 'easyzoom-handle' );

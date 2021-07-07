@@ -427,11 +427,11 @@ $size: 40px;
 			color: #fff;
 		}
 
-		/*&:before {
+		&:before {
 			content: "\e71b";
 			font-family: $icon;
 			margin-right: 10px;
-		}*/
+		}
 	}
 }
 .woocommerce-info,
@@ -460,15 +460,15 @@ $size: 40px;
 	}
 
 	&:before {
-    	/*color: #fff;
+    	color: #fff;
     	font-family: $icon;
 	    display: inline-flex;
-	    margin-right: 10px;*/
-		display: none;
+	    margin-right: 10px;
+		//display: none;
 	}
 }
 
-/*.woocommerce-error {
+.woocommerce-error {
 	&:before {
 		content: "\e720";
 	}
@@ -489,7 +489,7 @@ $size: 40px;
 	&:before {
 		content: "\e64d";
 	}
-}*/
+}
 
 .woocommerce-form-coupon-toggle,
 .woocommerce-form-login-toggle {

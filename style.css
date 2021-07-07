@@ -2974,25 +2974,21 @@ a.pswp__share--download:hover {
   transition: all 0.25s;
 }
 
-.tns-controls [data-controls]:before {
-  font-family: "themify";
-  font-size: 18px;
+.tns-controls [data-controls] .woostify-svg-icon {
+  color: currentColor;
+}
+
+.tns-controls [data-controls] .woostify-svg-icon svg {
+  width: 18px;
+  height: 18px;
 }
 
 .tns-controls [data-controls="prev"] {
   left: 20px;
 }
 
-.tns-controls [data-controls="prev"]:before {
-  content: "\e64a";
-}
-
 .tns-controls [data-controls="next"] {
   right: 20px;
-}
-
-.tns-controls [data-controls="next"]:before {
-  content: "\e649";
 }
 
 /* dots */
@@ -7380,15 +7376,16 @@ header.elementor-element {
   border: 1px solid #fff;
   padding: 10px;
   border-radius: 4px;
-  /*&:before {
-			content: "\e71b";
-			font-family: $icon;
-			margin-right: 10px;
-		}*/
 }
 
 .woocommerce-message a:hover {
   color: #fff;
+}
+
+.woocommerce-message a:before {
+  content: "\e71b";
+  font-family: "themify";
+  margin-right: 10px;
 }
 
 .woocommerce-info,
@@ -7418,35 +7415,29 @@ header.elementor-element {
 .woocommerce-error:before,
 .woocommerce-info:before,
 .woocommerce-message:before {
-  /*color: #fff;
-    	font-family: $icon;
-	    display: inline-flex;
-	    margin-right: 10px;*/
-  display: none;
+  color: #fff;
+  font-family: "themify";
+  display: inline-flex;
+  margin-right: 10px;
 }
 
-/*.woocommerce-error {
-	&:before {
-		content: "\e720";
-	}
+.woocommerce-error:before {
+  content: "\e720";
 }
 
-
-.woocommerce-info {
-	&:before {
-		content: "\e71f";
-	}
-	input[type="submit"] {
-		padding: 0 5px;
-		margin-left: 5px;
-	}
+.woocommerce-info:before {
+  content: "\e71f";
 }
 
-.woocommerce-message {
-	&:before {
-		content: "\e64d";
-	}
-}*/
+.woocommerce-info input[type="submit"] {
+  padding: 0 5px;
+  margin-left: 5px;
+}
+
+.woocommerce-message:before {
+  content: "\e64d";
+}
+
 .woocommerce-form-coupon-toggle .woocommerce-info:before,
 .woocommerce-form-login-toggle .woocommerce-info:before {
   display: none;
@@ -11422,13 +11413,6 @@ header.elementor-element {
   justify-content: flex-start;
   -webkit-box-align: center;
   align-items: center;
-}
-
-.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link a:before {
-  font-size: 20px;
-  font-family: "themify";
-  margin-right: 15px;
-  line-height: 0;
 }
 
 .woocommerce-MyAccount-content {
