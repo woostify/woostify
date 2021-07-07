@@ -64,9 +64,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Update product quantity in minicart.
 			add_action( 'wp_ajax_update_quantity_in_mini_cart', 'woostify_ajax_update_quantity_in_mini_cart' );
 			add_action( 'wp_ajax_nopriv_update_quantity_in_mini_cart', 'woostify_ajax_update_quantity_in_mini_cart' );
-			// Update checkout.
-			add_action( 'wp_ajax_update_checkout', 'woostify_ajax_update_checkout' );
-			add_action( 'wp_ajax_nopriv_update_checkout', 'woostify_ajax_update_checkout' );
 			// Modified woocommerce breadcrumb.
 			add_filter( 'woocommerce_breadcrumb_defaults', 'woostify_modifided_woocommerce_breadcrumb' );
 

@@ -703,7 +703,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 					'woostify_multi_step_checkout',
 					array(
 						'ajax_none'     => wp_create_nonce( 'woostify_update_checkout_nonce' ),
-						'price'         => empty( $wc_total['discount_total'] ) ? false : wc_price( $price ),
 						'content_total' => wp_kses( wc_price( $wc_total['cart_contents_total'] ), array() ),
 						'cart_total'    => wp_kses( wc_price( $wc_total['total'] ), array() ),
 					)

@@ -113,23 +113,6 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_ajax_update_checkout' ) ) {
-	/**
-	 * Update checkout
-	 */
-	function woostify_ajax_update_checkout() {
-		check_ajax_referer( 'woostify_update_checkout_nonce', 'ajax_nonce' );
-
-		WC()->cart->calculate_totals();
-		$wc_total = WC()->cart->get_totals();
-
-		$res['content_total'] = wc_price( $wc_total['cart_contents_total'] );
-		$res['cart_total']    = wc_price( $wc_total['total'] );
-
-		wp_send_json_success( $res );
-	}
-}
-
 if ( ! function_exists( 'woostify_before_content' ) ) {
 	/**
 	 * Before Content
