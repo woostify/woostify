@@ -1173,46 +1173,51 @@ if ( ! function_exists( 'woostify_filter_woocommerce_cart_item_remove_link' ) ) 
 	}
 }
 
-function woostify_override_woocommerce_account_navigation() {
-	do_action( 'woocommerce_before_account_navigation' );
-	?>
-	<nav class="woocommerce-MyAccount-navigation">
-		<ul>
-		<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
-			<?php
-			$icon = '';
-			switch ( $endpoint ) {
-				case 'dashboard':
-					$icon = 'dashboard';
-					break;
-				case 'orders':
-					$icon = 'list';
-					break;
-				case 'downloads':
-					$icon = 'download';
-					break;
-				case 'edit-address':
-					$icon = 'direction';
-					break;
-				case 'edit-account':
-					$icon = 'user';
-					break;
-				case 'tinv_wishlist':
-					$icon = 'heart';
-					break;
-				case 'customer-logout':
-					$icon = 'pencil-alt';
-					break;
-			}
-			?>
-			<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-				<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>">
-				<?php echo woostify_fetch_svg_icon( $icon ) . esc_html( $label ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</a>
-			</li>
-		<?php endforeach; ?>
-		</ul>
-	</nav>
-	<?php
-	do_action( 'woocommerce_after_account_navigation' );
+if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
+	/**
+	 * Woocommerce account navagation
+	 */
+	function woostify_override_woocommerce_account_navigation() {
+		do_action( 'woocommerce_before_account_navigation' );
+		?>
+		<nav class="woocommerce-MyAccount-navigation">
+			<ul>
+			<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
+				<?php
+				$icon = '';
+				switch ( $endpoint ) {
+					case 'dashboard':
+						$icon = 'dashboard';
+						break;
+					case 'orders':
+						$icon = 'list';
+						break;
+					case 'downloads':
+						$icon = 'download';
+						break;
+					case 'edit-address':
+						$icon = 'direction';
+						break;
+					case 'edit-account':
+						$icon = 'user';
+						break;
+					case 'tinv_wishlist':
+						$icon = 'heart';
+						break;
+					case 'customer-logout':
+						$icon = 'pencil-alt';
+						break;
+				}
+				?>
+				<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
+					<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>">
+					<?php echo woostify_fetch_svg_icon( $icon ) . esc_html( $label ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</a>
+				</li>
+			<?php endforeach; ?>
+			</ul>
+		</nav>
+		<?php
+		do_action( 'woocommerce_after_account_navigation' );
+	}
 }

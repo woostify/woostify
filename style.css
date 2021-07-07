@@ -7380,16 +7380,15 @@ header.elementor-element {
   border: 1px solid #fff;
   padding: 10px;
   border-radius: 4px;
+  /*&:before {
+			content: "\e71b";
+			font-family: $icon;
+			margin-right: 10px;
+		}*/
 }
 
 .woocommerce-message a:hover {
   color: #fff;
-}
-
-.woocommerce-message a:before {
-  content: "\e71b";
-  font-family: "themify";
-  margin-right: 10px;
 }
 
 .woocommerce-info,
@@ -7419,29 +7418,35 @@ header.elementor-element {
 .woocommerce-error:before,
 .woocommerce-info:before,
 .woocommerce-message:before {
-  color: #fff;
-  font-family: "themify";
-  display: inline-flex;
-  margin-right: 10px;
+  /*color: #fff;
+    	font-family: $icon;
+	    display: inline-flex;
+	    margin-right: 10px;*/
+  display: none;
 }
 
-.woocommerce-error:before {
-  content: "\e720";
+/*.woocommerce-error {
+	&:before {
+		content: "\e720";
+	}
 }
 
-.woocommerce-info:before {
-  content: "\e71f";
+
+.woocommerce-info {
+	&:before {
+		content: "\e71f";
+	}
+	input[type="submit"] {
+		padding: 0 5px;
+		margin-left: 5px;
+	}
 }
 
-.woocommerce-info input[type="submit"] {
-  padding: 0 5px;
-  margin-left: 5px;
-}
-
-.woocommerce-message:before {
-  content: "\e64d";
-}
-
+.woocommerce-message {
+	&:before {
+		content: "\e64d";
+	}
+}*/
 .woocommerce-form-coupon-toggle .woocommerce-info:before,
 .woocommerce-form-login-toggle .woocommerce-info:before {
   display: none;
