@@ -1915,7 +1915,7 @@ if ( ! function_exists( 'woostify_overlay' ) ) {
 	 * Woostify overlay
 	 */
 	function woostify_overlay() {
-		echo '<div id="woostify-overlay"></div>';
+		echo '<div id="woostify-overlay">' . woostify_fetch_svg_icon( 'close' ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 

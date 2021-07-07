@@ -96,9 +96,7 @@ $size: 40px;
 		visibility: visible;
 		pointer-events: auto;
 
-		&:after {
-			content: "\e646";
-			font-family: $icon;
+		.woostify-svg-icon {
 			position: absolute;
 			top: 20px;
 			right: 20px;
@@ -107,10 +105,11 @@ $size: 40px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			cursor: pointer;
 			color: #fff;
-			font-weight: 700;
-			font-size: 1.5em;
+			svg {
+				width: 1.5em;
+				height: 1.5em;
+			}
 		}
 	}
 }
@@ -118,12 +117,13 @@ $size: 40px;
 .sidebar-mobile-open {
 	.logged-in.admin-bar {
 		#woostify-overlay {
-			&:after {
+
+			.woostify-svg-icon {
 				top: 66px;
 			}
 
 			@media (min-width: 783px) {
-				&:after {
+				.woostify-svg-icon {
 					top: 52px;
 				}
 			}

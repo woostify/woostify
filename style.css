@@ -7050,9 +7050,7 @@ header.elementor-element {
   pointer-events: auto;
 }
 
-.sidebar-mobile-open #woostify-overlay:after {
-  content: "\e646";
-  font-family: "themify";
+.sidebar-mobile-open #woostify-overlay .woostify-svg-icon {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -7061,18 +7059,20 @@ header.elementor-element {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   color: #fff;
-  font-weight: 700;
-  font-size: 1.5em;
 }
 
-.sidebar-mobile-open .logged-in.admin-bar #woostify-overlay:after {
+.sidebar-mobile-open #woostify-overlay .woostify-svg-icon svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.sidebar-mobile-open .logged-in.admin-bar #woostify-overlay .woostify-svg-icon {
   top: 66px;
 }
 
 @media (min-width: 783px) {
-  .sidebar-mobile-open .logged-in.admin-bar #woostify-overlay:after {
+  .sidebar-mobile-open .logged-in.admin-bar #woostify-overlay .woostify-svg-icon {
     top: 52px;
   }
 }
