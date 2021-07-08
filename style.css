@@ -8303,10 +8303,6 @@ header.elementor-element {
   transition-duration: 0s;
 }
 
-.product-loop-meta a.added_to_cart:before {
-  font-family: "themify";
-}
-
 .product-loop-meta .button.product_type_external {
   white-space: nowrap;
   text-overflow: ellipsis;

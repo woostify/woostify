@@ -118,12 +118,6 @@
 			margin-right: 5px;
 			transition-duration: 0s;
 		}
-
-		&.added_to_cart {
-			&:before{
-				font-family: $icon;
-			}
-		}
 	}
 
 	.button{
