@@ -146,6 +146,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'template_redirect', 'woostify_product_recently_viewed', 20 );
 			add_action( 'woocommerce_after_single_product', 'woostify_product_recently_viewed_template', 20 );
 
+			add_filter( 'woocommerce_reset_variations_link', 'woostify_reset_variations_link' );
+
 			// Disable Out of Stock Variations.
 			add_filter( 'woocommerce_variation_is_active', 'woostify_disable_variations_out_of_stock', 10, 2 );
 

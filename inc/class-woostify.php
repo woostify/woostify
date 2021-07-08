@@ -55,6 +55,9 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_action( 'init', array( $this, 'woostify_override_divi_color_pciker' ), 12 );
 
 			add_action( 'wp_head', array( $this, 'sticky_footer_bar' ), 15 );
+
+			// CONTENT.
+			add_filter( 'wp_kses_allowed_html', 'woostify_modify_wp_kses_allowed_html' );
 		}
 
 		/**

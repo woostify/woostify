@@ -530,11 +530,14 @@
 			float: none;
 		}
 
-		&:before {
-			content: "\e619";
-			font-family: $icon;
+		.woostify-svg-icon {
+			position: relative;
+			top: 1px;
 			margin-right: 7px;
-			font-size: 12px;
+			svg {
+				width: 12px;
+				height: 12px;
+			}
 		}
 	}
 
@@ -681,7 +684,6 @@
 
 	.product-qty {
 		position: absolute;
-		font-family: $icon;
 		cursor: pointer;
 		width: 40px;
 		top: 0;

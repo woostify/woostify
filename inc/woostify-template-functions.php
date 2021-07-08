@@ -2504,3 +2504,29 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 		echo '</div>';
 	}
 }
+
+if ( ! function_exists( 'woostify_modify_wp_kses_allowed_html' ) ) {
+	/**
+	 * Allowing SVG in WordPress Content
+	 *
+	 * @param array $tags Tags.
+	 * @return void
+	 */
+	function woostify_modify_wp_kses_allowed_html( $tags ) {
+		$tags['svg']  = array(
+			'xmlns'       => array(),
+			'fill'        => array(),
+			'viewbox'     => array(),
+			'role'        => array(),
+			'aria-hidden' => array(),
+			'focusable'   => array(),
+			'width'       => array(),
+			'height'      => array(),
+		);
+		$tags['path'] = array(
+			'd'    => array(),
+			'fill' => array(),
+		);
+		return $tags;
+	}
+}

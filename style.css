@@ -3028,11 +3028,6 @@ a.pswp__share--download:hover {
   height: 1em;
 }
 
-.wpcf7 .ajax-loader:before {
-  content: "\e619";
-  font-family: "themify";
-}
-
 .wpcf7 .ajax-loader.is-active {
   margin-top: 10px;
   opacity: 1;
@@ -6152,68 +6147,6 @@ footer#colophon {
   color: #fff;
 }
 
-.woostify-social-icon a, .yith-wcwl-share a {
-  font-size: 0;
-}
-
-.woostify-social-icon a:before, .yith-wcwl-share a:before {
-  font-size: 14px;
-  font-family: "themify";
-}
-
-.woostify-social-icon a[href*="twitter.com"]:before, .yith-wcwl-share a[href*="twitter.com"]:before {
-  content: "\e72a";
-}
-
-.woostify-social-icon a[href*="facebook.com"]:before, .yith-wcwl-share a[href*="facebook.com"]:before {
-  content: "\e741";
-}
-
-.woostify-social-icon a[href*="plus.google.com"]:before, .yith-wcwl-share a[href*="plus.google.com"]:before {
-  content: "\e73e";
-}
-
-.woostify-social-icon a[href*="instagram.com"]:before, .yith-wcwl-share a[href*="instagram.com"]:before {
-  content: "\e73d";
-}
-
-.woostify-social-icon a[href*="vimeo.com"]:before, .yith-wcwl-share a[href*="vimeo.com"]:before {
-  content: "\e729";
-}
-
-.woostify-social-icon a[href*="youtube.com"]:before, .yith-wcwl-share a[href*="youtube.com"]:before {
-  content: "\e728";
-}
-
-.woostify-social-icon a[href*="github.com"]:before, .yith-wcwl-share a[href*="github.com"]:before {
-  content: "\e73f";
-}
-
-.woostify-social-icon a[href*="linkedin.com"]:before, .yith-wcwl-share a[href*="linkedin.com"]:before {
-  content: "\e735";
-}
-
-.woostify-social-icon a[href*="pinterest.com"]:before, .yith-wcwl-share a[href*="pinterest.com"]:before {
-  content: "\e753";
-}
-
-.woostify-social-icon a[href*="flickr.com"]:before, .yith-wcwl-share a[href*="flickr.com"]:before {
-  content: "\e740";
-}
-
-.woostify-social-icon a[href*="tumblr.com"]:before, .yith-wcwl-share a[href*="tumblr.com"]:before {
-  content: "\e72c";
-}
-
-.woostify-social-icon a[href*="mailto"]:before, .yith-wcwl-share a[href*="mailto"]:before {
-  content: "\e75a";
-}
-
-.woostify-social-icon a[href*="whatsapp"]:before, .yith-wcwl-share a[href*="whatsapp"]:before {
-  content: "\e6d2";
-}
-
-/* Wishlist page: Share */
 /* Notice after added to wishlist */
 #yith-wcwl-popup-message {
   display: none !important;
@@ -7256,24 +7189,10 @@ header.elementor-element {
   margin-bottom: 40px;
 }
 
-.woostify-sorting .woocommerce-ordering:after {
-  content: "\e64b";
-  position: absolute;
-  right: 5px;
-  font-family: "themify";
-  pointer-events: none;
-  font-size: 10px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
 .woostify-sorting .orderby {
   padding: 5px 20px 5px 10px;
   border: 0;
   background-color: rgba(0, 0, 0, 0);
-  -moz-appearance: none;
-  -webkit-appearance: none;
 }
 
 .woostify-sorting .woostify-toolbar-left {
@@ -7382,12 +7301,6 @@ header.elementor-element {
   color: #fff;
 }
 
-.woocommerce-message a:before {
-  content: "\e71b";
-  font-family: "themify";
-  margin-right: 10px;
-}
-
 .woocommerce-info,
 .woocommerce-error {
   position: relative;
@@ -7412,32 +7325,28 @@ header.elementor-element {
   margin-left: auto;
 }
 
-.woocommerce-error:before,
-.woocommerce-info:before,
-.woocommerce-message:before {
-  color: #fff;
-  font-family: "themify";
-  display: inline-flex;
-  margin-right: 10px;
+/* .woocommerce-error {
+	&:before {
+		content: "\e720";
+	}
 }
 
-.woocommerce-error:before {
-  content: "\e720";
+
+.woocommerce-info {
+	&:before {
+		content: "\e71f";
+	}
+	input[type="submit"] {
+		padding: 0 5px;
+		margin-left: 5px;
+	}
 }
 
-.woocommerce-info:before {
-  content: "\e71f";
-}
-
-.woocommerce-info input[type="submit"] {
-  padding: 0 5px;
-  margin-left: 5px;
-}
-
-.woocommerce-message:before {
-  content: "\e64d";
-}
-
+.woocommerce-message {
+	&:before {
+		content: "\e64d";
+	}
+} */
 .woocommerce-form-coupon-toggle .woocommerce-info:before,
 .woocommerce-form-login-toggle .woocommerce-info:before {
   display: none;
@@ -7643,11 +7552,6 @@ header.elementor-element {
 .product-loop-image-wrapper .yith-wcwl-add-to-wishlist a {
   font-size: 0;
   position: relative;
-}
-
-.product-loop-image-wrapper .yith-wcwl-add-to-wishlist a:before {
-  font-size: 14px;
-  font-family: "themify";
 }
 
 .product-loop-image-wrapper .yith-wcwl-add-to-wishlist .yith-wcwl-wishlistaddedbrowse.show a,
@@ -8836,11 +8740,15 @@ header.elementor-element {
   }
 }
 
-.variations .reset_variations:before {
-  content: "\e619";
-  font-family: "themify";
+.variations .reset_variations .woostify-svg-icon {
+  position: relative;
+  top: 1px;
   margin-right: 7px;
-  font-size: 12px;
+}
+
+.variations .reset_variations .woostify-svg-icon svg {
+  width: 12px;
+  height: 12px;
 }
 
 @media (max-width: 719px) {
@@ -8980,7 +8888,6 @@ header.elementor-element {
 
 .quantity .product-qty {
   position: absolute;
-  font-family: "themify";
   cursor: pointer;
   width: 40px;
   top: 0;
@@ -11470,13 +11377,6 @@ header.elementor-element {
   margin-right: 15px;
 }
 
-.woocommerce-Address .woocommerce-Address-title .edit:before {
-  content: "\e61c";
-  font-family: "themify";
-  margin-right: 5px;
-  font-weight: 700;
-}
-
 .woocommerce-Address address {
   border-top: 1px solid #eee;
   margin-bottom: 0;
@@ -11991,11 +11891,6 @@ table.shop_table {
   right: .7em;
   top: .7em;
   cursor: pointer;
-}
-
-.show-password-input:before {
-  font-family: "themify";
-  content: "\e63d";
 }
 
 body.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.active:after {

@@ -460,10 +460,6 @@ class Woostify_Get_CSS {
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
-			.woostify-svg-icon {
-				color: ' . esc_attr( $options['text_color'] ) . ';
-			}
-
 			.woostify-svg-icon svg {
 				width:  ' . esc_attr( $options['body_font_size'] ) . 'px;
 				height:  ' . esc_attr( $options['body_font_size'] ) . 'px;

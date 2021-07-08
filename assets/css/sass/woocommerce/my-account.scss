@@ -28,10 +28,3 @@ table.shop_table {
     cursor: pointer;
 
 }
-
-.show-password-input {
-	&:before {
-		font-family: $icon;
-    	content: "\e63d";
-	}
-}

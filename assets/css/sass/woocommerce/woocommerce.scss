@@ -292,25 +292,12 @@ $size: 40px;
 		border: 1px solid #ddd;
 		border-radius: 2px;
 		margin-bottom: 40px;
-
-		&:after {
-			content: "\e64b";
-			position: absolute;
-			right: 5px;
-			font-family: $icon;
-			pointer-events: none;
-			font-size: 10px;
-			top: 50%;
-			@include translatey(-50%);
-		}
 	}
 
 	.orderby {
 		padding: 5px 20px 5px 10px;
 		border: 0;
 		background-color: $tr;
-		-moz-appearance: none;
-		-webkit-appearance: none;
 	}
 
 	.woostify-toolbar-left {
@@ -426,12 +413,6 @@ $size: 40px;
 		&:hover {
 			color: #fff;
 		}
-
-		&:before {
-			content: "\e71b";
-			font-family: $icon;
-			margin-right: 10px;
-		}
 	}
 }
 .woocommerce-info,
@@ -458,17 +439,9 @@ $size: 40px;
 	a {
 		margin-left: auto;
 	}
-
-	&:before {
-    	color: #fff;
-    	font-family: $icon;
-	    display: inline-flex;
-	    margin-right: 10px;
-		//display: none;
-	}
 }
 
-.woocommerce-error {
+/* .woocommerce-error {
 	&:before {
 		content: "\e720";
 	}
@@ -489,7 +462,7 @@ $size: 40px;
 	&:before {
 		content: "\e64d";
 	}
-}
+} */
 
 .woocommerce-form-coupon-toggle,
 .woocommerce-form-login-toggle {
@@ -706,11 +679,6 @@ $size: 40px;
 		a {
 			font-size: 0;
 			position: relative;
-
-			&:before {
-				font-size: 14px;
-				font-family: $icon;
-			}
 		}
 
 		.yith-wcwl-wishlistaddedbrowse.show,

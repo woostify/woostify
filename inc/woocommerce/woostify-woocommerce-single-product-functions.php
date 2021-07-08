@@ -732,3 +732,15 @@ if ( ! function_exists( 'woostify_add_to_cart_product_simple' ) ) {
 		<?php
 	}
 }
+
+if ( ! function_exists( 'woostify_reset_variations_link' ) ) {
+	/**
+	 * Modify woocommerce reset variations link
+	 *
+	 * @param string $output Link output.
+	 * @return void
+	 */
+	function woostify_reset_variations_link( $output ) {
+		return '<a class="reset_variations" href="#">' . woostify_fetch_svg_icon( 'reload' ) . esc_html__( 'Clear', 'woostify' ) . '</a>';
+	}
+}
