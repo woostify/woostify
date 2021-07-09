@@ -832,6 +832,32 @@ document.addEventListener(
 			'.cart .quantity, .button, .woocommerce-widget-layered-nav-dropdown__submit, .form-submit .submit, .elementor-button-wrapper .elementor-button, .has-woostify-contact-form input[type="submit"], #secondary .widget a.button, .product-loop-meta.no-transform .button',
 			'border-radius',
 		)
+		woostify_color_group_live_update(
+			[
+				'button_text_color',
+				'button_hover_text_color',
+			],
+			[
+				'.button, .woocommerce-widget-layered-nav-dropdown__submit, .form-submit .submit, .elementor-button-wrapper .elementor-button, .has-woostify-contact-form input[type="submit"], #secondary .widget a.button, .product-loop-meta.no-transform .button, .product-loop-meta.no-transform .added_to_cart',
+				'.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__name',
+			],
+			[
+				'color',
+			],
+		)
+		woostify_color_group_live_update(
+			[
+				'button_background_color',
+				'button_hover_background_color',
+			],
+			[
+				'.button, .woocommerce-widget-layered-nav-dropdown__submit, .form-submit .submit, .elementor-button-wrapper .elementor-button, .has-woostify-contact-form input[type="submit"], #secondary .widget a.button, .product-loop-meta.no-transform .button, .product-loop-meta.no-transform .added_to_cart',
+				'.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__name',
+			],
+			[
+				'background',
+			],
+		)
 
 		// SHOP PAGE.
 		woostify_colors_live_update( 'shop_page_button_cart_background', '.product-loop-wrapper .button,.product-loop-meta.no-transform .button', 'background-color' )

@@ -15,6 +15,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['button_text_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 // Hover text color.
@@ -24,6 +25,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['button_hover_text_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -52,6 +54,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['button_background_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 // Hover background color.
@@ -61,6 +64,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['button_hover_background_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
