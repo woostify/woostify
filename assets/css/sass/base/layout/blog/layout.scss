@@ -77,6 +77,11 @@ $sidebar_width: percentage( 270 / 1170 );
 			flex: 0 0 100%;
 			margin-top: 0;
 		}
+
+		.woocommerce-info {
+			width: 100%;
+			clear: both;
+		}
 	}
 }
 

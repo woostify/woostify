@@ -6854,6 +6854,11 @@ header.elementor-element {
   margin-top: 0;
 }
 
+.blog-layout-grid .site-main .woocommerce-info {
+  width: 100%;
+  clear: both;
+}
+
 /* Grid Standard */
 @media (min-width: 768px) {
   .blog-layout-standard .site-main .post-loop {
