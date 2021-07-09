@@ -114,6 +114,13 @@ $size: 40px;
 	}
 }
 
+#woostify-overlay {
+
+	.woostify-svg-icon {
+		display: none;
+	}
+}
+
 .sidebar-mobile-open {
 	.logged-in.admin-bar {
 		#woostify-overlay {
@@ -292,12 +299,25 @@ $size: 40px;
 		border: 1px solid #ddd;
 		border-radius: 2px;
 		margin-bottom: 40px;
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			right: 5px;
+			pointer-events: none;
+			font-size: 10px;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+		}
 	}
 
 	.orderby {
 		padding: 5px 20px 5px 10px;
 		border: 0;
 		background-color: $tr;
+		-moz-appearance: none;
+    	-webkit-appearance: none;
 	}
 
 	.woostify-toolbar-left {
@@ -438,6 +458,15 @@ $size: 40px;
 .woocommerce-message {
 	a {
 		margin-left: auto;
+	}
+
+	&:before {
+		content: '';
+		display: inline-flex;
+		margin-right: 10px;
+		background-size: 14px;
+		width: 14px;
+		height: 14px;
 	}
 }
 

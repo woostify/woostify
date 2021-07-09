@@ -6113,6 +6113,18 @@ footer#colophon {
   flex-grow: 1;
 }
 
+.woostify-social-icon a {
+  font-size: 0;
+}
+
+.woostify-social-icon a:before {
+  display: block;
+  content: '';
+  background-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
 /* Footer widget text */
 .woostify-footer-text-widget .woostify-footer-site-title {
   font-size: 24px;
@@ -7000,6 +7012,10 @@ header.elementor-element {
   height: 1.5em;
 }
 
+#woostify-overlay .woostify-svg-icon {
+  display: none;
+}
+
 .sidebar-mobile-open .logged-in.admin-bar #woostify-overlay .woostify-svg-icon {
   top: 66px;
 }
@@ -7189,10 +7205,24 @@ header.elementor-element {
   margin-bottom: 40px;
 }
 
+.woostify-sorting .woocommerce-ordering::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 5px;
+  pointer-events: none;
+  font-size: 10px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 .woostify-sorting .orderby {
   padding: 5px 20px 5px 10px;
   border: 0;
   background-color: rgba(0, 0, 0, 0);
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }
 
 .woostify-sorting .woostify-toolbar-left {
@@ -7323,6 +7353,17 @@ header.elementor-element {
 .woocommerce-info a,
 .woocommerce-message a {
   margin-left: auto;
+}
+
+.woocommerce-error:before,
+.woocommerce-info:before,
+.woocommerce-message:before {
+  content: '';
+  display: inline-flex;
+  margin-right: 10px;
+  background-size: 14px;
+  width: 14px;
+  height: 14px;
 }
 
 /* .woocommerce-error {
@@ -9591,7 +9632,7 @@ header.elementor-element {
 }
 
 .mini-cart-product-infor .mini-cart-product-qty .woostify-svg-icon svg {
-  width: 11px;
+  width: 10px;
   height: 11px;
 }
 
@@ -11225,71 +11266,6 @@ header.elementor-element {
 
 .woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link {
   margin-bottom: 20px;
-  /*&--dashboard{
-	        a:before{
-	            content: "\e6aa";
-	        }
-	    }
-
-	    &--orders{
-	        a:before{
-	            content: "\e694";
-	        }
-	    }
-
-	    &--downloads{
-	        a:before{
-	            content: "\e6a7";
-	        }
-	    }
-
-	    &--edit-address{
-	        a:before{
-	            content: "\e6a8";
-	        }
-	    }
-
-	    &--payment-methods {
-	    	a:before{
-	            content: "\e721";
-	        }
-	    }
-
-	    &--edit-account{
-	        a:before{
-	            content: "\e602";
-	        }
-	    }
-
-	    &--customer-logout{
-	        a:before{
-	            content: "\e61d";
-	        }
-	    }
-
-	    &--tinv_wishlist {
-	    	a:before{
-	            content: "\e634";
-	        }
-	    }
-
-	    &--support-tickets {
-	    	a:before{
-	            content: "\e63b";
-	        }
-	    }
-
-	    &--following {
-	    	a:before{
-	            content: "\e63d";
-	        }
-	    }
-
-	    &--rma-requests {
-	    	a:before{
-	            content: "\e66f";
-	        }
-	    }*/
 }
 
 .woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link.is-active a {

@@ -424,6 +424,20 @@
 	}
 }
 
+.woostify-social-icon {
+	a {
+		font-size: 0;
+
+		&:before {
+			display: block;
+			content: '';
+			background-size: 14px;
+			width: 14px;
+			height: 14px;
+		}
+	}
+}
+
 /* Footer widget text */
 .woostify-footer-text-widget {
 	.woostify-footer-site-title {

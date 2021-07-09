@@ -1166,6 +1166,9 @@ if ( ! function_exists( 'woostify_filter_woocommerce_cart_item_remove_link' ) ) 
 	 * @return array|string|string[]
 	 */
 	function woostify_filter_woocommerce_cart_item_remove_link( $sprintf, $cart_item_key ) {
+		if ( is_cart() ) {
+			return $sprintf;
+		}
 		$icon    = woostify_fetch_svg_icon( 'close' );
 		$sprintf = str_replace( '</a>', $icon . '</a>', $sprintf );
 
