@@ -1210,7 +1210,11 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 					case 'customer-logout':
 						$icon = 'pencil-alt';
 						break;
+					default:
+						$icon = 'dashboard';
+
 				}
+				$icon = apply_filters( 'woostify_wc_myaccount_nav_icon', $icon, $endpoint );
 				?>
 				<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
 					<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>">
