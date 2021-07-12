@@ -1203,12 +1203,6 @@ class Woostify_Get_CSS {
 		}
 
 		// Custom.
-		$styles     .= '.woocommerce-ordering:after {
-			background: #fff url(' . woostify_svg_to_background_image( 'angle-down' ) . ') no-repeat center;
-			background-size: 10px 10px;
-			width: 10px;
-			height: 100%;
-		}';
 		$social_list = woostify_get_social_icon_list();
 		if ( ! empty( $social_list ) ) {
 			foreach ( $social_list as $si ) {
