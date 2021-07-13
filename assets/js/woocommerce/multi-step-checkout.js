@@ -468,19 +468,26 @@ var woostifyMultiStepCheckout = function() {
 	);
 
 	// Shipping placeholder.
+	var shippingPlaceholder = function() {
+		var holder = '';
+
+		holder += '<tr class="shipping-placeholder">';
+		holder += '<th>' + woostify_woocommerce_general.shipping_text + '</th>';
+		holder += '<td>' + woostify_woocommerce_general.shipping_next + '</td>';
+		holder += '</tr>';
+
+		return holder;
+	}
+
+	// Shipping placeholder.
 	var resetCartTotal = function() {
 		if ( ! cartSubtotal ) {
 			return;
 		}
 
-		var totalPriceValue  = document.querySelector( '.order-total td' ),
-			mobilePrice      = document.querySelector( '.woostify-before-order-review-total-price strong' ),
-			afterSubtotal    = '';
-
-		afterSubtotal += '<tr class="shipping-placeholder">';
-		afterSubtotal += '<th>' + woostify_woocommerce_general.shipping_text + '</th>';
-		afterSubtotal += '<td>' + woostify_woocommerce_general.shipping_next + '</td>';
-		afterSubtotal += '</tr>';
+		var totalPriceValue = document.querySelector( '.order-total td' ),
+			mobilePrice     = document.querySelector( '.woostify-before-order-review-total-price strong' ),
+			afterSubtotal   = shippingPlaceholder();
 
 		// Add text.
 		if ( ! document.querySelector( '.shipping-placeholder' ) && document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ) ) {
@@ -498,36 +505,48 @@ var woostifyMultiStepCheckout = function() {
 				mobilePrice.innerHTML = woostify_multi_step_checkout.content_total;
 			}
 		}
-
-		jQuery( document.body ).on(
-			'updated_checkout',
-			function( e, data ) {
-				// Add placeholder text. Always render this.
-				if ( document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ) && ! document.querySelector( '.shipping-placeholder' ) ) {
-					document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ).insertAdjacentHTML( 'afterend', afterSubtotal );
-				}
-
-				var isFirstStep   = document.querySelector( '.multi-step-checkout-wrapper.first' ),
-					isReviewOrder = document.querySelector( '.woocommerce-checkout-review-order-table' );
-				if ( isFirstStep ) {
-					var isTotalFirstStepPrice = document.querySelector( '.order-total td' );
-					if ( isTotalFirstStepPrice ) {
-						isTotalFirstStepPrice.innerHTML = woostify_multi_step_checkout.content_total;
-					}
-				} else {
-					if ( isReviewOrder ) {
-						isReviewOrder.innerHTML = data.fragments['.woocommerce-checkout-review-order-table'];
-					}
-
-					var isTotalPrice = document.querySelector( '.order-total td' );
-					if ( isTotalPrice && mobilePrice ) {
-						mobilePrice.innerHTML = isTotalPrice.innerText;
-					}
-				}
-			}
-		);
 	}
 	resetCartTotal();
+
+	// Update checkout.
+	jQuery( document.body ).on(
+		'updated_checkout',
+		function( e, data ) {
+			// Add placeholder text. Always render this.
+			var holderShipping = shippingPlaceholder();
+			if ( document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ) && ! document.querySelector( '.shipping-placeholder' ) ) {
+				document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ).insertAdjacentHTML( 'afterend', holderShipping );
+			}
+
+			console.log( data );
+
+			var isFirstStep   = document.querySelector( '.multi-step-checkout-wrapper.first' ),
+				isReviewOrder = document.querySelector( '.woocommerce-checkout-review-order-table' );
+			if ( isFirstStep ) {
+				var isTotalFirstStepPrice  = document.querySelector( '.order-total td' ),
+					isMobileFirstStepPrice = document.querySelector( '.woostify-before-order-review-total-price strong' );
+				if ( isTotalFirstStepPrice ) {
+					isTotalFirstStepPrice.innerHTML = data.fragments._first_step_price;
+				}
+
+				// Update summary price on mobile.
+				if ( isMobileFirstStepPrice ) {
+					isMobileFirstStepPrice.innerHTML = data.fragments._first_step_price;
+				}
+			} else {
+				if ( isReviewOrder ) {
+					isReviewOrder.innerHTML = data.fragments['.woocommerce-checkout-review-order-table'];
+				}
+
+				// Update summary price on mobile.
+				var isTotalPrice  = document.querySelector( '.order-total td' ),
+					isMobilePrice = document.querySelector( '.woostify-before-order-review-total-price strong' );
+				if ( isTotalPrice && isMobilePrice ) {
+					isMobilePrice.innerHTML = isTotalPrice.innerText;
+				}
+			}
+		}
+	);
 }
 
 document.addEventListener(

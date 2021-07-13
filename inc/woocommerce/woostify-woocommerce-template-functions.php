@@ -622,7 +622,6 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 	 * Update content via ajax
 	 *
 	 * @param      array $fragments Fragments to refresh via AJAX.
-	 * @return     array $fragments Fragments to refresh via AJAX
 	 */
 	function woostify_content_fragments( $fragments ) {
 		$options         = woostify_options( false );
@@ -650,6 +649,21 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 		if ( 'ti' === $options['shop_page_wishlist_support_plugin'] && function_exists( 'tinv_get_option' ) && tinv_get_option( 'topline', 'show_counter' ) ) {
 			$fragments['span.theme-item-count.wishlist-item-count'] = sprintf( '<span class="theme-item-count wishlist-item-count">%s</span>', woostify_get_wishlist_count() );
 		}
+
+		return $fragments;
+	}
+}
+
+if ( ! function_exists( 'woostify_update_order_review_fragments' ) ) {
+	/**
+	 * Update content via ajax
+	 *
+	 * @param      array $fragments Fragments to refresh via AJAX.
+	 */
+	function woostify_update_order_review_fragments( $fragments ) {
+		$get_cart = WC()->cart->get_totals();
+
+		$fragments['_first_step_price'] = wp_kses( wc_price( $get_cart['cart_contents_total'] ), array() );
 
 		return $fragments;
 	}
