@@ -149,19 +149,21 @@ $wp_customize->add_setting(
 	'woostify_setting[page_header_title_color]',
 	array(
 		'default'           => $defaults['page_header_title_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[page_header_title_color]',
 		array(
 			'label'    => __( 'Title Color', 'woostify' ),
 			'section'  => 'woostify_page_header',
-			'settings' => 'woostify_setting[page_header_title_color]',
+			'settings' => array(
+				'woostify_setting[page_header_title_color]',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -172,19 +174,21 @@ $wp_customize->add_setting(
 	'woostify_setting[page_header_breadcrumb_text_color]',
 	array(
 		'default'           => $defaults['page_header_breadcrumb_text_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[page_header_breadcrumb_text_color]',
 		array(
 			'label'    => __( 'Breadcrumb Color', 'woostify' ),
 			'section'  => 'woostify_page_header',
-			'settings' => 'woostify_setting[page_header_breadcrumb_text_color]',
+			'settings' => array(
+				'woostify_setting[page_header_breadcrumb_text_color]',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -195,19 +199,21 @@ $wp_customize->add_setting(
 	'woostify_setting[page_header_background_color]',
 	array(
 		'default'           => $defaults['page_header_background_color'],
-		'sanitize_callback' => 'sanitize_hex_color',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[page_header_background_color]',
 		array(
 			'label'    => __( 'Background Color', 'woostify' ),
 			'section'  => 'woostify_page_header',
-			'settings' => 'woostify_setting[page_header_background_color]',
+			'settings' => array(
+				'woostify_setting[page_header_background_color]',
+			),
 			'tab'      => 'design',
 		)
 	)

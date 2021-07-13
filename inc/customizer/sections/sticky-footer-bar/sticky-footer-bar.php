@@ -201,15 +201,16 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[sticky_footer_bar_background]',
 		array(
-			'label'    => __( 'Background Color', 'woostify' ),
+			'label'    => __( 'Background', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
-			'settings' => 'woostify_setting[sticky_footer_bar_background]',
+			'settings' => array(
+				'woostify_setting[sticky_footer_bar_background]',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -224,20 +225,6 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
-$wp_customize->add_control(
-	new Woostify_Color_Control(
-		$wp_customize,
-		'woostify_setting[sticky_footer_bar_icon_color]',
-		array(
-			'label'    => __( 'Icon Color', 'woostify' ),
-			'section'  => 'woostify_sticky_footer_bar',
-			'settings' => 'woostify_setting[sticky_footer_bar_icon_color]',
-			'tab'      => 'design',
-		)
-	)
-);
-
 $wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_icon_hover_color]',
 	array(
@@ -247,15 +234,21 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
-		'woostify_setting[sticky_footer_bar_icon_hover_color]',
+		'woostify_setting[sticky_footer_bar_icon_color]',
 		array(
-			'label'    => __( 'Icon Hover Color', 'woostify' ),
+			'label'    => __( 'Icon', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
-			'settings' => 'woostify_setting[sticky_footer_bar_icon_hover_color]',
+			'settings' => array(
+				'woostify_setting[sticky_footer_bar_icon_color]',
+				'woostify_setting[sticky_footer_bar_icon_hover_color]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -270,20 +263,6 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
-$wp_customize->add_control(
-	new Woostify_Color_Control(
-		$wp_customize,
-		'woostify_setting[sticky_footer_bar_text_color]',
-		array(
-			'label'    => __( 'Text Color', 'woostify' ),
-			'section'  => 'woostify_sticky_footer_bar',
-			'settings' => 'woostify_setting[sticky_footer_bar_text_color]',
-			'tab'      => 'design',
-		)
-	)
-);
-
 $wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_text_hover_color]',
 	array(
@@ -293,15 +272,21 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
-		'woostify_setting[sticky_footer_bar_text_hover_color]',
+		'woostify_setting[sticky_footer_bar_text_color]',
 		array(
-			'label'    => __( 'Text Hover Color', 'woostify' ),
+			'label'    => __( 'Text', 'woostify' ),
 			'section'  => 'woostify_sticky_footer_bar',
-			'settings' => 'woostify_setting[sticky_footer_bar_text_hover_color]',
+			'settings' => array(
+				'woostify_setting[sticky_footer_bar_text_color]',
+				'woostify_setting[sticky_footer_bar_text_hover_color]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
+			),
 			'tab'      => 'design',
 		)
 	)
@@ -317,7 +302,6 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_setting(
 	'woostify_setting[tablet_sticky_footer_bar_icon_font_size]',
 	array(
@@ -327,7 +311,6 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_setting(
 	'woostify_setting[mobile_sticky_footer_bar_icon_font_size]',
 	array(
@@ -337,7 +320,6 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
 	new Woostify_Range_Slider_Control(
 		$wp_customize,
@@ -407,7 +389,6 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
 	new Woostify_Range_Slider_Control(
 		$wp_customize,
