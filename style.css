@@ -7377,6 +7377,16 @@ header.elementor-element {
   content: "\e016";
 }
 
+.woocommerce-info {
+  display: flex;
+  align-items: center;
+}
+
+.woocommerce-info a {
+  order: 2;
+  margin-left: auto;
+}
+
 .woocommerce-info input[type="submit"] {
   padding: 0 5px;
   margin-left: 5px;
@@ -11351,6 +11361,13 @@ header.elementor-element {
   margin-right: 15px;
 }
 
+.woocommerce-Address .woocommerce-Address-title .edit:before {
+  content: '\e603';
+  font-family: 'Woocommerce';
+  margin-right: 5px;
+  font-weight: 700;
+}
+
 .woocommerce-Address address {
   border-top: 1px solid #eee;
   margin-bottom: 0;
@@ -11865,6 +11882,15 @@ table.shop_table {
   right: .7em;
   top: .7em;
   cursor: pointer;
+}
+
+.show-password-input:before {
+  font-family: 'Woocommerce';
+  content: "\e010";
+}
+
+.show-password-input.display-password {
+  opacity: .6;
 }
 
 body.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.active:after {

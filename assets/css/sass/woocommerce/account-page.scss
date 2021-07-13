@@ -185,6 +185,13 @@
 
 		.edit{
 			margin-right: 15px;
+
+			&:before {
+				content: '\e603';
+                font-family: 'Woocommerce';
+                margin-right: 5px;
+				font-weight: 700;
+			}
 		}
 	}
 
