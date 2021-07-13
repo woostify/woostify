@@ -518,8 +518,6 @@ var woostifyMultiStepCheckout = function() {
 				document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ).insertAdjacentHTML( 'afterend', holderShipping );
 			}
 
-			console.log( data );
-
 			var isFirstStep   = document.querySelector( '.multi-step-checkout-wrapper.first' ),
 				isReviewOrder = document.querySelector( '.woocommerce-checkout-review-order-table' );
 			if ( isFirstStep ) {
