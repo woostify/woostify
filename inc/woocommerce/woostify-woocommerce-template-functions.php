@@ -796,7 +796,9 @@ if ( ! function_exists( 'woostify_add_product_thumbnail_to_checkout_order' ) ) {
 
 		ob_start();
 		?>
-		<img class="review-order-product-image" src="<?php echo esc_url( $image_src ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
+		<?php if ( $image_src ) { ?>
+			<img class="review-order-product-image" src="<?php echo esc_url( $image_src ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
+		<?php } ?>
 
 		<span class="review-order-product-name">
 			<?php echo wp_kses_post( $product_name ); ?>

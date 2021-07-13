@@ -537,10 +537,10 @@
 
 				.review-order-product-image {
 					max-width: 50px;
-				}
 
-				.review-order-product-name {
-					margin: 0 10px;
+					+.review-order-product-name {
+						margin: 0 10px;
+					}
 				}
 
 				.product-total {

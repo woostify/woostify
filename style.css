@@ -10589,7 +10589,7 @@ header.elementor-element {
   max-width: 50px;
 }
 
-.has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .review-order-product-name {
+.has-multi-step-checkout #order_review .woocommerce-checkout-review-order-table tbody .review-order-product-image + .review-order-product-name {
   margin: 0 10px;
 }
 

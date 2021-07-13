@@ -73,9 +73,11 @@ if ( ! function_exists( 'woostify_loop_product_hover_image' ) ) {
 		// Hover image.
 		if ( ! empty( $gallery ) ) {
 			$hover = wp_get_attachment_image_src( $gallery[0], $image_size );
-			?>
+			if ( ! empty( $hover ) ) {
+				?>
 				<span class="product-loop-hover-image" style="background-image: url(<?php echo esc_url( $hover[0] ); ?>);"></span>
-			<?php
+				<?php
+			}
 		}
 	}
 }
