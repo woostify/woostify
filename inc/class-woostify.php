@@ -935,7 +935,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			$classes[] = woostify_sidebar_class();
 
 			// Blog page layout.
-			$classes[] = ( ! is_singular( 'post' ) && woostify_is_blog() || is_search() ) ? 'blog-layout-' . $options['blog_list_layout'] : '';
+			$classes[] = ( ( ! is_singular( 'post' ) && woostify_is_blog() ) || ( is_search() && 'any' === get_query_var( 'post_type' ) ) ) ? 'blog-layout-' . $options['blog_list_layout'] : '';
 
 			// Detect page created by Divi builder.
 			if ( woostify_is_divi_page() ) {
