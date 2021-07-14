@@ -696,14 +696,14 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			if ( class_exists( 'woocommerce' ) && is_checkout() ) {
 				$wc_total = WC()->cart->get_totals();
-				$price    = 'yes' === get_option( 'woocommerce_calc_taxes' ) ? ( (float) $wc_total['total'] - (float) $wc_total['total_tax'] ) : ( (float) $wc_total['total'] - (float) $wc_total['discount_total'] );
+				$price    = 'yes' === get_option( 'woocommerce_calc_taxes' ) ? ( (float) $wc_total['cart_contents_total'] + (float) $wc_total['total_tax'] ) : $wc_total['cart_contents_total'];
 
 				wp_localize_script(
 					'woostify-multi-step-checkout',
 					'woostify_multi_step_checkout',
 					array(
 						'ajax_none'     => wp_create_nonce( 'woostify_update_checkout_nonce' ),
-						'content_total' => wp_kses( wc_price( $wc_total['cart_contents_total'] ), array() ),
+						'content_total' => wp_kses( $price, array() ),
 						'cart_total'    => wp_kses( wc_price( $wc_total['total'] ), array() ),
 					)
 				);

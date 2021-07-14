@@ -457,12 +457,7 @@ var woostifyMultiStepCheckout = function() {
 					wrapperContent.classList.add( 'last' );
 				}
 
-				if ( 0 == i ) {
-					resetCartTotal();
-					window.updateOrderState = false;
-				} else {
-					jQuery( document.body ).trigger( 'update_checkout' );
-				}
+				jQuery( document.body ).trigger( 'update_checkout' );
 			}
 		}
 	);
@@ -478,35 +473,6 @@ var woostifyMultiStepCheckout = function() {
 
 		return holder;
 	}
-
-	// Shipping placeholder.
-	var resetCartTotal = function() {
-		if ( ! cartSubtotal ) {
-			return;
-		}
-
-		var totalPriceValue = document.querySelector( '.order-total td' ),
-			mobilePrice     = document.querySelector( '.woostify-before-order-review-total-price strong' ),
-			afterSubtotal   = shippingPlaceholder();
-
-		// Add text.
-		if ( ! document.querySelector( '.shipping-placeholder' ) && document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ) ) {
-			document.querySelector( 'form.woocommerce-checkout .cart-subtotal' ).insertAdjacentHTML( 'afterend', afterSubtotal );
-		}
-
-		// Update content price on step 1.
-		if ( 'undefined' !== typeof( woostify_multi_step_checkout.content_total ) ) {
-			if ( totalPriceValue ) {
-				totalPriceValue.innerHTML = woostify_multi_step_checkout.content_total;
-			}
-
-			// Mobile summary total price.
-			if ( mobilePrice ) {
-				mobilePrice.innerHTML = woostify_multi_step_checkout.content_total;
-			}
-		}
-	}
-	resetCartTotal();
 
 	// Update checkout.
 	jQuery( document.body ).on(

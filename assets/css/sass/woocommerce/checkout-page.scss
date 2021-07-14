@@ -571,15 +571,6 @@
 		}
 	}
 
-	// First step
-	.multi-step-checkout-wrapper.first {
-		~ .woocommerce-checkout-review-order {
-			tr[class^="tax-"] {
-				display: none;
-			}
-		}
-	}
-
 	.multi-step-inner {
 		margin-top: 50px;
 		position: relative;

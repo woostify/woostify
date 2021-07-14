@@ -10615,10 +10615,6 @@ header.elementor-element {
   text-align: center;
 }
 
-.has-multi-step-checkout .multi-step-checkout-wrapper.first ~ .woocommerce-checkout-review-order tr[class^="tax-"] {
-  display: none;
-}
-
 .has-multi-step-checkout .multi-step-inner {
   margin-top: 50px;
   position: relative;

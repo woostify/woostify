@@ -662,8 +662,9 @@ if ( ! function_exists( 'woostify_update_order_review_fragments' ) ) {
 	 */
 	function woostify_update_order_review_fragments( $fragments ) {
 		$get_cart = WC()->cart->get_totals();
+		$price    = 'yes' === get_option( 'woocommerce_calc_taxes' ) ? ( (float) $get_cart['cart_contents_total'] + (float) $get_cart['total_tax'] ) : $get_cart['cart_contents_total'];
 
-		$fragments['_first_step_price'] = wp_kses( wc_price( $get_cart['cart_contents_total'] ), array() );
+		$fragments['_first_step_price'] = wp_kses( wc_price( $price ), array() );
 
 		return $fragments;
 	}
