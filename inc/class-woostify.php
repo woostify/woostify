@@ -82,6 +82,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 				$this->megamenu_width = '' !== $this->megamenu_width ? $this->megamenu_width : 'content';
 				$this->megamenu_url   = get_post_meta( $item->ID, 'woostify_mega_menu_item_url', true );
 				$this->megamenu_icon  = get_post_meta( $item->ID, 'woostify_mega_menu_item_icon', true );
+				$this->megamenu_icon  = str_replace( 'ti-', '', $this->megamenu_icon );
 
 				$classes[] = 'menu-item-has-children';
 				$classes[] = 'menu-item-has-mega-menu';
@@ -131,7 +132,9 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			// Menu icon.
 			if ( 'mega_menu' === $item->object && $this->megamenu_icon ) {
-				$item_output .= '<span class="menu-item-icon ' . esc_attr( $this->megamenu_icon ) . '"></span>';
+				$item_output .= '<span class="menu-item-icon">';
+				$item_output .= woostify_fetch_svg_icon( $this->megamenu_icon );
+				$item_output .= '</span>';
 			}
 
 			$title = apply_filters( 'the_title', $item->title, $item->ID );
