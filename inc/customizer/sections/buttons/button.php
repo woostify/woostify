@@ -15,16 +15,34 @@ $wp_customize->add_setting(
 		'default'           => $defaults['button_text_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+// Hover text color.
+$wp_customize->add_setting(
+	'woostify_setting[button_hover_text_color]',
+	array(
+		'default'           => $defaults['button_hover_text_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[button_text_color]',
 		array(
 			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_buttons',
-			'settings' => 'woostify_setting[button_text_color]',
+			'settings' => array(
+				'woostify_setting[button_text_color]',
+				'woostify_setting[button_hover_text_color]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
+			),
 		)
 	)
 );
@@ -36,60 +54,9 @@ $wp_customize->add_setting(
 		'default'           => $defaults['button_background_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
-$wp_customize->add_control(
-	new Woostify_Color_Control(
-		$wp_customize,
-		'woostify_setting[button_background_color]',
-		array(
-			'label'    => __( 'Background Color', 'woostify' ),
-			'section'  => 'woostify_buttons',
-			'settings' => 'woostify_setting[button_background_color]',
-		)
-	)
-);
-
-// Hover text divider.
-$wp_customize->add_setting(
-	'button_hover_text_divider',
-	array(
-		'sanitize_callback' => 'sanitize_text_field',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Divider_Control(
-		$wp_customize,
-		'button_hover_text_divider',
-		array(
-			'section'  => 'woostify_buttons',
-			'settings' => 'button_hover_text_divider',
-			'type'     => 'divider',
-		)
-	)
-);
-
-// Hover text color.
-$wp_customize->add_setting(
-	'woostify_setting[button_hover_text_color]',
-	array(
-		'default'           => $defaults['button_hover_text_color'],
-		'sanitize_callback' => 'woostify_sanitize_rgba_color',
-		'type'              => 'option',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Color_Control(
-		$wp_customize,
-		'woostify_setting[button_hover_text_color]',
-		array(
-			'label'    => __( 'Hover Text Color', 'woostify' ),
-			'section'  => 'woostify_buttons',
-			'settings' => 'woostify_setting[button_hover_text_color]',
-		)
-	)
-);
-
 // Hover background color.
 $wp_customize->add_setting(
 	'woostify_setting[button_hover_background_color]',
@@ -97,16 +64,24 @@ $wp_customize->add_setting(
 		'default'           => $defaults['button_hover_background_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
-		'woostify_setting[button_hover_background_color]',
+		'woostify_setting[button_background_color]',
 		array(
-			'label'    => __( 'Hover Background Color', 'woostify' ),
+			'label'    => __( 'Background Color', 'woostify' ),
 			'section'  => 'woostify_buttons',
-			'settings' => 'woostify_setting[button_hover_background_color]',
+			'settings' => array(
+				'woostify_setting[button_background_color]',
+				'woostify_setting[button_hover_background_color]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
+			),
 		)
 	)
 );

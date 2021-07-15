@@ -118,6 +118,29 @@ $wp_customize->add_control(
 	)
 );
 
+// Heading color.
+$wp_customize->add_setting(
+	'woostify_setting[heading_color]',
+	array(
+		'default'           => $defaults['heading_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[heading_color]',
+		array(
+			'label'    => __( 'Heading Color', 'woostify' ),
+			'section'  => 'heading_font_section',
+			'settings' => array(
+				'woostify_setting[heading_color]',
+			),
+		)
+	)
+);
+
 // Heading font size divider.
 $wp_customize->add_setting(
 	'heading_font_divider',

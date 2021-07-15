@@ -26,6 +26,34 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		}
 
 		/**
+		 * Get color global elementor
+		 *
+		 * @return array
+		 */
+		public function get_color_global_elementor() {
+			$colors = array();
+			if ( ! woostify_is_elementor_activated() || isset( \Elementor\Plugin::$instance->kits_manager ) ) {
+				$kits_manager = \Elementor\Plugin::$instance->kits_manager;
+
+				$system_colors = $kits_manager->get_current_settings( 'system_colors' );
+
+				foreach ( $system_colors as $sc_k => $value ) {
+					unset( $value['_id'] );
+					array_push( $colors, $value );
+				}
+
+				$custom_colors = $kits_manager->get_current_settings( 'custom_colors' );
+
+				foreach ( $custom_colors as $cc_k => $value ) {
+					unset( $value['_id'] );
+					array_push( $colors, $value );
+				}
+			}
+
+			return $colors;
+		}
+
+		/**
 		 * Add script for customize controls
 		 */
 		public function woostify_customize_controls_scripts() {
@@ -35,6 +63,14 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				array(),
 				woostify_version(),
 				true
+			);
+
+			wp_localize_script(
+				'woostify-color-group',
+				'woostify_color_group',
+				array(
+					'elementor_colors' => $this->get_color_global_elementor(),
+				)
 			);
 		}
 
@@ -98,7 +134,26 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 					'shortcode' => '',
 				),
 			);
-			$args                    = array(
+			$global_color_settings   = array(
+				'theme_color',
+				'text_color',
+				'accent_color',
+				'extra_color_1',
+				'extra_color_2',
+			);
+			$global_color_labels     = array(
+				__( 'Theme Color', 'woostify' ),
+				__( 'Text Color', 'woostify' ),
+				__( 'Link / Accent Color', 'woostify' ),
+				__( 'Extra Color 1', 'woostify' ),
+				__( 'Extra Color 2', 'woostify' ),
+			);
+
+			$args = array(
+				// GLOBAL.
+				'global_color_labels'                      => $global_color_labels,
+				'global_color_settings'                    => $global_color_settings,
+				'background_color'                         => '#ffffff',
 				// CONTAINER.
 				'container_width'                          => '1200',
 				'default_container'                        => 'normal',
@@ -120,6 +175,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'heading_color'                            => '#2b2b2b',
 				'text_color'                               => '#8f8f8f',
 				'accent_color'                             => '#2b2b2b',
+				'extra_color_1'                            => '#fd0',
+				'extra_color_2'                            => '#fd0',
 				// TOPBAR.
 				'topbar_display'                           => true,
 				'topbar_text_color'                        => '#ffffff',
@@ -200,12 +257,12 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'sticky_footer_bar_icon_font_size'         => 20,
 				'tablet_sticky_footer_bar_icon_font_size'  => 20,
 				'mobile_sticky_footer_bar_icon_font_size'  => 18,
-				'sticky_footer_bar_text_color'             => '#111',
-				'sticky_footer_bar_text_hover_color'       => '#111',
-				'sticky_footer_bar_icon_color'             => '#111',
-				'sticky_footer_bar_icon_hover_color'       => '#111',
+				'sticky_footer_bar_text_color'             => '#111111',
+				'sticky_footer_bar_text_hover_color'       => '#111111',
+				'sticky_footer_bar_icon_color'             => '#111111',
+				'sticky_footer_bar_icon_hover_color'       => '#111111',
 				'sticky_footer_bar_text_font_weight'       => 600,
-				'sticky_footer_bar_background'             => '#fff',
+				'sticky_footer_bar_background'             => '#ffffff',
 				'sticky_footer_bar_hide_when_scroll'       => false,
 				'sticky_footer_bar_icon_spacing'           => 5,
 				'tablet_sticky_footer_bar_icon_spacing'    => 5,

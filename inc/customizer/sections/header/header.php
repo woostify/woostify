@@ -8,6 +8,26 @@
 // Default values.
 $defaults = woostify_options();
 
+// Tabs.
+$wp_customize->add_setting(
+	'woostify_setting[header_context_tabs]'
+);
+
+$wp_customize->add_control(
+	new Woostify_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[header_context_tabs]',
+		array(
+			'section'  => 'woostify_header',
+			'settings' => 'woostify_setting[header_context_tabs]',
+			'choices'  => array(
+				'general' => __( 'General', 'woostify' ),
+				'design'  => __( 'Design', 'woostify' ),
+			),
+		)
+	)
+);
+
 // Header layout.
 $wp_customize->add_setting(
 	'woostify_setting[header_layout]',
@@ -31,6 +51,7 @@ $wp_customize->add_control(
 					'layout-1' => WOOSTIFY_THEME_URI . 'assets/images/customizer/header/woostify-header-1.jpg',
 				)
 			),
+			'tab'      => 'general',
 		)
 	)
 );
@@ -46,14 +67,16 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[header_background_color]',
 		array(
-			'priority' => 30,
 			'label'    => __( 'Header Background', 'woostify' ),
 			'section'  => 'woostify_header',
-			'settings' => 'woostify_setting[header_background_color]',
+			'settings' => array(
+				'woostify_setting[header_background_color]',
+			),
+			'tab'      => 'design',
 		)
 	)
 );
@@ -74,6 +97,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_header',
 			'settings' => 'header_after_background_color_divider',
 			'type'     => 'divider',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -95,6 +119,7 @@ $wp_customize->add_control(
 			'settings' => 'header_element_title',
 			'type'     => 'heading',
 			'label'    => __( 'Elements', 'woostify' ),
+			'tab'      => 'general',
 		)
 	)
 );
@@ -118,6 +143,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Header Menu', 'woostify' ),
 			'section'  => 'woostify_header',
 			'settings' => 'woostify_setting[header_primary_menu]',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -151,6 +177,7 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 			),
+			'tab'      => 'general',
 		)
 	)
 );
@@ -173,6 +200,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Search', 'woostify' ),
 			'section'  => 'woostify_header',
 			'settings' => 'woostify_setting[header_search_icon]',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -197,6 +225,7 @@ if ( class_exists( 'woocommerce' ) ) {
 				'label'    => __( 'Search Only Product', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_search_only_product]',
+				'tab'      => 'general',
 			)
 		)
 	);
@@ -220,6 +249,7 @@ if ( class_exists( 'woocommerce' ) ) {
 					'label'    => __( 'Wishlist Icon', 'woostify' ),
 					'section'  => 'woostify_header',
 					'settings' => 'woostify_setting[header_wishlist_icon]',
+					'tab'      => 'general',
 				)
 			)
 		);
@@ -243,6 +273,7 @@ if ( class_exists( 'woocommerce' ) ) {
 				'label'    => __( 'Account/Dashboard', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_account_icon]',
+				'tab'      => 'general',
 			)
 		)
 	);
@@ -265,6 +296,7 @@ if ( class_exists( 'woocommerce' ) ) {
 				'label'    => __( 'Shopping Cart Icon', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_shop_cart_icon]',
+				'tab'      => 'general',
 			)
 		)
 	);
@@ -287,6 +319,7 @@ if ( class_exists( 'woocommerce' ) ) {
 				'label'    => __( 'Show Subtotal', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_shop_cart_price]',
+				'tab'      => 'general',
 			)
 		)
 	);
@@ -310,6 +343,7 @@ if ( class_exists( 'woocommerce' ) ) {
 				'label'    => __( 'Hide Zero Value', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_shop_hide_zero_value_cart_count]',
+				'tab'      => 'general',
 			)
 		)
 	);

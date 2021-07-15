@@ -1,15 +1,22 @@
 .woostify-font-weight,
 .woostify-font-transform{
 	float: left;
-	width: 50%;
+	width: 49%;
 	clear: none;
+}
+.woostify-font-weight {
+	margin-right: 1%;
+}
+.woostify-font-transform {
+	margin-left: 1%;
 }
 #customize-control-woostify_settings-body_line_height input{
 	line-height: 20px;
 }
 
-.woostify-font-weight select {
-	border-right: 0;
+.woostify-font-weight select, .woostify-font-transform select {
+	border-color: #ddd;
+	border-radius: 2px;
 }
 
 span.select2-container.select2-container--default.select2-container--open li.select2-results__option {
