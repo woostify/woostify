@@ -307,15 +307,14 @@
   float: left;
 }
 
-.rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="back"]:before {
-  content: none;
+.rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="back"] {
+  float: right;
 }
 
-.rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="back"]:after {
-  content: "\e649";
-  font-family: 'themify';
+.rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="back"] .woostify-svg-icon {
+  transform: rotate(180deg);
   margin-left: 5px;
-  font-size: 0.8em;
+  margin-right: 0;
 }
 
 .rtl .woocommerce-table--order-details th:nth-child(2),
