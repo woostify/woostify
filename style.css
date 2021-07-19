@@ -3382,8 +3382,13 @@ article p:last-child {
   pointer-events: auto;
 }
 
+.woostify-product-navigation .product-nav-item .product-nav-icon {
+  display: inline-flex;
+}
+
 .woostify-product-navigation .product-nav-item-text {
   text-transform: uppercase;
+  display: inline-flex;
 }
 
 @media (min-width: 992px) {
