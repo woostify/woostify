@@ -106,7 +106,9 @@ document.addEventListener(
 				navContainer: '#product-thumbnail-images',
 				items: 1,
 				navAsThumbnails: true,
-				autoHeight: true
+				autoHeight: true,
+				preventScrollOnTouch: true,
+				controlsText: [woostify_product_images.prev_btn_icon,woostify_product_images.next_btn_icon],
 		}
 
 		// Product thumbnails.

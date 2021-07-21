@@ -160,3 +160,20 @@
 		}
 	}
 }
+
+.woostify-svg-icon {
+	display: inline-flex;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	align-self: center;
+	color: currentColor;
+	svg {
+		display: block;
+		width: 14px;
+		height: 14px;
+		fill: currentColor;
+		path {
+			fill: currentColor;
+		}
+	}
+}

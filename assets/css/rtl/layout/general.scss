@@ -43,4 +43,23 @@
 			padding-right: 20px;
 		}
 	}
+
+
+	&.has-header-layout-7 {
+		.woostify-sticky-footer-bar {
+			@media (min-width: 993px) {
+				right: auto;
+				left: 0;
+			}
+		}
+	}
+}
+
+.sidebar-menu-open {
+	.rtl {
+		#woostify-overlay .woostify-svg-icon {
+			right: auto;
+			left: 20px;
+		}
+	}
 }

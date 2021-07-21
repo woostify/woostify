@@ -326,9 +326,32 @@ if ( ! function_exists( 'woostify_toggle_sidebar_mobile_button' ) ) {
 	 * Toggle sidebar mobile button
 	 */
 	function woostify_toggle_sidebar_mobile_button() {
-		$icon = apply_filters( 'woostify_toggle_sidebar_mobile_button_icon', 'ti-filter' );
+		$icon = apply_filters( 'woostify_toggle_sidebar_mobile_button_icon', 'filter' );
 		?>
-		<button id="toggle-sidebar-mobile-button" class="<?php echo esc_attr( $icon ); ?>"><?php esc_html_e( 'Filter', 'woostify' ); ?></button>
+		<button id="toggle-sidebar-mobile-button" class="<?php echo esc_attr( $icon ); ?>">
+			<?php echo woostify_fetch_svg_icon( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php esc_html_e( 'Filter', 'woostify' ); ?></button>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_woocommerce_toolbar_left_open_div' ) ) {
+	/**
+	 * Toolbar left open div
+	 */
+	function woostify_woocommerce_toolbar_left_open_div() {
+		?>
+		<div class="woostify-toolbar-left">
+		<?php
+	}
+}
+if ( ! function_exists( 'woostify_woocommerce_toolbar_left_close_div' ) ) {
+	/**
+	 * Toolbar left close div
+	 */
+	function woostify_woocommerce_toolbar_left_close_div() {
+		?>
+		</div>
 		<?php
 	}
 }

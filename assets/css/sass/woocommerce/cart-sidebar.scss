@@ -425,6 +425,11 @@ $media: 599px;
 		&[data-qty="plus"] {
 			border-left: 0;
 		}
+
+		.woostify-svg-icon svg {
+			width: 10px;
+			height: 11px;
+		}
 	}
 
 	.mini-cart-product-price {}

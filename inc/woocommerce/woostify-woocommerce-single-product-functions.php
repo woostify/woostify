@@ -56,7 +56,7 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 
 		if ( $prev_id ) {
 			$classes        = ! $next_id ? 'product-nav-last' : '';
-			$prev_icon      = apply_filters( 'woostify_product_navigation_prev_icon', 'ti-arrow-circle-left' );
+			$prev_icon      = apply_filters( 'woostify_product_navigation_prev_icon', 'arrow-circle-left' );
 			$prev_image_id  = $prev_product->get_image_id();
 			$prev_image_src = wp_get_attachment_image_src( $prev_image_id );
 			$prev_image_alt = woostify_image_alt( $prev_image_id, __( 'Previous Product Image', 'woostify' ) );
@@ -64,7 +64,12 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 			ob_start();
 			?>
 				<div class="prev-product-navigation product-nav-item">
-					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $prev_id ) ); ?>"><span class="product-nav-icon <?php echo esc_attr( $prev_icon ); ?>"></span><?php esc_html_e( 'Previous', 'woostify' ); ?></a>
+					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $prev_id ) ); ?>">
+						<span class="product-nav-icon">
+							<?php echo woostify_fetch_svg_icon( $prev_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</span>
+						<span><?php esc_html_e( 'Previous', 'woostify' ); ?></span>
+					</a>
 					<div class="product-nav-item-content">
 						<a class="product-nav-item-link" href="<?php echo esc_url( get_permalink( $prev_id ) ); ?>"></a>
 						<?php if ( $prev_image_src ) { ?>
@@ -83,7 +88,7 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 
 		if ( $next_id ) {
 			$classes        = ! $prev_id ? 'product-nav-first' : '';
-			$next_icon      = apply_filters( 'woostify_product_navigation_next_icon', 'ti-arrow-circle-right' );
+			$next_icon      = apply_filters( 'woostify_product_navigation_next_icon', 'arrow-circle-right' );
 			$next_image_id  = $next_product->get_image_id();
 			$next_image_src = wp_get_attachment_image_src( $next_image_id );
 			$next_image_alt = woostify_image_alt( $next_image_id, __( 'Next Product Image', 'woostify' ) );
@@ -91,7 +96,12 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 			ob_start();
 			?>
 				<div class="next-product-navigation product-nav-item">
-					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $next_id ) ); ?>"><?php esc_html_e( 'Next', 'woostify' ); ?><span class="product-nav-icon <?php echo esc_attr( $next_icon ); ?>"></span></a>
+					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $next_id ) ); ?>">
+						<span><?php esc_html_e( 'Next', 'woostify' ); ?></span>
+						<span class="product-nav-icon">
+							<?php echo woostify_fetch_svg_icon( $next_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</span>
+					</a>
 					<div class="product-nav-item-content">
 						<a class="product-nav-item-link" href="<?php echo esc_url( get_permalink( $next_id ) ); ?>"></a>
 						<div class="product-nav-item-inner">
@@ -330,13 +340,17 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 
 		// Gallery.
 		$gallery_id = $product->get_gallery_image_ids();
+
+		// Support <img> srcset attr.
+		$html_allowed                  = wp_kses_allowed_html( 'post' );
+		$html_allowed['img']['srcset'] = true;
 		?>
 
 		<div class="product-images">
 			<div id="product-images">
 				<figure class="image-item ez-zoom">
 					<a href="<?php echo esc_url( $image_full_src[0] ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
-						<?php echo wp_kses_post( $product->get_image( 'woocommerce_single', array(), true ) ); ?>
+						<?php echo wp_kses( $product->get_image( 'woocommerce_single', array(), true ), $html_allowed ); ?>
 					</a>
 				</figure>
 				<?php
@@ -641,79 +655,6 @@ if ( ! function_exists( 'woostify_product_recently_viewed_template' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
-	/**
-	 * Ajax single add to cart
-	 */
-	function woostify_ajax_single_add_to_cart() {
-		check_ajax_referer( 'woostify_ajax_single_add_to_cart', 'ajax_nonce', false );
-
-		if ( ! isset( $_POST['product_id'] ) || ! isset( $_POST['product_qty'] ) ) {
-			wp_send_json_error();
-		}
-
-		$product_id        = intval( $_POST['product_id'] );
-		$product_qty       = intval( $_POST['product_qty'] );
-		$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $product_qty );
-		$variation_id      = isset( $_POST['variation_id'] ) ? intval( $_POST['variation_id'] ) : false;
-		$variations        = isset( $_POST['variations'] ) ? (array) json_decode( urldecode( wp_unslash( $_POST['variations'] ) ), true ) : array(); // phpcs:ignore
-
-		// Check stock quantity first.
-		$quantities = WC()->cart->get_cart_item_quantities();
-		if ( ! empty( $quantities ) ) {
-			$pid         = $variation_id ? $variation_id : $product_id;
-			$in_cart_qty = isset( $quantities[ $pid ] ) ? $quantities[ $pid ] : 0;
-			$stock_count = intval( get_post_meta( $pid, '_stock', true ) );
-
-			if (
-				$stock_count &&
-				$stock_count > 0 &&
-				( ( $product_qty + $in_cart_qty ) > $stock_count )
-			) {
-				$response['mess'] = sprintf( /* translators: stock quantity number */__( 'You cannot add that amount of this product to the cart. We have %1$s in stock and you already have %2$s in your cart', 'woostify' ), $stock_count, $in_cart_qty );
-
-				wp_send_json_success( $response );
-			}
-		}
-
-		// For gift_wrap plugin.
-		$product_data = isset( $_POST['gift_wrap_data'] ) ? (array) json_decode( sanitize_text_field( wp_unslash( $_POST['gift_wrap_data'] ) ), true ) : array();
-		if ( ! empty( $product_data ) && ! empty( $product_data['gift_product_id'] ) ) {
-			$gift_product = wc_get_product( $product_data['gift_product_id'] );
-
-			$gift_wrap_data['wcgwp_single_product_selection'] = $gift_product->get_title();
-			$gift_wrap_data['wcgwp_single_product_price']     = $gift_product->get_price();
-
-			if ( ! empty( $product_data['gift_product_note'] ) ) {
-				$gift_wrap_data['wcgwp_single_product_note'] = $product_data['gift_product_note'];
-			}
-
-			// Add to cart.
-			if ( $variation_id && $passed_validation ) {
-				WC()->cart->add_to_cart( $product_id, $product_qty, $variation_id, $variations, $gift_wrap_data );
-			} else {
-				WC()->cart->add_to_cart( $product_id, $product_qty, 0, array(), $gift_wrap_data );
-			}
-		} else {
-			// Add to cart.
-			if ( $variation_id && $passed_validation ) {
-				WC()->cart->add_to_cart( $product_id, $product_qty, $variation_id, $variations );
-			} else {
-				WC()->cart->add_to_cart( $product_id, $product_qty );
-			}
-		}
-
-		WC()->cart->get_cart_total();
-		ob_start();
-		woostify_mini_cart();
-		$response['item']    = WC()->cart->get_cart_contents_count();
-		$response['total']   = wp_kses( WC()->cart->get_cart_total(), array() );
-		$response['content'] = ob_get_clean();
-
-		wp_send_json_success( $response );
-	}
-}
-
 if ( ! function_exists( 'woostify_disable_variations_out_of_stock' ) ) {
 	/**
 	 * Disable Out of Stock Variations.
@@ -784,5 +725,32 @@ if ( ! function_exists( 'woostify_get_term_setting' ) ) {
 		}
 
 		return $value;
+	}
+}
+
+if ( ! function_exists( 'woostify_add_to_cart_product_simple' ) ) {
+	/**
+	 * Add add-to-cart value id for simple product
+	 */
+	function woostify_add_to_cart_product_simple() {
+		global $product;
+		if ( ! $product->is_type( 'simple' ) ) {
+			return;
+		}
+		?>
+		<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" />
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_reset_variations_link' ) ) {
+	/**
+	 * Modify woocommerce reset variations link
+	 *
+	 * @param string $output Link output.
+	 * @return void
+	 */
+	function woostify_reset_variations_link( $output ) {
+		return '<a class="reset_variations" href="#">' . woostify_fetch_svg_icon( 'reload' ) . esc_html__( 'Clear', 'woostify' ) . '</a>';
 	}
 }

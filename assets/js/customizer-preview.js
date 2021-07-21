@@ -477,11 +477,11 @@ function woostify_add_dynamic_css( control, style ) {
 
 							var dynamicStyle = '@media (min-width: 992px) {'
 
-							dynamicStyle += '.has-sidebar #primary { width: ' + (
+							dynamicStyle += '.has-sidebar.not(.offcanvas-sidebar) #primary { width: ' + (
 								100 - parseInt( width )
-							) + '% } '
-							dynamicStyle += '.has-sidebar #secondary { width: ' + width + '% } '
-							dynamicStyle += '}'
+							) + '% } ';
+							dynamicStyle += '.has-sidebar.not(.offcanvas-sidebar) #secondary { width: ' + width + '% } ';
+							dynamicStyle += '}';
 
 							woostify_add_dynamic_css( 'sidebar_width', dynamicStyle )
 						}
@@ -921,21 +921,14 @@ document.addEventListener(
 		woostify_update_element_class( 'scroll_to_top_on', '#scroll-to-top', 'scroll-to-top-show-' )
 
 		// Sticky Footer Bar.
-		woostify_update_element_class( 'sticky_footer_bar_enable_on', '.woostify-sticky-footer-bar', 'woostify-sticky-on-' )
-		// Sticky Footer Bar: Text color.
-		woostify_color_group_live_update(
-			[
-				'sticky_footer_bar_text_color',
-				'sticky_footer_bar_text_hover_color',
-			],
-			[
-				'.woostify-sticky-footer-bar .woostify-item-list-item__name',
-				'.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__name',
-			],
-			[
-				'color',
-			],
-		)
+		woostify_update_element_class( 'sticky_footer_bar_enable_on', '.woostify-sticky-footer-bar', 'woostify-sticky-on-' );
+		woostify_colors_live_update( 'sticky_footer_bar_background', '.woostify-sticky-footer-bar', 'background' );
+		woostify_colors_live_update( 'sticky_footer_bar_icon_color', '.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon', 'color' );
+		woostify_colors_live_update( 'sticky_footer_bar_icon_hover_color', '.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon', 'color' );
+		woostify_colors_live_update( 'sticky_footer_bar_icon_color', '.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg', 'fill' );
+		woostify_colors_live_update( 'sticky_footer_bar_icon_hover_color', '.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg', 'fill' );
+		woostify_colors_live_update( 'sticky_footer_bar_text_color', '.woostify-sticky-footer-bar .woostify-item-list-item__name', 'color' );
+		woostify_colors_live_update( 'sticky_footer_bar_text_hover_color', '.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__name', 'color' );
 		woostify_range_slider_update(
 			[
 				'sticky_footer_bar_icon_font_size',

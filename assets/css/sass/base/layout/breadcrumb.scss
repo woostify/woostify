@@ -139,10 +139,15 @@
 				pointer-events: auto;
 			}
 		}
+
+		.product-nav-icon {
+			display: inline-flex;
+		}
 	}
 
 	.product-nav-item-text {
 		text-transform: uppercase;
+		display: inline-flex;
 
 		@media (min-width: $screen-md) {
 			padding-bottom: 15px;

@@ -165,25 +165,22 @@
 	transition: all 0.25s
 }
 
-.tns-controls [data-controls]:before {
-	font-family: $icon;
-	font-size: 18px;
+.tns-controls [data-controls] {
+	.woostify-svg-icon {
+		color: currentColor;
+		svg {
+			width: 18px;
+			height: 18px;
+		}
+	}
 }
 
 .tns-controls [data-controls="prev"] {
 	left: 20px;
 }
 
-.tns-controls [data-controls="prev"]:before {
-	content: "\e64a";
-}
-
 .tns-controls [data-controls="next"] {
 	right: 20px;
-}
-
-.tns-controls [data-controls="next"]:before {
-	content: "\e649";
 }
 
 /* dots */

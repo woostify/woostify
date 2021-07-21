@@ -24,7 +24,7 @@
 	.sidebar-menu {
 		left: auto;
 		right: 0;
-		transform: translateX(100%);
+		transform: translateX(0);
 	}
 	.quick-view-with-text:before {
 		margin-right: 0;
@@ -35,6 +35,17 @@
 			a {
 			    float: none;
 			}
+		}
+	}
+	.product-loop-meta a .woostify-svg-icon {
+		margin-left: 5px;
+		margin-right: 0;
+	}
+	.product-loop-image-wrapper .loop-add-to-cart-on-image,
+	.product-loop-image-wrapper .loop-add-to-cart-on-image + .added_to_cart {
+		.woostify-svg-icon {
+			margin-left: 7px;
+			margin-right: 0;
 		}
 	}
 }

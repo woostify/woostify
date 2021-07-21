@@ -89,4 +89,15 @@
 		right: auto;
 		left: .7em;
 	}
+
+	.woocommerce-error, .woocommerce-info, .woocommerce-message {
+		&:before {
+			margin-right: 0;
+			margin-left: 10px;
+		}
+		a {
+			margin-left: 0;
+			margin-right: auto;
+		}
+	}
 }

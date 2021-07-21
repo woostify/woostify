@@ -16,6 +16,7 @@ if ( ! function_exists( 'woostify_get_last_product_id' ) ) {
 			'post_type'      => 'product',
 			'posts_per_page' => 1,
 			'post_status'    => 'publish',
+			'fields'         => 'ids',
 			'tax_query'      => array( // phpcs:ignore
 				array(
 					array(
@@ -28,21 +29,14 @@ if ( ! function_exists( 'woostify_get_last_product_id' ) ) {
 			),
 		);
 
-		$query = new WP_Query( $args );
+		$query = get_posts( $args );
+		$id    = false;
 
-		$id = false;
-
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-				$id = get_the_ID();
-			}
-
-			wp_reset_postdata();
+		if ( empty( $query ) ) {
+			return false;
 		}
 
-		return $id;
+		return $query[0];
 	}
 }
 
@@ -63,7 +57,7 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 	 * Update product quantity in minicart
 	 */
 	function woostify_ajax_update_quantity_in_mini_cart() {
-		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce', false );
+		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
 
 		if ( ! isset( $_POST['key'] ) || ! isset( $_POST['qty'] ) ) {
 			wp_send_json_error();
@@ -105,11 +99,15 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 		?>
 		<span class="mini-cart-product-infor">
 			<span class="mini-cart-quantity">
-				<span class="mini-cart-product-qty ti-minus" data-qty="minus"></span>
+				<span class="mini-cart-product-qty" data-qty="minus">
+				<?php echo woostify_fetch_svg_icon( 'minus' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</span>
 
 				<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
 
-				<span class="mini-cart-product-qty ti-plus" data-qty="plus"></span>
+				<span class="mini-cart-product-qty" data-qty="plus">
+				<?php echo woostify_fetch_svg_icon( 'plus' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</span>
 			</span>
 
 			<span class="mini-cart-product-price"><?php echo wp_kses_post( $product_price ); ?></span>
@@ -124,7 +122,7 @@ if ( ! function_exists( 'woostify_ajax_update_checkout' ) ) {
 	 * Update checkout
 	 */
 	function woostify_ajax_update_checkout() {
-		check_ajax_referer( 'woostify_update_checkout_nonce', 'ajax_nonce', false );
+		check_ajax_referer( 'woostify_update_checkout_nonce', 'ajax_nonce' );
 
 		WC()->cart->calculate_totals();
 		$wc_total = WC()->cart->get_totals();
@@ -303,11 +301,15 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 
 							<span class="mini-cart-product-infor">
 								<span class="mini-cart-quantity">
-									<span class="mini-cart-product-qty ti-minus" data-qty="minus"></span>
+									<span class="mini-cart-product-qty" data-qty="minus">
+									<?php echo woostify_fetch_svg_icon( 'minus' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									</span>
 
 									<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
 
-									<span class="mini-cart-product-qty ti-plus" data-qty="plus"></span>
+									<span class="mini-cart-product-qty" data-qty="plus">
+									<?php echo woostify_fetch_svg_icon( 'plus' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									</span>
 								</span>
 
 								<span class="mini-cart-product-price"><?php echo wp_kses_post( $product_price ); ?></span>
@@ -366,7 +368,9 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 				<div class="cart-sidebar-head">
 					<h4 class="cart-sidebar-title"><?php esc_html_e( 'Shopping cart', 'woostify' ); ?></h4>
 					<span class="shop-cart-count"><?php echo esc_html( $total ); ?></span>
-					<button id="close-cart-sidebar-btn" class="ti-close"></button>
+					<button id="close-cart-sidebar-btn" class="close">
+					<?php echo woostify_fetch_svg_icon( 'close' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</button>
 				</div>
 
 				<div class="cart-sidebar-content">
@@ -386,12 +390,6 @@ if ( ! function_exists( 'woostify_modify_loop_add_to_cart_class' ) ) {
 		$options      = woostify_options( false );
 		$button_class = 'loop-add-to-cart-btn';
 		$icon_class   = '';
-		if (
-			( ! in_array( $options['shop_page_add_to_cart_button_position'], array( 'none', 'icon' ), true ) && $options['shop_product_add_to_cart_icon'] ) ||
-			'icon' === $options['shop_page_add_to_cart_button_position']
-		) {
-			$icon_class = apply_filters( 'woostify_pro_loop_add_to_cart_icon', 'ti-shopping-cart' );
-		}
 
 		if ( 'image' === $options['shop_page_add_to_cart_button_position'] ) {
 			$button_class = 'loop-add-to-cart-on-image';
@@ -569,7 +567,7 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 	 */
 	function woostify_change_sale_flash() {
 		global $product;
-		if ( empty( $product ) ) {
+		if ( ! $product || ! is_object( $product ) ) {
 			return;
 		}
 		$options      = woostify_options( false );
@@ -583,10 +581,9 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 		$sale_text    = $options['shop_page_sale_text'];
 		$sale_percent = $options['shop_page_sale_percent'];
 		$final_price  = '';
-		$out_of_stock = $product->get_stock_quantity();
+		$out_of_stock = get_post_meta( $product->get_id(), '_stock_status', true );
 
-		// Out of stock.
-		if ( $out_of_stock ) {
+		if ( 'outofstock' === $out_of_stock ) {
 			return;
 		}
 
@@ -635,7 +632,9 @@ if ( ! function_exists( 'woostify_product_video_button_play' ) ) {
 
 		if ( 'default' !== $video_url ) {
 			?>
-			<a href="<?php echo esc_url( $video_url ); ?>" data-lity class="ti-control-play woostify-lightbox-button"></a>
+			<a href="<?php echo esc_url( $video_url ); ?>" data-lity class="woostify-lightbox-button">
+			<?php echo woostify_fetch_svg_icon( 'control-play' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</a>
 			<?php
 		}
 	}
@@ -820,7 +819,7 @@ if ( ! function_exists( 'woostify_add_product_thumbnail_to_checkout_order' ) ) {
 
 		ob_start();
 		?>
-		<img class="review-order-product-image" src="<?php echo esc_url( wp_get_attachment_image_url( $image_id ) ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
+		<img class="review-order-product-image" src="<?php echo esc_url( $image_src ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
 
 		<span class="review-order-product-name">
 			<?php echo wp_kses_post( $product_name ); ?>
@@ -1038,7 +1037,7 @@ if ( ! function_exists( 'woostify_multi_checkout_button_action' ) ) {
 		$place_order = apply_filters( 'woostify_checkout_order_button', '<button type="submit" class="multi-step-checkout-button button" name="woocommerce_checkout_place_order" id="place_order" data-value="' . $label . '">' . $label . '</button>' );
 		?>
 			<div class="multi-step-checkout-button-wrapper">
-				<span class="multi-step-checkout-button ti-angle-left" data-action="back"><?php esc_html_e( 'Back', 'woostify' ); ?></span>
+				<span class="multi-step-checkout-button" data-action="back"><?php echo woostify_fetch_svg_icon( 'angle-left' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php esc_html_e( 'Back', 'woostify' ); ?></span>
 				<span class="multi-step-checkout-button button" data-action="continue" data-continue="<?php esc_attr_e( 'Continue to', 'woostify' ); ?>"><?php esc_html_e( 'Continue to Delivery', 'woostify' ); ?></span>
 				<?php echo wp_kses_post( $place_order ); ?>
 			</div>
@@ -1065,7 +1064,9 @@ if ( ! function_exists( 'woostify_checkout_before_order_review' ) ) {
 				<span class="woostify-before-order-review-cart-count">(<?php echo esc_html( $cart_count ); ?>)</span>
 			</div>
 			<span class="woostify-before-order-review-total-price"><?php wc_cart_totals_order_total_html(); ?></span>
-			<span class="woostify-before-order-review-icon ti-angle-down"></span>
+			<span class="woostify-before-order-review-icon">
+			<?php echo woostify_fetch_svg_icon( 'angle-down' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</span>
 		</div>
 		<?php
 	}
@@ -1079,5 +1080,151 @@ if ( ! function_exists( 'custom_template_single_title' ) ) {
 		?>
 			<h1 class="product_title entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_modify_woocommerce_loop_add_to_cart_link' ) ) {
+	/**
+	 * Add custom svg icon to add to cart button in loop
+	 *
+	 * @param string $html html.
+	 * @param object $product product.
+	 * @param array  $args args.
+	 *
+	 * @return string
+	 */
+	function woostify_modify_woocommerce_loop_add_to_cart_link( $html, $product, $args ) {
+		$icon = apply_filters( 'woostify_add_to_cart_svg_icon_name', 'shopping-cart' );
+		return sprintf(
+			'<a href="%s" data-quantity="%s" class="%s" %s>%s</a>',
+			esc_url( $product->add_to_cart_url() ),
+			esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+			esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+			isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+			woostify_fetch_svg_icon( $icon ) . esc_html( $product->add_to_cart_text() )
+		);
+	}
+}
+
+if ( ! function_exists( 'woostify_wc_demo_store_notice' ) ) {
+	/**
+	 * Add icon before store notice text
+	 */
+	function woostify_wc_demo_store_notice() {
+		if ( ! is_store_notice_showing() ) {
+			return;
+		}
+
+		$notice = get_option( 'woocommerce_demo_store_notice' );
+
+		if ( empty( $notice ) ) {
+			$notice = __( 'This is a demo store for testing purposes &mdash; no orders shall be fulfilled.', 'woostify' );
+		}
+		$notice_id = md5( $notice );
+
+		$notice_icon         = apply_filters( 'woostify_demo_store_icon_before_text', 'info-alt' );
+		$dismiss_notice_icon = apply_filters( 'woostify_demo_store_icon_before_dismiss_text', 'close' );
+
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo apply_filters( 'woocommerce_demo_store', '<p class="woocommerce-store-notice demo_store" data-notice-id="' . esc_attr( $notice_id ) . '" style="display:none;">' . woostify_fetch_svg_icon( $notice_icon ) . wp_kses_post( $notice ) . ' <a href="#" class="woocommerce-store-notice__dismiss-link">' . woostify_fetch_svg_icon( $dismiss_notice_icon, true ) . esc_html__( 'Dismiss', 'woostify' ) . '</a></p>', $notice );
+	}
+}
+
+if ( ! function_exists( 'woostify_wc_custom_product_search_form' ) ) {
+	/**
+	 * Custom product search form
+	 *
+	 * @return mixed
+	 */
+	function woostify_wc_custom_product_search_form() {
+		global $product_search_form_index;
+
+		if ( empty( $product_search_form_index ) ) {
+			$product_search_form_index = 0;
+		}
+
+		$index = $product_search_form_index++;
+
+		$output  = '<form role="search" method="get" class="woocommerce-product-search" action="' . esc_url( home_url( '/' ) ) . '">';
+		$output .= '<label class="screen-reader-text" for="woocommerce-product-search-field-' . absint( $index ) . '">' . esc_html__( 'Search for:', 'woostify' ) . '></label>';
+		$output .= '<input type="search" id="woocommerce-product-search-field-' . absint( $index ) . '" class="search-field" placeholder="' . esc_attr__( 'Search products&hellip;', 'woostify' ) . '" value="' . get_search_query() . '" name="s" />';
+		$output .= '<button type="submit" value="' . esc_attr_x( 'Search', 'submit button', 'woostify' ) . '">' . esc_html_x( 'Search', 'submit button', 'woostify' ) . '</button>';
+		$output .= '<input type="hidden" name="post_type" value="product" />';
+		$output .= '<span class="search-form-icon">' . woostify_fetch_svg_icon( 'search' ) . '</span>';
+		$output .= '</form>';
+		return $output;
+	}
+}
+
+if ( ! function_exists( 'woostify_filter_woocommerce_cart_item_remove_link' ) ) {
+	/**
+	 * Override WC cart item remove link
+	 *
+	 * @param string $sprintf Remove item link.
+	 * @param string $cart_item_key Cart item key.
+	 *
+	 * @return array|string|string[]
+	 */
+	function woostify_filter_woocommerce_cart_item_remove_link( $sprintf, $cart_item_key ) {
+		if ( is_cart() ) {
+			return $sprintf;
+		}
+		$icon    = woostify_fetch_svg_icon( 'close' );
+		$sprintf = str_replace( '</a>', $icon . '</a>', $sprintf );
+
+		return $sprintf;
+	}
+}
+
+if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
+	/**
+	 * Woocommerce account navagation
+	 */
+	function woostify_override_woocommerce_account_navigation() {
+		do_action( 'woocommerce_before_account_navigation' );
+		?>
+		<nav class="woocommerce-MyAccount-navigation">
+			<ul>
+			<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
+				<?php
+				$icon = '';
+				switch ( $endpoint ) {
+					case 'dashboard':
+						$icon = 'dashboard';
+						break;
+					case 'orders':
+						$icon = 'list';
+						break;
+					case 'downloads':
+						$icon = 'download';
+						break;
+					case 'edit-address':
+						$icon = 'direction';
+						break;
+					case 'edit-account':
+						$icon = 'user';
+						break;
+					case 'tinv_wishlist':
+						$icon = 'heart';
+						break;
+					case 'customer-logout':
+						$icon = 'pencil-alt';
+						break;
+					default:
+						$icon = 'dashboard';
+
+				}
+				$icon = apply_filters( 'woostify_wc_myaccount_nav_icon', $icon, $endpoint );
+				?>
+				<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
+					<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>">
+					<?php echo woostify_fetch_svg_icon( $icon ) . esc_html( $label ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</a>
+				</li>
+			<?php endforeach; ?>
+			</ul>
+		</nav>
+		<?php
+		do_action( 'woocommerce_after_account_navigation' );
 	}
 }
