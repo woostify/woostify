@@ -243,46 +243,56 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 
 				foreach ( $google_fonts_arr as $google_font ) {
 					$variants_str = explode( ':', $google_font );
-					$variants     = explode( ',', $variants_str[1] );
-					$italic_style = false;
-					foreach ( $variants as $variant ) {
-						if ( strpos( $variant, 'italic' ) !== false ) {
-							$italic_style = true;
-							break;
-						}
-					}
 					$regular_variants = array();
 					$italic_variants  = array();
-					foreach ( $variants as $variant ) {
-						if ( $italic_style ) {
-							if ( 'regular' === $variant ) {
-								$variant            = '0,400';
-								$regular_variants[] = $variant;
-							} elseif ( 'italic' === $variant ) {
-								$variant           = '1,400';
-								$italic_variants[] = $variant;
-							} elseif ( strpos( $variant, 'italic' ) !== false ) {
-								$variant           = explode( 'italic', $variant );
-								$variant           = '1,' . $variant[0];
-								$italic_variants[] = $variant;
+
+					$italic_style = false;
+
+					if ( isset( $variants_str[1] ) ) {
+						$variants     = explode( ',', $variants_str[1] );
+						foreach ( $variants as $variant ) {
+							if ( strpos( $variant, 'italic' ) !== false ) {
+								$italic_style = true;
+								break;
+							}
+						}
+
+						foreach ( $variants as $variant ) {
+							if ( $italic_style ) {
+								if ( 'regular' === $variant ) {
+									$variant            = '0,400';
+									$regular_variants[] = $variant;
+								} elseif ( 'italic' === $variant ) {
+									$variant           = '1,400';
+									$italic_variants[] = $variant;
+								} elseif ( strpos( $variant, 'italic' ) !== false ) {
+									$variant           = explode( 'italic', $variant );
+									$variant           = '1,' . $variant[0];
+									$italic_variants[] = $variant;
+								} else {
+									$variant            = '0,' . $variant;
+									$regular_variants[] = $variant;
+								}
 							} else {
-								$variant            = '0,' . $variant;
+								if ( 'regular' === $variant ) {
+									$variant = '400';
+								}
 								$regular_variants[] = $variant;
 							}
-						} else {
-							if ( 'regular' === $variant ) {
-								$variant = '400';
-							}
-							$regular_variants[] = $variant;
 						}
 					}
 
 					$output = array_merge( $regular_variants, $italic_variants );
-					if ( $italic_style ) {
-						$google_fonts[] = $variants_str[0] . ':ital,wght@' . implode( ';', $output );
+					if ( ! empty( $output ) ) {
+						if ( $italic_style ) {
+							$google_fonts[] = $variants_str[0] . ':ital,wght@' . implode( ';', $output );
+						} else {
+							$google_fonts[] = $variants_str[0] . ':wght@' . implode( ';', $output );
+						}
 					} else {
-						$google_fonts[] = $variants_str[0] . ':wght@' . implode( ';', $output );
+						$google_fonts[] = $variants_str[0];
 					}
+
 				}
 			} else {
 				$google_fonts = array_diff( $google_fonts, $not_google );
