@@ -177,6 +177,9 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		 * Add Google Fonts to wp_head if needed.
 		 */
 		public function woostify_enqueue_google_fonts() {
+			// Include the file.
+			require_once get_theme_file_path( 'inc/customizer/wptt-webfont-loader.php' );
+
 			// Grab our options.
 			$woostify_settings = wp_parse_args(
 				get_option( 'woostify_setting', array() ),
@@ -230,11 +233,69 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				}
 			}
 
-			// Ignore any non-Google fonts.
-			$google_fonts = array_diff( $google_fonts, $not_google );
+			$options                   = woostify_options( false );
+			$load_google_fonts_locally = $options['load_google_fonts_locally'];
 
-			// Separate each different font with a bar.
-			$google_fonts = implode( '|', $google_fonts );
+			if ( $load_google_fonts_locally ) {
+				// Ignore any non-Google fonts.
+				$google_fonts_arr = array_diff( $google_fonts, $not_google );
+				$google_fonts     = array();
+
+				foreach ( $google_fonts_arr as $google_font ) {
+					$variants_str     = explode( ':', $google_font );
+					$regular_variants = array();
+					$italic_variants  = array();
+
+					$italic_style = false;
+
+					if ( isset( $variants_str[1] ) ) {
+						$variants = explode( ',', $variants_str[1] );
+						foreach ( $variants as $variant ) {
+							if ( strpos( $variant, 'italic' ) !== false ) {
+								$italic_style = true;
+								break;
+							}
+						}
+
+						foreach ( $variants as $variant ) {
+							if ( $italic_style ) {
+								if ( 'regular' === $variant ) {
+									$variant            = '0,400';
+									$regular_variants[] = $variant;
+								} elseif ( 'italic' === $variant ) {
+									$variant           = '1,400';
+									$italic_variants[] = $variant;
+								} elseif ( strpos( $variant, 'italic' ) !== false ) {
+									$variant           = explode( 'italic', $variant );
+									$variant           = '1,' . $variant[0];
+									$italic_variants[] = $variant;
+								} else {
+									$variant            = '0,' . $variant;
+									$regular_variants[] = $variant;
+								}
+							} else {
+								if ( 'regular' === $variant ) {
+									$variant = '400';
+								}
+								$regular_variants[] = $variant;
+							}
+						}
+					}
+
+					$output = array_merge( $regular_variants, $italic_variants );
+					if ( ! empty( $output ) ) {
+						if ( $italic_style ) {
+							$google_fonts[] = $variants_str[0] . ':ital,wght@' . implode( ';', $output );
+						} else {
+							$google_fonts[] = $variants_str[0] . ':wght@' . implode( ';', $output );
+						}
+					} else {
+						$google_fonts[] = $variants_str[0];
+					}
+				}
+			} else {
+				$google_fonts = array_diff( $google_fonts, $not_google );
+			}
 
 			// Apply a filter to the output.
 			$google_fonts = apply_filters( 'woostify_typography_google_fonts', $google_fonts );
@@ -243,23 +304,43 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			$subset = apply_filters( 'woostify_fonts_subset', '' );
 
 			// Set up our arguments.
-			$font_args           = array();
-			$font_args['family'] = $google_fonts;
+			$font_args = array();
+			if ( $load_google_fonts_locally ) {
+				$font_args['family'] = implode( '&family=', $google_fonts );
+			} else {
+				$font_args['family'] = $google_fonts;
+			}
 			if ( $subset ) {
 				$font_args['subset'] = rawurlencode( $subset );
 			}
+			if ( $load_google_fonts_locally ) {
+				$font_args['display'] = 'swap';
+			}
 
 			// Create our URL using the arguments.
-			$fonts_url = add_query_arg( $font_args, '//fonts.googleapis.com/css' );
+			if ( $load_google_fonts_locally ) {
+				$fonts_url = add_query_arg( $font_args, 'https://fonts.googleapis.com/css2' );
+			} else {
+				$fonts_url = add_query_arg( $font_args, 'https://fonts.googleapis.com/css' );
+			}
 
 			// Enqueue our fonts.
 			if ( $google_fonts ) {
-				wp_enqueue_style(
-					'woostify-fonts',
-					$fonts_url,
-					array(),
-					woostify_version()
-				);
+				if ( $load_google_fonts_locally ) {
+					wp_enqueue_style(
+						'woostify-fonts',
+						wptt_get_webfont_url( esc_url_raw( $fonts_url ) ),
+						array(),
+						woostify_version()
+					);
+				} else {
+					wp_enqueue_style(
+						'woostify-fonts',
+						$fonts_url,
+						array(),
+						woostify_version()
+					);
+				}
 			}
 		}
 

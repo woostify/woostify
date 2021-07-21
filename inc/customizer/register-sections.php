@@ -122,3 +122,12 @@ $wp_customize->add_section(
 		'panel' => 'woocommerce',
 	)
 );
+
+// PERFORMANCE.
+$wp_customize->add_section(
+	'woostify_performance',
+	array(
+		'title'    => __( 'Performance', 'woostify' ),
+		'priority' => 40,
+	)
+);

@@ -404,6 +404,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				// 404.
 				'error_404_image'                          => '',
 				'error_404_text'                           => __( 'Opps! The page you are looking for is missing for some reasons. Please come back to homepage', 'woostify' ),
+				'load_google_fonts_locally'                => false,
 			);
 
 			return apply_filters( 'woostify_setting_default_values', $args );
