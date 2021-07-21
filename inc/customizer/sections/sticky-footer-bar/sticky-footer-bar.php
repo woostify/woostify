@@ -10,7 +10,10 @@ $defaults = woostify_options();
 
 // Tabs.
 $wp_customize->add_setting(
-	'woostify_setting[sticky_footer_bar_context_tabs]'
+	'woostify_setting[sticky_footer_bar_context_tabs]',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
 );
 
 $wp_customize->add_control(
@@ -174,8 +177,9 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[sticky_footer_bar_items]',
 	array(
-		'default' => $defaults['sticky_footer_bar_items'],
-		'type'    => 'option',
+		'default'           => $defaults['sticky_footer_bar_items'],
+		'sanitize_callback' => 'sanitize_text_field',
+		'type'              => 'option',
 	)
 );
 

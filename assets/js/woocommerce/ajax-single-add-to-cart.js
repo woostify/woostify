@@ -4,22 +4,61 @@
  * @package Woostify Pro
  */
 
-/* global woostify_ajax_single_add_to_cart_data */
-
 'use strict';
 
-var woostifyFormData = function( form ) {
-	var output = [];
-
-	for ( var i = 0, j = form.elements.length; i < j; i++ ) {
-		var field = form.elements[i];
-
-		if ( field.name && ! field.disabled && 'reset' !== field.type ) {
-			output[output.length] = { name: field.name, value: field.value };
-		}
+function woostifyAjaxSingleHandleError( button ) {
+	// Event when added to cart.
+	if ( 'function' === typeof( eventCartSidebarClose ) ) {
+		eventCartSidebarClose();
 	}
 
-	return output;
+	// Remove loading.
+	button.classList.remove( 'loading' );
+
+	// Hide quick view popup when product added to cart.
+	document.documentElement.classList.remove( 'quick-view-open' );
+}
+
+function woostifyAjaxSingleUpdateFragments( button ) {
+	fetch(
+		wc_cart_fragments_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'get_refreshed_fragments' ),
+		{
+			method: 'POST'
+		}
+	).then(
+		function( response ) {
+			return response.json();
+		}
+	).then(
+		function( fr ) {
+			if ( 'undefined' === typeof( fr.fragments ) ) {
+				return;
+			}
+
+			Object.entries( fr.fragments ).forEach(
+				function( [key, value] ) {
+					let newEl = document.querySelectorAll( key );
+					if ( ! newEl.length ) {
+						return;
+					}
+
+					newEl.forEach(
+						function( el ) {
+							el.insertAdjacentHTML( 'afterend', value );
+							el.remove();
+						}
+					);
+				}
+			);
+		}
+	).finally(
+		function() {
+			// Handle.
+			woostifyAjaxSingleHandleError( button );
+
+			jQuery( document.body ).trigger( 'added_to_cart' );
+		}
+	);
 }
 
 function woostifyAjaxSingleAddToCartButton() {
@@ -29,83 +68,17 @@ function woostifyAjaxSingleAddToCartButton() {
 	}
 
 	buttons.forEach(
-		function( button ) {
-			var form          = button.closest( 'form.cart' ),
-				variationForm = form.classList.contains( 'variations_form' ),
-				addToCart     = form.querySelector( '[name="add-to-cart"]' ),
-				productId     = addToCart ? addToCart.value : false,
-				input         = form.querySelector( '.qty' ),
-				variationId   = false,
-				variations    = {};
-
-			if ( variationForm ) {
-				var productField   = form.querySelector( '[name="product_id"]' ),
-					variationField = form.querySelector( '[name="variation_id"]' ),
-					getProductAttr = form.querySelectorAll( 'select[name^="attribute"]' );
-			}
-
-			if ( ! productId || form.classList.contains( 'grouped_form' ) || form.classList.contains( 'mnm_form' ) || form.classList.contains( 'bundle_form' ) ) {
-				return;
-			}
-
-			button.onclick = function( e ) {
+		function( ele ) {
+			ele.onclick = function( e ) {
 				e.preventDefault();
 
-				var selected   = true,
-					isDisabled = button.classList.contains( 'disabled' ),
-					quantity   = input ? Number( input.value || 0 ) : 0;
-
-				// For variations product.
-				if ( variationForm ) {
-					productId   = productField.value;
-					variationId = variationField.value;
-
-					getProductAttr.forEach(
-						function( x ) {
-							var productName  = encodeURIComponent( x.name ),
-								productValue = encodeURIComponent( x.value );
-
-							if ( ! productValue ) {
-								selected = false;
-								return;
-							}
-
-							variations[ productName ] = productValue;
-						}
-					);
-				}
-
-				if ( isDisabled || ! selected ) {
-					return;
-				}
-
-				// Support gift wrap plugin.
-				var giftWrap     = form.querySelector( '[name="wcgwp_action"]' ),
-					giftWrapData = {};
-				if ( giftWrap ) {
-					var giftProduct = form.querySelector( '[name="wcgwp_single_product"]:checked' ),
-						giftNote    = form.querySelector( '[name="wcgwp_single_product_note"]' );
-
-					if ( giftProduct ) {
-						giftWrapData['gift_product_id'] = giftProduct.value;
-					}
-
-					if ( giftNote ) {
-						giftWrapData['gift_product_note'] = giftNote.value.trim();
-					}
-				}
-
-				// Elements.
-				var cartSidebar  = document.querySelector( '.cart-sidebar-content' ),
-					productCount = document.querySelectorAll( '.shop-cart-count' );
-
-				// Alert if not valid quantity.
-				if ( ! input.classList.contains( 'ajax-ready' ) ) {
+				var form = ele.closest( 'form.cart' );
+				if ( ! form ) {
 					return;
 				}
 
 				// Add loading.
-				button.classList.add( 'loading' );
+				ele.classList.add( 'loading' );
 
 				// Events.
 				if ( 'function' === typeof( eventCartSidebarOpen ) ) {
@@ -120,109 +93,51 @@ function woostifyAjaxSingleAddToCartButton() {
 					closeAll();
 				}
 
-				// Data.
-				var data = {
-					action: 'single_add_to_cart',
-					ajax_nonce: woostify_ajax_single_add_to_cart_data.ajax_nonce,
-					product_id: productId,
-					product_qty: quantity,
-					variation_id: variationId,
-					variations: JSON.stringify( variations ),
-					gift_wrap_data: JSON.stringify( giftWrapData )
-				};
-
-				data = new URLSearchParams( data ).toString();
-
-				// Request.
-				var request = new Request(
-					woostify_ajax_single_add_to_cart_data.ajax_url,
+				// Send post request.
+				fetch(
+					form.action,
 					{
 						method: 'POST',
-						body: data,
-						credentials: 'same-origin',
-						headers: new Headers(
-							{
-								'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+						body: new FormData( form )
+					}
+				).then(
+					function( r ) {
+						return r.text();
+					}
+				).then(
+					function( text ) {
+						var div = document.createElement( 'div' );
+						div.innerHTML = text;
+
+						var error = div.querySelector( '.woocommerce-error' );
+						if ( error ) {
+							var notices = document.querySelector( '.content-top .woocommerce' );
+
+							// Remove current error.
+							if ( notices.querySelector( '.woocommerce-error' ) ) {
+								notices.querySelector( '.woocommerce-error' ).remove();
 							}
-						)
+
+							// Update new error.
+							if ( notices ) {
+								notices.appendChild( error );
+							}
+
+							// Handle.
+							woostifyAjaxSingleHandleError( ele );
+
+							return;
+						}
+
+						// Update fragments.
+						woostifyAjaxSingleUpdateFragments( ele );
+					}
+				).catch(
+					function() {
+						// Handle.
+						woostifyAjaxSingleHandleError( ele );
 					}
 				);
-
-				// Fetch API.
-				fetch( request )
-					.then(
-						function( res ) {
-							if ( 200 !== res.status ) {
-								alert( woostify_ajax_single_add_to_cart_data.ajax_error );
-								console.log( 'Status Code: ' + res.status );
-								throw res;
-							}
-
-							return res.json();
-						}
-					).then(
-						function( json ) {
-							if ( ! json.success ) {
-								return;
-							}
-
-							var data = json.data;
-
-							// Quantity issue.
-							if ( data.mess ) {
-								alert( data.mess );
-								return;
-							}
-
-							// Update product count.
-							if ( productCount.length ) {
-								for ( var c = 0, n = productCount.length; c < n; c++ ) {
-									productCount[c].innerHTML = data.item;
-								}
-							}
-
-							// Append Cart sidebar content.
-							if ( cartSidebar ) {
-								cartSidebar.innerHTML = data.content;
-							}
-
-							// Redirect to checkout page.
-							if ( button.classList.contains( 'woostify-buy-now' ) ) {
-								var checkoutUrl = button.getAttribute( 'data-checkout_url' );
-								window.location = checkoutUrl;
-							}
-
-							// Update total price, for header-layout-6.
-							var totalPrice   = document.querySelector( '.woostify-total-price' ),
-								bmTotalPrice = document.querySelector( '.bm-cart-total-price .amount' );
-							if ( totalPrice ) {
-								totalPrice.innerHTML = data.total;
-							}
-
-							if ( bmTotalPrice ) {
-								bmTotalPrice.innerHTML = data.total;
-							}
-						}
-					).catch(
-						function( err ) {
-							console.log( err );
-						}
-					).finally(
-						function() {
-							// Event when added to cart.
-							if ( 'function' === typeof( eventCartSidebarClose ) ) {
-								eventCartSidebarClose();
-							}
-
-							// Remove loading.
-							button.classList.remove( 'loading' );
-
-							// Hide quick view popup when product added to cart.
-							document.documentElement.classList.remove( 'quick-view-open' );
-
-							jQuery( document.body ).trigger( 'added_to_cart' );
-						}
-					);
 			}
 		}
 	);

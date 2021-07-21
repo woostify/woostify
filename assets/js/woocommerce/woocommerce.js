@@ -31,7 +31,12 @@ function shoppingBag() {
 	var shoppingBag = document.getElementsByClassName( 'shopping-bag-button' ),
 		cartSidebar = document.getElementById( 'shop-cart-sidebar' );
 
-	if ( ! shoppingBag.length || ! cartSidebar || document.body.classList.contains( 'woocommerce-cart' ) ) {
+	if (
+		! shoppingBag.length ||
+		! cartSidebar ||
+		document.body.classList.contains( 'woocommerce-cart' ) ||
+		document.body.classList.contains( 'woocommerce-checkout' )
+	) {
 		return;
 	}
 
@@ -226,7 +231,7 @@ var woostifyQuantityMiniCart = function() {
 var updateHeaderCartPrice = function () {
 	var total                    = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
 		headerCartPriceContainer = document.querySelectorAll( '.woostify-header-total-price' ),
-		currencySymbol           = document.querySelectorAll( '.woostify-header-total-price .woocommerce-Price-currencySymbol, .boostify-subtotal .woocommerce-Price-currencySymbol' );
+		currencySymbol           = document.querySelector( '.woostify-header-total-price .woocommerce-Price-currencySymbol, .boostify-subtotal .woocommerce-Price-currencySymbol' );
 	if ( headerCartPriceContainer.length ) {
 		for ( var si = 0, sc = headerCartPriceContainer.length; si < sc; si++ ) {
 			if (total) {
@@ -262,11 +267,31 @@ document.addEventListener(
 			}
 		).on(
 			'added_to_cart',
-			function() {
+			function( e, fragments, cart_hash, $button ) {
 				woostifyQuantityMiniCart();
 				updateHeaderCartPrice();
 				eventCartSidebarClose();
 				closeAll();
+
+				$button = typeof $button === 'undefined' ? false : $button;
+
+				if ( $button ) {
+					$button.removeClass( 'loading' );
+
+					if ( fragments ) {
+						$button.addClass( 'added' );
+					}
+
+					// View cart text.
+					if ( fragments && ! wc_add_to_cart_params.is_cart && $button.parent().find( '.added_to_cart' ).length === 0 ) {
+						var icon = get_svg_icon( 'shopping-cart-full' );
+						$button.after(
+							'<a href="' + wc_add_to_cart_params.cart_url + '" class="added_to_cart wc-forward" title="' + wc_add_to_cart_params.i18n_view_cart + '">' + icon + wc_add_to_cart_params.i18n_view_cart + '</a>'
+						);
+					}
+
+					jQuery( document.body ).trigger( 'wc_cart_button_updated', [ $button ] );
+				}
 			}
 		).on(
 			'removed_from_cart', /* For mini cart */

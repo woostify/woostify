@@ -328,18 +328,19 @@ var woostifyMultiStepCheckout = function() {
 					_address1      = document.getElementById( 'billing_address_1' ),
 					_address2      = document.getElementById( 'billing_address_2' ),
 					_city          = document.getElementById( 'billing_city' ),
+					_cityDropdown  = ( _city && 'select-one' === _city.type ) ? _city.querySelector( 'option[value="' + _city.value + '"]' ) : false,
 					_countryField  = document.getElementById( 'billing_country' ),
 					_stateField    = document.getElementById( 'billing_state' ),
-					_state         = _stateField ? document.querySelector( '#billing_state option[value="' + _stateField.value + '"]' ) : false,
-					_country       = _countryField ? document.querySelector( '#billing_country option[value="' + _countryField.value + '"]' ) : false,
+					_state         = _stateField ? _stateField.querySelector( 'option[value="' + _stateField.value + '"]' ) : false,
+					_country       = _countryField ? _countryField.querySelector( 'option[value="' + _countryField.value + '"]' ) : false,
 					_shippingTo    = document.getElementById( 'ship-to-different-address-checkbox' ),
 					_shippingAdd1  = document.getElementById( 'shipping_address_1' ),
 					_shippingAdd2  = document.getElementById( 'shipping_address_2' ),
 					_city2         = document.getElementById( 'shipping_city' ),
 					_stateField2   = document.getElementById( 'shipping_state' ),
 					_countryField2 = document.getElementById( 'shipping_country' ),
-					_state2        = _stateField2 ? document.querySelector( '#shipping_country option[value="' + _stateField2.value + '"]' ) : false,
-					_country2      = _countryField2 ? document.querySelector( '#shipping_country option[value="' + _countryField2.value + '"]' ) : false,
+					_state2        = _stateField2 ? _countryField2.querySelector( 'option[value="' + _stateField2.value + '"]' ) : false,
+					_country2      = _countryField2 ? _countryField2.querySelector( 'option[value="' + _countryField2.value + '"]' ) : false,
 					_shippingField = document.querySelector( '#shipping_method .shipping_method[checked="checked"]' ) || document.querySelector( '#shipping_method .shipping_method[data-index="0"]' ),
 					_shippingID    = _shippingField ? _shippingField.id : false,
 					_shipping      = _shippingID ? document.querySelector( '#shipping_method label[for="' + _shippingID + '"]' ) : false,
@@ -349,7 +350,7 @@ var woostifyMultiStepCheckout = function() {
 
 					_addressBill += _address1 ? _address1.value.trim() : '';
 					_addressBill += _address2 ? ' ' + _address2.value.trim() : '';
-					_addressBill += _city ? ', ' + _city.value.trim() : '';
+					_addressBill += _cityDropdown ? ', ' + _cityDropdown.innerText.trim() : ( _city ? ', ' + _city.value.trim() : '' );
 					_addressBill += _state ? ', ' + _state.innerText.trim() : '';
 					_addressBill += _country ? ', ' + _country.innerText.trim() : '';
 
@@ -529,6 +530,8 @@ var woostifyMultiStepCheckout = function() {
 }
 
 var woostifyUpdateCheckout = function() {
+	return;
+
 	// Data.
 	var data = {
 		action: 'update_checkout',

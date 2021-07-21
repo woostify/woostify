@@ -87,6 +87,10 @@
 .menu-item {
 	.menu-item-icon {
 		margin-right: 10px;
+		.woostify-svg-icon {
+			position: relative;
+			top: 1px;
+		}
 	}
 
 	.menu-item-text {
@@ -102,11 +106,11 @@
 		justify-content: center;
 		align-items: center;
 
-		&:after {
-			content: "\e64b";
-			font-family: $icon;
-			font-size: 10px;
-			font-weight: 700;
+		.woostify-svg-icon {
+			svg {
+				width: 11px;
+				height: 11px;
+			}
 		}
 	}
 }
@@ -120,6 +124,11 @@
 		display: flex;
 		margin-left: 15px;
 		position: relative;
+
+		.woostify-svg-icon svg {
+			width: 24px;
+			height: 24px;
+		}
 
 		.tools-icon {
 			margin-left: 0;
@@ -142,6 +151,10 @@
 				position: relative;
 				transform: rotate3d(0, 1, 0, 180deg);
 			}
+			.woostify-svg-icon {
+				position: relative;
+				transform: rotate3d(0, 1, 0, 180deg);
+			}
 		}
 	}
 
@@ -161,9 +174,10 @@
 	position: relative;
 
 	.my-account-icon {
-		padding: 10px 0;
+		padding: 8px 0 10px;
 		font-size: 24px;
-		display: inline-block;
+		display: inline-flex;
+		display: -webkit-inline-flex;
 	}
 
 	&:hover {

@@ -1,4 +1,17 @@
 .rtl {
+	.search-form,
+	.woocommerce-product-search {
+		.search-form-icon {
+			right: auto;
+			left: 0;
+		}
+	}
+
+	.toggle-vertical-menu-button .woostify-svg-icon {
+		margin-right: 0;
+		margin-left: 10px;
+	}
+
 	@media (min-width: 992px) {
 		&.has-header-layout-1 .site-navigation {
 			text-align: left;

@@ -60,6 +60,29 @@
   padding-right: 20px;
 }
 
+@media (min-width: 993px) {
+  .rtl.has-header-layout-7 .woostify-sticky-footer-bar {
+    right: auto;
+    left: 0;
+  }
+}
+
+.sidebar-menu-open .rtl #woostify-overlay .woostify-svg-icon {
+  right: auto;
+  left: 20px;
+}
+
+.rtl .search-form .search-form-icon,
+.rtl .woocommerce-product-search .search-form-icon {
+  right: auto;
+  left: 0;
+}
+
+.rtl .toggle-vertical-menu-button .woostify-svg-icon {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
 @media (min-width: 992px) {
   .rtl.has-header-layout-1 .site-navigation {
     text-align: left;
@@ -224,6 +247,11 @@
   max-width: 60px;
 }
 
+.rtl .woostify-footer-social-icon li + li {
+  margin-left: 0;
+  margin-right: 7px;
+}
+
 .rtl #order_review #shipping_method li {
   display: block;
 }
@@ -279,15 +307,14 @@
   float: left;
 }
 
-.rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="back"]:before {
-  content: none;
+.rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="back"] {
+  float: right;
 }
 
-.rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="back"]:after {
-  content: "\e649";
-  font-family: 'themify';
+.rtl.has-multi-step-checkout .multi-step-checkout-button[data-action="back"] .woostify-svg-icon {
+  transform: rotate(180deg);
   margin-left: 5px;
-  font-size: 0.8em;
+  margin-right: 0;
 }
 
 .rtl .woocommerce-table--order-details th:nth-child(2),
@@ -371,6 +398,16 @@
 .rtl .show-password-input {
   right: auto;
   left: .7em;
+}
+
+.rtl .woocommerce-error:before, .rtl .woocommerce-info:before, .rtl .woocommerce-message:before {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.rtl .woocommerce-error a, .rtl .woocommerce-info a, .rtl .woocommerce-message a {
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .rtl .products .product {
@@ -676,7 +713,7 @@
 .rtl .sidebar-menu {
   left: auto;
   right: 0;
-  transform: translateX(100%);
+  transform: translateX(0);
 }
 
 .rtl .quick-view-with-text:before {
@@ -686,6 +723,17 @@
 
 .rtl .widget.advanced-product-categories a {
   float: none;
+}
+
+.rtl .product-loop-meta a .woostify-svg-icon {
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+.rtl .product-loop-image-wrapper .loop-add-to-cart-on-image .woostify-svg-icon,
+.rtl .product-loop-image-wrapper .loop-add-to-cart-on-image + .added_to_cart .woostify-svg-icon {
+  margin-left: 7px;
+  margin-right: 0;
 }
 
 .sidebar-menu-open .rtl .sidebar-menu {
@@ -745,12 +793,8 @@
 }
 
 .rtl .widget_product_categories .product-categories > li ul li:before {
-  content: none;
-}
-
-.rtl .widget_product_categories .product-categories > li ul li:after {
-  content: "\e64a";
-  font-size: 10px;
-  margin-left: 5px;
-  font-family: 'themify';
+  margin-right: 0;
+  margin-left: 8px;
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
 }

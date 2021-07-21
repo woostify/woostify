@@ -72,16 +72,13 @@
 			}
 
 			&[data-action="back"] {
-				&:before {
-					content: none;
+				float: right;
+				.woostify-svg-icon {
+					transform: rotate(180deg);
+					margin-left: 5px;
+					margin-right: 0;
 				}
 
-				&:after {
-					content: "\e649";
-					font-family: 'themify';
-					margin-left: 5px;
-					font-size: 0.8em;
-				}
 			}
 		}
 	}

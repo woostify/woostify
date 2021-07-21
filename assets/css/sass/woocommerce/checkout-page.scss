@@ -978,15 +978,26 @@
 	// Button action wrapper
 	.multi-step-checkout-button-wrapper {
 		margin-top: 20px;
+		&:after {
+			content: '';
+			clear: both;
+			display: block;
+		}
 	}
 
 	.multi-step-checkout-button {
 		cursor: pointer;
 
 		&[data-action="back"] {
-			&:before {
+			display: flex;
+			float: left;
+			align-items: center;
+			.woostify-svg-icon {
 				margin-right: 5px;
-				font-size: 0.8em;
+				svg {
+					width: 0.8em;
+					height: 0.8em;
+				}
 			}
 
 			@extend .duration;

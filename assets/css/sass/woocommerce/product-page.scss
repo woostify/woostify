@@ -530,11 +530,14 @@
 			float: none;
 		}
 
-		&:before {
-			content: "\e619";
-			font-family: $icon;
+		.woostify-svg-icon {
+			position: relative;
+			top: 1px;
 			margin-right: 7px;
-			font-size: 12px;
+			svg {
+				width: 12px;
+				height: 12px;
+			}
 		}
 	}
 
@@ -681,7 +684,6 @@
 
 	.product-qty {
 		position: absolute;
-		font-family: $icon;
 		cursor: pointer;
 		width: 40px;
 		top: 0;
@@ -698,20 +700,17 @@
 		}
 	}
 
+	.woostify-svg-icon svg {
+		width: 15px;
+		height: 15px;
+	}
+
 	[data-qty="minus"] {
 		left: 0;
-
-		&:before {
-			content: "\e622"
-		}
 	}
 
 	[data-qty="plus"] {
 		right: 0;
-
-		&:before {
-			content: "\e61a"
-		}
 	}
 }
 
@@ -986,4 +985,9 @@
 // BUTTON PAYPAL
 .paypal-button {
 	z-index: 0;
+}
+
+// Addon Vendor
+#product-addons-total {
+	clear: both;
 }

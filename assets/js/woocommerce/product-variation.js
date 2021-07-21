@@ -121,7 +121,7 @@ function productVariation( selector, form ) {
 				if ( onSaleLabel && woostify_woocommerce_variable_product_data.sale_tag_percent && variation.display_price != variation.display_regular_price ) {
 					onSaleLabel.innerHTML = '-' + Math.round( ( ( variation.display_regular_price - variation.display_price ) / variation.display_regular_price ) * 100 ) + '%';
 				}
-			} else if ( woostify_woocommerce_variable_product_data ) {
+			} else if ( 'undefined' !== typeof( woostify_woocommerce_variable_product_data ) ) {
 				var outStockLabelHtml = '<span class="woostify-out-of-stock-label position-' + woostify_woocommerce_variable_product_data.out_of_stock_display + ' ' + woostify_woocommerce_variable_product_data.out_of_stock_square + '">' + woostify_woocommerce_variable_product_data.out_of_stock_text + '</span>';
 
 				if ( ! outStockLabel ) {

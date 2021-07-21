@@ -14,10 +14,6 @@
 		width: 1em;
 		height: 1em;
 
-		&:before {
-			content: "\e619";
-			font-family: $icon;
-		}
 		&.is-active {
 			@extend .flex;
 			margin-top: 10px;

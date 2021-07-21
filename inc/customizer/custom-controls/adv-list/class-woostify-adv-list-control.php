@@ -56,9 +56,17 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 		wp_enqueue_script(
 			'woostify-media-upload',
 			WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/adv-list/js/adv-list.js',
-			array( 'jquery', 'jquery-ui-sortable' ),
+			array( 'jquery' ),
 			woostify_version(),
 			true
+		);
+
+		wp_localize_script(
+			'woostify-media-upload',
+			'woostify_svg_icons',
+			array(
+				'file_url' => WOOSTIFY_THEME_URI . 'assets/svg/svgs.json',
+			)
 		);
 
 		wp_enqueue_style(
@@ -84,8 +92,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 	 * @return void
 	 */
 	public function render_content() {
-		$items     = json_decode( $this->value() );
-		$svg_icons = woostify_fetch_all_svg_icon();
+		$items = json_decode( $this->value() );
 		?>
 		<div class="woostify-adv-list-container">
 			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
@@ -108,11 +115,11 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 								?>
 								<label for="<?php echo esc_attr( $type_field_id ); ?>"><?php echo esc_html__( 'Type', 'woostify' ); ?></label>
 								<select name="<?php echo esc_attr( $type_field_name ); ?>" id="<?php echo esc_attr( $type_field_id ); ?>" class="woostify-adv-list-input woostify-adv-list-select">
-									<option value="custom" <?php selected( $val->type, 'custom' ); ?>><?php esc_html_e( 'Custom', 'woositify' ); ?></option>
-									<option value="wishlist" <?php selected( $val->type, 'wishlist' ); ?>><?php esc_html_e( 'Wishlist', 'woositify' ); ?></option>
-									<option value="cart" <?php selected( $val->type, 'cart' ); ?>><?php esc_html_e( 'Cart', 'woositify' ); ?></option>
-									<option value="shortcode" <?php selected( $val->type, 'shortcode' ); ?>><?php esc_html_e( 'Shortcode', 'woositify' ); ?></option>
-									<option value="search" <?php selected( $val->type, 'search' ); ?>><?php esc_html_e( 'Search', 'woositify' ); ?></option>
+									<option value="custom" <?php selected( $val->type, 'custom' ); ?>><?php esc_html_e( 'Custom', 'woostify' ); ?></option>
+									<option value="wishlist" <?php selected( $val->type, 'wishlist' ); ?>><?php esc_html_e( 'Wishlist', 'woostify' ); ?></option>
+									<option value="cart" <?php selected( $val->type, 'cart' ); ?>><?php esc_html_e( 'Cart', 'woostify' ); ?></option>
+									<option value="shortcode" <?php selected( $val->type, 'shortcode' ); ?>><?php esc_html_e( 'Shortcode', 'woostify' ); ?></option>
+									<option value="search" <?php selected( $val->type, 'search' ); ?>><?php esc_html_e( 'Search', 'woostify' ); ?></option>
 								</select>
 							</div>
 							<div class="shortcode-field woostify-adv-list-control customize-control-text" data-field_name="shortcode">
@@ -132,7 +139,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 									<?php esc_html_e( 'Icon', 'woostify' ); ?>
 								</label>
 								<div class="select-icon-act">
-									<span class="selected-icon"><?php echo ! empty( $svg_icons[ $val->icon ] ) ? wp_kses( $svg_icons[ $val->icon ], woostify_allow_tags_svg() ) : ''; ?></span>
+									<span class="selected-icon"><?php echo woostify_fetch_svg_icon( $val->icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 									<span class="open-icon-list"><?php echo esc_html__( 'Select', 'woostify' ); ?></span>
 									<span class="remove-icon"><?php echo esc_html__( 'Clear', 'woostify' ); ?></span>
 								</div>
@@ -141,12 +148,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 									<div class="icon-list__search">
 										<input type="search">
 									</div>
-									<div class="icon-list-wrap">
-										<?php foreach ( $svg_icons as $svg_icon_name => $svg_icon ) { ?>
-											<span class="icon-list__icon <?php echo $svg_icon_name === $val->icon ? 'active' : ''; ?>" data-icon="<?php echo esc_attr( $svg_icon_name ); ?>">
-											<?php echo wp_kses( $svg_icon, woostify_allow_tags_svg() ); ?>
-										</span>
-										<?php } ?>
+									<div class="icon-list-wrap" data-selected="<?php echo esc_attr( $val->icon ); ?>">
 									</div>
 								</div>
 							</div>

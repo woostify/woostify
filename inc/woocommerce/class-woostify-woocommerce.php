@@ -50,16 +50,26 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_filter( 'woocommerce_cross_sells_columns', 'woostify_change_cross_sells_columns' );
 			add_filter( 'woocommerce_show_page_title', 'woostify_remove_woocommerce_shop_title' );
 			add_filter( 'woocommerce_available_variation', 'woostify_available_variation_gallery', 90, 3 );
-			add_action( 'woocommerce_before_shop_loop', 'woostify_toggle_sidebar_mobile_button', 25 );
+			add_filter( 'woocommerce_loop_add_to_cart_link', 'woostify_modify_woocommerce_loop_add_to_cart_link', 99, 3 );
+
+			add_filter( 'get_product_search_form', 'woostify_wc_custom_product_search_form' );
+
+			// WC Cart widget.
+			add_filter( 'woocommerce_cart_item_remove_link', 'woostify_filter_woocommerce_cart_item_remove_link', 10, 2 );
+
+			remove_action( 'wp_footer', 'woocommerce_demo_store' );
+			add_action( 'wp_footer', 'woostify_wc_demo_store_notice' );
+
+			add_action( 'woocommerce_before_shop_loop', 'woostify_woocommerce_toolbar_left_open_div', 15 );
+			add_action( 'woocommerce_before_shop_loop', 'woostify_toggle_sidebar_mobile_button', 15 );
+			add_action( 'woocommerce_before_shop_loop', 'woostify_woocommerce_toolbar_left_close_div', 25 );
+
 			add_filter( 'woocommerce_output_related_products_args', 'woostify_related_products_args' );
 			add_filter( 'woocommerce_pagination_args', 'woostify_change_woocommerce_arrow_pagination' );
 			add_filter( 'woocommerce_add_to_cart_fragments', 'woostify_content_fragments' );
 			add_filter( 'woocommerce_product_loop_start', 'woostify_woocommerce_loop_start' );
 			add_action( 'woostify_product_loop_item_action_item', 'woostify_product_loop_item_add_to_cart_icon', 10 );
 			add_action( 'woostify_product_loop_item_action_item', 'woostify_product_loop_item_wishlist_icon', 30 );
-			// Ajax single add to cart.
-			add_action( 'wp_ajax_single_add_to_cart', 'woostify_ajax_single_add_to_cart' );
-			add_action( 'wp_ajax_nopriv_single_add_to_cart', 'woostify_ajax_single_add_to_cart' );
 			// Update product quantity in minicart.
 			add_action( 'wp_ajax_update_quantity_in_mini_cart', 'woostify_ajax_update_quantity_in_mini_cart' );
 			add_action( 'wp_ajax_nopriv_update_quantity_in_mini_cart', 'woostify_ajax_update_quantity_in_mini_cart' );
@@ -71,6 +81,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// MY ACCOUNT PAGE.
 			add_filter( 'woocommerce_my_account_edit_address_title', '__return_empty_string' );
+			remove_action( 'woocommerce_account_navigation', 'woocommerce_account_navigation' );
+			add_action( 'woocommerce_account_navigation', 'woostify_override_woocommerce_account_navigation' );
 
 			// TERM METABOX.
 			// For product category.
@@ -99,14 +111,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_image_wrapper_close', 90 );
 			add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_content_open', 100 );
 
-			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_rating', 2 );
-			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_meta_open', 5 );
-			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_price', 10 );
-			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_add_to_cart_button', 15 );
-
 			add_action( 'woocommerce_shop_loop_item_title', 'woostify_add_template_loop_product_category', 5 );
 			add_action( 'woocommerce_shop_loop_item_title', 'woostify_add_template_loop_product_title', 10 );
 
+			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_rating', 2 );
+			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_meta_open', 5 );
+			add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_loop_product_price', 10 );
+
+			add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_add_to_cart_button', 10 );
 			add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_meta_close', 20 );
 			add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_content_close', 50 );
 			add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_wrapper_close', 100 );
@@ -134,11 +146,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'template_redirect', 'woostify_product_recently_viewed', 20 );
 			add_action( 'woocommerce_after_single_product', 'woostify_product_recently_viewed_template', 20 );
 
+			add_filter( 'woocommerce_reset_variations_link', 'woostify_reset_variations_link' );
+
 			// Disable Out of Stock Variations.
 			add_filter( 'woocommerce_variation_is_active', 'woostify_disable_variations_out_of_stock', 10, 2 );
 
 			// Modify product quantity.
 			add_filter( 'woocommerce_get_stock_html', 'woostify_modified_quantity_stock', 10, 2 );
+			add_action( 'woocommerce_after_add_to_cart_quantity', 'woostify_add_to_cart_product_simple' );
 
 			// METABOXS.
 			add_action( 'add_meta_boxes', array( $this, 'woostify_add_product_metaboxes' ) );
@@ -183,7 +198,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			?>
 			<tr class="form-field">
 				<th scope="row" valign="top">
-					<label><?php esc_html_e( 'Single ajax add to cart', 'osito' ); ?></label>
+					<label><?php esc_html_e( 'Single ajax add to cart', 'woostify' ); ?></label>
 				</th>
 				<td class="theme-form-field">
 					<select name="cat_single_ajax_add_to_cart">
@@ -293,6 +308,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Tiny slider: product images.
 			wp_enqueue_script( 'woostify-product-images' );
+			wp_localize_script(
+				'woostify-product-images',
+				'woostify_product_images',
+				array(
+					'prev_btn_icon' => woostify_fetch_svg_icon( 'angle-left' ),
+					'next_btn_icon' => woostify_fetch_svg_icon( 'angle-right' ),
+				)
+			);
 
 			// Easyzoom.
 			wp_enqueue_script( 'easyzoom-handle' );
@@ -316,15 +339,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Single add to cart script.
 			if ( $options['shop_single_ajax_add_to_cart'] && woostify_single_ajax_add_to_cart_status() && ! woostify_get_term_setting( 'cat_single_ajax_add_to_cart', 'disabled', false ) ) {
 				wp_enqueue_script( 'woostify-single-add-to-cart' );
-				wp_localize_script(
-					'woostify-single-add-to-cart',
-					'woostify_ajax_single_add_to_cart_data',
-					array(
-						'ajax_url'   => admin_url( 'admin-ajax.php' ),
-						'ajax_error' => __( 'Sorry, something went wrong. Please try again!', 'woostify' ),
-						'ajax_nonce' => wp_create_nonce( 'woostify_ajax_single_add_to_cart' ),
-					)
-				);
 			}
 
 			// For variable product.
