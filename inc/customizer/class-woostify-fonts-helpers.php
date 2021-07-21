@@ -242,14 +242,14 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				$google_fonts     = array();
 
 				foreach ( $google_fonts_arr as $google_font ) {
-					$variants_str = explode( ':', $google_font );
+					$variants_str     = explode( ':', $google_font );
 					$regular_variants = array();
 					$italic_variants  = array();
 
 					$italic_style = false;
 
 					if ( isset( $variants_str[1] ) ) {
-						$variants     = explode( ',', $variants_str[1] );
+						$variants = explode( ',', $variants_str[1] );
 						foreach ( $variants as $variant ) {
 							if ( strpos( $variant, 'italic' ) !== false ) {
 								$italic_style = true;
@@ -292,7 +292,6 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 					} else {
 						$google_fonts[] = $variants_str[0];
 					}
-
 				}
 			} else {
 				$google_fonts = array_diff( $google_fonts, $not_google );
