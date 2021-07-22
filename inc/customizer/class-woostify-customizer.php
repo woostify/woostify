@@ -88,6 +88,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			);
 		}
 
+		/**
+		 * Delete cached font folder local
+		 */
 		public function delete_cached_partials() {
 			$options                   = woostify_options( false );
 			$load_google_fonts_locally = $options['load_google_fonts_locally'];

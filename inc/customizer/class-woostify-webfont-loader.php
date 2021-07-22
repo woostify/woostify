@@ -5,7 +5,7 @@
  * @package wptt/font-loader
  * @license https://opensource.org/licenses/MIT
  *
- * @since 2.0
+ * @since 2.0.0
  */
 
 /**
@@ -20,7 +20,7 @@ class Woostify_WebFont_Loader {
 	 * This will change the user-agent user to make the request.
 	 *
 	 * @access protected
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $font_format = 'woff2';
@@ -29,7 +29,7 @@ class Woostify_WebFont_Loader {
 	 * The remote URL.
 	 *
 	 * @access protected
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $remote_url;
@@ -38,7 +38,7 @@ class Woostify_WebFont_Loader {
 	 * Base path.
 	 *
 	 * @access protected
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $base_path;
@@ -47,7 +47,7 @@ class Woostify_WebFont_Loader {
 	 * Base URL.
 	 *
 	 * @access protected
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $base_url;
@@ -56,7 +56,7 @@ class Woostify_WebFont_Loader {
 	 * Subfolder name.
 	 *
 	 * @access protected
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $subfolder_name;
@@ -65,7 +65,7 @@ class Woostify_WebFont_Loader {
 	 * The fonts folder.
 	 *
 	 * @access protected
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $fonts_folder;
@@ -74,7 +74,7 @@ class Woostify_WebFont_Loader {
 	 * The local stylesheet's path.
 	 *
 	 * @access protected
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $local_stylesheet_path;
@@ -83,7 +83,7 @@ class Woostify_WebFont_Loader {
 	 * The local stylesheet's URL.
 	 *
 	 * @access protected
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $local_stylesheet_url;
@@ -92,7 +92,7 @@ class Woostify_WebFont_Loader {
 	 * The remote CSS.
 	 *
 	 * @access protected
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $remote_styles;
@@ -101,7 +101,7 @@ class Woostify_WebFont_Loader {
 	 * The final CSS.
 	 *
 	 * @access protected
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $css;
@@ -117,7 +117,7 @@ class Woostify_WebFont_Loader {
 	 * Get a new instance of the object for a new URL.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @param string $url The remote URL.
 	 */
 	public function __construct( $url = '' ) {
@@ -134,7 +134,7 @@ class Woostify_WebFont_Loader {
 	 * Fallback to the remote URL if we were unable to write the file locally.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return string
 	 */
 	public function get_url() {
@@ -160,7 +160,7 @@ class Woostify_WebFont_Loader {
 	 * Get the local stylesheet URL.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return string
 	 */
 	public function get_local_stylesheet_url() {
@@ -178,7 +178,7 @@ class Woostify_WebFont_Loader {
 	 * Get styles with fonts downloaded locally.
 	 *
 	 * @access public
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @return string
 	 */
 	public function get_styles() {
@@ -219,7 +219,7 @@ class Woostify_WebFont_Loader {
 	 * Get local stylesheet contents.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return string|false Returns the remote URL contents.
 	 */
 	public function get_local_stylesheet_contents() {
@@ -243,7 +243,7 @@ class Woostify_WebFont_Loader {
 	 * Get remote file contents.
 	 *
 	 * @access public
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @param string $remote_styles Remote stylesheet data.
 	 *
 	 * @return string Returns the remote URL contents.
@@ -281,7 +281,7 @@ class Woostify_WebFont_Loader {
 	 * Download files mentioned in our CSS locally.
 	 *
 	 * @access public
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @return array Returns an array of remote URLs and their local counterparts.
 	 */
 	public function get_local_files_from_css() {
@@ -375,7 +375,7 @@ class Woostify_WebFont_Loader {
 	 * Get font files from the CSS.
 	 *
 	 * @access public
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @return array Returns an array of font-families and the font-files used.
 	 */
 	public function get_remote_files_from_css( $remote_styles = '' ) {
@@ -441,7 +441,7 @@ class Woostify_WebFont_Loader {
 	 * Write the CSS to the filesystem.
 	 *
 	 * @access protected
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return string|false Returns the absolute path of the file on success, or false on fail.
 	 */
 	protected function write_stylesheet() {
@@ -480,7 +480,7 @@ class Woostify_WebFont_Loader {
 	 * Get the stylesheet path.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return string
 	 */
 	public function get_local_stylesheet_path() {
@@ -497,7 +497,7 @@ class Woostify_WebFont_Loader {
 	 * This way we can avoid issues with sites changing their URL, or the wp-content path etc.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return string
 	 */
 	public function get_local_stylesheet_filename() {
@@ -508,7 +508,7 @@ class Woostify_WebFont_Loader {
 	 * Set the font-format to be used.
 	 *
 	 * @access public
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @param string $format The format to be used. Use "woff" or "woff2".
 	 * @return void
 	 */
@@ -520,7 +520,7 @@ class Woostify_WebFont_Loader {
 	 * Check if the local stylesheet exists.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return bool
 	 */
 	public function local_file_exists() {
@@ -531,7 +531,7 @@ class Woostify_WebFont_Loader {
 	 * Get the base path.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return string
 	 */
 	public function get_base_path() {
@@ -545,7 +545,7 @@ class Woostify_WebFont_Loader {
 	 * Get the base URL.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return string
 	 */
 	public function get_base_url() {
@@ -559,7 +559,7 @@ class Woostify_WebFont_Loader {
 	 * Get the subfolder name.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return string
 	 */
 	public function get_subfolder_name() {
@@ -593,7 +593,7 @@ class Woostify_WebFont_Loader {
 	 * and we avoid edge cases where unused files remain in the server.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return void
 	 */
 	public function schedule_cleanup() {
@@ -610,7 +610,7 @@ class Woostify_WebFont_Loader {
 	 * This runs as part of a cleanup routine.
 	 *
 	 * @access public
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @return bool
 	 */
 	public function woostify_delete_fonts_folder() {
@@ -622,7 +622,7 @@ class Woostify_WebFont_Loader {
 	 * Get the filesystem.
 	 *
 	 * @access protected
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @return \WP_Filesystem_Base
 	 */
 	protected function get_filesystem() {
@@ -648,7 +648,7 @@ if ( ! function_exists( 'woostify_get_webfont_styles' ) ) {
 	 * replace references to remote URLs with locally-downloaded assets,
 	 * and finally return the resulting CSS.
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 *
 	 * @param string $url    The URL of the remote webfont.
 	 * @param string $format The font-format. If you need to support IE, change this to "woff".
@@ -666,7 +666,7 @@ if ( ! function_exists( 'woostify_get_webfont_url' ) ) {
 	/**
 	 * Get a stylesheet URL for a webfont.
 	 *
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 *
 	 * @param string $url    The URL of the remote webfont.
 	 * @param string $format The font-format. If you need to support IE, change this to "woff".
@@ -687,6 +687,13 @@ if ( ! function_exists( 'woostify_get_webfont_url' ) ) {
 }
 
 if ( ! function_exists( 'woostify_webfont_loader_instance' ) ) {
+	/**
+	 * Create instance of Astra_WebFont_Loader class.
+	 *
+	 * @param string $font_url Google font URL to set data.
+	 * @return object
+	 * @since 2.0.0
+	 */
 	function woostify_webfont_loader_instance( $font_url = '' ) {
 		return new Woostify_WebFont_Loader( $font_url );
 	}
