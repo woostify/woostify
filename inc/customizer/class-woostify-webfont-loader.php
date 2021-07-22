@@ -676,7 +676,6 @@ if ( ! function_exists( 'woostify_get_webfont_url' ) ) {
 	function woostify_get_webfont_url( $url, $format = 'woff2' ) {
 		// Check if already Google font URL present or not. Basically avoiding 'Woostify_WebFont_Loader' class rendering.
 		$woostify_font_url = get_option( 'woostify_font_url', false );
-		var_dump($woostify_font_url);
 		if ( $woostify_font_url ) {
 			return json_decode( $woostify_font_url );
 		}
