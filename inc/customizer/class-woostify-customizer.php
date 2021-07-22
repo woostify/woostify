@@ -23,6 +23,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			add_action( 'customize_register', array( $this, 'woostify_customize_register' ) );
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'woostify_customize_controls_scripts' ) );
 			add_action( 'customize_controls_print_styles', array( $this, 'woostify_customize_controls_styles' ) );
+
+			add_action( 'customize_save_after', array( $this, 'delete_cached_partials' ) );
 		}
 
 		/**
@@ -84,6 +86,17 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				array(),
 				woostify_version()
 			);
+		}
+
+		public function delete_cached_partials() {
+			$options                   = woostify_options( false );
+			$load_google_fonts_locally = $options['load_google_fonts_locally'];
+
+			// Delete previously stored local fonts data, if exists.
+			if ( $load_google_fonts_locally ) {
+				$local_webfont_loader = woostify_webfont_loader_instance( '' );
+				$local_webfont_loader->woostify_delete_fonts_folder();
+			}
 		}
 
 		/**

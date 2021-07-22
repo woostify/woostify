@@ -323,7 +323,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 
 			// Enqueue our fonts.
 			if ( $google_fonts ) {
-				if ( $load_google_fonts_locally ) {
+				if ( $load_google_fonts_locally && ! is_customize_preview() && ! is_admin() ) {
 					wp_enqueue_style(
 						'woostify-fonts',
 						woostify_get_webfont_url( esc_url_raw( $fonts_url ) ),

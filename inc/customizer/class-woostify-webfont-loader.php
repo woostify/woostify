@@ -150,6 +150,8 @@ class Woostify_WebFont_Loader {
 
 		$woostify_font_url = file_exists( $this->get_local_stylesheet_path() ) ? $this->get_local_stylesheet_url() : $this->remote_url;
 
+		update_option( 'woostify_font_url', wp_json_encode( $woostify_font_url ) );
+
 		// If the local file exists, return its URL, with a fallback to the remote URL.
 		return $woostify_font_url;
 	}
@@ -612,6 +614,7 @@ class Woostify_WebFont_Loader {
 	 * @return bool
 	 */
 	public function woostify_delete_fonts_folder() {
+		delete_option( 'woostify_font_url' );
 		return $this->get_filesystem()->delete( $this->get_fonts_folder(), true );
 	}
 
@@ -671,8 +674,20 @@ if ( ! function_exists( 'woostify_get_webfont_url' ) ) {
 	 * @return string Returns the CSS.
 	 */
 	function woostify_get_webfont_url( $url, $format = 'woff2' ) {
+		// Check if already Google font URL present or not. Basically avoiding 'Woostify_WebFont_Loader' class rendering.
+		$woostify_font_url = get_option( 'woostify_font_url', false );
+		if ( $woostify_font_url ) {
+			return json_decode( $woostify_font_url );
+		}
+
 		$font = new Woostify_WebFont_Loader( $url );
 		$font->set_font_format( $format );
 		return $font->get_url();
+	}
+}
+
+if ( ! function_exists( 'woostify_webfont_loader_instance' ) ) {
+	function woostify_webfont_loader_instance( $font_url = '' ) {
+		return new Woostify_WebFont_Loader( $font_url );
 	}
 }
