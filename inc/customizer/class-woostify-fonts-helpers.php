@@ -233,7 +233,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				}
 			}
 
-			if ( $load_google_fonts_locally ) {
+			if ( $load_google_fonts_locally && ! is_customize_preview() && ! is_admin() ) {
 				// Ignore any non-Google fonts.
 				$google_fonts_arr = array_diff( $google_fonts, $not_google );
 				$google_fonts     = array();
@@ -292,6 +292,9 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				}
 			} else {
 				$google_fonts = array_diff( $google_fonts, $not_google );
+
+				// Separate each different font with a bar.
+				$google_fonts = implode( '|', $google_fonts );
 			}
 
 			// Apply a filter to the output.
@@ -302,7 +305,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 
 			// Set up our arguments.
 			$font_args = array();
-			if ( $load_google_fonts_locally ) {
+			if ( $load_google_fonts_locally && ! is_customize_preview() && ! is_admin() ) {
 				$font_args['family'] = implode( '&family=', $google_fonts );
 			} else {
 				$font_args['family'] = $google_fonts;
@@ -310,12 +313,12 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			if ( $subset ) {
 				$font_args['subset'] = rawurlencode( $subset );
 			}
-			if ( $load_google_fonts_locally ) {
+			if ( $load_google_fonts_locally && ! is_customize_preview() && ! is_admin() ) {
 				$font_args['display'] = 'swap';
 			}
 
 			// Create our URL using the arguments.
-			if ( $load_google_fonts_locally ) {
+			if ( $load_google_fonts_locally && ! is_customize_preview() && ! is_admin() ) {
 				$fonts_url = add_query_arg( $font_args, 'https://fonts.googleapis.com/css2' );
 			} else {
 				$fonts_url = add_query_arg( $font_args, 'https://fonts.googleapis.com/css' );
@@ -331,8 +334,9 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 						woostify_version()
 					);
 				} else {
+					var_dump($fonts_url);
 					wp_enqueue_style(
-						'woostify-fonts',
+						'woostify-fonts1',
 						$fonts_url,
 						array(),
 						woostify_version()
