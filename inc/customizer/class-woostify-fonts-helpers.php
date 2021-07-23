@@ -334,7 +334,6 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 						woostify_version()
 					);
 				} else {
-					var_dump($fonts_url);
 					wp_enqueue_style(
 						'woostify-fonts1',
 						$fonts_url,
