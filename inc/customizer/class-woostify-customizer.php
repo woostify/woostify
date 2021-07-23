@@ -25,6 +25,34 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			add_action( 'customize_controls_print_styles', array( $this, 'woostify_customize_controls_styles' ) );
 
 			add_action( 'customize_save_after', array( $this, 'delete_cached_partials' ) );
+
+			add_action( 'wp_ajax_woostify_regenerate_fonts_folder', array( $this, 'regenerate_woostify_fonts_folder' ) );
+		}
+
+		/**
+		 * Regenerate fonts folder
+		 */
+		public function regenerate_woostify_fonts_folder() {
+			/*Do another nonce check*/
+			check_ajax_referer( 'woostify_customize_nonce', 'woostify_customize_nonce' );
+
+			if ( ! current_user_can( 'edit_theme_options' ) ) {
+				wp_send_json_error( 'invalid_permissions' );
+			}
+
+			$options = woostify_options( false );
+
+			if ( $options['load_google_fonts_locally'] ) {
+				$local_font_loader = woostify_webfont_loader_instance( '' );
+				$flushed           = $local_font_loader->woostify_delete_fonts_folder();
+
+				if ( ! $flushed ) {
+					wp_send_json_error( 'failed_to_flush' );
+				}
+				wp_send_json_success();
+			}
+
+			wp_send_json_error( 'no_font_loader' );
 		}
 
 		/**
