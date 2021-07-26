@@ -4,7 +4,7 @@
  * @package woostify
  */
 
-/* global woostify_variation_gallery, woostify_default_gallery */
+/* global woostify_product_images_slider_options, woostify_variation_gallery, woostify_default_gallery */
 
 'use strict';
 
@@ -100,15 +100,7 @@ document.addEventListener(
 
 		// Product images.
 		var imageCarousel,
-			options = {
-				loop: false,
-				container: '#product-images',
-				navContainer: '#product-thumbnail-images',
-				items: 1,
-				navAsThumbnails: true,
-				autoHeight: true,
-				preventScrollOnTouch: true
-		}
+			options = woostify_product_images_slider_options;
 
 		// Product thumbnails.
 		var firstImage       = gallery ? gallery.querySelector( '.image-item img' ) : false,
