@@ -30,6 +30,27 @@ $wp_customize->add_control(
 );
 
 $wp_customize->add_setting(
+	'woostify_setting[load_google_fonts_locally_preload]',
+	array(
+		'default'           => $defaults['load_google_fonts_locally_preload'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'type'              => 'option',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[load_google_fonts_locally_preload]',
+		array(
+			'label'    => __( 'Preload', 'woostify' ),
+			'section'  => 'woostify_performance',
+			'settings' => 'woostify_setting[load_google_fonts_locally_preload]',
+		)
+	)
+);
+
+$wp_customize->add_setting(
 	'woostify_setting[load_google_fonts_locally_clear]',
 	array(
 		'default'   => '',
