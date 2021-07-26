@@ -339,66 +339,18 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 	 * @param string $value The raw html value.
 	 */
 	function woostify_sanitize_raw_html( $value ) {
-		$content = wp_kses(
-			$value,
-			array(
-				'a'      => array(
-					'class'  => array(),
-					'href'   => array(),
-					'rel'    => array(),
-					'title'  => array(),
-					'target' => array(),
-					'style'  => array(),
-				),
-				'code'   => array(),
-				'div'    => array(
-					'class' => array(),
-					'style' => array(),
-				),
-				'em'     => array(),
-				'h1'     => array(),
-				'h2'     => array(),
-				'h3'     => array(),
-				'h4'     => array(),
-				'h5'     => array(),
-				'h6'     => array(),
-				'i'      => array(),
-				'li'     => array(
-					'class' => array(),
-				),
-				'ul'     => array(
-					'class' => array(),
-				),
-				'ol'     => array(
-					'class' => array(),
-				),
-				'p'      => array(
-					'class' => array(),
-					'style' => array(),
-				),
-				'span'   => array(
-					'class' => array(),
-					'style' => array(),
-				),
-				'strong' => array(
-					'class' => array(),
-					'style' => array(),
-				),
-				'b'      => array(
-					'class' => array(),
-					'style' => array(),
-				),
-				'img'    => array(
-					'class'  => array(),
-					'alt'    => array(),
-					'width'  => array(),
-					'height' => array(),
-					'src'    => array(),
-				),
-			)
+		$kses_defaults = wp_kses_allowed_html( 'post' );
+		$image         = array(
+			'img'    => array(
+				'class'  => array(),
+				'alt'    => array(),
+				'width'  => array(),
+				'height' => array(),
+				'src'    => array(),
+			),
 		);
 
-		return $content;
+		return wp_kses( $value, array_merge( $kses_defaults, $image ) );
 	}
 }
 
