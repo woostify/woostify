@@ -755,7 +755,7 @@ if ( ! function_exists( 'woostify_fetch_svg_icon' ) ) {
 	 * @return string
 	 */
 	function woostify_fetch_svg_icon( $icon = '' ) {
-		$file_content  = wp_remote_get( WOOSTIFY_THEME_URI . 'assets/svg/svgs1.json' );
+		$file_content  = wp_remote_get( WOOSTIFY_THEME_URI . 'assets/svg/svgs.json' );
 		if ( is_wp_error( $file_content ) ) {
 			return '';
 		}
