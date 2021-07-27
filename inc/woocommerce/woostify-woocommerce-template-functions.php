@@ -198,7 +198,7 @@ if ( ! function_exists( 'woostify_shop_messages' ) ) {
 	 * @uses    woostify_do_shortcode
 	 */
 	function woostify_shop_messages() {
-		if ( is_checkout() ) {
+		if ( is_checkout() || apply_filters( 'woostify_hide_shop_message', false ) ) {
 			return;
 		}
 
