@@ -8,6 +8,9 @@
 defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Woostify_Icon' ) ) {
+	/**
+	 * Class Woostify_Icon
+	 */
 	class Woostify_Icon {
 		/**
 		 * Woostify SVGs.
@@ -28,7 +31,7 @@ if ( ! class_exists( 'Woostify_Icon' ) ) {
 		 *
 		 * @param string $icon the icon name.
 		 */
-		public static function fetch_svg_icon( $icon = '' ) {
+		public static function fetch_svg_icon( $icon = '', $echo = true ) {
 			$svg_output = '';
 
 			if ( ! self::$woostify_svgs ) {
@@ -51,7 +54,11 @@ if ( ! class_exists( 'Woostify_Icon' ) ) {
 				$svg_output,
 			);
 
-			return apply_filters( 'woostify_generate_svg_icon', $output, $icon );
+			if ( $echo ) {
+				echo apply_filters( 'woostify_generate_svg_icon', $output, $icon );
+			} else {
+				return apply_filters( 'woostify_generate_svg_icon', $output, $icon );
+			}
 		}
 
 		/**

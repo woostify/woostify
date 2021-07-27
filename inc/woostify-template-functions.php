@@ -2414,7 +2414,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 								<?php if ( '' !== $item->icon ) { ?>
 									<span class="woostify-item-list-item__icon ">
 									<span class="woositfy-sfb-icon">
-										<?php echo Woostify_Icon::fetch_svg_icon( $item->icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+										<?php Woostify_Icon::fetch_svg_icon( $item->icon ); ?>
 									</span>
 									<span class="theme-item-count wishlist-item-count"><?php echo esc_html( $wishlist_item_count ); ?></span>
 								</span>
@@ -2445,7 +2445,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 							<?php if ( '' !== $item->icon ) { ?>
 								<span class="woostify-item-list-item__icon ">
 							<span class="woositfy-sfb-icon">
-								<?php echo Woostify_Icon::fetch_svg_icon( $item->icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php Woostify_Icon::fetch_svg_icon( $item->icon ); ?>
 							</span>
 							<span class="theme-item-count shop-cart-count <?php echo $options['header_shop_hide_zero_value_cart_count'] ? 'hide-zero-val' : ''; ?>"><?php echo esc_html( $count ); ?></span>
 						</span>
@@ -2462,7 +2462,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 							<?php if ( '' !== $item->icon ) { ?>
 								<span class="woostify-item-list-item__icon">
 								<span class="woositfy-sfb-icon header-search-icon">
-									<?php echo Woostify_Icon::fetch_svg_icon( $item->icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									<?php Woostify_Icon::fetch_svg_icon( $item->icon ); ?>
 								</span>
 							</span>
 							<?php } ?>
@@ -2478,7 +2478,7 @@ if ( ! function_exists( 'woostify_sticky_footer_bar' ) ) {
 							<?php if ( '' !== $item->icon ) { ?>
 								<span class="woostify-item-list-item__icon">
 							<span class="woositfy-sfb-icon">
-								<?php echo Woostify_Icon::fetch_svg_icon( $item->icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php Woostify_Icon::fetch_svg_icon( $item->icon ); ?>
 							</span>
 						</span>
 							<?php } ?>
