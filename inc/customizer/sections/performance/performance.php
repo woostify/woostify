@@ -43,7 +43,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[load_google_fonts_locally_preload]',
 		array(
-			'label'    => __( 'Preload', 'woostify' ),
+			'label'    => __( 'Preload Local Font', 'woostify' ),
 			'section'  => 'woostify_performance',
 			'settings' => 'woostify_setting[load_google_fonts_locally_preload]',
 		)
