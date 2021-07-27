@@ -100,7 +100,7 @@ document.addEventListener(
 
 		// Product images.
 		var imageCarousel,
-			options = woostify_product_images_slider_options;
+			options = woostify_product_images_slider_options.main;
 
 		// Product thumbnails.
 		var firstImage       = gallery ? gallery.querySelector( '.image-item img' ) : false,
@@ -111,21 +111,18 @@ document.addEventListener(
 			thumbItems       = firstImageSize && imageSize ? parseInt( firstImageSize / imageSize ) : 5;
 
 		var thumbCarousel,
-			thumbOptions = {
-				loop: false,
-				container: '#product-thumbnail-images',
-				gutter: 10,
-				nav: false,
-				controls: true,
-				items: 4,
-				responsive: {
-					720: {
-						items: ( thumbItems > 7 ? 7 : thumbItems )
-					},
-					992: {
-						items: thumbItems
-					}
+			thumbOptions = woostify_product_images_slider_options.thumb;
+
+		// Set responsive.
+		if ( 'undefined' === typeof( thumbOptions.responsive ) ) {
+			thumbOptions.responsive = {
+				720: {
+					items: ( thumbItems > 7 ? 7 : thumbItems )
+				},
+				992: {
+					items: thumbItems
 				}
+			}
 		}
 
 		if (

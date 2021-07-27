@@ -352,13 +352,23 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				apply_filters(
 					'woostify_product_images_slider_options',
 					array(
-						'container'            => '#product-images',
-						'navContainer'         => '#product-thumbnail-images',
-						'loop'                 => true,
-						'items'                => 1,
-						'navAsThumbnails'      => true,
-						'autoHeight'           => true,
-						'preventScrollOnTouch' => true,
+						'main' => array(
+							'container'            => '#product-images',
+							'navContainer'         => '#product-thumbnail-images',
+							'loop'                 => true,
+							'items'                => 1,
+							'navAsThumbnails'      => true,
+							'autoHeight'           => true,
+							'preventScrollOnTouch' => true,
+						),
+						'thumb' => array(
+							'loop'       => false,
+							'container'  => '#product-thumbnail-images',
+							'gutter'     => 10,
+							'nav'        => false,
+							'controls'   => true,
+							'items'      => 4,
+						),
 					)
 				)
 			);
