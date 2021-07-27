@@ -279,7 +279,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 							<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore ?>
 
 							<span class="mini-cart-product-infor">
-								<span class="mini-cart-quantity">
+								<span class="mini-cart-quantity" <?php echo esc_attr( $_product->is_sold_individually() ? 'data-sold_individually' : '' ); ?>>
 									<span class="mini-cart-product-qty ti-minus" data-qty="minus"></span>
 
 									<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">

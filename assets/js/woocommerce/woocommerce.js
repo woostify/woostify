@@ -118,6 +118,11 @@ var woostifyQuantityMiniCart = function() {
 						max      = Number( input.getAttribute( 'max' ) ),
 						dataType = t.getAttribute( 'data-qty' );
 
+					// Can not add to cart product is sold individually.
+					if ( 'undefined' !== typeof( t.parentNode.getAttribute( 'data-sold_individually' ) ) ) {
+						return;
+					}
+
 					if ( current < 1 || isNaN( current ) ) {
 						alert( woostify_woocommerce_general.qty_warning );
 						return;
