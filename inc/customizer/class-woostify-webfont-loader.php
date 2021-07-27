@@ -244,7 +244,6 @@ class Woostify_WebFont_Loader {
 	 *
 	 * @access public
 	 * @since 2.0.0
-	 * @param string $remote_styles Remote stylesheet data.
 	 *
 	 * @return string Returns the remote URL contents.
 	 */
@@ -372,10 +371,42 @@ class Woostify_WebFont_Loader {
 	}
 
 	/**
+	 * Get the font files and preload them.
+	 *
+	 * @access public
+	 */
+	public function preload_local_fonts() {
+		// Make sure variables are set.
+		// Get the remote URL contents.
+		$styles = $this->get_styles();
+
+		// Get an array of locally-hosted files.
+		$local_font = array();
+		$font_files = $this->get_remote_files_from_css( $styles );
+
+		foreach ( $font_files as $font_family => $files ) {
+			if ( is_array( $files ) ) {
+				$local_font[] = end( $files );
+			}
+		}
+
+		// Caching this for further optimization.
+		update_site_option( 'woostify_local_font_files', $local_font );
+
+		foreach ( $local_font as $key => $local_font ) {
+			if ( $local_font ) {
+				echo '<link rel="preload" href="' . esc_url( $local_font ) . '" as="font" type="font/' . esc_attr( $this->font_format ) . '" crossorigin>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
+		}
+	}
+
+	/**
 	 * Get font files from the CSS.
 	 *
 	 * @access public
 	 * @since 2.0.0
+	 * @param string $remote_styles Remote stylesheet data.
+	 *
 	 * @return array Returns an array of font-families and the font-files used.
 	 */
 	public function get_remote_files_from_css( $remote_styles = '' ) {
@@ -392,7 +423,8 @@ class Woostify_WebFont_Loader {
 		foreach ( $font_faces as $font_face ) {
 
 			// Make sure we only process styles inside this declaration.
-			$style = explode( '}', $font_face )[0];
+			$style = explode( '}', $font_face );
+			$style = isset( $style[0] ) ? $style[0] : '';
 
 			// Sanity check.
 			if ( false === strpos( $style, 'font-family' ) ) {
@@ -614,7 +646,9 @@ class Woostify_WebFont_Loader {
 	 * @return bool
 	 */
 	public function woostify_delete_fonts_folder() {
+		// Delete previously created supportive options.
 		delete_option( 'woostify_font_url' );
+		delete_site_option( 'woostify_local_font_files' );
 		return $this->get_filesystem()->delete( $this->get_fonts_folder(), true );
 	}
 
@@ -696,5 +730,34 @@ if ( ! function_exists( 'woostify_webfont_loader_instance' ) ) {
 	 */
 	function woostify_webfont_loader_instance( $font_url = '' ) {
 		return new Woostify_WebFont_Loader( $font_url );
+	}
+}
+
+if ( ! function_exists( 'woostify_load_preload_local_fonts' ) ) {
+	/**
+	 * Get the file preloads.
+	 *
+	 * @param string $url    The URL of the remote webfont.
+	 * @param string $format The font-format. If you need to support IE, change this to "woff".
+	 */
+	function woostify_load_preload_local_fonts( $url, $format = 'woff2' ) {
+
+		// Check if cached font files data preset present or not. Basically avoiding 'Astra_WebFont_Loader' class rendering.
+		$woostify_local_font_files = get_site_option( 'woostify_local_font_files', false );
+
+		if ( is_array( $woostify_local_font_files ) && ! empty( $woostify_local_font_files ) ) {
+			$font_format = apply_filters( 'woostify_local_google_fonts_format', $format );
+			foreach ( $woostify_local_font_files as $key => $local_font ) {
+				if ( $local_font ) {
+					echo '<link rel="preload" href="' . esc_url( $local_font ) . '" as="font" type="font/' . esc_attr( $font_format ) . '" crossorigin>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				}
+			}
+			return;
+		}
+
+		// Now preload font data after processing it, as we didn't get stored data.
+		$font = woostify_webfont_loader_instance( $url );
+		$font->set_font_format( $format );
+		$font->preload_local_fonts();
 	}
 }

@@ -327,6 +327,9 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			// Enqueue our fonts.
 			if ( $google_fonts ) {
 				if ( $load_google_fonts_locally && ! is_customize_preview() && ! is_admin() ) {
+					if ( $options['load_google_fonts_locally_preload'] ) {
+						woostify_load_preload_local_fonts( $fonts_url );
+					}
 					wp_enqueue_style(
 						'woostify-fonts',
 						woostify_get_webfont_url( esc_url_raw( $fonts_url ) ),
@@ -335,7 +338,7 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 					);
 				} else {
 					wp_enqueue_style(
-						'woostify-fonts1',
+						'woostify-fonts',
 						$fonts_url,
 						array(),
 						woostify_version()
