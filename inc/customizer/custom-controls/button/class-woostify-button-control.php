@@ -47,7 +47,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Button_
 		 */
 		public function enqueue() {
 			wp_enqueue_script(
-				'woostify-typography-customizer',
+				'woostify-button-customizer',
 				WOOSTIFY_THEME_URI . 'inc/customizer/custom-controls/button/js/button-customizer.js',
 				array( 'customize-controls' ),
 				woostify_version(),
