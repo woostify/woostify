@@ -30,6 +30,7 @@ if ( ! class_exists( 'Woostify_Icon' ) ) {
 		 * Get an SVG Icon
 		 *
 		 * @param string $icon the icon name.
+		 * @param bool   $echo echo icon.
 		 */
 		public static function fetch_svg_icon( $icon = '', $echo = true ) {
 			$svg_output = '';
@@ -55,7 +56,7 @@ if ( ! class_exists( 'Woostify_Icon' ) ) {
 			);
 
 			if ( $echo ) {
-				echo apply_filters( 'woostify_generate_svg_icon', $output, $icon );
+				echo apply_filters( 'woostify_generate_svg_icon', $output, $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} else {
 				return apply_filters( 'woostify_generate_svg_icon', $output, $icon );
 			}
