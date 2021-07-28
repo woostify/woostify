@@ -18,7 +18,7 @@ wp.customize.controlConstructor['woostify-button-control'] = wp.customize.Contro
 
 					setTimeout(
 						function() {
-							// Send our request to the woostify_get_all_google_fonts_ajax function
+							// Send our request to the woostify_regenerate_fonts_folder function.
 							jQuery.ajax(
 								{
 									type: 'POST',

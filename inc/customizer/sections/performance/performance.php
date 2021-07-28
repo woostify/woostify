@@ -64,7 +64,7 @@ $wp_customize->add_control(
 		'woostify_setting[load_google_fonts_locally_clear]',
 		array(
 			'label'        => __( 'Clear Local Fonts Cache', 'woostify' ),
-			'description'  => __('Click the button to reset the local fonts cache.', 'woostify' ),
+			'description'  => __( 'Click the button to reset the local fonts cache.', 'woostify' ),
 			'section'      => 'woostify_performance',
 			'settings'     => 'woostify_setting[load_google_fonts_locally_clear]',
 			'button_label' => __( 'Clear', 'woostify' ),
