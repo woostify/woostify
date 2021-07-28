@@ -9406,6 +9406,10 @@ header.elementor-element {
   }
 }
 
+.cart-sidebar-content [data-sold_individually] .mini-cart-product-qty {
+  display: none;
+}
+
 .cart-sidebar-content .woocommerce-mini-cart__total {
   position: absolute;
   margin-bottom: 0;

@@ -194,6 +194,12 @@ $media: 599px;
         @include calc(height, '100% - 160px');
     }
 
+    [data-sold_individually] {
+    	.mini-cart-product-qty {
+    		display: none;
+    	}
+    }
+
     .woocommerce-mini-cart__total {
         position: absolute;
         margin-bottom: 0;
