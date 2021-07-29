@@ -327,6 +327,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'shipping_next'       => __( 'Calculated at next step', 'woostify' ),
 					'sticky_top_space'    => $options['shop_single_product_sticky_top_space'],
 					'sticky_bottom_space' => $options['shop_single_product_sticky_bottom_space'],
+					'currency_symbol'     => get_woocommerce_currency_symbol(),
+					'currency_pos'        => get_option( 'woocommerce_currency_pos' ),
 				)
 			);
 
@@ -352,7 +354,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				apply_filters(
 					'woostify_product_images_slider_options',
 					array(
-						'main' => array(
+						'main'  => array(
 							'container'            => '#product-images',
 							'navContainer'         => '#product-thumbnail-images',
 							'loop'                 => true,
@@ -362,12 +364,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'preventScrollOnTouch' => true,
 						),
 						'thumb' => array(
-							'loop'       => false,
-							'container'  => '#product-thumbnail-images',
-							'gutter'     => 10,
-							'nav'        => false,
-							'controls'   => true,
-							'items'      => 4,
+							'loop'      => false,
+							'container' => '#product-thumbnail-images',
+							'gutter'    => 10,
+							'nav'       => false,
+							'controls'  => true,
+							'items'     => 4,
 						),
 					)
 				)

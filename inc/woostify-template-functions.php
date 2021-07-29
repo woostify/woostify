@@ -2080,12 +2080,12 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 				// Shopping cart icon.
 				if ( $options['header_shop_cart_icon'] ) {
 					if ( $options['header_shop_cart_price'] ) {
-						echo '<div class="tools-icon align-center">';
-						echo '<div class="woostify-header-total-price">';
-						echo $sub_total; // phpcs:ignore
-						echo '</div>';
-					}
-					?>
+						?>
+						<div class="tools-icon align-center">
+						<div class="woostify-header-total-price <?php echo $options['header_shop_hide_zero_value_cart_subtotal'] ? 'hide-zero-val' : ''; ?>">
+						<?php echo $sub_total; // phpcs:ignore ?>
+						</div>
+					<?php } ?>
 					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
 						<span class="shop-cart-count <?php echo $options['header_shop_hide_zero_value_cart_count'] ? 'hide-zero-val' : ''; ?>"><?php echo esc_html( $count ); ?></span>
 					</a>
