@@ -73,11 +73,38 @@ class Woostify_Get_CSS {
 	protected $css;
 
 	/**
+	 * Cleanup routine frequency.
+	 */
+	const CLEANUP_FREQUENCY = 'monthly';
+
+	/**
 	 * Wp enqueue scripts
 	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'woostify_dynamic_css' ), 130 );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'woostify_guten_block_editor_assets' ) );
+
+		// Add a cleanup routine.
+		$this->schedule_cleanup();
+		add_action( 'delete_dynamic_stylesheet_folder', array( $this, 'delete_dynamic_stylesheet_folder' ) );
+	}
+
+	/**
+	 * Schedule a cleanup.
+	 *
+	 * This way dynamic stylesheet files will get updated regularly,
+	 * and we avoid edge cases where unused files remain in the server.
+	 *
+	 * @access public
+	 * @since 1.1.0
+	 * @return void
+	 */
+	public function schedule_cleanup() {
+		if ( ! is_multisite() || ( is_multisite() && is_main_site() ) ) {
+			if ( ! wp_next_scheduled( 'delete_dynamic_stylesheet_folder' ) && ! wp_installing() ) {
+				wp_schedule_event( time(), self::CLEANUP_FREQUENCY, 'delete_dynamic_stylesheet_folder' );
+			}
+		}
 	}
 
 	/**
@@ -240,6 +267,17 @@ class Woostify_Get_CSS {
 		}
 
 		return $file_path;
+	}
+
+	/**
+	 * Delete the style folder.
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 */
+	public function delete_dynamic_stylesheet_folder() {
+		return $this->get_filesystem()->delete( $this->get_style_folder(), true );
 	}
 
 	/**

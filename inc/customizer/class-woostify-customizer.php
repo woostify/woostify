@@ -23,6 +23,16 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			add_action( 'customize_register', array( $this, 'woostify_customize_register' ) );
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'woostify_customize_controls_scripts' ) );
 			add_action( 'customize_controls_print_styles', array( $this, 'woostify_customize_controls_styles' ) );
+
+			add_action( 'customize_save_after', array( $this, 'delete_dynamic_stylesheet_folder' ) );
+		}
+
+		/**
+		 * Delete dynamic stylesheet folder
+		 */
+		public function delete_dynamic_stylesheet_folder() {
+			$get_css = new Woostify_Get_CSS();
+			$get_css->delete_dynamic_stylesheet_folder();
 		}
 
 		/**
