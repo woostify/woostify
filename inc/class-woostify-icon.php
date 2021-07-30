@@ -52,7 +52,7 @@ if ( ! class_exists( 'Woostify_Icon' ) ) {
 			$output = sprintf(
 				'<span class="%1$s">%2$s</span>',
 				implode( ' ', $classes ),
-				$svg_output,
+				$svg_output
 			);
 
 			if ( $echo ) {
