@@ -67,7 +67,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Button_
 		public function to_json() {
 			parent::to_json();
 			$this->json['button_label'] = $this->button_label;
-			$this->json['ajax_action'] = $this->ajax_action;
+			$this->json['ajax_action']  = $this->ajax_action;
 		}
 
 		/**
