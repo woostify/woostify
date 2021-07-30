@@ -69,7 +69,7 @@ function productVariation( selector, form ) {
 			}
 
 			// Change image src image.
-			if ( image ) {
+			if ( image && imgSrc ) {
 				imageWrapper.classList.add( 'image-loading' );
 
 				var img    = new Image();
