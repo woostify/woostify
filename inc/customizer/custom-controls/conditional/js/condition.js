@@ -532,6 +532,15 @@
 					]
 				)
 
+				// Performance.
+				condition(
+					'woostify_setting[load_google_fonts_locally]',
+					[
+						'woostify_setting[load_google_fonts_locally_clear]',
+						'woostify_setting[load_google_fonts_locally_preload]',
+					]
+				)
+
 				// Disable footer.
 				condition(
 					'woostify_setting[footer_display]',

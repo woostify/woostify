@@ -33,6 +33,35 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		public function delete_dynamic_stylesheet_folder() {
 			$get_css = new Woostify_Get_CSS();
 			$get_css->delete_dynamic_stylesheet_folder();
+			add_action( 'customize_save_after', array( $this, 'delete_cached_partials' ) );
+
+			add_action( 'wp_ajax_woostify_regenerate_fonts_folder', array( $this, 'regenerate_woostify_fonts_folder' ) );
+		}
+
+		/**
+		 * Regenerate fonts folder
+		 */
+		public function regenerate_woostify_fonts_folder() {
+			/*Do another nonce check*/
+			check_ajax_referer( 'woostify_customize_nonce', 'woostify_customize_nonce' );
+
+			if ( ! current_user_can( 'edit_theme_options' ) ) {
+				wp_send_json_error( 'invalid_permissions' );
+			}
+
+			$options = woostify_options( false );
+
+			if ( $options['load_google_fonts_locally'] ) {
+				$local_font_loader = woostify_webfont_loader_instance( '' );
+				$flushed           = $local_font_loader->woostify_delete_fonts_folder();
+
+				if ( ! $flushed ) {
+					wp_send_json_error( 'failed_to_flush' );
+				}
+				wp_send_json_success();
+			}
+
+			wp_send_json_error( 'no_font_loader' );
 		}
 
 		/**
@@ -94,6 +123,20 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				array(),
 				woostify_version()
 			);
+		}
+
+		/**
+		 * Delete cached font folder local
+		 */
+		public function delete_cached_partials() {
+			$options                   = woostify_options( false );
+			$load_google_fonts_locally = $options['load_google_fonts_locally'];
+
+			// Delete previously stored local fonts data, if exists.
+			if ( $load_google_fonts_locally ) {
+				$local_webfont_loader = woostify_webfont_loader_instance( '' );
+				$local_webfont_loader->woostify_delete_fonts_folder();
+			}
 		}
 
 		/**
@@ -415,6 +458,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'error_404_image'                          => '',
 				'error_404_text'                           => __( 'Opps! The page you are looking for is missing for some reasons. Please come back to homepage', 'woostify' ),
 				'load_google_fonts_locally'                => false,
+				'load_google_fonts_locally_preload'        => false,
 			);
 
 			return apply_filters( 'woostify_setting_default_values', $args );
