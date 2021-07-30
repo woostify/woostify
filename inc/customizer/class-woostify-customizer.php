@@ -25,6 +25,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			add_action( 'customize_controls_print_styles', array( $this, 'woostify_customize_controls_styles' ) );
 
 			add_action( 'customize_save_after', array( $this, 'delete_dynamic_stylesheet_folder' ) );
+			add_action( 'customize_save_after', array( $this, 'delete_cached_partials' ) );
+
+			add_action( 'wp_ajax_woostify_regenerate_fonts_folder', array( $this, 'regenerate_woostify_fonts_folder' ) );
+			add_action( 'wp_ajax_woostify_reset_dynamic_stylesheet_folder', array( $this, 'reset_dynamic_stylesheet_folder' ) );
 		}
 
 		/**
@@ -33,9 +37,21 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		public function delete_dynamic_stylesheet_folder() {
 			$get_css = new Woostify_Get_CSS();
 			$get_css->delete_dynamic_stylesheet_folder();
-			add_action( 'customize_save_after', array( $this, 'delete_cached_partials' ) );
+		}
 
-			add_action( 'wp_ajax_woostify_regenerate_fonts_folder', array( $this, 'regenerate_woostify_fonts_folder' ) );
+		/**
+		 * Reset fonts folder
+		 */
+		public function reset_dynamic_stylesheet_folder() {
+			/*Do another nonce check*/
+			check_ajax_referer( 'woostify_customize_nonce', 'woostify_customize_nonce' );
+
+			if ( ! current_user_can( 'edit_theme_options' ) ) {
+				wp_send_json_error( 'invalid_permissions' );
+			}
+
+			$get_css = new Woostify_Get_CSS();
+			$get_css->delete_dynamic_stylesheet_folder();
 		}
 
 		/**
