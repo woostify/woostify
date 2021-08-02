@@ -120,6 +120,79 @@ $wp_customize->add_control(
 	)
 );
 
+// SHOP INFINITE SCROLL.
+$wp_customize->add_setting(
+	'shop_page_infinite_scroll_section',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Section_Control(
+		$wp_customize,
+		'shop_page_infinite_scroll_section',
+		array(
+			'label'      => __( 'Infinite Scroll', 'woostify' ),
+			'section'    => 'woostify_shop_page',
+			'dependency' => array(
+				'woostify_setting[shop_page_infinite_scroll_enable]',
+				'woostify_setting[shop_page_infinite_scroll_type]',
+			),
+		)
+	)
+);
+
+// Infinite scroll enable.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_infinite_scroll_enable]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_page_infinite_scroll_enable'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_infinite_scroll_enable]',
+		array(
+			'label'       => __( 'Enable', 'woostify' ),
+			'description' => __( 'Enable infinite scroll for WooCommerce category/product archive.', 'woostify' ),
+			'section'     => 'woostify_shop_page',
+			'settings'    => 'woostify_setting[shop_page_infinite_scroll_enable]',
+		)
+	)
+);
+
+// Infinite scroll loading type
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_infinite_scroll_type]',
+	array(
+		'default'           => $defaults['shop_page_infinite_scroll_type'],
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_infinite_scroll_type]',
+		array(
+			'label'    => __( 'Loading Type', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_infinite_scroll_type]',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_shop_page_infinite_scroll_type_choices',
+				array(
+					'button' => __( 'Button (On click)', 'woostify' ),
+					'auto'   => __( 'Auto (On scroll)', 'woostify' ),
+				)
+			),
+		)
+	)
+);
+
 // PRODUCT CARD SECTION.
 $wp_customize->add_setting(
 	'shop_page_product_card_section',

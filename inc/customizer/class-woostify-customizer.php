@@ -345,6 +345,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_page_breadcrumb'                     => true,
 				'shop_page_result_count'                   => true,
 				'shop_page_product_filter'                 => true,
+				// Infinite scroll
+				'shop_page_infinite_scroll_enable'         => false,
+				'shop_page_infinite_scroll_type'           => 'button',
 				// Product catalog.
 				'products_per_row'                         => 3,
 				'tablet_products_per_row'                  => 2,
