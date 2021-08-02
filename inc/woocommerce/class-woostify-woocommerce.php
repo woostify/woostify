@@ -123,6 +123,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_content_close', 50 );
 			add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_wrapper_close', 100 );
 
+			// Infinite Scroll.
+			$options = woostify_options( false );
+			if ( $options['shop_page_infinite_scroll_enable'] ) {
+				add_action( 'woocommerce_after_shop_loop', array( $this, 'add_infinite_scroll_button' ) );
+			}
+
 			// PRODUCT PAGE.
 			// Product images box.
 			add_action( 'woostify_product_images_box_end', 'woostify_change_sale_flash', 10 );
@@ -161,6 +167,28 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Custom plugin.
 			add_action( 'woostify_mini_cart_item_after_price', array( $this, 'woostify_support_german_market_plugin' ) );
+		}
+
+		/**
+		 * Add view more button
+		 */
+		public function add_infinite_scroll_button() {
+			wp_enqueue_script( 'woostify-infinite-scroll-plugin' );
+
+			$options = woostify_options( false );
+			$type    = $options['shop_page_infinite_scroll_type'];
+			if ( 'button' === $type ) {
+				?>
+			<div class="woostify-view-more">
+				<button class="-wrap-view-more-button products-archive button"><?php esc_html_e( 'View more', 'woostify' ); ?></button>
+			</div>
+				<?php
+			} else {
+				?>
+				<div class="woostify-loading-status">
+				</div>
+				<?php
+			}
 		}
 
 		/**

@@ -834,6 +834,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 				);
 			}
 
+			// Sticky footer bar.
 			if ( $options['sticky_footer_bar_enable'] && $options['sticky_footer_bar_hide_when_scroll'] ) {
 				wp_enqueue_script(
 					'woostify-sticky-footer-bar',
@@ -843,6 +844,15 @@ if ( ! class_exists( 'Woostify' ) ) {
 					true
 				);
 			}
+
+			// Infinite scroll.
+			wp_register_script(
+				'woostify-infinite-scroll-plugin',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/infinite-scroll.pkgd.min.js',
+				array(),
+				woostify_version(),
+				true
+			);
 
 			// Comment reply.
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
