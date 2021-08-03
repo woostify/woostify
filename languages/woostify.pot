@@ -844,15 +844,15 @@ msgstr ""
 
 #. translators: %s number of product
 #. translators: %s stock quantity
-#: inc/woocommerce/class-woostify-woocommerce.php:414, inc/woocommerce/woostify-woocommerce-single-product-functions.php:538
+#: inc/woocommerce/class-woostify-woocommerce.php:416, inc/woocommerce/woostify-woocommerce-single-product-functions.php:538
 msgid "Hurry! only %s left in stock."
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:657
+#: inc/woocommerce/class-woostify-woocommerce.php:659
 msgid "Product video url"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:678
+#: inc/woocommerce/class-woostify-woocommerce.php:680
 msgid "Enter Youtube or Vimeo video url"
 msgstr ""
 
