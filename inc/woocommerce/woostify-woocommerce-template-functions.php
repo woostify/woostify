@@ -584,6 +584,8 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 				return;
 			}
 
+			$final_price = apply_filters( 'woostify_price_flash', $final_price, $product );
+
 			$classes[] = 'woostify-tag-on-sale onsale';
 			$classes[] = 'sale-' . $options['shop_page_sale_tag_position'];
 			$classes[] = $options['shop_page_sale_square'] ? 'is-square' : '';
