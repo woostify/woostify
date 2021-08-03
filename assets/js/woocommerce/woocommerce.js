@@ -16,6 +16,42 @@ function cartSidebarOpen() {
 	document.documentElement.classList.add( 'cart-sidebar-open' );
 }
 
+function infinite_scroll() {
+	var container      = document.querySelector( '.products' ),
+	view_more_btn_wrap = document.querySelector( '.woostify-view-more' ),
+	loading_type       = view_more_btn_wrap.getAttribute( 'data-loading_type' ),
+	view_more_btn      = view_more_btn_wrap.querySelector( '.w-view-more-button' )
+
+	var infScroll = new InfiniteScroll(
+		container,
+		{
+			path: '.page-numbers .next',
+			append: '.product',
+			history: true,
+			hideNav: '.woocommerce-pagination',
+			loadOnScroll: 'button' === loading_type ? false : true
+		}
+	)
+
+	infScroll.on(
+		'last',
+		function( body, path ) {
+			if ( 'button' === loading_type ) {
+				view_more_btn.parentNode.style.display = 'none';
+			}
+		}
+	)
+
+	if ( 'button' === loading_type ) {
+		view_more_btn.addEventListener(
+			'click',
+			function() {
+				infScroll.loadNextPage()
+			}
+		)
+	}
+}
+
 function eventCartSidebarOpen() {
 	document.body.classList.add( 'updating-cart' );
 	document.body.classList.remove( 'cart-updated' );
@@ -255,6 +291,8 @@ document.addEventListener(
 				woostifyStockQuantityProgressBar();
 			}
 		);
+
+		infinite_scroll();
 
 		jQuery( document.body ).on(
 			'adding_to_cart',
