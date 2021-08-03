@@ -19,6 +19,7 @@ function cartSidebarOpen() {
 function infinite_scroll() {
 	var container      = document.querySelector( '.products' ),
 	view_more_btn_wrap = document.querySelector( '.woostify-view-more' ),
+	loading_status     = view_more_btn_wrap.querySelector( '.woostify-loading-status' ),
 	loading_type       = view_more_btn_wrap.getAttribute( 'data-loading_type' ),
 	view_more_btn      = view_more_btn_wrap.querySelector( '.w-view-more-button' )
 
@@ -28,8 +29,30 @@ function infinite_scroll() {
 			path: '.page-numbers .next',
 			append: '.product',
 			history: true,
-			hideNav: '.woocommerce-pagination',
+			//hideNav: '.woocommerce-pagination',
 			loadOnScroll: 'button' === loading_type ? false : true
+		}
+	)
+
+	infScroll.on(
+		'request',
+		function( path, fetchPromise ) {
+			if ( 'button' === loading_type ) {
+				view_more_btn.classList.add( 'circle-loading' )
+			} else {
+				loading_status.style.display = 'inline-block'
+			}
+		}
+	)
+
+	infScroll.on(
+		'load',
+		function( body, path, fetchPromise ) {
+			if ( 'button' === loading_type ) {
+				view_more_btn.classList.remove( 'circle-loading' );
+			} else {
+				loading_status.style.display = 'none'
+			}
 		}
 	)
 
@@ -37,7 +60,9 @@ function infinite_scroll() {
 		'last',
 		function( body, path ) {
 			if ( 'button' === loading_type ) {
-				view_more_btn.parentNode.style.display = 'none';
+				view_more_btn.style.display = 'none'
+			} else {
+				loading_status.style.display = 'none'
 			}
 		}
 	)

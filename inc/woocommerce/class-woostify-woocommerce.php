@@ -181,11 +181,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				?>
 				<div class="woostify-view-more" data-loading_type="<?php esc_attr_e( $type ); ?>">
 					<?php if ( 'button' === $type ) { ?>
-						<button class="w-view-more-button products-archive button"><?php esc_html_e( 'View more', 'woostify' ); ?></button>
+						<button class="w-view-more-button products-archive button"><span class="w-view-more-label"><?php esc_html_e( 'View more', 'woostify' ); ?></span></button>
 					<?php } else { ?>
-						<div class="woostify-loading-status">
-
-						</div>
+						<span class="woostify-loading-status"></span>
 					<?php } ?>
 				</div>
 			<?php }
