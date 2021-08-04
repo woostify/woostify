@@ -29,6 +29,9 @@ function initPhotoSwipe( gallerySelector ) {
 			}
 
 			linkEl = figureEl.children[ 0 ]; // <a> element.
+			if ( ! linkEl.getAttribute( 'href' ) ) {
+				continue;
+			}
 
 			size = linkEl.getAttribute( 'data-size' ).split( 'x' );
 

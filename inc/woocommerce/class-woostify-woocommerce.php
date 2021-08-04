@@ -357,7 +357,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 						'main'  => array(
 							'container'            => '#product-images',
 							'navContainer'         => '#product-thumbnail-images',
-							'loop'                 => true,
+							'loop'                 => false,
+							'rewind'               => true,
 							'items'                => 1,
 							'navAsThumbnails'      => true,
 							'autoHeight'           => true,
@@ -365,6 +366,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 						),
 						'thumb' => array(
 							'loop'      => false,
+							'rewind'    => true,
 							'container' => '#product-thumbnail-images',
 							'gutter'    => 10,
 							'nav'       => false,
