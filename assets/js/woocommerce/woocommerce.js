@@ -29,7 +29,7 @@ function infinite_scroll() {
 			path: '.page-numbers .next',
 			append: '.product',
 			history: true,
-			//hideNav: '.woocommerce-pagination',
+			hideNav: '.woocommerce-pagination',
 			loadOnScroll: 'button' === loading_type ? false : true
 		}
 	)
