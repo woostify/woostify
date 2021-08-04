@@ -391,6 +391,15 @@
 				)
 
 				// SHOP.
+				// Infinite Scroll
+				condition(
+					'woostify_setting[shop_page_infinite_scroll_enable]',
+					[
+						'woostify_setting[shop_page_infinite_scroll_type]',
+					],
+					false,
+				)
+
 				// Position Add to cart.
 				condition(
 					'woostify_setting[shop_page_add_to_cart_button_position]',
