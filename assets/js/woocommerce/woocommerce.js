@@ -16,23 +16,56 @@ function cartSidebarOpen() {
 	document.documentElement.classList.add( 'cart-sidebar-open' );
 }
 
-function infinite_scroll() {
-	var container      = document.querySelector( '.products' ),
+function woostifyInfiniteScroll( addEventClick ) {
+	let container      = document.querySelector( '.products' ),
 	view_more_btn_wrap = document.querySelector( '.woostify-view-more' ),
 	loading_status     = view_more_btn_wrap.querySelector( '.woostify-loading-status' ),
 	loading_type       = view_more_btn_wrap.getAttribute( 'data-loading_type' ),
-	view_more_btn      = view_more_btn_wrap.querySelector( '.w-view-more-button' )
+	view_more_btn      = view_more_btn_wrap.querySelector( '.w-view-more-button' ),
+	pagination         = document.querySelector( '.woocommerce-pagination ul.page-numbers' )
 
-	var infScroll = new InfiniteScroll(
-		container,
-		{
-			path: '.page-numbers .next',
-			append: '.product',
-			history: true,
-			hideNav: '.woocommerce-pagination',
-			loadOnScroll: 'button' === loading_type ? false : true
+	let options = {
+		path: function() {
+			let curr_host_name = window.location.hostname,
+			curr_protocol      = window.location.protocol,
+			curr_path_name     = window.location.pathname,
+			page               = this.loadCount + 2,
+			curr_query         = window.location.search.substring( 1 ),
+			regex              = /(page\/)[0-9]+/;
+
+			if ( ! curr_path_name.match( regex )) {
+				curr_path_name = curr_path_name + 'page/' + page;
+			}
+			let path = '' === curr_query ? curr_protocol + '//' + curr_host_name + curr_path_name + '/' : curr_protocol + '//' + curr_host_name + curr_path_name + '/?' + curr_query;
+			return path;
+		},
+		append: '.product',
+		history: false,
+		hideNav: '.woocommerce-pagination',
+		loadOnScroll: 'button' === loading_type ? false : true
+	}
+
+	if ( null == pagination || 'undefined' === typeof( pagination ) ) {
+		if ( 'button' === loading_type ) {
+			view_more_btn_wrap.style.display = 'none';
+		} else {
+			options.loadOnScroll = false;
 		}
+	} else {
+		if ( 'button' === loading_type ) {
+			view_more_btn_wrap.style.display = 'block';
+			view_more_btn.style.display      = 'inline-flex';
+		} else {
+			options.loadOnScroll = true;
+		}
+	}
+
+	let infScroll = new InfiniteScroll(
+		container,
+		options
 	)
+
+	infScroll.loadCount = 0;
 
 	infScroll.on(
 		'request',
@@ -48,10 +81,43 @@ function infinite_scroll() {
 	infScroll.on(
 		'load',
 		function( body, path, fetchPromise ) {
+			let all_page        = document.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers:not(.next):not(.prev)' );
+			let curr_load_count = this.loadCount + 1;
+			console.log( all_page, curr_load_count, curr_load_count >= all_page.length );
+
 			if ( 'button' === loading_type ) {
 				view_more_btn.classList.remove( 'circle-loading' );
 			} else {
 				loading_status.style.display = 'none'
+			}
+
+			if ( all_page.length ) {
+				if ( curr_load_count >= all_page.length ) {
+					if ( 'button' === loading_type ) {
+						view_more_btn.style.display = 'none'
+					} else {
+						loading_status.style.display = 'none'
+						infScroll.option(
+							{
+								loadOnScroll: false
+							}
+						)
+					}
+				} else {
+					if ( 'button' !== loading_type ) {
+						infScroll.option(
+							{
+								loadOnScroll: true
+							}
+						)
+					}
+				}
+			} else {
+				if ( 'button' === loading_type ) {
+					view_more_btn.style.display = 'inline-flex'
+				} else {
+					loading_status.style.display = 'inline-block'
+				}
 			}
 		}
 	)
@@ -67,7 +133,7 @@ function infinite_scroll() {
 		}
 	)
 
-	if ( 'button' === loading_type ) {
+	if ( 'button' === loading_type && addEventClick ) {
 		view_more_btn.addEventListener(
 			'click',
 			function() {
@@ -317,7 +383,7 @@ document.addEventListener(
 			}
 		);
 
-		infinite_scroll();
+		woostifyInfiniteScroll( true );
 
 		jQuery( document.body ).on(
 			'adding_to_cart',
