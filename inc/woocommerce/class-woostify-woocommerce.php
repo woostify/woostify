@@ -67,15 +67,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_filter( 'woocommerce_output_related_products_args', 'woostify_related_products_args' );
 			add_filter( 'woocommerce_pagination_args', 'woostify_change_woocommerce_arrow_pagination' );
 			add_filter( 'woocommerce_add_to_cart_fragments', 'woostify_content_fragments' );
+			add_filter( 'woocommerce_update_order_review_fragments', 'woostify_update_order_review_fragments' );
 			add_filter( 'woocommerce_product_loop_start', 'woostify_woocommerce_loop_start' );
 			add_action( 'woostify_product_loop_item_action_item', 'woostify_product_loop_item_add_to_cart_icon', 10 );
 			add_action( 'woostify_product_loop_item_action_item', 'woostify_product_loop_item_wishlist_icon', 30 );
 			// Update product quantity in minicart.
 			add_action( 'wp_ajax_update_quantity_in_mini_cart', 'woostify_ajax_update_quantity_in_mini_cart' );
 			add_action( 'wp_ajax_nopriv_update_quantity_in_mini_cart', 'woostify_ajax_update_quantity_in_mini_cart' );
-			// Update checkout.
-			add_action( 'wp_ajax_update_checkout', 'woostify_ajax_update_checkout' );
-			add_action( 'wp_ajax_nopriv_update_checkout', 'woostify_ajax_update_checkout' );
 			// Modified woocommerce breadcrumb.
 			add_filter( 'woocommerce_breadcrumb_defaults', 'woostify_modifided_woocommerce_breadcrumb' );
 
@@ -90,6 +88,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'product_cat_edit_form_fields', array( $this, 'woostify_edit_term_meta_field' ) );
 			add_action( 'created_product_cat', array( $this, 'woostify_save_term_meta_field' ) );
 			add_action( 'edited_product_cat', array( $this, 'woostify_save_term_meta_field' ) );
+
+			// Woocommerce taxonomy.
+			add_action( 'product_cat_add_form_fields', array( $this, 'woostify_add_field_taxonomy' ) );
+			add_action( 'product_cat_edit_form_fields', array( $this, 'woostify_edit_field_taxonomy' ) );
+			add_action( 'created_product_cat', array( $this, 'woostify_save_term_field' ) );
+			add_action( 'edited_product_cat', array( $this, 'woostify_save_term_field' ) );
+
 			// For product tag.
 			add_action( 'product_tag_add_form_fields', array( $this, 'woostify_add_term_meta_field' ) );
 			add_action( 'product_tag_edit_form_fields', array( $this, 'woostify_edit_term_meta_field' ) );
@@ -252,6 +257,52 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		}
 
 		/**
+		 * Add term meta field.
+		 */
+		public function woostify_add_field_taxonomy() {
+			?>
+				<div class="form-field term-display-type-image">
+					<label for="display_type_image"><?php esc_html_e( 'Enable thumbnail for page header BG', 'woostify' ); ?></label>
+					<select id="display_type_image" name="display_type_image" class="postform">
+						<option value=""><?php esc_html_e( 'Disable', 'woostify' ); ?></option>
+						<option value="enable"><?php esc_html_e( 'Enable', 'woostify' ); ?></option>
+					</select>
+				</div>
+			<?php
+		}
+
+		/**
+		 * Edit term meta field.
+		 *
+		 * @param      array $term The term.
+		 */
+		public function woostify_edit_field_taxonomy( $term ) {
+			$display_type_image = get_term_meta( $term->term_id, 'display_type_image', true );
+			?>
+				<tr class="form-field term-display-type-image">
+					<th scope="row" valign="top"><label><?php esc_html_e( 'Enable thumbnail for page header BG', 'woostify' ); ?></label></th>
+					<td>
+						<select id="display_type_image" name="display_type_image" class="postform">
+							<option value="" <?php selected( '', $display_type_image ); ?>><?php esc_html_e( 'Disable', 'woostify' ); ?></option>
+							<option value="enable" <?php selected( 'enable', $display_type_image ); ?>><?php esc_html_e( 'Enable', 'woostify' ); ?></option>
+						</select>
+					</td>
+				</tr>
+			<?php
+		}
+
+		/**
+		 * Save a taxonomy meta field.
+		 *
+		 * @param      array $term_id The term identifier.
+		 */
+		public function woostify_save_term_field( $term_id ) {
+
+			$display_type_image = isset( $_POST['display_type_image'] ) ? $_POST['display_type_image'] : ''; // phpcs:ignore
+			update_term_meta( $term_id, 'display_type_image', $display_type_image );
+		}
+
+		/**
 		 * Demo
 		 *
 		 * @param  object $product The product.
@@ -336,10 +387,30 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			wp_enqueue_script( 'woostify-product-images' );
 			wp_localize_script(
 				'woostify-product-images',
-				'woostify_product_images',
-				array(
-					'prev_btn_icon' => woostify_fetch_svg_icon( 'angle-left' ),
-					'next_btn_icon' => woostify_fetch_svg_icon( 'angle-right' ),
+				'woostify_product_images_slider_options',
+				apply_filters(
+					'woostify_product_images_slider_options',
+					array(
+						'main' => array(
+							'container'            => '#product-images',
+							'navContainer'         => '#product-thumbnail-images',
+							'loop'                 => false,
+							'rewind'               => true,
+							'items'                => 1,
+							'navAsThumbnails'      => true,
+							'autoHeight'           => true,
+							'preventScrollOnTouch' => true,
+						),
+						'thumb' => array(
+							'loop'      => false,
+							'rewind'    => true,
+							'container' => '#product-thumbnail-images',
+							'gutter'    => 10,
+							'nav'       => false,
+							'controls'  => true,
+							'items'     => 4,
+						),
+					)
 				)
 			);
 

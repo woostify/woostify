@@ -537,10 +537,10 @@
 
 				.review-order-product-image {
 					max-width: 50px;
-				}
 
-				.review-order-product-name {
-					margin: 0 10px;
+					+.review-order-product-name {
+						margin: 0 10px;
+					}
 				}
 
 				.product-total {
@@ -568,15 +568,6 @@
 	.multi-step-checkout {
 		.woostify-container {
 			text-align: center;
-		}
-	}
-
-	// First step
-	.multi-step-checkout-wrapper.first {
-		~ .woocommerce-checkout-review-order {
-			tr[class^="tax-"] {
-				display: none;
-			}
 		}
 	}
 

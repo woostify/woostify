@@ -715,15 +715,14 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			if ( class_exists( 'woocommerce' ) && is_checkout() ) {
 				$wc_total = WC()->cart->get_totals();
-				$price    = 'yes' === get_option( 'woocommerce_calc_taxes' ) ? ( (float) $wc_total['total'] - (float) $wc_total['total_tax'] ) : ( (float) $wc_total['total'] - (float) $wc_total['discount_total'] );
+				$price    = 'yes' === get_option( 'woocommerce_calc_taxes' ) ? ( (float) $wc_total['cart_contents_total'] + (float) $wc_total['total_tax'] ) : $wc_total['cart_contents_total'];
 
 				wp_localize_script(
 					'woostify-multi-step-checkout',
 					'woostify_multi_step_checkout',
 					array(
 						'ajax_none'     => wp_create_nonce( 'woostify_update_checkout_nonce' ),
-						'price'         => empty( $wc_total['discount_total'] ) ? false : wc_price( $price ),
-						'content_total' => wp_kses( wc_price( $wc_total['cart_contents_total'] ), array() ),
+						'content_total' => wp_kses( $price, array() ),
 						'cart_total'    => wp_kses( wc_price( $wc_total['total'] ), array() ),
 					)
 				);
@@ -965,7 +964,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			$classes[] = woostify_sidebar_class();
 
 			// Blog page layout.
-			$classes[] = ( ! is_singular( 'post' ) && woostify_is_blog() || is_search() ) ? 'blog-layout-' . $options['blog_list_layout'] : '';
+			$classes[] = ( ( ! is_singular( 'post' ) && woostify_is_blog() ) || ( is_search() && 'any' === get_query_var( 'post_type' ) ) ) ? 'blog-layout-' . $options['blog_list_layout'] : '';
 
 			// Detect page created by Divi builder.
 			if ( woostify_is_divi_page() ) {

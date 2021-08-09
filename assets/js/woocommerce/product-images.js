@@ -4,7 +4,7 @@
  * @package woostify
  */
 
-/* global woostify_variation_gallery, woostify_default_gallery */
+/* global woostify_product_images_slider_options, woostify_variation_gallery, woostify_default_gallery */
 
 'use strict';
 
@@ -100,16 +100,7 @@ document.addEventListener(
 
 		// Product images.
 		var imageCarousel,
-			options = {
-				loop: false,
-				container: '#product-images',
-				navContainer: '#product-thumbnail-images',
-				items: 1,
-				navAsThumbnails: true,
-				autoHeight: true,
-				preventScrollOnTouch: true,
-				controlsText: [woostify_product_images.prev_btn_icon,woostify_product_images.next_btn_icon],
-		}
+			options = woostify_product_images_slider_options.main;
 
 		// Product thumbnails.
 		var firstImage       = gallery ? gallery.querySelector( '.image-item img' ) : false,
@@ -120,21 +111,18 @@ document.addEventListener(
 			thumbItems       = firstImageSize && imageSize ? parseInt( firstImageSize / imageSize ) : 5;
 
 		var thumbCarousel,
-			thumbOptions = {
-				loop: false,
-				container: '#product-thumbnail-images',
-				gutter: 10,
-				nav: false,
-				controls: true,
-				items: 4,
-				responsive: {
-					720: {
-						items: ( thumbItems > 7 ? 7 : thumbItems )
-					},
-					992: {
-						items: thumbItems
-					}
+			thumbOptions = woostify_product_images_slider_options.thumb;
+
+		// Set responsive.
+		if ( 'undefined' === typeof( thumbOptions.responsive ) ) {
+			thumbOptions.responsive = {
+				720: {
+					items: ( thumbItems > 7 ? 7 : thumbItems )
+				},
+				992: {
+					items: thumbItems
 				}
+			}
 		}
 
 		if (

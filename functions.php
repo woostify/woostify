@@ -6,10 +6,13 @@
  */
 
 // Define constants.
-define( 'WOOSTIFY_VERSION', '1.9.1' );
+define( 'WOOSTIFY_VERSION', '1.9.6' );
 define( 'WOOSTIFY_PRO_MIN_VERSION', '1.5.6' );
 define( 'WOOSTIFY_THEME_DIR', get_template_directory() . '/' );
 define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );
+
+// Woostify svgs icon.
+require_once WOOSTIFY_THEME_DIR . 'inc/class-woostify-icon.php';
 
 // Woostify functions, hooks.
 require_once WOOSTIFY_THEME_DIR . 'inc/woostify-functions.php';

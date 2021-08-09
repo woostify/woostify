@@ -52,7 +52,12 @@ function productVariation( selector, form ) {
 		function( event, variation ) {
 			// get image url form `variation`.
 			var imgSrc  = variation.image.src,
+				fullSrc = variation.image.full_src,
 				inStock = variation.is_in_stock;
+
+			if ( ! imgSrc || ! fullSrc ) {
+				return;
+			}
 
 			// Support Product meta widget.
 			if ( productMetaSku ) {
@@ -65,11 +70,11 @@ function productVariation( selector, form ) {
 
 			// Photoswipe + zoom.
 			if ( photoSwipe ) {
-				photoSwipe.setAttribute( 'href', variation.image.full_src );
+				photoSwipe.setAttribute( 'href', fullSrc );
 			}
 
 			// Change image src image.
-			if ( image ) {
+			if ( image && imgSrc ) {
 				imageWrapper.classList.add( 'image-loading' );
 
 				var img    = new Image();
