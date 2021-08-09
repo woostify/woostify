@@ -256,6 +256,38 @@ $media: 599px;
     .woocommerce-mini-cart__empty-message {
         margin-bottom: 0;
         padding: $space 0;
+
+		.woostify-empty-cart {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding-top: 6vh;
+
+			.message-icon {
+				height: 80px;
+				background: #f8f8f8;
+				width: 80px;
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 50%;
+
+				svg {
+					width: 30px;
+					height: 30px;
+				}
+			}
+
+			.message-text {
+				margin: 18px 0 20px;
+			}
+
+			.button.continue-shopping {
+				width: 100%;
+				text-align: center;
+				margin-top: 6vh;
+			}
+		}
     }
 
     .variation {

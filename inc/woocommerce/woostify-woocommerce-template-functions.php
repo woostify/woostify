@@ -344,7 +344,13 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 			do_action( 'woocommerce_widget_shopping_cart_after_buttons' );
 		} else {
 			?>
-			<p class="woocommerce-mini-cart__empty-message"><?php esc_html_e( 'No products in the cart.', 'woostify' ); ?></p>
+			<div class="woocommerce-mini-cart__empty-message">
+				<div class="woostify-empty-cart">
+					<div class="message-icon"><?php echo woostify_fetch_svg_icon( 'shopping-cart' ); ?></div>
+					<p class="message-text"><?php esc_html_e( 'No products in the cart.', 'woostify' ); ?></p>
+					<a class="button continue-shopping" href=""><?php esc_html_e( 'Continue Shopping', 'woostify' ); ?></a>
+				</div>
+			</div>
 			<?php
 		}
 
