@@ -800,7 +800,7 @@ if ( ! function_exists( 'woostify_custom_search_form' ) ) {
                     <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder', 'woostify' ) . '" value="' . get_search_query() . '" name="s" />
                 </label>
                 <input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button', 'woostify' ) . '" />
-                <span class="search-form-icon">' . woostify_fetch_svg_icon( 'search' ) . '</span>
+                <span class="search-form-icon">' . Woostify_Icon::fetch_svg_icon( 'search', false ) . '</span>
             </form>';
 		} else {
 			$form = '<form role="search" ' . $aria_label . 'method="get" id="searchform" class="searchform" action="' . esc_url( home_url( '/' ) ) . '">

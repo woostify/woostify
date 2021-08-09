@@ -83,7 +83,6 @@ function woostifyInfiniteScroll( addEventClick ) {
 		function( body, path, fetchPromise ) {
 			let all_page        = document.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers:not(.next):not(.prev)' );
 			let curr_load_count = this.loadCount + 1;
-			console.log( all_page, curr_load_count, curr_load_count >= all_page.length );
 
 			if ( 'button' === loading_type ) {
 				view_more_btn.classList.remove( 'circle-loading' );

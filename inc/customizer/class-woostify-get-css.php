@@ -1202,19 +1202,6 @@ class Woostify_Get_CSS {
 			';
 		}
 
-		// Custom.
-		$social_list = woostify_get_social_icon_list();
-		if ( ! empty( $social_list ) ) {
-			foreach ( $social_list as $si ) {
-				$styles .= '.woostify-social-icon a[href*="' . $si['href'] . '"]:before, .yith-wcwl-share a[href*="' . $si['href'] . '"]:before {
-					background: transparent url(' . woostify_svg_to_background_image( $si['icon'] ) . ') no-repeat center / contain;
-				}';
-				$styles .= '.woostify-social-icon a[href*="' . $si['href'] . '"]:hover:before, .yith-wcwl-share a[href*="' . $si['href'] . '"]:hover:before {
-					background-image: url(' . woostify_svg_to_background_image( $si['icon'], '#fff' ) . ');
-				}';
-			}
-		}
-
 		return apply_filters( 'woostify_customizer_css', $styles );
 	}
 
