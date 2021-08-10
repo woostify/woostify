@@ -7818,18 +7818,6 @@ header.elementor-element {
   overflow: hidden;
 }
 
-.cart-sidebar-open #view {
-  -webkit-transform: translateX(-400px);
-  transform: translateX(-400px);
-}
-
-@media (max-width: 599px) {
-  .cart-sidebar-open #view {
-    -webkit-transform: translateX(-290px);
-    transform: translateX(-290px);
-  }
-}
-
 .cart-sidebar-open.cart-updated #shop-cart-sidebar:before {
   content: none !important;
 }
@@ -8251,10 +8239,6 @@ header.elementor-element {
 }
 
 @media (min-width: 600px) and (max-width: 991px) {
-  .cart-sidebar-open #view {
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-  }
   #shop-cart-sidebar {
     width: 50%;
   }

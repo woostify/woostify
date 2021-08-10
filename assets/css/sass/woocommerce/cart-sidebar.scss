@@ -40,13 +40,6 @@ $media: 599px;
 .cart-sidebar-open {
 	overflow: hidden;
 
-	#view{
-		@include translatex( -400px );
-		@media ( max-width: $media ) {
-			@include translatex( -290px );
-		}
-	}
-
     &.cart-updated {
         #shop-cart-sidebar {
             &:before {
@@ -468,11 +461,6 @@ $media: 599px;
 
 // RESPONSIVE
 @media ( min-width: 600px ) and ( max-width: $screen-md - 1 ) {
-	.cart-sidebar-open{
-		#view{
-			@include translatex( -50% );
-		}
-	}
 
 	#shop-cart-sidebar{
 		width: 50%;
