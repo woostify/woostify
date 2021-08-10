@@ -321,6 +321,18 @@
 					],
 				)
 
+				// Mini cart
+				condition(
+					'woostify_setting[mini_cart_enable_progress_bar]',
+					[
+						'woostify_setting[mini_cart_progress_bar_amount]',
+						'woostify_setting[mini_cart_progress_bar_initial_msg]',
+						'woostify_setting[mini_cart_progress_bar_success_msg]',
+						'woostify_setting[mini_cart_progress_bar_color]',
+						'woostify_setting[mini_cart_progress_bar_success_color]',
+					],
+				)
+
 				// PAGE HEADER
 				// Enable page header.
 				condition(

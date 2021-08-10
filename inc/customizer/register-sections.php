@@ -123,6 +123,15 @@ $wp_customize->add_section(
 	)
 );
 
+// Mini cart.
+$wp_customize->add_section(
+	'woostify_mini_cart',
+	array(
+		'title' => __( 'Mini Cart', 'woostify' ),
+		'panel' => 'woocommerce',
+	)
+);
+
 // PERFORMANCE.
 $wp_customize->add_section(
 	'woostify_performance',
