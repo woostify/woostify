@@ -348,7 +348,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 				<div class="woostify-empty-cart">
 					<div class="message-icon"><?php echo woostify_fetch_svg_icon( 'shopping-cart' ); ?></div>
 					<p class="message-text"><?php esc_html_e( 'No products in the cart.', 'woostify' ); ?></p>
-					<a class="button continue-shopping" href=""><?php esc_html_e( 'Continue Shopping', 'woostify' ); ?></a>
+					<a class="button continue-shopping" href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ); ?>"><?php esc_html_e( 'Continue Shopping', 'woostify' ); ?></a>
 				</div>
 			</div>
 			<?php

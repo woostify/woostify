@@ -8088,9 +8088,8 @@ header.elementor-element {
 }
 
 .cart-sidebar-content .woocommerce-mini-cart__empty-message .woostify-empty-cart .button.continue-shopping {
-  width: 100%;
   text-align: center;
-  margin-top: 6vh;
+  margin-top: 2vh;
 }
 
 .cart-sidebar-content .variation {
