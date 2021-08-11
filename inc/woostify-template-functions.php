@@ -868,6 +868,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		}
 
 		if ( is_search() ) {
+			/* translators: %s: search term */
 			$title = sprintf( esc_html__( 'Search Results for: %s', 'woostify' ), '<span>' . get_search_query() . '</span>' );
 		}
 
