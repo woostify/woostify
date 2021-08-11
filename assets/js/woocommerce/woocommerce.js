@@ -10,8 +10,12 @@
 
 function woostifyInfiniteScroll( addEventClick ) {
 	let container      = document.querySelector( '.products' ),
-	view_more_btn_wrap = document.querySelector( '.woostify-view-more' ),
-	loading_status     = view_more_btn_wrap.querySelector( '.woostify-loading-status' ),
+	view_more_btn_wrap = document.querySelector( '.woostify-view-more' )
+
+	if ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) {
+		return false;
+	}
+	let loading_status = view_more_btn_wrap.querySelector( '.woostify-loading-status' ),
 	loading_type       = view_more_btn_wrap.getAttribute( 'data-loading_type' ),
 	view_more_btn      = view_more_btn_wrap.querySelector( '.w-view-more-button' ),
 	pagination         = document.querySelector( '.woocommerce-pagination ul.page-numbers' )
