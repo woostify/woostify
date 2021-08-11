@@ -123,11 +123,11 @@ $wp_customize->add_section(
 	)
 );
 
-// Mini cart.
+// Free shipping threshold.
 $wp_customize->add_section(
-	'woostify_mini_cart',
+	'woostify_shipping_threshold',
 	array(
-		'title' => __( 'Mini Cart', 'woostify' ),
+		'title' => __( 'Shipping Threshold', 'woostify' ),
 		'panel' => 'woocommerce',
 	)
 );

@@ -321,16 +321,27 @@
 					],
 				)
 
-				// Mini cart
+				// Free shipping threshold.
 				condition(
-					'woostify_setting[mini_cart_enable_progress_bar]',
+					'woostify_setting[shipping_threshold_enable_progress_bar]',
 					[
-						'woostify_setting[mini_cart_progress_bar_amount]',
-						'woostify_setting[mini_cart_progress_bar_initial_msg]',
-						'woostify_setting[mini_cart_progress_bar_success_msg]',
-						'woostify_setting[mini_cart_progress_bar_color]',
-						'woostify_setting[mini_cart_progress_bar_success_color]',
+						'woostify_setting[shipping_threshold_msg]',
 					],
+					[
+						true,
+						1,
+					]
+				)
+				condition(
+					'woostify_setting[shipping_threshold_enable_progress_bar]',
+					[
+						'woostify_setting[shipping_threshold_progress_bar_amount]',
+						'woostify_setting[shipping_threshold_progress_bar_initial_msg]',
+						'woostify_setting[shipping_threshold_progress_bar_success_msg]',
+						'woostify_setting[shipping_threshold_progress_bar_color]',
+						'woostify_setting[shipping_threshold_progress_bar_success_color]',
+					],
+					false
 				)
 
 				// PAGE HEADER

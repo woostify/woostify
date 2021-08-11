@@ -346,15 +346,52 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 			?>
 			<div class="woocommerce-mini-cart__empty-message">
 				<div class="woostify-empty-cart">
-					<div class="message-icon"><?php echo woostify_fetch_svg_icon( 'shopping-cart' ); ?></div>
+					<div class="message-icon"><?php echo woostify_fetch_svg_icon( 'shopping-cart' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 					<p class="message-text"><?php esc_html_e( 'No products in the cart.', 'woostify' ); ?></p>
-					<a class="button continue-shopping" href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ); ?>"><?php esc_html_e( 'Continue Shopping', 'woostify' ); ?></a>
+					<a class="button continue-shopping" href="<?php echo esc_url( get_permalink( woocommerce_get_page_id( 'shop' ) ) ); ?>"><?php esc_html_e( 'Continue Shopping', 'woostify' ); ?></a>
 				</div>
 			</div>
 			<?php
 		}
 
 		do_action( 'woocommerce_after_mini_cart' );
+	}
+}
+
+if ( ! function_exists( 'woostify_woocommerce_shipping_threshold' ) ) {
+	/**
+	 * Shipping Threshold
+	 */
+	function woostify_woocommerce_shipping_threshold() {
+		$options  = woostify_options( false );
+		$subtotal = WC()->cart->subtotal;
+
+		$message                  = $options['shipping_threshold_msg'];
+		$goal_amount              = $options['shipping_threshold_progress_bar_amount'];
+		$enable_progress_bar      = $options['shipping_threshold_enable_progress_bar'];
+		$progress_bar_initial_msg = $options['shipping_threshold_progress_bar_initial_msg'];
+		$progress_bar_success_msg = $options['shipping_threshold_progress_bar_success_msg'];
+
+		$missing_amount           = $goal_amount - $subtotal;
+		$progress_bar_initial_msg = str_replace( '[missing_amount]', wc_price( $missing_amount ), $progress_bar_initial_msg );
+
+		$percent = 0;
+		$percent = ( $subtotal / $goal_amount ) * 100;
+		$percent = $percent >= 100 ? 100 : round( $percent, 0 );
+		?>
+		<div class="free-shipping-progress-bar" data-progress="<?php echo esc_attr( $percent ); ?>">
+			<div class="progress-bar-message"><?php echo $enable_progress_bar && 1 === $enable_progress_bar ? ( $percent < 100 ? wp_kses_post( $progress_bar_initial_msg ) : wp_kses_post( $progress_bar_success_msg ) ) : wp_kses_post( $message ); ?></div>
+			<?php if ( $enable_progress_bar && 1 === $enable_progress_bar ) { ?>
+				<div class="progress-bar-rail">
+					<div class="progress-bar-status" style="min-width: <?php echo (int) $percent; ?>%">
+						<div class="progress-bar-indicator"></div>
+						<div class="progress-percent"><?php echo (int) $percent; ?>%</div>
+					</div>
+					<div class="progress-bar-left"></div>
+				</div>
+			<?php } ?>
+		</div>
+		<?php
 	}
 }
 

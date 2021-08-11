@@ -161,6 +161,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Custom plugin.
 			add_action( 'woostify_mini_cart_item_after_price', array( $this, 'woostify_support_german_market_plugin' ) );
+
+			// Shipping threshold.
+			add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woostify_woocommerce_shipping_threshold', 5 );
 		}
 
 		/**
