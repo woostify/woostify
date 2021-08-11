@@ -867,6 +867,10 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			$display_title = false;
 		}
 
+		if ( is_search() ) {
+			$title = sprintf( esc_html__( 'Search Results for: %s', 'woostify' ), '<span>' . get_search_query() . '</span>' );
+		}
+
 		// Metabox option.
 		if ( 'default' !== $metabox ) {
 			$page_header = 'enabled' === $metabox ? true : false;
