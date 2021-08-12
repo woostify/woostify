@@ -123,6 +123,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woostify_product_images_box_end', 'woostify_print_out_of_stock_label', 20 );
 			add_action( 'woostify_product_images_box_end', 'woostify_product_video_button_play', 30 );
 
+			// Infinite Scroll.
+			$options = woostify_options( false );
+			if ( $options['shop_page_infinite_scroll_enable'] ) {
+				add_action( 'woocommerce_after_shop_loop', array( $this, 'add_infinite_scroll_button' ) );
+			}
+
 			add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_container_open', 10 );
 			add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_gallery_open', 20 );
 			add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_gallery_image_slide', 30 );
@@ -153,6 +159,26 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Custom plugin.
 			add_action( 'woostify_mini_cart_item_after_price', array( $this, 'woostify_support_german_market_plugin' ) );
+		}
+
+		/**
+		 * Add view more button
+		 */
+		public function add_infinite_scroll_button() {
+			wp_enqueue_script( 'woostify-infinite-scroll-plugin' );
+
+			$options = woostify_options( false );
+			$type    = $options['shop_page_infinite_scroll_type'];
+			if ( woocommerce_products_will_display() ) {
+				?>
+				<div class="woostify-view-more" data-loading_type="<?php esc_attr_e( $type ); ?>">
+					<?php if ( 'button' === $type ) { ?>
+						<button class="w-view-more-button products-archive button"><span class="w-view-more-label"><?php esc_html_e( 'View more', 'woostify' ); ?></span></button>
+					<?php } else { ?>
+						<span class="woostify-loading-status"></span>
+					<?php } ?>
+				</div>
+			<?php }
 		}
 
 		/**
