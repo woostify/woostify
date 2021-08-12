@@ -1,6 +1,6 @@
 <?php
 /**
- * Woocommerce mini cart customizer
+ * Woocommerce Shipping Threshold customizer
  *
  * @package woostify
  */

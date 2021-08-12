@@ -341,7 +341,10 @@
 						'woostify_setting[shipping_threshold_progress_bar_color]',
 						'woostify_setting[shipping_threshold_progress_bar_success_color]',
 					],
-					false
+					[
+						false,
+						0,
+					]
 				)
 
 				// PAGE HEADER

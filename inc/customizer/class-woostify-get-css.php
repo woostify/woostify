@@ -733,6 +733,17 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// Free shipping threshold.
+		$styles .= '
+		.free-shipping-progress-bar .progress-bar-indicator {
+			background: linear-gradient( 270deg, ' . $options['shipping_threshold_progress_bar_color'] . ' 0, #fff 200%);
+			background-color: ' . $options['shipping_threshold_progress_bar_color'] . ';
+		}
+		.free-shipping-progress-bar .progress-bar-status.success .progress-bar-indicator {
+			background: ' . $options['shipping_threshold_progress_bar_success_color'] . ';
+		}
+		';
+
 		// Theme color.
 		$styles .= '
 			.woostify-theme-color,

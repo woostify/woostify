@@ -441,6 +441,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shipping_threshold_progress_bar_initial_msg' => 'Add [missing_amount] more to get Free Shipping!',
 				'shipping_threshold_progress_bar_success_msg' => 'You\'ve got free shipping!',
 				'shipping_threshold_progress_bar_success_color' => '#67bb67',
+				// MINI CART.
+				'mini_cart_show_shipping_threshold'        => false,
 				// CHECKOUT PAGE.
 				'checkout_distraction_free'                => false,
 				'checkout_multi_step'                      => false,
