@@ -83,6 +83,97 @@ var woostifyStockQuantityProgressBar = function() {
 	);
 }
 
+var confettiSnowEffect = function( confetti, duration ) {
+	var animationEnd = Date.now() + duration,
+	skew             = 1,
+	gravity          = 1;
+
+	function randomInRange(min, max) {
+		return Math.random() * (max - min) + min;
+	}
+
+	( function frame() {
+		var timeLeft = animationEnd - Date.now(),
+		ticks        = Math.max( 200, 500 * (timeLeft / duration) );
+		skew         = Math.max( 0.8, skew - 0.001 );
+
+		confetti(
+			{
+				particleCount: 1,
+				startVelocity: 0,
+				ticks: ticks,
+				origin: {
+					x: Math.random(),
+					// since particles fall down, skew start toward the top
+					y: (Math.random() * skew) - 0.2
+				},
+				colors: ["#EF2964"],
+				shapes: ['circle'],
+				gravity: gravity,
+				scalar: randomInRange( 0.4, 1 ),
+				drift: randomInRange( -0.4, 0.4 )
+			}
+		);
+
+		if (timeLeft > 0) {
+			requestAnimationFrame( frame );
+		}
+	}() );
+	( function frame() {
+		var timeLeft = animationEnd - Date.now(),
+		ticks        = Math.max( 200, 500 * (timeLeft / duration) );
+		skew         = Math.max( 0.8, skew - 0.001 );
+		confetti(
+			{
+				particleCount: 1,
+				startVelocity: 0,
+				ticks: ticks,
+				origin: {
+					x: Math.random(),
+					// since particles fall down, skew start toward the top
+					y: (Math.random() * skew) - 0.2
+				},
+				colors: ["#00C09D"],
+				shapes: ['circle'],
+				gravity: gravity,
+				scalar: randomInRange( 0.4, 1 ),
+				drift: randomInRange( -0.4, 0.4 )
+			}
+		);
+
+		if (timeLeft > 0) {
+			requestAnimationFrame( frame );
+		}
+	}() );
+	( function frame() {
+		var timeLeft = animationEnd - Date.now(),
+		ticks        = Math.max( 200, 500 * (timeLeft / duration) );
+		skew         = Math.max( 0.8, skew - 0.001 );
+
+		confetti(
+			{
+				particleCount: 1,
+				startVelocity: 0,
+				ticks: ticks,
+				origin: {
+					x: Math.random(),
+					// since particles fall down, skew start toward the top
+					y: (Math.random() * skew) - 0.2
+				},
+				colors: ["#2D87B0"],
+				shapes: ['circle'],
+				gravity: gravity,
+				scalar: randomInRange( 0.4, 1 ),
+				drift: randomInRange( -0.4, 0.4 )
+			}
+		);
+
+		if (timeLeft > 0) {
+			requestAnimationFrame( frame );
+		}
+	}() );
+}
+
 // Product quantity on mini cart.
 var woostifyQuantityMiniCart = function() {
 	var cartCountContainer = document.querySelector( '.shopping-bag-button .shop-cart-count, .boostify-count-product' );
@@ -215,7 +306,8 @@ var woostifyQuantityMiniCart = function() {
 
 								// Update free shipping threshold.
 								if ( shipping_threshold.length && data.hasOwnProperty( 'free_shipping_threshold' ) ) {
-									for ( var fsti = 0, fstc = productCount.length; fsti < fstc; fsti++ ) {
+									let prev_percent = shipping_threshold[0].getAttribute( 'data-progress' );
+									for ( var fsti = 0, fstc = shipping_threshold.length; fsti < fstc; fsti++ ) {
 										shipping_threshold[fsti].setAttribute( 'data-progress', data.free_shipping_threshold.percent );
 										shipping_threshold[fsti].querySelector( '.progress-bar-message' ).innerHTML               = data.free_shipping_threshold.message;
 										shipping_threshold[fsti].querySelector( '.progress-percent' ).innerHTML                   = data.free_shipping_threshold.percent + '%';
@@ -226,6 +318,31 @@ var woostifyQuantityMiniCart = function() {
 										} else {
 											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.remove( 'success' );
 										}
+									}
+
+									if ( prev_percent < 100 && data.free_shipping_threshold.percent >= 100 ) {
+										let confetti_canvas = document.createElement( 'canvas' );
+
+										confetti_canvas.className = 'confetti-canvas';
+
+										document.querySelector( '#shop-cart-sidebar' ).appendChild( confetti_canvas );
+
+										let wConfetti = confetti.create(
+											confetti_canvas,
+											{
+												resize: true,
+											}
+										);
+
+										confettiSnowEffect( wConfetti, 1500 )
+
+										setTimeout(
+											function() {
+												wConfetti.reset();
+												document.querySelector( '.confetti-canvas' ).remove();
+											},
+											1500
+										);
 									}
 								}
 							}

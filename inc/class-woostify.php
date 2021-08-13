@@ -738,11 +738,23 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
+			// Congrats confetti effect.
+			$mini_cart_show_free_shipping_threshold = $options['mini_cart_show_shipping_threshold'];
+			if ( $mini_cart_show_free_shipping_threshold && 1 === $mini_cart_show_free_shipping_threshold ) {
+				wp_register_script(
+					'woostify-congrats-confetti-effect',
+					WOOSTIFY_THEME_URI . 'assets/js/confetti' . woostify_suffix() . '.js',
+					array(),
+					woostify_version(),
+					true
+				);
+			}
+
 			// Woocommerce.
 			wp_register_script(
 				'woostify-woocommerce',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/woocommerce' . woostify_suffix() . '.js',
-				array( 'jquery', 'woostify-quantity-button' ),
+				array( 'jquery', 'woostify-quantity-button', 'woostify-congrats-confetti-effect' ),
 				woostify_version(),
 				true
 			);
