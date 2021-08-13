@@ -334,14 +334,14 @@ var woostifyQuantityMiniCart = function() {
 											}
 										);
 
-										confettiSnowEffect( wConfetti, 1500 )
+										confettiSnowEffect( wConfetti, 4000 )
 
 										setTimeout(
 											function() {
 												wConfetti.reset();
 												document.querySelector( '.confetti-canvas' ).remove();
 											},
-											1500
+											4000
 										);
 									}
 								}
