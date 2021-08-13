@@ -20,6 +20,12 @@ function woostifyAjaxSingleHandleError( button ) {
 }
 
 function woostifyAjaxSingleUpdateFragments( button ) {
+	let progress_bar = document.querySelectorAll( '.free-shipping-progress-bar' );
+		let percent  = 0;
+	if ( progress_bar.length ) {
+		percent = parseInt( progress_bar[0].getAttribute( 'data-progress' ) );
+	}
+
 	fetch(
 		wc_cart_fragments_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'get_refreshed_fragments' ),
 		{
@@ -57,6 +63,40 @@ function woostifyAjaxSingleUpdateFragments( button ) {
 			woostifyAjaxSingleHandleError( button );
 
 			jQuery( document.body ).trigger( 'added_to_cart' );
+
+			let curr_progress_bar = document.querySelectorAll( '.free-shipping-progress-bar' );
+				let curr_percent  = 0;
+			if ( curr_progress_bar.length ) {
+				curr_percent = parseInt( curr_progress_bar[0].getAttribute( 'data-progress' ) );
+			}
+
+				// Effect.
+			if ( ( ! progress_bar.length && curr_percent >= 100 ) || ( percent < curr_percent && curr_percent >= 100 ) ) {
+				let confetti_canvas = document.createElement( 'canvas' );
+
+				confetti_canvas.className = 'confetti-canvas';
+
+				document.querySelector( '#shop-cart-sidebar' ).appendChild( confetti_canvas );
+
+				let wConfetti = confetti.create(
+					confetti_canvas,
+					{
+						resize: true,
+						}
+				);
+
+				confettiSnowEffect( wConfetti, 4000 )
+
+				setTimeout(
+					function() {
+						wConfetti.reset();
+						document.querySelector( '.confetti-canvas' ).remove();
+					},
+					4000
+				);
+			}
+
+				percent = curr_percent;
 		}
 	);
 }
@@ -102,7 +142,7 @@ function woostifyAjaxSingleAddToCartButton() {
 					}
 				).then(
 					function( text ) {
-						var div = document.createElement( 'div' );
+						var div       = document.createElement( 'div' );
 						div.innerHTML = text;
 
 						var error = div.querySelector( '.woocommerce-error' );
