@@ -94,7 +94,6 @@
 				 * @param string  id            Setting id.
 				 * @param array   dependencies  Setting id dependencies.
 				 * @param string  value         Setting value.
-				 * @param array   parentvalue   Parent setting id and value.
 				 * @param boolean operator      Operator.
 				 */
 				var condition = function( id, dependencies, value, operator ) {
@@ -159,7 +158,6 @@
 				 * @param string  id            Setting id.
 				 * @param array   dependencies  Setting id dependencies.
 				 * @param string  value         Setting value.
-				 * @param array   parentvalue   Parent setting id and value.
 				 * @param boolean operator      Operator.
 				 * @param array   arr           The parent setting value.
 				 */
@@ -323,28 +321,28 @@
 
 				// Free shipping threshold.
 				condition(
-					'woostify_setting[shipping_threshold_enable_progress_bar]',
+					'woostify_setting[shipping_threshold_enabled]',
 					[
-						'woostify_setting[shipping_threshold_msg]',
-					],
-					[
-						true,
-						1,
-					]
-				)
-				condition(
-					'woostify_setting[shipping_threshold_enable_progress_bar]',
-					[
+						'woostify_setting[shipping_threshold_enable_progress_bar]',
 						'woostify_setting[shipping_threshold_progress_bar_amount]',
 						'woostify_setting[shipping_threshold_progress_bar_initial_msg]',
 						'woostify_setting[shipping_threshold_progress_bar_success_msg]',
 						'woostify_setting[shipping_threshold_progress_bar_color]',
 						'woostify_setting[shipping_threshold_progress_bar_success_color]',
 					],
+				)
+				subCondition(
+					'woostify_setting[shipping_threshold_enable_progress_bar]',
 					[
-						false,
-						0,
-					]
+						'woostify_setting[shipping_threshold_progress_bar_color]',
+						'woostify_setting[shipping_threshold_progress_bar_success_color]',
+					],
+					false,
+					false,
+					[
+						'woostify_setting[shipping_threshold_enabled]',
+						true,
+					],
 				)
 
 				// PAGE HEADER

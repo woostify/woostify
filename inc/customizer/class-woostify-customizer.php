@@ -434,13 +434,14 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'cart_page_layout'                         => 'layout-2',
 				'cart_page_sticky_proceed_button'          => true,
 				// FREE SHIPPING THRESHOLD.
-				'shipping_threshold_msg'                   => 'FREE shipping on all orders of $100 or more!',
+				'shipping_threshold_enabled'               => false,
 				'shipping_threshold_enable_progress_bar'   => false,
 				'shipping_threshold_progress_bar_amount'   => 100,
 				'shipping_threshold_progress_bar_color'    => '#1346af',
 				'shipping_threshold_progress_bar_initial_msg' => 'Add [missing_amount] more to get Free Shipping!',
 				'shipping_threshold_progress_bar_success_msg' => 'You\'ve got free shipping!',
 				'shipping_threshold_progress_bar_success_color' => '#67bb67',
+				'shipping_threshold_enable_confetti_effect' => true,
 				// MINI CART.
 				'mini_cart_show_shipping_threshold'        => false,
 				// CHECKOUT PAGE.

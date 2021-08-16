@@ -18,7 +18,7 @@ $wp_customize->add_setting(
 	array(
 		'type'              => 'option',
 		'default'           => $defaults['mini_cart_show_shipping_threshold'],
-		'sanitize_callback' => 'absint',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(

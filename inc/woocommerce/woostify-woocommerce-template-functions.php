@@ -66,7 +66,7 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 		$options                      = woostify_options( false );
 		$response                     = array();
 		$show_free_shipping_threshold = $options['mini_cart_show_shipping_threshold'];
-		$enable_progress_bar          = $options['shipping_threshold_enable_progress_bar'];
+		$enabled_shipping_threshold   = $options['shipping_threshold_enabled'];
 
 		$cart_item_key = sanitize_text_field( wp_unslash( $_POST['key'] ) );
 		$product_qty   = absint( $_POST['qty'] );
@@ -78,7 +78,7 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 		ob_start();
 		$response['item']        = $count;
 		$response['total_price'] = WC()->cart->get_cart_total();
-		if ( ( $show_free_shipping_threshold && 1 === $show_free_shipping_threshold ) && ( $enable_progress_bar && 1 === $enable_progress_bar ) ) {
+		if ( $show_free_shipping_threshold && $enabled_shipping_threshold ) {
 			$response['free_shipping_threshold'] = array();
 
 			$subtotal                 = WC()->cart->subtotal;
@@ -384,16 +384,15 @@ if ( ! function_exists( 'woostify_woocommerce_shipping_threshold' ) ) {
 	 * Shipping Threshold
 	 */
 	function woostify_woocommerce_shipping_threshold() {
-		$options                      = woostify_options( false );
-		$show_free_shipping_threshold = $options['mini_cart_show_shipping_threshold'];
+		$options                    = woostify_options( false );
+		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
 
-		if ( ! $show_free_shipping_threshold ) {
+		if ( ! $enabled_shipping_threshold ) {
 			return;
 		}
 
 		$subtotal = WC()->cart->subtotal;
 
-		$message                  = $options['shipping_threshold_msg'];
 		$goal_amount              = $options['shipping_threshold_progress_bar_amount'];
 		$enable_progress_bar      = $options['shipping_threshold_enable_progress_bar'];
 		$progress_bar_initial_msg = $options['shipping_threshold_progress_bar_initial_msg'];
@@ -407,8 +406,8 @@ if ( ! function_exists( 'woostify_woocommerce_shipping_threshold' ) ) {
 		$percent = $percent >= 100 ? 100 : round( $percent, 0 );
 		?>
 		<div class="free-shipping-progress-bar" data-progress="<?php echo esc_attr( $percent ); ?>">
-			<div class="progress-bar-message"><?php echo $enable_progress_bar && 1 === $enable_progress_bar ? ( $percent < 100 ? wp_kses_post( $progress_bar_initial_msg ) : wp_kses_post( $progress_bar_success_msg ) ) : wp_kses_post( $message ); ?></div>
-			<?php if ( $enable_progress_bar && 1 === $enable_progress_bar ) { ?>
+			<div class="progress-bar-message"><?php echo $percent < 100 ? wp_kses_post( $progress_bar_initial_msg ) : wp_kses_post( $progress_bar_success_msg ); ?></div>
+			<?php if ( $enable_progress_bar ) { ?>
 				<div class="progress-bar-rail">
 					<div class="progress-bar-status <?php echo $percent >= 100 ? 'success' : ''; ?>" style="min-width: <?php echo (int) $percent; ?>%">
 						<div class="progress-bar-indicator"></div>
@@ -432,14 +431,15 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 			return;
 		}
 
-		$total                 = WC()->cart->cart_contents_count;
-		$options               = woostify_options( false );
-		$show_fst_on_mini_cart = $options['mini_cart_show_shipping_threshold'];
-		$enable_progress_bar   = $options['shipping_threshold_enable_progress_bar'];
-		$cart_clss             = array();
-		if ( $show_fst_on_mini_cart && 1 === $show_fst_on_mini_cart ) {
+		$total                      = WC()->cart->cart_contents_count;
+		$options                    = woostify_options( false );
+		$show_fst_on_mini_cart      = $options['mini_cart_show_shipping_threshold'];
+		$enable_progress_bar        = $options['shipping_threshold_enable_progress_bar'];
+		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
+		$cart_clss                  = array();
+		if ( $show_fst_on_mini_cart && $enabled_shipping_threshold ) {
 			$cart_clss[] = 'has-fst';
-			if ( $enable_progress_bar && 1 === $enable_progress_bar ) {
+			if ( $enable_progress_bar ) {
 				$cart_clss[] = 'has-fst-progress-bar';
 			}
 		}
@@ -747,12 +747,13 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 		$fragments['span.shop-cart-count'] = sprintf( '<span class="shop-cart-count %s">%s</span>', implode( ' ', $header_cart_count_class ), $cart_item_count );
 
 		// Cart sidebar.
-		$show_fst_on_mini_cart = $options['mini_cart_show_shipping_threshold'];
-		$enable_progress_bar   = $options['shipping_threshold_enable_progress_bar'];
-		$cart_clss             = array();
-		if ( $show_fst_on_mini_cart && 1 === $show_fst_on_mini_cart ) {
+		$show_fst_on_mini_cart      = $options['mini_cart_show_shipping_threshold'];
+		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
+		$enable_progress_bar        = $options['shipping_threshold_enable_progress_bar'];
+		$cart_clss                  = array();
+		if ( $show_fst_on_mini_cart && $enabled_shipping_threshold ) {
 			$cart_clss[] = 'has-fst';
-			if ( $enable_progress_bar && 1 === $enable_progress_bar ) {
+			if ( $enable_progress_bar ) {
 				$cart_clss[] = 'has-fst-progress-bar';
 			}
 		}

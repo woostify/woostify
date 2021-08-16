@@ -163,7 +163,16 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woostify_mini_cart_item_after_price', array( $this, 'woostify_support_german_market_plugin' ) );
 
 			// Shipping threshold.
-			add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woostify_woocommerce_shipping_threshold', 5 );
+			add_action( 'init', array( $this, 'free_shipping_threshold' ) );
+		}
+
+		public function free_shipping_threshold() {
+			$options                              = woostify_options( false );
+			$mini_cart_enabled_shipping_threshold = $options['mini_cart_show_shipping_threshold'];
+
+			if ( $mini_cart_enabled_shipping_threshold ) {
+				add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woostify_woocommerce_shipping_threshold', 5 );
+			}
 		}
 
 		/**
@@ -277,8 +286,24 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				wp_dequeue_style( 'et-builder-modules-style' );
 			}
 
+			// Confetti effect.
+			$mini_cart_enabled_shipping_threshold = $options['mini_cart_show_shipping_threshold'];
+			$enabled_shipping_threshold           = $options['shipping_threshold_enabled'];
+			$enabled_shipping_threshold_effect    = $options['shipping_threshold_enable_confetti_effect'];
+			$shipping_threshold_script_var        = array(
+				'enabled_on_mini_cart'              => $mini_cart_enabled_shipping_threshold,
+				'enabled_shipping_threshold'        => $enabled_shipping_threshold,
+				'enabled_shipping_threshold_effect' => $enabled_shipping_threshold_effect,
+			);
+			if ( $mini_cart_enabled_shipping_threshold ) {
+				if ( $enabled_shipping_threshold && $enabled_shipping_threshold_effect ) {
+					wp_enqueue_script( 'woostify-congrats-confetti-effect' );
+				}
+			}
+
 			// Main woocommerce js file.
 			wp_enqueue_script( 'woostify-woocommerce' );
+
 			// Quantity minicart.
 			wp_localize_script(
 				'woostify-woocommerce',
@@ -292,6 +317,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'shipping_next'       => __( 'Calculated at next step', 'woostify' ),
 					'sticky_top_space'    => $options['shop_single_product_sticky_top_space'],
 					'sticky_bottom_space' => $options['shop_single_product_sticky_bottom_space'],
+					'shipping_threshold'  => $shipping_threshold_script_var,
 				)
 			);
 
