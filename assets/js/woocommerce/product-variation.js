@@ -21,10 +21,13 @@ function productVariation( selector, form ) {
 		return;
 	}
 
-	var imageWrapper = gallery.querySelector( '.image-item' ),
-		image        = imageWrapper ? imageWrapper.querySelector( 'img' ) : false,
-		imageSrc     = image ? image.getAttribute( 'src' ) : '',
-		imageSrcset  = image ? image.getAttribute( 'srcset' ) : '',
+	var imageWrapper = gallery.querySelector( '.image-item' );
+	if ( imageWrapper == null ) {
+		return;
+	}
+	var image       = imageWrapper ? imageWrapper.querySelector( 'img' ) : false,
+		imageSrc    = image ? image.getAttribute( 'src' ) : '',
+		imageSrcset = image ? image.getAttribute( 'srcset' ) : '',
 		// Photoswipe + zoom.
 		photoSwipe    = imageWrapper.querySelector( 'a' ),
 		photoSwipeSrc = photoSwipe ? photoSwipe.getAttribute( 'href' ) : '',

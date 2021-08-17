@@ -248,12 +248,39 @@ $wp_customize->add_control(
 			'label'      => __( 'Product Images', 'woostify' ),
 			'section'    => 'woostify_shop_single',
 			'dependency' => array(
+				'woostify_setting[shop_single_product_gallery_layout_select]',
 				'woostify_setting[shop_single_gallery_layout]',
 				'woostify_setting[shop_single_image_load]',
 				'woostify_setting[shop_single_image_zoom]',
 				'woostify_setting[shop_single_image_lightbox]',
 				'woostify_setting[shop_single_product_sticky_top_space]',
 				'woostify_setting[shop_single_product_sticky_bottom_space]',
+			),
+		)
+	)
+);
+
+// Related columns.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_gallery_layout_select]',
+	array(
+		'default'           => $defaults['shop_single_product_gallery_layout_select'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_gallery_layout_select]',
+		array(
+			'label'    => __( 'Columns', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_gallery_layout_select]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'select',
+			'choices'  => array(
+				'default' => 'Woocommerce Default',
+				'theme'   => 'Woostify Theme',
 			),
 		)
 	)
