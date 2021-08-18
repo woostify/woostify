@@ -279,8 +279,8 @@ $wp_customize->add_control(
 			'section'  => 'woostify_shop_single',
 			'type'     => 'select',
 			'choices'  => array(
-				'default' => _( 'Woocommerce Default', 'woostify' ),
-				'theme'   => _( 'Theme', 'woostify' ),
+				'default' => __( 'Woocommerce Default', 'woostify' ),
+				'theme'   => __( 'Theme', 'woostify' ),
 			),
 		)
 	)
