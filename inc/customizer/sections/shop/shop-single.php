@@ -260,7 +260,7 @@ $wp_customize->add_control(
 	)
 );
 
-// Related columns.
+// Gallery Style.
 $wp_customize->add_setting(
 	'woostify_setting[shop_single_product_gallery_layout_select]',
 	array(
@@ -274,13 +274,13 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_single_product_gallery_layout_select]',
 		array(
-			'label'    => __( 'Columns', 'woostify' ),
+			'label'    => __( 'Gallery Style', 'woostify' ),
 			'settings' => 'woostify_setting[shop_single_product_gallery_layout_select]',
 			'section'  => 'woostify_shop_single',
 			'type'     => 'select',
 			'choices'  => array(
-				'default' => 'Woocommerce Default',
-				'theme'   => 'Woostify Theme',
+				'default' => _( 'Woocommerce Default', 'woostify' ),
+				'theme'   => _( 'Theme', 'woostify' ),
 			),
 		)
 	)
