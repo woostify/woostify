@@ -166,12 +166,16 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'init', array( $this, 'free_shipping_threshold' ) );
 		}
 
+		/**
+		 * Free Shipping Threshold
+		 */
 		public function free_shipping_threshold() {
 			$options                              = woostify_options( false );
 			$mini_cart_enabled_shipping_threshold = $options['mini_cart_show_shipping_threshold'];
 
 			if ( $mini_cart_enabled_shipping_threshold ) {
-				add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woostify_woocommerce_shipping_threshold', 5 );
+				$pos = $options['mini_cart_fst_position'];
+				add_action( $pos, 'woostify_woocommerce_shipping_threshold', 5 );
 			}
 		}
 

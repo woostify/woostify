@@ -197,14 +197,49 @@ $media: 599px;
     }
 
 	&.has-fst {
-		@include calc(height, '100% - 255px');
+		@include calc(height, '100% - 248px');
 
 		@media ( max-width: $media ) {
-			@include calc(height, '100% - 205px');
+			@include calc(height, '100% - 198px');
+		}
+
+		&.has-fst-top {
+			margin-top: 48px;
+			@include calc(height, '100% - 258px');
+
+			@media ( max-width: $media ) {
+				@include calc(height, '100% - 208px');
+			}
+
+			&.has-fst-progress-bar {
+				margin-top: 65px;
+				@include calc(height, '100% - 275px');
+
+				@media ( max-width: $media ) {
+					@include calc(height, '100% - 225px');
+				}
+			}
+
+			.free-shipping-progress-bar {
+				position: absolute;
+				top: 80px;
+				left: 30px;
+				right: 30px;
+
+				@media ( max-width: $media ) {
+					top: 60px;
+					left: 15px;
+					right: 15px;
+				}
+			}
 		}
 
 		&.has-fst-progress-bar {
+			@include calc(height, '100% - 265px');
 
+			@media ( max-width: $media ) {
+				@include calc(height, '100% - 215px');
+			}
 		}
 	}
 

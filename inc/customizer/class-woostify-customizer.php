@@ -444,6 +444,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shipping_threshold_enable_confetti_effect' => true,
 				// MINI CART.
 				'mini_cart_show_shipping_threshold'        => false,
+				'mini_cart_fst_position'                   => 'woocommerce_widget_shopping_cart_before_buttons',
 				// CHECKOUT PAGE.
 				'checkout_distraction_free'                => false,
 				'checkout_multi_step'                      => false,

@@ -749,10 +749,18 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 		// Cart sidebar.
 		$show_fst_on_mini_cart      = $options['mini_cart_show_shipping_threshold'];
 		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
+		$fst_pos                    = $options['mini_cart_fst_position'];
 		$enable_progress_bar        = $options['shipping_threshold_enable_progress_bar'];
 		$cart_clss                  = array();
+
+		if ( WC()->cart->is_empty() ) {
+			$cart_clss[] = 'is-cart-empty';
+		}
 		if ( $show_fst_on_mini_cart && $enabled_shipping_threshold ) {
 			$cart_clss[] = 'has-fst';
+			if ( 'woocommerce_before_mini_cart' === $fst_pos ) {
+				$cart_clss[] = 'has-fst-top';
+			}
 			if ( $enable_progress_bar ) {
 				$cart_clss[] = 'has-fst-progress-bar';
 			}
