@@ -364,12 +364,17 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 			</div>
 			<?php
 		} else {
+			$options       = woostify_options( false );
+			$empty_msg     = $options['mini_cart_empty_message'];
+			$enable_button = $options['mini_cart_empty_enable_button'];
 			?>
 			<div class="woocommerce-mini-cart__empty-message">
 				<div class="woostify-empty-cart">
 					<div class="message-icon"><?php echo woostify_fetch_svg_icon( 'shopping-cart' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-					<p class="message-text"><?php esc_html_e( 'No products in the cart.', 'woostify' ); ?></p>
-					<a class="button continue-shopping" href="<?php echo esc_url( get_permalink( woocommerce_get_page_id( 'shop' ) ) ); ?>"><?php esc_html_e( 'Continue Shopping', 'woostify' ); ?></a>
+					<p class="message-text"><?php echo esc_html( $empty_msg ); ?></p>
+					<?php if ( $enable_button ) { ?>
+						<a class="button continue-shopping" href="<?php echo esc_url( get_permalink( woocommerce_get_page_id( 'shop' ) ) ); ?>"><?php esc_html_e( 'Continue Shopping', 'woostify' ); ?></a>
+					<?php } ?>
 				</div>
 			</div>
 			<?php

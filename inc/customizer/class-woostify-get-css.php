@@ -1213,6 +1213,12 @@ class Woostify_Get_CSS {
 			';
 		}
 
+		// Mini cart.
+		$mini_cart_bg = $options['mini_cart_background_color'];
+		$styles      .= '#shop-cart-sidebar {
+			background-color: ' . $mini_cart_bg . ';
+		}';
+
 		// Custom.
 		$social_list = woostify_get_social_icon_list();
 		if ( ! empty( $social_list ) ) {

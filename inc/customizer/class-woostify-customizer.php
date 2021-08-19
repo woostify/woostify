@@ -443,8 +443,11 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shipping_threshold_progress_bar_success_color' => '#67bb67',
 				'shipping_threshold_enable_confetti_effect' => true,
 				// MINI CART.
+				'mini_cart_background_color'               => '#fff',
 				'mini_cart_show_shipping_threshold'        => false,
 				'mini_cart_fst_position'                   => 'woocommerce_widget_shopping_cart_before_buttons',
+				'mini_cart_empty_message'                  => 'No products in the cart.',
+				'mini_cart_empty_enable_button'            => true,
 				// CHECKOUT PAGE.
 				'checkout_distraction_free'                => false,
 				'checkout_multi_step'                      => false,
