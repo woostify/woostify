@@ -1013,6 +1013,10 @@ $size: 40px;
 }
 
 .free-shipping-progress-bar {
+
+	&[data-progress='0'] {
+		display: none;
+	}
 	margin-top: 10px;
 	.progress-bar-message {
 		text-align: center;

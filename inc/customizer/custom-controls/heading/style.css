@@ -1,8 +1,20 @@
 .customize-control.customize-control-woostify-heading {
-	border-bottom: 1px solid #fff;
+	margin-bottom: 15px !important;
+}
+
+.woostify-heading-control {
+	position: relative;
 	padding: 5px 0;
 	font-weight: 600;
 	font-size: 14px;
-	margin-bottom: 15px !important;
 	text-transform: uppercase;
+}
+.woostify-heading-control:after {
+	content: '';
+	display: block;
+	position: absolute;
+	height: 2px;
+	background: #2271b1;
+	width: 30px;
+	bottom: 0;
 }

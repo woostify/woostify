@@ -6431,6 +6431,10 @@ header.elementor-element {
   margin-top: 10px;
 }
 
+.free-shipping-progress-bar[data-progress='0'] {
+  display: none;
+}
+
 .free-shipping-progress-bar .progress-bar-message {
   text-align: center;
 }
@@ -8063,6 +8067,18 @@ header.elementor-element {
     height: -webkit-calc( 100% - 160px);
     height: calc( 100% - 160px);
   }
+}
+
+.cart-sidebar-content.is-cart-empty.has-fst {
+  margin-top: 0;
+}
+
+.cart-sidebar-content.is-cart-empty.has-fst.has-fst-top {
+  margin-top: 0;
+}
+
+.cart-sidebar-content.is-cart-empty.has-fst.has-fst-top.has-fst-progress-bar {
+  margin-top: 0;
 }
 
 .cart-sidebar-content.has-fst {

@@ -196,6 +196,18 @@ $media: 599px;
         @include calc(height, '100% - 160px');
     }
 
+	&.is-cart-empty {
+		&.has-fst {
+			margin-top: 0;
+			&.has-fst-top {
+				margin-top: 0;
+				&.has-fst-progress-bar {
+					margin-top: 0;
+				}
+			}
+		}
+	}
+
 	&.has-fst {
 		@include calc(height, '100% - 248px');
 

@@ -170,13 +170,26 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		 * Free Shipping Threshold
 		 */
 		public function free_shipping_threshold() {
-			$options                              = woostify_options( false );
-			$mini_cart_enabled_shipping_threshold = $options['mini_cart_show_shipping_threshold'];
+			$options = woostify_options( false );
 
-			if ( $mini_cart_enabled_shipping_threshold ) {
-				$pos = $options['mini_cart_fst_position'];
-				add_action( $pos, 'woostify_woocommerce_shipping_threshold', 5 );
+			// mini cart.
+			$top_content = $options['mini_cart_top_content_select'];
+			if ( 'fst' === $top_content ) {
+				add_action( 'woocommerce_before_mini_cart', 'woostify_woocommerce_shipping_threshold', 5 );
 			}
+			if ( 'custom_html' === $top_content ) {
+				add_action( 'woocommerce_before_mini_cart', array( $this, 'mini_cart_top_content_load_custom_html' ), 5 );
+			}
+		}
+
+		/**
+		 * Mini cart top content load custom html
+		 */
+		public function mini_cart_top_content_load_custom_html() {
+			$options     = woostify_options( false );
+			$custom_html = $options['mini_cart_top_content_custom_html'];
+
+			echo do_shortcode( $custom_html );
 		}
 
 		/**
@@ -291,15 +304,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// Confetti effect.
-			$mini_cart_enabled_shipping_threshold = $options['mini_cart_show_shipping_threshold'];
-			$enabled_shipping_threshold           = $options['shipping_threshold_enabled'];
-			$enabled_shipping_threshold_effect    = $options['shipping_threshold_enable_confetti_effect'];
-			$shipping_threshold_script_var        = array(
-				'enabled_on_mini_cart'              => $mini_cart_enabled_shipping_threshold,
+			$top_content                       = $options['mini_cart_top_content_select'];
+			$enabled_shipping_threshold        = $options['shipping_threshold_enabled'];
+			$enabled_shipping_threshold_effect = $options['shipping_threshold_enable_confetti_effect'];
+			$shipping_threshold_script_var     = array(
+				'enabled_on_mini_cart'              => ( 'fst' === $top_content ) ? true : false,
 				'enabled_shipping_threshold'        => $enabled_shipping_threshold,
 				'enabled_shipping_threshold_effect' => $enabled_shipping_threshold_effect,
 			);
-			if ( $mini_cart_enabled_shipping_threshold ) {
+			if ( 'fst' === $top_content ) {
 				if ( $enabled_shipping_threshold && $enabled_shipping_threshold_effect ) {
 					wp_enqueue_script( 'woostify-congrats-confetti-effect' );
 				}
