@@ -321,6 +321,14 @@
 					],
 				)
 
+				// Infinite product loading
+				condition(
+					'woostify_setting[shop_page_infinite_scroll_enable]',
+					[
+						'woostify_setting[shop_page_infinite_scroll_type]',
+					],
+				)
+
 				// PAGE HEADER
 				// Enable page header.
 				condition(
@@ -471,8 +479,22 @@
 					false,
 				)
 
-				// Gallery layout.
+				// Gallery select layout.
 				condition(
+					'woostify_setting[shop_single_product_gallery_layout_select]',
+					[
+						'woostify_setting[shop_single_gallery_layout]',
+						'woostify_setting[shop_single_image_load]',
+						'woostify_setting[shop_single_image_zoom]',
+						'woostify_setting[shop_single_image_lightbox]',
+						'woostify_setting[shop_single_product_sticky_top_space]',
+						'woostify_setting[shop_single_product_sticky_bottom_space]',
+					],
+					'theme',
+					true,
+				)
+
+				subCondition(
 					'woostify_setting[shop_single_gallery_layout]',
 					[
 						'woostify_setting[shop_single_product_sticky_top_space]',
@@ -480,7 +502,22 @@
 					],
 					'column',
 					true,
+					[
+						'woostify_setting[shop_single_product_gallery_layout_select]',
+						'theme',
+					],
 				)
+
+				// Gallery layout.
+				// condition(
+				// 	'woostify_setting[shop_single_gallery_layout]',
+				// 	[
+				// 		'woostify_setting[shop_single_product_sticky_top_space]',
+				// 		'woostify_setting[shop_single_product_sticky_bottom_space]',
+				// 	],
+				// 	'column',
+				// 	true,
+				// )
 
 				// Product Single Button Add To Cart.
 				condition(

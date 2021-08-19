@@ -245,6 +245,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_page_breadcrumb'                     => true,
 				'shop_page_result_count'                   => true,
 				'shop_page_product_filter'                 => true,
+				// Infinite scroll
+				'shop_page_infinite_scroll_enable'         => false,
+				'shop_page_infinite_scroll_type'           => 'button',
 				// Product catalog.
 				'products_per_row'                         => 3,
 				'tablet_products_per_row'                  => 2,
@@ -306,6 +309,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_additional_information'       => true,
 				'shop_single_content_background'           => '#f3f3f3',
 				'shop_single_trust_badge_image'            => '',
+				'shop_single_product_gallery_layout_select' => 'theme',
 				'shop_single_gallery_layout'               => 'vertical',
 				'shop_single_image_load'                   => true,
 				'shop_single_image_zoom'                   => true,
