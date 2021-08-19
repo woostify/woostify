@@ -360,14 +360,32 @@ var woostifyQuantityMiniCart = function() {
 
 var updateHeaderCartPrice = function () {
 	var total                    = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
-		headerCartPriceContainer = document.querySelectorAll( '.woostify-header-total-price' ),
-		currencySymbol           = document.querySelector( '.woostify-header-total-price .woocommerce-Price-currencySymbol, .boostify-subtotal .woocommerce-Price-currencySymbol' );
+		priceFormat              = '',
+		headerCartPriceContainer = document.querySelectorAll( '.woostify-header-total-price' );
+
 	if ( headerCartPriceContainer.length ) {
+		switch ( woostify_woocommerce_general.currency_pos ) {
+			case 'left':
+				priceFormat = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">' + woostify_woocommerce_general.currency_symbol + '</span>0</bdi></span>';
+				break;
+			case 'right':
+				priceFormat = '<span class="woocommerce-Price-amount amount"><bdi>0<span class="woocommerce-Price-currencySymbol">' + woostify_woocommerce_general.currency_symbol + '</span></bdi></span>';
+				break;
+			case 'left_space':
+				priceFormat = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">' + woostify_woocommerce_general.currency_symbol + '</span>&nbsp;0</bdi></span>';
+				break;
+			case 'right_space':
+				priceFormat = '<span class="woocommerce-Price-amount amount"><bdi>0&nbsp;<span class="woocommerce-Price-currencySymbol">' + woostify_woocommerce_general.currency_symbol + '</span></bdi></span>';
+				break;
+
+			default:
+				break;
+		}
 		for ( var si = 0, sc = headerCartPriceContainer.length; si < sc; si++ ) {
 			if (total) {
 				headerCartPriceContainer[si].innerHTML = '<span class="woocommerce-Price-amount amount">' + total.innerHTML + '</span>';
 			} else {
-				headerCartPriceContainer[si].innerHTML = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">' + currencySymbol.innerHTML + '</span>0</bdi></span>';
+				headerCartPriceContainer[si].innerHTML = priceFormat;
 			}
 		}
 	}

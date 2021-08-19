@@ -5072,6 +5072,10 @@ article p:last-child {
   display: none;
 }
 
+.site-tools .woostify-header-total-price.hide-zero-val.hide {
+  display: none;
+}
+
 .my-account {
   position: relative;
 }

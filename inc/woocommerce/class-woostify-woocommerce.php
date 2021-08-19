@@ -367,6 +367,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'shipping_next'       => __( 'Calculated at next step', 'woostify' ),
 					'sticky_top_space'    => $options['shop_single_product_sticky_top_space'],
 					'sticky_bottom_space' => $options['shop_single_product_sticky_bottom_space'],
+					'currency_symbol'     => get_woocommerce_currency_symbol(),
+					'currency_pos'        => get_option( 'woocommerce_currency_pos' ),
 				)
 			);
 

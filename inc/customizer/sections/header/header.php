@@ -307,9 +307,32 @@ if ( class_exists( 'woocommerce' ) ) {
 			'woostify_setting[header_shop_hide_zero_value_cart_count]',
 			array(
 				'priority' => 170,
-				'label'    => __( 'Hide Zero Value', 'woostify' ),
+				'label'    => __( 'Hide Cart Count When Zero', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_shop_hide_zero_value_cart_count]',
+			)
+		)
+	);
+
+	// Hide zero value cart subtotal.
+	$wp_customize->add_setting(
+		'woostify_setting[header_shop_hide_zero_value_cart_subtotal]',
+		array(
+			'type'              => 'option',
+			'default'           => $defaults['header_shop_hide_zero_value_cart_subtotal'],
+			'sanitize_callback' => 'woostify_sanitize_checkbox',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		new Woostify_Switch_Control(
+			$wp_customize,
+			'woostify_setting[header_shop_hide_zero_value_cart_subtotal]',
+			array(
+				'priority' => 195,
+				'label'    => __( 'Hide Cart Subtotal When Zero', 'woostify' ),
+				'section'  => 'woostify_header',
+				'settings' => 'woostify_setting[header_shop_hide_zero_value_cart_subtotal]',
 			)
 		)
 	);

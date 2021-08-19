@@ -635,14 +635,21 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 		$mini_cart = ob_get_clean();
 
 		// Cart item count.
-		$header_cart_count_class = array();
+		$header_cart_count_classes = array();
+		$cart_subtotal_classes     = array();
 		if ( $options['header_shop_hide_zero_value_cart_count'] ) {
-			array_push( $header_cart_count_class, 'hide-zero-val' );
+			$header_cart_count_classes[] = 'hide-zero-val';
+		}
+		if ( $options['header_shop_hide_zero_value_cart_subtotal'] ) {
+			$cart_subtotal_classes[] = 'hide-zero-val';
 		}
 		if ( $cart_item_count < 1 ) {
-			array_push( $header_cart_count_class, 'hide' );
+			$header_cart_count_classes[] = 'hide';
+			$cart_subtotal_classes[]     = 'hide';
 		}
-		$fragments['span.shop-cart-count'] = sprintf( '<span class="shop-cart-count %s">%s</span>', implode( ' ', $header_cart_count_class ), $cart_item_count );
+		$fragments['div.woostify-header-total-price'] = sprintf( '<div class="woostify-header-total-price %s">%s</div>', implode( ' ', $cart_subtotal_classes ), WC()->cart->get_cart_subtotal() );
+
+		$fragments['span.shop-cart-count'] = sprintf( '<span class="shop-cart-count %s">%s</span>', implode( ' ', $header_cart_count_classes ), $cart_item_count );
 
 		// Cart sidebar.
 		$fragments['div.cart-sidebar-content'] = sprintf( '<div class="cart-sidebar-content">%s</div>', $mini_cart );
