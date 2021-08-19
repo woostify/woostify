@@ -12,6 +12,29 @@ if ( ! woostify_is_woocommerce_activated() ) {
 // Default values.
 $defaults = woostify_options();
 
+// Tabs.
+$wp_customize->add_setting(
+	'woostify_setting[shipping_threshold_context_tabs]',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[shipping_threshold_context_tabs]',
+		array(
+			'section'  => 'woostify_shipping_threshold',
+			'settings' => 'woostify_setting[shipping_threshold_context_tabs]',
+			'choices'  => array(
+				'general' => __( 'General', 'woostify' ),
+				'design'  => __( 'Design', 'woostify' ),
+			),
+		)
+	)
+);
+
 // Enable shipping threshold.
 $wp_customize->add_setting(
 	'woostify_setting[shipping_threshold_enabled]',
@@ -29,6 +52,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Enable Shipping Threshold', 'woostify' ),
 			'section'  => 'woostify_shipping_threshold',
 			'settings' => 'woostify_setting[shipping_threshold_enabled]',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -52,6 +76,7 @@ $wp_customize->add_control(
 			'type'        => 'number',
 			'section'     => 'woostify_shipping_threshold',
 			'settings'    => 'woostify_setting[shipping_threshold_progress_bar_amount]',
+			'tab'         => 'general',
 		)
 	)
 );
@@ -75,6 +100,7 @@ $wp_customize->add_control(
 			'type'        => 'textarea',
 			'section'     => 'woostify_shipping_threshold',
 			'settings'    => 'woostify_setting[shipping_threshold_progress_bar_initial_msg]',
+			'tab'         => 'general',
 		)
 	)
 );
@@ -98,6 +124,7 @@ $wp_customize->add_control(
 			'type'        => 'textarea',
 			'section'     => 'woostify_shipping_threshold',
 			'settings'    => 'woostify_setting[shipping_threshold_progress_bar_success_msg]',
+			'tab'         => 'general',
 		)
 	)
 );
@@ -120,6 +147,7 @@ $wp_customize->add_control(
 			'description' => __( 'Show confetti effect when reach to 100%', 'woostify' ),
 			'section'     => 'woostify_shipping_threshold',
 			'settings'    => 'woostify_setting[shipping_threshold_enable_confetti_effect]',
+			'tab'         => 'general',
 		)
 	)
 );
@@ -141,6 +169,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Enable Progress Bar', 'woostify' ),
 			'section'  => 'woostify_shipping_threshold',
 			'settings' => 'woostify_setting[shipping_threshold_enable_progress_bar]',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -166,6 +195,7 @@ $wp_customize->add_control(
 			'settings' => array(
 				'woostify_setting[shipping_threshold_progress_bar_color]',
 			),
+			'tab'      => 'design',
 		)
 	)
 );
@@ -191,6 +221,7 @@ $wp_customize->add_control(
 			'settings' => array(
 				'woostify_setting[shipping_threshold_progress_bar_success_color]',
 			),
+			'tab'      => 'design',
 		)
 	)
 );

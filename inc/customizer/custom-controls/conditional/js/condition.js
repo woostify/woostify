@@ -329,6 +329,7 @@
 						'woostify_setting[shipping_threshold_progress_bar_success_msg]',
 						'woostify_setting[shipping_threshold_progress_bar_color]',
 						'woostify_setting[shipping_threshold_progress_bar_success_color]',
+						'woostify_setting[shipping_threshold_enable_confetti_effect]',
 					],
 				)
 				subCondition(

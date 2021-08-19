@@ -27,6 +27,22 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			add_action( 'customize_save_after', array( $this, 'delete_cached_partials' ) );
 
 			add_action( 'wp_ajax_woostify_regenerate_fonts_folder', array( $this, 'regenerate_woostify_fonts_folder' ) );
+
+			add_filter( 'woostify_setting_mini_cart_top_content_choices', array( $this, 'update_mini_cart_top_content_select' ) );
+		}
+
+		/**
+		 * Top content choices
+		 *
+		 * @param array $choices choices
+		 */
+		public function update_mini_cart_top_content_select( $choices ) {
+			$options     = woostify_options( false );
+			$enabled_fst = $options['shipping_threshold_enabled'];
+			if ( $enabled_fst ) {
+				$choices['fst'] = __( 'Free Shipping Threshold', 'woostify' );
+			}
+			return $choices;
 		}
 
 		/**
@@ -448,6 +464,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'mini_cart_fst_position'                   => 'woocommerce_widget_shopping_cart_before_buttons',
 				'mini_cart_empty_message'                  => 'No products in the cart.',
 				'mini_cart_empty_enable_button'            => true,
+				'mini_cart_top_content_select'             => 'none',
 				// CHECKOUT PAGE.
 				'checkout_distraction_free'                => false,
 				'checkout_multi_step'                      => false,
@@ -515,6 +532,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 			// Register Control Type - Register for controls has content_template function.
 			if ( method_exists( $wp_customize, 'register_control_type' ) ) {
+				$wp_customize->register_control_type( 'Woostify_Heading_Control' );
 				$wp_customize->register_control_type( 'Woostify_Section_Control' );
 				$wp_customize->register_control_type( 'Woostify_Color_Control' );
 				$wp_customize->register_control_type( 'Woostify_Typography_Control' );

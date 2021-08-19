@@ -12,6 +12,24 @@ if ( ! woostify_is_woocommerce_activated() ) {
 // Default values.
 $defaults = woostify_options();
 
+// General heading.
+$wp_customize->add_setting(
+	'mini_cart_general_heading',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Heading_Control(
+		$wp_customize,
+		'mini_cart_general_heading',
+		array(
+			'label'   => __( 'GENERAL', 'woostify' ),
+			'section' => 'woostify_mini_cart',
+		)
+	)
+);
+
 // Background color.
 $wp_customize->add_setting(
 	'woostify_setting[mini_cart_background_color]',
@@ -36,54 +54,29 @@ $wp_customize->add_control(
 	)
 );
 
-// FREE SHIPPING THRESHOLD SECTION.
+// TOP CONTENT.
 $wp_customize->add_setting(
-	'mini_cart_fst_section',
+	'mini_cart_top_content_heading',
 	array(
 		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Section_Control(
+	new Woostify_Heading_Control(
 		$wp_customize,
-		'mini_cart_fst_section',
+		'mini_cart_top_content_heading',
 		array(
-			'label'      => __( 'Free shipping threshold', 'woostify' ),
-			'section'    => 'woostify_mini_cart',
-			'dependency' => array(
-				'woostify_setting[mini_cart_show_shipping_threshold]',
-				'woostify_setting[mini_cart_fst_position]',
-			),
+			'label'   => __( 'Top content', 'woostify' ),
+			'section' => 'woostify_mini_cart',
 		)
 	)
 );
 
-// Show free shipping threshold.
+// Select content.
 $wp_customize->add_setting(
-	'woostify_setting[mini_cart_show_shipping_threshold]',
+	'woostify_setting[mini_cart_top_content_select]',
 	array(
-		'type'              => 'option',
-		'default'           => $defaults['mini_cart_show_shipping_threshold'],
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Switch_Control(
-		$wp_customize,
-		'woostify_setting[mini_cart_show_shipping_threshold]',
-		array(
-			'label'    => __( 'Enable', 'woostify' ),
-			'section'  => 'woostify_mini_cart',
-			'settings' => 'woostify_setting[mini_cart_show_shipping_threshold]',
-		)
-	)
-);
-
-// Free Shipping Threshold position.
-$wp_customize->add_setting(
-	'woostify_setting[mini_cart_fst_position]',
-	array(
-		'default'           => $defaults['mini_cart_fst_position'],
+		'default'           => $defaults['mini_cart_top_content_select'],
 		'type'              => 'option',
 		'sanitize_callback' => 'woostify_sanitize_choices',
 	)
@@ -91,18 +84,17 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new WP_Customize_Control(
 		$wp_customize,
-		'woostify_setting[mini_cart_fst_position]',
+		'woostify_setting[mini_cart_top_content_select]',
 		array(
-			'label'    => __( 'Position', 'woostify' ),
-			'settings' => 'woostify_setting[mini_cart_fst_position]',
+			'label'    => __( 'Select Content', 'woostify' ),
+			'settings' => 'woostify_setting[mini_cart_top_content_select]',
 			'section'  => 'woostify_mini_cart',
 			'type'     => 'select',
 			'choices'  => apply_filters(
-				'woostify_setting_mini_cart_fst_position_choices',
+				'woostify_setting_mini_cart_top_content_choices',
 				array(
-					'woocommerce_before_mini_cart' => __( 'After Header', 'woostify' ),
-					'woocommerce_widget_shopping_cart_before_buttons' => __( 'Before Buttons', 'woostify' ),
-					'woocommerce_widget_shopping_cart_after_buttons' => __( 'After Buttons', 'woostify' ),
+					''            => __( 'None', 'woostify' ),
+					'custom_html' => __( 'Custom HTML', 'woostify' ),
 				)
 			),
 		)
@@ -111,26 +103,23 @@ $wp_customize->add_control(
 
 // EMPTY CART.
 $wp_customize->add_setting(
-	'mini_cart_empty',
+	'mini_cart_empty_heading',
 	array(
 		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Section_Control(
+	new Woostify_Heading_Control(
 		$wp_customize,
-		'mini_cart_empty',
+		'mini_cart_empty_heading',
 		array(
-			'label'      => __( 'Empty cart', 'woostify' ),
-			'section'    => 'woostify_mini_cart',
-			'dependency' => array(
-				'woostify_setting[mini_cart_empty_message]',
-				'woostify_setting[mini_cart_empty_enable_button]',
-			),
+			'label'   => __( 'EMPTY CART', 'woostify' ),
+			'section' => 'woostify_mini_cart',
 		)
 	)
 );
 
+// Empty cart message.
 $wp_customize->add_setting(
 	'woostify_setting[mini_cart_empty_message]',
 	array(
