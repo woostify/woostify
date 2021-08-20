@@ -28,7 +28,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 			add_action( 'wp_ajax_woostify_regenerate_fonts_folder', array( $this, 'regenerate_woostify_fonts_folder' ) );
 
-			add_filter( 'woostify_setting_mini_cart_top_content_choices', array( $this, 'update_mini_cart_top_content_select' ) );
+			add_filter( 'woostify_setting_mini_cart_content_choices', array( $this, 'update_mini_cart_content_select' ) );
 		}
 
 		/**
@@ -36,7 +36,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 *
 		 * @param array $choices choices
 		 */
-		public function update_mini_cart_top_content_select( $choices ) {
+		public function update_mini_cart_content_select( $choices ) {
 			$options     = woostify_options( false );
 			$enabled_fst = $options['shipping_threshold_enabled'];
 			if ( $enabled_fst ) {
@@ -464,6 +464,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'mini_cart_empty_enable_button'            => true,
 				'mini_cart_top_content_select'             => '',
 				'mini_cart_top_content_custom_html'        => '',
+				'mini_cart_before_checkout_button_content_select' => '',
+				'mini_cart_before_checkout_button_content_custom_html' => '',
+				'mini_cart_after_checkout_button_content_select' => '',
+				'mini_cart_after_checkout_button_content_custom_html' => '',
 				// CHECKOUT PAGE.
 				'checkout_distraction_free'                => false,
 				'checkout_multi_step'                      => false,

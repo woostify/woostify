@@ -91,7 +91,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_mini_cart',
 			'type'     => 'select',
 			'choices'  => apply_filters(
-				'woostify_setting_mini_cart_top_content_choices',
+				'woostify_setting_mini_cart_content_choices',
 				array(
 					''            => __( 'None', 'woostify' ),
 					'custom_html' => __( 'Custom HTML', 'woostify' ),
@@ -117,6 +117,144 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Custom HTML', 'woostify' ),
 			'settings' => 'woostify_setting[mini_cart_top_content_custom_html]',
+			'section'  => 'woostify_mini_cart',
+			'type'     => 'textarea',
+		)
+	)
+);
+
+// BEFORE CHECKOUT BUTTON CONTENT.
+$wp_customize->add_setting(
+	'mini_cart_before_checkout_button_content_heading',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Heading_Control(
+		$wp_customize,
+		'mini_cart_before_checkout_button_content_heading',
+		array(
+			'label'   => __( 'Before Checkout button content', 'woostify' ),
+			'section' => 'woostify_mini_cart',
+		)
+	)
+);
+
+// Select content.
+$wp_customize->add_setting(
+	'woostify_setting[mini_cart_before_checkout_button_content_select]',
+	array(
+		'default'           => $defaults['mini_cart_before_checkout_button_content_select'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[mini_cart_before_checkout_button_content_select]',
+		array(
+			'label'    => __( 'Select Content', 'woostify' ),
+			'settings' => 'woostify_setting[mini_cart_before_checkout_button_content_select]',
+			'section'  => 'woostify_mini_cart',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_mini_cart_content_choices',
+				array(
+					''            => __( 'None', 'woostify' ),
+					'custom_html' => __( 'Custom HTML', 'woostify' ),
+				)
+			),
+		)
+	)
+);
+
+// Before checkout button Content Custom HTML.
+$wp_customize->add_setting(
+	'woostify_setting[mini_cart_before_checkout_button_content_custom_html]',
+	array(
+		'default'           => $defaults['mini_cart_before_checkout_button_content_custom_html'],
+		'type'              => 'option',
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[mini_cart_before_checkout_button_content_custom_html]',
+		array(
+			'label'    => __( 'Custom HTML', 'woostify' ),
+			'settings' => 'woostify_setting[mini_cart_before_checkout_button_content_custom_html]',
+			'section'  => 'woostify_mini_cart',
+			'type'     => 'textarea',
+		)
+	)
+);
+
+// AFTER CHECKOUT BUTTON CONTENT.
+$wp_customize->add_setting(
+	'mini_cart_after_checkout_button_content_heading',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Heading_Control(
+		$wp_customize,
+		'mini_cart_after_checkout_button_content_heading',
+		array(
+			'label'   => __( 'After Checkout button content', 'woostify' ),
+			'section' => 'woostify_mini_cart',
+		)
+	)
+);
+
+// Select content.
+$wp_customize->add_setting(
+	'woostify_setting[mini_cart_after_checkout_button_content_select]',
+	array(
+		'default'           => $defaults['mini_cart_after_checkout_button_content_select'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[mini_cart_after_checkout_button_content_select]',
+		array(
+			'label'    => __( 'Select Content', 'woostify' ),
+			'settings' => 'woostify_setting[mini_cart_after_checkout_button_content_select]',
+			'section'  => 'woostify_mini_cart',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_mini_cart_content_choices',
+				array(
+					''            => __( 'None', 'woostify' ),
+					'custom_html' => __( 'Custom HTML', 'woostify' ),
+				)
+			),
+		)
+	)
+);
+
+// After checkout button Content Custom HTML.
+$wp_customize->add_setting(
+	'woostify_setting[mini_cart_before_checkout_button_content_custom_html]',
+	array(
+		'default'           => $defaults['mini_cart_before_checkout_button_content_custom_html'],
+		'type'              => 'option',
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[mini_cart_before_checkout_button_content_custom_html]',
+		array(
+			'label'    => __( 'Custom HTML', 'woostify' ),
+			'settings' => 'woostify_setting[mini_cart_before_checkout_button_content_custom_html]',
 			'section'  => 'woostify_mini_cart',
 			'type'     => 'textarea',
 		)

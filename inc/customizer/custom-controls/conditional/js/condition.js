@@ -591,6 +591,14 @@
 					'custom_html',
 					true,
 				)
+				condition(
+					'woostify_setting[mini_cart_before_checkout_button_content_select]',
+					[
+						'woostify_setting[mini_cart_before_checkout_button_content_custom_html]',
+					],
+					'custom_html',
+					true,
+				)
 
 				// And trigger if parent control update.
 				hideTabLayout( 'woostify_setting[sticky_footer_bar_enable]', 'woostify_setting[sticky_footer_bar_context_tabs]' )
