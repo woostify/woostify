@@ -582,6 +582,16 @@
 					],
 				)
 
+				// Mini cart.
+				condition(
+					'woostify_setting[mini_cart_top_content_select]',
+					[
+						'woostify_setting[mini_cart_top_content_custom_html]',
+					],
+					'custom_html',
+					true,
+				)
+
 				// And trigger if parent control update.
 				hideTabLayout( 'woostify_setting[sticky_footer_bar_enable]', 'woostify_setting[sticky_footer_bar_context_tabs]' )
 				hideTabLayout( 'woostify_setting[topbar_display]', 'woostify_setting[topbar_context_tabs]' )
@@ -589,6 +599,7 @@
 				hideTabLayout( 'woostify_setting[page_header_display]', 'woostify_setting[page_header_context_tabs]' )
 				hideTabLayout( 'woostify_setting[footer_display]', 'woostify_setting[footer_context_tabs]' )
 				hideTabLayout( 'woostify_setting[header_transparent]', 'woostify_setting[header_transparent_context_tabs]' )
+				hideTabLayout( 'woostify_setting[shipping_threshold_enabled]', 'woostify_setting[shipping_threshold_context_tabs]' )
 			},
 		)
 

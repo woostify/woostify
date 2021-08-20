@@ -463,7 +463,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'mini_cart_empty_message'                  => 'No products in the cart.',
 				'mini_cart_empty_enable_button'            => true,
 				'mini_cart_top_content_select'             => '',
-				'mini_cart_top_content_custom_html'             => '',
+				'mini_cart_top_content_custom_html'        => '',
 				// CHECKOUT PAGE.
 				'checkout_distraction_free'                => false,
 				'checkout_multi_step'                      => false,

@@ -396,6 +396,13 @@ if ( ! function_exists( 'woostify_woocommerce_shipping_threshold' ) ) {
 			return;
 		}
 
+		$top_content = $options['mini_cart_top_content_select'];
+		$classes     = array();
+
+		if ( 'fst' === $top_content ) {
+			$classes[] = 'pos-top';
+		}
+
 		$subtotal = WC()->cart->subtotal;
 
 		$goal_amount              = $options['shipping_threshold_progress_bar_amount'];
@@ -410,7 +417,7 @@ if ( ! function_exists( 'woostify_woocommerce_shipping_threshold' ) ) {
 		$percent = ( $subtotal / $goal_amount ) * 100;
 		$percent = $percent >= 100 ? 100 : round( $percent, 0 );
 		?>
-		<div class="free-shipping-progress-bar" data-progress="<?php echo esc_attr( $percent ); ?>">
+		<div class="free-shipping-progress-bar <?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-progress="<?php echo esc_attr( $percent ); ?>">
 			<div class="progress-bar-message"><?php echo $percent < 100 ? wp_kses_post( $progress_bar_initial_msg ) : wp_kses_post( $progress_bar_success_msg ); ?></div>
 			<?php if ( $enable_progress_bar ) { ?>
 				<div class="progress-bar-rail">
@@ -436,21 +443,7 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 			return;
 		}
 
-		$total                      = WC()->cart->cart_contents_count;
-		$options                    = woostify_options( false );
-		$top_content                = $options['mini_cart_top_content_select'];
-		$enable_progress_bar        = $options['shipping_threshold_enable_progress_bar'];
-		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
-		$cart_clss                  = array();
-		if ( ( 'fst' === $top_content ) && $enabled_shipping_threshold ) {
-			$cart_clss[] = 'has-fst';
-			if ( 'fst' === $top_content ) {
-				$cart_clss[] = 'has-fst-top';
-			}
-			if ( $enable_progress_bar ) {
-				$cart_clss[] = 'has-fst-progress-bar';
-			}
-		}
+		$total = WC()->cart->cart_contents_count;
 		?>
 			<div id="shop-cart-sidebar">
 				<div class="cart-sidebar-head">
@@ -461,7 +454,7 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 					</button>
 				</div>
 
-				<div class="cart-sidebar-content <?php echo esc_attr( implode( ' ', $cart_clss ) ); ?>">
+				<div class="cart-sidebar-content">
 					<?php woostify_mini_cart(); ?>
 				</div>
 			</div>

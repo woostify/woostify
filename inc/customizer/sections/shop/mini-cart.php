@@ -101,6 +101,28 @@ $wp_customize->add_control(
 	)
 );
 
+// Top Content Custom HTML.
+$wp_customize->add_setting(
+	'woostify_setting[mini_cart_top_content_custom_html]',
+	array(
+		'default'           => $defaults['mini_cart_top_content_custom_html'],
+		'type'              => 'option',
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[mini_cart_top_content_custom_html]',
+		array(
+			'label'    => __( 'Custom HTML', 'woostify' ),
+			'settings' => 'woostify_setting[mini_cart_top_content_custom_html]',
+			'section'  => 'woostify_mini_cart',
+			'type'     => 'textarea',
+		)
+	)
+);
+
 // EMPTY CART.
 $wp_customize->add_setting(
 	'mini_cart_empty_heading',

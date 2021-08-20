@@ -189,7 +189,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$options     = woostify_options( false );
 			$custom_html = $options['mini_cart_top_content_custom_html'];
 
+			echo '<div class="woostify-mini-cart-custom-html pos-top">';
 			echo do_shortcode( $custom_html );
+			echo '</div>';
 		}
 
 		/**
