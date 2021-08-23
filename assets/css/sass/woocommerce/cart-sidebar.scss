@@ -217,6 +217,10 @@ $media: 599px;
 				}
 			}
 		}
+
+		.woostify-mini-cart-custom-html {
+			display: none;
+		}
 	}
 
 	.woostify-mini-cart-custom-html {
@@ -224,8 +228,9 @@ $media: 599px;
 		-webkit-box-flex: 0;
 		flex: 0 0 auto;
 		width: auto;
-		&.pos-top {
-			margin: 10px 0;
+		margin: 10px 0;
+		&.pos-after-checkout {
+			margin-bottom: 0;
 		}
 	}
 

@@ -8088,15 +8088,20 @@ header.elementor-element {
   margin-top: 0;
 }
 
+.cart-sidebar-content.is-cart-empty .woostify-mini-cart-custom-html {
+  display: none;
+}
+
 .cart-sidebar-content .woostify-mini-cart-custom-html {
   -ms-flex: 0 0 auto;
   -webkit-box-flex: 0;
   flex: 0 0 auto;
   width: auto;
+  margin: 10px 0;
 }
 
-.cart-sidebar-content .woostify-mini-cart-custom-html.pos-top {
-  margin: 10px 0;
+.cart-sidebar-content .woostify-mini-cart-custom-html.pos-after-checkout {
+  margin-bottom: 0;
 }
 
 .cart-sidebar-content .woocommerce-mini-cart__total {

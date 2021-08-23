@@ -172,20 +172,62 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		public function free_shipping_threshold() {
 			$options = woostify_options( false );
 
-			// mini cart.
+			// MINI CART.
+			// Top content.
 			$top_content = $options['mini_cart_top_content_select'];
 			if ( 'fst' === $top_content ) {
 				add_action( 'woocommerce_before_mini_cart', 'woostify_woocommerce_shipping_threshold', 5 );
 			}
 			if ( 'custom_html' === $top_content ) {
-				add_action( 'woocommerce_before_mini_cart', array( $this, 'mini_cart_top_content_load_custom_html' ), 5 );
+				add_action( 'woocommerce_before_mini_cart', array( $this, 'mini_cart_load_custom_html' ), 5 );
+			}
+			// Before Checkout button.
+			$before_checkout_content = $options['mini_cart_before_checkout_button_content_select'];
+			if ( 'fst' === $before_checkout_content ) {
+				add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woostify_woocommerce_shipping_threshold', 5 );
+			}
+			if ( 'custom_html' === $before_checkout_content ) {
+				add_action( 'woocommerce_widget_shopping_cart_before_buttons', array( $this, 'mini_cart_load_custom_html' ), 5 );
+			}
+			// After Checkout button.
+			$after_checkout_content = $options['mini_cart_after_checkout_button_content_select'];
+			if ( 'fst' === $after_checkout_content ) {
+				add_action( 'woocommerce_widget_shopping_cart_after_buttons', 'woostify_woocommerce_shipping_threshold', 5 );
+			}
+			if ( 'custom_html' === $after_checkout_content ) {
+				add_action( 'woocommerce_widget_shopping_cart_after_buttons', array( $this, 'mini_cart_load_custom_html' ), 5 );
 			}
 		}
 
 		/**
 		 * Mini cart top content load custom html
 		 */
-		public function mini_cart_top_content_load_custom_html() {
+		public function mini_cart_load_custom_html( $position ) {
+			$options     = woostify_options( false );
+			$custom_html = '';
+			$pos         = '';
+			if ( 'woocommerce_before_mini_cart' === current_action() ) {
+				$pos         = 'pos-top';
+				$custom_html = $options['mini_cart_top_content_custom_html'];
+			}
+			if ( 'woocommerce_widget_shopping_cart_before_buttons' === current_action() ) {
+				$pos         = 'pos-before-checkout';
+				$custom_html = $options['mini_cart_before_checkout_button_content_custom_html'];
+			}
+			if ( 'woocommerce_widget_shopping_cart_after_buttons' === current_action() ) {
+				$pos         = 'pos-after-checkout';
+				$custom_html = $options['mini_cart_after_checkout_button_content_custom_html'];
+			}
+
+			echo '<div class="woostify-mini-cart-custom-html ' . esc_attr( $pos ) . '">';
+			echo do_shortcode( $custom_html );
+			echo '</div>';
+		}
+
+		/**
+		 * Mini cart before checkout button content load custom html
+		 */
+		public function mini_cart_before_checkout_button_content_load_custom_html() {
 			$options     = woostify_options( false );
 			$custom_html = $options['mini_cart_top_content_custom_html'];
 
