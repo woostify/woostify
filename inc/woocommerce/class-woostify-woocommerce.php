@@ -349,10 +349,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Confetti effect.
 			$top_content                       = $options['mini_cart_top_content_select'];
+			$before_checkout_content           = $options['mini_cart_before_checkout_button_content_select'];
+			$after_checkout_content            = $options['mini_cart_after_checkout_button_content_select'];
 			$enabled_shipping_threshold        = $options['shipping_threshold_enabled'];
 			$enabled_shipping_threshold_effect = $options['shipping_threshold_enable_confetti_effect'];
 			$shipping_threshold_script_var     = array(
-				'enabled_on_mini_cart'              => ( 'fst' === $top_content ) ? true : false,
+				'enabled_on_mini_cart'              => ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) ? true : false,
 				'enabled_shipping_threshold'        => $enabled_shipping_threshold,
 				'enabled_shipping_threshold_effect' => $enabled_shipping_threshold_effect,
 			);
