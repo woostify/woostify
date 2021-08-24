@@ -57,6 +57,51 @@ $wp_customize->add_control(
 	)
 );
 
+// Enable confetti effect.
+$wp_customize->add_setting(
+	'woostify_setting[shipping_threshold_enable_confetti_effect]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shipping_threshold_enable_confetti_effect'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shipping_threshold_enable_confetti_effect]',
+		array(
+			'label'       => __( 'Enable Confetti Effect', 'woostify' ),
+			'description' => __( 'Show confetti effect when reach to 100%', 'woostify' ),
+			'section'     => 'woostify_shipping_threshold',
+			'settings'    => 'woostify_setting[shipping_threshold_enable_confetti_effect]',
+			'tab'         => 'general',
+		)
+	)
+);
+
+// Enable progress bar.
+$wp_customize->add_setting(
+	'woostify_setting[shipping_threshold_enable_progress_bar]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shipping_threshold_enable_progress_bar'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shipping_threshold_enable_progress_bar]',
+		array(
+			'label'    => __( 'Enable Progress Bar', 'woostify' ),
+			'section'  => 'woostify_shipping_threshold',
+			'settings' => 'woostify_setting[shipping_threshold_enable_progress_bar]',
+			'tab'      => 'general',
+		)
+	)
+);
+
 // Amount.
 $wp_customize->add_setting(
 	'woostify_setting[shipping_threshold_progress_bar_amount]',
@@ -129,47 +174,44 @@ $wp_customize->add_control(
 	)
 );
 
-// Enable confetti effect.
+// Message initial color.
 $wp_customize->add_setting(
-	'woostify_setting[shipping_threshold_enable_confetti_effect]',
+	'woostify_setting[shipping_threshold_message_color]',
 	array(
+		'default'           => $defaults['shipping_threshold_message_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
-		'default'           => $defaults['shipping_threshold_enable_confetti_effect'],
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Switch_Control(
-		$wp_customize,
-		'woostify_setting[shipping_threshold_enable_confetti_effect]',
-		array(
-			'label'       => __( 'Enable Confetti Effect', 'woostify' ),
-			'description' => __( 'Show confetti effect when reach to 100%', 'woostify' ),
-			'section'     => 'woostify_shipping_threshold',
-			'settings'    => 'woostify_setting[shipping_threshold_enable_confetti_effect]',
-			'tab'         => 'general',
-		)
+		'transport'         => 'postMessage',
 	)
 );
 
-// Enable progress bar.
+// Message success color.
 $wp_customize->add_setting(
-	'woostify_setting[shipping_threshold_enable_progress_bar]',
+	'woostify_setting[shipping_threshold_message_success_color]',
 	array(
+		'default'           => $defaults['shipping_threshold_message_success_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
-		'default'           => $defaults['shipping_threshold_enable_progress_bar'],
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'transport'         => 'postMessage',
 	)
 );
+
 $wp_customize->add_control(
-	new Woostify_Switch_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
-		'woostify_setting[shipping_threshold_enable_progress_bar]',
+		'woostify_setting[shipping_threshold_message_color]',
 		array(
-			'label'    => __( 'Enable Progress Bar', 'woostify' ),
+			'label'    => __( 'Message Color', 'woostify' ),
 			'section'  => 'woostify_shipping_threshold',
-			'settings' => 'woostify_setting[shipping_threshold_enable_progress_bar]',
-			'tab'      => 'general',
+			'settings' => array(
+				'woostify_setting[shipping_threshold_message_color]',
+				'woostify_setting[shipping_threshold_message_success_color]',
+			),
+			'tooltips' => array(
+				'Initial',
+				'Success',
+			),
+			'tab'      => 'design',
 		)
 	)
 );
@@ -184,22 +226,6 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
-$wp_customize->add_control(
-	new Woostify_Color_Group_Control(
-		$wp_customize,
-		'woostify_setting[shipping_threshold_progress_bar_color]',
-		array(
-			'label'    => __( 'Initial Color', 'woostify' ),
-			'section'  => 'woostify_shipping_threshold',
-			'settings' => array(
-				'woostify_setting[shipping_threshold_progress_bar_color]',
-			),
-			'tab'      => 'design',
-		)
-	)
-);
-
 // Progress bar success color.
 $wp_customize->add_setting(
 	'woostify_setting[shipping_threshold_progress_bar_success_color]',
@@ -214,12 +240,17 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Color_Group_Control(
 		$wp_customize,
-		'woostify_setting[shipping_threshold_progress_bar_success_color]',
+		'woostify_setting[shipping_threshold_progress_bar_color]',
 		array(
-			'label'    => __( 'Success Color', 'woostify' ),
+			'label'    => __( 'Progress Bar Color', 'woostify' ),
 			'section'  => 'woostify_shipping_threshold',
 			'settings' => array(
+				'woostify_setting[shipping_threshold_progress_bar_color]',
 				'woostify_setting[shipping_threshold_progress_bar_success_color]',
+			),
+			'tooltips' => array(
+				'Initial',
+				'Success',
 			),
 			'tab'      => 'design',
 		)

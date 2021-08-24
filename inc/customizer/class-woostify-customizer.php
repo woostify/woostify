@@ -458,6 +458,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shipping_threshold_progress_bar_success_msg' => 'You\'ve got free shipping!',
 				'shipping_threshold_progress_bar_success_color' => '#67bb67',
 				'shipping_threshold_enable_confetti_effect' => true,
+				'shipping_threshold_message_color'         => '',
+				'shipping_threshold_message_success_color' => '',
 				// MINI CART.
 				'mini_cart_background_color'               => '#fff',
 				'mini_cart_empty_message'                  => 'No products in the cart.',
