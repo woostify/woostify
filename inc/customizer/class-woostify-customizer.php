@@ -27,22 +27,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			add_action( 'customize_save_after', array( $this, 'delete_cached_partials' ) );
 
 			add_action( 'wp_ajax_woostify_regenerate_fonts_folder', array( $this, 'regenerate_woostify_fonts_folder' ) );
-
-			add_filter( 'woostify_setting_mini_cart_content_choices', array( $this, 'update_mini_cart_content_select' ) );
-		}
-
-		/**
-		 * Top content choices
-		 *
-		 * @param array $choices choices
-		 */
-		public function update_mini_cart_content_select( $choices ) {
-			$options     = woostify_options( false );
-			$enabled_fst = $options['shipping_threshold_enabled'];
-			if ( $enabled_fst ) {
-				$choices['fst'] = __( 'Free Shipping Threshold', 'woostify' );
-			}
-			return $choices;
 		}
 
 		/**

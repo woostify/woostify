@@ -387,6 +387,43 @@
 						true,
 					],
 				)
+
+				var mini_cart_content_settings = [
+					'mini_cart_top_content_select',
+					'mini_cart_before_checkout_button_content_select',
+					'mini_cart_after_checkout_button_content_select',
+				]
+				wp.customize(
+					'woostify_setting[shipping_threshold_enabled]',
+					function( setting ) {
+						var curr_val = setting.get();
+
+						var updateSelect = function( control_name, value ) {
+							var select_el = jQuery( '#customize-control-woostify_setting-' + control_name + ' select' );
+							if ( value ) {
+								select_el.find( 'option[value="fst"]' ).show();
+							} else {
+								select_el.find( 'option[value="fst"]' ).hide();
+								if ( 'fst' === select_el.val() ) {
+									select_el.val( '' );
+								}
+							}
+						}
+
+						for ( var i = 0, j = mini_cart_content_settings.length; i < j; i ++ ) {
+							updateSelect( mini_cart_content_settings[i], curr_val );
+						}
+
+						setting.bind(
+							function( newval ) {
+								for ( var i = 0, j = mini_cart_content_settings.length; i < j; i ++ ) {
+									updateSelect( mini_cart_content_settings[i], newval );
+								}
+							}
+						)
+					}
+				);
+
 				// And trigger if parent control update.
 				wp.customize(
 					'woostify_setting[page_header_display]',
