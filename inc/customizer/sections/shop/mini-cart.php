@@ -107,7 +107,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['mini_cart_top_content_custom_html'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'woostify_sanitize_raw_html',
 	)
 );
 $wp_customize->add_control(
@@ -176,7 +176,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['mini_cart_before_checkout_button_content_custom_html'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'woostify_sanitize_raw_html',
 	)
 );
 $wp_customize->add_control(
@@ -245,7 +245,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['mini_cart_after_checkout_button_content_custom_html'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'woostify_sanitize_raw_html',
 	)
 );
 $wp_customize->add_control(
@@ -285,7 +285,7 @@ $wp_customize->add_setting(
 	array(
 		'default'           => $defaults['mini_cart_empty_message'],
 		'type'              => 'option',
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'woostify_sanitize_raw_html',
 	)
 );
 $wp_customize->add_control(
