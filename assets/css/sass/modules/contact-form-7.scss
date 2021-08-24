@@ -26,6 +26,18 @@
 			animation: loading 0.5s linear infinite;
 		}
 	}
+
+	.wpcf7-form {
+		&.submitting {
+			.ajax-loader {
+				@extend .flex;
+				margin-top: 10px;
+				opacity: 1;
+				visibility: visible;
+				animation: loading 0.5s linear infinite;
+			}
+		}
+	}
 }
 
 .screen-reader-response{
