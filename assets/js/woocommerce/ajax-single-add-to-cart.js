@@ -136,6 +136,9 @@ function woostifyAjaxSingleAddToCartButton2() {
 					}
 				).then(
 					function ( result ) {
+						// Add loading.
+						document.documentElement.classList.remove( 'mini-cart-updating' );
+
 						// Remove old notices.
 						document.querySelector( '.content-top .woocommerce' ).innerHTML = '';
 						// Add new notices.
@@ -146,6 +149,8 @@ function woostifyAjaxSingleAddToCartButton2() {
 					}
 				).catch(
 					function() {
+						// Add loading.
+						document.documentElement.classList.remove( 'mini-cart-updating' );
 						// Handle.
 						woostifyAjaxSingleHandleError( ele );
 					}
