@@ -101,6 +101,18 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
+	/**
+	 * Ajax single add to cart
+	 */
+	function woostify_ajax_single_add_to_cart() {
+		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
+
+		WC_Form_Handler::add_to_cart_action();
+		WC_AJAX::get_refreshed_fragments();
+	}
+}
+
 if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 	/**
 	 * Update quantity in mini cart
@@ -771,6 +783,36 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 		if ( 'ti' === $options['shop_page_wishlist_support_plugin'] && function_exists( 'tinv_get_option' ) && tinv_get_option( 'topline', 'show_counter' ) ) {
 			$fragments['span.theme-item-count.wishlist-item-count'] = sprintf( '<span class="theme-item-count wishlist-item-count">%s</span>', woostify_get_wishlist_count() );
 		}
+
+		return $fragments;
+	}
+}
+
+if ( ! function_exists( 'woostify_add_notices_html_cart_fragments' ) ) {
+	/**
+	 * Add notice html content to cart fragments
+	 *
+	 * @param      array $fragments Fragments to refresh via AJAX.
+	 * @return     array $fragments Fragments to refresh via AJAX
+	 */
+	function woostify_add_notices_html_cart_fragments( $fragments ) {
+		$all_notices  = WC()->session->get( 'wc_notices', array() );
+		$notice_types = apply_filters( 'woocommerce_notice_types', array( 'error', 'success', 'notice' ) );
+
+		ob_start();
+		foreach ( $notice_types as $notice_type ) {
+			if ( wc_notice_count( $notice_type ) > 0 ) {
+				wc_get_template(
+					"notices/{$notice_type}.php",
+					array(
+						'notices' => array_filter( $all_notices[ $notice_type ] ),
+					)
+				);
+			}
+		}
+		$fragments['notices_html'] = ob_get_clean();
+
+		wc_clear_notices();
 
 		return $fragments;
 	}

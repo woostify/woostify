@@ -71,6 +71,90 @@ function woostifyAjaxSingleUpdateFragments( button ) {
 	);
 }
 
+
+function woostifyAjaxSingleAddToCartButton2() {
+	var buttons = document.querySelectorAll( '.single_add_to_cart_button' );
+	if ( ! buttons.length ) {
+		return;
+	}
+
+	buttons.forEach(
+		function( ele ) {
+			ele.onclick = function( e ) {
+				e.preventDefault();
+
+				var form = ele.closest( 'form.cart' );
+				if ( ! form ) {
+					return;
+				}
+
+				var form_data = new FormData( form )
+				form_data.append( 'add-to-cart', form.querySelector( '[name=add-to-cart]' ).value )
+				form_data.append( 'ajax_nonce', woostify_woocommerce_general.ajax_nonce )
+
+				// Add loading.
+				ele.classList.add( 'loading' );
+
+				// Events.
+				if ( 'function' === typeof( eventCartSidebarOpen ) ) {
+					eventCartSidebarOpen();
+				}
+
+				if ( 'function' === typeof( closeAll ) ) {
+					closeAll();
+				}
+
+				// Add loading.
+				document.documentElement.classList.add( 'mini-cart-updating' );
+
+				fetch(
+					wc_add_to_cart_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'woostify_single_add_to_cart' ),
+					{
+						method: 'POST',
+						body: form_data,
+					}
+				).then(
+					function( res ) {
+						if ( ! res ) {
+							return;
+						}
+
+						var res_json = res.json();
+
+						if ( res_json.error && res_json.product_url ) {
+							window.location = res_json.product_url;
+							return;
+						}
+
+						// Redirect to cart option.
+						if ( wc_add_to_cart_params.cart_redirect_after_add === 'yes' ) {
+							window.location = wc_add_to_cart_params.cart_url;
+							return;
+						}
+
+						return res_json;
+					}
+				).then(
+					function ( result ) {
+						// Remove old notices.
+						document.querySelector( '.content-top .woocommerce' ).innerHTML = '';
+						// Add new notices.
+						document.querySelector( '.content-top .woocommerce' ).innerHTML = result.fragments.notices_html;
+
+						// Update fragments.
+						woostifyAjaxSingleUpdateFragments( ele );
+					}
+				).catch(
+					function() {
+						// Handle.
+						woostifyAjaxSingleHandleError( ele );
+					}
+				);
+			}
+		}
+	)
+}
+
 function woostifyAjaxSingleAddToCartButton() {
 	var buttons = document.querySelectorAll( '.single_add_to_cart_button' );
 	if ( ! buttons.length ) {
@@ -152,6 +236,6 @@ function woostifyAjaxSingleAddToCartButton() {
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
-		woostifyAjaxSingleAddToCartButton();
+		woostifyAjaxSingleAddToCartButton2();
 	}
 );
