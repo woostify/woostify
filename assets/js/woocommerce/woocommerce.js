@@ -77,8 +77,9 @@ function woostifyInfiniteScroll( addEventClick ) {
 	infScroll.on(
 		'load',
 		function( body, path, fetchPromise ) {
-			let all_page        = document.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers:not(.next):not(.prev)' );
-			let curr_load_count = this.loadCount + 1;
+			let all_page     = body.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers:not(.next):not(.prev):not(.dots)' );
+			let next_page_el = body.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers.next' );
+			let is_last_page = ( ! next_page_el.length ) ? true : false;
 
 			if ( 'button' === loading_type ) {
 				view_more_btn.classList.remove( 'circle-loading' );
@@ -87,7 +88,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 			}
 
 			if ( all_page.length ) {
-				if ( curr_load_count >= all_page.length ) {
+				if ( is_last_page ) {
 					if ( 'button' === loading_type ) {
 						view_more_btn.style.display = 'none'
 					} else {
