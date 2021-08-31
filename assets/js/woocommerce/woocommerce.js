@@ -119,6 +119,20 @@ function woostifyInfiniteScroll( addEventClick ) {
 	)
 
 	infScroll.on(
+		'append',
+		function( body, path, items, response ) {
+			// Variation swatches.
+			if ( 'function' === typeof( woostifyVariationSwatches ) ) {
+				woostifyVariationSwatches();
+			}
+			// Re-init swatch list.
+			if ( 'function' === typeof( woostifySwatchList ) ) {
+				woostifySwatchList();
+			}
+		}
+	)
+
+	infScroll.on(
 		'last',
 		function( body, path ) {
 			if ( 'button' === loading_type ) {
