@@ -12,20 +12,25 @@ if ( ! woostify_is_woocommerce_activated() ) {
 // Default values.
 $defaults = woostify_options();
 
-// General heading.
+// GENERAL SECTION.
 $wp_customize->add_setting(
-	'mini_cart_general_heading',
+	'mini_cart_general_section',
 	array(
 		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Heading_Control(
+	new Woostify_Section_Control(
 		$wp_customize,
-		'mini_cart_general_heading',
+		'mini_cart_general_section',
 		array(
-			'label'   => __( 'GENERAL', 'woostify' ),
-			'section' => 'woostify_mini_cart',
+			'label'      => __( 'General', 'woostify' ),
+			'section'    => 'woostify_mini_cart',
+			'dependency' => array(
+				'woostify_setting[mini_cart_background_color]',
+				'woostify_setting[mini_cart_empty_message]',
+				'woostify_setting[mini_cart_empty_enable_button]',
+			),
 		)
 	)
 );
@@ -97,20 +102,24 @@ $wp_customize->add_control(
 	)
 );
 
-// TOP CONTENT.
+// TOP CONTENT SECTION.
 $wp_customize->add_setting(
-	'mini_cart_top_content_heading',
+	'mini_cart_top_content_section',
 	array(
 		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Heading_Control(
+	new Woostify_Section_Control(
 		$wp_customize,
-		'mini_cart_top_content_heading',
+		'mini_cart_top_content_section',
 		array(
-			'label'   => __( 'Top content', 'woostify' ),
-			'section' => 'woostify_mini_cart',
+			'label'      => __( 'Top content', 'woostify' ),
+			'section'    => 'woostify_mini_cart',
+			'dependency' => array(
+				'woostify_setting[mini_cart_top_content_select]',
+				'woostify_setting[mini_cart_top_content_custom_html]',
+			),
 		)
 	)
 );
@@ -167,20 +176,24 @@ $wp_customize->add_control(
 	)
 );
 
-// BEFORE CHECKOUT BUTTON CONTENT.
+// BEFORE CHECKOUT BUTTON CONTENT SECTION.
 $wp_customize->add_setting(
-	'mini_cart_before_checkout_button_content_heading',
+	'mini_cart_before_checkout_button_content_section',
 	array(
 		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Heading_Control(
+	new Woostify_Section_Control(
 		$wp_customize,
-		'mini_cart_before_checkout_button_content_heading',
+		'mini_cart_before_checkout_button_content_section',
 		array(
-			'label'   => __( 'Before Checkout button content', 'woostify' ),
-			'section' => 'woostify_mini_cart',
+			'label'      => __( 'Before checkout button', 'woostify' ),
+			'section'    => 'woostify_mini_cart',
+			'dependency' => array(
+				'woostify_setting[mini_cart_before_checkout_button_content_select]',
+				'woostify_setting[mini_cart_before_checkout_button_content_custom_html]',
+			),
 		)
 	)
 );
@@ -237,20 +250,24 @@ $wp_customize->add_control(
 	)
 );
 
-// AFTER CHECKOUT BUTTON CONTENT.
+// AFTER CHECKOUT BUTTON CONTENT SECTION.
 $wp_customize->add_setting(
-	'mini_cart_after_checkout_button_content_heading',
+	'mini_cart_after_checkout_button_content_section',
 	array(
 		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Heading_Control(
+	new Woostify_Section_Control(
 		$wp_customize,
-		'mini_cart_after_checkout_button_content_heading',
+		'mini_cart_after_checkout_button_content_section',
 		array(
-			'label'   => __( 'After Checkout button content', 'woostify' ),
-			'section' => 'woostify_mini_cart',
+			'label'      => __( 'After checkout button', 'woostify' ),
+			'section'    => 'woostify_mini_cart',
+			'dependency' => array(
+				'woostify_setting[mini_cart_after_checkout_button_content_select]',
+				'woostify_setting[mini_cart_after_checkout_button_content_custom_html]',
+			),
 		)
 	)
 );
