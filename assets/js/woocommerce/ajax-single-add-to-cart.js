@@ -72,7 +72,7 @@ function woostifyAjaxSingleUpdateFragments( button ) {
 }
 
 
-function woostifyAjaxSingleAddToCartButton2() {
+function woostifyAjaxSingleAddToCartButton() {
 	var buttons = document.querySelectorAll( '.single_add_to_cart_button' );
 	if ( ! buttons.length ) {
 		return;
@@ -139,10 +139,12 @@ function woostifyAjaxSingleAddToCartButton2() {
 						// Add loading.
 						document.documentElement.classList.remove( 'mini-cart-updating' );
 
+						/*
 						// Remove old notices.
 						document.querySelector( '.content-top .woocommerce' ).innerHTML = '';
 						// Add new notices.
 						document.querySelector( '.content-top .woocommerce' ).innerHTML = result.fragments.notices_html;
+						*/
 
 						// Update fragments.
 						woostifyAjaxSingleUpdateFragments( ele );
@@ -160,87 +162,9 @@ function woostifyAjaxSingleAddToCartButton2() {
 	)
 }
 
-function woostifyAjaxSingleAddToCartButton() {
-	var buttons = document.querySelectorAll( '.single_add_to_cart_button' );
-	if ( ! buttons.length ) {
-		return;
-	}
-
-	buttons.forEach(
-		function( ele ) {
-			ele.onclick = function( e ) {
-				e.preventDefault();
-
-				var form = ele.closest( 'form.cart' );
-				if ( ! form ) {
-					return;
-				}
-
-				// Add loading.
-				ele.classList.add( 'loading' );
-
-				// Events.
-				if ( 'function' === typeof( eventCartSidebarOpen ) ) {
-					eventCartSidebarOpen();
-				}
-
-				if ( 'function' === typeof( closeAll ) ) {
-					closeAll();
-				}
-
-				// Send post request.
-				fetch(
-					form.action,
-					{
-						method: 'POST',
-						body: new FormData( form )
-					}
-				).then(
-					function( r ) {
-						return r.text();
-					}
-				).then(
-					function( text ) {
-						var div       = document.createElement( 'div' );
-						div.innerHTML = text;
-
-						var error = div.querySelector( '.woocommerce-error' );
-						if ( error ) {
-							var notices = document.querySelector( '.content-top .woocommerce' );
-
-							// Remove current error.
-							if ( notices.querySelector( '.woocommerce-error' ) ) {
-								notices.querySelector( '.woocommerce-error' ).remove();
-							}
-
-							// Update new error.
-							if ( notices ) {
-								notices.appendChild( error );
-							}
-
-							// Handle.
-							woostifyAjaxSingleHandleError( ele );
-
-							return;
-						}
-
-						// Update fragments.
-						woostifyAjaxSingleUpdateFragments( ele );
-					}
-				).catch(
-					function() {
-						// Handle.
-						woostifyAjaxSingleHandleError( ele );
-					}
-				);
-			}
-		}
-	);
-}
-
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
-		woostifyAjaxSingleAddToCartButton2();
+		woostifyAjaxSingleAddToCartButton();
 	}
 );
