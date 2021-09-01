@@ -62,7 +62,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 */
 		public function get_color_global_elementor() {
 			$colors = array();
-			if ( ! woostify_is_elementor_activated() || isset( \Elementor\Plugin::$instance->kits_manager ) ) {
+			if ( woostify_is_elementor_activated() && isset( \Elementor\Plugin::$instance->kits_manager ) ) {
 				$kits_manager = \Elementor\Plugin::$instance->kits_manager;
 
 				$system_colors = $kits_manager->get_current_settings( 'system_colors' );
