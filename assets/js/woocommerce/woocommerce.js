@@ -129,6 +129,15 @@ function woostifyInfiniteScroll( addEventClick ) {
 			if ( 'function' === typeof( woostifySwatchList ) ) {
 				woostifySwatchList();
 			}
+
+			console.log( '1' === woostify_woocommerce_general.is_active_wvs );
+			if ( '1' === woostify_woocommerce_general.is_active_wvs ) {
+				$( '.variations_form' ).each(
+					function(){
+						$( this ).wc_variation_form();
+					}
+				);
+			}
 		}
 	)
 

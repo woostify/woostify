@@ -192,7 +192,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 						<span class="woostify-loading-status"></span>
 					<?php } ?>
 				</div>
-			<?php }
+				<?php
+			}
 		}
 
 		/**
@@ -369,6 +370,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'sticky_bottom_space' => $options['shop_single_product_sticky_bottom_space'],
 					'currency_symbol'     => get_woocommerce_currency_symbol(),
 					'currency_pos'        => get_option( 'woocommerce_currency_pos' ),
+					'is_active_wvs'       => ! class_exists( 'Woo_Variation_Swatches' ) || ! class_exists( 'Woo_Variation_Swatches_Pro' ) ? false : true, // Check if plugin Variation Swatches for WooCommerce and Variation Swatches for WooCommerce - Pro is activated.
 				)
 			);
 
