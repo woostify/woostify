@@ -434,6 +434,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'cart_page_layout'                         => 'layout-2',
 				'cart_page_sticky_proceed_button'          => true,
 				// CHECKOUT PAGE.
+				'checkout_page_layout'                     => 'layout-1',
 				'checkout_distraction_free'                => false,
 				'checkout_multi_step'                      => false,
 				'checkout_sticky_place_order_button'       => true,

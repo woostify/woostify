@@ -12,6 +12,36 @@ if ( ! woostify_is_woocommerce_activated() ) {
 // Default values.
 $defaults = woostify_options();
 
+// Checkout page layout.
+$wp_customize->add_setting(
+	'woostify_setting[checkout_page_layout]',
+	array(
+		'default'           => $defaults['checkout_page_layout'],
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'type'              => 'option',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Radio_Image_Control(
+		$wp_customize,
+		'woostify_setting[checkout_page_layout]',
+		array(
+			'label'    => __( 'Checkout Page Layout', 'woostify' ),
+			'section'  => 'woocommerce_checkout',
+			'settings' => 'woostify_setting[checkout_page_layout]',
+			'choices'  => apply_filters(
+				'woostify_setting_checkout_page_layout_choices',
+				array(
+					'layout-1' => WOOSTIFY_THEME_URI . 'assets/images/customizer/cart-page/layout-1.jpg',
+					'layout-2' => WOOSTIFY_THEME_URI . 'assets/images/customizer/cart-page/layout-2.jpg',
+					'layout-3' => WOOSTIFY_THEME_URI . 'assets/images/customizer/cart-page/layout-1.jpg',
+				)
+			),
+			'priority' => 0,
+		)
+	)
+);
+
 // Distraction Free Checkout.
 $wp_customize->add_setting(
 	'woostify_setting[checkout_distraction_free]',
