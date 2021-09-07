@@ -808,7 +808,7 @@ if ( ! function_exists( 'woostify_add_product_thumbnail_to_checkout_order' ) ) {
 	function woostify_add_product_thumbnail_to_checkout_order( $product_name, $cart_item, $cart_item_key ) {
 		$options             = woostify_options( false );
 		$multi_step_checkout = woostify_is_multi_checkout();
-		if ( ! is_checkout() || ! ( $options['checkout_multi_step'] && $multi_step_checkout && ! is_singular( array( 'cartflows_flow', 'cartflows_step' ) ) ) ) {
+		if ( ! is_checkout() || ! ( $multi_step_checkout && ! is_singular( array( 'cartflows_flow', 'cartflows_step' ) ) ) ) {
 			return $product_name;
 		}
 
@@ -852,7 +852,7 @@ if ( ! function_exists( 'woostify_is_multi_checkout' ) ) {
 		}
 
 		$options = woostify_options( false );
-		return ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && ! is_wc_endpoint_url( 'order-pay' ) && $options['checkout_multi_step'] );
+		return ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && ! is_wc_endpoint_url( 'order-pay' ) && ( 'layout-2' === $options['checkout_page_layout'] ) );
 	}
 }
 

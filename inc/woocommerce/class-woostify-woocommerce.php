@@ -332,7 +332,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// Multi step checkout.
-			if ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && $options['checkout_multi_step'] ) {
+			if ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && ( 'layout-2' === $options['checkout_page_layout'] ) ) {
 				wp_enqueue_script( 'woostify-multi-step-checkout' );
 			}
 
@@ -436,7 +436,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			if ( is_checkout() ) {
 				$order_button     = $options['checkout_sticky_place_order_button'];
 				$distraction_free = $options['checkout_distraction_free'];
-				$multi_step       = $options['checkout_multi_step'];
+				$multi_step       = 'layout-2' === $options['checkout_page_layout'] ? true : false;
 
 				if ( $order_button ) {
 					$classes[] = 'has-order-sticky-button';
@@ -497,11 +497,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$is_checkout = is_checkout() && ! is_wc_endpoint_url( 'order-received' ); // Is Checkout page only, not Thank you page.
 
 			// Remove default Place Order button.
-			if ( $options['checkout_multi_step'] ) {
+			if ( ( 'layout-2' === $options['checkout_page_layout'] ) ) {
 				add_filter( 'woocommerce_order_button_html', '__return_empty_string' );
 			}
 
-			if ( $is_checkout && $options['checkout_multi_step'] && $multi_step_checkout ) {
+			if ( $is_checkout && ( 'layout-2' === $options['checkout_page_layout'] ) && $multi_step_checkout ) {
 				// Remove default woocommerce template.
 				remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
 				remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_terms_and_conditions_page_content', 30 );

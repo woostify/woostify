@@ -873,7 +873,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		}
 
 		// Hide default page header on Multi step checkout.
-		$disable_page_header = class_exists( 'woocommerce' ) && is_checkout() && $options['checkout_multi_step'];
+		$disable_page_header = class_exists( 'woocommerce' ) && is_checkout() && ( 'layout-2' === $options['checkout_page_layout'] );
 
 		if ( ! $page_header || $disable_page_header ) {
 			return;
