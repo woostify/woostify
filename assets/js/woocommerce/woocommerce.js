@@ -121,6 +121,11 @@ function woostifyInfiniteScroll( addEventClick ) {
 	infScroll.on(
 		'append',
 		function( body, path, items, response ) {
+			// Re-init quick view.
+			if ( 'function' === typeof( woostifyQuickView ) ) {
+				woostifyQuickView();
+			}
+
 			// Variation swatches.
 			if ( 'function' === typeof( woostifyVariationSwatches ) ) {
 				woostifyVariationSwatches();
