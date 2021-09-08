@@ -434,9 +434,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Checkout page.
 			if ( is_checkout() ) {
+				$layout           = $options['checkout_page_layout'];
 				$order_button     = $options['checkout_sticky_place_order_button'];
 				$distraction_free = $options['checkout_distraction_free'];
 				$multi_step       = 'layout-2' === $options['checkout_page_layout'] ? true : false;
+
+				$classes[] = 'checkout-' . $layout;
 
 				if ( $order_button ) {
 					$classes[] = 'has-order-sticky-button';
@@ -527,6 +530,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_wrapper_end', 100 ); // Wrapper end.
 
 				add_action( 'woocommerce_checkout_after_order_review', 'woostify_checkout_before_order_review', 10 );
+			}
+
+			if ( 'layout-3' === $options['checkout_page_layout'] ) {
 			}
 
 			// Add product thumbnail to review order.
