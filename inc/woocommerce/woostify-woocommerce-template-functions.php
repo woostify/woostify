@@ -1228,3 +1228,36 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 		do_action( 'woocommerce_after_account_navigation' );
 	}
 }
+
+function woostify_checkout_form_distr_free_bg() {
+	?>
+	<div class="form-distr-free-bg">
+		<div class="col-left"></div>
+		<div class="woostify-col right-bg"></div>
+	</div>
+	<?php
+}
+
+function woostify_checkout_row_start() {
+	echo '<div class="woostify-row">';
+}
+
+function woostify_checkout_col_left_start() {
+	echo '<div class="col-left">';
+}
+
+function woostify_checkout_col_left_end() {
+	echo '</div>';
+}
+
+function woostify_checkout_col_right_start() {
+	echo '<div class="woostify-col"><div class="col-right-inner">';
+}
+
+function woostify_checkout_col_right_end() {
+	echo '</div></div>';
+}
+
+function woostify_checkout_row_end() {
+	echo '</div>';
+}

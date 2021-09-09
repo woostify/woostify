@@ -812,6 +812,15 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
+			// Float sidebar.
+			wp_register_script(
+				'woostify-float-sidebar',
+				WOOSTIFY_THEME_URI . 'assets/js/simple-sticky-sidebar' . woostify_suffix() . '.js',
+				array(),
+				woostify_version(),
+				true
+			);
+
 			if ( $options['shop_single_image_lightbox'] ) {
 				// Photoswipe init js.
 				wp_register_script(

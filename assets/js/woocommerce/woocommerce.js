@@ -243,6 +243,17 @@ var updateHeaderCartPrice = function () {
 	}
 }
 
+var stickyOrderReview = function() {
+	simpleStickySidebar(
+		'form.woocommerce-checkout .woostify-col .col-right-inner',
+		{
+			container: 'form.woocommerce-checkout .woostify-col',
+			topSpace: 20,
+			bottomSpace : 20,
+		}
+	);
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
@@ -320,5 +331,7 @@ document.addEventListener(
 				location.reload();
 			}
 		);
+
+		stickyOrderReview();
 	}
 );

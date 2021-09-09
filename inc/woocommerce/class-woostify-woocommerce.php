@@ -274,6 +274,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				wp_dequeue_style( 'et-builder-modules-style' );
 			}
 
+			// Float sidebar for checkout page layout 3.
+			if ( is_checkout() && ( 'layout-3' === $options['checkout_page_layout'] ) ) {
+				wp_enqueue_script( 'woostify-float-sidebar' );
+			}
+
 			// Main woocommerce js file.
 			wp_enqueue_script( 'woostify-woocommerce' );
 			// Quantity minicart.
@@ -281,14 +286,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				'woostify-woocommerce',
 				'woostify_woocommerce_general',
 				array(
-					'ajax_url'            => admin_url( 'admin-ajax.php' ),
-					'ajax_nonce'          => wp_create_nonce( 'woostify_woocommerce_general_nonce' ),
-					'ajax_error'          => __( 'Sorry, something went wrong. Please try again!', 'woostify' ),
-					'qty_warning'         => __( 'Please enter a valid quantity for this product', 'woostify' ),
-					'shipping_text'       => __( 'Shipping', 'woostify' ),
-					'shipping_next'       => __( 'Calculated at next step', 'woostify' ),
-					'sticky_top_space'    => $options['shop_single_product_sticky_top_space'],
-					'sticky_bottom_space' => $options['shop_single_product_sticky_bottom_space'],
+					'ajax_url'                            => admin_url( 'admin-ajax.php' ),
+					'ajax_nonce'                          => wp_create_nonce( 'woostify_woocommerce_general_nonce' ),
+					'ajax_error'                          => __( 'Sorry, something went wrong. Please try again!', 'woostify' ),
+					'qty_warning'                         => __( 'Please enter a valid quantity for this product', 'woostify' ),
+					'shipping_text'                       => __( 'Shipping', 'woostify' ),
+					'shipping_next'                       => __( 'Calculated at next step', 'woostify' ),
+					'sticky_top_space'                    => $options['shop_single_product_sticky_top_space'],
+					'sticky_bottom_space'                 => $options['shop_single_product_sticky_bottom_space'],
+					'enable_sticky_order_review_checkout' => is_checkout() && ( 'layout-3' === $options['checkout_page_layout'] ) ? true : false,
 				)
 			);
 
@@ -359,6 +365,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					)
 				);
 			}
+
 		}
 
 		/**
@@ -533,6 +540,21 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			if ( 'layout-3' === $options['checkout_page_layout'] ) {
+				add_action( 'woocommerce_before_checkout_form', 'woostify_checkout_form_distr_free_bg', 0 );
+
+				// Row start.
+				add_action( 'woocommerce_checkout_before_customer_details', 'woostify_checkout_row_start', 0 );
+
+				// Col left.
+				add_action( 'woocommerce_checkout_before_customer_details', 'woostify_checkout_col_left_start', 0 );
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_checkout_col_left_end', 50 );
+
+				// Col right.
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_checkout_col_right_start', 55 );
+				add_action( 'woocommerce_after_checkout_form', 'woostify_checkout_col_right_end', 50 );
+
+				// Row end.
+				add_action( 'woocommerce_after_checkout_form', 'woostify_checkout_row_end', 50 );
 			}
 
 			// Add product thumbnail to review order.
