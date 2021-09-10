@@ -243,6 +243,7 @@ var updateHeaderCartPrice = function () {
 	}
 }
 
+// Sticky order review.
 var stickyOrderReview = function() {
 	simpleStickySidebar(
 		'form.woocommerce-checkout .woostify-col .col-right-inner',
@@ -252,6 +253,54 @@ var stickyOrderReview = function() {
 			bottomSpace : 20,
 		}
 	);
+}
+
+// Checkout page Layout 3 scripts.
+var checkoutOrder = function() {
+	var checkout_opt = document.querySelector( '.before-checkout' ),
+	spacer_orig      = checkout_opt.offsetHeight,
+	div_height       = spacer_orig,
+	show_login       = document.querySelector( '.showlogin' ),
+	show_coupon      = document.querySelector( '.showcoupon' );
+
+	set_heights();
+
+	document.body.addEventListener(
+		'click',
+		function( event ) {
+			if ( event.target !== show_login && event.target !== show_coupon ) {
+				return;
+			}
+
+			refreshIntervalId = setInterval(
+				function(){
+					set_heights();
+				},
+				50
+			);
+
+			setTimeout(
+				function(){
+					if (spacer_orig == div_height) {
+						clearInterval( refreshIntervalId );
+					}
+				},
+				2000
+			);
+		}
+	);
+
+	function set_heights() {
+		setTimeout(
+			function(){
+				var div_height = checkout_opt.offsetHeight;
+				document.querySelector( '#checkout-spacer' ).style.minHeight = div_height + 'px';
+				checkout_opt.classList.add( 'ready' );
+			},
+			200
+		);
+	}
+
 }
 
 document.addEventListener(
@@ -332,6 +381,25 @@ document.addEventListener(
 			}
 		);
 
-		//stickyOrderReview();
+		// Move notices.
+		jQuery( document.body ).on(
+			'init_checkout updated_checkout payment_method_selected',
+			function( event, data  ) {
+
+				jQuery( 'form.checkout' ).arrive(
+					'.woocommerce-NoticeGroup',
+					function() {
+						jQuery( '.woostify-woocommerce-NoticeGroup' ).append( jQuery( '.woocommerce-NoticeGroup' ).html() );
+						jQuery( '.woocommerce-NoticeGroup' ).remove();
+					}
+				);
+
+			}
+		);
+
+		if ( '1' === woostify_woocommerce_general.enable_sticky_order_review_checkout ) {
+			checkoutOrder();
+			// stickyOrderReview();.
+		}
 	}
 );

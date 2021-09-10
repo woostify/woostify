@@ -1258,6 +1258,8 @@ if ( ! function_exists( 'woostify_checkout_col_left_start' ) ) {
 	 */
 	function woostify_checkout_col_left_start() {
 		echo '<div class="col-left">';
+		echo '<div id="checkout-spacer"></div>';
+		echo '<div class="woostify-woocommerce-NoticeGroup"></div>';
 	}
 }
 
@@ -1315,5 +1317,34 @@ if ( ! function_exists( 'woostify_checkout_product_image' ) ) {
 		$image     = '<div class="w-product-thumb">' . $thumbnail . '</div>';
 
 		return $image . $name;
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_options_start' ) ) {
+	/**
+	 * Checkout page options start element
+	 */
+	function woostify_checkout_options_start() {
+		?>
+		<div class="checkout-options">
+			<div class="woostify-row">
+				<div class="col-left">
+					<div class="before-checkout">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_options_end' ) ) {
+	/**
+	 * Checkout page options end element
+	 */
+	function woostify_checkout_options_end() {
+		?>
+					</div>
+				</div>
+				<div class="woostify-col"></div>
+			</div>
+		</div>
+		<?php
 	}
 }

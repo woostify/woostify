@@ -9736,6 +9736,7 @@ header.elementor-element {
   -ms-flex: 0 0 100%;
   flex: 0 0 100%;
   max-width: 100%;
+  position: relative;
 }
 
 @media (min-width: 992px) {
@@ -9941,6 +9942,50 @@ header.elementor-element {
 
 .checkout-layout-3 #payment {
   padding-bottom: 30px;
+}
+
+@media (min-width: 992px) {
+  .checkout-layout-3 .checkout-options .before-checkout.ready {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 992px) {
+  .checkout-layout-3 .checkout-options .before-checkout {
+    position: absolute;
+    z-index: 9;
+    left: 15px;
+    right: 15px;
+    opacity: 0;
+    padding-right: 40px;
+  }
+}
+
+.checkout-layout-3 .checkout-options .woocommerce-form-coupon-toggle, .checkout-layout-3 .checkout-options .woocommerce-form-login-toggle {
+  max-width: unset;
+  margin: 0 0 10px;
+  display: block;
+  padding: 10px;
+  background: #f8f8f8;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.checkout-layout-3 .checkout-options .checkout_coupon.woocommerce-form-coupon, .checkout-layout-3 .checkout-options .woocommerce-form.woocommerce-form-login {
+  margin: 0 0 10px;
+  max-width: unset;
+}
+
+.checkout-layout-3 .woostify-woocommerce-NoticeGroup {
+  margin-right: 40px;
+}
+
+.checkout-layout-3 .woostify-woocommerce-NoticeGroup .woocommerce-message, .checkout-layout-3 .woostify-woocommerce-NoticeGroup .woocommerce-error, .checkout-layout-3 .woostify-woocommerce-NoticeGroup .woocommerce-info, .checkout-layout-3 .woostify-woocommerce-NoticeGroup .woocommerce-notice--success {
+  margin: 25px auto 30px;
+}
+
+.checkout-layout-3 [name="checkout"] {
+  margin-top: 0;
 }
 
 @media (min-width: 992px) {

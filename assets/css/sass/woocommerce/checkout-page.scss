@@ -1169,6 +1169,8 @@
 			-ms-flex: 0 0 100%;
 			flex: 0 0 100%;
 			max-width: 100%;
+			position: relative;
+
 			@media (min-width: $screen-md) {
 				-webkit-box-flex: 0;
 				-ms-flex: 0 0 60%;
@@ -1371,6 +1373,46 @@
 	}
 	#payment {
 		padding-bottom: 30px;
+	}
+	.checkout-options {
+		.before-checkout {
+			&.ready {
+				@media (min-width: $screen-md) {
+					opacity: 1;
+				}
+			}
+
+			@media (min-width: $screen-md) {
+				position: absolute;
+				z-index: 9;
+				left: 15px;
+				right: 15px;
+				opacity: 0;
+				padding-right: 40px;
+			}
+		}
+		.woocommerce-form-coupon-toggle, .woocommerce-form-login-toggle {
+			max-width: unset;
+			margin: 0 0 10px;
+			display: block;
+			padding: 10px;
+			background: #f8f8f8;
+			border-radius: 3px;
+			text-align: center;
+		}
+		.checkout_coupon.woocommerce-form-coupon, .woocommerce-form.woocommerce-form-login {
+			margin: 0 0 10px;
+			max-width: unset;
+		}
+	}
+	.woostify-woocommerce-NoticeGroup {
+		margin-right: 40px;
+		.woocommerce-message, .woocommerce-error, .woocommerce-info, .woocommerce-notice--success {
+			margin: 25px auto 30px;
+		}
+	}
+	[name="checkout"] {
+		margin-top: 0;
 	}
 }
 

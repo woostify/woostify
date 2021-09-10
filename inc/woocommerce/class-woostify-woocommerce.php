@@ -542,6 +542,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			if ( 'layout-3' === $options['checkout_page_layout'] ) {
 				add_action( 'woocommerce_before_checkout_form', 'woostify_checkout_form_distr_free_bg', 0 );
 
+				add_action( 'woocommerce_before_checkout_form', 'woostify_checkout_options_start', 5 );
+				add_action( 'woocommerce_before_checkout_form', 'woostify_checkout_options_end', 15 );
+
 				// Row start.
 				add_action( 'woocommerce_checkout_before_customer_details', 'woostify_checkout_row_start', 0 );
 
