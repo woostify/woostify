@@ -1258,7 +1258,71 @@
 		background: transparent;
 		width: 100%;
 		@media (min-width: $screen-md) {
-			padding-left: 50px;
+			padding-left: 40px;
+		}
+
+		.shop_table {
+			th {
+				font-weight: inherit;
+				text-transform: uppercase;
+			}
+			.cart_item {
+				.product-name {
+					position: relative;
+
+					.w-product-thumb {
+						width: 60px;
+						overflow: hidden;
+
+						img {
+							max-width: 100%;
+							border-radius: 2px;
+							border: 1px solid rgba(0,0,0,0.1);
+						}
+					}
+					strong.product-quantity {
+						font-size: 13px;
+						font-weight: 500;
+						line-height: 1.75em;
+						white-space: nowrap;
+						text-align: center;
+						border-radius: 1.75em;
+						background-color: rgba(0,0,0,0.5);
+						color: #fff;
+						-webkit-box-sizing: border-box;
+						box-sizing: border-box;
+						min-width: 1.75em;
+						padding: 0 0.58333em;
+						right: 100%;
+						z-index: 3;
+						display: inline-flex;
+					}
+				}
+			}
+		}
+
+		.woocommerce-checkout-review-order-table {
+			tbody {
+				tr {
+					border: none;
+				}
+			}
+			tfoot {
+				tr {
+					&:first-child {
+						border-top: 1px solid #d9d9d9;
+					}
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+			}
+			.woocommerce-shipping-methods {
+				li label {
+					display: flex;
+					justify-content: space-between;
+				}
+			}
 		}
 	}
 	form.woocommerce-checkout {
@@ -1266,6 +1330,47 @@
 			position: relative;
 			height: auto !important;
 		}
+	}
+	.woocommerce-checkout-review-order-table {
+		thead {
+			display: none;
+		}
+	}
+	.wc_payment_methods {
+		list-style: none;
+		padding-left: 0;
+		margin-top: 0;
+		margin-bottom: 10px;
+		border: 1px solid #aaa;
+
+		> li {
+			padding: 14px 19px;
+			list-style: none;
+			border-bottom: 1px solid #ddd;
+			margin: 0;
+
+			&:last-child {
+				border: none;
+			}
+
+			input {
+				margin-left: 0;
+			}
+
+			.payment_box {
+				padding: 20px 0 0;
+				background: transparent;
+				box-shadow: none;
+				margin: 0;
+
+				&:before, &:after {
+					display: none;
+				}
+			}
+		}
+	}
+	#payment {
+		padding-bottom: 30px;
 	}
 }
 

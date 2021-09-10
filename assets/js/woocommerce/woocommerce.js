@@ -332,6 +332,6 @@ document.addEventListener(
 			}
 		);
 
-		stickyOrderReview();
+		//stickyOrderReview();
 	}
 );

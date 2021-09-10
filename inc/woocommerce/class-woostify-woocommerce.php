@@ -555,6 +555,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 				// Row end.
 				add_action( 'woocommerce_after_checkout_form', 'woostify_checkout_row_end', 50 );
+
+				add_filter( 'woocommerce_cart_item_name', 'woostify_checkout_product_image', 10, 3 );
 			}
 
 			// Add product thumbnail to review order.
