@@ -10116,23 +10116,6 @@ header.elementor-element {
   }
 }
 
-.checkout-layout-3 .woocommerce-billing-fields h3, .checkout-layout-3 #order_review_heading {
-  position: relative;
-}
-
-.checkout-layout-3 .woocommerce-billing-fields h3:before, .checkout-layout-3 #order_review_heading:before {
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  margin-left: 20px;
-  display: block;
-  content: " ";
-  width: 37px;
-  height: 1px;
-  background: currentColor;
-  background: rgba(0, 0, 0, 0.2);
-}
-
 .checkout-layout-3 .woocommerce-billing-fields {
   position: relative;
 }

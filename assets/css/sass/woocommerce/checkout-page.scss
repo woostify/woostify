@@ -1504,21 +1504,6 @@
 			display: inline-block;
 		}
 	}
-	.woocommerce-billing-fields h3, #order_review_heading {
-		position: relative;
-		&:before {
-			position: absolute;
-			top: 50%;
-			left: 100%;
-			margin-left: 20px;
-			display: block;
-			content: " ";
-			width: 37px;
-			height: 1px;
-			background: currentColor;
-			background: rgba(0,0,0,0.2);
-		}
-	}
 	.woocommerce-billing-fields {
 		position: relative;
 	}
