@@ -1316,10 +1316,17 @@
 			.cart_item {
 				.product-name {
 					position: relative;
+					padding-left: 75px;
+					position: relative;
+					min-height: 80px;
 
 					.w-product-thumb {
 						width: 60px;
 						overflow: hidden;
+						position: absolute;
+						left: 0;
+						top: 50%;
+						transform: translateY(-50%);
 
 						img {
 							max-width: 100%;
@@ -1343,6 +1350,11 @@
 						right: 100%;
 						z-index: 3;
 						display: inline-flex;
+					}
+					.variation {
+						display: block;
+						width: 100%;
+						font-size: 13px;
 					}
 				}
 			}
