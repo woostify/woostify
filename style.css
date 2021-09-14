@@ -9915,12 +9915,18 @@ header.elementor-element {
   text-transform: uppercase;
 }
 
+.checkout-layout-3 #order_review .shop_table .cart_item {
+  min-height: 60px;
+  margin-bottom: 15px;
+}
+
 .checkout-layout-3 #order_review .shop_table .cart_item .product-name {
   position: relative;
   padding-left: 75px;
   position: relative;
-  min-height: 80px;
   font-weight: 500;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .checkout-layout-3 #order_review .shop_table .cart_item .product-name .w-product-thumb {
