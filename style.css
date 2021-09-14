@@ -9960,9 +9960,27 @@ header.elementor-element {
   border-bottom: none;
 }
 
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table .woocommerce-shipping-methods li {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table .woocommerce-shipping-methods li:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table .woocommerce-shipping-methods li input {
+  margin: 4px 5px 0 0;
+}
+
 .checkout-layout-3 #order_review .woocommerce-checkout-review-order-table .woocommerce-shipping-methods li label {
   display: flex;
   justify-content: space-between;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .checkout-layout-3 form.woocommerce-checkout .woostify-col {
