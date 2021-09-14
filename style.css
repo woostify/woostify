@@ -9920,6 +9920,7 @@ header.elementor-element {
   padding-left: 75px;
   position: relative;
   min-height: 80px;
+  font-weight: 500;
 }
 
 .checkout-layout-3 #order_review .shop_table .cart_item .product-name .w-product-thumb {
