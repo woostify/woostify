@@ -185,14 +185,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$type    = $options['shop_page_infinite_scroll_type'];
 			if ( woocommerce_products_will_display() ) {
 				?>
-				<div class="woostify-view-more" data-loading_type="<?php esc_attr_e( $type ); ?>">
+				<div class="woostify-view-more" data-loading_type="<?php echo esc_attr( $type ); ?>">
 					<?php if ( 'button' === $type ) { ?>
 						<button class="w-view-more-button products-archive button"><span class="w-view-more-label"><?php esc_html_e( 'View more', 'woostify' ); ?></span></button>
 					<?php } else { ?>
 						<span class="woostify-loading-status"></span>
 					<?php } ?>
 				</div>
-			<?php }
+				<?php
+			}
 		}
 
 		/**
@@ -402,7 +403,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'items'                => 1,
 							'navAsThumbnails'      => true,
 							'autoHeight'           => true,
-							'preventScrollOnTouch' => true,
+							'preventScrollOnTouch' => false,
 						),
 						'thumb' => array(
 							'loop'      => false,
