@@ -276,7 +276,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Float sidebar for checkout page layout 3.
 			if ( is_checkout() && ( 'layout-3' === $options['checkout_page_layout'] ) ) {
-				wp_enqueue_script( 'woostify-float-sidebar' );
+				wp_enqueue_script( 'sticky-sidebar' );
 			}
 
 			// Main woocommerce js file.
@@ -551,6 +551,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				// Col left.
 				add_action( 'woocommerce_checkout_before_customer_details', 'woostify_checkout_col_left_start', 0 );
 				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_checkout_col_left_end', 50 );
+
+				add_action( 'woocommerce_before_checkout_billing_form', 'woostify_checkout_back_to_cart_link', 5 );
 
 				// Col right.
 				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_checkout_col_right_start', 55 );

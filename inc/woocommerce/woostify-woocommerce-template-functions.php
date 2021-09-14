@@ -1263,6 +1263,15 @@ if ( ! function_exists( 'woostify_checkout_col_left_start' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_checkout_back_to_cart_link' ) ) {
+	/**
+	 * Add back to cart link.
+	 */
+	function woostify_checkout_back_to_cart_link() {
+		echo '<div class="back-to-cart"><a href="' . esc_url( wc_get_cart_url() ) . '" class="outlined">' . woostify_fetch_svg_icon( 'angle-left' ) . '<span> ' . esc_html__( 'Back to cart', 'woostify' ) . '</span></a></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+}
+
 if ( ! function_exists( 'woostify_checkout_col_left_end' ) ) {
 	/**
 	 * Checkout form add column left end element

@@ -245,12 +245,14 @@ var updateHeaderCartPrice = function () {
 
 // Sticky order review.
 var stickyOrderReview = function() {
-	simpleStickySidebar(
-		'form.woocommerce-checkout .woostify-col .col-right-inner',
+	var form                     = 'form.woocommerce-checkout';
+	var sidebarContainerSelector = 'form.woocommerce-checkout .woostify-col .col-right-inner';
+
+	var reviewOrder = new WSYSticky(
+		sidebarContainerSelector,
 		{
-			container: 'form.woocommerce-checkout .woostify-col',
-			topSpace: 20,
-			bottomSpace : 20,
+			stickyContainer: form,
+			marginTop: 96,
 		}
 	);
 }
@@ -272,7 +274,7 @@ var checkoutOrder = function() {
 				return;
 			}
 
-			refreshIntervalId = setInterval(
+			var refreshIntervalId = setInterval(
 				function(){
 					set_heights();
 				},
@@ -399,7 +401,7 @@ document.addEventListener(
 
 		if ( '1' === woostify_woocommerce_general.enable_sticky_order_review_checkout ) {
 			checkoutOrder();
-			// stickyOrderReview();.
+			stickyOrderReview();
 		}
 	}
 );

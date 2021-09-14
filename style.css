@@ -9707,6 +9707,12 @@ header.elementor-element {
   margin-top: 0;
 }
 
+@media (max-width: 991px) {
+  .checkout-layout-3.has-distraction-free-checkout .site-content {
+    margin: 0;
+  }
+}
+
 .checkout-layout-3.has-distraction-free-checkout .site-header .site-header-inner {
   background-color: transparent;
   border: none;
@@ -9716,8 +9722,20 @@ header.elementor-element {
   justify-content: flex-start;
 }
 
+@media (max-width: 991px) {
+  .checkout-layout-3.has-distraction-free-checkout .site-header .woostify-container {
+    justify-content: center;
+  }
+}
+
 .checkout-layout-3.has-distraction-free-checkout .site-header .site-branding {
   text-align: left;
+}
+
+@media (max-width: 991px) {
+  .checkout-layout-3.has-distraction-free-checkout .site-header .site-branding {
+    text-align: center;
+  }
 }
 
 .checkout-layout-3 .woostify-row {
@@ -9748,6 +9766,12 @@ header.elementor-element {
   }
 }
 
+@media (max-width: 991px) {
+  .checkout-layout-3 .woostify-row .col-left {
+    padding-bottom: 15px;
+  }
+}
+
 .checkout-layout-3 .woostify-row .woostify-col {
   padding-left: 15px;
   padding-right: 15px;
@@ -9771,6 +9795,27 @@ header.elementor-element {
   .checkout-layout-3 .woostify-row .woostify-col .col-right-inner {
     position: static;
     transform: none;
+    position: relative;
+    padding-bottom: 3.5em;
+    padding-top: 15px;
+  }
+}
+
+.checkout-layout-3 .woostify-row .woostify-col .col-right-inner:before {
+  display: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -50%;
+  width: 200vw;
+  background-color: rgba(0, 0, 0, 0.02);
+  z-index: -1;
+}
+
+@media (max-width: 991px) {
+  .checkout-layout-3 .woostify-row .woostify-col .col-right-inner:before {
+    display: block;
   }
 }
 
@@ -9799,9 +9844,25 @@ header.elementor-element {
   }
 }
 
-.checkout-layout-3 .form-distr-free-bg .col-left {
-  max-width: 56.66666667%;
-  flex: 0 0 56.66666667%;
+@media (min-width: 992px) {
+  .checkout-layout-3 .form-distr-free-bg .col-left {
+    max-width: 59.333333%;
+    flex: 0 0 59.333333%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .checkout-layout-3 .form-distr-free-bg .col-left {
+    max-width: 58.66666667%;
+    flex: 0 0 58.66666667%;
+  }
+}
+
+@media (min-width: 1490px) {
+  .checkout-layout-3 .form-distr-free-bg .col-left {
+    max-width: 56.66666667%;
+    flex: 0 0 56.66666667%;
+  }
 }
 
 .checkout-layout-3 .form-distr-free-bg .woostify-col {
@@ -9834,11 +9895,18 @@ header.elementor-element {
   float: none;
   background: transparent;
   width: 100%;
+  padding: 0;
 }
 
 @media (min-width: 992px) {
   .checkout-layout-3 #order_review {
     padding-left: 40px;
+  }
+}
+
+@media (max-width: 991px) {
+  .checkout-layout-3 #order_review {
+    margin-top: 0;
   }
 }
 
@@ -9940,10 +10008,6 @@ header.elementor-element {
   display: none;
 }
 
-.checkout-layout-3 #payment {
-  padding-bottom: 30px;
-}
-
 @media (min-width: 992px) {
   .checkout-layout-3 .checkout-options .before-checkout.ready {
     opacity: 1;
@@ -9986,6 +10050,80 @@ header.elementor-element {
 
 .checkout-layout-3 [name="checkout"] {
   margin-top: 0;
+}
+
+.checkout-layout-3 .woocommerce-billing-fields > h3 {
+  display: inline-block;
+}
+
+.checkout-layout-3 #checkout-spacer {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .checkout-layout-3 #checkout-spacer {
+    display: block;
+  }
+}
+
+.checkout-layout-3 #order_review_heading {
+  font-size: 24px;
+  font-weight: normal;
+  margin-top: 0;
+}
+
+@media (max-width: 991px) {
+  .checkout-layout-3 #order_review_heading {
+    display: inline-block;
+  }
+}
+
+.checkout-layout-3 .woocommerce-billing-fields h3, .checkout-layout-3 #order_review_heading {
+  position: relative;
+}
+
+.checkout-layout-3 .woocommerce-billing-fields h3:before, .checkout-layout-3 #order_review_heading:before {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-left: 20px;
+  display: block;
+  content: " ";
+  width: 37px;
+  height: 1px;
+  background: currentColor;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.checkout-layout-3 .woocommerce-billing-fields {
+  position: relative;
+}
+
+.checkout-layout-3 .back-to-cart {
+  z-index: 7;
+  position: absolute;
+  right: 0;
+  top: 1.6em;
+}
+
+.checkout-layout-3 .back-to-cart a {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.checkout-layout-3 .back-to-cart a .woostify-svg-icon {
+  margin-top: -2px;
+  margin-right: 4px;
+}
+
+.checkout-layout-3 .back-to-cart a .woostify-svg-icon svg {
+  width: 10px;
+  height: 10px;
+}
+
+.checkout-layout-3 .back-to-cart a span {
+  line-height: 1;
 }
 
 @media (min-width: 992px) {
