@@ -95,10 +95,6 @@ function woostifyAjaxSingleAddToCartButton() {
 					eventCartSidebarOpen();
 				}
 
-				if ( 'function' === typeof( cartSidebarOpen ) ) {
-					cartSidebarOpen();
-				}
-
 				if ( 'function' === typeof( closeAll ) ) {
 					closeAll();
 				}
