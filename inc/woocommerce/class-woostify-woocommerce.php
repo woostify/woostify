@@ -542,6 +542,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		 * Init action
 		 */
 		public function woostify_woocommerce_init_action() {
+			$options = woostify_options( false );
 			// Remove default add to wishlist button TI wishlist plugin.
 			remove_action( 'woocommerce_after_shop_loop_item', 'tinvwl_view_addto_htmlloop', 10 );
 
@@ -592,8 +593,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
 
 			// Enabled Catalog Mode.
-			remove_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_add_to_cart_button', 10 );
-			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+			if ( $options['catalog_mode'] ) {
+				remove_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_add_to_cart_button', 10 );
+				remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+			}
 		}
 
 		/**
