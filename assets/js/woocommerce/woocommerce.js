@@ -430,14 +430,11 @@ document.addEventListener(
 			'adding_to_cart',
 			function() {
 				eventCartSidebarOpen();
-
-				if ( ! document.body.classList.contains( 'disabled-sidebar-cart' ) ) {
-					cartSidebarOpen();
-				}
 			}
 		).on(
 			'added_to_cart',
 			function() {
+				cartSidebarOpen();
 				woostifyQuantityMiniCart();
 				updateHeaderCartPrice();
 				eventCartSidebarClose();
