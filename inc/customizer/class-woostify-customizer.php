@@ -361,6 +361,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_page_product_category'               => false,
 				'shop_page_product_rating'                 => true,
 				'shop_page_product_price'                  => true,
+				'shop_page_product_quantity'               => false,
 				// Product image.
 				'shop_page_product_image_hover'            => 'swap',
 				'shop_page_product_image_border_style'     => 'none',
