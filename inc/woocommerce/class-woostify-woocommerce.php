@@ -590,6 +590,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Swap position price and rating star.
 			add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 			add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+
+			// Enabled Catalog Mode.
+			remove_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_add_to_cart_button', 10 );
+			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 		}
 
 		/**
