@@ -346,6 +346,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_page_result_count'                   => true,
 				'shop_page_product_filter'                 => true,
 				// Product catalog.
+				'catalog_mode'                             => false,
 				'products_per_row'                         => 3,
 				'tablet_products_per_row'                  => 2,
 				'mobile_products_per_row'                  => 1,
