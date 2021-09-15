@@ -748,7 +748,7 @@
 
 		&:not(.last) {
 			#place_order {
-				display: none;
+				display: none !important;
 			}
 		}
 

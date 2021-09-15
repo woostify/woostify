@@ -10872,7 +10872,7 @@ header.elementor-element {
 }
 
 .has-multi-step-checkout .multi-step-checkout-wrapper:not(.last) #place_order {
-  display: none;
+  display: none !important;
 }
 
 .has-multi-step-checkout .multi-step-checkout-wrapper:not(.first) ~ #order_review .shipping-placeholder {
