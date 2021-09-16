@@ -345,34 +345,41 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 		?>
 
 		<div class="product-images">
-			<div id="product-images">
-				<figure class="image-item ez-zoom">
-					<a href="<?php echo esc_url( isset( $image_full_src[0] ) ? $image_full_src[0] : '#' ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
-						<?php echo wp_kses( $product->get_image( 'woocommerce_single', array(), true ), $html_allowed ); ?>
-					</a>
-				</figure>
-				<?php
+			<div id="product-images" class="product-images-swiper swiper">
+				<div class="swiper-wrapper">
+					<figure class="image-item ez-zoom swiper-slide">
+						<a href="<?php echo esc_url( isset( $image_full_src[0] ) ? $image_full_src[0] : '#' ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
+							<?php echo wp_kses( $product->get_image( 'woocommerce_single', array(), true ), $html_allowed ); ?>
+						</a>
+					</figure>
+					<?php
 
-				if ( ! empty( $gallery_id ) ) {
-					foreach ( $gallery_id as $key ) {
-						$g_full_img_src = wp_get_attachment_image_src( $key, 'full' );
-						if ( empty( $g_full_img_src ) ) {
-							continue;
+					if ( ! empty( $gallery_id ) ) {
+						foreach ( $gallery_id as $key ) {
+							$g_full_img_src = wp_get_attachment_image_src( $key, 'full' );
+							if ( empty( $g_full_img_src ) ) {
+								continue;
+							}
+							$g_medium_img_src = wp_get_attachment_image_src( $key, 'woocommerce_single' );
+							$g_image_size     = $g_full_img_src[1] . 'x' . $g_full_img_src[2];
+							$g_img_alt        = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
+							$g_img_srcset     = function_exists( 'wp_get_attachment_image_srcset' ) ? wp_get_attachment_image_srcset( $key, 'woocommerce_single' ) : '';
+							?>
+							<figure class="image-item ez-zoom swiper-slide">
+								<a href="<?php echo esc_url( $g_full_img_src[0] ); ?>" data-size="<?php echo esc_attr( $g_image_size ); ?>" data-elementor-open-lightbox="no">
+									<img width="<?php echo esc_attr( $g_medium_img_src[1] ); ?>" height="<?php echo esc_attr( $g_medium_img_src[2] ); ?>"  src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>" srcset="<?php echo wp_kses_post( $g_img_srcset ); ?>">
+								</a>
+							</figure>
+							<?php
 						}
-						$g_medium_img_src = wp_get_attachment_image_src( $key, 'woocommerce_single' );
-						$g_image_size     = $g_full_img_src[1] . 'x' . $g_full_img_src[2];
-						$g_img_alt        = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
-						$g_img_srcset     = function_exists( 'wp_get_attachment_image_srcset' ) ? wp_get_attachment_image_srcset( $key, 'woocommerce_single' ) : '';
-						?>
-						<figure class="image-item ez-zoom">
-							<a href="<?php echo esc_url( $g_full_img_src[0] ); ?>" data-size="<?php echo esc_attr( $g_image_size ); ?>" data-elementor-open-lightbox="no">
-								<img width="<?php echo esc_attr( $g_medium_img_src[1] ); ?>" height="<?php echo esc_attr( $g_medium_img_src[2] ); ?>"  src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>" srcset="<?php echo wp_kses_post( $g_img_srcset ); ?>">
-							</a>
-						</figure>
-						<?php
 					}
-				}
-				?>
+					?>
+				</div>
+				<div class="swiper-nav-btn swiper-button-next">
+					<?php Woostify_Icon::fetch_svg_icon( 'angle-right' ); ?>
+				</div>
+      			<div class="swiper-nav-btn swiper-button-prev">
+					<?php Woostify_Icon::fetch_svg_icon( 'angle-left' ); ?></div>
 			</div>
 
 			<?php do_action( 'woostify_product_images_box_end' ); ?>

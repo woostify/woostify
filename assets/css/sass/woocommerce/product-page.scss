@@ -268,8 +268,23 @@
 			display: block;
 		}
 	}
-	.tns-nav {
-		z-index: 0;
+
+	.swiper-nav-btn {
+		background: #fff;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		border: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		margin: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.woostify-svg-icon {
+			display: inline-flex;
+		}
 	}
 }
 
@@ -294,7 +309,7 @@
 		border: 1px solid $tr;
 	}
 
-	.tns-nav-active {
+	.swiper-slide-thumb-active {
 		img {
 			border: 1px solid #555;
 		}
