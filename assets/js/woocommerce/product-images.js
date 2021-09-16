@@ -136,6 +136,12 @@ document.addEventListener(
 		if ( productThumbnails ) {
 			imageCarousel = tns( options );
 			thumbCarousel = tns( thumbOptions );
+			// var thumbCarousel = new Swiper(".product-thumbnail-images-swiper", {
+			// 	spaceBetween: 10,
+			// 	slidesPerView: 1,
+			// 	watchSlidesProgress: true,
+			// 	direction: "vertical"
+			// });
 		}
 
 		// Arrow event.

@@ -407,27 +407,29 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 
 		<div class="product-thumbnail-images">
 			<?php if ( ! empty( $gallery_id ) ) { ?>
-			<div id="product-thumbnail-images">
-				<?php if ( ! empty( $image_small_src ) ) { ?>
-					<div class="thumbnail-item">
-						<img src="<?php echo esc_url( $image_small_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
-					</div>
-				<?php } ?>
-
-				<?php
-				foreach ( $gallery_id as $key ) {
-					$g_thumb_src = wp_get_attachment_image_src( $key, 'woocommerce_gallery_thumbnail' );
-					$g_thumb_alt = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
-
-					if ( ! empty( $g_thumb_src ) ) {
-						?>
-						<div class="thumbnail-item">
-							<img src="<?php echo esc_url( $g_thumb_src[0] ); ?>" alt="<?php echo esc_attr( $g_thumb_alt ); ?>">
+			<div id="product-thumbnail-images" class="product-thumbnail-images-swiper swiper">
+				<div class="swiper-wrapper">
+					<?php if ( ! empty( $image_small_src ) ) { ?>
+						<div class="thumbnail-item swiper-slide">
+							<img src="<?php echo esc_url( $image_small_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
 						</div>
-						<?php
+					<?php } ?>
+
+					<?php
+					foreach ( $gallery_id as $key ) {
+						$g_thumb_src = wp_get_attachment_image_src( $key, 'woocommerce_gallery_thumbnail' );
+						$g_thumb_alt = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
+
+						if ( ! empty( $g_thumb_src ) ) {
+							?>
+							<div class="thumbnail-item swiper-slide">
+								<img src="<?php echo esc_url( $g_thumb_src[0] ); ?>" alt="<?php echo esc_attr( $g_thumb_alt ); ?>">
+							</div>
+							<?php
+						}
 					}
-				}
-				?>
+					?>
+				</div>
 			</div>
 			<?php } ?>
 		</div>

@@ -783,11 +783,20 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
-			// Product images ( Tiny slider ).
+			// Swiper slider js.
+			wp_register_script(
+				'swiper',
+				WOOSTIFY_THEME_URI . 'assets/js/swiper-bundle' . woostify_suffix() . '.js',
+				array(),
+				woostify_version(),
+				true
+			);
+
+			// Product images ( swiper slider ).
 			wp_register_script(
 				'woostify-product-images',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/product-images' . woostify_suffix() . '.js',
-				array( 'jquery', 'tiny-slider' ),
+				array( 'jquery', 'tiny-slider', 'swiper' ),
 				woostify_version(),
 				true
 			);
