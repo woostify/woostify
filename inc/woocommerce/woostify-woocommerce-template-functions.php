@@ -1229,7 +1229,7 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 	}
 }
 
-if ( function_exists( 'woostify_product_quantity' ) ) {
+if ( ! function_exists( 'woostify_product_quantity' ) ) {
 	/**
 	 * Display quantity input shop page
 	 */
@@ -1262,6 +1262,6 @@ if ( function_exists( 'woostify_product_quantity' ) ) {
 		);
 		$html .= '</div>';
 
-		echo $html; // phpcs:ignore
+		echo $html; // phpcs:ignore.
 	}
 }
