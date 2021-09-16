@@ -32,9 +32,9 @@ $wp_customize->add_control(
 			'choices'  => apply_filters(
 				'woostify_setting_checkout_page_layout_choices',
 				array(
-					'layout-1' => WOOSTIFY_THEME_URI . 'assets/images/customizer/cart-page/layout-1.jpg',
-					'layout-2' => WOOSTIFY_THEME_URI . 'assets/images/customizer/cart-page/layout-2.jpg',
-					'layout-3' => WOOSTIFY_THEME_URI . 'assets/images/customizer/cart-page/layout-1.jpg',
+					'layout-1' => WOOSTIFY_THEME_URI . 'assets/images/customizer/checkout-page/layout-default.png',
+					'layout-2' => WOOSTIFY_THEME_URI . 'assets/images/customizer/checkout-page/layout-multistep.png',
+					'layout-3' => WOOSTIFY_THEME_URI . 'assets/images/customizer/checkout-page/layout-minimal.png',
 				)
 			),
 			'priority' => 0,
