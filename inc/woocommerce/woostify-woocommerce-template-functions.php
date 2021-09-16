@@ -1229,12 +1229,39 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 	}
 }
 
-function quantity_inputs_for_woocommerce_loop_add_to_cart_link( $html, $product ) {
-	if ( $product && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() && ! $product->is_sold_individually() ) {
-		$html = '<form action="' . esc_url( $product->add_to_cart_url() ) . '" class="cart" method="post" enctype="multipart/form-data">';
-		$html .= woocommerce_quantity_input( array(), $product, false );
-		$html .= '<button type="submit" class="button alt">' . esc_html( $product->add_to_cart_text() ) . '</button>';
-		$html .= '</form>';
+if ( function_exists( 'woostify_product_quantity' ) ) {
+	/**
+	 * Display quantity input shop page
+	 */
+	function woostify_product_quantity() {
+		$options = woostify_options( false );
+		if ( ! is_shop() && ! is_product_category() ) {
+			return;
+		}
+
+		if ( 'none' === $options['shop_page_add_to_cart_button_position'] ) {
+			return;
+		}
+
+		$product = wc_get_product( get_the_ID() );
+
+		if ( $product->is_sold_individually() || 'variable' === $product->get_type() || ! $product->is_purchasable() ) {
+			return;
+		}
+
+		$html = '';
+
+		$html .= '<div class="loop-product-qty">';
+		$html .= woocommerce_quantity_input(
+			array(
+				'min_value' => 1,
+				'max_value' => $product->backorders_allowed() ? '' : $product->get_stock_quantity(),
+			),
+			$product,
+			false
+		);
+		$html .= '</div>';
+
+		echo $html; // phpcs:ignore
 	}
-	return $html;
 }

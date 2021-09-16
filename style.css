@@ -6933,6 +6933,35 @@ header.elementor-element {
   transform: translateY(-50%);
 }
 
+.loop-product-qty .quantity {
+  border: 1px solid #e8e8e8;
+  border-radius: 50px;
+  height: 36px;
+  max-width: 120px;
+}
+
+.loop-product-qty .quantity .product-qty {
+  width: 35px;
+}
+
+.loop-product-qty .quantity .product-qty .woostify-svg-icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.loop-product-qty .quantity [data-qty="minus"] {
+  border-right: 1px solid #e8e8e8;
+}
+
+.loop-product-qty .quantity [data-qty="plus"] {
+  border-left: 1px solid #e8e8e8;
+}
+
+.loop-product-qty .quantity .qty {
+  padding: 0 30px;
+  font-size: inherit;
+}
+
 /* responsive */
 @media (min-width: 992px) {
   .products .product:hover .product-loop-meta:not(.no-transform) .animated-meta {
