@@ -407,10 +407,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 						),
 						'thumb' => array(
 							'spaceBetween'        => 10,
-							'navigation'          => false,
-							'slidesPerView'       => 4,
+							'slidesPerView'       => 'auto',
+							'slideToClickedSlide' => true,
 							'watchSlidesProgress' => true,
-							'direction'           => $options['shop_single_gallery_layout'],
 						),
 					)
 				)

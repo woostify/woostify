@@ -107,67 +107,62 @@ document.addEventListener(
 			firstImageHeight = firstImage ? firstImage.offsetHeight : 0,
 			firstImageWidth  = firstImage ? firstImage.offsetWidth : 0,
 			firstImageSize   = gallery ? gallery.classList.contains( 'vertical-style' ) ? firstImageHeight : firstImageWidth : false,
-			imageSize        = gallery ? gallery.classList.contains( 'vertical-style' ) ? 60 : 80 : false,
-			thumbItems       = firstImageSize && imageSize ? parseInt( firstImageSize / imageSize ) : 5;
+			imageSize        = gallery ? gallery.classList.contains( 'vertical-style' ) ? 60 : 80 : false;
 
 		var thumbCarousel,
-			thumbOptions = woostify_product_images_slider_options.thumb;
-
-		// Set responsive.
-		if ( 'undefined' === typeof( thumbOptions.responsive ) ) {
-			thumbOptions.responsive = {
-				720: {
-					items: ( thumbItems > 7 ? 7 : thumbItems )
-				},
-				992: {
-					items: thumbItems
-				}
-			}
-		}
+			thumbOptions          = woostify_product_images_slider_options.thumb,
+			thumbOptionsDirection = 'horizontal';
 
 		if (
 			window.matchMedia( '( min-width: 768px )' ).matches &&
 			gallery &&
 			gallery.classList.contains( 'vertical-style' )
 		) {
-			thumbOptions.axis = 'vertical';
+			thumbOptionsDirection  = 'vertical';
+			thumbOptions.direction = 'vertical';
+			thumbOptions.on        = {
+				init: function() {
+					for ( var i = 0, slideLength = this.slides.length; i < slideLength; i++ ) {
+						this.slides[i].style.height = '50px';
+					}
+					this.el.querySelector( '.swiper-wrapper' ).style.height = firstImageHeight + 'px';
+					this.update();
+				}
+			}
 		}
 
 		if ( productThumbnails ) {
-			var thumbCarousel = new Swiper(".product-thumbnail-images-swiper", thumbOptions);
-			options.thumbs = { 'swiper': thumbCarousel };
-			var imageCarousel = new Swiper(".product-images-swiper", options);
+			var thumbCarousel = new Swiper( ".product-thumbnail-images-swiper", thumbOptions );
+			options.thumbs    = { 'swiper': thumbCarousel };
+			var imageCarousel = new Swiper( ".product-images-swiper", options );
 		}
 
-		// Arrow event.
-		function arrowsEvent() {
-			if ( ! thumbCarousel ) {
-				return;
-			}
-
-			var buttons = document.querySelectorAll( '.product-images .tns-controls button' );
-
-			if ( ! buttons.length ) {
-				return;
-			}
-
-			buttons.forEach(
-				function( el ) {
-					el.addEventListener(
-						'click',
-						function() {
-							var nav = el.getAttribute( 'data-controls' );
-
-							if ( 'next' === nav ) {
-								thumbCarousel.goTo( 'next' );
-							} else {
-								thumbCarousel.goTo( 'prev' );
-							}
+		window.addEventListener(
+			'resize',
+			function() {
+				var windowWidth = window.innerWidth;
+				if ( windowWidth < 768 ) {
+					if ( 'horizontal' !== thumbCarousel.params.direction ) {
+						thumbCarousel.changeDirection( 'horizontal', true );
+						thumbCarousel.el.querySelector( '.swiper-wrapper' ).style.height = 'auto';
+					}
+				} else {
+					if ( gallery && gallery.classList.contains( 'vertical-style' ) ) {
+						if ( 'vertical' !== thumbCarousel.params.direction ) {
+							thumbCarousel.changeDirection( 'vertical', true );
 						}
-					);
+						var currFirstImage   = gallery ? gallery.querySelector( '.image-item img' ) : false,
+						currFirstImageHeight = currFirstImage ? currFirstImage.offsetHeight : 0;
+
+						thumbCarousel.el.querySelector( '.swiper-wrapper' ).style.height = currFirstImageHeight + 'px';
+						for ( var i = 0, slideLength = thumbCarousel.slides.length; i < slideLength; i++ ) {
+							thumbCarousel.slides[i].style.height = '50px';
+						}
+					}
 				}
-			);
-		}
+				thumbCarousel.update();
+			}
+		);
 
 		// Reset carousel.
 		function resetCarousel() {
@@ -368,7 +363,6 @@ document.addEventListener(
 			'load',
 			function() {
 				woostifyStickySummary();
-				arrowsEvent();
 			}
 		);
 
@@ -386,7 +380,6 @@ document.addEventListener(
 								renderSlider( '#product-thumbnail-images', thumbOptions );
 							}
 							carouselAction();
-							arrowsEvent();
 						}
 					);
 				}

@@ -8727,7 +8727,8 @@ header.elementor-element {
 
 @media (min-width: 768px) {
   .product-gallery.vertical-style.has-product-thumbnails {
-    display: flex;
+    padding-left: 70px;
+    position: relative;
   }
   .product-gallery.vertical-style.has-product-thumbnails .product-images {
     order: 2;
@@ -8735,7 +8736,9 @@ header.elementor-element {
   .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images {
     width: 50px;
     min-width: 50px;
-    margin-right: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 }
 
@@ -8840,6 +8843,7 @@ header.elementor-element {
 
 .product-thumbnail-images img {
   border: 1px solid rgba(0, 0, 0, 0);
+  display: inline-block;
 }
 
 .product-thumbnail-images .swiper-slide-thumb-active img {

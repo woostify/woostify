@@ -166,7 +166,8 @@
 	// Vertical slider layout
 	&.vertical-style.has-product-thumbnails {
 		@media (min-width: $screen-sm) {
-			display: flex;
+			padding-left: 70px;
+    		position: relative;
 
 			.product-images {
 				order: 2;
@@ -175,7 +176,9 @@
 			.product-thumbnail-images {
 				width: 50px;
 				min-width: 50px;
-				margin-right: 20px;
+				position: absolute;
+				left: 0;
+				top: 0;
 			}
 		}
 	}
@@ -307,6 +310,7 @@
 
 	img {
 		border: 1px solid $tr;
+		display: inline-block;
 	}
 
 	.swiper-slide-thumb-active {
