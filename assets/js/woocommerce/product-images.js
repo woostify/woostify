@@ -104,10 +104,7 @@ document.addEventListener(
 
 		// Product thumbnails.
 		var firstImage       = gallery ? gallery.querySelector( '.image-item img' ) : false,
-			firstImageHeight = firstImage ? firstImage.offsetHeight : 0,
-			firstImageWidth  = firstImage ? firstImage.offsetWidth : 0,
-			firstImageSize   = gallery ? gallery.classList.contains( 'vertical-style' ) ? firstImageHeight : firstImageWidth : false,
-			imageSize        = gallery ? gallery.classList.contains( 'vertical-style' ) ? 60 : 80 : false;
+			firstImageHeight = firstImage ? firstImage.offsetHeight : 0;
 
 		var thumbCarousel,
 			thumbOptions          = woostify_product_images_slider_options.thumb,
@@ -166,12 +163,8 @@ document.addEventListener(
 
 		// Reset carousel.
 		function resetCarousel() {
-			if ( imageCarousel && imageCarousel.goTo ) {
-				imageCarousel.goTo( 'first' );
-			}
-
-			if ( thumbCarousel && thumbCarousel.goTo ) {
-				thumbCarousel.goTo( 'first' );
+			if ( imageCarousel ) {
+				imageCarousel.slideToLoop( 0 );
 			}
 		}
 
@@ -184,7 +177,7 @@ document.addEventListener(
 			// For Elementor Preview Mode.
 			if ( ! gallery ) {
 				gallery           = document.querySelector( '.product-gallery' );
-				thumbOptions.axis = gallery.classList.contains( 'vertical-style' ) ? 'vertical' : 'horizontal';
+				thumbOptions.direction = gallery.classList.contains( 'vertical-style' ) ? 'vertical' : 'horizontal';
 			}
 
 			var images            = '',
@@ -305,9 +298,10 @@ document.addEventListener(
 					// Update slider height.
 					setTimeout(
 						function() {
-							if ( 'object' === typeof( imageCarousel ) && imageCarousel.updateSliderHeight ) {
-								imageCarousel.updateSliderHeight();
-							}
+							imageCarousel.update();
+							// if ( 'object' === typeof( imageCarousel ) && imageCarousel.updateSliderHeight ) {
+							// 	imageCarousel.updateSliderHeight();
+							// }
 						},
 						200
 					);
