@@ -410,7 +410,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'navigation'          => false,
 							'slidesPerView'       => 4,
 							'watchSlidesProgress' => true,
-							'direction'           => 'vertical',
+							'direction'           => $options['shop_single_gallery_layout'],
 						),
 					)
 				)

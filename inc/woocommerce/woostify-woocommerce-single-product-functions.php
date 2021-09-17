@@ -316,6 +316,10 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 			return;
 		}
 
+		$options = woostify_options( false );
+
+		$has_slider = 'vertical' === $options['shop_single_gallery_layout'] || 'horizontal' === $options['shop_single_gallery_layout'] ? true : false;
+
 		$image_id            = $product->get_image_id();
 		$image_alt           = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
 		$get_size            = wc_get_image_size( 'shop_catalog' );
@@ -345,9 +349,11 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 		?>
 
 		<div class="product-images">
-			<div id="product-images" class="product-images-swiper swiper">
+			<div id="product-images" class="<?php echo $has_slider ? 'product-images-swiper swiper' : ''; ?>">
+				<?php if ( $has_slider ) { ?>
 				<div class="swiper-wrapper">
-					<figure class="image-item ez-zoom swiper-slide">
+					<?php } ?>
+					<figure class="image-item ez-zoom <?php echo $has_slider ? 'swiper-slide' : ''; ?>">
 						<a href="<?php echo esc_url( isset( $image_full_src[0] ) ? $image_full_src[0] : '#' ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
 							<?php echo wp_kses( $product->get_image( 'woocommerce_single', array(), true ), $html_allowed ); ?>
 						</a>
@@ -374,12 +380,15 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 						}
 					}
 					?>
+				<?php if ( $has_slider ) { ?>
 				</div>
 				<div class="swiper-nav-btn swiper-button-next">
 					<?php Woostify_Icon::fetch_svg_icon( 'angle-right' ); ?>
 				</div>
-      			<div class="swiper-nav-btn swiper-button-prev">
-					<?php Woostify_Icon::fetch_svg_icon( 'angle-left' ); ?></div>
+				<div class="swiper-nav-btn swiper-button-prev">
+					<?php Woostify_Icon::fetch_svg_icon( 'angle-left' ); ?>
+				</div>
+				<?php } ?>
 			</div>
 
 			<?php do_action( 'woostify_product_images_box_end' ); ?>
@@ -406,6 +415,10 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 			return;
 		}
 
+		$options = woostify_options( false );
+
+		$has_slider = 'vertical' === $options['shop_single_gallery_layout'] || 'horizontal' === $options['shop_single_gallery_layout'] ? true : false;
+
 		$image_id        = $product->get_image_id();
 		$image_alt       = woostify_image_alt( $image_id, esc_attr__( 'Product image', 'woostify' ) );
 		$image_small_src = $image_id ? wp_get_attachment_image_src( $image_id, 'woocommerce_gallery_thumbnail' ) : wc_placeholder_img_src();
@@ -414,10 +427,12 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 
 		<div class="product-thumbnail-images">
 			<?php if ( ! empty( $gallery_id ) ) { ?>
-			<div id="product-thumbnail-images" class="product-thumbnail-images-swiper swiper">
+			<div id="product-thumbnail-images" <?php echo $has_slider ? 'class="product-thumbnail-images-swiper swiper"' : ''; ?>>
+				<?php if ( $has_slider ) { ?>
 				<div class="swiper-wrapper">
+					<?php } ?>
 					<?php if ( ! empty( $image_small_src ) ) { ?>
-						<div class="thumbnail-item swiper-slide">
+						<div class="thumbnail-item <?php echo $has_slider ? 'swiper-slide' : ''; ?>">
 							<img src="<?php echo esc_url( $image_small_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
 						</div>
 					<?php } ?>
@@ -436,7 +451,9 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 						}
 					}
 					?>
+					<?php if ( $has_slider ) { ?>
 				</div>
+				<?php } ?>
 			</div>
 			<?php } ?>
 		</div>

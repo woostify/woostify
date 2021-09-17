@@ -134,11 +134,8 @@ document.addEventListener(
 		}
 
 		if ( productThumbnails ) {
-			// imageCarousel = tns( options );
-			// thumbCarousel = tns( thumbOptions );
 			var thumbCarousel = new Swiper(".product-thumbnail-images-swiper", thumbOptions);
 			options.thumbs = { 'swiper': thumbCarousel };
-			console.log( options );
 			var imageCarousel = new Swiper(".product-images-swiper", options);
 		}
 
