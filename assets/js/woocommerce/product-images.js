@@ -115,14 +115,14 @@ document.addEventListener(
 
 		// Set responsive.
 		if ( 'undefined' === typeof( thumbOptions.responsive ) ) {
-			thumbOptions.responsive = {
-				720: {
-					items: ( thumbItems > 7 ? 7 : thumbItems )
-				},
-				992: {
-					items: thumbItems
-				}
-			}
+			// thumbOptions.responsive = {
+			// 	720: {
+			// 		items: ( thumbItems > 7 ? 7 : thumbItems )
+			// 	},
+			// 	992: {
+			// 		items: thumbItems
+			// 	}
+			// }
 		}
 
 		if (
@@ -130,12 +130,17 @@ document.addEventListener(
 			gallery &&
 			gallery.classList.contains( 'vertical-style' )
 		) {
-			thumbOptions.axis = 'vertical';
+			//thumbOptions.axis = 'vertical';
 		}
 
 		if ( productThumbnails ) {
-			imageCarousel = tns( options );
-			thumbCarousel = tns( thumbOptions );
+			// imageCarousel = tns( options );
+			// thumbCarousel = tns( thumbOptions );
+
+			// element argument can be a selector string
+			//   for an individual element
+			var imageCarousel = new Flickity( options.container, options);
+			var thumbCarousel = new Flickity( thumbOptions.container, thumbOptions);
 		}
 
 		// Arrow event.
