@@ -8683,6 +8683,12 @@ header.elementor-element {
   .product-gallery {
     width: calc((100% - 30px) / 2);
   }
+  .product-gallery.column-style .swiper-wrapper, .product-gallery.grid-style .swiper-wrapper {
+    flex-wrap: wrap;
+  }
+  .product-gallery.column-style .swiper-nav-btn, .product-gallery.grid-style .swiper-nav-btn {
+    display: none;
+  }
 }
 
 .product-gallery.wc-default-gallery .onsale {

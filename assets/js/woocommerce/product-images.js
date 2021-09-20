@@ -16,11 +16,11 @@ function renderSlider( selector, options ) {
 	}
 
 	for ( var i = 0, j = element.length; i < j; i++ ) {
-		if ( element[i].classList.contains( 'tns-slider' ) ) {
+		if ( element[i].classList.contains( 'swiper-container-initialized' ) ) {
 			continue;
 		}
 
-		var slider = tns( options );
+		var slider = new Swiper( selector, options );
 	}
 }
 
@@ -51,14 +51,16 @@ function woostifyGalleryCarouselMobile() {
 		return;
 	}
 
-	var slider = tns(
-		{
-			container: gallery.querySelector( '#product-images' ),
-			items: 1,
-			loop: false,
-			autoHeight: true
-		}
-	);
+	var options = {
+		'loop' : true,
+		'slidesPerView': 1,
+		'autoHeight': true,
+		'navigation': {
+			'nextEl': '.swiper-button-next',
+			'prevEl': '.swiper-button-prev',
+		},
+	}
+	var slider  = new Swiper( "#product-images", options );
 }
 
 // Sticky summary for list layout.
@@ -134,32 +136,34 @@ document.addEventListener(
 			var imageCarousel = new Swiper( ".product-images-swiper", options );
 		}
 
-		window.addEventListener(
-			'resize',
-			function() {
-				var windowWidth = window.innerWidth;
-				if ( windowWidth < 768 ) {
-					if ( 'horizontal' !== thumbCarousel.params.direction ) {
-						thumbCarousel.changeDirection( 'horizontal', true );
-						thumbCarousel.el.querySelector( '.swiper-wrapper' ).style.height = 'auto';
-					}
-				} else {
-					if ( gallery && gallery.classList.contains( 'vertical-style' ) ) {
-						if ( 'vertical' !== thumbCarousel.params.direction ) {
-							thumbCarousel.changeDirection( 'vertical', true );
+		if ( thumbCarousel ) {
+			window.addEventListener(
+				'resize',
+				function() {
+					var windowWidth = window.innerWidth;
+					if ( windowWidth < 768 ) {
+						if ( 'horizontal' !== thumbCarousel.params.direction ) {
+							thumbCarousel.changeDirection( 'horizontal', true );
+							thumbCarousel.el.querySelector( '.swiper-wrapper' ).style.height = 'auto';
 						}
-						var currFirstImage   = gallery ? gallery.querySelector( '.image-item img' ) : false,
-						currFirstImageHeight = currFirstImage ? currFirstImage.offsetHeight : 0;
+					} else {
+						if ( gallery && gallery.classList.contains( 'vertical-style' ) ) {
+							if ( 'vertical' !== thumbCarousel.params.direction ) {
+								thumbCarousel.changeDirection( 'vertical', true );
+							}
+							var currFirstImage   = gallery ? gallery.querySelector( '.image-item img' ) : false,
+							currFirstImageHeight = currFirstImage ? currFirstImage.offsetHeight : 0;
 
-						thumbCarousel.el.querySelector( '.swiper-wrapper' ).style.height = currFirstImageHeight + 'px';
-						for ( var i = 0, slideLength = thumbCarousel.slides.length; i < slideLength; i++ ) {
-							thumbCarousel.slides[i].style.height = '50px';
+							thumbCarousel.el.querySelector( '.swiper-wrapper' ).style.height = currFirstImageHeight + 'px';
+							for ( var i = 0, slideLength = thumbCarousel.slides.length; i < slideLength; i++ ) {
+								thumbCarousel.slides[i].style.height = '50px';
+							}
 						}
 					}
+					thumbCarousel.update();
 				}
-				thumbCarousel.update();
-			}
-		);
+			);
+		}
 
 		// Reset carousel.
 		function resetCarousel() {
@@ -170,13 +174,14 @@ document.addEventListener(
 
 		// Update gallery.
 		function updateGallery( data, reset, variationId ) {
+			console.log( ! data.length || document.documentElement.classList.contains( 'quick-view-open' ) )
 			if ( ! data.length || document.documentElement.classList.contains( 'quick-view-open' ) ) {
 				return;
 			}
 
 			// For Elementor Preview Mode.
 			if ( ! gallery ) {
-				gallery           = document.querySelector( '.product-gallery' );
+				gallery                = document.querySelector( '.product-gallery' );
 				thumbOptions.direction = gallery.classList.contains( 'vertical-style' ) ? 'vertical' : 'horizontal';
 			}
 
@@ -206,15 +211,15 @@ document.addEventListener(
 			}
 
 			// Destroy current slider.
-			if ( imageCarousel && imageCarousel.version ) {
-				imageCarousel.destroy();
+			if ( imageCarousel ) {
+				imageCarousel.loopDestroy();
 
 				let propsImages = Object.getOwnPropertyNames( imageCarousel );
 				for ( let i = 0, j = propsImages.length; i < j; i++ ) {
 					delete imageCarousel[ propsImages[ i ] ];
 				}
 			}
-			if ( thumbCarousel && thumbCarousel.version ) {
+			if ( thumbCarousel ) {
 				thumbCarousel.destroy();
 
 				let propsThumbnail = Object.getOwnPropertyNames( thumbCarousel );
@@ -240,18 +245,13 @@ document.addEventListener(
 				}
 			}
 
-			// Rebuild new slider.
-			if ( ! thumbnails ) {
-				options.navContainer = false;
-			}
-
 			// Re-init slider.
 			if ( ! noSliderLayout ) {
-				if ( 'undefined' === typeof( imageCarousel ) || ! Object.getOwnPropertyNames( imageCarousel ).length ) {
-					imageCarousel = tns( options );
-				}
 				if ( thumbnails && ( 'undefined' === typeof( thumbCarousel ) || ! Object.getOwnPropertyNames( thumbCarousel ).length ) ) {
-					thumbCarousel = tns( thumbOptions );
+					thumbCarousel = new Swiper( '.product-thumbnail-images-swiper', thumbOptions );
+				}
+				if ( 'undefined' === typeof( imageCarousel ) || ! Object.getOwnPropertyNames( imageCarousel ).length ) {
+					imageCarousel = new Swiper( '.product-images-swiper', options );
 				}
 			}
 
@@ -298,16 +298,20 @@ document.addEventListener(
 					// Update slider height.
 					setTimeout(
 						function() {
-							imageCarousel.update();
-							// if ( 'object' === typeof( imageCarousel ) && imageCarousel.updateSliderHeight ) {
-							// 	imageCarousel.updateSliderHeight();
-							// }
+							if ( 'object' === typeof( imageCarousel ) && imageCarousel.update ) {
+								imageCarousel.update();
+							}
 						},
 						200
 					);
 
 					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
 						updateGallery( woostify_variation_gallery, false, variation.variation_id );
+					} else {
+						// Re-init easyzoom.
+						if ( 'function' === typeof( easyZoomHandle ) ) {
+							easyZoomHandle();
+						}
 					}
 				}
 			);
@@ -328,8 +332,12 @@ document.addEventListener(
 					// Update slider height.
 					setTimeout(
 						function() {
-							if ( 'object' === typeof( imageCarousel ) && imageCarousel.updateSliderHeight ) {
-								imageCarousel.updateSliderHeight();
+							// Re-init easyzoom.
+							if ( 'function' === typeof( easyZoomHandle ) ) {
+								easyZoomHandle();
+							}
+							if ( 'object' === typeof( imageCarousel ) && imageCarousel.update ) {
+								imageCarousel.update();
 							}
 						},
 						200
@@ -343,6 +351,11 @@ document.addEventListener(
 						}
 					} else if ( ! productThumbnails ) {
 						gallery.classList.remove( 'has-product-thumbnails' );
+					}
+
+					// Re-init easyzoom.
+					if ( 'function' === typeof( easyZoomHandle ) ) {
+						easyZoomHandle();
 					}
 				}
 			);
@@ -368,10 +381,8 @@ document.addEventListener(
 						'frontend/element_ready/global',
 						function() {
 							if ( document.getElementById( 'product-thumbnail-images' ) ) {
-								renderSlider( '#product-images', options );
-
-								thumbOptions.axis = document.querySelector( '.product-gallery' ).classList.contains( 'vertical-style' ) ? 'vertical' : 'horizontal';
-								renderSlider( '#product-thumbnail-images', thumbOptions );
+								renderSlider( '.product-images-swiper', options );
+								renderSlider( '.product-thumbnail-images-swiper', thumbOptions );
 							}
 							carouselAction();
 						}

@@ -122,6 +122,15 @@
 
 	@media (min-width: $screen-md) {
 		width: calc((100% - 30px) / 2);
+
+		&.column-style, &.grid-style {
+			.swiper-wrapper {
+				flex-wrap: wrap;
+			}
+			.swiper-nav-btn {
+				display: none;
+			}
+		}
 	}
 
 	&.wc-default-gallery {

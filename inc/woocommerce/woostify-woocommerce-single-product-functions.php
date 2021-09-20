@@ -349,10 +349,8 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 		?>
 
 		<div class="product-images">
-			<div id="product-images" class="<?php echo $has_slider ? 'product-images-swiper swiper' : ''; ?>">
-				<?php if ( $has_slider ) { ?>
+			<div id="product-images" class="product-images-swiper swiper">
 				<div class="swiper-wrapper">
-					<?php } ?>
 					<figure class="image-item ez-zoom <?php echo $has_slider ? 'swiper-slide' : ''; ?>">
 						<a href="<?php echo esc_url( isset( $image_full_src[0] ) ? $image_full_src[0] : '#' ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
 							<?php echo wp_kses( $product->get_image( 'woocommerce_single', array(), true ), $html_allowed ); ?>
@@ -380,7 +378,6 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 						}
 					}
 					?>
-				<?php if ( $has_slider ) { ?>
 				</div>
 				<div class="swiper-nav-btn swiper-button-next">
 					<?php Woostify_Icon::fetch_svg_icon( 'angle-right' ); ?>
@@ -388,7 +385,6 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 				<div class="swiper-nav-btn swiper-button-prev">
 					<?php Woostify_Icon::fetch_svg_icon( 'angle-left' ); ?>
 				</div>
-				<?php } ?>
 			</div>
 
 			<?php do_action( 'woostify_product_images_box_end' ); ?>
@@ -427,10 +423,8 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 
 		<div class="product-thumbnail-images">
 			<?php if ( ! empty( $gallery_id ) ) { ?>
-			<div id="product-thumbnail-images" <?php echo $has_slider ? 'class="product-thumbnail-images-swiper swiper"' : ''; ?>>
-				<?php if ( $has_slider ) { ?>
+			<div id="product-thumbnail-images" class="product-thumbnail-images-swiper swiper">
 				<div class="swiper-wrapper">
-					<?php } ?>
 					<?php if ( ! empty( $image_small_src ) ) { ?>
 						<div class="thumbnail-item <?php echo $has_slider ? 'swiper-slide' : ''; ?>">
 							<img src="<?php echo esc_url( $image_small_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
@@ -451,9 +445,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 						}
 					}
 					?>
-					<?php if ( $has_slider ) { ?>
 				</div>
-				<?php } ?>
 			</div>
 			<?php } ?>
 		</div>
