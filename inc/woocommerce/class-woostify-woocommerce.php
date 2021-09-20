@@ -401,7 +401,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'adaptiveHeight' => true,
 							'pageDots'       => false,
 							'cellAlign'      => 'left',
-							'resize' => true,
 						),
 						'thumb' => array(
 							'container'       => '#product-thumbnail-images',
@@ -409,6 +408,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'pageDots'        => false,
 							'cellAlign'       => 'left',
 							'prevNextButtons' => false,
+							'contain' => true,
 						),
 					)
 				)

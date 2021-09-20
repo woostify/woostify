@@ -223,6 +223,10 @@
 			}
 		}
 	}
+
+	.flickity-viewport {
+		transition: height .3s;
+	}
 }
 
 .product-thumbnail-images {

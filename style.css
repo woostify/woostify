@@ -8740,6 +8740,10 @@ header.elementor-element {
   }
 }
 
+.product-gallery .flickity-viewport {
+  transition: height .3s;
+}
+
 .product-thumbnail-images.has-single-thumbnail-image {
   display: none;
 }
