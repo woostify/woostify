@@ -9,6 +9,31 @@
 $defaults = woostify_options();
 
 $wp_customize->add_setting(
+	'woostify_setting[reset_dynamic_css_file]',
+	array(
+		'default'   => '',
+		'type'      => 'option',
+		'transport' => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Button_Control(
+		$wp_customize,
+		'woostify_setting[reset_dynamic_css_file]',
+		array(
+			'label'        => __( 'Dynamic CSS Print Method', 'woostify' ),
+			'description'  => __( 'Click the button to resset dynamic css file.', 'woostify' ),
+			'section'      => 'woostify_performance',
+			'settings'     => 'woostify_setting[reset_dynamic_css_file]',
+			'button_label' => __( 'Reset Dynamic CSS File', 'woostify' ),
+			'button_class' => 'button-secondary woostify-reset-dynamic-css',
+			'button_link'  => 'javascript:;',
+			'ajax_action'  => 'woostify_reset_dynamic_stylesheet_folder',
+		)
+	)
+);
+
+$wp_customize->add_setting(
 	'woostify_setting[load_google_fonts_locally]',
 	array(
 		'default'           => $defaults['load_google_fonts_locally'],
@@ -68,8 +93,9 @@ $wp_customize->add_control(
 			'section'      => 'woostify_performance',
 			'settings'     => 'woostify_setting[load_google_fonts_locally_clear]',
 			'button_label' => __( 'Clear', 'woostify' ),
-			'button_class' => 'button button-secondary woostify-clear-font-files',
+			'button_class' => 'button-secondary woostify-clear-font-files',
 			'button_link'  => 'javascript:;',
+			'ajax_action'  => 'woostify_regenerate_fonts_folder',
 		)
 	)
 );

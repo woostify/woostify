@@ -10,11 +10,274 @@
  */
 class Woostify_Get_CSS {
 	/**
+	 * Base path.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $base_path;
+
+	/**
+	 * Base URL.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $base_url;
+
+	/**
+	 * Subfolder name.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $subfolder_name;
+
+	/**
+	 * The fonts folder.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $style_folder;
+
+	/**
+	 * The local stylesheet's path.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $stylesheet_path;
+
+	/**
+	 * The local stylesheet's URL.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $local_stylesheet_url;
+
+	/**
+	 * The final CSS.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $css;
+
+	/**
+	 * Cleanup routine frequency.
+	 */
+	const CLEANUP_FREQUENCY = 'monthly';
+
+	/**
 	 * Wp enqueue scripts
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'woostify_add_customizer_css' ), 130 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'woostify_dynamic_css' ), 130 );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'woostify_guten_block_editor_assets' ) );
+
+		// Add a cleanup routine.
+		$this->schedule_cleanup();
+		add_action( 'delete_dynamic_stylesheet_folder', array( $this, 'delete_dynamic_stylesheet_folder' ) );
+	}
+
+	/**
+	 * Schedule a cleanup.
+	 *
+	 * This way dynamic stylesheet files will get updated regularly,
+	 * and we avoid edge cases where unused files remain in the server.
+	 *
+	 * @access public
+	 * @since 1.1.0
+	 * @return void
+	 */
+	public function schedule_cleanup() {
+		if ( ! is_multisite() || ( is_multisite() && is_main_site() ) ) {
+			if ( ! wp_next_scheduled( 'delete_dynamic_stylesheet_folder' ) && ! wp_installing() ) {
+				wp_schedule_event( time(), self::CLEANUP_FREQUENCY, 'delete_dynamic_stylesheet_folder' );
+			}
+		}
+	}
+
+	/**
+	 * Get the base path.
+	 *
+	 * @return string
+	 */
+	public function get_base_path() {
+		if ( ! $this->base_path ) {
+			$this->base_path = apply_filters( 'woostify_dynamic_style_base_path', $this->get_filesystem()->wp_content_dir() );
+		}
+		return $this->base_path;
+	}
+
+	/**
+	 * Get the base URL.
+	 *
+	 * @return string
+	 */
+	public function get_base_url() {
+		if ( ! $this->base_url ) {
+			$this->base_url = apply_filters( 'woostify_dynamic_style_base_url', content_url() );
+		}
+		return $this->base_url;
+	}
+
+	/**
+	 * Get the subfolder name.
+	 *
+	 * @return string
+	 */
+	public function get_subfolder_name() {
+		if ( ! $this->subfolder_name ) {
+			$this->subfolder_name = apply_filters( 'woostify_dynamic_style_subfolder_name', 'woostify-stylesheet' );
+		}
+		return $this->subfolder_name;
+	}
+
+	/**
+	 * Get the folder for dynamic style.
+	 *
+	 * @return string
+	 */
+	public function get_style_folder() {
+		if ( ! $this->style_folder ) {
+			$this->style_folder = $this->get_base_path();
+			if ( $this->get_subfolder_name() ) {
+				$this->style_folder .= '/' . $this->get_subfolder_name();
+			}
+		}
+		return $this->style_folder;
+	}
+
+	/**
+	 * Check if the local stylesheet exists.
+	 *
+	 * @return bool
+	 */
+	public function local_file_exists() {
+		return ( ! file_exists( $this->get_local_stylesheet_path() ) );
+	}
+
+	/**
+	 * Get the stylesheet path.
+	 *
+	 * @access public
+	 * @since 1.1.0
+	 * @return string
+	 */
+	public function get_local_stylesheet_path() {
+		if ( ! $this->stylesheet_path ) {
+			$this->stylesheet_path = $this->get_style_folder() . '/' . $this->get_stylesheet_filename() . '.css';
+		}
+		return $this->stylesheet_path;
+	}
+
+	/**
+	 * Get the local stylesheet filename.
+	 *
+	 * This is a hash, generated from the site-URL, the wp-content path and the URL.
+	 * This way we can avoid issues with sites changing their URL, or the wp-content path etc.
+	 *
+	 * @return string
+	 */
+	public function get_stylesheet_filename() {
+		return apply_filters( 'woostify_dynamic_style_filename', 'woostify-dynamic-css' );
+	}
+
+	/**
+	 * Get the local stylesheet URL.
+	 *
+	 * @return string
+	 */
+	public function get_local_stylesheet_url() {
+		if ( ! $this->local_stylesheet_url ) {
+			$this->local_stylesheet_url = str_replace(
+				$this->get_base_path(),
+				$this->get_base_url(),
+				$this->get_local_stylesheet_path()
+			);
+		}
+		return $this->local_stylesheet_url;
+	}
+
+	/**
+	 * Get the local URL which contains the styles.
+	 *
+	 * Fallback to the remote URL if we were unable to write the file locally.
+	 *
+	 * @return string
+	 */
+	public function get_url() {
+
+		// Check if the local stylesheet exists.
+		if ( $this->local_file_exists() ) {
+			// Attempt to update the stylesheet. Return the local URL on success.
+			if ( $this->write_stylesheet() ) {
+				return $this->get_local_stylesheet_url();
+			}
+		}
+
+		// If the local file exists, return its URL, with a fallback to the remote URL.
+		return file_exists( $this->get_local_stylesheet_path() )
+			? $this->get_local_stylesheet_url()
+			: false;
+	}
+
+	/**
+	 * Write the CSS to the filesystem.
+	 *
+	 * @return string|false Returns the absolute path of the file on success, or false on fail.
+	 */
+	protected function write_stylesheet() {
+		$file_path  = $this->get_local_stylesheet_path();
+		$filesystem = $this->get_filesystem();
+
+		if ( ! defined( 'FS_CHMOD_DIR' ) ) {
+			define( 'FS_CHMOD_DIR', ( 0755 & ~ umask() ) );
+		}
+
+		// If the folder doesn't exist, create it.
+		if ( ! file_exists( $this->get_style_folder() ) ) {
+			$this->get_filesystem()->mkdir( $this->get_style_folder(), FS_CHMOD_DIR );
+		}
+
+		// If the file doesn't exist, create it. Return false if it can not be created.
+		if ( ! $filesystem->exists( $file_path ) && ! $filesystem->touch( $file_path ) ) {
+			return false;
+		}
+
+		// If we got this far, we need to write the file.
+		// Get the CSS.
+		if ( ! $this->css ) {
+			$this->get_styles();
+		}
+
+		// Put the contents in the file. Return false if that fails.
+		if ( ! $filesystem->put_contents( $file_path, $this->css ) ) {
+			return false;
+		}
+
+		return $file_path;
+	}
+
+	/**
+	 * Delete the style folder.
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 */
+	public function delete_dynamic_stylesheet_folder() {
+		return $this->get_filesystem()->delete( $this->get_style_folder(), true );
 	}
 
 	/**
@@ -23,7 +286,7 @@ class Woostify_Get_CSS {
 	 * @see get_woostify_theme_mods()
 	 * @return array $styles the css
 	 */
-	public function woostify_get_css() {
+	public function get_styles() {
 
 		// Get all theme option value.
 		$options = woostify_options( false );
@@ -1215,7 +1478,31 @@ class Woostify_Get_CSS {
 			}
 		}
 
-		return apply_filters( 'woostify_customizer_css', $styles );
+		$this->css = apply_filters( 'woostify_customizer_css', $styles );
+
+		$this->write_stylesheet();
+
+		return $this->css;
+	}
+
+	/**
+	 * Get the filesystem.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @return \WP_Filesystem_Base
+	 */
+	protected function get_filesystem() {
+		global $wp_filesystem;
+
+		// If the filesystem has not been instantiated yet, do it here.
+		if ( ! $wp_filesystem ) {
+			if ( ! function_exists( 'WP_Filesystem' ) ) {
+				require_once wp_normalize_path( ABSPATH . '/wp-admin/includes/file.php' );
+			}
+			WP_Filesystem();
+		}
+		return $wp_filesystem;
 	}
 
 	/**
@@ -1242,12 +1529,14 @@ class Woostify_Get_CSS {
 	}
 
 	/**
-	 * Add CSS in <head> for styles handled by the theme customizer
-	 *
-	 * @return void
+	 * Enqueue dynamic stylesheet file.
 	 */
-	public function woostify_add_customizer_css() {
-		wp_add_inline_style( 'woostify-style', $this->woostify_get_css() );
+	public function woostify_dynamic_css() {
+		if ( $this->get_url() ) {
+			wp_enqueue_style( 'woostify-dynamic', $this->get_url(), array(), WOOSTIFY_VERSION, 'all' );
+		} else {
+			wp_add_inline_style( 'woostify-style', $this->get_styles() );
+		}
 	}
 }
 
