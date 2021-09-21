@@ -114,7 +114,9 @@ document.addEventListener(
 			gallery &&
 			gallery.classList.contains( 'vertical-style' )
 		) {
-			document.querySelector( thumbOptions.container ).style.width = firstImageHeight + 'px';
+			if ( gallery.classList.contains( 'has-product-thumbnails' ) ) {
+				document.querySelector( thumbOptions.container ).style.width = firstImageHeight + 'px';
+			}
 
 			thumbOptions.direction = 'vertical';
 			thumbOptions.draggable = false;
@@ -134,9 +136,12 @@ document.addEventListener(
 					var oldThumbOptions = thumbCarousel.options;
 					if ( window.matchMedia( '( min-width: 768px )' ).matches ) {
 						if ( gallery && gallery.classList.contains( 'vertical-style' ) ) {
-							var currFirstImageHeight = firstImage.offsetHeight;
 
-							document.querySelector( thumbOptions.container ).style.width = currFirstImageHeight + 'px';
+							if ( gallery.classList.contains( 'has-product-thumbnails' ) ) {
+								var currFirstImageHeight = firstImage.offsetHeight;
+
+								document.querySelector( thumbOptions.container ).style.width = currFirstImageHeight + 'px';
+							}
 
 							if ( oldThumbOptions.direction !== 'vertical' ) {
 								needInitZoomEffect     = true;
