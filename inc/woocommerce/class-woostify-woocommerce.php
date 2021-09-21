@@ -408,7 +408,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'pageDots'        => false,
 							'cellAlign'       => 'left',
 							'prevNextButtons' => false,
-							'contain' => true,
+							'contain'         => true,
+							'percentPosition' => true,
 						),
 					)
 				)

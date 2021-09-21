@@ -137,6 +137,7 @@
 
 		.woocommerce-product-gallery__wrapper {
 			max-width: unset;
+			margin: 0;
 		}
 
 		.woocommerce-product-gallery__trigger {
@@ -172,7 +173,8 @@
 	// Vertical slider layout
 	&.vertical-style.has-product-thumbnails {
 		@media (min-width: $screen-sm) {
-			display: flex;
+			position: relative;
+			padding-left: 70px;
 
 			.product-images {
 				order: 2;
@@ -182,6 +184,19 @@
 				width: 50px;
 				min-width: 50px;
 				margin-right: 20px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+
+			#product-thumbnail-images {
+				width: 300px;
+				transform: rotate(90deg) translate(0, -100%);
+				transform-origin: left top;
+				.thumbnail-item {
+					transform: rotate(-90deg);
+					max-width: 50px;
+				}
 			}
 		}
 	}
@@ -274,7 +289,7 @@
 			padding: 1px;
 		}
 
-		&.is-selected {
+		&.is-selected.is-nav-selected {
 			img {
 				border: 1px solid #555;
 			}
