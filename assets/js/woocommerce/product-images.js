@@ -126,6 +126,7 @@ document.addEventListener(
 				}
 			} else {
 				if ( gallery && gallery.classList.contains( 'vertical-style' ) ) {
+					productThumbnails.style.maxHeight = firstImageHeight + 'px';
 					verticalThumbnailSliderAction();
 				}
 			}

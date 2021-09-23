@@ -8713,7 +8713,6 @@ header.elementor-element {
     height: 100%;
   }
   .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images {
-    max-height: 500px;
     overflow: hidden;
   }
   .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images .thumbnail-item {
