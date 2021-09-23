@@ -52,6 +52,14 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_action( 'init', array( $this, 'woostify_override_divi_color_pciker' ), 12 );
 
 			add_action( 'wp_head', array( $this, 'sticky_footer_bar' ), 15 );
+			add_action( 'wp_head', array( $this, 'performance_product_images_scroll_on_ios' ), 99 );
+		}
+
+		/**
+		 * Ios image slider performance
+		 */
+		public function performance_product_images_scroll_on_ios() {
+			echo '<!--[if !IE]--><script>jQuery(document).ready(function() { var tapArea, startX ; tapArea = document.querySelectorAll(".image-item"); startX = 0; for (var item of tapArea) { item.ontouchstart = function(e) { startX = e.touches[0].clientX; }; item.ontouchmove = function(e) { if (Math.abs(e.touches[0].clientX - startX) > 5 && e.cancelable ) { e.preventDefault(); } }; } }); </script><!--<![endif]-->';
 		}
 
 		/**
