@@ -172,6 +172,9 @@
 
 	// Vertical slider layout
 	&.vertical-style.has-product-thumbnails {
+		.thumb-btn {
+			display: none;
+		}
 		@media (min-width: $screen-sm) {
 			position: relative;
 			display: flex;
@@ -182,18 +185,54 @@
 			}
 
 			.product-thumbnail-images {
+				position: relative;
 				width: 50px;
 				min-width: 50px;
 				margin-right: 20px;
 				height: 100%;
 			}
 
+			.thumb-btn {
+				display: block;
+				border-radius: 50%;
+				background: #fff;
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				padding: 5px;
+				border: none;
+
+				.woostify-svg-icon svg {
+					display: block;
+				}
+
+				&.next {
+					bottom: 0;
+				}
+				&.prev {
+					top: 0;
+				}
+			}
+
 			#product-thumbnail-images {
 				overflow: hidden;
+
 				.thumbnail-item {
 					margin-bottom: 10px;
+
 					&:last-child {
 						margin-bottom: 0;
+					}
+				}
+
+				&.has-buttons {
+					.thumbnail-item {
+						&:first-child {
+							margin-top: 35px;
+						}
+						&:last-child {
+							margin-bottom: 35px;
+						}
 					}
 				}
 			}

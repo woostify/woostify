@@ -388,6 +388,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Lightbox.
 			wp_enqueue_script( 'lity' );
 
+			$next_icon          = apply_filters( 'woostify_product_gallery_next_icon', 'angle-right' );
+			$prev_icon          = apply_filters( 'woostify_product_gallery_prev_icon', 'angle-left' );
+			$vertical_next_icon = apply_filters( 'woostify_product_gallery_vertical_next_icon', 'angle-down' );
+			$vertical_prev_icon = apply_filters( 'woostify_product_gallery_vertical_prev_icon', 'angle-up' );
+
 			// Tiny slider: product images.
 			wp_enqueue_script( 'woostify-product-images' );
 			wp_localize_script(
@@ -396,13 +401,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				apply_filters(
 					'woostify_product_images_slider_options',
 					array(
-						'main'  => array(
+						'main'               => array(
 							'container'      => '#product-images',
 							'adaptiveHeight' => true,
 							'pageDots'       => false,
 							'cellAlign'      => 'left',
 						),
-						'thumb' => array(
+						'thumb'              => array(
 							'container'       => '#product-thumbnail-images',
 							'asNavFor'        => '#product-images',
 							'pageDots'        => false,
@@ -414,6 +419,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'freeScroll'      => false,
 							'percentPosition' => true,
 						),
+						'next_icon'          => Woostify_Icon::fetch_svg_icon( $next_icon, false ),
+						'prev_icon'          => Woostify_Icon::fetch_svg_icon( $prev_icon, false ),
+						'vertical_next_icon' => Woostify_Icon::fetch_svg_icon( $vertical_next_icon, false ),
+						'vertical_prev_icon' => Woostify_Icon::fetch_svg_icon( $vertical_prev_icon, false ),
 					)
 				)
 			);

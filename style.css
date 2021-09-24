@@ -3094,11 +3094,10 @@ https://flickity.metafizzy.co
 /* ---- previous/next buttons ---- */
 .flickity-prev-next-button {
   top: 50%;
-  width: 44px;
-  height: 44px;
   border-radius: 50%;
-  /* vertically center */
   transform: translateY(-50%);
+  background: #fff;
+  padding: 15px;
 }
 
 .flickity-prev-next-button.previous {
@@ -3109,12 +3108,10 @@ https://flickity.metafizzy.co
   right: 10px;
 }
 
-.flickity-prev-next-button .flickity-button-icon {
-  position: absolute;
-  left: 20%;
-  top: 20%;
-  width: 60%;
-  height: 60%;
+.flickity-prev-next-button .woostify-svg-icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 /* right to left */
@@ -8697,6 +8694,10 @@ header.elementor-element {
   border-color: #555;
 }
 
+.product-gallery.vertical-style.has-product-thumbnails .thumb-btn {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .product-gallery.vertical-style.has-product-thumbnails {
     position: relative;
@@ -8707,10 +8708,30 @@ header.elementor-element {
     flex: 0 1 100%;
   }
   .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images {
+    position: relative;
     width: 50px;
     min-width: 50px;
     margin-right: 20px;
     height: 100%;
+  }
+  .product-gallery.vertical-style.has-product-thumbnails .thumb-btn {
+    display: block;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px;
+    border: none;
+  }
+  .product-gallery.vertical-style.has-product-thumbnails .thumb-btn .woostify-svg-icon svg {
+    display: block;
+  }
+  .product-gallery.vertical-style.has-product-thumbnails .thumb-btn.next {
+    bottom: 0;
+  }
+  .product-gallery.vertical-style.has-product-thumbnails .thumb-btn.prev {
+    top: 0;
   }
   .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images {
     overflow: hidden;
@@ -8720,6 +8741,12 @@ header.elementor-element {
   }
   .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images .thumbnail-item:last-child {
     margin-bottom: 0;
+  }
+  .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images.has-buttons .thumbnail-item:first-child {
+    margin-top: 35px;
+  }
+  .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images.has-buttons .thumbnail-item:last-child {
+    margin-bottom: 35px;
   }
 }
 

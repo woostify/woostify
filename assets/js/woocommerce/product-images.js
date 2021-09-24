@@ -56,7 +56,7 @@ function woostifyGalleryCarouselMobile() {
 		pageDots: false,
 		cellAlign: 'left',
 	};
-	var slider = new Flickity( '#product-images', options );
+	var slider  = new Flickity( '#product-images', options );
 }
 
 // Sticky summary for list layout.
@@ -114,12 +114,22 @@ document.addEventListener(
 			gallery &&
 			gallery.classList.contains( 'vertical-style' )
 		) {
-			thumbOptions.direction = 'vertical';
 			thumbOptions.draggable = false;
 		}
 
 		if ( productThumbnails ) {
-			imageCarousel = new Flickity( options.container, options );
+			imageCarousel    = new Flickity( options.container, options );
+			var imageNextBtn = document.querySelector( '.flickity-button.next' );
+			var imagePrevBtn = document.querySelector( '.flickity-button.previous' );
+
+			if ( imageNextBtn ) {
+				imageNextBtn.innerHTML = woostify_product_images_slider_options.next_icon;
+			}
+
+			if ( imagePrevBtn ) {
+				imagePrevBtn.innerHTML = woostify_product_images_slider_options.prev_icon;
+			}
+
 			if ( window.matchMedia( '( max-width: 767px )' ).matches ) {
 				if ( gallery ) {
 					thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
@@ -128,47 +138,143 @@ document.addEventListener(
 				if ( gallery && gallery.classList.contains( 'vertical-style' ) ) {
 					productThumbnails.style.maxHeight = firstImageHeight + 'px';
 					verticalThumbnailSliderAction();
+					addThumbButtons();
 				}
 			}
 		}
 
-		function verticalThumbnailSliderAction() {
-			var thumbNav = productThumbnails;
-			var thumbNavImages = thumbNav.querySelectorAll('.thumbnail-item');
+		window.addEventListener(
+			'resize',
+			function() {
+				if ( window.matchMedia( '( min-width: 768px )' ).matches && gallery && gallery.classList.contains( 'vertical-style' ) && productThumbnails ) {
+					var totalThumbHeight     = 0;
+					var thumbs               = productThumbnails.querySelectorAll( '.thumbnail-item' );
+					var currFirstImageHeight = firstImage ? firstImage.offsetHeight : 0;
 
-			thumbNavImages[0].classList.add('is-nav-selected');
-			thumbNavImages[0].classList.add('is-selected');
+					productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
+					verticalThumbnailSliderAction();
 
-			thumbNavImages.forEach( function( thumbNavImg, thumbIndex ) {
-				thumbNavImg.addEventListener( 'click', function() {
-					imageCarousel.select( thumbIndex );
-				} );
-			} );
+					if ( thumbs.length ) {
+						thumbs.forEach(
+							function( thumb ) {
+								var thumbHeight   = thumb.offsetHeight;
+								thumbHeight      += parseInt( window.getComputedStyle( thumb ).getPropertyValue( 'margin-top' ) );
+								thumbHeight      += parseInt( window.getComputedStyle( thumb ).getPropertyValue( 'margin-bottom' ) );
+								totalThumbHeight += thumbHeight;
+							}
+						)
+					}
 
-			var thumbImgHeight = thumbNavImages[imageCarousel.selectedIndex].offsetHeight;
-			var thumbHeight = thumbNav.offsetHeight;
+					if ( totalThumbHeight > productThumbnails.offsetHeight ) {
+						productThumbnails.classList.add( 'has-buttons' );
+						nextBtn.style.display = 'block';
+						prevBtn.style.display = 'block';
+					} else {
+						productThumbnails.classList.remove( 'has-buttons' );
+						nextBtn.style.display = 'none';
+						prevBtn.style.display = 'none';
+					}
+				}
+			}
+		);
 
-			imageCarousel.on( 'select', function() {
-				thumbNav.querySelector('.is-nav-selected').classList.remove('is-nav-selected');
-				thumbNav.querySelector('.is-selected').classList.remove('is-selected');
+		function addThumbButtons() {
+			var productThumbnailsWrapper = productThumbnails.parentElement;
+			var prevBtn                  = document.createElement( "button" );
+			var nextBtn                  = document.createElement( "button" );
 
-				var selected = thumbNavImages[ imageCarousel.selectedIndex ];
-				selected.classList.add( 'is-nav-selected' );
-				selected.classList.add( 'is-selected' );
+			prevBtn.classList.add( 'thumb-btn', 'thumb-prev-btn', 'prev' );
+			prevBtn.innerHTML = woostify_product_images_slider_options.vertical_prev_icon;
 
-				var scrollY = selected.offsetTop + thumbNav.scrollTop - ( thumbHeight + thumbImgHeight ) / 2;
-				thumbNav.scrollTo( {
-					top: scrollY,
-					behavior: 'smooth',
-				} );
-			} )
+			nextBtn.classList.add( 'thumb-btn', 'thumb-next-btn', 'next' );
+			nextBtn.innerHTML = woostify_product_images_slider_options.vertical_next_icon;
+
+			productThumbnailsWrapper.appendChild( prevBtn );
+			productThumbnailsWrapper.appendChild( nextBtn );
+
+			var thumbs           = productThumbnails.querySelectorAll( '.thumbnail-item' );
+			var totalThumbHeight = 0;
+			if ( thumbs.length ) {
+				thumbs.forEach(
+					function( thumb ) {
+						var thumbHeight   = thumb.offsetHeight;
+						thumbHeight      += parseInt( window.getComputedStyle( thumb ).getPropertyValue( 'margin-top' ) );
+						thumbHeight      += parseInt( window.getComputedStyle( thumb ).getPropertyValue( 'margin-bottom' ) );
+						totalThumbHeight += thumbHeight;
+					}
+				)
+			}
+
+			if ( totalThumbHeight > productThumbnails.offsetHeight ) {
+				productThumbnails.classList.add( 'has-buttons' );
+				nextBtn.style.display = 'block';
+				prevBtn.style.display = 'block';
+			} else {
+				productThumbnails.classList.remove( 'has-buttons' );
+				nextBtn.style.display = 'none';
+				prevBtn.style.display = 'none';
+			}
+
+			var thumbButtons = document.querySelectorAll( '.thumb-btn' );
+			if ( thumbButtons.length ) {
+				thumbButtons.forEach(
+					function( thumbBtn ) {
+						thumbBtn.addEventListener(
+							'click',
+							function() {
+								var currBtn = this;
+								if ( currBtn.classList.contains( 'prev' ) ) {
+									imageCarousel.previous();
+								} else {
+									imageCarousel.next();
+								}
+							}
+						)
+					}
+				)
+			}
 		}
 
+		function verticalThumbnailSliderAction() {
+			var thumbNav       = productThumbnails;
+			var thumbNavImages = thumbNav.querySelectorAll( '.thumbnail-item' );
 
-		// Re-init thumbnail slider.
-		function reInitThumbnailSlider() {
-			thumbCarousel.destroy();
-			thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
+			thumbNavImages[0].classList.add( 'is-nav-selected' );
+			thumbNavImages[0].classList.add( 'is-selected' );
+
+			thumbNavImages.forEach(
+				function( thumbNavImg, thumbIndex ) {
+					thumbNavImg.addEventListener(
+						'click',
+						function() {
+							imageCarousel.select( thumbIndex );
+						}
+					);
+				}
+			);
+
+			var thumbImgHeight = thumbNavImages[imageCarousel.selectedIndex].offsetHeight;
+			var thumbHeight    = thumbNav.offsetHeight;
+
+			imageCarousel.on(
+				'select',
+				function() {
+					thumbNav.querySelector( '.is-nav-selected' ).classList.remove( 'is-nav-selected' );
+					thumbNav.querySelector( '.is-selected' ).classList.remove( 'is-selected' );
+
+					var selected = thumbNavImages[ imageCarousel.selectedIndex ];
+					selected.classList.add( 'is-nav-selected' );
+					selected.classList.add( 'is-selected' );
+
+					var scrollY = selected.offsetTop + thumbNav.scrollTop - ( thumbHeight + thumbImgHeight ) / 2;
+					thumbNav.scrollTo(
+						{
+							top: scrollY,
+							behavior: 'smooth',
+						}
+					);
+				}
+			);
 		}
 
 		// Reset carousel.
