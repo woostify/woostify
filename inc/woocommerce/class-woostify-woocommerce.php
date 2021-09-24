@@ -410,7 +410,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'prevNextButtons' => false,
 							'contain'         => true,
 							'percentPosition' => true,
-							'groupCells'      => 2,
+							'groupCells'      => '60%',
 							'freeScroll'      => false,
 							'percentPosition' => true,
 						),

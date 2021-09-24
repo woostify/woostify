@@ -132,8 +132,6 @@ document.addEventListener(
 			}
 		}
 
-		var needInitZoomEffect = false;
-
 		function verticalThumbnailSliderAction() {
 			var thumbNav = productThumbnails;
 			var thumbNavImages = thumbNav.querySelectorAll('.thumbnail-item');
@@ -147,7 +145,6 @@ document.addEventListener(
 				} );
 			} );
 
-			var thumbTop  = thumbNav.offsetTop;
 			var thumbImgHeight = thumbNavImages[imageCarousel.selectedIndex].offsetHeight;
 			var thumbHeight = thumbNav.offsetHeight;
 
@@ -160,7 +157,10 @@ document.addEventListener(
 				selected.classList.add( 'is-selected' );
 
 				var scrollY = selected.offsetTop + thumbNav.scrollTop - ( thumbHeight + thumbImgHeight ) / 2;
-				thumbNav.scrollTop = scrollY;
+				thumbNav.scrollTo( {
+					top: scrollY,
+					behavior: 'smooth',
+				} );
 			} )
 		}
 
