@@ -137,6 +137,8 @@ document.addEventListener(
 					productThumbnails.style.maxHeight = firstImageHeight + 'px';
 					verticalThumbnailSliderAction();
 					addThumbButtons();
+				} else {
+					thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
 				}
 			}
 		}
