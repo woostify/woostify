@@ -419,6 +419,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'groupCells'      => '60%',
 							'freeScroll'      => false,
 							'percentPosition' => true,
+							'wrapAround'      => true,
 						),
 						'next_icon'          => Woostify_Icon::fetch_svg_icon( $next_icon, false ),
 						'prev_icon'          => Woostify_Icon::fetch_svg_icon( $prev_icon, false ),
