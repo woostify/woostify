@@ -107,8 +107,6 @@ document.addEventListener(
 		var thumbCarousel,
 			thumbOptions = woostify_product_images_slider_options.thumb;
 
-		thumbOptions.direction = 'horizontal';
-
 		if (
 			window.matchMedia( '( min-width: 768px )' ).matches &&
 			gallery &&
@@ -292,8 +290,7 @@ document.addEventListener(
 
 			// For Elementor Preview Mode.
 			if ( ! gallery ) {
-				gallery                = document.querySelector( '.product-gallery' );
-				thumbOptions.direction = gallery.classList.contains( 'vertical-style' ) ? 'vertical' : 'horizontal';
+				gallery = document.querySelector( '.product-gallery' );
 			}
 
 			var images            = '',

@@ -598,6 +598,30 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_single_product_group_buttons' ) ) {
+	/**
+	 * Add group buttons for product: video, gallery open,...
+	 */
+	function woostify_single_product_group_buttons() {
+		$options = woostify_options( false );
+		$output  = '';
+
+		$output .= woostify_product_video_button_play();
+
+		if ( $options['shop_single_image_lightbox'] ) {
+			$btn_icon = apply_filters( 'woostify_shop_single_image_lightbox_icon', 'fullscreen' );
+			$output  .= '<button class="photoswipe-toggle-button">' . Woostify_Icon::fetch_svg_icon( $btn_icon, false ) . '</button>';
+		}
+
+		$buttons_output = sprintf(
+			'<div class="product-group-btns">%1$s</div>',
+			$output
+		);
+
+		echo apply_filters( 'woostify_single_product_group_buttons_html', $buttons_output, $output );
+	}
+}
+
 if ( ! function_exists( 'woostify_product_video_button_play' ) ) {
 	/**
 	 * Add button play video lightbox for product
@@ -608,14 +632,16 @@ if ( ! function_exists( 'woostify_product_video_button_play' ) ) {
 			return;
 		}
 
+		$output = '';
+
 		$product_id = $product->get_id();
 		$video_url  = woostify_get_metabox( $product_id, 'woostify_product_video_metabox' );
 
 		if ( 'default' !== $video_url ) {
-			?>
-			<a href="<?php echo esc_url( $video_url ); ?>" data-lity class="ti-control-play woostify-lightbox-button"></a>
-			<?php
+			$output = '<a href="' . esc_url( $video_url ) . '" data-lity class="ti-control-play woostify-lightbox-button"></a>';
 		}
+
+		return $output;
 	}
 }
 

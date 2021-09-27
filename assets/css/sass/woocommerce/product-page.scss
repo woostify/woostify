@@ -339,25 +339,6 @@
 	}
 }
 
-// Spinner gallery slider
-.has-gallery-slider-layout {
-	.has-product-thumbnails {
-		&.has-loading-effect {
-			#product-images {
-			}
-
-			#product-thumbnail-images {
-			}
-		}
-
-		#product-images {
-		}
-
-		#product-thumbnail-images {
-		}
-	}
-}
-
 .has-gallery-list-layout {
 	.has-product-thumbnails {
 		@media (max-width: $screen-md) {
@@ -390,20 +371,49 @@
 	}
 }
 
-// Video lightbox
-.woostify-lightbox-button {
+.product-group-btns {
 	position: absolute;
 	z-index: 100;
 	right: 15px;
 	bottom: 15px;
-	font-size: 20px;
-	width: 40px;
-	height: 40px;
-	color: #aaa;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	@extend .flex;
-	display: flex $i;
+	display: flex;
+
+	> * {
+		margin-left: 5px;
+	}
+
+	// Video lightbox
+	.woostify-lightbox-button, .photoswipe-toggle-button {
+		width: 40px;
+		height: 40px;
+		color: #aaa;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		position: relative;
+		background: #fff;
+	}
+	.photoswipe-toggle-button {
+		.woostify-svg-icon {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		svg {
+			display: block;
+			width: 16px;
+			height: 16px;
+		}
+	}
+	.woostify-lightbox-button {
+		font-size: 20px;
+		&:before {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
 }
 
 .woocommerce-product-rating {

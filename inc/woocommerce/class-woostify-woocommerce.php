@@ -121,15 +121,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$gallery = $options['shop_single_product_gallery_layout_select'];
 
 			// PRODUCT PAGE.
-			// Product images box.
-			if ( 'theme' === $gallery ) {
-				add_action( 'woostify_product_images_box_end', 'woostify_change_sale_flash', 10 );
-				add_action( 'woostify_product_images_box_end', 'woostify_print_out_of_stock_label', 20 );
-				add_action( 'woostify_product_images_box_end', 'woostify_product_video_button_play', 30 );
-			}
 
 			// Infinite Scroll.
-			$options = woostify_options( false );
 			if ( $options['shop_page_infinite_scroll_enable'] ) {
 				add_action( 'woocommerce_after_shop_loop', array( $this, 'add_infinite_scroll_button' ) );
 			}
@@ -138,12 +131,18 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_gallery_open', 20 );
 
 			if ( 'theme' === $gallery ) {
+				// PRODUCT PAGE.
+				// Product images box.
+				add_action( 'woostify_product_images_box_end', 'woostify_change_sale_flash', 10 );
+				add_action( 'woostify_product_images_box_end', 'woostify_print_out_of_stock_label', 20 );
+				add_action( 'woostify_product_images_box_end', 'woostify_single_product_group_buttons', 30 );
+
 				add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_gallery_image_slide', 30 );
 				add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_gallery_thumb_slide', 40 );
 			} else {
 				add_action( 'woocommerce_before_single_product_summary', 'woostify_change_sale_flash', 25 );
 				add_action( 'woocommerce_before_single_product_summary', 'woostify_print_out_of_stock_label', 30 );
-				add_action( 'woocommerce_before_single_product_summary', 'woostify_product_video_button_play', 35 );
+				add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_group_buttons', 35 );
 				add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 40 );
 			}
 
@@ -406,6 +405,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'adaptiveHeight' => true,
 							'pageDots'       => false,
 							'cellAlign'      => 'left',
+							'cellSelector'   => '.image-item',
+							'wrapAround'     => true,
 						),
 						'thumb'              => array(
 							'container'       => '#product-thumbnail-images',

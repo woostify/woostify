@@ -59,24 +59,21 @@ function initPhotoSwipe( gallerySelector ) {
 		return el && ( fn( el ) ? el : closest( el.parentNode, fn ) );
 	};
 
-	// triggers when user clicks on thumbnail.
-	var onThumbnailsClick = function( e ) {
+	var onToggleButtonClick = function( e ) {
 		e = e || window.event;
 		e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
 		var eTarget = e.target || e.srcElement;
 
-		if ( 'A' === eTarget.tagName.toUpperCase() ) {
-			return;
-		}
+		var productImages = eTarget.closest( '.product-images' );
+
+		var clickedListItem = productImages.querySelectorAll( '.image-item' )[0];
 
 		// find root element of slide.
-		var clickedListItem = closest(
-			eTarget,
-			function( el ) {
-				return ( el.tagName && 'FIGURE' === el.tagName.toUpperCase() );
-			}
-		);
+		var slider = productImages.querySelector( '.flickity-slider' );
+		if ( slider ) {
+			clickedListItem = productImages.querySelector( '.image-item.is-selected' );
+		}
 
 		if ( ! clickedListItem ) {
 			return;
@@ -107,7 +104,7 @@ function initPhotoSwipe( gallerySelector ) {
 			openPhotoSwipe( index, clickedGallery );
 		}
 		return false;
-	};
+	}
 
 	// parse picture index and gallery index from URL (#&pid=1&gid=2).
 	var photoswipeParseHash = function() {
@@ -202,8 +199,10 @@ function initPhotoSwipe( gallerySelector ) {
 	// loop through all gallery elements and bind events.
 	var galleryElements = document.querySelectorAll( gallerySelector );
 	for ( var i = 0, l = galleryElements.length; i < l; i++ ) {
+		var buttonEl = galleryElements[ i ].closest( '.product-images' ).querySelector( '.photoswipe-toggle-button' );
+
 		galleryElements[ i ].setAttribute( 'data-pswp-uid', i + 1 );
-		galleryElements[ i ].onclick = onThumbnailsClick;
+		buttonEl.onclick = onToggleButtonClick;
 	}
 
 	// Parse URL and open gallery if it contains #&pid=3&gid=1.
