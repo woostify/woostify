@@ -391,12 +391,16 @@ function initPhotoSwipe( gallerySelector, type ) {
 var gallery    = document.querySelector( '.product-gallery' ),
 noSliderLayout = gallery ? ( gallery.classList.contains( 'column-style' ) || gallery.classList.contains( 'grid-style' ) ) : false;
 
-if ( noSliderLayout ) {
-	if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
-		initPhotoSwipe( '#product-images', 'image' );
+if ( gallery.classList.contains( 'wc-default-gallery' ) ) {
+	initPhotoSwipe( '#product-images', 'image' );
+} else {
+	if ( noSliderLayout ) {
+		if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
+			initPhotoSwipe( '#product-images', 'image' );
+		} else {
+			initPhotoSwipe( '#product-images', 'button' );
+		}
 	} else {
 		initPhotoSwipe( '#product-images', 'button' );
 	}
-} else {
-	initPhotoSwipe( '#product-images', 'button' );
 }

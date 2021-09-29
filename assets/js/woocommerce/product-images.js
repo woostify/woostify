@@ -404,15 +404,20 @@ document.addEventListener(
 
 			// Re-init Photo Swipe.
 			if ( 'function' === typeof( initPhotoSwipe ) ) {
-				if ( noSliderLayout ) {
-					if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
-						initPhotoSwipe( '#product-images', 'image' );
+				if ( gallery.classList.contains( 'wc-default-gallery' ) ) {
+					initPhotoSwipe( '#product-images', 'image' );
+				} else {
+					if ( noSliderLayout ) {
+						if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
+							initPhotoSwipe( '#product-images', 'image' );
+						} else {
+							initPhotoSwipe( '#product-images', 'button' );
+						}
 					} else {
 						initPhotoSwipe( '#product-images', 'button' );
 					}
-				} else {
-					initPhotoSwipe( '#product-images', 'button' );
 				}
+
 			}
 		}
 
