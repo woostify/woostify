@@ -245,6 +245,14 @@
 
 	// Grid layout
 	&.grid-style {
+
+		.product-group-btns {
+			.photoswipe-toggle-button {
+				@media (min-width: $screen-md) {
+					display: none;
+				}
+			}
+		}
 		&.has-product-thumbnails {
 			@media (min-width: $screen-md) {
 				.image-item {
@@ -262,7 +270,15 @@
 
 	// One column layout
 	&.column-style {
+		.product-group-btns {
+			.photoswipe-toggle-button {
+				@media (min-width: $screen-md) {
+					display: none;
+				}
+			}
+		}
 		&.has-product-thumbnails {
+
 			@media (min-width: $screen-md) {
 				.image-item {
 					clear: both;
@@ -373,7 +389,7 @@
 
 .product-group-btns {
 	position: absolute;
-	z-index: 100;
+	z-index: 9;
 	right: 15px;
 	bottom: 15px;
 	display: flex;

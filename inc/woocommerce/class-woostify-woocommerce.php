@@ -407,6 +407,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'cellAlign'      => 'left',
 							'cellSelector'   => '.image-item',
 							'wrapAround'     => true,
+							'contain'        => true,
 						),
 						'thumb'              => array(
 							'container'       => '#product-thumbnail-images',
