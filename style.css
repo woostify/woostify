@@ -3122,7 +3122,6 @@ https://flickity.metafizzy.co
 
 .flickity-button:focus {
   outline: none;
-  box-shadow: 0 0 0 5px #19F;
 }
 
 .flickity-button:active {
@@ -3145,7 +3144,8 @@ https://flickity.metafizzy.co
   border-radius: 50%;
   transform: translateY(-50%);
   background: #fff;
-  padding: 15px;
+  width: 50px;
+  height: 50px;
 }
 
 .flickity-prev-next-button.previous {
@@ -3154,6 +3154,14 @@ https://flickity.metafizzy.co
 
 .flickity-prev-next-button.next {
   right: 10px;
+}
+
+.flickity-prev-next-button .woostify-svg-icon {
+  display: inline-flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .flickity-prev-next-button .woostify-svg-icon svg {
@@ -8769,11 +8777,21 @@ header.elementor-element {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    padding: 5px;
     border: none;
+    width: 30px;
+    height: 30px;
+  }
+  .product-gallery.vertical-style.has-product-thumbnails .thumb-btn .woostify-svg-icon {
+    display: inline-flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .product-gallery.vertical-style.has-product-thumbnails .thumb-btn .woostify-svg-icon svg {
     display: block;
+    width: 15px;
+    height: 15px;
   }
   .product-gallery.vertical-style.has-product-thumbnails .thumb-btn.next {
     bottom: 0;
