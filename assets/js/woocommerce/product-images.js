@@ -126,16 +126,7 @@ document.addEventListener(
 
 		if ( productThumbnails ) {
 			imageCarousel    = new Flickity( options.container, options );
-			var imageNextBtn = document.querySelector( '.flickity-button.next' );
-			var imagePrevBtn = document.querySelector( '.flickity-button.previous' );
-
-			if ( imageNextBtn ) {
-				imageNextBtn.innerHTML = woostify_product_images_slider_options.next_icon;
-			}
-
-			if ( imagePrevBtn ) {
-				imagePrevBtn.innerHTML = woostify_product_images_slider_options.prev_icon;
-			}
+			changeImageCarouselButtonIcon();
 
 			if ( window.matchMedia( '( max-width: 767px )' ).matches ) {
 				if ( gallery ) {
@@ -149,6 +140,19 @@ document.addEventListener(
 				} else {
 					thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
 				}
+			}
+		}
+
+		function changeImageCarouselButtonIcon() {
+			var imageNextBtn = document.querySelector( '.flickity-button.next' );
+			var imagePrevBtn = document.querySelector( '.flickity-button.previous' );
+
+			if ( imageNextBtn ) {
+				imageNextBtn.innerHTML = woostify_product_images_slider_options.next_icon;
+			}
+
+			if ( imagePrevBtn ) {
+				imagePrevBtn.innerHTML = woostify_product_images_slider_options.prev_icon;
 			}
 		}
 
@@ -189,6 +193,7 @@ document.addEventListener(
 
 		function addThumbButtons() {
 			var productThumbnailsWrapper = productThumbnails.parentElement;
+			console.log( productThumbnails );
 			prevBtn.classList.add( 'thumb-btn', 'thumb-prev-btn', 'prev' );
 			prevBtn.innerHTML = woostify_product_images_slider_options.vertical_prev_icon;
 
@@ -327,7 +332,7 @@ document.addEventListener(
 			}
 
 			// Destroy current slider.
-			if ( imageCarousel && imageCarousel.version ) {
+			if ( imageCarousel && imageCarousel.slider ) {
 				imageCarousel.destroy();
 
 				let propsImages = Object.getOwnPropertyNames( imageCarousel );
@@ -335,7 +340,7 @@ document.addEventListener(
 					delete imageCarousel[ propsImages[ i ] ];
 				}
 			}
-			if ( thumbCarousel && thumbCarousel.version ) {
+			if ( thumbCarousel && thumbCarousel.slider ) {
 				thumbCarousel.destroy();
 
 				let propsThumbnail = Object.getOwnPropertyNames( thumbCarousel );
@@ -346,7 +351,7 @@ document.addEventListener(
 
 			// Append new markup html.
 			if ( images && document.querySelector( '.product-images' ) ) {
-				document.querySelector( '.product-images' ).innerHTML = '<div id="product-images">' + images + '</div>';;
+				document.querySelector( '.product-images' ).querySelector('#product-images').innerHTML = images;
 			}
 
 			if ( document.querySelector( '.product-thumbnail-images' ) ) {
@@ -361,18 +366,34 @@ document.addEventListener(
 				}
 			}
 
-			// Rebuild new slider.
-			if ( ! thumbnails ) {
-				options.navContainer = false;
-			}
-
 			// Re-init slider.
 			if ( ! noSliderLayout ) {
 				if ( 'undefined' === typeof( imageCarousel ) || ! Object.getOwnPropertyNames( imageCarousel ).length ) {
 					imageCarousel = new Flickity( options.container, options );
+					changeImageCarouselButtonIcon();
 				}
+
+				productThumbnails = document.getElementById( 'product-thumbnail-images' );
+
 				if ( thumbnails && ( 'undefined' === typeof( thumbCarousel ) || ! Object.getOwnPropertyNames( thumbCarousel ).length ) ) {
-					thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
+					if ( window.matchMedia( '( max-width: 767px )' ).matches ) {
+						if ( gallery ) {
+							thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
+						}
+					} else {
+						if ( gallery && gallery.classList.contains( 'vertical-style' ) ) {
+							setTimeout( function() {
+								var currFirstImage   = gallery ? gallery.querySelector( '.image-item img' ) : false,
+								currFirstImageHeight = currFirstImage ? currFirstImage.offsetHeight : 0;
+
+								productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
+								verticalThumbnailSliderAction();
+								addThumbButtons();
+							}, 200);
+						} else {
+							thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
+						}
+					}
 				}
 			}
 
