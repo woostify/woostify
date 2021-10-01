@@ -26,22 +26,28 @@ function renderSlider( selector, options ) {
 
 // Create product images item.
 function createImages( fullSrc, src, size ) {
-	var item  = '<figure class="image-item ez-zoom" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">';
-		item += '<a href=' + fullSrc + ' data-size=' + size + ' itemprop="contentUrl" data-elementor-open-lightbox="no">';
+	var imageEl       = document.createElement( 'figure' );
+	imageEl.className = 'image-item ez-zoom';
+	imageEl.setAttribute( 'itemprop', 'associatedMedia' );
+	imageEl.setAttribute( 'itemscope', '' );
+	imageEl.setAttribute( 'itemtype', 'http://schema.org/ImageObject' );
+
+	var item  = '<a href=' + fullSrc + ' data-size=' + size + ' itemprop="contentUrl" data-elementor-open-lightbox="no">';
 		item += '<img src=' + src + ' itemprop="thumbnail">';
 		item += '</a>';
-		item += '</figure>';
 
-	return item;
+	imageEl.innerHTML = item;
+
+	return imageEl;
 }
 
 // Create product thumbnails item.
 function createThumbnails( src ) {
-	var item  = '<div class="thumbnail-item">';
-		item += '<img src="' + src + '">';
-		item += '</div>';
+	var thumbEl       = document.createElement( 'div' );
+	thumbEl.className = 'thumbnail-item';
+	thumbEl.innerHTML = '<img src="' + src + '">';
 
-	return item;
+	return thumbEl;
 }
 
 // For Grid layout on mobile.
@@ -125,7 +131,7 @@ document.addEventListener(
 		}
 
 		if ( productThumbnails ) {
-			imageCarousel    = new Flickity( options.container, options );
+			imageCarousel = new Flickity( options.container, options );
 			changeImageCarouselButtonIcon();
 
 			if ( window.matchMedia( '( max-width: 767px )' ).matches ) {
@@ -193,7 +199,6 @@ document.addEventListener(
 
 		function addThumbButtons() {
 			var productThumbnailsWrapper = productThumbnails.parentElement;
-			console.log( productThumbnails );
 			prevBtn.classList.add( 'thumb-btn', 'thumb-prev-btn', 'prev' );
 			prevBtn.innerHTML = woostify_product_images_slider_options.vertical_prev_icon;
 
@@ -264,33 +269,42 @@ document.addEventListener(
 				}
 			);
 
-			var thumbImgHeight = thumbNavImages[imageCarousel.selectedIndex].offsetHeight;
+			var thumbImgHeight = 0 < imageCarousel.selectedIndex ? thumbNavImages[imageCarousel.selectedIndex].offsetHeight : thumbNavImages[0].offsetHeight;
 			var thumbHeight    = thumbNav.offsetHeight;
 
 			imageCarousel.on(
 				'select',
 				function() {
-					thumbNav.querySelector( '.is-nav-selected' ).classList.remove( 'is-nav-selected' );
-					thumbNav.querySelector( '.is-selected' ).classList.remove( 'is-selected' );
-
-					var selected = thumbNavImages[ imageCarousel.selectedIndex ];
-					selected.classList.add( 'is-nav-selected' );
-					selected.classList.add( 'is-selected' );
-
-					var scrollY = selected.offsetTop + thumbNav.scrollTop - ( thumbHeight + thumbImgHeight ) / 2;
-					thumbNav.scrollTo(
-						{
-							top: scrollY,
-							behavior: 'smooth',
+					thumbNav.querySelectorAll( '.thumbnail-item' ).forEach(
+						function( thumb ) {
+							thumb.classList.remove( 'is-nav-selected', 'is-selected' );
 						}
+					)
+
+					setTimeout(
+						function() {
+							var selected = 0 < imageCarousel.selectedIndex ? thumbNavImages[ imageCarousel.selectedIndex ] : thumbNavImages[ 0 ];
+							selected.classList.add( 'is-nav-selected' );
+							selected.classList.add( 'is-selected' );
+
+							var scrollY = selected.offsetTop + thumbNav.scrollTop - ( thumbHeight + thumbImgHeight ) / 2;
+							thumbNav.scrollTo(
+								{
+									top: scrollY,
+									behavior: 'smooth',
+								}
+							);
+						},
+						100
 					);
+
 				}
 			);
 		}
 
 		// Reset carousel.
 		function resetCarousel() {
-			if ( imageCarousel ) {
+			if ( imageCarousel && imageCarousel.slider ) {
 				imageCarousel.select( 0 )
 			}
 		}
@@ -306,116 +320,61 @@ document.addEventListener(
 				gallery = document.querySelector( '.product-gallery' );
 			}
 
-			var images            = '',
-				thumbnails        = '',
-				defaultThumbnails = false;
+			var images     = [],
+				thumbnails = [];
 
 			for ( var i = 0, j = data.length; i < j; i++ ) {
 				if ( reset ) {
 					// For reset variation.
 					var size = data[i].full_src_w + 'x' + data[i].full_src_h;
 
-					images     += createImages( data[i].full_src, data[i].src, size );
-					thumbnails += createThumbnails( data[i].gallery_thumbnail_src );
-
-					if ( data[i].has_default_thumbnails ) {
-						defaultThumbnails = true;
-					}
+					images.push( createImages( data[i].full_src, data[i].src, size ) );
+					thumbnails.push( createThumbnails( data[i].gallery_thumbnail_src ) );
 				} else if ( variationId && variationId == data[i][0].variation_id ) {
 					// Render new item for new Slider.
 					for ( var x = 1, y = data[i].length; x < y; x++ ) {
-						var size        = data[i][x].full_src_w + 'x' + data[i][x].full_src_h;
-							images     += createImages( data[i][x].full_src, data[i][x].src, size );
-							thumbnails += createThumbnails( data[i][x].gallery_thumbnail_src );
+						var size = data[i][x].full_src_w + 'x' + data[i][x].full_src_h;
+						images.push( createImages( data[i][x].full_src, data[i][x].src, size ) );
+						thumbnails.push( createThumbnails( data[i][x].gallery_thumbnail_src ) );
 					}
 				}
 			}
 
-			// Destroy current slider.
-			if ( imageCarousel && imageCarousel.slider ) {
-				imageCarousel.destroy();
-
-				let propsImages = Object.getOwnPropertyNames( imageCarousel );
-				for ( let i = 0, j = propsImages.length; i < j; i++ ) {
-					delete imageCarousel[ propsImages[ i ] ];
+			if ( ( 0 < images.length ) && document.querySelector( '.product-images' ) ) {
+				if ( imageCarousel && imageCarousel.slider ) {
+					imageCarousel.remove( document.querySelectorAll( '#product-images .image-item' ) );
+					imageCarousel.append( images );
+					imageCarousel.reposition();
+					imageCarousel.reloadCells();
 				}
-			}
-			if ( thumbCarousel && thumbCarousel.slider ) {
-				thumbCarousel.destroy();
-
-				let propsThumbnail = Object.getOwnPropertyNames( thumbCarousel );
-				for ( let i = 0, j = propsThumbnail.length; i < j; i++ ) {
-					delete thumbCarousel[ propsThumbnail[ i ] ];
-				}
-			}
-
-			// Append new markup html.
-			if ( images && document.querySelector( '.product-images' ) ) {
-				document.querySelector( '.product-images' ).querySelector('#product-images').innerHTML = images;
 			}
 
 			if ( document.querySelector( '.product-thumbnail-images' ) ) {
-				if ( thumbnails ) {
-					document.querySelector( '.product-thumbnail-images' ).innerHTML = '<div id="product-thumbnail-images">' + thumbnails + '</div>';
+				if ( thumbnails.length > 0 ) {
+					if ( thumbCarousel && thumbCarousel.slider ) { // Case thumbnails is slider.
+						thumbCarousel.remove( document.querySelectorAll( '#product-thumbnail-images .thumbnail-item' ) );
+							thumbCarousel.append( thumbnails );
+					} else { // Case thumbnails is vertical layout in desktop.
+						document.querySelector( '.product-thumbnail-images' ).querySelector( '#product-thumbnail-images' ).innerHTML = '';
+						for ( var i = 0, thumbnailsLength = thumbnails.length; i < thumbnailsLength; i++ ) {
+							document.querySelector( '.product-thumbnail-images' ).querySelector( '#product-thumbnail-images' ).appendChild( thumbnails[i] );
+						}
 
-					if ( document.querySelector( '.product-gallery' ) ) {
-						document.querySelector( '.product-gallery' ).classList.add( 'has-product-thumbnails' );
+						// Get current height of first image in main.
+						var currFirstImage   = gallery ? gallery.querySelector( '.image-item img' ) : false,
+						currFirstImageHeight = currFirstImage ? currFirstImage.offsetHeight : 0;
+
+						setTimeout(
+							function() {
+								// Update Product thumbnail wrapper height.
+								productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
+							},
+							200
+						);
 					}
 				} else {
-					document.querySelector( '.product-thumbnail-images' ).innerHTML = '';
+					document.querySelector( '.product-thumbnail-images' ).querySelector( '#product-thumbnail-images' ).innerHTML = '';
 				}
-			}
-
-			// Re-init slider.
-			if ( ! noSliderLayout ) {
-				if ( 'undefined' === typeof( imageCarousel ) || ! Object.getOwnPropertyNames( imageCarousel ).length ) {
-					imageCarousel = new Flickity( options.container, options );
-					changeImageCarouselButtonIcon();
-				}
-
-				productThumbnails = document.getElementById( 'product-thumbnail-images' );
-
-				if ( thumbnails && ( 'undefined' === typeof( thumbCarousel ) || ! Object.getOwnPropertyNames( thumbCarousel ).length ) ) {
-					if ( window.matchMedia( '( max-width: 767px )' ).matches ) {
-						if ( gallery ) {
-							thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
-						}
-					} else {
-						if ( gallery && gallery.classList.contains( 'vertical-style' ) ) {
-							setTimeout( function() {
-								var currFirstImage   = gallery ? gallery.querySelector( '.image-item img' ) : false,
-								currFirstImageHeight = currFirstImage ? currFirstImage.offsetHeight : 0;
-
-								productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
-								verticalThumbnailSliderAction();
-								addThumbButtons();
-							}, 200);
-						} else {
-							thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
-						}
-					}
-				}
-			}
-
-			// Hide thumbnail slider if only thumbnail item.
-			var getThumbnailSlider = document.querySelectorAll( '.product-thumbnail-images .thumbnail-item' );
-			if ( document.querySelector( '.product-thumbnail-images' ) ) {
-				if ( getThumbnailSlider.length < 2 ) {
-					document.querySelector( '.product-thumbnail-images' ).classList.add( 'has-single-thumbnail-image' );
-				} else if ( document.querySelector( '.product-thumbnail-images' ) ) {
-					document.querySelector( '.product-thumbnail-images' ).classList.remove( 'has-single-thumbnail-image' );
-				}
-			}
-
-			// Update main slider height.
-			var mainViewSlider = document.getElementById( 'product-images-mw' );
-			if ( mainViewSlider ) {
-				setTimeout(
-					function() {
-						mainViewSlider.style.height = 'auto';
-					},
-					500
-				);
 			}
 
 			// Re-init easyzoom.
@@ -438,7 +397,6 @@ document.addEventListener(
 						initPhotoSwipe( '#product-images', 'button' );
 					}
 				}
-
 			}
 		}
 
@@ -448,16 +406,15 @@ document.addEventListener(
 			jQuery( 'form.variations_form' ).on(
 				'found_variation',
 				function( e, variation ) {
-					resetCarousel();
 
 					// Update slider height.
 					setTimeout(
 						function() {
+							resetCarousel();
 							window.dispatchEvent( new Event( 'resize' ) );
 						},
-						200
+						100
 					);
-
 					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
 						updateGallery( woostify_variation_gallery, false, variation.variation_id );
 					}
@@ -480,12 +437,11 @@ document.addEventListener(
 					// Update slider height.
 					setTimeout(
 						function() {
+							resetCarousel();
 							window.dispatchEvent( new Event( 'resize' ) );
 						},
-						200
+						100
 					);
-
-					resetCarousel();
 
 					if ( document.body.classList.contains( 'elementor-editor-active' ) || document.body.classList.contains( 'elementor-editor-preview' ) ) {
 						if ( ! document.getElementById( 'product-thumbnail-images' ) ) {
