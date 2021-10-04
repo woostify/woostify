@@ -359,15 +359,17 @@ document.addEventListener(
 				if ( imageCarousel ) {
 					imageCarousel = new Flickity( options.container, options );
 
-					var currFirstImage = gallery ? gallery.querySelector( '.image-item img' ) : false;
-					setTimeout(
-						function() {
-							var currFirstImageHeight          = currFirstImage ? currFirstImage.offsetHeight : 0;
-							productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
-							changeImageCarouselButtonIcon();
-						},
-						200
-					);
+					if ( window.matchMedia( '( min-width: 768px )' ).matches && gallery && gallery.classList.contains( 'vertical-style' ) ) {
+						var currFirstImage = gallery ? gallery.querySelector( '.image-item img' ) : false;
+						setTimeout(
+							function() {
+								var currFirstImageHeight          = currFirstImage ? currFirstImage.offsetHeight : 0;
+								productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
+							},
+							200
+						);
+					}
+					changeImageCarouselButtonIcon();
 				}
 
 				if ( thumbnails ) {
