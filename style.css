@@ -8876,7 +8876,7 @@ header.elementor-element {
 }
 
 .product-thumbnail-images {
-  animation: fadeIn 3s;
+  animation: fadeIn 2s;
 }
 
 .product-thumbnail-images.has-single-thumbnail-image {
@@ -8886,7 +8886,7 @@ header.elementor-element {
 .product-images {
   overflow: hidden;
   position: relative;
-  animation: fadeIn 3s;
+  animation: fadeIn 2s;
 }
 
 .product-images .image-item {

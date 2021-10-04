@@ -321,7 +321,7 @@
 }
 
 .product-thumbnail-images {
-	animation: fadeIn 3s;
+	animation: fadeIn 2s;
 	&.has-single-thumbnail-image {
 		display: none;
 	}
@@ -331,7 +331,7 @@
 .product-images {
 	overflow: hidden;
 	position: relative;
-	animation: fadeIn 3s;
+	animation: fadeIn 2s;
 
 	.image-item {
 		margin: 0;
