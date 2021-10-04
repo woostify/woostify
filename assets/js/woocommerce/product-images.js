@@ -45,27 +45,6 @@ function createThumbnails( src ) {
 	return item;
 }
 
-// For Grid layout on mobile.
-function woostifyGalleryCarouselMobile() {
-	var gallery = document.querySelector( '.has-gallery-list-layout .product-gallery.has-product-thumbnails' );
-	if ( ! gallery || window.innerWidth > 991 ) {
-		return;
-	}
-
-	var options      = woostify_product_images_slider_options.main;
-	var slider       = new Flickity( '#product-images', options );
-	var imageNextBtn = document.querySelector( '.flickity-button.next' );
-	var imagePrevBtn = document.querySelector( '.flickity-button.previous' );
-
-	if ( imageNextBtn ) {
-		imageNextBtn.innerHTML = woostify_product_images_slider_options.next_icon;
-	}
-
-	if ( imagePrevBtn ) {
-		imagePrevBtn.innerHTML = woostify_product_images_slider_options.prev_icon;
-	}
-}
-
 // Sticky summary for list layout.
 function woostifyStickySummary() {
 	var gallery = document.querySelector( '.has-gallery-list-layout .product-gallery.has-product-thumbnails' ),
@@ -105,6 +84,8 @@ document.addEventListener(
 
 		var prevBtn = document.createElement( "button" );
 		var nextBtn = document.createElement( "button" );
+
+		var mobileSlider;
 
 		// Product images.
 		var imageCarousel,
@@ -247,6 +228,18 @@ document.addEventListener(
 			}
 		}
 
+		// For Grid layout on mobile.
+		function woostifyGalleryCarouselMobile() {
+			var mobileGallery = document.querySelector( '.has-gallery-list-layout .product-gallery.has-product-thumbnails' );
+			if ( ! mobileGallery || window.innerWidth > 991 ) {
+				return;
+			}
+
+			var options      = woostify_product_images_slider_options.main;
+			mobileSlider       = new Flickity( '#product-images', options );
+			changeImageCarouselButtonIcon();
+		}
+
 		function verticalThumbnailSliderAction() {
 			var thumbNav       = productThumbnails;
 			var thumbNavImages = thumbNav.querySelectorAll( '.thumbnail-item' );
@@ -337,6 +330,10 @@ document.addEventListener(
 				thumbCarousel.destroy();
 			}
 
+			if ( mobileSlider && mobileSlider.slider ) {
+				mobileSlider.destroy();
+			}
+
 			// Append new markup html.
 			if ( images && document.querySelector( '.product-images' ) ) {
 				document.querySelector( '.product-images' ).querySelector( '#product-images' ).innerHTML = images;
@@ -407,7 +404,8 @@ document.addEventListener(
 						200
 					);
 				}
-
+			} else {
+				woostifyGalleryCarouselMobile();
 			}
 
 			// Hide thumbnail slider if only thumbnail item.
@@ -500,7 +498,7 @@ document.addEventListener(
 		}
 		carouselAction();
 
-		// Grid and One column to caousel layout on mobile.
+		// Grid and One column to carousel layout on mobile.
 		woostifyGalleryCarouselMobile();
 
 		// Load event.
