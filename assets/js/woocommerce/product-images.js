@@ -235,8 +235,8 @@ document.addEventListener(
 				return;
 			}
 
-			var options      = woostify_product_images_slider_options.main;
-			mobileSlider       = new Flickity( '#product-images', options );
+			var options  = woostify_product_images_slider_options.main;
+			mobileSlider = new Flickity( '#product-images', options );
 			changeImageCarouselButtonIcon();
 		}
 
