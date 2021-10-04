@@ -185,6 +185,25 @@
 			}
 		}
 	}
+
+	&.column-style, &.grid-style {
+		@media (max-width: $screen-md - 1) {
+			#product-images {
+				.image-item {
+					display: none;
+					&:first-child {
+						display: block;
+					}
+				}
+				&.flickity-enabled {
+					.image-item {
+						display: block;
+					}
+				}
+			}
+		}
+
+	}
 	// Vertical slider layout
 	&.vertical-style.has-product-thumbnails {
 		.thumb-btn {

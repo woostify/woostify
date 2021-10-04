@@ -8771,6 +8771,18 @@ header.elementor-element {
   display: block;
 }
 
+@media (max-width: 991px) {
+  .product-gallery.column-style #product-images .image-item, .product-gallery.grid-style #product-images .image-item {
+    display: none;
+  }
+  .product-gallery.column-style #product-images .image-item:first-child, .product-gallery.grid-style #product-images .image-item:first-child {
+    display: block;
+  }
+  .product-gallery.column-style #product-images.flickity-enabled .image-item, .product-gallery.grid-style #product-images.flickity-enabled .image-item {
+    display: block;
+  }
+}
+
 .product-gallery.vertical-style.has-product-thumbnails .thumb-btn {
   display: none;
 }
