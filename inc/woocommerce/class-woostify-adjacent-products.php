@@ -148,10 +148,11 @@ if ( ! class_exists( 'Woostify_Adjacent_Products' ) ) {
 			global $post;
 
 			$args = array(
-				'limit'      => 2,
-				'visibility' => 'catalog',
-				'exclude'    => array( $post->ID ),
-				'orderby'    => 'date',
+				'limit'       => 2,
+				'visibility'  => 'catalog',
+				'exclude'     => array( $post->ID ),
+				'orderby'     => 'date',
+				'post_status' => 'publish',
 			);
 
 			if ( ! $this->previous ) {
