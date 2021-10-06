@@ -322,6 +322,10 @@
   .rtl.woocommerce-cart.cart-page-layout-2 .cart-collaterals {
     float: left;
   }
+  .rtl .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-remove {
+    right: auto;
+    left: 75px;
+  }
 }
 
 .rtl .wc_payment_methods {
@@ -371,6 +375,28 @@
 .rtl .show-password-input {
   right: auto;
   left: .7em;
+}
+
+.rtl .woocommerce-message .button {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.rtl .woocommerce-message:before {
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+.rtl .woocommerce-cart-form__contents .actions .button {
+  float: left;
+}
+
+.rtl .woocommerce-cart-form__contents .actions .coupon {
+  float: right !important;
+}
+
+.rtl .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="coupon_code"] {
+  margin-right: 0;
 }
 
 .rtl .products .product {
