@@ -416,7 +416,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'cellAlign'       => 'left',
 							'prevNextButtons' => false,
 							'contain'         => true,
-							'groupCells'      => '3',
+							'groupCells'      => '60%',
 							'freeScroll'      => false,
 							'wrapAround'      => true,
 						),
