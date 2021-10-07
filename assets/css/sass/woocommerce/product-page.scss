@@ -814,6 +814,18 @@
 	}
 }
 
+.elementor {
+	.product-gallery {
+		&.grid-style, &.column-style {
+			&.has-product-thumbnails {
+				.image-item {
+					margin-bottom: 30px
+				}
+			}
+		}
+	}
+}
+
 .product_meta {
 	margin-top: 20px;
 

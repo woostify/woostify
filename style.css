@@ -9351,6 +9351,10 @@ header.elementor-element {
   }
 }
 
+.elementor .product-gallery.grid-style.has-product-thumbnails .image-item, .elementor .product-gallery.column-style.has-product-thumbnails .image-item {
+  margin-bottom: 30px;
+}
+
 .product_meta {
   margin-top: 20px;
 }
