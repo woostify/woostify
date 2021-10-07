@@ -35,7 +35,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 			let path = '' === curr_query ? curr_protocol + '//' + curr_host_name + curr_path_name + '/' : curr_protocol + '//' + curr_host_name + curr_path_name + '/?' + curr_query;
 			return path;
 		},
-		append: '.product',
+		append: '.product.type-product',
 		history: false,
 		hideNav: '.woocommerce-pagination',
 		loadOnScroll: 'button' === loading_type ? false : true

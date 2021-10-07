@@ -19,6 +19,12 @@
 				float: left;
 			}
 		}
+		.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) {
+			.product-remove {
+				right: auto;
+        		left: 75px;
+			}
+		}
 	}
 
 	.wc_payment_methods {
@@ -88,5 +94,31 @@
 	.show-password-input {
 		right: auto;
 		left: .7em;
+	}
+
+	// Noitices
+	.woocommerce-message {
+		.button {
+			margin-right: auto;
+    		margin-left: 0;
+		}
+		&:before {
+			margin-left: 10px;
+    		margin-right: 0;
+		}
+	}
+
+	.woocommerce-cart-form__contents {
+		.actions {
+			.button {
+				float: left;
+			}
+			.coupon {
+				float: right !important;
+			}
+		}
+	}
+	.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="coupon_code"] {
+		margin-right: 0;
 	}
 }
