@@ -236,7 +236,7 @@ $media: 599px;
 
     .woocommerce-mini-cart__total {
         margin-bottom: 0;
-        background-color: #fff;
+        background-color: transparent;
         height: 40px;
         border-top: 1px solid #ddd;
         align-items: flex-end;
@@ -479,6 +479,7 @@ $media: 599px;
 			line-height: 24px;
 			text-align: center;
 			-moz-appearance: textfield;
+			background-color: transparent;
 
 			&::-webkit-inner-spin-button,
 			&::-webkit-outer-spin-button {

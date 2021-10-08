@@ -8106,7 +8106,7 @@ header.elementor-element {
 
 .cart-sidebar-content .woocommerce-mini-cart__total {
   margin-bottom: 0;
-  background-color: #fff;
+  background-color: transparent;
   height: 40px;
   border-top: 1px solid #ddd;
   align-items: flex-end;
@@ -8338,6 +8338,7 @@ header.elementor-element {
   line-height: 24px;
   text-align: center;
   -moz-appearance: textfield;
+  background-color: transparent;
 }
 
 .mini-cart-product-infor .mini-cart-quantity .qty::-webkit-inner-spin-button, .mini-cart-product-infor .mini-cart-quantity .qty::-webkit-outer-spin-button {
