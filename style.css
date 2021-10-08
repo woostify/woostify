@@ -8139,6 +8139,10 @@ header.elementor-element {
   margin: 10px 0;
 }
 
+.cart-sidebar-content .free-shipping-progress-bar.pos-before-checkout {
+  margin: 10px 0;
+}
+
 .cart-sidebar-content .woocommerce-mini-cart__buttons {
   margin-bottom: 0;
 }

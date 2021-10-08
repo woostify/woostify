@@ -66,6 +66,8 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 		$options                    = woostify_options( false );
 		$response                   = array();
 		$top_content                = $options['mini_cart_top_content_select'];
+		$before_checkout_content    = $options['mini_cart_before_checkout_button_content_select'];
+		$after_checkout_content     = $options['mini_cart_after_checkout_button_content_select'];
 		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
 
 		$cart_item_key = sanitize_text_field( wp_unslash( $_POST['key'] ) );
@@ -78,7 +80,7 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 		ob_start();
 		$response['item']        = $count;
 		$response['total_price'] = WC()->cart->get_cart_total();
-		if ( ( 'fst' === $top_content ) && $enabled_shipping_threshold ) {
+		if ( ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) && $enabled_shipping_threshold ) {
 			$response['free_shipping_threshold'] = array();
 
 			$subtotal                 = WC()->cart->subtotal;
@@ -408,11 +410,15 @@ if ( ! function_exists( 'woostify_woocommerce_shipping_threshold' ) ) {
 			return;
 		}
 
-		$top_content = $options['mini_cart_top_content_select'];
-		$classes     = array();
+		$classes                 = array();
+		$top_content             = $options['mini_cart_top_content_select'];
+		$before_checkout_content = $options['mini_cart_before_checkout_button_content_select'];
 
 		if ( 'fst' === $top_content ) {
 			$classes[] = 'pos-top';
+		}
+		if ( 'fst' === $before_checkout_content ) {
+			$classes[] = 'pos-before-checkout';
 		}
 
 		$subtotal = WC()->cart->subtotal;
