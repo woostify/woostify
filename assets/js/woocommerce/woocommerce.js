@@ -262,15 +262,14 @@ var checkoutOrder = function() {
 	var checkout_opt = document.querySelector( '.before-checkout' ),
 	spacer_orig      = checkout_opt.offsetHeight,
 	div_height       = spacer_orig,
-	show_login       = document.querySelector( '.showlogin' ),
-	show_coupon      = document.querySelector( '.showcoupon' );
+	show_login       = document.querySelector( '.showlogin' );
 
 	set_heights();
 
 	document.body.addEventListener(
 		'click',
 		function( event ) {
-			if ( event.target !== show_login && event.target !== show_coupon ) {
+			if ( event.target !== show_login ) {
 				return;
 			}
 
