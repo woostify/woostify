@@ -1368,6 +1368,61 @@
 			tbody {
 				tr {
 					border: none;
+
+					&.coupon-form {
+						border-top: 1px solid #d9d9d9;
+
+						td {
+							width: 100%;
+						}
+
+						.woocommerce-form-coupon-toggle {
+							justify-content: flex-start;
+							margin: 0;
+							max-width: unset;
+						}
+						.checkout_coupon.woocommerce-form-coupon {
+							margin: 10px 0 0;
+							padding: 0;
+							max-width: unset;
+							display: flex;
+
+							.form-row {
+								margin: 0;
+								float: none;
+
+								&.form-row-first {
+									-ms-flex-preferred-size: 0;
+									flex-basis: 0%;
+									-ms-flex-positive: 1;
+									-webkit-box-flex: 1;
+									flex-grow: 1;
+									max-width: 100%;
+									margin-right: 10px;
+								}
+
+								&.form-row-last {
+									-ms-flex: 0 0 auto;
+									-webkit-box-flex: 0;
+									flex: 0 0 auto;
+									width: auto;
+								}
+							}
+							[name="apply_coupon"] {
+								margin: 0;
+								padding: 0 20px;
+								height: 50px;
+								border-radius: 2px;
+							}
+							[name="coupon_code"] {
+								border-radius: 2px;
+							}
+						}
+					}
+
+					td {
+						margin-left: 0;
+					}
 				}
 			}
 			tfoot {
@@ -1401,7 +1456,9 @@
 					}
 				}
 			}
-
+			.checkout_coupon.woocommerce-form-coupon {
+				border: none;
+			}
 		}
 	}
 	form.woocommerce-checkout {

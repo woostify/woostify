@@ -304,6 +304,55 @@ var checkoutOrder = function() {
 
 }
 
+var get_url = function( endpoint ) {
+	return wc_cart_fragments_params.wc_ajax_url.toString().replace(
+		'%%endpoint%%',
+		endpoint
+	);
+};
+
+var show_notice = function( html_element, $target ) {
+	if ( ! $target ) {
+		$target = jQuery( '.woocommerce-notices-wrapper:first' ) || jQuery( '.cart-empty' ).closest( '.woocommerce' ) || jQuery( '.woocommerce-cart-form' );
+	}
+	$target.prepend( html_element );
+};
+
+var ajaxCouponForm = function() {
+	var couponForm = document.querySelector( 'form.checkout_coupon' );
+	couponForm.addEventListener(
+		'submit',
+		function( event ) {
+			event.preventDefault();
+			var text_field  = document.getElementById( 'coupon_code' );
+			var coupon_code = text_field.value;
+
+			var data = {
+				security: woostify_woocommerce_general.apply_coupon_nonce,
+				coupon_code: coupon_code
+			};
+
+			jQuery.ajax(
+				{
+					type:     'POST',
+					url:      get_url( 'apply_coupon' ),
+					data:     data,
+					dataType: 'html',
+					success: function( response ) {
+						jQuery( '.woocommerce-error, .woocommerce-message, .woocommerce-info' ).remove();
+						show_notice( response );
+						jQuery( document.body ).trigger( 'applied_coupon', [ coupon_code ] );
+					},
+					complete: function() {
+						text_field.value = '';
+						jQuery( document.body ).trigger( 'update_checkout' );
+					}
+				}
+			);
+		}
+	)
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
@@ -379,6 +428,11 @@ document.addEventListener(
 			'wc_cart_emptied', /* Reload Cart page if it's empty */
 			function() {
 				location.reload();
+			}
+		).on(
+			'updated_checkout',
+			function() {
+				ajaxCouponForm();
 			}
 		);
 

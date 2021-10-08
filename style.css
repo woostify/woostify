@@ -9972,6 +9972,64 @@ header.elementor-element {
   border: none;
 }
 
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table tbody tr.coupon-form {
+  border-top: 1px solid #d9d9d9;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table tbody tr.coupon-form td {
+  width: 100%;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table tbody tr.coupon-form .woocommerce-form-coupon-toggle {
+  justify-content: flex-start;
+  margin: 0;
+  max-width: unset;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table tbody tr.coupon-form .checkout_coupon.woocommerce-form-coupon {
+  margin: 10px 0 0;
+  padding: 0;
+  max-width: unset;
+  display: flex;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table tbody tr.coupon-form .checkout_coupon.woocommerce-form-coupon .form-row {
+  margin: 0;
+  float: none;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table tbody tr.coupon-form .checkout_coupon.woocommerce-form-coupon .form-row.form-row-first {
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0%;
+  -ms-flex-positive: 1;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  max-width: 100%;
+  margin-right: 10px;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table tbody tr.coupon-form .checkout_coupon.woocommerce-form-coupon .form-row.form-row-last {
+  -ms-flex: 0 0 auto;
+  -webkit-box-flex: 0;
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table tbody tr.coupon-form .checkout_coupon.woocommerce-form-coupon [name="apply_coupon"] {
+  margin: 0;
+  padding: 0 20px;
+  height: 50px;
+  border-radius: 2px;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table tbody tr.coupon-form .checkout_coupon.woocommerce-form-coupon [name="coupon_code"] {
+  border-radius: 2px;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table tbody tr td {
+  margin-left: 0;
+}
+
 .checkout-layout-3 #order_review .woocommerce-checkout-review-order-table tfoot tr:first-child {
   border-top: 1px solid #d9d9d9;
 }
@@ -10001,6 +10059,10 @@ header.elementor-element {
   -moz-flex: 1;
   -ms-flex: 1;
   flex: 1;
+}
+
+.checkout-layout-3 #order_review .woocommerce-checkout-review-order-table .checkout_coupon.woocommerce-form-coupon {
+  border: none;
 }
 
 .checkout-layout-3 form.woocommerce-checkout .woostify-col {

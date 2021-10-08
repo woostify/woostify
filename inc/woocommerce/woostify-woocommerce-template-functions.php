@@ -1361,14 +1361,14 @@ if ( ! function_exists( 'woostify_checkout_options_end' ) ) {
 if ( ! function_exists( 'woostify_checkout_coupon_form' ) ) {
 	function woostify_checkout_coupon_form() {
 		if ( is_user_logged_in() || WC()->checkout()->is_registration_enabled() || ! WC()->checkout()->is_registration_required() ) {
-			echo '<tr class="coupon-form"><td colspan="2">';
+			echo '<tr class="coupon-form"><td colspan="2"><div class="ajax-coupon-form">';
 			wc_get_template(
 				'checkout/form-coupon.php',
 				array(
 					'checkout' => WC()->checkout(),
 				)
 			);
-			echo '</tr></td>';
+			echo '</div></tr></td>';
 		}
 	}
 }
