@@ -365,6 +365,36 @@ var woostifyMoveNoticesInCheckoutPage = function() {
 	}
 }
 
+var woostifyCheckoutFormFieldAnimation = function() {
+	var inputs = document.querySelectorAll( 'form.checkout .input-text' );
+	if ( inputs.length ) {
+		inputs.forEach( function( input ) {
+			var formRow = input.closest( '.form-row' );
+			if ( '' !== input.value ) {
+				formRow.classList.add( 'w-anim-wrap' );
+			}
+
+			input.addEventListener(
+				'focus',
+				function( event ) {
+					var formRow = event.target.closest( '.form-row' );
+					formRow.classList.add( 'w-anim-wrap' );
+				}
+			);
+
+			input.addEventListener(
+				'blur',
+				function( event ) {
+					var formRow = event.target.closest( '.form-row' );
+					if ( '' === event.target.value ) {
+						formRow.classList.remove( 'w-anim-wrap' );
+					}
+				}
+			);
+		} );
+	}
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
@@ -446,6 +476,8 @@ document.addEventListener(
 		var isMinimalCheckoutLayout = document.body.classList.contains( 'checkout-layout-3' );
 
 		if ( isMinimalCheckoutLayout ) {
+			woostifyCheckoutFormFieldAnimation();
+
 			// Move notices.
 			woostifyMoveNoticesInCheckoutPage();
 

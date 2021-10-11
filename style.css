@@ -9738,6 +9738,64 @@ header.elementor-element {
   }
 }
 
+.checkout-layout-3 .form-row {
+  position: relative;
+}
+
+.checkout-layout-3 .form-row label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  background: #fff;
+  right: 30px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: all .3s;
+}
+
+.checkout-layout-3 .form-row .input-text {
+  width: 100%;
+  height: 50px;
+  padding: 20px 12px 0;
+  border-radius: 4px;
+}
+
+.checkout-layout-3 .form-row.notes label {
+  top: 25px;
+}
+
+.checkout-layout-3 .form-row.notes textarea {
+  padding: 20px 12px 12px !important;
+}
+
+.checkout-layout-3 .form-row.w-anim-wrap label {
+  top: 15px;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0;
+}
+
+.checkout-layout-3 .form-row#billing_country_field label {
+  font-size: 12px;
+  line-height: 1;
+  padding: 0;
+  z-index: 9;
+  height: 38px;
+  top: 10px;
+  transform: none;
+  background: transparent;
+}
+
+.checkout-layout-3 .form-row#billing_country_field .select2-selection {
+  border-radius: 4px;
+}
+
+.checkout-layout-3 .form-row#billing_country_field .select2-selection__rendered {
+  padding: 25px 12px 0px;
+  line-height: 1.5;
+  min-height: 48px;
+}
+
 .checkout-layout-3 .woostify-row {
   display: -webkit-box;
   display: -ms-flexbox;
