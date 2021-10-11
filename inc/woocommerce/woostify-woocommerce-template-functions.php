@@ -1310,7 +1310,7 @@ if ( ! function_exists( 'woostify_checkout_row_end' ) ) {
 
 if ( ! function_exists( 'woostify_checkout_product_image' ) ) {
 	/**
-	 * Add product image before cart item product name in checkout page
+	 * Add product image and quantity before cart item product name in checkout page
 	 *
 	 * @param string $name Product name.
 	 * @param object $cart_item Cart item data array.
@@ -1323,9 +1323,29 @@ if ( ! function_exists( 'woostify_checkout_product_image' ) ) {
 
 		$_product  = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 		$thumbnail = $_product->get_image();
-		$image     = '<div class="w-product-thumb">' . $thumbnail . '</div>';
+		$image     = '<div class="w-product-thumb">';
+		$image    .= $thumbnail;
+		$image    .= '<strong class="product-quantity">' . $cart_item['quantity'] . '</strong>';
+		$image    .= '</div>';
 
 		return $image . $name;
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_product_quantity' ) ) {
+	/**
+	 * Remove product quantity after cart item product name in checkout page
+	 *
+	 * @param string $html quantity html.
+	 * @param object $cart_item Cart item data array.
+	 * @param int    $cart_item_key Cart item key.
+	 */
+	function woostify_checkout_product_quantity( $html, $cart_item, $cart_item_key ) {
+		if ( ! is_checkout() ) {
+			return $html;
+		}
+
+		return false;
 	}
 }
 
@@ -1359,6 +1379,9 @@ if ( ! function_exists( 'woostify_checkout_options_end' ) ) {
 }
 
 if ( ! function_exists( 'woostify_checkout_coupon_form' ) ) {
+	/**
+	 * Custom coupon code form html
+	 */
 	function woostify_checkout_coupon_form() {
 		if ( is_user_logged_in() || WC()->checkout()->is_registration_enabled() || ! WC()->checkout()->is_registration_required() ) {
 			echo '<tr class="coupon-form"><td colspan="2"><div class="ajax-coupon-form">';

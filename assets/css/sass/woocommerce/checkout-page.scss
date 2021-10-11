@@ -1326,8 +1326,8 @@
 
 					.w-product-thumb {
 						width: 60px;
-						overflow: hidden;
 						position: absolute;
+						border-radius: 2px;
 						left: 0;
 						top: 50%;
 						transform: translateY(-50%);
@@ -1339,21 +1339,21 @@
 						}
 					}
 					strong.product-quantity {
-						font-size: 13px;
-						font-weight: 500;
-						line-height: 1.75em;
-						white-space: nowrap;
+						font-size: 11px;
+						position: absolute;
 						text-align: center;
-						border-radius: 1.75em;
-						background-color: rgba(0,0,0,0.5);
+						border-radius: 50%;
+						background-color: #999;
 						color: #fff;
 						-webkit-box-sizing: border-box;
 						box-sizing: border-box;
-						min-width: 1.75em;
-						padding: 0 0.58333em;
-						right: 100%;
-						z-index: 3;
-						display: inline-flex;
+						display: block;
+						width: 22px;
+						height: 22px;
+						line-height: 22px;
+						z-index: 10;
+						top: -5px;
+						right: -5px;
 					}
 					.variation {
 						display: block;

@@ -563,6 +563,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				add_action( 'woocommerce_after_checkout_form', 'woostify_checkout_row_end', 50 );
 
 				add_filter( 'woocommerce_cart_item_name', 'woostify_checkout_product_image', 10, 3 );
+				add_filter( 'woocommerce_checkout_cart_item_quantity', 'woostify_checkout_product_quantity', 99, 3 );
 
 				// Coupon code form.
 				remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
