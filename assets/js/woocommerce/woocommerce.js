@@ -304,14 +304,14 @@ var checkoutOrder = function() {
 
 }
 
-var get_url = function( endpoint ) {
+var woostifyGetUrl = function( endpoint ) {
 	return wc_cart_fragments_params.wc_ajax_url.toString().replace(
 		'%%endpoint%%',
 		endpoint
 	);
 };
 
-var show_notice = function( html_element, $target ) {
+var woostifyShowNotice = function( html_element, $target ) {
 	if ( ! $target ) {
 		$target = jQuery( '.woocommerce-notices-wrapper:first' ) || jQuery( '.cart-empty' ).closest( '.woocommerce' ) || jQuery( '.woocommerce-cart-form' );
 	}
@@ -335,12 +335,12 @@ var ajaxCouponForm = function() {
 			jQuery.ajax(
 				{
 					type:     'POST',
-					url:      get_url( 'apply_coupon' ),
+					url:      woostifyGetUrl( 'apply_coupon' ),
 					data:     data,
 					dataType: 'html',
 					success: function( response ) {
-						jQuery( '.woocommerce-error, .woocommerce-message, .woocommerce-info' ).remove();
-						show_notice( response );
+						jQuery( '.woocommerce-error, .woocommerce-message, .woocommerce-NoticeGroup .woocommerce-info, .woocommerce-notices-wrapper .woocommerce-info' ).remove();
+						woostifyShowNotice( response, jQuery( '.woostify-woocommerce-NoticeGroup' ) );
 						jQuery( document.body ).trigger( 'applied_coupon', [ coupon_code ] );
 					},
 					complete: function() {
@@ -351,6 +351,18 @@ var ajaxCouponForm = function() {
 			);
 		}
 	)
+}
+
+var woostifyMoveNoticesInCheckoutPage = function() {
+	var noticesWrapper = document.querySelectorAll( '.woocommerce-notices-wrapper' );
+	if ( noticesWrapper.length ) {
+		var noticesWrapperEl         = noticesWrapper[0];
+		var noticesWrapperNode       = document.createElement( 'div' );
+		var woostifyNoticeGroup      = document.querySelector( '.woostify-woocommerce-NoticeGroup' );
+		noticesWrapperNode.innerHTML = noticesWrapperEl.innerHTML;
+		woostifyNoticeGroup.appendChild( noticesWrapperNode );
+		noticesWrapperEl.remove();
+	}
 }
 
 document.addEventListener(
@@ -429,28 +441,44 @@ document.addEventListener(
 			function() {
 				location.reload();
 			}
-		).on(
-			'updated_checkout',
-			function() {
-				ajaxCouponForm();
-			}
 		);
 
-		// Move notices.
-		jQuery( document.body ).on(
-			'init_checkout updated_checkout payment_method_selected',
-			function( event, data  ) {
+		var isMinimalCheckoutLayout = document.body.classList.contains( 'checkout-layout-3' );
 
-				jQuery( 'form.checkout' ).arrive(
-					'.woocommerce-NoticeGroup',
-					function() {
-						jQuery( '.woostify-woocommerce-NoticeGroup' ).append( jQuery( '.woocommerce-NoticeGroup' ).html() );
-						jQuery( '.woocommerce-NoticeGroup' ).remove();
-					}
-				);
+		if ( isMinimalCheckoutLayout ) {
+			// Move notices.
+			woostifyMoveNoticesInCheckoutPage();
 
-			}
-		);
+			jQuery( document.body ).on(
+				'init_checkout updated_checkout payment_method_selected',
+				function( event, data  ) {
+
+					jQuery( 'form.checkout' ).arrive(
+						'.woocommerce-NoticeGroup',
+						function() {
+							jQuery( '.woostify-woocommerce-NoticeGroup' ).append( jQuery( '.woocommerce-NoticeGroup' ).html() );
+							jQuery( '.woocommerce-NoticeGroup' ).remove();
+						}
+					);
+					jQuery( document ).arrive(
+						'.woocommerce > .woocommerce-message',
+						function( newEl ) {
+							var newWcMsg  = jQuery( newEl ),
+							newWcMsgClone = newWcMsg.clone();
+
+							jQuery( '.woostify-woocommerce-NoticeGroup' ).append( newWcMsgClone );
+							jQuery( newEl ).remove();
+						}
+					);
+
+				}
+			).on(
+				'updated_checkout',
+				function() {
+					ajaxCouponForm();
+				}
+			);
+		}
 
 		if ( '1' === woostify_woocommerce_general.enable_sticky_order_review_checkout ) {
 			checkoutOrder();
