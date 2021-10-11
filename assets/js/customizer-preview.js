@@ -1005,5 +1005,8 @@ document.addEventListener(
 				'fill',
 			],
 		)
+
+		// MINI CART.
+		woostify_colors_live_update( 'mini_cart_background_color', '#shop-cart-sidebar', 'background-color' );
 	},
 )

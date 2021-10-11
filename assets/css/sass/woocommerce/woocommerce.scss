@@ -985,3 +985,83 @@ $size: 40px;
 #wc-stripe-payment-request-wrapper {
 	width: 100%;
 }
+
+@-webkit-keyframes w-fadeInLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(-20px, 0, 0);
+        transform: translate3d(-20px, 0, 0)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none
+    }
+}
+
+@keyframes w-fadeInLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(-20px, 0, 0);
+        transform: translate3d(-20px, 0, 0)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none
+    }
+}
+
+.free-shipping-progress-bar {
+
+	&[data-progress='0'] {
+		display: none;
+	}
+	margin-top: 10px;
+	.progress-bar-message {
+		text-align: center;
+		.woocommerce-Price-amount {
+			font-weight: bold;
+		}
+	}
+	.progress-bar-rail {
+		line-height: 5px;
+		height: 5px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		margin-top: 12px;
+	}
+
+	.progress-bar-status {
+		display: flex;
+		z-index: 1;
+		height: inherit;
+		position: relative;
+		animation: .6s w-fadeInLeft;
+
+		&.success {
+			.progress-bar-indicator {
+				background: rgba(103, 187, 103, 1);
+			}
+		}
+	}
+
+	.progress-bar-left {
+		background: rgba(0,0,0,.1);
+		height: 3px;
+		flex-grow: 1;
+	}
+
+	.progress-bar-indicator {
+		background: linear-gradient( 270deg, rgba(19, 70, 175, 1) 0, #ffffff 200%);
+		background-color: rgba(19, 70, 175, 1);
+		flex-grow: 1;
+	}
+
+	.progress-percent {
+		padding: 0 .5em;
+		font-weight: 900;
+		font-size: 1.1em;
+	}
+}

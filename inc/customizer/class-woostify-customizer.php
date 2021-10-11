@@ -87,7 +87,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 */
 		public function get_color_global_elementor() {
 			$colors = array();
-			if ( ! woostify_is_elementor_activated() || isset( \Elementor\Plugin::$instance->kits_manager ) ) {
+			if ( woostify_is_elementor_activated() && isset( \Elementor\Plugin::$instance->kits_manager ) ) {
 				$kits_manager = \Elementor\Plugin::$instance->kits_manager;
 
 				$system_colors = $kits_manager->get_current_settings( 'system_colors' );
@@ -458,6 +458,27 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				// CART PAGE.
 				'cart_page_layout'                         => 'layout-2',
 				'cart_page_sticky_proceed_button'          => true,
+				// FREE SHIPPING THRESHOLD.
+				'shipping_threshold_enabled'               => false,
+				'shipping_threshold_enable_progress_bar'   => false,
+				'shipping_threshold_progress_bar_amount'   => 100,
+				'shipping_threshold_progress_bar_color'    => '#1346af',
+				'shipping_threshold_progress_bar_initial_msg' => 'Add [missing_amount] more to get Free Shipping!',
+				'shipping_threshold_progress_bar_success_msg' => 'You\'ve got free shipping!',
+				'shipping_threshold_progress_bar_success_color' => '#67bb67',
+				'shipping_threshold_enable_confetti_effect' => true,
+				'shipping_threshold_message_color'         => '',
+				'shipping_threshold_message_success_color' => '',
+				// MINI CART.
+				'mini_cart_background_color'               => '#fff',
+				'mini_cart_empty_message'                  => 'No products in the cart.',
+				'mini_cart_empty_enable_button'            => true,
+				'mini_cart_top_content_select'             => '',
+				'mini_cart_top_content_custom_html'        => '',
+				'mini_cart_before_checkout_button_content_select' => '',
+				'mini_cart_before_checkout_button_content_custom_html' => '',
+				'mini_cart_after_checkout_button_content_select' => '',
+				'mini_cart_after_checkout_button_content_custom_html' => '',
 				// CHECKOUT PAGE.
 				'checkout_distraction_free'                => false,
 				'checkout_multi_step'                      => false,
@@ -525,6 +546,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 			// Register Control Type - Register for controls has content_template function.
 			if ( method_exists( $wp_customize, 'register_control_type' ) ) {
+				$wp_customize->register_control_type( 'Woostify_Heading_Control' );
 				$wp_customize->register_control_type( 'Woostify_Section_Control' );
 				$wp_customize->register_control_type( 'Woostify_Color_Control' );
 				$wp_customize->register_control_type( 'Woostify_Typography_Control' );

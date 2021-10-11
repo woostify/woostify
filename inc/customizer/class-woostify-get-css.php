@@ -996,6 +996,26 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// Free shipping threshold.
+		$message_color         = ( '' === $options['shipping_threshold_message_color'] ) ? 'inherit' : $options['shipping_threshold_message_color'];
+		$message_success_color = ( '' === $options['shipping_threshold_message_success_color'] ) ? 'inherit' : $options['shipping_threshold_message_success_color'];
+
+		$styles .= '
+		.free-shipping-progress-bar .progress-bar-message {
+			color: ' . $message_color . ';
+		}
+		.free-shipping-progress-bar[data-progress="100"] .progress-bar-message {
+			color: ' . $message_success_color . ';
+		}
+		.free-shipping-progress-bar .progress-bar-indicator {
+			background: linear-gradient( 270deg, ' . $options['shipping_threshold_progress_bar_color'] . ' 0, #fff 200%);
+			background-color: ' . $options['shipping_threshold_progress_bar_color'] . ';
+		}
+		.free-shipping-progress-bar .progress-bar-status.success .progress-bar-indicator {
+			background: ' . $options['shipping_threshold_progress_bar_success_color'] . ';
+		}
+		';
+
 		// Theme color.
 		$styles .= '
 			.woostify-theme-color,
@@ -1464,6 +1484,12 @@ class Woostify_Get_CSS {
 				}
 			';
 		}
+
+		// Mini cart.
+		$mini_cart_bg = $options['mini_cart_background_color'];
+		$styles      .= '#shop-cart-sidebar {
+			background-color: ' . $mini_cart_bg . ';
+		}';
 
 		// Custom.
 		$social_list = woostify_get_social_icon_list();
