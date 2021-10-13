@@ -115,6 +115,7 @@ document.addEventListener(
 					}
 				}
 			}
+
 			imageCarousel = new Flickity( options.container, options );
 
 			calculateThumbnailTotalWidth();
@@ -134,8 +135,8 @@ document.addEventListener(
 		}
 
 		function calculateVerticalSliderHeight() {
-			var currFirstImage = gallery ? gallery.querySelector( '.image-item img' ) : false;
-			var currFirstImageHeight = currFirstImage ? currFirstImage.offsetHeight : 0;
+			var currFirstImage                = gallery ? gallery.querySelector( '.image-item img' ) : false;
+			var currFirstImageHeight          = currFirstImage ? currFirstImage.offsetHeight : 0;
 			productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
 		}
 
@@ -145,26 +146,30 @@ document.addEventListener(
 			}
 
 			if ( gallery && ( gallery.classList.contains( 'horizontal-style' ) || window.matchMedia( '( max-width: 767px )' ).matches ) ) {
-				var thumbEls = productThumbnails.querySelectorAll( '.thumbnail-item' );
+				var thumbEls   = productThumbnails.querySelectorAll( '.thumbnail-item' );
 				var totalWidth = 0;
 
 				if ( thumbEls.length ) {
-					thumbEls.forEach( function( thumbEl ) {
-						var thumbWidth   = thumbEl.offsetWidth;
-						thumbWidth      += parseInt( window.getComputedStyle( thumbEl ).getPropertyValue( 'margin-left' ) );
-						thumbWidth      += parseInt( window.getComputedStyle( thumbEl ).getPropertyValue( 'margin-right' ) );
-						totalWidth += thumbWidth;
-					} );
+					thumbEls.forEach(
+						function( thumbEl ) {
+							var thumbWidth = thumbEl.offsetWidth;
+							thumbWidth    += parseInt( window.getComputedStyle( thumbEl ).getPropertyValue( 'margin-left' ) );
+							thumbWidth    += parseInt( window.getComputedStyle( thumbEl ).getPropertyValue( 'margin-right' ) );
+							totalWidth    += thumbWidth;
+						}
+					);
 				}
 
 				if ( totalWidth >= productThumbnails.offsetWidth ) {
 					thumbOptions.groupCells = '60%';
+					thumbOptions.wrapAround = true;
 					if ( thumbCarousel && thumbCarousel.slider ) {
 						thumbCarousel.destroy();
 						thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
 					}
 				} else {
 					thumbOptions.groupCells = '3';
+					thumbOptions.wrapAround = false;
 					if ( thumbCarousel && thumbCarousel.slider ) {
 						thumbCarousel.destroy();
 						thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
@@ -263,7 +268,7 @@ document.addEventListener(
 				return;
 			}
 
-			options.on = {
+			options.on   = {
 				ready: function() {
 					changeImageCarouselButtonIcon();
 				}

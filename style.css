@@ -8866,6 +8866,10 @@ header.elementor-element {
   display: block;
 }
 
+.product-gallery.horizontal-style #product-thumbnail-images .thumbnail-item:first-child {
+  margin-left: 1px;
+}
+
 .product-gallery .onsale {
   z-index: 0;
 }
@@ -8938,12 +8942,6 @@ header.elementor-element {
   max-width: 70px;
   width: 100%;
   margin-right: 10px;
-}
-
-@media (max-width: 991px) {
-  .product-thumbnail-images .thumbnail-item {
-    padding: 1px;
-  }
 }
 
 .product-thumbnail-images .thumbnail-item.is-selected.is-nav-selected img {
