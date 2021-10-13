@@ -8787,6 +8787,15 @@ header.elementor-element {
   display: none;
 }
 
+@media (max-width: 767px) {
+  .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images {
+    display: flex;
+  }
+  .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images.flickity-enabled {
+    display: block;
+  }
+}
+
 @media (min-width: 768px) {
   .product-gallery.vertical-style.has-product-thumbnails {
     position: relative;

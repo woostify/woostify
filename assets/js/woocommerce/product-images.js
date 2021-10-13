@@ -117,6 +117,8 @@ document.addEventListener(
 			}
 			imageCarousel = new Flickity( options.container, options );
 
+			calculateThumbnailTotalWidth();
+
 			if ( gallery ) {
 				if ( window.matchMedia( '( max-width: 767px )' ).matches ) {
 					thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
@@ -137,6 +139,40 @@ document.addEventListener(
 			productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
 		}
 
+		function calculateThumbnailTotalWidth() {
+			if ( ! productThumbnails ) {
+				return;
+			}
+
+			if ( gallery && ( gallery.classList.contains( 'horizontal-style' ) || window.matchMedia( '( max-width: 767px )' ).matches ) ) {
+				var thumbEls = productThumbnails.querySelectorAll( '.thumbnail-item' );
+				var totalWidth = 0;
+
+				if ( thumbEls.length ) {
+					thumbEls.forEach( function( thumbEl ) {
+						var thumbWidth   = thumbEl.offsetWidth;
+						thumbWidth      += parseInt( window.getComputedStyle( thumbEl ).getPropertyValue( 'margin-left' ) );
+						thumbWidth      += parseInt( window.getComputedStyle( thumbEl ).getPropertyValue( 'margin-right' ) );
+						totalWidth += thumbWidth;
+					} );
+				}
+
+				if ( totalWidth >= productThumbnails.offsetWidth ) {
+					thumbOptions.groupCells = '60%';
+					if ( thumbCarousel && thumbCarousel.slider ) {
+						thumbCarousel.destroy();
+						thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
+					}
+				} else {
+					thumbOptions.groupCells = '3';
+					if ( thumbCarousel && thumbCarousel.slider ) {
+						thumbCarousel.destroy();
+						thumbCarousel = new Flickity( thumbOptions.container, thumbOptions );
+					}
+				}
+			}
+		}
+
 		function changeImageCarouselButtonIcon() {
 			var imageNextBtn = document.querySelector( '.flickity-button.next' );
 			var imagePrevBtn = document.querySelector( '.flickity-button.previous' );
@@ -154,14 +190,12 @@ document.addEventListener(
 			'resize',
 			function() {
 				if ( window.matchMedia( '( min-width: 768px )' ).matches && gallery && gallery.classList.contains( 'vertical-style' ) && productThumbnails ) {
-					var currFirstImage       = gallery ? gallery.querySelector( '.image-item img' ) : false;
-					var currFirstImageHeight = currFirstImage ? currFirstImage.offsetHeight : 0;
-
-					productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
+					calculateVerticalSliderHeight();
 					verticalThumbnailSliderAction();
 
 					displayThumbButtons();
 				}
+				calculateThumbnailTotalWidth();
 			}
 		);
 
@@ -353,6 +387,8 @@ document.addEventListener(
 				if ( imageCarousel ) {
 					imageCarousel = new Flickity( options.container, options );
 				}
+
+				calculateThumbnailTotalWidth();
 
 				if ( thumbnails ) {
 					if ( thumbCarousel ) {

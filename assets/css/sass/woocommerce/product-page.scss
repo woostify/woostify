@@ -209,6 +209,15 @@
 		.thumb-btn {
 			display: none;
 		}
+		@media (max-width: $screen-sm - 1) {
+			#product-thumbnail-images {
+				display: flex;
+
+				&.flickity-enabled {
+					display: block;
+				}
+			}
+		}
 		@media (min-width: $screen-sm) {
 			position: relative;
 			display: flex;
