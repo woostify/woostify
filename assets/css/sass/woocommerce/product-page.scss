@@ -284,6 +284,16 @@
 		}
 	}
 
+	&.horizontal-style {
+		#product-thumbnail-images {
+			display: flex;
+
+			&.flickity-enabled {
+				display: block;
+			}
+		}
+	}
+
 	.onsale {
 		z-index: 0;
 	}

@@ -8849,6 +8849,14 @@ header.elementor-element {
   }
 }
 
+.product-gallery.horizontal-style #product-thumbnail-images {
+  display: flex;
+}
+
+.product-gallery.horizontal-style #product-thumbnail-images.flickity-enabled {
+  display: block;
+}
+
 .product-gallery .onsale {
   z-index: 0;
 }
