@@ -9750,13 +9750,14 @@ header.elementor-element {
   right: 30px;
   pointer-events: none;
   transform: translateY(-50%);
-  transition: all .3s;
+  transition: all .2s;
+  line-height: 36px;
 }
 
 .checkout-layout-3 .form-row .input-text {
   width: 100%;
   height: 50px;
-  padding: 20px 12px 0;
+  padding: 20px 12px 2px;
   border-radius: 4px;
 }
 
@@ -9771,27 +9772,27 @@ header.elementor-element {
 .checkout-layout-3 .form-row.w-anim-wrap label {
   top: 15px;
   font-size: 12px;
-  line-height: 1;
+  line-height: 18px;
   padding: 0;
 }
 
-.checkout-layout-3 .form-row#billing_country_field label {
+.checkout-layout-3 .form-row#billing_country_field label, .checkout-layout-3 .form-row#billing_state_field label {
   font-size: 12px;
   line-height: 1;
   padding: 0;
   z-index: 9;
   height: 38px;
-  top: 10px;
+  top: 9px;
   transform: none;
   background: transparent;
 }
 
-.checkout-layout-3 .form-row#billing_country_field .select2-selection {
+.checkout-layout-3 .form-row#billing_country_field .select2-selection, .checkout-layout-3 .form-row#billing_state_field .select2-selection {
   border-radius: 4px;
 }
 
-.checkout-layout-3 .form-row#billing_country_field .select2-selection__rendered {
-  padding: 25px 12px 0px;
+.checkout-layout-3 .form-row#billing_country_field .select2-selection__rendered, .checkout-layout-3 .form-row#billing_state_field .select2-selection__rendered {
+  padding: 23px 12px 2px;
   line-height: 1.5;
   min-height: 48px;
 }
