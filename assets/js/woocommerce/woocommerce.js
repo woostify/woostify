@@ -366,32 +366,45 @@ var woostifyMoveNoticesInCheckoutPage = function() {
 }
 
 var woostifyCheckoutFormFieldAnimation = function() {
-	var inputs = document.querySelectorAll( 'form.checkout .input-text' );
+	var inputs   = document.querySelectorAll( 'form.checkout .input-text, form.checkout_coupon .input-text' );
+	var formRows = document.querySelectorAll( 'form.checkout .form-row, form.checkout_coupon .form-row' );
 	if ( inputs.length ) {
-		inputs.forEach( function( input ) {
-			var formRow = input.closest( '.form-row' );
-			if ( '' !== input.value ) {
-				formRow.classList.add( 'w-anim-wrap' );
-			}
-
-			input.addEventListener(
-				'focus',
-				function( event ) {
-					var formRow = event.target.closest( '.form-row' );
+		inputs.forEach(
+			function( input ) {
+				var formRow = input.closest( '.form-row' );
+				if ( '' !== input.value ) {
 					formRow.classList.add( 'w-anim-wrap' );
 				}
-			);
 
-			input.addEventListener(
-				'blur',
-				function( event ) {
-					var formRow = event.target.closest( '.form-row' );
-					if ( '' === event.target.value ) {
-						formRow.classList.remove( 'w-anim-wrap' );
+				input.addEventListener(
+					'focus',
+					function( event ) {
+						var formRow = event.target.closest( '.form-row' );
+						formRow.classList.add( 'w-anim-wrap' );
 					}
+				);
+
+				input.addEventListener(
+					'blur',
+					function( event ) {
+						var formRow = event.target.closest( '.form-row' );
+						if ( '' === event.target.value ) {
+							formRow.classList.remove( 'w-anim-wrap' );
+						}
+					}
+				);
+			}
+		);
+	}
+	if ( formRows.length ) {
+		formRows.forEach(
+			function( formRowEl ) {
+				var labelEl = formRowEl.querySelector( 'label' );
+				if ( labelEl == null || labelEl.classList.contains( 'screen-reader-text' ) ) {
+					formRowEl.classList.add( 'no-label' );
 				}
-			);
-		} );
+			}
+		);
 	}
 }
 

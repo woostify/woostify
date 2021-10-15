@@ -9754,10 +9754,16 @@ header.elementor-element {
   line-height: 36px;
 }
 
-.checkout-layout-3 .form-row .input-text {
+.checkout-layout-3 .form-row:not(.no-label) .input-text {
   width: 100%;
   height: 50px;
   padding: 20px 12px 2px;
+  border-radius: 4px;
+}
+
+.checkout-layout-3 .form-row .input-text {
+  width: 100%;
+  height: 50px;
   border-radius: 4px;
 }
 
