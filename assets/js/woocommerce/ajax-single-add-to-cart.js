@@ -80,8 +80,14 @@ function woostifyAjaxSingleAddToCartButton() {
 				}
 
 				e.preventDefault();
-				let input      = form.querySelector( 'input.qty' ),
-					inputValue = input ? Number( input.value.trim() ) : false;
+				let input = form.querySelector( 'input.qty' );
+
+				if ( null == input ) {
+					input = form.querySelector( 'input[name="quantity"]' );
+				}
+
+				let inputValue = input ? Number( input.value.trim() ) : false;
+
 				if ( ! inputValue || isNaN( inputValue ) || inputValue <= 0 ) {
 					alert( woostify_woocommerce_general.qty_warning );
 					return;
@@ -93,10 +99,6 @@ function woostifyAjaxSingleAddToCartButton() {
 				// Events.
 				if ( 'function' === typeof( eventCartSidebarOpen ) ) {
 					eventCartSidebarOpen();
-				}
-
-				if ( 'function' === typeof( cartSidebarOpen ) ) {
-					cartSidebarOpen();
 				}
 
 				if ( 'function' === typeof( closeAll ) ) {
@@ -116,7 +118,7 @@ function woostifyAjaxSingleAddToCartButton() {
 					}
 				).then(
 					function( text ) {
-						var div = document.createElement( 'div' );
+						var div       = document.createElement( 'div' );
 						div.innerHTML = text;
 
 						var error = div.querySelector( '.woocommerce-error' );

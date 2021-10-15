@@ -35,7 +35,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 			let path = '' === curr_query ? curr_protocol + '//' + curr_host_name + curr_path_name + '/' : curr_protocol + '//' + curr_host_name + curr_path_name + '/?' + curr_query;
 			return path;
 		},
-		append: '.product',
+		append: '.product.type-product',
 		history: false,
 		hideNav: '.woocommerce-pagination',
 		loadOnScroll: 'button' === loading_type ? false : true
@@ -77,8 +77,9 @@ function woostifyInfiniteScroll( addEventClick ) {
 	infScroll.on(
 		'load',
 		function( body, path, fetchPromise ) {
-			let all_page        = document.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers:not(.next):not(.prev)' );
-			let curr_load_count = this.loadCount + 1;
+			let all_page     = body.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers:not(.next):not(.prev):not(.dots)' );
+			let next_page_el = body.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers.next' );
+			let is_last_page = ( ! next_page_el.length ) ? true : false;
 
 			if ( 'button' === loading_type ) {
 				view_more_btn.classList.remove( 'circle-loading' );
@@ -87,7 +88,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 			}
 
 			if ( all_page.length ) {
-				if ( curr_load_count >= all_page.length ) {
+				if ( is_last_page ) {
 					if ( 'button' === loading_type ) {
 						view_more_btn.style.display = 'none'
 					} else {
@@ -113,6 +114,33 @@ function woostifyInfiniteScroll( addEventClick ) {
 				} else {
 					loading_status.style.display = 'inline-block'
 				}
+			}
+		}
+	)
+
+	infScroll.on(
+		'append',
+		function( body, path, items, response ) {
+			// Re-init quick view.
+			if ( 'function' === typeof( woostifyQuickView ) ) {
+				woostifyQuickView();
+			}
+
+			// Variation swatches.
+			if ( 'function' === typeof( woostifyVariationSwatches ) ) {
+				woostifyVariationSwatches();
+			}
+			// Re-init swatch list.
+			if ( 'function' === typeof( woostifySwatchList ) ) {
+				woostifySwatchList();
+			}
+
+			if ( '1' === woostify_woocommerce_general.is_active_wvs ) {
+				jQuery('.variations_form').each(
+					function(){
+						jQuery( this ).wc_variation_form();
+					}
+				);
 			}
 		}
 	)
@@ -410,14 +438,11 @@ document.addEventListener(
 			'adding_to_cart',
 			function() {
 				eventCartSidebarOpen();
-
-				if ( ! document.body.classList.contains( 'disabled-sidebar-cart' ) ) {
-					cartSidebarOpen();
-				}
 			}
 		).on(
 			'added_to_cart',
 			function() {
+				cartSidebarOpen();
 				woostifyQuantityMiniCart();
 				updateHeaderCartPrice();
 				eventCartSidebarClose();

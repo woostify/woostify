@@ -121,15 +121,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$gallery = $options['shop_single_product_gallery_layout_select'];
 
 			// PRODUCT PAGE.
-			// Product images box.
-			if ( 'theme' === $gallery ) {
-				add_action( 'woostify_product_images_box_end', 'woostify_change_sale_flash', 10 );
-				add_action( 'woostify_product_images_box_end', 'woostify_print_out_of_stock_label', 20 );
-				add_action( 'woostify_product_images_box_end', 'woostify_product_video_button_play', 30 );
-			}
 
 			// Infinite Scroll.
-			$options = woostify_options( false );
 			if ( $options['shop_page_infinite_scroll_enable'] ) {
 				add_action( 'woocommerce_after_shop_loop', array( $this, 'add_infinite_scroll_button' ) );
 			}
@@ -138,12 +131,18 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_gallery_open', 20 );
 
 			if ( 'theme' === $gallery ) {
+				// PRODUCT PAGE.
+				// Product images box.
+				add_action( 'woostify_product_images_box_end', 'woostify_change_sale_flash', 10 );
+				add_action( 'woostify_product_images_box_end', 'woostify_print_out_of_stock_label', 20 );
+				add_action( 'woostify_product_images_box_end', 'woostify_single_product_group_buttons', 30 );
+
 				add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_gallery_image_slide', 30 );
 				add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_gallery_thumb_slide', 40 );
 			} else {
 				add_action( 'woocommerce_before_single_product_summary', 'woostify_change_sale_flash', 25 );
 				add_action( 'woocommerce_before_single_product_summary', 'woostify_print_out_of_stock_label', 30 );
-				add_action( 'woocommerce_before_single_product_summary', 'woostify_product_video_button_play', 35 );
+				add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_group_buttons', 35 );
 				add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 40 );
 			}
 
@@ -185,14 +184,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$type    = $options['shop_page_infinite_scroll_type'];
 			if ( woocommerce_products_will_display() ) {
 				?>
-				<div class="woostify-view-more" data-loading_type="<?php esc_attr_e( $type ); ?>">
+				<div class="woostify-view-more" data-loading_type="<?php echo esc_attr( $type ); ?>">
 					<?php if ( 'button' === $type ) { ?>
 						<button class="w-view-more-button products-archive button"><span class="w-view-more-label"><?php esc_html_e( 'View more', 'woostify' ); ?></span></button>
 					<?php } else { ?>
 						<span class="woostify-loading-status"></span>
 					<?php } ?>
 				</div>
-			<?php }
+				<?php
+			}
 		}
 
 		/**
@@ -369,6 +369,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'sticky_bottom_space' => $options['shop_single_product_sticky_bottom_space'],
 					'currency_symbol'     => get_woocommerce_currency_symbol(),
 					'currency_pos'        => get_option( 'woocommerce_currency_pos' ),
+					'is_active_wvs'       => ! class_exists( 'Woo_Variation_Swatches' ) || ! class_exists( 'Woo_Variation_Swatches_Pro' ) ? false : true, // Check if plugin Variation Swatches for WooCommerce and Variation Swatches for WooCommerce - Pro is activated.
 				)
 			);
 
@@ -386,6 +387,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Lightbox.
 			wp_enqueue_script( 'lity' );
 
+			$next_icon          = apply_filters( 'woostify_product_gallery_next_icon', 'angle-right' );
+			$prev_icon          = apply_filters( 'woostify_product_gallery_prev_icon', 'angle-left' );
+			$vertical_next_icon = apply_filters( 'woostify_product_gallery_vertical_next_icon', 'angle-down' );
+			$vertical_prev_icon = apply_filters( 'woostify_product_gallery_vertical_prev_icon', 'angle-up' );
+
 			// Tiny slider: product images.
 			wp_enqueue_script( 'woostify-product-images' );
 			wp_localize_script(
@@ -394,25 +400,30 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				apply_filters(
 					'woostify_product_images_slider_options',
 					array(
-						'main'  => array(
-							'container'            => '#product-images',
-							'navContainer'         => '#product-thumbnail-images',
-							'loop'                 => false,
-							'rewind'               => true,
-							'items'                => 1,
-							'navAsThumbnails'      => true,
-							'autoHeight'           => true,
-							'preventScrollOnTouch' => true,
+						'main'               => array(
+							'container'      => '#product-images',
+							'adaptiveHeight' => true,
+							'pageDots'       => false,
+							'cellAlign'      => 'left',
+							'cellSelector'   => '.image-item',
+							'wrapAround'     => true,
+							'contain'        => true,
 						),
-						'thumb' => array(
-							'loop'      => false,
-							'rewind'    => true,
-							'container' => '#product-thumbnail-images',
-							'gutter'    => 10,
-							'nav'       => false,
-							'controls'  => true,
-							'items'     => 4,
+						'thumb'              => array(
+							'container'       => '#product-thumbnail-images',
+							'asNavFor'        => '#product-images',
+							'pageDots'        => false,
+							'cellAlign'       => 'left',
+							'prevNextButtons' => false,
+							'contain'         => true,
+							'groupCells'      => '60%',
+							'freeScroll'      => false,
+							'wrapAround'      => true,
 						),
+						'next_icon'          => Woostify_Icon::fetch_svg_icon( $next_icon, false ),
+						'prev_icon'          => Woostify_Icon::fetch_svg_icon( $prev_icon, false ),
+						'vertical_next_icon' => Woostify_Icon::fetch_svg_icon( $vertical_next_icon, false ),
+						'vertical_prev_icon' => Woostify_Icon::fetch_svg_icon( $vertical_prev_icon, false ),
 					)
 				)
 			);
