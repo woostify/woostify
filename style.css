@@ -9771,6 +9771,14 @@ header.elementor-element {
   border-radius: 4px;
 }
 
+.checkout-layout-3 .form-row .input-text:focus {
+  border-color: #000;
+}
+
+.checkout-layout-3 .form-row.woocommerce-invalid-required-field .input-text, .checkout-layout-3 .form-row.woocommerce-invalid-required-field .select2-selection, .checkout-layout-3 .form-row.woocommerce-invalid .input-text, .checkout-layout-3 .form-row.woocommerce-invalid .select2-selection {
+  border-color: #d50000;
+}
+
 .checkout-layout-3 .form-row.notes label {
   top: 25px;
 }

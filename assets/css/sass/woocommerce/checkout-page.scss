@@ -1198,6 +1198,15 @@
 			width: 100%;
 			height: 50px;
 			border-radius: 4px;
+			&:focus {
+				border-color: #000;
+			}
+		}
+
+		&.woocommerce-invalid-required-field, &.woocommerce-invalid {
+			.input-text, .select2-selection {
+				border-color: #d50000;
+			}
 		}
 
 		&.notes {

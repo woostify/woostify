@@ -390,6 +390,9 @@ var woostifyCheckoutFormFieldAnimation = function() {
 						var formRow = event.target.closest( '.form-row' );
 						if ( '' === event.target.value ) {
 							formRow.classList.remove( 'w-anim-wrap' );
+							if ( formRow.classList.contains( 'validate-required' ) ) {
+								formRow.classList.add( 'woocommerce-invalid-required-field' );
+							}
 						}
 					}
 				);
@@ -400,8 +403,10 @@ var woostifyCheckoutFormFieldAnimation = function() {
 		formRows.forEach(
 			function( formRowEl ) {
 				var labelEl = formRowEl.querySelector( 'label' );
-				if ( labelEl == null || labelEl.classList.contains( 'screen-reader-text' ) ) {
+				if ( labelEl == null ) {
 					formRowEl.classList.add( 'no-label' );
+				} else {
+					labelEl.classList.remove( 'screen-reader-text' );
 				}
 			}
 		);
