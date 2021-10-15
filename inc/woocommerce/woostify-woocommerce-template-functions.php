@@ -618,7 +618,7 @@ if ( ! function_exists( 'woostify_single_product_group_buttons' ) ) {
 			$output
 		);
 
-		echo apply_filters( 'woostify_single_product_group_buttons_html', $buttons_output, $output );
+		echo apply_filters( 'woostify_single_product_group_buttons_html', $buttons_output, $output ); // phpcs:ignore
 	}
 }
 
