@@ -6,7 +6,8 @@
 
 'use strict';
 
-function initPhotoSwipe( gallerySelector ) {
+function initPhotoSwipe( gallerySelector, type ) {
+	var added = false;
 
 	// parse slide data (url, title, size ...) from DOM elements
 	// (children of gallerySelector).
@@ -58,6 +59,53 @@ function initPhotoSwipe( gallerySelector ) {
 	var closest = function closest( el, fn ) {
 		return el && ( fn( el ) ? el : closest( el.parentNode, fn ) );
 	};
+
+	var onToggleButtonClick = function( e ) {
+		e = e || window.event;
+		e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+		var eTarget = e.target || e.srcElement;
+
+		var productImages = eTarget.closest( '.product-images' );
+
+		var clickedListItem = productImages.querySelectorAll( '.image-item' )[0];
+
+		// find root element of slide.
+		var slider = productImages.querySelector( '.flickity-slider' );
+		if ( slider ) {
+			clickedListItem = productImages.querySelector( '.image-item.is-selected' );
+		}
+
+		if ( ! clickedListItem ) {
+			return;
+		}
+
+		// find index of clicked item by looping through all child nodes
+		// alternatively, you may define index via data- attribute.
+		var clickedGallery = clickedListItem.parentNode,
+			childNodes     = clickedListItem.parentNode.childNodes,
+			numChildNodes  = childNodes.length,
+			nodeIndex      = 0,
+			index;
+
+		for ( var i = 0; i < numChildNodes; i++ ) {
+			if ( childNodes[ i ].nodeType !== 1 ) {
+				continue;
+			}
+
+			if ( childNodes[ i ] === clickedListItem ) {
+				index = nodeIndex;
+				break;
+			}
+			nodeIndex++;
+		}
+
+		if ( index >= 0 ) {
+			// open PhotoSwipe if valid index found.
+			openPhotoSwipe( index, clickedGallery );
+		}
+		return false;
+	}
 
 	// triggers when user clicks on thumbnail.
 	var onThumbnailsClick = function( e ) {
@@ -197,13 +245,140 @@ function initPhotoSwipe( gallerySelector ) {
 		// Pass data to PhotoSwipe and initialize it.
 		gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options );
 		gallery.init();
+
+		var selector = '.pswp__thumbnails';
+
+		gallery.listen(
+			'gettingData',
+			function() {
+				if ( added ) {
+					return;
+				}
+				added = true;
+
+				var oldThumbnailEls = document.querySelectorAll( selector );
+				if ( oldThumbnailEls.length ) {
+					oldThumbnailEls.forEach(
+						function( odlThumb ) {
+							odlThumb.remove();
+						}
+					)
+				}
+				setTimeout(
+					function() {
+						addPreviews( gallery );
+					},
+					200
+				);
+			}
+		)
+
+		gallery.listen(
+			'close' ,
+			function() {
+				var scrollWrap  = gallery.scrollWrap;
+				var pswpThumbEl = scrollWrap.closest( '.pswp' ).querySelector( '.pswp__thumbnails' );
+
+				if ( ! pswpThumbEl ) {
+					return;
+				}
+
+				pswpThumbEl.remove();
+				added = false;
+			}
+		)
+		gallery.listen(
+			'afterChange',
+			function() {
+				var scrollWrap  = gallery.scrollWrap;
+				var pswpThumbEl = scrollWrap.closest( '.pswp' ).querySelector( '.pswp__thumbnails' );
+
+				if ( ! pswpThumbEl ) {
+					return;
+				}
+
+				Object.keys( gallery.items ).forEach(
+					function( k ) {
+						var currThumbItem = pswpThumbEl.children[k];
+
+						currThumbItem.classList.remove( 'active' );
+
+						if ( gallery.getCurrentIndex() == k ) {
+							currThumbItem.classList.add( 'active' );
+						}
+					}
+				)
+			}
+		)
 	};
+
+	function addPreviews( gallery ) {
+		var scrollWrap             = gallery.scrollWrap;
+		var productImagesWrapperEl = document.querySelector( '.product-gallery' );
+		var thumbnailEl            = document.createElement( 'div' );
+		thumbnailEl.classList.add( 'pswp__thumbnails' );
+
+		if ( ! productImagesWrapperEl ) {
+			return;
+		}
+
+		var productThumbWrapperEl = productImagesWrapperEl.querySelector( '#product-thumbnail-images' );
+
+		if ( ! productThumbWrapperEl ) {
+			Object.keys( gallery.items ).forEach(
+				function( k ) {
+					var currItem   = gallery.items[k];
+					var newThumbEl = document.createElement( 'div' );
+					var newImgEl   = document.createElement( 'img' );
+
+					newImgEl.setAttribute( 'src', currItem.msrc );
+					newThumbEl.classList.add( 'thumbnail-item' );
+					newThumbEl.appendChild( newImgEl )
+					thumbnailEl.appendChild( newThumbEl );
+				}
+			)
+		} else {
+			var thumbSlider = productThumbWrapperEl.querySelector( '.flickity-slider' );
+			if ( thumbSlider ) {
+				thumbnailEl.innerHTML = thumbSlider.innerHTML;
+			} else {
+				thumbnailEl.innerHTML = productThumbWrapperEl.innerHTML;
+			}
+		}
+
+		Object.keys( gallery.items ).forEach(
+			function( k ) {
+				var currThumbItem = thumbnailEl.children[k];
+				currThumbItem.removeAttribute( 'style' );
+				currThumbItem.classList.remove( 'is-selected', 'is-nav-selected' );
+
+				if ( gallery.getCurrentIndex() == k ) {
+					currThumbItem.classList.add( 'active' );
+				}
+
+				currThumbItem.addEventListener(
+					'click',
+					function() {
+						gallery.goTo( gallery.items.indexOf( gallery.items[k] ) )
+					}
+				)
+			}
+		)
+
+		scrollWrap.parentNode.insertBefore( thumbnailEl, scrollWrap.nextSibling );
+	}
 
 	// loop through all gallery elements and bind events.
 	var galleryElements = document.querySelectorAll( gallerySelector );
 	for ( var i = 0, l = galleryElements.length; i < l; i++ ) {
+		var buttonEl = galleryElements[ i ].closest( '.product-images' ).querySelector( '.photoswipe-toggle-button' );
+
 		galleryElements[ i ].setAttribute( 'data-pswp-uid', i + 1 );
-		galleryElements[ i ].onclick = onThumbnailsClick;
+		if ( 'button' === type ) {
+			buttonEl.onclick = onToggleButtonClick;
+		} else {
+			galleryElements[ i ].onclick = onThumbnailsClick;
+		}
 	}
 
 	// Parse URL and open gallery if it contains #&pid=3&gid=1.
@@ -212,4 +387,23 @@ function initPhotoSwipe( gallerySelector ) {
 		openPhotoSwipe( hashData.pid, galleryElements[ hashData.gid - 1 ], true, true );
 	}
 }
-initPhotoSwipe( '#product-images' );
+
+var gallery    = document.querySelector( '.product-gallery' ),
+noSliderLayout = gallery ? ( gallery.classList.contains( 'column-style' ) || gallery.classList.contains( 'grid-style' ) ) : false;
+
+if ( gallery ) {
+	if ( gallery.classList.contains( 'wc-default-gallery' ) ) {
+		initPhotoSwipe( '#product-images', 'image' );
+	} else {
+		if ( noSliderLayout ) {
+			if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
+				initPhotoSwipe( '#product-images', 'image' );
+			} else {
+				initPhotoSwipe( '#product-images', 'button' );
+			}
+		} else {
+			initPhotoSwipe( '#product-images', 'button' );
+		}
+	}
+}
+

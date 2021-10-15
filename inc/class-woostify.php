@@ -783,11 +783,57 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
+			// Product images ( Flickity ).
+			wp_register_script(
+				'woostify-flickity',
+				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/flickity.pkgd' . woostify_suffix() . '.js',
+				array(),
+				woostify_version(),
+				true
+			);
+
+			$ios_script = '
+			( function () {
+				var touchingCarousel = false,
+				touchStartCoords;
+
+				document.body.addEventListener( "touchstart", function( e ) {
+					if ( e.target.closest( ".flickity-slider" ) ) {
+						touchingCarousel = true;
+					} else {
+						touchingCarousel = false;
+						return;
+					}
+
+					touchStartCoords = {
+						x: e.touches[0].pageX,
+						y: e.touches[0].pageY
+					}
+				});
+
+				document.body.addEventListener( "touchmove" , function(e) {
+					if ( ! ( touchingCarousel && e.cancelable ) ) {
+						return;
+					}
+
+					var moveVector = {
+						x: e.touches[0].pageX - touchStartCoords.x,
+						y: e.touches[0].pageY - touchStartCoords.y
+					};
+
+					if ( Math.abs( moveVector.x ) > 7 )
+						e.preventDefault()
+
+				}, { passive: false } );
+			} ) ();
+			';
+			wp_add_inline_script( 'woostify-flickity', $ios_script );
+
 			// Product images ( Tiny slider ).
 			wp_register_script(
 				'woostify-product-images',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/product-images' . woostify_suffix() . '.js',
-				array( 'jquery', 'tiny-slider' ),
+				array( 'jquery', 'tiny-slider', 'woostify-flickity' ),
 				woostify_version(),
 				true
 			);
