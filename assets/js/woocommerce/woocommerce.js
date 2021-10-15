@@ -367,7 +367,7 @@ var woostifyMoveNoticesInCheckoutPage = function() {
 
 var woostifyCheckoutFormFieldAnimation = function() {
 	var inputs   = document.querySelectorAll( 'form.checkout .input-text, form.checkout_coupon .input-text' );
-	var formRows = document.querySelectorAll( 'form.checkout .form-row, form.checkout_coupon .form-row' );
+	var formRows = document.querySelectorAll( 'form.checkout .form-row' );
 	if ( inputs.length ) {
 		inputs.forEach(
 			function( input ) {

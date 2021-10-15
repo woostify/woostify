@@ -9738,6 +9738,10 @@ header.elementor-element {
   }
 }
 
+.checkout-layout-3 form.checkout_coupon .form-row .input-text {
+  padding: 0 1em;
+}
+
 .checkout-layout-3 .form-row {
   position: relative;
 }
@@ -9927,6 +9931,24 @@ header.elementor-element {
   .checkout-layout-3 .form-distr-free-bg .col-left {
     max-width: 56.66666667%;
     flex: 0 0 56.66666667%;
+  }
+}
+
+@media (min-width: 1921px) {
+  .checkout-layout-3 .form-distr-free-bg .col-left {
+    flex: 0 0 55.66666667%;
+  }
+}
+
+@media (min-width: 2400px) {
+  .checkout-layout-3 .form-distr-free-bg .col-left {
+    flex: 0 0 54.66666667%;
+  }
+}
+
+@media (min-width: 2561px) {
+  .checkout-layout-3 .form-distr-free-bg .col-left {
+    flex: 0 0 53.66666667%;
   }
 }
 
