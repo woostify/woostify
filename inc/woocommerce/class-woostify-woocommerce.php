@@ -595,7 +595,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Enabled Catalog Mode.
 			if ( $options['catalog_mode'] ) {
 				remove_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_add_to_cart_button', 10 );
+				remove_action( 'woostify_product_loop_item_action_item', 'woostify_product_loop_item_add_to_cart_icon', 10 );
 				remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+				remove_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_add_to_cart_on_image', 70 );
 			}
 		}
 
