@@ -325,6 +325,9 @@ document.addEventListener(
 			if ( imageCarousel && imageCarousel.slider ) {
 				imageCarousel.select( 0 )
 			}
+			if ( mobileSlider && mobileSlider.slider ) {
+				mobileSlider.select( 0 )
+			}
 		}
 
 		// Update gallery.
