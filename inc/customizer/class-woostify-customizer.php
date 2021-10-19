@@ -393,6 +393,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_page_breadcrumb'                     => true,
 				'shop_page_result_count'                   => true,
 				'shop_page_product_filter'                 => true,
+				'shop_page_product_quantity'               => false,
 				// Product catalog.
 				'catalog_mode'                             => false,
 				'products_per_row'                         => 3,
