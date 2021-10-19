@@ -633,7 +633,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				add_action( 'woocommerce_checkout_after_order_review', 'woostify_checkout_before_order_review', 10 );
 			}
 
-			if ( 'layout-3' === $options['checkout_page_layout'] ) {
+			$hasWooBuilderCheckoutPage = false;
+
+			if ( class_exists( 'Woostify_Woo_Builder' ) ) {
+				$woo_builder               = \Woostify_Woo_Builder::init();
+				$hasWooBuilderCheckoutPage = $woo_builder->template_exist( 'woostify_checkout_page' );
+			}
+			if ( 'layout-3' === $options['checkout_page_layout'] && ! $hasWooBuilderCheckoutPage ) {
 				add_action( 'woocommerce_before_checkout_form', 'woostify_checkout_form_distr_free_bg', 0 );
 
 				add_action( 'woocommerce_before_checkout_form', 'woostify_checkout_options_start', 5 );

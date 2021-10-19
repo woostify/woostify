@@ -1129,7 +1129,7 @@
 	border-color: #ccc;
 }
 
-.checkout-layout-3 {
+.checkout-layout-3:not(.woobuilder-active) {
 	&.woocommerce-checkout {
 		.woocommerce {
 			position: static;
