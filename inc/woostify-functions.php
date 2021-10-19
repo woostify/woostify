@@ -395,6 +395,27 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 					'height' => array(),
 					'src'    => array(),
 				),
+				// SVG allowed tags.
+				'svg'    => array(
+					'class'           => true,
+					'aria-hidden'     => true,
+					'aria-labelledby' => true,
+					'role'            => true,
+					'xmlns'           => true,
+					'width'           => true,
+					'height'          => true,
+					'viewbox'         => true,
+				),
+				'g'      => array(
+					'fill' => true,
+				),
+				'title'  => array(
+					'title' => true,
+				),
+				'path'   => array(
+					'd'    => true,
+					'fill' => true,
+				),
 			)
 		);
 

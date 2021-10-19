@@ -24,9 +24,11 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'woostify_customize_controls_scripts' ) );
 			add_action( 'customize_controls_print_styles', array( $this, 'woostify_customize_controls_styles' ) );
 
+			add_action( 'customize_save_after', array( $this, 'delete_dynamic_stylesheet_folder' ) );
 			add_action( 'customize_save_after', array( $this, 'delete_cached_partials' ) );
 
 			add_action( 'wp_ajax_woostify_regenerate_fonts_folder', array( $this, 'regenerate_woostify_fonts_folder' ) );
+			add_action( 'wp_ajax_woostify_reset_dynamic_stylesheet_folder', array( $this, 'reset_dynamic_stylesheet_folder' ) );
 
 			add_action( 'customize_preview_init', array( $this, 'woocommerce_init_action' ) );
 		}
@@ -44,6 +46,29 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 				remove_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_add_to_cart_on_image', 70 );
 			}
+		}
+
+		/**
+		 * Delete dynamic stylesheet folder
+		 */
+		public function delete_dynamic_stylesheet_folder() {
+			$get_css = new Woostify_Get_CSS();
+			$get_css->delete_dynamic_stylesheet_folder();
+		}
+
+		/**
+		 * Reset fonts folder
+		 */
+		public function reset_dynamic_stylesheet_folder() {
+			/*Do another nonce check*/
+			check_ajax_referer( 'woostify_customize_nonce', 'woostify_customize_nonce' );
+
+			if ( ! current_user_can( 'edit_theme_options' ) ) {
+				wp_send_json_error( 'invalid_permissions' );
+			}
+
+			$get_css = new Woostify_Get_CSS();
+			$get_css->delete_dynamic_stylesheet_folder();
 		}
 
 		/**
@@ -79,7 +104,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 */
 		public function get_color_global_elementor() {
 			$colors = array();
-			if ( ! woostify_is_elementor_activated() || isset( \Elementor\Plugin::$instance->kits_manager ) ) {
+			if ( woostify_is_elementor_activated() && isset( \Elementor\Plugin::$instance->kits_manager ) ) {
 				$kits_manager = \Elementor\Plugin::$instance->kits_manager;
 
 				$system_colors = $kits_manager->get_current_settings( 'system_colors' );
@@ -451,6 +476,27 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				// CART PAGE.
 				'cart_page_layout'                         => 'layout-2',
 				'cart_page_sticky_proceed_button'          => true,
+				// FREE SHIPPING THRESHOLD.
+				'shipping_threshold_enabled'               => false,
+				'shipping_threshold_enable_progress_bar'   => false,
+				'shipping_threshold_progress_bar_amount'   => 100,
+				'shipping_threshold_progress_bar_color'    => '#1346af',
+				'shipping_threshold_progress_bar_initial_msg' => 'Add [missing_amount] more to get Free Shipping!',
+				'shipping_threshold_progress_bar_success_msg' => 'You\'ve got free shipping!',
+				'shipping_threshold_progress_bar_success_color' => '#67bb67',
+				'shipping_threshold_enable_confetti_effect' => true,
+				'shipping_threshold_message_color'         => '',
+				'shipping_threshold_message_success_color' => '',
+				// MINI CART.
+				'mini_cart_background_color'               => '#fff',
+				'mini_cart_empty_message'                  => 'No products in the cart.',
+				'mini_cart_empty_enable_button'            => true,
+				'mini_cart_top_content_select'             => '',
+				'mini_cart_top_content_custom_html'        => '',
+				'mini_cart_before_checkout_button_content_select' => '',
+				'mini_cart_before_checkout_button_content_custom_html' => '',
+				'mini_cart_after_checkout_button_content_select' => '',
+				'mini_cart_after_checkout_button_content_custom_html' => '',
 				// CHECKOUT PAGE.
 				'checkout_distraction_free'                => false,
 				'checkout_multi_step'                      => false,
@@ -518,6 +564,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 			// Register Control Type - Register for controls has content_template function.
 			if ( method_exists( $wp_customize, 'register_control_type' ) ) {
+				$wp_customize->register_control_type( 'Woostify_Heading_Control' );
 				$wp_customize->register_control_type( 'Woostify_Section_Control' );
 				$wp_customize->register_control_type( 'Woostify_Color_Control' );
 				$wp_customize->register_control_type( 'Woostify_Typography_Control' );

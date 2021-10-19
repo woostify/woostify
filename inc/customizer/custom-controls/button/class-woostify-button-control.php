@@ -33,12 +33,19 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Button_
 		 *
 		 * @var $button_class
 		 */
-		public $button_class = 'button button-primary';
+		public $button_class = '';
 
 		/**
-		 * Button classes
+		 * Button ajax action
 		 *
-		 * @var $button_class
+		 * @var $ajax_action
+		 */
+		public $ajax_action = '';
+
+		/**
+		 * Button link
+		 *
+		 * @var $button_link
 		 */
 		public $button_link = '#';
 
@@ -60,6 +67,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Button_
 		public function to_json() {
 			parent::to_json();
 			$this->json['button_label'] = $this->button_label;
+			$this->json['ajax_action']  = $this->ajax_action;
 		}
 
 		/**
@@ -72,7 +80,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Button_
 			?>
 			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 			<span class="description customize-control-description"><?php echo esc_html( $this->description ); ?></span>
-			<a href="<?php echo esc_attr( $this->button_link ); ?>" class="<?php echo esc_attr( $this->button_class ); ?>"><?php echo esc_html( $this->button_label ); ?></a>
+			<a href="<?php echo esc_attr( $this->button_link ); ?>" class="button <?php echo esc_attr( $this->button_class ); ?>"><?php echo esc_html( $this->button_label ); ?></a>
 			<?php
 		}
 	}

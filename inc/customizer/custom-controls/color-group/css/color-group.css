@@ -43,6 +43,7 @@
 	opacity: 0;
 	visibility: hidden;
 	transition: opacity 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955), transform 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955), visibility 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	z-index: 1;
 }
 
 .woostify-color-group-control .woostify-color-buttons .woostify-color-picker-btn .btn-tooltip:after {

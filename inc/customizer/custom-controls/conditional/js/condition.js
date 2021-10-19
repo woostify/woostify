@@ -94,7 +94,6 @@
 				 * @param string  id            Setting id.
 				 * @param array   dependencies  Setting id dependencies.
 				 * @param string  value         Setting value.
-				 * @param array   parentvalue   Parent setting id and value.
 				 * @param boolean operator      Operator.
 				 */
 				var condition = function( id, dependencies, value, operator ) {
@@ -159,7 +158,6 @@
 				 * @param string  id            Setting id.
 				 * @param array   dependencies  Setting id dependencies.
 				 * @param string  value         Setting value.
-				 * @param array   parentvalue   Parent setting id and value.
 				 * @param boolean operator      Operator.
 				 * @param array   arr           The parent setting value.
 				 */
@@ -321,6 +319,33 @@
 					],
 				)
 
+				// Free shipping threshold.
+				condition(
+					'woostify_setting[shipping_threshold_enabled]',
+					[
+						'woostify_setting[shipping_threshold_enable_progress_bar]',
+						'woostify_setting[shipping_threshold_progress_bar_amount]',
+						'woostify_setting[shipping_threshold_progress_bar_initial_msg]',
+						'woostify_setting[shipping_threshold_progress_bar_success_msg]',
+						'woostify_setting[shipping_threshold_progress_bar_color]',
+						'woostify_setting[shipping_threshold_progress_bar_success_color]',
+						'woostify_setting[shipping_threshold_enable_confetti_effect]',
+					],
+				)
+				subCondition(
+					'woostify_setting[shipping_threshold_enable_progress_bar]',
+					[
+						'woostify_setting[shipping_threshold_progress_bar_color]',
+						'woostify_setting[shipping_threshold_progress_bar_success_color]',
+					],
+					false,
+					false,
+					[
+						'woostify_setting[shipping_threshold_enabled]',
+						true,
+					],
+				)
+
 				// PAGE HEADER
 				// Enable page header.
 				condition(
@@ -362,6 +387,43 @@
 						true,
 					],
 				)
+
+				var mini_cart_content_settings = [
+					'mini_cart_top_content_select',
+					'mini_cart_before_checkout_button_content_select',
+					'mini_cart_after_checkout_button_content_select',
+				]
+				wp.customize(
+					'woostify_setting[shipping_threshold_enabled]',
+					function( setting ) {
+						var curr_val = setting.get();
+
+						var updateSelect = function( control_name, value ) {
+							var select_el = jQuery( '#customize-control-woostify_setting-' + control_name + ' select' );
+							if ( value ) {
+								select_el.find( 'option[value="fst"]' ).show();
+							} else {
+								select_el.find( 'option[value="fst"]' ).hide();
+								if ( 'fst' === select_el.val() ) {
+									select_el.val( '' );
+								}
+							}
+						}
+
+						for ( var i = 0, j = mini_cart_content_settings.length; i < j; i ++ ) {
+							updateSelect( mini_cart_content_settings[i], curr_val );
+						}
+
+						setting.bind(
+							function( newval ) {
+								for ( var i = 0, j = mini_cart_content_settings.length; i < j; i ++ ) {
+									updateSelect( mini_cart_content_settings[i], newval );
+								}
+							}
+						)
+					}
+				);
+
 				// And trigger if parent control update.
 				wp.customize(
 					'woostify_setting[page_header_display]',
@@ -557,6 +619,32 @@
 					],
 				)
 
+				// Mini cart.
+				condition(
+					'woostify_setting[mini_cart_top_content_select]',
+					[
+						'woostify_setting[mini_cart_top_content_custom_html]',
+					],
+					'custom_html',
+					true,
+				)
+				condition(
+					'woostify_setting[mini_cart_before_checkout_button_content_select]',
+					[
+						'woostify_setting[mini_cart_before_checkout_button_content_custom_html]',
+					],
+					'custom_html',
+					true,
+				)
+				condition(
+					'woostify_setting[mini_cart_after_checkout_button_content_select]',
+					[
+						'woostify_setting[mini_cart_after_checkout_button_content_custom_html]',
+					],
+					'custom_html',
+					true,
+				)
+
 				// And trigger if parent control update.
 				hideTabLayout( 'woostify_setting[sticky_footer_bar_enable]', 'woostify_setting[sticky_footer_bar_context_tabs]' )
 				hideTabLayout( 'woostify_setting[topbar_display]', 'woostify_setting[topbar_context_tabs]' )
@@ -564,6 +652,7 @@
 				hideTabLayout( 'woostify_setting[page_header_display]', 'woostify_setting[page_header_context_tabs]' )
 				hideTabLayout( 'woostify_setting[footer_display]', 'woostify_setting[footer_context_tabs]' )
 				hideTabLayout( 'woostify_setting[header_transparent]', 'woostify_setting[header_transparent_context_tabs]' )
+				hideTabLayout( 'woostify_setting[shipping_threshold_enabled]', 'woostify_setting[shipping_threshold_context_tabs]' )
 			},
 		)
 

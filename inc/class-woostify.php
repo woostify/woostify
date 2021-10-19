@@ -738,6 +738,15 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
+			// Congrats confetti effect.
+			wp_register_script(
+				'woostify-congrats-confetti-effect',
+				WOOSTIFY_THEME_URI . 'assets/js/confetti' . woostify_suffix() . '.js',
+				array(),
+				woostify_version(),
+				true
+			);
+
 			// Woocommerce.
 			wp_register_script(
 				'woostify-woocommerce',
