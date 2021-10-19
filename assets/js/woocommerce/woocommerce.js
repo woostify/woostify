@@ -83,6 +83,100 @@ var woostifyStockQuantityProgressBar = function() {
 	);
 }
 
+var progressBarConfetti = function( progress_bar, percent ) {
+	if ( woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold && woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold_effect ) {
+		var curr_progress_bar = document.querySelectorAll( '.free-shipping-progress-bar' ),
+		curr_percent          = 0;
+
+		if ( curr_progress_bar.length ) {
+			curr_percent = parseInt( curr_progress_bar[0].getAttribute( 'data-progress' ) );
+		}
+
+			// Effect.
+		if ( ( ! progress_bar.length && curr_percent >= 100 ) || ( percent < curr_percent && curr_percent >= 100 ) ) {
+			let confetti_canvas = document.createElement( 'canvas' );
+
+			confetti_canvas.className = 'confetti-canvas';
+
+			document.querySelector( '#shop-cart-sidebar' ).appendChild( confetti_canvas );
+
+			let wConfetti = confetti.create(
+				confetti_canvas,
+				{
+					resize: true,
+					}
+			);
+
+			confettiSnowEffect( wConfetti, 5000 )
+
+			setTimeout(
+				function() {
+					wConfetti.reset();
+					document.querySelector( '.confetti-canvas' ).remove();
+				},
+				6000
+			);
+		}
+
+		percent = curr_percent;
+	}
+}
+
+var confettiSnowEffect = function( confetti, duration ) {
+	var animationEnd = Date.now() + duration,
+	skew             = 1,
+	gravity          = 1,
+	startVelocity = 0;
+
+	function randomInRange(min, max) {
+		return Math.random() * (max - min) + min;
+	}
+
+	( function frame() {
+		var timeLeft = animationEnd - Date.now(),
+		ticks        = Math.max( 200, 500 * (timeLeft / duration) );
+
+		confetti(
+			{
+				particleCount: 1,
+				startVelocity: startVelocity,
+				ticks: ticks,
+				origin: {
+					x: Math.random(),
+					// since particles fall down, skew start toward the top
+					y: 0
+				},
+				colors: ["#EF2964"],
+				shapes: ['circle', 'square'],
+				gravity: gravity,
+				scalar: randomInRange( 0.4, 1 ),
+				drift: randomInRange( -0.4, 0.4 )
+			}
+		);
+		confetti(
+			{
+				particleCount: 1,
+				startVelocity: startVelocity,
+				ticks: ticks,
+				origin: {
+					x: Math.random(),
+					// since particles fall down, skew start toward the top
+					y: 0
+				},
+				colors: ["#2D87B0"],
+				shapes: ['circle', 'square'],
+				gravity: gravity,
+				scalar: randomInRange( 0.4, 1 ),
+				drift: randomInRange( -0.4, 0.4 )
+			}
+		);
+
+		if (timeLeft > 0) {
+			requestAnimationFrame( frame );
+		}
+	}() );
+}
+
 // Product quantity on mini cart.
 var woostifyQuantityMiniCart = function() {
 	var cartCountContainer = document.querySelector( '.shopping-bag-button .shop-cart-count, .boostify-count-product' );
@@ -193,7 +287,8 @@ var woostifyQuantityMiniCart = function() {
 								var data                     = json.data,
 									totalPrice               = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
 									headerCartPriceContainer = document.querySelectorAll( '.woostify-header-total-price, .boostify-subtotal' ),
-									productCount             = document.querySelectorAll( '.shop-cart-count, .boostify-count-product' );
+									productCount             = document.querySelectorAll( '.shop-cart-count, .boostify-count-product' ),
+									shipping_threshold       = document.querySelectorAll( '.free-shipping-progress-bar' );
 
 								// Update total price.
 								if ( totalPrice ) {
@@ -209,6 +304,50 @@ var woostifyQuantityMiniCart = function() {
 								if ( productCount.length ) {
 									for ( var c = 0, n = productCount.length; c < n; c++ ) {
 										productCount[c].innerHTML = data.item;
+									}
+								}
+
+								// Update free shipping threshold.
+								if ( shipping_threshold.length && data.hasOwnProperty( 'free_shipping_threshold' ) ) {
+									let prev_percent = shipping_threshold[0].getAttribute( 'data-progress' );
+									for ( var fsti = 0, fstc = shipping_threshold.length; fsti < fstc; fsti++ ) {
+										shipping_threshold[fsti].setAttribute( 'data-progress', data.free_shipping_threshold.percent );
+										shipping_threshold[fsti].querySelector( '.progress-bar-message' ).innerHTML               = data.free_shipping_threshold.message;
+										shipping_threshold[fsti].querySelector( '.progress-percent' ).innerHTML                   = data.free_shipping_threshold.percent + '%';
+										shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.minWidth           = data.free_shipping_threshold.percent + '%';
+										shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.transitionDuration = '.6s';
+										if ( 100 <= parseInt( data.free_shipping_threshold.percent ) ) {
+											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.add( 'success' );
+										} else {
+											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.remove( 'success' );
+										}
+									}
+
+									if ( woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold && woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold_effect ) {
+										if ( prev_percent < 100 && data.free_shipping_threshold.percent >= 100 ) {
+											var confetti_canvas = document.createElement( 'canvas' );
+
+											confetti_canvas.className = 'confetti-canvas';
+
+											document.querySelector( '#shop-cart-sidebar' ).appendChild( confetti_canvas );
+
+											var wConfetti = confetti.create(
+												confetti_canvas,
+												{
+													resize: true,
+												}
+											);
+
+											confettiSnowEffect( wConfetti, 5000 )
+
+											setTimeout(
+												function() {
+													wConfetti.reset();
+													document.querySelector( '.confetti-canvas' ).remove();
+												},
+												6000
+											);
+										}
 									}
 								}
 							}
@@ -416,6 +555,14 @@ var woostifyCheckoutFormFieldAnimation = function() {
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
+		if ( woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold && woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold_effect ) {
+			var progress_bar = document.querySelectorAll( '.free-shipping-progress-bar' );
+			var percent      = 0;
+			if ( progress_bar.length ) {
+				percent = parseInt( progress_bar[0].getAttribute( 'data-progress' ) );
+			}
+		}
+
 		shoppingBag();
 		woostifyQuantityMiniCart();
 
@@ -430,14 +577,11 @@ document.addEventListener(
 			'adding_to_cart',
 			function() {
 				eventCartSidebarOpen();
-
-				if ( ! document.body.classList.contains( 'disabled-sidebar-cart' ) ) {
-					cartSidebarOpen();
-				}
 			}
 		).on(
 			'added_to_cart',
 			function( e, fragments, cart_hash, $button ) {
+				cartSidebarOpen();
 				woostifyQuantityMiniCart();
 				updateHeaderCartPrice();
 				eventCartSidebarClose();
@@ -483,6 +627,8 @@ document.addEventListener(
 			function() {
 				woostifyQuantityMiniCart();
 				updateHeaderCartPrice();
+
+				progressBarConfetti( progress_bar, percent );
 			}
 		).on(
 			'wc_cart_emptied', /* Reload Cart page if it's empty */
