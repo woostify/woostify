@@ -64,6 +64,7 @@
 .customize-control.customize-control-woostify-tabs {
 	transition: all .3s;
 	max-height: 100px;
+	z-index: 0;
 }
 
 .customize-control.customize-control-woostify-tabs.woostify-hide {

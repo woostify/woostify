@@ -20,6 +20,14 @@ function woostifyAjaxSingleHandleError( button ) {
 }
 
 function woostifyAjaxSingleUpdateFragments( button ) {
+	if ( woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold && woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold_effect ) {
+		var progress_bar = document.querySelectorAll( '.free-shipping-progress-bar' ),
+		percent          = 0;
+		if ( progress_bar.length ) {
+			percent = parseInt( progress_bar[0].getAttribute( 'data-progress' ) );
+		}
+	}
+
 	fetch(
 		wc_cart_fragments_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'get_refreshed_fragments' ),
 		{
@@ -57,9 +65,12 @@ function woostifyAjaxSingleUpdateFragments( button ) {
 			woostifyAjaxSingleHandleError( button );
 
 			jQuery( document.body ).trigger( 'added_to_cart' );
+
+			progressBarConfetti( progress_bar, percent );
 		}
 	);
 }
+
 
 function woostifyAjaxSingleAddToCartButton() {
 	var buttons = document.querySelectorAll( '.single_add_to_cart_button' );
@@ -77,6 +88,10 @@ function woostifyAjaxSingleAddToCartButton() {
 					return;
 				}
 
+				var form_data = new FormData( form )
+				form_data.append( 'add-to-cart', form.querySelector( '[name=add-to-cart]' ).value )
+				form_data.append( 'ajax_nonce', woostify_woocommerce_general.ajax_nonce )
+
 				// Add loading.
 				ele.classList.add( 'loading' );
 
@@ -85,62 +100,66 @@ function woostifyAjaxSingleAddToCartButton() {
 					eventCartSidebarOpen();
 				}
 
-				if ( 'function' === typeof( cartSidebarOpen ) ) {
-					cartSidebarOpen();
-				}
-
 				if ( 'function' === typeof( closeAll ) ) {
 					closeAll();
 				}
 
-				// Send post request.
+				// Add loading.
+				document.documentElement.classList.add( 'mini-cart-updating' );
+
 				fetch(
-					form.action,
+					wc_add_to_cart_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'woostify_single_add_to_cart' ),
 					{
 						method: 'POST',
-						body: new FormData( form )
+						body: form_data,
 					}
 				).then(
-					function( r ) {
-						return r.text();
-					}
-				).then(
-					function( text ) {
-						var div = document.createElement( 'div' );
-						div.innerHTML = text;
-
-						var error = div.querySelector( '.woocommerce-error' );
-						if ( error ) {
-							var notices = document.querySelector( '.content-top .woocommerce' );
-
-							// Remove current error.
-							if ( notices.querySelector( '.woocommerce-error' ) ) {
-								notices.querySelector( '.woocommerce-error' ).remove();
-							}
-
-							// Update new error.
-							if ( notices ) {
-								notices.appendChild( error );
-							}
-
-							// Handle.
-							woostifyAjaxSingleHandleError( ele );
-
+					function( res ) {
+						if ( ! res ) {
 							return;
 						}
+
+						var res_json = res.json();
+
+						if ( res_json.error && res_json.product_url ) {
+							window.location = res_json.product_url;
+							return;
+						}
+
+						// Redirect to cart option.
+						if ( wc_add_to_cart_params.cart_redirect_after_add === 'yes' ) {
+							window.location = wc_add_to_cart_params.cart_url;
+							return;
+						}
+
+						return res_json;
+					}
+				).then(
+					function ( result ) {
+						// Add loading.
+						document.documentElement.classList.remove( 'mini-cart-updating' );
+
+						/*
+						// Remove old notices.
+						document.querySelector( '.content-top .woocommerce' ).innerHTML = '';
+						// Add new notices.
+						document.querySelector( '.content-top .woocommerce' ).innerHTML = result.fragments.notices_html;
+						*/
 
 						// Update fragments.
 						woostifyAjaxSingleUpdateFragments( ele );
 					}
 				).catch(
 					function() {
+						// Add loading.
+						document.documentElement.classList.remove( 'mini-cart-updating' );
 						// Handle.
 						woostifyAjaxSingleHandleError( ele );
 					}
 				);
 			}
 		}
-	);
+	)
 }
 
 document.addEventListener(

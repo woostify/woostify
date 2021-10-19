@@ -9,7 +9,12 @@ wp.customize.controlConstructor['woostify-button-control'] = wp.customize.Contro
 		ready: function () {
 			'use strict'
 			let control = this,
-			button      = control.container.find( '.woostify-clear-font-files' )
+			ajax_action = control.params.ajax_action,
+			button      = control.container.find( '.button' )
+
+			if ( '' === ajax_action ) {
+				return false;
+			}
 
 			button.on(
 				'click',
@@ -24,7 +29,7 @@ wp.customize.controlConstructor['woostify-button-control'] = wp.customize.Contro
 									type: 'POST',
 									url: ajaxurl,
 									data: {
-										action: 'woostify_regenerate_fonts_folder',
+										action: ajax_action,
 										woostify_customize_nonce: woostify_customize.nonce
 									},
 									async: false,
@@ -33,11 +38,11 @@ wp.customize.controlConstructor['woostify-button-control'] = wp.customize.Contro
 										_this.parent().find( 'p.message' ).remove();
 									},
 									success: function() {
-										let message = '<p class="message">Clear Successfully!</p>';
+										let message = '<p class="message">Successfully!</p>';
 										_this.after( message );
 									},
 									error: function() {
-										let message = '<p class="message">Clear Failed!</p>';
+										let message = '<p class="message">Failed!</p>';
 										_this.after( message );
 									}
 								}
