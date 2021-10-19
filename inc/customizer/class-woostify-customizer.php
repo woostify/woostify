@@ -496,6 +496,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'error_404_text'                           => __( 'Opps! The page you are looking for is missing for some reasons. Please come back to homepage', 'woostify' ),
 				'load_google_fonts_locally'                => false,
 				'load_google_fonts_locally_preload'        => false,
+				'performance_disable_woo_blocks_styles'    => false,
 			);
 
 			return apply_filters( 'woostify_setting_default_values', $args );
