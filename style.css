@@ -9934,6 +9934,23 @@ header.elementor-element {
   padding: 20px 12px 12px !important;
 }
 
+@media (max-width: 991px) {
+  .checkout-layout-3:not(.woobuilder-active) .form-row.notes textarea::-webkit-input-placeholder {
+    color: transparent;
+  }
+  .checkout-layout-3:not(.woobuilder-active) .form-row.notes textarea:-moz-placeholder {
+    /* Firefox 18- */
+    color: transparent;
+  }
+  .checkout-layout-3:not(.woobuilder-active) .form-row.notes textarea::-moz-placeholder {
+    /* Firefox 19+ */
+    color: transparent;
+  }
+  .checkout-layout-3:not(.woobuilder-active) .form-row.notes textarea:-ms-input-placeholder {
+    color: transparent;
+  }
+}
+
 .checkout-layout-3:not(.woobuilder-active) .form-row.w-anim-wrap label {
   top: 15px;
   font-size: 12px;

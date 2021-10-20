@@ -1215,6 +1215,24 @@
 			}
 			textarea {
 				padding: 20px 12px 12px !important;
+
+				@media (max-width: $screen-md - 1) {
+					&::-webkit-input-placeholder {
+						color:transparent;
+					}
+
+					&:-moz-placeholder { /* Firefox 18- */
+					color:transparent;
+					}
+
+					&::-moz-placeholder {  /* Firefox 19+ */
+					color:transparent;
+					}
+
+					&:-ms-input-placeholder {
+					color:transparent;
+					}
+				}
 			}
 		}
 

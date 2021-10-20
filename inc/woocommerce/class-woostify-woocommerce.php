@@ -75,7 +75,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'wc_ajax_woostify_single_add_to_cart', 'woostify_ajax_single_add_to_cart' );
 			add_action( 'wc_ajax_nopriv_woostify_single_add_to_cart', 'woostify_ajax_single_add_to_cart' );
 			add_filter( 'woocommerce_add_to_cart_fragments', 'woostify_add_notices_html_cart_fragments' );
-			// Remove WC Core add to cart handler to prevent double-add
+
+			// Remove WC Core add to cart handler to prevent double-add.
 			remove_action( 'wp_loaded', array( 'WC_Form_Handler', 'add_to_cart_action' ), 20 );
 
 			// Update product quantity in minicart.
@@ -209,6 +210,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 		/**
 		 * Mini cart top content load custom html
+		 *
+		 * @param string $position Position hook.
 		 */
 		public function mini_cart_load_custom_html( $position ) {
 			$options     = woostify_options( false );
@@ -633,13 +636,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				add_action( 'woocommerce_checkout_after_order_review', 'woostify_checkout_before_order_review', 10 );
 			}
 
-			$hasWooBuilderCheckoutPage = false;
+			$has_woo_builder_checkout_page = false;
 
 			if ( class_exists( 'Woostify_Woo_Builder' ) ) {
-				$woo_builder               = \Woostify_Woo_Builder::init();
-				$hasWooBuilderCheckoutPage = $woo_builder->template_exist( 'woostify_checkout_page' );
+				$woo_builder                   = \Woostify_Woo_Builder::init();
+				$has_woo_builder_checkout_page = $woo_builder->template_exist( 'woostify_checkout_page' );
 			}
-			if ( 'layout-3' === $options['checkout_page_layout'] && ! $hasWooBuilderCheckoutPage ) {
+			if ( 'layout-3' === $options['checkout_page_layout'] && ! $has_woo_builder_checkout_page ) {
 				add_action( 'woocommerce_before_checkout_form', 'woostify_checkout_form_distr_free_bg', 0 );
 
 				add_action( 'woocommerce_before_checkout_form', 'woostify_checkout_options_start', 5 );

@@ -126,7 +126,7 @@ var confettiSnowEffect = function( confetti, duration ) {
 	var animationEnd = Date.now() + duration,
 	skew             = 1,
 	gravity          = 1,
-	startVelocity = 0;
+	startVelocity    = 0;
 
 	function randomInRange(min, max) {
 		return Math.random() * (max - min) + min;
@@ -143,7 +143,7 @@ var confettiSnowEffect = function( confetti, duration ) {
 				ticks: ticks,
 				origin: {
 					x: Math.random(),
-					// since particles fall down, skew start toward the top
+					// since particles fall down, skew start toward the top.
 					y: 0
 				},
 				colors: ["#EF2964"],
@@ -160,7 +160,7 @@ var confettiSnowEffect = function( confetti, duration ) {
 				ticks: ticks,
 				origin: {
 					x: Math.random(),
-					// since particles fall down, skew start toward the top
+					// since particles fall down, skew start toward the top.
 					y: 0
 				},
 				colors: ["#2D87B0"],
