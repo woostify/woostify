@@ -528,9 +528,25 @@
 					'woostify_setting[shop_single_related_product]',
 					[
 						'woostify_setting[shop_single_product_related_total]',
-						'woostify_setting[shop_single_product_related_columns]',
+						'woostify_setting[shop_single_product_related_enable_carousel]',
+						'woostify_setting[shop_single_product_related_carousel_arrows]',
+						'woostify_setting[shop_single_product_related_carousel_dots]',
 					],
 					false,
+				)
+				// Product related carousel.
+				subCondition(
+					'woostify_setting[shop_single_product_related_enable_carousel]',
+					[
+						'woostify_setting[shop_single_product_related_carousel_arrows]',
+						'woostify_setting[shop_single_product_related_carousel_dots]',
+					],
+					false,
+					false,
+					[
+						'woostify_setting[shop_single_related_product]',
+						true,
+					],
 				)
 
 				// Gallery layout.

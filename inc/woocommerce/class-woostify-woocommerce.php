@@ -375,20 +375,31 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Main woocommerce js file.
 			wp_enqueue_script( 'woostify-woocommerce' );
 
+			$related_carousel_opts = array();
+			if ( $options['shop_single_related_product'] && $options['shop_single_product_related_enable_carousel'] ) {
+				$related_carousel_opts = array(
+					'loop'     => false,
+					'rewind'   => true,
+					'controls' => $options['shop_single_product_related_carousel_arrows'],
+					'nav'      => $options['shop_single_product_related_carousel_dots'],
+				);
+			}
+
 			// Quantity minicart.
 			wp_localize_script(
 				'woostify-woocommerce',
 				'woostify_woocommerce_general',
 				array(
-					'ajax_url'            => admin_url( 'admin-ajax.php' ),
-					'ajax_nonce'          => wp_create_nonce( 'woostify_woocommerce_general_nonce' ),
-					'ajax_error'          => __( 'Sorry, something went wrong. Please try again!', 'woostify' ),
-					'qty_warning'         => __( 'Please enter a valid quantity for this product', 'woostify' ),
-					'shipping_text'       => __( 'Shipping', 'woostify' ),
-					'shipping_next'       => __( 'Calculated at next step', 'woostify' ),
-					'sticky_top_space'    => $options['shop_single_product_sticky_top_space'],
-					'sticky_bottom_space' => $options['shop_single_product_sticky_bottom_space'],
-					'shipping_threshold'  => $shipping_threshold_script_var,
+					'ajax_url'              => admin_url( 'admin-ajax.php' ),
+					'ajax_nonce'            => wp_create_nonce( 'woostify_woocommerce_general_nonce' ),
+					'ajax_error'            => __( 'Sorry, something went wrong. Please try again!', 'woostify' ),
+					'qty_warning'           => __( 'Please enter a valid quantity for this product', 'woostify' ),
+					'shipping_text'         => __( 'Shipping', 'woostify' ),
+					'shipping_next'         => __( 'Calculated at next step', 'woostify' ),
+					'sticky_top_space'      => $options['shop_single_product_sticky_top_space'],
+					'sticky_bottom_space'   => $options['shop_single_product_sticky_bottom_space'],
+					'shipping_threshold'    => $shipping_threshold_script_var,
+					'related_carousel_opts' => $related_carousel_opts,
 				)
 			);
 
