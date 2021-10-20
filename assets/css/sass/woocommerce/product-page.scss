@@ -919,6 +919,15 @@
 		font-weight: normal;
 		padding: 25px 0;
 	}
+
+	ul.products {
+		&.tns-slider {
+			.product {
+				margin: 0;
+				float: none;
+			}
+		}
+	}
 }
 
 // Support for Woostify - Product Images
@@ -991,3 +1000,4 @@
 #product-addons-total {
 	clear: both;
 }
+

@@ -452,6 +452,38 @@ var updateHeaderCartPrice = function () {
 	}
 }
 
+var woostifyProductsCarousel = function( selector ) {
+	var elements = document.querySelectorAll( selector );
+
+	if ( ! elements.length ) {
+		return;
+	}
+
+	for ( var i = 0, j = elements.length; i < j; i++ ) {
+		var element = elements[i];
+		if ( element.classList.contains( 'tns-slider' ) ) {
+			continue;
+		}
+		var options = {
+			container: element,
+			items: 4,
+			gutter: 30,
+			responsive: {
+				0: {
+					items: 2
+				},
+				768: {
+					items: 3
+				},
+				992: {
+					items: 4
+				}
+			}
+		}
+		var slider = tns( options );
+	}
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
@@ -465,6 +497,8 @@ document.addEventListener(
 
 		shoppingBag();
 		woostifyQuantityMiniCart();
+		woostifyProductsCarousel( '.related.products ul.products');
+		woostifyProductsCarousel( '.upsells.products ul.products');
 
 		window.addEventListener(
 			'load',

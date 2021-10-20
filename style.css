@@ -7822,6 +7822,12 @@ header.elementor-element {
   padding: 25px 0;
 }
 
+.related ul.products.tns-slider .product,
+.up-sells ul.products.tns-slider .product {
+  margin: 0;
+  float: none;
+}
+
 .woostify-product-images-widget .product-gallery {
   width: 100%;
 }
