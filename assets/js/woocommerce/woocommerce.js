@@ -126,7 +126,7 @@ var confettiSnowEffect = function( confetti, duration ) {
 	var animationEnd = Date.now() + duration,
 	skew             = 1,
 	gravity          = 1,
-	startVelocity = 0;
+	startVelocity    = 0;
 
 	function randomInRange(min, max) {
 		return Math.random() * (max - min) + min;
@@ -143,7 +143,7 @@ var confettiSnowEffect = function( confetti, duration ) {
 				ticks: ticks,
 				origin: {
 					x: Math.random(),
-					// since particles fall down, skew start toward the top
+					// since particles fall down, skew start toward the top.
 					y: 0
 				},
 				colors: ["#EF2964"],
@@ -153,23 +153,6 @@ var confettiSnowEffect = function( confetti, duration ) {
 				drift: randomInRange( -0.4, 0.4 )
 			}
 		);
-		// confetti(
-		// 	{
-		// 		particleCount: 1,
-		// 		startVelocity: startVelocity,
-		// 		ticks: ticks,
-		// 		origin: {
-		// 			x: Math.random(),
-		// 			// since particles fall down, skew start toward the top
-		// 			y: 0
-		// 		},
-		// 		colors: ["#00C09D"],
-		// 		shapes: ['circle', 'square'],
-		// 		gravity: gravity,
-		// 		scalar: randomInRange( 0.4, 1 ),
-		// 		drift: randomInRange( -0.4, 0.4 )
-		// 	}
-		// );
 		confetti(
 			{
 				particleCount: 1,
@@ -177,7 +160,7 @@ var confettiSnowEffect = function( confetti, duration ) {
 				ticks: ticks,
 				origin: {
 					x: Math.random(),
-					// since particles fall down, skew start toward the top
+					// since particles fall down, skew start toward the top.
 					y: 0
 				},
 				colors: ["#2D87B0"],
@@ -192,59 +175,6 @@ var confettiSnowEffect = function( confetti, duration ) {
 			requestAnimationFrame( frame );
 		}
 	}() );
-	// ( function frame() {
-	// 	var timeLeft = animationEnd - Date.now(),
-	// 	ticks        = Math.max( 200, 500 * (timeLeft / duration) );
-	// 	skew         = Math.max( 0.8, skew - 0.001 );
-	// 	confetti(
-	// 		{
-	// 			particleCount: 1,
-	// 			startVelocity: 0,
-	// 			ticks: ticks,
-	// 			origin: {
-	// 				x: Math.random(),
-	// 				// since particles fall down, skew start toward the top
-	// 				y: 0
-	// 			},
-	// 			colors: ["#00C09D"],
-	// 			shapes: ['circle'],
-	// 			gravity: gravity,
-	// 			scalar: randomInRange( 0.4, 1 ),
-	// 			drift: randomInRange( -0.4, 0.4 )
-	// 		}
-	// 	);
-
-	// 	if (timeLeft > 0) {
-	// 		requestAnimationFrame( frame );
-	// 	}
-	// }() );
-	// ( function frame() {
-	// 	var timeLeft = animationEnd - Date.now(),
-	// 	ticks        = Math.max( 200, 500 * (timeLeft / duration) );
-	// 	skew         = Math.max( 0.8, skew - 0.001 );
-
-	// 	confetti(
-	// 		{
-	// 			particleCount: 1,
-	// 			startVelocity: 0,
-	// 			ticks: ticks,
-	// 			origin: {
-	// 				x: Math.random(),
-	// 				// since particles fall down, skew start toward the top
-	// 				y: 0
-	// 			},
-	// 			colors: ["#2D87B0"],
-	// 			shapes: ['circle'],
-	// 			gravity: gravity,
-	// 			scalar: randomInRange( 0.4, 1 ),
-	// 			drift: randomInRange( -0.4, 0.4 )
-	// 		}
-	// 	);
-
-	// 	if (timeLeft > 0) {
-	// 		requestAnimationFrame( frame );
-	// 	}
-	// }() );
 }
 
 // Product quantity on mini cart.
@@ -382,14 +312,18 @@ var woostifyQuantityMiniCart = function() {
 									let prev_percent = shipping_threshold[0].getAttribute( 'data-progress' );
 									for ( var fsti = 0, fstc = shipping_threshold.length; fsti < fstc; fsti++ ) {
 										shipping_threshold[fsti].setAttribute( 'data-progress', data.free_shipping_threshold.percent );
-										shipping_threshold[fsti].querySelector( '.progress-bar-message' ).innerHTML               = data.free_shipping_threshold.message;
-										shipping_threshold[fsti].querySelector( '.progress-percent' ).innerHTML                   = data.free_shipping_threshold.percent + '%';
-										shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.minWidth           = data.free_shipping_threshold.percent + '%';
-										shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.transitionDuration = '.6s';
-										if ( 100 <= parseInt( data.free_shipping_threshold.percent ) ) {
-											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.add( 'success' );
-										} else {
-											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.remove( 'success' );
+										shipping_threshold[fsti].querySelector( '.progress-bar-message' ).innerHTML = data.free_shipping_threshold.message;
+										if ( shipping_threshold[fsti].querySelector( '.progress-percent' ) ) {
+											shipping_threshold[fsti].querySelector( '.progress-percent' ).innerHTML = data.free_shipping_threshold.percent + '%';
+										}
+										if ( shipping_threshold[fsti].querySelector( '.progress-bar-status' ) ) {
+											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.minWidth           = data.free_shipping_threshold.percent + '%';
+											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.transitionDuration = '.6s';
+											if ( 100 <= parseInt( data.free_shipping_threshold.percent ) ) {
+												shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.add( 'success' );
+											} else {
+												shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.remove( 'success' );
+											}
 										}
 									}
 

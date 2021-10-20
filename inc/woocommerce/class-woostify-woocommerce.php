@@ -75,7 +75,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'wc_ajax_woostify_single_add_to_cart', 'woostify_ajax_single_add_to_cart' );
 			add_action( 'wc_ajax_nopriv_woostify_single_add_to_cart', 'woostify_ajax_single_add_to_cart' );
 			add_filter( 'woocommerce_add_to_cart_fragments', 'woostify_add_notices_html_cart_fragments' );
-			// Remove WC Core add to cart handler to prevent double-add
+
+			// Remove WC Core add to cart handler to prevent double-add.
 			remove_action( 'wp_loaded', array( 'WC_Form_Handler', 'add_to_cart_action' ), 20 );
 
 			// Update product quantity in minicart.
@@ -209,6 +210,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 		/**
 		 * Mini cart top content load custom html
+		 *
+		 * @param string $position Content position.
 		 */
 		public function mini_cart_load_custom_html( $position ) {
 			$options     = woostify_options( false );
