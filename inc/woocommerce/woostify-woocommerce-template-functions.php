@@ -1381,9 +1381,6 @@ if ( ! function_exists( 'woostify_product_quantity' ) ) {
 	 */
 	function woostify_product_quantity() {
 		$options = woostify_options( false );
-		if ( ! is_shop() && ! is_product_category() ) {
-			return;
-		}
 
 		if ( 'none' === $options['shop_page_add_to_cart_button_position'] ) {
 			return;

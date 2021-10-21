@@ -696,7 +696,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				$add_to_cart_pos = $options['shop_page_add_to_cart_button_position'];
 
 				if ( 'bottom' === $add_to_cart_pos ) {
-					add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 0 );
+					add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 3 );
 				} else {
 					add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 15 );
 				}
