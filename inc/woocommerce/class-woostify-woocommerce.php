@@ -378,10 +378,22 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$related_carousel_opts = array();
 			if ( $options['shop_single_related_product'] && $options['shop_single_product_related_enable_carousel'] ) {
 				$related_carousel_opts = array(
-					'loop'     => false,
-					'rewind'   => true,
-					'controls' => $options['shop_single_product_related_carousel_arrows'],
-					'nav'      => $options['shop_single_product_related_carousel_dots'],
+					'loop'       => false,
+					'rewind'     => true,
+					'controls'   => $options['shop_single_product_related_carousel_arrows'],
+					'nav'        => $options['shop_single_product_related_carousel_dots'],
+					'gutter'     => 30,
+					'responsive' => array(
+						'0'   => array(
+							'items' => $options['mobile_products_per_row'],
+						),
+						'601' => array(
+							'items' => $options['tablet_products_per_row'],
+						),
+						'992' => array(
+							'items' => $options['products_per_row'],
+						),
+					),
 				);
 			}
 

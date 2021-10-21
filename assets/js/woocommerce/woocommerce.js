@@ -126,7 +126,7 @@ var confettiSnowEffect = function( confetti, duration ) {
 	var animationEnd = Date.now() + duration,
 	skew             = 1,
 	gravity          = 1,
-	startVelocity = 0;
+	startVelocity    = 0;
 
 	function randomInRange(min, max) {
 		return Math.random() * (max - min) + min;
@@ -154,21 +154,21 @@ var confettiSnowEffect = function( confetti, duration ) {
 			}
 		);
 		// confetti(
-		// 	{
-		// 		particleCount: 1,
-		// 		startVelocity: startVelocity,
-		// 		ticks: ticks,
-		// 		origin: {
-		// 			x: Math.random(),
-		// 			// since particles fall down, skew start toward the top
-		// 			y: 0
-		// 		},
-		// 		colors: ["#00C09D"],
-		// 		shapes: ['circle', 'square'],
-		// 		gravity: gravity,
-		// 		scalar: randomInRange( 0.4, 1 ),
-		// 		drift: randomInRange( -0.4, 0.4 )
-		// 	}
+		// {
+		// particleCount: 1,
+		// startVelocity: startVelocity,
+		// ticks: ticks,
+		// origin: {
+		// x: Math.random(),
+		// since particles fall down, skew start toward the top
+		// y: 0
+		// },
+		// colors: ["#00C09D"],
+		// shapes: ['circle', 'square'],
+		// gravity: gravity,
+		// scalar: randomInRange( 0.4, 1 ),
+		// drift: randomInRange( -0.4, 0.4 )
+		// }
 		// );
 		confetti(
 			{
@@ -193,57 +193,57 @@ var confettiSnowEffect = function( confetti, duration ) {
 		}
 	}() );
 	// ( function frame() {
-	// 	var timeLeft = animationEnd - Date.now(),
-	// 	ticks        = Math.max( 200, 500 * (timeLeft / duration) );
-	// 	skew         = Math.max( 0.8, skew - 0.001 );
-	// 	confetti(
-	// 		{
-	// 			particleCount: 1,
-	// 			startVelocity: 0,
-	// 			ticks: ticks,
-	// 			origin: {
-	// 				x: Math.random(),
-	// 				// since particles fall down, skew start toward the top
-	// 				y: 0
-	// 			},
-	// 			colors: ["#00C09D"],
-	// 			shapes: ['circle'],
-	// 			gravity: gravity,
-	// 			scalar: randomInRange( 0.4, 1 ),
-	// 			drift: randomInRange( -0.4, 0.4 )
-	// 		}
-	// 	);
+	// var timeLeft = animationEnd - Date.now(),
+	// ticks        = Math.max( 200, 500 * (timeLeft / duration) );
+	// skew         = Math.max( 0.8, skew - 0.001 );
+	// confetti(
+	// {
+	// particleCount: 1,
+	// startVelocity: 0,
+	// ticks: ticks,
+	// origin: {
+	// x: Math.random(),
+	// since particles fall down, skew start toward the top
+	// y: 0
+	// },
+	// colors: ["#00C09D"],
+	// shapes: ['circle'],
+	// gravity: gravity,
+	// scalar: randomInRange( 0.4, 1 ),
+	// drift: randomInRange( -0.4, 0.4 )
+	// }
+	// );
 
-	// 	if (timeLeft > 0) {
-	// 		requestAnimationFrame( frame );
-	// 	}
+	// if (timeLeft > 0) {
+	// requestAnimationFrame( frame );
+	// }
 	// }() );
 	// ( function frame() {
-	// 	var timeLeft = animationEnd - Date.now(),
-	// 	ticks        = Math.max( 200, 500 * (timeLeft / duration) );
-	// 	skew         = Math.max( 0.8, skew - 0.001 );
+	// var timeLeft = animationEnd - Date.now(),
+	// ticks        = Math.max( 200, 500 * (timeLeft / duration) );
+	// skew         = Math.max( 0.8, skew - 0.001 );
 
-	// 	confetti(
-	// 		{
-	// 			particleCount: 1,
-	// 			startVelocity: 0,
-	// 			ticks: ticks,
-	// 			origin: {
-	// 				x: Math.random(),
-	// 				// since particles fall down, skew start toward the top
-	// 				y: 0
-	// 			},
-	// 			colors: ["#2D87B0"],
-	// 			shapes: ['circle'],
-	// 			gravity: gravity,
-	// 			scalar: randomInRange( 0.4, 1 ),
-	// 			drift: randomInRange( -0.4, 0.4 )
-	// 		}
-	// 	);
+	// confetti(
+	// {
+	// particleCount: 1,
+	// startVelocity: 0,
+	// ticks: ticks,
+	// origin: {
+	// x: Math.random(),
+	// since particles fall down, skew start toward the top
+	// y: 0
+	// },
+	// colors: ["#2D87B0"],
+	// shapes: ['circle'],
+	// gravity: gravity,
+	// scalar: randomInRange( 0.4, 1 ),
+	// drift: randomInRange( -0.4, 0.4 )
+	// }
+	// );
 
-	// 	if (timeLeft > 0) {
-	// 		requestAnimationFrame( frame );
-	// 	}
+	// if (timeLeft > 0) {
+	// requestAnimationFrame( frame );
+	// }
 	// }() );
 }
 
@@ -464,23 +464,9 @@ var woostifyProductsCarousel = function( selector ) {
 		if ( element.classList.contains( 'tns-slider' ) ) {
 			continue;
 		}
-		var options = {
-			container: element,
-			items: 4,
-			gutter: 30,
-			responsive: {
-				0: {
-					items: 2
-				},
-				768: {
-					items: 3
-				},
-				992: {
-					items: 4
-				}
-			}
-		}
-		var slider = tns( options );
+		var options       = woostify_woocommerce_general.related_carousel_opts;
+		options.container = element;
+		var slider        = tns( options );
 	}
 }
 
@@ -497,8 +483,9 @@ document.addEventListener(
 
 		shoppingBag();
 		woostifyQuantityMiniCart();
-		woostifyProductsCarousel( '.related.products ul.products');
-		woostifyProductsCarousel( '.upsells.products ul.products');
+		woostifyProductsCarousel( '.related.products ul.products' );
+		woostifyProductsCarousel( '.upsells.products ul.products' );
+		woostifyProductsCarousel( '.woostify-product-recently-viewed-section ul.products' );
 
 		window.addEventListener(
 			'load',
