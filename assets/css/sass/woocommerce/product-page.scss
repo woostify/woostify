@@ -910,7 +910,8 @@
 // RELATED && UPSELL
 
 .related,
-.up-sells {
+.up-sells,
+.woostify-product-recently-viewed-section {
 	border-top: 1px solid #efefef;
 
 	>h2 {
@@ -939,6 +940,7 @@
 
 // RECENTLY VIEWED
 .woostify-product-recently-viewed-section {
+	border: none;
 
 	.woostify-product-recently-viewed-inner {
 		border-top: 1px solid #efefef;
