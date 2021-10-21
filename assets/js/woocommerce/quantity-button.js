@@ -110,9 +110,9 @@ function customQuantity() {
 						}
 					}
 
-					var loopContent = input.closest( '.product-loop-content' );
-					if ( loopContent ) {
-						var ajaxAddToCartBtn = loopContent.querySelector( '.loop-add-to-cart-btn' );
+					var loopWrapper = input.closest( '.product-loop-wrapper' );
+					if ( loopWrapper ) {
+						var ajaxAddToCartBtn = loopWrapper.querySelector( '.add_to_cart_button' );
 						if ( ajaxAddToCartBtn ) {
 							ajaxAddToCartBtn.setAttribute( 'data-quantity', inputVal );
 						}

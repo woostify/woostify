@@ -45,8 +45,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 				if ( 'bottom' === $add_to_cart_pos ) {
 					add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 3 );
+					remove_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 15 );
 				} else {
 					add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 15 );
+					remove_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 3 );
 				}
 			} else {
 				remove_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 3 );
