@@ -185,6 +185,24 @@
 	        }
 	    }
 
+	    &--auctions-endpoint {
+	    	a:before{
+	    		content: "\e60f";
+	    	}
+	    }
+
+	    &--bookings {
+	    	a:before{
+	    		content: "\e6dc";
+	    	}
+	    }
+
+	    &--subscriptions {
+	    	a:before{
+	    		content: "\e64f";
+	    	}
+	    }
+
         a{
             font-size: 15px;
             white-space: nowrap;

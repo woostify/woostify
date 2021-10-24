@@ -11672,6 +11672,18 @@ header.elementor-element {
   content: "\e66f";
 }
 
+.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--auctions-endpoint a:before {
+  content: "\e60f";
+}
+
+.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--bookings a:before {
+  content: "\e6dc";
+}
+
+.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--subscriptions a:before {
+  content: "\e64f";
+}
+
 .woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link a {
   font-size: 15px;
   white-space: nowrap;
