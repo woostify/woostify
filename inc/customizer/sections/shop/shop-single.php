@@ -505,6 +505,7 @@ $wp_customize->add_control(
 			'dependency' => array(
 				'woostify_setting[shop_single_product_data_tabs_layout]',
 				'woostify_setting[shop_single_product_data_tabs_pos]',
+				'woostify_setting[shop_single_product_data_tabs_items]',
 			),
 		)
 	)
@@ -564,6 +565,28 @@ $wp_customize->add_control(
 					'woocommerce_after_single_product_summary' => __( 'After Product Summary', 'woostify' ),
 				)
 			),
+		)
+	)
+);
+
+// Product data tabs items.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_data_tabs_items]',
+	array(
+		'default'           => $defaults['shop_single_product_data_tabs_items'],
+		'sanitize_callback' => 'sanitize_text_field',
+		'type'              => 'option',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Product_Data_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_data_tabs_items]',
+		array(
+			'label'    => __( 'Items', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_product_data_tabs_items]',
 		)
 	)
 );

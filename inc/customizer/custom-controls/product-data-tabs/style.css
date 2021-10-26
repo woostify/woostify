@@ -1,0 +1,12 @@
+.woostify-adv-list-control.customize-control-textarea {
+	flex-direction: column;
+    align-items: flex-start;
+}
+
+.woostify-adv-list-control.customize-control-textarea label {
+	margin-bottom: 5px;
+}
+
+.adv-list-item-content .woostify-adv-list-control.customize-control-textarea .woostify-adv-list-input {
+	max-width: 100%;
+}

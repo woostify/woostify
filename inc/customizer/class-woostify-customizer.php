@@ -161,6 +161,28 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * @return array
 		 */
 		public static function woostify_get_woostify_default_setting_values() {
+			$product_data_tabs_items = array(
+				array(
+					'type' => 'description',
+					'name' => 'Description', 'woostify',
+					'content' => '',
+				),
+				array(
+					'type' => 'additional_information',
+					'name' => 'Additional information',
+					'content' => '',
+				),
+				array(
+					'type' => 'reviews',
+					'name' => 'Reviews',
+					'content' => '',
+				),
+				array(
+					'type' => 'custom',
+					'name' => 'Custom Tab',
+					'content' => '',
+				)
+			);
 			$sticky_footer_bar_items = array(
 				array(
 					'type'      => 'custom',
@@ -444,6 +466,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				// Product Data Tabs.
 				'shop_single_product_data_tabs_layout'     => 'normal',
 				'shop_single_product_data_tabs_pos'        => 'woocommerce_after_single_product_summary',
+				'shop_single_product_data_tabs_items'      => wp_json_encode( $product_data_tabs_items ),
 				// Related.
 				'shop_single_related_product'              => true,
 				'shop_single_product_related_total'        => 4,
