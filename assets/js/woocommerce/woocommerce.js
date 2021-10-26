@@ -464,6 +464,9 @@ var woostifyProductsCarousel = function( selector ) {
 		if ( element.classList.contains( 'tns-slider' ) ) {
 			continue;
 		}
+		if ( 1 > woostify_woocommerce_general.related_carousel_opts.length ) {
+			return;
+		}
 		var options       = woostify_woocommerce_general.related_carousel_opts;
 		options.container = element;
 		var slider        = tns( options );
