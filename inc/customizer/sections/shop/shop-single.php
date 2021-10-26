@@ -488,6 +488,56 @@ $wp_customize->add_control(
 	)
 );
 
+// SHOP SINGLE PRODUCT DATA TABS SECTION.
+$wp_customize->add_setting(
+	'shop_single_product_data_tabs_section',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Section_Control(
+		$wp_customize,
+		'shop_single_product_data_tabs_section',
+		array(
+			'label'      => __( 'Product Data Tabs', 'woostify' ),
+			'section'    => 'woostify_shop_single',
+			'dependency' => array(
+				'woostify_setting[shop_single_product_data_tabs_layout]',
+			),
+		)
+	)
+);
+
+// Product data tabs layout.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_data_tabs_layout]',
+	array(
+		'default'           => $defaults['shop_single_product_data_tabs_layout'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_data_tabs_layout]',
+		array(
+			'label'    => __( 'Layout', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_data_tabs_layout]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_shop_single_product_data_tabs_layout_choices',
+				array(
+					'normal'    => __( 'Normal', 'woostify' ),
+					'accordion' => __( 'Accordion', 'woostify' ),
+				)
+			),
+		)
+	)
+);
+
 // SHOP SINGLE RELATED PRODUCT SECTION.
 $wp_customize->add_setting(
 	'shop_single_product_related_section',

@@ -905,6 +905,12 @@
 			width: 100%;
 		}
 	}
+
+	&.layout-accordion {
+		.woocommerce-Tabs-panel {
+			padding: 0;
+		}
+	}
 }
 
 // RELATED && UPSELL

@@ -441,6 +441,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_skus'                         => true,
 				'shop_single_categories'                   => true,
 				'shop_single_tags'                         => true,
+				// Product Data Tabs.
+				'shop_single_product_data_tabs_layout'     => 'normal',
 				// Related.
 				'shop_single_related_product'              => true,
 				'shop_single_product_related_total'        => 4,
