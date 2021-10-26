@@ -504,6 +504,7 @@ $wp_customize->add_control(
 			'section'    => 'woostify_shop_single',
 			'dependency' => array(
 				'woostify_setting[shop_single_product_data_tabs_layout]',
+				'woostify_setting[shop_single_product_data_tabs_pos]',
 			),
 		)
 	)
@@ -532,6 +533,35 @@ $wp_customize->add_control(
 				array(
 					'normal'    => __( 'Normal', 'woostify' ),
 					'accordion' => __( 'Accordion', 'woostify' ),
+				)
+			),
+		)
+	)
+);
+
+// Product data tabs position.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_data_tabs_pos]',
+	array(
+		'default'           => $defaults['shop_single_product_data_tabs_pos'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_data_tabs_pos]',
+		array(
+			'label'    => __( 'Position', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_data_tabs_pos]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_shop_single_product_data_tabs_pos_choices',
+				array(
+					'woocommerce_single_product_summary' => __( 'In Product Summary', 'woostify' ),
+					'woocommerce_after_single_product_summary' => __( 'After Product Summary', 'woostify' ),
 				)
 			),
 		)

@@ -7809,6 +7809,10 @@ header.elementor-element {
   width: 100%;
 }
 
+.woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel {
+  padding: 0;
+}
+
 .related,
 .up-sells {
   border-top: 1px solid #efefef;

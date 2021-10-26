@@ -443,6 +443,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_tags'                         => true,
 				// Product Data Tabs.
 				'shop_single_product_data_tabs_layout'     => 'normal',
+				'shop_single_product_data_tabs_pos'        => 'woocommerce_after_single_product_summary',
 				// Related.
 				'shop_single_related_product'              => true,
 				'shop_single_product_related_total'        => 4,
