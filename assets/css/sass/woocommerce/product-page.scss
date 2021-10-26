@@ -907,8 +907,38 @@
 	}
 
 	&.layout-accordion {
+		.woostify-tab-wrapper {
+			border-bottom: 1px solid #efefef;
+
+			.woostify-svg-icon {
+				transition: transform .3s;
+			}
+			&.active {
+				.woostify-svg-icon {
+					transform: rotate(180deg);
+				}
+			}
+		}
+		.woostify-accordion-title {
+			display: block;
+			padding: 15px 0;
+			font-size: 18px;
+			display: flex;
+    		justify-content: space-between;
+		}
 		.woocommerce-Tabs-panel {
 			padding: 0;
+			max-width: 100%;
+
+			.woostify-tab-inner {
+				padding-bottom: 15px;
+
+				>h2 {
+					&:first-child {
+						display: none;
+					}
+				}
+			}
 		}
 	}
 }

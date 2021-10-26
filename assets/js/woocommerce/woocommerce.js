@@ -126,7 +126,7 @@ var confettiSnowEffect = function( confetti, duration ) {
 	var animationEnd = Date.now() + duration,
 	skew             = 1,
 	gravity          = 1,
-	startVelocity = 0;
+	startVelocity    = 0;
 
 	function randomInRange(min, max) {
 		return Math.random() * (max - min) + min;
@@ -143,7 +143,7 @@ var confettiSnowEffect = function( confetti, duration ) {
 				ticks: ticks,
 				origin: {
 					x: Math.random(),
-					// since particles fall down, skew start toward the top
+					// since particles fall down, skew start toward the top.
 					y: 0
 				},
 				colors: ["#EF2964"],
@@ -153,23 +153,6 @@ var confettiSnowEffect = function( confetti, duration ) {
 				drift: randomInRange( -0.4, 0.4 )
 			}
 		);
-		// confetti(
-		// 	{
-		// 		particleCount: 1,
-		// 		startVelocity: startVelocity,
-		// 		ticks: ticks,
-		// 		origin: {
-		// 			x: Math.random(),
-		// 			// since particles fall down, skew start toward the top
-		// 			y: 0
-		// 		},
-		// 		colors: ["#00C09D"],
-		// 		shapes: ['circle', 'square'],
-		// 		gravity: gravity,
-		// 		scalar: randomInRange( 0.4, 1 ),
-		// 		drift: randomInRange( -0.4, 0.4 )
-		// 	}
-		// );
 		confetti(
 			{
 				particleCount: 1,
@@ -177,7 +160,7 @@ var confettiSnowEffect = function( confetti, duration ) {
 				ticks: ticks,
 				origin: {
 					x: Math.random(),
-					// since particles fall down, skew start toward the top
+					// since particles fall down, skew start toward the top.
 					y: 0
 				},
 				colors: ["#2D87B0"],
@@ -192,59 +175,6 @@ var confettiSnowEffect = function( confetti, duration ) {
 			requestAnimationFrame( frame );
 		}
 	}() );
-	// ( function frame() {
-	// 	var timeLeft = animationEnd - Date.now(),
-	// 	ticks        = Math.max( 200, 500 * (timeLeft / duration) );
-	// 	skew         = Math.max( 0.8, skew - 0.001 );
-	// 	confetti(
-	// 		{
-	// 			particleCount: 1,
-	// 			startVelocity: 0,
-	// 			ticks: ticks,
-	// 			origin: {
-	// 				x: Math.random(),
-	// 				// since particles fall down, skew start toward the top
-	// 				y: 0
-	// 			},
-	// 			colors: ["#00C09D"],
-	// 			shapes: ['circle'],
-	// 			gravity: gravity,
-	// 			scalar: randomInRange( 0.4, 1 ),
-	// 			drift: randomInRange( -0.4, 0.4 )
-	// 		}
-	// 	);
-
-	// 	if (timeLeft > 0) {
-	// 		requestAnimationFrame( frame );
-	// 	}
-	// }() );
-	// ( function frame() {
-	// 	var timeLeft = animationEnd - Date.now(),
-	// 	ticks        = Math.max( 200, 500 * (timeLeft / duration) );
-	// 	skew         = Math.max( 0.8, skew - 0.001 );
-
-	// 	confetti(
-	// 		{
-	// 			particleCount: 1,
-	// 			startVelocity: 0,
-	// 			ticks: ticks,
-	// 			origin: {
-	// 				x: Math.random(),
-	// 				// since particles fall down, skew start toward the top
-	// 				y: 0
-	// 			},
-	// 			colors: ["#2D87B0"],
-	// 			shapes: ['circle'],
-	// 			gravity: gravity,
-	// 			scalar: randomInRange( 0.4, 1 ),
-	// 			drift: randomInRange( -0.4, 0.4 )
-	// 		}
-	// 	);
-
-	// 	if (timeLeft > 0) {
-	// 		requestAnimationFrame( frame );
-	// 	}
-	// }() );
 }
 
 // Product quantity on mini cart.
@@ -452,30 +382,29 @@ var updateHeaderCartPrice = function () {
 	}
 }
 
-var woostifyGetHeight = function(el) {
-	var el_style      = window.getComputedStyle(el),
+var woostifyGetHeight = function( el ) {
+	var el_style      = window.getComputedStyle( el ),
 		el_display    = el_style.display,
 		el_position   = el_style.position,
 		el_visibility = el_style.visibility,
-		el_max_height = el_style.maxHeight.replace('px', '').replace('%', ''),
+		el_max_height = el_style.maxHeight.replace( 'px', '' ).replace( '%', '' ),
 
 		wanted_height = 0;
 
-
-	// if its not hidden we just return normal height
-	if(el_display !== 'none' && el_max_height !== '0') {
+	// if its not hidden we just return normal height.
+	if ( el_display !== 'none' && el_max_height !== '0' ) {
 		return el.offsetHeight;
 	}
 
 	// the element is hidden so:
-	// making the el block so we can meassure its height but still be hidden
+	// making the el block so we can meassure its height but still be hidden.
 	el.style.position   = 'absolute';
 	el.style.visibility = 'hidden';
 	el.style.display    = 'block';
 
-	wanted_height     = el.offsetHeight;
+	wanted_height = el.offsetHeight;
 
-	// reverting to the original values
+	// reverting to the original values.
 	el.style.display    = el_display;
 	el.style.position   = el_position;
 	el.style.visibility = el_visibility;
@@ -484,29 +413,32 @@ var woostifyGetHeight = function(el) {
 }
 
 
-// Toggle element with slideUp and slideDown
-var woostifyToggleSlide = function(el) {
+// Toggle element with slideUp and slideDown.
+var woostifyToggleSlide = function( el ) {
 	var el_max_height = 0;
 
-	if(el.getAttribute('data-max-height')) {
-		// we've already used this before, so everything is setup
-		if(el.style.maxHeight.replace('px', '').replace('%', '') === '0') {
-			el.style.maxHeight = el.getAttribute('data-max-height');
+	if ( el.getAttribute( 'data-max-height' ) ) {
+		// We've already used this before, so everything is setup.
+		if ( el.style.maxHeight.replace( 'px', '' ).replace( '%', '' ) === '0') {
+			el.style.maxHeight = el.getAttribute( 'data-max-height' );
 		} else {
 			el.style.maxHeight = '0';
 		}
 	} else {
-		el_max_height                  = woostifyGetHeight(el) + 'px';
-		el.style['transition']         = 'max-height 0.5s';
-		el.style.overflowY             = 'hidden';
-		el.style.maxHeight             = '0';
-		el.setAttribute('data-max-height', el_max_height);
-		el.style.display               = 'block';
+		el_max_height          = woostifyGetHeight( el ) + 'px';
+		el.style['transition'] = 'max-height 0.3s';
+		el.style.overflowY     = 'hidden';
+		el.style.maxHeight     = '0';
+		el.setAttribute( 'data-max-height', el_max_height );
+		el.style.display = 'block';
 
-		// we use setTimeout to modify maxHeight later than display (to we have the transition effect)
-		setTimeout(function() {
-			el.style.maxHeight = el_max_height;
-		}, 10);
+		// We use setTimeout to modify maxHeight later than display (to we have the transition effect).
+		setTimeout(
+			function() {
+				el.style.maxHeight = el_max_height;
+			},
+			10
+		);
 	}
 }
 
@@ -517,26 +449,44 @@ var productDataTabsAccordion = function() {
 		return;
 	}
 
-	wcTabs.forEach( function( wcTab ) {
-		var tabTitles = wcTab.querySelectorAll( '.woostify-accordion-title' );
-		if ( ! tabTitles.length ) {
-			return;
-		}
-
-		tabTitles.forEach( function( tabTitle ) {
-			var wcTabPanel = tabTitle.closest('.woostify-tab-wrapper').querySelector( '.woocommerce-Tabs-panel');
-			tabTitle.onclick = function() {
-				if ( tabTitle.classList.contains( 'active' ) ) {
-					tabTitle.classList.remove( 'active' );
-				} else {
-
-				}
-
-				var nextEls = nextSiblings(tabTitle);
-				woostifyToggleSlide( nextEls[0] );
+	wcTabs.forEach(
+		function( wcTab ) {
+			var tabTitles = wcTab.querySelectorAll( '.woostify-accordion-title' );
+			if ( ! tabTitles.length ) {
+				return;
 			}
-		} )
-	} )
+
+			var tabsWrapper = wcTab.querySelectorAll( '.woostify-tab-wrapper' );
+
+			tabTitles.forEach(
+				function( tabTitle, tabTitleIdx ) {
+					tabTitle.onclick = function() {
+						tabsWrapper.forEach(
+							function( tabWrapper, tabWrapperIdx ) {
+								if ( tabWrapperIdx === tabTitleIdx ) {
+									return;
+								}
+
+								if ( tabWrapper.classList.contains( 'active' ) ) {
+									woostifyToggleSlide( tabWrapper.querySelector( '.woocommerce-Tabs-panel' ) );
+								}
+								tabWrapper.classList.remove( 'active' );
+							}
+						);
+
+						if ( tabTitle.parentNode.classList.contains( 'active' ) ) {
+							tabTitle.parentNode.classList.remove( 'active' );
+						} else {
+							tabTitle.parentNode.classList.add( 'active' );
+						}
+
+						var nextEls = nextSiblings( tabTitle );
+						woostifyToggleSlide( nextEls[0] );
+					}
+				}
+			)
+		}
+	)
 }
 
 document.addEventListener(

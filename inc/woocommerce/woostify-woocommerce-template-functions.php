@@ -1426,13 +1426,16 @@ if ( ! function_exists( 'woostify_output_product_data_tabs_accordion' ) ) {
 					<div class="woostify-tab-wrapper">
 						<a href="javascript:;" class="woostify-accordion-title">
 							<?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?>
+							<?php Woostify_Icon::fetch_svg_icon( 'angle-down', true ); ?>
 						</a>
 						<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
-							<?php
-							if ( isset( $product_tab['callback'] ) ) {
-								call_user_func( $product_tab['callback'], $key, $product_tab );
-							}
-							?>
+							<div class="woostify-tab-inner">
+								<?php
+								if ( isset( $product_tab['callback'] ) ) {
+									call_user_func( $product_tab['callback'], $key, $product_tab );
+								}
+								?>
+							</div>
 						</div>
 					</div>
 				<?php endforeach; ?>
