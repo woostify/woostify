@@ -1447,3 +1447,90 @@ if ( ! function_exists( 'woostify_output_product_data_tabs_accordion' ) ) {
 		endif;
 	}
 }
+
+if ( ! function_exists( 'woostify_custom_product_data_tabs' ) ) {
+	/**
+	 * Woostify custom tabs
+	 *
+	 * @param array $tabs default tabs
+	 */
+	function woostify_custom_product_data_tabs( $tabs ) {
+		$new_tabs    = array();
+		$options     = woostify_options( false );
+		$custom_tabs = $options['shop_single_product_data_tabs_items'];
+		$custom_tabs = (array) json_decode( $custom_tabs );
+		$new_data    = array(
+			'title'    => '',
+			'priority' => '',
+			'callback' => '',
+		);
+		foreach ( $custom_tabs as $key => $custom_tab ) {
+			$priority = $key * 5;
+			if ( 'custom' === $custom_tab->type ) {
+				$custom_tab_key              = 'custom_tab_' . $key;
+				$new_data                    = array(
+					'title'    => $custom_tab->name,
+					'priority' => $priority,
+					'callback' => 'woostify_custom_tab_callback',
+				);
+				$new_tabs[ $custom_tab_key ] = $new_data;
+			} else {
+				if ( isset( $tabs[ $custom_tab->type ] ) ) {
+					$new_data                      = $tabs[ $custom_tab->type ];
+					$new_data['priority']          = $key * 5;
+					$new_tabs[ $custom_tab->type ] = $new_data;
+				} else {
+					switch ( $custom_tab->type ) {
+						case 'description':
+							$new_tabs['additional_information'] = array(
+								'title'    => __( 'Description', 'woostify' ),
+								'priority' => $priority,
+								'callback' => 'woocommerce_product_description_tab',
+							);
+							break;
+						case 'additional_information':
+							global $product, $post;
+							if ( $product && ( $product->has_attributes() || apply_filters( 'wc_product_enable_dimensions_display', $product->has_weight() || $product->has_dimensions() ) ) ) {
+								$new_tabs['additional_information'] = array(
+									'title'    => __( 'Additional information', 'woostify' ),
+									'priority' => $priority,
+									'callback' => 'woocommerce_product_additional_information_tab',
+								);
+							}
+							break;
+						case 'reviews':
+							global $product, $post;
+							if ( comments_open() ) {
+								$new_data['reviews'] = array(
+									/* translators: %s: reviews count */
+									'title'    => sprintf( __( 'Reviews (%d)', 'woocommerce' ), $product->get_review_count() ),
+									'priority' => $priority,
+									'callback' => 'comments_template',
+								);
+							}
+							break;
+					}
+				}
+			}
+		}
+
+		return $new_tabs;
+	}
+}
+
+if ( ! function_exists( 'woostify_custom_tab_callback' ) ) {
+	/**
+	 * Callback for custom tab
+	 *
+	 * @param string $key Tab key.
+	 * @param array  $product_tab Tab data.
+	 */
+	function woostify_custom_tab_callback( $key, $product_tab ) {
+		$options     = woostify_options( false );
+		$custom_tabs = $options['shop_single_product_data_tabs_items'];
+		$custom_tabs = (array) json_decode( $custom_tabs );
+		$curr_index  = explode( '_', $key )[2];
+
+		echo do_shortcode( $custom_tabs[ $curr_index ]->content );
+	}
+}

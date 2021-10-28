@@ -60,7 +60,9 @@
 				var latest_item_index = list_item_wrap.find( '.woostify-sortable-list-item-wrap:not(.example-item-tmpl)' ).length - 1;
 
 				function update_value() {
-					var value = {}
+					var value = {};
+
+					list_item_wrap = control.container.find( '.woostify-adv-list-items' );
 					list_item_wrap.find( '.woostify-sortable-list-item-wrap:not(.example-item-tmpl)' ).each(
 						function( item_idx, item_obj ) {
 							var item_wrap   = jQuery( item_obj )
@@ -103,25 +105,30 @@
 				}
 
 				function add_custom_tab() {
-					var add_tab_btn       = jQuery( '.adv-list-add-item-btn' );
-					var example_item_tmpl = control.container.find( '.woostify-sortable-list-item-wrap.example-item-tmpl' );
-					var new_item_tmpl     = example_item_tmpl.clone();
-					add_tab_btn.on(
+					control.container.find( '.adv-list-add-item-btn' ).on(
 						'click',
 						function( e ) {
 							e.preventDefault();
 
+							var example_item_tmpl = control.container.find( '.woostify-sortable-list-item-wrap.example-item-tmpl' );
+							var new_item_tmpl     = example_item_tmpl.clone();
+
 							++latest_item_index;
 
 							new_item_tmpl.removeClass( 'example-item-tmpl' );
-							new_item_tmpl.html( function( i, oldHTML ) {
-								return oldHTML.replace(/{{ITEM_ID}}/g, latest_item_index);
-							} )
+							new_item_tmpl.find( '.sortable-item-name' ).text( 'Custom Tab' );
+							new_item_tmpl.find( 'input.woostify-adv-list-input--name' ).attr( 'value', 'Custom Tab' );
+							new_item_tmpl.html(
+								function( i, oldHTML ) {
+									return oldHTML.replace( /{{ITEM_ID}}/g, latest_item_index );
+								}
+							)
 
 							// Append new item to list.
+							list_item_wrap = control.container.find( '.woostify-adv-list-items' );
 							list_item_wrap.append( new_item_tmpl );
 
-							$()
+							update_value();
 						}
 					)
 				}
@@ -130,17 +137,26 @@
 
 				add_custom_tab();
 
-				control.container.find( '.woostify-adv-list-select' ).on(
+				jQuery( document ).on(
 					'change',
+					'.woostify-adv-list-select',
 					function() {
+						var currVal  = jQuery( this ).val();
+						var currText = jQuery( this ).find( 'option:selected' ).text();
+						if ( 'custom' !== currVal ) {
+							var item_wrap = jQuery( this ).closest( '.woostify-sortable-list-item-wrap' )
+							item_wrap.find( '.sortable-item-name' ).text( currText )
+						}
+
 						update_value()
 
 						display_item_options( jQuery( this ) )
-					},
+					}
 				)
 
-				control.container.find( '.woostify-adv-list-items .sortable-item-icon-del' ).on(
+				jQuery( document ).on(
 					'click',
+					'.woostify-adv-list-items .sortable-item-icon-del',
 					function() {
 						var currBtn = jQuery( this );
 						var result  = confirm( "Are you sure delete this item?" );
@@ -148,26 +164,29 @@
 							currBtn.closest( '.woostify-sortable-list-item-wrap' ).remove();
 							update_value()
 						}
-					},
+					}
 				)
 
-				control.container.find( '.woostify-adv-list-input--name' ).on(
+				jQuery( document ).on(
 					'keyup',
+					'.adv-list-item-content .woostify-adv-list-input--name',
 					function() {
 						var item_wrap = jQuery( this ).closest( '.woostify-sortable-list-item-wrap' )
 						item_wrap.find( '.sortable-item-name' ).text( jQuery( this ).val() )
-					},
+					}
 				)
 
-				control.container.find( '.woostify-adv-list-input' ).on(
+				jQuery( document ).on(
 					'blur change',
+					'.adv-list-item-content .woostify-adv-list-input',
 					function() {
 						update_value()
-					},
+					}
 				)
 
-				control.container.find( '.sortable-item-icon-expand' ).on(
+				jQuery( document ).on(
 					'click',
+					'.woostify-adv-list-items .sortable-item-icon-expand',
 					function() {
 						var btn          = jQuery( this )
 						var item_wrap    = btn.closest( '.woostify-sortable-list-item-wrap' )
@@ -175,12 +194,12 @@
 						if ( item_wrap.hasClass( 'checked' ) ) {
 							item_content.slideToggle()
 						}
-					},
+					}
 				)
 
 				control.container.find( '.woostify-adv-list-items' ).sortable(
 					{
-						handle: '.sortable-item-name',
+						handle: '.woostify-sortable-list-item',
 						update: function( event, ui ) {
 							update_value()
 						},

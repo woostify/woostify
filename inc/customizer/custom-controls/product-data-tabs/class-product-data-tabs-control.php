@@ -72,7 +72,7 @@ class Woostify_Product_Data_Tabs_Control extends WP_Customize_Control {
 	 * @return void
 	 */
 	public function render_content() {
-		$items = json_decode( $this->value() );
+		$items = (array) json_decode( $this->value() );
 		?>
 		<div class="woostify-adv-list-container">
 			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>

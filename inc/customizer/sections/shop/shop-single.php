@@ -574,7 +574,7 @@ $wp_customize->add_setting(
 	'woostify_setting[shop_single_product_data_tabs_items]',
 	array(
 		'default'           => $defaults['shop_single_product_data_tabs_items'],
-		'sanitize_callback' => 'woostify_sanitize_raw_html',
+		'sanitize_callback' => 'wp_kses_post',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 	)

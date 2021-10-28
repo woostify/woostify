@@ -172,6 +172,17 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Shipping threshold.
 			add_action( 'init', array( $this, 'free_shipping_threshold' ) );
+
+			// Custom product data tab.
+			add_filter( 'woocommerce_product_tabs', array( $this, 'product_data_tabs' ) );
+		}
+
+		/**
+		 * Custom product data tabs
+		 */
+		public function product_data_tabs( $tabs ) {
+			$tabs = woostify_custom_product_data_tabs( $tabs );
+			return $tabs;
 		}
 
 		/**
