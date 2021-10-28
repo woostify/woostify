@@ -391,7 +391,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'items' => $options['tablet_products_per_row'],
 						),
 						'992' => array(
-							'items' => $options['products_per_row'],
+							'items' => $options['shop_single_product_related_columns'],
 						),
 					),
 				);

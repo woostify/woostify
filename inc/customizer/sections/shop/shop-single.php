@@ -505,6 +505,7 @@ $wp_customize->add_control(
 			'dependency' => array(
 				'woostify_setting[shop_single_related_product]',
 				'woostify_setting[shop_single_product_related_total]',
+				'woostify_setting[shop_single_product_related_columns]',
 				'woostify_setting[shop_single_product_related_enable_carousel]',
 				'woostify_setting[shop_single_product_related_carousel_arrows]',
 				'woostify_setting[shop_single_product_related_carousel_dots]',
@@ -530,6 +531,42 @@ $wp_customize->add_control(
 			'label'    => __( 'Display', 'woostify' ),
 			'settings' => 'woostify_setting[shop_single_related_product]',
 			'section'  => 'woostify_shop_single',
+		)
+	)
+);
+
+// Related columns.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_related_columns]',
+	array(
+		'default'           => $defaults['shop_single_product_related_columns'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'default'           => $defaults['shop_single_product_related_columns'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_related_columns]',
+		array(
+			'label'    => __( 'Columns', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_related_columns]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_shop_single_product_related_columns_choices',
+				array(
+					1 => 1,
+					2 => 2,
+					3 => 3,
+					4 => 4,
+					5 => 5,
+					6 => 6,
+				)
+			),
 		)
 	)
 );

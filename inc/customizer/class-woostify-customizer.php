@@ -444,6 +444,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				// Related.
 				'shop_single_related_product'              => true,
 				'shop_single_product_related_total'        => 4,
+				'shop_single_product_related_columns'      => 4,
 				'shop_single_product_related_enable_carousel' => false,
 				'shop_single_product_related_carousel_arrows' => true,
 				'shop_single_product_related_carousel_dots' => true,
