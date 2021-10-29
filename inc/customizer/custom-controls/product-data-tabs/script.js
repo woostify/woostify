@@ -5,52 +5,6 @@
  */
 
 ( function ( api ) {
-	// Editor control.
-	jQuery( window ).load(
-		function () {
-			jQuery( 'textarea.wp-editor-area' ).each(
-				function () {
-					var $this = jQuery( this ),
-					id        = $this.attr( 'id' ),
-					$input    = jQuery( 'input[data-editor-id="' + id + '"]' ),
-					editor    = tinyMCE.get( id ),
-					setChange,
-					content;
-
-					if ( editor ) {
-						editor.on(
-							'change',
-							function ( e ) {
-								editor.save();
-								content = editor.getContent();
-								clearTimeout( setChange );
-								setChange = setTimeout(
-									function ()  {
-										$input.val( content ).trigger( 'change' );
-									},
-									500
-								);
-							}
-						);
-					}
-
-					$this.css( 'visibility', 'visible' ).on(
-						'keyup',
-						function () {
-							content = $this.val();
-							clearTimeout( setChange );
-							setChange = setTimeout(
-								function () {
-									$input.val( content ).trigger( 'change' );
-								},
-								500
-							);
-						}
-					);
-				}
-			);
-		}
-	);
 	api.controlConstructor['woostify-product-data-tabs'] = api.Control.extend(
 		{
 			ready: function() {
@@ -80,6 +34,13 @@
 							)
 						},
 					)
+					value          = jQuery.map(
+						value,
+						function(val, idx) {
+							return [val];
+						}
+					);
+					console.log( value );
 					control.settings['default'].set( JSON.stringify( value ) );
 				}
 
@@ -124,13 +85,51 @@
 								}
 							)
 
+							var textarea_id = new_item_tmpl.find( 'textarea' ).attr( 'id' );
+
 							// Append new item to list.
 							list_item_wrap = control.container.find( '.woostify-adv-list-items' );
 							list_item_wrap.append( new_item_tmpl );
 
+							init_editor( textarea_id );
+
 							update_value();
 						}
 					)
+				}
+
+				function init_editor( textarea_id ) {
+					var $input          = jQuery( 'input[data-editor-id="' + textarea_id + '"]' ),
+					setChange,
+					content;
+					var editor_settings = {
+						tinymce: {
+							wpautop: true,
+							plugins : 'charmap colorpicker compat3x directionality fullscreen hr image lists media paste tabfocus textcolor wordpress wpautoresize wpdialogs wpeditimage wpemoji wpgallery wplink wptextpattern wpview',
+							toolbar1: 'bold italic underline strikethrough | bullist numlist | blockquote hr wp_more | alignleft aligncenter alignright | link unlink | fullscreen | wp_adv',
+							toolbar2: 'formatselect alignjustify forecolor | pastetext removeformat charmap | outdent indent | undo redo | wp_help'
+						},
+						quicktags: true,
+						mediaButtons: true,
+					}
+					wp.editor.initialize( textarea_id, editor_settings );
+
+					var editor = tinyMCE.get( textarea_id );
+
+					editor.on(
+						'change',
+						function ( e ) {
+							editor.save();
+							content = editor.getContent();
+							clearTimeout( setChange );
+							setChange = setTimeout(
+								function ()  {
+									$input.val( content ).trigger( 'change' );
+								},
+								500
+							);
+						}
+					);
 				}
 
 				display_item_options( list_item_wrap.find( '.woostify-adv-list-select' ) );
@@ -197,10 +196,24 @@
 					}
 				)
 
+				control.container.find( '.woostify-sortable-list-item-wrap:not(.example-item-tmpl) .woostify-adv-list-editor' ).each(
+					function() {
+						var textarea_id = jQuery( this ).attr( 'id' );
+						init_editor( textarea_id );
+					}
+				);
+
 				control.container.find( '.woostify-adv-list-items' ).sortable(
 					{
 						handle: '.woostify-sortable-list-item',
 						update: function( event, ui ) {
+							control.container.find( '.woostify-sortable-list-item-wrap:not(.example-item-tmpl) .woostify-adv-list-editor' ).each(
+								function() {
+									var textarea_id = jQuery( this ).attr( 'id' );
+									wp.editor.remove( textarea_id );
+									init_editor( textarea_id );
+								}
+							);
 							update_value()
 						},
 					},
@@ -208,11 +221,6 @@
 
 				control.container.find( '.woostify-adv-list-items' ).disableSelection()
 			}
-		}
-	)
-	jQuery( window ).load(
-		function() {
-			console.log( 'test' );
 		}
 	)
 })( wp.customize );

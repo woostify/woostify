@@ -1458,7 +1458,7 @@ if ( ! function_exists( 'woostify_custom_product_data_tabs' ) ) {
 		$new_tabs    = array();
 		$options     = woostify_options( false );
 		$custom_tabs = $options['shop_single_product_data_tabs_items'];
-		$custom_tabs = (array) json_decode( $custom_tabs );
+		$custom_tabs = json_decode( $custom_tabs );
 		$new_data    = array(
 			'title'    => '',
 			'priority' => '',

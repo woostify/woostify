@@ -163,25 +163,21 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		public static function woostify_get_woostify_default_setting_values() {
 			$product_data_tabs_items = array(
 				array(
-					'type' => 'description',
-					'name' => 'Description', 'woostify',
+					'type'    => 'description',
+					'name'    => 'Description',
+					'woostify',
 					'content' => '',
 				),
 				array(
-					'type' => 'additional_information',
-					'name' => 'Additional information',
+					'type'    => 'additional_information',
+					'name'    => 'Additional information',
 					'content' => '',
 				),
 				array(
-					'type' => 'reviews',
-					'name' => 'Reviews',
+					'type'    => 'reviews',
+					'name'    => 'Reviews',
 					'content' => '',
 				),
-				array(
-					'type' => 'custom',
-					'name' => 'Custom Tab',
-					'content' => '',
-				)
 			);
 			$sticky_footer_bar_items = array(
 				array(

@@ -72,7 +72,7 @@ class Woostify_Product_Data_Tabs_Control extends WP_Customize_Control {
 	 * @return void
 	 */
 	public function render_content() {
-		$items = (array) json_decode( $this->value() );
+		$items = json_decode( $this->value() );
 		?>
 		<div class="woostify-adv-list-container">
 			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
@@ -113,7 +113,8 @@ class Woostify_Product_Data_Tabs_Control extends WP_Customize_Control {
 								$content_field_name = "{$this->id}[{$k}][content]";
 								?>
 								<label for="<?php echo esc_attr( $content_field_id ); ?>"><?php esc_html_e( 'Content', 'woostify' ); ?></label>
-								<textarea class="woostify-adv-list-input woostify-adv-list-input--content" name="<?php echo esc_attr( $content_field_name ); ?>" id="<?php echo esc_attr( $content_field_id ); ?>" rows="5"><?php echo esc_html( $val->content ); ?></textarea>
+								<textarea class="woostify-adv-list-editor"  id="<?php echo esc_attr( $content_field_id ); ?>" rows="5"><?php echo esc_html( $val->content ); ?></textarea>
+								<input type="hidden" class="woostify-adv-list-input woostify-adv-list-input--content" name="<?php echo esc_attr( $content_field_name ); ?>" data-editor-id="<?php echo esc_attr( $content_field_id ); ?>" value="<?php echo esc_attr( $val->content ); ?>">
 							</div>
 						</div>
 					</div>
@@ -154,9 +155,10 @@ class Woostify_Product_Data_Tabs_Control extends WP_Customize_Control {
 									$content_field_name = "{$this->id}[{{ITEM_ID}}][content]";
 									?>
 									<label for="<?php echo esc_attr( $content_field_id ); ?>"><?php esc_html_e( 'Content', 'woostify' ); ?></label>
-									<textarea class="woostify-adv-list-input woostify-adv-list-input--content" name="<?php echo esc_attr( $content_field_name ); ?>" id="<?php echo esc_attr( $content_field_id ); ?>" rows="5"></textarea>
+									<textarea class="woostify-adv-list-editor"  id="<?php echo esc_attr( $content_field_id ); ?>" rows="5"></textarea>
+									<input type="hidden" class="woostify-adv-list-input woostify-adv-list-input--content" name="<?php echo esc_attr( $content_field_name ); ?>" data-editor-id="<?php echo esc_attr( $content_field_id ); ?>" value="">
 								</div>
-							</div>
+								</div>
 						</div>
 						<?php
 					}
