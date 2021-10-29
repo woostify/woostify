@@ -546,7 +546,7 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 	 */
 	function woostify_change_sale_flash() {
 		global $product;
-		if ( ! $product || ! is_object( $product ) ) {
+		if ( ! $product || ! is_object( $product ) || class_exists( 'BM_Price' ) ) {
 			return;
 		}
 		$options      = woostify_options( false );
