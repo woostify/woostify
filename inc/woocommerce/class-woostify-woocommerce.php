@@ -211,7 +211,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		/**
 		 * Mini cart top content load custom html
 		 *
-		 * @param string $position Position hook.
+		 * @param string $position Content position.
 		 */
 		public function mini_cart_load_custom_html( $position ) {
 			$options     = woostify_options( false );

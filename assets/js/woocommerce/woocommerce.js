@@ -312,14 +312,18 @@ var woostifyQuantityMiniCart = function() {
 									let prev_percent = shipping_threshold[0].getAttribute( 'data-progress' );
 									for ( var fsti = 0, fstc = shipping_threshold.length; fsti < fstc; fsti++ ) {
 										shipping_threshold[fsti].setAttribute( 'data-progress', data.free_shipping_threshold.percent );
-										shipping_threshold[fsti].querySelector( '.progress-bar-message' ).innerHTML               = data.free_shipping_threshold.message;
-										shipping_threshold[fsti].querySelector( '.progress-percent' ).innerHTML                   = data.free_shipping_threshold.percent + '%';
-										shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.minWidth           = data.free_shipping_threshold.percent + '%';
-										shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.transitionDuration = '.6s';
-										if ( 100 <= parseInt( data.free_shipping_threshold.percent ) ) {
-											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.add( 'success' );
-										} else {
-											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.remove( 'success' );
+										shipping_threshold[fsti].querySelector( '.progress-bar-message' ).innerHTML = data.free_shipping_threshold.message;
+										if ( shipping_threshold[fsti].querySelector( '.progress-percent' ) ) {
+											shipping_threshold[fsti].querySelector( '.progress-percent' ).innerHTML = data.free_shipping_threshold.percent + '%';
+										}
+										if ( shipping_threshold[fsti].querySelector( '.progress-bar-status' ) ) {
+											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.minWidth           = data.free_shipping_threshold.percent + '%';
+											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.transitionDuration = '.6s';
+											if ( 100 <= parseInt( data.free_shipping_threshold.percent ) ) {
+												shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.add( 'success' );
+											} else {
+												shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.remove( 'success' );
+											}
 										}
 									}
 
