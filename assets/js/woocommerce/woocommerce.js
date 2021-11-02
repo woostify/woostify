@@ -386,65 +386,67 @@ var updateHeaderCartPrice = function () {
 	}
 }
 
-var woostifyGetHeight = function( el ) {
-	var el_style      = window.getComputedStyle( el ),
-		el_display    = el_style.display,
-		el_position   = el_style.position,
-		el_visibility = el_style.visibility,
-		el_max_height = el_style.maxHeight.replace( 'px', '' ).replace( '%', '' ),
+// Show an element.
+var woostiftToggleShow = function (elem) {
 
-		wanted_height = 0;
+	// Get the natural height of the element.
+	var getHeight = function () {
+		elem.style.display = 'block';
+		var height         = elem.scrollHeight + 'px';
+		elem.style.display = '';
+		return height;
+	};
 
-	// if its not hidden we just return normal height.
-	if ( el_display !== 'none' && el_max_height !== '0' ) {
-		return el.offsetHeight;
+	var height = getHeight();
+	elem.classList.add( 'is-visible' );
+	elem.style.height = height;
+
+	// Once the transition is complete, remove the inline max-height so the content can scale responsively.
+	window.setTimeout(
+		function () {
+			elem.style.height = '';
+		},
+		350
+	);
+
+};
+
+// Hide an element.
+var woostiftToggleHide = function (elem) {
+
+	// Give the element a height to change from.
+	elem.style.height = elem.scrollHeight + 'px';
+
+	// Set the height back to 0.
+	window.setTimeout(
+		function () {
+			elem.style.height = '0';
+		},
+		1
+	);
+
+	// When the transition is complete, hide it.
+	window.setTimeout(
+		function () {
+			elem.classList.remove( 'is-visible' );
+		},
+		350
+	);
+};
+
+// Toggle element visibility.
+var woostifyToggleSlide = function (elem, timing) {
+
+	// If the element is visible, hide it.
+	if (elem.classList.contains( 'is-visible' )) {
+		woostiftToggleHide( elem );
+		return;
 	}
 
-	// the element is hidden so:
-	// making the el block so we can meassure its height but still be hidden.
-	el.style.position   = 'absolute';
-	el.style.visibility = 'hidden';
-	el.style.display    = 'block';
+	// Otherwise, show it.
+	woostiftToggleShow( elem );
 
-	wanted_height = el.offsetHeight;
-
-	// reverting to the original values.
-	el.style.display    = el_display;
-	el.style.position   = el_position;
-	el.style.visibility = el_visibility;
-
-	return wanted_height;
-}
-
-
-// Toggle element with slideUp and slideDown.
-var woostifyToggleSlide = function( el ) {
-	var el_max_height = 0;
-
-	if ( el.getAttribute( 'data-max-height' ) ) {
-		// We've already used this before, so everything is setup.
-		if ( el.style.maxHeight.replace( 'px', '' ).replace( '%', '' ) === '0') {
-			el.style.maxHeight = el.getAttribute( 'data-max-height' );
-		} else {
-			el.style.maxHeight = '0';
-		}
-	} else {
-		el_max_height          = woostifyGetHeight( el ) + 'px';
-		el.style['transition'] = 'max-height 0.3s';
-		el.style.overflowY     = 'hidden';
-		el.style.maxHeight     = '0';
-		el.setAttribute( 'data-max-height', el_max_height );
-		el.style.display = 'block';
-
-		// We use setTimeout to modify maxHeight later than display (to we have the transition effect).
-		setTimeout(
-			function() {
-				el.style.maxHeight = el_max_height;
-			},
-			10
-		);
-	}
-}
+};
 
 var productDataTabsAccordion = function() {
 	var wcTabs = document.querySelectorAll( '.woocommerce-tabs.layout-accordion' );
