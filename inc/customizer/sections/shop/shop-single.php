@@ -576,7 +576,6 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_single_product_data_tabs_items'],
 		'sanitize_callback' => '',
 		'type'              => 'option',
-		'transport'         => 'postMessage',
 	)
 );
 

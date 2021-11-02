@@ -933,9 +933,14 @@
 			.woostify-tab-inner {
 				padding-bottom: 15px;
 
-				>h2 {
-					&:first-child {
-						display: none;
+				.woostify-tab-scroll-content {
+					overflow-y: auto;
+					max-height: 250px;
+
+					>h2 {
+						&:first-child {
+							display: none;
+						}
 					}
 				}
 			}

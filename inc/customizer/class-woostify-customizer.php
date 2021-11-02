@@ -29,6 +29,38 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 			add_action( 'wp_ajax_woostify_regenerate_fonts_folder', array( $this, 'regenerate_woostify_fonts_folder' ) );
 			add_action( 'wp_ajax_woostify_reset_dynamic_stylesheet_folder', array( $this, 'reset_dynamic_stylesheet_folder' ) );
+
+			add_action( 'customize_preview_init', array( $this, 'woocommerce_init_action' ) );
+		}
+
+		/**
+		 * Init actions in customize preview
+		 */
+		function woocommerce_init_action() {
+			$options = woostify_options( false );
+
+			$pdt_layout       = $options['shop_single_product_data_tabs_layout'];
+			$pdt_callback     = 'normal' === $pdt_layout ? 'woostify_output_product_data_tabs' : 'woostify_output_product_data_tabs_accordion';
+			$pdt_pos          = $options['shop_single_product_data_tabs_pos'];
+			$pdt_pos_priority = 'woocommerce_single_product_summary' === $pdt_pos ? 35 : 10;
+
+			remove_action( 'woocommerce_after_single_product_summary', 'woostify_output_product_data_tabs_accordion', 10 );
+			remove_action( 'woocommerce_after_single_product_summary', 'woostify_output_product_data_tabs', 10 );
+			remove_action( 'woocommerce_single_product_summary', 'woostify_output_product_data_tabs', 35 );
+			remove_action( 'woocommerce_single_product_summary', 'woostify_output_product_data_tabs_accordion', 35 );
+
+			add_action( $pdt_pos, $pdt_callback, $pdt_pos_priority );
+
+			// Custom product data tab.
+			add_filter( 'woocommerce_product_tabs', array( $this, 'product_data_tabs' ) );
+		}
+
+		/**
+		 * Custom product data tabs
+		 */
+		public function product_data_tabs( $tabs ) {
+			$tabs = woostify_custom_product_data_tabs( $tabs );
+			return $tabs;
 		}
 
 		/**

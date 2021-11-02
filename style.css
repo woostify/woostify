@@ -7838,7 +7838,12 @@ header.elementor-element {
   padding-bottom: 15px;
 }
 
-.woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner > h2:first-child {
+.woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner .woostify-tab-scroll-content {
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+.woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner .woostify-tab-scroll-content > h2:first-child {
   display: none;
 }
 

@@ -40,7 +40,6 @@
 							return [val];
 						}
 					);
-					console.log( value );
 					control.settings['default'].set( JSON.stringify( value ) );
 				}
 
