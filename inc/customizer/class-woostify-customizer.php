@@ -503,6 +503,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'mini_cart_after_checkout_button_content_select' => '',
 				'mini_cart_after_checkout_button_content_custom_html' => '',
 				// CHECKOUT PAGE.
+				'checkout_page_layout'                     => 'layout-1',
 				'checkout_distraction_free'                => false,
 				'checkout_multi_step'                      => false,
 				'checkout_sticky_place_order_button'       => true,
