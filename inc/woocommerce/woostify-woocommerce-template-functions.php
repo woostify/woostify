@@ -954,7 +954,7 @@ if ( ! function_exists( 'woostify_add_product_thumbnail_to_checkout_order' ) ) {
 	function woostify_add_product_thumbnail_to_checkout_order( $product_name, $cart_item, $cart_item_key ) {
 		$options             = woostify_options( false );
 		$multi_step_checkout = woostify_is_multi_checkout();
-		if ( ! is_checkout() || ! ( $options['checkout_multi_step'] && $multi_step_checkout && ! is_singular( array( 'cartflows_flow', 'cartflows_step' ) ) ) ) {
+		if ( ! is_checkout() || ! ( $multi_step_checkout && ! is_singular( array( 'cartflows_flow', 'cartflows_step' ) ) ) ) {
 			return $product_name;
 		}
 
@@ -998,7 +998,7 @@ if ( ! function_exists( 'woostify_is_multi_checkout' ) ) {
 		}
 
 		$options = woostify_options( false );
-		return ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && ! is_wc_endpoint_url( 'order-pay' ) && $options['checkout_multi_step'] );
+		return ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && ! is_wc_endpoint_url( 'order-pay' ) && ( 'layout-2' === $options['checkout_page_layout'] ) );
 	}
 }
 
@@ -1372,6 +1372,173 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 		</nav>
 		<?php
 		do_action( 'woocommerce_after_account_navigation' );
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_form_distr_free_bg' ) ) {
+	/**
+	 * Checkout form background.
+	 */
+	function woostify_checkout_form_distr_free_bg() {
+		?>
+		<div class="form-distr-free-bg">
+			<div class="col-left"></div>
+			<div class="woostify-col right-bg"></div>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_row_start' ) ) {
+	/**
+	 * Checkout form add row start element
+	 */
+	function woostify_checkout_row_start() {
+		echo '<div class="woostify-row">';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_col_left_start' ) ) {
+	/**
+	 * Checkout form add column left start element
+	 */
+	function woostify_checkout_col_left_start() {
+		echo '<div class="col-left">';
+		echo '<div id="checkout-spacer"></div>';
+		echo '<div class="woostify-woocommerce-NoticeGroup"></div>';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_back_to_cart_link' ) ) {
+	/**
+	 * Add back to cart link.
+	 */
+	function woostify_checkout_back_to_cart_link() {
+		echo '<div class="back-to-cart"><a href="' . esc_url( wc_get_cart_url() ) . '" class="outlined">' . woostify_fetch_svg_icon( 'angle-left' ) . '<span> ' . esc_html__( 'Back to cart', 'woostify' ) . '</span></a></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_col_left_end' ) ) {
+	/**
+	 * Checkout form add column left end element
+	 */
+	function woostify_checkout_col_left_end() {
+		echo '</div>';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_col_right_start' ) ) {
+	/**
+	 * Checkout form add column right start element
+	 */
+	function woostify_checkout_col_right_start() {
+		echo '<div class="woostify-col"><div class="col-right-inner">';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_col_right_end' ) ) {
+	/**
+	 * Checkout form add column right end element
+	 */
+	function woostify_checkout_col_right_end() {
+		echo '</div></div>';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_row_end' ) ) {
+	/**
+	 * Checkout form add row end element
+	 */
+	function woostify_checkout_row_end() {
+		echo '</div>';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_product_image' ) ) {
+	/**
+	 * Add product image and quantity before cart item product name in checkout page
+	 *
+	 * @param string $name Product name.
+	 * @param object $cart_item Cart item data array.
+	 * @param int    $cart_item_key Cart item key.
+	 */
+	function woostify_checkout_product_image( $name, $cart_item, $cart_item_key ) {
+		if ( ! is_checkout() ) {
+			return $name;
+		}
+
+		$_product  = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+		$thumbnail = $_product->get_image();
+		$image     = '<div class="w-product-thumb">';
+		$image    .= $thumbnail;
+		$image    .= '<strong class="product-quantity">' . $cart_item['quantity'] . '</strong>';
+		$image    .= '</div>';
+
+		return $image . $name;
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_product_quantity' ) ) {
+	/**
+	 * Remove product quantity after cart item product name in checkout page
+	 *
+	 * @param string $html quantity html.
+	 * @param object $cart_item Cart item data array.
+	 * @param int    $cart_item_key Cart item key.
+	 */
+	function woostify_checkout_product_quantity( $html, $cart_item, $cart_item_key ) {
+		if ( ! is_checkout() ) {
+			return $html;
+		}
+
+		return false;
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_options_start' ) ) {
+	/**
+	 * Checkout page options start element
+	 */
+	function woostify_checkout_options_start() {
+		?>
+		<div class="checkout-options">
+			<div class="woostify-row">
+				<div class="col-left">
+					<div class="before-checkout">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_options_end' ) ) {
+	/**
+	 * Checkout page options end element
+	 */
+	function woostify_checkout_options_end() {
+		?>
+					</div>
+				</div>
+				<div class="woostify-col"></div>
+			</div>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_coupon_form' ) ) {
+	/**
+	 * Custom coupon code form html
+	 */
+	function woostify_checkout_coupon_form() {
+		if ( is_user_logged_in() || WC()->checkout()->is_registration_enabled() || ! WC()->checkout()->is_registration_required() ) {
+			echo '<tr class="coupon-form"><td colspan="2"><div class="ajax-coupon-form">';
+			wc_get_template(
+				'checkout/form-coupon.php',
+				array(
+					'checkout' => WC()->checkout(),
+				)
+			);
+			echo '</div></tr></td>';
+		}
 	}
 }
 

@@ -312,14 +312,18 @@ var woostifyQuantityMiniCart = function() {
 									let prev_percent = shipping_threshold[0].getAttribute( 'data-progress' );
 									for ( var fsti = 0, fstc = shipping_threshold.length; fsti < fstc; fsti++ ) {
 										shipping_threshold[fsti].setAttribute( 'data-progress', data.free_shipping_threshold.percent );
-										shipping_threshold[fsti].querySelector( '.progress-bar-message' ).innerHTML               = data.free_shipping_threshold.message;
-										shipping_threshold[fsti].querySelector( '.progress-percent' ).innerHTML                   = data.free_shipping_threshold.percent + '%';
-										shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.minWidth           = data.free_shipping_threshold.percent + '%';
-										shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.transitionDuration = '.6s';
-										if ( 100 <= parseInt( data.free_shipping_threshold.percent ) ) {
-											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.add( 'success' );
-										} else {
-											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.remove( 'success' );
+										shipping_threshold[fsti].querySelector( '.progress-bar-message' ).innerHTML = data.free_shipping_threshold.message;
+										if ( shipping_threshold[fsti].querySelector( '.progress-percent' ) ) {
+											shipping_threshold[fsti].querySelector( '.progress-percent' ).innerHTML = data.free_shipping_threshold.percent + '%';
+										}
+										if ( shipping_threshold[fsti].querySelector( '.progress-bar-status' ) ) {
+											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.minWidth           = data.free_shipping_threshold.percent + '%';
+											shipping_threshold[fsti].querySelector( '.progress-bar-status' ).style.transitionDuration = '.6s';
+											if ( 100 <= parseInt( data.free_shipping_threshold.percent ) ) {
+												shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.add( 'success' );
+											} else {
+												shipping_threshold[fsti].querySelector( '.progress-bar-status' ).classList.remove( 'success' );
+											}
 										}
 									}
 
@@ -489,6 +493,176 @@ var productDataTabsAccordion = function() {
 	)
 }
 
+// Sticky order review.
+var stickyOrderReview = function() {
+	var form                     = 'form.woocommerce-checkout';
+	var sidebarContainerSelector = 'form.woocommerce-checkout .woostify-col .col-right-inner';
+
+	var reviewOrder = new WSYSticky(
+		sidebarContainerSelector,
+		{
+			stickyContainer: form,
+			marginTop: 96,
+		}
+	);
+}
+
+// Checkout page Layout 3 scripts.
+var checkoutOrder = function() {
+	var checkout_opt = document.querySelector( '.before-checkout' ),
+	spacer_orig      = checkout_opt.offsetHeight,
+	div_height       = spacer_orig,
+	show_login       = document.querySelector( '.showlogin' );
+
+	set_heights();
+
+	document.body.addEventListener(
+		'click',
+		function( event ) {
+			if ( event.target !== show_login ) {
+				return;
+			}
+
+			var refreshIntervalId = setInterval(
+				function(){
+					set_heights();
+				},
+				50
+			);
+
+			setTimeout(
+				function(){
+					if (spacer_orig == div_height) {
+						clearInterval( refreshIntervalId );
+					}
+				},
+				2000
+			);
+		}
+	);
+
+	function set_heights() {
+		setTimeout(
+			function(){
+				var div_height = checkout_opt.offsetHeight;
+				document.querySelector( '#checkout-spacer' ).style.minHeight = div_height + 'px';
+				checkout_opt.classList.add( 'ready' );
+			},
+			200
+		);
+	}
+
+}
+
+var woostifyGetUrl = function( endpoint ) {
+	return wc_cart_fragments_params.wc_ajax_url.toString().replace(
+		'%%endpoint%%',
+		endpoint
+	);
+};
+
+var woostifyShowNotice = function( html_element, $target ) {
+	if ( ! $target ) {
+		$target = jQuery( '.woocommerce-notices-wrapper:first' ) || jQuery( '.cart-empty' ).closest( '.woocommerce' ) || jQuery( '.woocommerce-cart-form' );
+	}
+	$target.prepend( html_element );
+};
+
+var ajaxCouponForm = function() {
+	var couponForm = document.querySelector( 'form.checkout_coupon' );
+	couponForm.addEventListener(
+		'submit',
+		function( event ) {
+			event.preventDefault();
+			var text_field  = document.getElementById( 'coupon_code' );
+			var coupon_code = text_field.value;
+
+			var data = {
+				security: woostify_woocommerce_general.apply_coupon_nonce,
+				coupon_code: coupon_code
+			};
+
+			jQuery.ajax(
+				{
+					type:     'POST',
+					url:      woostifyGetUrl( 'apply_coupon' ),
+					data:     data,
+					dataType: 'html',
+					success: function( response ) {
+						jQuery( '.woocommerce-error, .woocommerce-message, .woocommerce-NoticeGroup .woocommerce-info, .woocommerce-notices-wrapper .woocommerce-info' ).remove();
+						woostifyShowNotice( response, jQuery( '.woostify-woocommerce-NoticeGroup' ) );
+						jQuery( document.body ).trigger( 'applied_coupon', [ coupon_code ] );
+					},
+					complete: function() {
+						text_field.value = '';
+						jQuery( document.body ).trigger( 'update_checkout' );
+					}
+				}
+			);
+		}
+	)
+}
+
+var woostifyMoveNoticesInCheckoutPage = function() {
+	var noticesWrapper = document.querySelectorAll( '.woocommerce-notices-wrapper' );
+	if ( noticesWrapper.length ) {
+		var noticesWrapperEl         = noticesWrapper[0];
+		var noticesWrapperNode       = document.createElement( 'div' );
+		var woostifyNoticeGroup      = document.querySelector( '.woostify-woocommerce-NoticeGroup' );
+		noticesWrapperNode.innerHTML = noticesWrapperEl.innerHTML;
+		woostifyNoticeGroup.appendChild( noticesWrapperNode );
+		noticesWrapperEl.remove();
+	}
+}
+
+var woostifyCheckoutFormFieldAnimation = function() {
+	var inputs   = document.querySelectorAll( 'form.checkout .input-text, form.checkout_coupon .input-text' );
+	var formRows = document.querySelectorAll( 'form.checkout .form-row' );
+	if ( inputs.length ) {
+		inputs.forEach(
+			function( input ) {
+				var formRow = input.closest( '.form-row' );
+				if ( '' !== input.value ) {
+					formRow.classList.add( 'w-anim-wrap' );
+				}
+
+				input.addEventListener(
+					'focus',
+					function( event ) {
+						var formRow = event.target.closest( '.form-row' );
+						formRow.classList.add( 'w-anim-wrap' );
+					}
+				);
+
+				input.addEventListener(
+					'blur',
+					function( event ) {
+						var formRow = event.target.closest( '.form-row' );
+						if ( '' === event.target.value ) {
+							formRow.classList.remove( 'w-anim-wrap' );
+							if ( formRow.classList.contains( 'validate-required' ) ) {
+								formRow.classList.add( 'woocommerce-invalid-required-field' );
+							}
+						}
+					}
+				);
+			}
+		);
+	}
+	if ( formRows.length ) {
+		formRows.forEach(
+			function( formRowEl ) {
+				var labelEl = formRowEl.querySelector( 'label' );
+				if ( labelEl == null ) {
+					formRowEl.classList.add( 'no-label' );
+				} else {
+					labelEl.classList.remove( 'screen-reader-text' );
+				}
+			}
+		);
+	}
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
@@ -575,5 +749,49 @@ document.addEventListener(
 				location.reload();
 			}
 		);
+
+		var isMinimalCheckoutLayout = document.body.classList.contains( 'checkout-layout-3' );
+
+		if ( isMinimalCheckoutLayout ) {
+			woostifyCheckoutFormFieldAnimation();
+
+			// Move notices.
+			woostifyMoveNoticesInCheckoutPage();
+
+			jQuery( document.body ).on(
+				'init_checkout updated_checkout payment_method_selected',
+				function( event, data  ) {
+
+					jQuery( 'form.checkout' ).arrive(
+						'.woocommerce-NoticeGroup',
+						function() {
+							jQuery( '.woostify-woocommerce-NoticeGroup' ).append( jQuery( '.woocommerce-NoticeGroup' ).html() );
+							jQuery( '.woocommerce-NoticeGroup' ).remove();
+						}
+					);
+					jQuery( document ).arrive(
+						'.woocommerce > .woocommerce-message',
+						function( newEl ) {
+							var newWcMsg  = jQuery( newEl ),
+							newWcMsgClone = newWcMsg.clone();
+
+							jQuery( '.woostify-woocommerce-NoticeGroup' ).append( newWcMsgClone );
+							jQuery( newEl ).remove();
+						}
+					);
+
+				}
+			).on(
+				'updated_checkout',
+				function() {
+					ajaxCouponForm();
+				}
+			);
+		}
+
+		if ( '1' === woostify_woocommerce_general.enable_sticky_order_review_checkout ) {
+			checkoutOrder();
+			stickyOrderReview();
+		}
 	}
 );
