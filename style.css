@@ -7825,8 +7825,13 @@ header.elementor-element {
   display: block;
   padding: 15px 0;
   font-size: 18px;
-  display: flex;
-  justify-content: space-between;
+  position: relative;
+}
+
+.woocommerce-tabs.layout-accordion .woostify-accordion-title .woostify-svg-icon {
+  position: absolute;
+  right: 0;
+  top: calc( 50% - 7px);
 }
 
 .woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel {

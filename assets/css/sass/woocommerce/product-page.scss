@@ -923,8 +923,13 @@
 			display: block;
 			padding: 15px 0;
 			font-size: 18px;
-			display: flex;
-    		justify-content: space-between;
+			position: relative;
+
+			.woostify-svg-icon {
+				position: absolute;
+				right: 0;
+				top: calc( 50% - 7px);
+			}
 		}
 		.woocommerce-Tabs-panel {
 			display: none;
