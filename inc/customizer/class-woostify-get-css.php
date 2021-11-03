@@ -908,7 +908,10 @@ class Woostify_Get_CSS {
 
 			.woostify-button-bg-color,
 			.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions .coupon [name="apply_coupon"],
-			.loop-add-to-cart-on-image+.added_to_cart {
+			.loop-add-to-cart-on-image+.added_to_cart,
+			.related .tns-controls button,
+			.up-sells .tns-controls button,
+			.woostify-product-recently-viewed-section .tns-controls button {
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 			}
 
@@ -924,7 +927,10 @@ class Woostify_Get_CSS {
 			.product-loop-action .yith-wcwl-wishlistaddedbrowse.show,
 			.product-loop-action .yith-wcwl-wishlistexistsbrowse.show,
 			.product-loop-action .added_to_cart,
-			.product-loop-image-wrapper .tinv-wraper .tinvwl_add_to_wishlist_button:hover {
+			.product-loop-image-wrapper .tinv-wraper .tinvwl_add_to_wishlist_button:hover,
+			.related .tns-controls button:hover,
+			.up-sells .tns-controls button:hover,
+			.woostify-product-recently-viewed-section .tns-controls button:hover {
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
 			}
 
