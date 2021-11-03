@@ -7850,6 +7850,20 @@ header.elementor-element {
 .woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner .woostify-tab-scroll-content {
   overflow-y: auto;
   max-height: 250px;
+  scrollbar-width: thin;
+  padding-right: 20px;
+}
+
+.woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner .woostify-tab-scroll-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner .woostify-tab-scroll-content::-webkit-scrollbar-track {
+  background: #f2f2f2;
+}
+
+.woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner .woostify-tab-scroll-content::-webkit-scrollbar-thumb {
+  background: #d5d5d5;
 }
 
 .woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner .woostify-tab-scroll-content > h2:first-child {
