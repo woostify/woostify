@@ -929,6 +929,21 @@
 			}
 		}
 	}
+
+	.tns-controls {
+		button[data-controls="prev"] {
+			left: -55px;
+			@media(max-width: $screen-md - 1) {
+				left: 5px;
+			}
+		}
+		button[data-controls="next"] {
+			right: -55px;
+			@media(max-width: $screen-md - 1) {
+				right: 5px;
+			}
+		}
+	}
 }
 
 // Support for Woostify - Product Images

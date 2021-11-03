@@ -7831,6 +7831,34 @@ header.elementor-element {
   float: none;
 }
 
+.related .tns-controls button[data-controls="prev"],
+.up-sells .tns-controls button[data-controls="prev"],
+.woostify-product-recently-viewed-section .tns-controls button[data-controls="prev"] {
+  left: -55px;
+}
+
+@media (max-width: 991px) {
+  .related .tns-controls button[data-controls="prev"],
+  .up-sells .tns-controls button[data-controls="prev"],
+  .woostify-product-recently-viewed-section .tns-controls button[data-controls="prev"] {
+    left: 5px;
+  }
+}
+
+.related .tns-controls button[data-controls="next"],
+.up-sells .tns-controls button[data-controls="next"],
+.woostify-product-recently-viewed-section .tns-controls button[data-controls="next"] {
+  right: -55px;
+}
+
+@media (max-width: 991px) {
+  .related .tns-controls button[data-controls="next"],
+  .up-sells .tns-controls button[data-controls="next"],
+  .woostify-product-recently-viewed-section .tns-controls button[data-controls="next"] {
+    right: 5px;
+  }
+}
+
 .woostify-product-images-widget .product-gallery {
   width: 100%;
 }
