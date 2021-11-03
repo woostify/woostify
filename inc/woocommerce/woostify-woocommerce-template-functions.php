@@ -74,7 +74,7 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 
 		ob_start();
 		$response['item']        = $count;
-		$response['total_price'] = WC()->cart->get_cart_total();
+		$response['total_price'] = WC()->cart->get_cart_subtotal();
 		$response['content']     = ob_get_clean();
 
 		wp_send_json_success( $response );
