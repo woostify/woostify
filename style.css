@@ -9927,6 +9927,33 @@ header.elementor-element {
   }
 }
 
+.checkout-layout-3:not(.woobuilder-active) .ajax-coupon-form {
+  position: relative;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .ajax-coupon-form > * {
+  display: none;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .ajax-coupon-form.loading:before {
+  content: "" !important;
+  z-index: 2;
+  position: absolute;
+  border: 1px solid #ddd;
+  border-top-color: #222;
+  border-radius: 50%;
+  height: 14px;
+  width: 14px;
+  -webkit-animation: circle-loading 0.35s linear infinite;
+  animation: circle-loading 0.35s linear infinite;
+  position: static;
+  display: block;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .ajax-coupon-form.ready .woocommerce-form-coupon-toggle {
+  display: flex;
+}
+
 .checkout-layout-3:not(.woobuilder-active) form.checkout_coupon .form-row .input-text {
   padding: 0 1em;
 }

@@ -1163,6 +1163,26 @@
 		}
 	}
 
+	.ajax-coupon-form {
+		position: relative;
+		> * {
+			display: none;
+		}
+		&.loading{
+			&:before{
+				@include loading( $size: 14px, $center: false, $important: !important );
+				position: static;
+				display: block;
+			}
+		}
+
+		&.ready {
+			.woocommerce-form-coupon-toggle {
+				display: flex;
+			}
+		}
+	}
+
 	form.checkout_coupon {
 		.form-row {
 			.input-text {
