@@ -1530,7 +1530,7 @@ if ( ! function_exists( 'woostify_checkout_coupon_form' ) ) {
 	 */
 	function woostify_checkout_coupon_form() {
 		if ( is_user_logged_in() || WC()->checkout()->is_registration_enabled() || ! WC()->checkout()->is_registration_required() ) {
-			echo '<tr class="coupon-form"><td colspan="2"><div class="ajax-coupon-form">';
+			echo '<tr class="coupon-form"><td colspan="2"><div class="ajax-coupon-form loading">';
 			wc_get_template(
 				'checkout/form-coupon.php',
 				array(

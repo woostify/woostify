@@ -572,6 +572,10 @@ var woostifyShowNotice = function( html_element, $target ) {
 
 var ajaxCouponForm = function() {
 	var couponForm = document.querySelector( 'form.checkout_coupon' );
+
+	if ( ! couponForm ) {
+		return;
+	}
 	couponForm.addEventListener(
 		'submit',
 		function( event ) {
@@ -601,6 +605,8 @@ var ajaxCouponForm = function() {
 					}
 				}
 			);
+
+			return
 		}
 	)
 }
@@ -763,6 +769,23 @@ document.addEventListener(
 			jQuery( document.body ).on(
 				'init_checkout updated_checkout payment_method_selected',
 				function( event, data  ) {
+					console.log( event );
+
+					jQuery( 'form.checkout' ).arrive(
+						'form.checkout_coupon',
+						function( newEl ) {
+							ajaxCouponForm();
+							jQuery( 'form.checkout' ).unbindArrive( 'form.checkout_coupon' );
+						}
+					);
+
+					jQuery( 'form.checkout' ).arrive(
+						'.ajax-coupon-form',
+						function( newEl ) {
+							jQuery( newEl ).removeClass( 'loading' );
+							jQuery( newEl ).addClass( 'ready' );
+						}
+					);
 
 					jQuery( 'form.checkout' ).arrive(
 						'.woocommerce-NoticeGroup',
@@ -771,6 +794,7 @@ document.addEventListener(
 							jQuery( '.woocommerce-NoticeGroup' ).remove();
 						}
 					);
+
 					jQuery( document ).arrive(
 						'.woocommerce > .woocommerce-message',
 						function( newEl ) {
@@ -784,9 +808,23 @@ document.addEventListener(
 
 				}
 			).on(
-				'updated_checkout',
+				'applied_coupon',
 				function() {
+					jQuery( 'form.checkout' ).arrive(
+						'form.checkout_coupon',
+						function( newEl ) {
+							ajaxCouponForm();
+							jQuery( 'form.checkout' ).unbindArrive( 'form.checkout_coupon' );
+						}
+					);
+				}
+			)
+
+			jQuery( 'form.checkout' ).arrive(
+				'form.checkout_coupon',
+				function( newEl ) {
 					ajaxCouponForm();
+					jQuery( 'form.checkout' ).unbindArrive( 'form.checkout_coupon' );
 				}
 			);
 		}
