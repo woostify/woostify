@@ -695,6 +695,15 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
+			// Arrive jquery plugin.
+			wp_register_script(
+				'woostify-arrive',
+				WOOSTIFY_THEME_URI . 'assets/js/arrive.min.js',
+				array(),
+				woostify_version(),
+				true
+			);
+
 			// Quantity button.
 			wp_register_script(
 				'woostify-quantity-button',
@@ -751,7 +760,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			wp_register_script(
 				'woostify-woocommerce',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/woocommerce' . woostify_suffix() . '.js',
-				array( 'jquery', 'woostify-quantity-button' ),
+				array( 'jquery', 'woostify-arrive', 'woostify-quantity-button' ),
 				woostify_version(),
 				true
 			);

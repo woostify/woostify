@@ -954,7 +954,7 @@ if ( ! function_exists( 'woostify_add_product_thumbnail_to_checkout_order' ) ) {
 	function woostify_add_product_thumbnail_to_checkout_order( $product_name, $cart_item, $cart_item_key ) {
 		$options             = woostify_options( false );
 		$multi_step_checkout = woostify_is_multi_checkout();
-		if ( ! is_checkout() || ! ( $options['checkout_multi_step'] && $multi_step_checkout && ! is_singular( array( 'cartflows_flow', 'cartflows_step' ) ) ) ) {
+		if ( ! is_checkout() || ! ( $multi_step_checkout && ! is_singular( array( 'cartflows_flow', 'cartflows_step' ) ) ) ) {
 			return $product_name;
 		}
 
@@ -998,7 +998,7 @@ if ( ! function_exists( 'woostify_is_multi_checkout' ) ) {
 		}
 
 		$options = woostify_options( false );
-		return ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && ! is_wc_endpoint_url( 'order-pay' ) && $options['checkout_multi_step'] );
+		return ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && ! is_wc_endpoint_url( 'order-pay' ) && ( 'layout-2' === $options['checkout_page_layout'] ) );
 	}
 }
 
@@ -1406,5 +1406,297 @@ if ( ! function_exists( 'woostify_product_quantity' ) ) {
 		$html .= '</div>';
 
 		echo $html; // phpcs:ignore.
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_form_distr_free_bg' ) ) {
+	/**
+	 * Checkout form background.
+	 */
+	function woostify_checkout_form_distr_free_bg() {
+		?>
+		<div class="form-distr-free-bg">
+			<div class="col-left"></div>
+			<div class="woostify-col right-bg"></div>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_row_start' ) ) {
+	/**
+	 * Checkout form add row start element
+	 */
+	function woostify_checkout_row_start() {
+		echo '<div class="woostify-row">';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_col_left_start' ) ) {
+	/**
+	 * Checkout form add column left start element
+	 */
+	function woostify_checkout_col_left_start() {
+		echo '<div class="col-left">';
+		echo '<div id="checkout-spacer"></div>';
+		echo '<div class="woostify-woocommerce-NoticeGroup"></div>';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_back_to_cart_link' ) ) {
+	/**
+	 * Add back to cart link.
+	 */
+	function woostify_checkout_back_to_cart_link() {
+		echo '<div class="back-to-cart"><a href="' . esc_url( wc_get_cart_url() ) . '" class="outlined">' . woostify_fetch_svg_icon( 'angle-left' ) . '<span> ' . esc_html__( 'Back to cart', 'woostify' ) . '</span></a></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_col_left_end' ) ) {
+	/**
+	 * Checkout form add column left end element
+	 */
+	function woostify_checkout_col_left_end() {
+		echo '</div>';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_col_right_start' ) ) {
+	/**
+	 * Checkout form add column right start element
+	 */
+	function woostify_checkout_col_right_start() {
+		echo '<div class="woostify-col"><div class="col-right-inner">';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_col_right_end' ) ) {
+	/**
+	 * Checkout form add column right end element
+	 */
+	function woostify_checkout_col_right_end() {
+		echo '</div></div>';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_row_end' ) ) {
+	/**
+	 * Checkout form add row end element
+	 */
+	function woostify_checkout_row_end() {
+		echo '</div>';
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_product_image' ) ) {
+	/**
+	 * Add product image and quantity before cart item product name in checkout page
+	 *
+	 * @param string $name Product name.
+	 * @param object $cart_item Cart item data array.
+	 * @param int    $cart_item_key Cart item key.
+	 */
+	function woostify_checkout_product_image( $name, $cart_item, $cart_item_key ) {
+		if ( ! is_checkout() ) {
+			return $name;
+		}
+
+		$_product  = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+		$thumbnail = $_product->get_image();
+		$image     = '<div class="w-product-thumb">';
+		$image    .= $thumbnail;
+		$image    .= '<strong class="product-quantity">' . $cart_item['quantity'] . '</strong>';
+		$image    .= '</div>';
+
+		return $image . $name;
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_product_quantity' ) ) {
+	/**
+	 * Remove product quantity after cart item product name in checkout page
+	 *
+	 * @param string $html quantity html.
+	 * @param object $cart_item Cart item data array.
+	 * @param int    $cart_item_key Cart item key.
+	 */
+	function woostify_checkout_product_quantity( $html, $cart_item, $cart_item_key ) {
+		if ( ! is_checkout() ) {
+			return $html;
+		}
+
+		return false;
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_options_start' ) ) {
+	/**
+	 * Checkout page options start element
+	 */
+	function woostify_checkout_options_start() {
+		?>
+		<div class="checkout-options">
+			<div class="woostify-row">
+				<div class="col-left">
+					<div class="before-checkout">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_options_end' ) ) {
+	/**
+	 * Checkout page options end element
+	 */
+	function woostify_checkout_options_end() {
+		?>
+					</div>
+				</div>
+				<div class="woostify-col"></div>
+			</div>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_checkout_coupon_form' ) ) {
+	/**
+	 * Custom coupon code form html
+	 */
+	function woostify_checkout_coupon_form() {
+		if ( is_user_logged_in() || WC()->checkout()->is_registration_enabled() || ! WC()->checkout()->is_registration_required() ) {
+			echo '<tr class="coupon-form"><td colspan="2"><div class="ajax-coupon-form loading">';
+			wc_get_template(
+				'checkout/form-coupon.php',
+				array(
+					'checkout' => WC()->checkout(),
+				)
+			);
+			echo '</div></tr></td>';
+		}
+	}
+}
+
+if ( ! function_exists( 'woostify_output_product_data_tabs_accordion' ) ) {
+	/**
+	 * Custom product data tabs for accordion layout
+	 */
+	function woostify_output_product_data_tabs_accordion() {
+		$product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
+		if ( ! empty( $product_tabs ) ) :
+			?>
+
+			<div class="woocommerce-tabs wc-tabs-wrapper layout-accordion">
+				<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
+					<div class="woostify-tab-wrapper">
+						<a href="javascript:;" class="woostify-accordion-title">
+							<?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?>
+							<?php Woostify_Icon::fetch_svg_icon( 'angle-down', true ); ?>
+						</a>
+						<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
+							<div class="woostify-tab-inner">
+								<div class="woostify-tab-scroll-content">
+								<?php
+								if ( isset( $product_tab['callback'] ) ) {
+									call_user_func( $product_tab['callback'], $key, $product_tab );
+								}
+								?>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php endforeach; ?>
+
+				<?php do_action( 'woocommerce_product_after_tabs' ); ?>
+			</div>
+
+			<?php
+		endif;
+	}
+}
+
+if ( ! function_exists( 'woostify_custom_product_data_tabs' ) ) {
+	/**
+	 * Woostify custom tabs
+	 *
+	 * @param array $tabs default tabs
+	 */
+	function woostify_custom_product_data_tabs( $tabs ) {
+		$new_tabs    = array();
+		$options     = woostify_options( false );
+		$custom_tabs = $options['shop_single_product_data_tabs_items'];
+		$custom_tabs = json_decode( $custom_tabs );
+		$new_data    = array(
+			'title'    => '',
+			'priority' => '',
+			'callback' => '',
+		);
+		foreach ( $custom_tabs as $key => $custom_tab ) {
+			$priority = $key * 5;
+			if ( 'custom' === $custom_tab->type ) {
+				$custom_tab_key              = 'custom_tab_' . $key;
+				$new_data                    = array(
+					'title'    => $custom_tab->name,
+					'priority' => $priority,
+					'callback' => 'woostify_custom_tab_callback',
+				);
+				$new_tabs[ $custom_tab_key ] = $new_data;
+			} else {
+				if ( isset( $tabs[ $custom_tab->type ] ) ) {
+					$new_data                      = $tabs[ $custom_tab->type ];
+					$new_data['priority']          = $key * 5;
+					$new_tabs[ $custom_tab->type ] = $new_data;
+				} else {
+					switch ( $custom_tab->type ) {
+						case 'description':
+							$new_tabs['additional_information'] = array(
+								'title'    => __( 'Description', 'woostify' ),
+								'priority' => $priority,
+								'callback' => 'woocommerce_product_description_tab',
+							);
+							break;
+						case 'additional_information':
+							global $product, $post;
+							if ( $product && ( $product->has_attributes() || apply_filters( 'wc_product_enable_dimensions_display', $product->has_weight() || $product->has_dimensions() ) ) ) {
+								$new_tabs['additional_information'] = array(
+									'title'    => __( 'Additional information', 'woostify' ),
+									'priority' => $priority,
+									'callback' => 'woocommerce_product_additional_information_tab',
+								);
+							}
+							break;
+						case 'reviews':
+							global $product, $post;
+							if ( comments_open() ) {
+								$new_data['reviews'] = array(
+									/* translators: %s: reviews count */
+									'title'    => sprintf( __( 'Reviews (%d)', 'woocommerce' ), $product->get_review_count() ),
+									'priority' => $priority,
+									'callback' => 'comments_template',
+								);
+							}
+							break;
+					}
+				}
+			}
+		}
+
+		return $new_tabs;
+	}
+}
+
+if ( ! function_exists( 'woostify_custom_tab_callback' ) ) {
+	/**
+	 * Callback for custom tab
+	 *
+	 * @param string $key Tab key.
+	 * @param array  $product_tab Tab data.
+	 */
+	function woostify_custom_tab_callback( $key, $product_tab ) {
+		$options     = woostify_options( false );
+		$custom_tabs = $options['shop_single_product_data_tabs_items'];
+		$custom_tabs = (array) json_decode( $custom_tabs );
+		$curr_index  = explode( '_', $key )[2];
+
+		echo do_shortcode( $custom_tabs[ $curr_index ]->content );
 	}
 }

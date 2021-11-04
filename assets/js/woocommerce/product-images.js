@@ -63,6 +63,9 @@ function woostifyGalleryCarouselMobile() {
 
 // Sticky summary for list layout.
 function woostifyStickySummary() {
+	if ( ! woostify_woocommerce_general.enabled_sticky_product_summary ) {
+		return;
+	}
 	var gallery = document.querySelector( '.has-gallery-list-layout .product-gallery.has-product-thumbnails' ),
 		summary = document.querySelector( '.has-gallery-list-layout .product-summary' );
 	if ( ! gallery || ! summary || window.innerWidth < 992 ) {

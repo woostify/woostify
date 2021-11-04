@@ -173,6 +173,19 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Shipping threshold.
 			add_action( 'init', array( $this, 'free_shipping_threshold' ) );
+
+			// Custom product data tab.
+			add_filter( 'woocommerce_product_tabs', array( $this, 'product_data_tabs' ) );
+		}
+
+		/**
+		 * Custom product data tabs
+		 *
+		 * @param array $tabs Default product data tabs.
+		 */
+		public function product_data_tabs( $tabs ) {
+			$tabs = woostify_custom_product_data_tabs( $tabs );
+			return $tabs;
 		}
 
 		/**
@@ -211,7 +224,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		/**
 		 * Mini cart top content load custom html
 		 *
-		 * @param string $position Current position of custom html.
+		 * @param string $position Content position.
 		 */
 		public function mini_cart_load_custom_html( $position ) {
 			$options     = woostify_options( false );
@@ -383,15 +396,17 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				'woostify-woocommerce',
 				'woostify_woocommerce_general',
 				array(
-					'ajax_url'            => admin_url( 'admin-ajax.php' ),
-					'ajax_nonce'          => wp_create_nonce( 'woostify_woocommerce_general_nonce' ),
-					'ajax_error'          => __( 'Sorry, something went wrong. Please try again!', 'woostify' ),
-					'qty_warning'         => __( 'Please enter a valid quantity for this product', 'woostify' ),
-					'shipping_text'       => __( 'Shipping', 'woostify' ),
-					'shipping_next'       => __( 'Calculated at next step', 'woostify' ),
-					'sticky_top_space'    => $options['shop_single_product_sticky_top_space'],
-					'sticky_bottom_space' => $options['shop_single_product_sticky_bottom_space'],
-					'shipping_threshold'  => $shipping_threshold_script_var,
+					'ajax_url'                       => admin_url( 'admin-ajax.php' ),
+					'ajax_nonce'                     => wp_create_nonce( 'woostify_woocommerce_general_nonce' ),
+					'apply_coupon_nonce'             => wp_create_nonce( 'apply-coupon' ),
+					'ajax_error'                     => __( 'Sorry, something went wrong. Please try again!', 'woostify' ),
+					'qty_warning'                    => __( 'Please enter a valid quantity for this product', 'woostify' ),
+					'shipping_text'                  => __( 'Shipping', 'woostify' ),
+					'shipping_next'                  => __( 'Calculated at next step', 'woostify' ),
+					'sticky_top_space'               => $options['shop_single_product_sticky_top_space'],
+					'sticky_bottom_space'            => $options['shop_single_product_sticky_bottom_space'],
+					'shipping_threshold'             => $shipping_threshold_script_var,
+					'enabled_sticky_product_summary' => 'woocommerce_single_product_summary' === $options['shop_single_product_data_tabs_pos'] ? 'false' : 'true',
 				)
 			);
 
@@ -435,7 +450,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// Multi step checkout.
-			if ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && $options['checkout_multi_step'] ) {
+			if ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) && ( 'layout-2' === $options['checkout_page_layout'] ) ) {
 				wp_enqueue_script( 'woostify-multi-step-checkout' );
 			}
 
@@ -462,6 +477,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					)
 				);
 			}
+
 		}
 
 		/**
@@ -537,9 +553,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Checkout page.
 			if ( is_checkout() ) {
+				$layout           = $options['checkout_page_layout'];
 				$order_button     = $options['checkout_sticky_place_order_button'];
 				$distraction_free = $options['checkout_distraction_free'];
-				$multi_step       = $options['checkout_multi_step'];
+				$multi_step       = 'layout-2' === $options['checkout_page_layout'] ? true : false;
+
+				$classes[] = 'checkout-' . $layout;
 
 				if ( $order_button ) {
 					$classes[] = 'has-order-sticky-button';
@@ -600,11 +619,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$is_checkout = is_checkout() && ! is_wc_endpoint_url( 'order-received' ); // Is Checkout page only, not Thank you page.
 
 			// Remove default Place Order button.
-			if ( $options['checkout_multi_step'] ) {
+			if ( ( 'layout-2' === $options['checkout_page_layout'] ) ) {
 				add_filter( 'woocommerce_order_button_html', '__return_empty_string' );
 			}
 
-			if ( $is_checkout && $options['checkout_multi_step'] && $multi_step_checkout ) {
+			if ( $is_checkout && ( 'layout-2' === $options['checkout_page_layout'] ) && $multi_step_checkout ) {
 				// Remove default woocommerce template.
 				remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
 				remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_terms_and_conditions_page_content', 30 );
@@ -630,6 +649,42 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_multi_checkout_wrapper_end', 100 ); // Wrapper end.
 
 				add_action( 'woocommerce_checkout_after_order_review', 'woostify_checkout_before_order_review', 10 );
+			}
+
+			$has_woo_builder_checkout_page = false;
+
+			if ( class_exists( 'Woostify_Woo_Builder' ) ) {
+				$woo_builder                   = \Woostify_Woo_Builder::init();
+				$has_woo_builder_checkout_page = $woo_builder->template_exist( 'woostify_checkout_page' );
+			}
+			if ( 'layout-3' === $options['checkout_page_layout'] && ! $has_woo_builder_checkout_page ) {
+				add_action( 'woocommerce_before_checkout_form', 'woostify_checkout_form_distr_free_bg', 0 );
+
+				add_action( 'woocommerce_before_checkout_form', 'woostify_checkout_options_start', 5 );
+				add_action( 'woocommerce_before_checkout_form', 'woostify_checkout_options_end', 15 );
+
+				// Row start.
+				add_action( 'woocommerce_checkout_before_customer_details', 'woostify_checkout_row_start', 0 );
+
+				// Col left.
+				add_action( 'woocommerce_checkout_before_customer_details', 'woostify_checkout_col_left_start', 0 );
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_checkout_col_left_end', 50 );
+
+				add_action( 'woocommerce_before_checkout_billing_form', 'woostify_checkout_back_to_cart_link', 5 );
+
+				// Col right.
+				add_action( 'woocommerce_checkout_after_customer_details', 'woostify_checkout_col_right_start', 55 );
+				add_action( 'woocommerce_after_checkout_form', 'woostify_checkout_col_right_end', 50 );
+
+				// Row end.
+				add_action( 'woocommerce_after_checkout_form', 'woostify_checkout_row_end', 50 );
+
+				add_filter( 'woocommerce_cart_item_name', 'woostify_checkout_product_image', 10, 3 );
+				add_filter( 'woocommerce_checkout_cart_item_quantity', 'woostify_checkout_product_quantity', 99, 3 );
+
+				// Coupon code form.
+				remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+				add_action( 'woocommerce_review_order_after_cart_contents', 'woostify_checkout_coupon_form', 10 );
 			}
 
 			// Add product thumbnail to review order.
@@ -695,6 +750,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 			add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
 
+			// Quantity mode.
 			if ( $options['shop_page_product_quantity'] ) {
 				$add_to_cart_pos = $options['shop_page_add_to_cart_button_position'];
 
@@ -703,6 +759,22 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				} else {
 					add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 15 );
 				}
+			}
+
+			// SHOP SINGLE: product data tabs.
+			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+			$pdt_layout       = $options['shop_single_product_data_tabs_layout'];
+			$pdt_callback     = 'normal' === $pdt_layout ? 'woocommerce_output_product_data_tabs' : 'woostify_output_product_data_tabs_accordion';
+			$pdt_pos          = $options['shop_single_product_data_tabs_pos'];
+			$pdt_pos_priority = 'woocommerce_single_product_summary' === $pdt_pos ? 35 : 10;
+			add_action( $pdt_pos, $pdt_callback, $pdt_pos_priority );
+
+			// Enabled Catalog Mode.
+			if ( $options['catalog_mode'] ) {
+				remove_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_add_to_cart_button', 10 );
+				remove_action( 'woostify_product_loop_item_action_item', 'woostify_product_loop_item_add_to_cart_icon', 10 );
+				remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+				remove_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_add_to_cart_on_image', 70 );
 			}
 		}
 
