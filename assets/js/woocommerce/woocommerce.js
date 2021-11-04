@@ -386,6 +386,115 @@ var updateHeaderCartPrice = function () {
 	}
 }
 
+// Show an element.
+var woostiftToggleShow = function (elem) {
+
+	// Get the natural height of the element.
+	var getHeight = function () {
+		elem.style.display = 'block';
+		var height         = elem.scrollHeight + 'px';
+		elem.style.display = '';
+		return height;
+	};
+
+	var height = getHeight();
+	elem.classList.add( 'is-visible' );
+	elem.style.height = height;
+
+	// Once the transition is complete, remove the inline max-height so the content can scale responsively.
+	window.setTimeout(
+		function () {
+			elem.style.height = '';
+		},
+		350
+	);
+
+};
+
+// Hide an element.
+var woostiftToggleHide = function (elem) {
+
+	// Give the element a height to change from.
+	elem.style.height = elem.scrollHeight + 'px';
+
+	// Set the height back to 0.
+	window.setTimeout(
+		function () {
+			elem.style.height = '0';
+		},
+		1
+	);
+
+	// When the transition is complete, hide it.
+	window.setTimeout(
+		function () {
+			elem.classList.remove( 'is-visible' );
+		},
+		350
+	);
+};
+
+// Toggle element visibility.
+var woostifyToggleSlide = function (elem, timing) {
+
+	// If the element is visible, hide it.
+	if (elem.classList.contains( 'is-visible' )) {
+		woostiftToggleHide( elem );
+		return;
+	}
+
+	// Otherwise, show it.
+	woostiftToggleShow( elem );
+
+};
+
+var productDataTabsAccordion = function() {
+	var wcTabs = document.querySelectorAll( '.woocommerce-tabs.layout-accordion' );
+
+	if ( ! wcTabs.length ) {
+		return;
+	}
+
+	wcTabs.forEach(
+		function( wcTab ) {
+			var tabTitles = wcTab.querySelectorAll( '.woostify-accordion-title' );
+			if ( ! tabTitles.length ) {
+				return;
+			}
+
+			var tabsWrapper = wcTab.querySelectorAll( '.woostify-tab-wrapper' );
+
+			tabTitles.forEach(
+				function( tabTitle, tabTitleIdx ) {
+					tabTitle.onclick = function() {
+						tabsWrapper.forEach(
+							function( tabWrapper, tabWrapperIdx ) {
+								if ( tabWrapperIdx === tabTitleIdx ) {
+									return;
+								}
+
+								if ( tabWrapper.classList.contains( 'active' ) ) {
+									woostifyToggleSlide( tabWrapper.querySelector( '.woocommerce-Tabs-panel' ) );
+								}
+								tabWrapper.classList.remove( 'active' );
+							}
+						);
+
+						if ( tabTitle.parentNode.classList.contains( 'active' ) ) {
+							tabTitle.parentNode.classList.remove( 'active' );
+						} else {
+							tabTitle.parentNode.classList.add( 'active' );
+						}
+
+						var nextEls = nextSiblings( tabTitle );
+						woostifyToggleSlide( nextEls[0] );
+					}
+				}
+			)
+		}
+	)
+}
+
 // Sticky order review.
 var stickyOrderReview = function() {
 	var form                     = 'form.woocommerce-checkout';
@@ -576,6 +685,8 @@ document.addEventListener(
 		shoppingBag();
 		woostifyQuantityMiniCart();
 
+		productDataTabsAccordion();
+
 		window.addEventListener(
 			'load',
 			function() {
@@ -721,6 +832,20 @@ document.addEventListener(
 		if ( '1' === woostify_woocommerce_general.enable_sticky_order_review_checkout ) {
 			checkoutOrder();
 			stickyOrderReview();
+		}
+
+		// For Elementor Preview Mode.
+		if ( 'function' === typeof( onElementorLoaded ) ) {
+			onElementorLoaded(
+				function() {
+					window.elementorFrontend.hooks.addAction(
+						'frontend/element_ready/global',
+						function() {
+							productDataTabsAccordion();
+						}
+					);
+				}
+			);
 		}
 	}
 );
