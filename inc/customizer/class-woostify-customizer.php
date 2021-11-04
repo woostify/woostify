@@ -40,7 +40,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			$options = woostify_options( false );
 
 			// Enabled Quantity Mode.
-			if ( $options['shop_page_product_quantity'] ) {
+			if ( $options['shop_page_product_quantity'] && ! $options['catalog_mode'] ) {
 				$add_to_cart_pos = $options['shop_page_add_to_cart_button_position'];
 
 				if ( 'bottom' === $add_to_cart_pos ) {
@@ -61,11 +61,27 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				remove_action( 'woostify_product_loop_item_action_item', 'woostify_product_loop_item_add_to_cart_icon', 10 );
 				remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 				remove_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_add_to_cart_on_image', 70 );
+
+				// Remove quantity box.
+				remove_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 3 );
+				remove_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 15 );
 			} else {
 				add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_add_to_cart_button', 10 );
 				add_action( 'woostify_product_loop_item_action_item', 'woostify_product_loop_item_add_to_cart_icon', 10 );
 				add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 				add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_add_to_cart_on_image', 70 );
+
+				if ( $options['shop_page_product_quantity'] ) {
+					$add_to_cart_pos = $options['shop_page_add_to_cart_button_position'];
+
+					if ( 'bottom' === $add_to_cart_pos ) {
+						add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 3 );
+						remove_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 15 );
+					} else {
+						add_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 15 );
+						remove_action( 'woocommerce_after_shop_loop_item_title', 'woostify_product_quantity', 3 );
+					}
+				}
 			}
 
 			// Product Data Tabs.
