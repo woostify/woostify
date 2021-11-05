@@ -249,6 +249,7 @@ $wp_customize->add_control(
 				'woostify_setting[shop_page_product_category]',
 				'woostify_setting[shop_page_product_rating]',
 				'woostify_setting[shop_page_product_price]',
+				'woostify_setting[shop_page_product_quantity]',
 				'woostify_setting[shop_page_product_content_equal]',
 				'woostify_setting[shop_page_product_content_min_height]',
 			),
@@ -385,6 +386,27 @@ $wp_customize->add_control(
 			'label'    => __( 'Product Price', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_price]',
+		)
+	)
+);
+
+// Product quantity.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_quantity]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_page_product_quantity'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_product_quantity]',
+		array(
+			'label'    => __( 'Product Quantity', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_product_quantity]',
 		)
 	)
 );

@@ -954,12 +954,13 @@ class Woostify_Get_CSS {
 			}
 
 			.button .woostify-svg-icon,
-			 .product-loop-meta.no-transform .added_to_cart .woostify-svg-icon {
+			.product-loop-meta.no-transform .added_to_cart .woostify-svg-icon {
 				color: ' . esc_attr( $options['button_text_color'] ) . ';
 			}
 
 			.cart:not(.elementor-menu-cart__products) .quantity,
-			.loop-add-to-cart-on-image+.added_to_cart{
+			.loop-add-to-cart-on-image+.added_to_cart,
+			.loop-product-qty .quantity {
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
 			}
 
