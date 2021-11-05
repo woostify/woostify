@@ -284,6 +284,104 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		public function woostify_welcome_screen() {
 			$woostify_url = 'https://woostify.com';
 			$facebook_url = 'https://facebook.com';
+			$pro_modules  = array(
+				array(
+					'name'        => 'woostify_multiphe_header',
+					'title'       => __( 'Multiple Headers', 'woostify' ),
+					'desc'        => 'Nullam nulla eros ultricies sit',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/multiple-headers/',
+				),
+				array(
+					'name'        => 'woostify_sticky_header',
+					'title'       => __( 'Sticky Header', 'woostify' ),
+					'desc'        => 'Nullam nulla eros ultricies sit',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/sticky-header/',
+				),
+				array(
+					'name'        => 'woostify_mega_menu',
+					'title'       => __( 'Mega Menu', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/elementor-mega-menu/',
+				),
+				array(
+					'name'        => 'woostify_elementor_widgets',
+					'title'       => __( 'Elementor Bundle', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/elementor-addons/',
+				),
+				array(
+					'name'        => 'woostify_header_footer_builder',
+					'title'       => __( 'Header Footer Builder', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/header-footer-builder/',
+				),
+				array(
+					'name'        => 'woostify_woo_builder',
+					'title'       => __( 'WooBuilder', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/woobuider/',
+				),
+				array(
+					'name'        => 'woostify_wc_ajax_shop_filter',
+					'title'       => __( 'Ajax Product Filter', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ),
+				),
+				array(
+					'name'        => 'woostify_wc_ajax_product_search',
+					'title'       => __( 'Ajax Product Search', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ),
+				),
+				array(
+					'name'        => 'woostify_size_guide',
+					'title'       => __( 'Size Guide', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/size-guide/',
+				),
+				array(
+					'name'        => 'woostify_wc_advanced_shop_widgets',
+					'title'       => __( 'Advanced Shop Widgets', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/advanced-widgets/',
+				),
+				array(
+					'name'        => 'woostify_wc_buy_now_button',
+					'title'       => __( 'Buy Now Button', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/buy-now-button/',
+				),
+				array(
+					'name'        => 'woostify_wc_sticky_button',
+					'title'       => __( 'Sticky Single Add To Cart', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/sticky-add-to-cart-button/',
+				),
+				array(
+					'name'        => 'woostify_wc_quick_view',
+					'title'       => __( 'Quick View', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/quick-view/',
+				),
+				array(
+					'name'        => 'woostify_wc_countdown_urgency',
+					'title'       => __( 'Countdown Urgency', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/countdown/',
+				),
+				array(
+					'name'        => 'woostify_wc_variation_swatches',
+					'title'       => __( 'Variation Swatches', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/variation-swatches/',
+				),
+				array(
+					'name'        => 'woostify_wc_sale_notification',
+					'title'       => __( 'Sale Notification', 'woostify' ),
+					'desc'        => '',
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/sale-notification/',
+				),
+			)
 			?>
 			<div class="woostify-options-wrap admin-welcome-screen">
 
@@ -325,115 +423,30 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 											<?php } ?>
 										</div>
 
-										<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
-											<div class="woostify-pro-featured pro-featured-list">
+
+										<div class="woostify-pro-featured pro-featured-list">
+											<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
 												<h2 class="section-header">
 													<a class="woostify-learn-more wp-ui-text-highlight" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank"><?php esc_html_e( 'Get Woostify  Pro Extensions!', 'woostify' ); ?></a>
 												</h2>
 												<div class="woostify-grid-box">
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Multiple Headers', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/multiple-headers/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Mega Menu', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/elementor-mega-menu/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Elementor Bundle', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/elementor-addons/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Header & Footer Builder', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/header-footer-builder/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Ajax WooCommerce Search', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/woocommerce-product-search/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Size Guide', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/size-guide/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Advanced Shop Widgets', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/advanced-widgets/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Buy Now Button', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/buy-now-button/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Sticky Header', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/sticky-header/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Sticky Button', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/sticky-add-to-cart-button/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Quick View', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/quick-view/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Countdown Urgency', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/countdown/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'Sale Notification', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/sale-notification/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
-													<div class="box-item box-item--text box-item--disabled">
-														<span class="box-item__icon dashicons dashicons-lock"></span>
-														<h4 class="box-item__name">
-															<?php esc_html_e( 'WooBuilder', 'woostify' ); ?>
-														</h4>
-														<a href="<?php echo esc_url( $woostify_url ); ?>/docs/pro-modules/woobuider/" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-													</div>
+													<?php foreach ( $pro_modules as $module ) { ?>
+														<div class="box-item box-item--text box-item--disabled">
+															<span class="box-item__icon dashicons dashicons-lock"></span>
+															<h4 class="box-item__name">
+																<?php echo esc_html( $module['title'] ); ?>
+															</h4>
+															<?php if ( '' !== $module['desc'] ) { ?>
+																<p class="box-item__desc"><?php echo esc_html( $module['desc'] ); ?></p>
+															<?php } ?>
+															<a href="<?php echo esc_url( $module['setting_url'] ); ?>" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+														</div>
+													<?php } ?>
 												</div>
-											</div>
-										<?php endif; ?>
+											<?php endif; ?>
 
-										<?php do_action( 'woostify_pro_panel_column' ); ?>
+											<?php do_action( 'woostify_pro_panel_column' ); ?>
+										</div>
 									</div>
 									<div class="woostify-setting-tab-content" data-tab="starter-templates">
 										<h2><?php esc_html_e( 'Starter Templates', 'woostify' ); ?></h2>
