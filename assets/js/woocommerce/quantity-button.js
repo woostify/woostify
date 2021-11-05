@@ -109,6 +109,14 @@ function customQuantity() {
 							return;
 						}
 					}
+
+					var loopWrapper = input.closest( '.product-loop-wrapper' );
+					if ( loopWrapper ) {
+						var ajaxAddToCartBtn = loopWrapper.querySelector( '.add_to_cart_button' );
+						if ( ajaxAddToCartBtn ) {
+							ajaxAddToCartBtn.setAttribute( 'data-quantity', inputVal );
+						}
+					}
 				}
 			);
 

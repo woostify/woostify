@@ -15,6 +15,14 @@ $screen-md-min : $screen-md !default;
 $screen-lg : 1200px !default;
 $screen-lg-min : $screen-lg !default;
 
+// XLarge screen / wide desktop
+$screen-xlg : 1921px !default;
+$screen-xlg-min : $screen-xlg !default;
+
+// XXLarge screen / wide desktop
+$screen-xxlg : 2561px !default;
+$screen-xxlg-min : $screen-xxlg !default;
+
 // So media queries don't overlap when required, provide a maximum
 $screen-xs-max : ($screen-sm-min - 1) !default;
 $screen-sm-max : ($screen-md-min - 1) !default;

@@ -227,6 +227,35 @@
 	}
 }
 
+.loop-product-qty {
+	.quantity {
+		border: 1px solid #e8e8e8;
+		border-radius: 50px;
+		height: 36px;
+		max-width: 120px;
+
+		.product-qty {
+			width: 35px;
+
+			.woostify-svg-icon {
+				svg {
+					width: 13px;
+					height: 13px;
+				}
+			}
+		}
+		[data-qty="minus"] {
+			border-right: 1px solid #e8e8e8;
+		}
+		[data-qty="plus"] {
+			border-left: 1px solid #e8e8e8;
+		}
+		.qty {
+			padding: 0 30px;
+			font-size: inherit;
+		}
+	}
+}
 
 /* responsive */
 @media ( min-width: $screen-md ) {
