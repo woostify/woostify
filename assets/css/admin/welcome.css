@@ -164,7 +164,7 @@
   border-color: rgba(190, 196, 203, 0.7);
 }
 
-.woostify-options-wrap .woostify-enhance .woostify-grid-box .box-item:not(.box-item--disabled).box-item__link {
+.woostify-options-wrap .woostify-enhance .woostify-grid-box .box-item:not(.box-item--disabled) .box-item__link {
   border-radius: 3px;
   padding: 5px 12px;
   background: #fff;

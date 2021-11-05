@@ -154,7 +154,7 @@
 				}
 
 				&:not(.box-item--disabled) {
-					&.box-item__link {
+					.box-item__link {
 						border-radius: 3px;
 						padding: 5px 12px;
 						background: #fff;
