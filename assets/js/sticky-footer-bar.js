@@ -12,7 +12,12 @@ document.addEventListener(
 		var senseSpeed               = 5
 		var previousScroll           = 0
 		var stickyFooterBarContainer = document.querySelector( '.woostify-sticky-footer-bar' );
-		window.onscroll              = function() {
+
+		if ( ! stickyFooterBarContainer ) {
+			return;
+		}
+
+		window.onscroll = function() {
 			var stickyFooterBarHeight = stickyFooterBarContainer.clientHeight + 1;
 			var scroller              = window.pageYOffset | document.body.scrollTop;
 			if ( scroller - senseSpeed > previousScroll ) {
