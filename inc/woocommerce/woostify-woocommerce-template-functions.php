@@ -1375,6 +1375,19 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_disable_woocommerce_block_styles' ) ) {
+	/**
+	 * Remove wc blocks style
+	 */
+	function woostify_disable_woocommerce_block_styles() {
+		$options = woostify_options( false );
+
+		if ( $options['performance_disable_woo_blocks_styles'] ) {
+			wp_dequeue_style( 'wc-blocks-style' );
+		}
+	}
+}
+
 if ( ! function_exists( 'woostify_product_quantity' ) ) {
 	/**
 	 * Display quantity input shop page

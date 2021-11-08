@@ -750,6 +750,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 			add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
 
+			// Performance.
+			add_action( 'wp_enqueue_scripts', 'woostify_disable_woocommerce_block_styles' );
+
 			// Quantity mode.
 			if ( $options['shop_page_product_quantity'] && ! $options['catalog_mode'] ) {
 				$add_to_cart_pos = $options['shop_page_add_to_cart_button_position'];
