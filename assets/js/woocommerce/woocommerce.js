@@ -386,6 +386,28 @@ var updateHeaderCartPrice = function () {
 	}
 }
 
+// Product carousel.
+var woostifyProductsCarousel = function( selector ) {
+	var elements = document.querySelectorAll( selector );
+
+	if ( ! elements.length ) {
+		return;
+	}
+
+	for ( var i = 0, j = elements.length; i < j; i++ ) {
+		var element = elements[i];
+		if ( element.classList.contains( 'tns-slider' ) ) {
+			continue;
+		}
+		if ( 1 > woostify_woocommerce_general.related_carousel_opts.length ) {
+			return;
+		}
+		var options       = woostify_woocommerce_general.related_carousel_opts;
+		options.container = element;
+		var slider        = tns( options );
+	}
+}
+
 // Show an element.
 var woostiftToggleShow = function (elem) {
 
@@ -684,6 +706,9 @@ document.addEventListener(
 
 		shoppingBag();
 		woostifyQuantityMiniCart();
+		woostifyProductsCarousel( '.related.products ul.products' );
+		woostifyProductsCarousel( '.upsells.products ul.products' );
+		woostifyProductsCarousel( '.woostify-product-recently-viewed-section ul.products' );
 
 		productDataTabsAccordion();
 
@@ -707,6 +732,10 @@ document.addEventListener(
 				updateHeaderCartPrice();
 				eventCartSidebarClose();
 				closeAll();
+
+				woostifyProductsCarousel( '.related.products ul.products' );
+				woostifyProductsCarousel( '.upsells.products ul.products' );
+				woostifyProductsCarousel( '.woostify-product-recently-viewed-section ul.products' );
 
 				$button = typeof $button === 'undefined' ? false : $button;
 
