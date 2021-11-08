@@ -288,13 +288,13 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				array(
 					'name'        => 'woostify_multiphe_header',
 					'title'       => __( 'Multiple Headers', 'woostify' ),
-					'desc'        => 'Nullam nulla eros ultricies sit',
+					'desc'        => '',
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/multiple-headers/',
 				),
 				array(
 					'name'        => 'woostify_sticky_header',
 					'title'       => __( 'Sticky Header', 'woostify' ),
-					'desc'        => 'Nullam nulla eros ultricies sit',
+					'desc'        => '',
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/sticky-header/',
 				),
 				array(
