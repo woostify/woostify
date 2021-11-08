@@ -192,6 +192,8 @@
 			margin-bottom: 10px;
 			border-radius: 4px;
 			overflow: hidden;
+			padding: 1.5em;
+			box-sizing: border-box;
 
 			@media ( min-width: 720px ) {
 				margin-bottom: 20px;
@@ -236,10 +238,9 @@
 			}
 
 			h3 {
-				font-size: 1.1em;
+				font-size: 1.3em;
 				font-weight: 600;
 				color: #383838;
-				padding: 1em 1.5em 0;
 				margin: 0;
 			}
 
@@ -286,18 +287,12 @@
 	}
 
 	.wf-quick-setting-section{
-		margin: 1em 0;
-		padding: 0 1.5em;
+		margin: 1.3em 0 0;
 	}
 
 	/* List pro feature */
 	.pro-featured-list{
 		padding-bottom: 0 !important;
-
-		.wf-quick-setting-section{
-			margin: 0;
-			padding: 0;
-		}
 
 		.pro-featured-item{
 			display: flex;
