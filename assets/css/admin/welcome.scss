@@ -1,9 +1,11 @@
 .woostify-options-wrap {
 	.woostify-enhance {
 		margin-top: 4em;
+		max-width: 1140px;
+		padding: 0 15px;
 
 		@media ( min-width: 1140px ) {
-			margin: 4em 0px;
+			margin: 4em auto;
 		}
 
 		&:after{
@@ -12,7 +14,9 @@
 			display: block;
 		}
 
-		.woostify-welcome-container{
+		.woostify-welcome-container {
+			width: 100%;
+			padding: 0;
 			display: flex;
 			justify-content: space-between;
 			align-items: flex-start;
@@ -117,6 +121,10 @@
 			grid-template-columns: repeat(3, 1fr);
 			grid-gap: 20px;
 
+			@media (max-width: 600px) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
 			.box-item {
 				border: 1px solid #E2E8F0;
 				padding: 20px;
@@ -146,20 +154,15 @@
 				&__link {
 					margin-top: 0.5em;
 					color: #3c434a;
+					border-radius: 3px;
+					padding: 5px 12px;
+					background: #fff;
+					border: 1px solid #e2e6eb;
+					box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 
 					&:hover, &:focus, &:active {
 						color: #2271b1;
 						border-color: rgba(190,196,203,0.7);
-					}
-				}
-
-				&:not(.box-item--disabled) {
-					.box-item__link {
-						border-radius: 3px;
-						padding: 5px 12px;
-						background: #fff;
-						border: 1px solid #e2e6eb;
-						box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 					}
 				}
 

@@ -387,7 +387,10 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 				<?php $this->woostify_welcome_screen_header(); ?>
 
-				<div class="woostify-enhance">
+				<div class="wrap woostify-enhance">
+					<div class="woostify-notices-wrap">
+						<h2 class="notices" style="display:none;"></h2>
+					</div>
 					<div class="woostify-welcome-container">
 						<div class="woostify-enhance-content">
 							<div class="woostify-welcome-settings-section-tab woostify-enhance-settings-section-tab">
