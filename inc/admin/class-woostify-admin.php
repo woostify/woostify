@@ -268,11 +268,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						</a>
 
 						<span class="woostify-welcome-theme-version"><?php echo esc_html( woostify_version() ); ?></span>
-
-						<!-- <ul class="woostify-welcome-nav_link">
-							<li><a href="<?php echo esc_url( $woostify_url ); ?>/changelog/" target="_blank"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a></li>
-							<li><a href="<?php echo esc_url( $facebook_url ); ?>" target="_blank"><strong><?php esc_html_e( 'Join FB Group', 'woostify' ); ?></strong></a></li>
-						</ul> -->
 					</div>
 				</section>
 			<?php
