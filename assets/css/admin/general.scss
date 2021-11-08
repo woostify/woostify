@@ -119,7 +119,7 @@ body{
 
 /* Woostify options page Navigation */
 .woostify-welcome-container {
-	max-width: 930px;
+	max-width: 1140px;
 	margin: 0 auto;
 	padding: 0 15px;
 }
@@ -131,6 +131,7 @@ body{
 .woostify-welcome-nav {
 	background-color: #fff;
 	box-shadow: 0 1px 1px 0 rgba( 0, 0, 0, 0.1 );
+	padding: 1.2em 0;
 
 	@media ( max-width: 719px ) {
 		padding: 15px 0;
@@ -177,8 +178,9 @@ body{
 	.woostify-welcome-theme-version{
 		background-color: #e5e5e5;
 		border-radius: 2px;
-		font-size: 0.65em;
-		padding: 2px 5px;
+		padding: 3px 8px;
+		font-size: 1em;
+		color: #001099;
 	}
 
 	.woostify-welcome-nav__version {
