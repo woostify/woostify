@@ -99,3 +99,25 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+$wp_customize->add_setting(
+	'woostify_setting[performance_disable_woo_blocks_styles]',
+	array(
+		'default'           => $defaults['performance_disable_woo_blocks_styles'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[performance_disable_woo_blocks_styles]',
+		array(
+			'label'    => __( 'Disable Woocommerce Blocks CSS Styles', 'woostify' ),
+			'section'  => 'woostify_performance',
+			'settings' => 'woostify_setting[performance_disable_woo_blocks_styles]',
+		)
+	)
+);

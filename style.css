@@ -7905,20 +7905,61 @@ header.elementor-element {
 }
 
 .related,
-.up-sells {
+.up-sells,
+.woostify-product-recently-viewed-section {
   border-top: 1px solid #efefef;
 }
 
 .related > h2,
-.up-sells > h2 {
+.up-sells > h2,
+.woostify-product-recently-viewed-section > h2 {
   text-align: center;
   font-size: 18px;
   font-weight: normal;
   padding: 25px 0;
 }
 
+.related ul.products.tns-slider .product,
+.up-sells ul.products.tns-slider .product,
+.woostify-product-recently-viewed-section ul.products.tns-slider .product {
+  margin: 0;
+  float: none;
+}
+
+.related .tns-controls button[data-controls="prev"],
+.up-sells .tns-controls button[data-controls="prev"],
+.woostify-product-recently-viewed-section .tns-controls button[data-controls="prev"] {
+  left: -55px;
+}
+
+@media (max-width: 991px) {
+  .related .tns-controls button[data-controls="prev"],
+  .up-sells .tns-controls button[data-controls="prev"],
+  .woostify-product-recently-viewed-section .tns-controls button[data-controls="prev"] {
+    left: 5px;
+  }
+}
+
+.related .tns-controls button[data-controls="next"],
+.up-sells .tns-controls button[data-controls="next"],
+.woostify-product-recently-viewed-section .tns-controls button[data-controls="next"] {
+  right: -55px;
+}
+
+@media (max-width: 991px) {
+  .related .tns-controls button[data-controls="next"],
+  .up-sells .tns-controls button[data-controls="next"],
+  .woostify-product-recently-viewed-section .tns-controls button[data-controls="next"] {
+    right: 5px;
+  }
+}
+
 .woostify-product-images-widget .product-gallery {
   width: 100%;
+}
+
+.woostify-product-recently-viewed-section {
+  border: none;
 }
 
 .woostify-product-recently-viewed-section .woostify-product-recently-viewed-inner {

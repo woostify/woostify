@@ -391,6 +391,29 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Main woocommerce js file.
 			wp_enqueue_script( 'woostify-woocommerce' );
 
+			$related_carousel_opts = array();
+			if ( $options['shop_single_related_product'] && $options['shop_single_product_related_enable_carousel'] ) {
+				$related_carousel_opts = array(
+					'loop'         => false,
+					'rewind'       => true,
+					'controls'     => $options['shop_single_product_related_carousel_arrows'],
+					'nav'          => $options['shop_single_product_related_carousel_dots'],
+					'gutter'       => 30,
+					'controlsText' => array( Woostify_Icon::fetch_svg_icon( 'angle-left', false ), Woostify_Icon::fetch_svg_icon( 'angle-right', false ) ),
+					'responsive'   => array(
+						'1'   => array(
+							'items' => 2,
+						),
+						'601' => array(
+							'items' => 3,
+						),
+						'992' => array(
+							'items' => $options['shop_single_product_related_columns'],
+						),
+					),
+				);
+			}
+
 			// Quantity minicart.
 			wp_localize_script(
 				'woostify-woocommerce',
@@ -407,6 +430,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'sticky_bottom_space'            => $options['shop_single_product_sticky_bottom_space'],
 					'shipping_threshold'             => $shipping_threshold_script_var,
 					'enabled_sticky_product_summary' => 'woocommerce_single_product_summary' === $options['shop_single_product_data_tabs_pos'] ? 'false' : 'true',
+					'related_carousel_opts'          => $related_carousel_opts,
 				)
 			);
 
@@ -749,6 +773,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Swap position price and rating star.
 			add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 			add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+
+			// Performance.
+			add_action( 'wp_enqueue_scripts', 'woostify_disable_woocommerce_block_styles' );
 
 			// Quantity mode.
 			if ( $options['shop_page_product_quantity'] && ! $options['catalog_mode'] ) {

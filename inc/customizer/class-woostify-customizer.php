@@ -547,6 +547,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_related_product'              => true,
 				'shop_single_product_related_total'        => 4,
 				'shop_single_product_related_columns'      => 4,
+				'shop_single_product_related_enable_carousel' => false,
+				'shop_single_product_related_carousel_arrows' => true,
+				'shop_single_product_related_carousel_dots' => true,
 				// Recently view.
 				'shop_single_product_recently_viewed'      => false,
 				'shop_single_recently_viewed_title'        => __( 'Recently Viewed Products', 'woostify' ),
@@ -599,6 +602,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'error_404_text'                           => __( 'Opps! The page you are looking for is missing for some reasons. Please come back to homepage', 'woostify' ),
 				'load_google_fonts_locally'                => false,
 				'load_google_fonts_locally_preload'        => false,
+				'performance_disable_woo_blocks_styles'    => false,
 			);
 
 			return apply_filters( 'woostify_setting_default_values', $args );
