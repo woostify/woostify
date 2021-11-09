@@ -66,7 +66,7 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 				<div class="prev-product-navigation product-nav-item">
 					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $prev_id ) ); ?>">
 						<span class="product-nav-icon">
-							<?php echo woostify_fetch_svg_icon( $prev_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<?php Woostify_Icon::fetch_svg_icon( $prev_icon ); ?>
 						</span>
 						<span><?php esc_html_e( 'Previous', 'woostify' ); ?></span>
 					</a>
@@ -99,7 +99,7 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $next_id ) ); ?>">
 						<span><?php esc_html_e( 'Next', 'woostify' ); ?></span>
 						<span class="product-nav-icon">
-							<?php echo woostify_fetch_svg_icon( $next_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<?php Woostify_Icon::fetch_svg_icon( $next_icon ); ?>
 						</span>
 					</a>
 					<div class="product-nav-item-content">
@@ -769,6 +769,6 @@ if ( ! function_exists( 'woostify_reset_variations_link' ) ) {
 	 * @return void
 	 */
 	function woostify_reset_variations_link( $output ) {
-		return '<a class="reset_variations" href="#">' . woostify_fetch_svg_icon( 'reload' ) . esc_html__( 'Clear', 'woostify' ) . '</a>';
+		return '<a class="reset_variations" href="#">' . Woostify_Icon::fetch_svg_icon( 'reload', false ) . esc_html__( 'Clear', 'woostify' ) . '</a>';
 	}
 }

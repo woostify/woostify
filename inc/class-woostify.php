@@ -134,7 +134,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			// Menu icon.
 			if ( 'mega_menu' === $item->object && $this->megamenu_icon ) {
 				$item_output .= '<span class="menu-item-icon">';
-				$item_output .= woostify_fetch_svg_icon( $this->megamenu_icon );
+				$item_output .= Woostify_Icon::fetch_svg_icon( $this->megamenu_icon, false );
 				$item_output .= '</span>';
 			}
 
@@ -146,7 +146,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			// Add arrow icon.
 			if ( $has_child ) {
-				$item_output .= '<span class="menu-item-arrow arrow-icon">' . woostify_fetch_svg_icon( 'angle-down' ) . '</span>';
+				$item_output .= '<span class="menu-item-arrow arrow-icon">' . Woostify_Icon::fetch_svg_icon( 'angle-down', false ) . '</span>';
 			}
 
 			$item_output .= '</a>';
@@ -682,7 +682,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 				'woostify_svg_icons',
 				array(
 					'file_url' => WOOSTIFY_THEME_URI . 'assets/svg/svgs.json',
-					'list'     => wp_json_encode( woostify_fetch_all_svg_icon() ),
+					'list'     => wp_json_encode( Woostify_Icon::fetch_all_svg_icon() ),
 				)
 			);
 

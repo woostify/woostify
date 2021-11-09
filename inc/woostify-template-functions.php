@@ -1715,7 +1715,7 @@ if ( ! function_exists( 'woostify_dialog_search' ) ) {
 				<div class="dialog-search-header">
 					<span class="dialog-search-title"><?php esc_html_e( 'Type to search', 'woostify' ); ?></span>
 					<span class="dialog-search-close-icon">
-						<?php echo woostify_fetch_svg_icon( $close_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php Woostify_Icon::fetch_svg_icon( $close_icon ); ?>
 					</span>
 				</div>
 
@@ -1921,7 +1921,7 @@ if ( ! function_exists( 'woostify_overlay' ) ) {
 	 * Woostify overlay
 	 */
 	function woostify_overlay() {
-		echo '<div id="woostify-overlay">' . woostify_fetch_svg_icon( 'close' ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<div id="woostify-overlay">' . Woostify_Icon::fetch_svg_icon( 'close', false ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 
@@ -2041,7 +2041,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			<?php // Search icon. ?>
 			<?php if ( $options['header_search_icon'] ) { ?>
 				<span class="tools-icon header-search-icon">
-					<?php echo woostify_fetch_svg_icon( $search_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php Woostify_Icon::fetch_svg_icon( $search_icon ); ?>
 				</span>
 				<?php
 			}
@@ -2054,7 +2054,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 					$wishlist_item_count = woostify_get_wishlist_count();
 					?>
 					<a href="<?php echo esc_url( woostify_wishlist_page_url() ); ?>" class="tools-icon header-wishlist-icon">
-						<?php echo woostify_fetch_svg_icon( $wishlist_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php Woostify_Icon::fetch_svg_icon( $wishlist_icon ); ?>
 						<?php if ( 'ti' === $options['shop_page_wishlist_support_plugin'] && function_exists( 'tinv_get_option' ) && tinv_get_option( 'topline', 'show_counter' ) ) { ?>
 							<span class="theme-item-count wishlist-item-count"><?php echo esc_html( $wishlist_item_count ); ?></span>
 						<?php } ?>
@@ -2070,7 +2070,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 					?>
 					<div class="tools-icon my-account">
 						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon">
-							<?php echo woostify_fetch_svg_icon( $my_account_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<?php Woostify_Icon::fetch_svg_icon( $my_account_icon ); ?>
 						</a>
 
 						<?php if ( $subbox ) { ?>
@@ -2100,6 +2100,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 						</div>
 					<?php } ?>
 					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
+						<?php Woostify_Icon::fetch_svg_icon( 'shopping-cart' ); ?>
 						<span class="shop-cart-count <?php echo $options['header_shop_hide_zero_value_cart_count'] ? 'hide-zero-val' : ''; ?>"><?php echo esc_html( $count ); ?></span>
 					</a>
 					<?php
@@ -2378,7 +2379,7 @@ if ( ! function_exists( 'woostify_scroll_to_top' ) ) {
 		$icon = apply_filters( 'woostify_scroll_to_top_icon', 'angle-up' );
 		?>
 		<span id="scroll-to-top" class="scroll-to-top-position-<?php echo esc_attr( $position ); ?> scroll-to-top-show-<?php echo esc_attr( $display ); ?>" title="<?php esc_attr_e( 'Scroll To Top', 'woostify' ); ?>">
-			<?php echo woostify_fetch_svg_icon( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php Woostify_Icon::fetch_svg_icon( $icon ); ?>
 		</span>
 		<?php
 	}
