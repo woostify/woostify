@@ -473,7 +473,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				'enabled_shipping_threshold'        => $enabled_shipping_threshold,
 				'enabled_shipping_threshold_effect' => $enabled_shipping_threshold_effect,
 			);
-			if ( 'fst' === $top_content ) {
+			if ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content) {
 				if ( $enabled_shipping_threshold && $enabled_shipping_threshold_effect ) {
 					wp_enqueue_script( 'woostify-congrats-confetti-effect' );
 				}
