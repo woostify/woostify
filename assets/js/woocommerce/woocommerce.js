@@ -8,6 +8,164 @@
 
 'use strict';
 
+function woostifyInfiniteScroll( addEventClick ) {
+	let container      = document.querySelector( '.products' ),
+	view_more_btn_wrap = document.querySelector( '.woostify-view-more' )
+
+	if ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) {
+		return false;
+	}
+	let loading_status = view_more_btn_wrap.querySelector( '.woostify-loading-status' ),
+	loading_type       = view_more_btn_wrap.getAttribute( 'data-loading_type' ),
+	view_more_btn      = view_more_btn_wrap.querySelector( '.w-view-more-button' ),
+	pagination         = document.querySelector( '.woocommerce-pagination ul.page-numbers' )
+
+	let options = {
+		path: function() {
+			let curr_host_name = window.location.hostname,
+			curr_protocol      = window.location.protocol,
+			curr_path_name     = window.location.pathname,
+			page               = this.loadCount + 2,
+			curr_query         = window.location.search.substring( 1 ),
+			regex              = /(page\/)[0-9]+/;
+
+			if ( ! curr_path_name.match( regex )) {
+				curr_path_name = curr_path_name + 'page/' + page;
+			}
+			let path = '' === curr_query ? curr_protocol + '//' + curr_host_name + curr_path_name + '/' : curr_protocol + '//' + curr_host_name + curr_path_name + '/?' + curr_query;
+			return path;
+		},
+		append: '.product.type-product',
+		history: false,
+		hideNav: '.woocommerce-pagination',
+		loadOnScroll: 'button' === loading_type ? false : true
+	}
+
+	if ( null == pagination || 'undefined' === typeof( pagination ) ) {
+		if ( 'button' === loading_type ) {
+			view_more_btn_wrap.style.display = 'none';
+		} else {
+			options.loadOnScroll = false;
+		}
+	} else {
+		if ( 'button' === loading_type ) {
+			view_more_btn_wrap.style.display = 'block';
+			view_more_btn.style.display      = 'inline-flex';
+		} else {
+			options.loadOnScroll = true;
+		}
+	}
+
+	let infScroll = new InfiniteScroll(
+		container,
+		options
+	)
+
+	infScroll.loadCount = 0;
+
+	infScroll.on(
+		'request',
+		function( path, fetchPromise ) {
+			if ( 'button' === loading_type ) {
+				view_more_btn.classList.add( 'circle-loading' )
+			} else {
+				loading_status.style.display = 'inline-block'
+			}
+		}
+	)
+
+	infScroll.on(
+		'load',
+		function( body, path, fetchPromise ) {
+			let all_page     = body.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers:not(.next):not(.prev):not(.dots)' );
+			let next_page_el = body.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers.next' );
+			let is_last_page = ( ! next_page_el.length ) ? true : false;
+
+			if ( 'button' === loading_type ) {
+				view_more_btn.classList.remove( 'circle-loading' );
+			} else {
+				loading_status.style.display = 'none'
+			}
+
+			if ( all_page.length ) {
+				if ( is_last_page ) {
+					if ( 'button' === loading_type ) {
+						view_more_btn.style.display = 'none'
+					} else {
+						loading_status.style.display = 'none'
+						infScroll.option(
+							{
+								loadOnScroll: false
+							}
+						)
+					}
+				} else {
+					if ( 'button' !== loading_type ) {
+						infScroll.option(
+							{
+								loadOnScroll: true
+							}
+						)
+					}
+				}
+			} else {
+				if ( 'button' === loading_type ) {
+					view_more_btn.style.display = 'inline-flex'
+				} else {
+					loading_status.style.display = 'inline-block'
+				}
+			}
+		}
+	)
+
+	infScroll.on(
+		'append',
+		function( body, path, items, response ) {
+			// Re-init quick view.
+			if ( 'function' === typeof( woostifyQuickView ) ) {
+				woostifyQuickView();
+			}
+
+			// Variation swatches.
+			if ( 'function' === typeof( woostifyVariationSwatches ) ) {
+				woostifyVariationSwatches();
+			}
+			// Re-init swatch list.
+			if ( 'function' === typeof( woostifySwatchList ) ) {
+				woostifySwatchList();
+			}
+
+			if ( '1' === woostify_woocommerce_general.is_active_wvs ) {
+				jQuery('.variations_form').each(
+					function(){
+						jQuery( this ).wc_variation_form();
+					}
+				);
+			}
+		}
+	)
+
+	infScroll.on(
+		'last',
+		function( body, path ) {
+			if ( 'button' === loading_type ) {
+				view_more_btn.style.display = 'none'
+			} else {
+				loading_status.style.display = 'none'
+			}
+		}
+	)
+
+	if ( 'button' === loading_type && addEventClick ) {
+		view_more_btn.addEventListener(
+			'click',
+			function() {
+				infScroll.loadNextPage()
+			}
+		)
+	}
+}
+
 function cartSidebarOpen() {
 	if ( document.body.classList.contains( 'no-cart-sidebar' ) ) {
 		return;
@@ -373,14 +531,32 @@ var woostifyQuantityMiniCart = function() {
 
 var updateHeaderCartPrice = function () {
 	var total                    = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
-		headerCartPriceContainer = document.querySelectorAll( '.woostify-header-total-price' ),
-		currencySymbol           = document.querySelector( '.woostify-header-total-price .woocommerce-Price-currencySymbol, .boostify-subtotal .woocommerce-Price-currencySymbol' );
+		priceFormat              = '',
+		headerCartPriceContainer = document.querySelectorAll( '.woostify-header-total-price' );
+
 	if ( headerCartPriceContainer.length ) {
+		switch ( woostify_woocommerce_general.currency_pos ) {
+			case 'left':
+				priceFormat = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">' + woostify_woocommerce_general.currency_symbol + '</span>0</bdi></span>';
+				break;
+			case 'right':
+				priceFormat = '<span class="woocommerce-Price-amount amount"><bdi>0<span class="woocommerce-Price-currencySymbol">' + woostify_woocommerce_general.currency_symbol + '</span></bdi></span>';
+				break;
+			case 'left_space':
+				priceFormat = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">' + woostify_woocommerce_general.currency_symbol + '</span>&nbsp;0</bdi></span>';
+				break;
+			case 'right_space':
+				priceFormat = '<span class="woocommerce-Price-amount amount"><bdi>0&nbsp;<span class="woocommerce-Price-currencySymbol">' + woostify_woocommerce_general.currency_symbol + '</span></bdi></span>';
+				break;
+
+			default:
+				break;
+		}
 		for ( var si = 0, sc = headerCartPriceContainer.length; si < sc; si++ ) {
 			if (total) {
 				headerCartPriceContainer[si].innerHTML = '<span class="woocommerce-Price-amount amount">' + total.innerHTML + '</span>';
 			} else {
-				headerCartPriceContainer[si].innerHTML = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">' + currencySymbol.innerHTML + '</span>0</bdi></span>';
+				headerCartPriceContainer[si].innerHTML = priceFormat;
 			}
 		}
 	}
@@ -718,6 +894,8 @@ document.addEventListener(
 				woostifyStockQuantityProgressBar();
 			}
 		);
+
+		woostifyInfiniteScroll( true );
 
 		jQuery( document.body ).on(
 			'adding_to_cart',

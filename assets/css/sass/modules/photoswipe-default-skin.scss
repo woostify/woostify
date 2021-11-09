@@ -6,19 +6,6 @@
 
 /* pswp = photoswipe */
 
-.logged-in.admin-bar {
-	@media ( min-width: 783px) {
-		.pswp__top-bar {
-			top: 32px;
-		}
-	}
-	@media ( max-width: 782px) {
-		.pswp__top-bar {
-			top: 46px;
-		}
-	}
-}
-
 .pswp {
 	display: none;
 	position: absolute;
@@ -87,7 +74,7 @@
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba( 0, 0, 0, 0.85);
+	background-color: #fff;
 	opacity: 0;
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
@@ -102,10 +89,6 @@
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-}
-
-.pswp__container {
-	transition: transform 0.3s ease-in-out;
 }
 
 .pswp__container,
@@ -364,6 +347,9 @@
 	width: 70px;
 	height: 100px;
 	position: absolute;
+	&:before {
+		background-color: rgba(0, 0, 0, 0.3);
+	}
 }
 
 .pswp__button--arrow--left {
@@ -374,11 +360,11 @@
 	right: 0;
 }
 
-.pswp__button--arrow--left:before,
-.pswp__button--arrow--right:before {
+button.pswp__button--arrow--left:before,
+button.pswp__button--arrow--right:before {
 	content: '';
 	top: 35px;
-	background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(0, 0, 0, 0.3) !important;
 	height: 30px;
 	width: 32px;
 	position: absolute;
@@ -826,4 +812,57 @@ a.pswp__share--download:hover {
 
 .pswp--minimal--dark .pswp__top-bar {
 	background: none;
+}
+
+
+.pswp__thumbnails {
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    white-space: nowrap;
+    overflow: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    text-align: center;
+	@media (min-width: $screen-sm) {
+		width: auto;
+		top: 0;
+		bottom: 0;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		-ms-flex-pack: center;
+		justify-content: center;
+		-ms-flex-align: center;
+		align-items: center;
+		max-height: 100vh;
+		margin: 50px;
+		background: 0 0;
+		overflow: visible;
+	}
+
+	.thumbnail-item {
+		width: 50px;
+		margin: 5px;
+		border-radius: 2px;
+		overflow: hidden;
+		border: 1px solid transparent;
+		display: inline-block;
+
+		&.active {
+			border: 1px solid #555;
+		}
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		img {
+			width: 100%;
+		}
+	}
 }

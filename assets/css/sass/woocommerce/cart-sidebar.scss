@@ -235,6 +235,12 @@ $media: 599px;
 		}
 	}
 
+    [data-sold_individually] {
+    	.mini-cart-product-qty {
+    		display: none;
+    	}
+    }
+
     .woocommerce-mini-cart__total {
         margin-bottom: 0;
         background-color: transparent;

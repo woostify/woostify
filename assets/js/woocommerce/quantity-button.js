@@ -65,19 +65,11 @@ function customQuantity() {
 				maxInput    = Number( input.getAttribute( 'max' ) ),
 				eventChange = new Event( 'change', { bubbles: true } );
 
-			// Get product info.
-			var productInfo   = cart ? cart.querySelector( '.additional-product' ) : false,
-				inStock       = productInfo ? productInfo.getAttribute( 'data-in_stock' ) : 'no',
-				outStock      = productInfo ? productInfo.getAttribute( 'data-out_of_stock' ) : 'Out of stock',
-				notEnough     = productInfo ? productInfo.getAttribute( 'data-not_enough' ) : '',
-				quantityValid = productInfo ? productInfo.getAttribute( 'data-valid_quantity' ) : '';
-
 			// Check valid quantity.
 			input.addEventListener(
 				'change',
 				function() {
 					var inputVal  = input.value,
-						inCartQty = productInfo ? Number( productInfo.value || 0 ) : 0,
 						min       = Number( input.getAttribute( 'min' ) || 0 ),
 						ajaxReady = function() {
 							input.classList.remove( 'ajax-ready' );
@@ -85,30 +77,6 @@ function customQuantity() {
 
 					// When quantity updated.
 					input.classList.add( 'ajax-ready' );
-
-					// Valid quantity.
-					if ( inputVal < min || isNaN( inputVal ) ) {
-						alert( quantityValid );
-						ajaxReady();
-						return;
-					}
-
-					// Stock status.
-					if ( 'yes' == inStock ) {
-						// Out of stock.
-						if ( maxInput && inCartQty == maxInput ) {
-							alert( outStock );
-							ajaxReady();
-							return;
-						}
-
-						// Not enough quantity.
-						if ( maxInput && ( +inputVal + +inCartQty > maxInput ) ) {
-							alert( notEnough );
-							ajaxReady();
-							return;
-						}
-					}
 
 					var loopWrapper = input.closest( '.product-loop-wrapper' );
 					if ( loopWrapper ) {

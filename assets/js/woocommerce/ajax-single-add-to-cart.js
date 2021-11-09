@@ -81,10 +81,26 @@ function woostifyAjaxSingleAddToCartButton() {
 	buttons.forEach(
 		function( ele ) {
 			ele.onclick = function( e ) {
-				e.preventDefault();
-
 				var form = ele.closest( 'form.cart' );
 				if ( ! form ) {
+					return;
+				}
+
+				if ( 'POST' !== form.method.toUpperCase() ) {
+					return;
+				}
+
+				e.preventDefault();
+				let input = form.querySelector( 'input.qty' );
+
+				if ( null == input ) {
+					input = form.querySelector( 'input[name="quantity"]' );
+				}
+
+				let inputValue = input ? Number( input.value.trim() ) : false;
+
+				if ( ! inputValue || isNaN( inputValue ) || inputValue <= 0 ) {
+					alert( woostify_woocommerce_general.qty_warning );
 					return;
 				}
 
@@ -148,6 +164,11 @@ function woostifyAjaxSingleAddToCartButton() {
 
 						// Update fragments.
 						woostifyAjaxSingleUpdateFragments( ele );
+
+						// Support Buy now addon.
+						if ( ele.getAttribute( 'data-checkout_url' ) ) {
+							window.location = ele.getAttribute( 'data-checkout_url' );
+						}
 					}
 				).catch(
 					function() {

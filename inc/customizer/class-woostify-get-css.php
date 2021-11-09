@@ -1096,7 +1096,8 @@ class Woostify_Get_CSS {
 			}
 
 			.woocommerce-thankyou-order-received,
-			.woostify-lightbox-button:hover {
+			.woostify-lightbox-button:hover,
+			.photoswipe-toggle-button:hover {
 				border-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 

@@ -7,7 +7,7 @@
 		display: none;
 	}
 
-	.ajax-loader {
+	.ajax-loader, .wpcf7-spinner {
 		display: none;
 		opacity: 0;
 		visibility: hidden;
@@ -20,6 +20,18 @@
 			opacity: 1;
 			visibility: visible;
 			animation: loading 0.5s linear infinite;
+		}
+	}
+
+	.wpcf7-form {
+		&.submitting {
+			.ajax-loader, .wpcf7-spinner {
+				@extend .flex;
+				margin-top: 10px;
+				opacity: 1;
+				visibility: visible;
+				animation: loading 0.5s linear infinite;
+			}
 		}
 	}
 }

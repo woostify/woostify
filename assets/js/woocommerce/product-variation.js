@@ -21,10 +21,13 @@ function productVariation( selector, form ) {
 		return;
 	}
 
-	var imageWrapper = gallery.querySelector( '.image-item' ),
-		image        = imageWrapper ? imageWrapper.querySelector( 'img' ) : false,
-		imageSrc     = image ? image.getAttribute( 'src' ) : '',
-		imageSrcset  = image ? image.getAttribute( 'srcset' ) : '',
+	var imageWrapper = gallery.querySelector( '.image-item' );
+	if ( imageWrapper == null ) {
+		return;
+	}
+	var image       = imageWrapper ? imageWrapper.querySelector( 'img' ) : false,
+		imageSrc    = image ? image.getAttribute( 'src' ) : '',
+		imageSrcset = image ? image.getAttribute( 'srcset' ) : '',
 		// Photoswipe + zoom.
 		photoSwipe    = imageWrapper.querySelector( 'a' ),
 		photoSwipeSrc = photoSwipe ? photoSwipe.getAttribute( 'href' ) : '',
@@ -52,7 +55,12 @@ function productVariation( selector, form ) {
 		function( event, variation ) {
 			// get image url form `variation`.
 			var imgSrc  = variation.image.src,
+				fullSrc = variation.image.full_src,
 				inStock = variation.is_in_stock;
+
+			if ( ! imgSrc || ! fullSrc ) {
+				return;
+			}
 
 			// Support Product meta widget.
 			if ( productMetaSku ) {
@@ -65,11 +73,11 @@ function productVariation( selector, form ) {
 
 			// Photoswipe + zoom.
 			if ( photoSwipe ) {
-				photoSwipe.setAttribute( 'href', variation.image.full_src );
+				photoSwipe.setAttribute( 'href', fullSrc );
 			}
 
 			// Change image src image.
-			if ( image ) {
+			if ( image && imgSrc ) {
 				imageWrapper.classList.add( 'image-loading' );
 
 				var img    = new Image();

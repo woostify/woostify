@@ -168,6 +168,12 @@
 			display: none;
 		}
 	}
+
+	.woostify-header-total-price {
+		&.hide-zero-val.hide {
+			display: none;
+		}
+	}
 }
 
 .my-account {

@@ -1065,3 +1065,34 @@ $size: 40px;
 		font-size: 1.1em;
 	}
 }
+
+.woostify-view-more {
+	text-align: center;
+	position: relative;
+
+	.w-view-more-button {
+		position: relative;
+
+		&.circle-loading {
+			display: inline-flex;
+			align-items: center;
+
+			.w-view-more-label {
+				padding-left: 5px;
+			}
+
+			&:before {
+				position: static;
+				transform: none;
+			}
+		}
+	}
+
+	.woostify-loading-status {
+		display: none;
+		&:before{
+			@include loading();
+		}
+	}
+}
+

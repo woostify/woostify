@@ -115,43 +115,38 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 
 			// Start Mega menu content.
 			if ( 'mega_menu' === $item->object && 0 === $depth && ! woostify_is_elementor_editor() ) {
-				$item_output .= '<ul class="sub-mega-menu">';
-				$item_output .= '<div class="mega-menu-wrapper">';
+				$mega_menu = '';
+				$mega_args = array(
+					'p'                   => $item->object_id,
+					'post_type'           => 'mega_menu',
+					'post_status'         => 'publish',
+					'posts_per_page'      => 1,
+					'ignore_sticky_posts' => 1,
+					'fields'              => 'ids',
+				);
 
-				if ( woostify_is_elementor_page( $item->object_id ) ) {
-					$frontend     = new \Elementor\Frontend();
-					$item_output .= $frontend->get_builder_content_for_display( $item->object_id, true );
-					wp_enqueue_style( 'elementor-frontend' );
-					wp_reset_postdata();
-				} else {
-					$mega_args = array(
-						'p'                   => $item->object_id,
-						'post_type'           => 'mega_menu',
-						'post_status'         => 'publish',
-						'posts_per_page'      => 1,
-						'ignore_sticky_posts' => 1,
-					);
+				$query = new WP_Query( $mega_args );
+				if ( $query->have_posts() ) {
+					ob_start();
+					echo '<div class="mega-menu-inner-wrapper">';
+					while ( $query->have_posts() ) {
+						$query->the_post();
 
-					$query = new WP_Query( $mega_args );
-
-					if ( $query->have_posts() ) {
-						ob_start();
-						echo '<div class="mega-menu-inner-wrapper">';
-						while ( $query->have_posts() ) {
-							$query->the_post();
-
-							the_content();
-						}
-						echo '</div>';
-						$item_output .= ob_get_clean();
-
-						// Reset post data.
-						wp_reset_postdata();
+						the_content();
 					}
+					echo '</div>';
+					$mega_menu .= ob_get_clean();
+
+					wp_reset_postdata();
 				}
 
-				$item_output .= '</div>';
-				$item_output .= '</ul>';
+				if ( ! empty( $mega_menu ) ) {
+					$item_output .= '<ul class="sub-mega-menu">';
+					$item_output .= '<div class="mega-menu-wrapper">';
+					$item_output .= $mega_menu;
+					$item_output .= '</div>';
+					$item_output .= '</ul>';
+				}
 			} // End Mega menu content.
 
 			$item_output .= $args->after;

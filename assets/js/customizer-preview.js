@@ -712,6 +712,9 @@ document.addEventListener(
 		// Header Hide zero value cart count.
 		woostify_update_element_class( 'header_shop_hide_zero_value_cart_count', '.shopping-bag-button .shop-cart-count', 'hide-zero-val' )
 
+		// Header Hide zero value cart subtotal.
+		woostify_update_element_class( 'header_shop_hide_zero_value_cart_subtotal', '.woostify-header-total-price', 'hide-zero-val' );
+
 		// Logo width.
 		woostify_range_slider_update(
 			[
