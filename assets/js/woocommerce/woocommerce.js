@@ -135,6 +135,16 @@ function woostifyInfiniteScroll( addEventClick ) {
 				woostifySwatchList();
 			}
 
+			// Re-init quantity button list.
+			if ( 'function' === typeof( customQuantity ) ) {
+				customQuantity();
+			}
+
+			// Re-init countdown urgency.
+			if ( 'function' === typeof( woostifyCountdownUrgency ) ) {
+				woostifyCountdownUrgency();
+			}
+
 			if ( '1' === woostify_woocommerce_general.is_active_wvs ) {
 				jQuery('.variations_form').each(
 					function(){
