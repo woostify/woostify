@@ -36,7 +36,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		/**
 		 * Init actions in customize preview
 		 */
-		function woocommerce_init_action() {
+		public function woocommerce_init_action() {
 			$options = woostify_options( false );
 
 			// Enabled Quantity Mode.
@@ -103,6 +103,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 		/**
 		 * Custom product data tabs
+		 *
+		 * @param array $tabs The product tabs.
 		 */
 		public function product_data_tabs( $tabs ) {
 			$tabs = woostify_custom_product_data_tabs( $tabs );

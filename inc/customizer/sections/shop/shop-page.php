@@ -164,7 +164,7 @@ $wp_customize->add_control(
 	)
 );
 
-// Infinite scroll loading type
+// Infinite scroll loading type.
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_infinite_scroll_type]',
 	array(

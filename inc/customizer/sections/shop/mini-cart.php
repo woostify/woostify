@@ -147,7 +147,7 @@ $wp_customize->add_control(
 				array(
 					''            => __( 'None', 'woostify' ),
 					'custom_html' => __( 'Custom HTML', 'woostify' ),
-					'fst' => __( 'Free Shipping Threshold', 'woostify' ),
+					'fst'         => __( 'Free Shipping Threshold', 'woostify' ),
 				)
 			),
 		)
@@ -221,7 +221,7 @@ $wp_customize->add_control(
 				array(
 					''            => __( 'None', 'woostify' ),
 					'custom_html' => __( 'Custom HTML', 'woostify' ),
-					'fst' => __( 'Free Shipping Threshold', 'woostify' ),
+					'fst'         => __( 'Free Shipping Threshold', 'woostify' ),
 				)
 			),
 		)
@@ -295,7 +295,7 @@ $wp_customize->add_control(
 				array(
 					''            => __( 'None', 'woostify' ),
 					'custom_html' => __( 'Custom HTML', 'woostify' ),
-					'fst' => __( 'Free Shipping Threshold', 'woostify' ),
+					'fst'         => __( 'Free Shipping Threshold', 'woostify' ),
 				)
 			),
 		)

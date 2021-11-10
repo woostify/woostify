@@ -59,14 +59,6 @@ class Woostify_Product_Data_Tabs_Control extends WP_Customize_Control {
 	}
 
 	/**
-	 * TO json data
-	 */
-	public function to_json() {
-		parent::to_json();
-	}
-
-
-	/**
 	 * Renter the control
 	 *
 	 * @return void
@@ -118,9 +110,7 @@ class Woostify_Product_Data_Tabs_Control extends WP_Customize_Control {
 							</div>
 						</div>
 					</div>
-					<?php
-					if ( $k === ( count( $items ) - 1 ) ) {
-						?>
+					<?php if ( ( count( $items ) - 1 ) === $k ) { ?>
 						<div class="woostify-sortable-list-item-wrap checked example-item-tmpl">
 							<div class="woostify-sortable-list-item woostify-adv-list-item checked" data-item_id="{{ITEM_ID}}">
 								<span class="sortable-item-icon-del dashicons dashicons-no-alt"></span>

@@ -473,7 +473,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				'enabled_shipping_threshold'        => $enabled_shipping_threshold,
 				'enabled_shipping_threshold_effect' => $enabled_shipping_threshold_effect,
 			);
-			if ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content) {
+
+			if ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) {
 				if ( $enabled_shipping_threshold && $enabled_shipping_threshold_effect ) {
 					wp_enqueue_script( 'woostify-congrats-confetti-effect' );
 				}
@@ -522,9 +523,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'shipping_threshold'             => $shipping_threshold_script_var,
 					'enabled_sticky_product_summary' => 'woocommerce_single_product_summary' === $options['shop_single_product_data_tabs_pos'] ? 'false' : 'true',
 					'related_carousel_opts'          => $related_carousel_opts,
-					'currency_symbol'     => get_woocommerce_currency_symbol(),
-					'currency_pos'        => get_option( 'woocommerce_currency_pos' ),
-					'is_active_wvs'       => ! class_exists( 'Woo_Variation_Swatches' ) || ! class_exists( 'Woo_Variation_Swatches_Pro' ) ? false : true, // Check if plugin Variation Swatches for WooCommerce and Variation Swatches for WooCommerce - Pro is activated.
+					'currency_symbol'                => get_woocommerce_currency_symbol(),
+					'currency_pos'                   => get_option( 'woocommerce_currency_pos' ),
+					'is_active_wvs'                  => ! class_exists( 'Woo_Variation_Swatches' ) || ! class_exists( 'Woo_Variation_Swatches_Pro' ) ? false : true, // Check if plugin Variation Swatches for WooCommerce and Variation Swatches for WooCommerce - Pro is activated.
 				)
 			);
 
