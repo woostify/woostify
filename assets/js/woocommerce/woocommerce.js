@@ -146,7 +146,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 			}
 
 			if ( '1' === woostify_woocommerce_general.is_active_wvs ) {
-				jQuery('.variations_form').each(
+				jQuery( '.variations_form' ).each(
 					function(){
 						jQuery( this ).wc_variation_form();
 					}
