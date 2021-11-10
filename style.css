@@ -7320,6 +7320,11 @@ header.elementor-element {
   }
 }
 
+.quick-view-content .woostify-size-guide-table-wrapper,
+.quick-view-content .woocommerce-tabs {
+  display: none;
+}
+
 .hid-skus .product_meta .sku_wrapper {
   display: none;
 }
