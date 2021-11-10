@@ -341,7 +341,7 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 	function woostify_sanitize_raw_html( $value ) {
 		$kses_defaults = wp_kses_allowed_html( 'post' );
 		$image         = array(
-			'img'    => array(
+			'img' => array(
 				'class'  => array(),
 				'alt'    => array(),
 				'width'  => array(),
@@ -746,61 +746,6 @@ if ( ! function_exists( 'woostify_wishlist_page_url' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_fetch_svg_icon' ) ) {
-	/**
-	 * Get an SVG Icon
-	 *
-	 * @param string $icon Icon.
-	 *
-	 * @return string
-	 */
-	function woostify_fetch_svg_icon( $icon = '' ) {
-		$output = '';
-
-		$file_content = wp_remote_get( WOOSTIFY_THEME_URI . 'assets/svg/svgs.json' );
-		if ( is_wp_error( $file_content ) ) {
-			$output .= '';
-		} else {
-			$woostify_svgs = json_decode( $file_content['body'], true );
-			$woostify_svgs = apply_filters( 'woostify_svg_icons', $woostify_svgs );
-			$output       .= isset( $woostify_svgs[ $icon ] ) ? $woostify_svgs[ $icon ] : '';
-		}
-
-		$classes = array(
-			'woostify-svg-icon',
-			'icon-' . $icon,
-		);
-
-		$output = sprintf(
-			'<span class="%1$s">%2$s</span>',
-			implode( ' ', $classes ),
-			$output,
-		);
-
-		return apply_filters( 'woostify_generate_svg_icon', $output, $icon );
-	}
-}
-
-if ( ! function_exists( 'woostify_fetch_all_svg_icon' ) ) {
-	/**
-	 * Get all SVG icon
-	 *
-	 * @return mixed|void
-	 */
-	function woostify_fetch_all_svg_icon() {
-
-		$file_content = wp_remote_get( WOOSTIFY_THEME_URI . 'assets/svg/svgs.json' );
-		if ( is_wp_error( $file_content ) ) {
-			return array();
-		}
-
-		$woostify_svgs = json_decode( $file_content['body'], true );
-		$woostify_svgs = apply_filters( 'woostify_svg_icons', $woostify_svgs );
-
-		return $woostify_svgs;
-	}
-}
-
 if ( ! function_exists( 'woostify_svg_to_background_image' ) ) {
 	/**
 	 * Convert svg to image base64
@@ -826,7 +771,7 @@ if ( ! function_exists( 'woostify_svg_to_background_image' ) ) {
 			$icon   = preg_replace( $search, 'fill="' . $color . '"', $icon );
 		}
 
-		$base64_image = 'data:image/svg+xml;base64,' . base64_encode( woostify_unescape_svg_code( rawurlencode( $icon ) ) );
+		$base64_image = 'data:image/svg+xml;base64,' . base64_encode( woostify_unescape_svg_code( rawurlencode( $icon ) ) ); // phpcs:ignore
 		return $base64_image;
 	}
 }
@@ -1016,7 +961,7 @@ if ( ! function_exists( 'woostify_custom_search_form' ) ) {
                     <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder', 'woostify' ) . '" value="' . get_search_query() . '" name="s" />
                 </label>
                 <input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button', 'woostify' ) . '" />
-                <span class="search-form-icon">' . woostify_fetch_svg_icon( 'search' ) . '</span>
+                <span class="search-form-icon">' . Woostify_Icon::fetch_svg_icon( 'search', false ) . '</span>
             </form>';
 		} else {
 			$form = '<form role="search" ' . $aria_label . 'method="get" id="searchform" class="searchform" action="' . esc_url( home_url( '/' ) ) . '">
