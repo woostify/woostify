@@ -341,7 +341,7 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 	function woostify_sanitize_raw_html( $value ) {
 		$kses_defaults = wp_kses_allowed_html( 'post' );
 		$image         = array(
-			'img'    => array(
+			'img' => array(
 				'class'  => array(),
 				'alt'    => array(),
 				'width'  => array(),
@@ -771,7 +771,7 @@ if ( ! function_exists( 'woostify_svg_to_background_image' ) ) {
 			$icon   = preg_replace( $search, 'fill="' . $color . '"', $icon );
 		}
 
-		$base64_image = 'data:image/svg+xml;base64,' . base64_encode( woostify_unescape_svg_code( rawurlencode( $icon ) ) );
+		$base64_image = 'data:image/svg+xml;base64,' . base64_encode( woostify_unescape_svg_code( rawurlencode( $icon ) ) ); // phpcs:ignore
 		return $base64_image;
 	}
 }

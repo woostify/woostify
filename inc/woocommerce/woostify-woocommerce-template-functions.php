@@ -1399,9 +1399,12 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 				}
 				$icon = apply_filters( 'woostify_wc_myaccount_nav_icon', $icon, $endpoint );
 				?>
-				<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
+				<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); // phpcs:ignore ?>">
 					<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>">
-					<?php echo Woostify_Icon::fetch_svg_icon( $icon, false ) . esc_html( $label ); ?>
+					<?php
+						Woostify_Icon::fetch_svg_icon( $icon );
+						echo esc_html( $label );
+					?>
 					</a>
 				</li>
 			<?php endforeach; ?>
@@ -1668,7 +1671,7 @@ if ( ! function_exists( 'woostify_custom_product_data_tabs' ) ) {
 	/**
 	 * Woostify custom tabs
 	 *
-	 * @param array $tabs default tabs
+	 * @param array $tabs default tabs.
 	 */
 	function woostify_custom_product_data_tabs( $tabs ) {
 		$new_tabs    = array();

@@ -766,7 +766,6 @@ if ( ! function_exists( 'woostify_reset_variations_link' ) ) {
 	 * Modify woocommerce reset variations link
 	 *
 	 * @param string $output Link output.
-	 * @return void
 	 */
 	function woostify_reset_variations_link( $output ) {
 		return '<a class="reset_variations" href="#">' . Woostify_Icon::fetch_svg_icon( 'reload', false ) . esc_html__( 'Clear', 'woostify' ) . '</a>';

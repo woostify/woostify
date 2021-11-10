@@ -2515,10 +2515,9 @@ if ( ! function_exists( 'woostify_modify_wp_kses_allowed_html' ) ) {
 	 * Allowing SVG in WordPress Content
 	 *
 	 * @param array $tags Tags.
-	 * @return void
 	 */
 	function woostify_modify_wp_kses_allowed_html( $tags ) {
-		$tags['svg']  = array(
+		$tags['svg'] = array(
 			'xmlns'       => array(),
 			'fill'        => array(),
 			'viewbox'     => array(),
@@ -2528,10 +2527,12 @@ if ( ! function_exists( 'woostify_modify_wp_kses_allowed_html' ) ) {
 			'width'       => array(),
 			'height'      => array(),
 		);
+
 		$tags['path'] = array(
 			'd'    => array(),
 			'fill' => array(),
 		);
+
 		return $tags;
 	}
 }
