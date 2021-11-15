@@ -646,8 +646,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Disabled side cart if user use elementor mini cart.
 			if ( defined( 'ELEMENTOR_PRO_VERSION' ) ) {
-				if ( 'no' !== get_option( 'elementor_use_mini_cart_template' ) ) {
-					$classes[] = 'disabled-sidebar-cart';
+				if ( get_option( 'elementor_use_mini_cart_template' ) ) {
+					if ( 'no' !== get_option( 'elementor_use_mini_cart_template' ) ) {
+						$classes[] = 'disabled-sidebar-cart';
+					} else {
+						$classes[] = 'hide-added-to-cart';
+					}
 				} else {
 					$classes[] = 'hide-added-to-cart';
 				}
