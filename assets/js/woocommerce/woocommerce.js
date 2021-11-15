@@ -177,7 +177,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 }
 
 function cartSidebarOpen() {
-	if ( document.body.classList.contains( 'no-cart-sidebar' ) ) {
+	if ( document.body.classList.contains( 'no-cart-sidebar' ) || document.body.classList.contains( 'disabled-sidebar-cart' ) ) {
 		return;
 	}
 
