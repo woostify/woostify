@@ -117,7 +117,7 @@ $wp_customize->add_control(
 		'woostify_setting[shipping_threshold_progress_bar_amount]',
 		array(
 			'label'       => __( 'Goal Amount', 'woostify' ),
-			'description' => __( 'Amount to reach 100%', 'woostify' ),
+			'description' => __( 'Amount to reach 100%. Note: use <b><code>.</code></b> for Decimal separator', 'woostify' ),
 			'type'        => 'number',
 			'section'     => 'woostify_shipping_threshold',
 			'settings'    => 'woostify_setting[shipping_threshold_progress_bar_amount]',
