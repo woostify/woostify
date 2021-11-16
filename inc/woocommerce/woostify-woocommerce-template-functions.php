@@ -84,6 +84,7 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 			$response['free_shipping_threshold'] = array();
 
 			$subtotal                 = WC()->cart->subtotal;
+			$wc_number_of_decimals    = get_option( 'woocommerce_price_num_decimals', 0 );
 			$goal_amount              = $options['shipping_threshold_progress_bar_amount'];
 			$progress_bar_initial_msg = $options['shipping_threshold_progress_bar_initial_msg'];
 			$progress_bar_success_msg = $options['shipping_threshold_progress_bar_success_msg'];
@@ -92,7 +93,7 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 
 			$percent = 0;
 			$percent = ( $subtotal / $goal_amount ) * 100;
-			$percent = $percent >= 100 ? 100 : round( $percent, 0 );
+			$percent = $percent >= 100 ? 100 : round( $percent, $wc_number_of_decimals );
 
 			$response['free_shipping_threshold']['percent'] = $percent;
 			$response['free_shipping_threshold']['message'] = $percent >= 100 ? $progress_bar_success_msg : $progress_bar_initial_msg;

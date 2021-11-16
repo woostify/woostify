@@ -261,6 +261,17 @@ $media: 599px;
 		flex-grow: 1;
 		max-width: 100%;
 		overflow-y: auto;
+		scrollbar-width: thin;
+
+		&::-webkit-scrollbar {
+			width: 5px;
+		}
+		&::-webkit-scrollbar-track {
+			background: #f2f2f2;
+		}
+		&::-webkit-scrollbar-thumb {
+			background: #d5d5d5;
+		}
 	}
 
 	.woocommerce-mini-cart__bottom {

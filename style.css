@@ -8651,6 +8651,19 @@ header.elementor-element {
   flex-grow: 1;
   max-width: 100%;
   overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.cart-sidebar-content .woocommerce-mini-cart::-webkit-scrollbar {
+  width: 5px;
+}
+
+.cart-sidebar-content .woocommerce-mini-cart::-webkit-scrollbar-track {
+  background: #f2f2f2;
+}
+
+.cart-sidebar-content .woocommerce-mini-cart::-webkit-scrollbar-thumb {
+  background: #d5d5d5;
 }
 
 .cart-sidebar-content .woocommerce-mini-cart__bottom {

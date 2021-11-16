@@ -975,3 +975,14 @@ if ( ! function_exists( 'woostify_custom_search_form' ) ) {
 		return $form;
 	}
 }
+
+if ( ! function_exists( 'woostify_sanitize_abs_number' ) ) {
+	/**
+	 * Sanitize abs int|float value
+	 *
+	 * @param integer $value The int|float number.
+	 */
+	function woostify_sanitize_abs_number( $value ) {
+		return abs( $value );
+	}
+}

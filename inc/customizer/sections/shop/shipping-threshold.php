@@ -108,7 +108,7 @@ $wp_customize->add_setting(
 	array(
 		'type'              => 'option',
 		'default'           => $defaults['shipping_threshold_progress_bar_amount'],
-		'sanitize_callback' => 'absint',
+		'sanitize_callback' => 'woostify_sanitize_abs_number',
 	)
 );
 $wp_customize->add_control(
@@ -117,7 +117,7 @@ $wp_customize->add_control(
 		'woostify_setting[shipping_threshold_progress_bar_amount]',
 		array(
 			'label'       => __( 'Goal Amount', 'woostify' ),
-			'description' => __( 'Amount to reach 100%', 'woostify' ),
+			'description' => __( 'Amount to reach 100%. Note: use <b><code>.</code></b> for Decimal separator', 'woostify' ),
 			'type'        => 'number',
 			'section'     => 'woostify_shipping_threshold',
 			'settings'    => 'woostify_setting[shipping_threshold_progress_bar_amount]',
@@ -141,7 +141,7 @@ $wp_customize->add_control(
 		'woostify_setting[shipping_threshold_progress_bar_initial_msg]',
 		array(
 			'label'       => __( 'Initial Message', 'woostify' ),
-			'description' => __( 'Message to show before reaching the goal. Use shortcode [missing_amount] to display the amount left to reach the minimum', 'woostify' ),
+			'description' => __( 'Message to show before reaching the goal. Use shortcode <b><code>[missing_amount]</code></b> to display the amount left to reach the minimum', 'woostify' ),
 			'type'        => 'textarea',
 			'section'     => 'woostify_shipping_threshold',
 			'settings'    => 'woostify_setting[shipping_threshold_progress_bar_initial_msg]',
