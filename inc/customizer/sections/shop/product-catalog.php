@@ -12,6 +12,29 @@ if ( ! woostify_is_woocommerce_activated() ) {
 // Default values.
 $defaults = woostify_options();
 
+// Catalog mode.
+$wp_customize->add_setting(
+	'woostify_setting[catalog_mode]',
+	array(
+		'default'           => $defaults['catalog_mode'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[catalog_mode]',
+		array(
+			'label'       => __( 'Catalog Mode', 'woostify' ),
+			'description' => __( 'This option will hide all button add to cart on site', 'woostify' ),
+			'settings'    => 'woostify_setting[catalog_mode]',
+			'section'     => 'woocommerce_product_catalog',
+			'priority'    => 0,
+		)
+	)
+);
+
 // Products per page.
 $wp_customize->add_setting(
 	'woostify_setting[products_per_row]',

@@ -177,6 +177,9 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 		 * Add Google Fonts to wp_head if needed.
 		 */
 		public function woostify_enqueue_google_fonts() {
+			$options                   = woostify_options( false );
+			$load_google_fonts_locally = $options['load_google_fonts_locally'];
+
 			// Grab our options.
 			$woostify_settings = wp_parse_args(
 				get_option( 'woostify_setting', array() ),
@@ -230,7 +233,6 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				}
 			}
 
-			// Ignore any non-Google fonts.
 			$google_fonts = array_diff( $google_fonts, $not_google );
 
 			// Separate each different font with a bar.
@@ -243,23 +245,37 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 			$subset = apply_filters( 'woostify_fonts_subset', '' );
 
 			// Set up our arguments.
-			$font_args           = array();
+			$font_args = array();
+
 			$font_args['family'] = $google_fonts;
 			if ( $subset ) {
 				$font_args['subset'] = rawurlencode( $subset );
 			}
 
-			// Create our URL using the arguments.
-			$fonts_url = add_query_arg( $font_args, '//fonts.googleapis.com/css' );
+			$font_args['display'] = 'fallback';
+
+			$fonts_url = add_query_arg( $font_args, 'https://fonts.googleapis.com/css' );
 
 			// Enqueue our fonts.
 			if ( $google_fonts ) {
-				wp_enqueue_style(
-					'woostify-fonts',
-					$fonts_url,
-					array(),
-					woostify_version()
-				);
+				if ( $load_google_fonts_locally && ! is_customize_preview() && ! is_admin() ) {
+					if ( $options['load_google_fonts_locally_preload'] ) {
+						woostify_load_preload_local_fonts( $fonts_url );
+					}
+					wp_enqueue_style(
+						'woostify-fonts',
+						woostify_get_webfont_url( $fonts_url ),
+						array(),
+						woostify_version()
+					);
+				} else {
+					wp_enqueue_style(
+						'woostify-fonts',
+						$fonts_url,
+						array(),
+						woostify_version()
+					);
+				}
 			}
 		}
 

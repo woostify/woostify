@@ -27,11 +27,12 @@ table.shop_table {
     top: .7em;
     cursor: pointer;
 
-}
-
-.show-password-input {
 	&:before {
-		font-family: $icon;
-    	content: "\e63d";
+		font-family: 'Woocommerce';
+    	content: "\e010";
+	}
+
+	&.display-password {
+		opacity: .6;
 	}
 }

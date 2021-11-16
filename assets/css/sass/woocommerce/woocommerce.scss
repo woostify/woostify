@@ -96,9 +96,7 @@ $size: 40px;
 		visibility: visible;
 		pointer-events: auto;
 
-		&:after {
-			content: "\e646";
-			font-family: $icon;
+		.woostify-svg-icon {
 			position: absolute;
 			top: 20px;
 			right: 20px;
@@ -107,23 +105,32 @@ $size: 40px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			cursor: pointer;
 			color: #fff;
-			font-weight: 700;
-			font-size: 1.5em;
+			svg {
+				width: 1.5em;
+				height: 1.5em;
+			}
 		}
+	}
+}
+
+#woostify-overlay {
+
+	.woostify-svg-icon {
+		display: none;
 	}
 }
 
 .sidebar-mobile-open {
 	.logged-in.admin-bar {
 		#woostify-overlay {
-			&:after {
+
+			.woostify-svg-icon {
 				top: 66px;
 			}
 
 			@media (min-width: 783px) {
-				&:after {
+				.woostify-svg-icon {
 					top: 52px;
 				}
 			}
@@ -134,7 +141,8 @@ $size: 40px;
 .has-sidebar {
 	&.offcanvas-sidebar {
 		#toggle-sidebar-mobile-button {
-			display: block;
+			display: flex;
+			align-items: center;
 		}
 
 		.shop-widget {
@@ -221,7 +229,12 @@ $size: 40px;
 	@extend .duration;
 
 	&.show {
-		display: block;
+		display: flex;
+		align-items: center;
+	}
+
+	.woostify-svg-icon {
+		margin-right: 7px;
 	}
 
 	.no-sidebar &,
@@ -286,16 +299,16 @@ $size: 40px;
 		border: 1px solid #ddd;
 		border-radius: 2px;
 		margin-bottom: 40px;
-
-		&:after {
-			content: "\e64b";
+		&::after {
+			content: '';
+			display: block;
 			position: absolute;
 			right: 5px;
-			font-family: $icon;
 			pointer-events: none;
 			font-size: 10px;
 			top: 50%;
-			@include translatey(-50%);
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
 		}
 	}
 
@@ -303,8 +316,6 @@ $size: 40px;
 		padding: 5px 20px 5px 10px;
 		border: 0;
 		background-color: $tr;
-		-moz-appearance: none;
-		-webkit-appearance: none;
 	}
 
 	.woostify-toolbar-left {
@@ -420,12 +431,6 @@ $size: 40px;
 		&:hover {
 			color: #fff;
 		}
-
-		&:before {
-			content: "\e71b";
-			font-family: $icon;
-			margin-right: 10px;
-		}
 	}
 }
 .woocommerce-info,
@@ -454,8 +459,9 @@ $size: 40px;
 	}
 
 	&:before {
-    	color: #fff;
-    	font-family: $icon;
+		font-family: 'WooCommerce';
+		content: "\e028";
+		color: #fff;
 	    display: inline-flex;
 	    margin-right: 10px;
 	}
@@ -463,14 +469,18 @@ $size: 40px;
 
 .woocommerce-error {
 	&:before {
-		content: "\e720";
+		content: "\e016";
 	}
 }
 
 
 .woocommerce-info {
-	&:before {
-		content: "\e71f";
+	display: flex;
+	align-items: center;
+
+	a {
+		order: 2;
+		margin-left: auto;
 	}
 	input[type="submit"] {
 		padding: 0 5px;
@@ -480,7 +490,7 @@ $size: 40px;
 
 .woocommerce-message {
 	&:before {
-		content: "\e64d";
+		content: "\e015";
 	}
 }
 
@@ -619,10 +629,11 @@ $size: 40px;
 	bottom: 0;
 	z-index: 501; // higher Sticky Button on Mobile feature.
 
-	&:before {
-		content: "\e717";
-		font-family: $icon;
+	.woostify-svg-icon {
+		color: #fff;
 		margin-right: 7px;
+		position: relative;
+		top: 1px;
 	}
 
 	a {
@@ -636,17 +647,17 @@ $size: 40px;
 		background-color: rgba(255, 255, 255, 0.1);
 		@extend .flex;
 
-		&:before {
-			content: "\e646";
-			font-family: $icon;
+		.woostify-svg-icon {
 			margin-right: 10px;
+			top: 0;
 			@extend .duration;
 		}
 
 		&:hover {
 			color: #fff;
 
-			&:before {
+			.woostify-svg-icon {
+				color: #fff;
 				@include rotate(90);
 			}
 		}
@@ -698,11 +709,6 @@ $size: 40px;
 		a {
 			font-size: 0;
 			position: relative;
-
-			&:before {
-				font-size: 14px;
-				font-family: $icon;
-			}
 		}
 
 		.yith-wcwl-wishlistaddedbrowse.show,
@@ -799,13 +805,17 @@ $size: 40px;
 		background-color: #fff;
 		@extend .flex;
 
-		&:before {
-			font-size: 14px;
-			font-family: $icon;
+		&.loading {
+			.woostify-svg-icon {
+				display: none;
+			}
 		}
 
 		&:hover {
 			color: #fff;
+			.woostify-svg-icon {
+				color: #fff;
+			}
 		}
 	}
 
@@ -830,13 +840,13 @@ $size: 40px;
 	.added_to_cart {
 		color: #fff;
 
-		&:before {
-			content: "\e60e"
-		}
-
 		+.quick-view-with-icon,
 		+.yith-wcwl-add-to-wishlist {
 			border-top: 1px solid #e7e7e7;
+		}
+
+		.woostify-svg-icon {
+			color: #fff;
 		}
 	}
 }
@@ -976,6 +986,86 @@ $size: 40px;
 	width: 100%;
 }
 
+@-webkit-keyframes w-fadeInLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(-20px, 0, 0);
+        transform: translate3d(-20px, 0, 0)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none
+    }
+}
+
+@keyframes w-fadeInLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(-20px, 0, 0);
+        transform: translate3d(-20px, 0, 0)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none
+    }
+}
+
+.free-shipping-progress-bar {
+
+	&[data-progress='0'] {
+		display: none;
+	}
+	margin-top: 10px;
+	.progress-bar-message {
+		text-align: center;
+		.woocommerce-Price-amount {
+			font-weight: bold;
+		}
+	}
+	.progress-bar-rail {
+		line-height: 5px;
+		height: 5px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		margin-top: 12px;
+	}
+
+	.progress-bar-status {
+		display: flex;
+		z-index: 1;
+		height: inherit;
+		position: relative;
+		animation: .6s w-fadeInLeft;
+
+		&.success {
+			.progress-bar-indicator {
+				background: rgba(103, 187, 103, 1);
+			}
+		}
+	}
+
+	.progress-bar-left {
+		background: rgba(0,0,0,.1);
+		height: 3px;
+		flex-grow: 1;
+	}
+
+	.progress-bar-indicator {
+		background: linear-gradient( 270deg, rgba(19, 70, 175, 1) 0, #ffffff 200%);
+		background-color: rgba(19, 70, 175, 1);
+		flex-grow: 1;
+	}
+
+	.progress-percent {
+		padding: 0 .5em;
+		font-weight: 900;
+		font-size: 1.1em;
+	}
+}
+
 .woostify-view-more {
 	text-align: center;
 	position: relative;
@@ -1005,3 +1095,4 @@ $size: 40px;
 		}
 	}
 }
+

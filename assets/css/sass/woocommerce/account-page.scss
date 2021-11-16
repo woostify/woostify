@@ -119,70 +119,13 @@
             }
         }
 
-        &--dashboard{
-	        a:before{
-	            content: "\e6aa";
-	        }
-	    }
-
-	    &--orders{
-	        a:before{
-	            content: "\e694";
-	        }
-	    }
-
-	    &--downloads{
-	        a:before{
-	            content: "\e6a7";
-	        }
-	    }
-
-	    &--edit-address{
-	        a:before{
-	            content: "\e6a8";
-	        }
-	    }
-
-	    &--payment-methods {
-	    	a:before{
-	            content: "\e721";
-	        }
-	    }
-
-	    &--edit-account{
-	        a:before{
-	            content: "\e602";
-	        }
-	    }
-
-	    &--customer-logout{
-	        a:before{
-	            content: "\e61d";
-	        }
-	    }
-
-	    &--tinv_wishlist {
-	    	a:before{
-	            content: "\e634";
-	        }
-	    }
-
-	    &--support-tickets {
-	    	a:before{
-	            content: "\e63b";
-	        }
-	    }
-
-	    &--following {
-	    	a:before{
-	            content: "\e63d";
-	        }
-	    }
-
-	    &--rma-requests {
-	    	a:before{
-	            content: "\e66f";
-	        }
+	    .woostify-svg-icon {
+		    color: currentColor;
+		    margin-right: 15px;
+		    svg {
+			    height: 20px;
+			    width: 20px;
+		    }
 	    }
 
 	    &--auctions-endpoint {
@@ -207,13 +150,6 @@
             font-size: 15px;
             white-space: nowrap;
             @include flex( inline-flex, flex-start, center );
-
-            &:before{
-                font-size: 20px;
-                font-family: $icon;
-                margin-right: 15px;
-                line-height: 0;
-            }
         }
     }
 }
@@ -268,10 +204,10 @@
 		.edit{
 			margin-right: 15px;
 
-			&:before{
-				content: "\e61c";
-				font-family: $icon;
-				margin-right: 5px;
+			&:before {
+				content: '\e603';
+                font-family: 'Woocommerce';
+                margin-right: 5px;
 				font-weight: 700;
 			}
 		}

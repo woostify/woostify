@@ -6,6 +6,23 @@
 
 'use strict';
 
+function get_svg_icon( icon ) {
+	var output    = '';
+	var icon_list = JSON.parse( woostify_svg_icons.list );
+
+	output += '<span class="woostify-svg-icon">';
+
+	if ( icon_list.hasOwnProperty( icon ) ) {
+		output += icon_list[icon];
+	} else {
+		output += '';
+	}
+
+	output += '</span>';
+
+	return output;
+}
+
 // Run scripts only elementor loaded.
 function onElementorLoaded( callback ) {
 	if ( undefined === window.elementorFrontend || undefined === window.elementorFrontend.hooks ) {

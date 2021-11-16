@@ -56,7 +56,7 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 
 		if ( $prev_id ) {
 			$classes        = ! $next_id ? 'product-nav-last' : '';
-			$prev_icon      = apply_filters( 'woostify_product_navigation_prev_icon', 'ti-arrow-circle-left' );
+			$prev_icon      = apply_filters( 'woostify_product_navigation_prev_icon', 'arrow-circle-left' );
 			$prev_image_id  = $prev_product->get_image_id();
 			$prev_image_src = wp_get_attachment_image_src( $prev_image_id );
 			$prev_image_alt = woostify_image_alt( $prev_image_id, __( 'Previous Product Image', 'woostify' ) );
@@ -64,7 +64,12 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 			ob_start();
 			?>
 				<div class="prev-product-navigation product-nav-item">
-					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $prev_id ) ); ?>"><span class="product-nav-icon <?php echo esc_attr( $prev_icon ); ?>"></span><?php esc_html_e( 'Previous', 'woostify' ); ?></a>
+					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $prev_id ) ); ?>">
+						<span class="product-nav-icon">
+							<?php Woostify_Icon::fetch_svg_icon( $prev_icon ); ?>
+						</span>
+						<span><?php esc_html_e( 'Previous', 'woostify' ); ?></span>
+					</a>
 					<div class="product-nav-item-content">
 						<a class="product-nav-item-link" href="<?php echo esc_url( get_permalink( $prev_id ) ); ?>"></a>
 						<?php if ( $prev_image_src ) { ?>
@@ -83,7 +88,7 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 
 		if ( $next_id ) {
 			$classes        = ! $prev_id ? 'product-nav-first' : '';
-			$next_icon      = apply_filters( 'woostify_product_navigation_next_icon', 'ti-arrow-circle-right' );
+			$next_icon      = apply_filters( 'woostify_product_navigation_next_icon', 'arrow-circle-right' );
 			$next_image_id  = $next_product->get_image_id();
 			$next_image_src = wp_get_attachment_image_src( $next_image_id );
 			$next_image_alt = woostify_image_alt( $next_image_id, __( 'Next Product Image', 'woostify' ) );
@@ -91,7 +96,12 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 			ob_start();
 			?>
 				<div class="next-product-navigation product-nav-item">
-					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $next_id ) ); ?>"><?php esc_html_e( 'Next', 'woostify' ); ?><span class="product-nav-icon <?php echo esc_attr( $next_icon ); ?>"></span></a>
+					<a class="product-nav-item-text" href="<?php echo esc_url( get_permalink( $next_id ) ); ?>">
+						<span><?php esc_html_e( 'Next', 'woostify' ); ?></span>
+						<span class="product-nav-icon">
+							<?php Woostify_Icon::fetch_svg_icon( $next_icon ); ?>
+						</span>
+					</a>
 					<div class="product-nav-item-content">
 						<a class="product-nav-item-link" href="<?php echo esc_url( get_permalink( $next_id ) ); ?>"></a>
 						<div class="product-nav-item-inner">
@@ -748,5 +758,16 @@ if ( ! function_exists( 'woostify_add_to_cart_product_simple' ) ) {
 		?>
 		<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" />
 		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_reset_variations_link' ) ) {
+	/**
+	 * Modify woocommerce reset variations link
+	 *
+	 * @param string $output Link output.
+	 */
+	function woostify_reset_variations_link( $output ) {
+		return '<a class="reset_variations" href="#">' . Woostify_Icon::fetch_svg_icon( 'reload', false ) . esc_html__( 'Clear', 'woostify' ) . '</a>';
 	}
 }

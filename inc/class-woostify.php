@@ -31,9 +31,13 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_filter( 'wpcf7_load_css', '__return_false' );
 			add_filter( 'excerpt_length', array( $this, 'woostify_limit_excerpt_character' ), 99 );
 
+			// Search form.
+			add_filter( 'get_search_form', 'woostify_custom_search_form', 10, 2 );
+
 			// ELEMENTOR.
 			add_action( 'elementor/theme/register_locations', array( $this, 'woostify_register_elementor_locations' ) );
 			add_action( 'elementor/preview/enqueue_scripts', array( $this, 'woostify_elementor_preview_scripts' ) );
+			add_action( 'init', array( $this, 'woostify_elementor_global_colors' ) );
 
 			// Add Image column on blog list in admin screen.
 			add_filter( 'manage_post_posts_columns', array( $this, 'woostify_columns_head' ), 10 );
@@ -52,6 +56,9 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_action( 'init', array( $this, 'woostify_override_divi_color_pciker' ), 12 );
 
 			add_action( 'wp_head', array( $this, 'sticky_footer_bar' ), 15 );
+
+			// CONTENT.
+			add_filter( 'wp_kses_allowed_html', 'woostify_modify_wp_kses_allowed_html' );
 		}
 
 		/**
@@ -76,6 +83,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 				$this->megamenu_width = '' !== $this->megamenu_width ? $this->megamenu_width : 'content';
 				$this->megamenu_url   = get_post_meta( $item->ID, 'woostify_mega_menu_item_url', true );
 				$this->megamenu_icon  = get_post_meta( $item->ID, 'woostify_mega_menu_item_icon', true );
+				$this->megamenu_icon  = str_replace( 'ti-', '', $this->megamenu_icon );
 
 				$classes[] = 'menu-item-has-children';
 				$classes[] = 'menu-item-has-mega-menu';
@@ -125,7 +133,9 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			// Menu icon.
 			if ( 'mega_menu' === $item->object && $this->megamenu_icon ) {
-				$item_output .= '<span class="menu-item-icon ' . esc_attr( $this->megamenu_icon ) . '"></span>';
+				$item_output .= '<span class="menu-item-icon">';
+				$item_output .= Woostify_Icon::fetch_svg_icon( $this->megamenu_icon, false );
+				$item_output .= '</span>';
 			}
 
 			$title = apply_filters( 'the_title', $item->title, $item->ID );
@@ -136,7 +146,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			// Add arrow icon.
 			if ( $has_child ) {
-				$item_output .= '<span class="menu-item-arrow arrow-icon"></span>';
+				$item_output .= '<span class="menu-item-arrow arrow-icon">' . Woostify_Icon::fetch_svg_icon( 'angle-down', false ) . '</span>';
 			}
 
 			$item_output .= '</a>';
@@ -667,11 +677,29 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
+			wp_localize_script(
+				'woostify-general',
+				'woostify_svg_icons',
+				array(
+					'file_url' => WOOSTIFY_THEME_URI . 'assets/svg/svgs.json',
+					'list'     => wp_json_encode( Woostify_Icon::fetch_all_svg_icon() ),
+				)
+			);
+
 			// Mobile menu.
 			wp_enqueue_script(
 				'woostify-navigation',
 				WOOSTIFY_THEME_URI . 'assets/js/navigation' . woostify_suffix() . '.js',
 				array( 'jquery' ),
+				woostify_version(),
+				true
+			);
+
+			// Arrive jquery plugin.
+			wp_register_script(
+				'woostify-arrive',
+				WOOSTIFY_THEME_URI . 'assets/js/arrive.min.js',
+				array(),
 				woostify_version(),
 				true
 			);
@@ -718,11 +746,20 @@ if ( ! class_exists( 'Woostify' ) ) {
 				true
 			);
 
+			// Congrats confetti effect.
+			wp_register_script(
+				'woostify-congrats-confetti-effect',
+				WOOSTIFY_THEME_URI . 'assets/js/confetti' . woostify_suffix() . '.js',
+				array(),
+				woostify_version(),
+				true
+			);
+
 			// Woocommerce.
 			wp_register_script(
 				'woostify-woocommerce',
 				WOOSTIFY_THEME_URI . 'assets/js/woocommerce/woocommerce' . woostify_suffix() . '.js',
-				array( 'jquery', 'woostify-quantity-button' ),
+				array( 'jquery', 'woostify-arrive', 'woostify-quantity-button' ),
 				woostify_version(),
 				true
 			);
@@ -1055,6 +1092,98 @@ if ( ! class_exists( 'Woostify' ) ) {
 			$more = apply_filters( 'woostify_excerpt_more', '...' );
 
 			return $more;
+		}
+
+		/**
+		 * Add color to Elementor Global Color
+		 */
+		public function woostify_elementor_global_colors() {
+			if ( '__DEFAULT__' === get_option( 'elementor_disable_color_schemes', '__DEFAULT__' ) ) {
+				update_option( 'elementor_disable_color_schemes', 'yes' );
+			}
+
+			add_filter(
+				'elementor/schemes/enabled_schemes',
+				function ( $s ) {
+					return $s;
+				}
+			);
+
+			add_filter(
+				'rest_request_after_callbacks',
+				function ( $response, $handler, $request ) {
+					$options = woostify_options( false );
+					$route   = $request->get_route();
+					$rest_id = substr( $route, strrpos( $route, '/' ) + 1 );
+
+					$palettes = array(
+						'woostify_color_1' => array(
+							'id'    => 'woostify_color_1',
+							'title' => __( 'Theme Primary Color', 'woostify' ),
+							'value' => $options['theme_color'],
+						),
+
+						'woostify_color_2' => array(
+							'id'    => 'woostify_color_2',
+							'title' => __( 'Theme Text Color', 'woostify' ),
+							'value' => $options['text_color'],
+						),
+
+						'woostify_color_3' => array(
+							'id'    => 'woostify_color_3',
+							'title' => __( 'Theme Accent Color', 'woostify' ),
+							'value' => $options['accent_color'],
+						),
+
+						'woostify_color_4' => array(
+							'id'    => 'woostify_color_4',
+							'title' => __( 'Theme Extra Color 1', 'woostify' ),
+							'value' => $options['extra_color_1'],
+						),
+
+						'woostify_color_5' => array(
+							'id'    => 'woostify_color_5',
+							'title' => __( 'Theme Extra Color 2', 'woostify' ),
+							'value' => $options['extra_color_2'],
+						),
+					);
+
+					if ( isset( $palettes[ $rest_id ] ) ) {
+						return new \WP_REST_Response( $palettes[ $rest_id ] );
+					}
+
+					if ( '/elementor/v1/globals' === $route ) {
+						$data   = $response->get_data();
+						$colors = array(
+							'color1' => $options['theme_color'],
+							'color2' => $options['text_color'],
+							'color3' => $options['accent_color'],
+							'color4' => $options['extra_color_1'],
+							'color5' => $options['extra_color_2'],
+						);
+
+						$colors_for_palette = array(
+							'woostify_color_1' => 'color1',
+							'woostify_color_2' => 'color2',
+							'woostify_color_3' => 'color3',
+							'woostify_color_4' => 'color4',
+							'woostify_color_5' => 'color5',
+						);
+
+						foreach ( $palettes as $key => $value ) {
+							$value['value'] = $colors[ $colors_for_palette[ $key ] ];
+
+							$data['colors'][ $key ] = $value;
+						}
+
+						$response->set_data( $data );
+					}
+
+					return $response;
+				},
+				1000,
+				3
+			);
 		}
 	}
 

@@ -61,17 +61,11 @@
 		.product-categories {
 			> li {
 				ul {
-					li {
-						&:before {
-							content: none;
-						}
-
-						&:after {
-							content: "\e64a";
-							font-size: 10px;
-							margin-left: 5px;
-							font-family: 'themify';
-						}
+					li:before {
+						margin-right: 0;
+						margin-left: 8px;
+						-webkit-transform: rotate(-135deg);
+						transform: rotate(-135deg);
 					}
 
 					margin-left: 0;

@@ -122,3 +122,30 @@ $wp_customize->add_section(
 		'panel' => 'woocommerce',
 	)
 );
+
+// Free shipping threshold.
+$wp_customize->add_section(
+	'woostify_shipping_threshold',
+	array(
+		'title' => __( 'Shipping Threshold', 'woostify' ),
+		'panel' => 'woocommerce',
+	)
+);
+
+// Mini Cart.
+$wp_customize->add_section(
+	'woostify_mini_cart',
+	array(
+		'title' => __( 'Mini Cart', 'woostify' ),
+		'panel' => 'woocommerce',
+	)
+);
+
+// PERFORMANCE.
+$wp_customize->add_section(
+	'woostify_performance',
+	array(
+		'title'    => __( 'Performance', 'woostify' ),
+		'priority' => 40,
+	)
+);
