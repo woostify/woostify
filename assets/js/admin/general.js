@@ -95,9 +95,27 @@ var woostifyWelcomeTabSettings = function() {
 	);
 }
 
+var woostifyMoveWordpressUpdateVersionNotice = function() {
+	var notice = document.querySelector( '.update-nag' );
+	if ( ! notice ) {
+		return;
+	}
+
+	var notice_clone = notice.cloneNode( true );
+	var notices_wrap = document.querySelector( '.woostify-notices-wrap' );
+
+	if ( ! notices_wrap ) {
+		return;
+	}
+
+	notice.remove();
+	notices_wrap.prepend( notice_clone );
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
 		woostifyWelcomeTabSettings();
+		woostifyMoveWordpressUpdateVersionNotice();
 	}
 );
