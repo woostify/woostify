@@ -1584,7 +1584,7 @@ if ( ! function_exists( 'woostify_custom_product_data_tabs' ) ) {
 	/**
 	 * Woostify custom tabs
 	 *
-	 * @param array $tabs default tabs
+	 * @param array $tabs default tabs.
 	 */
 	function woostify_custom_product_data_tabs( $tabs ) {
 		$new_tabs    = array();
