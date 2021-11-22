@@ -8262,7 +8262,7 @@ header.elementor-element {
 
 .woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel.is-visible {
   height: auto;
-  display: block;
+  display: block !important;
 }
 
 .woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner {
