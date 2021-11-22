@@ -58,19 +58,25 @@ $size: 40px;
 }
 
 // Updating...
-.processing:not(.um-woo-status) {
-	pointer-events: none;
-	position: relative;
-	@extend .circle-loading;
+body{
+	&:not(.yith-wcms-pro) {
+		.processing {
+			&:not(.um-woo-status) {
+				pointer-events: none;
+				position: relative;
+				@extend .circle-loading;
 
-	&:after {
-		content: '';
-		background-color: rgba(255, 255, 255, 0.7);
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		top: 0;
+				&:after {
+					content: '';
+					background-color: rgba(255, 255, 255, 0.7);
+					position: absolute;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					top: 0;
+				}
+			}
+		}
 	}
 }
 
