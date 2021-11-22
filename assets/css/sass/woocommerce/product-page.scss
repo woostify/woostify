@@ -1045,7 +1045,7 @@
 
 			&.is-visible {
 				height: auto;
-				display: block;
+				display: block !important;
 			}
 
 			.woostify-tab-inner {
