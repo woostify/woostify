@@ -1640,13 +1640,16 @@ if ( ! function_exists( 'woostify_output_product_data_tabs_accordion' ) ) {
 			?>
 
 			<div class="woocommerce-tabs wc-tabs-wrapper layout-accordion">
-				<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
-					<div class="woostify-tab-wrapper">
+				<?php
+				$i = 0;
+				foreach ( $product_tabs as $key => $product_tab ) :
+					?>
+					<div class="woostify-tab-wrapper <?php echo 0 === $i ? esc_attr( 'active' ) : ''; ?>">
 						<a href="javascript:;" class="woostify-accordion-title">
 							<?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?>
 							<?php Woostify_Icon::fetch_svg_icon( 'angle-down', true ); ?>
 						</a>
-						<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
+						<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab  <?php echo 0 === $i ? esc_attr( 'is-visible' ) : ''; ?>" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
 							<div class="woostify-tab-inner">
 								<div class="woostify-tab-scroll-content">
 								<?php
@@ -1658,7 +1661,10 @@ if ( ! function_exists( 'woostify_output_product_data_tabs_accordion' ) ) {
 							</div>
 						</div>
 					</div>
-				<?php endforeach; ?>
+					<?php
+					$i++;
+				endforeach;
+				?>
 
 				<?php do_action( 'woocommerce_product_after_tabs' ); ?>
 			</div>

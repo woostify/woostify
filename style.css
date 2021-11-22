@@ -8262,7 +8262,7 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 
 .woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel.is-visible {
   height: auto;
-  display: block;
+  display: block !important;
 }
 
 .woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner {
