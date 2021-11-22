@@ -115,7 +115,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[performance_disable_woo_blocks_styles]',
 		array(
-			'label'    => __( 'Disable Woocommerce Blocks CSS Styles', 'woostify' ),
+			'label'    => __( 'Disable Woocommerce Blocks CSS', 'woostify' ),
 			'section'  => 'woostify_performance',
 			'settings' => 'woostify_setting[performance_disable_woo_blocks_styles]',
 		)
