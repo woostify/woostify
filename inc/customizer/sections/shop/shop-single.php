@@ -201,13 +201,15 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[shop_single_content_background]',
 		array(
 			'label'    => __( 'Content Background', 'woostify' ),
 			'section'  => 'woostify_shop_single',
-			'settings' => 'woostify_setting[shop_single_content_background]',
+			'settings' => array(
+				'woostify_setting[shop_single_content_background]',
+			),
 		)
 	)
 );
@@ -513,6 +515,109 @@ $wp_customize->add_control(
 	)
 );
 
+// SHOP SINGLE PRODUCT DATA TABS SECTION.
+$wp_customize->add_setting(
+	'shop_single_product_data_tabs_section',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Section_Control(
+		$wp_customize,
+		'shop_single_product_data_tabs_section',
+		array(
+			'label'      => __( 'Product Data Tabs', 'woostify' ),
+			'section'    => 'woostify_shop_single',
+			'dependency' => array(
+				'woostify_setting[shop_single_product_data_tabs_layout]',
+				'woostify_setting[shop_single_product_data_tabs_pos]',
+				'woostify_setting[shop_single_product_data_tabs_items]',
+			),
+		)
+	)
+);
+
+// Product data tabs layout.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_data_tabs_layout]',
+	array(
+		'default'           => $defaults['shop_single_product_data_tabs_layout'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_data_tabs_layout]',
+		array(
+			'label'    => __( 'Layout', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_data_tabs_layout]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_shop_single_product_data_tabs_layout_choices',
+				array(
+					'normal'    => __( 'Normal', 'woostify' ),
+					'accordion' => __( 'Accordion', 'woostify' ),
+				)
+			),
+		)
+	)
+);
+
+// Product data tabs position.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_data_tabs_pos]',
+	array(
+		'default'           => $defaults['shop_single_product_data_tabs_pos'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_data_tabs_pos]',
+		array(
+			'label'    => __( 'Position', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_data_tabs_pos]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_shop_single_product_data_tabs_pos_choices',
+				array(
+					'woocommerce_single_product_summary' => __( 'In Product Summary', 'woostify' ),
+					'woocommerce_after_single_product_summary' => __( 'After Product Summary', 'woostify' ),
+				)
+			),
+		)
+	)
+);
+
+// Product data tabs items.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_data_tabs_items]',
+	array(
+		'default'           => $defaults['shop_single_product_data_tabs_items'],
+		'sanitize_callback' => '',
+		'type'              => 'option',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Product_Data_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_data_tabs_items]',
+		array(
+			'label'    => __( 'Items', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_product_data_tabs_items]',
+		)
+	)
+);
+
 // SHOP SINGLE RELATED PRODUCT SECTION.
 $wp_customize->add_setting(
 	'shop_single_product_related_section',
@@ -531,6 +636,9 @@ $wp_customize->add_control(
 				'woostify_setting[shop_single_related_product]',
 				'woostify_setting[shop_single_product_related_total]',
 				'woostify_setting[shop_single_product_related_columns]',
+				'woostify_setting[shop_single_product_related_enable_carousel]',
+				'woostify_setting[shop_single_product_related_carousel_arrows]',
+				'woostify_setting[shop_single_product_related_carousel_dots]',
 			),
 		)
 	)
@@ -557,6 +665,42 @@ $wp_customize->add_control(
 	)
 );
 
+// Related columns.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_related_columns]',
+	array(
+		'default'           => $defaults['shop_single_product_related_columns'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'default'           => $defaults['shop_single_product_related_columns'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+
+$wp_customize->add_control(
+	new WP_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_related_columns]',
+		array(
+			'label'    => __( 'Columns', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_related_columns]',
+			'section'  => 'woostify_shop_single',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_shop_single_product_related_columns_choices',
+				array(
+					1 => 1,
+					2 => 2,
+					3 => 3,
+					4 => 4,
+					5 => 5,
+					6 => 6,
+				)
+			),
+		)
+	)
+);
+
 // Related product total.
 $wp_customize->add_setting(
 	'woostify_setting[shop_single_product_related_total]',
@@ -579,35 +723,65 @@ $wp_customize->add_control(
 	)
 );
 
-// Related columns.
+// Enable carousel.
 $wp_customize->add_setting(
-	'woostify_setting[shop_single_product_related_columns]',
+	'woostify_setting[shop_single_product_related_enable_carousel]',
 	array(
-		'default'           => $defaults['shop_single_product_related_columns'],
 		'type'              => 'option',
-		'sanitize_callback' => 'woostify_sanitize_choices',
+		'default'           => $defaults['shop_single_product_related_enable_carousel'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Switch_Control(
 		$wp_customize,
-		'woostify_setting[shop_single_product_related_columns]',
+		'woostify_setting[shop_single_product_related_enable_carousel]',
 		array(
-			'label'    => __( 'Columns', 'woostify' ),
-			'settings' => 'woostify_setting[shop_single_product_related_columns]',
+			'label'    => __( 'Enable Carousel', 'woostify' ),
 			'section'  => 'woostify_shop_single',
-			'type'     => 'select',
-			'choices'  => apply_filters(
-				'woostify_setting_shop_single_product_related_columns_choices',
-				array(
-					1 => 1,
-					2 => 2,
-					3 => 3,
-					4 => 4,
-					5 => 5,
-					6 => 6,
-				)
-			),
+			'settings' => 'woostify_setting[shop_single_product_related_enable_carousel]',
+		)
+	)
+);
+
+// Carousel arrows.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_related_carousel_arrows]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_single_product_related_carousel_arrows'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_related_carousel_arrows]',
+		array(
+			'label'    => __( 'Show Arrows', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_product_related_carousel_arrows]',
+		)
+	)
+);
+
+// Carousel dots.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_related_carousel_dots]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_single_product_related_carousel_dots'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_related_carousel_dots]',
+		array(
+			'label'    => __( 'Show Dots', 'woostify' ),
+			'section'  => 'woostify_shop_single',
+			'settings' => 'woostify_setting[shop_single_product_related_carousel_dots]',
 		)
 	)
 );
@@ -735,15 +909,31 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
+// Button Hover Background.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_button_background_hover]',
+	array(
+		'default'           => $defaults['shop_single_button_background_hover'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'transport'         => 'postMessage',
+	)
+);
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
 		'woostify_setting[shop_single_button_cart_background]',
 		array(
 			'label'    => __( 'Background', 'woostify' ),
 			'section'  => 'woostify_shop_single',
-			'settings' => 'woostify_setting[shop_single_button_cart_background]',
+			'settings' => array(
+				'woostify_setting[shop_single_button_cart_background]',
+				'woostify_setting[shop_single_button_background_hover]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
+			),
 		)
 	)
 );
@@ -758,42 +948,6 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
-$wp_customize->add_control(
-	new Woostify_Color_Control(
-		$wp_customize,
-		'woostify_setting[shop_single_button_cart_color]',
-		array(
-			'label'    => __( 'Color', 'woostify' ),
-			'section'  => 'woostify_shop_single',
-			'settings' => 'woostify_setting[shop_single_button_cart_color]',
-		)
-	)
-);
-
-// Button Hover Background.
-$wp_customize->add_setting(
-	'woostify_setting[shop_single_button_background_hover]',
-	array(
-		'default'           => $defaults['shop_single_button_background_hover'],
-		'type'              => 'option',
-		'sanitize_callback' => 'woostify_sanitize_rgba_color',
-		'transport'         => 'postMessage',
-	)
-);
-
-$wp_customize->add_control(
-	new Woostify_Color_Control(
-		$wp_customize,
-		'woostify_setting[shop_single_button_background_hover]',
-		array(
-			'label'    => __( 'Hover Background', 'woostify' ),
-			'section'  => 'woostify_shop_single',
-			'settings' => 'woostify_setting[shop_single_button_background_hover]',
-		)
-	)
-);
-
 // Button Hover Color.
 $wp_customize->add_setting(
 	'woostify_setting[shop_single_button_color_hover]',
@@ -804,15 +958,21 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
 $wp_customize->add_control(
-	new Woostify_Color_Control(
+	new Woostify_Color_Group_Control(
 		$wp_customize,
-		'woostify_setting[shop_single_button_color_hover]',
+		'woostify_setting[shop_single_button_cart_color]',
 		array(
-			'label'    => __( 'Hover Color', 'woostify' ),
+			'label'    => __( 'Color', 'woostify' ),
 			'section'  => 'woostify_shop_single',
-			'settings' => 'woostify_setting[shop_single_button_color_hover]',
+			'settings' => array(
+				'woostify_setting[shop_single_button_cart_color]',
+				'woostify_setting[shop_single_button_color_hover]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
+			),
 		)
 	)
 );

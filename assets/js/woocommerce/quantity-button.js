@@ -9,9 +9,11 @@
 // Create Minus button.
 var minusBtn = function() {
 	var minusBtn = document.createElement( 'span' );
+	var icon     = get_svg_icon( 'minus' );
 
 	minusBtn.setAttribute( 'class', 'product-qty' );
 	minusBtn.setAttribute( 'data-qty', 'minus' );
+	minusBtn.innerHTML = icon;
 
 	return minusBtn;
 }
@@ -19,9 +21,11 @@ var minusBtn = function() {
 // Create Plus button.
 var plusBtn = function() {
 	var plusBtn = document.createElement( 'span' );
+	var icon    = get_svg_icon( 'plus' );
 
 	plusBtn.setAttribute( 'class', 'product-qty' );
 	plusBtn.setAttribute( 'data-qty', 'plus' );
+	plusBtn.innerHTML = icon;
 
 	return plusBtn;
 }
@@ -73,6 +77,14 @@ function customQuantity() {
 
 					// When quantity updated.
 					input.classList.add( 'ajax-ready' );
+
+					var loopWrapper = input.closest( '.product-loop-wrapper' );
+					if ( loopWrapper ) {
+						var ajaxAddToCartBtn = loopWrapper.querySelector( '.add_to_cart_button' );
+						if ( ajaxAddToCartBtn ) {
+							ajaxAddToCartBtn.setAttribute( 'data-quantity', inputVal );
+						}
+					}
 				}
 			);
 

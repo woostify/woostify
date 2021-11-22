@@ -341,7 +341,7 @@ if ( ! function_exists( 'woostify_sanitize_raw_html' ) ) {
 	function woostify_sanitize_raw_html( $value ) {
 		$kses_defaults = wp_kses_allowed_html( 'post' );
 		$image         = array(
-			'img'    => array(
+			'img' => array(
 				'class'  => array(),
 				'alt'    => array(),
 				'width'  => array(),
@@ -746,6 +746,167 @@ if ( ! function_exists( 'woostify_wishlist_page_url' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_svg_to_background_image' ) ) {
+	/**
+	 * Convert svg to image base64
+	 *
+	 * @param string $icon Icon.
+	 * @param string $color Color.
+	 *
+	 * @return string
+	 */
+	function woostify_svg_to_background_image( $icon = '', $color = '' ) {
+		$base64_image = '';
+		$file_content = wp_remote_get( WOOSTIFY_THEME_URI . 'assets/svg/svgs.json' );
+		if ( is_wp_error( $file_content ) ) {
+			return '';
+		}
+
+		$woostify_svgs = json_decode( $file_content['body'], true );
+		$woostify_svgs = apply_filters( 'woostify_svg_icons', $woostify_svgs );
+		$icon          = isset( $woostify_svgs[ $icon ] ) ? $woostify_svgs[ $icon ] : '';
+
+		if ( '' !== $color ) {
+			$search = '/(fill=\")(.*?)(\")/';
+			$icon   = preg_replace( $search, 'fill="' . $color . '"', $icon );
+		}
+
+		$base64_image = 'data:image/svg+xml;base64,' . base64_encode( woostify_unescape_svg_code( rawurlencode( $icon ) ) ); // phpcs:ignore
+		return $base64_image;
+	}
+}
+
+if ( ! function_exists( 'woostify_unescape_svg_code' ) ) {
+	/**
+	 * Unescape svg code
+	 *
+	 * @param string $str String to unescape.
+	 *
+	 * @return string
+	 */
+	function woostify_unescape_svg_code( $str = '' ) {
+		$ret = '';
+		$len = strlen( $str );
+		for ( $i = 0; $i < $len; $i ++ ) {
+			if ( '%' === $str[ $i ] && 'u' === $str[ $i + 1 ] ) {
+				$val = hexdec( substr( $str, $i + 2, 4 ) );
+				if ( $val < 0x7f ) {
+					$ret .= chr( $val );
+				} elseif ( $val < 0x800 ) {
+					$ret .= chr( 0xc0 | ( $val >> 6 ) ) . chr( 0x80 | ( $val & 0x3f ) );
+				} else {
+					$ret .= chr( 0xe0 | ( $val >> 12 ) ) . chr( 0x80 | ( ( $val >> 6 ) & 0x3f ) ) . chr( 0x80 | ( $val & 0x3f ) );
+				}
+				$i += 5;
+			} elseif ( '%' === $str[ $i ] ) {
+				$ret .= urldecode( substr( $str, $i, 3 ) );
+				$i   += 2;
+			} else {
+				$ret .= $str[ $i ];
+			}
+		}
+		return $ret;
+	}
+}
+
+if ( ! function_exists( 'woostify_get_social_icon_list' ) ) {
+	/**
+	 * Supported render icon list by link in custom html
+	 *
+	 * @return array
+	 */
+	function woostify_get_social_icon_list() {
+		$list = array(
+			array(
+				'href' => 'twitter.com',
+				'icon' => 'twitter',
+			),
+			array(
+				'href' => 'facebook.com',
+				'icon' => 'facebook',
+			),
+			array(
+				'href' => 'plus.google.com',
+				'icon' => 'google',
+			),
+			array(
+				'href' => 'instagram.com',
+				'icon' => 'instagram',
+			),
+			array(
+				'href' => 'vimeo.com',
+				'icon' => 'vimeo',
+			),
+			array(
+				'href' => 'youtube.com',
+				'icon' => 'youtube',
+			),
+			array(
+				'href' => 'github.com',
+				'icon' => 'github',
+			),
+			array(
+				'href' => 'linkedin.com',
+				'icon' => 'linkedin',
+			),
+			array(
+				'href' => 'pinterest.com',
+				'icon' => 'pinterest-alt',
+			),
+			array(
+				'href' => 'flickr.com',
+				'icon' => 'flickr',
+			),
+			array(
+				'href' => 'tumblr.com',
+				'icon' => 'tumblr',
+			),
+			array(
+				'href' => 'mailto',
+				'icon' => 'email',
+			),
+			array(
+				'href' => 'whatsapp',
+				'icon' => 'themify-favicon',
+			),
+		);
+
+		return apply_filters( 'woostify_social_icon_list', $list );
+	}
+}
+
+if ( ! function_exists( 'woostify_allow_tags_svg' ) ) {
+	/**
+	 * Allow svg tags
+	 *
+	 * @return mixed|void
+	 */
+	function woostify_allow_tags_svg() {
+		$kses_defaults = wp_kses_allowed_html( 'post' );
+
+		$svg_args = array(
+			'svg'   => array(
+				'class'           => true,
+				'aria-hidden'     => true,
+				'aria-labelledby' => true,
+				'role'            => true,
+				'xmlns'           => true,
+				'width'           => true,
+				'height'          => true,
+				'viewbox'         => true, // <= Must be lower case!
+			),
+			'g'     => array( 'fill' => true ),
+			'title' => array( 'title' => true ),
+			'path'  => array(
+				'd'    => true,
+				'fill' => true,
+			),
+		);
+
+		return array_merge( $kses_defaults, $svg_args );
+	}
+}
+
 if ( ! function_exists( 'woostify_render_css_space' ) ) {
 	/**
 	 * Render css property with value
@@ -768,5 +929,60 @@ if ( ! function_exists( 'woostify_render_css_space' ) ) {
 		}
 
 		return trim( $css );
+	}
+}
+
+if ( ! function_exists( 'woostify_custom_search_form' ) ) {
+	/**
+	 * Override search with get form html
+	 *
+	 * @param string $form Form html.
+	 * @param string $args Arguments.
+	 *
+	 * @return string
+	 */
+	function woostify_custom_search_form( $form, $args ) {
+		// Build a string containing an aria-label to use for the search form.
+		if ( $args['aria_label'] ) {
+			$aria_label = 'aria-label="' . esc_attr( $args['aria_label'] ) . '" ';
+		} else {
+			/*
+			 * If there's no custom aria-label, we can set a default here. At the
+			 * moment it's empty as there's uncertainty about what the default should be.
+			 */
+			$aria_label = '';
+		}
+		$format = current_theme_supports( 'html5', 'search-form' ) ? 'html5' : 'xhtml';
+
+		if ( 'html5' === $format ) {
+			$form = '<form role="search" ' . $aria_label . 'method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
+                <label>
+                    <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'woostify' ) . '</span>
+                    <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder', 'woostify' ) . '" value="' . get_search_query() . '" name="s" />
+                </label>
+                <input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button', 'woostify' ) . '" />
+                <span class="search-form-icon">' . Woostify_Icon::fetch_svg_icon( 'search', false ) . '</span>
+            </form>';
+		} else {
+			$form = '<form role="search" ' . $aria_label . 'method="get" id="searchform" class="searchform" action="' . esc_url( home_url( '/' ) ) . '">
+                <div>
+                    <label class="screen-reader-text" for="s">' . _x( 'Search for:', 'label', 'woostify' ) . '</label>
+                    <input type="text" value="' . get_search_query() . '" name="s" id="s" />
+                    <input type="submit" id="searchsubmit" value="' . esc_attr_x( 'Search', 'submit button', 'woostify' ) . '" />
+                </div>
+            </form>';
+		}
+		return $form;
+	}
+}
+
+if ( ! function_exists( 'woostify_sanitize_abs_number' ) ) {
+	/**
+	 * Sanitize abs int|float value
+	 *
+	 * @param integer $value The int|float number.
+	 */
+	function woostify_sanitize_abs_number( $value ) {
+		return abs( $value );
 	}
 }

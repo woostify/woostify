@@ -291,7 +291,7 @@ var woostifyMultiStepCheckout = function() {
 					);
 				}
 
-				if ( validate ) {
+				if ( validate && i > 0 ) {
 					if ( document.getElementById( 'place_order' ) ) {
 						document.getElementById( 'place_order' ).click();
 					}

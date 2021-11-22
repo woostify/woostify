@@ -21,6 +21,7 @@ require_once WOOSTIFY_THEME_DIR . 'inc/woostify-template-builder.php';
 require_once WOOSTIFY_THEME_DIR . 'inc/woostify-template-functions.php';
 
 // Woostify generate css.
+require_once WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-webfont-loader.php';
 require_once WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-fonts-helpers.php';
 require_once WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-get-css.php';
 

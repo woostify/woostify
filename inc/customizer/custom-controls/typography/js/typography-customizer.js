@@ -1,3 +1,11 @@
+/**
+ * Typography customize
+ *
+ * @package woostify
+ */
+
+'use strict';
+
 ( function( api ) {
 
 	api.controlConstructor['woostify-customizer-typography'] = api.Control.extend(
@@ -14,17 +22,17 @@
 							_categoryID = _this.attr( 'data-category' ),
 							_variantsID = _this.attr( 'data-variants' );
 
-						// Set our font family
+						// Set our font family.
 						control.settings['family'].set( _this.val() );
 
-						// Bail if our controls don't exist
+						// Bail if our controls don't exist.
 						if ( 'undefined' == typeof control.settings['category'] || 'undefined' == typeof control.settings['variant'] ) {
 							return;
 						}
 
 						setTimeout(
 							function() {
-								// Send our request to the woostify_get_all_google_fonts_ajax function
+								// Send our request to the woostify_get_all_google_fonts_ajax function.
 								var response = jQuery.getJSON(
 									{
 										type: 'POST',
@@ -38,60 +46,59 @@
 									}
 								);
 
-								// Get our response
+								// Get our response.
 								var fonts = response.responseJSON;
 
-								// Create an ID from our selected font
+								// Create an ID from our selected font.
 								var id = _value.split( ' ' ).join( '_' ).toLowerCase();
 
-								// Set our values if we have them
+								// Set our values if we have them.
 								if ( id in fonts ) {
+									// Get existing variants if this font is already selected.
+									var got_variants = false;
+									jQuery( '.woostify-font-family select' ).not( _this ).each(
+										function( key, select ) {
+											var parent = jQuery( this ).closest( '.woostify-font-family' );
 
-											 // Get existing variants if this font is already selected
-											 var got_variants = false;
-											jQuery( '.woostify-font-family select' ).not( _this ).each(
-												function( key, select ) {
-													var parent = jQuery( this ).closest( '.woostify-font-family' );
-
-													if ( _value == jQuery( select ).val() && _this.data( 'category' ) !== jQuery( select ).data( 'category' ) ) {
-														if ( ! got_variants ) {
-															updated_variants = jQuery( parent.next( '.woostify-font-variant' ).find( 'select' ) ).val();
-															got_variants     = true;
-														}
-													}
+											if ( _value == jQuery( select ).val() && _this.data( 'category' ) !== jQuery( select ).data( 'category' ) ) {
+												if ( ! got_variants ) {
+													updated_variants = jQuery( parent.next( '.woostify-font-variant' ).find( 'select' ) ).val();
+													got_variants     = true;
 												}
-											);
+											}
+										}
+									);
 
-											 // We're using a Google font, so show the variants field
-											 _this.closest( '.woostify-font-family' ).next( 'div' ).show();
+									// We're using a Google font, so show the variants field.
+									_this.closest( '.woostify-font-family' ).next( 'div' ).show();
 
-											 // Remove existing variants
-											 jQuery( 'select[name="' + _variantsID + '"]' ).find( 'option' ).remove();
+									// Remove existing variants.
+									jQuery( 'select[name="' + _variantsID + '"]' ).find( 'option' ).remove();
 
-											 // Populate our select input with available variants
-											jQuery.each(
-												fonts[ id ].variants,
-												function( key, value ) {
-													jQuery( 'select[name="' + _variantsID + '"]' ).append( jQuery( '<option></option>' ).attr( 'value', value ).text( value ) );
-												}
-											);
+									// Populate our select input with available variants.
+									jQuery.each(
+										fonts[ id ].variants,
+										function( key, value ) {
+											jQuery( 'select[name="' + _variantsID + '"]' ).append( jQuery( '<option></option>' ).attr( 'value', value ).text( value ) );
+										}
+									);
 
-											 // Set our variants
+									// Set our variants.
 									if ( ! got_variants ) {
 												control.settings[ 'variant' ].set( fonts[ id ].variants );
 									} else {
 										control.settings[ 'variant' ].set( updated_variants );
 									}
 
-									// Set our font category
+									// Set our font category.
 									control.settings[ 'category' ].set( fonts[ id ].category );
 									jQuery( 'input[name="' + _categoryID + '"' ).val( fonts[ id ].category );
 								} else {
-									   _this.closest( '.woostify-font-family' ).next( 'div' ).hide();
-									   control.settings[ 'category' ].set( '' )
-									   control.settings[ 'variant' ].set( '' )
-									   jQuery( 'input[name="' + _categoryID + '"' ).val( '' );
-									   jQuery( 'select[name="' + _variantsID + '"]' ).find( 'option' ).remove();
+									_this.closest( '.woostify-font-family' ).next( 'div' ).hide();
+									control.settings[ 'category' ].set( '' )
+									control.settings[ 'variant' ].set( '' )
+									jQuery( 'input[name="' + _categoryID + '"' ).val( '' );
+									jQuery( 'select[name="' + _variantsID + '"]' ).find( 'option' ).remove();
 								}
 							},
 							25
@@ -115,8 +122,8 @@
 									var font_val     = api.control( this_control ).settings['family'].get();
 
 									if ( font_val == control.settings['family'].get() && _this.attr( 'name' ) !== jQuery( value ).attr( 'name' ) ) {
-												 jQuery( parent.find( 'select' ) ).not( _this ).val( variants ).triggerHandler( 'change' );
-												 api.control( this_control ).settings['variant'].set( variants );
+											jQuery( parent.find( 'select' ) ).not( _this ).val( variants ).triggerHandler( 'change' );
+											api.control( this_control ).settings['variant'].set( variants );
 									}
 								}
 							);
@@ -162,7 +169,7 @@ jQuery( document ).ready(
 				var _this = $( this );
 				var value = _this.data( 'saved-value' );
 				if ( value ) {
-					  value = value.toString().split( ',' );
+					value = value.toString().split( ',' );
 				}
 				_this.find( 'select' ).selectWoo().val( value ).trigger( 'change.select2' );
 			}
@@ -172,7 +179,7 @@ jQuery( document ).ready(
 			function( key, value ) {
 				var _this = $( this );
 				if ( $.inArray( _this.find( 'select' ).val(), typography_defaults ) !== -1 ) {
-					  _this.next( '.woostify-font-variant' ).hide();
+					_this.next( '.woostify-font-variant' ).hide();
 				}
 			}
 		);

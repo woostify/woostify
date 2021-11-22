@@ -91,22 +91,19 @@
 	height: 50px;
 
 	&:hover {
-		&:after {
+		.search-form-icon {
 			@include rotate(90);
 		}
 	}
 
 	/* Fix issue not showing on IE */
 	&:focus-within {
-		&:after {
+		.search-form-icon {
 			@include rotate(90);
 		}
 	}
 
-	&:after {
-		content: "\e610";
-		font-family: $icon;
-		font-size: 20px;
+	.search-form-icon {
 		position: absolute;
 		right: 0;
 		bottom: 0;
@@ -114,6 +111,14 @@
 		height: 50px;
 		@extend .flex;
 		@extend .duration;
+
+		.woostify-svg-icon {
+			color: initial;
+			svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
 	}
 
 	.media-toolbar & {
@@ -220,11 +225,12 @@
 		color: firebrick;
 		@extend .flex;
 
-		&:before {
-			content: "\e646";
-			font-family: $icon;
-			line-height: 1;
-			font-size: 10px;
+		.woostify-svg-icon {
+			color: inherit;
+			svg {
+				width: 10px;
+				height: 10px;
+			}
 		}
 
 		&:focus {
@@ -327,10 +333,16 @@
 			margin-left: 10px;
 
 			li:before {
-				content: "\e649";
-				font-family: $icon;
-				font-size: 10px;
-				margin-right: 5px;
+				margin-right: 8px;
+				margin-bottom: 1px;
+				content: "";
+				border-width: 1px 1px 0 0;
+				border-style: solid;
+				display: inline-block;
+				width: 6px;
+				height: 6px;
+				-webkit-transform: rotate(45deg);
+				transform: rotate(45deg);
 			}
 		}
 	}
@@ -412,6 +424,20 @@
 	}
 }
 
+.woostify-social-icon {
+	a {
+		font-size: 0;
+
+		&:before {
+			display: block;
+			content: '';
+			background-size: 14px;
+			width: 14px;
+			height: 14px;
+		}
+	}
+}
+
 /* Footer widget text */
 .woostify-footer-text-widget {
 	.woostify-footer-site-title {
@@ -448,74 +474,6 @@
 		}
 
 	}
-}
-
-.woostify-social-icon {
-	a {
-		font-size: 0;
-
-		&:before {
-			font-size: 14px;
-			font-family: $icon;
-		}
-
-		&[href*="twitter.com"]:before {
-			content: "\e72a";
-		}
-
-		&[href*="facebook.com"]:before {
-			content: "\e741";
-		}
-
-		&[href*="plus.google.com"]:before {
-			content: "\e73e";
-		}
-
-		&[href*="instagram.com"]:before {
-			content: "\e73d";
-		}
-
-		&[href*="vimeo.com"]:before {
-			content: "\e729";
-		}
-
-		&[href*="youtube.com"]:before {
-			content: "\e728";
-		}
-
-		&[href*="github.com"]:before {
-			content: "\e73f";
-		}
-
-		&[href*="linkedin.com"]:before {
-			content: "\e735";
-		}
-
-		&[href*="pinterest.com"]:before {
-			content: "\e753";
-		}
-
-		&[href*="flickr.com"]:before {
-			content: "\e740";
-		}
-
-		&[href*="tumblr.com"]:before {
-			content: "\e72c";
-		}
-
-		&[href*="mailto"]:before {
-			content: "\e75a";
-		}
-
-		&[href*="whatsapp"]:before {
-			content: "\e6d2";
-		}
-	}
-}
-
-/* Wishlist page: Share */
-.yith-wcwl-share {
-	@extend .woostify-social-icon;
 }
 
 /* Notice after added to wishlist */

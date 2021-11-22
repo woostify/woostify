@@ -37,6 +37,7 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 				$this->megamenu_position = get_post_meta( $item->ID, 'woostify_mega_menu_item_position', true );
 				$this->megamenu_url      = get_post_meta( $item->ID, 'woostify_mega_menu_item_url', true );
 				$this->megamenu_icon     = get_post_meta( $item->ID, 'woostify_mega_menu_item_icon', true );
+				$this->megamenu_icon     = str_replace( 'ti-', '', $this->megamenu_icon );
 				$href                    = $this->megamenu_url;
 
 				if ( ! $href ) {
@@ -94,7 +95,9 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 
 			// Menu icon.
 			if ( 'mega_menu' === $item->object && $this->megamenu_icon ) {
-				$item_output .= '<span class="menu-item-icon ' . esc_attr( $this->megamenu_icon ) . '"></span>';
+				$item_output .= '<span class="menu-item-icon">';
+				$item_output .= Woostify_Icon::fetch_svg_icon( $this->megamenu_icon, false );
+				$item_output .= '</span>';
 			}
 
 			$title = apply_filters( 'the_title', $item->title, $item->ID );
@@ -105,50 +108,45 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 
 			// Add arrow icon.
 			if ( $has_child ) {
-				$item_output .= '<span class="menu-item-arrow arrow-icon"></span>';
+				$item_output .= '<span class="menu-item-arrow arrow-icon">' . Woostify_Icon::fetch_svg_icon( 'angle-down', false ) . '</span>';
 			}
 
 			$item_output .= '</a>';
 
 			// Start Mega menu content.
 			if ( 'mega_menu' === $item->object && 0 === $depth && ! woostify_is_elementor_editor() ) {
-				$item_output .= '<ul class="sub-mega-menu">';
-				$item_output .= '<div class="mega-menu-wrapper">';
+				$mega_menu = '';
+				$mega_args = array(
+					'p'                   => $item->object_id,
+					'post_type'           => 'mega_menu',
+					'post_status'         => 'publish',
+					'posts_per_page'      => 1,
+					'ignore_sticky_posts' => 1,
+					'fields'              => 'ids',
+				);
 
-				if ( woostify_is_elementor_page( $item->object_id ) ) {
-					$frontend     = new \Elementor\Frontend();
-					$item_output .= $frontend->get_builder_content_for_display( $item->object_id, true );
-					wp_enqueue_style( 'elementor-frontend' );
-					wp_reset_postdata();
-				} else {
-					$mega_args = array(
-						'p'                   => $item->object_id,
-						'post_type'           => 'mega_menu',
-						'post_status'         => 'publish',
-						'posts_per_page'      => 1,
-						'ignore_sticky_posts' => 1,
-					);
+				$query = new WP_Query( $mega_args );
+				if ( $query->have_posts() ) {
+					ob_start();
+					echo '<div class="mega-menu-inner-wrapper">';
+					while ( $query->have_posts() ) {
+						$query->the_post();
 
-					$query = new WP_Query( $mega_args );
-
-					if ( $query->have_posts() ) {
-						ob_start();
-						echo '<div class="mega-menu-inner-wrapper">';
-						while ( $query->have_posts() ) {
-							$query->the_post();
-
-							the_content();
-						}
-						echo '</div>';
-						$item_output .= ob_get_clean();
-
-						// Reset post data.
-						wp_reset_postdata();
+						the_content();
 					}
+					echo '</div>';
+					$mega_menu .= ob_get_clean();
+
+					wp_reset_postdata();
 				}
 
-				$item_output .= '</div>';
-				$item_output .= '</ul>';
+				if ( ! empty( $mega_menu ) ) {
+					$item_output .= '<ul class="sub-mega-menu">';
+					$item_output .= '<div class="mega-menu-wrapper">';
+					$item_output .= $mega_menu;
+					$item_output .= '</div>';
+					$item_output .= '</ul>';
+				}
 			} // End Mega menu content.
 
 			$item_output .= $args->after;

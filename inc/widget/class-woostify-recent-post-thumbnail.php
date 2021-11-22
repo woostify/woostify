@@ -115,7 +115,7 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 							echo '<img class="widget-post-thumbnail-default-img" alt="' . esc_attr( get_the_title() ) . '" src="' . esc_url( WOOSTIFY_THEME_URI . 'assets/images/thumbnail-default.jpg' ) . '">';
 						}
 						?>
-				   </a>
+					</a>
 
 					<div class="recent-post-thumbnail-sum">
 						<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -145,8 +145,8 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 
 			$instance = $old_instance;
 
-			$instance['title']  = strip_tags( $new_instance['title'] );
-			$instance['number'] = strip_tags( $new_instance['number'] );
+			$instance['title']  = wp_trip_all_tags( $new_instance['title'] );
+			$instance['number'] = wp_trip_all_tags( $new_instance['number'] );
 
 			return $instance;
 

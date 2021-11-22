@@ -1,9 +1,11 @@
 .woostify-options-wrap {
 	.woostify-enhance {
 		margin-top: 4em;
+		max-width: 1140px;
+		padding: 0 15px;
 
 		@media ( min-width: 1140px ) {
-			margin: 4em 0px;
+			margin: 4em auto;
 		}
 
 		&:after{
@@ -12,7 +14,9 @@
 			display: block;
 		}
 
-		.woostify-welcome-container{
+		.woostify-welcome-container {
+			width: 100%;
+			padding: 0;
 			display: flex;
 			justify-content: space-between;
 			align-items: flex-start;
@@ -27,24 +31,169 @@
 			width: 100%;
 
 			@media ( min-width: 1140px ) {
-				max-width: 600px;
 				margin-right: 20px;
 			}
 		}
 
 		.woostify-enhance-sidebar {
 			width: 100%;
+			position: sticky;
+			position: -webkit-sticky;
+			top: 0;
+			margin-top: 42px;
 
 			@media ( min-width: 1140px ) {
-				max-width: 350px;
+				max-width: 300px;
+			}
+		}
+
+		.woostify-welcome-settings-section-tab {
+
+			.woostify-setting-tab-head {
+				display: flex;
+				align-items: stretch;
+				flex-direction: row;
+
+				.tab-head-button {
+					padding: 12px 20px;
+					display: inline-block;
+					font-weight: 500;
+					color: #3c434a;
+
+					&.active {
+						background: #fff;
+						border-radius: 4px 4px 0 0;
+						color: #2271b1;
+					}
+				}
+			}
+
+			.woostify-setting-tab-content-wrapper {
+				.woostify-setting-tab-content {
+					background: #fff;
+					padding: 20px;
+					border-radius: 4px;
+
+					&:first-child {
+						border-top-left-radius: 0;
+					}
+
+					&:not(.active) {
+						display: none;
+					}
+
+					.section-header {
+						margin: 1em 0;
+
+						&:first-child {
+							margin-top: 0;
+						}
+					}
+
+					&[data-tab="starter-templates"] {
+						text-align: center;
+						p {
+							margin: 0 0 5px 0;
+						}
+
+						img {
+							margin: 10px 0;
+						}
+
+						h2 {
+							margin-top: 20px;
+							margin-bottom: 1.5em;
+							text-align: center;
+							color: #001099;
+							font-size: 1.6em;
+						}
+					}
+				}
+			}
+		}
+
+		.pro-featured-list {
+			margin-top: 2em;
+		}
+
+		.woostify-grid-box {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-gap: 20px;
+
+			@media (max-width: 600px) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			.box-item {
+				border: 1px solid #E2E8F0;
+				padding: 20px;
+				border-radius: 4px;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: column nowrap;
+				flex-flow: column nowrap;
+				align-items: center;
+				text-align: center;
+				position: relative;
+
+				&__icon {
+					color: #2271b1;
+				}
+
+				&__name {
+					font-size: 1em;
+					margin: 1em 0;
+				}
+
+				&__desc {
+					margin-top: 0;
+					font-style: italic;
+				}
+
+				&__link {
+					margin-top: 0.5em;
+					color: #3c434a;
+					border-radius: 3px;
+					padding: 5px 12px;
+					background: #fff;
+					border: 1px solid #e2e6eb;
+					box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+
+					&:hover, &:focus, &:active {
+						color: #2271b1;
+						border-color: rgba(190,196,203,0.7);
+					}
+				}
+
+				&--disabled {
+					background: #fbfdff;
+
+					.box-item__icon {
+						position: absolute;
+						top: 5px;
+						right: 5px;
+						color: #ccc;
+						font-size: 14px;
+						width: 14px;
+						height: 14px;
+					}
+
+					.box-item__name {
+						margin-top: 0;
+					}
+				}
 			}
 		}
 
 		.woostify-enhance__column {
-			border: 1px solid #d8e2e9;
 			width: 100%;
 			background: #fff;
 			margin-bottom: 10px;
+			border-radius: 4px;
+			overflow: hidden;
+			padding: 1.5em;
+			box-sizing: border-box;
 
 			@media ( min-width: 720px ) {
 				margin-bottom: 20px;
@@ -89,11 +238,9 @@
 			}
 
 			h3 {
-				font-size: 1.1em;
+				font-size: 1.3em;
 				font-weight: 600;
 				color: #383838;
-				border-bottom: 1px solid #d8e2e9;
-				padding: 1em 1.5em;
 				margin: 0;
 			}
 
@@ -140,18 +287,12 @@
 	}
 
 	.wf-quick-setting-section{
-		margin: 1em 0;
-		padding: 0 1.5em;
+		margin: 1.3em 0 0;
 	}
 
 	/* List pro feature */
 	.pro-featured-list{
 		padding-bottom: 0 !important;
-
-		.wf-quick-setting-section{
-			margin: 0;
-			padding: 0;
-		}
 
 		.pro-featured-item{
 			display: flex;

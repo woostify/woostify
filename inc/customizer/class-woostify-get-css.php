@@ -10,11 +10,274 @@
  */
 class Woostify_Get_CSS {
 	/**
+	 * Base path.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $base_path;
+
+	/**
+	 * Base URL.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $base_url;
+
+	/**
+	 * Subfolder name.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $subfolder_name;
+
+	/**
+	 * The fonts folder.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $style_folder;
+
+	/**
+	 * The local stylesheet's path.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $stylesheet_path;
+
+	/**
+	 * The local stylesheet's URL.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $local_stylesheet_url;
+
+	/**
+	 * The final CSS.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @var string
+	 */
+	protected $css;
+
+	/**
+	 * Cleanup routine frequency.
+	 */
+	const CLEANUP_FREQUENCY = 'monthly';
+
+	/**
 	 * Wp enqueue scripts
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'woostify_add_customizer_css' ), 130 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'woostify_dynamic_css' ), 130 );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'woostify_guten_block_editor_assets' ) );
+
+		// Add a cleanup routine.
+		$this->schedule_cleanup();
+		add_action( 'delete_dynamic_stylesheet_folder', array( $this, 'delete_dynamic_stylesheet_folder' ) );
+	}
+
+	/**
+	 * Schedule a cleanup.
+	 *
+	 * This way dynamic stylesheet files will get updated regularly,
+	 * and we avoid edge cases where unused files remain in the server.
+	 *
+	 * @access public
+	 * @since 1.1.0
+	 * @return void
+	 */
+	public function schedule_cleanup() {
+		if ( ! is_multisite() || ( is_multisite() && is_main_site() ) ) {
+			if ( ! wp_next_scheduled( 'delete_dynamic_stylesheet_folder' ) && ! wp_installing() ) {
+				wp_schedule_event( time(), self::CLEANUP_FREQUENCY, 'delete_dynamic_stylesheet_folder' );
+			}
+		}
+	}
+
+	/**
+	 * Get the base path.
+	 *
+	 * @return string
+	 */
+	public function get_base_path() {
+		if ( ! $this->base_path ) {
+			$this->base_path = apply_filters( 'woostify_dynamic_style_base_path', $this->get_filesystem()->wp_content_dir() );
+		}
+		return $this->base_path;
+	}
+
+	/**
+	 * Get the base URL.
+	 *
+	 * @return string
+	 */
+	public function get_base_url() {
+		if ( ! $this->base_url ) {
+			$this->base_url = apply_filters( 'woostify_dynamic_style_base_url', content_url() );
+		}
+		return $this->base_url;
+	}
+
+	/**
+	 * Get the subfolder name.
+	 *
+	 * @return string
+	 */
+	public function get_subfolder_name() {
+		if ( ! $this->subfolder_name ) {
+			$this->subfolder_name = apply_filters( 'woostify_dynamic_style_subfolder_name', 'woostify-stylesheet' );
+		}
+		return $this->subfolder_name;
+	}
+
+	/**
+	 * Get the folder for dynamic style.
+	 *
+	 * @return string
+	 */
+	public function get_style_folder() {
+		if ( ! $this->style_folder ) {
+			$this->style_folder = $this->get_base_path();
+			if ( $this->get_subfolder_name() ) {
+				$this->style_folder .= '/' . $this->get_subfolder_name();
+			}
+		}
+		return $this->style_folder;
+	}
+
+	/**
+	 * Check if the local stylesheet exists.
+	 *
+	 * @return bool
+	 */
+	public function local_file_exists() {
+		return ( ! file_exists( $this->get_local_stylesheet_path() ) );
+	}
+
+	/**
+	 * Get the stylesheet path.
+	 *
+	 * @access public
+	 * @since 1.1.0
+	 * @return string
+	 */
+	public function get_local_stylesheet_path() {
+		if ( ! $this->stylesheet_path ) {
+			$this->stylesheet_path = $this->get_style_folder() . '/' . $this->get_stylesheet_filename() . '.css';
+		}
+		return $this->stylesheet_path;
+	}
+
+	/**
+	 * Get the local stylesheet filename.
+	 *
+	 * This is a hash, generated from the site-URL, the wp-content path and the URL.
+	 * This way we can avoid issues with sites changing their URL, or the wp-content path etc.
+	 *
+	 * @return string
+	 */
+	public function get_stylesheet_filename() {
+		return apply_filters( 'woostify_dynamic_style_filename', 'woostify-dynamic-css' );
+	}
+
+	/**
+	 * Get the local stylesheet URL.
+	 *
+	 * @return string
+	 */
+	public function get_local_stylesheet_url() {
+		if ( ! $this->local_stylesheet_url ) {
+			$this->local_stylesheet_url = str_replace(
+				$this->get_base_path(),
+				$this->get_base_url(),
+				$this->get_local_stylesheet_path()
+			);
+		}
+		return $this->local_stylesheet_url;
+	}
+
+	/**
+	 * Get the local URL which contains the styles.
+	 *
+	 * Fallback to the remote URL if we were unable to write the file locally.
+	 *
+	 * @return string
+	 */
+	public function get_url() {
+
+		// Check if the local stylesheet exists.
+		if ( $this->local_file_exists() ) {
+			// Attempt to update the stylesheet. Return the local URL on success.
+			if ( $this->write_stylesheet() ) {
+				return $this->get_local_stylesheet_url();
+			}
+		}
+
+		// If the local file exists, return its URL, with a fallback to the remote URL.
+		return file_exists( $this->get_local_stylesheet_path() )
+			? $this->get_local_stylesheet_url()
+			: false;
+	}
+
+	/**
+	 * Write the CSS to the filesystem.
+	 *
+	 * @return string|false Returns the absolute path of the file on success, or false on fail.
+	 */
+	protected function write_stylesheet() {
+		$file_path  = $this->get_local_stylesheet_path();
+		$filesystem = $this->get_filesystem();
+
+		if ( ! defined( 'FS_CHMOD_DIR' ) ) {
+			define( 'FS_CHMOD_DIR', ( 0755 & ~ umask() ) );
+		}
+
+		// If the folder doesn't exist, create it.
+		if ( ! file_exists( $this->get_style_folder() ) ) {
+			$this->get_filesystem()->mkdir( $this->get_style_folder(), FS_CHMOD_DIR );
+		}
+
+		// If the file doesn't exist, create it. Return false if it can not be created.
+		if ( ! $filesystem->exists( $file_path ) && ! $filesystem->touch( $file_path ) ) {
+			return false;
+		}
+
+		// If we got this far, we need to write the file.
+		// Get the CSS.
+		if ( ! $this->css ) {
+			$this->get_styles();
+		}
+
+		// Put the contents in the file. Return false if that fails.
+		if ( ! $filesystem->put_contents( $file_path, $this->css ) ) {
+			return false;
+		}
+
+		return $file_path;
+	}
+
+	/**
+	 * Delete the style folder.
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 */
+	public function delete_dynamic_stylesheet_folder() {
+		return $this->get_filesystem()->delete( $this->get_style_folder(), true );
 	}
 
 	/**
@@ -23,7 +286,7 @@ class Woostify_Get_CSS {
 	 * @see get_woostify_theme_mods()
 	 * @return array $styles the css
 	 */
-	public function woostify_get_css() {
+	public function get_styles() {
 
 		// Get all theme option value.
 		$options = woostify_options( false );
@@ -460,6 +723,11 @@ class Woostify_Get_CSS {
 				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
+			.woostify-svg-icon svg {
+				width:  ' . esc_attr( $options['body_font_size'] ) . 'px;
+				height:  ' . esc_attr( $options['body_font_size'] ) . 'px;
+			}
+
 			.pagination a,
 			.pagination a,
 			.woocommerce-pagination a,
@@ -476,6 +744,7 @@ class Woostify_Get_CSS {
 			#secondary .widget a,
 			.has-woostify-text-color,
 			.button.loop-add-to-cart-icon-btn,
+			.button.loop-add-to-cart-icon-btn .woostify-svg-icon,
 			.loop-wrapper-wishlist a,
 			#order_review .shop_table .product-name {
 				color: ' . esc_attr( $options['text_color'] ) . ';
@@ -508,9 +777,13 @@ class Woostify_Get_CSS {
 				font-weight: ' . esc_attr( $options['menu_font_weight'] ) . ';
 			}
 
-			.primary-navigation > li > a{
+			.primary-navigation > li > a {
 				font-size: ' . esc_attr( $options['parent_menu_font_size'] ) . 'px;
 				line-height: ' . esc_attr( $options['parent_menu_line_height'] ) . 'px;
+				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
+			}
+
+			.primary-navigation > li > a .woostify-svg-icon {
 				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
 			}
 
@@ -520,7 +793,7 @@ class Woostify_Get_CSS {
 				color: ' . esc_attr( $options['primary_sub_menu_color'] ) . ';
 			}
 
-			.site-tools .tools-icon {
+			.site-tools .tools-icon, .site-tools .tools-icon .woostify-svg-icon {
 				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
 			}
 			.site-tools .tools-icon .woostify-header-total-price {
@@ -615,6 +888,7 @@ class Woostify_Get_CSS {
 			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout),
 			.product-loop-meta .button,
 			.multi-step-checkout-button[data-action="back"],
+			.multi-step-checkout-button[data-action="back"] .woostify-svg-icon,
 			.review-information-link,
 			a{
 				color: ' . esc_attr( $options['accent_color'] ) . ';
@@ -628,13 +902,16 @@ class Woostify_Get_CSS {
 		// Buttons.
 		$styles .= '
 			.woostify-button-color,
-			.loop-add-to-cart-on-image+.added_to_cart {
+			.loop-add-to-cart-on-image+.added_to_cart, {
 				color: ' . esc_attr( $options['button_text_color'] ) . ';
 			}
 
 			.woostify-button-bg-color,
 			.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions .coupon [name="apply_coupon"],
-			.loop-add-to-cart-on-image+.added_to_cart {
+			.loop-add-to-cart-on-image+.added_to_cart,
+			.related .tns-controls button,
+			.up-sells .tns-controls button,
+			.woostify-product-recently-viewed-section .tns-controls button {
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 			}
 
@@ -650,7 +927,10 @@ class Woostify_Get_CSS {
 			.product-loop-action .yith-wcwl-wishlistaddedbrowse.show,
 			.product-loop-action .yith-wcwl-wishlistexistsbrowse.show,
 			.product-loop-action .added_to_cart,
-			.product-loop-image-wrapper .tinv-wraper .tinvwl_add_to_wishlist_button:hover {
+			.product-loop-image-wrapper .tinv-wraper .tinvwl_add_to_wishlist_button:hover,
+			.related .tns-controls button:hover,
+			.up-sells .tns-controls button:hover,
+			.woostify-product-recently-viewed-section .tns-controls button:hover {
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
 			}
 
@@ -673,8 +953,14 @@ class Woostify_Get_CSS {
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
 			}
 
+			.button .woostify-svg-icon,
+			.product-loop-meta.no-transform .added_to_cart .woostify-svg-icon {
+				color: ' . esc_attr( $options['button_text_color'] ) . ';
+			}
+
 			.cart:not(.elementor-menu-cart__products) .quantity,
-			.loop-add-to-cart-on-image+.added_to_cart{
+			.loop-add-to-cart-on-image+.added_to_cart,
+			.loop-product-qty .quantity {
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
 			}
 
@@ -689,6 +975,14 @@ class Woostify_Get_CSS {
 			.product-loop-meta.no-transform .button:hover,
 			.product-loop-meta.no-transform .added_to_cart:hover{
 				background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
+				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
+			}
+
+			/*.product-loop-wrapper .button .woostify-svg-icon {
+				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
+			}*/
+
+			.loop-add-to-cart-on-image+.added_to_cart:hover .woostify-svg-icon {
 				color: ' . esc_attr( $options['button_hover_text_color'] ) . ';
 			}
 
@@ -709,6 +1003,26 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// Free shipping threshold.
+		$message_color         = ( '' === $options['shipping_threshold_message_color'] ) ? 'inherit' : $options['shipping_threshold_message_color'];
+		$message_success_color = ( '' === $options['shipping_threshold_message_success_color'] ) ? 'inherit' : $options['shipping_threshold_message_success_color'];
+
+		$styles .= '
+		.free-shipping-progress-bar .progress-bar-message {
+			color: ' . $message_color . ';
+		}
+		.free-shipping-progress-bar[data-progress="100"] .progress-bar-message {
+			color: ' . $message_success_color . ';
+		}
+		.free-shipping-progress-bar .progress-bar-indicator {
+			background: linear-gradient( 270deg, ' . $options['shipping_threshold_progress_bar_color'] . ' 0, #fff 200%);
+			background-color: ' . $options['shipping_threshold_progress_bar_color'] . ';
+		}
+		.free-shipping-progress-bar .progress-bar-status.success .progress-bar-indicator {
+			background: ' . $options['shipping_threshold_progress_bar_success_color'] . ';
+		}
+		';
+
 		// Theme color.
 		$styles .= '
 			.woostify-theme-color,
@@ -721,7 +1035,9 @@ class Woostify_Get_CSS {
 			.woocommerce-checkout-review-order-table .order-total,
 			.woocommerce-table--order-details .product-name a,
 			.primary-navigation a:hover,
+			.primary-navigation a:hover > .menu-item-arrow .woostify-svg-icon,
 			.primary-navigation .menu-item-has-children:hover > a,
+			.primary-navigation .menu-item-has-children:hover > a > .menu-item-arrow .woostify-svg-icon,
 			.default-widget a strong,
 			.woocommerce-mini-cart__total .amount,
 			.woocommerce-form-login-toggle .woocommerce-info a:hover,
@@ -741,8 +1057,10 @@ class Woostify_Get_CSS {
 			.product-nav-item .product-nav-item-price,
 			.woocommerce-thankyou-order-received,
 			.site-tools .tools-icon:hover,
+			.site-tools .tools-icon:hover .woostify-svg-icon,
 			.tools-icon.my-account:hover > a,
 			.multi-step-checkout-button[data-action="back"]:hover,
+			.multi-step-checkout-button[data-action="back"]:hover .woostify-svg-icon,
 			.review-information-link:hover,
 			.has-multi-step-checkout .multi-step-item,
 			#secondary .chosen a,
@@ -897,13 +1215,11 @@ class Woostify_Get_CSS {
 			.woostify-sticky-footer-bar {
 				background: ' . esc_attr( $options['sticky_footer_bar_background'] ) . ';
 			}
-			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg,
-			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg path {
+			.woostify-sticky-footer-bar .woostify-item-list-item__icon .woositfy-sfb-icon svg {
 				color: ' . esc_attr( $options['sticky_footer_bar_icon_color'] ) . ';
 				fill: ' . esc_attr( $options['sticky_footer_bar_icon_color'] ) . ';
 			}
-			.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg,
-			 .woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg path {
+			.woostify-sticky-footer-bar .woostify-item-list__item a:hover .woostify-item-list-item__icon .woositfy-sfb-icon svg {
 				color: ' . esc_attr( $options['sticky_footer_bar_icon_hover_color'] ) . ';
 				fill: ' . esc_attr( $options['sticky_footer_bar_icon_hover_color'] ) . ';
 			}
@@ -1016,14 +1332,18 @@ class Woostify_Get_CSS {
 
 		// Scroll to top.
 		$styles .= '
-			#scroll-to-top:before {
-				font-size: ' . esc_attr( $options['scroll_to_top_icon_size'] ) . 'px;
-			}
-
 			#scroll-to-top {
 				bottom: ' . esc_attr( $options['scroll_to_top_offset_bottom'] ) . 'px;
 				background-color: ' . esc_attr( $options['scroll_to_top_background'] ) . ';
+			}
+
+			#scroll-to-top .woostify-svg-icon {
 				color: ' . esc_attr( $options['scroll_to_top_color'] ) . ';
+			}
+
+			#scroll-to-top svg {
+				width: ' . esc_attr( $options['scroll_to_top_icon_size'] ) . 'px;
+				height: ' . esc_attr( $options['scroll_to_top_icon_size'] ) . 'px;
 			}
 
 			@media (min-width: 992px) {
@@ -1058,7 +1378,11 @@ class Woostify_Get_CSS {
 				border-radius: ' . esc_attr( $options['shop_page_button_border_radius'] ) . 'px;
 			}
 
-			.product-loop-wrapper .button:hover, .product-loop-meta.no-transform .button:hover {
+			.product-loop-wrapper .button .woostify-svg-icon {
+				color: ' . esc_attr( $options['shop_page_button_cart_color'] ) . ';
+			}
+
+			.product-loop-wrapper .button:hover, .product-loop-meta.no-transform .button:hover, .product-loop-wrapper .button:hover .woostify-svg-icon {
 				background-color: ' . esc_attr( $options['shop_page_button_background_hover'] ) . ';
 				color: ' . esc_attr( $options['shop_page_button_color_hover'] ) . ';
 			}
@@ -1169,7 +1493,50 @@ class Woostify_Get_CSS {
 			';
 		}
 
-		return apply_filters( 'woostify_customizer_css', $styles );
+		// Mini cart.
+		$mini_cart_bg = $options['mini_cart_background_color'];
+		$styles      .= '#shop-cart-sidebar {
+			background-color: ' . $mini_cart_bg . ';
+		}';
+
+		// Custom.
+		$social_list = woostify_get_social_icon_list();
+		if ( ! empty( $social_list ) ) {
+			foreach ( $social_list as $si ) {
+				$styles .= '.woostify-social-icon a[href*="' . $si['href'] . '"]:before, .yith-wcwl-share a[href*="' . $si['href'] . '"]:before {
+					background: transparent url(' . woostify_svg_to_background_image( $si['icon'] ) . ') no-repeat center / contain;
+				}';
+				$styles .= '.woostify-social-icon a[href*="' . $si['href'] . '"]:hover:before, .yith-wcwl-share a[href*="' . $si['href'] . '"]:hover:before {
+					background-image: url(' . woostify_svg_to_background_image( $si['icon'], '#fff' ) . ');
+				}';
+			}
+		}
+
+		$this->css = apply_filters( 'woostify_customizer_css', $styles );
+
+		$this->write_stylesheet();
+
+		return $this->css;
+	}
+
+	/**
+	 * Get the filesystem.
+	 *
+	 * @access protected
+	 * @since 2.0.0
+	 * @return \WP_Filesystem_Base
+	 */
+	protected function get_filesystem() {
+		global $wp_filesystem;
+
+		// If the filesystem has not been instantiated yet, do it here.
+		if ( ! $wp_filesystem ) {
+			if ( ! function_exists( 'WP_Filesystem' ) ) {
+				require_once wp_normalize_path( ABSPATH . '/wp-admin/includes/file.php' );
+			}
+			WP_Filesystem();
+		}
+		return $wp_filesystem;
 	}
 
 	/**
@@ -1196,12 +1563,14 @@ class Woostify_Get_CSS {
 	}
 
 	/**
-	 * Add CSS in <head> for styles handled by the theme customizer
-	 *
-	 * @return void
+	 * Enqueue dynamic stylesheet file.
 	 */
-	public function woostify_add_customizer_css() {
-		wp_add_inline_style( 'woostify-style', $this->woostify_get_css() );
+	public function woostify_dynamic_css() {
+		if ( $this->get_url() ) {
+			wp_enqueue_style( 'woostify-dynamic', $this->get_url(), array(), WOOSTIFY_VERSION, 'all' );
+		} else {
+			wp_add_inline_style( 'woostify-style', $this->get_styles() );
+		}
 	}
 }
 
