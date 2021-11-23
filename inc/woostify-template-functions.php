@@ -2031,7 +2031,6 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 		$wishlist_icon       = apply_filters( 'woostify_header_wishlist_icon', 'heart' );
 		$my_account_icon     = apply_filters( 'woostify_header_my_account_icon', 'user' );
 		$shop_bag_icon       = apply_filters( 'woostify_header_shop_bag_icon', 'shopping-cart' );
-		$shop_bag_icon_class = apply_filters( 'woostify_header_shop_bag_icon_class', 'cart-icon-rotate' );
 		?>
 
 		<div class="site-tools">
@@ -2100,7 +2099,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 						</div>
 					<?php } ?>
 					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
-						<?php Woostify_Icon::fetch_svg_icon( 'shopping-cart' ); ?>
+						<?php Woostify_Icon::fetch_svg_icon( 'shopping-cart-2' ); ?>
 						<span class="shop-cart-count <?php echo $options['header_shop_hide_zero_value_cart_count'] ? 'hide-zero-val' : ''; ?>"><?php echo esc_html( $count ); ?></span>
 					</a>
 					<?php
