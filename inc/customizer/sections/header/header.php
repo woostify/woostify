@@ -10,7 +10,10 @@ $defaults = woostify_options();
 
 // Tabs.
 $wp_customize->add_setting(
-	'woostify_setting[header_context_tabs]'
+	'woostify_setting[header_context_tabs]',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
 );
 
 $wp_customize->add_control(
