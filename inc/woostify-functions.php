@@ -986,3 +986,15 @@ if ( ! function_exists( 'woostify_sanitize_abs_number' ) ) {
 		return abs( $value );
 	}
 }
+
+if ( ! function_exists( 'woostify_sanitize_json_string' ) ) {
+	/**
+	 * Sanitize json value
+	 *
+	 * @param string $value The json string data.
+	 */
+	function woostify_sanitize_json_string( $value ) {
+		$new_value = json_decode( $value );
+		return wp_json_encode( $new_value );
+	}
+}
