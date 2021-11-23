@@ -2099,7 +2099,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 						<?php echo $sub_total; // phpcs:ignore ?>
 						</div>
 					<?php } ?>
-					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon ); ?>">
+					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="tools-icon shopping-bag-button <?php echo esc_attr( $shop_bag_icon . ' ' . $shop_bag_icon_class ); ?>">
 						<?php Woostify_Icon::fetch_svg_icon( 'shopping-cart' ); ?>
 						<span class="shop-cart-count <?php echo $options['header_shop_hide_zero_value_cart_count'] ? 'hide-zero-val' : ''; ?>"><?php echo esc_html( $count ); ?></span>
 					</a>
