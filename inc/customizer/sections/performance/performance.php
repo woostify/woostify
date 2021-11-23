@@ -11,9 +11,10 @@ $defaults = woostify_options();
 $wp_customize->add_setting(
 	'woostify_setting[reset_dynamic_css_file]',
 	array(
-		'default'   => '',
-		'type'      => 'option',
-		'transport' => 'postMessage',
+		'default'           => '',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 $wp_customize->add_control(
@@ -78,9 +79,10 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'woostify_setting[load_google_fonts_locally_clear]',
 	array(
-		'default'   => '',
-		'type'      => 'option',
-		'transport' => 'postMessage',
+		'default'           => '',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 $wp_customize->add_control(
