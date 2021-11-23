@@ -292,7 +292,6 @@ var progressBarConfetti = function( progress_bar, percent ) {
 
 var confettiSnowEffect = function( confetti, duration ) {
 	var animationEnd = Date.now() + duration,
-	skew             = 1,
 	gravity          = 1,
 	startVelocity    = 0;
 
