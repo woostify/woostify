@@ -11064,6 +11064,12 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   }
 }
 
+@media (min-width: 992px) {
+  .yith-wcms-pro #order_review {
+    width: 100%;
+  }
+}
+
 .woocommerce-account:not(.woobuilder-active) h2 {
   font-size: 20px;
   font-weight: normal;

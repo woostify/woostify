@@ -9,7 +9,7 @@
 'use strict';
 
 function woostifyInfiniteScroll( addEventClick ) {
-	let container      = document.querySelector( '.products' ),
+	let container      = document.querySelector( '.site-main .products' ),
 	view_more_btn_wrap = document.querySelector( '.woostify-view-more' )
 
 	if ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) {
@@ -147,7 +147,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 
 			if ( '1' === woostify_woocommerce_general.is_active_wvs ) {
 				jQuery( '.variations_form' ).each(
-					function(){
+					function() {
 						jQuery( this ).wc_variation_form();
 					}
 				);
@@ -292,7 +292,6 @@ var progressBarConfetti = function( progress_bar, percent ) {
 
 var confettiSnowEffect = function( confetti, duration ) {
 	var animationEnd = Date.now() + duration,
-	skew             = 1,
 	gravity          = 1,
 	startVelocity    = 0;
 
