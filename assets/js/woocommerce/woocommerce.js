@@ -9,7 +9,7 @@
 'use strict';
 
 function woostifyInfiniteScroll( addEventClick ) {
-	let container      = document.querySelector( '.products' ),
+	let container      = document.querySelector( '.site-main .products' ),
 	view_more_btn_wrap = document.querySelector( '.woostify-view-more' )
 
 	if ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) {
