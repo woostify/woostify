@@ -687,7 +687,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			);
 
 			// Fallback add wc_add_to_cart_params.
-			if ( 'yes' !== get_option( 'woocommerce_enable_ajax_add_to_cart' ) ) {
+			if ( woostify_is_woocommerce_activated() && 'yes' !== get_option( 'woocommerce_enable_ajax_add_to_cart' ) ) {
 				wp_localize_script(
 					'woostify-general',
 					'wc_add_to_cart_params',
