@@ -686,6 +686,22 @@ if ( ! class_exists( 'Woostify' ) ) {
 				)
 			);
 
+			// Fallback add wc_add_to_cart_params.
+			if ( 'yes' !== get_option( 'woocommerce_enable_ajax_add_to_cart' ) ) {
+				wp_localize_script(
+					'woostify-general',
+					'wc_add_to_cart_params',
+					array(
+						'ajax_url'                => WC()->ajax_url(),
+						'wc_ajax_url'             => WC_AJAX::get_endpoint( '%%endpoint%%' ),
+						'i18n_view_cart'          => esc_attr__( 'View cart', 'woostify' ),
+						'cart_url'                => apply_filters( 'woocommerce_add_to_cart_redirect', wc_get_cart_url(), null ),
+						'is_cart'                 => is_cart(),
+						'cart_redirect_after_add' => get_option( 'woocommerce_cart_redirect_after_add' ),
+					)
+				);
+			}
+
 			// Mobile menu.
 			wp_enqueue_script(
 				'woostify-navigation',
