@@ -10635,7 +10635,7 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
     -moz-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
-    position: absolute;
+    position: fixed;
     top: 0;
     height: 100%;
     bottom: 0;
