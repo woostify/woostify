@@ -1185,7 +1185,7 @@
 	.form-row {
 		position: relative;
 
-		label {
+		label:not(.checkbox) {
 			position: absolute;
 			top: 50%;
 			left: 12px;
