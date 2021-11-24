@@ -1185,7 +1185,7 @@
 	.form-row {
 		position: relative;
 
-		label {
+		label:not(.checkbox) {
 			position: absolute;
 			top: 50%;
 			left: 12px;
@@ -1363,7 +1363,7 @@
 			-moz-flex-direction: row;
 			-ms-flex-direction: row;
 			flex-direction: row;
-			position: absolute;
+			position: fixed;
 			top: 0;
 			height: 100%;
 			bottom: 0;

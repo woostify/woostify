@@ -10454,7 +10454,7 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   position: relative;
 }
 
-.checkout-layout-3:not(.woobuilder-active) .form-row label {
+.checkout-layout-3:not(.woobuilder-active) .form-row label:not(.checkbox) {
   position: absolute;
   top: 50%;
   left: 12px;
@@ -10635,7 +10635,7 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
     -moz-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
-    position: absolute;
+    position: fixed;
     top: 0;
     height: 100%;
     bottom: 0;
