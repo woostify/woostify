@@ -86,7 +86,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 			// Product Data Tabs.
 			$pdt_layout       = $options['shop_single_product_data_tabs_layout'];
-			$pdt_callback     = 'normal' === $pdt_layout ? 'woostify_output_product_data_tabs' : 'woostify_output_product_data_tabs_accordion';
+			$pdt_callback     = 'normal' === $pdt_layout ? 'woocommerce_output_product_data_tabs' : 'woostify_output_product_data_tabs_accordion';
 			$pdt_pos          = $options['shop_single_product_data_tabs_pos'];
 			$pdt_pos_priority = 'woocommerce_single_product_summary' === $pdt_pos ? 35 : 10;
 
