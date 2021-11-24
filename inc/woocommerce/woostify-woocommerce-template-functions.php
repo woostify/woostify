@@ -1278,7 +1278,7 @@ if ( ! function_exists( 'woostify_modify_woocommerce_loop_add_to_cart_link' ) ) 
 	 * @return string
 	 */
 	function woostify_modify_woocommerce_loop_add_to_cart_link( $html, $product, $args ) {
-		$icon = apply_filters( 'woostify_add_to_cart_svg_icon_name', 'shopping-cart' );
+		$icon = apply_filters( 'woostify_add_to_cart_svg_icon_name', 'shopping-cart-2' );
 		return sprintf(
 			'<a href="%s" data-quantity="%s" class="%s" %s>%s</a>',
 			esc_url( $product->add_to_cart_url() ),
