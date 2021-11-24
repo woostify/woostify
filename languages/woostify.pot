@@ -189,27 +189,31 @@ msgstr ""
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: inc/class-woostify.php:1050
+#: inc/class-woostify.php:697
+msgid "View cart"
+msgstr ""
+
+#: inc/class-woostify.php:1066
 msgid "Post Pagination"
 msgstr ""
 
-#: inc/class-woostify.php:1122
+#: inc/class-woostify.php:1138
 msgid "Theme Primary Color"
 msgstr ""
 
-#: inc/class-woostify.php:1128
+#: inc/class-woostify.php:1144
 msgid "Theme Text Color"
 msgstr ""
 
-#: inc/class-woostify.php:1134
+#: inc/class-woostify.php:1150
 msgid "Theme Accent Color"
 msgstr ""
 
-#: inc/class-woostify.php:1140
+#: inc/class-woostify.php:1156
 msgid "Theme Extra Color 1"
 msgstr ""
 
-#: inc/class-woostify.php:1146
+#: inc/class-woostify.php:1162
 msgid "Theme Extra Color 2"
 msgstr ""
 
@@ -452,7 +456,7 @@ msgstr ""
 msgid "Type to search"
 msgstr ""
 
-#: inc/woostify-template-functions.php:2381, inc/customizer/register-sections.php:22, inc/customizer/sections/scroll-to-top/scroll-to-top.php:49
+#: inc/woostify-template-functions.php:2380, inc/customizer/register-sections.php:22, inc/customizer/sections/scroll-to-top/scroll-to-top.php:49
 msgid "Scroll To Top"
 msgstr ""
 
@@ -734,11 +738,11 @@ msgstr ""
 msgid "Transparent Header"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:249, inc/admin/class-woostify-meta-boxes.php:272, inc/woocommerce/class-woostify-woocommerce.php:321, inc/woocommerce/class-woostify-woocommerce.php:347
+#: inc/admin/class-woostify-meta-boxes.php:249, inc/admin/class-woostify-meta-boxes.php:272, inc/woocommerce/class-woostify-woocommerce.php:324, inc/woocommerce/class-woostify-woocommerce.php:350
 msgid "Enabled"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:253, inc/admin/class-woostify-meta-boxes.php:276, inc/woocommerce/class-woostify-woocommerce.php:322, inc/woocommerce/class-woostify-woocommerce.php:348
+#: inc/admin/class-woostify-meta-boxes.php:253, inc/admin/class-woostify-meta-boxes.php:276, inc/woocommerce/class-woostify-woocommerce.php:325, inc/woocommerce/class-woostify-woocommerce.php:351
 msgid "Disabled"
 msgstr ""
 
@@ -894,53 +898,53 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:299
+#: inc/woocommerce/class-woostify-woocommerce.php:302
 msgid "View more"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:319, inc/woocommerce/class-woostify-woocommerce.php:343
+#: inc/woocommerce/class-woostify-woocommerce.php:322, inc/woocommerce/class-woostify-woocommerce.php:346
 msgid "Single ajax add to cart"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:376, inc/woocommerce/class-woostify-woocommerce.php:394
+#: inc/woocommerce/class-woostify-woocommerce.php:379, inc/woocommerce/class-woostify-woocommerce.php:397
 msgid "Enable thumbnail for page header BG"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:378, inc/woocommerce/class-woostify-woocommerce.php:397
+#: inc/woocommerce/class-woostify-woocommerce.php:381, inc/woocommerce/class-woostify-woocommerce.php:400
 msgid "Disable"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:379, inc/woocommerce/class-woostify-woocommerce.php:398, inc/customizer/sections/shop/shop-page.php:159, inc/customizer/sections/sticky-footer-bar/sticky-footer-bar.php:48
+#: inc/woocommerce/class-woostify-woocommerce.php:382, inc/woocommerce/class-woostify-woocommerce.php:401, inc/customizer/sections/shop/shop-page.php:159, inc/customizer/sections/sticky-footer-bar/sticky-footer-bar.php:48
 msgid "Enable"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:517
+#: inc/woocommerce/class-woostify-woocommerce.php:520
 msgid "Sorry, something went wrong. Please try again!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:518
+#: inc/woocommerce/class-woostify-woocommerce.php:521
 msgid "Please enter a valid quantity for this product"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:519, inc/woocommerce/woostify-woocommerce-template-functions.php:1198
+#: inc/woocommerce/class-woostify-woocommerce.php:522, inc/woocommerce/woostify-woocommerce-template-functions.php:1198
 msgid "Shipping"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:520
+#: inc/woocommerce/class-woostify-woocommerce.php:523
 msgid "Calculated at next step"
 msgstr ""
 
 #. translators: %s number of product
 #. translators: %s stock quantity
-#: inc/woocommerce/class-woostify-woocommerce.php:625, inc/woocommerce/woostify-woocommerce-single-product-functions.php:556
+#: inc/woocommerce/class-woostify-woocommerce.php:628, inc/woocommerce/woostify-woocommerce-single-product-functions.php:556
 msgid "Hurry! only %s left in stock."
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:947
+#: inc/woocommerce/class-woostify-woocommerce.php:950
 msgid "Product video url"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:968
+#: inc/woocommerce/class-woostify-woocommerce.php:971
 msgid "Enter Youtube or Vimeo video url"
 msgstr ""
 
