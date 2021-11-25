@@ -1052,7 +1052,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			}
 
 			// Disable cart sidebar.
-			if ( defined( 'XOO_WSC_PLUGIN_FILE' ) ) {
+			if ( ( defined( 'ELEMENTOR_PRO_VERSION' ) && 'yes' === get_option( 'elementor_use_mini_cart_template' ) ) || defined( 'XOO_WSC_PLUGIN_FILE' ) ) {
 				$classes[] = 'no-cart-sidebar';
 			}
 

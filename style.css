@@ -3,8 +3,13 @@ Theme Name:   Woostify
 Theme URI:    https://woostify.com
 Author:       Woostify
 Author URI:   https://woostify.com/about
+<<<<<<< HEAD
 Description:  Woostify is fast, lightweight, responsive and super flexible WooCommerce theme built with SEO, speed, and usability in mind. The theme works great with any of your favorite page builder likes Elementor, Beaver Builder, SiteOrigin, Thrive Architect, Divi, Visual Composer, etc. Therefore, you can build any type of websites like shop, business agencies, corporate, portfolio, education, university portal, consulting, church, restaurant, medical and so on. Woostify is compatible with all well-coded plugins, including major ones like WooCommerce, OrbitFox, Yoast, BuddyPress, bbPress, etc. Learn more about the theme and ready to import demo sites at https://woostify.com
 Version:      2.0.3
+=======
+Description:  Woostify is fast, lightweight, responsive and super flexible WooCommerce theme built with SEO, speed, and usability in mind. The theme works great with any of your favorite page builder likes Elementor, Beaver Builder, SiteOrigin, Thrive Architect, Divi,  etc. Therefore, you can build any type of websites like shop, business agencies, corporate, portfolio, education, university portal, consulting, church, restaurant, medical and so on. Woostify is compatible with all well-coded plugins, including major ones like WooCommerce, OrbitFox, Yoast, BuddyPress, bbPress, etc. Learn more about the theme and ready to import demo sites at https://woostify.com
+Version:      2.0.1
+>>>>>>> develop
 Requires at least: 4.7
 Tested up to: 5.5.0
 Requires PHP: 7.3
@@ -7227,8 +7232,8 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   padding: 25px 15px;
 }
 
-.disabled-icon-add-cart-button .added_to_cart:before {
-  content: none;
+.disabled-icon-add-cart-button .added_to_cart .woostify-svg-icon, .disabled-icon-add-cart-button .loop-add-to-cart-btn .woostify-svg-icon {
+  display: none;
 }
 
 #secondary .select2-selection--multiple {
