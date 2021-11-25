@@ -187,9 +187,9 @@
 }
 
 .disabled-icon-add-cart-button {
-	.added_to_cart {
-		&:before {
-			content: none;
+	.added_to_cart, .loop-add-to-cart-btn {
+		.woostify-svg-icon {
+			display: none;
 		}
 	}
 }
