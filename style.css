@@ -7227,8 +7227,8 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   padding: 25px 15px;
 }
 
-.disabled-icon-add-cart-button .added_to_cart:before {
-  content: none;
+.disabled-icon-add-cart-button .added_to_cart .woostify-svg-icon, .disabled-icon-add-cart-button .loop-add-to-cart-btn .woostify-svg-icon {
+  display: none;
 }
 
 #secondary .select2-selection--multiple {
