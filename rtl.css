@@ -721,6 +721,10 @@
   }
 }
 
+.rtl .product-thumbnail-images .thumbnail-item {
+  margin: 0 0 10px 10px;
+}
+
 .rtl .woostify-product-navigation .product-nav-item-text {
   display: flex;
   align-items: center;
