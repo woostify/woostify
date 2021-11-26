@@ -489,6 +489,16 @@
   margin-right: 0;
 }
 
+.rtl .mini-cart-product-infor .mini-cart-product-qty[data-qty="plus"] {
+  border: 1px solid #ccc;
+  border-right: 0;
+}
+
+.rtl .mini-cart-product-infor .mini-cart-product-qty[data-qty="minus"] {
+  border: 1px solid #ccc;
+  border-left: 0;
+}
+
 .rtl .products .product {
   float: right;
   margin-right: 0px;
