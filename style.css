@@ -4059,6 +4059,16 @@ article p:last-child {
   transform: translateX(300px);
 }
 
+.sidebar-menu-open .rtl #view {
+  -webkit-transform: translateX(-300px);
+  transform: translateX(-300px);
+}
+
+.sidebar-menu-open .rtl .sidebar-menu {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
 .sidebar-menu-open .sidebar-menu {
   -webkit-transform: translateX(0);
   transform: translateX(0);

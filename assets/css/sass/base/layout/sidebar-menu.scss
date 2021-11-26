@@ -63,8 +63,18 @@
 		pointer-events: auto;
 	}
 
+
 	#view {
 		@include translatex(300px);
+	}
+
+	.rtl {
+		#view {
+			@include translatex(-300px);
+		}
+		.sidebar-menu {
+			@include translatex(0);
+		}
 	}
 
 	.sidebar-menu {
