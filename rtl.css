@@ -334,6 +334,58 @@
   border-left: 0;
 }
 
+.rtl .woostify-woocommerce-NoticeGroup {
+  margin: 0 0 0 40px;
+}
+
+.rtl .woocommerce-checkout-review-order-table .woocommerce-shipping-totals td {
+  text-align: right !important;
+}
+
+.rtl.checkout-layout-3:not(.woobuilder-active) .form-row {
+  float: right;
+}
+
+.rtl.checkout-layout-3:not(.woobuilder-active) .form-row.form-row-last {
+  float: left;
+}
+
+.rtl.checkout-layout-3:not(.woobuilder-active) .form-row label:not(.checkbox) {
+  left: 30px;
+  right: 12px;
+}
+
+.rtl.checkout-layout-3:not(.woobuilder-active) #order_review .woocommerce-checkout-review-order-table tbody tr.coupon-form .checkout_coupon.woocommerce-form-coupon .form-row.form-row-first {
+  margin: 0 0 0 10px;
+}
+
+.rtl.checkout-layout-3:not(.woobuilder-active) #order_review .shop_table .cart_item .product-name {
+  padding: 0 75px 0 0;
+}
+
+.rtl.checkout-layout-3:not(.woobuilder-active) #order_review .cart_item .product-name .w-product-thumb {
+  left: auto;
+  right: 0;
+}
+
+.rtl.checkout-layout-3:not(.woobuilder-active) #order_review .cart_item .product-name strong.product-quantity {
+  right: auto;
+  left: -5px;
+}
+
+.rtl.checkout-layout-3:not(.woobuilder-active) .back-to-cart {
+  right: auto;
+  left: 0;
+}
+
+.rtl.checkout-layout-3:not(.woobuilder-active) .back-to-cart a span {
+  order: 2;
+}
+
+.rtl.checkout-layout-3:not(.woobuilder-active) .back-to-cart a span:last-child {
+  order: 1;
+}
+
 .rtl .cart .quantity {
   margin-left: 8px;
   margin-right: 0;

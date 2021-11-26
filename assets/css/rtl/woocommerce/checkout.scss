@@ -104,4 +104,61 @@
 			}
 		}
 	}
+
+	.woostify-woocommerce-NoticeGroup {
+		margin: 0 0 0 40px;
+	}
+
+	.woocommerce-checkout-review-order-table .woocommerce-shipping-totals td {
+		text-align: right !important;
+	}
+
+	&.checkout-layout-3 {
+		&:not(.woobuilder-active) {
+			.form-row {
+				float: right;
+				&.form-row-last {
+					float: left;
+				}
+
+				label:not(.checkbox) {
+					left: 30px;
+					right: 12px;
+				}
+			}
+			#order_review {
+				.woocommerce-checkout-review-order-table tbody tr.coupon-form .checkout_coupon.woocommerce-form-coupon .form-row.form-row-first {
+					margin: 0 0 0 10px;
+				}
+				.shop_table .cart_item .product-name {
+					padding: 0 75px 0 0;
+				}
+				.cart_item {
+					.product-name {
+						.w-product-thumb {
+							left: auto;
+							right: 0;
+						}
+						strong.product-quantity {
+							right: auto;
+							left: -5px;
+						}
+					}
+				}
+			}
+
+			.back-to-cart {
+				right: auto;
+				left: 0;
+				a {
+					span {
+						order: 2;
+						&:last-child {
+							order: 1;
+						}
+					}
+				}
+			}
+		}
+	}
 }
