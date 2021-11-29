@@ -8067,6 +8067,9 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   vertical-align: top;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.single_add_to_cart_button.button:not(.disabled) {
   pointer-events: auto;
 }
 

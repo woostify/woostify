@@ -826,7 +826,10 @@
 		vertical-align: top;
 		padding-top: 0;
 		padding-bottom: 0;
-		pointer-events: auto;
+
+		&:not(.disabled) {
+			pointer-events: auto;
+		}
 
 		@media (max-width: 600px) {
 			min-width: auto;
