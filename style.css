@@ -6174,11 +6174,6 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   content: "\e016";
 }
 
-.woocommerce-info {
-  display: flex;
-  align-items: center;
-}
-
 .woocommerce-info a {
   order: 2;
   margin-left: auto;
