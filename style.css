@@ -10553,6 +10553,15 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   min-height: 48px;
 }
 
+.checkout-layout-3:not(.woobuilder-active) .wc_payment_methods .form-row.woocommerce-SavedPaymentMethods-saveNew label {
+  position: static;
+  transform: none;
+  line-height: inherit;
+  transition: none;
+  pointer-events: inherit;
+  background: transparent;
+}
+
 .checkout-layout-3:not(.woobuilder-active) .woostify-row {
   display: -webkit-box;
   display: -ms-flexbox;
