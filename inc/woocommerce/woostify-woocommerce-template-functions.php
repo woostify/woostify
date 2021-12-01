@@ -1708,7 +1708,7 @@ if ( ! function_exists( 'woostify_custom_product_data_tabs' ) ) {
 				} else {
 					switch ( $custom_tab->type ) {
 						case 'description':
-							$new_tabs['additional_information'] = array(
+							$new_tabs['description'] = array(
 								'title'    => __( 'Description', 'woostify' ),
 								'priority' => $priority,
 								'callback' => 'woocommerce_product_description_tab',
@@ -1726,7 +1726,7 @@ if ( ! function_exists( 'woostify_custom_product_data_tabs' ) ) {
 							break;
 						case 'reviews':
 							global $product, $post;
-							if ( comments_open() ) {
+							if ( $product && comments_open() ) {
 								$new_data['reviews'] = array(
 									/* translators: %s: reviews count */
 									'title'    => sprintf( __( 'Reviews (%d)', 'woocommerce' ), $product->get_review_count() ),
