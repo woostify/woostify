@@ -1278,6 +1278,19 @@
 		}
 	}
 
+	.wc_payment_methods {
+		.form-row {
+			&.woocommerce-SavedPaymentMethods-saveNew label {
+				position: static;
+				transform: none;
+				line-height: inherit;
+				transition: none;
+				pointer-events: inherit;
+				background: transparent;
+			}
+		}
+	}
+
 	.woostify-row {
 		display: -webkit-box;
 		display: -ms-flexbox;

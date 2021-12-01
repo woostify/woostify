@@ -17,10 +17,6 @@
 	}
 
 	.cart-sidebar-open & {
-		#view {
-			-webkit-transform: translateX(400px);
-    		transform: translateX(400px);
-		}
 
 		#shop-cart-sidebar {
 			-webkit-transform: translateX(0);
@@ -36,6 +32,11 @@
 	}
 
 	.sidebar-menu {
+		.woocommerce-product-search .search-form-icon,
+		.search-form .search-form-icon {
+			width: 40px;
+			height: 40px;
+		}
 		.primary-navigation {
 			padding-right: 0;
 

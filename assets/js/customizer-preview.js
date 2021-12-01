@@ -913,6 +913,28 @@ document.addEventListener(
 
 		// Footer.
 		woostify_range_slider_update( ['footer_space'], '.site-footer', 'margin-top', 'px' )
+
+		woostify_colors_live_update( 'footer_background_color', '.site-footer', 'background-color' );
+
+		// Link / Accent Color.
+		woostify_color_group_live_update_2(
+			'footer_heading_color',
+			[
+				'.site-footer .widget-title, .site-footer .widgettitle, .woostify-footer-social-icon a',
+				'.woostify-footer-social-icon a:hover',
+				'.woostify-footer-social-icon a',
+			],
+			[
+				'color',
+				'background-color',
+				'border-color',
+			],
+			'',
+		)
+
+		woostify_colors_live_update( 'footer_link_color', '.site-footer a', 'color' );
+
+		woostify_colors_live_update( 'footer_text_color', '.site-footer', 'color' );
 		// Scroll To Top.
 		woostify_colors_live_update( 'scroll_to_top_background', '#scroll-to-top', 'background-color' )
 		woostify_colors_live_update( 'scroll_to_top_color', '#scroll-to-top', 'color' )

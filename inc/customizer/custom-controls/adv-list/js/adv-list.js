@@ -132,17 +132,6 @@ wp.customize.controlConstructor['woostify-adv-list'] = wp.customize.Control.exte
 					update_value()
 				},
 			)
-			control.container.find( '.sortable-item-icon-expand' ).on(
-				'click',
-				function() {
-					var btn          = jQuery( this )
-					var item_wrap    = btn.closest( '.woostify-sortable-list-item-wrap' )
-					var item_content = item_wrap.find( '.adv-list-item-content' )
-					if ( item_wrap.hasClass( 'checked' ) ) {
-						item_content.slideToggle()
-					}
-				},
-			)
 
 			control.container.find( '.woostify-icon-remove-btn' ).on(
 				'click',

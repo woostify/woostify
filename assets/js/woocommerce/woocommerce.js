@@ -837,6 +837,11 @@ var woostifyCheckoutFormFieldAnimation = function() {
 		inputs.forEach(
 			function( input ) {
 				var formRow = input.closest( '.form-row' );
+
+				if ( ! formRow ) {
+					return;
+				}
+
 				if ( '' !== input.value ) {
 					formRow.classList.add( 'w-anim-wrap' );
 				}
