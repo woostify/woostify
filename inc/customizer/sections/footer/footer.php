@@ -148,6 +148,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['footer_background_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -172,6 +173,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['footer_heading_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -196,6 +198,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['footer_link_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
@@ -220,6 +223,7 @@ $wp_customize->add_setting(
 		'default'           => $defaults['footer_text_color'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
+		'transport'         => 'postMessage',
 	)
 );
 $wp_customize->add_control(
