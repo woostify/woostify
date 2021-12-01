@@ -717,12 +717,9 @@ if ( ! function_exists( 'woostify_single_product_group_buttons' ) ) {
 			$output  .= '<button class="photoswipe-toggle-button">' . Woostify_Icon::fetch_svg_icon( $btn_icon, false ) . '</button>';
 		}
 
-		$buttons_output = sprintf(
-			'<div class="product-group-btns">%1$s</div>',
-			$output
-		);
+		$buttons_output = apply_filters( 'woostify_single_product_group_buttons', $output );
 
-		echo apply_filters( 'woostify_single_product_group_buttons_html', $buttons_output, $output ); // phpcs:ignore
+		echo '<div class="product-group-btns">' . $buttons_output . '</div>'; // phpcs:ignore
 	}
 }
 
@@ -742,11 +739,7 @@ if ( ! function_exists( 'woostify_product_video_button_play' ) ) {
 		$video_url  = woostify_get_metabox( $product_id, 'woostify_product_video_metabox' );
 
 		if ( 'default' !== $video_url ) {
-			?>
-			<a href="<?php echo esc_url( $video_url ); ?>" data-lity class="woostify-lightbox-button">
-			<?php Woostify_Icon::fetch_svg_icon( 'control-play' ); ?>
-			</a>
-			<?php
+			$output .= '<a href="' . esc_url( $video_url ) . '" data-lity class="woostify-lightbox-button">' . Woostify_Icon::fetch_svg_icon( 'control-play', false ) . '</a>';
 		}
 
 		return $output;

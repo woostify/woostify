@@ -457,14 +457,15 @@
 		border-radius: 5px;
 		position: relative;
 		background: #fff;
-	}
-	.photoswipe-toggle-button {
+
 		.woostify-svg-icon {
 			position: absolute;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
+	}
+	.photoswipe-toggle-button {
 		svg {
 			display: block;
 			width: 16px;
@@ -472,12 +473,10 @@
 		}
 	}
 	.woostify-lightbox-button {
-		font-size: 20px;
-		&:before {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
+		svg {
+			display: block;
+			width: 20px;
+			height: 20px;
 		}
 	}
 }
