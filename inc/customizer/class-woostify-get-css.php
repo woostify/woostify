@@ -1194,6 +1194,7 @@ class Woostify_Get_CSS {
 			}
 
 			.site-footer .widget-title,
+			.site-footer .widgettitle,
 			.woostify-footer-social-icon a{
 				color: ' . esc_attr( $options['footer_heading_color'] ) . ';
 			}
