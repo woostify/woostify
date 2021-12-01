@@ -767,10 +767,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// SHOP SINGLE.
-			// Product tab additional information.
-			if ( ! $options['shop_single_additional_information'] ) {
-				add_filter( 'woocommerce_product_tabs', 'woostify_remove_additional_information_tabs', 98 );
-			}
 
 			// Related product.
 			if ( ! $options['shop_single_related_product'] ) {

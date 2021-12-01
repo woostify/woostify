@@ -1708,7 +1708,7 @@ if ( ! function_exists( 'woostify_custom_product_data_tabs' ) ) {
 				} else {
 					switch ( $custom_tab->type ) {
 						case 'description':
-							$new_tabs['additional_information'] = array(
+							$new_tabs['description'] = array(
 								'title'    => __( 'Description', 'woostify' ),
 								'priority' => $priority,
 								'callback' => 'woocommerce_product_description_tab',

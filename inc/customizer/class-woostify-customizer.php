@@ -532,7 +532,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_stock_label'                  => true,
 				'shop_single_stock_product_limit'          => 0,
 				'shop_single_loading_bar'                  => true,
-				'shop_single_additional_information'       => true,
 				'shop_single_content_background'           => '#f3f3f3',
 				'shop_single_trust_badge_image'            => '',
 				'shop_single_product_gallery_layout_select' => 'theme',
