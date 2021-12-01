@@ -457,7 +457,6 @@ body{
 	padding: 1em 2em 1em 3.5em;
 }
 
-.woocommerce-error,
 .woocommerce-info,
 .woocommerce-message {
 	a {
@@ -474,13 +473,22 @@ body{
 }
 
 .woocommerce-error {
-	&:before {
+	li:before {
+		font-family: 'WooCommerce';
+		content: "\e028";
+		color: #fff;
+		display: inline-flex;
+		margin-right: 10px;
 		content: "\e016";
 	}
 }
 
 
 .woocommerce-info {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+
 	a {
 		order: 2;
 		margin-left: auto;
@@ -525,6 +533,7 @@ body{
 	align-items: flex-start;
 
 	li {
+		display: inline-flex;
 		width: 100%;
 
 		a {
@@ -534,9 +543,7 @@ body{
 		}
 
 		@media (max-width: 600px) {
-			display: flex;
 			flex-wrap: wrap;
-
 			a {
 				float: none;
 				flex: 0 0 100%;
@@ -1098,4 +1105,3 @@ body{
 		}
 	}
 }
-

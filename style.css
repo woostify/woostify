@@ -6154,13 +6154,11 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   padding: 1em 2em 1em 3.5em;
 }
 
-.woocommerce-error a,
 .woocommerce-info a,
 .woocommerce-message a {
   margin-left: auto;
 }
 
-.woocommerce-error:before,
 .woocommerce-info:before,
 .woocommerce-message:before {
   font-family: 'WooCommerce';
@@ -6170,8 +6168,19 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   margin-right: 10px;
 }
 
-.woocommerce-error:before {
+.woocommerce-error li:before {
+  font-family: 'WooCommerce';
+  content: "\e028";
+  color: #fff;
+  display: inline-flex;
+  margin-right: 10px;
   content: "\e016";
+}
+
+.woocommerce-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .woocommerce-info a {
@@ -6214,6 +6223,7 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 }
 
 .woocommerce-error li {
+  display: inline-flex;
   width: 100%;
 }
 
@@ -6225,7 +6235,6 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 
 @media (max-width: 600px) {
   .woocommerce-error li {
-    display: flex;
     flex-wrap: wrap;
   }
   .woocommerce-error li a {
