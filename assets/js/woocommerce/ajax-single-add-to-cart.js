@@ -82,11 +82,7 @@ function woostifyAjaxSingleAddToCartButton() {
 		function( ele ) {
 			ele.onclick = function( e ) {
 				var form = ele.closest( 'form.cart' );
-				if ( ! form ) {
-					return;
-				}
-
-				if ( 'POST' !== form.method.toUpperCase() ) {
+				if ( ! form || 'POST' !== form.method.toUpperCase() || ele.classList.contains( 'disabled' ) ) {
 					return;
 				}
 
