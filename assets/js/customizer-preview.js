@@ -931,9 +931,6 @@ document.addEventListener(
 			],
 			'',
 		)
-		//woostify_colors_live_update( 'footer_heading_color', '.site-footer .widget-title, .site-footer .widgettitle, .woostify-footer-social-icon a', 'color' );
-		//woostify_colors_live_update( 'footer_heading_color', '.woostify-footer-social-icon a:hover', 'background-color' );
-		//woostify_colors_live_update( 'footer_heading_color', '.woostify-footer-social-icon a', 'border-color' );
 
 		woostify_colors_live_update( 'footer_link_color', '.site-footer a', 'color' );
 
