@@ -98,11 +98,6 @@
 			&:hover {
 				color: firebrick
 			}
-
-			&:focus {
-				color: $tr;
-				@extend .circle-loading;
-			}
 		}
 
 		@media (max-width: $screen-sm - 1) {
