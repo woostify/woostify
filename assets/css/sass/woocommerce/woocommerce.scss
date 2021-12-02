@@ -418,31 +418,19 @@ body{
 	}
 }
 
+.woocommerce-info,
+.woocommerce-error,
 .woocommerce-message {
-	padding: 15px;
-	color: #fff;
-	border-radius: 4px;
-	margin-bottom: 20px;
-	display: flex;
-	align-items: center;
-
-	a {
-		order: 2;
-		color: #fff;
-		line-height: 1;
-		border: 1px solid #fff;
-		padding: 10px;
-		border-radius: 4px;
-
-		&:hover {
-			color: #fff;
+	a.button {
+		@media (max-width: 600px) {
+			display: none;
 		}
 	}
 }
 .woocommerce-info,
 .woocommerce-error {
 	position: relative;
-	padding: 1em 2em 1em 3.5em;
+	padding: 1em 2em;
 	color: #fff;
 	margin-bottom: 20px;
 
@@ -452,12 +440,7 @@ body{
 		}
 	}
 }
-.woocommerce-message {
-	position: relative;
-	padding: 1em 2em 1em 3.5em;
-}
 
-.woocommerce-error,
 .woocommerce-info,
 .woocommerce-message {
 	a {
@@ -468,35 +451,58 @@ body{
 		font-family: 'WooCommerce';
 		content: "\e028";
 		color: #fff;
-	    display: inline-flex;
 	    margin-right: 10px;
 	}
 }
 
-.woocommerce-error {
+.woocommerce-message {
+	padding: 15px;
+	color: #fff;
+	border-radius: 4px;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	position: relative;
+	padding: 1em 2em;
+
+	clear: both;
+
 	&:before {
-		content: "\e016";
+		content: "\e015";
+	}
+
+	a.button {
+		order: 2;
+		color: #fff;
+		line-height: 1;
+		border: 1px solid #fff;
+		padding: 10px;
+		border-radius: 4px;
+
+		&:hover {
+			color: #fff;
+		}
+
+		@media (max-width: 600px) {
+			display: none;
+		}
 	}
 }
 
-
 .woocommerce-info {
-	display: flex;
-	align-items: center;
+	width: 100%;
 
-	a {
+	a.button {
+		@media (max-width: 600px) {
+			display: none;
+		}
 		order: 2;
 		margin-left: auto;
 	}
+
 	input[type="submit"] {
 		padding: 0 5px;
 		margin-left: 5px;
-	}
-}
-
-.woocommerce-message {
-	&:before {
-		content: "\e015";
 	}
 }
 
@@ -509,19 +515,6 @@ body{
 	}
 }
 
-.woocommerce-message {
-	clear: both;
-
-	@media (max-width: 600px) {
-		flex-direction: column;
-		align-items: flex-start;
-
-		a {
-			margin-top: 15px;
-		}
-	}
-}
-
 .woocommerce-error {
 	background-color: firebrick;
 	flex-direction: column;
@@ -530,16 +523,32 @@ body{
 	li {
 		width: 100%;
 
+		@media (min-width: 601px) {
+			display: flex;
+			align-items: center;
+		}
+
+		&:before {
+			font-family: 'WooCommerce';
+			color: #fff;
+			margin-right: 10px;
+			content: "\e016";
+		}
+
 		a {
-			float: right;
+			display: none;
+			order: 2;
+			margin-left: auto;
 			color: #ffffff;
 			text-decoration: underline;
+
+			@media (min-width: 601px) {
+				display: block;
+			}
 		}
 
 		@media (max-width: 600px) {
-			display: flex;
 			flex-wrap: wrap;
-
 			a {
 				float: none;
 				flex: 0 0 100%;
@@ -1101,4 +1110,3 @@ body{
 		}
 	}
 }
-

@@ -1674,7 +1674,9 @@
 		}
 	}
 	.woostify-woocommerce-NoticeGroup {
-		margin-right: 40px;
+		@media (min-width: $screen-md) {
+			margin-right: 40px;
+		}
 		.woocommerce-message, .woocommerce-error, .woocommerce-info, .woocommerce-notice--success {
 			margin: 25px auto 30px;
 		}
