@@ -405,7 +405,8 @@
 	}
 }
 
-.checkout-button {
+.checkout-button,
+[class*='elementor-kit'] .checkout-button {
 	text-transform: uppercase;
 	font-weight: 600;
 	line-height: 55px;

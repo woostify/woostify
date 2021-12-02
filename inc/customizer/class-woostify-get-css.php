@@ -947,7 +947,8 @@ class Woostify_Get_CSS {
 			.has-woostify-contact-form input[type="submit"],
 			#secondary .widget a.button,
 			.product-loop-meta.no-transform .button,
-			.product-loop-meta.no-transform .added_to_cart{
+			.product-loop-meta.no-transform .added_to_cart,
+			[class*="elementor-kit"] .checkout-button {
 				background-color: ' . esc_attr( $options['button_background_color'] ) . ';
 				color: ' . esc_attr( $options['button_text_color'] ) . ';
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;

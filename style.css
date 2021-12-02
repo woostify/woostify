@@ -9264,7 +9264,8 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   }
 }
 
-.checkout-button {
+.checkout-button,
+[class*='elementor-kit'] .checkout-button {
   text-transform: uppercase;
   font-weight: 600;
   line-height: 55px;
