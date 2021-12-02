@@ -579,18 +579,20 @@ var woostifyProductsCarousel = function( selector ) {
 		return;
 	}
 
-	for ( var i = 0, j = elements.length; i < j; i++ ) {
-		var element = elements[i];
-		if ( element.classList.contains( 'tns-slider' ) ) {
-			continue;
+	elements.forEach(
+		function( element ) {
+			if ( element.classList.contains( 'tns-slider' ) ) {
+				return;
+			}
+			if ( ! woostify_woocommerce_general.related_carousel_opts.length ) {
+				return;
+			}
+			var options       = woostify_woocommerce_general.related_carousel_opts;
+			options.container = element;
+
+			var slider = tns( options );
 		}
-		if ( 1 > woostify_woocommerce_general.related_carousel_opts.length ) {
-			return;
-		}
-		var options       = woostify_woocommerce_general.related_carousel_opts;
-		options.container = element;
-		var slider        = tns( options );
-	}
+	);
 }
 
 // Show an element.
