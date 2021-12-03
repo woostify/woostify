@@ -32,6 +32,24 @@ if ( ! function_exists( 'woostify_get_last_product_id' ) ) {
 		$query = get_posts( $args );
 		$id    = false;
 
+		// @codingStandardsIgnoreStart
+		// Support selected preview product.
+		if ( woostify_is_elementor_editor() ) {
+			$post_id = isset( $_REQUEST['post'] ) ? intval( $_REQUEST['post'] ) : false;
+
+			// When preview selected.
+			if ( isset( $_POST['editor_post_id'] ) ) {
+				$post_id = intval( $_POST['editor_post_id'] );
+			}
+
+			$selected_id = get_post_meta( $post_id, 'woostify_woo_builder_select_product_preview', true );
+
+			if ( $selected_id ) {
+				return $selected_id;
+			}
+		}
+		// @codingStandardsIgnoreEnd
+
 		if ( empty( $query ) ) {
 			return false;
 		}
