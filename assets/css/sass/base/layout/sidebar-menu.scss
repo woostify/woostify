@@ -324,12 +324,6 @@
 	}
 }
 
-@media (max-width: $screen-md - 1) {
-	.sub-mega-menu {
-		display: none;
-	}
-}
-
 // Header Layout 1
 .has-header-layout-1 {
 	@media (min-width: $screen-md) {

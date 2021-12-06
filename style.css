@@ -4280,12 +4280,6 @@ article p:last-child {
   list-style: none;
 }
 
-@media (max-width: 991px) {
-  .sub-mega-menu {
-    display: none;
-  }
-}
-
 @media (min-width: 992px) {
   .has-header-layout-1 .sidebar-menu {
     display: none;
