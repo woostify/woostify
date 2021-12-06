@@ -584,7 +584,7 @@ var woostifyProductsCarousel = function( selector ) {
 			if ( element.classList.contains( 'tns-slider' ) ) {
 				return;
 			}
-			if ( ! woostify_woocommerce_general.related_carousel_opts.length ) {
+			if ( ! woostify_woocommerce_general.related_carousel_opts.hasOwnProperty( 'loop' ) ) {
 				return;
 			}
 			var options       = woostify_woocommerce_general.related_carousel_opts;
@@ -926,10 +926,6 @@ document.addEventListener(
 				updateHeaderCartPrice();
 				eventCartSidebarClose();
 				closeAll();
-
-				woostifyProductsCarousel( '.related.products ul.products' );
-				woostifyProductsCarousel( '.upsells.products ul.products' );
-				woostifyProductsCarousel( '.woostify-product-recently-viewed-section ul.products' );
 
 				$button = typeof $button === 'undefined' ? false : $button;
 
