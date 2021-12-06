@@ -672,8 +672,6 @@ $wp_customize->add_setting(
 		'default'           => $defaults['shop_single_product_related_columns'],
 		'type'              => 'option',
 		'sanitize_callback' => 'woostify_sanitize_choices',
-		'default'           => $defaults['shop_single_product_related_columns'],
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 

@@ -497,6 +497,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				$related_carousel_opts = array(
 					'loop'         => false,
 					'rewind'       => true,
+					'mouseDrag'    => true,
 					'controls'     => $options['shop_single_product_related_carousel_arrows'],
 					'nav'          => $options['shop_single_product_related_carousel_dots'],
 					'gutter'       => 30,
