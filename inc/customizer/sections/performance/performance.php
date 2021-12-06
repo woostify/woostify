@@ -8,6 +8,28 @@
 // Default values.
 $defaults = woostify_options();
 
+
+$wp_customize->add_setting(
+	'woostify_setting[enabled_dynamic_css]',
+	array(
+		'default'           => $defaults['enabled_dynamic_css'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'type'              => 'option',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[enabled_dynamic_css]',
+		array(
+			'label'    => __( 'Enable Dynamic CSS', 'woostify' ),
+			'section'  => 'woostify_performance',
+			'settings' => 'woostify_setting[enabled_dynamic_css]',
+		)
+	)
+);
+
 $wp_customize->add_setting(
 	'woostify_setting[reset_dynamic_css_file]',
 	array(
