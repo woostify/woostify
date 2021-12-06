@@ -638,6 +638,13 @@
 
 				// Performance.
 				condition(
+					'woostify_setting[enabled_dynamic_css]',
+					[
+						'woostify_setting[reset_dynamic_css_file]',
+					]
+				)
+
+				condition(
 					'woostify_setting[load_google_fonts_locally]',
 					[
 						'woostify_setting[load_google_fonts_locally_clear]',

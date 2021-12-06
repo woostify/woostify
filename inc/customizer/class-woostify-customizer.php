@@ -610,6 +610,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'load_google_fonts_locally'                => false,
 				'load_google_fonts_locally_preload'        => false,
 				'performance_disable_woo_blocks_styles'    => false,
+				'enabled_dynamic_css'                      => false,
 			);
 
 			return apply_filters( 'woostify_setting_default_values', $args );

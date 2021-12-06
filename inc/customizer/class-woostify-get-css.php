@@ -81,7 +81,7 @@ class Woostify_Get_CSS {
 	 * Wp enqueue scripts
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'woostify_dynamic_css' ), 130 );
+		add_action( 'woostify_enqueue_scripts', array( $this, 'woostify_dynamic_css' ), 10 );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'woostify_guten_block_editor_assets' ) );
 
 		// Add a cleanup routine.
@@ -1502,8 +1502,25 @@ class Woostify_Get_CSS {
 		}';
 
 		$this->css = apply_filters( 'woostify_customizer_css', $styles );
+		$this->css = $this->minimize_dynamic_css();
 
 		$this->write_stylesheet();
+
+		return $this->css;
+	}
+
+	/**
+	 * Minimize dynamic css
+	 */
+	protected function minimize_dynamic_css() {
+		if ( ! $this->css ) {
+			$this->get_styles();
+		}
+
+		$this->css = preg_replace( '/\/\*((?!\*\/).)*\*\//', '', $this->css ); // negative look ahead.
+		$this->css = preg_replace( '/\s{2,}/', ' ', $this->css );
+		$this->css = preg_replace( '/\s*([:;{}])\s*/', '$1', $this->css );
+		$this->css = preg_replace( '/;}/', '}', $this->css );
 
 		return $this->css;
 	}
@@ -1555,7 +1572,8 @@ class Woostify_Get_CSS {
 	 * Enqueue dynamic stylesheet file.
 	 */
 	public function woostify_dynamic_css() {
-		if ( $this->get_url() ) {
+		$options = woostify_options( false );
+		if ( $this->get_url() && $options['enabled_dynamic_css'] ) {
 			wp_enqueue_style( 'woostify-dynamic', $this->get_url(), array(), WOOSTIFY_VERSION, 'all' );
 		} else {
 			wp_add_inline_style( 'woostify-style', $this->get_styles() );
