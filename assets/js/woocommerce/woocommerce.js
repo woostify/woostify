@@ -360,11 +360,13 @@ var woostifyQuantityMiniCart = function() {
 
 	infor.forEach(
 		function( ele, i ) {
-			var quantityBtn = ele.querySelectorAll( '.mini-cart-product-qty' ),
-				input       = ele.querySelector( 'input.qty' ),
-				cartItemKey = input.getAttribute( 'data-cart_item_key' ) || '',
-				eventChange = new Event( 'change' ),
-				qtyUpdate   = new Event( 'quantity_updated' );
+			var quantityBtn  = ele.querySelectorAll( '.mini-cart-product-qty' ),
+				input        = ele.querySelector( 'input.qty' ),
+				currInputVal = input.value,
+				max          = Number( input.getAttribute( 'max' ) ),
+				cartItemKey  = input.getAttribute( 'data-cart_item_key' ) || '',
+				eventChange  = new Event( 'change' ),
+				qtyUpdate    = new Event( 'quantity_updated' );
 
 			if ( ! quantityBtn.length || ! input ) {
 				return;
@@ -376,7 +378,6 @@ var woostifyQuantityMiniCart = function() {
 						current  = Number( input.value || 0 ),
 						step     = Number( input.getAttribute( 'step' ) || 1 ),
 						min      = Number( input.getAttribute( 'min' ) || 1 ),
-						max      = Number( input.getAttribute( 'max' ) ),
 						dataType = t.getAttribute( 'data-qty' );
 
 					if ( current < 1 || isNaN( current ) ) {
@@ -389,13 +390,15 @@ var woostifyQuantityMiniCart = function() {
 							return;
 						}
 
-						input.value = ( current - step );
+						input.value  = ( current - step );
+						currInputVal = ( current - step );
 					} else if ( 'plus' === dataType ) { // Plus button.
-						if ( max && ( current >= max || ( current + step ) >= max ) ) {
+						if ( max && ( current >= max || ( current + step ) > max ) ) {
 							return;
 						}
 
-						input.value = ( current + step );
+						input.value  = ( current + step );
+						currInputVal = ( current + step );
 					}
 
 					// Trigger event.
@@ -410,8 +413,9 @@ var woostifyQuantityMiniCart = function() {
 					var inputVal = Number( input.value || 0 );
 
 					// Valid quantity.
-					if ( inputVal < 1 || isNaN( inputVal ) ) {
+					if ( inputVal < 1 || isNaN( inputVal ) || ( parseInt( inputVal ) > max ) ) {
 						alert( woostify_woocommerce_general.qty_warning );
+						input.value = currInputVal;
 						return;
 					}
 
