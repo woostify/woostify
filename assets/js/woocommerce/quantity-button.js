@@ -60,10 +60,11 @@ function customQuantity() {
 			}
 
 			// Vars.
-			var cart        = ele.closest( 'form.cart' ),
-				buttons     = ele.querySelectorAll( '.product-qty' ),
-				maxInput    = Number( input.getAttribute( 'max' ) ),
-				eventChange = new Event( 'change', { bubbles: true } );
+			var cart         = ele.closest( 'form.cart' ),
+				buttons      = ele.querySelectorAll( '.product-qty' ),
+				maxInput     = Number( input.getAttribute( 'max' ) ),
+				currInputVal = input.value,
+				eventChange  = new Event( 'change', { bubbles: true } );
 
 			// Check valid quantity.
 			input.addEventListener(
@@ -74,6 +75,12 @@ function customQuantity() {
 						ajaxReady = function() {
 							input.classList.remove( 'ajax-ready' );
 						};
+
+					if ( inputVal < 1 || isNaN( inputVal ) || ( parseInt( inputVal ) > maxInput ) ) {
+						alert( woostify_woocommerce_general.qty_warning );
+						input.value = currInputVal
+						return false;
+					}
 
 					// When quantity updated.
 					input.classList.add( 'ajax-ready' );
