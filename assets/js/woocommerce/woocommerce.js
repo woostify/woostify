@@ -12,6 +12,10 @@ function woostifyInfiniteScroll( addEventClick ) {
 	let container      = document.querySelector( '.site-main .products' ),
 	view_more_btn_wrap = document.querySelector( '.woostify-view-more' )
 
+	if ( null == container ) {
+		container = document.querySelector('.site-content .products');
+	}
+
 	if ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) {
 		return false;
 	}
