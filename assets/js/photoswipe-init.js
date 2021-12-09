@@ -6,7 +6,7 @@
 
 'use strict';
 
-function initPhotoSwipe( gallerySelector, type ) {
+function initPhotoSwipe( gallerySelector ) {
 	var added = false;
 
 	// parse slide data (url, title, size ...) from DOM elements
@@ -374,11 +374,9 @@ function initPhotoSwipe( gallerySelector, type ) {
 		var buttonEl = galleryElements[ i ].closest( '.product-images' ).querySelector( '.photoswipe-toggle-button' );
 
 		galleryElements[ i ].setAttribute( 'data-pswp-uid', i + 1 );
-		if ( 'button' === type ) {
-			buttonEl.onclick = onToggleButtonClick;
-		} else {
-			galleryElements[ i ].onclick = onThumbnailsClick;
-		}
+
+		buttonEl.onclick = onToggleButtonClick;
+		galleryElements[ i ].onclick = onThumbnailsClick;
 	}
 
 	// Parse URL and open gallery if it contains #&pid=3&gid=1.
@@ -388,22 +386,5 @@ function initPhotoSwipe( gallerySelector, type ) {
 	}
 }
 
-var gallery    = document.querySelector( '.product-gallery' ),
-noSliderLayout = gallery ? ( gallery.classList.contains( 'column-style' ) || gallery.classList.contains( 'grid-style' ) ) : false;
-
-if ( gallery ) {
-	if ( gallery.classList.contains( 'wc-default-gallery' ) ) {
-		initPhotoSwipe( '#product-images', 'image' );
-	} else {
-		if ( noSliderLayout ) {
-			if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
-				initPhotoSwipe( '#product-images', 'image' );
-			} else {
-				initPhotoSwipe( '#product-images', 'button' );
-			}
-		} else {
-			initPhotoSwipe( '#product-images', 'button' );
-		}
-	}
-}
+initPhotoSwipe( '#product-images' );
 
