@@ -92,8 +92,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 
 			remove_action( 'woocommerce_after_single_product_summary', 'woostify_output_product_data_tabs_accordion', 10 );
 			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
-			remove_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 35 );
-			remove_action( 'woocommerce_single_product_summary', 'woostify_output_product_data_tabs_accordion', 35 );
+			remove_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 200 );
+			remove_action( 'woocommerce_single_product_summary', 'woostify_output_product_data_tabs_accordion', 200 );
 
 			add_action( $pdt_pos, $pdt_callback, $pdt_pos_priority );
 
