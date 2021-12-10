@@ -184,7 +184,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_after_single_product_summary', 'woostify_single_product_after_summary_open', 8 );
 			add_action( 'woocommerce_after_single_product_summary', 'woostify_single_product_after_summary_close', 100 );
 
-			add_action( 'woocommerce_single_product_summary', 'woostify_trust_badge_image', 200 );
+			add_action( 'woocommerce_single_product_summary', 'woostify_trust_badge_image', 35 );
 			add_action( 'template_redirect', 'woostify_product_recently_viewed', 20 );
 			add_action( 'woocommerce_after_single_product', 'woostify_product_recently_viewed_template', 20 );
 
@@ -932,7 +932,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$pdt_layout       = $options['shop_single_product_data_tabs_layout'];
 			$pdt_callback     = 'normal' === $pdt_layout ? 'woocommerce_output_product_data_tabs' : 'woostify_output_product_data_tabs_accordion';
 			$pdt_pos          = $options['shop_single_product_data_tabs_pos'];
-			$pdt_pos_priority = 'woocommerce_single_product_summary' === $pdt_pos ? 35 : 10;
+			$pdt_pos_priority = 'woocommerce_single_product_summary' === $pdt_pos ? 200 : 10;
 			add_action( $pdt_pos, $pdt_callback, $pdt_pos_priority );
 
 			// Enabled Catalog Mode.

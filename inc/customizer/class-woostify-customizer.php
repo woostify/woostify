@@ -88,7 +88,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			$pdt_layout       = $options['shop_single_product_data_tabs_layout'];
 			$pdt_callback     = 'normal' === $pdt_layout ? 'woocommerce_output_product_data_tabs' : 'woostify_output_product_data_tabs_accordion';
 			$pdt_pos          = $options['shop_single_product_data_tabs_pos'];
-			$pdt_pos_priority = 'woocommerce_single_product_summary' === $pdt_pos ? 35 : 10;
+			$pdt_pos_priority = 'woocommerce_single_product_summary' === $pdt_pos ? 200 : 10;
 
 			remove_action( 'woocommerce_after_single_product_summary', 'woostify_output_product_data_tabs_accordion', 10 );
 			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
