@@ -1021,6 +1021,11 @@ if ( ! class_exists( 'Woostify' ) ) {
 			// Get theme options.
 			$options = woostify_options( false );
 
+			// Infinite scroll.
+			if ( $options['shop_page_infinite_scroll_enable'] ) {
+				$classes[] = 'infinite-scroll-active';
+			}
+
 			// Broser detection.
 			if ( woostify_browser_detection() ) {
 				$classes[] = woostify_browser_detection() . '-detected';

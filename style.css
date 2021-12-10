@@ -7346,6 +7346,10 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   display: none;
 }
 
+.infinite-scroll-active .woocommerce-pagination {
+  display: none;
+}
+
 .hid-skus .product_meta .sku_wrapper {
   display: none;
 }
