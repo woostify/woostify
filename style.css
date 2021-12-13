@@ -10412,7 +10412,6 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 }
 
 .checkout-layout-3:not(.woobuilder-active).has-distraction-free-checkout .site-header .site-header-inner {
-  background-color: transparent;
   border: none;
 }
 
