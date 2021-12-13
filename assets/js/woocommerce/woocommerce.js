@@ -13,7 +13,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 	view_more_btn_wrap = document.querySelector( '.woostify-view-more' )
 
 	if ( null == container ) {
-		container = document.querySelector('.site-content .products');
+		container = document.querySelector( '.site-content .products' );
 	}
 
 	if ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) {
@@ -829,14 +829,29 @@ var ajaxCouponForm = function() {
 }
 
 var woostifyMoveNoticesInCheckoutPage = function() {
-	var noticesWrapper = document.querySelectorAll( '.woocommerce-notices-wrapper' );
+	var noticesWrapper      = document.querySelectorAll( '.woocommerce-notices-wrapper' );
+	var infoNotices         = document.querySelectorAll( '.woocommerce > .woocommerce-info' );
+	var woostifyNoticeGroup = document.querySelector( '.woostify-woocommerce-NoticeGroup' );
+
 	if ( noticesWrapper.length ) {
 		var noticesWrapperEl         = noticesWrapper[0];
 		var noticesWrapperNode       = document.createElement( 'div' );
-		var woostifyNoticeGroup      = document.querySelector( '.woostify-woocommerce-NoticeGroup' );
 		noticesWrapperNode.innerHTML = noticesWrapperEl.innerHTML;
 		woostifyNoticeGroup.appendChild( noticesWrapperNode );
 		noticesWrapperEl.remove();
+	}
+
+	if ( infoNotices.length ) {
+		infoNotices.forEach(
+			function ( infoNotice ) {
+				var infoNoticeNode = infoNotice.cloneNode( true );
+				var classes        = infoNotice.getAttribute( 'class' );
+
+				infoNoticeNode.setAttribute( 'class', classes );
+				woostifyNoticeGroup.appendChild( infoNoticeNode );
+				infoNotice.remove();
+			}
+		)
 	}
 }
 
@@ -996,8 +1011,6 @@ document.addEventListener(
 			jQuery( document.body ).on(
 				'init_checkout updated_checkout payment_method_selected',
 				function( event, data  ) {
-					console.log( event );
-
 					jQuery( 'form.checkout' ).arrive(
 						'form.checkout_coupon',
 						function( newEl ) {
@@ -1033,6 +1046,16 @@ document.addEventListener(
 						}
 					);
 
+					jQuery( document ).arrive(
+						'.woocommerce > .woocommerce-info',
+						function( newEl ) {
+							var newWcMsg  = jQuery( newEl ),
+							newWcMsgClone = newWcMsg.clone();
+
+							jQuery( '.woostify-woocommerce-NoticeGroup' ).append( newWcMsgClone );
+							jQuery( newEl ).remove();
+						}
+					);
 				}
 			).on(
 				'applied_coupon',
