@@ -151,6 +151,29 @@ $wp_customize->add_control(
 	)
 );
 
+// Show categories menu on mobile.
+$wp_customize->add_setting(
+	'woostify_setting[header_show_categories_menu_on_mobile]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['header_show_categories_menu_on_mobile'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[header_show_categories_menu_on_mobile]',
+		array(
+			'priority' => 70,
+			'label'    => __( 'Show Categories Menu on Mobile', 'woostify' ),
+			'section'  => 'woostify_header',
+			'settings' => 'woostify_setting[header_show_categories_menu_on_mobile]',
+			'tab'      => 'general',
+		)
+	)
+);
+
 // Menu Breakpoint.
 $wp_customize->add_setting(
 	'woostify_setting[header_menu_breakpoint]',
