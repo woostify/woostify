@@ -574,6 +574,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'cellSelector'   => '.image-item',
 							'wrapAround'     => true,
 							'contain'        => true,
+							'imagesLoaded'   => true,
 						),
 						'thumb'              => array(
 							'container'       => '#product-thumbnail-images',
@@ -582,6 +583,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'cellAlign'       => 'left',
 							'prevNextButtons' => false,
 							'contain'         => true,
+							'imagesLoaded'    => true,
 							'groupCells'      => '60%',
 							'freeScroll'      => false,
 							'wrapAround'      => true,
