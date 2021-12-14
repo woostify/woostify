@@ -508,7 +508,9 @@ class Woostify_Get_CSS {
 
 		$styles .= '
 			@media ( min-width: ' . esc_attr( $options['header_menu_breakpoint'] ) . 'px ) {
-				.primary-navigation.primary-mobile-navigation {
+				.primary-navigation.primary-mobile-navigation,
+				.primary-navigation.categories-mobile-menu,
+				.mobile-nav-tab {
 					display: none;
 				}
 

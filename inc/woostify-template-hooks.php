@@ -92,6 +92,7 @@ add_action( 'woostify_footer_content', 'woostify_credit', 20 );
 // Inside @woostify_toggle_sidebar hook.
 add_action( 'woostify_toggle_sidebar', 'woostify_sidebar_menu_open', 10 );
 add_action( 'woostify_toggle_sidebar', 'woostify_search', 20 );
+add_action( 'woostify_toggle_sidebar', 'woostify_mobile_menu_tab', 25 );
 add_action( 'woostify_toggle_sidebar', 'woostify_primary_navigation', 30 );
 add_action( 'woostify_toggle_sidebar', 'woostify_sidebar_menu_action', 40 );
 add_action( 'woostify_toggle_sidebar', 'woostify_sidebar_menu_close', 50 );

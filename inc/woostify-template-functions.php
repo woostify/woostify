@@ -509,50 +509,94 @@ if ( ! function_exists( 'woostify_site_title_or_logo' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_mobile_menu_tab' ) ) {
+	/**
+	 * Mobile menu tab
+	 */
+	function woostify_mobile_menu_tab() {
+		$options                        = woostify_options( false );
+		$header_primary_menu            = $options['header_primary_menu'];
+		$show_categories_menu_on_mobile = $options['header_show_categories_menu_on_mobile'];
+
+		if ( $header_primary_menu && $show_categories_menu_on_mobile ) {
+			?>
+			<ul class="mobile-nav-tab">
+				<li class="mobile-tab-title mobile-main-nav-tab-title active" data-menu="categories">
+					<a href="javascript:;" class="mobile-nav-tab-item"><?php esc_html_e( 'Menu', 'woostify' ); ?></a>
+				</li>
+				<li class="mobile-tab-title mobile-categories-nav-tab-title" data-menu="main">
+					<a href="javascript:;" class="mobile-nav-tab-item"><?php esc_html_e( 'Categories', 'woostify' ); ?></a>
+				</li>
+			</ul>
+			<?php
+		} else {
+			return;
+		}
+	}
+}
+
 if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 	/**
 	 * Display Primary Navigation
 	 */
 	function woostify_primary_navigation() {
 		// Customize disable primary menu.
-		$options             = woostify_options( false );
-		$header_primary_menu = $options['header_primary_menu'];
+		$options                        = woostify_options( false );
+		$header_primary_menu            = $options['header_primary_menu'];
+		$show_categories_menu_on_mobile = $options['header_show_categories_menu_on_mobile'];
 
-		if ( ! $header_primary_menu ) {
+		if ( ! $header_primary_menu && ! $show_categories_menu_on_mobile ) {
 			return;
 		}
 		?>
 
-		<div class="site-navigation">
+		<div class="site-navigation <?php echo ( $header_primary_menu && $show_categories_menu_on_mobile ) ? 'has-nav-tab' : ''; ?>">
 			<?php do_action( 'woostify_before_main_nav' ); ?>
 
-			<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary navigation', 'woostify' ); ?>">
-				<?php
-				if ( has_nav_menu( 'mobile' ) ) {
-					$mobile = array(
-						'theme_location' => 'mobile',
-						'menu_class'     => 'primary-navigation primary-mobile-navigation',
+			<?php if ( $header_primary_menu && ( has_nav_menu( 'mobile' ) || has_nav_menu( 'primary' ) ) ) { ?>
+				<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary navigation', 'woostify' ); ?>">
+					<?php
+					if ( has_nav_menu( 'mobile' ) ) {
+						$mobile = array(
+							'theme_location' => 'mobile',
+							'menu_class'     => 'primary-navigation primary-mobile-navigation',
+							'container'      => '',
+							'walker'         => new Woostify_Walker_Menu(),
+						);
+
+						wp_nav_menu( $mobile );
+					}
+
+					if ( has_nav_menu( 'primary' ) ) {
+						$args = array(
+							'theme_location' => 'primary',
+							'menu_class'     => 'primary-navigation',
+							'container'      => '',
+							'walker'         => new Woostify_Walker_Menu(),
+						);
+
+						wp_nav_menu( $args );
+					} elseif ( is_user_logged_in() ) {
+						?>
+						<a class="add-menu" href="<?php echo esc_url( get_admin_url() . 'nav-menus.php' ); ?>"><?php esc_html_e( 'Add a Primary Menu', 'woostify' ); ?></a>
+					<?php } ?>
+				</nav>
+			<?php } ?>
+
+			<?php if ( $show_categories_menu_on_mobile && has_nav_menu( 'mobile_categories' ) ) { ?>
+				<nav class="categories-navigation" aria-label="<?php esc_attr_e( 'Categories Menu', 'woostify' ); ?>">
+					<?php
+					$categories_menu = array(
+						'theme_location' => 'mobile_categories',
+						'menu_class'     => 'primary-navigation categories-mobile-menu',
 						'container'      => '',
 						'walker'         => new Woostify_Walker_Menu(),
 					);
 
-					wp_nav_menu( $mobile );
-				}
-
-				if ( has_nav_menu( 'primary' ) ) {
-					$args = array(
-						'theme_location' => 'primary',
-						'menu_class'     => 'primary-navigation',
-						'container'      => '',
-						'walker'         => new Woostify_Walker_Menu(),
-					);
-
-					wp_nav_menu( $args );
-				} elseif ( is_user_logged_in() ) {
+					wp_nav_menu( $categories_menu );
 					?>
-					<a class="add-menu" href="<?php echo esc_url( get_admin_url() . 'nav-menus.php' ); ?>"><?php esc_html_e( 'Add a Primary Menu', 'woostify' ); ?></a>
-				<?php } ?>
-			</nav>
+				</nav>
+			<?php } ?>
 
 			<?php do_action( 'woostify_after_main_nav' ); ?>
 		</div>
@@ -2027,10 +2071,10 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			$sub_total = $woocommerce->cart->get_total();
 		}
 
-		$search_icon         = apply_filters( 'woostify_header_search_icon', 'search' );
-		$wishlist_icon       = apply_filters( 'woostify_header_wishlist_icon', 'heart' );
-		$my_account_icon     = apply_filters( 'woostify_header_my_account_icon', 'user' );
-		$shop_bag_icon       = apply_filters( 'woostify_header_shop_bag_icon', 'shopping-cart' );
+		$search_icon     = apply_filters( 'woostify_header_search_icon', 'search' );
+		$wishlist_icon   = apply_filters( 'woostify_header_wishlist_icon', 'heart' );
+		$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'user' );
+		$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'shopping-cart' );
 		?>
 
 		<div class="site-tools">
