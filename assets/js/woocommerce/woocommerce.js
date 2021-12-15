@@ -731,9 +731,19 @@ var checkoutOrder = function() {
 	var checkout_opt = document.querySelector( '.before-checkout' ),
 	spacer_orig      = checkout_opt.offsetHeight,
 	div_height       = spacer_orig,
-	show_login       = document.querySelector( '.showlogin' );
+	show_login       = document.querySelector( '.showlogin' ),
+	sc_coupons_list = document.querySelector( '#coupons_list' ); // coupon list of plugin Smart Coupon for WC
 
-	set_heights();
+	if ( sc_coupons_list ) {
+		document.arrive( '.sc-coupon', function() {
+			document.getElementById( 'coupons_list' ).style.display = 'block';
+			setTimeout( function() {
+				set_heights();
+			}, 1000);
+		} )
+	} else {
+		set_heights();
+	}
 
 	document.body.addEventListener(
 		'click',
@@ -1079,10 +1089,10 @@ document.addEventListener(
 			);
 		}
 
-		if ( '1' === woostify_woocommerce_general.enable_sticky_order_review_checkout ) {
+		//if ( '1' === woostify_woocommerce_general.enable_sticky_order_review_checkout ) {
 			checkoutOrder();
 			stickyOrderReview();
-		}
+		//}
 
 		// For Elementor Preview Mode.
 		if ( 'function' === typeof( onElementorLoaded ) ) {
