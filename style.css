@@ -6212,13 +6212,6 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   width: 100%;
 }
 
-@media (min-width: 601px) {
-  .woocommerce-error li {
-    display: flex;
-    align-items: center;
-  }
-}
-
 .woocommerce-error li:before {
   font-family: 'WooCommerce';
   color: #fff;
