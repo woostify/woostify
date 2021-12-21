@@ -11098,6 +11098,10 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   }
 }
 
+.woocommerce-NoticeGroup-checkout .woocommerce-error li strong {
+  margin-right: 5px;
+}
+
 .woocommerce-account:not(.woobuilder-active) h2 {
   font-size: 20px;
   font-weight: normal;
