@@ -7346,6 +7346,10 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   display: none;
 }
 
+.infinite-scroll-active .woocommerce-pagination {
+  display: none;
+}
+
 .hid-skus .product_meta .sku_wrapper {
   display: none;
 }
@@ -9238,6 +9242,7 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .product-name a, .cart.wishlist_table:not(.elementor-menu-cart__products) .product-name a {
     font-weight: 700;
+    padding-right: 25px;
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .quantity, .cart.wishlist_table:not(.elementor-menu-cart__products) .quantity {
     height: 30px;

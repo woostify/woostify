@@ -461,6 +461,15 @@
 				)
 
 				// SHOP.
+				// Catalog mode.
+				condition(
+					'woostify_setting[catalog_mode]',
+					[
+						'woostify_setting[hide_variations]',
+					],
+					false,
+				)
+
 				// Position Add to cart.
 				condition(
 					'woostify_setting[shop_page_add_to_cart_button_position]',

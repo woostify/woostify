@@ -35,6 +35,29 @@ $wp_customize->add_control(
 	)
 );
 
+// Calalog mode on variable products.
+$wp_customize->add_setting(
+	'woostify_setting[hide_variations]',
+	array(
+		'default'           => $defaults['hide_variations'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[hide_variations]',
+		array(
+			'label'       => __( 'Hide product variations', 'woostify' ),
+			'description' => __( 'Use this option to hide product variations when enabling the catalog mode.', 'woostify' ),
+			'settings'    => 'woostify_setting[hide_variations]',
+			'section'     => 'woocommerce_product_catalog',
+			'priority'    => 1,
+		)
+	)
+);
+
 // Products per page.
 $wp_customize->add_setting(
 	'woostify_setting[products_per_row]',
