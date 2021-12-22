@@ -35,7 +35,7 @@ $wp_customize->add_control(
 	)
 );
 
-// Hide product variations.
+// Calalog mode on variable products.
 $wp_customize->add_setting(
 	'woostify_setting[hide_variations]',
 	array(
@@ -50,7 +50,7 @@ $wp_customize->add_control(
 		'woostify_setting[hide_variations]',
 		array(
 			'label'       => __( 'Hide product variations', 'woostify' ),
-			'description' => __( 'Use this option to hide product variations where "Add to cart" is hidden.', 'woostify' ),
+			'description' => __( 'Use this option to hide product variations when enabling the catalog mode.', 'woostify' ),
 			'settings'    => 'woostify_setting[hide_variations]',
 			'section'     => 'woocommerce_product_catalog',
 			'priority'    => 1,
