@@ -1182,7 +1182,7 @@
 		}
 	}
 
-	.form-row {
+	.form-row:not(.field-readonly) {
 		position: relative;
 
 		label:not(.checkbox) {
@@ -1256,7 +1256,7 @@
 			}
 		}
 
-		&#billing_country_field, &#billing_state_field {
+		&#billing_country_field, &#billing_state_field, &#billing_city_field, &#shipping_country_field, &#shipping_state_field, &#shipping_city_field {
 			label {
 				font-size: 12px;
 				line-height: 1;

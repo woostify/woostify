@@ -843,6 +843,7 @@ var woostifyMoveNoticesInCheckoutPage = function() {
 var woostifyCheckoutFormFieldAnimation = function() {
 	var inputs   = document.querySelectorAll( 'form.checkout .input-text, form.checkout_coupon .input-text' );
 	var formRows = document.querySelectorAll( 'form.checkout .form-row' );
+
 	if ( inputs.length ) {
 		inputs.forEach(
 			function( input ) {
@@ -883,10 +884,18 @@ var woostifyCheckoutFormFieldAnimation = function() {
 		formRows.forEach(
 			function( formRowEl ) {
 				var labelEl = formRowEl.querySelector( 'label' );
+
 				if ( labelEl == null ) {
 					formRowEl.classList.add( 'no-label' );
 				} else {
 					labelEl.classList.remove( 'screen-reader-text' );
+				}
+
+				if ( formRowEl.classList.contains( 'address-field' ) ) {
+					var fieldInput = formRowEl.querySelector( 'input' );
+					if ( fieldInput && 'hidden' === fieldInput.getAttribute( 'type' ) ) {
+						formRowEl.classList.add( 'field-readonly' );
+					}
 				}
 			}
 		);
