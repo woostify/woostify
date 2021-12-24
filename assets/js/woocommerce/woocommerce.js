@@ -13,7 +13,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 	view_more_btn_wrap = document.querySelector( '.woostify-view-more' )
 
 	if ( null == container ) {
-		container = document.querySelector('.site-content .products');
+		container = document.querySelector( '.site-content .products' );
 	}
 
 	if ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) {
@@ -892,9 +892,22 @@ var woostifyCheckoutFormFieldAnimation = function() {
 				}
 
 				if ( formRowEl.classList.contains( 'address-field' ) ) {
-					var fieldInput = formRowEl.querySelector( 'input' );
-					if ( fieldInput && 'hidden' === fieldInput.getAttribute( 'type' ) ) {
-						formRowEl.classList.add( 'field-readonly' );
+					var fieldInputs   = formRowEl.querySelectorAll( 'input' );
+					var select2Inputs = formRowEl.querySelectorAll( 'span.select2' );
+					if ( fieldInputs.length && fieldInputs.length > 0 ) {
+						fieldInputs.forEach(
+							function( fInput ) {
+								if ( 'hidden' === fInput.getAttribute( 'type' ) ) {
+									formRowEl.classList.add( 'field-readonly' );
+								} else {
+									formRowEl.classList.remove( 'field-readonly' );
+								}
+							}
+						)
+					}
+					if ( select2Inputs.length && select2Inputs.length > 0 ) {
+						formRowEl.classList.add( 'w-anim-wrap' );
+						formRowEl.classList.remove( 'field-readonly' );
 					}
 				}
 			}
@@ -1003,9 +1016,18 @@ document.addEventListener(
 			woostifyMoveNoticesInCheckoutPage();
 
 			jQuery( document.body ).on(
+				'updated_checkout',
+				function( event, data ) {
+					setTimeout(
+						function() {
+							woostifyCheckoutFormFieldAnimation();
+						},
+						100
+					);
+				}
+			).on(
 				'init_checkout updated_checkout payment_method_selected',
 				function( event, data  ) {
-					console.log( event );
 
 					jQuery( 'form.checkout' ).arrive(
 						'form.checkout_coupon',

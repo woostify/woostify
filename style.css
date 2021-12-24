@@ -10477,11 +10477,40 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   top: 50%;
   left: 12px;
   background: #fff;
-  right: 30px;
+  right: 12px;
+  bottom: 5px;
+  margin-top: -10px;
   pointer-events: none;
-  transform: translateY(-50%);
   transition: all .2s;
-  line-height: 36px;
+  line-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  z-index: 1;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly) textarea::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: transparent;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly) textarea:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: transparent;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly) textarea::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: transparent;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly) textarea:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: transparent;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly) textarea::placeholder {
+  color: transparent;
 }
 
 .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly):not(.no-label) .input-text {
@@ -10513,39 +10542,37 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   padding: 20px 12px 12px !important;
 }
 
-@media (max-width: 991px) {
-  .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly).notes textarea::-webkit-input-placeholder {
-    color: transparent;
-  }
-  .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly).notes textarea:-moz-placeholder {
-    /* Firefox 18- */
-    color: transparent;
-  }
-  .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly).notes textarea::-moz-placeholder {
-    /* Firefox 19+ */
-    color: transparent;
-  }
-  .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly).notes textarea:-ms-input-placeholder {
-    color: transparent;
-  }
-}
-
 .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly).w-anim-wrap label {
-  top: 15px;
+  top: 4px;
   font-size: 12px;
-  line-height: 18px;
   padding: 0;
+  bottom: auto;
+  margin-top: 0;
+  background: transparent;
 }
 
-.checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#billing_country_field label, .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#billing_state_field label, .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#billing_city_field label, .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#shipping_country_field label, .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#shipping_state_field label, .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#shipping_city_field label {
-  font-size: 12px;
-  line-height: 1;
-  padding: 0;
-  z-index: 9;
-  height: 38px;
-  top: 9px;
-  transform: none;
-  background: transparent;
+.checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly).w-anim-wrap textarea::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: inherit;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly).w-anim-wrap textarea:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: inherit;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly).w-anim-wrap textarea::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: inherit;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly).w-anim-wrap textarea:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: inherit;
+}
+
+.checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly).w-anim-wrap textarea::placeholder {
+  color: inherit;
 }
 
 .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#billing_country_field .select2-selection, .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#billing_state_field .select2-selection, .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#billing_city_field .select2-selection, .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#shipping_country_field .select2-selection, .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#shipping_state_field .select2-selection, .checkout-layout-3:not(.woobuilder-active) .form-row:not(.field-readonly)#shipping_city_field .select2-selection {
