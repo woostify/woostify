@@ -9398,6 +9398,10 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   }
 }
 
+.woocommerce-terms-and-conditions {
+  width: 100%;
+}
+
 .woocommerce-checkout .woocommerce {
   position: relative;
 }
