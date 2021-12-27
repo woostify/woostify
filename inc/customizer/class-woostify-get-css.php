@@ -1236,6 +1236,14 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// MOBILE MENU.
+		$sidebar_background = $options['mobile_menu_background'];
+		$styles            .= '
+		.sidebar-menu {
+			background-color: ' . $sidebar_background . '
+		}
+		';
+
 		if ( is_customize_preview() ) {
 			$styles .= '
 			@media ( min-width: 769px ) {

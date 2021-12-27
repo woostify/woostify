@@ -13,6 +13,7 @@ $layout_sections = apply_filters(
 		'woostify_header'             => __( 'Normal Header', 'woostify' ),
 		'woostify_header_transparent' => __( 'Header Transparent', 'woostify' ),
 		'woostify_page_header'        => __( 'Page Header', 'woostify' ),
+		'woostify_mobile_menu'        => __( 'Mobile Menu', 'woostify' ),
 		'woostify_blog'               => __( 'Blog', 'woostify' ),
 		'woostify_blog_single'        => __( 'Blog Single', 'woostify' ),
 		'woostify_sidebar'            => __( 'Sidebar', 'woostify' ),

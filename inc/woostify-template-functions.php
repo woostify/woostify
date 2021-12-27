@@ -519,13 +519,15 @@ if ( ! function_exists( 'woostify_mobile_menu_tab' ) ) {
 		$show_categories_menu_on_mobile = $options['header_show_categories_menu_on_mobile'];
 
 		if ( $header_primary_menu && $show_categories_menu_on_mobile ) {
+			$primary_menu_tab_title = $options['mobile_menu_primary_menu_tab_title'];
+			$categories_menu_tab_title = $options['mobile_menu_categories_menu_tab_title'];
 			?>
 			<ul class="mobile-nav-tab">
 				<li class="mobile-tab-title mobile-main-nav-tab-title active" data-menu="categories">
-					<a href="javascript:;" class="mobile-nav-tab-item"><?php esc_html_e( 'Menu', 'woostify' ); ?></a>
+					<a href="javascript:;" class="mobile-nav-tab-item"><?php echo esc_html( $primary_menu_tab_title ); ?></a>
 				</li>
 				<li class="mobile-tab-title mobile-categories-nav-tab-title" data-menu="main">
-					<a href="javascript:;" class="mobile-nav-tab-item"><?php esc_html_e( 'Categories', 'woostify' ); ?></a>
+					<a href="javascript:;" class="mobile-nav-tab-item"><?php echo esc_html( $categories_menu_tab_title ); ?></a>
 				</li>
 			</ul>
 			<?php

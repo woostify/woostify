@@ -636,6 +636,15 @@
 					]
 				)
 
+				// Mobile Menu.
+				condition(
+					'woostify_setting[header_show_categories_menu_on_mobile]',
+					[
+						'woostify_setting[mobile_menu_categories_menu_tab_title]',
+						'woostify_setting[mobile_menu_primary_menu_tab_title]',
+					]
+				)
+
 				// Performance.
 				condition(
 					'woostify_setting[enabled_dynamic_css]',
@@ -695,6 +704,7 @@
 				)
 
 				// And trigger if parent control update.
+				/* hideTabLayout( 'woostify_setting[header_show_categories_menu_on_mobile]', 'woostify_setting[mobile_menu_context_tabs]' ) */
 				hideTabLayout( 'woostify_setting[sticky_footer_bar_enable]', 'woostify_setting[sticky_footer_bar_context_tabs]' )
 				hideTabLayout( 'woostify_setting[topbar_display]', 'woostify_setting[topbar_context_tabs]' )
 				hideTabLayout( 'woostify_setting[scroll_to_top]', 'woostify_setting[scroll_to_top_context_tabs]' )

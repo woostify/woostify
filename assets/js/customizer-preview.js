@@ -1033,5 +1033,9 @@ document.addEventListener(
 
 		// MINI CART.
 		woostify_colors_live_update( 'mini_cart_background_color', '#shop-cart-sidebar', 'background-color' );
+
+		// MOBILE MENU.
+		// Background.
+		woostify_colors_live_update( 'mobile_menu_background', '.sidebar-menu', 'background-color' );
 	},
 )
