@@ -497,6 +497,13 @@ document.addEventListener(
 			'load',
 			function() {
 				woostifyStickySummary();
+
+				setTimeout(
+					function() {
+						window.dispatchEvent( new Event( 'resize' ) );
+					},
+					200
+				);
 			}
 		);
 
