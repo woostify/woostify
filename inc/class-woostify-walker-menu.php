@@ -116,28 +116,35 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			// Start Mega menu content.
 			if ( 'mega_menu' === $item->object && 0 === $depth && ! woostify_is_elementor_editor() ) {
 				$mega_menu = '';
-				$mega_args = array(
-					'p'                   => $item->object_id,
-					'post_type'           => 'mega_menu',
-					'post_status'         => 'publish',
-					'posts_per_page'      => 1,
-					'ignore_sticky_posts' => 1,
-					'fields'              => 'ids',
-				);
 
-				$query = new WP_Query( $mega_args );
-				if ( $query->have_posts() ) {
-					ob_start();
-					echo '<div class="mega-menu-inner-wrapper">';
-					while ( $query->have_posts() ) {
-						$query->the_post();
+				if ( class_exists( 'Woostify_Header_Footer_Builder' ) ) {
+					$frontend   = new \Elementor\Frontend();
+					$mega_menu .= $frontend->get_builder_content_for_display( $item->object_id, true );
+				} else {
+					$mega_args = array(
+						'p'                   => $item->object_id,
+						'post_type'           => 'mega_menu',
+						'post_status'         => 'publish',
+						'posts_per_page'      => 1,
+						'ignore_sticky_posts' => 1,
+						'fields'              => 'ids',
+					);
 
-						the_content();
+					$query = new WP_Query( $mega_args );
+
+					if ( $query->have_posts() ) {
+						ob_start();
+						echo '<div class="mega-menu-inner-wrapper">';
+						while ( $query->have_posts() ) {
+							$query->the_post();
+
+							the_content();
+						}
+						echo '</div>';
+						$mega_menu .= ob_get_clean();
+
+						wp_reset_postdata();
 					}
-					echo '</div>';
-					$mega_menu .= ob_get_clean();
-
-					wp_reset_postdata();
 				}
 
 				if ( ! empty( $mega_menu ) ) {
