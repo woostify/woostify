@@ -6212,13 +6212,6 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   width: 100%;
 }
 
-@media (min-width: 601px) {
-  .woocommerce-error li {
-    display: flex;
-    align-items: center;
-  }
-}
-
 .woocommerce-error li:before {
   font-family: 'WooCommerce';
   color: #fff;
@@ -10413,7 +10406,6 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 }
 
 .checkout-layout-3:not(.woobuilder-active).has-distraction-free-checkout .site-header .site-header-inner {
-  background-color: transparent;
   border: none;
 }
 
