@@ -88,9 +88,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			$pdt_pos          = $options['shop_single_product_data_tabs_pos'];
 			$pdt_pos_priority = 'woocommerce_single_product_summary' === $pdt_pos ? 35 : 10;
 
-			remove_action( 'woocommerce_after_single_product_summary', 'woostify_output_product_data_tabs_accordion', 10 );
 			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
-			remove_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 35 );
+			remove_action( 'woocommerce_after_single_product_summary', 'woostify_output_product_data_tabs_accordion', 10 );
+			remove_action( 'woocommerce_after_single_product_summary', 'woostify_output_product_data_tabs', 10 );
+			remove_action( 'woocommerce_single_product_summary', 'woostify_output_product_data_tabs', 35 );
 			remove_action( 'woocommerce_single_product_summary', 'woostify_output_product_data_tabs_accordion', 35 );
 
 			add_action( $pdt_pos, $pdt_callback, $pdt_pos_priority );
@@ -531,7 +532,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_stock_label'                  => true,
 				'shop_single_stock_product_limit'          => 0,
 				'shop_single_loading_bar'                  => true,
-				'shop_single_additional_information'       => true,
 				'shop_single_content_background'           => '#f3f3f3',
 				'shop_single_trust_badge_image'            => '',
 				'shop_single_product_gallery_layout_select' => 'theme',

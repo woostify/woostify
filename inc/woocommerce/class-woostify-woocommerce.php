@@ -759,10 +759,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			}
 
 			// SHOP SINGLE.
-			// Product tab additional information.
-			if ( ! $options['shop_single_additional_information'] ) {
-				add_filter( 'woocommerce_product_tabs', 'woostify_remove_additional_information_tabs', 98 );
-			}
 
 			// Related product.
 			if ( ! $options['shop_single_related_product'] ) {
@@ -921,7 +917,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// SHOP SINGLE: product data tabs.
 			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
 			$pdt_layout       = $options['shop_single_product_data_tabs_layout'];
-			$pdt_callback     = 'normal' === $pdt_layout ? 'woocommerce_output_product_data_tabs' : 'woostify_output_product_data_tabs_accordion';
+			$pdt_callback     = 'normal' === $pdt_layout ? 'woostify_output_product_data_tabs' : 'woostify_output_product_data_tabs_accordion';
 			$pdt_pos          = $options['shop_single_product_data_tabs_pos'];
 			$pdt_pos_priority = 'woocommerce_single_product_summary' === $pdt_pos ? 35 : 10;
 			add_action( $pdt_pos, $pdt_callback, $pdt_pos_priority );
