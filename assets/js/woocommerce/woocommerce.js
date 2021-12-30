@@ -875,6 +875,7 @@ var woostifyMoveNoticesInCheckoutPage = function() {
 var woostifyCheckoutFormFieldAnimation = function() {
 	var inputs   = document.querySelectorAll( 'form.checkout .input-text, form.checkout_coupon .input-text' );
 	var formRows = document.querySelectorAll( 'form.checkout .form-row' );
+
 	if ( inputs.length ) {
 		inputs.forEach(
 			function( input ) {
@@ -915,10 +916,31 @@ var woostifyCheckoutFormFieldAnimation = function() {
 		formRows.forEach(
 			function( formRowEl ) {
 				var labelEl = formRowEl.querySelector( 'label' );
+
 				if ( labelEl == null ) {
 					formRowEl.classList.add( 'no-label' );
 				} else {
 					labelEl.classList.remove( 'screen-reader-text' );
+				}
+
+				if ( formRowEl.classList.contains( 'address-field' ) ) {
+					var fieldInputs   = formRowEl.querySelectorAll( 'input' );
+					var select2Inputs = formRowEl.querySelectorAll( 'span.select2' );
+					if ( fieldInputs.length && fieldInputs.length > 0 ) {
+						fieldInputs.forEach(
+							function( fInput ) {
+								if ( 'hidden' === fInput.getAttribute( 'type' ) ) {
+									formRowEl.classList.add( 'field-readonly' );
+								} else {
+									formRowEl.classList.remove( 'field-readonly' );
+								}
+							}
+						)
+					}
+					if ( select2Inputs.length && select2Inputs.length > 0 ) {
+						formRowEl.classList.add( 'w-anim-wrap' );
+						formRowEl.classList.remove( 'field-readonly' );
+					}
 				}
 			}
 		);
@@ -1026,8 +1048,21 @@ document.addEventListener(
 			woostifyMoveNoticesInCheckoutPage();
 
 			jQuery( document.body ).on(
+				'updated_checkout',
+				function( event, data ) {
+					setTimeout(
+						function() {
+							woostifyCheckoutFormFieldAnimation();
+						},
+						100
+					);
+				}
+			).on(
 				'init_checkout updated_checkout payment_method_selected',
 				function( event, data  ) {
+					// Clear old notifications before displaying new ones.
+					jQuery( '.woostify-woocommerce-NoticeGroup' ).html('');
+
 					jQuery( 'form.checkout' ).arrive(
 						'form.checkout_coupon',
 						function( newEl ) {

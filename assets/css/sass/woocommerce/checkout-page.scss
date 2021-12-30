@@ -1,3 +1,6 @@
+.woocommerce-terms-and-conditions {
+	width: 100%;
+}
 .woocommerce-checkout {
 	.woocommerce {
 		position: relative;
@@ -1181,7 +1184,7 @@
 		}
 	}
 
-	.form-row {
+	.form-row:not(.field-readonly) {
 		position: relative;
 
 		label:not(.checkbox) {
@@ -1189,11 +1192,36 @@
 			top: 50%;
 			left: 12px;
 			background: #fff;
-			right: 30px;
+			right: 12px;
+			bottom: 5px;
+			margin-top: -10px;
 			pointer-events: none;
-			transform: translateY(-50%);
 			transition: all .2s;
-			line-height: 36px;
+			line-height: 20px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			z-index: 1;
+		}
+
+		textarea::-webkit-input-placeholder {
+			/* WebKit browsers */
+			color: transparent;
+		}
+		textarea:-moz-placeholder {
+			/* Mozilla Firefox 4 to 18 */
+			color: transparent;
+		}
+		textarea::-moz-placeholder {
+			/* Mozilla Firefox 19+ */
+			color: transparent;
+		}
+		textarea:-ms-input-placeholder {
+			/* Internet Explorer 10+ */
+			color: transparent;
+		}
+		textarea::placeholder {
+			color: transparent;
 		}
 
 		&:not(.no-label) {
@@ -1225,46 +1253,41 @@
 			}
 			textarea {
 				padding: 20px 12px 12px !important;
-
-				@media (max-width: $screen-md - 1) {
-					&::-webkit-input-placeholder {
-						color:transparent;
-					}
-
-					&:-moz-placeholder { /* Firefox 18- */
-					color:transparent;
-					}
-
-					&::-moz-placeholder {  /* Firefox 19+ */
-					color:transparent;
-					}
-
-					&:-ms-input-placeholder {
-					color:transparent;
-					}
-				}
 			}
 		}
 
 		&.w-anim-wrap {
 			label {
-				top: 15px;
+				top: 4px;
 				font-size: 12px;
-				line-height: 18px;
 				padding: 0;
+				bottom: auto;
+				margin-top: 0;
+				background: transparent;
+			}
+			textarea::-webkit-input-placeholder {
+				/* WebKit browsers */
+				color: inherit;
+			}
+			textarea:-moz-placeholder {
+				/* Mozilla Firefox 4 to 18 */
+				color: inherit;
+			}
+			textarea::-moz-placeholder {
+				/* Mozilla Firefox 19+ */
+				color: inherit;
+			}
+			textarea:-ms-input-placeholder {
+				/* Internet Explorer 10+ */
+				color: inherit;
+			}
+			textarea::placeholder {
+				color: inherit;
 			}
 		}
 
-		&#billing_country_field, &#billing_state_field {
+		&#billing_country_field, &#billing_state_field, &#billing_city_field, &#shipping_country_field, &#shipping_state_field, &#shipping_city_field {
 			label {
-				font-size: 12px;
-				line-height: 1;
-				padding: 0;
-				z-index: 9;
-				height: 38px;
-				top: 9px;
-				transform: none;
-				background: transparent;
 			}
 			.select2-selection {
 				border-radius: 4px;
