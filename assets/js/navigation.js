@@ -30,10 +30,10 @@ function mobileMenuTab() {
 					return;
 				}
 
-				for ( var i = 0; i < tabs.length; i++ ) {
+				for ( var i = 0, j = tabs.length; i < j; i++ ) {
 					tabs[i].classList.remove( 'active' );
 				}
-				for ( var i = 0; i < menus.length; i++ ) {
+				for ( var i = 0, j = menus.length; i < j; i++ ) {
 					menus[i].classList.remove( 'active' );
 				}
 
