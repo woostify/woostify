@@ -417,7 +417,7 @@ var woostifyQuantityMiniCart = function() {
 					var inputVal = Number( input.value || 0 );
 
 					// Valid quantity.
-					if ( inputVal < 1 || isNaN( inputVal ) || ( parseInt( inputVal ) > max ) ) {
+					if ( inputVal < 1 || isNaN( inputVal ) || ( max > 0 && ( parseInt( inputVal ) > max ) ) ) {
 						alert( woostify_woocommerce_general.qty_warning );
 						input.value = currInputVal;
 						return;
@@ -1096,10 +1096,8 @@ document.addEventListener(
 			);
 		}
 
-		// if ( '1' === woostify_woocommerce_general.enable_sticky_order_review_checkout ) {
-			checkoutOrder();
-			stickyOrderReview();
-		// }
+		checkoutOrder();
+		stickyOrderReview();
 
 		// For Elementor Preview Mode.
 		if ( 'function' === typeof( onElementorLoaded ) ) {
