@@ -128,8 +128,6 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 	 */
 	function woostify_ajax_single_add_to_cart() {
 		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
-
-		WC_Form_Handler::add_to_cart_action();
 		WC_AJAX::get_refreshed_fragments();
 	}
 }
