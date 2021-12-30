@@ -13,7 +13,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 	view_more_btn_wrap = document.querySelector( '.woostify-view-more' )
 
 	if ( null == container ) {
-		container = document.querySelector('.site-content .products');
+		container = document.querySelector( '.site-content .products' );
 	}
 
 	if ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) {
@@ -417,7 +417,7 @@ var woostifyQuantityMiniCart = function() {
 					var inputVal = Number( input.value || 0 );
 
 					// Valid quantity.
-					if ( inputVal < 1 || isNaN( inputVal ) || ( parseInt( inputVal ) > max ) ) {
+					if ( inputVal < 1 || isNaN( inputVal ) || ( max > 0 && ( parseInt( inputVal ) > max ) ) ) {
 						alert( woostify_woocommerce_general.qty_warning );
 						input.value = currInputVal;
 						return;
