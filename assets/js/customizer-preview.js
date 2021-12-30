@@ -1037,5 +1037,56 @@ document.addEventListener(
 		// MOBILE MENU.
 		// Background.
 		woostify_colors_live_update( 'mobile_menu_background', '.sidebar-menu', 'background-color' );
+		// Text color.
+		woostify_color_group_live_update(
+			[
+				'mobile_menu_text_color',
+				'mobile_menu_text_hover_color',
+			],
+			[
+				'.sidebar-menu, .sidebar-menu a, .primary-navigation > li > a, .primary-navigation .sub-menu a',
+				'.sidebar-menu a:hover',
+			],
+			[
+				'color',
+				'color',
+			],
+		)
+		// Tab background.
+		woostify_color_group_live_update(
+			[
+				'mobile_menu_tab_background',
+				'mobile_menu_tab_hover_background',
+				'mobile_menu_tab_active_background',
+			],
+			[
+				'.sidebar-menu .mobile-tab-title',
+				'.sidebar-menu .mobile-tab-title:hover',
+				'.sidebar-menu .mobile-tab-title.active',
+			],
+			[
+				'background',
+				'background',
+				'background',
+			],
+		)
+		// Tab color.
+		woostify_color_group_live_update(
+			[
+				'mobile_menu_tab_color',
+				'mobile_menu_tab_hover_color',
+				'mobile_menu_tab_active_color',
+			],
+			[
+				'.sidebar-menu .mobile-tab-title a',
+				'.sidebar-menu .mobile-tab-title:hover a',
+				'.sidebar-menu .mobile-tab-title.active a',
+			],
+			[
+				'color',
+				'color',
+				'color',
+			],
+		)
 	},
 )

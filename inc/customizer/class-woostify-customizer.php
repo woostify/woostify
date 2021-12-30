@@ -618,6 +618,13 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'mobile_menu_background'                   => '#fff',
 				'mobile_menu_text_color'                   => '#000',
 				'mobile_menu_text_hover_color'             => '#000',
+				'mobile_menu_tab_background'               => '',
+				'mobile_menu_tab_hover_background'         => '',
+				'mobile_menu_tab_active_background'        => '',
+				'mobile_menu_text_hover_color'             => '#000',
+				'mobile_menu_tab_color'                    => '',
+				'mobile_menu_tab_hover_color'              => '',
+				'mobile_menu_tab_active_color'             => '',
 			);
 
 			return apply_filters( 'woostify_setting_default_values', $args );

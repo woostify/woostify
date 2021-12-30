@@ -642,6 +642,8 @@
 					[
 						'woostify_setting[mobile_menu_categories_menu_tab_title]',
 						'woostify_setting[mobile_menu_primary_menu_tab_title]',
+						'woostify_setting[mobile_menu_tab_background]',
+						'woostify_setting[mobile_menu_tab_color]',
 					]
 				)
 

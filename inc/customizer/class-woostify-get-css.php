@@ -1237,10 +1237,44 @@ class Woostify_Get_CSS {
 		';
 
 		// MOBILE MENU.
-		$sidebar_background = $options['mobile_menu_background'];
-		$styles            .= '
+		$sidebar_background                  = $options['mobile_menu_background'];
+		$sidebar_text_color                  = $options['mobile_menu_text_color'];
+		$sidebar_text_hover_color            = $options['mobile_menu_text_hover_color'];
+		$sidebar_tab_background_color        = $options['mobile_menu_tab_background'];
+		$sidebar_tab_hover_background_color  = $options['mobile_menu_tab_hover_background'];
+		$sidebar_tab_active_background_color = $options['mobile_menu_tab_active_background'];
+		$sidebar_tab_color                   = $options['mobile_menu_tab_color'];
+		$sidebar_tab_hover_color             = $options['mobile_menu_tab_hover_color'];
+		$sidebar_tab_active_color            = $options['mobile_menu_tab_active_color'];
+
+		$styles .= '
 		.sidebar-menu {
-			background-color: ' . $sidebar_background . '
+			background-color: ' . $sidebar_background . ';
+			color: ' . $sidebar_text_color . ';
+		}
+		.sidebar-menu a, .primary-navigation > li > a, .primary-navigation .sub-menu a {
+			color: ' . $sidebar_text_color . ';
+		}
+		.sidebar-menu a:hover {
+			color: ' . $sidebar_text_hover_color . ';
+		}
+		.sidebar-menu .mobile-tab-title {
+			background: ' . $sidebar_tab_background_color . ';
+		}
+		.sidebar-menu .mobile-tab-title:hover {
+			background: ' . $sidebar_tab_hover_background_color . ';
+		}
+		.sidebar-menu .mobile-tab-title.active {
+			background: ' . $sidebar_tab_active_background_color . ';
+		}
+		.sidebar-menu .mobile-tab-title a {
+			color: ' . $sidebar_tab_color . ';
+		}
+		.sidebar-menu .mobile-tab-title:hover a {
+			color: ' . $sidebar_tab_hover_color . ';
+		}
+		.sidebar-menu .mobile-tab-title.active a {
+			color: ' . $sidebar_tab_active_color . ';
 		}
 		';
 

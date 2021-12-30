@@ -4166,8 +4166,13 @@ article p:last-child {
 }
 
 .sidebar-menu .mobile-nav-tab li {
+  cursor: pointer;
   width: 50%;
   text-align: center;
+}
+
+.sidebar-menu .mobile-nav-tab li a {
+  text-decoration: none;
 }
 
 .sidebar-menu .site-navigation {

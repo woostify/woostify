@@ -162,3 +162,103 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+// Tab color.
+$wp_customize->add_setting(
+	'woostify_setting[mobile_menu_tab_color]',
+	array(
+		'default'           => $defaults['mobile_menu_tab_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[mobile_menu_tab_hover_color]',
+	array(
+		'default'           => $defaults['mobile_menu_tab_hover_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[mobile_menu_tab_active_color]',
+	array(
+		'default'           => $defaults['mobile_menu_tab_active_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[mobile_menu_tab_color]',
+		array(
+			'label'    => __( 'Tab Color', 'woostify' ),
+			'section'  => 'woostify_mobile_menu',
+			'settings' => array(
+				'woostify_setting[mobile_menu_tab_color]',
+				'woostify_setting[mobile_menu_tab_hover_color]',
+				'woostify_setting[mobile_menu_tab_active_color]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
+				'Active',
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Tab background.
+$wp_customize->add_setting(
+	'woostify_setting[mobile_menu_tab_background]',
+	array(
+		'default'           => $defaults['mobile_menu_tab_background'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[mobile_menu_tab_hover_background]',
+	array(
+		'default'           => $defaults['mobile_menu_tab_hover_background'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[mobile_menu_tab_active_background]',
+	array(
+		'default'           => $defaults['mobile_menu_tab_active_background'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[mobile_menu_tab_background]',
+		array(
+			'label'    => __( 'Tab background', 'woostify' ),
+			'section'  => 'woostify_mobile_menu',
+			'settings' => array(
+				'woostify_setting[mobile_menu_tab_background]',
+				'woostify_setting[mobile_menu_tab_hover_background]',
+				'woostify_setting[mobile_menu_tab_active_background]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
+				'Active',
+			),
+			'tab'      => 'design',
+		)
+	)
+);
