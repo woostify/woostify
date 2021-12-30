@@ -69,7 +69,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[mobile_menu_hide_login]',
 		array(
-			'label'    => __( 'Hide Search Box', 'woostify' ),
+			'label'    => __( 'Hide Login/Register Link', 'woostify' ),
 			'section'  => 'woostify_mobile_menu',
 			'settings' => 'woostify_setting[mobile_menu_hide_login]',
 			'tab'      => 'general',
