@@ -1035,6 +1035,10 @@ document.addEventListener(
 		woostify_colors_live_update( 'mini_cart_background_color', '#shop-cart-sidebar', 'background-color' );
 
 		// MOBILE MENU.
+		// Hide search box.
+		woostify_update_element_class( 'mobile_menu_hide_search_field', '.sidebar-menu .site-search', 'hide' )
+		// Hide login/register link.
+		woostify_update_element_class( 'mobile_menu_hide_login', '.sidebar-menu .sidebar-menu-bottom', 'hide' )
 		// Background.
 		woostify_colors_live_update( 'mobile_menu_background', '.sidebar-menu', 'background-color' );
 		// Text color.

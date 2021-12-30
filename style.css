@@ -4115,6 +4115,10 @@ article p:last-child {
   }
 }
 
+.sidebar-menu .hide {
+  display: none;
+}
+
 .sidebar-menu .primary-navigation:not(.elementor-inner) a {
   line-height: 3em !important;
   position: relative;
@@ -4163,6 +4167,12 @@ article p:last-child {
   padding: 0;
   margin: 0;
   display: flex;
+}
+
+@media (min-width: 992px) {
+  .sidebar-menu .mobile-nav-tab {
+    display: none;
+  }
 }
 
 .sidebar-menu .mobile-nav-tab li {

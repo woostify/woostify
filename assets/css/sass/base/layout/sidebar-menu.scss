@@ -122,6 +122,10 @@
 		}
 	}
 
+	.hide {
+		display: none;
+	}
+
 	.primary-navigation {
 		&:not(.elementor-inner) {
 			a {
@@ -175,6 +179,10 @@
 		padding: 0;
 		margin: 0;
 		display: flex;
+
+		@media ( min-width: $screen-md ) {
+			display: none;
+		}
 
 		li {
 			cursor: pointer;

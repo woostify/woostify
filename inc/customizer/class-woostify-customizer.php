@@ -612,6 +612,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'performance_disable_woo_blocks_styles'    => false,
 				'enabled_dynamic_css'                      => false,
 				// Mobile Menu.
+				'mobile_menu_hide_search_field'            => false,
+				'mobile_menu_hide_login'                   => false,
 				'header_show_categories_menu_on_mobile'    => false,
 				'mobile_menu_primary_menu_tab_title'       => 'Menu',
 				'mobile_menu_categories_menu_tab_title'    => 'Categories',

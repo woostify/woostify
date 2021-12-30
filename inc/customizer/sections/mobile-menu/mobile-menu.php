@@ -31,6 +31,52 @@ $wp_customize->add_control(
 	)
 );
 
+// Hide search field.
+$wp_customize->add_setting(
+	'woostify_setting[mobile_menu_hide_search_field]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['mobile_menu_hide_search_field'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[mobile_menu_hide_search_field]',
+		array(
+			'label'    => __( 'Hide Search Box', 'woostify' ),
+			'section'  => 'woostify_mobile_menu',
+			'settings' => 'woostify_setting[mobile_menu_hide_search_field]',
+			'tab'      => 'general',
+		)
+	)
+);
+
+// Hide Login/Register.
+$wp_customize->add_setting(
+	'woostify_setting[mobile_menu_hide_login]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['mobile_menu_hide_login'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[mobile_menu_hide_login]',
+		array(
+			'label'    => __( 'Hide Search Box', 'woostify' ),
+			'section'  => 'woostify_mobile_menu',
+			'settings' => 'woostify_setting[mobile_menu_hide_login]',
+			'tab'      => 'general',
+		)
+	)
+);
+
 // Show categories menu on mobile.
 $wp_customize->add_setting(
 	'woostify_setting[header_show_categories_menu_on_mobile]',

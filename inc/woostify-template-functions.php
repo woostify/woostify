@@ -519,7 +519,7 @@ if ( ! function_exists( 'woostify_mobile_menu_tab' ) ) {
 		$show_categories_menu_on_mobile = $options['header_show_categories_menu_on_mobile'];
 
 		if ( $header_primary_menu && $show_categories_menu_on_mobile ) {
-			$primary_menu_tab_title = $options['mobile_menu_primary_menu_tab_title'];
+			$primary_menu_tab_title    = $options['mobile_menu_primary_menu_tab_title'];
 			$categories_menu_tab_title = $options['mobile_menu_categories_menu_tab_title'];
 			?>
 			<ul class="mobile-nav-tab">
@@ -1723,9 +1723,11 @@ if ( ! function_exists( 'woostify_search' ) ) {
 		if ( ! $options['header_search_icon'] ) {
 			return;
 		}
+
+		$is_hide = $options['mobile_menu_hide_search_field'];
 		?>
 
-		<div class="site-search">
+		<div class="site-search <?php echo $is_hide ? esc_attr( 'hide' ) : ''; ?>">
 			<?php
 			do_action( 'woostify_site_search_start' );
 
@@ -2000,9 +2002,11 @@ if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
 			return;
 		}
 
+		$is_hide = $options['mobile_menu_hide_login'];
+
 		?>
 
-		<div class="sidebar-menu-bottom">
+		<div class="sidebar-menu-bottom <?php echo $is_hide ? esc_attr( 'hide' ) : ''; ?>">
 			<?php do_action( 'woostify_sidebar_account_before' ); ?>
 
 			<ul class="sidebar-account">
