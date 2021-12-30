@@ -563,6 +563,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'wrapAround'     => true,
 							'imagesLoaded'   => true,
 							'contain'        => true,
+							'imagesLoaded'   => true,
 						),
 						'thumb'              => array(
 							'container'       => '#product-thumbnail-images',
