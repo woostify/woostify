@@ -1252,7 +1252,7 @@ class Woostify_Get_CSS {
 			background-color: ' . $sidebar_background . ';
 			color: ' . $sidebar_text_color . ';
 		}
-		.sidebar-menu a, .primary-navigation > li > a, .primary-navigation .sub-menu a {
+		.sidebar-menu a, .sidebar-menu .primary-navigation > li > a, .sidebar-menu .primary-navigation .sub-menu a {
 			color: ' . $sidebar_text_color . ';
 		}
 		.sidebar-menu a:hover {

@@ -1044,7 +1044,7 @@ document.addEventListener(
 				'mobile_menu_text_hover_color',
 			],
 			[
-				'.sidebar-menu, .sidebar-menu a, .primary-navigation > li > a, .primary-navigation .sub-menu a',
+				'.sidebar-menu, .sidebar-menu a, .sidebar-menu .primary-navigation > li > a, .sidebar-menu .primary-navigation .sub-menu a',
 				'.sidebar-menu a:hover',
 			],
 			[
