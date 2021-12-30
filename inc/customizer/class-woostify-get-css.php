@@ -1501,6 +1501,17 @@ class Woostify_Get_CSS {
 			background-color: ' . $mini_cart_bg . ';
 		}';
 
+		// Catalog Mode.
+		$catalog_mode_enabled = $options['catalog_mode'];
+		$hide_variations      = $options['hide_variations'];
+		if ( $catalog_mode_enabled ) {
+			$hide_classes = 'form.cart button.single_add_to_cart_button, form.cart .quantity';
+			if ( $hide_variations ) {
+				$hide_classes .= ', table.variations, form.variations_form, .single_variation_wrap .variations_button';
+			}
+			$styles .= $hide_classes . '{ display: none !important; }';
+		}
+
 		$this->css = apply_filters( 'woostify_customizer_css', $styles );
 		$this->css = $this->minimize_dynamic_css();
 

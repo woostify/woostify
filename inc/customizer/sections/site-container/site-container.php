@@ -9,8 +9,7 @@
 $defaults = woostify_options();
 
 // background color.
-$wp_customize->get_setting( 'background_color' )->default           = $defaults['background_color'];
-$wp_customize->get_setting( 'background_color' )->sanitize_callback = 'woostify_sanitize_rgba_color';
+$wp_customize->get_setting( 'background_color' )->default = $defaults['background_color'];
 $wp_customize->remove_control( 'background_color' );
 
 $wp_customize->add_control(
@@ -18,13 +17,15 @@ $wp_customize->add_control(
 		$wp_customize,
 		'background_color',
 		array(
-			'label'    => __( 'Background Color', 'woostify' ),
-			'section'  => 'background_image',
-			'settings' => array(
+			'label'          => __( 'Background Color', 'woostify' ),
+			'section'        => 'background_image',
+			'settings'       => array(
 				'background_color',
 			),
-			'priority' => 5,
-			'prefix'   => '',
+			'color_format'   => 'hex',
+			'enable_opacity' => false,
+			'priority'       => 5,
+			'prefix'         => '',
 		)
 	)
 );

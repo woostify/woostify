@@ -359,8 +359,8 @@ document.addEventListener(
 					if ( 1 >= ( data[i].length - 1 ) ) {
 						thumbnails = '';
 						for ( var x = 1, y = data[i].length; x < y; x++ ) {
-							var size    = data[i][x].full_src_w + 'x' + data[i][x].full_src_h;
-							images     += createImages( data[i][x].full_src, data[i][x].src, size );
+							var size = data[i][x].full_src_w + 'x' + data[i][x].full_src_h;
+							images  += createImages( data[i][x].full_src, data[i][x].src, size );
 						}
 					} else {
 						for ( var x = 1, y = data[i].length; x < y; x++ ) {
@@ -462,7 +462,6 @@ document.addEventListener(
 				initPhotoSwipe( '#product-images' );
 			}
 
-
 			setTimeout(
 				function() {
 					window.dispatchEvent( new Event( 'resize' ) );
@@ -529,6 +528,13 @@ document.addEventListener(
 			'load',
 			function() {
 				woostifyStickySummary();
+
+				setTimeout(
+					function() {
+						window.dispatchEvent( new Event( 'resize' ) );
+					},
+					200
+				);
 			}
 		);
 
