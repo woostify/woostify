@@ -387,7 +387,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 					<div class="message-icon"><?php Woostify_Icon::fetch_svg_icon( 'shopping-cart-2' ); ?></div>
 					<p class="message-text"><?php echo esc_html( $empty_msg ); ?></p>
 					<?php if ( $enable_button ) { ?>
-						<a class="button continue-shopping" href="<?php echo esc_url( get_permalink( woocommerce_get_page_id( 'shop' ) ) ); ?>"><?php esc_html_e( 'Continue Shopping', 'woostify' ); ?></a>
+						<a class="button continue-shopping" href="<?php echo esc_url( get_permalink( wc_get_page_id( 'shop' ) ) ); ?>"><?php esc_html_e( 'Continue Shopping', 'woostify' ); ?></a>
 					<?php } ?>
 				</div>
 			</div>
