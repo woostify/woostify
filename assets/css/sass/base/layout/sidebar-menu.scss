@@ -188,9 +188,11 @@
 			cursor: pointer;
 			width: 50%;
 			text-align: center;
+			line-height: 1;
 
 			a {
 				text-decoration: none;
+				display: inline-block;
 			}
 		}
 	}

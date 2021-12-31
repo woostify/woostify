@@ -4179,10 +4179,12 @@ article p:last-child {
   cursor: pointer;
   width: 50%;
   text-align: center;
+  line-height: 1;
 }
 
 .sidebar-menu .mobile-nav-tab li a {
   text-decoration: none;
+  display: inline-block;
 }
 
 .sidebar-menu .site-navigation {

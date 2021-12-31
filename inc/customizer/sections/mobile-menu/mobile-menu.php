@@ -220,15 +220,6 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_setting(
-	'woostify_setting[mobile_menu_tab_hover_color]',
-	array(
-		'default'           => $defaults['mobile_menu_tab_hover_color'],
-		'sanitize_callback' => 'woostify_sanitize_rgba_color',
-		'type'              => 'option',
-		'transport'         => 'postMessage',
-	)
-);
-$wp_customize->add_setting(
 	'woostify_setting[mobile_menu_tab_active_color]',
 	array(
 		'default'           => $defaults['mobile_menu_tab_active_color'],
@@ -246,12 +237,10 @@ $wp_customize->add_control(
 			'section'  => 'woostify_mobile_menu',
 			'settings' => array(
 				'woostify_setting[mobile_menu_tab_color]',
-				'woostify_setting[mobile_menu_tab_hover_color]',
 				'woostify_setting[mobile_menu_tab_active_color]',
 			),
 			'tooltips' => array(
 				'Normal',
-				'Hover',
 				'Active',
 			),
 			'tab'      => 'design',
@@ -264,15 +253,6 @@ $wp_customize->add_setting(
 	'woostify_setting[mobile_menu_tab_background]',
 	array(
 		'default'           => $defaults['mobile_menu_tab_background'],
-		'sanitize_callback' => 'woostify_sanitize_rgba_color',
-		'type'              => 'option',
-		'transport'         => 'postMessage',
-	)
-);
-$wp_customize->add_setting(
-	'woostify_setting[mobile_menu_tab_hover_background]',
-	array(
-		'default'           => $defaults['mobile_menu_tab_hover_background'],
 		'sanitize_callback' => 'woostify_sanitize_rgba_color',
 		'type'              => 'option',
 		'transport'         => 'postMessage',
@@ -296,13 +276,86 @@ $wp_customize->add_control(
 			'section'  => 'woostify_mobile_menu',
 			'settings' => array(
 				'woostify_setting[mobile_menu_tab_background]',
-				'woostify_setting[mobile_menu_tab_hover_background]',
 				'woostify_setting[mobile_menu_tab_active_background]',
 			),
 			'tooltips' => array(
 				'Normal',
-				'Hover',
 				'Active',
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Tab padding.
+$wp_customize->add_setting(
+	'woostify_setting[mobile_menu_tab_padding]',
+	array(
+		'default'           => $defaults['mobile_menu_tab_padding'],
+		'type'              => 'option',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Group_Control(
+		$wp_customize,
+		'woostify_setting[mobile_menu_tab_padding]',
+		array(
+			'label'          => __( 'Tab Padding', 'woostify' ),
+			'section'        => 'woostify_mobile_menu',
+			'settings'       => array(
+				'desktop' => 'woostify_setting[mobile_menu_tab_padding]',
+			),
+			'choices'        => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_mobile_menu_tab_padding_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_mobile_menu_tab_padding_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+			'inputs_label'   => array(
+				__( 'Top', 'woostify' ),
+				__( 'Right', 'woostify' ),
+				__( 'Bottom', 'woostify' ),
+				__( 'Left', 'woostify' ),
+			),
+			'tab'            => 'design',
+			'negative_value' => false,
+		)
+	)
+);
+
+// Spacing bottom.
+$wp_customize->add_setting(
+	'woostify_setting[mobile_menu_nav_tab_spacing_bottom]',
+	array(
+		'default'           => $defaults['mobile_menu_nav_tab_spacing_bottom'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[mobile_menu_nav_tab_spacing_bottom]',
+		array(
+			'label'    => __( 'Nav Tab Spacing Bottom', 'woostify' ),
+			'section'  => 'woostify_mobile_menu',
+			'settings' => array(
+				'desktop' => 'woostify_setting[mobile_menu_nav_tab_spacing_bottom]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_mobile_menu_nav_tab_spacing_bottom_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_mobile_menu_nav_tab_spacing_bottom_max_step', 100 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
 			),
 			'tab'      => 'design',
 		)

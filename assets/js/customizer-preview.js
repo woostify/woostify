@@ -1060,16 +1060,13 @@ document.addEventListener(
 		woostify_color_group_live_update(
 			[
 				'mobile_menu_tab_background',
-				'mobile_menu_tab_hover_background',
 				'mobile_menu_tab_active_background',
 			],
 			[
 				'.sidebar-menu .mobile-tab-title',
-				'.sidebar-menu .mobile-tab-title:hover',
 				'.sidebar-menu .mobile-tab-title.active',
 			],
 			[
-				'background',
 				'background',
 				'background',
 			],
@@ -1078,19 +1075,35 @@ document.addEventListener(
 		woostify_color_group_live_update(
 			[
 				'mobile_menu_tab_color',
-				'mobile_menu_tab_hover_color',
 				'mobile_menu_tab_active_color',
 			],
 			[
 				'.sidebar-menu .mobile-tab-title a',
-				'.sidebar-menu .mobile-tab-title:hover a',
 				'.sidebar-menu .mobile-tab-title.active a',
 			],
 			[
 				'color',
 				'color',
-				'color',
 			],
 		)
+		// Tab padding.
+		woostify_spacing_live_update(
+			[
+				'mobile_menu_tab_padding',
+			],
+			'.sidebar-menu .mobile-tab-title',
+			'padding',
+			'px',
+		)
+		// Nav tab spacing bottom.
+		woostify_spacing_live_update(
+			[
+				'mobile_menu_nav_tab_spacing_bottom',
+			],
+			'.sidebar-menu .mobile-nav-tab',
+			'margin-bottom',
+			'px',
+		)
+
 	},
 )

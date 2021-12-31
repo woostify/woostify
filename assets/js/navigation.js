@@ -33,12 +33,17 @@ function mobileMenuTab() {
 				for ( var i = 0, j = tabs.length; i < j; i++ ) {
 					tabs[i].classList.remove( 'active' );
 				}
-				for ( var i = 0, j = menus.length; i < j; i++ ) {
-					menus[i].classList.remove( 'active' );
-				}
-
 				tab.classList.add( 'active' );
-				menus[tabIndex].classList.add( 'active' );
+
+				menus.forEach(
+					function( menu, menuIndex ) {
+						if ( tabIndex === menuIndex ) {
+							menu.classList.add( 'active' );
+						} else {
+							menu.classList.remove( 'active' );
+						}
+					}
+				)
 			}
 		}
 	)

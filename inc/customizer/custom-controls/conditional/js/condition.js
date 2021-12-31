@@ -644,6 +644,8 @@
 						'woostify_setting[mobile_menu_primary_menu_tab_title]',
 						'woostify_setting[mobile_menu_tab_background]',
 						'woostify_setting[mobile_menu_tab_color]',
+						'woostify_setting[mobile_menu_tab_padding]',
+						'woostify_setting[mobile_menu_nav_tab_spacing_bottom]',
 					]
 				)
 

@@ -621,12 +621,11 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'mobile_menu_text_color'                   => '#000',
 				'mobile_menu_text_hover_color'             => '#000',
 				'mobile_menu_tab_background'               => '',
-				'mobile_menu_tab_hover_background'         => '',
-				'mobile_menu_tab_active_background'        => '',
-				'mobile_menu_text_hover_color'             => '#000',
+				'mobile_menu_tab_active_background'        => '#f7f7f7',
 				'mobile_menu_tab_color'                    => '',
-				'mobile_menu_tab_hover_color'              => '',
 				'mobile_menu_tab_active_color'             => '',
+				'mobile_menu_tab_padding'                  => '10 10 10 10',
+				'mobile_menu_nav_tab_spacing_bottom'       => 0,
 			);
 
 			return apply_filters( 'woostify_setting_default_values', $args );

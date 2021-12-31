@@ -1241,11 +1241,11 @@ class Woostify_Get_CSS {
 		$sidebar_text_color                  = $options['mobile_menu_text_color'];
 		$sidebar_text_hover_color            = $options['mobile_menu_text_hover_color'];
 		$sidebar_tab_background_color        = $options['mobile_menu_tab_background'];
-		$sidebar_tab_hover_background_color  = $options['mobile_menu_tab_hover_background'];
 		$sidebar_tab_active_background_color = $options['mobile_menu_tab_active_background'];
 		$sidebar_tab_color                   = $options['mobile_menu_tab_color'];
-		$sidebar_tab_hover_color             = $options['mobile_menu_tab_hover_color'];
 		$sidebar_tab_active_color            = $options['mobile_menu_tab_active_color'];
+		$tab_padding                         = $options['mobile_menu_tab_padding'];
+		$nav_tab_spacing_bottom              = $options['mobile_menu_nav_tab_spacing_bottom'];
 
 		$styles .= '
 		.sidebar-menu {
@@ -1258,20 +1258,18 @@ class Woostify_Get_CSS {
 		.sidebar-menu a:hover {
 			color: ' . $sidebar_text_hover_color . ';
 		}
+		.sidebar-menu .mobile-nav-tab {
+			margin-bottom: ' . $nav_tab_spacing_bottom . 'px;
+		}
 		.sidebar-menu .mobile-tab-title {
 			background: ' . $sidebar_tab_background_color . ';
-		}
-		.sidebar-menu .mobile-tab-title:hover {
-			background: ' . $sidebar_tab_hover_background_color . ';
+			' . esc_attr( woostify_render_css_spacing( $tab_padding, 'padding' ) ) . '
 		}
 		.sidebar-menu .mobile-tab-title.active {
 			background: ' . $sidebar_tab_active_background_color . ';
 		}
 		.sidebar-menu .mobile-tab-title a {
 			color: ' . $sidebar_tab_color . ';
-		}
-		.sidebar-menu .mobile-tab-title:hover a {
-			color: ' . $sidebar_tab_hover_color . ';
 		}
 		.sidebar-menu .mobile-tab-title.active a {
 			color: ' . $sidebar_tab_active_color . ';

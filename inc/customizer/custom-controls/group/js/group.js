@@ -12,18 +12,16 @@ wp.customize.controlConstructor['woostify-group'] = wp.customize.Control.extend(
 			var control       = this;
 			var controlClass  = '.customize-control-woostify-group',
 				footerActions = jQuery( '#customize-footer-actions' ),
-				linkValues    = true,
-			resetClicked      = false;
+				resetClicked  = false;
 
+			jQuery( controlClass + ' .woostify-link-value-together-btn' ).unbind( 'click' );
 			jQuery( controlClass + ' .woostify-link-value-together-btn' ).on(
 				'click',
-				function() {
+				function(e) {
 					if (jQuery( this ).hasClass( 'dashicons-admin-links' )) {
-						jQuery( this ).closest( '.woostify-group-fields-area' ).find( '.woostify-link-value-together-btn' ).removeClass( 'dashicons-admin-links' ).addClass( 'dashicons-editor-unlink' );
-						linkValues = false;
+						jQuery( this ).closest( '.woostify-group-fields-area' ).find( '.woostify-link-value-together-btn' ).removeClass( 'dashicons-admin-links linked' ).addClass( 'dashicons-editor-unlink unlinked' );
 					} else {
-						jQuery( this ).closest( '.woostify-group-fields-area' ).find( '.woostify-link-value-together-btn' ).removeClass( 'dashicons-editor-unlink' ).addClass( 'dashicons-admin-links' );
-						linkValues = true;
+						jQuery( this ).closest( '.woostify-group-fields-area' ).find( '.woostify-link-value-together-btn' ).removeClass( 'dashicons-editor-unlink unlinked' ).addClass( 'dashicons-admin-links linked' );
 					}
 				}
 			)
@@ -120,11 +118,13 @@ wp.customize.controlConstructor['woostify-group'] = wp.customize.Control.extend(
 				'input change',
 				'.woostify-group-input',
 				function() {
-					var field_container = jQuery( this ).closest( '.woostify-group-fields-area' ).children( 'div:visible' );
-					var curr_device     = field_container.data( 'option' );
-					var value           = '';
-					var negative_value  = control.params.negative_value;
-					if (linkValues && false === resetClicked) {
+					var field_container   = jQuery( this ).closest( '.woostify-group-fields-area' ).children( 'div:visible' );
+					var curr_device       = field_container.data( 'option' );
+					var value             = '';
+					var negative_value    = control.params.negative_value;
+					var linked_values_btn = jQuery( this ).closest( '.woostify-group-container' ).find( '.woostify-link-value-together-btn' );
+
+					if ( linked_values_btn.hasClass( 'linked' ) && false === resetClicked) {
 						field_container.find( '.woostify-group-field input' ).val( jQuery( this ).val() )
 					}
 					field_container.find( '.woostify-group-field' ).each(
