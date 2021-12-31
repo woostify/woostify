@@ -728,11 +728,15 @@ var stickyOrderReview = function() {
 
 // Checkout page Layout 3 scripts.
 var checkoutOrder = function() {
-	var checkout_opt = document.querySelector( '.before-checkout' ),
-	spacer_orig      = checkout_opt.offsetHeight,
-	div_height       = spacer_orig,
-	show_login       = document.querySelector( '.showlogin' ),
-	sc_coupons_list  = document.querySelector( '#coupons_list' ); // coupon list of plugin Smart Coupon for WC
+	var checkout_opt = document.querySelector( '.before-checkout' );
+	if ( ! checkout_opt ) {
+		return;
+	}
+
+	var spacer_orig = checkout_opt.offsetHeight,
+	div_height      = spacer_orig,
+	show_login      = document.querySelector( '.showlogin' ),
+	sc_coupons_list = document.querySelector( '#coupons_list' ); // coupon list of plugin Smart Coupon for WC.
 
 	if ( sc_coupons_list ) {
 		document.arrive(
@@ -1061,7 +1065,7 @@ document.addEventListener(
 				'init_checkout updated_checkout payment_method_selected',
 				function( event, data  ) {
 					// Clear old notifications before displaying new ones.
-					jQuery( '.woostify-woocommerce-NoticeGroup' ).html('');
+					jQuery( '.woostify-woocommerce-NoticeGroup' ).html( '' );
 
 					jQuery( 'form.checkout' ).arrive(
 						'form.checkout_coupon',
