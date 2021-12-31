@@ -4970,6 +4970,14 @@ footer#colophon {
   display: none;
 }
 
+.adv-featured-product.adv-product-slider .slick-list {
+  overflow: hidden;
+}
+
+.adv-featured-product.adv-product-slider .slick-track {
+  display: flex;
+}
+
 /* Active filter */
 .widget_layered_nav_filters .chosen a:before {
   content: 'x';
