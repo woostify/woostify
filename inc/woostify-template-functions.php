@@ -2027,10 +2027,10 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			$sub_total = $woocommerce->cart->get_total();
 		}
 
-		$search_icon         = apply_filters( 'woostify_header_search_icon', 'search' );
-		$wishlist_icon       = apply_filters( 'woostify_header_wishlist_icon', 'heart' );
-		$my_account_icon     = apply_filters( 'woostify_header_my_account_icon', 'user' );
-		$shop_bag_icon       = apply_filters( 'woostify_header_shop_bag_icon', 'shopping-cart' );
+		$search_icon     = apply_filters( 'woostify_header_search_icon', 'search' );
+		$wishlist_icon   = apply_filters( 'woostify_header_wishlist_icon', 'heart' );
+		$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'user' );
+		$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'shopping-cart' );
 		?>
 
 		<div class="site-tools">
@@ -2065,10 +2065,11 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 
 				// My account icon.
 				if ( $options['header_account_icon'] ) {
-					$subbox = apply_filters( 'woostify_header_account_subbox', true );
+					$enabled_popup = ! is_user_logged_in() && ! is_checkout() && ! is_account_page() ? true : false;
+					$subbox        = apply_filters( 'woostify_header_account_subbox', true );
 					?>
 					<div class="tools-icon my-account">
-						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon">
+						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon" <?php echo $enabled_popup ? esc_html( 'data-open="#login-form-popup"' ) : ''; ?>>
 							<?php Woostify_Icon::fetch_svg_icon( $my_account_icon ); ?>
 						</a>
 
