@@ -375,7 +375,6 @@ class Woostify_Get_CSS {
 				.primary-navigation.primary-mobile-navigation + .primary-navigation{
 					display: none;
 				}
-
 				.has-header-layout-1 .wrap-toggle-sidebar-menu {
 					display: block;
 				}

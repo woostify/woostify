@@ -625,7 +625,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'mobile_menu_tab_color'                    => '',
 				'mobile_menu_tab_active_color'             => '',
 				'mobile_menu_tab_padding'                  => '10 10 10 10',
-				'mobile_menu_nav_tab_spacing_bottom'       => 0,
+				'mobile_menu_nav_tab_spacing_bottom'       => 15,
 			);
 
 			return apply_filters( 'woostify_setting_default_values', $args );
