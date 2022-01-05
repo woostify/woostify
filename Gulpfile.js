@@ -156,6 +156,7 @@ let _zip = ( done ) => {
 			'!./*.json',
 			'!./*.map',
 			'!./**/*.scss',
+			'!**.DS_Store',
 			'!./{assets/css/sass,assets/css/sass/**/*}',
 			'!./{assets/css/rtl,assets/css/rtl/**/*}',
 			'!./assets/css/admin/**/*.scss}',

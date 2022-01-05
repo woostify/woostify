@@ -125,18 +125,6 @@ if ( ! function_exists( 'woostify_product_navigation' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_remove_additional_information_tabs' ) ) {
-	/**
-	 * Remove additional informaltion
-	 *
-	 * @param      array $tabs The tabs.
-	 */
-	function woostify_remove_additional_information_tabs( $tabs ) {
-		unset( $tabs['additional_information'] );
-		return $tabs;
-	}
-}
-
 if ( ! function_exists( 'woostify_single_product_container_open' ) ) {
 	/**
 	 * Product container open

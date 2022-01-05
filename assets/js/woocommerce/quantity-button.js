@@ -76,10 +76,10 @@ function customQuantity() {
 							input.classList.remove( 'ajax-ready' );
 						};
 
-					if ( inputVal < 1 || isNaN( inputVal ) || ( parseInt( inputVal ) > maxInput ) ) {
+					if ( inputVal < 1 || isNaN( inputVal ) || ( maxInput > 0 && ( parseInt( inputVal ) > maxInput ) ) ) {
 						alert( woostify_woocommerce_general.qty_warning );
 						input.value = currInputVal
-						return false;
+						return;
 					}
 
 					// When quantity updated.
