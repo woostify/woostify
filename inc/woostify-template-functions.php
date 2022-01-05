@@ -2002,6 +2002,30 @@ if ( ! function_exists( 'woostify_get_wishlist_count' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_account_login_lightbox' ) ) {
+	/**
+	 * Popup account login
+	 */
+	function woostify_account_login_lightbox() {
+		$close_icon = apply_filters( 'woostify_dialog_account_close_icon', 'close' );
+		?>
+		<div id="woostify-login-form-popup" class="lightbox-content">
+			<div class="dialog-popup-inner">
+				<div class="dialog-popup-content">
+					<div class="woostify-login-form-popup-content">
+						<span class="dialog-account-close-icon">
+							<?php Woostify_Icon::fetch_svg_icon( $close_icon ); ?>
+						</span>
+						<?php echo wc_get_template( 'myaccount/form-login.php' ); // phpcs:ignore. ?>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_header_action' ) ) {
 	/**
 	 * Display header action
@@ -2069,7 +2093,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 					$subbox        = apply_filters( 'woostify_header_account_subbox', true );
 					?>
 					<div class="tools-icon my-account">
-						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon" <?php echo $enabled_popup ? esc_html( 'data-open="#login-form-popup"' ) : ''; ?>>
+						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon <?php echo $enabled_popup ? esc_attr( 'open-popup' ) : ''; ?>">
 							<?php Woostify_Icon::fetch_svg_icon( $my_account_icon ); ?>
 						</a>
 

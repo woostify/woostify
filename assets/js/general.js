@@ -75,70 +75,115 @@ function closeAll() {
 	}
 }
 
-// Dialog search form.
-function dialogSearch() {
-	var headerSearchIcon = document.getElementsByClassName( 'header-search-icon' ),
-		dialogSearchForm = document.querySelector( '.site-dialog-search' ),
-		searchField      = document.querySelector( '.site-dialog-search .search-field' ),
-		closeBtn         = document.querySelector( '.site-dialog-search .dialog-search-close-icon' );
+// Dialog Popup.
+function dialogPopup( targetClickClass, popupTarget, type ) {
+	var targetClickEl  = document.getElementsByClassName( targetClickClass ),
+		popupEl        = document.querySelector( popupTarget ),
+		popupInnerEl   = popupEl.querySelector( '.dialog-popup-inner' ),
+		popupContentEl = popupEl.querySelector( '.dialog-popup-content' ),
+		popupCloseBtn  = document.querySelector( popupTarget + ' .dialog-' + type + '-close-icon' ),
+		searchField;
 
-	if ( ! headerSearchIcon.length || ! dialogSearchForm || ! searchField || ! closeBtn ) {
-		return;
-	}
+	if ( 'search' === type ) {
+		searchField = document.querySelector( popupTarget + ' .search-field' );
 
-	// Disabled field suggestions.
-	searchField.setAttribute( 'autocomplete', 'off' );
-
-	// Field must not empty.
-	searchField.setAttribute( 'required', 'required' );
-
-	var dialogOpen = function() {
-		document.documentElement.classList.add( 'dialog-search-open' );
-		document.documentElement.classList.remove( 'dialog-search-close' );
-
-		if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
-			searchField.focus();
+		if ( ! searchField ) {
+			return;
 		}
 	}
 
-	var dialogClose = function() {
-		document.documentElement.classList.add( 'dialog-search-close' );
-		document.documentElement.classList.remove( 'dialog-search-open' );
+	if ( ! targetClickEl.length || ! popupEl || ! popupCloseBtn ) {
+		return;
 	}
 
-	for ( var i = 0, j = headerSearchIcon.length; i < j; i++ ) {
-		headerSearchIcon[i].addEventListener(
+	if ( 'search' === type ) {
+		// Disabled field suggestions.
+		searchField.setAttribute( 'autocomplete', 'off' );
+
+		// Field must not empty.
+		searchField.setAttribute( 'required', 'required' );
+	}
+
+	var popupOpen = function() {
+		document.documentElement.classList.add( 'dialog-' + type + '-open' );
+		document.documentElement.classList.remove( 'dialog-' + type + '-close' );
+		if ( 'search' === type ) {
+			if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
+				searchField.focus();
+			}
+		}
+	}
+
+	var popupClose = function() {
+		document.documentElement.classList.add( 'dialog-' + type + '-close' );
+		document.documentElement.classList.remove( 'dialog-' + type + '-open' );
+	}
+
+	for ( var i = 0, j = targetClickEl.length; i < j; i++ ) {
+		if ( 'account' === type ) {
+			if ( ! targetClickEl[i].classList.contains( 'open-popup' ) ) {
+				return;
+			}
+		}
+		targetClickEl[i].addEventListener(
 			'click',
-			function() {
-				dialogOpen();
+			function( e ) {
+				e.preventDefault();
+				popupOpen();
 
 				// Use ESC key.
 				document.body.addEventListener(
 					'keyup',
 					function( e ) {
 						if ( 27 === e.keyCode ) {
-							dialogClose();
+							popupClose();
 						}
 					}
 				);
 
+				if ( popupInnerEl ) {
+					popupInnerEl.addEventListener(
+						'click',
+						function( e ) {
+							if ( this !== e.target ) {
+								return;
+							}
+
+							popupClose();
+						}
+					);
+				}
+
+				if ( popupContentEl ) {
+					popupContentEl.addEventListener(
+						'click',
+						function( e ) {
+							if ( this !== e.target ) {
+								return;
+							}
+
+							popupClose();
+						}
+					);
+				}
+
 				// Use dialog overlay.
-				dialogSearchForm.addEventListener(
+				popupEl.addEventListener(
 					'click',
 					function( e ) {
 						if ( this !== e.target ) {
 							return;
 						}
 
-						dialogClose();
+						popupClose();
 					}
 				);
 
 				// Use closr button.
-				closeBtn.addEventListener(
+				popupCloseBtn.addEventListener(
 					'click',
 					function() {
-						dialogClose();
+						popupClose();
 					}
 				);
 			}
@@ -278,7 +323,8 @@ function woostifyRemoveClassPrefix() {
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
-		dialogSearch();
+		dialogPopup( 'my-account-icon', '#woostify-login-form-popup', 'account' );
+		dialogPopup( 'header-search-icon', '.site-dialog-search', 'search' );
 		scrollAction( '#scroll-to-top', 200 );
 		toTopButton();
 	}
