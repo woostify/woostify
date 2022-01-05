@@ -2007,7 +2007,12 @@ if ( ! function_exists( 'woostify_account_login_lightbox' ) ) {
 	 * Popup account login
 	 */
 	function woostify_account_login_lightbox() {
-		$close_icon = apply_filters( 'woostify_dialog_account_close_icon', 'close' );
+		$options       = woostify_options( false );
+		$enabled_popup = ! is_user_logged_in() && ! is_checkout() && ! is_account_page() && $options['header_shop_enable_login_popup'] ? true : false;
+		$close_icon    = apply_filters( 'woostify_dialog_account_close_icon', 'close' );
+		if ( ! $enabled_popup ) {
+			return;
+		}
 		?>
 		<div id="woostify-login-form-popup" class="lightbox-content">
 			<div class="dialog-popup-inner">
@@ -2019,7 +2024,6 @@ if ( ! function_exists( 'woostify_account_login_lightbox' ) ) {
 						<?php echo wc_get_template( 'myaccount/form-login.php' ); // phpcs:ignore. ?>
 					</div>
 				</div>
-
 			</div>
 		</div>
 		<?php
@@ -2089,7 +2093,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 
 				// My account icon.
 				if ( $options['header_account_icon'] ) {
-					$enabled_popup = ! is_user_logged_in() && ! is_checkout() && ! is_account_page() ? true : false;
+					$enabled_popup = ! is_user_logged_in() && ! is_checkout() && ! is_account_page() && $options['header_shop_enable_login_popup'] ? true : false;
 					$subbox        = apply_filters( 'woostify_header_account_subbox', true );
 					?>
 					<div class="tools-icon my-account">

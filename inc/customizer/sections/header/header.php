@@ -370,6 +370,30 @@ if ( class_exists( 'woocommerce' ) ) {
 				'label'    => __( 'Hide Cart Subtotal When Zero', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_shop_hide_zero_value_cart_subtotal]',
+				'tab'      => 'general',
+			)
+		)
+	);
+
+	// Login popup.
+	$wp_customize->add_setting(
+		'woostify_setting[header_shop_enable_login_popup]',
+		array(
+			'type'              => 'option',
+			'default'           => $defaults['header_shop_enable_login_popup'],
+			'sanitize_callback' => 'woostify_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		new Woostify_Switch_Control(
+			$wp_customize,
+			'woostify_setting[header_shop_enable_login_popup]',
+			array(
+				'priority' => 200,
+				'label'    => __( 'Enable Login Popup', 'woostify' ),
+				'section'  => 'woostify_header',
+				'settings' => 'woostify_setting[header_shop_enable_login_popup]',
+				'tab'      => 'general',
 			)
 		)
 	);

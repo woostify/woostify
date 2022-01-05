@@ -364,6 +364,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'header_shop_cart_price'                   => false,
 				'header_shop_hide_zero_value_cart_count'   => false,
 				'header_shop_hide_zero_value_cart_subtotal' => false,
+				'header_shop_enable_login_popup'           => false,
 				// Header transparent.
 				'header_transparent'                       => false,
 				'header_transparent_enable_on'             => 'all-devices',
