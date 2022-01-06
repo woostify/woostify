@@ -1662,7 +1662,7 @@ if ( ! function_exists( 'woostify_output_product_data_tabs' ) ) {
 				<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
 					<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
 						<?php
-						if ( isset( $product_tab['callback'] ) && ! woostify_is_elementor_editor() ) {
+						if ( isset( $product_tab['callback'] ) ) {
 							call_user_func( $product_tab['callback'], $key, $product_tab );
 						}
 						?>
@@ -1700,7 +1700,7 @@ if ( ! function_exists( 'woostify_output_product_data_tabs_accordion' ) ) {
 							<div class="woostify-tab-inner">
 								<div class="woostify-tab-scroll-content">
 								<?php
-								if ( isset( $product_tab['callback'] ) && ! woostify_is_elementor_editor() ) {
+								if ( isset( $product_tab['callback'] ) ) {
 									call_user_func( $product_tab['callback'], $key, $product_tab );
 								}
 								?>
@@ -1760,6 +1760,9 @@ if ( ! function_exists( 'woostify_custom_product_data_tabs' ) ) {
 								'priority' => $priority,
 								'callback' => 'woocommerce_product_description_tab',
 							);
+							if ( woostify_is_elementor_editor() ) {
+								$new_tabs['description']['callback'] = 'woostify_custom_wc_product_description_tab';
+							}
 							break;
 						case 'additional_information':
 							global $product, $post;
@@ -1805,5 +1808,26 @@ if ( ! function_exists( 'woostify_custom_tab_callback' ) ) {
 		$curr_index  = explode( '_', $key )[2];
 
 		echo do_shortcode( $custom_tabs[ $curr_index ]->content );
+	}
+}
+
+if ( ! function_exists( 'woostify_custom_wc_product_description_tab' ) ) {
+	/**
+	 * Custom Callback for Description tab
+	 *
+	 * @param string $key Tab key.
+	 * @param array  $product_tab Tab data.
+	 */
+	function woostify_custom_wc_product_description_tab( $key, $product_tab ) {
+		if ( woostify_is_elementor_editor() ) {
+			$product_id = \Woostify_Woo_Builder::init()->get_product_id();
+			$product    = wc_get_product( $product_id );
+		}
+
+		if ( empty( $product ) ) {
+			return;
+		}
+
+		echo get_the_content(); // phpcs:ignore.
 	}
 }
