@@ -2017,7 +2017,7 @@ if ( ! function_exists( 'woostify_account_login_lightbox' ) ) {
 		<div id="woostify-login-form-popup" class="lightbox-content">
 			<div class="dialog-popup-inner">
 				<div class="dialog-popup-content">
-					<div class="woostify-login-form-popup-content">
+					<div class="woostify-login-form-popup-content woocommerce-account">
 						<span class="dialog-account-close-icon">
 							<?php Woostify_Icon::fetch_svg_icon( $close_icon ); ?>
 						</span>

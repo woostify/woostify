@@ -74,11 +74,14 @@
 			flex-wrap: wrap;
 			margin-left: -30px;
 			[class^="u-column"] {
-				width: 50%;
+				width: 100%;
 				padding-left: 30px;
+				margin: 0;
+				float: none;
+				max-width: 50%;
 
 				@media (max-width: $screen-sm - 1) {
-					width: 100%;
+					max-width: 100%;
 				}
 
 				h2 {
@@ -89,10 +92,6 @@
 
 		.woocommerce-form {
 			&.woocommerce-form-login {
-				margin: 0;
-				padding: 0;
-				border: none;
-				max-width: unset;
 
 				.woocommerce-form-login__rememberme {
 					text-align: left;

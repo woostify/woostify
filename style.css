@@ -3546,25 +3546,21 @@ article p:last-child {
 }
 
 #woostify-login-form-popup .woostify-login-form-popup-content .u-columns [class^="u-column"] {
-  width: 50%;
+  width: 100%;
   padding-left: 30px;
+  margin: 0;
+  float: none;
+  max-width: 50%;
 }
 
 @media (max-width: 767px) {
   #woostify-login-form-popup .woostify-login-form-popup-content .u-columns [class^="u-column"] {
-    width: 100%;
+    max-width: 100%;
   }
 }
 
 #woostify-login-form-popup .woostify-login-form-popup-content .u-columns [class^="u-column"] h2 {
   margin-top: 0;
-}
-
-#woostify-login-form-popup .woostify-login-form-popup-content .woocommerce-form.woocommerce-form-login {
-  margin: 0;
-  padding: 0;
-  border: none;
-  max-width: unset;
 }
 
 #woostify-login-form-popup .woostify-login-form-popup-content .woocommerce-form.woocommerce-form-login .woocommerce-form-login__rememberme {
