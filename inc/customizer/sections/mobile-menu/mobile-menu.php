@@ -145,6 +145,31 @@ $wp_customize->add_control(
 
 // Design controls.
 
+// Icon Bar Color.
+$wp_customize->add_setting(
+	'woostify_setting[mobile_menu_icon_bar_color]',
+	array(
+		'default'           => $defaults['mobile_menu_icon_bar_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[mobile_menu_icon_bar_color]',
+		array(
+			'label'    => __( 'Icon Bar Color', 'woostify' ),
+			'section'  => 'woostify_mobile_menu',
+			'settings' => array(
+				'woostify_setting[mobile_menu_icon_bar_color]',
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
 // Background.
 $wp_customize->add_setting(
 	'woostify_setting[mobile_menu_background]',

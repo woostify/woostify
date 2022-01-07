@@ -617,6 +617,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'header_show_categories_menu_on_mobile'    => false,
 				'mobile_menu_primary_menu_tab_title'       => 'Menu',
 				'mobile_menu_categories_menu_tab_title'    => 'Categories',
+				'mobile_menu_icon_bar_color'               => '',
 				'mobile_menu_background'                   => '#fff',
 				'mobile_menu_text_color'                   => '#000',
 				'mobile_menu_text_hover_color'             => '#000',

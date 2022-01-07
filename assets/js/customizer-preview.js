@@ -1039,6 +1039,8 @@ document.addEventListener(
 		woostify_update_element_class( 'mobile_menu_hide_search_field', '.sidebar-menu .site-search', 'hide' )
 		// Hide login/register link.
 		woostify_update_element_class( 'mobile_menu_hide_login', '.sidebar-menu .sidebar-menu-bottom', 'hide' )
+		// Icon Bar Color.
+		woostify_colors_live_update( 'mobile_menu_icon_bar_color', '.toggle-sidebar-menu-btn.woostify-icon-bar span', 'background-color' );
 		// Background.
 		woostify_colors_live_update( 'mobile_menu_background', '.sidebar-menu', 'background-color' );
 		// Text color.
@@ -1063,8 +1065,8 @@ document.addEventListener(
 				'mobile_menu_tab_active_background',
 			],
 			[
-				'.sidebar-menu .mobile-tab-title',
-				'.sidebar-menu .mobile-tab-title.active',
+				'.sidebar-menu .mobile-tab-title, .woostify-nav-menu-inner .mobile-tab-title',
+				'.sidebar-menu .mobile-tab-title.active, .woostify-nav-menu-inner .mobile-tab-title.active',
 			],
 			[
 				'background',
@@ -1078,8 +1080,8 @@ document.addEventListener(
 				'mobile_menu_tab_active_color',
 			],
 			[
-				'.sidebar-menu .mobile-tab-title a',
-				'.sidebar-menu .mobile-tab-title.active a',
+				'.sidebar-menu .mobile-tab-title a, .woostify-nav-menu-inner .mobile-tab-title a',
+				'.sidebar-menu .mobile-tab-title.active a, .woostify-nav-menu-inner .mobile-tab-title.active a',
 			],
 			[
 				'color',
@@ -1091,7 +1093,7 @@ document.addEventListener(
 			[
 				'mobile_menu_tab_padding',
 			],
-			'.sidebar-menu .mobile-tab-title',
+			'.sidebar-menu .mobile-tab-title, .woostify-nav-menu-inner .mobile-tab-title',
 			'padding',
 			'px',
 		)
@@ -1100,7 +1102,7 @@ document.addEventListener(
 			[
 				'mobile_menu_nav_tab_spacing_bottom',
 			],
-			'.sidebar-menu .mobile-nav-tab',
+			'.sidebar-menu .mobile-nav-tab, .woostify-nav-menu-inner .mobile-nav-tab',
 			'margin-bottom',
 			'px',
 		)

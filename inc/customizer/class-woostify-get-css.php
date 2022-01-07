@@ -1236,17 +1236,21 @@ class Woostify_Get_CSS {
 		';
 
 		// MOBILE MENU.
+		$tab_padding                         = $options['mobile_menu_tab_padding'];
+		$icon_bar_color                      = $options['mobile_menu_icon_bar_color'];
+		$sidebar_tab_color                   = $options['mobile_menu_tab_color'];
 		$sidebar_background                  = $options['mobile_menu_background'];
 		$sidebar_text_color                  = $options['mobile_menu_text_color'];
+		$nav_tab_spacing_bottom              = $options['mobile_menu_nav_tab_spacing_bottom'];
 		$sidebar_text_hover_color            = $options['mobile_menu_text_hover_color'];
+		$sidebar_tab_active_color            = $options['mobile_menu_tab_active_color'];
 		$sidebar_tab_background_color        = $options['mobile_menu_tab_background'];
 		$sidebar_tab_active_background_color = $options['mobile_menu_tab_active_background'];
-		$sidebar_tab_color                   = $options['mobile_menu_tab_color'];
-		$sidebar_tab_active_color            = $options['mobile_menu_tab_active_color'];
-		$tab_padding                         = $options['mobile_menu_tab_padding'];
-		$nav_tab_spacing_bottom              = $options['mobile_menu_nav_tab_spacing_bottom'];
 
 		$styles .= '
+		.toggle-sidebar-menu-btn.woostify-icon-bar span {
+			background-color: ' . $icon_bar_color . ';
+		}
 		.sidebar-menu {
 			background-color: ' . $sidebar_background . ';
 			color: ' . $sidebar_text_color . ';
@@ -1257,20 +1261,20 @@ class Woostify_Get_CSS {
 		.sidebar-menu a:hover {
 			color: ' . $sidebar_text_hover_color . ';
 		}
-		.sidebar-menu .mobile-nav-tab {
+		.sidebar-menu .mobile-nav-tab, .woostify-nav-menu-inner .mobile-nav-tab {
 			margin-bottom: ' . $nav_tab_spacing_bottom . 'px;
 		}
-		.sidebar-menu .mobile-tab-title {
+		.sidebar-menu .mobile-tab-title, .woostify-nav-menu-inner .mobile-tab-title {
 			background: ' . $sidebar_tab_background_color . ';
 			' . esc_attr( woostify_render_css_spacing( $tab_padding, 'padding' ) ) . '
 		}
-		.sidebar-menu .mobile-tab-title.active {
+		.sidebar-menu .mobile-tab-title.active, .woostify-nav-menu-inner .mobile-tab-title.active {
 			background: ' . $sidebar_tab_active_background_color . ';
 		}
-		.sidebar-menu .mobile-tab-title a {
+		.sidebar-menu .mobile-tab-title a, .woostify-nav-menu-inner .mobile-tab-title a {
 			color: ' . $sidebar_tab_color . ';
 		}
-		.sidebar-menu .mobile-tab-title.active a {
+		.sidebar-menu .mobile-tab-title.active a, .woostify-nav-menu-inner .mobile-tab-title.active a {
 			color: ' . $sidebar_tab_active_color . ';
 		}
 		';
