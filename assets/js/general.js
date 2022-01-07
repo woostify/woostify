@@ -77,12 +77,10 @@ function closeAll() {
 
 // Dialog Popup.
 function dialogPopup( targetClickClass, popupTarget, type ) {
-	var targetClickEl  = document.getElementsByClassName( targetClickClass ),
-		popupEl        = document.querySelector( popupTarget ),
-		popupInnerEl   = popupEl.querySelector( '.dialog-popup-inner' ),
-		popupContentEl = popupEl.querySelector( '.dialog-popup-content' ),
-		popupCloseBtn  = document.querySelector( popupTarget + ' .dialog-' + type + '-close-icon' ),
-		searchField;
+	var targetClickEl = document.getElementsByClassName( targetClickClass ),
+		popupEl       = document.querySelector( popupTarget ),
+		popupCloseBtn = document.querySelector( popupTarget + ' .dialog-' + type + '-close-icon' ),
+		searchField,popupInnerEl,popupContentEl;
 
 	if ( 'search' === type ) {
 		searchField = document.querySelector( popupTarget + ' .search-field' );
@@ -102,6 +100,11 @@ function dialogPopup( targetClickClass, popupTarget, type ) {
 
 		// Field must not empty.
 		searchField.setAttribute( 'required', 'required' );
+	}
+
+	if ( 'account' === type ) {
+		popupInnerEl   = popupEl.querySelector( '.dialog-popup-inner' );
+		popupContentEl = popupEl.querySelector( '.dialog-popup-content' );
 	}
 
 	var popupOpen = function() {
@@ -324,6 +327,7 @@ document.addEventListener(
 	'DOMContentLoaded',
 	function() {
 		dialogPopup( 'my-account-icon', '#woostify-login-form-popup', 'account' );
+		dialogPopup( 'my-account-login-link', '#woostify-login-form-popup', 'account' );
 		dialogPopup( 'header-search-icon', '.site-dialog-search', 'search' );
 		scrollAction( '#scroll-to-top', 200 );
 		toTopButton();

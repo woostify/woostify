@@ -578,6 +578,7 @@ if ( ! function_exists( 'woostify_logged_in_menu' ) ) {
 	 * when logged in or sign out
 	 */
 	function woostify_logged_in_menu() {
+		$options = woostify_options( false );
 		if ( woostify_is_woocommerce_activated() ) {
 			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
 			$logout_url      = wp_logout_url( apply_filters( 'woostify_logout_redirect', get_permalink( $page_account_id ) ) );
@@ -590,8 +591,12 @@ if ( ! function_exists( 'woostify_logged_in_menu' ) ) {
 		}
 
 		if ( ! is_user_logged_in() ) {
+			$enabled_popup    = ! is_user_logged_in() && ! is_checkout() && ! is_account_page() && $options['header_shop_enable_login_popup'] ? true : false;
+			$extra_classes    = $enabled_popup ? 'open-popup' : '';
+			$login_reg_button = '<a class="my-account-login-link ' . $extra_classes . '" href="' . get_permalink( $page_account_id ) . '" class="text-center">' . esc_html__( 'Login / Register', 'woostify' ) . '</a>';
+
 			do_action( 'woostify_header_account_subbox_start_default' );
-			$login_reg_button = '<a href="' . get_permalink( $page_account_id ) . '" class="text-center">' . esc_html__( 'Login / Register', 'woostify' ) . '</a>';
+
 			?>
 			<li class="my-account-login"><?php echo wp_kses_post( apply_filters( 'woostify_header_account_subbox_login_register_link', $login_reg_button ) ); ?></li>
 			<?php
