@@ -160,7 +160,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[mobile_menu_icon_bar_color]',
 		array(
-			'label'    => __( 'Icon Bar Color', 'woostify' ),
+			'label'    => __( 'Hamburger Icon', 'woostify' ),
 			'section'  => 'woostify_mobile_menu',
 			'settings' => array(
 				'woostify_setting[mobile_menu_icon_bar_color]',
