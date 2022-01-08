@@ -636,6 +636,7 @@ document.addEventListener(
 				'1px solid {value}',
 			],
 		)
+
 		// Link / Accent Color.
 		woostify_color_group_live_update_2(
 			'accent_color',
@@ -646,6 +647,24 @@ document.addEventListener(
 				'.review-information-link,' +
 				'a',
 				'.woostify-icon-bar span',
+			],
+			[
+				'color',
+				'background-color',
+			],
+			'',
+		)
+
+		// Link Hover Color.
+		woostify_color_group_live_update_2(
+			'link_hover_color',
+			[
+				'.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout):hover,' +
+				'.product-loop-meta .button:hover,' +
+				'.multi-step-checkout-button[data-action="back"]:hover,' +
+				'.review-information-link:hover,' +
+				'a:hover',
+				'.woostify-icon-bar span:hover',
 			],
 			[
 				'color',
