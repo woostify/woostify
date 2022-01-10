@@ -13,7 +13,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 	view_more_btn_wrap = document.querySelector( '.woostify-view-more' )
 
 	if ( null == container ) {
-		container = document.querySelector('.site-content .products');
+		container = document.querySelector( '.site-content .products' );
 	}
 
 	if ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) {
@@ -417,7 +417,7 @@ var woostifyQuantityMiniCart = function() {
 					var inputVal = Number( input.value || 0 );
 
 					// Valid quantity.
-					if ( inputVal < 1 || isNaN( inputVal ) || ( parseInt( inputVal ) > max ) ) {
+					if ( inputVal < 1 || isNaN( inputVal ) || ( max > 0 && ( parseInt( inputVal ) > max ) ) ) {
 						alert( woostify_woocommerce_general.qty_warning );
 						input.value = currInputVal;
 						return;
@@ -728,12 +728,33 @@ var stickyOrderReview = function() {
 
 // Checkout page Layout 3 scripts.
 var checkoutOrder = function() {
-	var checkout_opt = document.querySelector( '.before-checkout' ),
-	spacer_orig      = checkout_opt.offsetHeight,
-	div_height       = spacer_orig,
-	show_login       = document.querySelector( '.showlogin' );
+	var checkout_opt = document.querySelector( '.before-checkout' );
+	if ( ! checkout_opt ) {
+		return;
+	}
 
-	set_heights();
+	var spacer_orig = checkout_opt.offsetHeight,
+	div_height      = spacer_orig,
+	show_login      = document.querySelector( '.showlogin' ),
+	sc_coupons_list = document.querySelector( '#coupons_list' ); // coupon list of plugin Smart Coupon for WC.
+
+	if ( sc_coupons_list ) {
+		document.arrive(
+			'.sc-coupon',
+			function() {
+				document.getElementById( 'coupons_list' ).style.display = 'block';
+				setTimeout(
+					function() {
+						set_heights();
+						jQuery( document ).unbindArrive( ".sc-coupon" );
+					},
+					1000
+				);
+			}
+		);
+	} else {
+		set_heights();
+	}
 
 	document.body.addEventListener(
 		'click',
@@ -829,20 +850,36 @@ var ajaxCouponForm = function() {
 }
 
 var woostifyMoveNoticesInCheckoutPage = function() {
-	var noticesWrapper = document.querySelectorAll( '.woocommerce-notices-wrapper' );
+	var noticesWrapper      = document.querySelectorAll( '.woocommerce-notices-wrapper' );
+	var infoNotices         = document.querySelectorAll( '.woocommerce > .woocommerce-info' );
+	var woostifyNoticeGroup = document.querySelector( '.woostify-woocommerce-NoticeGroup' );
+
 	if ( noticesWrapper.length ) {
 		var noticesWrapperEl         = noticesWrapper[0];
 		var noticesWrapperNode       = document.createElement( 'div' );
-		var woostifyNoticeGroup      = document.querySelector( '.woostify-woocommerce-NoticeGroup' );
 		noticesWrapperNode.innerHTML = noticesWrapperEl.innerHTML;
 		woostifyNoticeGroup.appendChild( noticesWrapperNode );
 		noticesWrapperEl.remove();
+	}
+
+	if ( infoNotices.length ) {
+		infoNotices.forEach(
+			function ( infoNotice ) {
+				var infoNoticeNode = infoNotice.cloneNode( true );
+				var classes        = infoNotice.getAttribute( 'class' );
+
+				infoNoticeNode.setAttribute( 'class', classes );
+				woostifyNoticeGroup.appendChild( infoNoticeNode );
+				infoNotice.remove();
+			}
+		)
 	}
 }
 
 var woostifyCheckoutFormFieldAnimation = function() {
 	var inputs   = document.querySelectorAll( 'form.checkout .input-text, form.checkout_coupon .input-text' );
 	var formRows = document.querySelectorAll( 'form.checkout .form-row' );
+
 	if ( inputs.length ) {
 		inputs.forEach(
 			function( input ) {
@@ -883,10 +920,31 @@ var woostifyCheckoutFormFieldAnimation = function() {
 		formRows.forEach(
 			function( formRowEl ) {
 				var labelEl = formRowEl.querySelector( 'label' );
+
 				if ( labelEl == null ) {
 					formRowEl.classList.add( 'no-label' );
 				} else {
 					labelEl.classList.remove( 'screen-reader-text' );
+				}
+
+				if ( formRowEl.classList.contains( 'address-field' ) ) {
+					var fieldInputs   = formRowEl.querySelectorAll( 'input' );
+					var select2Inputs = formRowEl.querySelectorAll( 'span.select2' );
+					if ( fieldInputs.length && fieldInputs.length > 0 ) {
+						fieldInputs.forEach(
+							function( fInput ) {
+								if ( 'hidden' === fInput.getAttribute( 'type' ) ) {
+									formRowEl.classList.add( 'field-readonly' );
+								} else {
+									formRowEl.classList.remove( 'field-readonly' );
+								}
+							}
+						)
+					}
+					if ( select2Inputs.length && select2Inputs.length > 0 ) {
+						formRowEl.classList.add( 'w-anim-wrap' );
+						formRowEl.classList.remove( 'field-readonly' );
+					}
 				}
 			}
 		);
@@ -994,9 +1052,20 @@ document.addEventListener(
 			woostifyMoveNoticesInCheckoutPage();
 
 			jQuery( document.body ).on(
+				'updated_checkout',
+				function( event, data ) {
+					setTimeout(
+						function() {
+							woostifyCheckoutFormFieldAnimation();
+						},
+						100
+					);
+				}
+			).on(
 				'init_checkout updated_checkout payment_method_selected',
 				function( event, data  ) {
-					console.log( event );
+					// Clear old notifications before displaying new ones.
+					jQuery( '.woostify-woocommerce-NoticeGroup' ).html( '' );
 
 					jQuery( 'form.checkout' ).arrive(
 						'form.checkout_coupon',
@@ -1033,6 +1102,16 @@ document.addEventListener(
 						}
 					);
 
+					jQuery( document ).arrive(
+						'.woocommerce > .woocommerce-info',
+						function( newEl ) {
+							var newWcMsg  = jQuery( newEl ),
+							newWcMsgClone = newWcMsg.clone();
+
+							jQuery( '.woostify-woocommerce-NoticeGroup' ).append( newWcMsgClone );
+							jQuery( newEl ).remove();
+						}
+					);
 				}
 			).on(
 				'applied_coupon',
@@ -1056,10 +1135,8 @@ document.addEventListener(
 			);
 		}
 
-		if ( '1' === woostify_woocommerce_general.enable_sticky_order_review_checkout ) {
-			checkoutOrder();
-			stickyOrderReview();
-		}
+		checkoutOrder();
+		stickyOrderReview();
 
 		// For Elementor Preview Mode.
 		if ( 'function' === typeof( onElementorLoaded ) ) {

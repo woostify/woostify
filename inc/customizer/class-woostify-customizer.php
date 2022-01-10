@@ -59,7 +59,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			if ( $options['catalog_mode'] ) {
 				remove_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_add_to_cart_button', 10 );
 				remove_action( 'woostify_product_loop_item_action_item', 'woostify_product_loop_item_add_to_cart_icon', 10 );
-				remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 				remove_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_add_to_cart_on_image', 70 );
 
 				// Remove quantity box.
@@ -68,7 +67,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			} else {
 				add_action( 'woocommerce_after_shop_loop_item', 'woostify_loop_product_add_to_cart_button', 10 );
 				add_action( 'woostify_product_loop_item_action_item', 'woostify_product_loop_item_add_to_cart_icon', 10 );
-				add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 				add_action( 'woocommerce_before_shop_loop_item_title', 'woostify_loop_product_add_to_cart_on_image', 70 );
 
 				if ( $options['shop_page_product_quantity'] ) {
@@ -90,9 +88,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			$pdt_pos          = $options['shop_single_product_data_tabs_pos'];
 			$pdt_pos_priority = 'woocommerce_single_product_summary' === $pdt_pos ? 35 : 10;
 
-			remove_action( 'woocommerce_after_single_product_summary', 'woostify_output_product_data_tabs_accordion', 10 );
 			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
-			remove_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 35 );
+			remove_action( 'woocommerce_after_single_product_summary', 'woostify_output_product_data_tabs_accordion', 10 );
+			remove_action( 'woocommerce_after_single_product_summary', 'woostify_output_product_data_tabs', 10 );
+			remove_action( 'woocommerce_single_product_summary', 'woostify_output_product_data_tabs', 35 );
 			remove_action( 'woocommerce_single_product_summary', 'woostify_output_product_data_tabs_accordion', 35 );
 
 			add_action( $pdt_pos, $pdt_callback, $pdt_pos_priority );
@@ -305,6 +304,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'theme_color',
 				'text_color',
 				'accent_color',
+				'link_hover_color',
 				'extra_color_1',
 				'extra_color_2',
 			);
@@ -312,6 +312,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				__( 'Theme Color', 'woostify' ),
 				__( 'Text Color', 'woostify' ),
 				__( 'Link / Accent Color', 'woostify' ),
+				__( 'Link Hover Color', 'woostify' ),
 				__( 'Extra Color 1', 'woostify' ),
 				__( 'Extra Color 2', 'woostify' ),
 			);
@@ -342,6 +343,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'heading_color'                            => '#2b2b2b',
 				'text_color'                               => '#8f8f8f',
 				'accent_color'                             => '#2b2b2b',
+				'link_hover_color'                         => '#1346af',
 				'extra_color_1'                            => '#fd0',
 				'extra_color_2'                            => '#fd0',
 				// TOPBAR.
@@ -365,6 +367,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'header_shop_cart_price'                   => false,
 				'header_shop_hide_zero_value_cart_count'   => false,
 				'header_shop_hide_zero_value_cart_subtotal' => false,
+				'header_shop_enable_login_popup'           => false,
 				// Header transparent.
 				'header_transparent'                       => false,
 				'header_transparent_enable_on'             => 'all-devices',
@@ -475,6 +478,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_page_infinite_scroll_type'           => 'button',
 				// Product catalog.
 				'catalog_mode'                             => false,
+				'hide_variations'                          => false,
 				'products_per_row'                         => 3,
 				'tablet_products_per_row'                  => 2,
 				'mobile_products_per_row'                  => 1,
@@ -532,7 +536,6 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'shop_single_stock_label'                  => true,
 				'shop_single_stock_product_limit'          => 0,
 				'shop_single_loading_bar'                  => true,
-				'shop_single_additional_information'       => true,
 				'shop_single_content_background'           => '#f3f3f3',
 				'shop_single_trust_badge_image'            => '',
 				'shop_single_product_gallery_layout_select' => 'theme',

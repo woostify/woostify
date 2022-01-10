@@ -128,8 +128,6 @@ if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 	 */
 	function woostify_ajax_single_add_to_cart() {
 		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
-
-		WC_Form_Handler::add_to_cart_action();
 		WC_AJAX::get_refreshed_fragments();
 	}
 }
@@ -389,7 +387,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 					<div class="message-icon"><?php Woostify_Icon::fetch_svg_icon( 'shopping-cart-2' ); ?></div>
 					<p class="message-text"><?php echo esc_html( $empty_msg ); ?></p>
 					<?php if ( $enable_button ) { ?>
-						<a class="button continue-shopping" href="<?php echo esc_url( get_permalink( woocommerce_get_page_id( 'shop' ) ) ); ?>"><?php esc_html_e( 'Continue Shopping', 'woostify' ); ?></a>
+						<a class="button continue-shopping" href="<?php echo esc_url( get_permalink( wc_get_page_id( 'shop' ) ) ); ?>"><?php esc_html_e( 'Continue Shopping', 'woostify' ); ?></a>
 					<?php } ?>
 				</div>
 			</div>
@@ -1638,6 +1636,44 @@ if ( ! function_exists( 'woostify_checkout_coupon_form' ) ) {
 			);
 			echo '</div></tr></td>';
 		}
+	}
+}
+
+if ( ! function_exists( 'woostify_output_product_data_tabs' ) ) {
+	/**
+	 * Custom product data tabs for normal layout
+	 */
+	function woostify_output_product_data_tabs() {
+		$product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
+
+		if ( ! empty( $product_tabs ) ) :
+			?>
+
+			<div class="woocommerce-tabs wc-tabs-wrapper">
+				<ul class="tabs wc-tabs" role="tablist">
+					<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
+						<li class="<?php echo esc_attr( $key ); ?>_tab" id="tab-title-<?php echo esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $key ); ?>">
+							<a href="#tab-<?php echo esc_attr( $key ); ?>">
+								<?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+				<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
+					<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
+						<?php
+						if ( isset( $product_tab['callback'] ) ) {
+							call_user_func( $product_tab['callback'], $key, $product_tab );
+						}
+						?>
+					</div>
+				<?php endforeach; ?>
+
+				<?php do_action( 'woocommerce_product_after_tabs' ); ?>
+			</div>
+
+			<?php
+		endif;
 	}
 }
 

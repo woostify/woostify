@@ -34,7 +34,6 @@ $wp_customize->add_control(
 				'woostify_setting[shop_single_stock_label]',
 				'woostify_setting[shop_single_stock_product_limit]',
 				'woostify_setting[shop_single_loading_bar]',
-				'woostify_setting[shop_single_additional_information]',
 				'woostify_setting[shop_single_content_background]',
 				'woostify_setting[shop_single_trust_badge_image]',
 			),
@@ -166,27 +165,6 @@ $wp_customize->add_control(
 			'settings'    => 'woostify_setting[shop_single_stock_product_limit]',
 			'section'     => 'woostify_shop_single',
 			'type'        => 'number',
-		)
-	)
-);
-
-// Additional information.
-$wp_customize->add_setting(
-	'woostify_setting[shop_single_additional_information]',
-	array(
-		'default'           => $defaults['shop_single_additional_information'],
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
-		'type'              => 'option',
-	)
-);
-$wp_customize->add_control(
-	new Woostify_Switch_Control(
-		$wp_customize,
-		'woostify_setting[shop_single_additional_information]',
-		array(
-			'label'    => __( 'Additional Information Tab', 'woostify' ),
-			'section'  => 'woostify_shop_single',
-			'settings' => 'woostify_setting[shop_single_additional_information]',
 		)
 	)
 );

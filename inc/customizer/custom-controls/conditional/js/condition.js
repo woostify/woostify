@@ -461,6 +461,29 @@
 				)
 
 				// SHOP.
+				// Catalog mode.
+				condition(
+					'woostify_setting[catalog_mode]',
+					[
+						'woostify_setting[hide_variations]',
+					],
+					false,
+				)
+
+				// Background Add to cart.
+				condition(
+					'woostify_setting[shop_page_add_to_cart_button_position]',
+					[
+						'woostify_setting[shop_page_button_cart_background]',
+						'woostify_setting[shop_page_button_background_hover]',
+					],
+					[
+						'none',
+						'bottom',
+					],
+					false,
+				)
+
 				// Position Add to cart.
 				condition(
 					'woostify_setting[shop_page_add_to_cart_button_position]',

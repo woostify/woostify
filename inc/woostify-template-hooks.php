@@ -81,6 +81,7 @@ add_action( 'woostify_after_footer', 'woostify_toggle_sidebar', 10 );
 add_action( 'woostify_after_footer', 'woostify_overlay', 20 );
 add_action( 'woostify_after_footer', 'woostify_footer_action', 20 );
 add_action( 'woostify_after_footer', 'woostify_dialog_search', 30 );
+add_action( 'woostify_after_footer', 'woostify_account_login_lightbox', 40 ); // Woostify popup login.
 
 // Inside @woostify_footer_action hook.
 add_action( 'woostify_footer_action', 'woostify_scroll_to_top', 40 );

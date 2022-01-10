@@ -900,6 +900,22 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// Link hover color.
+		$styles .= '
+			.cart-sidebar-content .woocommerce-mini-cart__buttons a:not(.checkout):hover,
+			.product-loop-meta .button:hover,
+			.multi-step-checkout-button[data-action="back"]:hover,
+			.multi-step-checkout-button[data-action="back"] .woostify-svg-icon:hover,
+			.review-information-link:hover,
+			a:hover {
+				color: ' . esc_attr( $options['link_hover_color'] ) . ';
+			}
+
+			.woostify-icon-bar span:hover {
+				background-color: ' . esc_attr( $options['link_hover_color'] ) . ';
+			}
+		';
+
 		// Buttons.
 		$styles .= '
 			.woostify-button-color,
@@ -1068,8 +1084,7 @@ class Woostify_Get_CSS {
 			#secondary .chosen a,
 			#secondary .chosen .count,
 			.cart_totals .shop_table .woocommerce-Price-amount,
-			#order_review .shop_table .woocommerce-Price-amount,
-			a:hover{
+			#order_review .shop_table .woocommerce-Price-amount {
 				color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
 
@@ -1545,6 +1560,17 @@ class Woostify_Get_CSS {
 		$styles      .= '#shop-cart-sidebar {
 			background-color: ' . $mini_cart_bg . ';
 		}';
+
+		// Catalog Mode.
+		$catalog_mode_enabled = $options['catalog_mode'];
+		$hide_variations      = $options['hide_variations'];
+		if ( $catalog_mode_enabled ) {
+			$hide_classes = 'form.cart button.single_add_to_cart_button, form.cart .quantity';
+			if ( $hide_variations ) {
+				$hide_classes .= ', table.variations, form.variations_form, .single_variation_wrap .variations_button';
+			}
+			$styles .= $hide_classes . '{ display: none !important; }';
+		}
 
 		$this->css = apply_filters( 'woostify_customizer_css', $styles );
 		$this->css = $this->minimize_dynamic_css();

@@ -523,11 +523,6 @@ body{
 	li {
 		width: 100%;
 
-		@media (min-width: 601px) {
-			display: flex;
-			align-items: center;
-		}
-
 		&:before {
 			font-family: 'WooCommerce';
 			color: #fff;
