@@ -403,9 +403,10 @@ if ( ! class_exists( 'Woostify' ) ) {
 				apply_filters(
 					'woostify_register_nav_menus',
 					array(
-						'primary' => __( 'Primary Menu', 'woostify' ),
-						'footer'  => __( 'Footer Menu', 'woostify' ),
-						'mobile'  => __( 'Mobile Menu', 'woostify' ),
+						'primary'           => __( 'Primary Menu', 'woostify' ),
+						'footer'            => __( 'Footer Menu', 'woostify' ),
+						'mobile'            => __( 'Mobile Menu', 'woostify' ),
+						'mobile_categories' => __( 'Mobile Categories Menu', 'woostify' ),
 					)
 				)
 			);

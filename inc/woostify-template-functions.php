@@ -509,50 +509,96 @@ if ( ! function_exists( 'woostify_site_title_or_logo' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_mobile_menu_tab' ) ) {
+	/**
+	 * Mobile menu tab
+	 */
+	function woostify_mobile_menu_tab() {
+		$options                        = woostify_options( false );
+		$header_primary_menu            = $options['header_primary_menu'];
+		$show_categories_menu_on_mobile = $options['header_show_categories_menu_on_mobile'];
+
+		if ( $header_primary_menu && $show_categories_menu_on_mobile ) {
+			$primary_menu_tab_title    = $options['mobile_menu_primary_menu_tab_title'];
+			$categories_menu_tab_title = $options['mobile_menu_categories_menu_tab_title'];
+			?>
+			<ul class="mobile-nav-tab">
+				<li class="mobile-tab-title mobile-main-nav-tab-title active" data-menu="categories">
+					<a href="javascript:;" class="mobile-nav-tab-item"><?php echo esc_html( $primary_menu_tab_title ); ?></a>
+				</li>
+				<li class="mobile-tab-title mobile-categories-nav-tab-title" data-menu="main">
+					<a href="javascript:;" class="mobile-nav-tab-item"><?php echo esc_html( $categories_menu_tab_title ); ?></a>
+				</li>
+			</ul>
+			<?php
+		} else {
+			return;
+		}
+	}
+}
+
 if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 	/**
 	 * Display Primary Navigation
 	 */
 	function woostify_primary_navigation() {
 		// Customize disable primary menu.
-		$options             = woostify_options( false );
-		$header_primary_menu = $options['header_primary_menu'];
+		$options                        = woostify_options( false );
+		$header_primary_menu            = $options['header_primary_menu'];
+		$show_categories_menu_on_mobile = $options['header_show_categories_menu_on_mobile'];
 
-		if ( ! $header_primary_menu ) {
+		if ( ! $header_primary_menu && ! $show_categories_menu_on_mobile ) {
 			return;
 		}
 		?>
 
-		<div class="site-navigation">
+		<div class="site-navigation <?php echo ( $header_primary_menu && $show_categories_menu_on_mobile ) ? 'has-nav-tab' : ''; ?>">
 			<?php do_action( 'woostify_before_main_nav' ); ?>
 
-			<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary navigation', 'woostify' ); ?>">
-				<?php
-				if ( has_nav_menu( 'mobile' ) ) {
-					$mobile = array(
-						'theme_location' => 'mobile',
-						'menu_class'     => 'primary-navigation primary-mobile-navigation',
+			<?php if ( $header_primary_menu && ( has_nav_menu( 'mobile' ) || has_nav_menu( 'primary' ) ) ) { ?>
+				<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary navigation', 'woostify' ); ?>">
+					<?php
+					if ( has_nav_menu( 'mobile' ) ) {
+						$mobile = array(
+							'theme_location' => 'mobile',
+							'menu_class'     => 'primary-navigation primary-mobile-navigation',
+							'container'      => '',
+							'walker'         => new Woostify_Walker_Menu(),
+						);
+
+						wp_nav_menu( $mobile );
+					}
+
+					if ( has_nav_menu( 'primary' ) ) {
+						$args = array(
+							'theme_location' => 'primary',
+							'menu_class'     => 'primary-navigation',
+							'container'      => '',
+							'walker'         => new Woostify_Walker_Menu(),
+						);
+
+						wp_nav_menu( $args );
+					} elseif ( is_user_logged_in() ) {
+						?>
+						<a class="add-menu" href="<?php echo esc_url( get_admin_url() . 'nav-menus.php' ); ?>"><?php esc_html_e( 'Add a Primary Menu', 'woostify' ); ?></a>
+					<?php } ?>
+				</nav>
+			<?php } ?>
+
+			<?php if ( $show_categories_menu_on_mobile && has_nav_menu( 'mobile_categories' ) ) { ?>
+				<nav class="categories-navigation" aria-label="<?php esc_attr_e( 'Categories Menu', 'woostify' ); ?>">
+					<?php
+					$categories_menu = array(
+						'theme_location' => 'mobile_categories',
+						'menu_class'     => 'primary-navigation categories-mobile-menu',
 						'container'      => '',
 						'walker'         => new Woostify_Walker_Menu(),
 					);
 
-					wp_nav_menu( $mobile );
-				}
-
-				if ( has_nav_menu( 'primary' ) ) {
-					$args = array(
-						'theme_location' => 'primary',
-						'menu_class'     => 'primary-navigation',
-						'container'      => '',
-						'walker'         => new Woostify_Walker_Menu(),
-					);
-
-					wp_nav_menu( $args );
-				} elseif ( is_user_logged_in() ) {
+					wp_nav_menu( $categories_menu );
 					?>
-					<a class="add-menu" href="<?php echo esc_url( get_admin_url() . 'nav-menus.php' ); ?>"><?php esc_html_e( 'Add a Primary Menu', 'woostify' ); ?></a>
-				<?php } ?>
-			</nav>
+				</nav>
+			<?php } ?>
 
 			<?php do_action( 'woostify_after_main_nav' ); ?>
 		</div>
@@ -1682,9 +1728,11 @@ if ( ! function_exists( 'woostify_search' ) ) {
 		if ( ! $options['header_search_icon'] ) {
 			return;
 		}
+
+		$is_hide = $options['mobile_menu_hide_search_field'];
 		?>
 
-		<div class="site-search">
+		<div class="site-search <?php echo $is_hide ? esc_attr( 'hide' ) : ''; ?>">
 			<?php
 			do_action( 'woostify_site_search_start' );
 
@@ -1959,9 +2007,11 @@ if ( ! function_exists( 'woostify_sidebar_menu_action' ) ) {
 			return;
 		}
 
+		$is_hide = $options['mobile_menu_hide_login'];
+
 		?>
 
-		<div class="sidebar-menu-bottom">
+		<div class="sidebar-menu-bottom <?php echo $is_hide ? esc_attr( 'hide' ) : ''; ?>">
 			<?php do_action( 'woostify_sidebar_account_before' ); ?>
 
 			<ul class="sidebar-account">

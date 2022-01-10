@@ -614,6 +614,22 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'load_google_fonts_locally_preload'        => false,
 				'performance_disable_woo_blocks_styles'    => false,
 				'enabled_dynamic_css'                      => false,
+				// Mobile Menu.
+				'mobile_menu_hide_search_field'            => false,
+				'mobile_menu_hide_login'                   => false,
+				'header_show_categories_menu_on_mobile'    => false,
+				'mobile_menu_primary_menu_tab_title'       => 'Menu',
+				'mobile_menu_categories_menu_tab_title'    => 'Categories',
+				'mobile_menu_icon_bar_color'               => '',
+				'mobile_menu_background'                   => '#fff',
+				'mobile_menu_text_color'                   => '#000',
+				'mobile_menu_text_hover_color'             => '#000',
+				'mobile_menu_tab_background'               => '',
+				'mobile_menu_tab_active_background'        => '#f7f7f7',
+				'mobile_menu_tab_color'                    => '',
+				'mobile_menu_tab_active_color'             => '',
+				'mobile_menu_tab_padding'                  => '10 10 10 10',
+				'mobile_menu_nav_tab_spacing_bottom'       => 10,
 			);
 
 			return apply_filters( 'woostify_setting_default_values', $args );
