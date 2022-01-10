@@ -14,51 +14,51 @@ function mobileMenuTab() {
 		return;
 	}
 
-	console.log( mobileTabsWrapperEls );
-	mobileTabsWrapperEls.forEach( function( mobileTabsWrapperEl ) {
-		var sidebarWrapper = mobileTabsWrapperEl.parentNode;
-		var tabs  = mobileTabsWrapperEl.querySelectorAll( '.mobile-tab-title' );
-		var menus;
+	mobileTabsWrapperEls.forEach(
+		function( mobileTabsWrapperEl ) {
+			var sidebarWrapper = mobileTabsWrapperEl.parentNode;
+			var tabs           = mobileTabsWrapperEl.querySelectorAll( '.mobile-tab-title' );
+			var menus;
 
-		if ( sidebarWrapper.classList.contains( 'sidebar-menu' ) ) {
-			menus = sidebarWrapper.querySelectorAll( '.site-navigation nav' );
-		}
-		if ( sidebarWrapper.classList.contains( 'woostify-nav-menu-inner' ) ) {
-			menus = sidebarWrapper.querySelectorAll( 'nav' );
-		}
-
-
-		if ( ! tabs.length || ! menus.length ) {
-			return;
-		}
-
-		menus[0].classList.add( 'active' );
-
-		tabs.forEach(
-			function( tab, tabIndex ) {
-				tab.onclick = function() {
-					if ( tab.classList.contains( 'active' ) ) {
-						return;
-					}
-
-					for ( var i = 0, j = tabs.length; i < j; i++ ) {
-						tabs[i].classList.remove( 'active' );
-					}
-					tab.classList.add( 'active' );
-
-					menus.forEach(
-						function( menu, menuIndex ) {
-							if ( tabIndex === menuIndex ) {
-								menu.classList.add( 'active' );
-							} else {
-								menu.classList.remove( 'active' );
-							}
-						}
-					)
-				}
+			if ( sidebarWrapper.classList.contains( 'sidebar-menu' ) ) {
+				menus = sidebarWrapper.querySelectorAll( '.site-navigation nav' );
 			}
-		)
-	} )
+			if ( sidebarWrapper.classList.contains( 'woostify-nav-menu-inner' ) ) {
+				menus = sidebarWrapper.querySelectorAll( 'nav' );
+			}
+
+			if ( ! tabs.length || ! menus.length ) {
+				return;
+			}
+
+			menus[0].classList.add( 'active' );
+
+			tabs.forEach(
+				function( tab, tabIndex ) {
+					tab.onclick = function() {
+						if ( tab.classList.contains( 'active' ) ) {
+							return;
+						}
+
+						for ( var i = 0, j = tabs.length; i < j; i++ ) {
+							tabs[i].classList.remove( 'active' );
+						}
+						tab.classList.add( 'active' );
+
+						menus.forEach(
+							function( menu, menuIndex ) {
+								if ( tabIndex === menuIndex ) {
+									menu.classList.add( 'active' );
+								} else {
+									menu.classList.remove( 'active' );
+								}
+							}
+						)
+					}
+				}
+			)
+		}
+	)
 }
 
 // Open Menu mobile.
@@ -147,7 +147,7 @@ document.addEventListener(
 	function() {
 		nav();
 		sidebarMenu();
-		sidebarMenu( '.woostify-nav-menu-widget .categories-navigation');
+		sidebarMenu( '.woostify-nav-menu-widget .categories-navigation' );
 		mobileMenuTab();
 	}
 );
