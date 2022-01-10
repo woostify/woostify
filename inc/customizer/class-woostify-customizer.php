@@ -304,6 +304,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'theme_color',
 				'text_color',
 				'accent_color',
+				'link_hover_color',
 				'extra_color_1',
 				'extra_color_2',
 			);
@@ -311,6 +312,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				__( 'Theme Color', 'woostify' ),
 				__( 'Text Color', 'woostify' ),
 				__( 'Link / Accent Color', 'woostify' ),
+				__( 'Link Hover Color', 'woostify' ),
 				__( 'Extra Color 1', 'woostify' ),
 				__( 'Extra Color 2', 'woostify' ),
 			);
@@ -341,6 +343,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'heading_color'                            => '#2b2b2b',
 				'text_color'                               => '#8f8f8f',
 				'accent_color'                             => '#2b2b2b',
+				'link_hover_color'                         => '#1346af',
 				'extra_color_1'                            => '#fd0',
 				'extra_color_2'                            => '#fd0',
 				// TOPBAR.

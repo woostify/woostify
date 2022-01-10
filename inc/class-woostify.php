@@ -1158,6 +1158,12 @@ if ( ! class_exists( 'Woostify' ) ) {
 							'value' => $options['accent_color'],
 						),
 
+						'woostify_color_6' => array(
+							'id'    => 'woostify_color_6',
+							'title' => __( 'Theme Link Hover Color', 'woostify' ),
+							'value' => $options['link_hover_color'],
+						),
+
 						'woostify_color_4' => array(
 							'id'    => 'woostify_color_4',
 							'title' => __( 'Theme Extra Color 1', 'woostify' ),
@@ -1181,6 +1187,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 							'color1' => $options['theme_color'],
 							'color2' => $options['text_color'],
 							'color3' => $options['accent_color'],
+							'color6' => $options['link_hover_color'],
 							'color4' => $options['extra_color_1'],
 							'color5' => $options['extra_color_2'],
 						);
@@ -1189,6 +1196,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 							'woostify_color_1' => 'color1',
 							'woostify_color_2' => 'color2',
 							'woostify_color_3' => 'color3',
+							'woostify_color_6' => 'color6',
 							'woostify_color_4' => 'color4',
 							'woostify_color_5' => 'color5',
 						);
