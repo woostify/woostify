@@ -185,6 +185,27 @@ $wp_customize->add_control(
 	)
 );
 
+// Search divider.
+$wp_customize->add_setting(
+	'header_search_heading',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'header_search_heading',
+		array(
+			'priority' => 89,
+			'section'  => 'woostify_header',
+			'settings' => 'header_search_heading',
+			'type'     => 'divider',
+			'tab'      => 'general',
+		)
+	)
+);
+
 // Search icon.
 $wp_customize->add_setting(
 	'woostify_setting[header_search_icon]',
@@ -200,7 +221,7 @@ $wp_customize->add_control(
 		'woostify_setting[header_search_icon]',
 		array(
 			'priority' => 90,
-			'label'    => __( 'Search', 'woostify' ),
+			'label'    => __( 'Enable Search', 'woostify' ),
 			'section'  => 'woostify_header',
 			'settings' => 'woostify_setting[header_search_icon]',
 			'tab'      => 'general',
@@ -235,6 +256,28 @@ if ( class_exists( 'woocommerce' ) ) {
 
 	// Wishlist icon.
 	if ( woostify_support_wishlist_plugin() ) {
+
+		// Wishlist divider.
+		$wp_customize->add_setting(
+			'header_wishlist_heading',
+			array(
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control(
+			new Woostify_Divider_Control(
+				$wp_customize,
+				'header_wishlist_heading',
+				array(
+					'priority' => 129,
+					'section'  => 'woostify_header',
+					'settings' => 'header_wishlist_heading',
+					'type'     => 'divider',
+					'tab'      => 'general',
+				)
+			)
+		);
+
 		$wp_customize->add_setting(
 			'woostify_setting[header_wishlist_icon]',
 			array(
@@ -258,6 +301,27 @@ if ( class_exists( 'woocommerce' ) ) {
 		);
 	}
 
+	// Account divider.
+	$wp_customize->add_setting(
+		'header_account_heading',
+		array(
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		new Woostify_Divider_Control(
+			$wp_customize,
+			'header_account_heading',
+			array(
+				'priority' => 149,
+				'section'  => 'woostify_header',
+				'settings' => 'header_account_heading',
+				'type'     => 'divider',
+				'tab'      => 'general',
+			)
+		)
+	);
+
 	// Account icon.
 	$wp_customize->add_setting(
 		'woostify_setting[header_account_icon]',
@@ -276,6 +340,50 @@ if ( class_exists( 'woocommerce' ) ) {
 				'label'    => __( 'Account/Dashboard', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_account_icon]',
+				'tab'      => 'general',
+			)
+		)
+	);
+
+	// Login popup.
+	$wp_customize->add_setting(
+		'woostify_setting[header_shop_enable_login_popup]',
+		array(
+			'type'              => 'option',
+			'default'           => $defaults['header_shop_enable_login_popup'],
+			'sanitize_callback' => 'woostify_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		new Woostify_Switch_Control(
+			$wp_customize,
+			'woostify_setting[header_shop_enable_login_popup]',
+			array(
+				'priority' => 151,
+				'label'    => __( 'Enable Login Popup', 'woostify' ),
+				'section'  => 'woostify_header',
+				'settings' => 'woostify_setting[header_shop_enable_login_popup]',
+				'tab'      => 'general',
+			)
+		)
+	);
+
+	// Shopping cart divider.
+	$wp_customize->add_setting(
+		'header_shopping_cart_heading',
+		array(
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		new Woostify_Divider_Control(
+			$wp_customize,
+			'header_shopping_cart_heading',
+			array(
+				'priority' => 169,
+				'section'  => 'woostify_header',
+				'settings' => 'header_shopping_cart_heading',
+				'type'     => 'divider',
 				'tab'      => 'general',
 			)
 		)
@@ -370,6 +478,7 @@ if ( class_exists( 'woocommerce' ) ) {
 				'label'    => __( 'Hide Cart Subtotal When Zero', 'woostify' ),
 				'section'  => 'woostify_header',
 				'settings' => 'woostify_setting[header_shop_hide_zero_value_cart_subtotal]',
+				'tab'      => 'general',
 			)
 		)
 	);

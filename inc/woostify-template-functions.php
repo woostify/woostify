@@ -578,6 +578,7 @@ if ( ! function_exists( 'woostify_logged_in_menu' ) ) {
 	 * when logged in or sign out
 	 */
 	function woostify_logged_in_menu() {
+		$options = woostify_options( false );
 		if ( woostify_is_woocommerce_activated() ) {
 			$page_account_id = get_option( 'woocommerce_myaccount_page_id' );
 			$logout_url      = wp_logout_url( apply_filters( 'woostify_logout_redirect', get_permalink( $page_account_id ) ) );
@@ -590,8 +591,12 @@ if ( ! function_exists( 'woostify_logged_in_menu' ) ) {
 		}
 
 		if ( ! is_user_logged_in() ) {
+			$enabled_popup    = ! is_user_logged_in() && ! is_checkout() && ! is_account_page() && $options['header_shop_enable_login_popup'] ? true : false;
+			$extra_classes    = $enabled_popup ? 'open-popup' : '';
+			$login_reg_button = '<a class="my-account-login-link ' . $extra_classes . '" href="' . get_permalink( $page_account_id ) . '" class="text-center">' . esc_html__( 'Login / Register', 'woostify' ) . '</a>';
+
 			do_action( 'woostify_header_account_subbox_start_default' );
-			$login_reg_button = '<a href="' . get_permalink( $page_account_id ) . '" class="text-center">' . esc_html__( 'Login / Register', 'woostify' ) . '</a>';
+
 			?>
 			<li class="my-account-login"><?php echo wp_kses_post( apply_filters( 'woostify_header_account_subbox_login_register_link', $login_reg_button ) ); ?></li>
 			<?php
@@ -2002,6 +2007,34 @@ if ( ! function_exists( 'woostify_get_wishlist_count' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_account_login_lightbox' ) ) {
+	/**
+	 * Popup account login
+	 */
+	function woostify_account_login_lightbox() {
+		$options       = woostify_options( false );
+		$enabled_popup = ! is_user_logged_in() && ! is_checkout() && ! is_account_page() && $options['header_shop_enable_login_popup'] ? true : false;
+		$close_icon    = apply_filters( 'woostify_dialog_account_close_icon', 'close' );
+		if ( ! $enabled_popup ) {
+			return;
+		}
+		?>
+		<div id="woostify-login-form-popup" class="lightbox-content">
+			<div class="dialog-popup-inner">
+				<div class="dialog-popup-content">
+					<div class="woostify-login-form-popup-content woocommerce-account">
+						<span class="dialog-account-close-icon">
+							<?php Woostify_Icon::fetch_svg_icon( $close_icon ); ?>
+						</span>
+						<?php echo wc_get_template( 'myaccount/form-login.php' ); // phpcs:ignore. ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_header_action' ) ) {
 	/**
 	 * Display header action
@@ -2027,10 +2060,10 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			$sub_total = $woocommerce->cart->get_total();
 		}
 
-		$search_icon         = apply_filters( 'woostify_header_search_icon', 'search' );
-		$wishlist_icon       = apply_filters( 'woostify_header_wishlist_icon', 'heart' );
-		$my_account_icon     = apply_filters( 'woostify_header_my_account_icon', 'user' );
-		$shop_bag_icon       = apply_filters( 'woostify_header_shop_bag_icon', 'shopping-cart' );
+		$search_icon     = apply_filters( 'woostify_header_search_icon', 'search' );
+		$wishlist_icon   = apply_filters( 'woostify_header_wishlist_icon', 'heart' );
+		$my_account_icon = apply_filters( 'woostify_header_my_account_icon', 'user' );
+		$shop_bag_icon   = apply_filters( 'woostify_header_shop_bag_icon', 'shopping-cart' );
 		?>
 
 		<div class="site-tools">
@@ -2065,10 +2098,11 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 
 				// My account icon.
 				if ( $options['header_account_icon'] ) {
-					$subbox = apply_filters( 'woostify_header_account_subbox', true );
+					$enabled_popup = ! is_user_logged_in() && ! is_checkout() && ! is_account_page() && $options['header_shop_enable_login_popup'] ? true : false;
+					$subbox        = apply_filters( 'woostify_header_account_subbox', true );
 					?>
 					<div class="tools-icon my-account">
-						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon">
+						<a href="<?php echo esc_url( get_permalink( $page_account_id ) ); ?>" class="tools-icon my-account-icon <?php echo $enabled_popup ? esc_attr( 'open-popup' ) : ''; ?>">
 							<?php Woostify_Icon::fetch_svg_icon( $my_account_icon ); ?>
 						</a>
 

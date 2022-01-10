@@ -67,6 +67,18 @@
   }
 }
 
+.rtl #woostify-login-form-popup .woostify-login-form-popup-content .woocommerce-form.woocommerce-form-login .woocommerce-form-login__rememberme {
+  text-align: right;
+}
+
+.rtl #woostify-login-form-popup .woostify-login-form-popup-content .woocommerce-form.woocommerce-form-login .lost_password {
+  text-align: right;
+}
+
+.rtl #woostify-login-form-popup .woostify-login-form-popup-content .woocommerce-form.woocommerce-form-register .form-row {
+  float: revert;
+}
+
 .sidebar-menu-open .rtl #woostify-overlay .woostify-svg-icon {
   right: auto;
   left: 20px;
