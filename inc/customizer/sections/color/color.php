@@ -86,6 +86,32 @@ $wp_customize->add_control(
 	)
 );
 
+// Link Hover Color.
+$wp_customize->add_setting(
+	'woostify_setting[link_hover_color]',
+	array(
+		'default'           => $defaults['link_hover_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[link_hover_color]',
+		array(
+			'label'           => __( 'Link Hover Color', 'woostify' ),
+			'section'         => 'woostify_color',
+			'settings'        => array(
+				'woostify_setting[link_hover_color]',
+			),
+			'enable_swatches' => false,
+			'is_global_color' => true,
+		)
+	)
+);
+
 // Extra Color 1.
 $wp_customize->add_setting(
 	'woostify_setting[extra_color_1]',

@@ -168,7 +168,7 @@ class Woostify_Group_Control extends WP_Customize_Control {
 						}
 						?>
 						<div class="woostify-link-value-together">
-							<span class="woostify-link-value-together-btn dashicons dashicons-admin-links" title="<?php echo esc_attr( $link_values_label ); ?>"></span>
+							<span class="woostify-link-value-together-btn dashicons dashicons-admin-links linked" title="<?php echo esc_attr( $link_values_label ); ?>"></span>
 						</div>
 						<?php
 					}

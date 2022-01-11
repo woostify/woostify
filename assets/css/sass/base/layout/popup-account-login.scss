@@ -1,0 +1,141 @@
+#woostify-login-form-popup {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	position: fixed;
+	z-index: 200;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	background-color: rgba(55, 58, 71, 0.9);
+	transition-duration: 0.4s;
+	overflow-y: auto;
+
+	.dialog-popup-inner {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		padding: 15px;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+
+		@media (min-width:$screen-sm) {
+			padding: 30px;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			align-items: center;
+		}
+	}
+
+	.dialog-popup-content {
+		display: inline-block;
+		vertical-align: middle;
+		max-width: 100%;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.woostify-login-form-popup-content {
+		background: #fff;
+		max-width: 875px;
+		padding: 30px 20px;
+		width: 100%;
+		margin: 0 auto;
+
+		.woocommerce-error {
+			margin-top: 0;
+			list-style: none;
+		}
+
+		.dialog-account-close-icon{
+			cursor: pointer;
+			font-weight: 700;
+			height: 30px;
+			width: 30px;
+			@extend .flex;
+			position: absolute;
+			top: 0;
+			right: 0;
+
+			&:hover{
+				color: firebrick;
+			}
+		}
+
+		.u-columns {
+			display: flex;
+			flex-wrap: wrap;
+			margin-left: -30px;
+			[class^="u-column"] {
+				width: 100%;
+				padding-left: 30px;
+				margin: 0;
+				float: none;
+				max-width: 50%;
+
+				@media (max-width: $screen-sm - 1) {
+					max-width: 100%;
+				}
+
+				h2 {
+					margin-top: 0;
+				}
+			}
+		}
+
+		.woocommerce-form {
+			&.woocommerce-form-login {
+
+				.woocommerce-form-login__rememberme {
+					text-align: left;
+				}
+				.woocommerce-form-login__submit {
+					margin-left: 0;
+					margin-right: 0;
+				}
+				.lost_password {
+					text-align: left;
+				}
+			}
+			&.woocommerce-form-register {
+				.input-text {
+					height: 40px;
+				}
+			}
+		}
+	}
+}
+.dialog-account-open {
+	overflow: hidden;
+	#woostify-login-form-popup {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+	.woostify-login-form-popup-content {
+		-webkit-animation-name: anim-open;
+		animation-name: anim-open;
+	}
+}
+.dialog-account-close {
+	.woostify-login-form-popup-content {
+		-webkit-animation-name: anim-close;
+		animation-name: anim-close;
+	}
+}
+.dialog-account-open,
+.dialog-account-close {
+	.woostify-login-form-popup-content {
+		-webkit-animation-duration: 0.4s;
+		animation-duration: 0.4s;
+		-webkit-animation-fill-mode: forwards;
+		animation-fill-mode: forwards;
+	}
+}

@@ -81,6 +81,7 @@ add_action( 'woostify_after_footer', 'woostify_toggle_sidebar', 10 );
 add_action( 'woostify_after_footer', 'woostify_overlay', 20 );
 add_action( 'woostify_after_footer', 'woostify_footer_action', 20 );
 add_action( 'woostify_after_footer', 'woostify_dialog_search', 30 );
+add_action( 'woostify_after_footer', 'woostify_account_login_lightbox', 40 ); // Woostify popup login.
 
 // Inside @woostify_footer_action hook.
 add_action( 'woostify_footer_action', 'woostify_scroll_to_top', 40 );
@@ -92,6 +93,7 @@ add_action( 'woostify_footer_content', 'woostify_credit', 20 );
 // Inside @woostify_toggle_sidebar hook.
 add_action( 'woostify_toggle_sidebar', 'woostify_sidebar_menu_open', 10 );
 add_action( 'woostify_toggle_sidebar', 'woostify_search', 20 );
+add_action( 'woostify_toggle_sidebar', 'woostify_mobile_menu_tab', 25 );
 add_action( 'woostify_toggle_sidebar', 'woostify_primary_navigation', 30 );
 add_action( 'woostify_toggle_sidebar', 'woostify_sidebar_menu_action', 40 );
 add_action( 'woostify_toggle_sidebar', 'woostify_sidebar_menu_close', 50 );
