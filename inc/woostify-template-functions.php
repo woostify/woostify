@@ -2063,7 +2063,7 @@ if ( ! function_exists( 'woostify_account_login_lightbox' ) ) {
 	 */
 	function woostify_account_login_lightbox() {
 		$options       = woostify_options( false );
-		$enabled_popup = ! is_user_logged_in() && ! is_checkout() && ! is_account_page() && $options['header_shop_enable_login_popup'] ? true : false;
+		$enabled_popup = woostify_is_woocommerce_activated() && ! is_user_logged_in() && ! is_checkout() && ! is_account_page() && $options['header_shop_enable_login_popup'] ? true : false;
 		$close_icon    = apply_filters( 'woostify_dialog_account_close_icon', 'close' );
 		if ( ! $enabled_popup ) {
 			return;
