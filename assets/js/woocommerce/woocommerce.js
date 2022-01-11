@@ -1136,7 +1136,9 @@ document.addEventListener(
 		}
 
 		checkoutOrder();
-		stickyOrderReview();
+		if ( '1' === woostify_woocommerce_general.is_active_sticky ) {
+			stickyOrderReview();
+		}
 
 		// For Elementor Preview Mode.
 		if ( 'function' === typeof( onElementorLoaded ) ) {

@@ -524,6 +524,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'currency_symbol'                => get_woocommerce_currency_symbol(),
 					'currency_pos'                   => get_option( 'woocommerce_currency_pos' ),
 					'is_active_wvs'                  => ! class_exists( 'Woo_Variation_Swatches' ) || ! class_exists( 'Woo_Variation_Swatches_Pro' ) ? false : true, // Check if plugin Variation Swatches for WooCommerce and Variation Swatches for WooCommerce - Pro is activated.
+					'is_active_sticky'               => 'layout-3' === $options['checkout_page_layout'] ? true : false,
 				)
 			);
 
@@ -534,7 +535,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			wp_enqueue_script( 'woostify-quantity-button' );
 
 			// Sticky sidebar.
-			if ( in_array( $options['shop_single_gallery_layout'], array( 'column', 'grid' ), true ) ) {
+			if ( 'layout-3' === $options['checkout_page_layout'] || in_array( $options['shop_single_gallery_layout'], array( 'column', 'grid' ), true ) ) {
 				wp_enqueue_script( 'sticky-sidebar' );
 			}
 
