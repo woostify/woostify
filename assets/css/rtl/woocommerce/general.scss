@@ -22,7 +22,7 @@
 		.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) {
 			.product-remove {
 				right: auto;
-        		left: 75px;
+				left: 75px;
 			}
 		}
 	}
@@ -111,11 +111,11 @@
 	.woocommerce-message {
 		.button {
 			margin-right: auto;
-    		margin-left: 0;
+			margin-left: 0;
 		}
 		&:before {
 			margin-left: 10px;
-    		margin-right: 0;
+			margin-right: 0;
 		}
 	}
 
@@ -141,6 +141,15 @@
 		.mini-cart-product-qty[data-qty="minus"] {
 			border: 1px solid #ccc;
 			border-left: 0;
+		}
+	}
+
+	.woocommerce-MyAccount-navigation {
+		.woocommerce-MyAccount-navigation-link {
+			.woostify-svg-icon {
+				margin-right: 0;
+				margin-left: 15px;
+			}
 		}
 	}
 }

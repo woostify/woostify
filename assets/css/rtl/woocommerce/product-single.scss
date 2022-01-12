@@ -62,7 +62,7 @@
 				&.has-product-thumbnails {
 					.product-thumbnail-images {
 						margin-left: 20px;
-					    margin-right: 0px;
+						margin-right: 0px;
 					}
 				}
 			}
@@ -74,6 +74,16 @@
 			.product-page-container {
 				.onsale {
 					left: 10px;
+				}
+			}
+		}
+	}
+	.woocommerce-tabs {
+		&.layout-accordion {
+			.woostify-accordion-title {
+				.woostify-svg-icon {
+					right: auto;
+					left: 0;
 				}
 			}
 		}
