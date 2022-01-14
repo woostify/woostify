@@ -99,11 +99,16 @@
 	background-color: #fff;
 	// higher #woostify-overlay: 199
 	z-index: 200;
-	padding: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	width: 300px;
 	overflow-y: scroll;
 	@include translatex(-100%);
 	@extend .duration;
+
+	&.has-nav-tab {
+		padding-top: 0;
+	}
 
 	.arrow-icon {
 		@extend .duration;
@@ -144,10 +149,16 @@
 		border-right: 0;
 	}
 	.site-search {
-		margin-bottom: 30px;
+		margin-bottom: 20px;
+		padding-left: 15px;
+		padding-right: 15px;
 
 		.search-field {
 			border-radius: 3px;
+		}
+		.search-form-icon {
+			width: 40px;
+			height: 40px;
 		}
 	}
 
@@ -200,6 +211,7 @@
 	// menu
 	.site-navigation {
 		margin-bottom: 40px;
+		padding: 0 15px;
 
 		&.has-nav-tab {
 			.main-navigation, .categories-navigation {
@@ -347,6 +359,7 @@
 
 	// sidebar bottom
 	.sidebar-menu-bottom {
+		padding: 0 15px;
 		border-top: 1px solid rgba(0, 0, 0, 0.12156862745098039);
 
 		ul {

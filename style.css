@@ -4231,11 +4231,16 @@ article p:last-child {
   top: 0;
   background-color: #fff;
   z-index: 200;
-  padding: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   width: 300px;
   overflow-y: scroll;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
+}
+
+.sidebar-menu.has-nav-tab {
+  padding-top: 0;
 }
 
 .sidebar-menu .arrow-icon {
@@ -4276,11 +4281,18 @@ article p:last-child {
 }
 
 .sidebar-menu .site-search {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .sidebar-menu .site-search .search-field {
   border-radius: 3px;
+}
+
+.sidebar-menu .site-search .search-form-icon {
+  width: 40px;
+  height: 40px;
 }
 
 .sidebar-menu .search-form,
@@ -4332,6 +4344,7 @@ article p:last-child {
 
 .sidebar-menu .site-navigation {
   margin-bottom: 40px;
+  padding: 0 15px;
 }
 
 .sidebar-menu .site-navigation.has-nav-tab .main-navigation, .sidebar-menu .site-navigation.has-nav-tab .categories-navigation {
@@ -4445,6 +4458,7 @@ article p:last-child {
 }
 
 .sidebar-menu .sidebar-menu-bottom {
+  padding: 0 15px;
   border-top: 1px solid rgba(0, 0, 0, 0.121569);
 }
 
