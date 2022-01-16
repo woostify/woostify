@@ -114,8 +114,14 @@
 		@extend .duration;
 		@include rotate(0);
 
+		.woostify-svg-icon {
+			transition: all .3s;
+		}
+
 		&.active {
-			@include rotate(180);
+			.woostify-svg-icon {
+				@include rotate(180);
+			}
 		}
 	}
 
@@ -150,8 +156,8 @@
 	}
 	.site-search {
 		margin-bottom: 20px;
-		padding-left: 15px;
-		padding-right: 15px;
+		padding-left: 20px;
+		padding-right: 20px;
 
 		.search-field {
 			border-radius: 3px;
@@ -200,18 +206,31 @@
 			width: 50%;
 			text-align: center;
 			line-height: 1;
+			position: relative;
 
 			a {
+				font-size: 16px;
 				text-decoration: none;
 				display: inline-block;
+				text-transform: uppercase;
+			}
+
+			&.active {
+				&:after {
+					content: '';
+					display: block;
+					height: 3px;
+					width: 100%;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+				}
 			}
 		}
 	}
 
 	// menu
 	.site-navigation {
-		margin-bottom: 40px;
-		padding: 0 15px;
 
 		&.has-nav-tab {
 			.main-navigation, .categories-navigation {
@@ -228,6 +247,32 @@
 				&.active {
 					display: block;
 				}
+			}
+		}
+
+		nav {
+			> ul > li:first-child > a {
+				border-top: 1px solid #ececec;
+			}
+			.menu-item {
+				a {
+					padding: 0 20px;
+					border-bottom: 1px solid #ececec;
+
+					> .arrow-icon {
+						width: 48px;
+						height: 48px;
+						margin-right: -20px;
+						border-left: 1px solid #ececec;
+					}
+					&:hover {
+						background-color: rgba(0,0,0,.03);
+					}
+				}
+			}
+
+			.sub-menu a {
+				padding-left: 30px;
 			}
 		}
 	}
@@ -292,7 +337,7 @@
 		.sub-menu {
 			border-radius: 0;
 			pointer-events: auto;
-			margin-left: 20px;
+			margin-left: 0;
 			transition-duration: 0s;
 			display: none;
 			position: static;
@@ -352,6 +397,10 @@
 					height: 2px;
 					width: 0;
 					@extend .duration;
+
+					@media ( max-width: $screen-md - 1 ) {
+						display: none
+					}
 				}
 			}
 		}
@@ -359,12 +408,20 @@
 
 	// sidebar bottom
 	.sidebar-menu-bottom {
-		padding: 0 15px;
-		border-top: 1px solid rgba(0, 0, 0, 0.12156862745098039);
 
 		ul {
 			padding-left: 0;
 			margin: 0;
+
+			li {
+				a {
+					padding: 0 20px;
+					border-bottom: 1px solid #ececec;
+				}
+				&:last-child a {
+					border-bottom: none;
+				}
+			}
 		}
 	}
 
