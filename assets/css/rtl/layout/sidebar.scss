@@ -53,14 +53,31 @@
 			}
 		}
 
-		.arrow-icon {
-			-webkit-transform: rotate(90deg);
-    		transform: rotate(90deg);
+		.site-navigation {
+			nav {
+				.menu-item {
+					a {
+						> .arrow-icon {
+							margin-right: 0;
+							margin-left: -20px;
+							border-left: none;
+							border-right: 1px solid #ececec;
+						}
+					}
+				}
 
-    		&.active {
-    			-webkit-transform: rotate(0);
-    			transform: rotate(0);
-    		}
+				.sub-menu {
+					margin: 0;
+
+					.menu-item {
+						a {
+							> .arrow-icon {
+								margin-left: -30px;
+							}
+						}
+					}
+				}
+			}
 		}
 
 		.sidebar-menu-bottom {
