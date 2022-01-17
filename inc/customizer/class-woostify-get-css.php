@@ -502,6 +502,10 @@ class Woostify_Get_CSS {
 				.has-custom-mobile-logo.logo-transparent .custom-transparent-logo-url {
 					display: block;
 				}
+
+				.mobile-nav-tab li.active:after {
+					background: '. $options['theme_color'] .';
+				}
 			}
 		';
 

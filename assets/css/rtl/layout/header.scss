@@ -112,4 +112,10 @@
 			}
 		}
 	}
+	.wrap-toggle-sidebar-menu {
+		.toggle-sidebar-menu-btn {
+			transform: rotate(180deg);
+			-webkit-transform: rotate(180deg)
+		}
+	}
 }
