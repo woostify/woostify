@@ -1992,7 +1992,11 @@ if ( ! function_exists( 'woostify_sidebar_menu_open' ) ) {
 	 * Sidebar menu open
 	 */
 	function woostify_sidebar_menu_open() {
-		echo '<div class="sidebar-menu">';
+		$options                        = woostify_options( false );
+		$header_primary_menu            = $options['header_primary_menu'];
+		$show_categories_menu_on_mobile = $options['header_show_categories_menu_on_mobile'];
+		$extra_classes                  = $header_primary_menu && $show_categories_menu_on_mobile ? 'has-nav-tab' : '';
+		echo '<div class="sidebar-menu ' . $extra_classes . '">';
 	}
 }
 
