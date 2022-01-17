@@ -1033,6 +1033,7 @@ document.addEventListener(
 		var isMinimalCheckoutLayout = document.body.classList.contains( 'checkout-layout-3' );
 
 		if ( isMinimalCheckoutLayout ) {
+			var resized = false;
 			woostifyCheckoutFormFieldAnimation();
 
 			// Move notices.
@@ -1120,11 +1121,16 @@ document.addEventListener(
 					jQuery( 'form.checkout' ).unbindArrive( 'form.checkout_coupon' );
 				}
 			);
-		}
 
-		checkoutOrder();
-		if ( '1' === woostify_woocommerce_general.is_active_sticky ) {
+			checkoutOrder();
 			stickyOrderReview();
+
+			window.onscroll = function() {
+				if ( ! resized ) {
+					window.dispatchEvent( new Event( 'resize' ) );
+					resized = true;
+				}
+			}
 		}
 
 		// For Elementor Preview Mode.
