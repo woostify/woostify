@@ -8,7 +8,7 @@
 
 'use strict';
 
-function woostifyInfiniteScroll( addEventClick ) {
+function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 	let container      = document.querySelector( '.site-main .products' ),
 	view_more_btn_wrap = document.querySelector( '.woostify-view-more' )
 
@@ -25,20 +25,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 	pagination         = document.querySelector( '.woocommerce-pagination ul.page-numbers' )
 
 	let options = {
-		path: function() {
-			let curr_host_name = window.location.hostname,
-			curr_protocol      = window.location.protocol,
-			curr_path_name     = window.location.pathname,
-			page               = this.loadCount + 2,
-			curr_query         = window.location.search.substring( 1 ),
-			regex              = /(page\/)[0-9]+/;
-
-			if ( ! curr_path_name.match( regex )) {
-				curr_path_name = curr_path_name + 'page/' + page;
-			}
-			let path = '' === curr_query ? curr_protocol + '//' + curr_host_name + curr_path_name + '/' : curr_protocol + '//' + curr_host_name + curr_path_name + '/?' + curr_query;
-			return path;
-		},
+		path: infScrollPath ? infScrollPath : '.next.page-numbers',
 		append: '.product.type-product',
 		history: false,
 		hideNav: '.woocommerce-pagination',
@@ -60,7 +47,7 @@ function woostifyInfiniteScroll( addEventClick ) {
 		}
 	}
 
-	let infScroll = new InfiniteScroll(
+	window.infScroll = new InfiniteScroll(
 		container,
 		options
 	)
