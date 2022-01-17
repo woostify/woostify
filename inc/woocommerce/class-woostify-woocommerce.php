@@ -534,7 +534,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			wp_enqueue_script( 'woostify-quantity-button' );
 
 			// Sticky sidebar.
-			if ( in_array( $options['shop_single_gallery_layout'], array( 'column', 'grid' ), true ) ) {
+			if ( 'layout-3' === $options['checkout_page_layout'] || in_array( $options['shop_single_gallery_layout'], array( 'column', 'grid' ), true ) ) {
 				wp_enqueue_script( 'sticky-sidebar' );
 			}
 
