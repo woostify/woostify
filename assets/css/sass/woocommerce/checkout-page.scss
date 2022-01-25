@@ -1185,119 +1185,120 @@
 	}
 
 	form.checkout {
+		.col-left {
+			.form-row:not(.field-readonly) {
+				position: relative;
 
-		.form-row:not(.field-readonly) {
-			position: relative;
-
-			label:not(.checkbox) {
-				position: absolute;
-				top: 50%;
-				left: 12px;
-				background: #fff;
-				right: 12px;
-				bottom: 5px;
-				margin-top: -10px;
-				pointer-events: none;
-				transition: all .2s;
-				line-height: 20px;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-				z-index: 1;
-			}
-
-			textarea::-webkit-input-placeholder {
-				/* WebKit browsers */
-				color: transparent;
-			}
-			textarea:-moz-placeholder {
-				/* Mozilla Firefox 4 to 18 */
-				color: transparent;
-			}
-			textarea::-moz-placeholder {
-				/* Mozilla Firefox 19+ */
-				color: transparent;
-			}
-			textarea:-ms-input-placeholder {
-				/* Internet Explorer 10+ */
-				color: transparent;
-			}
-			textarea::placeholder {
-				color: transparent;
-			}
-
-			&:not(.no-label) {
-				.input-text {
-					width: 100%;
-					height: 50px;
-					padding: 20px 12px 2px;
-					border-radius: 4px;
+				label:not(.checkbox) {
+					position: absolute;
+					top: 50%;
+					left: 12px;
+					background: #fff;
+					right: 12px;
+					bottom: 5px;
+					margin-top: -10px;
+					pointer-events: none;
+					transition: all .2s;
+					line-height: 20px;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					z-index: 1;
 				}
-			}
-			.input-text {
-				width: 100%;
-				height: 50px;
-				border-radius: 4px;
-				&:focus {
-					border-color: #000;
-				}
-			}
 
-			&.woocommerce-invalid-required-field, &.woocommerce-invalid {
-				.input-text, .select2-selection {
-					border-color: #d50000;
-				}
-			}
-
-			&.notes {
-				label {
-					top: 25px;
-				}
-				textarea {
-					padding: 20px 12px 12px !important;
-				}
-			}
-
-			&.w-anim-wrap {
-				label {
-					top: 4px;
-					font-size: 12px;
-					padding: 0;
-					bottom: auto;
-					margin-top: 0;
-					background: transparent;
-				}
 				textarea::-webkit-input-placeholder {
 					/* WebKit browsers */
-					color: inherit;
+					color: transparent;
 				}
 				textarea:-moz-placeholder {
 					/* Mozilla Firefox 4 to 18 */
-					color: inherit;
+					color: transparent;
 				}
 				textarea::-moz-placeholder {
 					/* Mozilla Firefox 19+ */
-					color: inherit;
+					color: transparent;
 				}
 				textarea:-ms-input-placeholder {
 					/* Internet Explorer 10+ */
-					color: inherit;
+					color: transparent;
 				}
 				textarea::placeholder {
-					color: inherit;
+					color: transparent;
 				}
-			}
 
-			&#billing_country_field, &#billing_state_field, &#billing_city_field, &#shipping_country_field, &#shipping_state_field, &#shipping_city_field {
-				label {
+				&:not(.no-label) {
+					.input-text {
+						width: 100%;
+						height: 50px;
+						padding: 20px 12px 2px;
+						border-radius: 4px;
+					}
 				}
-				.select2-selection {
+				.input-text {
+					width: 100%;
+					height: 50px;
 					border-radius: 4px;
+					&:focus {
+						border-color: #000;
+					}
 				}
-				.select2-selection__rendered {
-					padding: 23px 12px 2px;
-					line-height: 1.5;
-					min-height: 48px;
+
+				&.woocommerce-invalid-required-field, &.woocommerce-invalid {
+					.input-text, .select2-selection {
+						border-color: #d50000;
+					}
+				}
+
+				&.notes {
+					label {
+						top: 25px;
+					}
+					textarea {
+						padding: 20px 12px 12px !important;
+					}
+				}
+
+				&.w-anim-wrap {
+					label {
+						top: 4px;
+						font-size: 12px;
+						padding: 0;
+						bottom: auto;
+						margin-top: 0;
+						background: transparent;
+					}
+					textarea::-webkit-input-placeholder {
+						/* WebKit browsers */
+						color: inherit;
+					}
+					textarea:-moz-placeholder {
+						/* Mozilla Firefox 4 to 18 */
+						color: inherit;
+					}
+					textarea::-moz-placeholder {
+						/* Mozilla Firefox 19+ */
+						color: inherit;
+					}
+					textarea:-ms-input-placeholder {
+						/* Internet Explorer 10+ */
+						color: inherit;
+					}
+					textarea::placeholder {
+						color: inherit;
+					}
+				}
+
+				&#billing_country_field, &#billing_state_field, &#billing_city_field, &#shipping_country_field, &#shipping_state_field, &#shipping_city_field {
+					label {
+					}
+					.select2-selection {
+						border-radius: 4px;
+					}
+					.select2-selection__rendered {
+						padding: 23px 12px 2px;
+						line-height: 1.5;
+						min-height: 48px;
+					}
 				}
 			}
 		}
