@@ -354,7 +354,7 @@ var woostifyQuantityMiniCart = function() {
 			var quantityBtn  = ele.querySelectorAll( '.mini-cart-product-qty' ),
 				input        = ele.querySelector( 'input.qty' ),
 				currInputVal = input.value,
-				max          = Number( input.getAttribute( 'max' ) ),
+				max          = Number( input.getAttribute( 'max' ) || -1 ),
 				cartItemKey  = input.getAttribute( 'data-cart_item_key' ) || '',
 				eventChange  = new Event( 'change' ),
 				qtyUpdate    = new Event( 'quantity_updated' );
@@ -371,7 +371,7 @@ var woostifyQuantityMiniCart = function() {
 						min      = Number( input.getAttribute( 'min' ) || 1 ),
 						dataType = t.getAttribute( 'data-qty' );
 
-					if ( current < 1 || isNaN( current ) ) {
+					if ( current < min || isNaN( current ) ) {
 						alert( woostify_woocommerce_general.qty_warning );
 						return;
 					}
@@ -384,7 +384,7 @@ var woostifyQuantityMiniCart = function() {
 						input.value  = ( current - step );
 						currInputVal = ( current - step );
 					} else if ( 'plus' === dataType ) { // Plus button.
-						if ( max && ( current >= max || ( current + step ) > max ) ) {
+						if ( max > 0 && ( current >= max || ( current + step ) > max ) ) {
 							return;
 						}
 
@@ -401,10 +401,11 @@ var woostifyQuantityMiniCart = function() {
 			input.addEventListener(
 				'change',
 				function() {
-					var inputVal = Number( input.value || 0 );
+					var inputVal = Number( input.value || 0 ),
+						min      = Number( input.getAttribute( 'min' ) || 0 );
 
 					// Valid quantity.
-					if ( inputVal < 1 || isNaN( inputVal ) || ( max > 0 && ( parseInt( inputVal ) > max ) ) ) {
+					if ( inputVal < min || isNaN( inputVal ) || ( max > 0 && ( Number( inputVal ) > max ) ) ) {
 						alert( woostify_woocommerce_general.qty_warning );
 						input.value = currInputVal;
 						return;
