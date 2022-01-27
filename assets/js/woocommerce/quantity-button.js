@@ -111,13 +111,13 @@ function customQuantity() {
 							return;
 						}
 
-						input.value = current - step;
+						input.value = Number( ( current - step ).toFixed( step.countDecimals() ) );
 					} else if ( 'plus' === dataType ) { // Plus button.
 						if ( max && ( current >= max || ( current + step ) > max ) ) {
 							return;
 						}
 
-						input.value = current + step;
+						input.value = Number( ( current + step ).toFixed( step.countDecimals() ) );
 					}
 
 					// Trigger event.

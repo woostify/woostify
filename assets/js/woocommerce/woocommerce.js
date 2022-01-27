@@ -381,15 +381,19 @@ var woostifyQuantityMiniCart = function() {
 							return;
 						}
 
-						input.value  = ( current - step );
-						currInputVal = ( current - step );
+						var qty = Number( ( current - step ).toFixed( step.countDecimals() ) );
+
+						input.value  = qty;
+						currInputVal = qty;
 					} else if ( 'plus' === dataType ) { // Plus button.
 						if ( max > 0 && ( current >= max || ( current + step ) > max ) ) {
 							return;
 						}
 
-						input.value  = ( current + step );
-						currInputVal = ( current + step );
+						var qty = Number( ( current + step ).toFixed( step.countDecimals() ) );
+
+						input.value  = qty;
+						currInputVal = qty;
 					}
 
 					// Trigger event.
