@@ -797,10 +797,6 @@ class Woostify_Get_CSS {
 				font-size: ' . esc_attr( $options['sub_menu_font_size'] ) . 'px;
 				color: ' . esc_attr( $options['primary_sub_menu_color'] ) . ';
 			}
-
-			.site-tools .tools-icon, .site-tools .tools-icon .woostify-svg-icon {
-				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
-			}
 			.site-tools .tools-icon .woostify-header-total-price {
 				font-family: ' . esc_attr( $options['menu_font_family'] ) . ';
 				font-size: ' . esc_attr( $options['parent_menu_font_size'] ) . 'px;
