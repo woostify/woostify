@@ -982,7 +982,8 @@ class Woostify_Get_CSS {
 
 			.cart:not(.elementor-menu-cart__products) .quantity,
 			.loop-add-to-cart-on-image+.added_to_cart,
-			.loop-product-qty .quantity {
+			.loop-product-qty .quantity,
+			.mini-cart-product-infor .mini-cart-quantity {
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
 			}
 

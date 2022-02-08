@@ -9137,6 +9137,8 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   display: flex;
   align-items: stretch;
   height: 24px;
+  border: 1px solid #ccc;
+  overflow: hidden;
 }
 
 .mini-cart-product-infor .mini-cart-quantity .qty {
@@ -9148,6 +9150,7 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   text-align: center;
   -moz-appearance: textfield;
   background-color: transparent;
+  border: none;
 }
 
 .mini-cart-product-infor .mini-cart-quantity .qty::-webkit-inner-spin-button, .mini-cart-product-infor .mini-cart-quantity .qty::-webkit-outer-spin-button {
@@ -9156,18 +9159,17 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 
 .mini-cart-product-infor .mini-cart-product-qty {
   cursor: pointer;
-  border: 1px solid #ccc;
   width: 24px;
   font-size: 10px;
   user-select: none;
 }
 
 .mini-cart-product-infor .mini-cart-product-qty[data-qty="minus"] {
-  border-right: 0;
+  border-right: 1px solid #ccc;
 }
 
 .mini-cart-product-infor .mini-cart-product-qty[data-qty="plus"] {
-  border-left: 0;
+  border-left: 1px solid #ccc;
 }
 
 .mini-cart-product-infor .mini-cart-product-qty .woostify-svg-icon svg {
@@ -9408,10 +9410,8 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="apply_coupon"], .cart.wishlist_table:not(.elementor-menu-cart__products) [name="apply_coupon"] {
     font-weight: 600;
     font-size: 12px;
-    border-bottom: 1px solid #ccc;
     height: 30px;
     padding: 0 10px;
-    border-radius: 0;
     background-color: rgba(0, 0, 0, 0);
   }
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="apply_coupon"]:hover, .cart.wishlist_table:not(.elementor-menu-cart__products) [name="apply_coupon"]:hover {
@@ -9420,7 +9420,6 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="update_cart"], .cart.wishlist_table:not(.elementor-menu-cart__products) [name="update_cart"] {
     height: 100%;
     width: 100%;
-    border-radius: 0;
     font-weight: 600;
     height: 100px;
   }
