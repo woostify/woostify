@@ -1755,6 +1755,57 @@
 	}
 }
 
+/* Widget: Checkout ( Elementor Pro ) */
+.elementor-widget-woocommerce-checkout-page {
+	.form-row {
+		padding: 3px;
+		margin: 0 0 6px;
+		float: none;
+
+		&.form-row-first {
+			float: left;
+		}
+
+		&.form-row-last {
+			float: right;
+		}
+
+		&.notes {
+			float: none;
+		}
+	}
+	#customer_details {
+		float: none;
+		width: 100%;
+		padding: 0;
+	}
+	#order_review {
+		float: none;
+		width: 100%;
+	}
+	#order_comments {
+		min-height: unset;
+	}
+	.select2-container--default .select2-selection--single .select2-selection__arrow {
+		transform: none;
+	}
+	.woocommerce-form-login__submit, .e-apply-coupon {
+		line-height: inherit;
+	}
+	#order_review {
+		border-radius: 0;
+		background: inherit;
+		padding: 0;
+	}
+	.woocommerce-checkout-review-order-table tr {
+		display: table-row;
+
+		th, td {
+			display: table-cell;
+		}
+	}
+}
+
 // Order pay
 @media (min-width: $screen-md) {
 	.woocommerce-order-pay {
