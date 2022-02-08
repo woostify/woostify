@@ -409,6 +409,13 @@
   order: 1;
 }
 
+@media (min-width: 992px) {
+  .rtl.checkout-layout-3:not(.woobuilder-active) #order_review {
+    padding-left: 0;
+    padding-right: 40px;
+  }
+}
+
 .rtl .cart .quantity {
   margin-left: 8px;
   margin-right: 0;
