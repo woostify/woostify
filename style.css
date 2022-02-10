@@ -11335,6 +11335,62 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   line-height: 1;
 }
 
+/* Widget: Checkout ( Elementor Pro ) */
+.elementor-widget-woocommerce-checkout-page .form-row {
+  padding: 3px;
+  margin: 0 0 6px;
+  float: none;
+}
+
+.elementor-widget-woocommerce-checkout-page .form-row.form-row-first {
+  float: left;
+}
+
+.elementor-widget-woocommerce-checkout-page .form-row.form-row-last {
+  float: right;
+}
+
+.elementor-widget-woocommerce-checkout-page .form-row.notes {
+  float: none;
+}
+
+.elementor-widget-woocommerce-checkout-page #customer_details {
+  float: none;
+  width: 100%;
+  padding: 0;
+}
+
+.elementor-widget-woocommerce-checkout-page #order_review {
+  float: none;
+  width: 100%;
+}
+
+.elementor-widget-woocommerce-checkout-page #order_comments {
+  min-height: unset;
+}
+
+.elementor-widget-woocommerce-checkout-page .select2-container--default .select2-selection--single .select2-selection__arrow {
+  transform: none;
+}
+
+.elementor-widget-woocommerce-checkout-page .woocommerce-form-login__submit, .elementor-widget-woocommerce-checkout-page .e-apply-coupon {
+  line-height: inherit;
+}
+
+.elementor-widget-woocommerce-checkout-page #order_review {
+  border-radius: 0;
+  background: inherit;
+  padding: 0;
+}
+
+.elementor-widget-woocommerce-checkout-page .woocommerce-checkout-review-order-table tr {
+  display: table-row;
+}
+
+.elementor-widget-woocommerce-checkout-page .woocommerce-checkout-review-order-table tr th, .elementor-widget-woocommerce-checkout-page .woocommerce-checkout-review-order-table tr td {
+  display: table-cell;
+}
+
 @media (min-width: 992px) {
   .woocommerce-order-pay #order_review {
     width: 100%;
