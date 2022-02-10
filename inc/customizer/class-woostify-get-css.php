@@ -504,7 +504,7 @@ class Woostify_Get_CSS {
 				}
 
 				.mobile-nav-tab li.active:after {
-					background: '. $options['theme_color'] .';
+					background: ' . $options['theme_color'] . ';
 				}
 			}
 		';
@@ -1571,6 +1571,22 @@ class Woostify_Get_CSS {
 			}
 			$styles .= $hide_classes . '{ display: none !important; }';
 		}
+
+		// YITH Woocommerce Wishlist.
+		$styles .= '
+		.product-loop-action .yith-wcwl-add-to-wishlist a {
+			color: ' . esc_attr( $options['text_color'] ) . ';
+		}
+		.product-loop-action .yith-wcwl-add-to-wishlist a:hover {
+			background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
+		}
+		.product-loop-action .yith-wcwl-add-to-wishlist:hover .feedback {
+			background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
+		}
+		.loop-wrapper-wishlist .feedback:hover {
+			background-color: ' . esc_attr( $options['text_color'] ) . ';
+		}
+		';
 
 		$this->css = apply_filters( 'woostify_customizer_css', $styles );
 		$this->css = $this->minimize_dynamic_css();
