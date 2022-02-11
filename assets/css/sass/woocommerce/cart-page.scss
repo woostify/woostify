@@ -256,10 +256,8 @@
 		[name="apply_coupon"] {
 			font-weight: 600;
 			font-size: 12px;
-			border-bottom: 1px solid #ccc;
 			height: 30px;
 			padding: 0 10px;
-			border-radius: 0;
 			background-color: $tr;
 
 			&:hover {
@@ -270,7 +268,6 @@
 		[name="update_cart"] {
 			height: 100%;
 			width: 100%;
-			border-radius: 0;
 			font-weight: 600;
 			height: 100px;
 

@@ -159,6 +159,12 @@
 					}
 				}
 			}
+			#order_review {
+				@media (min-width: 992px) {
+					padding-left: 0;
+					padding-right: 40px;
+				}
+			}
 		}
 	}
 }

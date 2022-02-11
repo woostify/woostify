@@ -62,7 +62,7 @@ function customQuantity() {
 			// Vars.
 			var cart         = ele.closest( 'form.cart' ),
 				buttons      = ele.querySelectorAll( '.product-qty' ),
-				maxInput     = Number( input.getAttribute( 'max' ) ),
+				maxInput     = Number( input.getAttribute( 'max' ) || -1 ),
 				currInputVal = input.value,
 				eventChange  = new Event( 'change', { bubbles: true } );
 
@@ -76,7 +76,7 @@ function customQuantity() {
 							input.classList.remove( 'ajax-ready' );
 						};
 
-					if ( inputVal < 1 || isNaN( inputVal ) || ( maxInput > 0 && ( parseInt( inputVal ) > maxInput ) ) ) {
+					if ( Number( inputVal ) < min || isNaN( inputVal ) || ( maxInput > 0 && ( Number( inputVal ) > maxInput ) ) ) {
 						alert( woostify_woocommerce_general.qty_warning );
 						input.value = currInputVal
 						return;
@@ -111,13 +111,13 @@ function customQuantity() {
 							return;
 						}
 
-						input.value = current - step;
+						input.value = Number( ( current - step ).toFixed( step.countDecimals() ) );
 					} else if ( 'plus' === dataType ) { // Plus button.
 						if ( max && ( current >= max || ( current + step ) > max ) ) {
 							return;
 						}
 
-						input.value = current + step;
+						input.value = Number( ( current + step ).toFixed( step.countDecimals() ) );
 					}
 
 					// Trigger event.

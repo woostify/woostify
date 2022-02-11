@@ -491,6 +491,8 @@ $media: 599px;
 		display: flex;
 		align-items: stretch;
 		height: 24px;
+		border: 1px solid #ccc;
+		overflow: hidden;
 
 		.qty {
 			height: 100%;
@@ -501,6 +503,7 @@ $media: 599px;
 			text-align: center;
 			-moz-appearance: textfield;
 			background-color: transparent;
+			border: none;
 
 			&::-webkit-inner-spin-button,
 			&::-webkit-outer-spin-button {
@@ -511,18 +514,17 @@ $media: 599px;
 
 	.mini-cart-product-qty {
 		cursor: pointer;
-		border: 1px solid #ccc;
 		width: 24px;
 		font-size: 10px;
 		user-select: none;
 		@extend .flex;
 
 		&[data-qty="minus"] {
-			border-right: 0;
+			border-right: 1px solid #ccc;
 		}
 
 		&[data-qty="plus"] {
-			border-left: 0;
+			border-left: 1px solid #ccc;
 		}
 
 		.woostify-svg-icon svg {

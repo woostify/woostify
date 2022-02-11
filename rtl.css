@@ -409,6 +409,13 @@
   order: 1;
 }
 
+@media (min-width: 992px) {
+  .rtl.checkout-layout-3:not(.woobuilder-active) #order_review {
+    padding-left: 0;
+    padding-right: 40px;
+  }
+}
+
 .rtl .cart .quantity {
   margin-left: 8px;
   margin-right: 0;
@@ -511,13 +518,13 @@
   margin-right: 0;
 }
 
-.rtl .mini-cart-product-infor .mini-cart-product-qty[data-qty="plus"] {
-  border: 1px solid #ccc;
+.rtl .mini-cart-product-infor .mini-cart-product-qty[data-qty="minus"] {
+  border-left: 1px solid #ccc;
   border-right: 0;
 }
 
-.rtl .mini-cart-product-infor .mini-cart-product-qty[data-qty="minus"] {
-  border: 1px solid #ccc;
+.rtl .mini-cart-product-infor .mini-cart-product-qty[data-qty="plus"] {
+  border-right: 1px solid #ccc;
   border-left: 0;
 }
 
