@@ -88,8 +88,10 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 		$after_checkout_content     = $options['mini_cart_after_checkout_button_content_select'];
 		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
 
+		$wc_number_of_decimals = get_option( 'woocommerce_price_num_decimals', 0 );
+
 		$cart_item_key = sanitize_text_field( wp_unslash( $_POST['key'] ) );
-		$product_qty   = absint( $_POST['qty'] );
+		$product_qty   = number_format( $_POST['qty'], $wc_number_of_decimals );
 
 		WC()->cart->set_quantity( $cart_item_key, $product_qty );
 
@@ -102,7 +104,6 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 			$response['free_shipping_threshold'] = array();
 
 			$subtotal                 = WC()->cart->subtotal;
-			$wc_number_of_decimals    = get_option( 'woocommerce_price_num_decimals', 0 );
 			$goal_amount              = $options['shipping_threshold_progress_bar_amount'];
 			$progress_bar_initial_msg = $options['shipping_threshold_progress_bar_initial_msg'];
 			$progress_bar_success_msg = $options['shipping_threshold_progress_bar_success_msg'];
@@ -154,7 +155,7 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 				<?php Woostify_Icon::fetch_svg_icon( 'minus' ); ?>
 				</span>
 
-				<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+				<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
 
 				<span class="mini-cart-product-qty" data-qty="plus">
 				<?php Woostify_Icon::fetch_svg_icon( 'plus' ); ?>
@@ -339,7 +340,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 									<?php Woostify_Icon::fetch_svg_icon( 'minus' ); ?>
 									</span>
 
-									<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="1" min="1" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric" <?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>>
+									<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric" <?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>>
 
 									<span class="mini-cart-product-qty" data-qty="plus">
 									<?php Woostify_Icon::fetch_svg_icon( 'plus' ); ?>

@@ -710,45 +710,40 @@ body{
 	}
 
 	.yith-wcwl-add-to-wishlist {
-
-		.feedback,
 		img {
 			display: none;
+		}
+
+		.feedback {
+			font-size: 0;
+			i {
+				font-size: 14px;
+				margin: 0;
+			}
 		}
 
 		a {
 			font-size: 0;
 			position: relative;
-		}
 
-		.yith-wcwl-wishlistaddedbrowse.show,
-		.yith-wcwl-wishlistexistsbrowse {
-			a {
-				color: #f00;
+			i {
+				font-size: 14px;
+				margin: 0;
+				color: inherit;
 			}
 		}
 
-		.yith-wcwl-add-button {
-			a {
-				&:before {
-					content: "\e634"
-				}
-			}
-		}
-
+		.yith-wcwl-wishlistexistsbrowse,
 		.yith-wcwl-wishlistaddedbrowse {
-			a {
-				&:before {
-					content: "\e64c"
+
+			.feedback {
+				a {
+					display: none;
 				}
 			}
-		}
 
-		.yith-wcwl-wishlistexistsbrowse {
 			a {
-				&:before {
-					content: "\e634";
-				}
+				display: none;
 			}
 		}
 	}
@@ -781,10 +776,16 @@ body{
 
 	// Add to wishlist btn
 	.yith-wcwl-add-to-wishlist {
-		a {
+		a, .feedback {
+			background: #fff;
 			width: $size;
 			height: $size;
 			@extend .flex;
+
+			&:hover {
+				background: #fff;
+				color: #fff;
+			}
 		}
 	}
 
@@ -798,12 +799,6 @@ body{
 		margin-top: 0;
 		background-color: #fff;
 		@extend .duration;
-
-		&:hover {
-			a {
-				color: #fff;
-			}
-		}
 	}
 
 	// Icon add to cart
@@ -875,9 +870,9 @@ body{
 	right: 5px;
 	bottom: 5px;
 
-	a {
-		width: $size - 7px;
-		height: $size - 7px;
+	a, .feedback {
+		width: $size - 6px;
+		height: $size - 6px;
 		border-radius: 50%;
 		background-color: #fff;
 		@extend .flex;
@@ -890,10 +885,15 @@ body{
 
 	.yith-wcwl-wishlistexistsbrowse,
 	.yith-wcwl-wishlistaddedbrowse {
-		&.show {
+
+		.feedback {
 			a {
-				background-color: #e33333;
+				display: none;
 			}
+		}
+
+		a {
+			display: none;
 		}
 	}
 }

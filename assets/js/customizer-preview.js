@@ -851,7 +851,7 @@ document.addEventListener(
 		// Border radius.
 		woostify_unit_live_update(
 			'buttons_border_radius',
-			'.cart .quantity, .button, .woocommerce-widget-layered-nav-dropdown__submit, .form-submit .submit, .elementor-button-wrapper .elementor-button, .has-woostify-contact-form input[type="submit"], #secondary .widget a.button, .product-loop-meta.no-transform .button, .loop-product-qty .quantity',
+			'.cart .quantity, .button, .woocommerce-widget-layered-nav-dropdown__submit, .form-submit .submit, .elementor-button-wrapper .elementor-button, .has-woostify-contact-form input[type="submit"], #secondary .widget a.button, .product-loop-meta.no-transform .button, .loop-product-qty .quantity, .cart:not(.elementor-menu-cart__products) .quantity, [class*="elementor-kit"] .checkout-button, .mini-cart-product-infor .mini-cart-quantity',
 			'border-radius',
 		)
 		woostify_color_group_live_update(

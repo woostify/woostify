@@ -504,7 +504,7 @@ class Woostify_Get_CSS {
 				}
 
 				.mobile-nav-tab li.active:after {
-					background: '. $options['theme_color'] .';
+					background: ' . $options['theme_color'] . ';
 				}
 			}
 		';
@@ -797,10 +797,6 @@ class Woostify_Get_CSS {
 				font-size: ' . esc_attr( $options['sub_menu_font_size'] ) . 'px;
 				color: ' . esc_attr( $options['primary_sub_menu_color'] ) . ';
 			}
-
-			.site-tools .tools-icon, .site-tools .tools-icon .woostify-svg-icon {
-				color: ' . esc_attr( $options['primary_menu_color'] ) . ';
-			}
 			.site-tools .tools-icon .woostify-header-total-price {
 				font-family: ' . esc_attr( $options['menu_font_family'] ) . ';
 				font-size: ' . esc_attr( $options['parent_menu_font_size'] ) . 'px;
@@ -982,7 +978,8 @@ class Woostify_Get_CSS {
 
 			.cart:not(.elementor-menu-cart__products) .quantity,
 			.loop-add-to-cart-on-image+.added_to_cart,
-			.loop-product-qty .quantity {
+			.loop-product-qty .quantity,
+			.mini-cart-product-infor .mini-cart-quantity {
 				border-radius: ' . esc_attr( $options['buttons_border_radius'] ) . 'px;
 			}
 
@@ -1575,6 +1572,22 @@ class Woostify_Get_CSS {
 			}
 			$styles .= $hide_classes . '{ display: none !important; }';
 		}
+
+		// YITH Woocommerce Wishlist.
+		$styles .= '
+		.product-loop-action .yith-wcwl-add-to-wishlist a {
+			color: ' . esc_attr( $options['text_color'] ) . ';
+		}
+		.product-loop-action .yith-wcwl-add-to-wishlist a:hover {
+			background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
+		}
+		.product-loop-action .yith-wcwl-add-to-wishlist:hover .feedback {
+			background-color: ' . esc_attr( $options['button_hover_background_color'] ) . ';
+		}
+		.loop-wrapper-wishlist .feedback:hover {
+			background-color: ' . esc_attr( $options['text_color'] ) . ';
+		}
+		';
 
 		$this->css = apply_filters( 'woostify_customizer_css', $styles );
 		$this->css = $this->minimize_dynamic_css();
