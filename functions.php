@@ -6,8 +6,8 @@
  */
 
 // Define constants.
-define( 'WOOSTIFY_VERSION', '2.0.9' );
-define( 'WOOSTIFY_PRO_MIN_VERSION', '1.6.7' );
+define( 'WOOSTIFY_VERSION', '2.1.0' );
+define( 'WOOSTIFY_PRO_MIN_VERSION', '1.6.8' );
 define( 'WOOSTIFY_THEME_DIR', get_template_directory() . '/' );
 define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );
 
