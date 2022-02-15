@@ -1035,6 +1035,16 @@ document.addEventListener(
 			}
 		);
 
+		jQuery( document.body ).on(
+			'init_checkout updated_checkout payment_method_selected',
+			function() {
+				// Add quantity button list.
+				if ( 'function' === typeof( customQuantity ) ) {
+					customQuantity();
+				}
+			}
+		);
+
 		var isMinimalCheckoutLayout = document.body.classList.contains( 'checkout-layout-3' );
 
 		if ( isMinimalCheckoutLayout ) {
