@@ -400,6 +400,15 @@ $media: 599px;
 			padding-left: 95px;
 		}
 
+		&.component_mini_cart_item {
+			@media ( min-width: $media - 1 ) {
+				padding-left: 125px;
+			}
+			.mini-cart-product-infor .mini-cart-quantity {
+				display: none;
+			}
+		}
+
     	img{
     		max-width: 75px;
     		max-height: 75px;
