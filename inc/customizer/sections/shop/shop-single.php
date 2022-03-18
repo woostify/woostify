@@ -589,10 +589,9 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_single_product_data_tabs_open]',
 		array(
-			'label'       => __( 'Open Tab First Accordion', 'woostify' ),
-			'description' => __( 'This option will opend first tab accordion', 'woostify' ),
-			'settings'    => 'woostify_setting[shop_single_product_data_tabs_open]',
-			'section'     => 'woostify_shop_single',
+			'label'    => __( 'Open first tab by default', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_data_tabs_open]',
+			'section'  => 'woostify_shop_single',
 		)
 	)
 );

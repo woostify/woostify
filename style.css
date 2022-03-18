@@ -8551,7 +8551,7 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 
 .woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner .woostify-tab-scroll-content {
   overflow-y: auto;
-  max-height: 250px;
+  max-height: 500px;
   scrollbar-width: thin;
   padding-right: 20px;
 }
@@ -8570,6 +8570,14 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 
 .woocommerce-tabs.layout-accordion .woocommerce-Tabs-panel .woostify-tab-inner .woostify-tab-scroll-content > h2:first-child {
   display: none;
+}
+
+.woocommerce-tabs.layout-accordion + .related {
+  border-top: none;
+}
+
+.layout-accordion + .related {
+  border-top: none;
 }
 
 .related,
