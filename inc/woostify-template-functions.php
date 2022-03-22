@@ -59,26 +59,28 @@ if ( ! function_exists( 'woostify_post_related' ) ) {
 			<div class="related-box">
 				<div class="row">
 					<h3 class="related-title"><?php esc_html_e( 'Related Posts', 'woostify' ); ?></h3>
-					<?php
-					while ( $query->have_posts() ) :
-						$query->the_post();
+					<div class="list-related">
+						<?php
+						while ( $query->have_posts() ) :
+							$query->the_post();
 
-						$post_id = get_the_ID();
-						?>
-						<div class="related-post col-md-4">
-							<?php if ( has_post_thumbnail() ) { ?>
-								<a href="<?php echo esc_url( get_permalink() ); ?>" class="entry-header">
-									<?php the_post_thumbnail( 'medium' ); ?>
-								</a>
-							<?php } ?>
+							$post_id = get_the_ID();
+							?>
+							<div class="related-post col-md-4">
+								<?php if ( has_post_thumbnail() ) { ?>
+									<a href="<?php echo esc_url( get_permalink() ); ?>" class="entry-header">
+										<?php the_post_thumbnail( 'medium' ); ?>
+									</a>
+								<?php } ?>
 
-							<div class="posted-on"><?php echo get_the_date(); ?></div>
-							<h2 class="entry-title">
-								<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
-							</h2>
-							<a class="post-read-more" href="<?php echo esc_url( get_permalink() ); ?>"><?php esc_html_e( 'Read more', 'woostify' ); ?></a>
-						</div>
-					<?php endwhile; ?>
+								<div class="posted-on"><?php echo get_the_date(); ?></div>
+								<h2 class="entry-title">
+									<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
+								</h2>
+								<a class="post-read-more" href="<?php echo esc_url( get_permalink() ); ?>"><?php esc_html_e( 'Read more', 'woostify' ); ?></a>
+							</div>
+						<?php endwhile; ?>
+					</div>
 				</div>
 			</div>
 			<?php

@@ -396,6 +396,16 @@
 					],
 				)
 
+
+				// Shop Single Tab open.
+				condition(
+					'woostify_setting[shop_single_product_data_tabs_layout]',
+					[
+						'woostify_setting[shop_single_product_data_tabs_open]',
+					],
+					'normal',
+				)
+
 				var mini_cart_content_settings = [
 					'mini_cart_top_content_select',
 					'mini_cart_before_checkout_button_content_select',
