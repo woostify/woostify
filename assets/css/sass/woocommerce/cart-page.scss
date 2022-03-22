@@ -71,6 +71,43 @@
 	.woocommerce-cart-form {
 		margin-bottom: 50px;
 	}
+
+	.elementor-widget-woocommerce-cart {
+		.woocommerce-cart-form {
+			width: 100%;
+			float: none;
+		}
+		.cart-collaterals {
+			float: none;
+			width: 100%;
+			padding: 0;
+			border: none;
+		}
+		.woocommerce {
+			.input-text.qty {
+				text-align: center;
+				border: none;
+				padding: 0 40px;
+				font-size: inherit;
+				max-height: unset;
+			}
+			.coupon .form-row {
+				float: none;
+			}
+			.input-text, select {
+				height: auto;
+			}
+			.wc-proceed-to-checkout .checkout-button {
+				line-height: inherit;
+			}
+		}
+		.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions [name="update_cart"], .cart.wishlist_table:not(.elementor-menu-cart__products) .actions [name="update_cart"] {
+			border-width: 2px;
+		}
+		.woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="update_cart"], .cart.wishlist_table:not(.elementor-menu-cart__products) [name="update_cart"] {
+			height: auto;
+		}
+	}
 }
 
 .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) {

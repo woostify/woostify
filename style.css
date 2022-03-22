@@ -9272,6 +9272,46 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   margin-bottom: 50px;
 }
 
+.woocommerce-cart .elementor-widget-woocommerce-cart .woocommerce-cart-form {
+  width: 100%;
+  float: none;
+}
+
+.woocommerce-cart .elementor-widget-woocommerce-cart .cart-collaterals {
+  float: none;
+  width: 100%;
+  padding: 0;
+  border: none;
+}
+
+.woocommerce-cart .elementor-widget-woocommerce-cart .woocommerce .input-text.qty {
+  text-align: center;
+  border: none;
+  padding: 0 40px;
+  font-size: inherit;
+  max-height: unset;
+}
+
+.woocommerce-cart .elementor-widget-woocommerce-cart .woocommerce .coupon .form-row {
+  float: none;
+}
+
+.woocommerce-cart .elementor-widget-woocommerce-cart .woocommerce .input-text, .woocommerce-cart .elementor-widget-woocommerce-cart .woocommerce select {
+  height: auto;
+}
+
+.woocommerce-cart .elementor-widget-woocommerce-cart .woocommerce .wc-proceed-to-checkout .checkout-button {
+  line-height: inherit;
+}
+
+.woocommerce-cart .elementor-widget-woocommerce-cart .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) .actions [name="update_cart"], .woocommerce-cart .elementor-widget-woocommerce-cart .cart.wishlist_table:not(.elementor-menu-cart__products) .actions [name="update_cart"], .woocommerce-cart .elementor-widget-woocommerce-cart .cart.wishlist_table:not(.elementor-menu-cart__products) .actions [name="update_cart"] {
+  border-width: 2px;
+}
+
+.woocommerce-cart .elementor-widget-woocommerce-cart .woocommerce-cart-form__contents:not(.elementor-menu-cart__products) [name="update_cart"], .woocommerce-cart .elementor-widget-woocommerce-cart .cart.wishlist_table:not(.elementor-menu-cart__products) [name="update_cart"], .woocommerce-cart .elementor-widget-woocommerce-cart .cart.wishlist_table:not(.elementor-menu-cart__products) [name="update_cart"] {
+  height: auto;
+}
+
 .woocommerce-cart-form__contents:not(.elementor-menu-cart__products), .cart.wishlist_table:not(.elementor-menu-cart__products) {
   border-width: 0;
   border-collapse: separate;
