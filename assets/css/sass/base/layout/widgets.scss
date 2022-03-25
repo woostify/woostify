@@ -193,6 +193,11 @@
 		border-bottom: 1px solid #f7f7f7;
 		line-height: 26px;
 		min-height: 80px;
+
+		&.component_mini_cart_item {
+			border: none;
+			padding-left: 90px;
+		}
 	}
 
 	img {

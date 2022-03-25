@@ -451,6 +451,8 @@ var woostifyQuantityMiniCart = function() {
 									return;
 								}
 
+								jQuery( document.body ).trigger( 'updated_wc_div' );
+
 								var data                     = json.data,
 									totalPrice               = document.querySelector( '.cart-sidebar-content .woocommerce-mini-cart__total .woocommerce-Price-amount.amount' ),
 									headerCartPriceContainer = document.querySelectorAll( '.woostify-header-total-price, .boostify-subtotal' ),
@@ -1032,6 +1034,16 @@ document.addEventListener(
 			'wc_cart_emptied', /* Reload Cart page if it's empty */
 			function() {
 				location.reload();
+			}
+		);
+
+		jQuery( document.body ).on(
+			'init_checkout updated_checkout payment_method_selected',
+			function() {
+				// Add quantity button list.
+				if ( 'function' === typeof( customQuantity ) ) {
+					customQuantity();
+				}
 			}
 		);
 

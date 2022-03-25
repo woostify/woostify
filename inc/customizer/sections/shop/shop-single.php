@@ -510,6 +510,7 @@ $wp_customize->add_control(
 			'dependency' => array(
 				'woostify_setting[shop_single_product_data_tabs_layout]',
 				'woostify_setting[shop_single_product_data_tabs_pos]',
+				'woostify_setting[shop_single_product_data_tabs_open]',
 				'woostify_setting[shop_single_product_data_tabs_items]',
 			),
 		)
@@ -573,6 +574,28 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+// Catalog mode.
+$wp_customize->add_setting(
+	'woostify_setting[shop_single_product_data_tabs_open]',
+	array(
+		'default'           => $defaults['shop_single_product_data_tabs_open'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_single_product_data_tabs_open]',
+		array(
+			'label'    => __( 'Open first tab by default', 'woostify' ),
+			'settings' => 'woostify_setting[shop_single_product_data_tabs_open]',
+			'section'  => 'woostify_shop_single',
+		)
+	)
+);
+
 
 // Product data tabs items.
 $wp_customize->add_setting(

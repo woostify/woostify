@@ -552,6 +552,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				// Product Data Tabs.
 				'shop_single_product_data_tabs_layout'     => 'normal',
 				'shop_single_product_data_tabs_pos'        => 'woocommerce_after_single_product_summary',
+				'shop_single_product_data_tabs_open'       => true,
 				'shop_single_product_data_tabs_items'      => wp_json_encode( $product_data_tabs_items ),
 				// Related.
 				'shop_single_related_product'              => true,
