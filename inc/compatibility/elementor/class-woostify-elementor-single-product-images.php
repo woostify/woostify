@@ -64,7 +64,7 @@ class Woostify_Elementor_Single_Product_Images extends Widget_Base {
 	/**
 	 * Controls
 	 */
-	protected function _register_controls() { // phpcs:ignore
+	protected function register_controls() { // phpcs:ignore
 		$this->start_controls_section(
 			'general',
 			array(
