@@ -1589,6 +1589,37 @@ class Woostify_Get_CSS {
 		}
 		';
 
+		// Blog Page.
+		$styles .= '
+		.blog .post-loop .entry-title {
+			color: ' . esc_attr( $options['blog_title_color'] ) . ';
+			font-size: ' . esc_attr( $options['blog_title_font_size'] ) . 'px;
+		}
+
+		.blog .post-loop .post-meta-item {
+			color: ' . esc_attr( $options['blog_metadata_color'] ) . ';
+			font-size: ' . esc_attr( $options['blog_metadata_font_size'] ) . 'px;
+		}
+
+		.blog .post-loop .summary-text {
+			color: ' . esc_attr( $options['blog_description_color'] ) . ';
+			font-size: ' . esc_attr( $options['blog_description_font_size'] ) . 'px;
+		}
+		';
+
+		// Shop page.
+		$styles .= '
+		.woocommerce .product .woocommerce-loop-product__title {
+			color: ' . esc_attr( $options['shop_page_product_title_color'] ) . ';
+			font-size: ' . esc_attr( $options['shop_page_product_title_font_size'] ) . 'px;
+		}
+
+		.woocommerce .product .product-loop-meta .price {
+			color: ' . esc_attr( $options['shop_page_product_price_color'] ) . ';
+			font-size: ' . esc_attr( $options['shop_page_product_price_font_size'] ) . 'px;
+		}
+		';
+
 		$this->css = apply_filters( 'woostify_customizer_css', $styles );
 		$this->css = $this->minimize_dynamic_css();
 

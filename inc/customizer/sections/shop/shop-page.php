@@ -1457,3 +1457,151 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+
+$wp_customize->add_setting(
+	'shop_sytle_structure_section',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Section_Control(
+		$wp_customize,
+		'shop_sytle_structure_section',
+		array(
+			'label'      => __( 'Style', 'woostify' ),
+			'section'    => 'woostify_shop_page',
+			'dependency' => array(
+				'woostify_setting[shop_page_product_title_color]',
+				'woostify_setting[shop_page_product_price_color]',
+				'woostify_setting[shop_page_product_price_font_size]',
+				'woostify_setting[shop_page_product_title_font_size]',
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_title_color]',
+	array(
+		'default'           => $defaults['shop_page_product_title_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_product_title_color]',
+		array(
+			'label'           => __( 'Product Title Color', 'woostify' ),
+			'section'         => 'woostify_shop_page',
+			'tab'             => 'design',
+			'settings'        => array(
+				'woostify_setting[shop_page_product_title_color]',
+			),
+			'enable_swatches' => false,
+			'is_global_color' => true,
+		)
+	)
+);
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_title_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_title_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_product_title_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Description Font Size', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[shop_page_product_title_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_title_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_title_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_price_color]',
+	array(
+		'default'           => $defaults['shop_page_product_price_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_product_price_color]',
+		array(
+			'label'           => __( 'Product Title Color', 'woostify' ),
+			'section'         => 'woostify_shop_page',
+			'tab'             => 'design',
+			'settings'        => array(
+				'woostify_setting[shop_page_product_price_color]',
+			),
+			'enable_swatches' => false,
+			'is_global_color' => true,
+		)
+	)
+);
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_price_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_price_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_product_price_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Description Font Size', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[shop_page_product_price_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_price_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_price_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);

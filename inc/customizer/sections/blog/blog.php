@@ -8,6 +8,30 @@
 // Default values.
 $defaults = woostify_options();
 
+// Tabs.
+$wp_customize->add_setting(
+	'woostify_setting[blog_context_tabs]',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[blog_context_tabs]',
+		array(
+			'section'  => 'woostify_blog',
+			'settings' => 'woostify_setting[blog_context_tabs]',
+			'choices'  => array(
+				'general' => __( 'Settings', 'woostify' ),
+				'design'   => __( 'Design', 'woostify' ),
+			),
+		)
+	)
+);
+
+
 // Blog layout.
 $wp_customize->add_setting(
 	'woostify_setting[blog_list_layout]',
@@ -25,6 +49,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_blog',
 			'settings' => 'woostify_setting[blog_list_layout]',
 			'label'    => __( 'Blog Layout', 'woostify' ),
+			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_blog_list_layout_choices',
 				array(
@@ -48,7 +73,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[blog_list_limit_exerpt]',
 		array(
@@ -56,6 +81,7 @@ $wp_customize->add_control(
 			'settings' => 'woostify_setting[blog_list_limit_exerpt]',
 			'type'     => 'number',
 			'label'    => __( 'Limit Excerpt', 'woostify' ),
+			'tab'      => 'general',
 		)
 	)
 );
@@ -75,6 +101,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_blog',
 			'settings' => 'blog_list_section_one_divider',
 			'type'     => 'divider',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -96,6 +123,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Blog List Structure', 'woostify' ),
 			'section'  => 'woostify_blog',
 			'settings' => 'woostify_setting[blog_list_structure]',
+			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_blog_list_structure_choices',
 				array(
@@ -125,6 +153,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Blog Post Meta', 'woostify' ),
 			'section'  => 'woostify_blog',
 			'settings' => 'woostify_setting[blog_list_post_meta]',
+			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_blog_list_post_meta_choices',
 				array(
@@ -133,6 +162,198 @@ $wp_customize->add_control(
 					'category' => __( 'Category', 'woostify' ),
 					'comments' => __( 'Comments', 'woostify' ),
 				)
+			),
+		)
+	)
+);
+
+
+// Title color.
+$wp_customize->add_setting(
+	'woostify_setting[blog_title_color]',
+	array(
+		'default'           => $defaults['blog_title_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[blog_title_color]',
+		array(
+			'label'           => __( 'Title Color', 'woostify' ),
+			'section'         => 'woostify_blog',
+			'tab'             => 'design',
+			'settings'        => array(
+				'woostify_setting[blog_title_color]',
+			),
+			'enable_swatches' => false,
+			'is_global_color' => true,
+		)
+	)
+);
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[blog_title_font_size]',
+	array(
+		'default'           => $defaults['blog_title_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[blog_title_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Title Font Size', 'woostify' ),
+			'section'  => 'woostify_blog',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[blog_title_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_blog_title_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_blog_title_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+
+// Metadata  color.
+$wp_customize->add_setting(
+	'woostify_setting[blog_metadata_color]',
+	array(
+		'default'           => $defaults['blog_metadata_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[blog_metadata_color]',
+		array(
+			'label'           => __( 'Meta Data Color', 'woostify' ),
+			'section'         => 'woostify_blog',
+			'tab'             => 'design',
+			'settings'        => array(
+				'woostify_setting[blog_metadata_color]',
+			),
+			'enable_swatches' => false,
+			'is_global_color' => true,
+		)
+	)
+);
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[blog_metadata_font_size]',
+	array(
+		'default'           => $defaults['blog_metadata_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[blog_metadata_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Meta Data Font Size', 'woostify' ),
+			'section'  => 'woostify_blog',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[blog_metadata_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_blog_metadata_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_blog_metadata_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+
+// Description  color.
+$wp_customize->add_setting(
+	'woostify_setting[blog_description_color]',
+	array(
+		'default'           => $defaults['blog_description_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[blog_description_color]',
+		array(
+			'label'           => __( 'Description Color', 'woostify' ),
+			'section'         => 'woostify_blog',
+			'tab'             => 'design',
+			'settings'        => array(
+				'woostify_setting[blog_description_color]',
+			),
+			'enable_swatches' => false,
+			'is_global_color' => true,
+		)
+	)
+);
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[blog_description_font_size]',
+	array(
+		'default'           => $defaults['blog_description_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[blog_description_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Description Font Size', 'woostify' ),
+			'section'  => 'woostify_blog',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[blog_description_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_blog_description_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_blog_description_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
 			),
 		)
 	)

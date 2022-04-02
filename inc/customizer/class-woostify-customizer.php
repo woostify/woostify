@@ -461,6 +461,12 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'blog_list_limit_exerpt'                   => 20,
 				'blog_list_structure'                      => array( 'image', 'title-meta', 'post-meta' ),
 				'blog_list_post_meta'                      => array( 'date', 'author', 'comments' ),
+				'blog_title_color'                         => '#2b2b2b',
+				'blog_title_font_size'                     => 24,
+				'blog_metadata_color'                      => '#2b2b2b',
+				'blog_metadata_font_size'                  => 14,
+				'blog_description_color'                   => '#8f8f8f',
+				'blog_description_font_size'               => 14,
 				// BLOG SINGLE.
 				'blog_single_structure'                    => array( 'image', 'title-meta', 'post-meta' ),
 				'blog_single_post_meta'                    => array( 'date', 'author', 'category', 'comments' ),
@@ -483,6 +489,11 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'tablet_products_per_row'                  => 2,
 				'mobile_products_per_row'                  => 1,
 				'products_per_page'                        => 12,
+				// Shop page style.
+				'shop_page_product_price_color'            => '#2b2b2b',
+				'shop_page_product_price_font_size'        => 14,
+				'shop_page_product_title_color'            => '#8f8f8f',
+				'shop_page_product_title_font_size'        => 14,
 				// Product card.
 				'shop_page_product_card_border_style'      => 'none',
 				'shop_page_product_card_border_width'      => 1,
