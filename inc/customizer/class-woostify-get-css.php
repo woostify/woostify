@@ -1596,7 +1596,7 @@ class Woostify_Get_CSS {
 			font-size: ' . esc_attr( $options['blog_title_font_size'] ) . 'px;
 		}
 
-		.blog .post-loop .post-meta-item {
+		.blog .post-loop .post-meta-item a {
 			color: ' . esc_attr( $options['blog_metadata_color'] ) . ';
 			font-size: ' . esc_attr( $options['blog_metadata_font_size'] ) . 'px;
 		}
@@ -1604,6 +1604,30 @@ class Woostify_Get_CSS {
 		.blog .post-loop .summary-text {
 			color: ' . esc_attr( $options['blog_description_color'] ) . ';
 			font-size: ' . esc_attr( $options['blog_description_font_size'] ) . 'px;
+		}
+
+		@media ( max-width: 992px ) {
+			.blog .post-loop .entry-title {
+				font-size: ' . esc_attr( $options['blog_title_tablet_font_size'] ) . 'px;
+			}
+			.blog .post-loop .post-meta-item a {
+				font-size: ' . esc_attr( $options['blog_metadata_tablet_font_size'] ) . 'px;
+			}
+			.blog .post-loop .summary-text {
+				font-size: ' . esc_attr( $options['blog_description_tablet_font_size'] ) . 'px;
+			}
+		}
+
+		@media ( max-width: 767px ) {
+			.blog .post-loop .entry-title {
+				font-size: ' . esc_attr( $options['blog_title_mobile_font_size'] ) . 'px;
+			}
+			.blog .post-loop .post-meta-item a {
+				font-size: ' . esc_attr( $options['blog_metadata_mobile_font_size'] ) . 'px;
+			}
+			.blog .post-loop .summary-text {
+				font-size: ' . esc_attr( $options['blog_description_mobile_font_size'] ) . 'px;
+			}
 		}
 		';
 
@@ -1617,6 +1641,24 @@ class Woostify_Get_CSS {
 		.woocommerce .product .product-loop-meta .price {
 			color: ' . esc_attr( $options['shop_page_product_price_color'] ) . ';
 			font-size: ' . esc_attr( $options['shop_page_product_price_font_size'] ) . 'px;
+		}
+
+		@media ( max-width: 992px ) {
+			.woocommerce .product .woocommerce-loop-product__title {
+				font-size: ' . esc_attr( $options['shop_page_product_title_tablet_font_size'] ) . 'px;
+			}
+			.woocommerce .product .product-loop-meta .price {
+				font-size: ' . esc_attr( $options['shop_page_product_price_tablet_font_size'] ) . 'px;
+			}
+		}
+
+		@media ( max-width: 767px ) {
+			.woocommerce .product .product-loop-meta .price {
+				font-size: ' . esc_attr( $options['shop_page_product_title_mobile_font_size'] ) . 'px;
+			}
+			.woocommerce .product .product-loop-meta .price {
+				font-size: ' . esc_attr( $options['shop_page_product_price_mobile_font_size'] ) . 'px;
+			}
 		}
 		';
 

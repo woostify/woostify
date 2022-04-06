@@ -1519,6 +1519,25 @@ $wp_customize->add_setting(
 	)
 );
 
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_title_tablet_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_title_tablet_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_title_mobile_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_title_mobile_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
 $wp_customize->add_control(
 	new Woostify_Range_Slider_Control(
 		$wp_customize,
@@ -1530,11 +1549,27 @@ $wp_customize->add_control(
 			'tab'      => 'design',
 			'settings' => array(
 				'desktop' => 'woostify_setting[shop_page_product_title_font_size]',
+				'tablet'  => 'woostify_setting[shop_page_product_title_tablet_font_size]',
+				'mobile'  => 'woostify_setting[shop_page_product_title_mobile_font_size]',
 			),
 			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_shop_page_product_title_font_size_min_step', 5 ),
 					'max'  => apply_filters( 'woostify_shop_page_product_title_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_title_tablet_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_title_tablet_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_title_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_title_mobile_width_max_step', 50 ),
 					'step' => 1,
 					'edit' => true,
 					'unit' => 'px',
@@ -1581,6 +1616,25 @@ $wp_customize->add_setting(
 	)
 );
 
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_price_tablet_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_price_tablet_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_price_mobile_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_price_mobile_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
 $wp_customize->add_control(
 	new Woostify_Range_Slider_Control(
 		$wp_customize,
@@ -1592,11 +1646,27 @@ $wp_customize->add_control(
 			'tab'      => 'design',
 			'settings' => array(
 				'desktop' => 'woostify_setting[shop_page_product_price_font_size]',
+				'tablet'  => 'woostify_setting[shop_page_product_price_tablet_font_size]',
+				'mobile'  => 'woostify_setting[shop_page_product_price_mobile_font_size]',
 			),
 			'choices'  => array(
 				'desktop' => array(
 					'min'  => apply_filters( 'woostify_shop_page_product_price_font_size_min_step', 5 ),
 					'max'  => apply_filters( 'woostify_shop_page_product_price_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_price_tablet_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_price_tablet_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_price_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_price_mobile_width_max_step', 50 ),
 					'step' => 1,
 					'edit' => true,
 					'unit' => 'px',

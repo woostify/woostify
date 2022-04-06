@@ -1126,5 +1126,121 @@ document.addEventListener(
 			'px',
 		)
 
+		// Blog title slider.
+		woostify_range_slider_update(
+			[
+				'blog_title_font_size',
+				'blog_title_tablet_font_size',
+				'blog_title_mobile_font_size',
+			],
+			'.blog .post-loop .entry-title',
+			'font-size',
+			'px',
+		)
+
+		// Blog meta slider.
+		woostify_range_slider_update(
+			[
+				'blog_metadata_font_size',
+				'blog_metadata_tablet_font_size',
+				'blog_metadata_mobile_font_size',
+			],
+			'.blog .post-loop .post-meta-item',
+			'font-size',
+			'px',
+		)
+
+		// Blog description slider.
+		woostify_range_slider_update(
+			[
+				'blog_description_font_size',
+				'blog_description_tablet_font_size',
+				'blog_description_mobile_font_size',
+			],
+			'.blog .post-loop .summary-text',
+			'font-size',
+			'px',
+		)
+
+		woostify_color_group_live_update(
+			[
+				'blog_title_color',
+			],
+			[
+				'.blog .post-loop .entry-title',
+			],
+			[
+				'color',
+			],
+		)
+		woostify_color_group_live_update(
+			[
+				'blog_metadata_color'
+			],
+			[
+				'.blog .post-loop .post-meta-item a',
+			],
+			[
+				'color',
+			],
+		)
+		woostify_color_group_live_update(
+			[
+				'blog_description_color'
+			],
+			[
+				'.blog .post-loop .summary-text',
+			],
+			[
+				'color',
+			],
+		)
+
+		// Shop title slider.
+		woostify_range_slider_update(
+			[
+				'shop_page_product_price_font_size',
+				'shop_page_product_price_tablet_font_size',
+				'shop_page_product_price_mobile_font_size',
+			],
+			'.woocommerce .product .product-loop-meta .price',
+			'font-size',
+			'px',
+		)
+
+		// Shop price slider.
+		woostify_range_slider_update(
+			[
+				'shop_page_product_title_font_size',
+				'shop_page_product_title_tablet_font_size',
+				'shop_page_product_title_mobile_font_size',
+			],
+			'.woocommerce .product .woocommerce-loop-product__title',
+			'font-size',
+			'px',
+		)
+
+		woostify_color_group_live_update(
+			[
+				'shop_page_product_title_color'
+			],
+			[
+				'.woocommerce .product .woocommerce-loop-product__title',
+			],
+			[
+				'color',
+			],
+		)
+		woostify_color_group_live_update(
+			[
+				'shop_page_product_price_color'
+			],
+			[
+				'.woocommerce .product .product-loop-meta .price',
+			],
+			[
+				'color',
+			],
+		)
 	},
 )
