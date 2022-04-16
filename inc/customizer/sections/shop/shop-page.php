@@ -24,7 +24,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'shop_page_structure_section',
 		array(
-			'label'      => __( 'Shop Structure', 'woostify' ),
+			'label'      => __( 'General', 'woostify' ),
 			'section'    => 'woostify_shop_page',
 			'dependency' => array(
 				'woostify_setting[shop_page_title]',
@@ -214,7 +214,7 @@ $wp_customize->add_control(
 		'woostify_setting[shop_page_product_title_font_size]',
 		array(
 			'type'     => 'woostify-range-slider',
-			'label'    => __( 'Description Font Size', 'woostify' ),
+			'label'    => __( 'Title Font Size', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'tab'      => 'design',
 			'settings' => array(
@@ -311,7 +311,7 @@ $wp_customize->add_control(
 		'woostify_setting[shop_page_product_price_font_size]',
 		array(
 			'type'     => 'woostify-range-slider',
-			'label'    => __( 'Description Font Size', 'woostify' ),
+			'label'    => __( 'Price Font Size', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'tab'      => 'design',
 			'settings' => array(
