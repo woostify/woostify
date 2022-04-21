@@ -1638,7 +1638,12 @@ class Woostify_Get_CSS {
 			font-size: ' . esc_attr( $options['shop_page_product_title_font_size'] ) . 'px;
 		}
 
-		.woocommerce .product .product-loop-meta .price {
+		.woocommerce .product .product-loop-meta .price del {
+			opacity: 0.5;
+		}
+
+		.woocommerce .product .product-loop-meta .price .woocommerce-Price-amount,
+		.woocommerce .product .product-loop-meta .price del {
 			color: ' . esc_attr( $options['shop_page_product_price_color'] ) . ';
 			font-size: ' . esc_attr( $options['shop_page_product_price_font_size'] ) . 'px;
 		}
@@ -1647,16 +1652,18 @@ class Woostify_Get_CSS {
 			.woocommerce .product .woocommerce-loop-product__title {
 				font-size: ' . esc_attr( $options['shop_page_product_title_tablet_font_size'] ) . 'px;
 			}
-			.woocommerce .product .product-loop-meta .price {
+			.woocommerce .product .product-loop-meta .price .woocommerce-Price-amount,
+			.woocommerce .product .product-loop-meta .price del {
 				font-size: ' . esc_attr( $options['shop_page_product_price_tablet_font_size'] ) . 'px;
 			}
 		}
 
 		@media ( max-width: 767px ) {
-			.woocommerce .product .product-loop-meta .price {
+			.woocommerce .product .product-loop-meta .woocommerce-loop-product__title {
 				font-size: ' . esc_attr( $options['shop_page_product_title_mobile_font_size'] ) . 'px;
 			}
-			.woocommerce .product .product-loop-meta .price {
+			.woocommerce .product .product-loop-meta .price .woocommerce-Price-amount,
+			.woocommerce .product .product-loop-meta .price del {
 				font-size: ' . esc_attr( $options['shop_page_product_price_mobile_font_size'] ) . 'px;
 			}
 		}

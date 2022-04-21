@@ -263,7 +263,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[shop_page_product_price_color]',
 		array(
-			'label'           => __( 'Product Title Color', 'woostify' ),
+			'label'           => __( 'Price Color', 'woostify' ),
 			'section'         => 'woostify_shop_page',
 			'tab'             => 'design',
 			'settings'        => array(
