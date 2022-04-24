@@ -1203,7 +1203,7 @@ document.addEventListener(
 				'shop_page_product_price_tablet_font_size',
 				'shop_page_product_price_mobile_font_size',
 			],
-			'.woocommerce .product .product-loop-meta .price',
+			'.woocommerce .product .product-loop-meta .price .woocommerce-Price-amount',
 			'font-size',
 			'px',
 		)
@@ -1236,7 +1236,8 @@ document.addEventListener(
 				'shop_page_product_price_color'
 			],
 			[
-				'.woocommerce .product .product-loop-meta .price',
+				'.woocommerce .product .product-loop-meta .price .woocommerce-Price-amount',
+				'.woocommerce .product .product-loop-meta .price del'
 			],
 			[
 				'color',
