@@ -1145,7 +1145,7 @@ document.addEventListener(
 				'blog_metadata_tablet_font_size',
 				'blog_metadata_mobile_font_size',
 			],
-			'.blog .post-loop .post-meta-item',
+			'.blog .post-loop .post-meta-item a,.blog .post-loop .post-meta-item',
 			'font-size',
 			'px',
 		)

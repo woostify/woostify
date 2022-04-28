@@ -1622,7 +1622,8 @@ class Woostify_Get_CSS {
 			.blog .post-loop .entry-title {
 				font-size: ' . esc_attr( $options['blog_title_mobile_font_size'] ) . 'px;
 			}
-			.blog .post-loop .post-meta-item a {
+			.blog .post-loop .post-meta-item a,
+			.blog .post-loop .post-meta-item {
 				font-size: ' . esc_attr( $options['blog_metadata_mobile_font_size'] ) . 'px;
 			}
 			.blog .post-loop .summary-text {
