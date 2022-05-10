@@ -1812,3 +1812,13 @@ if ( ! function_exists( 'woostify_custom_tab_callback' ) ) {
 		echo do_shortcode( $custom_tabs[ $curr_index ]->content );
 	}
 }
+
+if ( ! function_exists( 'woostify_cross_sell_display_columns' ) ) {
+	/**
+	 * Callback for custom tab
+	 */
+	function woostify_cross_sell_display_columns( $columns ) {
+		$columns = 4;
+		return $columns;
+	}
+}

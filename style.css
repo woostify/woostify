@@ -9665,6 +9665,10 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   }
 }
 
+.woocommerce .cross-sells {
+  clear: both;
+}
+
 .woocommerce-terms-and-conditions {
   width: 100%;
 }
