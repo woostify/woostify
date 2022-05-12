@@ -1816,9 +1816,15 @@ if ( ! function_exists( 'woostify_custom_tab_callback' ) ) {
 if ( ! function_exists( 'woostify_cross_sell_display_columns' ) ) {
 	/**
 	 * Callback for custom tab
+	 *
+	 * @param string $columns Tab key.
 	 */
 	function woostify_cross_sell_display_columns( $columns ) {
-		$columns = 4;
+		$options = woostify_options( false );
+		if ( 'layout-2' == $options['cart_page_layout'] ) {
+			$columns = 4;
+		}
+
 		return $columns;
 	}
 }
