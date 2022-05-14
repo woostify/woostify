@@ -27,6 +27,7 @@ $wp_customize->add_control(
 			'label'      => __( 'Shop Structure', 'woostify' ),
 			'section'    => 'woostify_shop_page',
 			'dependency' => array(
+				'woostify_setting[shop_page_page_header_display]',
 				'woostify_setting[shop_page_title]',
 				'woostify_setting[shop_page_breadcrumb]',
 				'woostify_setting[shop_page_result_count]',
@@ -35,6 +36,29 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+// Page header display.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_page_header_display]',
+	array(
+		'default'           => $defaults['shop_page_page_header_display'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_page_header_display]',
+		array(
+			'label'    => __( 'Page Header Display', 'woostify' ),
+			'settings' => 'woostify_setting[shop_page_page_header_display]',
+			'section'  => 'woostify_page_header',
+			'tab'      => 'general',
+		)
+	)
+);
+
 
 // Shop title.
 $wp_customize->add_setting(

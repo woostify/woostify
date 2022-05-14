@@ -880,6 +880,10 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			return;
 		}
 
+		var_dump(is_page());
+
+		var_dump( is_woocommerce() );
+
 		$page_id       = woostify_get_page_id();
 		$options       = woostify_options( false );
 		$page_header   = $options['page_header_display'];

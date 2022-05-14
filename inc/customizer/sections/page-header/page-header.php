@@ -172,6 +172,79 @@ $wp_customize->add_control(
 	)
 );
 
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[page_header_title_font_size]',
+	array(
+		'default'           => $defaults['page_header_title_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[page_header_title_tablet_font_size]',
+	array(
+		'default'           => $defaults['page_header_title_tablet_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[page_header_title_mobile_font_size]',
+	array(
+		'default'           => $defaults['page_header_title_mobile_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[page_header_title_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Title Font Size', 'woostify' ),
+			'section'  => 'woostify_page_header',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[page_header_title_font_size]',
+				'tablet'  => 'woostify_setting[page_header_title_tablet_font_size]',
+				'mobile'  => 'woostify_setting[page_header_title_mobile_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_page_header_title_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_page_header_title_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_page_header_title_tablet_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_page_header_title_tablet_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_page_header_title_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_page_header_title_mobile_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+
 // Breadcrumb text color.
 $wp_customize->add_setting(
 	'woostify_setting[page_header_breadcrumb_text_color]',
@@ -196,6 +269,79 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[page_header_breadcrumb_font_size]',
+	array(
+		'default'           => $defaults['page_header_breadcrumb_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[page_header_breadcrumb_tablet_font_size]',
+	array(
+		'default'           => $defaults['page_header_breadcrumb_tablet_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[page_header_breadcrumb_mobile_font_size]',
+	array(
+		'default'           => $defaults['page_header_breadcrumb_mobile_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[page_header_breadcrumb_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Breadcrumb Font Size', 'woostify' ),
+			'section'  => 'woostify_page_header',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[page_header_breadcrumb_font_size]',
+				'tablet'  => 'woostify_setting[page_header_breadcrumb_tablet_font_size]',
+				'mobile'  => 'woostify_setting[page_header_breadcrumb_mobile_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_page_header_breadcrumb_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_page_header_breadcrumb_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_page_header_breadcrumb_tablet_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_page_header_breadcrumb_tablet_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_page_header_breadcrumb_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_page_header_breadcrumb_mobile_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+
 
 // Background color.
 $wp_customize->add_setting(

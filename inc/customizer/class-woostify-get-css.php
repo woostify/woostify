@@ -1588,6 +1588,36 @@ class Woostify_Get_CSS {
 		}
 		';
 
+		$styles .= '
+			.page-header .entry-title {
+				font-size: ' . esc_attr( $options['page_header_title_font_size'] ) .'px;
+			}
+			.woostify-breadcrumb a,
+			.woostify-breadcrumb {
+				font-size: ' . esc_attr( $options['page_header_breadcrumb_font_size'] ) .'px;
+			}
+
+			@media (max-width: 991px) {
+				.page-header .entry-title {
+					font-size: ' . esc_attr( $options['page_header_title_tablet_font_size'] ) .'px;
+				}
+				.woostify-breadcrumb a,
+				.woostify-breadcrumb {
+					font-size: ' . esc_attr( $options['page_header_breadcrumb_tablet_font_size'] ) .'px;
+				}
+			}
+
+			@media (max-width: 768px) {
+				.page-header .entry-title {
+					font-size: ' . esc_attr( $options['page_header_title_mobile_font_size'] ) .'px;
+				}
+				.woostify-breadcrumb a,
+				.woostify-breadcrumb {
+					font-size: ' . esc_attr( $options['page_header_breadcrumb_mobile_font_size'] ) .'px;
+				}
+			}
+		';
+
 		$this->css = apply_filters( 'woostify_customizer_css', $styles );
 		$this->css = $this->minimize_dynamic_css();
 

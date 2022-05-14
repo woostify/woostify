@@ -1126,5 +1126,27 @@ document.addEventListener(
 			'px',
 		)
 
+		woostify_range_slider_update(
+			[
+				'page_header_title_font_size',
+				'page_header_title_tablet_font_size',
+				'page_header_title_mobile_font_size',
+			],
+			'.page-header .entry-title',
+			'font-size',
+			'px',
+		)
+
+		woostify_range_slider_update(
+			[
+				'page_header_breadcrumb_font_size',
+				'page_header_breadcrumb_tablet_font_size',
+				'page_header_breadcrumb_mobile_font_size',
+			],
+			'.woostify-breadcrumb a, .woostify-breadcrumb',
+			'font-size',
+			'px',
+		)
+
 	},
 )
