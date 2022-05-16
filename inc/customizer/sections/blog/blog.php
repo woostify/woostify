@@ -11,7 +11,8 @@ $defaults = woostify_options();
 
 // Tabs.
 $wp_customize->add_setting(
-	'woostify_setting[blog_page_header_context_tabs]',
+	'woostify_setting[blog_context_tabs]',
+
 	array(
 		'sanitize_callback' => 'sanitize_text_field',
 	)
@@ -20,18 +21,17 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Tabs_Control(
 		$wp_customize,
-		'woostify_setting[blog_page_header_context_tabs]',
+		'woostify_setting[blog_context_tabs]',
 		array(
 			'section'  => 'woostify_blog',
-			'settings' => 'woostify_setting[blog_page_header_context_tabs]',
+			'settings' => 'woostify_setting[blog_context_tabs]',
 			'choices'  => array(
-				'general' => __( 'General', 'woostify' ),
-				'design'  => __( 'Design', 'woostify' ),
+				'general' => __( 'Settings', 'woostify' ),
+				'design'   => __( 'Design', 'woostify' ),
 			),
 		)
 	)
 );
-
 
 // Blog layout.
 $wp_customize->add_setting(
@@ -171,7 +171,7 @@ $wp_customize->add_setting(
 	)
 );
 $wp_customize->add_control(
-	new WP_Customize_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
 		'woostify_setting[blog_list_limit_exerpt]',
 		array(
@@ -265,9 +265,386 @@ $wp_customize->add_control(
 	)
 );
 
+$wp_customize->add_setting(
+	'woostify_setting[blog_style]',
+	array(
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Heading_Control(
+		$wp_customize,
+		'woostify_setting[blog_style]',
+		array(
+			'label'    => __( 'Style', 'woostify' ),
+			'section'  => 'woostify_blog',
+			'settings' => 'woostify_setting[blog_style]',
+		)
+	)
+);
+
 
 
 // Title color.
+$wp_customize->add_setting(
+	'woostify_setting[blog_title_color]',
+	array(
+		'default'           => $defaults['blog_title_color'],
+
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+
+
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+
+		'woostify_setting[blog_title_color]',
+		array(
+			'label'           => __( 'Title Color', 'woostify' ),
+			'section'         => 'woostify_blog',
+			'tab'             => 'design',
+			'settings'        => array(
+				'woostify_setting[blog_title_color]',
+			),
+			'enable_swatches' => false,
+			'is_global_color' => true,
+		)
+	)
+);
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[blog_title_font_size]',
+	array(
+		'default'           => $defaults['blog_title_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_setting(
+
+	'woostify_setting[blog_title_tablet_font_size]',
+	array(
+		'default'           => $defaults['blog_title_tablet_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[blog_title_mobile_font_size]',
+	array(
+		'default'           => $defaults['blog_title_mobile_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[blog_title_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Title Font Size', 'woostify' ),
+			'section'  => 'woostify_blog',
+			'tab'      => 'design',
+			'settings' => array(
+
+				'desktop' => 'woostify_setting[blog_title_font_size]',
+				'tablet'  => 'woostify_setting[blog_title_tablet_font_size]',
+				'mobile'  => 'woostify_setting[blog_title_mobile_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_blog_title_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_blog_title_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_blog_title_tablet_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_blog_title_tablet_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_blog_title_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_blog_title_mobile_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+
+// Metadata  color.
+$wp_customize->add_setting(
+	'woostify_setting[blog_metadata_color]',
+	array(
+		'default'           => $defaults['blog_metadata_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[blog_metadata_color]',
+		array(
+			'label'           => __( 'Meta Data Color', 'woostify' ),
+			'section'         => 'woostify_blog',
+			'tab'             => 'design',
+			'settings'        => array(
+				'woostify_setting[blog_metadata_color]',
+			),
+			'enable_swatches' => false,
+			'is_global_color' => true,
+		)
+	)
+);
+
+// font size.
+$wp_customize->add_setting(
+
+	'woostify_setting[blog_metadata_font_size]',
+	array(
+		'default'           => $defaults['blog_metadata_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+
+$wp_customize->add_setting(
+	'woostify_setting[blog_metadata_tablet_font_size]',
+	array(
+		'default'           => $defaults['blog_metadata_tablet_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[blog_metadata_mobile_font_size]',
+	array(
+		'default'           => $defaults['blog_metadata_mobile_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[blog_metadata_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Meta Data Font Size', 'woostify' ),
+			'section'  => 'woostify_blog',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[blog_metadata_font_size]',
+				'tablet'  => 'woostify_setting[blog_metadata_tablet_font_size]',
+				'mobile'  => 'woostify_setting[blog_metadata_mobile_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_blog_metadata_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_blog_metadata_font_size_max_step', 60 ),
+
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+
+					'min'  => apply_filters( 'woostify_blog_metadata_tablet_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_blog_metadata_tablet_width_max_step', 50 ),
+
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_page_header_breadcrumb_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_page_header_breadcrumb_mobile_width_max_step', 50 ),
+					'min'  => apply_filters( 'woostify_blog_metadata_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_blog_metadata_mobile_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+
+// Description  color.
+$wp_customize->add_setting(
+	'woostify_setting[blog_description_color]',
+	array(
+		'default'           => $defaults['blog_description_color'],
+
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+
+		'woostify_setting[blog_description_color]',
+		array(
+			'label'           => __( 'Description Color', 'woostify' ),
+			'section'         => 'woostify_blog',
+			'tab'             => 'design',
+			'settings'        => array(
+				'woostify_setting[blog_description_color]',
+			),
+			'enable_swatches' => false,
+			'is_global_color' => true,
+
+		)
+	)
+);
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[blog_description_font_size]',
+	array(
+		'default'           => $defaults['blog_description_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[blog_description_tablet_font_size]',
+	array(
+		'default'           => $defaults['blog_description_tablet_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[blog_description_mobile_font_size]',
+	array(
+		'default'           => $defaults['blog_description_mobile_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[blog_description_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Description Font Size', 'woostify' ),
+			'section'  => 'woostify_blog',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[blog_description_font_size]',
+				'tablet'  => 'woostify_setting[blog_description_tablet_font_size]',
+				'mobile'  => 'woostify_setting[blog_description_mobile_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_blog_description_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_blog_description_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_blog_description_tablet_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_blog_description_tablet_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_blog_description_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_blog_description_mobile_width_max_step', 50 ),
+
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+
+			'tab'      => 'design',
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'blog_style_page_header_breadcrumb_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'blog_style_page_header_breadcrumb_divider',
+		array(
+			'section'  => 'woostify_blog',
+			'settings' => 'blog_style_page_header_breadcrumb_divider',
+			'type'     => 'divider',
+			'tab'      => 'general',
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[blog_page_header_heading]',
+	array(
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Heading_Control(
+		$wp_customize,
+		'woostify_setting[blog_page_header_heading]',
+		array(
+			'label'    => __( 'Page Header', 'woostify' ),
+			'section'  => 'woostify_blog',
+			'settings' => 'woostify_setting[blog_page_header_heading]',
+		)
+	)
+);
+
+
 $wp_customize->add_setting(
 	'woostify_setting[blog_page_header_title_color]',
 	array(
@@ -277,9 +654,12 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
+
+
 $wp_customize->add_control(
 	new Woostify_Color_Group_Control(
 		$wp_customize,
+
 		'woostify_setting[blog_page_header_title_color]',
 		array(
 			'label'    => __( 'Title Color', 'woostify' ),
@@ -308,12 +688,15 @@ $wp_customize->add_setting(
 	'woostify_setting[blog_page_header_title_tablet_font_size]',
 	array(
 		'default'           => $defaults['blog_page_header_title_tablet_font_size'],
+
 		'type'              => 'option',
 		'transport'         => 'postMessage',
 		'sanitize_callback' => 'absint',
 	)
 );
+
 $wp_customize->add_setting(
+
 	'woostify_setting[blog_page_header_title_mobile_font_size]',
 	array(
 		'default'           => $defaults['blog_page_header_title_mobile_font_size'],
@@ -326,6 +709,7 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Range_Slider_Control(
 		$wp_customize,
+
 		'woostify_setting[blog_page_header_title_font_size]',
 		array(
 			'type'     => 'woostify-range-slider',
@@ -333,6 +717,7 @@ $wp_customize->add_control(
 			'section'  => 'woostify_blog',
 			'tab'      => 'design',
 			'settings' => array(
+
 				'desktop' => 'woostify_setting[blog_page_header_title_font_size]',
 				'tablet'  => 'woostify_setting[blog_page_header_title_tablet_font_size]',
 				'mobile'  => 'woostify_setting[blog_page_header_title_mobile_font_size]',
@@ -346,6 +731,7 @@ $wp_customize->add_control(
 					'unit' => 'px',
 				),
 				'tablet'  => array(
+
 					'min'  => apply_filters( 'woostify_page_header_title_tablet_width_min_step', 1 ),
 					'max'  => apply_filters( 'woostify_page_header_title_tablet_width_max_step', 50 ),
 					'step' => 1,
@@ -363,8 +749,6 @@ $wp_customize->add_control(
 		)
 	)
 );
-
-
 // Breadcrumb text color.
 $wp_customize->add_setting(
 	'woostify_setting[blog_page_header_breadcrumb_text_color]',
@@ -375,6 +759,7 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
+
 $wp_customize->add_control(
 	new Woostify_Color_Group_Control(
 		$wp_customize,
@@ -386,12 +771,14 @@ $wp_customize->add_control(
 				'woostify_setting[blog_page_header_breadcrumb_text_color]',
 			),
 			'tab'      => 'design',
+
 		)
 	)
 );
 
 // font size.
 $wp_customize->add_setting(
+
 	'woostify_setting[blog_page_header_breadcrumb_font_size]',
 	array(
 		'default'           => $defaults['blog_page_header_breadcrumb_font_size'],
@@ -410,6 +797,7 @@ $wp_customize->add_setting(
 		'sanitize_callback' => 'absint',
 	)
 );
+
 $wp_customize->add_setting(
 	'woostify_setting[blog_page_header_breadcrumb_mobile_font_size]',
 	array(
@@ -462,7 +850,6 @@ $wp_customize->add_control(
 );
 
 
-
 // Background color.
 $wp_customize->add_setting(
 	'woostify_setting[blog_page_header_background_color]',
@@ -473,9 +860,13 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
+
+
+
 $wp_customize->add_control(
 	new Woostify_Color_Group_Control(
 		$wp_customize,
+
 		'woostify_setting[blog_page_header_background_color]',
 		array(
 			'label'    => __( 'Background Color', 'woostify' ),
@@ -487,6 +878,7 @@ $wp_customize->add_control(
 		)
 	)
 );
+
 
 // Background image.
 $wp_customize->add_setting(
@@ -638,7 +1030,7 @@ $wp_customize->add_control(
 
 // Padding divider.
 $wp_customize->add_setting(
-	'page_header_spacing_divider',
+	'blog_page_header_spacing_divider',
 	array(
 		'sanitize_callback' => 'sanitize_text_field',
 	)
@@ -646,15 +1038,16 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Divider_Control(
 		$wp_customize,
-		'page_header_spacing_divider',
+		'blog_page_header_spacing_divider',
 		array(
 			'section'  => 'woostify_blog',
-			'settings' => 'page_header_spacing_divider',
+			'settings' => 'blog_page_header_spacing_divider',
 			'type'     => 'divider',
 			'tab'      => 'design',
 		)
 	)
 );
+
 
 // Padding top.
 $wp_customize->add_setting(
@@ -666,6 +1059,7 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
+
 $wp_customize->add_control(
 	new Woostify_Range_Slider_Control(
 		$wp_customize,
@@ -718,11 +1112,27 @@ $wp_customize->add_control(
 					'edit' => true,
 					'unit' => 'px',
 				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_page_header_padding_bottom_tablet_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_page_header_padding_bottom_tablet_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_page_header_padding_bottom_mobile_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_page_header_padding_bottom_mobile_max_step', 50 ),
+
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
 			),
 			'tab'      => 'design',
 		)
 	)
 );
+
 
 // Margin bottom.
 $wp_customize->add_setting(

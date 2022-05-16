@@ -24,14 +24,55 @@ $wp_customize->add_control(
 		$wp_customize,
 		'shop_page_structure_section',
 		array(
-			'label'      => __( 'Shop Structure', 'woostify' ),
+			'label'      => __( 'General', 'woostify' ),
 			'section'    => 'woostify_shop_page',
 			'dependency' => array(
-				'woostify_setting[shop_page_page_header_display]',
+				'woostify_setting[shop_page_header_display]',
 				'woostify_setting[shop_page_title]',
 				'woostify_setting[shop_page_breadcrumb]',
 				'woostify_setting[shop_page_result_count]',
 				'woostify_setting[shop_page_product_filter]',
+				'woostify_setting[shop_context_tabs]',
+				'woostify_setting[shop_page_product_title_color]',
+				'woostify_setting[shop_page_product_price_color]',
+				'woostify_setting[shop_page_product_price_font_size]',
+				'woostify_setting[shop_page_product_title_font_size]',
+
+				'woostify_setting[shop_page_header_title_color]',
+				'woostify_setting[shop_page_header_background_color]',
+				'woostify_setting[shop_page_header_title_font_size]',
+				'woostify_setting[shop_page_header_breadcrumb_font_size]',
+				'woostify_setting[shop_page_header_background_image]',
+				'woostify_setting[shop_page_header_background_image_size]',
+				'woostify_setting[shop_page_header_background_image_repeat]',
+				'woostify_setting[shop_page_header_background_image_position]',
+				'woostify_setting[shop_page_header_background_image_attachment]',
+				'woostify_setting[shop_page_header_padding_top]',
+				'woostify_setting[shop_page_header_padding_bottom]',
+				'woostify_setting[shop_page_header_margin_bottom]',
+				'woostify_setting[shop_page_header_text_align]',
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[shop_context_tabs]',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[shop_context_tabs]',
+		array(
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_context_tabs]',
+			'choices'  => array(
+				'general' => __( 'Settings', 'woostify' ),
+				'design'   => __( 'Design', 'woostify' ),
 			),
 		)
 	)
@@ -39,9 +80,9 @@ $wp_customize->add_control(
 
 // Page header display.
 $wp_customize->add_setting(
-	'woostify_setting[shop_page_page_header_display]',
+	'woostify_setting[shop_page_header_display]',
 	array(
-		'default'           => $defaults['shop_page_page_header_display'],
+		'default'           => $defaults['shop_page_header_display'],
 		'type'              => 'option',
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
@@ -49,11 +90,11 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Switch_Control(
 		$wp_customize,
-		'woostify_setting[shop_page_page_header_display]',
+		'woostify_setting[shop_page_header_display]',
 		array(
 			'label'    => __( 'Page Header Display', 'woostify' ),
-			'settings' => 'woostify_setting[shop_page_page_header_display]',
-			'section'  => 'woostify_page_header',
+			'settings' => 'woostify_setting[shop_page_header_display]',
+			'section'  => 'woostify_shop_page',
 			'tab'      => 'general',
 		)
 	)
@@ -77,6 +118,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Shop Title', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_title]',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -98,6 +140,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Breadcrumb', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_breadcrumb]',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -119,6 +162,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Result Count', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_result_count]',
+			'tab'      => 'general',
 		)
 	)
 );
@@ -140,9 +184,768 @@ $wp_customize->add_control(
 			'label'    => __( 'Product Filtering', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_filter]',
+			'tab'      => 'general',
 		)
 	)
 );
+
+// Text align.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_text_align]',
+	array(
+		'default'           => $defaults['shop_page_header_text_align'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_text_align]',
+		array(
+			'label'    => __( 'Text Align', 'woostify' ),
+			'settings' => 'woostify_setting[shop_page_header_text_align]',
+			'section'  => 'woostify_shop_page',
+			'type'     => 'select',
+			'choices'  => array(
+				'left'    => __( 'Left', 'woostify' ),
+				'center'  => __( 'Center', 'woostify' ),
+				'right'   => __( 'Right', 'woostify' ),
+				'justify' => __( 'Page Title / Breadcrumb', 'woostify' ),
+			),
+			'tab'      => 'general',
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_style_heading]',
+	array(
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Heading_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_product_style_heading]',
+		array(
+			'label'    => __( 'Product Style', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_product_style_heading]',
+			'tab'      => 'design',
+		)
+	)
+);
+
+
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_title_color]',
+	array(
+		'default'           => $defaults['shop_page_product_title_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_product_title_color]',
+		array(
+			'label'           => __( 'Product Title Color', 'woostify' ),
+			'section'         => 'woostify_shop_page',
+			'tab'             => 'design',
+			'settings'        => array(
+				'woostify_setting[shop_page_product_title_color]',
+			),
+			'enable_swatches' => false,
+			'is_global_color' => true,
+		)
+	)
+);
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_title_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_title_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_title_tablet_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_title_tablet_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_title_mobile_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_title_mobile_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_product_title_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Title Font Size', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[shop_page_product_title_font_size]',
+				'tablet'  => 'woostify_setting[shop_page_product_title_tablet_font_size]',
+				'mobile'  => 'woostify_setting[shop_page_product_title_mobile_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_title_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_title_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_title_tablet_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_title_tablet_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_title_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_title_mobile_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_price_color]',
+	array(
+		'default'           => $defaults['shop_page_product_price_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_product_price_color]',
+		array(
+			'label'           => __( 'Price Color', 'woostify' ),
+			'section'         => 'woostify_shop_page',
+			'tab'             => 'design',
+			'settings'        => array(
+				'woostify_setting[shop_page_product_price_color]',
+			),
+			'enable_swatches' => false,
+			'is_global_color' => true,
+		)
+	)
+);
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_price_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_price_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_price_tablet_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_price_tablet_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_product_price_mobile_font_size]',
+	array(
+		'default'           => $defaults['shop_page_product_price_mobile_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_product_price_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Price Font Size', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[shop_page_product_price_font_size]',
+				'tablet'  => 'woostify_setting[shop_page_product_price_tablet_font_size]',
+				'mobile'  => 'woostify_setting[shop_page_product_price_mobile_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_price_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_price_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_price_tablet_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_price_tablet_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_shop_page_product_price_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_shop_page_product_price_mobile_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_heading]',
+	array(
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Heading_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_heading]',
+		array(
+			'label'    => __( 'Page Header', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_header_heading]',
+			'tab'      => 'design',
+		)
+	)
+);
+
+
+// Title color.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_title_color]',
+	array(
+		'default'           => $defaults['shop_page_header_title_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_title_color]',
+		array(
+			'label'    => __( 'Title Color', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => array(
+				'woostify_setting[shop_page_header_title_color]',
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_title_font_size]',
+	array(
+		'default'           => $defaults['shop_page_header_title_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_title_tablet_font_size]',
+	array(
+		'default'           => $defaults['shop_page_header_title_tablet_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_title_mobile_font_size]',
+	array(
+		'default'           => $defaults['shop_page_header_title_mobile_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_title_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Title Font Size', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[page_header_title_font_size]',
+				'tablet'  => 'woostify_setting[page_header_title_tablet_font_size]',
+				'mobile'  => 'woostify_setting[page_header_title_mobile_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_page_header_title_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_page_header_title_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_page_header_title_tablet_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_page_header_title_tablet_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_page_header_title_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_page_header_title_mobile_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+
+// Breadcrumb text color.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_breadcrumb_text_color]',
+	array(
+		'default'           => $defaults['page_header_breadcrumb_text_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_breadcrumb_text_color]',
+		array(
+			'label'    => __( 'Breadcrumb Color', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => array(
+				'woostify_setting[shop_page_header_breadcrumb_text_color]',
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// font size.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_breadcrumb_font_size]',
+	array(
+		'default'           => $defaults['shop_page_header_breadcrumb_font_size'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_breadcrumb_tablet_font_size]',
+	array(
+		'default'           => $defaults['shop_page_header_breadcrumb_tablet_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_breadcrumb_mobile_font_size]',
+	array(
+		'default'           => $defaults['shop_page_header_breadcrumb_mobile_font_size'],
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_breadcrumb_font_size]',
+		array(
+			'type'     => 'woostify-range-slider',
+			'label'    => __( 'Breadcrumb Font Size', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'tab'      => 'design',
+			'settings' => array(
+				'desktop' => 'woostify_setting[page_header_breadcrumb_font_size]',
+				'tablet'  => 'woostify_setting[page_header_breadcrumb_tablet_font_size]',
+				'mobile'  => 'woostify_setting[page_header_breadcrumb_mobile_font_size]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_page_header_breadcrumb_font_size_min_step', 5 ),
+					'max'  => apply_filters( 'woostify_page_header_breadcrumb_font_size_max_step', 60 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'tablet'  => array(
+					'min'  => apply_filters( 'woostify_page_header_breadcrumb_tablet_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_page_header_breadcrumb_tablet_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+				'mobile'  => array(
+					'min'  => apply_filters( 'woostify_page_header_breadcrumb_mobile_width_min_step', 1 ),
+					'max'  => apply_filters( 'woostify_page_header_breadcrumb_mobile_width_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+		)
+	)
+);
+
+
+
+// Background color.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_background_color]',
+	array(
+		'default'           => $defaults['shop_page_header_background_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_background_color]',
+		array(
+			'label'    => __( 'Background Color', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => array(
+				'woostify_setting[shop_page_header_background_color]',
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Background image.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_background_image]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['shop_page_header_background_image'],
+		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Image_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_background_image]',
+		array(
+			'label'    => __( 'Background Image', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[shop_page_header_background_image]',
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Background image size.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_background_image_size]',
+	array(
+		'default'           => $defaults['shop_page_header_background_image_size'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_background_image_size]',
+		array(
+			'label'    => __( 'Background Size', 'woostify' ),
+			'settings' => 'woostify_setting[shop_page_header_background_image_size]',
+			'section'  => 'woostify_shop_page',
+			'type'     => 'select',
+			'choices'  => array(
+				'auto'    => __( 'Default', 'woostify' ),
+				'cover'   => __( 'Cover', 'woostify' ),
+				'contain' => __( 'Contain', 'woostify' ),
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Background image repeat.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_background_image_repeat]',
+	array(
+		'default'           => $defaults['shop_page_header_background_image_repeat'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_background_image_repeat]',
+		array(
+			'label'    => __( 'Background Repeat', 'woostify' ),
+			'settings' => 'woostify_setting[shop_page_header_background_image_repeat]',
+			'section'  => 'woostify_shop_page',
+			'type'     => 'select',
+			'choices'  => array(
+				'repeat'    => __( 'Default', 'woostify' ),
+				'no-repeat' => __( 'No Repeat', 'woostify' ),
+				'repeat-x'  => __( 'Repeat X', 'woostify' ),
+				'repeat-y'  => __( 'Repeat Y', 'woostify' ),
+				'space'     => __( 'Space', 'woostify' ),
+				'round'     => __( 'Round', 'woostify' ),
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Background image position.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_background_image_position]',
+	array(
+		'default'           => $defaults['shop_page_header_background_image_position'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_background_image_position]',
+		array(
+			'label'    => __( 'Background Position', 'woostify' ),
+			'settings' => 'woostify_setting[shop_page_header_background_image_position]',
+			'section'  => 'woostify_shop_page',
+			'type'     => 'select',
+			'choices'  => array(
+				'left-top'      => __( 'Left Top', 'woostify' ),
+				'left-center'   => __( 'Left Center', 'woostify' ),
+				'left-bottom'   => __( 'Left Bottom', 'woostify' ),
+				'center-top'    => __( 'Center Top', 'woostify' ),
+				'center-center' => __( 'Center Center', 'woostify' ),
+				'center-bottom' => __( 'Center Bottom', 'woostify' ),
+				'right-top'     => __( 'Right Top', 'woostify' ),
+				'right-center'  => __( 'Right Center', 'woostify' ),
+				'right-bottom'  => __( 'Right Bottom', 'woostify' ),
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Background image attachment.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_background_image_attachment]',
+	array(
+		'default'           => $defaults['shop_page_header_background_image_attachment'],
+		'type'              => 'option',
+		'sanitize_callback' => 'woostify_sanitize_choices',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Customize_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_background_image_attachment]',
+		array(
+			'label'    => __( 'Background Attachment', 'woostify' ),
+			'settings' => 'woostify_setting[shop_page_header_background_image_attachment]',
+			'section'  => 'woostify_shop_page',
+			'type'     => 'select',
+			'choices'  => array(
+				'scroll' => __( 'Default', 'woostify' ),
+				'fixed'  => __( 'Fixed', 'woostify' ),
+				'local'  => __( 'Local', 'woostify' ),
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Padding divider.
+$wp_customize->add_setting(
+	'page_header_spacing_divider',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Divider_Control(
+		$wp_customize,
+		'page_header_spacing_divider',
+		array(
+			'section'  => 'woostify_shop_page',
+			'settings' => 'page_header_spacing_divider',
+			'type'     => 'divider',
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Padding top.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_padding_top]',
+	array(
+		'default'           => $defaults['shop_page_header_padding_top'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_padding_top]',
+		array(
+			'label'    => __( 'Padding Top', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => array(
+				'desktop' => 'woostify_setting[shop_page_header_padding_top]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_shop_page_header_padding_top_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_shop_page_header_padding_top_max_step', 200 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Padding bottom.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_padding_bottom]',
+	array(
+		'default'           => $defaults['shop_page_header_padding_bottom'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_padding_bottom]',
+		array(
+			'label'    => __( 'Padding Bottom', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => array(
+				'desktop' => 'woostify_setting[shop_page_header_padding_bottom]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_shop_page_header_padding_bottom_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_shop_page_header_padding_bottom_max_step', 200 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Margin bottom.
+$wp_customize->add_setting(
+	'woostify_setting[shop_page_header_margin_bottom]',
+	array(
+		'default'           => $defaults['shop_page_header_margin_bottom'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[shop_page_header_margin_bottom]',
+		array(
+			'label'    => __( 'Margin Bottom', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => array(
+				'desktop' => 'woostify_setting[shop_page_header_margin_bottom]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_shop_page_header_margin_bottom_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_shop_page_header_margin_bottom_max_step', 200 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+
 
 // SHOP INFINITE SCROLL.
 $wp_customize->add_setting(
@@ -1481,3 +2284,7 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+
+
+

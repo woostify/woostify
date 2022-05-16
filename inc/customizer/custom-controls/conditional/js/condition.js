@@ -397,6 +397,143 @@
 				)
 
 
+				// SINGLE BLOG PAGE HEADER
+				// Enable page header.
+				condition(
+					'woostify_setting[blog_single_page_header_display]',
+					[
+						'woostify_setting[blog_single_page_header_title]',
+						'woostify_setting[blog_single_page_header_breadcrumb]',
+						'woostify_setting[blog_single_page_header_text_align]',
+						'woostify_setting[blog_single_page_header_title_color]',
+						'woostify_setting[blog_single_page_header_background_color]',
+						'woostify_setting[blog_single_page_header_background_image]',
+						'woostify_setting[blog_single_page_header_background_image_size]',
+						'woostify_setting[blog_single_page_header_background_image_position]',
+						'woostify_setting[blog_single_page_header_background_image_repeat]',
+						'woostify_setting[blog_single_page_header_background_image_attachment]',
+						'blog_single_page_header_breadcrumb_divider',
+						'blog_single_page_header_title_color_divider',
+						'blog_single_page_header_spacing_divider',
+						'woostify_setting[blog_single_page_header_breadcrumb_text_color]',
+						'woostify_setting[blog_single_page_header_padding_top]',
+						'woostify_setting[blog_single_page_header_padding_bottom]',
+						'woostify_setting[blog_single_page_header_margin_bottom]',
+					],
+				)
+
+				// Background image.
+				subCondition(
+					'woostify_setting[page_header_background_image]',
+					[
+						'woostify_setting[page_header_background_image_size]',
+						'woostify_setting[page_header_background_image_position]',
+						'woostify_setting[page_header_background_image_repeat]',
+						'woostify_setting[page_header_background_image_attachment]',
+					],
+					'',
+					false,
+					[
+						'woostify_setting[page_header_display]',
+						true,
+					],
+				)
+
+
+				// Blog PAGE HEADER
+				// Enable page header.
+				condition(
+					'woostify_setting[blog_page_header_display]',
+					[
+						'woostify_setting[blog_page_header_title]',
+						'woostify_setting[blog_page_header_breadcrumb]',
+						'woostify_setting[blog_page_header_text_align]',
+						'woostify_setting[blog_style_page_header_breadcrumb_divider]',
+						'woostify_setting[blog_page_header_heading]',
+						'woostify_setting[blog_page_header_title_color]',
+						'woostify_setting[blog_page_header_title_font_size]',
+						'woostify_setting[blog_page_header_breadcrumb_text_color]',
+						'woostify_setting[blog_page_header_breadcrumb_font_size]',
+						'woostify_setting[blog_page_header_background_color]',
+						'woostify_setting[blog_page_header_background_image]',
+						'woostify_setting[blog_page_header_background_image_size]',
+						'woostify_setting[blog_page_header_background_image_repeat]',
+						'woostify_setting[blog_page_header_background_image_position]',
+						'woostify_setting[blog_page_header_background_image_attachment]',
+						'blog_page_header_spacing_divider',
+						'page_header_title_color_divider',
+						'page_header_spacing_divider',
+						'woostify_setting[page_header_breadcrumb_text_color]',
+						'woostify_setting[blog_page_header_padding_top]',
+						'woostify_setting[blog_page_header_padding_bottom]',
+						'woostify_setting[blog_page_header_margin_bottom]',
+					],
+				)
+
+				// Background image.
+				subCondition(
+					'woostify_setting[blog_page_header_background_image]',
+					[
+						'woostify_setting[blog_page_header_background_image_size]',
+						'woostify_setting[blog_page_header_background_image_position]',
+						'woostify_setting[blog_page_header_background_image_repeat]',
+						'woostify_setting[blog_page_header_background_image_attachment]',
+					],
+					'',
+					false,
+					[
+						'woostify_setting[blog_page_header_display]',
+						true,
+					],
+				)
+
+				// Shop PAGE HEADER
+				// Enable page header.
+				condition(
+					'woostify_setting[shop_page_page_header_display]',
+					[
+						'woostify_setting[shop_page_header_title]',
+						'woostify_setting[shop_page_header_breadcrumb]',
+						'woostify_setting[shop_page_header_text_align]',
+						'woostify_setting[shop_style_page_header_breadcrumb_divider]',
+						'woostify_setting[shop_page_header_heading]',
+						'woostify_setting[shop_page_header_title_color]',
+						'woostify_setting[shop_page_header_title_font_size]',
+						'woostify_setting[shop_page_header_breadcrumb_text_color]',
+						'woostify_setting[shop_page_header_breadcrumb_font_size]',
+						'woostify_setting[shop_page_header_background_color]',
+						'woostify_setting[shop_page_header_background_image]',
+						'woostify_setting[shop_page_header_background_image_size]',
+						'woostify_setting[shop_page_header_background_image_repeat]',
+						'woostify_setting[shop_page_header_background_image_position]',
+						'woostify_setting[shop_page_header_background_image_attachment]',
+						'shop_page_header_spacing_divider',
+						'page_header_title_color_divider',
+						'page_header_spacing_divider',
+						'woostify_setting[shop_page_header_padding_top]',
+						'woostify_setting[shop_page_header_padding_bottom]',
+						'woostify_setting[shop_page_header_margin_bottom]',
+					],
+				)
+
+				// Background image.
+				subCondition(
+					'woostify_setting[shop_page_header_background_image]',
+					[
+						'woostify_setting[shop_page_header_background_image_size]',
+						'woostify_setting[shop_page_header_background_image_position]',
+						'woostify_setting[shop_page_header_background_image_repeat]',
+						'woostify_setting[shop_page_header_background_image_attachment]',
+					],
+					'',
+					false,
+					[
+						'woostify_setting[shop_page_page_header_display]',
+						true,
+					],
+				)
+
+
 				// Shop Single Tab open.
 				condition(
 					'woostify_setting[shop_single_product_data_tabs_layout]',

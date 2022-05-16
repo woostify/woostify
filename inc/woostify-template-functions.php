@@ -880,16 +880,23 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			return;
 		}
 
-		var_dump(is_page());
+		$page_id                   = woostify_get_page_id();
+		$options                   = woostify_options( false );
+		$default_page_header       = $options['page_header_display'];
+		$blog_page_header          = $options['blog_page_header_display'];
+		$blog_single_page_header   = $options['blog_single_page_header_display'];
+		$shop_page_header          = $options['shop_page_header_display'];
+		$metabox                   = woostify_get_metabox( false, 'site-page-header' );
+		$title                     = get_the_title( $page_id );
+		$display_title             = $options['page_header_title'];
+		$blog_display_title        = $options['blog_page_header_title'];
+		$blog_single_display_title = $options['blog_single_page_header_title'];
+		$shop_display_title        = $options['shop_page_title'];
 
-		var_dump( is_woocommerce() );
-
-		$page_id       = woostify_get_page_id();
-		$options       = woostify_options( false );
-		$page_header   = $options['page_header_display'];
-		$metabox       = woostify_get_metabox( false, 'site-page-header' );
-		$title         = get_the_title( $page_id );
-		$display_title = $options['page_header_title'];
+		$page_breadcrumd        = $options['page_header_breadcrumb'];
+		$blog_breadcrumb        = $options['blog_page_header_breadcrumb'];
+		$blog_single_breadcrumb = $options['blog_single_page_header_breadcrumb'];
+		$shop_breadcrumb        = $options['shop_page_header_breadcrumb'];
 
 		$classes[] = 'woostify-container';
 		$classes[] = 'content-align-' . $options['page_header_text_align'];
@@ -900,9 +907,19 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			if ( ! $options['shop_page_title'] ) {
 				$display_title = false;
 			}
+
+			if ( ! $shop_breadcrumb ) {
+				$breadcrumb = false;
+			}
 		} elseif ( $wc && is_wc_endpoint_url( 'orders' ) ) {
+			if ( ! $options['shop_page_title'] ) {
+				$display_title = false;
+			}
 			$title = __( 'Orders', 'woostify' );
 		} elseif ( $wc && is_wc_endpoint_url( 'downloads' ) ) {
+			if ( ! $options['shop_page_title'] ) {
+				$display_title = false;
+			}
 			$title = __( 'Downloads', 'woostify' );
 		} elseif ( $wc && is_wc_endpoint_url( 'edit-account' ) ) {
 			$title = __( 'Account details', 'woostify' );
@@ -913,11 +930,38 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		} elseif ( $wc && is_wc_endpoint_url( 'lost-password' ) ) {
 			$title = __( 'Lost password', 'woostify' );
 		} elseif ( is_archive() ) {
+			if ( ( ! $options['shop_page_title'] && $wc ) || ! $blog_display_title ) {
+				$display_title = false;
+			}
+
+			if ( ( $wc && ! $shop_breadcrumb ) || $blog_breadcrumb ) {
+				$breadcrumb = false;
+			}
 			$title = get_the_archive_title( $page_id );
 		} elseif ( is_home() ) {
+			if ( ! $blog_display_title ) {
+				$display_title = false;
+			}
+
+			if ( ! $blog_breadcrumb ) {
+				$breadcrumb = false;
+			}
 			$title = __( 'Blog', 'woostify' );
 		} elseif ( is_search() ) {
+			if ( ( ! $options['shop_page_title'] && $wc ) || ! $blog_display_title ) {
+				$display_title = false;
+			}
+			if ( ( $shop_breadcrumb && $wc ) || ! $blog_breadcrumb ) {
+				$breadcrumb = false;
+			}
 			$title = __( 'Search', 'woostify' );
+		} elseif ( is_singular('post') ) {
+			if ( ! $blog_single_display_title ) {
+				$display_title = false;
+			}
+			if ( ! $blog_single_breadcrumb ) {
+				$breadcrumb = false;
+			}
 		}
 
 		if ( is_404() ) {
@@ -931,13 +975,25 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 
 		// Metabox option.
 		if ( 'default' !== $metabox ) {
-			$page_header = 'enabled' === $metabox ? true : false;
+			$default_page_header = 'enabled' === $metabox ? true : false;
 		}
 
 		// Hide default page header on Multi step checkout.
 		$disable_page_header = class_exists( 'woocommerce' ) && is_checkout() && ( 'layout-2' === $options['checkout_page_layout'] );
 
-		if ( ! $page_header || $disable_page_header ) {
+		if ( is_page() && ! $default_page_header ) {
+			return;
+		}
+
+		if ( ( is_woocommerce() && ! $shop_page_header ) || $disable_page_header ) {
+			return;
+		}
+
+		if ( is_singular('post') && ! $blog_single_page_header ) {
+			return;
+		}
+
+		if ( ( is_archive() || is_home() ) && ! $blog_page_header && ! is_woocommerce() ) {
 			return;
 		}
 
@@ -963,7 +1019,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 				<?php } ?>
 
 				<?php
-				$breadcrumb = class_exists( 'woocommerce' ) && is_shop() ? $options['shop_page_breadcrumb'] : $options['page_header_breadcrumb'];
+
 				if ( $breadcrumb ) {
 					/**
 					 * Functions hooked in to woostify_page_header_breadcrumb
