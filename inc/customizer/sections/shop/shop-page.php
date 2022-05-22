@@ -29,7 +29,7 @@ $wp_customize->add_control(
 			'dependency' => array(
 				'woostify_setting[shop_page_header_display]',
 				'woostify_setting[shop_page_title]',
-				'woostify_setting[shop_page_breadcrumb]',
+				'woostify_setting[shop_page_header_breadcrumb]',
 				'woostify_setting[shop_page_result_count]',
 				'woostify_setting[shop_page_product_filter]',
 				'woostify_setting[shop_context_tabs]',
@@ -72,7 +72,7 @@ $wp_customize->add_control(
 			'settings' => 'woostify_setting[shop_context_tabs]',
 			'choices'  => array(
 				'general' => __( 'Settings', 'woostify' ),
-				'design'   => __( 'Design', 'woostify' ),
+				'design'  => __( 'Design', 'woostify' ),
 			),
 		)
 	)
@@ -125,21 +125,21 @@ $wp_customize->add_control(
 
 // Breadcrumbs.
 $wp_customize->add_setting(
-	'woostify_setting[shop_page_breadcrumb]',
+	'woostify_setting[shop_page_header_breadcrumb]',
 	array(
 		'type'              => 'option',
-		'default'           => $defaults['shop_page_breadcrumb'],
+		'default'           => $defaults['shop_page_header_breadcrumb'],
 		'sanitize_callback' => 'woostify_sanitize_checkbox',
 	)
 );
 $wp_customize->add_control(
 	new Woostify_Switch_Control(
 		$wp_customize,
-		'woostify_setting[shop_page_breadcrumb]',
+		'woostify_setting[shop_page_header_breadcrumb]',
 		array(
 			'label'    => __( 'Breadcrumb', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'settings' => 'woostify_setting[shop_page_breadcrumb]',
+			'settings' => 'woostify_setting[shop_page_header_breadcrumb]',
 			'tab'      => 'general',
 		)
 	)
@@ -825,7 +825,7 @@ $wp_customize->add_control(
 
 // Padding divider.
 $wp_customize->add_setting(
-	'page_header_spacing_divider',
+	'shop_page_header_spacing_divider',
 	array(
 		'sanitize_callback' => 'sanitize_text_field',
 	)
@@ -833,10 +833,10 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Divider_Control(
 		$wp_customize,
-		'page_header_spacing_divider',
+		'shop_page_header_spacing_divider',
 		array(
 			'section'  => 'woostify_shop_page',
-			'settings' => 'page_header_spacing_divider',
+			'settings' => 'shop_page_header_spacing_divider',
 			'type'     => 'divider',
 			'tab'      => 'design',
 		)

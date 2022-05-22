@@ -892,25 +892,26 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		$blog_display_title        = $options['blog_page_header_title'];
 		$blog_single_display_title = $options['blog_single_page_header_title'];
 		$shop_display_title        = $options['shop_page_title'];
+		$shop_page_breadcrumb      = $options['shop_page_header_breadcrumb'];
 
 		$page_breadcrumd        = $options['page_header_breadcrumb'];
 		$blog_breadcrumb        = $options['blog_page_header_breadcrumb'];
 		$blog_single_breadcrumb = $options['blog_single_page_header_breadcrumb'];
-		$shop_breadcrumb        = $options['shop_page_header_breadcrumb'];
 
-		$classes[] = 'woostify-container';
-		$classes[] = 'content-align-' . $options['page_header_text_align'];
-		$classes   = implode( ' ', $classes );
-		$wc        = class_exists( 'woocommerce' );
+		$classes[]  = 'woostify-container';
+
+		$wc         = class_exists( 'woocommerce' );
+		$breadcrumb = true;
 
 		if ( $wc && is_shop() ) {
 			if ( ! $options['shop_page_title'] ) {
 				$display_title = false;
 			}
 
-			if ( ! $shop_breadcrumb ) {
+			if ( $wc && ! $shop_page_breadcrumb ) {
 				$breadcrumb = false;
 			}
+
 		} elseif ( $wc && is_wc_endpoint_url( 'orders' ) ) {
 			if ( ! $options['shop_page_title'] ) {
 				$display_title = false;
@@ -934,7 +935,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 				$display_title = false;
 			}
 
-			if ( ( $wc && ! $shop_breadcrumb ) || $blog_breadcrumb ) {
+			if ( ( is_woocommerce() && ! $shop_page_breadcrumb ) || ( ! is_woocommerce() && ! $blog_breadcrumb ) ) {
 				$breadcrumb = false;
 			}
 			$title = get_the_archive_title( $page_id );
@@ -951,7 +952,7 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 			if ( ( ! $options['shop_page_title'] && $wc ) || ! $blog_display_title ) {
 				$display_title = false;
 			}
-			if ( ( $shop_breadcrumb && $wc ) || ! $blog_breadcrumb ) {
+			if ( ( is_woocommerce() && ! $shop_page_breadcrumb ) || ( ! is_woocommerce() && ! $blog_breadcrumb ) ) {
 				$breadcrumb = false;
 			}
 			$title = __( 'Search', 'woostify' );
@@ -996,6 +997,21 @@ if ( ! function_exists( 'woostify_page_header' ) ) {
 		if ( ( is_archive() || is_home() ) && ! $blog_page_header && ! is_woocommerce() ) {
 			return;
 		}
+
+
+		if ( is_woocommerce() ) {
+			$classes[]  = 'content-align-' . $options['shop_page_header_text_align'];
+		} else {
+			if ( is_archive() || is_home() ) {
+				$classes[]  = 'content-align-' . $options['blog_page_header_text_align'];
+			} elseif ( is_singular( 'post' ) ) {
+				$classes[]  = 'content-align-' . $options['blog_single_page_header_text_align'];
+			} else {
+				$classes[]  = 'content-align-' . $options['page_header_text_align'];
+			}
+		}
+
+		$classes    = implode( ' ', $classes );
 
 		$id           = get_queried_object_id();
 		$thumbnail_id = get_term_meta( $id, 'thumbnail_id', true );

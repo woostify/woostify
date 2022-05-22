@@ -771,7 +771,7 @@ document.addEventListener(
 				'page_header_background_image_position',
 				'page_header_background_image_attachment',
 			],
-			'.page-header',
+			'.page .page-header',
 		)
 
 		// Padding top.
@@ -1267,6 +1267,236 @@ document.addEventListener(
 				'color',
 			],
 		)
+
+		// Blog Page header.
+		woostify_range_slider_update(
+			[
+				'blog_page_header_title_font_size',
+				'blog_page_header_title_tablet_font_size',
+				'blog_page_header_title_mobile_font_size',
+			],
+			'.blog .page-header .entry-title, .archive .page-header .entry-title',
+			'font-size',
+			'px',
+		)
+
+		woostify_color_group_live_update(
+			[
+				'blog_page_header_title_color'
+			],
+			[
+				'.blog .page-header .entry-title',
+				'.archive .page-header .entry-title'
+			],
+			[
+				'color',
+			],
+		)
+
+		woostify_range_slider_update(
+			[
+				'blog_page_header_breadcrumb_font_size',
+				'blog_page_header_breadcrumb_tablet_font_size',
+				'blog_page_header_breadcrumb_mobile_font_size',
+			],
+			'.blog .woostify-breadcrumb .item-bread, .blog .woostify-breadcrumb a, .archive .woostify-breadcrumb .item-bread, .archive .woostify-breadcrumb a',
+			'font-size',
+			'px',
+		)
+
+		woostify_color_group_live_update(
+			[
+				'blog_page_header_breadcrumb_text_color'
+			],
+			[
+				'.blog .woostify-breadcrumb .item-bread',
+				'.blog .woostify-breadcrumb a',
+				'.archive .woostify-breadcrumb .item-bread',
+				'.archive .woostify-breadcrumb a'
+			],
+			[
+				'color',
+			],
+		)
+
+		// Text align.
+		woostify_update_element_class( 'blog_page_header_text_align', '.archive .page-header .woostify-container, .blog .page-header .woostify-container', 'content-align-' )
+
+		// Background color.
+		woostify_colors_live_update( 'blog_page_header_background_color', '.blog .page-header, .archive .page-header', 'background-color' )
+
+		// Background image.
+		woostify_background_image_live_upload(
+			'blog_page_header_background_image',
+			[
+				'blog_page_header_background_image_size',
+				'blog_page_header_background_image_repeat',
+				'blog_page_header_background_image_position',
+				'blog_page_header_background_image_attachment',
+			],
+			'.blog .page-header, .archive .page-header',
+		)
+
+		// Padding top.
+		woostify_range_slider_update( ['blog_page_header_padding_top'], '.blog .page-header, .archive .page-header', 'padding-top', 'px' )
+
+		// Padding bottom.
+		woostify_range_slider_update( ['blog_page_header_padding_bottom'], '.blog .page-header, .archive .page-header', 'padding-bottom', 'px' )
+
+		// Margin bottom.
+		woostify_range_slider_update( ['blog_page_header_margin_bottom'], '.blog .page-header, .archive .page-header', 'margin-bottom', 'px' )
+
+
+		// Blog Single Page header.
+		woostify_range_slider_update(
+			[
+				'blog_single_page_header_title_font_size',
+				'blog_single_page_header_title_tablet_font_size',
+				'blog_single_page_header_title_mobile_font_size',
+			],
+			'.single-post .page-header .entry-title',
+			'font-size',
+			'px',
+		)
+
+		woostify_color_group_live_update(
+			[
+				'blog_single_page_header_title_color'
+			],
+			[
+				'.single-post .page-header .entry-title'
+			],
+			[
+				'color',
+			],
+		)
+
+		woostify_range_slider_update(
+			[
+				'blog_single_page_header_breadcrumb_font_size',
+				'blog_single_page_header_breadcrumb_tablet_font_size',
+				'blog_single_page_header_breadcrumb_mobile_font_size',
+			],
+			'.single-post .woostify-breadcrumb .item-bread, .single-post .woostify-breadcrumb a',
+			'font-size',
+			'px',
+		)
+
+		woostify_color_group_live_update(
+			[
+				'blog_single_page_header_breadcrumb_text_color'
+			],
+			[
+				'.single-post .woostify-breadcrumb .item-bread',
+				'.single-post .woostify-breadcrumb a',
+			],
+			[
+				'color',
+			],
+		)
+
+		// Text align.
+		woostify_update_element_class( 'blog_single_page_header_text_align', '.single-post .page-header .woostify-container', 'content-align-' )
+
+		// Background color.
+		woostify_colors_live_update( 'blog_single_page_header_background_color', '.single-post .page-header', 'background-color' )
+
+		// Background image.
+		woostify_background_image_live_upload(
+			'blog_single_page_header_background_image',
+			[
+				'blog_single_page_header_background_image_size',
+				'blog_single_page_header_background_image_repeat',
+				'blog_single_page_header_background_image_position',
+				'blog_single_page_header_background_image_attachment',
+			],
+			'.single-post .page-header',
+		)
+
+		// Padding top.
+		woostify_range_slider_update( ['blog_single_page_header_padding_top'], '.single-post .page-header', 'padding-top', 'px' )
+
+		// Padding bottom.
+		woostify_range_slider_update( ['blog_single_page_header_padding_bottom'], '.single-post .page-header', 'padding-bottom', 'px' )
+
+		// Margin bottom.
+		woostify_range_slider_update( ['blog_single_page_header_margin_bottom'], '.single-post .page-header', 'margin-bottom', 'px' )
+
+		// Shop  Page header.
+		woostify_range_slider_update(
+			[
+				'shop_page_header_title_font_size',
+				'shop_page_header_title_tablet_font_size',
+				'shop_page_header_title_mobile_font_size',
+			],
+			'.woocommerce.archive .page-header .entry-title',
+			'font-size',
+			'px',
+		)
+
+		woostify_color_group_live_update(
+			[
+				'shop_page_header_title_color'
+			],
+			[
+				'.woocommerce.archive .page-header .entry-title'
+			],
+			[
+				'color',
+			],
+		)
+
+		woostify_range_slider_update(
+			[
+				'shop_page_header_breadcrumb_font_size',
+				'shop_page_header_breadcrumb_tablet_font_size',
+				'shop_page_header_breadcrumb_mobile_font_size',
+			],
+			'.woocommerce.archive.woostify-breadcrumb .item-bread, .woocommerce.archive .woostify-breadcrumb a',
+			'font-size',
+			'px',
+		)
+
+		woostify_color_group_live_update(
+			[
+				'shop_page_header_breadcrumb_text_color'
+			],
+			[
+				'.woocommerce.archive .woostify-breadcrumb .item-bread',
+				'.woocommerce.archive .woostify-breadcrumb a'
+			],
+			[
+				'color',
+			],
+		)
+
+		// Text align.
+		woostify_update_element_class( 'shop_page_header_text_align', '.page-header .woostify-container', 'content-align-' )
+
+		// Background color.
+		woostify_colors_live_update( 'shop_page_header_background_color', '.woocommerce.archive .page-header', 'background-color' )
+
+		// Background image.
+		woostify_background_image_live_upload(
+			'shop_page_header_background_image',
+			[
+				'shop_page_header_background_image_size',
+				'shop_page_header_background_image_repeat',
+				'shop_page_header_background_image_position',
+				'shop_page_header_background_image_attachment',
+			],
+			'.woocommerce.archive .page-header',
+		)
+
+		// Padding top.
+		woostify_range_slider_update( ['shop_page_header_padding_top'], '.woocommerce.archive .page-header', 'padding-top', 'px' )
+
+		// Padding bottom.
+		woostify_range_slider_update( ['shop_page_header_padding_bottom'], '.woocommerce.archive .page-header', 'padding-bottom', 'px' )
+
+		// Margin bottom.
+		woostify_range_slider_update( ['shop_page_header_margin_bottom'], '.woocommerce.archive .page-header', 'margin-bottom', 'px' )
+
 
 	},
 )

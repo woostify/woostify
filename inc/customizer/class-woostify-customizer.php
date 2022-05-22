@@ -530,7 +530,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				// SHOP.
 				'shop_page_product_alignment'                          => 'center',
 				'shop_page_title'                                      => true,
-				'shop_page_breadcrumb'                                 => true,
+				'shop_page_header_breadcrumb'                          => true,
 				'shop_page_result_count'                               => true,
 				'shop_page_product_filter'                             => true,
 				'shop_page_product_quantity'                           => false,

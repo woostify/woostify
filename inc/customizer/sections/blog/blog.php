@@ -280,6 +280,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Style', 'woostify' ),
 			'section'  => 'woostify_blog',
 			'settings' => 'woostify_setting[blog_style]',
+			'tab'      => 'design',
 		)
 	)
 );
@@ -640,6 +641,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Page Header', 'woostify' ),
 			'section'  => 'woostify_blog',
 			'settings' => 'woostify_setting[blog_page_header_heading]',
+			'tab'      => 'design',
 		)
 	)
 );

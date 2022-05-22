@@ -487,15 +487,14 @@
 					],
 				)
 
-				// Shop PAGE HEADER
-				// Enable page header.
+				// // Shop PAGE HEADER
+				// // Enable page header.
 				condition(
-					'woostify_setting[shop_page_page_header_display]',
+					'woostify_setting[shop_page_header_display]',
 					[
-						'woostify_setting[shop_page_header_title]',
+						'woostify_setting[shop_page_title]',
 						'woostify_setting[shop_page_header_breadcrumb]',
 						'woostify_setting[shop_page_header_text_align]',
-						'woostify_setting[shop_style_page_header_breadcrumb_divider]',
 						'woostify_setting[shop_page_header_heading]',
 						'woostify_setting[shop_page_header_title_color]',
 						'woostify_setting[shop_page_header_title_font_size]',
@@ -508,8 +507,6 @@
 						'woostify_setting[shop_page_header_background_image_position]',
 						'woostify_setting[shop_page_header_background_image_attachment]',
 						'shop_page_header_spacing_divider',
-						'page_header_title_color_divider',
-						'page_header_spacing_divider',
 						'woostify_setting[shop_page_header_padding_top]',
 						'woostify_setting[shop_page_header_padding_bottom]',
 						'woostify_setting[shop_page_header_margin_bottom]',
@@ -528,7 +525,7 @@
 					'',
 					false,
 					[
-						'woostify_setting[shop_page_page_header_display]',
+						'woostify_setting[shop_page_header_display]',
 						true,
 					],
 				)

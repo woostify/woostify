@@ -1164,7 +1164,7 @@ class Woostify_Get_CSS {
 			}
 
 			$styles .= '
-				.page-header{
+				.page .page-header{
 					padding-top: ' . esc_attr( $options['page_header_padding_top'] ) . 'px;
 					padding-bottom: ' . esc_attr( $options['page_header_padding_bottom'] ) . 'px;
 					margin-bottom: ' . esc_attr( $options['page_header_margin_bottom'] ) . 'px;
@@ -1700,6 +1700,172 @@ class Woostify_Get_CSS {
 			}
 		}
 		';
+
+		$styles .= '
+			.blog .page-header .entry-title,
+			.archive .page-header .entry-title {
+				font-size: ' . esc_attr( $options['blog_page_header_title_font_size'] ) . 'px;
+				color: ' . esc_attr( $options['blog_page_header_title_color'] ) . ';
+			}
+
+			.blog .woostify-breadcrumb .item-bread,
+			.blog .woostify-breadcrumb a,
+			.archive:not(.woocommerce) .woostify-breadcrumb .item-bread,
+			.archive:not(.woocommerce) .woostify-breadcrumb a {
+				font-size: ' . esc_attr( $options['blog_page_header_breadcrumb_font_size'] ) . 'px;
+				color: ' . esc_attr( $options['blog_page_header_title_color'] ) . ';
+			}
+
+			.single-post .page-header .entry-title {
+				font-size: ' . esc_attr( $options['blog_single_page_header_title_font_size'] ) . 'px;
+				color: ' . esc_attr( $options['blog_single_page_header_title_color'] ) . ';
+			}
+
+			.single-post .woostify-breadcrumb .item-bread,
+			.single-post .woostify-breadcrumb a {
+				font-size: ' . esc_attr( $options['blog_single_page_header_breadcrumb_font_size'] ) . 'px;
+				color: ' . esc_attr( $options['blog_single_page_header_breadcrumb_text_color'] ) . ';
+			}
+
+			.woocommerce.archive .page-header .entry-title {
+				font-size: ' . esc_attr( $options['shop_page_header_title_font_size'] ) . 'px;
+				color: ' . esc_attr( $options['shop_page_header_title_color'] ) . ';
+			}
+
+			.woocommerce.archive .woostify-breadcrumb .item-bread,
+			.woocommerce.archive .woostify-breadcrumb a {
+				font-size: ' . esc_attr( $options['shop_page_header_breadcrumb_font_size'] ) . 'px;
+				color: ' . esc_attr( $options['shop_page_header_breadcrumb_text_color'] ) . ';
+			}
+
+
+			@media ( max-width: 992px ) {
+				.blog .page-header .entry-title,
+				.archive:not(.woocommerce) .page-header .entry-title {
+					font-size: ' . esc_attr( $options['blog_page_header_title_tablet_font_size'] ) . 'px;
+				}
+
+				.blog .woostify-breadcrumb .item-bread,
+				.blog .woostify-breadcrumb a,
+				.archive:not(.woocommerce) .woostify-breadcrumb .item-bread,
+				.archive:not(.woocommerce) .woostify-breadcrumb a {
+					font-size: ' . esc_attr( $options['blog_page_header_breadcrumb_tablet_font_size'] ) . 'px;
+				}
+
+				.single-post .page-header .entry-title {
+					font-size: ' . esc_attr( $options['blog_single_page_header_title_tablet_font_size'] ) . 'px;
+				}
+
+				.single-post .woostify-breadcrumb .item-bread,
+				.single-post .woostify-breadcrumb a {
+					font-size: ' . esc_attr( $options['blog_single_page_header_breadcrumb_tablet_font_size'] ) . 'px;
+				}
+
+				.woocommerce.archive .page-header .entry-title {
+					font-size: ' . esc_attr( $options['shop_page_header_title_tablet_font_size'] ) . 'px;
+				}
+
+				.woocommerce.archive .woostify-breadcrumb .item-bread,
+				.woocommerce.archive .woostify-breadcrumb a {
+					font-size: ' . esc_attr( $options['shop_page_header_breadcrumb_tablet_font_size'] ) . 'px;
+				}
+
+			}
+
+			@media ( max-width: 767px ) {
+				.blog .page-header .entry-title,
+				.archive:not(.woocommerce) .page-header .entry-title {
+					font-size: ' . esc_attr( $options['blog_page_header_title_mobile_font_size'] ) . 'px;
+				}
+
+				.blog .woostify-breadcrumb .item-bread,
+				.blog .woostify-breadcrumb a,
+				.archive:not(.woocommerce) .woostify-breadcrumb .item-bread,
+				.archive:not(.woocommerce) .woostify-breadcrumb a {
+					font-size: ' . esc_attr( $options['blog_page_header_breadcrumb_mobile_font_size'] ) . 'px;
+				}
+
+				.single-post .page-header .entry-title {
+					font-size: ' . esc_attr( $options['blog_single_page_header_title_mobile_font_size'] ) . 'px;
+				}
+
+				.single-post .woostify-breadcrumb .item-bread,
+				.single-post .woostify-breadcrumb a {
+					font-size: ' . esc_attr( $options['blog_single_page_header_breadcrumb_mobile_font_size'] ) . 'px;
+				}
+
+				.woocommerce.archive .page-header .entry-title {
+					font-size: ' . esc_attr( $options['shop_page_header_title_mobile_font_size'] ) . 'px;
+				}
+
+				.woocommerce.archive .woostify-breadcrumb .item-bread,
+				.woocommerce.archive .woostify-breadcrumb a {
+					font-size: ' . esc_attr( $options['shop_page_header_breadcrumb_mobile_font_size'] ) . 'px;
+				}
+
+			}
+		';
+
+
+		$blog_page_header_background_image = '';
+		if ( $options['blog_page_header_background_image'] ) {
+			$blog_page_header_background_image .= 'background-image: url(' . esc_attr( $options['blog_page_header_background_image'] ) . ');';
+			$blog_page_header_background_image .= 'background-size: ' . esc_attr( $options['blog_page_header_background_image_size'] ) . ';';
+			$blog_page_header_background_image .= 'background-repeat: ' . esc_attr( $options['blog_page_header_background_image_repeat'] ) . ';';
+			$blog_page_header_bg_image_position = str_replace( '-', ' ', $options['blog_page_header_background_image_position'] );
+			$blog_page_header_background_image .= 'background-position: ' . esc_attr( $blog_page_header_bg_image_position ) . ';';
+			$blog_page_header_background_image .= 'background-attachment: ' . esc_attr( $options['blog_page_header_background_image_attachment'] ) . ';';
+		}
+
+		$styles .= '
+			.blog .page-header,
+			.archive:not(.woocommerce) .page-header {
+				padding-top: ' . esc_attr( $options['blog_page_header_padding_top'] ) . 'px;
+				padding-bottom: ' . esc_attr( $options['blog_page_header_padding_bottom'] ) . 'px;
+				margin-bottom: ' . esc_attr( $options['blog_page_header_margin_bottom'] ) . 'px;
+				background-color: ' . esc_attr( $options['blog_page_header_background_color'] ) . ';' . $blog_page_header_background_image . '
+			}
+		';
+
+
+		$blog_single_page_header_background_image = '';
+		if ( $options['shop_page_header_background_image'] ) {
+			$blog_single_page_header_background_image  .= 'background-image: url(' . esc_attr( $options['shop_page_header_background_image'] ) . ');';
+			$blog_single_page_header_background_image  .= 'background-size: ' . esc_attr( $options['shop_page_header_background_image_size'] ) . ';';
+			$blog_single_page_header_background_image  .= 'background-repeat: ' . esc_attr( $options['shop_page_header_background_image_repeat'] ) . ';';
+			$blog_single_page_header_bg_image_position = str_replace( '-', ' ', $options['shop_page_header_background_image_position'] );
+			$blog_single_page_header_background_image  .= 'background-position: ' . esc_attr( $blog_single_page_header_bg_image_position ) . ';';
+			$blog_single_page_header_background_image  .= 'background-attachment: ' . esc_attr( $options['shop_page_header_background_image_attachment'] ) . ';';
+		}
+
+		$styles .= '
+			.single-post .page-header {
+				padding-top: ' . esc_attr( $options['shop_page_header_padding_top'] ) . 'px;
+				padding-bottom: ' . esc_attr( $options['shop_page_header_padding_bottom'] ) . 'px;
+				margin-bottom: ' . esc_attr( $options['shop_page_header_margin_bottom'] ) . 'px;
+				background-color: ' . esc_attr( $options['shop_page_header_background_color'] ) . ';' . $blog_single_page_header_background_image . '
+			}
+		';
+
+		$shop_page_header_background_image = '';
+		if ( $options['shop_page_header_background_image'] ) {
+			$shop_page_header_background_image  .= 'background-image: url(' . esc_attr( $options['shop_page_header_background_image'] ) . ');';
+			$shop_page_header_background_image  .= 'background-size: ' . esc_attr( $options['shop_page_header_background_image_size'] ) . ';';
+			$shop_page_header_background_image  .= 'background-repeat: ' . esc_attr( $options['shop_page_header_background_image_repeat'] ) . ';';
+			$shop_page_header_bg_image_position = str_replace( '-', ' ', $options['shop_page_header_background_image_position'] );
+			$shop_page_header_background_image  .= 'background-position: ' . esc_attr( $shop_page_header_bg_image_position ) . ';';
+			$shop_page_header_background_image  .= 'background-attachment: ' . esc_attr( $options['shop_page_header_background_image_attachment'] ) . ';';
+		}
+
+		$styles .= '
+			.woocommerce.archive .page-header {
+				padding-top: ' . esc_attr( $options['shop_page_header_padding_top'] ) . 'px;
+				padding-bottom: ' . esc_attr( $options['shop_page_header_padding_bottom'] ) . 'px;
+				margin-bottom: ' . esc_attr( $options['shop_page_header_margin_bottom'] ) . 'px;
+				background-color: ' . esc_attr( $options['shop_page_header_background_color'] ) . ';' . $shop_page_header_background_image . '
+			}
+		';
+
 
 		$this->css = apply_filters( 'woostify_customizer_css', $styles );
 		$this->css = $this->minimize_dynamic_css();
