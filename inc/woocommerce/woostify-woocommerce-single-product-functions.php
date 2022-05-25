@@ -162,7 +162,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_open' ) ) {
 		// Global variation gallery.
 		woostify_global_for_vartiation_gallery( $product );
 		?>
-		<div class="product-gallery <?php echo esc_attr( implode( ' ', $classes ) ); ?>">
+		<div class="product-gallery <?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-pid="<?php esc_attr_e( $product->get_id() ); ?>">
 		<?php
 	}
 }
