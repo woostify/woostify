@@ -25,7 +25,7 @@ $wp_customize->add_control(
 			'settings' => 'woostify_setting[blog_context_tabs]',
 			'choices'  => array(
 				'general' => __( 'Settings', 'woostify' ),
-				'design'   => __( 'Design', 'woostify' ),
+				'design'  => __( 'Design', 'woostify' ),
 			),
 		)
 	)
