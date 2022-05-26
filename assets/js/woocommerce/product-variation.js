@@ -16,7 +16,8 @@
  */
 function productVariation( selector, form ) {
 	var gallery        = document.querySelector( selector ),
-		variationsForm = form ? form : 'form.variations_form';
+		currProductID  = gallery.getAttribute( 'data-pid' ),
+		variationsForm = form ? form : 'form.variations_form[data-product_id="' + currProductID + '"]';
 	if ( ! gallery || ! jQuery( variationsForm ).length ) {
 		return;
 	}

@@ -162,7 +162,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_open' ) ) {
 		// Global variation gallery.
 		woostify_global_for_vartiation_gallery( $product );
 		?>
-		<div class="product-gallery <?php echo esc_attr( implode( ' ', $classes ) ); ?>">
+		<div class="product-gallery <?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-pid="<?php esc_attr_e( $product->get_id() ); ?>">
 		<?php
 	}
 }
@@ -658,22 +658,6 @@ if ( ! function_exists( 'woostify_product_recently_viewed_template' ) ) {
 			</div>
 		</div>
 		<?php
-	}
-}
-
-if ( ! function_exists( 'woostify_disable_variations_out_of_stock' ) ) {
-	/**
-	 * Disable Out of Stock Variations.
-	 *
-	 * @param boolean $is_active The active.
-	 * @param object  $variation The variation.
-	 */
-	function woostify_disable_variations_out_of_stock( $is_active, $variation ) {
-		if ( ! $variation->is_in_stock() ) {
-			return false;
-		}
-
-		return $is_active;
 	}
 }
 
