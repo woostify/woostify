@@ -197,6 +197,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Custom product data tab.
 			add_filter( 'woocommerce_product_tabs', array( $this, 'product_data_tabs' ) );
+
+			// WC Cart Cross Sell.
+			remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
+			add_action( 'woocommerce_after_cart', 'woocommerce_cross_sell_display' );
+			add_filter( 'woocommerce_cross_sells_columns', 'woostify_cross_sell_display_columns' );
 		}
 
 		/**

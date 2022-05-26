@@ -91,7 +91,7 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 		$wc_number_of_decimals = get_option( 'woocommerce_price_num_decimals', 0 );
 
 		$cart_item_key = sanitize_text_field( wp_unslash( $_POST['key'] ) );
-		$product_qty   = number_format( $_POST['qty'], $wc_number_of_decimals );
+		$product_qty   = number_format( intval( $_POST['qty'] ), $wc_number_of_decimals );
 
 		WC()->cart->set_quantity( $cart_item_key, $product_qty );
 
@@ -1810,5 +1810,21 @@ if ( ! function_exists( 'woostify_custom_tab_callback' ) ) {
 		$curr_index  = explode( '_', $key )[2];
 
 		echo do_shortcode( $custom_tabs[ $curr_index ]->content );
+	}
+}
+
+if ( ! function_exists( 'woostify_cross_sell_display_columns' ) ) {
+	/**
+	 * Callback for custom tab
+	 *
+	 * @param string $columns Tab key.
+	 */
+	function woostify_cross_sell_display_columns( $columns ) {
+		$options = woostify_options( false );
+		if ( 'layout-2' === $options['cart_page_layout'] ) {
+			$columns = 4;
+		}
+
+		return $columns;
 	}
 }
