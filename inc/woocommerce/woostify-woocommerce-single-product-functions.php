@@ -661,22 +661,6 @@ if ( ! function_exists( 'woostify_product_recently_viewed_template' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_disable_variations_out_of_stock' ) ) {
-	/**
-	 * Disable Out of Stock Variations.
-	 *
-	 * @param boolean $is_active The active.
-	 * @param object  $variation The variation.
-	 */
-	function woostify_disable_variations_out_of_stock( $is_active, $variation ) {
-		if ( ! $variation->is_in_stock() ) {
-			return false;
-		}
-
-		return $is_active;
-	}
-}
-
 if ( ! function_exists( 'woostify_single_ajax_add_to_cart_status' ) ) {
 	/**
 	 * On/off single ajax add to cart

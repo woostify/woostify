@@ -178,9 +178,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			add_filter( 'woocommerce_reset_variations_link', 'woostify_reset_variations_link' );
 
-			// Disable Out of Stock Variations.
-			add_filter( 'woocommerce_variation_is_active', 'woostify_disable_variations_out_of_stock', 10, 2 );
-
 			// Modify product quantity.
 			add_filter( 'woocommerce_get_stock_html', 'woostify_modified_quantity_stock', 10, 2 );
 			add_action( 'woocommerce_after_add_to_cart_quantity', 'woostify_add_to_cart_product_simple' );
