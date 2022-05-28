@@ -41,8 +41,9 @@ class Woostify_Color_Control extends WP_Customize_Control {
 	protected function render() {
 		$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
 		$class = 'customize-control customize-control-' . $this->type;
-
-		printf( '<li id="%s" class="%s" data-tab="%s">', esc_attr( $id ), esc_attr( $class ), esc_attr( $this->tab ) );
+		?>
+		<li id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $class ); ?>" <?php echo esc_attr( ! empty( $this->tab ) ? 'data-tab="' .esc_attr( $this->tab ) . '"' : '' ); //phpcs:ignore ?>>
+		<?php
 		$this->render_content();
 		echo '</li>';
 	}

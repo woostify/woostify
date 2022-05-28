@@ -12,7 +12,7 @@ if ( ! woostify_is_woocommerce_activated() ) {
 // Default values.
 $defaults = woostify_options();
 
-
+// SHOP STRUCTURE SECTION.
 $wp_customize->add_setting(
 	'shop_page_structure_section',
 	array(
@@ -27,16 +27,17 @@ $wp_customize->add_control(
 			'label'      => __( 'General', 'woostify' ),
 			'section'    => 'woostify_shop_page',
 			'dependency' => array(
-				'woostify_setting[shop_context_tabs]',
 				'woostify_setting[shop_page_header_display]',
 				'woostify_setting[shop_page_title]',
 				'woostify_setting[shop_page_header_breadcrumb]',
 				'woostify_setting[shop_page_result_count]',
 				'woostify_setting[shop_page_product_filter]',
+				'woostify_setting[shop_context_tabs]',
 				'woostify_setting[shop_page_product_title_color]',
 				'woostify_setting[shop_page_product_price_color]',
 				'woostify_setting[shop_page_product_price_font_size]',
 				'woostify_setting[shop_page_product_title_font_size]',
+
 				'woostify_setting[shop_page_header_title_color]',
 				'woostify_setting[shop_page_header_background_color]',
 				'woostify_setting[shop_page_header_title_font_size]',
@@ -946,7 +947,6 @@ $wp_customize->add_control(
 
 
 
-
 // SHOP INFINITE SCROLL.
 $wp_customize->add_setting(
 	'shop_page_infinite_scroll_section',
@@ -987,7 +987,6 @@ $wp_customize->add_control(
 			'description' => __( 'Enable infinite scroll for WooCommerce category/product archive.', 'woostify' ),
 			'section'     => 'woostify_shop_page',
 			'settings'    => 'woostify_setting[shop_page_infinite_scroll_enable]',
-			'tab'         => 'general',
 		)
 	)
 );
@@ -1010,7 +1009,6 @@ $wp_customize->add_control(
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_infinite_scroll_type]',
 			'type'     => 'select',
-			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_infinite_scroll_type_choices',
 				array(
@@ -1063,7 +1061,6 @@ $wp_customize->add_control(
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_card_border_style]',
 			'type'     => 'select',
-			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_product_card_border_style_choices',
 				array(
@@ -1094,7 +1091,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Border Width', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'desktop' => 'woostify_setting[shop_page_product_card_border_width]',
 			),
@@ -1127,7 +1123,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Border Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array( 'woostify_setting[shop_page_product_card_border_color]' ),
 		)
 	)
@@ -1180,7 +1175,6 @@ $wp_customize->add_control(
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_alignment]',
 			'type'     => 'select',
-			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_product_alignment_choices',
 				array(
@@ -1229,7 +1223,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Product Title', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_title]',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -1251,7 +1244,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Product Category', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_category]',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -1273,7 +1265,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Product Rating', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_rating]',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -1295,7 +1286,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Product Price', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_price]',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -1317,7 +1307,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Product Quantity', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_quantity]',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -1339,7 +1328,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Equal Product Content', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_content_equal]',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -1360,7 +1348,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Product Content Min Height', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'desktop' => 'woostify_setting[shop_page_product_content_min_height]',
 			),
@@ -1421,7 +1408,6 @@ $wp_customize->add_control(
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_image_hover]',
 			'type'     => 'select',
-			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_image_hover_choices',
 				array(
@@ -1452,7 +1438,6 @@ $wp_customize->add_control(
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_product_image_border_style]',
 			'type'     => 'select',
-			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_product_image_border_style_choices',
 				array(
@@ -1483,7 +1468,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Border Width', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'desktop' => 'woostify_setting[shop_page_product_image_border_width]',
 			),
@@ -1516,7 +1500,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Border Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array( 'woostify_setting[shop_page_product_image_border_color]' ),
 		)
 	)
@@ -1539,7 +1522,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Equal Image Height', 'woostify' ),
 			'settings' => 'woostify_setting[shop_page_product_image_equal_height]',
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -1561,7 +1543,6 @@ $wp_customize->add_control(
 			'type'     => 'woostify-range-slider',
 			'label'    => __( 'Image Height', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'desktop' => 'woostify_setting[shop_page_product_image_height]',
 			),
@@ -1625,7 +1606,6 @@ $wp_customize->add_control(
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_sale_tag_position]',
 			'type'     => 'select',
-			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_sale_tag_position_choices',
 				array(
@@ -1656,7 +1636,6 @@ $wp_customize->add_control(
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_sale_text]',
 			'type'     => 'text',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -1678,7 +1657,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'woostify_setting[shop_page_sale_color]',
 			),
@@ -1703,7 +1681,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Background Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'woostify_setting[shop_page_sale_bg_color]',
 			),
@@ -1728,7 +1705,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Border Radius', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'desktop' => 'woostify_setting[shop_page_sale_border_radius]',
 			),
@@ -1762,7 +1738,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Sale Percentage', 'woostify' ),
 			'settings' => 'woostify_setting[shop_page_sale_percent]',
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -1785,7 +1760,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Sale Square', 'woostify' ),
 			'settings' => 'woostify_setting[shop_page_sale_square]',
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -1807,7 +1781,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Size', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'desktop' => 'woostify_setting[shop_page_sale_size]',
 			),
@@ -1870,7 +1843,6 @@ $wp_customize->add_control(
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_out_of_stock_position]',
 			'type'     => 'select',
-			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_out_of_stock_position_choices',
 				array(
@@ -1902,7 +1874,6 @@ $wp_customize->add_control(
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_out_of_stock_text]',
 			'type'     => 'text',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -1924,7 +1895,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Text Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'woostify_setting[shop_page_out_of_stock_color]',
 			),
@@ -1949,7 +1919,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Background Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'woostify_setting[shop_page_out_of_stock_bg_color]',
 			),
@@ -1974,7 +1943,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Border Radius', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'desktop' => 'woostify_setting[shop_page_out_of_stock_border_radius]',
 			),
@@ -2009,7 +1977,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Square', 'woostify' ),
 			'settings' => 'woostify_setting[shop_page_out_of_stock_square]',
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -2031,7 +1998,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Size', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'desktop' => 'woostify_setting[shop_page_out_of_stock_size]',
 			),
@@ -2062,7 +2028,6 @@ $wp_customize->add_control(
 		array(
 			'label'      => __( 'Wishlist Button', 'woostify' ),
 			'section'    => 'woostify_shop_page',
-			'tab'      => 'general',
 			'dependency' => array(
 				'woostify_setting[shop_page_wishlist_support_plugin]',
 				'woostify_setting[shop_page_wishlist_position]',
@@ -2089,7 +2054,6 @@ $wp_customize->add_control(
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_wishlist_support_plugin]',
 			'type'     => 'select',
-			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_wishlist_support_plugin_choices',
 				array(
@@ -2118,7 +2082,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Position', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_wishlist_position]',
-			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_wishlist_position_choices',
 				array(
@@ -2175,7 +2138,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Position', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_page_add_to_cart_button_position]',
-			'tab'      => 'general',
 			'choices'  => apply_filters(
 				'woostify_setting_shop_page_add_to_cart_button_position_choices',
 				array(
@@ -2207,7 +2169,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Cart Icon', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[shop_product_add_to_cart_icon]',
-			'tab'      => 'general',
 		)
 	)
 );
@@ -2243,7 +2204,6 @@ $wp_customize->add_control(
 				'woostify_setting[shop_page_button_cart_background]',
 				'woostify_setting[shop_page_button_background_hover]',
 			),
-			'tab'      => 'general',
 			'tooltips' => array(
 				'Normal',
 				'Hover',
@@ -2279,7 +2239,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Color', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'woostify_setting[shop_page_button_cart_color]',
 				'woostify_setting[shop_page_button_color_hover]',
@@ -2310,7 +2269,6 @@ $wp_customize->add_control(
 		array(
 			'label'    => __( 'Border Radius', 'woostify' ),
 			'section'  => 'woostify_shop_page',
-			'tab'      => 'general',
 			'settings' => array(
 				'desktop' => 'woostify_setting[shop_page_button_border_radius]',
 			),
