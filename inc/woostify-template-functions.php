@@ -1116,7 +1116,11 @@ if ( ! function_exists( 'woostify_get_post_title' ) ) {
 	 * @param boolean $echo Echo.
 	 */
 	function woostify_get_post_title( $echo = true ) {
-		$title_tag = apply_filters( 'woostify_post_title_html_tag', 'h2' );
+		if ( is_single() ) {
+			$title_tag = apply_filters( 'woostify_post_single_title_html_tag', 'h1' );
+		} else {
+			$title_tag = apply_filters( 'woostify_post_title_html_tag', 'h2' );
+		}
 
 		$title  = '<' . esc_attr( $title_tag ) . ' class="entry-header-item alpha entry-title">';
 		$title .= '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">';

@@ -95,13 +95,20 @@ function dialogPopup( targetClickClass, popupTarget, type ) {
 	var targetClickEl = document.getElementsByClassName( targetClickClass ),
 		popupEl       = document.querySelector( popupTarget ),
 		popupCloseBtn = document.querySelector( popupTarget + ' .dialog-' + type + '-close-icon' ),
-		searchField,popupInnerEl,popupContentEl;
+		searchField,popupInnerEl,popupContentEl,aslSearchField;
 
 	if ( 'search' === type ) {
 		searchField = document.querySelector( popupTarget + ' .search-field' );
-
+		// Get input search of plugin Ajax Search Lite.
+		aslSearchField = document.querySelector( popupTarget + ' .proinput input.orig' );
 		if ( ! searchField ) {
-			return;
+			if ( '1' === woostify_general_params.is_active_asl ) {
+				if ( ! aslSearchField ) {
+					return;
+				}
+			} else {
+				return;
+			}
 		}
 	}
 
@@ -109,7 +116,7 @@ function dialogPopup( targetClickClass, popupTarget, type ) {
 		return;
 	}
 
-	if ( 'search' === type ) {
+	if ( 'search' === type && searchField ) {
 		// Disabled field suggestions.
 		searchField.setAttribute( 'autocomplete', 'off' );
 
@@ -125,7 +132,7 @@ function dialogPopup( targetClickClass, popupTarget, type ) {
 	var popupOpen = function() {
 		document.documentElement.classList.add( 'dialog-' + type + '-open' );
 		document.documentElement.classList.remove( 'dialog-' + type + '-close' );
-		if ( 'search' === type ) {
+		if ( 'search' === type && searchField ) {
 			if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
 				searchField.focus();
 			}

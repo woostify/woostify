@@ -97,7 +97,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			add_action( $pdt_pos, $pdt_callback, $pdt_pos_priority );
 
 			// Custom product data tab.
-			add_filter( 'woocommerce_product_tabs', array( $this, 'product_data_tabs' ) );
+			add_filter( 'woocommerce_product_tabs', array( $this, 'product_data_tabs' ), 9999 );
 		}
 
 		/**
@@ -106,7 +106,15 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * @param array $tabs The product tabs.
 		 */
 		public function product_data_tabs( $tabs ) {
-			$tabs = woostify_custom_product_data_tabs( $tabs );
+			$default_tabs   = array( 'description', 'additional_information', 'reviews' );
+			$customize_tabs = woostify_custom_product_data_tabs( $tabs );
+			foreach ( $default_tabs as $default_tab ) :
+				if ( ! isset( $customize_tabs[ $default_tab ] ) ) {
+					unset( $tabs[ $default_tab ] );
+				}
+			endforeach;
+			$tabs = array_merge( $customize_tabs, $tabs );
+
 			return $tabs;
 		}
 
@@ -461,6 +469,18 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'blog_list_limit_exerpt'                   => 20,
 				'blog_list_structure'                      => array( 'image', 'title-meta', 'post-meta' ),
 				'blog_list_post_meta'                      => array( 'date', 'author', 'comments' ),
+				'blog_title_color'                         => '#2b2b2b',
+				'blog_title_font_size'                     => 24,
+				'blog_metadata_color'                      => '#2b2b2b',
+				'blog_metadata_font_size'                  => 14,
+				'blog_description_color'                   => '#8f8f8f',
+				'blog_description_font_size'               => 14,
+				'blog_description_tablet_font_size'        => 14,
+				'blog_description_mobile_font_size'        => 14,
+				'blog_metadata_tablet_font_size'           => 14,
+				'blog_metadata_mobile_font_size'           => 14,
+				'blog_title_tablet_font_size'              => 20,
+				'blog_title_mobile_font_size'              => 18,
 				// BLOG SINGLE.
 				'blog_single_structure'                    => array( 'image', 'title-meta', 'post-meta' ),
 				'blog_single_post_meta'                    => array( 'date', 'author', 'category', 'comments' ),
@@ -483,6 +503,16 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'tablet_products_per_row'                  => 2,
 				'mobile_products_per_row'                  => 1,
 				'products_per_page'                        => 12,
+				// Shop page style.
+				'shop_page_product_price_color'            => '#2b2b2b',
+				'shop_page_product_price_font_size'        => 14,
+				'shop_page_product_price_tablet_font_size' => 14,
+				'shop_page_product_price_mobile_font_size' => 14,
+				'shop_page_product_title_color'            => '#8f8f8f',
+				'shop_page_product_title_font_size'        => 14,
+				'shop_page_product_title_tablet_font_size' => 14,
+				'shop_page_product_title_mobile_font_size' => 14,
+
 				// Product card.
 				'shop_page_product_card_border_style'      => 'none',
 				'shop_page_product_card_border_width'      => 1,
