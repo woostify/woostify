@@ -680,6 +680,14 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			wp_localize_script(
 				'woostify-general',
+				'woostify_general_params',
+				array(
+					'is_active_asl' => ! function_exists( 'wd_asl' ) ? false : true, // Check if plugin Ajax Search Lite is activated.
+				)
+			);
+
+			wp_localize_script(
+				'woostify-general',
 				'woostify_svg_icons',
 				array(
 					'file_url' => WOOSTIFY_THEME_URI . 'assets/svg/svgs.json',

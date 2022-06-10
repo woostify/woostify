@@ -9243,9 +9243,15 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
     float: left;
     margin-bottom: 30px;
   }
-  .woocommerce-cart.cart-page-layout-1 .cart_totals {
+  .woocommerce-cart.cart-page-layout-1 .cart-collaterals {
     width: 48.5%;
     float: right;
+  }
+}
+
+@media (max-width: 992px) {
+  .woocommerce-cart.cart-page-layout-1 .cross-sells {
+    margin-top: 50px;
   }
 }
 
@@ -9280,6 +9286,10 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 .woocommerce-cart.cart-page-layout-2 .cart-collaterals {
   border: 2px solid #efefef;
   padding: 10px 20px 30px 20px;
+}
+
+.woocommerce-cart.cart-page-layout-2 .cross-sells {
+  clear: both;
 }
 
 .woocommerce-cart .woocommerce-cart-form {

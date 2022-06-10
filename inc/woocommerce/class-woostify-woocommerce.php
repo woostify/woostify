@@ -178,9 +178,6 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			add_filter( 'woocommerce_reset_variations_link', 'woostify_reset_variations_link' );
 
-			// Disable Out of Stock Variations.
-			add_filter( 'woocommerce_variation_is_active', 'woostify_disable_variations_out_of_stock', 10, 2 );
-
 			// Modify product quantity.
 			add_filter( 'woocommerce_get_stock_html', 'woostify_modified_quantity_stock', 10, 2 );
 			add_action( 'woocommerce_after_add_to_cart_quantity', 'woostify_add_to_cart_product_simple' );
@@ -196,7 +193,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'init', array( $this, 'free_shipping_threshold' ) );
 
 			// Custom product data tab.
-			add_filter( 'woocommerce_product_tabs', array( $this, 'product_data_tabs' ) );
+			add_filter( 'woocommerce_product_tabs', array( $this, 'product_data_tabs' ), 9999 );
+
+			// WC Cart Cross Sell.
+			remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
+			add_action( 'woocommerce_after_cart', 'woocommerce_cross_sell_display' );
+			add_filter( 'woocommerce_cross_sells_columns', 'woostify_cross_sell_display_columns' );
 		}
 
 		/**
@@ -205,7 +207,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		 * @param array $tabs Default product data tabs.
 		 */
 		public function product_data_tabs( $tabs ) {
-			$tabs = woostify_custom_product_data_tabs( $tabs );
+			$default_tabs   = array( 'description', 'additional_information', 'reviews' );
+			$customize_tabs = woostify_custom_product_data_tabs( $tabs );
+			foreach ( $default_tabs as $default_tab ) :
+				if ( ! isset( $customize_tabs[ $default_tab ] ) ) {
+					unset( $tabs[ $default_tab ] );
+				}
+			endforeach;
+			$tabs = array_merge( $customize_tabs, $tabs );
+
 			return $tabs;
 		}
 
