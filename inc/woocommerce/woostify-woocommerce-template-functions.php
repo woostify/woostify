@@ -89,9 +89,18 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
 
 		$wc_number_of_decimals = get_option( 'woocommerce_price_num_decimals', 0 );
+		$wc_price_decimal_sep  = get_option( 'woocommerce_price_decimal_sep', '.' );
+		$wc_price_thousand_sep = get_option( 'woocommerce_price_thousand_sep', '' );
 
 		$cart_item_key = sanitize_text_field( wp_unslash( $_POST['key'] ) );
-		$product_qty   = number_format( intval( $_POST['qty'] ), $wc_number_of_decimals );
+
+		$product_qty = number_format( floatval( $_POST['qty'] ), $wc_number_of_decimals, $wc_price_decimal_sep, $wc_price_thousand_sep );
+		if ( str_contains( $product_qty, $wc_price_decimal_sep ) ) {
+			$product_qty_paths = explode( $wc_price_decimal_sep, $product_qty );
+			if ( isset( $product_qty_paths[1] ) && '0' === $product_qty_paths[1] ) {
+				$product_qty = intval( $product_qty );
+			}
+		}
 
 		WC()->cart->set_quantity( $cart_item_key, $product_qty );
 
