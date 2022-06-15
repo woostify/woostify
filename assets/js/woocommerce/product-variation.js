@@ -15,13 +15,13 @@
  * @param      string form      The form.
  */
 function productVariation( selector, form ) {
-	var gallery        = document.querySelector( selector );
+	var gallery = document.querySelector( selector );
 	if ( ! gallery ) {
 		return;
 	}
 
-	var currProductID  = gallery.getAttribute( 'data-pid' ),
-	variationsForm = form ? form : 'form.variations_form[data-product_id="' + currProductID + '"]';
+	var currProductID = gallery.getAttribute( 'data-pid' ),
+	variationsForm    = form ? form : 'form.variations_form[data-product_id="' + currProductID + '"]';
 
 	if ( jQuery( variationsForm ).length ) {
 		return;
