@@ -38,7 +38,11 @@ class Woostify_Switch_Control extends WP_Customize_Control {
 		$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
 		$class = 'customize-control customize-control-' . $this->type;
 
-		printf( '<li id="%s" class="%s" data-tab="%s">', esc_attr( $id ), esc_attr( $class ), esc_attr( $this->tab ) );
+		if ( ! empty( $this->tab ) ) {
+			printf( '<li id="%s" class="%s" data-tab="%s">', esc_attr( $id ), esc_attr( $class ), esc_attr( $this->tab ) );
+		} else {
+			printf( '<li id="%s" class="%s" >', esc_attr( $id ), esc_attr( $class ) );
+		}
 		$this->render_content();
 		echo '</li>';
 	}
