@@ -322,7 +322,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			if ( woocommerce_products_will_display() && $current_page > 1 ) {
 				?>
 				<div class="woostify-view-prev" data-loading_type="<?php echo esc_attr( $type ); ?>">
-					<button class="w-view-prev-button products-archive button"><span class="w-view-more-label"><?php esc_html_e( 'View Previous', 'woostify' ); ?></span></button>
+						<button class="w-view-prev-button products-archive button"><span class="w-view-more-label"><?php esc_html_e( 'View Previous', 'woostify' ); ?></span></button>
 				</div>
 				<?php
 			}
@@ -639,6 +639,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'currency_pos'                   => get_option( 'woocommerce_currency_pos' ),
 					'is_active_wvs'                  => ! class_exists( 'Woo_Variation_Swatches' ) || ! class_exists( 'Woo_Variation_Swatches_Pro' ) ? false : true, // Check if plugin Variation Swatches for WooCommerce and Variation Swatches for WooCommerce - Pro is activated.
 					'paged'                          => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
+					'loading_type'                   => $options['shop_page_infinite_scroll_type'],
 					'orderby'                        => get_query_var( 'orderby' ) ? get_query_var( 'orderby' ) : '1',
 					'term'                           => isset( $query_object->term_id ) ? $query_object->term_id : false,
 				)
