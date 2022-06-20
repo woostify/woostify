@@ -251,7 +251,7 @@ var progressBarConfetti = function( progress_bar, percent ) {
 			curr_percent = parseInt( curr_progress_bar[0].getAttribute( 'data-progress' ) );
 		}
 
-			// Effect.
+		// Effect.
 		if ( ( ! progress_bar.length && curr_percent >= 100 ) || ( percent < curr_percent && curr_percent >= 100 ) ) {
 			let confetti_canvas = document.createElement( 'canvas' );
 
@@ -948,13 +948,6 @@ var woostifyCheckoutFormFieldAnimation = function() {
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
-		if ( woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold && woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold_effect ) {
-			var progress_bar = document.querySelectorAll( '.free-shipping-progress-bar' );
-			var percent      = 0;
-			if ( progress_bar.length ) {
-				percent = parseInt( progress_bar[0].getAttribute( 'data-progress' ) );
-			}
-		}
 
 		shoppingBag();
 		woostifyQuantityMiniCart();
@@ -1027,6 +1020,14 @@ document.addEventListener(
 			function() {
 				woostifyQuantityMiniCart();
 				updateHeaderCartPrice();
+
+				if ( woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold && woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold_effect ) {
+					var progress_bar = document.querySelectorAll( '.free-shipping-progress-bar' );
+					var percent      = 0;
+					if ( progress_bar.length ) {
+						percent = parseInt( progress_bar[0].getAttribute( 'data-progress' ) );
+					}
+				}
 
 				progressBarConfetti( progress_bar, percent );
 			}
