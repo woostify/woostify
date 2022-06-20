@@ -97,7 +97,7 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 		$product_qty = number_format( floatval( $_POST['qty'] ), $number_of_decimals, $decimal_sep, $thousand_sep );
 		if ( str_contains( $product_qty, $decimal_sep ) ) {
 			$product_qty_paths = explode( $decimal_sep, $product_qty );
-			if ( isset( $product_qty_paths[1] ) && '0' === $product_qty_paths[1] ) {
+			if ( isset( $product_qty_paths[1] ) && 0 == intval( $product_qty_paths[1] ) ) {
 				$product_qty = intval( $product_qty );
 			}
 		}
