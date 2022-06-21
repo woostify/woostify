@@ -1027,9 +1027,9 @@ document.addEventListener(
 					if ( progress_bar.length ) {
 						percent = parseInt( progress_bar[0].getAttribute( 'data-progress' ) );
 					}
-				}
 
-				progressBarConfetti( progress_bar, percent );
+					progressBarConfetti( progress_bar, percent );
+				}
 			}
 		).on(
 			'wc_cart_emptied', /* Reload Cart page if it's empty */
