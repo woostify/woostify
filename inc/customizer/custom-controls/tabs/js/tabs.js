@@ -39,7 +39,8 @@
 					pane_child.find( 'li.customize-control' ).each(
 						function() {
 							var attr_tab = $( this ).attr( 'data-tab' );
-							if ( typeof attr_tab !== 'undefined' && attr_tab !== false ) {
+
+							if ( typeof attr_tab !== 'undefined' && attr_tab !== false && attr_tab != '' ) {
 								if ( attr_tab === curr_tab_data ) {
 									$( this ).show();
 								} else {
