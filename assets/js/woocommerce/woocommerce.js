@@ -27,8 +27,6 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 	view_prev_btn      = document.querySelector( '.w-view-prev-button' ),
 	pagination         = document.querySelector( '.woocommerce-pagination ul.page-numbers' );
 
-
-
 	let options = {
 		path: infScrollPath ? infScrollPath : '.next.page-numbers',
 		append: '.product.type-product',
@@ -155,8 +153,6 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 					}
 				);
 			}
-			console.log(infScroll);
-			console.log(items);
 		}
 	)
 
@@ -220,6 +216,7 @@ function loadPreviewPage(infScroll, pagePrev, listPage ) {
 		path = jQuery('.prev.page-numbers').attr('href');
 	}
 	path = listPage[pagePrev];
+	history.pushState(null, '', path);
 	var url = $('.page-numbers');
 
 	if ( typeof fetchOptions == 'function' ) {
@@ -228,6 +225,7 @@ function loadPreviewPage(infScroll, pagePrev, listPage ) {
 	view_prev_btn.classList.add( 'circle-loading' );
 	var fetchPromise = fetch( path, fetchOptions )
 		.then( ( response ) => {
+			console.log(path);
 			if ( !response.ok ) {
 				let error = new Error( response.statusText );
 				infScroll.onPageError( error, path, response );
@@ -354,6 +352,7 @@ var woostifyConditionScrolling = function() {
 // Stock progress bar.
 var woostifyStockQuantityProgressBar = function() {
 	var selector = document.querySelectorAll( '.woostify-single-product-stock-progress-bar' );
+	console.log(selector);
 	if ( ! selector.length ) {
 		return;
 	}
