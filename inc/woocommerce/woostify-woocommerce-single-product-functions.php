@@ -145,25 +145,28 @@ if ( ! function_exists( 'woostify_single_product_gallery_open' ) ) {
 	function woostify_single_product_gallery_open() {
 		$product_id = woostify_is_elementor_editor() ? woostify_get_last_product_id() : woostify_get_page_id();
 		$product    = wc_get_product( $product_id );
-		$options    = woostify_options( false );
-		$gallery    = $options['shop_single_product_gallery_layout_select'];
+		if ( $product ) {
 
-		$gallery_id = ! empty( $product ) ? $product->get_gallery_image_ids() : array();
-		$classes    = array();
+			$options    = woostify_options( false );
+			$gallery    = $options['shop_single_product_gallery_layout_select'];
 
-		if ( 'theme' === $gallery ) {
-			$classes[] = $options['shop_single_gallery_layout'] . '-style';
-			$classes[] = ! empty( $gallery_id ) ? 'has-product-thumbnails' : '';
-			$classes[] = $options['shop_single_image_load'] ? 'has-loading-effect' : '';
-		} else {
-			$classes[] = 'wc-default-gallery';
-		}
+			$gallery_id = ! empty( $product ) ? $product->get_gallery_image_ids() : array();
+			$classes    = array();
 
-		// Global variation gallery.
-		woostify_global_for_vartiation_gallery( $product );
-		?>
-		<div class="product-gallery <?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-pid="<?php esc_attr_e( $product->get_id() ); ?>">
+			if ( 'theme' === $gallery ) {
+				$classes[] = $options['shop_single_gallery_layout'] . '-style';
+				$classes[] = ! empty( $gallery_id ) ? 'has-product-thumbnails' : '';
+				$classes[] = $options['shop_single_image_load'] ? 'has-loading-effect' : '';
+			} else {
+				$classes[] = 'wc-default-gallery';
+			}
+
+			// Global variation gallery.
+			woostify_global_for_vartiation_gallery( $product );
+			?>
+			<div class="product-gallery <?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-pid="<?php esc_attr_e( $product->get_id() ); ?>">
 		<?php
+		}
 	}
 }
 
