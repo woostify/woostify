@@ -291,8 +291,15 @@ var woostifyMultiStepCheckout = function() {
 					);
 				}
 
+				if ( ! nextStep ) {
+					document.getElementById( 'terms' ).checked = false;
+				}
+
 				if ( validate && i > 0 ) {
 					if ( document.getElementById( 'place_order' ) ) {
+						if (nextStep && document.getElementById( 'terms' )) {
+							document.getElementById( 'terms' ).checked = true;
+						}
 						document.getElementById( 'place_order' ).click();
 					}
 
