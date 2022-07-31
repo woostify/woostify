@@ -33,7 +33,6 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 		history: 'replace',
 		hideNav: '.woocommerce-pagination',
 		checkLastPage: '.next.page-numbers',
-		prefill: true,
 		loadOnScroll: 'button' === loading_type ? false : true
 	}
 
@@ -62,7 +61,6 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 	infScroll.on(
 		'request',
 		function( path, fetchPromise ) {
-			console.log(path)
 			if ( 'button' === loading_type ) {
 				view_more_btn.classList.add( 'circle-loading' )
 			} else {
@@ -74,7 +72,6 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 	infScroll.on(
 		'load',
 		function( body, path, fetchPromise ) {
-			console.log('11');
 			let all_page     = body.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers:not(.next):not(.prev):not(.dots)' );
 			let next_page_el = body.querySelectorAll( '.woocommerce-pagination .page-numbers .page-numbers.next' );
 			let is_last_page = ( ! next_page_el.length ) ? true : false;
@@ -113,9 +110,6 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 					loading_status.style.display = 'inline-block'
 				}
 			}
-			// var parameter = '?page=' + 2;
-
-			// window.history.pushState("", "Title", parameter);
 		}
 	)
 
@@ -225,7 +219,6 @@ function loadPreviewPage(infScroll, pagePrev, listPage ) {
 	view_prev_btn.classList.add( 'circle-loading' );
 	var fetchPromise = fetch( path, fetchOptions )
 		.then( ( response ) => {
-			console.log(path);
 			if ( !response.ok ) {
 				let error = new Error( response.statusText );
 				infScroll.onPageError( error, path, response );
