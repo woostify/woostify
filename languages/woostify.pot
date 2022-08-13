@@ -89,7 +89,7 @@ msgstr ""
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Main Sidebar</strong></a> and dragging widgets into this widget area."
 msgstr ""
 
-#: inc/class-woostify.php:236, inc/woocommerce/woostify-woocommerce-single-product-functions.php:743, inc/customizer/custom-controls/adv-list/class-woostify-adv-list-control.php:144, inc/customizer/custom-controls/alpha-color-picker/class-woostify-color-control.php:108, inc/customizer/sections/performance/performance.php:119
+#: inc/class-woostify.php:236, inc/woocommerce/woostify-woocommerce-single-product-functions.php:746, inc/customizer/custom-controls/adv-list/class-woostify-adv-list-control.php:144, inc/customizer/custom-controls/alpha-color-picker/class-woostify-color-control.php:108, inc/customizer/sections/performance/performance.php:119
 msgid "Clear"
 msgstr ""
 
@@ -952,7 +952,7 @@ msgstr ""
 
 #. translators: %s number of product
 #. translators: %s stock quantity
-#: inc/woocommerce/class-woostify-woocommerce.php:636, inc/woocommerce/woostify-woocommerce-single-product-functions.php:544
+#: inc/woocommerce/class-woostify-woocommerce.php:636, inc/woocommerce/woostify-woocommerce-single-product-functions.php:547
 msgid "Hurry! only %s left in stock."
 msgstr ""
 
@@ -964,7 +964,7 @@ msgstr ""
 msgid "Enter Youtube or Vimeo video url"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-archive-product-functions.php:98, inc/woocommerce/woostify-woocommerce-single-product-functions.php:318, inc/woocommerce/woostify-woocommerce-single-product-functions.php:362, inc/woocommerce/woostify-woocommerce-single-product-functions.php:401, inc/woocommerce/woostify-woocommerce-single-product-functions.php:418
+#: inc/woocommerce/woostify-woocommerce-archive-product-functions.php:98, inc/woocommerce/woostify-woocommerce-single-product-functions.php:321, inc/woocommerce/woostify-woocommerce-single-product-functions.php:365, inc/woocommerce/woostify-woocommerce-single-product-functions.php:404, inc/woocommerce/woostify-woocommerce-single-product-functions.php:421
 msgid "Product image"
 msgstr ""
 
@@ -988,7 +988,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:578, inc/customizer/sections/shop/shop-single.php:209
+#: inc/woocommerce/woostify-woocommerce-single-product-functions.php:581, inc/customizer/sections/shop/shop-single.php:209
 msgid "Trust Badge Image"
 msgstr ""
 
