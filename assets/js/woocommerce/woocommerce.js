@@ -19,6 +19,10 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 		container = document.querySelector( '.site-content .products' );
 	}
 
+	if ( ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) && ( null == view_prev_btn_wrap || 'undefined' === typeof( view_prev_btn_wrap ) ) ) {
+		return false;
+	}
+
 	if ( ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) ) {
 
 		let options = {
@@ -68,7 +72,7 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 					// }
 					path = listPage[pagePrev];
 					history.pushState(null, '', path);
-					var url = $('.page-numbers');
+					var url = jQuery('.page-numbers');
 
 					if ( typeof fetchOptions == 'function' ) {
 						fetchOptions = fetchOptions();
@@ -312,7 +316,7 @@ function loadPreviewPage(infScroll, pagePrev, listPage ) {
 	}
 	path = listPage[pagePrev];
 	history.pushState(null, '', path);
-	var url = $('.page-numbers');
+	var url = jQuery('.page-numbers');
 
 	if ( typeof fetchOptions == 'function' ) {
 		fetchOptions = fetchOptions();
