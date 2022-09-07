@@ -28,7 +28,7 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 		let options = {
 			path: infScrollPath ? infScrollPath : '.prev.page-numbers',
 			append: '.product.type-product',
-			history: 'replace',
+			history: 'push',
 			hideNav: '.woocommerce-pagination',
 			loadOnScroll: false
 		}
@@ -52,12 +52,9 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 			view_prev_btn.addEventListener(
 				'click',
 				function() {
-					console.log('111');
-
 					var elementHeight = infScroll.element.getBoundingClientRect().height,
 						view_prev_btn_wrap = document.querySelector( '.woostify-view-prev' );
 
-						console.log(pagePrev);
 					if ( page <= 1 ) {
 						return;
 					}
@@ -67,9 +64,6 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 
 					let { responseBody, domParseResponse, fetchOptions } = infScroll.options;
 
-					// if ( ( page - 1 ) == pagePrev ) {
-					// 	path = jQuery('.prev.page-numbers').attr('href');
-					// }
 					path = listPage[pagePrev];
 					history.pushState(null, '', path);
 					var url = jQuery('.page-numbers');
@@ -134,7 +128,7 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 	let options = {
 		path: infScrollPath ? infScrollPath : '.next.page-numbers',
 		append: '.product.type-product',
-		history: 'replace',
+		history: 'push', // replace
 		hideNav: '.woocommerce-pagination',
 		checkLastPage: '.next.page-numbers',
 		loadOnScroll: 'button' === loading_type ? false : true
@@ -279,7 +273,6 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 		view_prev_btn.addEventListener(
 			'click',
 			function() {
-				console.log('111');
 				loadPreviewPage( infScroll, pagePrev, listPage );
 				pagePrev--;
 			}
@@ -450,7 +443,6 @@ var woostifyConditionScrolling = function() {
 // Stock progress bar.
 var woostifyStockQuantityProgressBar = function() {
 	var selector = document.querySelectorAll( '.woostify-single-product-stock-progress-bar' );
-	console.log(selector);
 	if ( ! selector.length ) {
 		return;
 	}
