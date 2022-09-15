@@ -562,8 +562,24 @@ class Woostify_Get_CSS {
 				    visibility: visible;
 				}
 
-				.sidebar-menu .main-navigation .primary-navigation .sub-menu {
+				body:not(.has-header-layout-2) .sidebar-menu .main-navigation .primary-navigation .sub-menu {
 				    margin-left: 20px !important;
+				}
+
+				body.has-header-layout-2 .sidebar-menu .site-navigation nav .menu-item a {
+					margin: 0;
+				}
+
+				body.has-header-layout-2 .sidebar-menu .primary-navigation:not(.elementor-inner) a:before {
+					left: 20px;
+				}
+
+				body.has-header-layout-2 .sidebar-menu .primary-navigation:not(.elementor-inner) .sub-menu .menu-item a:before {
+					left: 30px;
+				}
+
+				body.has-header-layout-2 .sidebar-menu .main-navigation .primary-navigation .sub-menu > li > a {
+					padding: 0 30px;
 				}
 
 				.sidebar-menu .main-navigation .primary-navigation .sub-menu:not(.sub-mega-menu) {
