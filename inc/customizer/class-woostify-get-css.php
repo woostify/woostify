@@ -1152,6 +1152,10 @@ class Woostify_Get_CSS {
 			.site-tools .tools-icon:hover, .site-tools .tools-icon:hover .woostify-svg-icon {
 				color: ' . esc_attr( $options['header_icon_hover_color'] ) . ';
 			}
+			.site-tools .shop-cart-count, .site-tools .wishlist-item-count {
+				color: ' . esc_attr( $options['header_count_color'] ) . ';
+				background-color: ' . esc_attr( $options['header_count_background_color'] ) . ';
+			}
 		';
 
 		// Header transparent.

@@ -136,6 +136,58 @@ $wp_customize->add_control(
 	)
 );
 
+// Count color.
+$wp_customize->add_setting(
+	'woostify_setting[header_count_color]',
+	array(
+		'default'           => $defaults['header_count_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[header_count_color]',
+		array(
+			'label'    => __( 'Count Color', 'woostify' ),
+			'section'  => 'woostify_header',
+			'settings' => array(
+				'woostify_setting[header_count_color]',
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Count background color.
+$wp_customize->add_setting(
+	'woostify_setting[header_count_background_color]',
+	array(
+		'default'           => $defaults['header_count_background_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[header_count_background_color]',
+		array(
+			'label'    => __( 'Count Background Color', 'woostify' ),
+			'section'  => 'woostify_header',
+			'settings' => array(
+				'woostify_setting[header_count_background_color]',
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
 // After background color divider.
 $wp_customize->add_setting(
 	'header_after_background_color_divider',
