@@ -84,7 +84,7 @@ $wp_customize->add_control(
 	)
 );
 
-// Icon color.
+// Icon.
 $wp_customize->add_setting(
 	'woostify_setting[header_icon_color]',
 	array(
@@ -94,23 +94,6 @@ $wp_customize->add_setting(
 		'transport'         => 'postMessage',
 	)
 );
-
-$wp_customize->add_control(
-	new Woostify_Color_Group_Control(
-		$wp_customize,
-		'woostify_setting[header_icon_color]',
-		array(
-			'label'    => __( 'Icon Color', 'woostify' ),
-			'section'  => 'woostify_header',
-			'settings' => array(
-				'woostify_setting[header_icon_color]',
-			),
-			'tab'      => 'design',
-		)
-	)
-);
-
-// Icon hover color.
 $wp_customize->add_setting(
 	'woostify_setting[header_icon_hover_color]',
 	array(
@@ -124,12 +107,17 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Woostify_Color_Group_Control(
 		$wp_customize,
-		'woostify_setting[header_icon_hover_color]',
+		'woostify_setting[header_icon_color]',
 		array(
-			'label'    => __( 'Icon Hover Color', 'woostify' ),
+			'label'    => __( 'Icon', 'woostify' ),
 			'section'  => 'woostify_header',
 			'settings' => array(
+				'woostify_setting[header_icon_color]',
 				'woostify_setting[header_icon_hover_color]',
+			),
+			'tooltips' => array(
+				'Normal',
+				'Hover',
 			),
 			'tab'      => 'design',
 		)
