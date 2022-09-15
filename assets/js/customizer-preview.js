@@ -684,6 +684,12 @@ document.addEventListener(
 		// HEADER.
 		// Header background.
 		woostify_colors_live_update( 'header_background_color', '.site-header-inner, .has-header-layout-7 .sidebar-menu', 'background-color' )
+		// Header icon color.
+		woostify_colors_live_update( 'header_icon_color', '.site-tools .tools-icon', 'color' )
+		woostify_colors_live_update( 'header_icon_color', '.site-tools .tools-icon .woostify-svg-icon', 'color' )
+		// Header icon hover color.
+		woostify_colors_live_update( 'header_icon_hover_color', '.site-tools .tools-icon:hover', 'color' )
+		woostify_colors_live_update( 'header_icon_hover_color', '.site-tools .tools-icon:hover .woostify-svg-icon', 'color' )
 		// Header transparent: border bottom width.
 		woostify_unit_live_update( 'header_transparent_border_width', '.has-header-transparent .site-header-inner', 'border-bottom-width' )
 		// Header transparent: border bottom color.

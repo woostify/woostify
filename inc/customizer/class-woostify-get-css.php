@@ -1146,6 +1146,12 @@ class Woostify_Get_CSS {
 			.site-header-inner{
 				background-color: ' . esc_attr( $options['header_background_color'] ) . ';
 			}
+			.site-tools .tools-icon, .site-tools .tools-icon .woostify-svg-icon {
+				color: ' . esc_attr( $options['header_icon_color'] ) . ';
+			}
+			.site-tools .tools-icon:hover, .site-tools .tools-icon:hover .woostify-svg-icon {
+				color: ' . esc_attr( $options['header_icon_hover_color'] ) . ';
+			}
 		';
 
 		// Header transparent.
