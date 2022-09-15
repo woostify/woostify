@@ -529,7 +529,7 @@ class Woostify_Get_CSS {
 				    display: block;
 				}
 
-				.sidebar-menu .main-navigation .primary-navigation > .menu-item > a {
+				body:not(.has-header-layout-2) .sidebar-menu .main-navigation .primary-navigation > .menu-item > a {
 					padding: 0;
 				}
 
