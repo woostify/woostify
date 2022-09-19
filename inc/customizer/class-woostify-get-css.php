@@ -1529,6 +1529,7 @@ class Woostify_Get_CSS {
 		$styles .= '
 			.onsale {
 				color: ' . esc_attr( $options['shop_page_sale_color'] ) . ';
+				background-color: ' . esc_attr( $options['shop_page_sale_bg_color'] ) . ';
 				border-radius: ' . esc_attr( $options['shop_page_sale_border_radius'] ) . 'px;
 			}
 		';
