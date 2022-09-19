@@ -529,7 +529,7 @@ class Woostify_Get_CSS {
 				    display: block;
 				}
 
-				.sidebar-menu .main-navigation .primary-navigation > .menu-item > a {
+				body:not(.has-header-layout-2) .sidebar-menu .main-navigation .primary-navigation > .menu-item > a {
 					padding: 0;
 				}
 
@@ -562,8 +562,24 @@ class Woostify_Get_CSS {
 				    visibility: visible;
 				}
 
-				.sidebar-menu .main-navigation .primary-navigation .sub-menu {
+				body:not(.has-header-layout-2) .sidebar-menu .main-navigation .primary-navigation .sub-menu {
 				    margin-left: 20px !important;
+				}
+
+				body.has-header-layout-2 .sidebar-menu .site-navigation nav .menu-item a {
+					margin: 0;
+				}
+
+				body.has-header-layout-2 .sidebar-menu .primary-navigation:not(.elementor-inner) a:before {
+					left: 20px;
+				}
+
+				body.has-header-layout-2 .sidebar-menu .primary-navigation:not(.elementor-inner) .sub-menu .menu-item a:before {
+					left: 30px;
+				}
+
+				body.has-header-layout-2 .sidebar-menu .main-navigation .primary-navigation .sub-menu > li > a {
+					padding: 0 30px;
 				}
 
 				.sidebar-menu .main-navigation .primary-navigation .sub-menu:not(.sub-mega-menu) {
@@ -1129,6 +1145,16 @@ class Woostify_Get_CSS {
 		$styles .= '
 			.site-header-inner{
 				background-color: ' . esc_attr( $options['header_background_color'] ) . ';
+			}
+			.site-tools .tools-icon, .site-tools .tools-icon .woostify-svg-icon {
+				color: ' . esc_attr( $options['header_icon_color'] ) . ';
+			}
+			.site-tools .tools-icon:hover, .site-tools .tools-icon:hover .woostify-svg-icon {
+				color: ' . esc_attr( $options['header_icon_hover_color'] ) . ';
+			}
+			.site-tools .shop-cart-count, .site-tools .wishlist-item-count {
+				color: ' . esc_attr( $options['header_count_color'] ) . ';
+				background-color: ' . esc_attr( $options['header_count_background_color'] ) . ';
 			}
 		';
 

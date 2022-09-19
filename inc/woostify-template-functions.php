@@ -2002,7 +2002,7 @@ if ( ! function_exists( 'woostify_sidebar_menu_open' ) ) {
 		$header_primary_menu            = $options['header_primary_menu'];
 		$show_categories_menu_on_mobile = $options['header_show_categories_menu_on_mobile'];
 		$extra_classes                  = $header_primary_menu && $show_categories_menu_on_mobile ? 'has-nav-tab' : '';
-		echo '<div class="sidebar-menu ' . $extra_classes . '">';
+		echo '<div class="sidebar-menu ' . $extra_classes . '">'; // phpcs:ignore.
 	}
 }
 
