@@ -8691,6 +8691,54 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   clear: both;
 }
 
+.product-summary .grouped_form a.button.product_type_variable {
+  width: 170px;
+  height: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  padding: 5px 15px;
+}
+
+.product-summary .grouped_form a.button.product_type_simple {
+  width: 170px;
+  height: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  padding: 5px 15px;
+}
+
+.product-summary .grouped_form span.woostify-svg-icon.icon-shopping-cart-2 {
+  margin-right: 5px;
+}
+
+.product-summary .woostify-single-product-stock {
+  margin-bottom: 0;
+}
+
+.product-summary .stock.out-of-stock {
+  margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .product-summary .grouped_form a.button.product_type_variable {
+    width: 120px;
+    padding: 5px;
+  }
+  .product-summary .grouped_form a.button.product_type_simple {
+    width: 120px;
+    padding: 5px;
+  }
+  .product-summary .grouped_form .quantity {
+    width: 120px;
+  }
+}
+
 .cart-sidebar-open .updating-cart #shop-cart-sidebar:after {
   -webkit-transition-duration: 0s;
   transition-duration: 0s;
