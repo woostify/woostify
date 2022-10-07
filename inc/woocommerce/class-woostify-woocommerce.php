@@ -619,6 +619,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				wp_enqueue_script( 'woostify-single-add-to-cart' );
 			}
 
+			// Disable ajax add to cart for grouped product.
+			if ( $product && $product->is_type( 'grouped' ) ) {
+				wp_dequeue_script( 'woostify-single-add-to-cart' );
+			}
+
 			// For variable product.
 			if ( $product && $product->is_type( 'variable' ) ) {
 				wp_localize_script(
