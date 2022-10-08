@@ -116,6 +116,15 @@ function woostifyAjaxSingleAddToCartButton() {
 					closeAll();
 				}
 
+				jQuery( document.body ).on(
+					'added_to_cart',
+					function() {
+						if ( 'function' === typeof( cartSidebarOpen ) ) {
+							cartSidebarOpen();
+						}
+					}
+				)
+
 				// Add loading.
 				document.documentElement.classList.add( 'mini-cart-updating' );
 
