@@ -1197,3 +1197,55 @@
 	clear: both;
 }
 
+// Grouped products
+.product-summary {
+	.grouped_form {
+		a.button.product_type_variable {
+			width: 170px;
+			height: 50px;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-right: 8px;
+			padding: 5px 15px;
+		}
+		a.button.product_type_simple {
+			width: 170px;
+			height: 50px;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-right: 8px;
+			padding: 5px 15px;
+		}
+		span.woostify-svg-icon.icon-shopping-cart-2 {
+			margin-right: 5px;
+		}
+	}
+	.woostify-single-product-stock {
+		margin-bottom: 0;
+	}
+	.stock.out-of-stock {
+		margin-bottom: 0;
+	}
+}
+@media (max-width: $screen-sm - 1) {
+	.product-summary {
+		.grouped_form {
+			a.button.product_type_variable {
+				width: 120px;
+				padding: 5px;
+			}
+			a.button.product_type_simple {
+				width: 120px;
+				padding: 5px;
+			}
+			.quantity {
+				width: 120px;
+			}
+		}
+	}
+}
+
