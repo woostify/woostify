@@ -23,7 +23,7 @@ function productVariation( selector, form ) {
 	var currProductID = gallery.getAttribute( 'data-pid' ),
 	variationsForm    = form ? form : 'form.variations_form[data-product_id="' + currProductID + '"]';
 
-	if ( jQuery( variationsForm ).length ) {
+	if ( ! jQuery( variationsForm ).length ) {
 		return;
 	}
 
