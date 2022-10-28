@@ -12152,6 +12152,7 @@ ul.products li.product .product-loop-image-wrapper .tinvwl_add_to_wishlist_butto
     max-width: 100%;
   }
   .yith-wcwl-form .cart.wishlist_table .item-details .product-name h3 {
+    font-size: 20px;
     margin-top: 0;
   }
   .yith-wcwl-form .cart.wishlist_table .item-details .product-name a {
