@@ -48,6 +48,19 @@
 			}
 		}
 	}
+	.product-gallery {
+		float: right;
+	}
+	.product-summary {
+		float: right;
+	}
+
+	@media (min-width: 992px) {
+		.product-summary {
+			margin-left: 0;
+			margin-right: 30px;
+		}
+	}
 
 	@media (min-width: 720px) {
 		.variations .reset_variations {
