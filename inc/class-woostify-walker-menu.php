@@ -118,13 +118,11 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 				$mega_menu = '';
 
 				if ( class_exists( 'Woostify_Header_Footer_Builder' ) ) {
-					$frontend   = new \Elementor\Frontend();
-					$mega_menu .= $frontend->get_builder_content_for_display( $item->object_id, true );
+					$mega_menu .= \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $item->object_id, false );
 				} else {
 					if ( woostify_is_elementor_page( $item->object_id ) ) {
-						$frontend   = new \Elementor\Frontend();
 						$mega_menu .= '<div class="mega-menu-inner-wrapper">';
-						$mega_menu .= $frontend->get_builder_content_for_display( $item->object_id, true );
+						$mega_menu .= \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $item->object_id, false );
 						$mega_menu .= '</div>';
 						wp_enqueue_style( 'elementor-frontend' );
 						wp_reset_postdata();

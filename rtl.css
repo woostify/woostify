@@ -802,6 +802,21 @@
   transform: rotate(180deg);
 }
 
+.rtl .product-gallery {
+  float: right;
+}
+
+.rtl .product-summary {
+  float: right;
+}
+
+@media (min-width: 992px) {
+  .rtl .product-summary {
+    margin-left: 0;
+    margin-right: 30px;
+  }
+}
+
 @media (min-width: 720px) {
   .rtl .variations .reset_variations {
     margin-right: 10px;
