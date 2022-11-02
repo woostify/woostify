@@ -6,6 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-11-02 09:09+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -62,7 +63,6 @@ msgid "Submit"
 msgstr ""
 
 #. translators: %s: search term
-#. translators: %s: search term
 #: search.php:19, inc/woostify-template-functions.php:925
 msgid "Search Results for: %s"
 msgstr ""
@@ -72,8 +72,6 @@ msgid "Sidebar Shop Widget"
 msgstr ""
 
 #. translators: 1: admin URL
-#. translators: 1: admin URL
-#. translators: 1: admin URL
 #: sidebar-shop.php:22, sidebar-shop.php:37, sidebar-shop.php:52
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Woocommerce Sidebar</strong></a> and dragging widgets into this widget area."
 msgstr ""
@@ -82,8 +80,6 @@ msgstr ""
 msgid "Sidebar Widget"
 msgstr ""
 
-#. translators: 1: admin URL
-#. translators: 1: admin URL
 #. translators: 1: admin URL
 #: sidebar.php:23, sidebar.php:38, sidebar.php:53
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Main Sidebar</strong></a> and dragging widgets into this widget area."
@@ -273,8 +269,6 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#. translators: 1: admin URL
-#. translators: 1: admin URL
 #. translators: 1: admin URL
 #: inc/woostify-template-functions.php:229, inc/woostify-template-functions.php:244, inc/woostify-template-functions.php:259
 msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets / Footer Widget</strong></a> and dragging widgets into this widget area."
@@ -618,7 +612,7 @@ msgstr ""
 msgid "Go to option"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:428, inc/customizer/class-woostify-customizer.php:736
+#: inc/admin/class-woostify-admin.php:428, inc/customizer/class-woostify-customizer.php:740
 msgid "Get Woostify  Pro Extensions!"
 msgstr ""
 
@@ -798,27 +792,27 @@ msgstr ""
 msgid "Extra Color 2"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:548
+#: inc/customizer/class-woostify-customizer.php:552
 msgid "Sale!"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:556
+#: inc/customizer/class-woostify-customizer.php:560
 msgid "Out Of Stock"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:596, inc/customizer/sections/shop/shop-single.php:800
+#: inc/customizer/class-woostify-customizer.php:600, inc/customizer/sections/shop/shop-single.php:800
 msgid "Recently Viewed Products"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:643
+#: inc/customizer/class-woostify-customizer.php:647
 msgid "Opps! The page you are looking for is missing for some reasons. Please come back to homepage"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:753, inc/customizer/class-woostify-customizer.php:769, inc/customizer/class-woostify-customizer.php:785, inc/customizer/class-woostify-customizer.php:801, inc/customizer/class-woostify-customizer.php:817
+#: inc/customizer/class-woostify-customizer.php:757, inc/customizer/class-woostify-customizer.php:773, inc/customizer/class-woostify-customizer.php:789, inc/customizer/class-woostify-customizer.php:805, inc/customizer/class-woostify-customizer.php:821
 msgid "Learn More"
 msgstr ""
 
-#: inc/customizer/class-woostify-customizer.php:754, inc/customizer/class-woostify-customizer.php:770, inc/customizer/class-woostify-customizer.php:786, inc/customizer/class-woostify-customizer.php:802, inc/customizer/class-woostify-customizer.php:818
+#: inc/customizer/class-woostify-customizer.php:758, inc/customizer/class-woostify-customizer.php:774, inc/customizer/class-woostify-customizer.php:790, inc/customizer/class-woostify-customizer.php:806, inc/customizer/class-woostify-customizer.php:822
 msgid "More options are coming for this section in our Pro Extensions."
 msgstr ""
 
@@ -952,15 +946,15 @@ msgstr ""
 
 #. translators: %s number of product
 #. translators: %s stock quantity
-#: inc/woocommerce/class-woostify-woocommerce.php:636, inc/woocommerce/woostify-woocommerce-single-product-functions.php:547
+#: inc/woocommerce/class-woostify-woocommerce.php:641, inc/woocommerce/woostify-woocommerce-single-product-functions.php:547
 msgid "Hurry! only %s left in stock."
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:953
+#: inc/woocommerce/class-woostify-woocommerce.php:958
 msgid "Product video url"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:974
+#: inc/woocommerce/class-woostify-woocommerce.php:979
 msgid "Enter Youtube or Vimeo video url"
 msgstr ""
 
@@ -1123,7 +1117,7 @@ msgstr ""
 msgid "Shortcode"
 msgstr ""
 
-#: inc/customizer/custom-controls/adv-list/class-woostify-adv-list-control.php:139, inc/customizer/sections/sticky-footer-bar/sticky-footer-bar.php:246
+#: inc/customizer/custom-controls/adv-list/class-woostify-adv-list-control.php:139, inc/customizer/sections/header/header.php:112, inc/customizer/sections/sticky-footer-bar/sticky-footer-bar.php:246
 msgid "Icon"
 msgstr ""
 
@@ -1383,51 +1377,59 @@ msgstr ""
 msgid "Header Background"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:124
-msgid "Elements"
-msgstr ""
-
-#: inc/customizer/sections/header/header.php:146
-msgid "Header Menu"
+#: inc/customizer/sections/header/header.php:143
+msgid "Count Color"
 msgstr ""
 
 #: inc/customizer/sections/header/header.php:169
+msgid "Count Background Color"
+msgstr ""
+
+#: inc/customizer/sections/header/header.php:216
+msgid "Elements"
+msgstr ""
+
+#: inc/customizer/sections/header/header.php:238
+msgid "Header Menu"
+msgstr ""
+
+#: inc/customizer/sections/header/header.php:261
 msgid "Menu Breakpoint"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:224
+#: inc/customizer/sections/header/header.php:316
 msgid "Enable Search"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:249
+#: inc/customizer/sections/header/header.php:341
 msgid "Search Only Product"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:295
+#: inc/customizer/sections/header/header.php:387
 msgid "Wishlist Icon"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:340
+#: inc/customizer/sections/header/header.php:432
 msgid "Account/Dashboard"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:363
+#: inc/customizer/sections/header/header.php:455
 msgid "Enable Login Popup"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:407
+#: inc/customizer/sections/header/header.php:499
 msgid "Shopping Cart Icon"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:430
+#: inc/customizer/sections/header/header.php:522
 msgid "Show Subtotal"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:454
+#: inc/customizer/sections/header/header.php:546
 msgid "Hide Cart Count When Zero"
 msgstr ""
 
-#: inc/customizer/sections/header/header.php:478
+#: inc/customizer/sections/header/header.php:570
 msgid "Hide Cart Subtotal When Zero"
 msgstr ""
 
