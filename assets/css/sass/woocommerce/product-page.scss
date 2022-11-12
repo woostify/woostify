@@ -33,9 +33,10 @@
 		}
 	}
 }
-
 .product-page-container {
-	padding-bottom: 90px;
+	@media (min-width: $screen-md) {
+		padding-bottom: 50px;
+	}
 }
 
 .single-product {
@@ -1223,9 +1224,6 @@
 		span.woostify-svg-icon.icon-shopping-cart-2 {
 			margin-right: 5px;
 		}
-	}
-	.woostify-single-product-stock {
-		margin-bottom: 0;
 	}
 	.stock.out-of-stock {
 		margin-bottom: 0;
