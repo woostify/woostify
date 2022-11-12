@@ -24,6 +24,9 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 		 * @param int    $id The id.
 		 */
 		public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+			if ( ! is_object( $args ) ) {
+				$args = (object) $args;
+			}
 			$indent      = $depth ? str_repeat( "\t", $depth ) : '';
 			$class_names = '';
 			$value       = '';
@@ -133,7 +136,6 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 							'post_status'         => 'publish',
 							'posts_per_page'      => 1,
 							'ignore_sticky_posts' => 1,
-							'fields'              => 'ids',
 						);
 
 						$query = new WP_Query( $mega_args );

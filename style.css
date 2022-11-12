@@ -7634,8 +7634,10 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   max-width: 100%;
 }
 
-.product-page-container {
-  padding-bottom: 90px;
+@media (min-width: 992px) {
+  .product-page-container {
+    padding-bottom: 50px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -8715,10 +8717,6 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 
 .product-summary .grouped_form span.woostify-svg-icon.icon-shopping-cart-2 {
   margin-right: 5px;
-}
-
-.product-summary .woostify-single-product-stock {
-  margin-bottom: 0;
 }
 
 .product-summary .stock.out-of-stock {
