@@ -292,7 +292,9 @@ var woostifyMultiStepCheckout = function() {
 				}
 
 				if ( ! nextStep ) {
-					document.getElementById( 'terms' ).checked = false;
+				    if ( document.getElementById( 'terms' ) ) {
+					    document.getElementById( 'terms' ).checked = false;
+				    }
 				}
 
 				if ( validate && i > 0 ) {
