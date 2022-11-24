@@ -547,7 +547,7 @@ document.addEventListener(
 						function() {
 							if ( document.getElementById( 'product-thumbnail-images' ) ) {
 								renderSlider( options.container, options );
-								if ( window.matchMedia( '( min-width: 768px )' ).matches && thumbOptions.container.classList && thumbOptions.container.classList.contains( 'vertical-style' ) ) {
+								if ( window.matchMedia( '( min-width: 768px )' ).matches && gallery && gallery.classList.contains( 'vertical-style' ) ) {
 									calculateVerticalSliderHeight();
 								}else{
 									renderSlider( thumbOptions.container, thumbOptions );
