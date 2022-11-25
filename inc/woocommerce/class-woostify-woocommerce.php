@@ -665,11 +665,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				if ( get_option( 'elementor_use_mini_cart_template' ) ) {
 					if ( 'yes' === get_option( 'elementor_use_mini_cart_template' ) ) {
 						$classes[] = 'disabled-sidebar-cart';
-					} else {
-						$classes[] = 'hide-added-to-cart';
 					}
-				} else {
-					$classes[] = 'hide-added-to-cart';
 				}
 			}
 
