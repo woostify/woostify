@@ -15,6 +15,7 @@
  * @param      string form      The form.
  */
 function productVariation( selector, form ) {
+	console.log('22222222');
 	var gallery = document.querySelector( selector );
 	if ( ! gallery ) {
 		return;
@@ -55,10 +56,10 @@ function productVariation( selector, form ) {
 		wpmGtinCodeWrapper.innerHTML = productMetaSkuDefault;
 	}
 
-	jQuery( document.body ).on(
+	jQuery( document.body ).find(variationsForm).off('found_variation').on(
 		'found_variation',
-		variationsForm,
 		function( event, variation ) {
+        console.log( variation,image);
 			// get image url form `variation`.
 			var imgSrc  = variation.image.src,
 				fullSrc = variation.image.full_src,
@@ -93,6 +94,8 @@ function productVariation( selector, form ) {
 
 				img.src = imgSrc;
 				image.setAttribute( 'src', imgSrc );
+
+				console.log( imgSrc );
 
 				if ( imageSrcset ) {
 					image.setAttribute( 'srcset', variation.image.srcset );
@@ -146,7 +149,7 @@ function productVariation( selector, form ) {
 	);
 
 	// Reset variation.
-	jQuery( '.reset_variations' ).on(
+	jQuery( '.reset_variations' ).off( 'click' ).on(
 		'click',
 		function( e ) {
 			e.preventDefault();
@@ -197,6 +200,7 @@ function productVariation( selector, form ) {
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
+		console.log('322222');
 		productVariation( '.product-gallery' );
 
 		// For Elementor Preview Mode.
