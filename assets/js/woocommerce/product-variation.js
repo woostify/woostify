@@ -55,8 +55,9 @@ function productVariation( selector, form ) {
 		wpmGtinCodeWrapper.innerHTML = productMetaSkuDefault;
 	}
 
-	jQuery( document.body ).find(variationsForm).off('found_variation').on(
+	jQuery( document.body ).on(
 		'found_variation',
+		variationsForm,
 		function( event, variation ) {
 			// get image url form `variation`.
 			var imgSrc  = variation.image.src,
@@ -145,7 +146,7 @@ function productVariation( selector, form ) {
 	);
 
 	// Reset variation.
-	jQuery( '.reset_variations' ).off( 'click' ).on(
+	jQuery( '.reset_variations' ).on(
 		'click',
 		function( e ) {
 			e.preventDefault();
