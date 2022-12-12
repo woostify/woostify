@@ -8,7 +8,9 @@
 
 'use strict';
 
-var woostifyProductVariationEventReady = 0;
+if ( typeof woostifyEvent == 'undefined' ){
+	woostifyEvent = {};
+} 
 /**
  * Variation product
  *
@@ -193,28 +195,29 @@ function productVariation( selector, form ) {
 			}
 		}
 	);
-	woostifyProductVariationEventReady = 1;
+	woostifyEvent.productVariationReady = 1;
 }
 
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
-		productVariation( '.product-gallery' );
-
-		// For Elementor Preview Mode.
-		if ( 'function' === typeof( onElementorLoaded ) ) {
-			onElementorLoaded(
-				function() {
-					if( ! woostifyProductVariationEventReady ){
-						window.elementorFrontend.hooks.addAction(
-							'frontend/element_ready/global',
-							function() {
-								productVariation( '.product-gallery' );
-							}
-						);
+		if( ! (woostifyEvent.productVariationReady||0 ) ){
+			productVariation( '.product-gallery' );
+			// For Elementor Preview Mode.
+			if ( 'function' === typeof( onElementorLoaded ) ) {
+				onElementorLoaded(
+					function() {
+						if( ! woostifyEvent.productVariationReady ){
+							window.elementorFrontend.hooks.addAction(
+								'frontend/element_ready/global',
+								function() {
+									productVariation( '.product-gallery' );
+								}
+							);
+						}
 					}
-				}
-			);
+				);
+			}
 		}
 	}
 );
