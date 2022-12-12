@@ -8,6 +8,7 @@
 
 'use strict';
 
+var woostifyProductVariationEventReady = 0;
 /**
  * Variation product
  *
@@ -55,8 +56,9 @@ function productVariation( selector, form ) {
 		wpmGtinCodeWrapper.innerHTML = productMetaSkuDefault;
 	}
 
-	jQuery( document.body ).find(variationsForm).off('found_variation').on(
+	jQuery( document.body ).on(
 		'found_variation',
+		variationsForm,
 		function( event, variation ) {
 			// get image url form `variation`.
 			var imgSrc  = variation.image.src,
@@ -191,6 +193,7 @@ function productVariation( selector, form ) {
 			}
 		}
 	);
+	woostifyProductVariationEventReady = 1;
 }
 
 document.addEventListener(
@@ -202,12 +205,14 @@ document.addEventListener(
 		if ( 'function' === typeof( onElementorLoaded ) ) {
 			onElementorLoaded(
 				function() {
-					window.elementorFrontend.hooks.addAction(
-						'frontend/element_ready/global',
-						function() {
-							productVariation( '.product-gallery' );
-						}
-					);
+					if( ! woostifyProductVariationEventReady ){
+						window.elementorFrontend.hooks.addAction(
+							'frontend/element_ready/global',
+							function() {
+								productVariation( '.product-gallery' );
+							}
+						);
+					}
 				}
 			);
 		}
