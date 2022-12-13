@@ -9,7 +9,7 @@
 'use strict';
 
 if ( typeof woostifyEvent == 'undefined' ){
-	woostifyEvent = {};
+	var woostifyEvent = {};
 } 
 /**
  * Variation product
