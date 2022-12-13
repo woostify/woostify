@@ -8,6 +8,9 @@
 
 'use strict';
 
+if ( typeof woostifyEvent == 'undefined' ){
+	var woostifyEvent = {};
+} 
 // Carousel widget.
 function renderSlider( selector, options ) {
 	var element = document.querySelectorAll( selector );
@@ -81,6 +84,9 @@ function woostifyStickySummary() {
 document.addEventListener(
 	'DOMContentLoaded',
 	function(){
+		if( (woostifyEvent.productImagesReady||0 ) ){
+			return;
+		}
 		var gallery           = document.querySelector( '.product-gallery' ),
 			productThumbnails = document.getElementById( 'product-thumbnail-images' ),
 			noSliderLayout    = gallery ? ( gallery.classList.contains( 'column-style' ) || gallery.classList.contains( 'grid-style' ) ) : false;
@@ -476,6 +482,9 @@ document.addEventListener(
 			jQuery( 'form.variations_form' ).on(
 				'found_variation',
 				function( e, variation ) {
+					if( (woostifyEvent.carouselActionReady||0 ) ){
+						return;
+					}
 					resetCarousel();
 
 					// Update slider height.
@@ -489,6 +498,7 @@ document.addEventListener(
 					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
 						updateGallery( woostify_variation_gallery, false, variation.variation_id );
 					}
+					woostifyEvent.carouselActionReady = 1;
 				}
 			);
 
@@ -560,5 +570,6 @@ document.addEventListener(
 				}
 			);
 		}
+		woostifyEvent.productImagesReady = 1;
 	}
 );
