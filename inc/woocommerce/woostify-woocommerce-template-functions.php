@@ -681,8 +681,8 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 		}
 		$options      = woostify_options( false );
 		$sale         = $product->is_on_sale();
-		$price_sale   = $product->get_sale_price();
-		$price        = $product->get_regular_price();
+		$price_sale   = floatval( $product->get_sale_price() );
+		$price        = floatval( $product->get_regular_price() );
 		$simple       = $product->is_type( 'simple' );
 		$variable     = $product->is_type( 'variable' );
 		$external     = $product->is_type( 'external' );
