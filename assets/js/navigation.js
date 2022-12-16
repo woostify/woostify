@@ -6,6 +6,9 @@
 
 'use strict';
 
+if ( typeof woostifyEvent == 'undefined' ){
+	var woostifyEvent = {};
+} 
 // Mobile menu tab.
 function mobileMenuTab() {
 	var mobileTabsWrapperEls = document.querySelectorAll( 'ul.mobile-nav-tab' );
@@ -84,12 +87,11 @@ function nav() {
 function sidebarMenu( node ) {
 	var selector = ( arguments.length > 0 && undefined !== arguments[0] ) ? jQuery( node ) : jQuery( '.sidebar-menu .primary-navigation' ),
 		arrow    = selector.find( '.arrow-icon' );
-
-	jQuery( arrow ).on(
+	if( ! arrow.length ) return;
+	jQuery( arrow ).off('click').on(
 		'click',
 		function( e ) {
 			e.preventDefault();
-
 			var t        = jQuery( this ),
 				siblings = t.parent().siblings( 'ul' ),
 				arrow    = t.parent().parent().parent().find( '.arrow-icon' ),
@@ -145,10 +147,14 @@ function navFallback() {
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
+		if( (woostifyEvent.navEvent||0 ) ){
+			return;
+		}
 		nav();
 		sidebarMenu();
 		sidebarMenu( '.woostify-nav-menu-widget .categories-navigation' );
 		mobileMenuTab();
+		woostifyEvent.navEvent = 1;
 	}
 );
 
