@@ -6983,34 +6983,121 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   font-size: 1.1em;
 }
 
-.woostify-view-more {
+.woostify-view-more,
+.woostify-view-prev {
   text-align: center;
   position: relative;
 }
 
-.woostify-view-more .w-view-more-button {
+.woostify-view-more .w-view-more-button,
+.woostify-view-more .w-view-prev-button,
+.woostify-view-prev .w-view-more-button,
+.woostify-view-prev .w-view-prev-button {
   position: relative;
 }
 
-.woostify-view-more .w-view-more-button.circle-loading, .woostify-view-more .w-view-more-button.tns:not(.tns-slider), .woostify-view-more body:not(.yith-wcms-pro) .w-view-more-button.processing:not(.um-woo-status), body:not(.yith-wcms-pro) .woostify-view-more .w-view-more-button.processing:not(.um-woo-status), .woostify-view-more .w-view-more-button.image-loading, .woostify-view-more .updating-cart .w-view-more-button#shop-cart-sidebar, .updating-cart .woostify-view-more .w-view-more-button#shop-cart-sidebar, .woostify-view-more .updating-cart.ajax-single-add-to-cart .w-view-more-button.single_add_to_cart_button.loading, .updating-cart.ajax-single-add-to-cart .woostify-view-more .w-view-more-button.single_add_to_cart_button.loading {
+.woostify-view-more .w-view-more-button.circle-loading, .woostify-view-more .w-view-more-button.tns:not(.tns-slider), .woostify-view-more body:not(.yith-wcms-pro) .w-view-more-button.processing:not(.um-woo-status), body:not(.yith-wcms-pro) .woostify-view-more .w-view-more-button.processing:not(.um-woo-status), .woostify-view-more .w-view-more-button.image-loading, .woostify-view-more .updating-cart .w-view-more-button#shop-cart-sidebar, .updating-cart .woostify-view-more .w-view-more-button#shop-cart-sidebar, .woostify-view-more .updating-cart.ajax-single-add-to-cart .w-view-more-button.single_add_to_cart_button.loading, .updating-cart.ajax-single-add-to-cart .woostify-view-more .w-view-more-button.single_add_to_cart_button.loading,
+.woostify-view-more .w-view-prev-button.circle-loading,
+.woostify-view-more .w-view-prev-button.tns:not(.tns-slider),
+.woostify-view-more body:not(.yith-wcms-pro) .w-view-prev-button.processing:not(.um-woo-status),
+body:not(.yith-wcms-pro) .woostify-view-more .w-view-prev-button.processing:not(.um-woo-status),
+.woostify-view-more .w-view-prev-button.image-loading,
+.woostify-view-more .updating-cart .w-view-prev-button#shop-cart-sidebar,
+.updating-cart .woostify-view-more .w-view-prev-button#shop-cart-sidebar,
+.woostify-view-more .updating-cart.ajax-single-add-to-cart .w-view-prev-button.single_add_to_cart_button.loading,
+.updating-cart.ajax-single-add-to-cart .woostify-view-more .w-view-prev-button.single_add_to_cart_button.loading,
+.woostify-view-prev .w-view-more-button.circle-loading,
+.woostify-view-prev .w-view-more-button.tns:not(.tns-slider),
+.woostify-view-prev body:not(.yith-wcms-pro) .w-view-more-button.processing:not(.um-woo-status),
+body:not(.yith-wcms-pro) .woostify-view-prev .w-view-more-button.processing:not(.um-woo-status),
+.woostify-view-prev .w-view-more-button.image-loading,
+.woostify-view-prev .updating-cart .w-view-more-button#shop-cart-sidebar,
+.updating-cart .woostify-view-prev .w-view-more-button#shop-cart-sidebar,
+.woostify-view-prev .updating-cart.ajax-single-add-to-cart .w-view-more-button.single_add_to_cart_button.loading,
+.updating-cart.ajax-single-add-to-cart .woostify-view-prev .w-view-more-button.single_add_to_cart_button.loading,
+.woostify-view-prev .w-view-prev-button.circle-loading,
+.woostify-view-prev .w-view-prev-button.tns:not(.tns-slider),
+.woostify-view-prev body:not(.yith-wcms-pro) .w-view-prev-button.processing:not(.um-woo-status),
+body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(.um-woo-status),
+.woostify-view-prev .w-view-prev-button.image-loading,
+.woostify-view-prev .updating-cart .w-view-prev-button#shop-cart-sidebar,
+.updating-cart .woostify-view-prev .w-view-prev-button#shop-cart-sidebar,
+.woostify-view-prev .updating-cart.ajax-single-add-to-cart .w-view-prev-button.single_add_to_cart_button.loading,
+.updating-cart.ajax-single-add-to-cart .woostify-view-prev .w-view-prev-button.single_add_to_cart_button.loading {
   display: inline-flex;
   align-items: center;
 }
 
-.woostify-view-more .w-view-more-button.circle-loading .w-view-more-label, .woostify-view-more .w-view-more-button.tns:not(.tns-slider) .w-view-more-label, .woostify-view-more body:not(.yith-wcms-pro) .w-view-more-button.processing:not(.um-woo-status) .w-view-more-label, body:not(.yith-wcms-pro) .woostify-view-more .w-view-more-button.processing:not(.um-woo-status) .w-view-more-label, .woostify-view-more .w-view-more-button.image-loading .w-view-more-label, .woostify-view-more .updating-cart .w-view-more-button#shop-cart-sidebar .w-view-more-label, .updating-cart .woostify-view-more .w-view-more-button#shop-cart-sidebar .w-view-more-label, .woostify-view-more .updating-cart.ajax-single-add-to-cart .w-view-more-button.single_add_to_cart_button.loading .w-view-more-label, .updating-cart.ajax-single-add-to-cart .woostify-view-more .w-view-more-button.single_add_to_cart_button.loading .w-view-more-label {
+.woostify-view-more .w-view-more-button.circle-loading .w-view-more-label, .woostify-view-more .w-view-more-button.tns:not(.tns-slider) .w-view-more-label, .woostify-view-more body:not(.yith-wcms-pro) .w-view-more-button.processing:not(.um-woo-status) .w-view-more-label, body:not(.yith-wcms-pro) .woostify-view-more .w-view-more-button.processing:not(.um-woo-status) .w-view-more-label, .woostify-view-more .w-view-more-button.image-loading .w-view-more-label, .woostify-view-more .updating-cart .w-view-more-button#shop-cart-sidebar .w-view-more-label, .updating-cart .woostify-view-more .w-view-more-button#shop-cart-sidebar .w-view-more-label, .woostify-view-more .updating-cart.ajax-single-add-to-cart .w-view-more-button.single_add_to_cart_button.loading .w-view-more-label, .updating-cart.ajax-single-add-to-cart .woostify-view-more .w-view-more-button.single_add_to_cart_button.loading .w-view-more-label,
+.woostify-view-more .w-view-prev-button.circle-loading .w-view-more-label,
+.woostify-view-more .w-view-prev-button.tns:not(.tns-slider) .w-view-more-label,
+.woostify-view-more body:not(.yith-wcms-pro) .w-view-prev-button.processing:not(.um-woo-status) .w-view-more-label,
+body:not(.yith-wcms-pro) .woostify-view-more .w-view-prev-button.processing:not(.um-woo-status) .w-view-more-label,
+.woostify-view-more .w-view-prev-button.image-loading .w-view-more-label,
+.woostify-view-more .updating-cart .w-view-prev-button#shop-cart-sidebar .w-view-more-label,
+.updating-cart .woostify-view-more .w-view-prev-button#shop-cart-sidebar .w-view-more-label,
+.woostify-view-more .updating-cart.ajax-single-add-to-cart .w-view-prev-button.single_add_to_cart_button.loading .w-view-more-label,
+.updating-cart.ajax-single-add-to-cart .woostify-view-more .w-view-prev-button.single_add_to_cart_button.loading .w-view-more-label,
+.woostify-view-prev .w-view-more-button.circle-loading .w-view-more-label,
+.woostify-view-prev .w-view-more-button.tns:not(.tns-slider) .w-view-more-label,
+.woostify-view-prev body:not(.yith-wcms-pro) .w-view-more-button.processing:not(.um-woo-status) .w-view-more-label,
+body:not(.yith-wcms-pro) .woostify-view-prev .w-view-more-button.processing:not(.um-woo-status) .w-view-more-label,
+.woostify-view-prev .w-view-more-button.image-loading .w-view-more-label,
+.woostify-view-prev .updating-cart .w-view-more-button#shop-cart-sidebar .w-view-more-label,
+.updating-cart .woostify-view-prev .w-view-more-button#shop-cart-sidebar .w-view-more-label,
+.woostify-view-prev .updating-cart.ajax-single-add-to-cart .w-view-more-button.single_add_to_cart_button.loading .w-view-more-label,
+.updating-cart.ajax-single-add-to-cart .woostify-view-prev .w-view-more-button.single_add_to_cart_button.loading .w-view-more-label,
+.woostify-view-prev .w-view-prev-button.circle-loading .w-view-more-label,
+.woostify-view-prev .w-view-prev-button.tns:not(.tns-slider) .w-view-more-label,
+.woostify-view-prev body:not(.yith-wcms-pro) .w-view-prev-button.processing:not(.um-woo-status) .w-view-more-label,
+body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(.um-woo-status) .w-view-more-label,
+.woostify-view-prev .w-view-prev-button.image-loading .w-view-more-label,
+.woostify-view-prev .updating-cart .w-view-prev-button#shop-cart-sidebar .w-view-more-label,
+.updating-cart .woostify-view-prev .w-view-prev-button#shop-cart-sidebar .w-view-more-label,
+.woostify-view-prev .updating-cart.ajax-single-add-to-cart .w-view-prev-button.single_add_to_cart_button.loading .w-view-more-label,
+.updating-cart.ajax-single-add-to-cart .woostify-view-prev .w-view-prev-button.single_add_to_cart_button.loading .w-view-more-label {
   padding-left: 5px;
 }
 
-.woostify-view-more .w-view-more-button.circle-loading:before, .woostify-view-more .w-view-more-button.tns:not(.tns-slider):before, .woostify-view-more body:not(.yith-wcms-pro) .w-view-more-button.processing:not(.um-woo-status):before, body:not(.yith-wcms-pro) .woostify-view-more .w-view-more-button.processing:not(.um-woo-status):before, .woostify-view-more .w-view-more-button.image-loading:before, .woostify-view-more .updating-cart .w-view-more-button#shop-cart-sidebar:before, .updating-cart .woostify-view-more .w-view-more-button#shop-cart-sidebar:before, .woostify-view-more .updating-cart.ajax-single-add-to-cart .w-view-more-button.single_add_to_cart_button.loading:before, .updating-cart.ajax-single-add-to-cart .woostify-view-more .w-view-more-button.single_add_to_cart_button.loading:before {
+.woostify-view-more .w-view-more-button.circle-loading:before, .woostify-view-more .w-view-more-button.tns:not(.tns-slider):before, .woostify-view-more body:not(.yith-wcms-pro) .w-view-more-button.processing:not(.um-woo-status):before, body:not(.yith-wcms-pro) .woostify-view-more .w-view-more-button.processing:not(.um-woo-status):before, .woostify-view-more .w-view-more-button.image-loading:before, .woostify-view-more .updating-cart .w-view-more-button#shop-cart-sidebar:before, .updating-cart .woostify-view-more .w-view-more-button#shop-cart-sidebar:before, .woostify-view-more .updating-cart.ajax-single-add-to-cart .w-view-more-button.single_add_to_cart_button.loading:before, .updating-cart.ajax-single-add-to-cart .woostify-view-more .w-view-more-button.single_add_to_cart_button.loading:before,
+.woostify-view-more .w-view-prev-button.circle-loading:before,
+.woostify-view-more .w-view-prev-button.tns:not(.tns-slider):before,
+.woostify-view-more body:not(.yith-wcms-pro) .w-view-prev-button.processing:not(.um-woo-status):before,
+body:not(.yith-wcms-pro) .woostify-view-more .w-view-prev-button.processing:not(.um-woo-status):before,
+.woostify-view-more .w-view-prev-button.image-loading:before,
+.woostify-view-more .updating-cart .w-view-prev-button#shop-cart-sidebar:before,
+.updating-cart .woostify-view-more .w-view-prev-button#shop-cart-sidebar:before,
+.woostify-view-more .updating-cart.ajax-single-add-to-cart .w-view-prev-button.single_add_to_cart_button.loading:before,
+.updating-cart.ajax-single-add-to-cart .woostify-view-more .w-view-prev-button.single_add_to_cart_button.loading:before,
+.woostify-view-prev .w-view-more-button.circle-loading:before,
+.woostify-view-prev .w-view-more-button.tns:not(.tns-slider):before,
+.woostify-view-prev body:not(.yith-wcms-pro) .w-view-more-button.processing:not(.um-woo-status):before,
+body:not(.yith-wcms-pro) .woostify-view-prev .w-view-more-button.processing:not(.um-woo-status):before,
+.woostify-view-prev .w-view-more-button.image-loading:before,
+.woostify-view-prev .updating-cart .w-view-more-button#shop-cart-sidebar:before,
+.updating-cart .woostify-view-prev .w-view-more-button#shop-cart-sidebar:before,
+.woostify-view-prev .updating-cart.ajax-single-add-to-cart .w-view-more-button.single_add_to_cart_button.loading:before,
+.updating-cart.ajax-single-add-to-cart .woostify-view-prev .w-view-more-button.single_add_to_cart_button.loading:before,
+.woostify-view-prev .w-view-prev-button.circle-loading:before,
+.woostify-view-prev .w-view-prev-button.tns:not(.tns-slider):before,
+.woostify-view-prev body:not(.yith-wcms-pro) .w-view-prev-button.processing:not(.um-woo-status):before,
+body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(.um-woo-status):before,
+.woostify-view-prev .w-view-prev-button.image-loading:before,
+.woostify-view-prev .updating-cart .w-view-prev-button#shop-cart-sidebar:before,
+.updating-cart .woostify-view-prev .w-view-prev-button#shop-cart-sidebar:before,
+.woostify-view-prev .updating-cart.ajax-single-add-to-cart .w-view-prev-button.single_add_to_cart_button.loading:before,
+.updating-cart.ajax-single-add-to-cart .woostify-view-prev .w-view-prev-button.single_add_to_cart_button.loading:before {
   position: static;
   transform: none;
 }
 
-.woostify-view-more .woostify-loading-status {
+.woostify-view-more .woostify-loading-status,
+.woostify-view-prev .woostify-loading-status {
   display: none;
 }
 
-.woostify-view-more .woostify-loading-status:before {
+.woostify-view-more .woostify-loading-status:before,
+.woostify-view-prev .woostify-loading-status:before {
   content: "";
   z-index: 2;
   position: absolute;
@@ -7025,6 +7112,12 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   transform: translateY(-50%) translateX(-50%);
   -webkit-animation: circle-loading 0.35s linear infinite;
   animation: circle-loading 0.35s linear infinite;
+}
+
+.woostify-view-prev {
+  order: 9;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .products {

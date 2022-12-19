@@ -1076,11 +1076,13 @@ body{
 	}
 }
 
-.woostify-view-more {
+.woostify-view-more,
+.woostify-view-prev {
 	text-align: center;
 	position: relative;
 
-	.w-view-more-button {
+	.w-view-more-button,
+	.w-view-prev-button {
 		position: relative;
 
 		&.circle-loading {
@@ -1104,4 +1106,10 @@ body{
 			@include loading();
 		}
 	}
+}
+
+.woostify-view-prev {
+	order: 9;
+	width: 100%;
+	margin-bottom: 30px;
 }

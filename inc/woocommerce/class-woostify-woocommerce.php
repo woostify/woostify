@@ -142,6 +142,9 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Infinite Scroll.
 			if ( $options['shop_page_infinite_scroll_enable'] ) {
 				add_action( 'woocommerce_after_shop_loop', array( $this, 'add_infinite_scroll_button' ) );
+				add_action( 'woocommerce_before_shop_loop', array( $this, 'add_infinite_prev_button' ) );
+				add_action( 'wp_ajax_prev_product_scroll', array( $this, 'add_prev_products' ) );
+				add_action( 'wp_ajax_nopriv_prev_product_scroll', array( $this, 'add_prev_products' ) );
 			}
 
 			add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_container_open', 10 );
@@ -296,10 +299,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		 */
 		public function add_infinite_scroll_button() {
 			wp_enqueue_script( 'woostify-infinite-scroll-plugin' );
+			global $wp_query;
+			$pages        = $wp_query->max_num_pages;
+			$options      = woostify_options( false );
+			$type         = $options['shop_page_infinite_scroll_type'];
+			$current_page = get_query_var( 'paged' );
 
-			$options = woostify_options( false );
-			$type    = $options['shop_page_infinite_scroll_type'];
-			if ( woocommerce_products_will_display() ) {
+			if ( woocommerce_products_will_display() && $current_page < $pages ) {
 				?>
 				<div class="woostify-view-more" data-loading_type="<?php echo esc_attr( $type ); ?>">
 					<?php if ( 'button' === $type ) { ?>
@@ -310,6 +316,109 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				</div>
 				<?php
 			}
+		}
+
+
+		/**
+		 * Add view more button
+		 */
+		public function add_infinite_prev_button() {
+			$options      = woostify_options( false );
+			$type         = $options['shop_page_infinite_scroll_type'];
+			$current_page = get_query_var( 'paged' );
+
+			if ( woocommerce_products_will_display() && $current_page > 1 ) {
+				?>
+				<div class="woostify-view-prev" data-loading_type="<?php echo esc_attr( $type ); ?>">
+						<button class="w-view-prev-button products-archive button"><span class="w-view-more-label"><?php esc_html_e( 'View Previous', 'woostify' ); ?></span></button>
+				</div>
+				<?php
+			}
+		}
+
+		/**
+		 * Add view more button
+		 */
+		public function add_prev_products() {
+			check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
+			$options = woostify_options( false );
+			$paged   = (int) $_GET['paged'];
+			$offset  = $options['products_per_page'] * ($paged -1);
+			$orderby = $_GET['orderby'] ? $_GET['orderby'] : 'menu_order title';
+			$order   = 'DESC';
+			$term_id = isset( $_GET['term'] ) ? $_GET['term'] : false;
+			if ( 'price' == $orderby ) { //phpcs:ignore
+				$order   = 'ASC';
+				$query_meta_key = '_price';
+			}
+
+			if ( 'price-desc' == $orderby ) {
+				$orderby = 'price';
+				$query_meta_key = '_price';
+			}
+
+			if ( 'rating' == $orderby ) {
+				$query_meta_key = '_wc_average_rating';
+			}
+
+			$args = array(
+				'post_type'           => 'product',
+				'posts_per_page'      => $options['products_per_page'],
+				'offset'              => $offset,
+				'paged'               => $paged,
+				'ignore_sticky_posts' => false,
+				'order'               => $order,
+			);
+
+			if ( $term_id ) {
+				$args['tax_query'] = array(
+					array(
+						'taxonomy' => 'product_cat',
+						'field' => 'id',
+						'terms' => array( $term ),
+						'include_children' => true,
+					),
+				);
+			}
+
+
+			switch ( $orderby ) {
+				case 'price':
+				case 'price-desc':
+					$args['meta_key'] = '_price';
+					$args['orderby'] = 'meta_value_num';
+					break;
+
+				case 'rating':
+					$args['meta_key'] = '_wc_average_rating';
+					$args['orderby'] = 'meta_value_num';
+					break;
+
+				case 'popularity':
+					$args['meta_key'] = 'total_sales';
+					$args['orderby'] = 'meta_value_num';
+					break;
+
+				case 'date':
+					$args['orderby'] = 'date';
+					break;
+
+				default:
+					$args['orderby'] = 'title menu_order';
+					break;
+			}
+			$the_query = new WP_Query( $args );
+			if ( $the_query->have_posts() ) {
+				while ( $the_query->have_posts() ) :
+					$the_query->the_post();
+					wc_get_template_part( 'content', 'product' );
+				endwhile;
+			}
+
+			wp_reset_postdata();
+
+			die();
+
 		}
 
 		/**
@@ -460,6 +569,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		 * Woocommerce enqueue scripts and styles.
 		 */
 		public function woocommerce_scripts() {
+			global $wp_query;
 			$product_id = woostify_get_product_id();
 			$product    = $product_id ? wc_get_product( $product_id ) : false;
 			$options    = woostify_options( false );
@@ -514,6 +624,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				);
 			}
 
+			$query_object = $wp_query->get_queried_object();
+
 			// Quantity minicart.
 			wp_localize_script(
 				'woostify-woocommerce',
@@ -534,6 +646,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'currency_symbol'                => get_woocommerce_currency_symbol(),
 					'currency_pos'                   => get_option( 'woocommerce_currency_pos' ),
 					'is_active_wvs'                  => ! class_exists( 'Woo_Variation_Swatches' ) || ! class_exists( 'Woo_Variation_Swatches_Pro' ) ? false : true, // Check if plugin Variation Swatches for WooCommerce and Variation Swatches for WooCommerce - Pro is activated.
+					'paged'                          => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
+					'loading_type'                   => $options['shop_page_infinite_scroll_type'],
+					'orderby'                        => get_query_var( 'orderby' ) ? get_query_var( 'orderby' ) : '1',
+					'term'                           => isset( $query_object->term_id ) ? $query_object->term_id : false,
 				)
 			);
 
