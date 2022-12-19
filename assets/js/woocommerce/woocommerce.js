@@ -1189,7 +1189,7 @@ document.addEventListener(
 		).on(
 			'added_to_cart',
 			function( e, fragments, cart_hash, $button ) {
-				cartSidebarOpen();
+				
 				woostifyQuantityMiniCart();
 				updateHeaderCartPrice();
 				eventCartSidebarClose();
@@ -1199,6 +1199,7 @@ document.addEventListener(
 
 				if ( $button ) {
 					$button.removeClass( 'loading' );
+					cartSidebarOpen();
 
 					if ( fragments ) {
 						$button.addClass( 'added' );

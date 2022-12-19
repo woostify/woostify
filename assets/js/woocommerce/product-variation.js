@@ -8,6 +8,9 @@
 
 'use strict';
 
+if ( typeof woostifyEvent == 'undefined' ){
+	var woostifyEvent = {};
+} 
 /**
  * Variation product
  *
@@ -23,7 +26,7 @@ function productVariation( selector, form ) {
 	var currProductID = gallery.getAttribute( 'data-pid' ),
 	variationsForm    = form ? form : 'form.variations_form[data-product_id="' + currProductID + '"]';
 
-	if ( jQuery( variationsForm ).length ) {
+	if ( ! jQuery( variationsForm ).length ) {
 		return;
 	}
 
@@ -146,7 +149,7 @@ function productVariation( selector, form ) {
 	);
 
 	// Reset variation.
-	jQuery( '.reset_variations' ).on(
+	jQuery( '.reset_variations' ).off( 'click' ).on(
 		'click',
 		function( e ) {
 			e.preventDefault();
@@ -192,25 +195,29 @@ function productVariation( selector, form ) {
 			}
 		}
 	);
+	woostifyEvent.productVariationReady = 1;
 }
 
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
-		productVariation( '.product-gallery' );
-
-		// For Elementor Preview Mode.
-		if ( 'function' === typeof( onElementorLoaded ) ) {
-			onElementorLoaded(
-				function() {
-					window.elementorFrontend.hooks.addAction(
-						'frontend/element_ready/global',
-						function() {
-							productVariation( '.product-gallery' );
+		if( ! (woostifyEvent.productVariationReady||0 ) ){
+			productVariation( '.product-gallery' );
+			// For Elementor Preview Mode.
+			if ( 'function' === typeof( onElementorLoaded ) ) {
+				onElementorLoaded(
+					function() {
+						if( ! woostifyEvent.productVariationReady ){
+							window.elementorFrontend.hooks.addAction(
+								'frontend/element_ready/global',
+								function() {
+									productVariation( '.product-gallery' );
+								}
+							);
 						}
-					);
-				}
-			);
+					}
+				);
+			}
 		}
 	}
 );
