@@ -8,7 +8,7 @@
 
 if ( typeof woostifyEvent == 'undefined' ){
 	var woostifyEvent = {};
-} 
+}
 // Mobile menu tab.
 function mobileMenuTab() {
 	var mobileTabsWrapperEls = document.querySelectorAll( 'ul.mobile-nav-tab' );
