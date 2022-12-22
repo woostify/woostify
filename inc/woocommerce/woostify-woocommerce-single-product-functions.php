@@ -220,7 +220,31 @@ if ( ! function_exists( 'woostify_available_variation_gallery' ) ) {
 		$variation_image_id = $variation->get_image_id();
 		$product            = wc_get_product( $product_id );
 
-		if ( ! $product->is_type( 'variable' ) || ! class_exists( 'WC_Additional_Variation_Images' ) ) {
+		if ( ! $product->is_type( 'variable' ) ) {
+			return $available_variation;
+		}
+
+		// ob_clean();
+		// var_dump( $variation->get_gallery_image_ids() ); exit; đúng gallery_image_ids
+		/* 
+		array (size=4)
+			0 => int 321
+			1 => int 320
+			2 => int 319
+			3 => int 318
+			*/
+
+		if ( class_exists( 'Woostify_Variation_Swatches_Frontend' ) ) {
+			$variation_gallery = $variation->get_gallery_image_ids();
+			$attachments       = array_filter( $variation_gallery );
+			$available_variation['variation_gallery_images'] = array();
+			foreach ( $attachments as $k => $v ) {
+				$available_variation['variation_gallery_images'][ $k ] = wc_get_product_attachment_props( $v );
+			}
+			// var_dump( $available_variation ); exit;
+			return $available_variation;
+		}
+		if ( ! class_exists( 'WC_Additional_Variation_Images' ) ) {
 			return $available_variation;
 		}
 
@@ -254,6 +278,9 @@ if ( ! function_exists( 'woostify_get_variation_gallery' ) ) {
 	 * @param object $product The product.
 	 */
 	function woostify_get_variation_gallery( $product ) {
+
+		// var_dump( 'xxx', $images ); exit;
+
 		$images = array();
 
 		if ( ! is_object( $product ) || ! $product->is_type( 'variable' ) ) {
@@ -273,7 +300,7 @@ if ( ! function_exists( 'woostify_get_variation_gallery' ) ) {
 			array_unshift( $k[ $key ], array( 'variation_id' => $k['variation_id'] ) );
 			array_push( $images, $k[ $key ] );
 		}
-
+		// var_dump( 'xxx', $images ); exit;
 		return $images;
 	}
 }

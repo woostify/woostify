@@ -7,7 +7,6 @@
 /* global woostify_product_images_slider_options, woostify_variation_gallery, woostify_default_gallery */
 
 'use strict';
-
 if ( typeof woostifyEvent == 'undefined' ){
 	var woostifyEvent = {};
 } 
@@ -479,12 +478,14 @@ document.addEventListener(
 		// Carousel action.
 		function carouselAction() {
 			// Trigger variation.
+			if( !(woostifyEvent.carouselActionReady||0 ) ){
 			jQuery( 'form.variations_form' ).on(
 				'found_variation',
 				function( e, variation ) {
-					if( (woostifyEvent.carouselActionReady||0 ) ){
-						return;
-					}
+					console.log( variation );
+					// if( (woostifyEvent.carouselActionReady||0 ) ){
+					// 	return;
+					// }
 					resetCarousel();
 
 					// Update slider height.
@@ -498,9 +499,13 @@ document.addEventListener(
 					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
 						updateGallery( woostify_variation_gallery, false, variation.variation_id );
 					}
+					if( variation.variation_gallery_images||0 ){
+						updateGallery( variation.variation_gallery_images, false, variation.variation_id );
+					}
 					woostifyEvent.carouselActionReady = 1;
 				}
 			);
+			}
 
 			// Trigger reset.
 			jQuery( '.reset_variations' ).on(
