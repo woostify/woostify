@@ -6,6 +6,7 @@
 
 /* global woostify_product_images_slider_options, woostify_variation_gallery, woostify_default_gallery */
 
+// console.log( woostify_default_gallery);
 'use strict';
 if ( typeof woostifyEvent == 'undefined' ){
 	var woostifyEvent = {};
@@ -479,32 +480,47 @@ document.addEventListener(
 		function carouselAction() {
 			// Trigger variation.
 			if( !(woostifyEvent.carouselActionReady||0 ) ){
-			jQuery( 'form.variations_form' ).on(
-				'found_variation',
-				function( e, variation ) {
-					console.log( variation );
-					// if( (woostifyEvent.carouselActionReady||0 ) ){
-					// 	return;
-					// }
-					resetCarousel();
+				jQuery( 'form.variations_form' ).on(
+					'found_variation',
+					function( e, variation ) {
+						// console.log( variation );
+						// if( (woostifyEvent.carouselActionReady||0 ) ){
+						// 	return;
+						// }
+						resetCarousel();
 
-					// Update slider height.
-					setTimeout(
-						function() {
-							window.dispatchEvent( new Event( 'resize' ) );
-						},
-						200
-					);
+						// Update slider height.
+						setTimeout(
+							function() {
+								window.dispatchEvent( new Event( 'resize' ) );
+							},
+							200
+						);
 
-					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
-						updateGallery( woostify_variation_gallery, false, variation.variation_id );
+						if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
+							updateGallery( woostify_variation_gallery, false, variation.variation_id );
+						}else{
+							if( variation.variation_gallery_images.length){
+								// console.log('draw variation-gallery');
+								updateGallery( variation.variation_gallery_images, true, variation.variation_id );
+								document.querySelector( '.product-thumbnail-images' ).classList.add( 'variation-gallery' );
+							} else {
+								console.log(' else', document.querySelector( '.product-thumbnail-images').classList.contains( 'variation-gallery' ) );
+								// console.log( variation );
+
+								if( document.querySelector( '.product-thumbnail-images').classList.contains( 'variation-gallery' ) ){
+									// Draw gallery default
+									
+
+									console.log('draw default-gallery here');
+									document.querySelector( '.product-thumbnail-images').classList.remove( 'variation-gallery' );
+								}
+								
+							}
+						}
+						woostifyEvent.carouselActionReady = 1;
 					}
-					if( variation.variation_gallery_images||0 ){
-						updateGallery( variation.variation_gallery_images, false, variation.variation_id );
-					}
-					woostifyEvent.carouselActionReady = 1;
-				}
-			);
+				);
 			}
 
 			// Trigger reset.

@@ -224,24 +224,25 @@ if ( ! function_exists( 'woostify_available_variation_gallery' ) ) {
 			return $available_variation;
 		}
 
-		// ob_clean();
-		// var_dump( $variation->get_gallery_image_ids() ); exit; đúng gallery_image_ids
-		/* 
-		array (size=4)
-			0 => int 321
-			1 => int 320
-			2 => int 319
-			3 => int 318
-			*/
+		/*
+		 * The image id is an id of an image which is assigned to a variation and it can be used
+		 */
 
 		if ( class_exists( 'Woostify_Variation_Swatches_Frontend' ) ) {
+			// context = 'edit': get data of child product, context = 'view|empty' if data product emty then get data of parent product.
+			$image_id          = $variation->get_image_id( 'edit' );
 			$variation_gallery = $variation->get_gallery_image_ids();
 			$attachments       = array_filter( $variation_gallery );
+
+			// Khoi tao mang gallery.
 			$available_variation['variation_gallery_images'] = array();
-			foreach ( $attachments as $k => $v ) {
-				$available_variation['variation_gallery_images'][ $k ] = wc_get_product_attachment_props( $v );
+
+			if ( ! empty( $image_id ) ) {
+				$available_variation['variation_gallery_images'][] = wc_get_product_attachment_props( $image_id );
 			}
-			// var_dump( $available_variation ); exit;
+			foreach ( $attachments as $k => $v ) {
+				$available_variation['variation_gallery_images'][] = wc_get_product_attachment_props( $v );
+			}
 			return $available_variation;
 		}
 		if ( ! class_exists( 'WC_Additional_Variation_Images' ) ) {
