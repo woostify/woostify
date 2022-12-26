@@ -146,7 +146,33 @@ document.addEventListener(
 		function calculateVerticalSliderHeight() {
 			var currFirstImage                = gallery ? gallery.querySelector( '.image-item img' ) : false;
 			var currFirstImageHeight          = currFirstImage ? currFirstImage.offsetHeight : 0;
-			productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
+			if ( currFirstImageHeight ) {
+				productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
+			}
+			var check = 0;
+			var intv = 0;
+
+			// Function check image is loaded.
+			function IsImageOk( img ){
+				if (!img.complete) {
+					return false;
+				}
+				if (typeof img.naturalWidth != "undefined" && img.naturalWidth == 0) {
+					return false;
+				}
+				return true;
+			}
+
+			intv = setInterval( function () {
+				if ( IsImageOk( currFirstImage ) && check < 20 ) {
+					var currFirstImageHeight          = currFirstImage ? currFirstImage.offsetHeight : 0;
+					if ( currFirstImageHeight ) {
+						productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
+					}
+					clearInterval( intv );
+				}
+				check++;
+			}, 200);
 		}
 
 		function calculateThumbnailTotalWidth() {
@@ -483,10 +509,6 @@ document.addEventListener(
 				jQuery( 'form.variations_form' ).on(
 					'found_variation',
 					function( e, variation ) {
-						// console.log( variation );
-						// if( (woostifyEvent.carouselActionReady||0 ) ){
-						// 	return;
-						// }
 						resetCarousel();
 
 						// Update slider height.
@@ -501,34 +523,32 @@ document.addEventListener(
 							updateGallery( woostify_variation_gallery, false, variation.variation_id );
 						}else{
 							if( variation.variation_gallery_images.length){
-								// console.log('draw variation-gallery');
 								updateGallery( variation.variation_gallery_images, true, variation.variation_id );
 								document.querySelector( '.product-thumbnail-images' ).classList.add( 'variation-gallery' );
 							} else {
-								console.log(' else', document.querySelector( '.product-thumbnail-images').classList.contains( 'variation-gallery' ) );
-								// console.log( variation );
-
 								if( document.querySelector( '.product-thumbnail-images').classList.contains( 'variation-gallery' ) ){
-									// Draw gallery default
 									
-
-									console.log('draw default-gallery here');
+									// Draw gallery default.
+									if ( 'undefined' !== typeof( woostify_default_gallery ) && woostify_default_gallery.length ) {
+										updateGallery( woostify_default_gallery, true );
+									}
 									document.querySelector( '.product-thumbnail-images').classList.remove( 'variation-gallery' );
 								}
 								
 							}
 						}
-						woostifyEvent.carouselActionReady = 1;
 					}
 				);
+				woostifyEvent.carouselActionReady = 1;
 			}
 
 			// Trigger reset.
 			jQuery( '.reset_variations' ).on(
 				'click',
 				function(){
-					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
+					if ( 'undefined' !== typeof( woostify_default_gallery ) && woostify_default_gallery.length ) {
 						updateGallery( woostify_default_gallery, true );
+						document.querySelector( '.product-thumbnail-images').classList.remove( 'variation-gallery' );
 					}
 
 					resetCarousel();
