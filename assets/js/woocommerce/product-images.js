@@ -6,7 +6,6 @@
 
 /* global woostify_product_images_slider_options, woostify_variation_gallery, woostify_default_gallery */
 
-// console.log( woostify_default_gallery);
 'use strict';
 if ( typeof woostifyEvent == 'undefined' ){
 	var woostifyEvent = {};
@@ -518,23 +517,27 @@ document.addEventListener(
 							},
 							200
 						);
-
 						if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
 							updateGallery( woostify_variation_gallery, false, variation.variation_id );
 						}else{
-							if( variation.variation_gallery_images.length){
+							var thumbs = document.querySelector( '.product-thumbnail-images' );
+							if( variation.variation_gallery_images.length ){
 								updateGallery( variation.variation_gallery_images, true, variation.variation_id );
-								document.querySelector( '.product-thumbnail-images' ).classList.add( 'variation-gallery' );
+								if( thumbs ) {
+									thumbs.classList.add( 'variation-gallery' );
+								}
 							} else {
-								if( document.querySelector( '.product-thumbnail-images').classList.contains( 'variation-gallery' ) ){
-									
+								if( thumbs && thumbs.classList.contains( 'variation-gallery' ) ){
 									// Draw gallery default.
 									if ( 'undefined' !== typeof( woostify_default_gallery ) && woostify_default_gallery.length ) {
 										updateGallery( woostify_default_gallery, true );
 									}
-									document.querySelector( '.product-thumbnail-images').classList.remove( 'variation-gallery' );
+								}else{
+									updateGallery( woostify_default_gallery, true );
 								}
-								
+								if( thumbs ) {
+									thumbs.classList.remove( 'variation-gallery' );
+								}
 							}
 						}
 					}
@@ -548,7 +551,9 @@ document.addEventListener(
 				function(){
 					if ( 'undefined' !== typeof( woostify_default_gallery ) && woostify_default_gallery.length ) {
 						updateGallery( woostify_default_gallery, true );
-						document.querySelector( '.product-thumbnail-images').classList.remove( 'variation-gallery' );
+						if( document.querySelector( '.product-thumbnail-images' ) ) {
+							document.querySelector( '.product-thumbnail-images').classList.remove( 'variation-gallery' );
+						}
 					}
 
 					resetCarousel();
