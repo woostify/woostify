@@ -521,7 +521,10 @@ document.addEventListener(
 							updateGallery( woostify_variation_gallery, false, variation.variation_id );
 						}else{
 							var thumbs = document.querySelector( '.product-thumbnail-images' );
-							if( variation.variation_gallery_images.length ){
+
+							// Neu chi co 1 image trong gallery và image nay trung voi product variation image thi coi nhu k co.
+							var has_gallery = ( ( variation.variation_gallery_images.length > 1 ) || (variation.variation_gallery_images.length && variation.image && variation.variation_gallery_images[0]['full_src'] != variation.image['full_src'] ) );
+							if( has_gallery ) {
 								updateGallery( variation.variation_gallery_images, true, variation.variation_id );
 								if( thumbs ) {
 									thumbs.classList.add( 'variation-gallery' );
