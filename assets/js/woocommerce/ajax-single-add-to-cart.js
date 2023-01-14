@@ -100,6 +100,14 @@ function woostifyAjaxSingleAddToCartButton() {
 					return;
 				}
 
+				var product_quantity = parseInt(input.getAttribute('max'));
+				var cart_items_count = parseInt(document.querySelector( '#shop-cart-sidebar .shop-cart-count' ).innerHTML);				
+				var total_count      = cart_items_count+inputValue;
+				if ( cart_items_count >= product_quantity || total_count > product_quantity ){
+					alert( woostify_woocommerce_general.qty_max_warning );
+					return;
+				}
+
 				var form_data = new FormData( form )
 				form_data.append( 'add-to-cart', form.querySelector( '[name=add-to-cart]' ).value )
 				form_data.append( 'ajax_nonce', woostify_woocommerce_general.ajax_nonce )
