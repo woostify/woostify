@@ -655,7 +655,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'loading_type'                   => $options['shop_page_infinite_scroll_type'],
 					'orderby'                        => get_query_var( 'orderby' ) ? get_query_var( 'orderby' ) : '1',
 					'term'                           => isset( $query_object->term_id ) ? $query_object->term_id : false,
-					'qty_max_warning'                => sprintf( __( 'You can’t have more than %s items in cart', 'woostify' ), $product_max_quantity ),
+					'qty_max_warning'                => sprintf( __( 'You can’t add more than %s items in cart', 'woostify' ), $product_max_quantity ),
 				)
 			);
 
