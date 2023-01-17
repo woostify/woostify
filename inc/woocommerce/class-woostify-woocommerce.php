@@ -574,6 +574,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$product    = $product_id ? wc_get_product( $product_id ) : false;
 			$options    = woostify_options( false );
 
+			$product_max_quantity = '';
+			if( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ){
+				$product_max_quantity = get_post_meta( $product_id, '_onpreorder_maximum_order', true );
+			}
+
 			// Remove Divi css on TI wishlist page.
 			if ( function_exists( 'is_wishlist' ) && is_wishlist() && function_exists( 'et_is_builder_plugin_active' ) && et_is_builder_plugin_active() ) {
 				wp_dequeue_style( 'et-builder-modules-style' );
@@ -650,6 +655,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'loading_type'                   => $options['shop_page_infinite_scroll_type'],
 					'orderby'                        => get_query_var( 'orderby' ) ? get_query_var( 'orderby' ) : '1',
 					'term'                           => isset( $query_object->term_id ) ? $query_object->term_id : false,
+					'qty_max_warning'                => sprintf( __( 'You can’t add more than %s items in cart', 'woostify' ), $product_max_quantity ),
 				)
 			);
 
