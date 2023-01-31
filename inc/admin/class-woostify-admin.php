@@ -378,21 +378,36 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				),
 			)
 			?>
-			<div class="woostify-options-wrap admin-welcome-screen">
+			<div class="woostify-options-wrap admin-welcome-screen woostify-welcome-settings-section-tab woostify-enhance-settings-section-tab">
 
-				<?php $this->woostify_welcome_screen_header(); ?>
+				<?php //$this->woostify_welcome_screen_header(); ?>
+
+				<section class="woostify-welcome-nav">
+					<div class="woostify-welcome-container">
+						<a class="woostify-welcome-theme-brand" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank" rel="noopener">
+							<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
+							<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
+						</a>
+
+						<div class="woostify-setting-tab-head">
+							<a href="#dashboard" class="tab-head-button active"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
+							<a href="#add-ons" class="tab-head-button"><?php esc_html_e( 'Add-ons', 'woostify' ); ?></a>
+							<a href="#starter-templates" class="tab-head-button"><?php esc_html_e( 'Starter Templates', 'woostify' ); ?></a>
+							<a href="#changelog" class="tab-head-button"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a>
+						</div>
+
+						<span class="woostify-welcome-theme-version"><?php echo esc_html( woostify_version() ); ?></span>
+					</div>
+				</section>
 
 				<div class="wrap woostify-enhance">
-					<div class="woostify-notices-wrap">
+					<div class="woostify-notices-wrap" style="display:none;">
 						<h2 class="notices" style="display:none;"></h2>
 					</div>
+					
 					<div class="woostify-welcome-container">
 						<div class="woostify-enhance-content">
 							<div class="woostify-welcome-settings-section-tab woostify-enhance-settings-section-tab">
-								<div class="woostify-setting-tab-head">
-									<a href="#dashboard" class="tab-head-button active"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-									<a href="#starter-templates" class="tab-head-button"><?php esc_html_e( 'Starter Templates', 'woostify' ); ?></a>
-								</div>
 								<div class="woostify-setting-tab-content-wrapper">
 									<div class="woostify-setting-tab-content active" data-tab="dashboard">
 										<h2 class="section-header"><?php esc_html_e( 'Customizer Shortcuts', 'woostify' ); ?></h2>
@@ -443,6 +458,11 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 												</div>
 											<?php endif; ?>
 
+											<?php do_action( 'woostify_pro_panel_column' ); ?>
+										</div>
+									</div>
+									<div class="woostify-setting-tab-content" data-tab="add-ons">
+										<div class="woostify-pro-featured pro-featured-list">
 											<?php do_action( 'woostify_pro_panel_column' ); ?>
 										</div>
 									</div>
@@ -503,6 +523,18 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 										<p>
 											<?php echo wp_kses_post( $button ); ?>
 										</p>
+									</div>
+									<div class="woostify-setting-tab-content" data-tab="changelog">
+										<div class="woostify-setting-tab-head">
+											<a href="#changelog-woostify-theme" class="tab-head-button active"><?php esc_html_e( 'Woostify Theme', 'woostify' ); ?></a>
+											<a href="#changelog-woostify-pro" class="tab-head-button"><?php esc_html_e( 'Woostify Pro', 'woostify' ); ?></a>
+										</div>
+										<div class="woostify-setting-tab-content active" data-tab="changelog-woostify-theme">
+											<h2><?php esc_html_e( 'Changelog woostify theme', 'woostify' ); ?></h2>
+										</div>
+										<div class="woostify-setting-tab-content" data-tab="changelog-woostify-pro">
+											<h2><?php esc_html_e( 'Changelog woostify pro', 'woostify' ); ?></h2>
+										</div>
 									</div>
 								</div>
 							</div>
