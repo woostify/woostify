@@ -41,6 +41,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			add_action( 'admin_menu', array( $this, 'woostify_welcome_register_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'woostify_welcome_static' ) );
 			add_action( 'admin_body_class', array( $this, 'woostify_admin_classes' ) );
+			add_action( 'in_admin_header', array( $this, 'woostify_hide_all_noticee_page_setting' ) );
 		}
 
 		/**
@@ -276,7 +277,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		/**
 		 * The welcome screen
 		 */
-		public function woostify_welcome_screen() {
+		public function woostify_welcome_screen() {			
 			$woostify_url = 'https://woostify.com';
 			$facebook_url = 'https://facebook.com';
 			$pro_modules  = array(
@@ -392,215 +393,236 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						<div class="woostify-setting-tab-head">
 							<a href="#dashboard" class="tab-head-button active"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
 							<a href="#add-ons" class="tab-head-button"><?php esc_html_e( 'Add-ons', 'woostify' ); ?></a>
-							<a href="#starter-templates" class="tab-head-button"><?php esc_html_e( 'Starter Templates', 'woostify' ); ?></a>
+							<a href="#starter-sites" class="tab-head-button"><?php esc_html_e( 'Starter sites', 'woostify' ); ?></a>
 							<a href="#changelog" class="tab-head-button"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a>
 						</div>
 
-						<span class="woostify-welcome-theme-version"><?php echo esc_html( woostify_version() ); ?></span>
+						<!-- <span class="woostify-welcome-theme-version"><?php //echo esc_html( woostify_version() ); ?></span> -->
+						<a class="woostify-welcome-theme-support" href="<?php echo esc_url( $woostify_url ); ?>/contact/">
+							<img class="woostify-welcome-theme-icon-support" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/support.png' ); ?>" alt="<?php esc_attr_e( 'Woostify Support', 'woostify' ); ?>">
+							<?php esc_attr_e( 'Support', 'woostify' ); ?>
+						</a>
 					</div>
 				</section>
+				<section class="woostify-welcome-content">
+					<div class="woostify-welcome-settings-section-tab woostify-enhance-settings-section-tab">
+						<div class="woostify-setting-tab-content-wrapper">
+							<div class="woostify-setting-tab-content active" data-tab="dashboard">
+								<div class="woostify-welcome-container">
+									<div class="woostify-enhance-content">
+										<div class="woostify-enhance__column">
+											<h2 class="section-header"><?php esc_html_e( 'Customizer Settings', 'woostify' ); ?> <a class="section-header-link" target="_blank" href="<?php echo esc_url( get_admin_url() ); ?>customize.php"><?php esc_attr_e( 'Go to Customizer', 'woostify' ); ?></a></h2>
+											<div class="woostify-grid-box">
+												<?php
+												foreach ( $this->woostify_welcome_customizer_settings() as $key ) {
+													$url = get_admin_url() . 'customize.php?autofocus[' . $key['type'] . ']=' . $key['setting'];
 
-				<div class="wrap woostify-enhance">
+													$disabled = '';
+													$title    = '';
+													if ( '' !== $key['required'] && ! class_exists( $key['required'] ) ) {
+														$disabled = ' disabled';
+
+														/* translators: 1: Class name */
+														$title = sprintf( __( '%s not activated.', 'woostify' ), ucfirst( $key['required'] ) );
+
+														$url = '#';
+													}
+													?>
+
+													<div class="box-item<?php echo esc_attr( $disabled ); ?>" title="<?php echo esc_attr( $title ); ?>">
+														<span class="box-item__icon <?php echo esc_attr( $key['icon'] ); ?>"></span>
+														<h4 class="box-item__name"><?php echo esc_html( $key['name'] ); ?></h4>
+														<a class="box-item__link" href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Go to option', 'woostify' ); ?></a>
+													</div>
+												<?php } ?>
+											</div>
+										</div>
+										<div class="woostify-enhance__column">
+											<div class="woostify-pro-featured pro-featured-list">
+												<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
+													<h2 class="section-header">
+														<a class="woostify-learn-more wp-ui-text-highlight" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank"><?php esc_html_e( 'Get Woostify  Pro Extensions!', 'woostify' ); ?></a>
+													</h2>
+													<div class="woostify-grid-box">
+														<?php foreach ( $pro_modules as $module ) { ?>
+															<div class="box-item box-item--text box-item--disabled">
+																<span class="box-item__icon dashicons dashicons-lock"></span>
+																<h4 class="box-item__name">
+																	<?php echo esc_html( $module['title'] ); ?>
+																</h4>
+																<?php if ( '' !== $module['desc'] ) { ?>
+																	<p class="box-item__desc"><?php echo esc_html( $module['desc'] ); ?></p>
+																<?php } ?>
+																<a href="<?php echo esc_url( $module['setting_url'] ); ?>" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
+															</div>
+														<?php } ?>
+													</div>
+												<?php endif; ?>
+
+												<?php do_action( 'woostify_pro_panel_column' ); ?>
+											</div>
+										</div>
+									</div>
+
+									<div class="woostify-enhance-sidebar">
+										<?php do_action( 'woostify_pro_panel_sidebar' ); ?>
+
+										<div class="woostify-enhance__column list-section-wrapper">
+											<h3><?php esc_html_e( 'Document', 'woostify' ); ?></h3>
+
+											<div class="wf-quick-setting-section">
+												<p>
+													<?php esc_html_e( 'Want a guide? We have video tutorials to walk you through getting started.', 'woostify' ); ?>
+												</p>
+
+												<p>
+													<a href="<?php echo esc_url( $woostify_url ); ?>/docs" class="woostify-button"><?php esc_html_e( 'Visit Documentation', 'woostify' ); ?></a>
+												</p>
+											</div>
+										</div>
+
+										<div class="woostify-enhance__column list-section-wrapper">
+											<h3><?php esc_html_e( 'Community', 'woostify' ); ?></h3>
+
+											<div class="wf-quick-setting-section">
+												<p>
+													<?php esc_html_e( 'Join our community! Share your site, ask a question and help others.', 'woostify' ); ?>
+												</p>
+
+												<p>
+													<a href="<?php echo esc_url( $facebook_url ); ?>/groups/2245150649099616/" class="woostify-button"><?php esc_html_e( 'Join Our Facebook Group', 'woostify' ); ?></a>
+												</p>
+											</div>
+										</div>
+
+										<div class="woostify-enhance__column list-section-wrapper">
+											<h3><?php esc_html_e( 'Support', 'woostify' ); ?></h3>
+
+											<div class="wf-quick-setting-section">
+												<p>
+													<?php esc_html_e( 'Have a question, we are happy to help! Get in touch with our support team.', 'woostify' ); ?>
+												</p>
+
+												<p>
+													<a href="<?php echo esc_url( $woostify_url ); ?>/contact/" class="woostify-button"><?php esc_html_e( 'Submit a Ticket', 'woostify' ); ?></a>
+												</p>
+											</div>
+										</div>
+
+										<div class="woostify-enhance__column list-section-wrapper">
+											<h3><?php esc_html_e( 'Love Woostify?', 'woostify' ); ?></h3>
+
+											<div class="wf-quick-setting-section">
+												<p>
+													<a href="<?php echo esc_url( '//wordpress.org/support/theme/woostify/reviews/#new-post' ); ?>/contact/" class="woostify-button"><?php esc_html_e( 'Give us 5 stars!', 'woostify' ); ?></a>
+												</p>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+								
+							</div>
+							<div class="woostify-setting-tab-content" data-tab="add-ons">
+								<div class="woostify-pro-featured pro-featured-list">
+									<?php do_action( 'woostify_pro_panel_column' ); ?>
+								</div>
+							</div>
+							<div class="woostify-setting-tab-content" data-tab="starter-sites">
+								<h2><?php esc_html_e( 'Starter Templates', 'woostify' ); ?></h2>
+								<p>
+									<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify Demo Sites.', 'woostify' ); ?>
+								</p>
+								<p>
+									<?php esc_html_e( 'It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc.', 'woostify' ); ?>
+								</p>
+								<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/demo-sites.jpg' ); ?>" alt="woostify Powerpack" />
+								<?php
+								$plugin_slug = 'woostify-sites-library';
+								$slug        = 'woostify-sites-library/woostify-sites.php';
+								$redirect    = admin_url( 'admin.php?page=woostify-sites' );
+								$nonce       = add_query_arg(
+									array(
+										'action'   => 'activate',
+										'_wpnonce' => wp_create_nonce( 'activate-plugin_' . $slug ),
+										'plugin'   => rawurlencode( $slug ),
+										'paged'    => '1',
+										'plugin_status' => 'all',
+									),
+									network_admin_url( 'plugins.php' )
+								);
+
+								// Check Woostify Sites status.
+								$type = 'install';
+								if ( file_exists( ABSPATH . 'wp-content/plugins/' . $plugin_slug ) ) {
+									$activate = is_plugin_active( $plugin_slug . '/woostify-sites.php' ) ? 'activate' : 'deactivate';
+									$type     = $activate;
+								}
+
+								// Generate button.
+								$button = '<a href="' . esc_url( admin_url( 'admin.php?page=woostify-sites' ) ) . '" class="woostify-button button-primary" target="_blank">' . esc_html__( 'Import Demo', 'woostify' ) . '</a>';
+
+								// If Woostifu Site install.
+								if ( ! defined( 'WOOSTIFY_SITES_VER' ) ) {
+									if ( 'deactivate' === $type ) {
+										$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $slug ) . '" class="woostify-button button button-primary woostify-active-now" href="' . esc_url( $nonce ) . '">' . esc_html__( 'Activate', 'woostify' ) . '</a>';
+									} else {
+										$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $plugin_slug ) . '" href="' . esc_url( $nonce ) . '" class="woostify-button install-now button button-primary woostify-install-demo">' . esc_html__( 'Install Woostify Library', 'woostify' ) . '</a>';
+									}
+								}
+
+								// Data.
+								wp_localize_script(
+									'woostify-install-demo',
+									'woostify_install_demo',
+									array(
+										'activating' => esc_html__( 'Activating', 'woostify' ),
+										'installing' => esc_html__( 'Installing', 'woostify' ),
+									)
+								);
+								?>
+
+								<p>
+									<?php echo wp_kses_post( $button ); ?>
+								</p>
+							</div>
+							<div class="woostify-setting-tab-content" data-tab="changelog">
+								<div class="woostify-setting-tab-head">
+									<a href="#changelog-woostify-theme" class="tab-head-button active"><?php esc_html_e( 'Woostify Theme', 'woostify' ); ?></a>
+									<a href="#changelog-woostify-pro" class="tab-head-button"><?php esc_html_e( 'Woostify Pro', 'woostify' ); ?></a>
+								</div>
+								<div class="woostify-setting-tab-content active" data-tab="changelog-woostify-theme">
+									<h2><?php esc_html_e( 'Changelog woostify theme', 'woostify' ); ?></h2>
+								</div>
+								<div class="woostify-setting-tab-content" data-tab="changelog-woostify-pro">
+									<h2><?php esc_html_e( 'Changelog woostify pro', 'woostify' ); ?></h2>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>			
+				<!-- <div class="wrap woostify-enhance">
 					<div class="woostify-notices-wrap" style="display:none;">
 						<h2 class="notices" style="display:none;"></h2>
 					</div>
 					
-					<div class="woostify-welcome-container">
-						<div class="woostify-enhance-content">
-							<div class="woostify-welcome-settings-section-tab woostify-enhance-settings-section-tab">
-								<div class="woostify-setting-tab-content-wrapper">
-									<div class="woostify-setting-tab-content active" data-tab="dashboard">
-										<h2 class="section-header"><?php esc_html_e( 'Customizer Shortcuts', 'woostify' ); ?></h2>
-										<div class="woostify-grid-box">
-											<?php
-											foreach ( $this->woostify_welcome_customizer_settings() as $key ) {
-												$url = get_admin_url() . 'customize.php?autofocus[' . $key['type'] . ']=' . $key['setting'];
-
-												$disabled = '';
-												$title    = '';
-												if ( '' !== $key['required'] && ! class_exists( $key['required'] ) ) {
-													$disabled = ' disabled';
-
-													/* translators: 1: Class name */
-													$title = sprintf( __( '%s not activated.', 'woostify' ), ucfirst( $key['required'] ) );
-
-													$url = '#';
-												}
-												?>
-
-												<div class="box-item<?php echo esc_attr( $disabled ); ?>" title="<?php echo esc_attr( $title ); ?>">
-													<span class="box-item__icon <?php echo esc_attr( $key['icon'] ); ?>"></span>
-													<h4 class="box-item__name"><?php echo esc_html( $key['name'] ); ?></h4>
-													<a class="box-item__link" href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Go to option', 'woostify' ); ?></a>
-												</div>
-											<?php } ?>
-										</div>
-
-
-										<div class="woostify-pro-featured pro-featured-list">
-											<?php if ( ! defined( 'WOOSTIFY_PRO_VERSION' ) ) : ?>
-												<h2 class="section-header">
-													<a class="woostify-learn-more wp-ui-text-highlight" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank"><?php esc_html_e( 'Get Woostify  Pro Extensions!', 'woostify' ); ?></a>
-												</h2>
-												<div class="woostify-grid-box">
-													<?php foreach ( $pro_modules as $module ) { ?>
-														<div class="box-item box-item--text box-item--disabled">
-															<span class="box-item__icon dashicons dashicons-lock"></span>
-															<h4 class="box-item__name">
-																<?php echo esc_html( $module['title'] ); ?>
-															</h4>
-															<?php if ( '' !== $module['desc'] ) { ?>
-																<p class="box-item__desc"><?php echo esc_html( $module['desc'] ); ?></p>
-															<?php } ?>
-															<a href="<?php echo esc_url( $module['setting_url'] ); ?>" class="learn-more-featured box-item__link" target="_blank"><?php esc_html_e( 'Learn more', 'woostify' ); ?></a>
-														</div>
-													<?php } ?>
-												</div>
-											<?php endif; ?>
-
-											<?php do_action( 'woostify_pro_panel_column' ); ?>
-										</div>
-									</div>
-									<div class="woostify-setting-tab-content" data-tab="add-ons">
-										<div class="woostify-pro-featured pro-featured-list">
-											<?php do_action( 'woostify_pro_panel_column' ); ?>
-										</div>
-									</div>
-									<div class="woostify-setting-tab-content" data-tab="starter-templates">
-										<h2><?php esc_html_e( 'Starter Templates', 'woostify' ); ?></h2>
-										<p>
-											<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify Demo Sites.', 'woostify' ); ?>
-										</p>
-										<p>
-											<?php esc_html_e( 'It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc.', 'woostify' ); ?>
-										</p>
-										<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/demo-sites.jpg' ); ?>" alt="woostify Powerpack" />
-										<?php
-										$plugin_slug = 'woostify-sites-library';
-										$slug        = 'woostify-sites-library/woostify-sites.php';
-										$redirect    = admin_url( 'admin.php?page=woostify-sites' );
-										$nonce       = add_query_arg(
-											array(
-												'action'   => 'activate',
-												'_wpnonce' => wp_create_nonce( 'activate-plugin_' . $slug ),
-												'plugin'   => rawurlencode( $slug ),
-												'paged'    => '1',
-												'plugin_status' => 'all',
-											),
-											network_admin_url( 'plugins.php' )
-										);
-
-										// Check Woostify Sites status.
-										$type = 'install';
-										if ( file_exists( ABSPATH . 'wp-content/plugins/' . $plugin_slug ) ) {
-											$activate = is_plugin_active( $plugin_slug . '/woostify-sites.php' ) ? 'activate' : 'deactivate';
-											$type     = $activate;
-										}
-
-										// Generate button.
-										$button = '<a href="' . esc_url( admin_url( 'admin.php?page=woostify-sites' ) ) . '" class="woostify-button button-primary" target="_blank">' . esc_html__( 'Import Demo', 'woostify' ) . '</a>';
-
-										// If Woostifu Site install.
-										if ( ! defined( 'WOOSTIFY_SITES_VER' ) ) {
-											if ( 'deactivate' === $type ) {
-												$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $slug ) . '" class="woostify-button button button-primary woostify-active-now" href="' . esc_url( $nonce ) . '">' . esc_html__( 'Activate', 'woostify' ) . '</a>';
-											} else {
-												$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $plugin_slug ) . '" href="' . esc_url( $nonce ) . '" class="woostify-button install-now button button-primary woostify-install-demo">' . esc_html__( 'Install Woostify Library', 'woostify' ) . '</a>';
-											}
-										}
-
-										// Data.
-										wp_localize_script(
-											'woostify-install-demo',
-											'woostify_install_demo',
-											array(
-												'activating' => esc_html__( 'Activating', 'woostify' ),
-												'installing' => esc_html__( 'Installing', 'woostify' ),
-											)
-										);
-										?>
-
-										<p>
-											<?php echo wp_kses_post( $button ); ?>
-										</p>
-									</div>
-									<div class="woostify-setting-tab-content" data-tab="changelog">
-										<div class="woostify-setting-tab-head">
-											<a href="#changelog-woostify-theme" class="tab-head-button active"><?php esc_html_e( 'Woostify Theme', 'woostify' ); ?></a>
-											<a href="#changelog-woostify-pro" class="tab-head-button"><?php esc_html_e( 'Woostify Pro', 'woostify' ); ?></a>
-										</div>
-										<div class="woostify-setting-tab-content active" data-tab="changelog-woostify-theme">
-											<h2><?php esc_html_e( 'Changelog woostify theme', 'woostify' ); ?></h2>
-										</div>
-										<div class="woostify-setting-tab-content" data-tab="changelog-woostify-pro">
-											<h2><?php esc_html_e( 'Changelog woostify pro', 'woostify' ); ?></h2>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="woostify-enhance-sidebar">
-							<?php do_action( 'woostify_pro_panel_sidebar' ); ?>
-
-							<div class="woostify-enhance__column list-section-wrapper">
-								<h3><?php esc_html_e( 'Document', 'woostify' ); ?></h3>
-
-								<div class="wf-quick-setting-section">
-									<p>
-										<?php esc_html_e( 'Want a guide? We have video tutorials to walk you through getting started.', 'woostify' ); ?>
-									</p>
-
-									<p>
-										<a href="<?php echo esc_url( $woostify_url ); ?>/docs" class="woostify-button"><?php esc_html_e( 'Visit Documentation', 'woostify' ); ?></a>
-									</p>
-								</div>
-							</div>
-
-							<div class="woostify-enhance__column list-section-wrapper">
-								<h3><?php esc_html_e( 'Community', 'woostify' ); ?></h3>
-
-								<div class="wf-quick-setting-section">
-									<p>
-										<?php esc_html_e( 'Join our community! Share your site, ask a question and help others.', 'woostify' ); ?>
-									</p>
-
-									<p>
-										<a href="<?php echo esc_url( $facebook_url ); ?>/groups/2245150649099616/" class="woostify-button"><?php esc_html_e( 'Join Our Facebook Group', 'woostify' ); ?></a>
-									</p>
-								</div>
-							</div>
-
-							<div class="woostify-enhance__column list-section-wrapper">
-								<h3><?php esc_html_e( 'Support', 'woostify' ); ?></h3>
-
-								<div class="wf-quick-setting-section">
-									<p>
-										<?php esc_html_e( 'Have a question, we are happy to help! Get in touch with our support team.', 'woostify' ); ?>
-									</p>
-
-									<p>
-										<a href="<?php echo esc_url( $woostify_url ); ?>/contact/" class="woostify-button"><?php esc_html_e( 'Submit a Ticket', 'woostify' ); ?></a>
-									</p>
-								</div>
-							</div>
-
-							<div class="woostify-enhance__column list-section-wrapper">
-								<h3><?php esc_html_e( 'Love Woostify?', 'woostify' ); ?></h3>
-
-								<div class="wf-quick-setting-section">
-									<p>
-										<a href="<?php echo esc_url( '//wordpress.org/support/theme/woostify/reviews/#new-post' ); ?>/contact/" class="woostify-button"><?php esc_html_e( 'Give us 5 stars!', 'woostify' ); ?></a>
-									</p>
-								</div>
-
-							</div>
-
-						</div>
-					</div>
-				</div>
+					
+				</div> -->
 			</div>
 			<?php
+		}
+
+		/**
+		 * Add admin setting hide all notice
+		 */
+		public function woostify_hide_all_noticee_page_setting(){
+			$screen = get_current_screen();
+			if ( $screen->id == 'toplevel_page_woostify-welcome' ) {
+				remove_all_actions( 'user_admin_notices' );
+				remove_all_actions( 'admin_notices' );
+			}				
+			
 		}
 	}
 

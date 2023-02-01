@@ -1,8 +1,51 @@
 .woostify-options-wrap {
-	.woostify-enhance {
-		margin-top: 4em;
+	.woostify-welcome-nav {
+		.woostify-setting-tab-head {
+			display: flex;
+			align-items: stretch;
+			flex-direction: row;
+			justify-content: center;
+
+			.tab-head-button {
+				padding: 0;
+				margin: 0 20px;
+				display: inline-block;
+				font-weight: 600;
+				font-size: 14px;
+				color: #637381;
+				line-height: 80px;
+				position: relative;
+
+				&::after {
+					content: '';
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					width: 100%;
+					height: 3px;
+					background: #4644B7;
+					opacity: 0;
+					visibility: hidden;
+				}
+
+				&.active {
+					background: #fff;
+					border-radius: 4px 4px 0 0;
+					color: #212B36;
+
+					&::after {
+						content: '';
+						opacity: 1;
+						visibility: visible;
+					}
+				}				
+			}
+		}
+	}
+	.woostify-welcome-content {
 		max-width: 1140px;
-		padding: 0 15px;
+    	padding: 0 15px;
+		margin: 4em auto;
 
 		@media ( min-width: 1140px ) {
 			margin: 4em auto;
@@ -12,6 +55,75 @@
 			content: '';
 			clear: both;
 			display: block;
+		}
+
+		.woostify-welcome-settings-section-tab {
+
+			.woostify-setting-tab-content {
+
+				&:first-child {
+					border-top-left-radius: 0;
+				}
+
+				&:not(.active) {
+					display: none;
+				}
+
+				.section-header {
+					margin: 1em 0;
+					display: flex;
+    				justify-content: space-between;
+					align-items: center;
+
+					.section-header-link {
+						font-size: 14px;
+						font-weight: normal;
+						color: #4644B7;
+					}
+
+					&:first-child {
+						margin-top: 0;
+					}
+				}
+
+				&[data-tab="starter-templates"] {
+					text-align: center;
+					p {
+						margin: 0 0 5px 0;
+					}
+
+					img {
+						margin: 10px 0;
+					}
+
+					h2 {
+						margin-top: 20px;
+						margin-bottom: 1.5em;
+						text-align: center;
+						color: #001099;
+						font-size: 1.6em;
+					}
+				}
+			}
+
+			.woostify-setting-tab-head {
+				display: flex;
+				align-items: stretch;
+				flex-direction: row;
+
+				.tab-head-button {
+					padding: 12px 20px;
+					display: inline-block;
+					font-weight: 500;
+					color: #3c434a;
+
+					&.active {
+						background: #fff;
+						border-radius: 4px 4px 0 0;
+						color: #2271b1;
+					}
+				}
+			}
 		}
 
 		.woostify-welcome-container {
@@ -40,80 +152,10 @@
 			position: sticky;
 			position: -webkit-sticky;
 			top: 0;
-			margin-top: 42px;
 
 			@media ( min-width: 1140px ) {
 				max-width: 300px;
 			}
-		}
-
-		.woostify-welcome-settings-section-tab {
-
-			.woostify-setting-tab-head {
-				display: flex;
-				align-items: stretch;
-				flex-direction: row;
-
-				.tab-head-button {
-					padding: 12px 20px;
-					display: inline-block;
-					font-weight: 500;
-					color: #3c434a;
-
-					&.active {
-						background: #fff;
-						border-radius: 4px 4px 0 0;
-						color: #2271b1;
-					}
-				}
-			}
-
-			.woostify-setting-tab-content-wrapper {
-				.woostify-setting-tab-content {
-					background: #fff;
-					padding: 20px;
-					border-radius: 4px;
-
-					&:first-child {
-						border-top-left-radius: 0;
-					}
-
-					&:not(.active) {
-						display: none;
-					}
-
-					.section-header {
-						margin: 1em 0;
-
-						&:first-child {
-							margin-top: 0;
-						}
-					}
-
-					&[data-tab="starter-templates"] {
-						text-align: center;
-						p {
-							margin: 0 0 5px 0;
-						}
-
-						img {
-							margin: 10px 0;
-						}
-
-						h2 {
-							margin-top: 20px;
-							margin-bottom: 1.5em;
-							text-align: center;
-							color: #001099;
-							font-size: 1.6em;
-						}
-					}
-				}
-			}
-		}
-
-		.pro-featured-list {
-			margin-top: 2em;
 		}
 
 		.woostify-grid-box {
@@ -194,6 +236,7 @@
 			overflow: hidden;
 			padding: 1.5em;
 			box-sizing: border-box;
+			border-radius: 16px;
 
 			@media ( min-width: 720px ) {
 				margin-bottom: 20px;
@@ -245,7 +288,7 @@
 			}
 
 			img {
-				width: 100%;
+				max-width: 100%;
 				height: auto;
 				margin-bottom: 1.5em;
 			}
@@ -271,6 +314,22 @@
 				}
 			}
 		}
+	}
+
+	.woostify-enhance {
+		margin-top: 4em;
+		max-width: 1140px;
+		padding: 0 15px;
+
+		@media ( min-width: 1140px ) {
+			margin: 4em auto;
+		}
+
+		&:after{
+			content: '';
+			clear: both;
+			display: block;
+		}		
 	}
 
 	a.woostify-button {
