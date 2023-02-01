@@ -356,63 +356,62 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 									</span>
 								</span>
 								<?php
-									if ( class_exists( 'Woostify_FBT' ) ) {
-										$bundles       = get_post_meta( $product_id, 'woostify_fbt', true );
-										$bundles_added = explode( ',', ( isset( $cart_item['bundle-products'] ) ? $cart_item['bundle-products'] : '' ) );
+								if ( class_exists( 'Woostify_FBT' ) ) {
+									$bundles       = get_post_meta( $product_id, 'woostify_fbt', true );
+									$bundles_added = explode( ',', ( isset( $cart_item['bundle-products'] ) ? $cart_item['bundle-products'] : '' ) );
 
-										if ( isset( $cart_item['bundle-products'] ) && $cart_item['bundle-products'] ) {
-											$product_price = apply_filters( 'woocommerce_widget_cart_item_quantity', wc_price( round( $cart_item['custom-price'], 2 ) ), $cart_item, $cart_item_key );
-										} else {
-											$product_price = apply_filters( 'woocommerce_widget_cart_item_quantity',  $product_price, $cart_item, $cart_item_key );
-										}
+									if ( isset( $cart_item['bundle-products'] ) && $cart_item['bundle-products'] ) {
+										$product_price = apply_filters( 'woocommerce_widget_cart_item_quantity', wc_price( round( $cart_item['custom-price'], 2 ) ), $cart_item, $cart_item_key );
+									} else {
+										$product_price = apply_filters( 'woocommerce_widget_cart_item_quantity', $product_price, $cart_item, $cart_item_key );
 									}
+								}
 								?>
 								<span class="mini-cart-product-price"><?php echo wp_kses_post( $product_price ); ?></span>
 
 								<?php do_action( 'woostify_mini_cart_item_after_price', $_product ); ?>
 							</span>
-							<?php 
-								if ( class_exists( 'Woostify_FBT' ) ) {
-									if ( $cart_item['bundle-products'] != '' ) {
+							<?php
+							if ( class_exists( 'Woostify_FBT' ) ) {
+								if ( $cart_item['bundle-products'] != '' ) { // phpcs:ignore
+									$bundles       = get_post_meta( $product_id, 'woostify_fbt', true );
+									$bundles_added = explode( ',', ( isset( $cart_item['bundle-products'] ) ? $cart_item['bundle-products'] : '' ) );
+									if ( $bundles ) {
+										$custom_variable = $cart_item['bundle-variable'];
 
-										$bundles       = get_post_meta( $product_id, 'woostify_fbt', true );
-										$bundles_added = explode( ',', ( isset( $cart_item['bundle-products'] ) ? $cart_item['bundle-products'] : '' ) );									
-										if ( $bundles ) {
-											$custom_variable = $cart_item['bundle-variable'];
+										echo '<ul class="product-bundle fr pd__0">';
+										foreach ( $bundles as $key => $val ) {
+											if ( isset( $val['id'] ) && in_array( $val['id'], $bundles_added ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
+												$product_item = wc_get_product( intval( $val['id'] ) );
 
-											echo '<ul class="product-bundle fr pd__0">';
-											foreach( $bundles as $key => $val ) {										
-												if ( isset($val['id']) && in_array( $val['id'], $bundles_added ) ) {
-													$product_item = wc_get_product( intval( $val['id'] ) );
+												echo '<li class="pr mini_cart_item">';
+												echo '<a href="' . $product_item->get_permalink() . '" title="' . $product_item->get_name() . '">' . $product_item->get_image() . $product_item->get_name() . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+												// Get variable.
+												if ( ! empty( $val['variable'] ) ) {
+													$variable = wp_unslash( $val['variable'] );
 
-													echo '<li class="pr">';
-														echo '<a href="'. $product_item->get_permalink() .'" title="'. $product_item->get_name() .'">'. $product_item->get_name() .'</a>';
-														// Get variable
+													if ( isset( $custom_variable[ $val['id'] ] ) && count( $custom_variable[ $val['id'] ] ) > 0 ) {
+														// Custom variable before add produt bundle to cart.
+														echo '<span class="db" style="text-transform: capitalize;">';
+															echo wp_kses_post( $custom_variable[ $val['id'] ]['variable'] );
+														echo '</span>';
+													} else {
 														if ( ! empty( $val['variable'] ) ) {
-															$variable = wp_unslash( $val['variable'] );
-
-															if ( isset( $custom_variable[$val['id']] ) && count( $custom_variable[$val['id']] ) > 0 ) {
-																// Custom variable before add produt bundle to cart
+															foreach ( $val['variable'] as $key => $value ) {
 																echo '<span class="db" style="text-transform: capitalize;">';
-																	echo wp_kses_post($custom_variable[$val['id']]['variable']);
+																	echo substr( $key, 13 ) . ': ' . $value; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 																echo '</span>';
-															} else {
-																if ( ! empty( $val['variable'] ) ) {
-																	foreach ( $val['variable'] as $key => $value ) {
-																		echo '<span class="db" style="text-transform: capitalize;">';
-																			echo substr( $key, 13 ) . ': ' . $value;
-																		echo '</span>';
-																	}
-																}
 															}
 														}
-													echo '</li>';
+													}
 												}
+												echo '</li>';
 											}
-											echo '</ul>';
 										}
+										echo '</ul>';
 									}
 								}
+							}
 							?>
 						</li>
 						<?php
@@ -537,12 +536,8 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 				</div>
 
 				<div class="cart-sidebar-content">
-					<?php 
-					if ( class_exists( 'Woostify_FBT' ) ) {
-						woocommerce_mini_cart();
-					}else {
-						woostify_mini_cart(); 
-					}					
+					<?php
+					woostify_mini_cart();
 					?>
 				</div>
 			</div>
@@ -844,11 +839,9 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 
 		// Get mini cart content.
 		ob_start();
-		if ( class_exists( 'Woostify_FBT' ) ) {
-			woocommerce_mini_cart();
-		}else {
-			woostify_mini_cart();
-		}
+
+		woostify_mini_cart();
+
 		$mini_cart = ob_get_clean();
 
 		// Cart item count.
