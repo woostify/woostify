@@ -51,7 +51,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_filter( 'excerpt_more', array( $this, 'woostify_modify_excerpt_more' ) );
 
 			// Compatibility.
-			add_action( 'elementor/widgets/widgets_registered', array( $this, 'woostify_add_elementor_widget' ) );
+			add_action( 'elementor/widgets/register', array( $this, 'woostify_add_elementor_widget' ) );
 			add_filter( 'the_content', array( $this, 'woostify_modify_the_content' ) );
 			add_action( 'init', array( $this, 'woostify_override_divi_color_pciker' ), 12 );
 
