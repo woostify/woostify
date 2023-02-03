@@ -147,8 +147,8 @@ if ( ! function_exists( 'woostify_single_product_gallery_open' ) ) {
 		$product    = wc_get_product( $product_id );
 		if ( $product ) {
 
-			$options    = woostify_options( false );
-			$gallery    = $options['shop_single_product_gallery_layout_select'];
+			$options = woostify_options( false );
+			$gallery = $options['shop_single_product_gallery_layout_select'];
 
 			$gallery_id = ! empty( $product ) ? $product->get_gallery_image_ids() : array();
 			$classes    = array();
@@ -165,7 +165,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_open' ) ) {
 			woostify_global_for_vartiation_gallery( $product );
 			?>
 			<div class="product-gallery <?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-pid="<?php esc_attr_e( $product->get_id() ); ?>">
-		<?php
+			<?php
 		}
 	}
 }
@@ -220,7 +220,32 @@ if ( ! function_exists( 'woostify_available_variation_gallery' ) ) {
 		$variation_image_id = $variation->get_image_id();
 		$product            = wc_get_product( $product_id );
 
-		if ( ! $product->is_type( 'variable' ) || ! class_exists( 'WC_Additional_Variation_Images' ) ) {
+		if ( ! $product->is_type( 'variable' ) ) {
+			return $available_variation;
+		}
+
+		/*
+		 * The image id is an id of an image which is assigned to a variation and it can be used
+		 */
+
+		if ( class_exists( 'Woostify_Variation_Swatches_Frontend' ) ) {
+			// context = 'edit': get data of child product, context = 'view|empty' if data product emty then get data of parent product.
+			$image_id          = $variation->get_image_id( 'edit' );
+			$variation_gallery = $variation->get_gallery_image_ids();
+			$attachments       = array_filter( $variation_gallery );
+
+			// Khoi tao mang gallery.
+			$available_variation['variation_gallery_images'] = array();
+
+			if ( ! empty( $image_id ) ) {
+				$available_variation['variation_gallery_images'][] = wc_get_product_attachment_props( $image_id );
+			}
+			foreach ( $attachments as $k => $v ) {
+				$available_variation['variation_gallery_images'][] = wc_get_product_attachment_props( $v );
+			}
+			return $available_variation;
+		}
+		if ( ! class_exists( 'WC_Additional_Variation_Images' ) ) {
 			return $available_variation;
 		}
 
@@ -285,23 +310,28 @@ if ( ! function_exists( 'woostify_global_for_vartiation_gallery' ) ) {
 	 * @param object $product The Product.
 	 */
 	function woostify_global_for_vartiation_gallery( $product ) {
-		if ( ! class_exists( 'WC_Additional_Variation_Images' ) && ! class_exists( 'Woo_Variation_Gallery' ) ) {
-			return;
+		if ( class_exists( 'WC_Additional_Variation_Images' ) || class_exists( 'Woo_Variation_Gallery' ) ) {
+			// Woostify Variation gallery.
+			wp_localize_script(
+				'woostify-product-variation',
+				'woostify_variation_gallery',
+				woostify_get_variation_gallery( $product )
+			);
+
+			// Woostify default gallery.
+			wp_localize_script(
+				'woostify-product-variation',
+				'woostify_default_gallery',
+				woostify_get_default_gallery( $product )
+			);
+		} elseif ( class_exists( 'Woostify_Variation_Swatches_Frontend' ) ) {
+			// Woostify default gallery.
+			wp_localize_script(
+				'woostify-product-variation',
+				'woostify_default_gallery',
+				woostify_get_default_gallery( $product )
+			);
 		}
-
-		// Woostify Variation gallery.
-		wp_localize_script(
-			'woostify-product-variation',
-			'woostify_variation_gallery',
-			woostify_get_variation_gallery( $product )
-		);
-
-		// Woostify default gallery.
-		wp_localize_script(
-			'woostify-product-variation',
-			'woostify_default_gallery',
-			woostify_get_default_gallery( $product )
-		);
 	}
 }
 

@@ -10,25 +10,127 @@
 
 function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 	let container      = document.querySelector( '.site-main .products' ),
-	view_more_btn_wrap = document.querySelector( '.woostify-view-more' )
+	view_more_btn_wrap = document.querySelector( '.woostify-view-more' ),
+	view_prev_btn_wrap = document.querySelector( '.woostify-view-prev' ),
+	view_prev_btn      = document.querySelector( '.w-view-prev-button' ),
+	pagination         = document.querySelector( '.woocommerce-pagination ul.page-numbers' );
 
 	if ( null == container ) {
 		container = document.querySelector( '.site-content .products' );
 	}
 
-	if ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) {
+	if ( ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) && ( null == view_prev_btn_wrap || 'undefined' === typeof( view_prev_btn_wrap ) ) ) {
 		return false;
 	}
+
+	if ( ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) ) {
+
+		let options = {
+			path: infScrollPath ? infScrollPath : '.prev.page-numbers',
+			append: '.product.type-product',
+			history: 'push',
+			hideNav: '.woocommerce-pagination',
+			loadOnScroll: false
+		}
+
+		window.infScroll = new InfiniteScroll(
+			container,
+			options
+		)
+
+		var pagePrev      = woostify_woocommerce_general.paged - 1,
+			page          = woostify_woocommerce_general.paged,
+			listPage      = {};
+
+
+		jQuery('.page-numbers').each( function(index, value) {
+			listPage[jQuery(value).text()] = jQuery(value).attr('href');
+		} )
+
+		if ( view_prev_btn_wrap && view_prev_btn ) {
+
+			view_prev_btn.addEventListener(
+				'click',
+				function() {
+					var elementHeight = infScroll.element.getBoundingClientRect().height,
+						view_prev_btn_wrap = document.querySelector( '.woostify-view-prev' );
+
+					if ( page <= 1 ) {
+						return;
+					}
+
+					let domParser = new DOMParser(),
+						path;
+
+					let { responseBody, domParseResponse, fetchOptions } = infScroll.options;
+
+					path = listPage[pagePrev];
+					history.pushState(null, '', path);
+					var url = jQuery('.page-numbers');
+
+					if ( typeof fetchOptions == 'function' ) {
+						fetchOptions = fetchOptions();
+					}
+					view_prev_btn.classList.add( 'circle-loading' );
+					var fetchPromise = fetch( path, fetchOptions )
+						.then( ( response ) => {
+							if ( !response.ok ) {
+								let error = new Error( response.statusText );
+								infScroll.onPageError( error, path, response );
+								return { response };
+							}
+							view_prev_btn.classList.remove( 'circle-loading' );
+							pagePrev--;
+							if ( pagePrev <= 0 ) {
+								view_prev_btn_wrap.style.display = 'none';
+							}
+
+							return response[ responseBody ]().then( ( body ) => {
+
+								let canDomParse = responseBody == 'text' && domParseResponse;
+								if ( canDomParse ) {
+									body = domParser.parseFromString( body, 'text/html' );
+								}
+
+								let items = body.querySelectorAll( infScroll.options.append );
+								if ( !items || !items.length ) return;
+
+								// get fragment if not provided
+								let fragment = getItemsFragment( items );
+
+								infScroll.element.insertBefore( fragment, infScroll.element.children[0] );
+								var scrollPages = infScroll.scrollPages;
+								var history = {
+									top: 0,
+									path: path,
+									title: response.title
+								};
+								infScroll.scrollPages.unshift(history);
+								for (var i = 1; i < infScroll.scrollPages.length; i++) {
+									infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
+								}
+							} );
+						} )
+					.catch( ( error ) => {
+						console.log(error);
+					} );
+				}
+			)
+
+		}
+		return false;
+	}
+
 	let loading_status = view_more_btn_wrap.querySelector( '.woostify-loading-status' ),
-	loading_type       = view_more_btn_wrap.getAttribute( 'data-loading_type' ),
-	view_more_btn      = view_more_btn_wrap.querySelector( '.w-view-more-button' ),
-	pagination         = document.querySelector( '.woocommerce-pagination ul.page-numbers' )
+	loading_type       = woostify_woocommerce_general.loading_type,
+	view_more_btn      = view_more_btn_wrap.querySelector( '.w-view-more-button' );
 
 	let options = {
 		path: infScrollPath ? infScrollPath : '.next.page-numbers',
 		append: '.product.type-product',
-		history: false,
+		history: 'push', // replace
 		hideNav: '.woocommerce-pagination',
+		checkLastPage: '.next.page-numbers',
 		loadOnScroll: 'button' === loading_type ? false : true
 	}
 
@@ -157,6 +259,27 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 		}
 	)
 
+	var pagePrev = woostify_woocommerce_general.paged - 1,
+		page     = infScroll.pageIndex,
+		listPage = {};
+
+
+	jQuery('.page-numbers').each( function(index, value) {
+		listPage[jQuery(value).text()] = jQuery(value).attr('href');
+	} )
+
+	if ( view_prev_btn_wrap && view_prev_btn ) {
+
+		view_prev_btn.addEventListener(
+			'click',
+			function() {
+				loadPreviewPage( infScroll, pagePrev, listPage );
+				pagePrev--;
+			}
+		)
+
+	}
+
 	if ( 'button' === loading_type && addEventClick ) {
 		view_more_btn.addEventListener(
 			'click',
@@ -165,6 +288,97 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 			}
 		)
 	}
+}
+
+function loadPreviewPage(infScroll, pagePrev, listPage ) {
+	let view_prev_btn = document.querySelector( '.w-view-prev-button' );
+	var elementHeight = infScroll.element.getBoundingClientRect().height,
+		view_prev_btn_wrap = document.querySelector( '.woostify-view-prev' ),
+		page = infScroll.pageIndex;
+	if ( page <= 1 ) {
+		return;
+	}
+
+	let domParser = new DOMParser(),
+		path;
+
+	let { responseBody, domParseResponse, fetchOptions } = infScroll.options;
+
+	if ( ( page - 1 ) == pagePrev ) {
+		path = jQuery('.prev.page-numbers').attr('href');
+	}
+	path = listPage[pagePrev];
+	history.pushState(null, '', path);
+	var url = jQuery('.page-numbers');
+
+	if ( typeof fetchOptions == 'function' ) {
+		fetchOptions = fetchOptions();
+	}
+	view_prev_btn.classList.add( 'circle-loading' );
+	var fetchPromise = fetch( path, fetchOptions )
+		.then( ( response ) => {
+			if ( !response.ok ) {
+				let error = new Error( response.statusText );
+				infScroll.onPageError( error, path, response );
+				return { response };
+			}
+			view_prev_btn.classList.remove( 'circle-loading' );
+			pagePrev--;
+			if ( pagePrev <= 0 ) {
+				view_prev_btn_wrap.style.display = 'none';
+			}
+
+			return response[ responseBody ]().then( ( body ) => {
+
+				let canDomParse = responseBody == 'text' && domParseResponse;
+				if ( canDomParse ) {
+					body = domParser.parseFromString( body, 'text/html' );
+				}
+
+				let items = body.querySelectorAll( infScroll.options.append );
+				if ( !items || !items.length ) return;
+
+				// get fragment if not provided
+				let fragment = getItemsFragment( items );
+
+				infScroll.element.insertBefore( fragment, infScroll.element.children[0] );
+				var scrollPages = infScroll.scrollPages;
+				var history = {
+					top: 0,
+					path: path,
+					title: response.title
+				};
+				infScroll.scrollPages.unshift(history);
+				for (var i = 1; i < infScroll.scrollPages.length; i++) {
+					infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
+				}
+			} );
+		} )
+	.catch( ( error ) => {
+		console.log(error);
+	} );
+};
+
+function refreshScripts( fragment ) {
+	let scripts = fragment.querySelectorAll('script');
+	for ( let script of scripts ) {
+	let freshScript = document.createElement('script');
+	// copy attributes
+	let attrs = script.attributes;
+	for ( let attr of attrs ) {
+	  freshScript.setAttribute( attr.name, attr.value );
+	}
+	// copy inner script code. #718, #782
+	freshScript.innerHTML = script.innerHTML;
+	script.parentNode.replaceChild( freshScript, script );
+	}
+}
+
+function getItemsFragment( items ) {
+	// add items to fragment
+	let fragment = document.createDocumentFragment();
+	if ( items ) fragment.append( ...items );
+	return fragment;
 }
 
 function cartSidebarOpen() {
@@ -963,8 +1177,9 @@ document.addEventListener(
 				woostifyStockQuantityProgressBar();
 			}
 		);
-
+		console.log(222);
 		woostifyInfiniteScroll( true );
+		// woostifyInfiniteScrollPreview(true);
 
 		jQuery( document.body ).on(
 			'adding_to_cart',
