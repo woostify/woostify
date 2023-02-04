@@ -378,7 +378,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 							</span>
 							<?php
 							if ( class_exists( 'Woostify_FBT' ) ) {
-								if ( $cart_item['bundle-products'] != '' ) { // phpcs:ignore
+								if ( !empty( $cart_item['bundle-products'] ) ) { // phpcs:ignore
 									$bundles       = get_post_meta( $product_id, 'woostify_fbt', true );
 									$bundles_added = explode( ',', ( isset( $cart_item['bundle-products'] ) ? $cart_item['bundle-products'] : '' ) );
 									if ( $bundles ) {
