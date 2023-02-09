@@ -509,6 +509,7 @@ document.addEventListener(
 					'found_variation',
 					function( e, variation ) {
 						resetCarousel();
+						console.log( variation);
 
 						// Update slider height.
 						setTimeout(
@@ -532,16 +533,24 @@ document.addEventListener(
 										thumbs.classList.add( 'variation-gallery' );
 									}
 								} else {
-									if( thumbs && thumbs.classList.contains( 'variation-gallery' ) ){
-										// Draw gallery default.
-										if ( 'undefined' !== typeof( woostify_default_gallery ) && woostify_default_gallery.length ) {
-											updateGallery( woostify_default_gallery, true );
+									// Draw gallery default.
+									if ( 'undefined' !== typeof( woostify_default_gallery ) && woostify_default_gallery.length ) {
+										var images = [];
+										if( variation.image||0 ) {
+											images.push( variation.image );
+											// Function forEach: array.forEach(function(currentValue, index, arr), thisValue).
+											woostify_default_gallery.forEach( function( item, index, default_gallery ) {
+												// this = images
+												if( index ) images.push( item );
+											}, images );
 										}
-									}else{
-										updateGallery( woostify_default_gallery, true );
-									}
-									if( thumbs ) {
-										thumbs.classList.remove( 'variation-gallery' );
+										else{
+											images = woostify_default_gallery;
+										}
+										updateGallery( images, true );
+										if( thumbs ) {
+											thumbs.classList.remove( 'variation-gallery' );
+										}
 									}
 								}
 							}
