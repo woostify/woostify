@@ -509,7 +509,6 @@ document.addEventListener(
 					'found_variation',
 					function( e, variation ) {
 						resetCarousel();
-						console.log( variation);
 
 						// Update slider height.
 						setTimeout(
