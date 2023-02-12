@@ -574,7 +574,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$product    = $product_id ? wc_get_product( $product_id ) : false;
 			$options    = woostify_options( false );
 
-			$product_max_quantity = $product->get_stock_quantity();
+			$product_max_quantity = '';
+			if ( $product ) {
+				$product_max_quantity = $product->get_stock_quantity();
+			}
 			if ( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ) {
 				$product_max_quantity = get_post_meta( $product_id, '_onpreorder_maximum_order', true );
 			}
