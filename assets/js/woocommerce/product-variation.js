@@ -62,6 +62,16 @@ function productVariation( selector, form ) {
 		'found_variation',
 		variationsForm,
 		function( event, variation ) {
+
+			// Update
+			if( variation.max_qty || 0 ){
+				woostify_woocommerce_general.qty_max_warning = woostify_woocommerce_general.qty_max_warning_variation.replace( '%s', variation.max_qty);
+			}
+
+			// Update product_id for button add to cart
+			var buttons = document.querySelectorAll( '.single_add_to_cart_button' );
+			buttons.forEach( elm => ( elm.value = variation.variation_id) );
+			
 			// get image url form `variation`.
 			var imgSrc  = variation.image.src,
 				fullSrc = variation.image.full_src,
@@ -153,6 +163,9 @@ function productVariation( selector, form ) {
 		'click',
 		function( e ) {
 			e.preventDefault();
+
+			// Resset qty_max_warning 
+			woostify_woocommerce_general.qty_max_warning = woostify_woocommerce_general.qty_max_warning_default;
 
 			// Support Product meta widget.
 			if ( productMetaSkuDefault ) {
