@@ -228,7 +228,7 @@ if ( ! function_exists( 'woostify_available_variation_gallery' ) ) {
 		 * The image id is an id of an image which is assigned to a variation and it can be used
 		 */
 
-		if ( class_exists( 'Woostify_Variation_Swatches_Frontend' ) ) {
+		if ( class_exists( 'Woostify_Variation_Swatches_Frontend' ) && !class_exists( 'Woo_Variation_Gallery' ) ) {
 			// context = 'edit': get data of child product, context = 'view|empty' if data product emty then get data of parent product.
 			$image_id          = $variation->get_image_id( 'edit' );
 			$variation_gallery = $variation->get_gallery_image_ids();
@@ -284,6 +284,10 @@ if ( ! function_exists( 'woostify_get_variation_gallery' ) ) {
 		if ( ! is_object( $product ) || ! $product->is_type( 'variable' ) ) {
 			return $images;
 		}
+
+		// Woo_Variation_Gallery: variation_gallery_images
+		// WC_Additional_Variation_Images: woostify_variation_gallery_images
+		// Woostify_Variation_Swatches: variation_gallery_images
 
 		$variations = array_values( $product->get_available_variations() );
 		$key        = class_exists( 'WC_Additional_Variation_Images' ) ? 'woostify_variation_gallery_images' : 'variation_gallery_images';
