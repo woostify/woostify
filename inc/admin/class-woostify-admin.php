@@ -208,42 +208,42 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				'woostify_panel_customizer_settings',
 				array(
 					'upload_logo' => array(
-						'icon'     => 'dashicons dashicons-format-image',
+						'icon'     => 'dashicons-format-image',
 						'name'     => __( 'Upload Logo', 'woostify' ),
 						'type'     => 'control',
 						'setting'  => 'custom_logo',
 						'required' => '',
 					),
 					'set_color'   => array(
-						'icon'     => 'dashicons dashicons-admin-appearance',
+						'icon'     => 'dashicons-admin-appearance',
 						'name'     => __( 'Set Colors', 'woostify' ),
 						'type'     => 'section',
 						'setting'  => 'woostify_color',
 						'required' => '',
 					),
 					'layout'      => array(
-						'icon'     => 'dashicons dashicons-layout',
+						'icon'     => 'dashicons-layout',
 						'name'     => __( 'Layout', 'woostify' ),
 						'type'     => 'panel',
 						'setting'  => 'woostify_layout',
 						'required' => '',
 					),
 					'button'      => array(
-						'icon'     => 'dashicons dashicons-admin-customizer',
+						'icon'     => 'dashicons-admin-customizer',
 						'name'     => __( 'Buttons', 'woostify' ),
 						'type'     => 'section',
 						'setting'  => 'woostify_buttons',
 						'required' => '',
 					),
 					'typo'        => array(
-						'icon'     => 'dashicons dashicons-editor-paragraph',
+						'icon'     => 'dashicons-editor-paragraph',
 						'name'     => __( 'Typography', 'woostify' ),
 						'type'     => 'panel',
 						'setting'  => 'woostify_typography',
 						'required' => '',
 					),
 					'shop'        => array(
-						'icon'     => 'dashicons dashicons-cart',
+						'icon'     => 'dashicons-cart',
 						'name'     => __( 'Shop', 'woostify' ),
 						'type'     => 'panel',
 						'setting'  => 'woostify_shop',
@@ -431,7 +431,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 													?>
 
 													<div class="box-item<?php echo esc_attr( $disabled ); ?>" title="<?php echo esc_attr( $title ); ?>">
-														<span class="box-item__icon <?php echo esc_attr( $key['icon'] ); ?>"></span>
+														<span class="box-item__icon <?php //echo esc_attr( $key['icon'] ); ?>"><img class="woostify-welcome-theme-icon-support" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/'.esc_attr( $key['icon'] ).'.png' ); ?>" alt="<?php esc_attr_e( 'Woostify Support', 'woostify' ); ?>"></span>
 														<h4 class="box-item__name"><?php echo esc_html( $key['name'] ); ?></h4>
 														<a class="box-item__link" href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Go to option', 'woostify' ); ?></a>
 													</div>
