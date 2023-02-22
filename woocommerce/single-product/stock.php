@@ -1,6 +1,6 @@
 <?php
 /**
- * Single Product stock.
+ * Single Product  stock.
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
