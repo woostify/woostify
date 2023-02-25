@@ -41,6 +41,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			add_action( 'admin_menu', array( $this, 'woostify_welcome_register_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'woostify_welcome_static' ) );
 			add_action( 'admin_body_class', array( $this, 'woostify_admin_classes' ) );
+			add_action( 'woostify_welcome_panel_sidebar', array( $this, 'woostify_admin_panel_sidebar' ) );
 		}
 
 		/**
@@ -511,62 +512,69 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						<div class="woostify-enhance-sidebar">
 							<?php do_action( 'woostify_pro_panel_sidebar' ); ?>
 
-							<div class="woostify-enhance__column list-section-wrapper">
-								<h3><?php esc_html_e( 'Document', 'woostify' ); ?></h3>
-
-								<div class="wf-quick-setting-section">
-									<p>
-										<?php esc_html_e( 'Want a guide? We have video tutorials to walk you through getting started.', 'woostify' ); ?>
-									</p>
-
-									<p>
-										<a href="<?php echo esc_url( $woostify_url ); ?>/docs" class="woostify-button"><?php esc_html_e( 'Visit Documentation', 'woostify' ); ?></a>
-									</p>
-								</div>
-							</div>
-
-							<div class="woostify-enhance__column list-section-wrapper">
-								<h3><?php esc_html_e( 'Community', 'woostify' ); ?></h3>
-
-								<div class="wf-quick-setting-section">
-									<p>
-										<?php esc_html_e( 'Join our community! Share your site, ask a question and help others.', 'woostify' ); ?>
-									</p>
-
-									<p>
-										<a href="<?php echo esc_url( $facebook_url ); ?>/groups/2245150649099616/" class="woostify-button"><?php esc_html_e( 'Join Our Facebook Group', 'woostify' ); ?></a>
-									</p>
-								</div>
-							</div>
-
-							<div class="woostify-enhance__column list-section-wrapper">
-								<h3><?php esc_html_e( 'Support', 'woostify' ); ?></h3>
-
-								<div class="wf-quick-setting-section">
-									<p>
-										<?php esc_html_e( 'Have a question, we are happy to help! Get in touch with our support team.', 'woostify' ); ?>
-									</p>
-
-									<p>
-										<a href="<?php echo esc_url( $woostify_url ); ?>/contact/" class="woostify-button"><?php esc_html_e( 'Submit a Ticket', 'woostify' ); ?></a>
-									</p>
-								</div>
-							</div>
-
-							<div class="woostify-enhance__column list-section-wrapper">
-								<h3><?php esc_html_e( 'Love Woostify?', 'woostify' ); ?></h3>
-
-								<div class="wf-quick-setting-section">
-									<p>
-										<a href="<?php echo esc_url( '//wordpress.org/support/theme/woostify/reviews/#new-post' ); ?>/contact/" class="woostify-button"><?php esc_html_e( 'Give us 5 stars!', 'woostify' ); ?></a>
-									</p>
-								</div>
-
-							</div>
-
+							<?php do_action( 'woostify_welcome_panel_sidebar' ); ?>
 						</div>
 					</div>
 				</div>
+			</div>
+			<?php
+		}
+
+		public function woostify_admin_panel_sidebar(){
+			$woostify_url = 'https://woostify.com';
+			$facebook_url = 'https://facebook.com';
+			?>
+			<div class="woostify-enhance__column list-section-wrapper">
+				<h3><?php esc_html_e( 'Document', 'woostify' ); ?></h3>
+
+				<div class="wf-quick-setting-section">
+					<p>
+						<?php esc_html_e( 'Want a guide? We have video tutorials to walk you through getting started.', 'woostify' ); ?>
+					</p>
+
+					<p>
+						<a href="<?php echo esc_url( $woostify_url ); ?>/docs" class="woostify-button"><?php esc_html_e( 'Visit Documentation', 'woostify' ); ?></a>
+					</p>
+				</div>
+			</div>
+
+			<div class="woostify-enhance__column list-section-wrapper">
+				<h3><?php esc_html_e( 'Community', 'woostify' ); ?></h3>
+
+				<div class="wf-quick-setting-section">
+					<p>
+						<?php esc_html_e( 'Join our community! Share your site, ask a question and help others.', 'woostify' ); ?>
+					</p>
+
+					<p>
+						<a href="<?php echo esc_url( $facebook_url ); ?>/groups/2245150649099616/" class="woostify-button"><?php esc_html_e( 'Join Our Facebook Group', 'woostify' ); ?></a>
+					</p>
+				</div>
+			</div>
+
+			<div class="woostify-enhance__column list-section-wrapper">
+				<h3><?php esc_html_e( 'Support', 'woostify' ); ?></h3>
+
+				<div class="wf-quick-setting-section">
+					<p>
+						<?php esc_html_e( 'Have a question, we are happy to help! Get in touch with our support team.', 'woostify' ); ?>
+					</p>
+
+					<p>
+						<a href="<?php echo esc_url( $woostify_url ); ?>/contact/" class="woostify-button"><?php esc_html_e( 'Submit a Ticket', 'woostify' ); ?></a>
+					</p>
+				</div>
+			</div>
+
+			<div class="woostify-enhance__column list-section-wrapper">
+				<h3><?php esc_html_e( 'Love Woostify?', 'woostify' ); ?></h3>
+
+				<div class="wf-quick-setting-section">
+					<p>
+						<a href="<?php echo esc_url( '//wordpress.org/support/theme/woostify/reviews/#new-post' ); ?>/contact/" class="woostify-button"><?php esc_html_e( 'Give us 5 stars!', 'woostify' ); ?></a>
+					</p>
+				</div>
+
 			</div>
 			<?php
 		}
