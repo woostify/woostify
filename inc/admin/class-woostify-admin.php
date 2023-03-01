@@ -460,7 +460,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 													</div>
 												<?php endif; ?>
 
-												<?php do_action( 'woostify_pro_panel_column' ); ?>
+												<?php // do_action( 'woostify_pro_panel_column' ); ?>
 											</div>
 										</div>
 									</div>
@@ -479,62 +479,65 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								</div>
 							</div>
 							<div class="woostify-setting-tab-content" data-tab="starter-sites">
-								<h2><?php esc_html_e( 'Starter Templates', 'woostify' ); ?></h2>
-								<p>
-									<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify Demo Sites.', 'woostify' ); ?>
-								</p>
-								<p>
-									<?php esc_html_e( 'It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc.', 'woostify' ); ?>
-								</p>
-								<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/demo-sites.jpg' ); ?>" alt="woostify Powerpack" />
-								<?php
-								$plugin_slug = 'woostify-sites-library';
-								$slug        = 'woostify-sites-library/woostify-sites.php';
-								$redirect    = admin_url( 'admin.php?page=woostify-sites' );
-								$nonce       = add_query_arg(
-									array(
-										'action'   => 'activate',
-										'_wpnonce' => wp_create_nonce( 'activate-plugin_' . $slug ),
-										'plugin'   => rawurlencode( $slug ),
-										'paged'    => '1',
-										'plugin_status' => 'all',
-									),
-									network_admin_url( 'plugins.php' )
-								);
+								<div class="starter-sites-wrap">
+									<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/wt-demo-sites.png' ); ?>" alt="woostify Powerpack" />
+									<div class="starter-sites-content">
+										<h2><?php esc_html_e( 'Import Demo', 'woostify' ); ?></h2>
+										<p>
+											<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify Demo Sites.', 'woostify' ); ?>
+										</p>
+										<p>
+											<?php esc_html_e( 'It will require other 3rd party plugins such as Elementor, WooCommerce, Contact form 7, etc.', 'woostify' ); ?>
+										</p>
+										<?php
+										$plugin_slug = 'woostify-sites-library';
+										$slug        = 'woostify-sites-library/woostify-sites.php';
+										$redirect    = admin_url( 'admin.php?page=woostify-sites' );
+										$nonce       = add_query_arg(
+											array(
+												'action'   => 'activate',
+												'_wpnonce' => wp_create_nonce( 'activate-plugin_' . $slug ),
+												'plugin'   => rawurlencode( $slug ),
+												'paged'    => '1',
+												'plugin_status' => 'all',
+											),
+											network_admin_url( 'plugins.php' )
+										);
 
-								// Check Woostify Sites status.
-								$type = 'install';
-								if ( file_exists( ABSPATH . 'wp-content/plugins/' . $plugin_slug ) ) {
-									$activate = is_plugin_active( $plugin_slug . '/woostify-sites.php' ) ? 'activate' : 'deactivate';
-									$type     = $activate;
-								}
+										// Check Woostify Sites status.
+										$type = 'install';
+										if ( file_exists( ABSPATH . 'wp-content/plugins/' . $plugin_slug ) ) {
+											$activate = is_plugin_active( $plugin_slug . '/woostify-sites.php' ) ? 'activate' : 'deactivate';
+											$type     = $activate;
+										}
 
-								// Generate button.
-								$button = '<a href="' . esc_url( admin_url( 'admin.php?page=woostify-sites' ) ) . '" class="woostify-button button-primary" target="_blank">' . esc_html__( 'Import Demo', 'woostify' ) . '</a>';
+										// Generate button.
+										$button = '<a href="' . esc_url( admin_url( 'admin.php?page=woostify-sites' ) ) . '" class="woostify-button button-primary" target="_blank">' . esc_html__( 'Activate Woostify site library', 'woostify' ) . '</a>';
 
-								// If Woostifu Site install.
-								if ( ! defined( 'WOOSTIFY_SITES_VER' ) ) {
-									if ( 'deactivate' === $type ) {
-										$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $slug ) . '" class="woostify-button button button-primary woostify-active-now" href="' . esc_url( $nonce ) . '">' . esc_html__( 'Activate', 'woostify' ) . '</a>';
-									} else {
-										$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $plugin_slug ) . '" href="' . esc_url( $nonce ) . '" class="woostify-button install-now button button-primary woostify-install-demo">' . esc_html__( 'Install Woostify Library', 'woostify' ) . '</a>';
-									}
-								}
+										// If Woostifu Site install.
+										if ( ! defined( 'WOOSTIFY_SITES_VER' ) ) {
+											if ( 'deactivate' === $type ) {
+												$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $slug ) . '" class="woostify-button button button-primary woostify-active-now" href="' . esc_url( $nonce ) . '">' . esc_html__( 'Activate', 'woostify' ) . '</a>';
+											} else {
+												$button = '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $plugin_slug ) . '" href="' . esc_url( $nonce ) . '" class="woostify-button install-now button button-primary woostify-install-demo">' . esc_html__( 'Install Woostify Library', 'woostify' ) . '</a>';
+											}
+										}
 
-								// Data.
-								wp_localize_script(
-									'woostify-install-demo',
-									'woostify_install_demo',
-									array(
-										'activating' => esc_html__( 'Activating', 'woostify' ),
-										'installing' => esc_html__( 'Installing', 'woostify' ),
-									)
-								);
-								?>
-
-								<p>
-									<?php echo wp_kses_post( $button ); ?>
-								</p>
+										// Data.
+										wp_localize_script(
+											'woostify-install-demo',
+											'woostify_install_demo',
+											array(
+												'activating' => esc_html__( 'Activating', 'woostify' ),
+												'installing' => esc_html__( 'Installing', 'woostify' ),
+											)
+										);
+										?>
+										<div>
+											<?php echo wp_kses_post( $button ); ?>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="woostify-setting-tab-content" data-tab="changelog">
 								<div class="woostify-setting-tab-head">
