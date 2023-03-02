@@ -460,7 +460,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 													</div>
 												<?php endif; ?>
 
-												<?php // do_action( 'woostify_pro_panel_column' ); ?>
+												<?php do_action( 'woostify_pro_panel_column' ); ?>
 											</div>
 										</div>
 									</div>
@@ -475,7 +475,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 							</div>
 							<div class="woostify-setting-tab-content" data-tab="add-ons">
 								<div class="woostify-pro-featured pro-featured-list">
-									<?php do_action( 'woostify_pro_panel_column' ); ?>
+									<?php do_action( 'woostify_pro_panel_addons' ); ?>
 								</div>
 							</div>
 							<div class="woostify-setting-tab-content" data-tab="starter-sites">
