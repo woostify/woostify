@@ -540,15 +540,17 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								</div>
 							</div>
 							<div class="woostify-setting-tab-content" data-tab="changelog">
-								<div class="woostify-setting-tab-head">
-									<a href="#changelog-woostify-theme" class="tab-head-button active"><?php esc_html_e( 'Woostify Theme', 'woostify' ); ?></a>
-									<a href="#changelog-woostify-pro" class="tab-head-button"><?php esc_html_e( 'Woostify Pro', 'woostify' ); ?></a>
-								</div>
-								<div class="woostify-setting-tab-content active" data-tab="changelog-woostify-theme">
-									<h2><?php esc_html_e( 'Changelog woostify theme', 'woostify' ); ?></h2>
-								</div>
-								<div class="woostify-setting-tab-content" data-tab="changelog-woostify-pro">
-									<h2><?php esc_html_e( 'Changelog woostify pro', 'woostify' ); ?></h2>
+								<div class="changelog-woostify-wrapper">
+									<div class="woostify-setting-tab-head">
+										<a href="#changelog-woostify-theme" class="tab-head-button active"><?php esc_html_e( 'Woostify Theme', 'woostify' ); ?></a>
+										<a href="#changelog-woostify-pro" class="tab-head-button"><?php esc_html_e( 'Woostify Pro', 'woostify' ); ?></a>
+									</div>
+									<div class="woostify-setting-tab-content changelog-woostify-theme active" data-tab="changelog-woostify-theme">
+										<h2><?php esc_html_e( 'Changelog woostify theme', 'woostify' ); ?></h2>
+									</div>
+									<div class="woostify-setting-tab-content changelog-woostify-pro" data-tab="changelog-woostify-pro">
+										<?php do_action( 'woostify_pro_panel_changelog' ); ?>
+									</div>
 								</div>
 							</div>
 						</div>
