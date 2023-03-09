@@ -275,6 +275,74 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			<?php
 		}
 
+		public function woostify_welcome_screen_changelog()
+		{
+			$request_changelog = wp_remote_get( 'https://woostify.com/wp-json/wp/v2/changelog?per_page=2&product=95' );
+
+			if( is_wp_error( $request_changelog ) ) {
+				return false; 
+			}
+
+			$changelog_total = (int) $request_changelog['headers']['x-wp-total'];
+			$changelog_totalpages = (int) $request_changelog['headers']['x-wp-totalpages'];
+	
+			$body = wp_remote_retrieve_body( $request_changelog );
+			
+			$data = json_decode( $body, true );
+
+			?>
+			<div class="changelog-woostify">
+				<div class="changelog-woostify-header">
+					<h2 class="changelog-woostify-title"><?php esc_html_e( 'Changelog woostify theme', 'woostify' ); ?></h2>
+					<a href="#" class="changelog-woostify-link theme-button"><?php esc_html_e( 'Woostify theme', 'woostify' ); ?></a>
+				</div>
+				<div class="changelog-woostify-content">
+					<ul class="changelog-woostify-version">
+					<?php foreach ( $data as $key => $value ) : ?>
+						<?php 
+						$ver_title = $value['title']['rendered'];
+						$date = date_create( $value['date'] );
+						$ver_date = date_format( $date,"F d, Y" ); 
+						$ver_content = $value['content']['rendered'];
+						?>
+						<li class="changelog-item">
+							<div class="changelog-version-heading">
+								<span><?php echo( $ver_title ); ?></span>
+								<span class="changelog-version-date"><?php echo( $ver_date ); ?></span>
+							</div>
+							<div class="changelog-version-content">
+								<?php echo( $ver_content ); ?>
+							</div>
+						</li>
+					<?php endforeach; ?>
+					</ul>
+				</div>
+				<div class="changelog-woostify-pagination ">
+					<div class="page-numbers" data-total-pages="<?php echo $changelog_totalpages; ?>" data-per-page="2" data-changelog-product="95">
+						<span class="page-pre disable" data-page-number="1">
+							<svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M4.87226 11.25C4.64531 11.2508 4.43023 11.1487 4.28726 10.9725L0.664757 6.47248C0.437269 6.19573 0.437269 5.79673 0.664757 5.51998L4.41476 1.01998C4.67985 0.701035 5.15331 0.657383 5.47226 0.92248C5.7912 1.18758 5.83485 1.66104 5.56976 1.97998L2.21726 5.99998L5.45726 10.02C5.64453 10.2448 5.68398 10.5579 5.55832 10.8222C5.43265 11.0864 5.16481 11.2534 4.87226 11.25Z" fill="#212B36"/>
+							</svg>
+						</span>
+						<?php for ( $page = 1; $page <= $changelog_totalpages; $page++ ) {
+							$class_active = ($page == 1) ? 'active' : '';
+							if ($page <= 5) {
+								$class_active .= ' actived';
+							}
+							echo '<span class="page-number ' . $class_active . '" data-page-number="' . $page . '">' . $page . '</span>';
+						} ?>
+						<span class="dots">...</span>
+						<span class="page-next">
+							<svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1.0001 11.25C0.824863 11.2503 0.655036 11.1893 0.520102 11.0775C0.366721 10.9503 0.270241 10.7673 0.251949 10.5689C0.233657 10.3705 0.295057 10.173 0.422602 10.02L3.7826 5.99996L0.542602 1.97246C0.416774 1.81751 0.3579 1.6188 0.379015 1.42032C0.40013 1.22184 0.499492 1.03996 0.655102 0.914959C0.811977 0.776929 1.01932 0.710602 1.22718 0.731958C1.43504 0.753313 1.62457 0.860415 1.7501 1.02746L5.3726 5.52746C5.60009 5.80421 5.60009 6.20321 5.3726 6.47996L1.6226 10.98C1.47 11.164 1.23878 11.2643 1.0001 11.25Z" fill="#212B36"/>
+							</svg>
+						</span>
+					</div>
+				</div>
+			</div>
+			<?php
+		}
+
 		/**
 		 * The welcome screen
 		 */
@@ -546,7 +614,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 										<a href="#changelog-woostify-pro" class="tab-head-button"><?php esc_html_e( 'Woostify Pro', 'woostify' ); ?></a>
 									</div>
 									<div class="woostify-setting-tab-content changelog-woostify-theme active" data-tab="changelog-woostify-theme">
-										<h2><?php esc_html_e( 'Changelog woostify theme', 'woostify' ); ?></h2>
+										<?php $this->woostify_welcome_screen_changelog(); ?>
 									</div>
 									<div class="woostify-setting-tab-content changelog-woostify-pro" data-tab="changelog-woostify-pro">
 										<?php do_action( 'woostify_pro_panel_changelog' ); ?>
