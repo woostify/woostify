@@ -191,6 +191,11 @@ body{
 		img {
 			margin-right: 10px;
 		}
+
+		@media ( max-width: 719px ) {
+			padding-top: 10px;
+			justify-content: center;
+		}
 	}
 
 	.woostify-welcome-nav__version {

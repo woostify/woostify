@@ -149,11 +149,17 @@ body[class*="woostify-welcome"] #wpcontent, body[class*="woostify-options_page"]
   display: flex;
   align-items: center;
   font-weight: 600;
-		font-size: 14px;
-    color: #000000;
+  font-size: 14px;
+  color: #000;
 }
 .woostify-welcome-nav .woostify-welcome-theme-support img {
   margin-right: 10px;
+}
+@media (max-width: 719px) {
+  .woostify-welcome-nav .woostify-welcome-theme-support {
+    padding-top: 10px;
+    justify-content: center;
+ }
 }
 .woostify-welcome-nav .woostify-welcome-nav__version {
   color: #fff;

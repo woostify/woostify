@@ -283,7 +283,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				return false; 
 			}
 
-			$changelog_total = (int) $request_changelog['headers']['x-wp-total'];
 			$changelog_totalpages = (int) $request_changelog['headers']['x-wp-totalpages'];
 	
 			$body = wp_remote_retrieve_body( $request_changelog );
@@ -294,7 +293,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			<div class="changelog-woostify">
 				<div class="changelog-woostify-header">
 					<h2 class="changelog-woostify-title"><?php esc_html_e( 'Changelog woostify theme', 'woostify' ); ?></h2>
-					<a href="#" class="changelog-woostify-link theme-button"><?php esc_html_e( 'Woostify theme', 'woostify' ); ?></a>
+					<div class="changelog-woostify-link theme-button"><?php esc_html_e( 'Woostify theme', 'woostify' ); ?></div>
 				</div>
 				<div class="changelog-woostify-content">
 					<ul class="changelog-woostify-version">
@@ -307,8 +306,8 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						?>
 						<li class="changelog-item">
 							<div class="changelog-version-heading">
-								<span><?php echo( $ver_title ); ?></span>
-								<span class="changelog-version-date"><?php echo( $ver_date ); ?></span>
+								<span><?php echo esc_html( $ver_title ); ?></span>
+								<span class="changelog-version-date"><?php echo esc_html( $ver_date ); ?></span>
 							</div>
 							<div class="changelog-version-content">
 								<?php echo( $ver_content ); ?>
@@ -319,7 +318,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				</div>
 				<div class="changelog-woostify-pagination ">
 					<div class="page-numbers" data-total-pages="<?php echo $changelog_totalpages; ?>" data-per-page="2" data-changelog-product="95">
-						<span class="page-pre disable" data-page-number="1">
+						<span class="page-pre disable">
 							<svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M4.87226 11.25C4.64531 11.2508 4.43023 11.1487 4.28726 10.9725L0.664757 6.47248C0.437269 6.19573 0.437269 5.79673 0.664757 5.51998L4.41476 1.01998C4.67985 0.701035 5.15331 0.657383 5.47226 0.92248C5.7912 1.18758 5.83485 1.66104 5.56976 1.97998L2.21726 5.99998L5.45726 10.02C5.64453 10.2448 5.68398 10.5579 5.55832 10.8222C5.43265 11.0864 5.16481 11.2534 4.87226 11.25Z" fill="#212B36"/>
 							</svg>

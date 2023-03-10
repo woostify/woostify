@@ -40,6 +40,23 @@
 					}
 				}				
 			}
+			
+			@media ( max-width: 767px ) {
+				.tab-head-button{
+					margin: 0 10px;
+				}
+			}
+
+			@media ( max-width: 375px ) {
+				flex-direction: column;
+				.tab-head-button{
+					line-height: 40px;
+					&::after{
+						width: 3px;
+						height: 100%;
+					}
+				}
+			}
 		}
 	}
 	.woostify-welcome-content {

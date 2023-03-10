@@ -39,6 +39,23 @@
 	 opacity: 1;
 	 visibility: visible;
 }
+ @media (max-width: 767px) {
+	 .woostify-options-wrap .woostify-welcome-nav .woostify-setting-tab-head .tab-head-button {
+		 margin: 0 10px;
+	}
+}
+ @media (max-width: 375px) {
+	 .woostify-options-wrap .woostify-welcome-nav .woostify-setting-tab-head {
+		 flex-direction: column;
+	}
+	 .woostify-options-wrap .woostify-welcome-nav .woostify-setting-tab-head .tab-head-button {
+		 line-height: 40px;
+	}
+	 .woostify-options-wrap .woostify-welcome-nav .woostify-setting-tab-head .tab-head-button::after {
+		 width: 3px;
+		 height: 100%;
+	}
+}
  .woostify-options-wrap .woostify-welcome-content {
 	 max-width: 1140px;
 	 padding: 0 15px;
