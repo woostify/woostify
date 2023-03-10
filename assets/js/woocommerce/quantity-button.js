@@ -46,6 +46,11 @@ function customQuantity() {
 				return;
 			}
 
+			// Overwrite type of input.
+			if( input.type == 'hidden' ) {
+				input.type = 'number';
+			}
+
 			// Add class ajax-ready on first load.
 			input.classList.add( 'ajax-ready' );
 
