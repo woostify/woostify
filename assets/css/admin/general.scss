@@ -85,8 +85,10 @@ a {
 		&:before {
 			content: url( ../../../assets/images/logo.svg );
 			transform: rotate( -30deg );
-			filter: grayscale( 90% );
 		}
+	}
+	.wp-menu-name{
+		padding: 10px !important;
 	}
 }
 

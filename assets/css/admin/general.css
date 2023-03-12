@@ -70,7 +70,9 @@ a:focus {
 #toplevel_page_woostify-welcome .wp-menu-image:before {
   content: url(../../../assets/images/logo.svg);
   transform: rotate(-30deg);
-  filter: grayscale(90%);
+}
+#toplevel_page_woostify-welcome .wp-menu-name{
+  padding: 10px !important;
 }
 /* Remove padding-left on options page */
 body[class*="woostify-welcome"] #wpcontent, body[class*="woostify-options_page"] #wpcontent {
