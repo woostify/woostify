@@ -7,7 +7,6 @@
 /* global woostify_product_images_slider_options, woostify_variation_gallery, woostify_default_gallery */
 
 'use strict';
-
 if ( typeof woostifyEvent == 'undefined' ){
 	var woostifyEvent = {};
 } 
@@ -146,7 +145,33 @@ document.addEventListener(
 		function calculateVerticalSliderHeight() {
 			var currFirstImage                = gallery ? gallery.querySelector( '.image-item img' ) : false;
 			var currFirstImageHeight          = currFirstImage ? currFirstImage.offsetHeight : 0;
-			productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
+			if ( currFirstImageHeight ) {
+				productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
+			}
+			var check = 0;
+			var intv = 0;
+
+			// Function check image is loaded.
+			function IsImageOk( img ){
+				if (!img.complete) {
+					return false;
+				}
+				if (typeof img.naturalWidth != "undefined" && img.naturalWidth == 0) {
+					return false;
+				}
+				return true;
+			}
+
+			intv = setInterval( function () {
+				if ( IsImageOk( currFirstImage ) && check < 20 ) {
+					var currFirstImageHeight          = currFirstImage ? currFirstImage.offsetHeight : 0;
+					if ( currFirstImageHeight ) {
+						productThumbnails.style.maxHeight = currFirstImageHeight + 'px';
+					}
+					clearInterval( intv );
+				}
+				check++;
+			}, 200);
 		}
 
 		function calculateThumbnailTotalWidth() {
@@ -479,35 +504,70 @@ document.addEventListener(
 		// Carousel action.
 		function carouselAction() {
 			// Trigger variation.
-			jQuery( 'form.variations_form' ).on(
-				'found_variation',
-				function( e, variation ) {
-					if( (woostifyEvent.carouselActionReady||0 ) ){
-						return;
-					}
-					resetCarousel();
+			if( !(woostifyEvent.carouselActionReady||0 ) ){
+				jQuery( 'form.variations_form' ).on(
+					'found_variation',
+					function( e, variation ) {
+						resetCarousel();
 
-					// Update slider height.
-					setTimeout(
-						function() {
-							window.dispatchEvent( new Event( 'resize' ) );
-						},
-						200
-					);
+						// Update slider height.
+						setTimeout(
+							function() {
+								window.dispatchEvent( new Event( 'resize' ) );
+							},
+							200
+						);
+						if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
+							updateGallery( woostify_variation_gallery, false, variation.variation_id );
+						}else{
+							// check if Woostify_Variation_Swatches_Frontend is exists
+							if( variation.variation_gallery_images || 0 ){
+								var thumbs = document.querySelector( '.product-thumbnail-images' );
 
-					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
-						updateGallery( woostify_variation_gallery, false, variation.variation_id );
+								// Neu chi co 1 image trong gallery và image nay trung voi product variation image thi coi nhu k co.
+								var has_gallery = ( ( variation.variation_gallery_images.length > 1 ) || (variation.variation_gallery_images.length && variation.image && variation.variation_gallery_images[0]['full_src'] != variation.image['full_src'] ) );
+								if( has_gallery ) {
+									updateGallery( variation.variation_gallery_images, true, variation.variation_id );
+									if( thumbs ) {
+										thumbs.classList.add( 'variation-gallery' );
+									}
+								} else {
+									// Draw gallery default.
+									if ( 'undefined' !== typeof( woostify_default_gallery ) && woostify_default_gallery.length ) {
+										var images = [];
+										if( variation.image||0 ) {
+											images.push( variation.image );
+											// Function forEach: array.forEach(function(currentValue, index, arr), thisValue).
+											woostify_default_gallery.forEach( function( item, index, default_gallery ) {
+												// this = images
+												if( index ) images.push( item );
+											}, images );
+										}
+										else{
+											images = woostify_default_gallery;
+										}
+										updateGallery( images, true );
+										if( thumbs ) {
+											thumbs.classList.remove( 'variation-gallery' );
+										}
+									}
+								}
+							}
+						}
 					}
-					woostifyEvent.carouselActionReady = 1;
-				}
-			);
+				);
+				woostifyEvent.carouselActionReady = 1;
+			}
 
 			// Trigger reset.
 			jQuery( '.reset_variations' ).on(
 				'click',
 				function(){
-					if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
+					if ( 'undefined' !== typeof( woostify_default_gallery ) && woostify_default_gallery.length ) {
 						updateGallery( woostify_default_gallery, true );
+						if( document.querySelector( '.product-thumbnail-images' ) ) {
+							document.querySelector( '.product-thumbnail-images').classList.remove( 'variation-gallery' );
+						}
 					}
 
 					resetCarousel();

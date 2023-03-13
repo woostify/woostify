@@ -105,4 +105,4 @@ class Woostify_Elementor_Single_Product_Images extends Widget_Base {
 		woocommerce_show_product_images();
 	}
 }
-Plugin::instance()->widgets_manager->register_widget_type( new Woostify_Elementor_Single_Product_Images() );
+Plugin::instance()->widgets_manager->register( new Woostify_Elementor_Single_Product_Images() );
