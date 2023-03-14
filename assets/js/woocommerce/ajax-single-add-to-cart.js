@@ -225,9 +225,26 @@ function woostifyAjaxSingleAddToCartButton() {
 	)
 }
 
+/**
+ * This source fixes specifically for Elementor Pro 3.9.2
+ * Issue: When use elementor theme builder, 
+ *  + click add to cart. an Error is display
+ * Fix: Remove event add_to_cart
+ **/
+function fixElementProErrorAddtoCart(){
+	if( typeof elementorFrontend != 'undefined'){
+		if( ( elementorFrontend.config.version||0) == '3.9.2' ){
+			elementorFrontend.elements.$body.off('added_to_cart.elementor-woocommerce-product-add-to-cart');
+		}
+	}
+}
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
 		woostifyAjaxSingleAddToCartButton();
+		
+		setTimeout( function(){
+			fixElementProErrorAddtoCart();
+		}, 200 );
 	}
 );
