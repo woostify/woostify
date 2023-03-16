@@ -118,6 +118,10 @@ var showAllModuleInfo = function () {
 	var moduleinfoviewalladdon = document.querySelector('.module-info-view-all-addon');  
 	var moduleinfolist         = document.querySelector('.woostify-module-info-list');
 	
+	if ( !showallbutton && moduleinfoviewalladdon != 'null' && moduleinfolist != 'null' ) {
+		return;
+	}
+
 	moduleinfoviewalladdon.classList.remove('hiden');
 	moduleinfolist.classList.remove('active');
 

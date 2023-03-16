@@ -435,12 +435,12 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/woobuider/',
 				),
 				array(
-					'name'        => 'woostify_wc_ajax_shop_filter',
-					'title'       => __( 'Ajax Product Filter', 'woostify' ),
+					'name'        => 'woostify_smart_product_filter',
+					'title'       => __( 'Smart Product Filter', 'woostify' ),
 					'description' => __( 'Filters by any criteria, attributes, taxonomies, prices, or other product data.', 'woostify' ),
 					'icon'		  => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-smart-product-filter.png',
 					'category'    => array( 'ecommerce' ),
-					'setting_url' => esc_url( $woostify_url ),
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/smart-product-filter/',
 				),
 				array(
 					'name'        => 'woostify_wc_ajax_product_search',
@@ -448,7 +448,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'description' => __( 'Allow customers to get instant live search results as they type their query', 'woostify' ),
 					'icon'		  => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-ajax-search.png',
 					'category'    => array( 'ecommerce' ),
-					'setting_url' => esc_url( $woostify_url ),
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/woocommerce-product-search/',
 				),
 				array(
 					'name'        => 'woostify_size_guide',
@@ -507,10 +507,26 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/variation-swatches/',
 				),
 				array(
+					'name'        => 'woostify_wc_callback',
+					'title'       => __( 'Call Back', 'woostify' ),
+					'description' => __( 'Displays the email subscription form when the product is out of stock', 'woostify' ),
+					'icon'		  => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-callback.png',
+					'category'    => array( 'ecommerce' ),
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/callback/',
+				),
+				array(
+					'name'        => 'woostify_wc_pre_order',
+					'title'       => __( 'Pre Order', 'woostify' ),
+					'description' => __( 'Allows customers to place an order for your upcoming products', 'woostify' ),
+					'icon'		  => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-pre-order.png',
+					'category'    => array( 'ecommerce' ),
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/pre-order/',
+				),
+				array(
 					'name'        => 'woostify_wc_sale_notification',
 					'title'       => __( 'Sale Notification', 'woostify' ),
 					'description' => __( 'Displays the email subscription form when the product is out of stock', 'woostify' ),
-					'icon'		  => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-callback.png',
+					'icon'		  => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-sale-notification.png',
 					'category'    => array( 'ecommerce' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/sale-notification/',
 				),
@@ -590,11 +606,11 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 																echo esc_html( sprintf( __( 'Woostify Pro Add-ons', 'woostify' ), WOOSTIFY_VERSION ) );
 																?>
 															</h2>
-															<a href="<?php echo esc_url( get_admin_url() ) . 'admin.php?page=woostify-welcome#add-ons" class="activate-add-ons'; ?>">
+															<div class="activate-add-ons">
 																<?php
 																echo esc_html( sprintf( __( 'Activate Add-ons', 'woostify' ), WOOSTIFY_VERSION ) );
 																?>
-															</a>
+															</div>
 														</div>
 														<div class="woostify-module-info-list">
 															<?php
@@ -603,7 +619,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 																$title 		 = $v['title'];
 																$description = $v['description'];
 																$icon 		 = $v['icon'];
-																$dos         = $v['setting_url'];
+																$doc        = $v['setting_url'];
 																$category = implode(" ", $v['category'] );
 																?>
 																<div class="module-info-item <?php echo esc_attr( $category ); ?> <?php echo esc_attr( $name ); ?>">
@@ -614,7 +630,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 																	<div class="module-info-item-content">
 																		<h4 class="module-info-item-title"><?php echo esc_html( $title ); ?></h4>
 																		<div class="module-info-item-description"><?php echo esc_html( $description ); ?></div>
-																		<a href="<?php echo esc_url( $dos ); ?>" class="module-info-item-doc"><?php esc_html_e( 'Documention', 'woostify' ); ?></a>
+																		<a href="<?php echo esc_url( $doc ); ?>" class="module-info-item-doc" target="_blank"><?php esc_html_e( 'Documention', 'woostify' ); ?></a>
 																	</div>
 																</div>
 																<?php

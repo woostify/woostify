@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap');
+
 * {
 	outline: none !important;
 }
@@ -196,6 +199,7 @@ body{
 		font-weight: 600;
 		font-size: 14px;
 		color: #000000;
+		font-family: 'Public Sans';
 
 		img {
 			margin-right: 10px;
@@ -259,6 +263,224 @@ body{
 	}
 }
 
+// woostify
+.woostify-options-wrap{
+	.woostify-welcome-nav{
+		.woostify-setting-tab-head{
+			.tab-head-button{
+				font-family: 'Public Sans';
+			}
+		}
+	}
+	.woostify-welcome-content{
+		.woostify-welcome-settings-section-tab{
+			.woostify-setting-tab-content{
+				.woostify-enhance-content{
+					.woostify-enhance__column{
+						margin-bottom: 30px;
+						padding: 30px 30px 50px;
+						&:last-child{
+							padding-bottom: 30px;
+						}
+						.section-header{
+							font-family: 'Inter';
+							font-weight: 600;
+							font-size: 17px;
+							line-height: 21px;
+							color: #000000;
+							margin-bottom: 37px;
+						}
+						.section-header-link{
+							font-family: 'Inter';
+							font-style: normal;
+							font-weight: 400;
+							font-size: 14px;
+							line-height: 17px;
+							color: #4644B7;
+						}
+						.woostify-grid-box{
+							grid-gap: 30px 18px;
+							.box-item{
+								padding: 12px 15px 19px;
+								background: #FBFDFF;
+								border: 1px solid #E2E8F0;
+								border-radius: 16px;
+								.box-item__icon{
+									width: 32px;
+									line-height: 0;
+									.woostify-welcome-theme-icon-support{
+										margin-bottom: 5px;
+									}
+								}
+								.box-item__name{
+									margin-top: 0;
+									font-family: 'Inter';
+									font-weight: 700;
+									font-size: 12px;
+									line-height: 15px;
+									color: #000000;
+								}
+								.box-item__link{
+									margin-top: 0;
+									font-family: 'Public Sans';
+									font-weight: 700;
+									font-size: 12px;
+									line-height: 20px;
+									padding: 4px 16px;
+									color: #212B36;
+									border: 1px solid rgba(145, 158, 171, 0.32);
+									border-radius: 8px;
+								}
+							}
+						}
+					}
+					@media (min-width: 1140px) {
+						margin-right: 49px;
+					}
+					@media (max-width: 767px) {
+						.woostify-enhance__column{
+							padding: 30px 25px 40px;
+						}
+					}
+					@media (max-width: 375px) {
+						.woostify-enhance__column{
+							padding: 25px 18px 40px;
+							.woostify-grid-box{
+								grid-gap: 25px 15px;
+								.box-item{
+									.box-item__link{
+										padding: 4px 8px;
+									}
+								}
+							}
+						}
+					}
+				}
+				.woostify-enhance-sidebar{
+					.woostify-enhance__column{
+						margin-bottom: 30px;
+						padding: 24px 19px;
+						.wf-quick-setting-section{
+							margin-top: 15px;
+							p{
+								margin: 14px 0;
+								font-family: 'Inter';
+								font-weight: 400;
+								font-size: 12px;
+								line-height: 15px;
+								color: #000000;
+								&:last-child{
+									margin-bottom: 0;
+								}
+							}
+							a{
+								font-family: 'Inter';
+								font-weight: 400;
+								font-size: 12px;
+								line-height: 15px;
+								color: #4644B7;
+								svg{
+									margin-left: 5px;
+								}
+							}
+						}
+						h3{
+							display: flex;
+							align-items: center;
+							font-family: 'Inter';
+							font-weight: 600;
+							font-size: 17px;
+							line-height: 21px;
+							color: #000000;
+							svg{
+								margin-left: 9px;
+							}
+						}
+					}
+				}
+				.starter-sites-wrap {
+					max-width: 480px;
+					margin-left: auto;
+					margin-right: auto;
+					background: #fff;
+					box-shadow: -40px 40px 80px -8px rgba(145,158,171,.24);
+					border-radius: 16px;
+					line-height: 0;
+					overflow: hidden;
+					text-align: center;
+					.starter-sites-content{
+						padding: 12px 24px 24px;
+						h2{
+							margin-top: 0;
+							margin-bottom: 12px;
+							font-family: 'Public Sans';
+							font-weight: 700;
+							font-size: 24px;
+							line-height: 36px;
+							color: #212b36;
+						}
+						p{
+							margin: 0;
+							font-family: 'Public Sans';
+							font-weight: 400;
+							font-size: 16px;
+							line-height: 24px;
+							color: #212b36;
+						}
+						.woostify-button{
+							margin-top: 24px;
+							display: block;
+							background: #4644b7;
+							border-radius: 8px;
+							font-family: 'Public Sans';
+							font-weight: 700;
+							font-size: 15px;
+							line-height: 26px;
+							padding: 10px;
+							text-align: center;
+						}
+					}
+				}
+				.changelog-woostify-wrapper{
+					max-width: 1000px;
+					width: 100%;
+					margin: 0 auto;
+					.woostify-setting-tab-head{
+						padding-left: 63px;
+						.tab-head-button{
+							margin: 0 2px;
+							font-weight: 400;
+							font-size: 14px;
+							line-height: 100%;
+							color: rgba(0, 0, 0, 0.8);
+							background: #F2F2F2;
+							border: 1px solid #DBDBDB;
+							border-radius: 4px 4px 0px 0px;
+							&.active{
+								font-weight: 700;
+								background: #FFFFFF;
+								border-width: 1px 1px 0px 1px;
+								border-style: solid;
+								border-color: #E5E5E5;
+								border-radius: 4px 4px 0px 0px;
+							}
+						}
+					}
+					@media (max-width: 767px) {
+						.woostify-setting-tab-head{
+							padding-left: 40px;
+							.tab-head-button{
+								font-size: 13px;
+								padding: 10px 16px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 // woostify module info
 .woostify-module-info{
 	position: relative;
@@ -305,7 +527,8 @@ body{
 			background: #FBFDFF;
 			border: 1px solid #E2E8F0;
 			border-radius: 16px;
-			height: max-content;
+			min-height: 76px;
+			height: auto;
 			display: flex;
 			align-items: flex-start;
 			position: relative;
@@ -407,50 +630,6 @@ body{
 }
 
 // Changelog
-.woostify-options-wrap{
-	.woostify-welcome-content{
-		.woostify-welcome-settings-section-tab{
-			.woostify-setting-tab-content{
-				.changelog-woostify-wrapper{
-					max-width: 1000px;
-					width: 100%;
-					margin: 0 auto;
-					.woostify-setting-tab-head{
-						padding-left: 63px;
-						.tab-head-button{
-							margin: 0 2px;
-							font-weight: 400;
-							font-size: 14px;
-							line-height: 100%;
-							color: rgba(0, 0, 0, 0.8);
-							background: #F2F2F2;
-							border: 1px solid #DBDBDB;
-							border-radius: 4px 4px 0px 0px;
-							&.active{
-								font-weight: 700;
-								background: #FFFFFF;
-								border-width: 1px 1px 0px 1px;
-								border-style: solid;
-								border-color: #E5E5E5;
-								border-radius: 4px 4px 0px 0px;
-							}
-						}
-					}
-					@media (max-width: 767px) {
-						.woostify-setting-tab-head{
-							padding-left: 40px;
-							.tab-head-button{
-								font-size: 13px;
-								padding: 10px 16px;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-} 
-
 .changelog-woostify{
 	background-color: #FFFFFF;
 	border-radius: 16px;
