@@ -117,7 +117,7 @@ var showAllModuleInfo = function () {
 	var showallbutton  		   = document.querySelector('.module-info-view-all-addon-btn');
 	var moduleinfoviewalladdon = document.querySelector('.module-info-view-all-addon');  
 	var moduleinfolist         = document.querySelector('.woostify-module-info-list');
-	
+
 	if ( !showallbutton && moduleinfoviewalladdon != 'null' && moduleinfolist != 'null' ) {
 		return;
 	}
@@ -139,6 +139,11 @@ var showAllModuleInfo = function () {
 // Changelog
 var showChangelogTheme = function () {
 	var woostify_changelog = document.querySelector('.changelog-woostify-wrapper'); 
+
+	if ( ! woostify_changelog ) {
+		return;
+	}
+
 	var changelog_version = woostify_changelog.querySelectorAll( '.changelog-woostify-version' );
 	var page_numbers = woostify_changelog.querySelectorAll('.page-numbers'); 
 
