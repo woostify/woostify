@@ -1,4 +1,9 @@
-
+/* Header sticky */
+.has-sticky-header>.site-header:not(.header-layout-7){
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
 /* Header Menu */
 .site-header-inner {
 	border-bottom: 1px solid #eaeaea;
