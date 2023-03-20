@@ -198,7 +198,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				return;
 			}
 
-			$page = add_theme_page( 'Woostify Theme Options', 'Woostify Options', 'manage_options', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ) );
+			$page = add_menu_page( 'Woostify Theme Options', 'Woostify Options', 'manage_options', 'woostify-welcome', array( $this, 'woostify_welcome_screen' ), 'none', 60 );
 		}
 
 		/**
@@ -606,11 +606,11 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 																echo esc_html( sprintf( __( 'Woostify Pro Add-ons', 'woostify' ), WOOSTIFY_VERSION ) );
 																?>
 															</h2>
-															<div class="activate-add-ons">
+															<a href="https://woostify.com/pricing" target="_blank" class="activate-add-ons">
 																<?php
-																echo esc_html( sprintf( __( 'Activate Add-ons', 'woostify' ), WOOSTIFY_VERSION ) );
+																echo esc_html( sprintf( __( 'Unlock All Add-ons', 'woostify' ), WOOSTIFY_VERSION ) );
 																?>
-															</div>
+															</a>
 														</div>
 														<div class="woostify-module-info-list">
 															<?php

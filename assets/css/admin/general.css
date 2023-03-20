@@ -102,6 +102,9 @@
  .woostify-welcome-theme-brand {
 	 max-width: 200px;
 }
+ .toplevel_page_woostify-welcome .woostify-welcome-nav {
+	 padding: 0;
+}
  .woostify-welcome-nav {
 	 background-color: #fff;
 	 box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
