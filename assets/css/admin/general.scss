@@ -98,7 +98,9 @@ a {
 /* Remove padding-left on options page */
 body{
 	&[class*="woostify-welcome"],
-	&[class*="woostify-options_page"] {
+	&[class*="woostify-options_page"],
+	&.woostify_page_smart-product-filter-settings,
+	&.woostify_page_callback-settings {
 		#wpcontent {
 			padding: 0;
 		}
@@ -122,6 +124,56 @@ body{
 	}
 }
 
+// woostify save messages
+.woostify-save-message{
+	padding: 14px 18px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 224px;
+	height: 22px;
+	background: #D8FBDE;
+	border-radius: 8px;
+	color: #0A5554;
+	font-family: 'Public Sans';
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 22px;
+	position: fixed;
+	top: 50px;
+	right: 15px;
+	transform: translateY(-50px);
+	transition: all 0.5s;
+	visibility: hidden;
+	opacity: 0;
+	z-index: 9;
+	&.success{
+		transform: translateY(0);
+		opacity: 1;
+		visibility: visible;
+	}
+	svg{
+		width: 1em;
+		height: 1em;
+	}
+	span{
+		line-height: 0;
+	}
+	.woostify-save-message-text{
+		display: flex;
+		align-items: center;
+		svg{
+			font-size: 20px;
+			margin-right: 14px;
+		}
+	}
+	.woostify-save-message-close{
+		font-size: 12px;
+		margin-right: -6px;
+		cursor: pointer;
+	}
+}
+
 /* Woostify options page Navigation */
 .appearance_page_woostify-welcome{
 	.woostify-welcome-nav{
@@ -139,28 +191,23 @@ body{
 	max-width: 200px;
 }
 
-.toplevel_page_woostify-welcome{
-	.woostify-welcome-nav{
-		padding: 0;
-	}
-}
-
 .woostify-welcome-nav {
 	background-color: #fff;
 	box-shadow: 0 1px 1px 0 rgba( 0, 0, 0, 0.1 );
-	padding: 10px 0;
-	margin: 0 15px;
+	padding: 0px 15px;
 
 	@media ( max-width: 719px ) {
 		padding: 15px 0;
 		text-align: center;
 	}
 
-	.woostify-welcome-container{
-		@media ( min-width: 720px ) {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+	.woostify-welcome-wrapper{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		@media (max-width: 719px){
+			flex-direction: column;
 		}
 	}
 
@@ -171,9 +218,8 @@ body{
 		color: unset;
 		font-size: 1.4em;
 
-		@media ( max-width: 719px ) {
-			border-bottom: 1px solid #f4f4f4;
-			justify-content: center;
+		@media (max-width: 719px){
+			padding: 10px 0;
 		}
 	}
 
@@ -212,7 +258,7 @@ body{
 		}
 
 		@media ( max-width: 719px ) {
-			padding-top: 10px;
+			padding: 10px 0;
 			justify-content: center;
 		}
 	}
