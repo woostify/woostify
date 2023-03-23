@@ -15,7 +15,7 @@
 	 font-weight: 600;
 	 font-size: 14px;
 	 color: #637381;
-	 line-height: 80px;
+	 line-height: 66px;
 	 position: relative;
 }
  .woostify-options-wrap .woostify-welcome-nav .woostify-setting-tab-head .tab-head-button::after {
@@ -42,14 +42,17 @@
  @media (max-width: 767px) {
 	 .woostify-options-wrap .woostify-welcome-nav .woostify-setting-tab-head .tab-head-button {
 		 margin: 0 10px;
+		 line-height: 55px;
 	}
 }
- @media (max-width: 375px) {
+ @media (max-width: 480px) {
 	 .woostify-options-wrap .woostify-welcome-nav .woostify-setting-tab-head {
 		 flex-direction: column;
+		 width: 100%;
 	}
 	 .woostify-options-wrap .woostify-welcome-nav .woostify-setting-tab-head .tab-head-button {
 		 line-height: 40px;
+		 margin: 0;
 	}
 	 .woostify-options-wrap .woostify-welcome-nav .woostify-setting-tab-head .tab-head-button::after {
 		 width: 3px;

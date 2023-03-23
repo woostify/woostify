@@ -167,14 +167,14 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			);
 
 			// Welcome screen style.
-			if ( $is_welcome ) {
-				wp_enqueue_style(
-					'woostify-welcome-screen',
-					WOOSTIFY_THEME_URI . 'assets/css/admin/welcome.css',
-					array(),
-					woostify_version()
-				);
-			}
+			// if ( $is_welcome ) {
+			wp_enqueue_style(
+				'woostify-welcome-screen',
+				WOOSTIFY_THEME_URI . 'assets/css/admin/welcome.css',
+				array(),
+				woostify_version()
+			);
+			// }
 
 			// Install plugin import demo.
 			wp_enqueue_script(
@@ -262,17 +262,72 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		public function woostify_welcome_screen_header() {
 			$woostify_url = 'https://woostify.com';
 			$facebook_url = 'https://facebook.com/groups/2245150649099616/';
+
+			global $submenu;
+			$class_active = '';
+			if ( $submenu['woostify-welcome'] ) {
+				foreach ( $submenu['woostify-welcome'] as $key => $value ) {
+					if ( $value[2] == 'callback-settings' ) {
+						$class_active = 'active';
+					}
+					if ( $value[2] == 'smart-product-filter-settings' ) {
+						$class_active = 'active';
+					}
+				}
+			}
+		
 			?>
 				<section class="woostify-welcome-nav">
 					<div class="woostify-welcome-container">
-						<a class="woostify-welcome-theme-brand" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank" rel="noopener">
-							<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
-							<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
-						</a>
+						<div class="woostify-welcome-wrapper">
+							<a class="woostify-welcome-theme-brand" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank" rel="noopener">
+								<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
+								<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
+							</a>
 
-						<span class="woostify-welcome-theme-version"><?php echo esc_html( woostify_version() ); ?></span>
+							<div class="woostify-setting-tab-head">
+								<a href="<?php echo esc_url( admin_url( 'admin.php?page=woostify-welcome' ) ); ?>#dashboard" class="tab-head-button"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
+								<?php 
+								if ( defined( 'WOOSTIFY_PRO_VERSION' ) ) {
+									?>
+									<a href="<?php echo esc_url( admin_url( 'admin.php?page=woostify-welcome' ) ); ?>#add-ons" class="tab-head-button <?php echo esc_attr( $class_active ); ?>"><?php esc_html_e( 'Add-ons', 'woostify' ); ?></a>
+									<?php
+								}
+								?>
+								<a href="<?php echo esc_url( admin_url( 'admin.php?page=woostify-welcome' ) ); ?>#starter-sites" class="tab-head-button"><?php esc_html_e( 'Starter sites', 'woostify' ); ?></a>
+								<a href="<?php echo esc_url( admin_url( 'admin.php?page=woostify-welcome' ) ); ?>#changelog" class="tab-head-button"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a>
+							</div>
+
+							<a class="woostify-welcome-theme-support" href="<?php echo esc_url( $woostify_url ); ?>/contact/">
+								<img class="woostify-welcome-theme-icon-support" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/support.png' ); ?>" alt="<?php esc_attr_e( 'Woostify Support', 'woostify' ); ?>">
+								<?php esc_attr_e( 'Support', 'woostify' ); ?>
+							</a>
+						</div>
 					</div>
 				</section>
+			<?php
+		}
+
+		public function woostify_save_option_messages()
+		{
+			?>
+			<?php if ( defined( 'WOOSTIFY_PRO_VERSION' ) ) {
+				?>
+				<div class="woostify-save-message">
+					<span class="woostify-save-message-text">
+						<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M0 10C0 4.47715 4.47715 0 10 0C12.6522 0 15.1957 1.05357 17.0711 2.92893C18.9464 4.8043 20 7.34784 20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10ZM9.73 13.61L14.3 7.61V7.58C14.5179 7.29419 14.5668 6.91382 14.4283 6.58218C14.2897 6.25054 13.9848 6.01801 13.6283 5.97218C13.2718 5.92635 12.9179 6.07419 12.7 6.36L8.92 11.36L7.29 9.28C7.07028 8.99776 6.71668 8.85418 6.36239 8.90334C6.00811 8.9525 5.70696 9.18694 5.57239 9.51834C5.43783 9.84974 5.49028 10.2278 5.71 10.51L8.15 13.62C8.34082 13.8615 8.63222 14.0017 8.94 14C9.2495 13.9993 9.54121 13.8552 9.73 13.61Z" fill="#36B37E"/>
+						</svg>
+						<?php esc_html_e( 'Save successfully!', 'woostify-pro' ); ?>
+					</span>
+					<span class="woostify-save-message-close">
+						<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M4.84794 5.99959L0.238888 1.39135C0.0860071 1.23858 7.64488e-05 1.03133 5.09853e-08 0.815205C-7.63468e-05 0.599076 0.0857076 0.391768 0.23848 0.238888C0.391253 0.0860071 0.5985 7.64488e-05 0.814629 5.09853e-08C1.03076 -7.63468e-05 1.23807 0.0857076 1.39095 0.23848L6 4.84753L10.6091 0.23848C10.6848 0.162835 10.7746 0.10284 10.8735 0.0619218C10.9724 0.0210033 11.0784 -3.77774e-05 11.1854 5.09853e-08C11.2924 3.78793e-05 11.3983 0.0211537 11.4972 0.0621421C11.5961 0.10313 11.6859 0.163189 11.7615 0.238888C11.8372 0.314587 11.8972 0.404443 11.9381 0.503328C11.979 0.602213 12 0.708189 12 0.815205C12 0.922222 11.9788 1.02818 11.9379 1.12704C11.8969 1.22589 11.8368 1.31571 11.7611 1.39135L7.15206 5.99959L11.7611 10.6086C11.914 10.7614 11.9999 10.9687 12 11.1848C12.0001 11.4009 11.9143 11.6082 11.7615 11.7611C11.6087 11.914 11.4015 11.9999 11.1854 12C10.9692 12.0001 10.7619 11.9143 10.6091 11.7615L6 7.15247L1.39095 11.7615C1.23807 11.9143 1.03076 12.0001 0.814629 12C0.5985 11.9999 0.391253 11.914 0.23848 11.7611C0.0857076 11.6082 -7.63446e-05 11.4009 5.09853e-08 11.1848C7.64465e-05 10.9687 0.0860071 10.7614 0.238888 10.6086L4.84794 5.99959Z" fill="#1F2229"/>
+						</svg>
+					</span>
+				</div>
+				<?php
+			} ?>
 			<?php
 		}
 
@@ -536,33 +591,36 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 				<?php //$this->woostify_welcome_screen_header(); ?>
 
+				<?php // $this->woostify_save_option_messages(); ?>
 				<section class="woostify-welcome-nav">
 					<div class="woostify-welcome-container">
-						<a class="woostify-welcome-theme-brand" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank" rel="noopener">
-							<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
-							<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
-						</a>
+						<div class="woostify-welcome-wrapper">
+							<a class="woostify-welcome-theme-brand" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank" rel="noopener">
+								<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
+								<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
+							</a>
 
-						<div class="woostify-setting-tab-head">
-							<a href="#dashboard" class="tab-head-button active"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
-							<?php 
-							if ( defined( 'WOOSTIFY_PRO_VERSION' ) ) {
+							<div class="woostify-setting-tab-head">
+								<a href="#dashboard" class="tab-head-button active"><?php esc_html_e( 'Dashboard', 'woostify' ); ?></a>
+								<?php 
+								if ( defined( 'WOOSTIFY_PRO_VERSION' ) ) {
+									?>
+									<a href="#add-ons" class="tab-head-button"><?php esc_html_e( 'Add-ons', 'woostify' ); ?></a>
+									<?php
+								}
 								?>
-								<a href="#add-ons" class="tab-head-button"><?php esc_html_e( 'Add-ons', 'woostify' ); ?></a>
-								<?php
-							}
-							?>
-							<a href="#starter-sites" class="tab-head-button"><?php esc_html_e( 'Starter sites', 'woostify' ); ?></a>
-							<a href="#changelog" class="tab-head-button"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a>
-						</div>
+								<a href="#starter-sites" class="tab-head-button"><?php esc_html_e( 'Starter sites', 'woostify' ); ?></a>
+								<a href="#changelog" class="tab-head-button"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a>
+							</div>
 
-						<!-- <span class="woostify-welcome-theme-version"><?php //echo esc_html( woostify_version() ); ?></span> -->
-						<a class="woostify-welcome-theme-support" href="<?php echo esc_url( $woostify_url ); ?>/contact/">
-							<img class="woostify-welcome-theme-icon-support" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/support.png' ); ?>" alt="<?php esc_attr_e( 'Woostify Support', 'woostify' ); ?>">
-							<?php esc_attr_e( 'Support', 'woostify' ); ?>
-						</a>
+							<a class="woostify-welcome-theme-support" href="<?php echo esc_url( $woostify_url ); ?>/contact/">
+								<img class="woostify-welcome-theme-icon-support" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/support.png' ); ?>" alt="<?php esc_attr_e( 'Woostify Support', 'woostify' ); ?>">
+								<?php esc_attr_e( 'Support', 'woostify' ); ?>
+							</a>
+						</div>
 					</div>
 				</section>
+
 				<section class="woostify-welcome-content">
 					<div class="woostify-welcome-settings-section-tab woostify-enhance-settings-section-tab">
 						<div class="woostify-setting-tab-content-wrapper">

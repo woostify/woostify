@@ -75,7 +75,7 @@
 	 padding: 10px !important;
 }
 /* Remove padding-left on options page */
- body[class*="woostify-welcome"] #wpcontent, body[class*="woostify-options_page"] #wpcontent {
+ body[class*="woostify-welcome"] #wpcontent, body[class*="woostify-options_page"] #wpcontent, body.woostify_page_smart-product-filter-settings #wpcontent, body.woostify_page_callback-settings #wpcontent {
 	 padding: 0;
 }
 /* Style for 'Image' column in list post Admin */
@@ -87,6 +87,54 @@
 }
  #the-list .thumbnail_image img {
 	 max-width: 100%;
+}
+ .woostify-save-message {
+	 padding: 14px 18px;
+	 display: flex;
+	 align-items: center;
+	 justify-content: space-between;
+	 width: 224px;
+	 height: 22px;
+	 background: #d8fbde;
+	 border-radius: 8px;
+	 color: #0a5554;
+	 font-family: 'Public Sans';
+	 font-weight: 400;
+	 font-size: 14px;
+	 line-height: 22px;
+	 position: fixed;
+	 top: 50px;
+	 right: 15px;
+	 transform: translateY(-50px);
+	 transition: all 0.5s;
+	 visibility: hidden;
+	 opacity: 0;
+	 z-index: 9;
+}
+ .woostify-save-message.success {
+	 transform: translateY(0);
+	 opacity: 1;
+	 visibility: visible;
+}
+ .woostify-save-message svg {
+	 width: 1em;
+	 height: 1em;
+}
+ .woostify-save-message span {
+	 line-height: 0;
+}
+ .woostify-save-message .woostify-save-message-text {
+	 display: flex;
+	 align-items: center;
+}
+ .woostify-save-message .woostify-save-message-text svg {
+	 font-size: 20px;
+	 margin-right: 14px;
+}
+ .woostify-save-message .woostify-save-message-close {
+	 font-size: 12px;
+	 margin-right: -6px;
+	 cursor: pointer;
 }
 /* Woostify options page Navigation */
  .appearance_page_woostify-welcome .woostify-welcome-nav {
@@ -100,14 +148,10 @@
  .woostify-welcome-theme-brand {
 	 max-width: 200px;
 }
- .toplevel_page_woostify-welcome .woostify-welcome-nav {
-	 padding: 0;
-}
  .woostify-welcome-nav {
 	 background-color: #fff;
 	 box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-	 padding: 10px 0;
-	 margin: 0 15px;
+	 padding: 0px 15px;
 }
  @media (max-width: 719px) {
 	 .woostify-welcome-nav {
@@ -115,11 +159,14 @@
 		 text-align: center;
 	}
 }
- @media (min-width: 720px) {
-	 .woostify-welcome-nav .woostify-welcome-container {
-		 display: flex;
-		 justify-content: space-between;
-		 align-items: center;
+ .woostify-welcome-nav .woostify-welcome-wrapper {
+	 display: flex;
+	 justify-content: space-between;
+	 align-items: center;
+}
+ @media (max-width: 719px) {
+	 .woostify-welcome-nav .woostify-welcome-wrapper {
+		 flex-direction: column;
 	}
 }
  .woostify-welcome-nav .woostify-welcome-theme-brand {
@@ -131,8 +178,7 @@
 }
  @media (max-width: 719px) {
 	 .woostify-welcome-nav .woostify-welcome-theme-brand {
-		 border-bottom: 1px solid #f4f4f4;
-		 justify-content: center;
+		 padding: 10px 0;
 	}
 }
  .woostify-welcome-nav .woostify-welcome-theme-icon {
@@ -166,7 +212,7 @@
 }
  @media (max-width: 719px) {
 	 .woostify-welcome-nav .woostify-welcome-theme-support {
-		 padding-top: 10px;
+		 padding: 10px 0;
 		 justify-content: center;
 	}
 }
