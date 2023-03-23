@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
- @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap');
- * {
+* {
 	 outline: none !important;
 }
  a {
@@ -161,8 +159,7 @@
 	 align-items: center;
 	 font-weight: 600;
 	 font-size: 14px;
-	 color: #000;
-	 font-family: 'Public Sans';
+	 color: #373737;
 }
  .woostify-welcome-nav .woostify-welcome-theme-support img {
 	 margin-right: 10px;
@@ -196,7 +193,7 @@
 	 padding: 0.5em;
 }
  .woostify-welcome-nav .woostify-welcome-nav_link a:hover {
-	 color: #000;
+	 color: #373737;
 }
  @media (min-width: 719px) {
 	 .woostify-welcome-nav .woostify-welcome-nav_link a {
@@ -212,9 +209,6 @@
 	 display: inline-block;
 	 margin: 0;
 }
- .woostify-options-wrap .woostify-welcome-nav .woostify-setting-tab-head .tab-head-button {
-	 font-family: 'Public Sans';
-}
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .woostify-enhance-content .woostify-enhance__column {
 	 margin-bottom: 30px;
 	 padding: 30px 30px 50px;
@@ -223,15 +217,13 @@
 	 padding-bottom: 30px;
 }
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .woostify-enhance-content .woostify-enhance__column .section-header {
-	 font-family: 'Inter';
 	 font-weight: 600;
-	 font-size: 17px;
+	 font-size: 18px;
 	 line-height: 21px;
-	 color: #000;
+	 color: #373737;
 	 margin-bottom: 37px;
 }
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .woostify-enhance-content .woostify-enhance__column .section-header-link {
-	 font-family: 'Inter';
 	 font-style: normal;
 	 font-weight: 400;
 	 font-size: 14px;
@@ -256,17 +248,15 @@
 }
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .woostify-enhance-content .woostify-enhance__column .woostify-grid-box .box-item .box-item__name {
 	 margin-top: 0;
-	 font-family: 'Inter';
-	 font-weight: 700;
-	 font-size: 12px;
-	 line-height: 15px;
-	 color: #000;
+	 font-weight: 600;
+	 font-size: 14px;
+	 line-height: 1.5em;
+	 color: #373737;
 }
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .woostify-enhance-content .woostify-enhance__column .woostify-grid-box .box-item .box-item__link {
 	 margin-top: 0;
-	 font-family: 'Public Sans';
-	 font-weight: 700;
-	 font-size: 12px;
+	 font-weight: 600;
+	 font-size: 13px;
 	 line-height: 20px;
 	 padding: 4px 16px;
 	 color: #212b36;
@@ -303,20 +293,18 @@
 }
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .woostify-enhance-sidebar .woostify-enhance__column .wf-quick-setting-section p {
 	 margin: 14px 0;
-	 font-family: 'Inter';
 	 font-weight: 400;
-	 font-size: 12px;
-	 line-height: 15px;
-	 color: #000;
+	 font-size: 13px;
+	 line-height: 1.5em;
+	 color: #373737;
 }
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .woostify-enhance-sidebar .woostify-enhance__column .wf-quick-setting-section p:last-child {
 	 margin-bottom: 0;
 }
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .woostify-enhance-sidebar .woostify-enhance__column .wf-quick-setting-section a {
-	 font-family: 'Inter';
 	 font-weight: 400;
-	 font-size: 12px;
-	 line-height: 15px;
+	 font-size: 13px;
+	 line-height: 1.5em;
 	 color: #4644b7;
 }
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .woostify-enhance-sidebar .woostify-enhance__column .wf-quick-setting-section a svg {
@@ -325,11 +313,10 @@
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .woostify-enhance-sidebar .woostify-enhance__column h3 {
 	 display: flex;
 	 align-items: center;
-	 font-family: 'Inter';
 	 font-weight: 600;
 	 font-size: 17px;
 	 line-height: 21px;
-	 color: #000;
+	 color: #373737;
 }
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .woostify-enhance-sidebar .woostify-enhance__column h3 svg {
 	 margin-left: 9px;
@@ -351,7 +338,6 @@
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .starter-sites-wrap .starter-sites-content h2 {
 	 margin-top: 0;
 	 margin-bottom: 12px;
-	 font-family: 'Public Sans';
 	 font-weight: 700;
 	 font-size: 24px;
 	 line-height: 36px;
@@ -359,7 +345,6 @@
 }
  .woostify-options-wrap .woostify-welcome-content .woostify-welcome-settings-section-tab .woostify-setting-tab-content .starter-sites-wrap .starter-sites-content p {
 	 margin: 0;
-	 font-family: 'Public Sans';
 	 font-weight: 400;
 	 font-size: 16px;
 	 line-height: 24px;
@@ -370,7 +355,6 @@
 	 display: block;
 	 background: #4644b7;
 	 border-radius: 8px;
-	 font-family: 'Public Sans';
 	 font-weight: 700;
 	 font-size: 15px;
 	 line-height: 26px;
@@ -425,7 +409,7 @@
 	 font-weight: 600;
 	 font-size: 17px;
 	 line-height: 21px;
-	 color: #000;
+	 color: #373737;
 	 margin-top: 0;
 	 margin-bottom: 0;
 }
@@ -465,8 +449,7 @@
 	 position: absolute;
 	 top: 10px;
 	 right: 15px;
-	 font-family: 'Public Sans';
-	 font-weight: 700;
+	 font-weight: 600;
 	 font-size: 8px;
 	 line-height: 9px;
 	 color: #22af58;
@@ -483,24 +466,21 @@
 	 padding-left: 22px;
 }
  .woostify-module-info .woostify-module-info-list .module-info-item .module-info-item-title {
-	 font-family: 'Inter';
-	 font-weight: 700;
-	 font-size: 12px;
+	 font-weight: 600;
+	 font-size: 14px;
 	 line-height: 15px;
-	 color: #000;
+	 color: #373737;
 	 margin-top: 0;
 	 margin-bottom: 8px;
 }
  .woostify-module-info .woostify-module-info-list .module-info-item .module-info-item-description {
-	 font-family: 'Inter';
 	 font-weight: 400;
-	 font-size: 12px;
+	 font-size: 13px;
 	 line-height: 15px;
-	 color: #000;
+	 color: #373737;
 	 margin-bottom: 8px;
 }
  .woostify-module-info .woostify-module-info-list .module-info-item .module-info-item-doc {
-	 font-family: 'Inter';
 	 font-weight: 400;
 	 font-size: 12px;
 	 line-height: 15px;
@@ -533,8 +513,7 @@
 }
  .woostify-module-info .module-info-view-all-addon .module-info-view-all-addon-btn {
 	 display: inline-block;
-	 font-family: 'Inter';
-	 font-weight: 700;
+	 font-weight: 600;
 	 font-size: 14px;
 	 line-height: 17px;
 	 color: #4644b7;
@@ -554,7 +533,6 @@
  .changelog-woostify .changelog-woostify-header .changelog-woostify-title {
 	 letter-spacing: -0.02em;
 	 color: #0d1a33;
-	 font-family: 'Inter';
 	 font-weight: 600;
 	 font-size: 16px;
 	 line-height: 20px;
@@ -564,9 +542,8 @@
 	 text-align: center;
 	 display: inline-block;
 	 padding: 8px;
-	 font-family: 'Inter';
 	 font-weight: 600;
-	 font-size: 12px;
+	 font-size: 13px;
 	 line-height: 16px;
 	 letter-spacing: -0.02em;
 	 background: #4644b7;
@@ -656,9 +633,8 @@
 }
  .changelog-woostify .changelog-woostify-content .changelog-woostify-version .changelog-version-heading {
 	 margin-bottom: 14px;
-	 font-family: 'Inter';
 	 font-weight: 600;
-	 font-size: 12px;
+	 font-size: 14px;
 	 line-height: 16px;
 	 color: #0d1a33;
 }
@@ -674,9 +650,8 @@
  .changelog-woostify .changelog-woostify-content .changelog-woostify-version .changelog-version-content li {
 	 padding: 8px 0;
 	 margin-bottom: 0;
-	 font-family: 'Inter';
 	 font-weight: 400;
-	 font-size: 12px;
+	 font-size: 14px;
 	 line-height: 16px;
 	 letter-spacing: -0.01em;
 	 color: #0d1a33;
@@ -697,9 +672,8 @@
 }
  .changelog-woostify .page-numbers span {
 	 margin: 2px;
-	 font-family: 'Public Sans';
 	 font-weight: 400;
-	 font-size: 10px;
+	 font-size: 14px;
 	 line-height: 24px;
 	 color: #212b36;
 	 border-radius: 50%;

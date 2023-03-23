@@ -423,7 +423,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Header Footer Builder', 'woostify' ),
 					'description' => __( 'Create your website header & footer using Elementor', 'woostify' ),
 					'icon'		  => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-header-footer-builder.png',
-					'category'    => array( 'storebuilder' ),
+					'category'    => array( 'conversion' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/header-footer-builder/',
 				),
 				array(
