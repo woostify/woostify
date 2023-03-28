@@ -99,6 +99,7 @@ a {
 body{
 	&[class*="woostify-welcome"],
 	&[class*="woostify-options_page"],
+	&[class*="woostify_page"],
 	&.woostify_page_smart-product-filter-settings,
 	&.woostify_page_callback-settings {
 		#wpcontent {
