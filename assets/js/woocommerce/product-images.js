@@ -520,26 +520,37 @@ document.addEventListener(
 						if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
 							updateGallery( woostify_variation_gallery, false, variation.variation_id );
 						}else{
-							var thumbs = document.querySelector( '.product-thumbnail-images' );
+							// check if Woostify_Variation_Swatches_Frontend is exists
+							if( variation.variation_gallery_images || 0 ){
+								var thumbs = document.querySelector( '.product-thumbnail-images' );
 
-							// Neu chi co 1 image trong gallery và image nay trung voi product variation image thi coi nhu k co.
-							var has_gallery = ( ( variation.variation_gallery_images.length > 1 ) || (variation.variation_gallery_images.length && variation.image && variation.variation_gallery_images[0]['full_src'] != variation.image['full_src'] ) );
-							if( has_gallery ) {
-								updateGallery( variation.variation_gallery_images, true, variation.variation_id );
-								if( thumbs ) {
-									thumbs.classList.add( 'variation-gallery' );
-								}
-							} else {
-								if( thumbs && thumbs.classList.contains( 'variation-gallery' ) ){
+								// Neu chi co 1 image trong gallery và image nay trung voi product variation image thi coi nhu k co.
+								var has_gallery = ( ( variation.variation_gallery_images.length > 1 ) || (variation.variation_gallery_images.length && variation.image && variation.variation_gallery_images[0]['full_src'] != variation.image['full_src'] ) );
+								if( has_gallery ) {
+									updateGallery( variation.variation_gallery_images, true, variation.variation_id );
+									if( thumbs ) {
+										thumbs.classList.add( 'variation-gallery' );
+									}
+								} else {
 									// Draw gallery default.
 									if ( 'undefined' !== typeof( woostify_default_gallery ) && woostify_default_gallery.length ) {
-										updateGallery( woostify_default_gallery, true );
+										var images = [];
+										if( variation.image||0 ) {
+											images.push( variation.image );
+											// Function forEach: array.forEach(function(currentValue, index, arr), thisValue).
+											woostify_default_gallery.forEach( function( item, index, default_gallery ) {
+												// this = images
+												if( index ) images.push( item );
+											}, images );
+										}
+										else{
+											images = woostify_default_gallery;
+										}
+										updateGallery( images, true );
+										if( thumbs ) {
+											thumbs.classList.remove( 'variation-gallery' );
+										}
 									}
-								}else{
-									updateGallery( woostify_default_gallery, true );
-								}
-								if( thumbs ) {
-									thumbs.classList.remove( 'variation-gallery' );
 								}
 							}
 						}

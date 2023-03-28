@@ -29,9 +29,10 @@ add_action( 'woostify_theme_header', 'woostify_template_header' );
 add_action( 'woostify_theme_header', 'woostify_after_header', 100 );
 
 // Header template part.
-add_action( 'woostify_template_part_header', 'woostify_view_open', 10 ); // Open #view.
 add_action( 'woostify_template_part_header', 'woostify_topbar', 20 );
 add_action( 'woostify_template_part_header', 'woostify_site_header', 30 );
+add_action( 'woostify_template_part_header', 'woostify_view_open', 40 ); // Open #view.
+
 
 // Inside @woostify_site_header hook.
 add_action( 'woostify_site_header', 'woostify_default_container_open', 0 );

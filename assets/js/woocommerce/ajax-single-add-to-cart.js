@@ -99,14 +99,34 @@ function woostifyAjaxSingleAddToCartButton() {
 					alert( woostify_woocommerce_general.qty_warning );
 					return;
 				}
+				var product_id = ele.value;
+				try {
+					// var wc_fragments = JSON.parse( sessionStorage.getItem( wc_cart_fragments_params.fragment_name ) );
+					var cart_content = document.querySelector('div.cart-sidebar-content');
+					var cart_item_count = 0;
+					cart_content.querySelectorAll('.woocommerce-mini-cart-item').forEach(function(item, index) { 
+						let remove_button = item.querySelector('a.remove_from_cart_button');
+						let cart_product_id = remove_button.getAttribute('data-product_id')||0;
+						if( cart_product_id == product_id ){
+							let cart_qty_input = item.querySelector( 'input.qty' );
+							if ( null == cart_qty_input ) {
+								cart_qty_input = item.querySelector( 'input[name="quantity"]' );
+							}
+							cart_item_count = cart_qty_input ? Number( cart_qty_input.value.trim() ) : false;
+						}
 
-				var product_quantity = parseInt(input.getAttribute('max'));
-				var cart_items_count = parseInt(document.querySelector( '#shop-cart-sidebar .shop-cart-count' ).innerHTML);				
-				var total_count      = cart_items_count+inputValue;
-				if ( cart_items_count >= product_quantity || total_count > product_quantity ){
-					alert( woostify_woocommerce_general.qty_max_warning );
-					return;
-				}
+					});
+					var product_max_quantity = parseInt(input.getAttribute('max'));			
+					var total_count          = cart_item_count+inputValue;
+					if( product_max_quantity||0 ){
+						if ( cart_item_count >= product_max_quantity || total_count > product_max_quantity ){
+							alert( woostify_woocommerce_general.qty_max_warning );
+							return;
+						}
+					}
+				} catch( err ) {
+					console.warn( err );
+				}	
 
 				var form_data = new FormData( form )
 				form_data.append( 'add-to-cart', form.querySelector( '[name=add-to-cart]' ).value )
@@ -144,11 +164,18 @@ function woostifyAjaxSingleAddToCartButton() {
 					}
 				).then(
 					function( res ) {
+						console.log( res);
 						if ( ! res ) {
 							return;
 						}
 
 						var res_json = res.json();
+
+
+						if ( res_json.error && res_json.product_url ) {
+							window.location = res_json.product_url;
+							return;
+						}
 
 						if ( res_json.error && res_json.product_url ) {
 							window.location = res_json.product_url;
@@ -165,6 +192,8 @@ function woostifyAjaxSingleAddToCartButton() {
 					}
 				).then(
 					function ( result ) {
+
+						console.log( result) 
 						// Add loading.
 						document.documentElement.classList.remove( 'mini-cart-updating' );
 
@@ -196,9 +225,26 @@ function woostifyAjaxSingleAddToCartButton() {
 	)
 }
 
+/**
+ * This source fixes specifically for Elementor Pro 3.9.2
+ * Issue: When use elementor theme builder, 
+ *  + click add to cart. an Error is display
+ * Fix: Remove event add_to_cart
+ **/
+function fixElementProErrorAddtoCart(){
+	if( typeof elementorFrontend != 'undefined'){
+		if( ( elementorFrontend.config.version||0) == '3.9.2' ){
+			elementorFrontend.elements.$body.off('added_to_cart.elementor-woocommerce-product-add-to-cart');
+		}
+	}
+}
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
 		woostifyAjaxSingleAddToCartButton();
+		
+		setTimeout( function(){
+			fixElementProErrorAddtoCart();
+		}, 200 );
 	}
 );

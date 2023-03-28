@@ -575,7 +575,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$options    = woostify_options( false );
 
 			$product_max_quantity = '';
-			if( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ){
+			if ( $product ) {
+				$product_max_quantity = $product->get_stock_quantity();
+			}
+			if ( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ) {
 				$product_max_quantity = get_post_meta( $product_id, '_onpreorder_maximum_order', true );
 			}
 
@@ -656,6 +659,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'orderby'                        => get_query_var( 'orderby' ) ? get_query_var( 'orderby' ) : '1',
 					'term'                           => isset( $query_object->term_id ) ? $query_object->term_id : false,
 					'qty_max_warning'                => sprintf( __( 'You can’t add more than %s items in cart', 'woostify' ), $product_max_quantity ),
+					'qty_max_warning_default'        => sprintf( __( 'You can’t add more than %s items in cart', 'woostify' ), $product_max_quantity ),
+					'qty_max_warning_variation'      => __( 'You can’t add more than %s items in cart', 'woostify' ),
 				)
 			);
 
