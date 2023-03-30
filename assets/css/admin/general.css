@@ -118,7 +118,6 @@ body[class*="woostify-welcome"] #wpcontent, body[class*="woostify-options_page"]
   background: #D8FBDE;
   border-radius: 8px;
   color: #0A5554;
-  font-family: 'Public Sans';
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
@@ -244,8 +243,7 @@ body[class*="woostify-welcome"] #wpcontent, body[class*="woostify-options_page"]
   align-items: center;
   font-weight: 600;
   font-size: 14px;
-  color: #000000;
-  font-family: 'Public Sans';
+  color: #242424;
 }
 
 .woostify-welcome-nav .woostify-welcome-theme-support img {
@@ -661,8 +659,7 @@ body[class*="woostify-welcome"] #wpcontent, body[class*="woostify-options_page"]
 
 .woostify-module-info .module-info-view-all-addon .module-info-view-all-addon-btn {
   display: inline-block;
-  font-family: 'Inter';
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   line-height: 17px;
   color: #4644B7;
