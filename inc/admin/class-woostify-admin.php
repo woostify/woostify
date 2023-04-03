@@ -44,6 +44,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			add_action( 'in_admin_header', array( $this, 'woostify_hide_all_noticee_page_setting' ) );
 			add_action( 'woostify_welcome_panel_sidebar', array( $this, 'woostify_admin_panel_sidebar' ) );
 			add_action( 'wp_ajax_changelog_pagination', array( $this, 'woostify_ajax_changelog_pagination' ) );
+			add_action( 'woostify_change_log_tab_menu', array( $this, 'woostify_change_log_tab_menu' ) );
 		}
 
 		/**
@@ -611,7 +612,9 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								}
 								?>
 								<a href="#starter-sites" class="tab-head-button"><?php esc_html_e( 'Starter sites', 'woostify' ); ?></a>
-								<a href="#changelog" class="tab-head-button"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a>
+								<?php
+									do_action('woostify_change_log_tab_menu');
+								?>
 							</div>
 
 							<a class="woostify-welcome-theme-support" href="<?php echo esc_url( $woostify_url ); ?>/contact/">
@@ -806,6 +809,15 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					</div>
 				</section>			
 			</div>
+			<?php
+		}
+
+		/**
+		 * Changelog tab menu.
+		 */
+		public function woostify_change_log_tab_menu() {
+			?>
+			<a href="#changelog" class="tab-head-button"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a>
 			<?php
 		}
 
