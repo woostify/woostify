@@ -2107,25 +2107,14 @@ html {
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
-  overflow: hidden;
   font-size: 14px;
   background-color: #fff;
 }
 
 body {
   margin: 0;
-  overflow: auto;
   overflow-x: hidden;
   word-break: break-word;
-  height: 100vh;
-}
-body.admin-bar {
-  height: calc(100vh - 32px);
-}
-@media screen and (max-width: 782px) {
-  body.admin-bar {
-    height: calc(100vh - 46px);
-  }
 }
 
 article,
@@ -3473,11 +3462,23 @@ article p:last-child {
   }
 }
 
-/* Header sticky */
-.has-sticky-header > .site-header:not(.header-layout-7) {
+/* Header sticky. Theo nhu trong file js thi bo qua header layout 7 */
+.has-sticky-header .site-header:not(.header-layout-7) {
   position: sticky;
   top: 0;
   z-index: 99;
+}
+
+/* Theo dinh nghia cua wp-admin bar */
+@media screen and (min-width: 601px) {
+  .has-sticky-header.admin-bar .site-header:not(.header-layout-7) {
+    top: 46px;
+  }
+}
+@media screen and (min-width: 783px) {
+  .has-sticky-header.admin-bar .site-header:not(.header-layout-7) {
+    top: 32px;
+  }
 }
 
 /* Header Menu */
