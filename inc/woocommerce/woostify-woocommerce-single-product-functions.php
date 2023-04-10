@@ -380,7 +380,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 		?>
 
 		<div class="product-images">
-			<div id="product-images">
+			<div id="product-images" class="flickity-carousels">
 				<figure class="image-item ez-zoom">
 					<a href="<?php echo esc_url( isset( $image_full_src[0] ) ? $image_full_src[0] : '#' ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
 						<?php echo wp_kses( $product->get_image( 'woocommerce_single', array(), true ), $html_allowed ); ?>
@@ -442,7 +442,7 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 
 		<div class="product-thumbnail-images">
 			<?php if ( ! empty( $gallery_id ) ) { ?>
-			<div id="product-thumbnail-images">
+			<div id="product-thumbnail-images" class="product-thumbnail-image-list">
 				<?php if ( ! empty( $image_small_src ) ) { ?>
 					<div class="thumbnail-item">
 						<img src="<?php echo esc_url( $image_small_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">

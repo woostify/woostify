@@ -386,5 +386,5 @@ function initPhotoSwipe( gallerySelector ) {
 	}
 }
 
-initPhotoSwipe( '#product-images' );
+initPhotoSwipe( '.flickity-carousels' );
 
