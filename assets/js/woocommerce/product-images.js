@@ -312,7 +312,7 @@ document.addEventListener(
 						}
 					}
 					// mobileSlider = new Flickity( '#product-images', options );
-					mobileSlider = new Flickity( '.flickity-carousels', options );
+					mobileSlider = new Flickity( flickity_carousels, options );
 				}
 
 				function verticalThumbnailSliderAction() {
@@ -480,12 +480,12 @@ document.addEventListener(
 					}
 
 					// Hide thumbnail slider if only thumbnail item.
-					var getThumbnailSlider = document.querySelectorAll( '.product-thumbnail-images .thumbnail-item' );
-					if ( document.querySelector( '.product-thumbnail-images' ) ) {
+					var getThumbnailSlider = gallery.querySelectorAll( '.product-thumbnail-images .thumbnail-item' );
+					if ( gallery.querySelector( '.product-thumbnail-images' ) ) {
 						if ( getThumbnailSlider.length < 2 ) {
-							document.querySelector( '.product-thumbnail-images' ).classList.add( 'has-single-thumbnail-image' );
-						} else if ( document.querySelector( '.product-thumbnail-images' ) ) {
-							document.querySelector( '.product-thumbnail-images' ).classList.remove( 'has-single-thumbnail-image' );
+							gallery.querySelector( '.product-thumbnail-images' ).classList.add( 'has-single-thumbnail-image' );
+						} else if ( gallery.querySelector( '.product-thumbnail-images' ) ) {
+							gallery.querySelector( '.product-thumbnail-images' ).classList.remove( 'has-single-thumbnail-image' );
 						}
 					}
 
@@ -496,7 +496,6 @@ document.addEventListener(
 
 					// Re-init Photo Swipe.
 					if ( 'function' === typeof( initPhotoSwipe ) ) {
-						// initPhotoSwipe( '#product-images' );
 						initPhotoSwipe( '.flickity-carousels' );
 					}
 

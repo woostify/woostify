@@ -314,7 +314,7 @@ function initPhotoSwipe( gallerySelector ) {
 
 	function addPreviews( gallery ) {
 		var scrollWrap             = gallery.scrollWrap;
-		var productImagesWrapperEl = document.querySelector( '.product-gallery' );
+		var productImagesWrapperEl = document.querySelectorAll( '.product-gallery' );
 		var thumbnailEl            = document.createElement( 'div' );
 		thumbnailEl.classList.add( 'pswp__thumbnails' );
 
@@ -322,50 +322,56 @@ function initPhotoSwipe( gallerySelector ) {
 			return;
 		}
 
-		var productThumbWrapperEl = productImagesWrapperEl.querySelector( '#product-thumbnail-images' );
+		productImagesWrapperEl.forEach(
+			function (element) {
 
-		if ( ! productThumbWrapperEl ) {
-			Object.keys( gallery.items ).forEach(
-				function( k ) {
-					var currItem   = gallery.items[k];
-					var newThumbEl = document.createElement( 'div' );
-					var newImgEl   = document.createElement( 'img' );
+				var productThumbWrapperEl = element.querySelector( '.product-thumbnail-image-list' );//productImagesWrapperEl.querySelector( '#product-thumbnail-images' );
 
-					newImgEl.setAttribute( 'src', currItem.msrc );
-					newThumbEl.classList.add( 'thumbnail-item' );
-					newThumbEl.appendChild( newImgEl )
-					thumbnailEl.appendChild( newThumbEl );
-				}
-			)
-		} else {
-			var thumbSlider = productThumbWrapperEl.querySelector( '.flickity-slider' );
-			if ( thumbSlider ) {
-				thumbnailEl.innerHTML = thumbSlider.innerHTML;
-			} else {
-				thumbnailEl.innerHTML = productThumbWrapperEl.innerHTML;
-			}
-		}
+				if ( ! productThumbWrapperEl ) {
+					Object.keys( gallery.items ).forEach(
+						function( k ) {
+							var currItem   = gallery.items[k];
+							var newThumbEl = document.createElement( 'div' );
+							var newImgEl   = document.createElement( 'img' );
 
-		Object.keys( gallery.items ).forEach(
-			function( k ) {
-				var currThumbItem = thumbnailEl.children[k];
-				currThumbItem.removeAttribute( 'style' );
-				currThumbItem.classList.remove( 'is-selected', 'is-nav-selected' );
-
-				if ( gallery.getCurrentIndex() == k ) {
-					currThumbItem.classList.add( 'active' );
+							newImgEl.setAttribute( 'src', currItem.msrc );
+							newThumbEl.classList.add( 'thumbnail-item' );
+							newThumbEl.appendChild( newImgEl )
+							thumbnailEl.appendChild( newThumbEl );
+						}
+					)
+				} else {
+					var thumbSlider = productThumbWrapperEl.querySelector( '.flickity-slider' );
+					if ( thumbSlider ) {
+						thumbnailEl.innerHTML = thumbSlider.innerHTML;
+					} else {
+						thumbnailEl.innerHTML = productThumbWrapperEl.innerHTML;
+					}
 				}
 
-				currThumbItem.addEventListener(
-					'click',
-					function() {
-						gallery.goTo( gallery.items.indexOf( gallery.items[k] ) )
+				Object.keys( gallery.items ).forEach(
+					function( k ) {
+						var currThumbItem = thumbnailEl.children[k];
+						currThumbItem.removeAttribute( 'style' );
+						currThumbItem.classList.remove( 'is-selected', 'is-nav-selected' );
+
+						if ( gallery.getCurrentIndex() == k ) {
+							currThumbItem.classList.add( 'active' );
+						}
+
+						currThumbItem.addEventListener(
+							'click',
+							function() {
+								gallery.goTo( gallery.items.indexOf( gallery.items[k] ) )
+							}
+						)
 					}
 				)
-			}
-		)
 
-		scrollWrap.parentNode.insertBefore( thumbnailEl, scrollWrap.nextSibling );
+				scrollWrap.parentNode.insertBefore( thumbnailEl, scrollWrap.nextSibling );
+
+			}
+		);
 	}
 
 	// loop through all gallery elements and bind events.
