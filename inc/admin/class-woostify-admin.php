@@ -46,6 +46,16 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			add_action( 'wp_ajax_changelog_pagination', array( $this, 'woostify_ajax_changelog_pagination' ) );
 			add_action( 'woostify_change_log_tab_menu', array( $this, 'woostify_change_log_tab_menu' ) );
 			add_action( 'woostify_site_library_summary', array( $this, 'woostify_site_library_summary' ) );
+			add_action( 'woostify_theme_logo', array( $this, 'woostify_theme_logo' ) );
+		}
+
+		/**
+		 * Woostify Theme logo.
+		 */
+		public function woostify_theme_logo() {
+			$logo = WOOSTIFY_THEME_URI . 'assets/images/logo.svg';
+			$logo = apply_filters( 'woostify_theme_custom_logo_src', $logo );
+			echo '<img class="woostify-welcome-theme-icon" src="' . esc_url( $logo ) . '" alt="' . esc_attr_e( 'Woostify Logo', 'woostify' ) . '">';
 		}
 
 		/**
@@ -94,7 +104,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				<div class="woostify-admin-notice woostify-options-notice notice is-dismissible" data-notice="welcome_box">
 					<div class="woostify-notice-content">
 						<div class="woostify-notice-img">
-							<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'logo', 'woostify' ); ?>">
+							<?php do_action( 'woostify_theme_logo' ); ?>
 						</div>
 
 						<div class="woostify-notice-text">
@@ -302,7 +312,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					<div class="woostify-welcome-container">
 						<div class="woostify-welcome-wrapper">
 							<a class="woostify-welcome-theme-brand" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank" rel="noopener">
-								<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
+								<?php do_action( 'woostify_theme_logo' ); ?>
 								<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
 							</a>
 
@@ -626,7 +636,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					<div class="woostify-welcome-container">
 						<div class="woostify-welcome-wrapper">
 							<a class="woostify-welcome-theme-brand" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank" rel="noopener">
-								<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
+								<?php do_action( 'woostify_theme_logo' ); ?>
 								<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
 							</a>
 
