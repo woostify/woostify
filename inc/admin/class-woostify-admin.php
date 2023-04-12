@@ -586,6 +586,14 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'category'    => array( 'ecommerce' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/sale-notification/',
 				),
+				array(
+					'name'        => 'woostify_wc_white_label',
+					'title'       => __( 'White label', 'woostify' ),
+					'description' => __( 'Change info theme and plugin', 'woostify' ),
+					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-white-label.png',
+					'category'    => array( 'ecommerce' ),
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/white-label/',
+				),
 			)
 			?>
 			<div class="woostify-options-wrap admin-welcome-screen woostify-welcome-settings-section-tab woostify-enhance-settings-section-tab">
