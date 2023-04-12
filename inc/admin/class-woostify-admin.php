@@ -44,7 +44,28 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			add_action( 'in_admin_header', array( $this, 'woostify_hide_all_noticee_page_setting' ) );
 			add_action( 'woostify_welcome_panel_sidebar', array( $this, 'woostify_admin_panel_sidebar' ) );
 			add_action( 'wp_ajax_changelog_pagination', array( $this, 'woostify_ajax_changelog_pagination' ) );
+			add_action( 'woostify_change_log_tab_menu', array( $this, 'woostify_change_log_tab_menu' ) );
+			add_action( 'woostify_site_library_summary', array( $this, 'woostify_site_library_summary' ) );
 		}
+
+		/**
+		 * Woostify Site Library Summary.
+		 */
+		public function woostify_site_library_summary() {
+			ob_start();
+			?>
+			<p>
+				<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify Demo Sites.', 'woostify' ); ?>
+			</p>
+			<p>
+				<?php esc_html_e( 'It will require other 3rd party plugins such as Elementor, WooCommerce, Contact form 7, etc.', 'woostify' ); ?>
+			</p>
+			<?php
+			$summary = ob_get_clean();
+			$summary = apply_filters( 'woostify_site_library_custom_summary', $summary );
+			echo wp_kses_post( $summary );
+		}
+
 
 		/**
 		 * Admin body classes.
@@ -619,7 +640,9 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								}
 								?>
 								<a href="#starter-sites" class="tab-head-button"><?php esc_html_e( 'Starter sites', 'woostify' ); ?></a>
-								<a href="#changelog" class="tab-head-button"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a>
+								<?php
+									do_action('woostify_change_log_tab_menu');
+								?>
 							</div>
 
 							<a class="woostify-welcome-theme-support" href="<?php echo esc_url( $woostify_url ); ?>/contact/">
@@ -721,7 +744,6 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 										<?php do_action( 'woostify_welcome_panel_sidebar' ); ?>
 									</div>
 								</div>
-								
 							</div>
 							<div class="woostify-setting-tab-content" data-tab="add-ons">
 								<div class="woostify-pro-featured pro-featured-list">
@@ -733,13 +755,8 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 									<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/admin/welcome-screen/wt-demo-sites.png' ); ?>" alt="woostify Powerpack" />
 									<div class="starter-sites-content">
 										<h2><?php esc_html_e( 'Import Demo', 'woostify' ); ?></h2>
-										<p>
-											<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify Demo Sites.', 'woostify' ); ?>
-										</p>
-										<p>
-											<?php esc_html_e( 'It will require other 3rd party plugins such as Elementor, WooCommerce, Contact form 7, etc.', 'woostify' ); ?>
-										</p>
 										<?php
+										do_action( 'woostify_site_library_summary' );
 										$plugin_slug = 'woostify-sites-library';
 										$slug        = 'woostify-sites-library/woostify-sites.php';
 										$redirect    = admin_url( 'admin.php?page=woostify-sites' );
@@ -762,7 +779,8 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 										}
 
 										// Generate button.
-										$button = '<a href="' . esc_url( admin_url( 'admin.php?page=woostify-sites' ) ) . '" class="woostify-button button-primary" target="_blank">' . esc_html__( 'Activate Woostify site library', 'woostify' ) . '</a>';
+										$site_library_label = apply_filters( 'woostify_custom_site_library_label', esc_html__( 'Activate Woostify site library', 'woostify' ) );
+										$button = '<a href="' . esc_url( admin_url( 'admin.php?page=woostify-sites' ) ) . '" class="woostify-button button-primary" target="_blank">' . $site_library_label . '</a>';
 
 										// If Woostifu Site install.
 										if ( ! defined( 'WOOSTIFY_SITES_VER' ) ) {
@@ -814,6 +832,15 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					</div>
 				</section>			
 			</div>
+			<?php
+		}
+
+		/**
+		 * Changelog tab menu.
+		 */
+		public function woostify_change_log_tab_menu() {
+			?>
+			<a href="#changelog" class="tab-head-button"><?php esc_html_e( 'Changelog', 'woostify' ); ?></a>
 			<?php
 		}
 
