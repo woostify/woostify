@@ -1062,6 +1062,7 @@ var woostifyMoveNoticesInCheckoutPage = function() {
 	var infoNotices         = document.querySelectorAll( '.woocommerce > .woocommerce-info' );
 	var woostifyNoticeGroup = document.querySelector( '.woostify-woocommerce-NoticeGroup' );
 
+	if( ! woostifyNoticeGroup ) return;
 	if ( noticesWrapper.length ) {
 		var noticesWrapperEl         = noticesWrapper[0];
 		var noticesWrapperNode       = document.createElement( 'div' );
