@@ -55,7 +55,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 		public function woostify_theme_logo() {
 			$logo = WOOSTIFY_THEME_URI . 'assets/images/logo.svg';
 			$logo = apply_filters( 'woostify_theme_custom_logo_src', $logo );
-			echo '<img class="woostify-welcome-theme-icon" src="' . esc_url( $logo ) . '" alt="' . esc_attr_e( 'Woostify Logo', 'woostify' ) . '">';
+			echo '<img class="woostify-welcome-theme-icon" src="' . esc_url( $logo ) . '" alt="' . esc_attr( 'Woostify Logo', 'woostify' ) . '">';
 		}
 
 		/**
