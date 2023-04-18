@@ -510,7 +510,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Header Footer Builder', 'woostify' ),
 					'description' => __( 'Create your website header & footer using Elementor', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-header-footer-builder.png',
-					'category'    => array( 'conversion' ),
+					'category'    => array( 'storebuilder' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/header-footer-builder/',
 				),
 				array(
@@ -518,7 +518,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'WooBuilder', 'woostify' ),
 					'description' => __( 'Customize shop page, product page, cart page, and checkout page as desired', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-woobuilder.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'storebuilder' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/woobuider/',
 				),
 				array(
@@ -550,7 +550,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Advanced Shop Widgets', 'woostify' ),
 					'description' => __( 'More Shop’s widgets including nested product categories and feature products', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-advanced-shop-widgets.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'deprecated' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/advanced-widgets/',
 				),
 				array(
@@ -558,7 +558,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Buy Now Button', 'woostify' ),
 					'description' => __( 'Customers go to checkout page immediately if they click into Buy Now', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-buy-now.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'conversion' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/buy-now-button/',
 				),
 				array(
@@ -566,7 +566,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Sticky Single Add To Cart', 'woostify' ),
 					'description' => __( 'Add the  products to shopping cart immediately without scrolling up', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-sticky-add-to-cart.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'conversion' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/sticky-add-to-cart-button/',
 				),
 				array(
@@ -582,7 +582,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Countdown Urgency', 'woostify' ),
 					'description' => __( 'Countdown that motivates customers to buy product before time runs out', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-countdown-urgency.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'conversion' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/countdown/',
 				),
 				array(
@@ -614,7 +614,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Sale Notification', 'woostify' ),
 					'description' => __( 'Displays the email subscription form when the product is out of stock', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-sale-notification.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'conversion' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/sale-notification/',
 				),
 				array(
@@ -622,7 +622,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'White label', 'woostify' ),
 					'description' => __( 'Change info theme and plugin', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-white-label.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'storebuilder' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/white-label/',
 				),
 			)
