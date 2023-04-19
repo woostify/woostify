@@ -1798,7 +1798,7 @@ if ( ! function_exists( 'woostify_custom_product_data_tabs' ) ) {
 							if ( $product && comments_open() ) {
 								$new_data['reviews'] = array(
 									/* translators: %s: reviews count */
-									'title'    => sprintf( __( 'Reviews (%d)', 'woocommerce' ), $product->get_review_count() ),
+									'title'    => sprintf( __( 'Reviews (%d)', 'woostify' ), $product->get_review_count() ),
 									'priority' => $priority,
 									'callback' => 'comments_template',
 								);

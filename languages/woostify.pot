@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-02-25 05:25+0000\n"
+"POT-Creation-Date: 2023-04-19 04:33+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -244,7 +244,7 @@ msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr ""
 
-#: inc/woostify-template-functions.php:23, inc/admin/class-woostify-admin.php:268
+#: inc/woostify-template-functions.php:23, inc/admin/class-woostify-admin.php:316, inc/admin/class-woostify-admin.php:640
 msgid "Woostify"
 msgstr ""
 
@@ -310,7 +310,7 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: inc/woostify-template-functions.php:653, inc/admin/class-woostify-admin.php:394
+#: inc/woostify-template-functions.php:653, inc/admin/class-woostify-admin.php:320, inc/admin/class-woostify-admin.php:644
 msgid "Dashboard"
 msgstr ""
 
@@ -326,7 +326,7 @@ msgstr ""
 msgid "Blog"
 msgstr ""
 
-#: inc/woostify-template-functions.php:768, inc/woostify-template-functions.php:835, inc/woostify-template-functions.php:718, inc/admin/class-woostify-admin.php:246
+#: inc/woostify-template-functions.php:768, inc/woostify-template-functions.php:835, inc/woostify-template-functions.php:718, inc/admin/class-woostify-admin.php:279
 msgid "Shop"
 msgstr ""
 
@@ -490,206 +490,330 @@ msgstr ""
 msgid "Next (arrow right)"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:74
-msgid "logo"
+#: inc/admin/class-woostify-admin.php:68
+msgid "Quickly and easily transform your shops appearance with Woostify Demo Sites."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:78
+#: inc/admin/class-woostify-admin.php:71
+msgid "It will require other 3rd party plugins such as Elementor, WooCommerce, Contact form 7, etc."
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:111
 msgid "Thanks for installing Woostify!"
 msgstr ""
 
 #. translators: Theme options
-#: inc/admin/class-woostify-admin.php:84
+#: inc/admin/class-woostify-admin.php:117
 msgid "To fully take advantage of the best our theme can offer please make sure you visit our <a href=\"%1$s\">Woostify Options</a>."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:95
+#: inc/admin/class-woostify-admin.php:128
 msgid "Dismiss this notice."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:211
+#: inc/admin/class-woostify-admin.php:244
 msgid "Upload Logo"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:218
+#: inc/admin/class-woostify-admin.php:251
 msgid "Set Colors"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:225, inc/customizer/register-sections.php:30, inc/customizer/sections/shop/shop-single.php:534
+#: inc/admin/class-woostify-admin.php:258, inc/customizer/register-sections.php:30, inc/customizer/sections/shop/shop-single.php:534
 msgid "Layout"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:232, inc/customizer/register-sections.php:58
+#: inc/admin/class-woostify-admin.php:265, inc/customizer/register-sections.php:58
 msgid "Buttons"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:239, inc/customizer/register-sections.php:67
+#: inc/admin/class-woostify-admin.php:272, inc/customizer/register-sections.php:67
 msgid "Typography"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:267
-msgid "Woostify Logo"
+#: inc/admin/class-woostify-admin.php:324, inc/admin/class-woostify-admin.php:648
+msgid "Add-ons"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:286
-msgid "Multiple Headers"
+#: inc/admin/class-woostify-admin.php:328, inc/admin/class-woostify-admin.php:652
+msgid "Starter sites"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:292
-msgid "Sticky Header"
+#: inc/admin/class-woostify-admin.php:329, inc/admin/class-woostify-admin.php:853
+msgid "Changelog"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:298
-msgid "Mega Menu"
+#: inc/admin/class-woostify-admin.php:333, inc/admin/class-woostify-admin.php:659, inc/admin/class-woostify-admin.php:692
+msgid "Woostify Support"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:304
-msgid "Elementor Bundle"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:310
-msgid "Header Footer Builder"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:316
-msgid "WooBuilder"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:322
-msgid "Ajax Product Filter"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:328
-msgid "Ajax Product Search"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:334
-msgid "Size Guide"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:340
-msgid "Advanced Shop Widgets"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:346
-msgid "Buy Now Button"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:352
-msgid "Sticky Single Add To Cart"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:358
-msgid "Quick View"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:364
-msgid "Countdown Urgency"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:370
-msgid "Variation Swatches"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:376
-msgid "Sale Notification"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:395, inc/admin/class-woostify-admin.php:451
-msgid "Starter Templates"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:399
-msgid "Customizer Shortcuts"
-msgstr ""
-
-#. translators: 1: Class name
-#: inc/admin/class-woostify-admin.php:411
-msgid "%s not activated."
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:420
-msgid "Go to option"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:429, inc/customizer/class-woostify-customizer.php:740
-msgid "Get Woostify  Pro Extensions!"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:441
-msgid "Learn more"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:453
-msgid "Quickly and easily transform your shops appearance with Woostify Demo Sites."
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:456
-msgid "It will require other 3rd party plugins such as Elementor, Woocommerce, Contact form 7, etc."
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:482
-msgid "Import Demo"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:489
-msgid "Install Woostify Library"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:487
-msgid "Activate"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:498
-msgid "Activating"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:499
-msgid "Installing"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:528
-msgid "Document"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:532
-msgid "Want a guide? We have video tutorials to walk you through getting started."
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:536
-msgid "Visit Documentation"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:542
-msgid "Community"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:546
-msgid "Join our community! Share your site, ask a question and help others."
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:550
-msgid "Join Our Facebook Group"
-msgstr ""
-
-#: inc/admin/class-woostify-admin.php:556
+#: inc/admin/class-woostify-admin.php:334, inc/admin/class-woostify-admin.php:660, inc/admin/class-woostify-admin.php:923
 msgid "Support"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:560
-msgid "Have a question, we are happy to help! Get in touch with our support team."
+#: inc/admin/class-woostify-admin.php:352
+msgid "Save successfully!"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:564
-msgid "Submit a Ticket"
+#: inc/admin/class-woostify-admin.php:382
+msgid "Changelog woostify theme"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:570
-msgid "Love Woostify?"
+#: inc/admin/class-woostify-admin.php:383
+msgid "Woostify theme"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:478
+msgid "Multiple Headers"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:479
+msgid "Offering you with a set of 8 stunning header layouts to apply and customize"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:486
+msgid "Sticky Header"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:487
+msgid "Creating a floating header that sticks at the top of your site when scrolling"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:494
+msgid "Mega Menu"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:495
+msgid "Create a fully responsive mega menu with Elementor."
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:502
+msgid "Elementor Bundle"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:503
+msgid "Customize widget elementor"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:510
+msgid "Header Footer Builder"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:511
+msgid "Create your website header & footer using Elementor"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:518
+msgid "WooBuilder"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:519
+msgid "Customize shop page, product page, cart page, and checkout page as desired"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:526
+msgid "Smart Product Filter"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:527
+msgid "Filters by any criteria, attributes, taxonomies, prices, or other product data."
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:534
+msgid "Ajax Product Search"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:535
+msgid "Allow customers to get instant live search results as they type their query"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:542
+msgid "Size Guide"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:543
+msgid "Assign ready-to-use default size chart templates to the product"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:550
+msgid "Advanced Shop Widgets"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:551
+msgid "More Shop’s widgets including nested product categories and feature products"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:558
+msgid "Buy Now Button"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:559
+msgid "Customers go to checkout page immediately if they click into Buy Now"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:566
+msgid "Sticky Single Add To Cart"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:567
+msgid "Add the  products to shopping cart immediately without scrolling up"
 msgstr ""
 
 #: inc/admin/class-woostify-admin.php:574
-msgid "Give us 5 stars!"
+msgid "Quick View"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:575
+msgid "Allow clients to have a quick view of your product details"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:582
+msgid "Countdown Urgency"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:583
+msgid "Countdown that motivates customers to buy product before time runs out"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:590
+msgid "Variation Swatches"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:591
+msgid "Color, Image and Buttons Variation Swatches for product attributes"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:598
+msgid "Call Back"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:599, inc/admin/class-woostify-admin.php:615
+msgid "Displays the email subscription form when the product is out of stock"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:606
+msgid "Pre Order"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:607
+msgid "Allows customers to place an order for your upcoming products"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:614
+msgid "Sale Notification"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:622
+msgid "White label"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:623
+msgid "Change info theme and plugin"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:673
+msgid "Customizer Settings"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:673
+msgid "Go to Customizer"
+msgstr ""
+
+#. translators: 1: Class name
+#: inc/admin/class-woostify-admin.php:685
+msgid "%s not activated."
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:694
+msgid "Go to option"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:706
+msgid "Woostify Pro Add-ons"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:711
+msgid "Unlock All Add-ons"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:726
+msgid "Pro"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:733
+msgid "Documention"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:767
+msgid "Import Demo"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:792
+msgid "Activate Woostify site library"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:800
+msgid "Install Woostify Library"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:798
+msgid "Activate"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:810
+msgid "Activating"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:811
+msgid "Installing"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:824
+msgid "Woostify Theme"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:828
+msgid "Woostify Pro"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:875
+msgid "Document"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:886
+msgid "Want a guide? We have video tutorials to walk you through getting started."
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:890
+msgid "Go to Documentation"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:897
+msgid "Community"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:912, inc/admin/class-woostify-admin.php:950
+msgid "Join our community! Share your site, ask a question and help others."
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:916
+msgid "Go to Facebook Group"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:931
+msgid "Have a question, we are happy to help! Get in touch with our support team."
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:935
+msgid "Submit a Ticket"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:942
+msgid "Give us feedback"
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:954
+msgid "Write a Review"
 msgstr ""
 
 #: inc/admin/class-woostify-meta-boxes.php:122
@@ -806,6 +930,10 @@ msgstr ""
 
 #: inc/customizer/class-woostify-customizer.php:647
 msgid "Opps! The page you are looking for is missing for some reasons. Please come back to homepage"
+msgstr ""
+
+#: inc/customizer/class-woostify-customizer.php:740
+msgid "Get Woostify  Pro Extensions!"
 msgstr ""
 
 #: inc/customizer/class-woostify-customizer.php:757, inc/customizer/class-woostify-customizer.php:773, inc/customizer/class-woostify-customizer.php:789, inc/customizer/class-woostify-customizer.php:805, inc/customizer/class-woostify-customizer.php:821
@@ -1081,16 +1209,21 @@ msgstr ""
 msgid "Search products&hellip;"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:1529
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:1532
 msgid "Back to cart"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:1779, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:78, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:105, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:145
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:1782, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:78, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:105, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:145
 msgid "Description"
 msgstr ""
 
-#: inc/woocommerce/woostify-woocommerce-template-functions.php:1788, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:81, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:106, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:146
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:1791, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:81, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:106, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:146
 msgid "Additional information"
+msgstr ""
+
+#. translators: %s: reviews count
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:1801
+msgid "Reviews (%d)"
 msgstr ""
 
 #: inc/compatibility/elementor/class-woostify-elementor-single-product-images.php:40

@@ -349,7 +349,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 						<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M0 10C0 4.47715 4.47715 0 10 0C12.6522 0 15.1957 1.05357 17.0711 2.92893C18.9464 4.8043 20 7.34784 20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10ZM9.73 13.61L14.3 7.61V7.58C14.5179 7.29419 14.5668 6.91382 14.4283 6.58218C14.2897 6.25054 13.9848 6.01801 13.6283 5.97218C13.2718 5.92635 12.9179 6.07419 12.7 6.36L8.92 11.36L7.29 9.28C7.07028 8.99776 6.71668 8.85418 6.36239 8.90334C6.00811 8.9525 5.70696 9.18694 5.57239 9.51834C5.43783 9.84974 5.49028 10.2278 5.71 10.51L8.15 13.62C8.34082 13.8615 8.63222 14.0017 8.94 14C9.2495 13.9993 9.54121 13.8552 9.73 13.61Z" fill="#36B37E"/>
 						</svg>
-						<span class="message-success"><?php esc_html_e( 'Save successfully!', 'woostify-pro' ); ?></span>
+						<span class="message-success"><?php esc_html_e( 'Save successfully!', 'woostify' ); ?></span>
 					</span>
 					<span class="woostify-save-message-close">
 						<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -670,7 +670,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								<div class="woostify-welcome-container">
 									<div class="woostify-enhance-content">
 										<div class="woostify-enhance__column">
-											<h2 class="section-header"><?php esc_html_e( 'Customizer Settings', 'woostify' ); ?> <a class="section-header-link" target="_blank" href="<?php echo esc_url( get_admin_url() ); ?>customize.php"><?php esc_attr_e( 'Go to Customizer', 'woostify' ); ?></a></h2>
+											<h2 class="section-header"><?php esc_html_e( 'Customizer Settings', 'woostify' ); ?> <a class="section-header-link" target="_blank" href="<?php echo esc_url( get_admin_url() ); ?>customize.php"><?php esc_html_e( 'Go to Customizer', 'woostify' ); ?></a></h2>
 											<div class="woostify-grid-box">
 												<?php
 												foreach ( $this->woostify_welcome_customizer_settings() as $key ) {
