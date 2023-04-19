@@ -55,6 +55,9 @@ $size: 40px;
 			}
 		}
 	}
+	.product.sold-individually form .quantity {
+		display: none;
+	}
 }
 
 // Updating...

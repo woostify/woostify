@@ -1418,6 +1418,9 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 					case 'customer-logout':
 						$icon = 'pencil-alt';
 						break;
+					case 'payment-methods':
+						$icon = 'shopping-cart-full';
+						break;
 					default:
 						$icon = 'dashboard';
 

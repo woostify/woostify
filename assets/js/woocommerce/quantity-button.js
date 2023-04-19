@@ -45,6 +45,11 @@ function customQuantity() {
 			if ( ! input ) {
 				return;
 			}
+			
+			// Add style display none when input type hidden 
+			if ( input.type == 'hidden' ) {
+				input.closest('.quantity').style.display = "none";
+			}
 
 			// Add class ajax-ready on first load.
 			input.classList.add( 'ajax-ready' );
