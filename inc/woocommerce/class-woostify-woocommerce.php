@@ -51,11 +51,11 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_filter( 'woocommerce_show_page_title', 'woostify_remove_woocommerce_shop_title' );
 			add_filter( 'woocommerce_available_variation', 'woostify_available_variation_gallery', 90, 3 );
 			add_filter( 'woocommerce_loop_add_to_cart_link', 'woostify_modify_woocommerce_loop_add_to_cart_link', 99, 3 );
-
 			add_filter( 'get_product_search_form', 'woostify_wc_custom_product_search_form' );
 
 			// WC Cart widget.
 			add_filter( 'woocommerce_cart_item_remove_link', 'woostify_filter_woocommerce_cart_item_remove_link', 10, 2 );
+			add_filter( 'woocommerce_cart_item_quantity', array( $this, 'woostify_cart_item_quantity'), 10, 3 );
 
 			remove_action( 'wp_footer', 'woocommerce_demo_store' );
 			add_action( 'wp_footer', 'woostify_wc_demo_store_notice' );
@@ -202,6 +202,20 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
 			add_action( 'woocommerce_after_cart', 'woocommerce_cross_sell_display' );
 			add_filter( 'woocommerce_cross_sells_columns', 'woostify_cross_sell_display_columns' );
+		}
+
+		public function woostify_cart_item_quantity( $product_quantity, $cart_item_key, $cart_item )
+		{	
+			if( is_cart() ){
+			
+				$product = wc_get_product( $cart_item['product_id'] );
+
+				if ( $product->is_sold_individually() == 1 ) {
+					return $product->is_sold_individually();
+				}
+			}
+			
+			return $product_quantity;
 		}
 
 		/**
