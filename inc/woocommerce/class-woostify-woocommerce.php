@@ -211,7 +211,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				$product = wc_get_product( $cart_item['product_id'] );
 
 				if ( $product->is_sold_individually() == 1 ) {
-					return $product->is_sold_individually();
+					return '<div class="quantity">'. $product->is_sold_individually() . '</div>';
 				}
 			}
 			
