@@ -692,7 +692,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 					'woostify_product_images_slider_options',
 					array(
 						'main'               => array(
-							'container'      => '#product-images',
+							'container'      => '.product-images-container',
 							'adaptiveHeight' => true,
 							'pageDots'       => false,
 							'cellAlign'      => 'left',
@@ -703,8 +703,8 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 							'imagesLoaded'   => true,
 						),
 						'thumb'              => array(
-							'container'       => '#product-thumbnail-images',
-							'asNavFor'        => '#product-images',
+							'container'       => '.product-thumbnail-images-container',
+							'asNavFor'        => '.product-images-container',
 							'pageDots'        => false,
 							'cellAlign'       => 'left',
 							'prevNextButtons' => false,
