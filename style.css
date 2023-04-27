@@ -5320,6 +5320,9 @@ header.elementor-element {
 .single-product #woostify-quick-view-panel .product_title.entry-title a {
   pointer-events: auto;
 }
+.single-product .product.sold-individually form .quantity {
+  display: none;
+}
 
 body:not(.yith-wcms-pro) .processing:not(.um-woo-status) {
   pointer-events: none;

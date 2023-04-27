@@ -46,6 +46,16 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			add_action( 'wp_ajax_changelog_pagination', array( $this, 'woostify_ajax_changelog_pagination' ) );
 			add_action( 'woostify_change_log_tab_menu', array( $this, 'woostify_change_log_tab_menu' ) );
 			add_action( 'woostify_site_library_summary', array( $this, 'woostify_site_library_summary' ) );
+			add_action( 'woostify_theme_logo', array( $this, 'woostify_theme_logo' ) );
+		}
+
+		/**
+		 * Woostify Theme logo.
+		 */
+		public function woostify_theme_logo() {
+			$logo = WOOSTIFY_THEME_URI . 'assets/images/logo.svg';
+			$logo = apply_filters( 'woostify_theme_custom_logo_src', $logo );
+			echo '<img class="woostify-welcome-theme-icon" src="' . esc_url( $logo ) . '" alt="' . esc_attr( 'Woostify Logo', 'woostify' ) . '">';
 		}
 
 		/**
@@ -94,7 +104,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 				<div class="woostify-admin-notice woostify-options-notice notice is-dismissible" data-notice="welcome_box">
 					<div class="woostify-notice-content">
 						<div class="woostify-notice-img">
-							<img src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'logo', 'woostify' ); ?>">
+							<?php do_action( 'woostify_theme_logo' ); ?>
 						</div>
 
 						<div class="woostify-notice-text">
@@ -302,7 +312,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					<div class="woostify-welcome-container">
 						<div class="woostify-welcome-wrapper">
 							<a class="woostify-welcome-theme-brand" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank" rel="noopener">
-								<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
+								<?php do_action( 'woostify_theme_logo' ); ?>
 								<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
 							</a>
 
@@ -500,7 +510,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Header Footer Builder', 'woostify' ),
 					'description' => __( 'Create your website header & footer using Elementor', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-header-footer-builder.png',
-					'category'    => array( 'conversion' ),
+					'category'    => array( 'storebuilder' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/header-footer-builder/',
 				),
 				array(
@@ -508,7 +518,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'WooBuilder', 'woostify' ),
 					'description' => __( 'Customize shop page, product page, cart page, and checkout page as desired', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-woobuilder.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'storebuilder' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/woobuider/',
 				),
 				array(
@@ -540,7 +550,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Advanced Shop Widgets', 'woostify' ),
 					'description' => __( 'More Shop’s widgets including nested product categories and feature products', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-advanced-shop-widgets.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'deprecated' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/advanced-widgets/',
 				),
 				array(
@@ -548,7 +558,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Buy Now Button', 'woostify' ),
 					'description' => __( 'Customers go to checkout page immediately if they click into Buy Now', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-buy-now.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'conversion' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/buy-now-button/',
 				),
 				array(
@@ -556,7 +566,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Sticky Single Add To Cart', 'woostify' ),
 					'description' => __( 'Add the  products to shopping cart immediately without scrolling up', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-sticky-add-to-cart.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'conversion' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/sticky-add-to-cart-button/',
 				),
 				array(
@@ -572,7 +582,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Countdown Urgency', 'woostify' ),
 					'description' => __( 'Countdown that motivates customers to buy product before time runs out', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-countdown-urgency.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'conversion' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/countdown/',
 				),
 				array(
@@ -604,7 +614,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'Sale Notification', 'woostify' ),
 					'description' => __( 'Displays the email subscription form when the product is out of stock', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-sale-notification.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'conversion' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/sale-notification/',
 				),
 				array(
@@ -612,7 +622,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'title'       => __( 'White label', 'woostify' ),
 					'description' => __( 'Change info theme and plugin', 'woostify' ),
 					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-white-label.png',
-					'category'    => array( 'ecommerce' ),
+					'category'    => array( 'storebuilder' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/white-label/',
 				),
 			)
@@ -626,7 +636,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					<div class="woostify-welcome-container">
 						<div class="woostify-welcome-wrapper">
 							<a class="woostify-welcome-theme-brand" href="<?php echo esc_url( $woostify_url ); ?>" target="_blank" rel="noopener">
-								<img class="woostify-welcome-theme-icon" src="<?php echo esc_url( WOOSTIFY_THEME_URI . 'assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Woostify Logo', 'woostify' ); ?>">
+								<?php do_action( 'woostify_theme_logo' ); ?>
 								<span class="woostify-welcome-theme-title"><?php esc_html_e( 'Woostify', 'woostify' ); ?></span>
 							</a>
 
