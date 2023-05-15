@@ -1759,11 +1759,6 @@ class Woostify_Get_CSS {
 				font-family: ' . esc_attr( $options['heading_font_family'] ) . ';
 			}
 
-			.editor-styles-wrapper .wp-block[data-align=full],
-			.editor-styles-wrapper .wp-block.alignfull{
-		    	max-width: none;
-			}
-
 		';
 
 		wp_register_style( 'woostify-block-editor', false ); // @codingStandardsIgnoreLine
