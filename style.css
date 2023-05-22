@@ -2827,9 +2827,6 @@ dd {
   max-width: unset;
   width: unset;
 }
-.no-sidebar:not(.site-boxed-container) .alignfull img {
-  width: 100vw;
-}
 .no-sidebar:not(.site-boxed-container) .alignwide {
   margin-left: -100px;
   margin-right: -100px;
