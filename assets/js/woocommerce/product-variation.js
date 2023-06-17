@@ -22,6 +22,7 @@ woostifyEvent.productMetaSkuDefault = productMetaSku ? productMetaSku.innerHTML 
 function productVariation( selector, form ) {
 
 	var galleries = document.querySelectorAll( selector );
+	if( ! galleries.length ) return;
 	var gallery = galleries[0];
 	var currProductID = gallery.getAttribute( 'data-pid' ),
 	variationsForm    = form ? form : 'form.variations_form[data-product_id="' + currProductID + '"]';
