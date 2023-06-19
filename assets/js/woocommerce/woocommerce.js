@@ -1178,7 +1178,6 @@ document.addEventListener(
 				woostifyStockQuantityProgressBar();
 			}
 		);
-		console.log(222);
 		woostifyInfiniteScroll( true );
 		// woostifyInfiniteScrollPreview(true);
 
@@ -1190,7 +1189,7 @@ document.addEventListener(
 		).on(
 			'added_to_cart',
 			function( e, fragments, cart_hash, $button ) {
-				
+
 				woostifyQuantityMiniCart();
 				updateHeaderCartPrice();
 				eventCartSidebarClose();
