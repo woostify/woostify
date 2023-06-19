@@ -172,7 +172,7 @@
 	}
 
 	&.vertical-style, &.horizontal-style {
-		#product-images {
+		.product-images-container {
 			.image-item {
 				display: none;
 				&:first-child {
@@ -189,7 +189,7 @@
 
 	&.column-style, &.grid-style {
 		@media (max-width: $screen-md - 1) {
-			#product-images {
+			.product-images-container {
 				.image-item {
 					display: none;
 					&:first-child {
@@ -211,7 +211,7 @@
 			display: none;
 		}
 		@media (max-width: $screen-sm - 1) {
-			#product-thumbnail-images {
+			.product-thumbnail-images-container {
 				display: flex;
 
 				&.flickity-enabled {
@@ -269,7 +269,7 @@
 				}
 			}
 
-			#product-thumbnail-images {
+			.product-thumbnail-images-container {
 				overflow: hidden;
 
 				.thumbnail-item {
@@ -295,7 +295,7 @@
 	}
 
 	&.horizontal-style {
-		#product-thumbnail-images {
+		.product-thumbnail-images-container {
 			display: flex;
 
 			&.flickity-enabled {
