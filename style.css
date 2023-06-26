@@ -3781,7 +3781,7 @@ article p:last-child {
   z-index: 200;
   padding-top: 15px;
   padding-bottom: 15px;
-  width: 300px;
+  width: 90%;
   overflow-y: scroll;
   transform: translateX(-100%);
 }
