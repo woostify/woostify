@@ -1758,6 +1758,10 @@ class Woostify_Get_CSS {
 			.wp-block-heading, .editor-rich-text__tinymce{
 				font-family: ' . esc_attr( $options['heading_font_family'] ) . ';
 			}
+			
+			.editor-styles-wrapper .wp-block{
+				max-width: '. esc_attr( $options['container_width'] ) .'px;
+			}
 
 		';
 
