@@ -2927,6 +2927,9 @@ article p:last-child {
 .woobuilder-active .site-content, .elementor-page .site-content, .edited-by-divi-builder .site-content, .elementor-template-full-width .site-content {
   margin: 0;
 }
+.site-content-boxed-container.elementor-template-full-width .site-content{
+  max-width: 100%;
+}
 .single-product .site-content {
   margin-top: 0;
 }
@@ -3781,7 +3784,7 @@ article p:last-child {
   z-index: 200;
   padding-top: 15px;
   padding-bottom: 15px;
-  width: 300px;
+  width: 90%;
   overflow-y: scroll;
   transform: translateX(-100%);
 }
