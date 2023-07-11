@@ -84,6 +84,7 @@ a:focus {
 #toplevel_page_woostify-welcome .wp-menu-image:before {
   content: url(../../../assets/images/logo.svg);
   transform: rotate(-30deg);
+  filter: grayscale(90%);
 }
 
 #toplevel_page_woostify-welcome .wp-menu-name {

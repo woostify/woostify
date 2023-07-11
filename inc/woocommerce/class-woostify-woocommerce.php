@@ -207,13 +207,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		public function woostify_cart_item_quantity( $product_quantity, $cart_item_key, $cart_item )
 		{	
 			if( is_cart() ){
-				
+	
 				$product = wc_get_product( $cart_item['product_id'] );
-
 				if ( $product->is_sold_individually() == 1 ) {
 					return '<div class="quantity">'. $product->is_sold_individually() . '</div>';
 				}
-				else if ( $product->get_stock_quantity() ) {
+				else if ( $product->get_stock_quantity() == 1 ) {
 					return '<div class="quantity">'. $product->get_stock_quantity() . '</div>';
 				}else {
 					return $product_quantity;
@@ -1044,6 +1043,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'woocommerce_before_shop_loop', 'woostify_sorting_wrapper_close', 31 );
 
 			// Woocommerce sidebar.
+			wp_enqueue_script( 'wc-cart-fragments' ); // from woocommerce v7.8.0
 			add_action( 'woostify_theme_footer', 'woostify_woocommerce_cart_sidebar', 120 );
 
 			// Legacy WooCommerce columns filter.

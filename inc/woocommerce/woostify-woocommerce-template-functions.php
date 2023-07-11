@@ -155,7 +155,7 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 		$product_id     = $cart_item['product_id'];
 		$stock_quantity = $product->get_stock_quantity();
 		$product_price  = WC()->cart->get_product_price( $product );
-		if( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ){
+		if ( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ) {
 			$stock_quantity = get_post_meta( $product_id, '_onpreorder_maximum_order', true );
 		}
 		ob_start();
@@ -320,7 +320,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 						$product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 						$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 						$stock_quantity    = $_product->get_stock_quantity();
-						if( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ){
+						if ( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ) {
 							$stock_quantity = get_post_meta( $product_id, '_onpreorder_maximum_order', true );
 						}
 						?>
@@ -1798,7 +1798,7 @@ if ( ! function_exists( 'woostify_custom_product_data_tabs' ) ) {
 							if ( $product && comments_open() ) {
 								$new_data['reviews'] = array(
 									/* translators: %s: reviews count */
-									'title'    => sprintf( __( 'Reviews (%d)', 'woocommerce' ), $product->get_review_count() ),
+									'title'    => sprintf( __( 'Reviews (%d)', 'woostify' ), $product->get_review_count() ),
 									'priority' => $priority,
 									'callback' => 'comments_template',
 								);
