@@ -7,38 +7,24 @@
 
 defined( 'ABSPATH' ) || exit;
 
-function move_outofstock_products_to_bottom( $query ) {
+$options = woostify_options( false );
+$hide_outstock = get_option( 'woocommerce_hide_out_of_stock_items' );
+$outofstock_to_bottom = isset( $options['outofstock_to_bottom'] ) && ( $options['outofstock_to_bottom'] == 1 );
+if(  $outofstock_to_bottom && $hide_outstock != 'yes' ) {
+	add_action( 'posts_clauses', 'oder_outofstock_products_to_bottom', 60, 2 );
+}
+function oder_outofstock_products_to_bottom( $posts_clauses, $query ){
+
 	if ( is_admin() || ! $query->is_main_query() ) {
-		return;
+		return $posts_clauses;
 	}
 
 	if ( ( is_shop() || is_product_taxonomy() ) &&  is_archive() ) {
-		$meta_query = array(
-			'relation' => 'OR',
-			array(
-				'key'     => '_stock_status',
-				'value'   => 'instock',
-				'compare' => '=',
-			),
-			array(
-				'key'     => '_stock_status',
-				'value'   => 'outofstock',
-				'compare' => '=',
-			),
-		);
-  
-		$query->set( 'meta_query', $meta_query );
-		$query->set( 'orderby', 'meta_value' );
-		$query->set( 'meta_key', '_stock_status' );
-		$query->set( 'order', 'ASC' );
-
-		// echo '<pre>';
-		// var_dump( $query );
-		// echo '</pre>';
+		global $wpdb;
+		$posts_clauses['join'] .= " INNER JOIN $wpdb->postmeta istockstatus ON ($wpdb->posts.ID = istockstatus.post_id) ";
+		$posts_clauses['orderby'] = " istockstatus.meta_value ASC, " . $posts_clauses['orderby'];
+		$posts_clauses['where'] = " AND istockstatus.meta_key = '_stock_status' AND istockstatus.meta_value <> '' " . $posts_clauses['where'];
 	}
-}
 
-$options = woostify_options( false );
-if( isset( $options['outofstock_to_bottom'] ) && ( $options['outofstock_to_bottom'] == 1 ) ) {
-	add_action( 'pre_get_posts', 'move_outofstock_products_to_bottom' );
+	return $posts_clauses;
 }
