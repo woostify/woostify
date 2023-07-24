@@ -15,15 +15,19 @@ var galleries = document.querySelectorAll( '.product-gallery' );
 
 // Sticky summary for list layout.
 function woostifyStickySummary(gallery) {
+
 	if ( ! woostify_woocommerce_general.enabled_sticky_product_summary ) {
 		return;
 	}
-	var summary = document.body.classList.contains('has-gallery-list-layout ') ? gallery.querySelector( '.product-summary' ) : false;
-	if ( ! summary || window.innerWidth < 992 ) {
+
+	var gallery_thumb = gallery.classList.contains('has-product-thumbnails')? gallery : false;
+	var summary = document.body.classList.contains('has-gallery-list-layout') ? document.querySelector( '.has-gallery-list-layout .product-summary' ) : false;
+
+	if ( ! gallery_thumb || ! summary || window.innerWidth < 992 ) {
 		return;
 	}
-
-	if ( gallery.offsetHeight <= summary.offsetHeight ) {
+	
+	if ( gallery_thumb.offsetHeight <= summary.offsetHeight ) {
 		return;
 	}
 
