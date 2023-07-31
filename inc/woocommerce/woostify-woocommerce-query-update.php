@@ -11,9 +11,9 @@ $options = woostify_options( false );
 $hide_outstock = get_option( 'woocommerce_hide_out_of_stock_items' );
 $outofstock_to_bottom = isset( $options['outofstock_to_bottom'] ) && ( $options['outofstock_to_bottom'] == 1 );
 if(  $outofstock_to_bottom && $hide_outstock != 'yes' ) {
-	add_action( 'posts_clauses', 'oder_outofstock_products_to_bottom', 60, 2 );
+	add_action( 'posts_clauses', 'woostify_order_outofstock_products_to_bottom', 60, 2 );
 }
-function oder_outofstock_products_to_bottom( $posts_clauses, $query ){
+function woostify_order_outofstock_products_to_bottom( $posts_clauses, $query ){
 
 	if ( is_admin() || ! $query->is_main_query() ) {
 		return $posts_clauses;
