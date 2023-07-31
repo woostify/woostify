@@ -770,7 +770,7 @@ if ( ! function_exists( 'woostify_product_video_button_play' ) ) {
 		$video_url  = woostify_get_metabox( $product_id, 'woostify_product_video_metabox' );
 
 		if ( 'default' !== $video_url ) {
-			$output .= '<a href="' . esc_url( $video_url ) . '" data-lity class="woostify-lightbox-button">' . Woostify_Icon::fetch_svg_icon( 'control-play', false ) . '</a>';
+			$output .= '<a rel="nofollow" href="' . esc_url( $video_url ) . '" data-lity class="woostify-lightbox-button">' . Woostify_Icon::fetch_svg_icon( 'control-play', false ) . '</a>';
 		}
 
 		return $output;
