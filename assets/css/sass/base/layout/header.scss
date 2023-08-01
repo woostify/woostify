@@ -1,8 +1,17 @@
-/* Header sticky */
-.has-sticky-header>.site-header:not(.header-layout-7){
+/* Header sticky. Theo nhu trong file js thi bo qua header layout 7 */
+.has-sticky-header .site-header:not(.header-layout-7){
     position: sticky;
     top: 0;
     z-index: 99;
+}
+/* Theo dinh nghia cua wp-admin bar */
+.has-sticky-header.admin-bar .site-header:not(.header-layout-7){
+	@media screen and (min-width: 601px){
+		top: 46px;
+	}
+	@media screen and (min-width: 783px){
+		top: 32px;
+	}
 }
 /* Header Menu */
 .site-header-inner {

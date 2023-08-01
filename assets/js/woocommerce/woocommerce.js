@@ -1062,6 +1062,7 @@ var woostifyMoveNoticesInCheckoutPage = function() {
 	var infoNotices         = document.querySelectorAll( '.woocommerce > .woocommerce-info' );
 	var woostifyNoticeGroup = document.querySelector( '.woostify-woocommerce-NoticeGroup' );
 
+	if( ! woostifyNoticeGroup ) return;
 	if ( noticesWrapper.length ) {
 		var noticesWrapperEl         = noticesWrapper[0];
 		var noticesWrapperNode       = document.createElement( 'div' );
@@ -1177,7 +1178,6 @@ document.addEventListener(
 				woostifyStockQuantityProgressBar();
 			}
 		);
-		console.log(222);
 		woostifyInfiniteScroll( true );
 		// woostifyInfiniteScrollPreview(true);
 
@@ -1189,7 +1189,7 @@ document.addEventListener(
 		).on(
 			'added_to_cart',
 			function( e, fragments, cart_hash, $button ) {
-				
+
 				woostifyQuantityMiniCart();
 				updateHeaderCartPrice();
 				eventCartSidebarClose();

@@ -1,4 +1,4 @@
-{
+{   "type": "module",
     "devDependencies": {
         "browser-sync": "^2.27.5",
         "del": "^6.0.0",

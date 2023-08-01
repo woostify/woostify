@@ -42,8 +42,14 @@ function customQuantity() {
 		function( ele ) {
 			// Input.
 			var input = ele.querySelector( 'input.qty' );
+			var body = document.querySelector('body');
 			if ( ! input ) {
 				return;
+			}
+			
+			// Add style display none when input type hidden 
+			if ( input.type == 'hidden' && body.classList.contains('single-product') ) {
+				input.closest('.quantity').style.display = "none";
 			}
 
 			// Add class ajax-ready on first load.

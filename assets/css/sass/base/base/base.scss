@@ -14,25 +14,14 @@ html{
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
-	overflow: hidden;
     font-size: 14px;
     background-color: #fff;
 }
 
 body {
     margin: 0;
-    overflow: auto;
     overflow-x: hidden;
     word-break: break-word;
-    height: 100vh;
-
-    &.admin-bar{
-        height: calc( 100vh - 32px);
-
-        @media screen and (max-width: 782px){
-            height: calc( 100vh - 46px );
-        }
-    }
 }
 
 article,

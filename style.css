@@ -4,7 +4,7 @@ Theme URI:    https://woostify.com
 Author:       Woostify
 Author URI:   https://woostify.com/about
 Description:  Woostify is fast, lightweight, responsive and super flexible WooCommerce theme built with SEO, speed, and usability in mind. The theme works great with any of your favorite page builder likes Elementor, Beaver Builder, SiteOrigin, Thrive Architect, Divi, etc. Therefore, you can build any type of websites like shop, business agencies, corporate, portfolio, education, university portal, consulting, church, restaurant, medical and so on. Woostify is compatible with all well-coded plugins, including major ones like WooCommerce, OrbitFox, Yoast, BuddyPress, bbPress, etc. Learn more about the theme and ready to import demo sites at https://woostify.com
-Version:      2.1.6
+Version:      2.2.5
 Requires at least: 4.7
 Tested up to: 6.1
 Requires PHP: 7.3
@@ -2107,25 +2107,14 @@ html {
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
-  overflow: hidden;
   font-size: 14px;
   background-color: #fff;
 }
 
 body {
   margin: 0;
-  overflow: auto;
   overflow-x: hidden;
   word-break: break-word;
-  height: 100vh;
-}
-body.admin-bar {
-  height: calc(100vh - 32px);
-}
-@media screen and (max-width: 782px) {
-  body.admin-bar {
-    height: calc(100vh - 46px);
-  }
 }
 
 article,
@@ -2838,9 +2827,6 @@ dd {
   max-width: unset;
   width: unset;
 }
-.no-sidebar:not(.site-boxed-container) .alignfull img {
-  width: 100vw;
-}
 .no-sidebar:not(.site-boxed-container) .alignwide {
   margin-left: -100px;
   margin-right: -100px;
@@ -2940,6 +2926,9 @@ article p:last-child {
 }
 .woobuilder-active .site-content, .elementor-page .site-content, .edited-by-divi-builder .site-content, .elementor-template-full-width .site-content {
   margin: 0;
+}
+.site-content-boxed-container.elementor-template-full-width .site-content{
+  max-width: 100%;
 }
 .single-product .site-content {
   margin-top: 0;
@@ -3473,11 +3462,23 @@ article p:last-child {
   }
 }
 
-/* Header sticky */
-.has-sticky-header > .site-header:not(.header-layout-7) {
+/* Header sticky. Theo nhu trong file js thi bo qua header layout 7 */
+.has-sticky-header .site-header:not(.header-layout-7) {
   position: sticky;
   top: 0;
   z-index: 99;
+}
+
+/* Theo dinh nghia cua wp-admin bar */
+@media screen and (min-width: 601px) {
+  .has-sticky-header.admin-bar .site-header:not(.header-layout-7) {
+    top: 46px;
+  }
+}
+@media screen and (min-width: 783px) {
+  .has-sticky-header.admin-bar .site-header:not(.header-layout-7) {
+    top: 32px;
+  }
 }
 
 /* Header Menu */
@@ -3783,7 +3784,7 @@ article p:last-child {
   z-index: 200;
   padding-top: 15px;
   padding-bottom: 15px;
-  width: 300px;
+  width: 90%;
   overflow-y: scroll;
   transform: translateX(-100%);
 }
@@ -5318,6 +5319,9 @@ header.elementor-element {
 }
 .single-product #woostify-quick-view-panel .product_title.entry-title a {
   pointer-events: auto;
+}
+.single-product .product.sold-individually form .quantity {
+  display: none;
 }
 
 body:not(.yith-wcms-pro) .processing:not(.um-woo-status) {
@@ -6909,23 +6913,23 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
 .product-gallery.wc-default-gallery .flex-control-thumbs li img.flex-active {
   border-color: #555;
 }
-.product-gallery.vertical-style #product-images .image-item, .product-gallery.horizontal-style #product-images .image-item {
+.product-gallery.vertical-style .product-images-container .image-item, .product-gallery.horizontal-style .product-images-container .image-item {
   display: none;
 }
-.product-gallery.vertical-style #product-images .image-item:first-child, .product-gallery.horizontal-style #product-images .image-item:first-child {
+.product-gallery.vertical-style .product-images-container .image-item:first-child, .product-gallery.horizontal-style .product-images-container .image-item:first-child {
   display: block;
 }
-.product-gallery.vertical-style #product-images.flickity-enabled .image-item, .product-gallery.horizontal-style #product-images.flickity-enabled .image-item {
+.product-gallery.vertical-style .product-images-container.flickity-enabled .image-item, .product-gallery.horizontal-style .product-images-container.flickity-enabled .image-item {
   display: block;
 }
 @media (max-width: 991px) {
-  .product-gallery.column-style #product-images .image-item, .product-gallery.grid-style #product-images .image-item {
+  .product-gallery.column-style .product-images-container .image-item, .product-gallery.grid-style .product-images-container .image-item {
     display: none;
   }
-  .product-gallery.column-style #product-images .image-item:first-child, .product-gallery.grid-style #product-images .image-item:first-child {
+  .product-gallery.column-style .product-images-container .image-item:first-child, .product-gallery.grid-style .product-images-container .image-item:first-child {
     display: block;
   }
-  .product-gallery.column-style #product-images.flickity-enabled .image-item, .product-gallery.grid-style #product-images.flickity-enabled .image-item {
+  .product-gallery.column-style .product-images-container.flickity-enabled .image-item, .product-gallery.grid-style .product-images-container.flickity-enabled .image-item {
     display: block;
   }
 }
@@ -6933,10 +6937,10 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   display: none;
 }
 @media (max-width: 767px) {
-  .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images {
+  .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images-container {
     display: flex;
   }
-  .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images.flickity-enabled {
+  .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images-container.flickity-enabled {
     display: block;
   }
 }
@@ -6985,29 +6989,29 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   .product-gallery.vertical-style.has-product-thumbnails .thumb-btn.prev {
     top: 0;
   }
-  .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images {
+  .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images-container {
     overflow: hidden;
   }
-  .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images .thumbnail-item {
+  .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images-container .thumbnail-item {
     margin-bottom: 10px;
   }
-  .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images .thumbnail-item:last-child {
+  .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images-container .thumbnail-item:last-child {
     margin-bottom: 0;
   }
-  .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images.has-buttons .thumbnail-item:first-child {
+  .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images-container.has-buttons .thumbnail-item:first-child {
     margin-top: 35px;
   }
-  .product-gallery.vertical-style.has-product-thumbnails #product-thumbnail-images.has-buttons .thumbnail-item:last-child {
+  .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images-container.has-buttons .thumbnail-item:last-child {
     margin-bottom: 35px;
   }
 }
-.product-gallery.horizontal-style #product-thumbnail-images {
+.product-gallery.horizontal-style .product-thumbnail-images-container {
   display: flex;
 }
-.product-gallery.horizontal-style #product-thumbnail-images.flickity-enabled {
+.product-gallery.horizontal-style .product-thumbnail-images-container.flickity-enabled {
   display: block;
 }
-.product-gallery.horizontal-style #product-thumbnail-images .thumbnail-item:first-child {
+.product-gallery.horizontal-style .product-thumbnail-images-container .thumbnail-item:first-child {
   margin-left: 1px;
 }
 .product-gallery .onsale {
