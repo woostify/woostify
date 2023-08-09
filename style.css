@@ -5477,11 +5477,6 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 .no-sidebar #toggle-sidebar-mobile-button, .has-elementor-location-shop-archive #toggle-sidebar-mobile-button {
   display: none;
 }
-#toggle-sidebar-mobile-button.active {
-  transform: translateX(-20px);
-  opacity: 0;
-  visibility: hidden;
-}
 #toggle-sidebar-mobile-button:before {
   margin-right: 7px;
 }
