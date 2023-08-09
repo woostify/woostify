@@ -155,7 +155,7 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 		}
 		$this->json['swatches'] = $swatches;
 
-		$color = $this->global_color;
+		$color = isset($options[$control_id])? $options[$control_id] : $this->global_color;
 
 		if ( false === strpos( $color, 'rgba' ) ) {
 			$this->color_format = 'hex';

@@ -23,7 +23,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 					swatchLabels.push( c_val.title );
 				}
 			)
-			// console.log(control);
+		
 			let args = {
 				el: '.btn',
 				theme: 'monolith',
@@ -121,6 +121,9 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 					case 'rgba':
 						new_color = color.toRGBA()
 						break
+					case 'hex':
+						new_color = color.toHEXA()
+						break
 					case 'hexa':
 						new_color = color.toHEXA()
 						break
@@ -139,7 +142,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 				return new_color
 			}
 
-			function createColorPicker( control ) {console.log( wp.customize.control.instance('woostify_setting[theme_color]') );
+			function createColorPicker( control ) {
 				jQuery.each(
 					control.params.settings,
 					function ( idx, obj ) {
@@ -158,13 +161,9 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 							'change',
 							function ( color, source, instance ) {
 								document.body.classList.add( 'color-updating-class-name' );
-								let _representation = instance._representation.toLowerCase(); //color_format
+								let _representation = instance._representation.toLowerCase();
 								instance.options.el.style.color = colorFormat( color, _representation ).toString( 0 )
 								control.settings[idx].set( colorFormat( color, _representation ).toString( 0 ) )
-								wp.customize.control('woostify_setting[theme_color]', function ( new_control ) {
-									new_control.params.color_format = _representation;
-								});
-								
 							},
 						).on(
 							'clear',
