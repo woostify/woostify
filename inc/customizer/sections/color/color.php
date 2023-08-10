@@ -33,7 +33,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
-			'global_color' => $options['theme_color'],
+			'global_color' => $defaults['theme_color'],
 		)
 	)
 );
@@ -60,7 +60,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
-			'global_color' => $options['text_color'],
+			'global_color' => $defaults['text_color'],
 		)
 	)
 );
@@ -87,7 +87,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
-			'global_color' => $options['accent_color'],
+			'global_color' => $defaults['accent_color'],
 		)
 	)
 );
@@ -114,7 +114,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
-			'global_color' => $options['link_hover_color'],
+			'global_color' => $defaults['link_hover_color'],
 		)
 	)
 );
@@ -141,7 +141,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
-			'global_color' => $options['extra_color_1'],
+			'global_color' => $defaults['extra_color_1'],
 		)
 	)
 );
@@ -168,7 +168,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
-			'global_color' => $options['extra_color_2'],
+			'global_color' => $defaults['extra_color_2'],
 		)
 	)
 );
