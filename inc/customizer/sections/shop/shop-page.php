@@ -31,6 +31,7 @@ $wp_customize->add_control(
 				'woostify_setting[shop_page_breadcrumb]',
 				'woostify_setting[shop_page_result_count]',
 				'woostify_setting[shop_page_product_filter]',
+				'woostify_setting[outofstock_to_bottom]',
 				'woostify_setting[shop_context_tabs]',
 				'woostify_setting[shop_page_product_title_color]',
 				'woostify_setting[shop_page_product_price_color]',
@@ -151,6 +152,27 @@ $wp_customize->add_control(
 	)
 );
 
+// Product outofstock.
+$wp_customize->add_setting(
+	'woostify_setting[outofstock_to_bottom]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['outofstock_to_bottom'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[outofstock_to_bottom]',
+		array(
+			'label'    => __( 'Move Out-of-stock products to buttom', 'woostify' ),
+			'section'  => 'woostify_shop_page',
+			'settings' => 'woostify_setting[outofstock_to_bottom]',
+			'tab'      => 'general',
+		)
+	)
+);
 
 $wp_customize->add_setting(
 	'woostify_setting[shop_page_product_title_color]',

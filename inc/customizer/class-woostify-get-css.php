@@ -1139,6 +1139,19 @@ class Woostify_Get_CSS {
 			.woostify-simple-subsbrice-form:focus-within input[type="submit"]{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
+			
+		';
+
+		// theme variable global color
+		$styles .= '
+			:root {
+				--e-global-color-woostify_color_1: '. esc_attr( $options['theme_color'] ) .';
+				--e-global-color-woostify_color_2: '. esc_attr( $options['text_color'] ) .';
+				--e-global-color-woostify_color_3: '. esc_attr( $options['accent_color'] ) .';
+				--e-global-color-woostify_color_6: '. esc_attr( $options['link_hover_color'] ) .';
+				--e-global-color-woostify_color_4: '. esc_attr( $options['extra_color_1'] ) .';
+				--e-global-color-woostify_color_5: '. esc_attr( $options['extra_color_2'] ) .';
+			}
 		';
 
 		// Header.
