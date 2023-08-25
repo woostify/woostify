@@ -1421,6 +1421,9 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 					case 'payment-methods':
 						$icon = 'shopping-cart-full';
 						break;
+					case 'cwg-unsubscribe':
+						$icon = 'unsubscribe';
+						break;
 					default:
 						$icon = 'dashboard';
 
