@@ -12,11 +12,11 @@
 		{
 			ready: function() {
 				var control = this;
-
+				
 				control.container.on(
 					'change',
 					'.woostify-font-family select',
-					function() {
+					function(e) {
 						var _this       = jQuery( this ),
 							_value      = _this.val(),
 							_categoryID = _this.attr( 'data-category' ),
@@ -106,53 +106,53 @@
 					}
 				);
 
-					control.container.on(
-						'change',
-						'.woostify-font-variant select',
-						function() {
-							var _this    = jQuery( this );
-							var variants = _this.val();
+				control.container.on(
+					'change',
+					'.woostify-font-variant select',
+					function() {
+						var _this    = jQuery( this );
+						var variants = _this.val();
 
-							control.settings['variant'].set( variants );
+						control.settings['variant'].set( variants );
 
-							jQuery( '.woostify-font-variant select' ).each(
-								function( key, value ) {
-									var this_control = jQuery( this ).closest( 'li' ).attr( 'id' ).replace( 'customize-control-', '' );
-									var parent       = jQuery( this ).closest( '.woostify-font-variant' );
-									var font_val     = api.control( this_control ).settings['family'].get();
+						jQuery( '.woostify-font-variant select' ).each(
+							function( key, value ) {
+								var this_control = jQuery( this ).closest( 'li' ).attr( 'id' ).replace( 'customize-control-', '' );
+								var parent       = jQuery( this ).closest( '.woostify-font-variant' );
+								var font_val     = api.control( this_control ).settings['family'].get();
 
-									if ( font_val == control.settings['family'].get() && _this.attr( 'name' ) !== jQuery( value ).attr( 'name' ) ) {
-											jQuery( parent.find( 'select' ) ).not( _this ).val( variants ).triggerHandler( 'change' );
-											api.control( this_control ).settings['variant'].set( variants );
-									}
+								if ( font_val == control.settings['family'].get() && _this.attr( 'name' ) !== jQuery( value ).attr( 'name' ) ) {
+										jQuery( parent.find( 'select' ) ).not( _this ).val( variants ).triggerHandler( 'change' );
+										api.control( this_control ).settings['variant'].set( variants );
 								}
-							);
-						}
-					);
+							}
+						);
+					}
+				);
 
-					control.container.on(
-						'change',
-						'.woostify-font-category input',
-						function() {
-							control.settings['category'].set( jQuery( this ).val() );
-						}
-					);
+				control.container.on(
+					'change',
+					'.woostify-font-category input',
+					function() {
+						control.settings['category'].set( jQuery( this ).val() );
+					}
+				);
 
-					control.container.on(
-						'change',
-						'.woostify-font-weight select',
-						function() {
-							control.settings['weight'].set( jQuery( this ).val() );
-						}
-					);
+				control.container.on(
+					'change',
+					'.woostify-font-weight select',
+					function() {
+						control.settings['weight'].set( jQuery( this ).val() );
+					}
+				);
 
-					control.container.on(
-						'change',
-						'.woostify-font-transform select',
-						function() {
-							control.settings['transform'].set( jQuery( this ).val() );
-						}
-					);
+				control.container.on(
+					'change',
+					'.woostify-font-transform select',
+					function() {
+						control.settings['transform'].set( jQuery( this ).val() );
+					}
+				);
 
 			}
 		}
@@ -166,14 +166,15 @@ jQuery( document ).ready(
 		jQuery( '.woostify-font-family select' ).selectWoo();
 		jQuery( '.woostify-font-variant' ).each(
 			function( key, value ) {
+
 				var _this = $( this );
-				var value = _this.data( 'saved-value' );
-				if ( value ) {
-					value = value.toString().split( ',' );
-				}
-				_this.find( 'select' ).selectWoo().val( value ).trigger( 'change.select2' );
+				var select = _this.find( 'select' );
+				var optionsArr = select.html();
+				_this.attr('data-options', optionsArr.toString());
+				
 			}
 		);
+
 
 		$( ".woostify-font-family" ).each(
 			function( key, value ) {
@@ -183,6 +184,37 @@ jQuery( document ).ready(
 				}
 			}
 		);
+
+		var woostify_typography = jQuery('#accordion-panel-woostify_typography');
+		woostify_typography.on("click",function(event) {
+			jQuery( '.woostify-font-variant' ).each(
+				function( key, value ) {
+	
+					var _this = $( this );
+					var value = _this.data( 'saved-value' );
+					var select = _this.find( 'select' );
+					var options = _this.data('options');
+
+					select.html(options);
+					if ( value ) {
+						value = value.toString().split( ',' );
+					}
+					select.selectWoo().val( value ).trigger( 'change.select2');
+					
+				}
+			);
+		});
+
+		var custom_css = jQuery('#sub-accordion-section-custom_css');
+		custom_css.on("click", function (event) {
+			jQuery( '.woostify-font-variant' ).each(
+				function( key, value ) {
+					var _this = $( this );
+					var select = _this.find( 'select' );
+					select.empty();
+				}
+			);
+		});
 
 	}
 );
