@@ -345,6 +345,63 @@ function woostifyRemoveClassPrefix() {
 	selector.className = results.join( ' ' );
 }
 
+function noticesRegisterAccout() {
+	var woocommerce_account = document.querySelector('.woocommerce-account');
+	if ( !woocommerce_account ) {
+		return;
+	}
+
+	var wc_form_register = woocommerce_account.querySelector('.woocommerce-form-register');
+
+	if( wc_form_register ){
+		var wc_notices_wrapper = woocommerce_account.querySelector('.woocommerce-notices-wrapper');
+		var wc_form_register_email = wc_form_register.querySelector('input[type="email"]');
+		var wc_register_nonce = wc_form_register.querySelector('#woocommerce-register-nonce');
+		var wc_form_register_submit = wc_form_register.querySelector('.woocommerce-form-register__submit');
+
+		wc_form_register_submit.addEventListener('click', function (e) {
+			e.preventDefault();
+			var email = wc_form_register_email.value;
+
+			var data = {
+				'action': 'notices_register_account',
+				'woocommerce-register-nonce' : wc_register_nonce.value, 
+				'email' : email,
+			};
+
+			jQuery.ajax({
+				type:"POST",
+				url: woostify_woocommerce_general.ajax_url,
+				dataType: 'json',
+				data: data,
+				success: function(res)
+				{
+
+					if ( !res.success ) {
+						return;
+					}
+					
+					var data = res.data;
+					var notices = data.notices;
+					var successfully = data.successfully;
+					var wp_redirect = data.wp_redirect;
+	
+					wc_notices_wrapper.innerHTML = notices;
+					if ( successfully ) {
+						// Refresh the page after a delay of 3 seconds
+						setTimeout(function(){
+							location.replace(wp_redirect);
+						}, 1000);
+					}
+					
+				}
+		
+			});
+		});
+	}
+
+}
+
 document.addEventListener(
 	'DOMContentLoaded',
 	function() {
@@ -353,5 +410,6 @@ document.addEventListener(
 		dialogPopup( 'header-search-icon', '.site-dialog-search', 'search' );
 		scrollAction( '#scroll-to-top', 200 );
 		toTopButton();
+		noticesRegisterAccout();
 	}
 );
