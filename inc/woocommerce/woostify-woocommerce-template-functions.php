@@ -1528,7 +1528,6 @@ if ( ! function_exists( 'woostify_ajax_notices_register_account' ) ) {
 		</div>';
 
 		$data = array(
-			'validation_errors' => $validation_errors,
 			'notices' => $notices,
 			'successfully' => $successfully,
 			'wp_redirect' => $wp_redirect,
