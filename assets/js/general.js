@@ -345,28 +345,39 @@ function woostifyRemoveClassPrefix() {
 	selector.className = results.join( ' ' );
 }
 
-function noticesRegisterAccout() {
-	var woocommerce_account = document.querySelector('.woocommerce-account');
+function noticesLoginRegisterAccout() {
+	var woocommerce_account = document.querySelector('.woostify-login-form-popup-content.woocommerce-account');
 	if ( !woocommerce_account ) {
 		return;
 	}
 
+	var wc_notices_wrapper = woocommerce_account.querySelector('.woocommerce-notices-wrapper');
+	var wc_form_login = woocommerce_account.querySelector('.woocommerce-form-login');
 	var wc_form_register = woocommerce_account.querySelector('.woocommerce-form-register');
 
 	if( wc_form_register ){
-		var wc_notices_wrapper = woocommerce_account.querySelector('.woocommerce-notices-wrapper');
+		var wc_form_register_username = wc_form_register.querySelector('input[name="username"]');
 		var wc_form_register_email = wc_form_register.querySelector('input[type="email"]');
+		var wc_form_register_password = wc_form_register.querySelector('input[type="password"]');
+		var wc_form_register_redirect = wc_form_register.querySelector('input[name="redirect"]');
 		var wc_register_nonce = wc_form_register.querySelector('#woocommerce-register-nonce');
 		var wc_form_register_submit = wc_form_register.querySelector('.woocommerce-form-register__submit');
 
 		wc_form_register_submit.addEventListener('click', function (e) {
 			e.preventDefault();
+
+			var username = wc_form_register_username ? wc_form_register_username.value : '';
 			var email = wc_form_register_email.value;
+			var password = wc_form_register_password ? wc_form_register_password.value : '';
+			var redirect = wc_form_register_redirect ? wc_form_register_redirect.value : '';
 
 			var data = {
 				'action': 'notices_register_account',
 				'woocommerce-register-nonce' : wc_register_nonce.value, 
+				'username': username,
 				'email' : email,
+				'password' : password,
+				'redirect' : redirect,
 			};
 
 			jQuery.ajax({
@@ -388,7 +399,7 @@ function noticesRegisterAccout() {
 	
 					wc_notices_wrapper.innerHTML = notices;
 					if ( successfully ) {
-						// Refresh the page after a delay of 3 seconds
+						// Refresh the page after a delay of 1 seconds
 						setTimeout(function(){
 							location.replace(wp_redirect);
 						}, 1000);
@@ -397,6 +408,60 @@ function noticesRegisterAccout() {
 				}
 		
 			});
+		});
+	}
+
+	if ( wc_form_login ) {
+		var wc_form_login_username = wc_form_login.querySelector('input[name="username"]');
+		var wc_form_login_password = wc_form_login.querySelector('input[type="password"]');
+		var wc_form_login_rememberme = wc_form_login.querySelector('input[name="rememberme"]');
+		var wc_form_login_redirect = wc_form_login.querySelector('input[name="redirect"]');
+		var wc_login_nonce = wc_form_login.querySelector('#woocommerce-login-nonce');
+		var wc_form_login_submit = wc_form_login.querySelector('.woocommerce-form-login__submit');
+
+		wc_form_login_submit.addEventListener('click', function (e) {
+			e.preventDefault();
+
+			var username = wc_form_login_username.value;
+			var password = wc_form_login_password.value;
+			var rememberme = wc_form_login_rememberme ? wc_form_login_rememberme.value : '';
+			var redirect = wc_form_login_redirect ? wc_form_login_redirect.value : '';
+
+			var data = {
+				'action': 'notices_login_account',
+				'woocommerce-login-nonce' : wc_login_nonce.value, 
+				'username': username,
+				'password' : password,
+				'rememberme' : rememberme,
+				'redirect' : redirect,
+			};
+
+			jQuery.ajax({
+				type:"POST",
+				url: woostify_woocommerce_general.ajax_url,
+				dataType: 'json',
+				data: data,
+				success: function(res)
+				{
+
+					if ( !res.success ) {
+						return;
+					}
+		
+					var data = res.data;
+					var notices = data.notices;
+					var successfully = data.successfully;
+					var wp_redirect = data.wp_redirect;
+	
+					wc_notices_wrapper.innerHTML = notices;
+					if ( successfully ) {
+						location.replace(wp_redirect);
+					}
+					
+				}
+		
+			});
+
 		});
 	}
 
@@ -410,6 +475,6 @@ document.addEventListener(
 		dialogPopup( 'header-search-icon', '.site-dialog-search', 'search' );
 		scrollAction( '#scroll-to-top', 200 );
 		toTopButton();
-		noticesRegisterAccout();
+		noticesLoginRegisterAccout();
 	}
 );

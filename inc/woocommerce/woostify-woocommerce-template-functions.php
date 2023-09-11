@@ -1461,7 +1461,7 @@ if ( ! function_exists( 'woostify_ajax_notices_register_account' ) ) {
 		if ( isset( $_POST['email'] ) && wp_verify_nonce( $nonce_value, 'woocommerce-register' ) ) {
 			$username = 'no' === get_option( 'woocommerce_registration_generate_username' ) && isset( $_POST['username'] ) ? wp_unslash( $_POST['username'] ) : ''; 
 			$password = 'no' === get_option( 'woocommerce_registration_generate_password' ) && isset( $_POST['password'] ) ? $_POST['password'] : '';
-			$email = sanitize_email($_POST['email']);
+			$email = wp_unslash( $_POST['email'] );
 		
 			try {
 				$validation_error  = new WP_Error();
@@ -1521,6 +1521,91 @@ if ( ! function_exists( 'woostify_ajax_notices_register_account' ) ) {
 				<li>'.$mes .'</li>
 			</ul>
 		</div>'
+		: '<div class="woocommerce-notices-wrapper">
+			<ul class="woocommerce-error" role="alert">
+				<li><strong>Error:</strong> '.$mes.'</li>
+			</ul>
+		</div>';
+
+		$data = array(
+			'validation_errors' => $validation_errors,
+			'notices' => $notices,
+			'successfully' => $successfully,
+			'wp_redirect' => $wp_redirect,
+		);
+
+		wp_send_json_success( $data );
+	}
+}
+
+if ( ! function_exists( 'woostify_ajax_notices_login_account' ) ) {
+	/**
+	 * ajax notices login account
+	*/
+	function woostify_ajax_notices_login_account() {
+		$nonce_value = isset( $_POST['_wpnonce'] ) ? wp_unslash( $_POST['_wpnonce'] ) : '';
+		$nonce_value = isset( $_POST['woocommerce-login-nonce'] ) ? wp_unslash( $_POST['woocommerce-login-nonce'] ) : $nonce_value; 
+
+		$mes = '';
+		$successfully = false;
+		$wp_redirect = '';
+
+		if ( isset( $_POST['username'], $_POST['password'] ) && wp_verify_nonce( $nonce_value, 'woocommerce-login' ) ) {
+			try {
+				$creds = array(
+					'user_login'    => trim( wp_unslash( $_POST['username'] ) ), // phpcs:ignore 
+					'user_password' => $_POST['password'], // phpcs:ignore 
+					'remember'      => isset( $_POST['rememberme'] ), // phpcs:ignore 
+				);
+
+				$validation_error = new WP_Error();
+				$validation_error = apply_filters( 'woocommerce_process_login_errors', $validation_error, $creds['user_login'], $creds['user_password'] );
+
+				if ( $validation_error->get_error_code() ) {
+					throw new Exception( '<strong>' . __( 'Error:', 'woostify' ) . '</strong> ' . $validation_error->get_error_message() );
+				}
+
+				if ( empty( $creds['user_login'] ) ) {
+					throw new Exception( '<strong>' . __( 'Error:', 'woostify' ) . '</strong> ' . __( 'Username is required.', 'woocommerce' ) );
+				}
+
+				// On multisite, ensure user exists on current site, if not add them before allowing login.
+				if ( is_multisite() ) {
+					$user_data = get_user_by( is_email( $creds['user_login'] ) ? 'email' : 'login', $creds['user_login'] );
+
+					if ( $user_data && ! is_user_member_of_blog( $user_data->ID, get_current_blog_id() ) ) {
+						add_user_to_blog( get_current_blog_id(), $user_data->ID, 'customer' );
+					}
+				}
+
+				// Peform the login.
+				$user = wp_signon( apply_filters( 'woocommerce_login_credentials', $creds ), is_ssl() );
+
+				if ( is_wp_error( $user ) ) {
+					throw new Exception( $user->get_error_message() );
+				} else {
+
+					if ( ! empty( $_POST['redirect'] ) ) {
+						$redirect = wp_unslash( $_POST['redirect'] ); 
+					} elseif ( wc_get_raw_referer() ) {
+						$redirect = wc_get_raw_referer();
+					} else {
+						$redirect = wc_get_page_permalink( 'myaccount' );
+					}
+
+					$redirect = remove_query_arg( array( 'wc_error', 'password-reset' ), $redirect );
+
+					$wp_redirect = wp_validate_redirect( apply_filters( 'woocommerce_login_redirect', $redirect, $user ), wc_get_page_permalink( 'myaccount' ) ) ; // phpcs:ignore
+					
+					$successfully = true;
+				}
+			} catch ( Exception $e ) {
+				$mes = apply_filters( 'login_errors', $e->getMessage() );
+			}
+		}
+
+		$notices = ( $successfully ) ? 
+		''
 		: '<div class="woocommerce-notices-wrapper">
 			<ul class="woocommerce-error" role="alert">
 				<li><strong>Error:</strong> '.$mes.'</li>
