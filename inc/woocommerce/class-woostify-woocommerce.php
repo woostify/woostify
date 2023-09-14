@@ -87,6 +87,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_filter( 'woocommerce_my_account_edit_address_title', '__return_empty_string' );
 			remove_action( 'woocommerce_account_navigation', 'woocommerce_account_navigation' );
 			add_action( 'woocommerce_account_navigation', 'woostify_override_woocommerce_account_navigation' );
+			add_action( 'wp_ajax_notices_register_account', 'woostify_ajax_notices_register_account' );
+			add_action( 'wp_ajax_nopriv_notices_register_account', 'woostify_ajax_notices_register_account' );
+			add_action( 'wp_ajax_notices_login_account', 'woostify_ajax_notices_login_account' );
+			add_action( 'wp_ajax_nopriv_notices_login_account', 'woostify_ajax_notices_login_account' );
 
 			// TERM METABOX.
 			// For product category.
