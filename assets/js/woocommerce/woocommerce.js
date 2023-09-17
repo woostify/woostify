@@ -1183,7 +1183,7 @@ document.addEventListener(
 				woostifyStockQuantityProgressBar();
 			}
 		);
-		console.log(222);
+
 		woostifyInfiniteScroll( true );
 		// woostifyInfiniteScrollPreview(true);
 
