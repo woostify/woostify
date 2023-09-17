@@ -117,7 +117,7 @@ if ( ! class_exists( 'Woostify_Walker_Menu' ) ) {
 			$item_output .= '</a>';
 
 			// Start Mega menu content.
-			if ( 'mega_menu' === $item->object && 0 === $depth && ! woostify_is_elementor_editor() ) {
+			if ( 'mega_menu' === $item->object && 0 === $depth ) {
 				$mega_menu = '';
 
 				if ( class_exists( 'Woostify_Header_Footer_Builder' ) ) {

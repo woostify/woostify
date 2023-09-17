@@ -65,7 +65,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Woostify_Typogra
 		public function to_json() {
 			parent::to_json();
 
-			$number_of_fonts                   = apply_filters( 'woostify_number_of_fonts', 200 );
+			$number_of_fonts                   = apply_filters( 'woostify_number_of_fonts', 400 );
 			$this->to_json['label']            = $this->label;
 			$this->json['default_fonts_title'] = __( 'System fonts', 'woostify' );
 			$this->json['google_fonts_title']  = __( 'Google fonts', 'woostify' );

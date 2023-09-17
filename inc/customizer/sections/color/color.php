@@ -8,6 +8,9 @@
 // Default values.
 $defaults = woostify_options();
 
+// options values
+$options = woostify_options( false );
+
 // Theme color.
 $wp_customize->add_setting(
 	'woostify_setting[theme_color]',
@@ -30,6 +33,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
+			'global_color' => $defaults['theme_color'],
 		)
 	)
 );
@@ -56,6 +60,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
+			'global_color' => $defaults['text_color'],
 		)
 	)
 );
@@ -82,6 +87,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
+			'global_color' => $defaults['accent_color'],
 		)
 	)
 );
@@ -108,6 +114,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
+			'global_color' => $defaults['link_hover_color'],
 		)
 	)
 );
@@ -134,6 +141,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
+			'global_color' => $defaults['extra_color_1'],
 		)
 	)
 );
@@ -160,6 +168,7 @@ $wp_customize->add_control(
 			),
 			'enable_swatches' => false,
 			'is_global_color' => true,
+			'global_color' => $defaults['extra_color_2'],
 		)
 	)
 );

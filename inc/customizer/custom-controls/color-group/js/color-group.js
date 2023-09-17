@@ -23,7 +23,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 					swatchLabels.push( c_val.title );
 				}
 			)
-
+		
 			let args = {
 				el: '.btn',
 				theme: 'monolith',
@@ -124,6 +124,9 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 					case 'hex':
 						new_color = color.toHEXA()
 						break
+					case 'hexa':
+						new_color = color.toHEXA()
+						break
 					case 'hsva':
 						new_color = color.toHSVA()
 						break
@@ -158,8 +161,9 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 							'change',
 							function ( color, source, instance ) {
 								document.body.classList.add( 'color-updating-class-name' );
-								instance.options.el.style.color = colorFormat( color, color_format ).toString( 0 )
-								control.settings[idx].set( colorFormat( color, color_format ).toString( 0 ) )
+								let _representation = instance._representation.toLowerCase();
+								instance.options.el.style.color = colorFormat( color, _representation ).toString( 0 )
+								control.settings[idx].set( colorFormat( color, _representation ).toString( 0 ) )
 							},
 						).on(
 							'clear',
@@ -195,6 +199,7 @@ wp.customize.controlConstructor['woostify-color-group'] = wp.customize.Control.e
 													let setting_enable_swatches  = setting_control.params.enable_swatches
 													let setting_swatches         = setting_control.params.swatches
 													setting_swatches[swatch_idx] = new_color
+
 													jQuery.each(
 														setting_control.params.settings,
 														function ( idx, obj ) {

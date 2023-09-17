@@ -65,6 +65,15 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	 */
 	public $is_global_color = false;
 
+
+	/**
+	 * theme color field
+	 *
+	 * @access public
+	 * @var boolean
+	 */
+	public $global_color = false;
+
 	/**
 	 * Setting prefix
 	 *
@@ -134,6 +143,9 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 	public function to_json() {
 		parent::to_json();
 		$options = woostify_options( false );
+		$control_id_arr = explode( '[', $this->id );
+		$control_id     = isset( $control_id_arr[1] ) ? explode( ']', $control_id_arr[1] )[0] : $control_id_arr[0];
+		$control_id = str_replace( '"','', $control_id);
 
 		$swatches                    = array();
 		$global_color_settings       = $options['global_color_settings'];
@@ -143,6 +155,14 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 		}
 		$this->json['swatches'] = $swatches;
 
+		$color = isset($options[$control_id])? $options[$control_id] : $this->global_color;
+
+		if ( false === strpos( $color, 'rgba' ) ) {
+			$this->color_format = 'hex';
+		}
+		
+		$this->json['control_id']    = $control_id;
+		$this->json['color']    = $color;
 		$this->json['swatchLabels']    = $options['global_color_labels'];
 		$this->json['tab']             = $this->tab;
 		$this->json['tooltips']        = $this->tooltips;
@@ -160,6 +180,7 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 		$control_id_arr = explode( '[', $this->id );
 		$control_id     = isset( $control_id_arr[1] ) ? explode( ']', $control_id_arr[1] )[0] : $control_id_arr[0];
 		$settings       = $this->settings;
+
 		?>
 		<div class="woostify-control-wrap woostify-color-group-control woostify-color-group-control-<?php echo esc_attr( $control_id ); ?>" data-control_id="<?php echo esc_attr( $control_id ); ?>" data-prefix="<?php echo esc_attr( $this->prefix ); ?>">
 			<div class="color-group-wrap">

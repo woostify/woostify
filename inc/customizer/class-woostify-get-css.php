@@ -1139,6 +1139,19 @@ class Woostify_Get_CSS {
 			.woostify-simple-subsbrice-form:focus-within input[type="submit"]{
 				background-color: ' . esc_attr( $options['theme_color'] ) . ';
 			}
+			
+		';
+
+		// theme variable global color
+		$styles .= '
+			:root {
+				--e-global-color-woostify_color_1: '. esc_attr( $options['theme_color'] ) .';
+				--e-global-color-woostify_color_2: '. esc_attr( $options['text_color'] ) .';
+				--e-global-color-woostify_color_3: '. esc_attr( $options['accent_color'] ) .';
+				--e-global-color-woostify_color_6: '. esc_attr( $options['link_hover_color'] ) .';
+				--e-global-color-woostify_color_4: '. esc_attr( $options['extra_color_1'] ) .';
+				--e-global-color-woostify_color_5: '. esc_attr( $options['extra_color_2'] ) .';
+			}
 		';
 
 		// Header.
@@ -1758,9 +1771,14 @@ class Woostify_Get_CSS {
 			.wp-block-heading, .editor-rich-text__tinymce{
 				font-family: ' . esc_attr( $options['heading_font_family'] ) . ';
 			}
+			
+			.editor-styles-wrapper .wp-block{
+				max-width: '. esc_attr( $options['container_width'] ) .'px;
+			}
+
 		';
 
-		wp_register_style( 'woostify-block-editor', false ); // @codingStandardsIgnoreLine
+		wp_register_style( 'woostify-block-editor', true ); // @codingStandardsIgnoreLine
 		wp_enqueue_style( 'woostify-block-editor' );
 		wp_add_inline_style( 'woostify-block-editor', $block_styles );
 	}

@@ -27,6 +27,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			add_action( 'after_setup_theme', array( $this, 'woostify_setup' ) );
 			add_action( 'wp', array( $this, 'woostify_wp_action' ) );
 			add_action( 'widgets_init', array( $this, 'woostify_widgets_init' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'woostify_admin_scripts' ), 10 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'woostify_scripts' ), 10 );
 			add_filter( 'wpcf7_load_css', '__return_false' );
 			add_filter( 'excerpt_length', array( $this, 'woostify_limit_excerpt_character' ), 99 );
@@ -608,6 +609,19 @@ if ( ! class_exists( 'Woostify' ) ) {
 
 			// Register.
 			register_widget( 'Woostify_Recent_Post_Thumbnail' );
+		}
+
+		/**
+		 * Admin enqueue scripts and styles.
+		 */
+		public function woostify_admin_scripts()
+		{
+			wp_enqueue_style(
+				'woostify-editor-style',
+				WOOSTIFY_THEME_URI . 'assets/css/admin/editor.css',
+				array(),
+				woostify_version()
+			);
 		}
 
 		/**

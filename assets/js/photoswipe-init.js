@@ -322,7 +322,7 @@ function initPhotoSwipe( gallerySelector ) {
 			return;
 		}
 
-		var productThumbWrapperEl = productImagesWrapperEl.querySelector( '#product-thumbnail-images' );
+		var productThumbWrapperEl = productImagesWrapperEl.querySelector( '.product-thumbnail-images-container' );
 
 		if ( ! productThumbWrapperEl ) {
 			Object.keys( gallery.items ).forEach(
@@ -386,5 +386,5 @@ function initPhotoSwipe( gallerySelector ) {
 	}
 }
 
-initPhotoSwipe( '#product-images' );
+initPhotoSwipe( '.product-images-container' );
 
