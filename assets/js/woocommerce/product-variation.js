@@ -39,8 +39,21 @@ function productVariation( selector, form ) {
 			if ( ! document.querySelector( variationsForm ) ) {
 				return;
 			}
+			// get image url form `variation`.
+			var imgSrc  = variation.image.src,
+			fullSrc = variation.image.full_src,
+			inStock = variation.is_in_stock,
+			imgSrcheight = variation.image.src_h;
 
-			galleries.forEach( function( gallery, index){ 
+			if ( ! imgSrc || ! fullSrc ) {
+				return;
+			}
+
+			galleries.forEach( function( gallery, index){
+				var _thumbSlider = gallery.querySelector( woostify_product_images_slider_options.thumb.container );
+				if (_thumbSlider && _thumbSlider.children.length) {
+					_thumbSlider.children[0].click();
+				}
 				var imageWrapper = gallery.querySelector( '.image-item.is-selected' ); // is-selected
 				if ( imageWrapper == null ) {
 					return;
@@ -68,16 +81,6 @@ function productVariation( selector, form ) {
 				var buttons = document.querySelectorAll( '.single_add_to_cart_button' );
 				buttons.forEach( elm => ( elm.value = variation.variation_id) );
 				
-				// get image url form `variation`.
-				var imgSrc  = variation.image.src,
-					fullSrc = variation.image.full_src,
-					inStock = variation.is_in_stock,
-					imgSrcheight = variation.image.src_h;
-	
-				if ( ! imgSrc || ! fullSrc ) {
-					return;
-				}
-	
 				// Support Product meta widget.
 				var productMetaSkus        = document.querySelectorAll( '.elementor-widget-woostify-product-meta .sku' );
 				var wpmGtinCodeWrappers    = document.querySelectorAll( '.wpm_gtin_code_wrapper .wpm_pgw_code' );
@@ -109,8 +112,11 @@ function productVariation( selector, form ) {
 					var img    = new Image();
 					img.onload = function () {
 						imageWrapper.classList.remove( 'image-loading' );
+						setTimeout( function() {
+							flickity_viewport.style.height = image.height + 'px';
+
+						}, 50);
 					}
-					flickity_viewport.style.height = imgSrcheight + 'px';
 					img.src = imgSrc;
 					image.setAttribute( 'src', imgSrc );
 
