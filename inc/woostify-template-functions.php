@@ -2117,7 +2117,7 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 			}
 
 			$count     = $woocommerce->cart->cart_contents_count;
-			$sub_total = $woocommerce->cart->get_total();
+			$sub_total = $woocommerce->cart->get_cart_subtotal();
 		}
 
 		$search_icon     = apply_filters( 'woostify_header_search_icon', 'search' );
