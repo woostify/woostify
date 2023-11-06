@@ -8,6 +8,21 @@
 
 'use strict';
 
+/**
+ * 
+ * @param {string} url 
+ * @returns url without product-page
+ * because product-page param is managed by InfiniteScroll lib
+ */
+function removePageInUrl( url ){
+	var _url = new URL( url );
+	var urlParams = new URLSearchParams(_url.search);
+	if (urlParams.has('product-page')) {
+		urlParams.delete('product-page');
+		_url.search = urlParams.toString();
+	}
+	return _url.toString().replace('#', '');
+}
 function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 	let container      = document.querySelector( '.site-main .products' ),
 	view_more_btn_wrap = document.querySelector( '.woostify-view-more' ),
@@ -152,7 +167,43 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 	}
 
 	if ( pagination ) {
-		
+		// Overwrite appendItems InfiniteScroll
+		InfiniteScroll.prototype.appendItems = function( items, fragment ) {
+			if ( !this.conditionBeforeAppend(this, { items: items, fragment: fragment }) ) {
+				console.warn( 'Url has change. No data apended.' );
+				let view_more_btn_wrap = document.querySelector( '.woostify-view-more' ),
+				    loading_type       = woostify_woocommerce_general.loading_type;
+				if ( 'button' === loading_type ) {
+					let view_more_btn = view_more_btn_wrap.querySelector( '.w-view-more-button' );
+					view_more_btn.classList.remove( 'circle-loading' );
+				} else {
+					let loading_status = view_more_btn_wrap.querySelector( '.woostify-loading-status' );
+					loading_status.style.display = 'none'
+				}
+				return;
+			}
+			if ( !items || !items.length ) return;
+		  
+			// get fragment if not provided
+			fragment = fragment || getItemsFragment( items );
+			refreshScripts( fragment );
+			this.element.appendChild( fragment );
+		};
+
+		/**
+		 * InfiniteScroll: Check the conditions before append content of next page
+		 * new data will not appended if this function return false
+		 * @param infScrollObj The InfiniteScroll object
+		 * @param args The InfiniteScroll data (items, fragment), prepare to appended
+		 * @return boolean | Will data appended or not
+		 */ 
+		InfiniteScroll.prototype.conditionBeforeAppend = function( infScrollObj, args ) {
+			let beforeUrl = removePageInUrl(woostify_woocommerce_general.currentUrl);
+			let afterUrl = removePageInUrl(window.location.href);
+			return beforeUrl == afterUrl;
+
+		}
+
 		window.infScroll = new InfiniteScroll(
 			container,
 			options
@@ -168,6 +219,9 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 				} else {
 					loading_status.style.display = 'inline-block'
 				}
+				let infScrollPathelm = document.querySelector(options.path);
+				let currentUrl = infScrollPathelm ? infScrollPathelm.href : '';
+				woostify_woocommerce_general.currentUrl = currentUrl;
 			}
 		)
 
@@ -181,6 +235,7 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 				if ( 'button' === loading_type ) {
 					view_more_btn.classList.remove( 'circle-loading' );
 				} else {
+					let loading_status = view_more_btn_wrap.querySelector( '.woostify-loading-status' );
 					loading_status.style.display = 'none'
 				}
 
@@ -218,6 +273,13 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 		infScroll.on(
 			'append',
 			function( body, path, items, response ) {
+
+				if ( 'button' === loading_type ) {
+					view_more_btn.classList.remove( 'circle-loading' );
+				} else {
+					let loading_status = view_more_btn_wrap.querySelector( '.woostify-loading-status' );
+					loading_status.style.display = 'none'
+				}
 				// Re-init quick view.
 				if ( 'function' === typeof( woostifyQuickView ) ) {
 					woostifyQuickView();
