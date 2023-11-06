@@ -21,6 +21,11 @@ function removePageInUrl( url ){
 		urlParams.delete('product-page');
 		_url.search = urlParams.toString();
 	}
+
+	const match = _url.pathname.match(/page\/\w{1,}\/{0,}/);
+	if ( match ){
+		_url.pathname = _url.pathname.replace( match[0], '');
+	}
 	return _url.toString().replace('#', '');
 }
 function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
