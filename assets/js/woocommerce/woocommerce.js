@@ -22,9 +22,13 @@ function removePageInUrl( url ){
 		_url.search = urlParams.toString();
 	}
 
-	const match = _url.pathname.match(/page\/\w{1,}\/{0,}/);
+	let match = _url.pathname.match(/page\/\w{1,}\/{0,}/);
 	if ( match ){
 		_url.pathname = _url.pathname.replace( match[0], '');
+	}
+	match = _url.pathname.match(/(\w{0,})\/{1,}$/);
+	if ( match ){
+		_url.pathname = _url.pathname.replace( match[0], match[1] );
 	}
 	return _url.toString().replace('#', '');
 }
@@ -205,6 +209,10 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 		InfiniteScroll.prototype.conditionBeforeAppend = function( infScrollObj, args ) {
 			let beforeUrl = removePageInUrl(woostify_woocommerce_general.currentUrl);
 			let afterUrl = removePageInUrl(window.location.href);
+			if(beforeUrl != afterUrl) {
+				console.warn( 'Before', woostify_woocommerce_general.currentUrl, beforeUrl);
+				console.warn( 'After ' , window.location.href, afterUrl);
+			}
 			return beforeUrl == afterUrl;
 
 		}
