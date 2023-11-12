@@ -207,13 +207,14 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 		 * @return boolean | Will data appended or not
 		 */ 
 		InfiniteScroll.prototype.conditionBeforeAppend = function( infScrollObj, args ) {
-			let beforeUrl = removePageInUrl(woostify_woocommerce_general.currentUrl);
-			let afterUrl = removePageInUrl(window.location.href);
-			if(beforeUrl != afterUrl) {
-				console.warn( 'Before', woostify_woocommerce_general.currentUrl, beforeUrl);
-				console.warn( 'After ' , window.location.href, afterUrl);
-			}
-			return beforeUrl == afterUrl;
+			// let beforeUrl = removePageInUrl(woostify_woocommerce_general.currentUrl);
+			// let afterUrl = removePageInUrl(window.location.href);
+			// if(beforeUrl != afterUrl) {
+			// 	console.warn( 'Before', woostify_woocommerce_general.currentUrl, beforeUrl);
+			// 	console.warn( 'After ' , window.location.href, afterUrl);
+			// }
+			// return beforeUrl == afterUrl;
+			return infScroll.continue && (woostifyEvent.ajax_call||0) != 1;
 
 		}
 
@@ -235,6 +236,12 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 				let infScrollPathelm = document.querySelector(options.path);
 				let currentUrl = infScrollPathelm ? infScrollPathelm.href : '';
 				woostify_woocommerce_general.currentUrl = currentUrl;
+
+				infScroll.continue = 1;
+				if( woostifyEvent.ajax_call||0 ) {
+					infScroll.continue = 0;
+				}
+
 			}
 		)
 
