@@ -12,8 +12,10 @@ function woostifyAjaxSingleHandleError( button ) {
 		eventCartSidebarClose();
 	}
 
-	// Remove loading.
-	button.classList.remove( 'loading' );
+	// Remove loading, check if param is not null.
+	if( button && ( button.classList||0 ) ){
+		button.classList.remove( 'loading' );
+	} 
 
 	// Hide quick view popup when product added to cart.
 	document.documentElement.classList.remove( 'quick-view-open' );
