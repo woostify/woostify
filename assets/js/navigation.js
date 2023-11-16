@@ -129,8 +129,41 @@ function sidebarMenu( node ) {
 	);
 }
 
+
+function subMenuNavOffScreen() {
+	var menuMainMenu = document.querySelector('#menu-main-menu');
+	
+	if ( !menuMainMenu ) {
+		return;
+	}
+
+	var parents = menuMainMenu.querySelectorAll('.sub-menu > li.menu-item-has-children');
+	
+	parents.forEach(function(parent) {
+
+		var submenu = parent.querySelector('ul.sub-menu');
+		
+		// Get the width and position of the submenu
+		var submenuWidth = submenu.offsetWidth;
+		var submenuPosition = submenu.getBoundingClientRect().left;
+
+		// // Get the width of the window
+		var windowWidth = window.innerWidth;
+		
+		// Check if the submenu goes beyond the right edge of the window
+		if ( submenuPosition + submenuWidth > windowWidth ) {
+			// Add a class to the submenu to make it appear to the left
+			submenu.classList.add('submenu-left');
+		}
+		
+
+	});
+	
+}
+
 // Fallback for other dev.
 function navFallback() {
+
 	if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
 		return;
 	}
@@ -142,6 +175,7 @@ function navFallback() {
 	}
 
 	document.documentElement.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
+	
 }
 
 document.addEventListener(
@@ -151,6 +185,7 @@ document.addEventListener(
 			return;
 		}
 		nav();
+		subMenuNavOffScreen();
 		sidebarMenu();
 		sidebarMenu( '.woostify-nav-menu-widget .categories-navigation' );
 		mobileMenuTab();
