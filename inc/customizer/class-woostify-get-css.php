@@ -717,7 +717,13 @@ class Woostify_Get_CSS {
 				    left: 100%;
 				}
 
-				.main-navigation .primary-navigation .sub-menu > .menu-item-has-children .menu-item-arrow.arrow-icon-left{
+				.main-navigation .primary-navigation .sub-menu > .menu-item-has-children a.submenu-left-active{
+					flex-direction: row-reverse;
+					padding-left: 0;
+					padding-right: 10px;
+				}
+
+				.main-navigation .primary-navigation .sub-menu > .menu-item-has-children a.submenu-left-active .menu-item-arrow{
 					transform: rotate(90deg);
 				}
 

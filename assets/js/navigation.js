@@ -146,9 +146,9 @@ function subMenuNavOffScreen() {
 	
 	parents.forEach(function(parent) {
 
-		var menuitemarrow = parent.querySelector('a .menu-item-arrow');
 		var submenu = parent.querySelector('ul.sub-menu');
-		
+		var preSubmenu = submenu.previousElementSibling;
+
 		// Get the width and position of the submenu
 		var submenuWidth = submenu.offsetWidth;
 		var submenuPosition = submenu.getBoundingClientRect().left;
@@ -159,8 +159,9 @@ function subMenuNavOffScreen() {
 		// Check if the submenu goes beyond the right edge of the window
 		if ( submenuPosition + submenuWidth > windowWidth ) {
 			// Add a class to the submenu to make it appear to the left
+			preSubmenu.classList.add('submenu-left-active');
 			submenu.classList.add('submenu-left');
-			menuitemarrow.classList.add('arrow-icon-left');
+			
 		}
 		
 
