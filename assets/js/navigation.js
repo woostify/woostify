@@ -131,7 +131,12 @@ function sidebarMenu( node ) {
 
 
 function subMenuNavOffScreen() {
-	var menuMainMenu = document.querySelector('#menu-main-menu');
+
+	if ( !window.matchMedia( '( min-width: 992px )' ).matches ) {
+		return;
+	}
+
+	var menuMainMenu = document.querySelector('nav.main-navigation ul');
 	
 	if ( !menuMainMenu ) {
 		return;
@@ -141,6 +146,7 @@ function subMenuNavOffScreen() {
 	
 	parents.forEach(function(parent) {
 
+		var menuitemarrow = parent.querySelector('a .menu-item-arrow');
 		var submenu = parent.querySelector('ul.sub-menu');
 		
 		// Get the width and position of the submenu
@@ -154,6 +160,7 @@ function subMenuNavOffScreen() {
 		if ( submenuPosition + submenuWidth > windowWidth ) {
 			// Add a class to the submenu to make it appear to the left
 			submenu.classList.add('submenu-left');
+			menuitemarrow.classList.add('arrow-icon-left');
 		}
 		
 
