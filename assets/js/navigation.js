@@ -162,6 +162,10 @@ function subMenuNavOffScreen() {
 			submenu.classList.add('submenu-left');
 			menuitemarrow.classList.add('arrow-icon-left');
 		}
+		else {
+			submenu.classList.remove('submenu-left');
+			menuitemarrow.classList.remove('arrow-icon-left');
+		}
 		
 
 	});
@@ -171,6 +175,8 @@ function subMenuNavOffScreen() {
 // Fallback for other dev.
 function navFallback() {
 
+	subMenuNavOffScreen();
+	
 	if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
 		return;
 	}
@@ -192,7 +198,6 @@ document.addEventListener(
 			return;
 		}
 		nav();
-		subMenuNavOffScreen();
 		sidebarMenu();
 		sidebarMenu( '.woostify-nav-menu-widget .categories-navigation' );
 		mobileMenuTab();
