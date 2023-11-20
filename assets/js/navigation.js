@@ -129,8 +129,54 @@ function sidebarMenu( node ) {
 	);
 }
 
+
+function subMenuNavOffScreen() {
+
+	if ( !window.matchMedia( '( min-width: 992px )' ).matches ) {
+		return;
+	}
+
+	var menuMainMenu = document.querySelector('nav.main-navigation ul');
+	
+	if ( !menuMainMenu ) {
+		return;
+	}
+
+	var parents = menuMainMenu.querySelectorAll('.sub-menu > li.menu-item-has-children');
+	
+	parents.forEach(function(parent) {
+
+		var menuitemarrow = parent.querySelector('a .menu-item-arrow');
+		var submenu = parent.querySelector('ul.sub-menu');
+		
+		// Get the width and position of the submenu
+		var submenuWidth = submenu.offsetWidth;
+		var submenuPosition = submenu.getBoundingClientRect().left;
+
+		// // Get the width of the window
+		var windowWidth = window.innerWidth;
+		
+		// Check if the submenu goes beyond the right edge of the window
+		if ( submenuPosition + submenuWidth > windowWidth ) {
+			// Add a class to the submenu to make it appear to the left
+			submenu.classList.add('submenu-left');
+			menuitemarrow.classList.add('arrow-icon-left');
+		}
+		else {
+			submenu.classList.remove('submenu-left');
+			menuitemarrow.classList.remove('arrow-icon-left');
+		}
+		
+
+	});
+	
+}
+
 // Fallback for other dev.
 function navFallback() {
+
+	subMenuNavOffScreen();
+	
 	if ( window.matchMedia( '( min-width: 992px )' ).matches ) {
 		return;
 	}
@@ -142,6 +188,7 @@ function navFallback() {
 	}
 
 	document.documentElement.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
+	
 }
 
 document.addEventListener(

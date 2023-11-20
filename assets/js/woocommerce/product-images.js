@@ -15,15 +15,19 @@ var galleries = document.querySelectorAll( '.product-gallery' );
 
 // Sticky summary for list layout.
 function woostifyStickySummary(gallery) {
+
 	if ( ! woostify_woocommerce_general.enabled_sticky_product_summary ) {
 		return;
 	}
-	var summary = document.body.classList.contains('has-gallery-list-layout ') ? gallery.querySelector( '.product-summary' ) : false;
-	if ( ! summary || window.innerWidth < 992 ) {
+
+	var gallery_thumb = gallery.classList.contains('has-product-thumbnails')? gallery : false;
+	var summary = document.body.classList.contains('has-gallery-list-layout') ? document.querySelector( '.has-gallery-list-layout .product-summary' ) : false;
+
+	if ( ! gallery_thumb || ! summary || window.innerWidth < 992 ) {
 		return;
 	}
-
-	if ( gallery.offsetHeight <= summary.offsetHeight ) {
+	
+	if ( gallery_thumb.offsetHeight <= summary.offsetHeight ) {
 		return;
 	}
 
@@ -708,6 +712,61 @@ class WoostifyGallery {
 
 } // End Class
 
+function renderSlideLayoutColumnGrid() {
+	//has-gallery-layout-column
+	//has-gallery-layout-grid
+	var body = document.querySelector('body');
+	var elem = document.querySelector('.product-images .product-images-container');
+	
+	if ( !elem ) {
+		return;
+	}
+
+	if ( body.classList.contains('has-gallery-layout-column') || body.classList.contains('has-gallery-layout-grid') ) {
+		// options
+		var options = {
+			contain: true,
+			freeScroll: true,
+			wrapAround: true,
+		}
+		var flkty = new Flickity( elem, options);
+		
+		var isFlickity = false;
+
+		var flickity_buttons = elem.querySelectorAll('.flickity-button');
+		if (flickity_buttons.length != 0) {
+			var next_icon = woostify_product_images_slider_options.next_icon;
+			var prev_icon = woostify_product_images_slider_options.prev_icon;
+		
+			flickity_buttons.forEach(function (button) {
+		
+				if (button.classList.contains('previous')) {
+					button.innerHTML = prev_icon;
+				}
+				if (button.classList.contains('next')) {
+					button.innerHTML = next_icon;
+				}
+			})
+		}
+	
+		if ( !window.matchMedia("(max-width: 991px)").matches) {
+			isFlickity = true;
+		}
+
+		if ( isFlickity ) {
+			flkty.destroy();
+		}else{
+			flkty = new Flickity( elem, options);
+		}
+		
+	}
+	
+}
+
+window.addEventListener('resize', function () {
+	renderSlideLayoutColumnGrid();
+});
+
 var woostifyGalleries = [];
 document.addEventListener(
 	'DOMContentLoaded',
@@ -719,6 +778,8 @@ document.addEventListener(
 			var gallery = new WoostifyGallery( galleryElement, woostify_product_images_slider_options);
 			woostifyGalleries.push( gallery );
 		});
+
+		renderSlideLayoutColumnGrid();
 
 		// For Elementor Preview Mode.
 		if ( 'function' === typeof( onElementorLoaded ) ) {
