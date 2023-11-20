@@ -717,6 +717,20 @@ class Woostify_Get_CSS {
 				    left: 100%;
 				}
 
+				.main-navigation .primary-navigation .sub-menu > .menu-item-has-children .menu-item-arrow.arrow-icon-left{
+					transform: rotate(90deg);
+				}
+
+				.main-navigation .primary-navigation .sub-menu > .menu-item > .sub-menu.submenu-left {
+				    right: 100%;
+					left: auto;
+				}
+
+				.main-navigation .primary-navigation .sub-menu > .menu-item:hover > .sub-menu.submenu-left {
+				    right: 100%;
+					left: auto;
+				}
+
 				.has-header-layout-1 .wrap-toggle-sidebar-menu {
 				    display: none;
 				}
