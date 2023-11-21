@@ -143,8 +143,8 @@ function subMenuNavOffScreen() {
 	}
 
 	var parents = menuMainMenu.querySelectorAll('.sub-menu > li.menu-item-has-children');
-
-	if ( !parents ) {
+	
+	if ( parents.length == 0 ) {
 		return;
 	}
 	
