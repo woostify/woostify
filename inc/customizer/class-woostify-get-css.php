@@ -727,7 +727,22 @@ class Woostify_Get_CSS {
 					transform: rotate(90deg);
 				}
 
+				.main-navigation .primary-navigation .sub-menu > li > .sub-menu.submenu-left > .menu-item-has-children a.icon-submenu-left{
+					flex-direction: row-reverse;
+					padding-left: 0;
+					padding-right: 10px;
+				}
+
+				.main-navigation .primary-navigation .sub-menu > li > .sub-menu.submenu-left > .menu-item-has-children a .menu-item-arrow{
+					transform: rotate(90deg);
+				}
+
 				.main-navigation .primary-navigation .sub-menu > .menu-item > .sub-menu.submenu-left {
+				    right: 100%;
+					left: auto;
+				}
+
+				.main-navigation .primary-navigation .sub-menu > .menu-item > .sub-menu.submenu-left  .sub-menu{
 				    right: 100%;
 					left: auto;
 				}

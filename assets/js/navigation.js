@@ -143,15 +143,24 @@ function subMenuNavOffScreen() {
 	}
 
 	var parents = menuMainMenu.querySelectorAll('.sub-menu > li.menu-item-has-children');
+
+	if ( !parents ) {
+		return;
+	}
 	
 	parents.forEach(function(parent) {
 
 		var submenu = parent.querySelector('ul.sub-menu');
-		var preSubmenu = submenu.previousElementSibling;
 
+		if ( !submenu ) {
+			return;
+		}
+
+		var preSubmenu = submenu.previousElementSibling;
+		var menuItemArrow = submenu.querySelectorAll('.menu-item-arrow'); 
 		// Get the width and position of the submenu
-		var submenuWidth = submenu.offsetWidth;
-		var submenuPosition = submenu.getBoundingClientRect().left;
+		var submenuWidth = ( submenu.offsetWidth != null )? submenu.offsetWidth : 0;
+		var submenuPosition = ( submenu.getBoundingClientRect().left != null )? submenu.getBoundingClientRect().left : 0;
 
 		// // Get the width of the window
 		var windowWidth = window.innerWidth;
@@ -165,9 +174,15 @@ function subMenuNavOffScreen() {
 		}
 		else {
 			submenu.classList.remove('submenu-left');
-			menuitemarrow.classList.remove('arrow-icon-left');
+			preSubmenu.classList.remove('submenu-left-active');
 		}
 		
+		if ( menuItemArrow.length != 0 ) {
+			menuItemArrow.forEach(function (arrow) {
+				var menuItemArrowParent = arrow.closest('a');
+				menuItemArrowParent.classList.add('icon-submenu-left');
+			});
+		}
 
 	});
 	
