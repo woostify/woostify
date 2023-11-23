@@ -121,7 +121,7 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 
 			$percent = 0;
 			$percent = ( $subtotal / $goal_amount ) * 100;
-			$percent = $percent >= 100 ? 100 : round( $percent, $wc_number_of_decimals );
+			$percent = $percent >= 100 ? 100 : round( $percent, $number_of_decimals );
 
 			$response['free_shipping_threshold']['percent'] = $percent;
 			$response['free_shipping_threshold']['message'] = $percent >= 100 ? $progress_bar_success_msg : $progress_bar_initial_msg;

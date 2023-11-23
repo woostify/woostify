@@ -144,14 +144,23 @@ function subMenuNavOffScreen() {
 
 	var parents = menuMainMenu.querySelectorAll('.sub-menu > li.menu-item-has-children');
 	
+	if ( parents.length == 0 ) {
+		return;
+	}
+	
 	parents.forEach(function(parent) {
 
-		var menuitemarrow = parent.querySelector('a .menu-item-arrow');
 		var submenu = parent.querySelector('ul.sub-menu');
-		
+
+		if ( !submenu ) {
+			return;
+		}
+
+		var preSubmenu = submenu.previousElementSibling;
+		var menuItemArrow = submenu.querySelectorAll('.menu-item-arrow'); 
 		// Get the width and position of the submenu
-		var submenuWidth = submenu.offsetWidth;
-		var submenuPosition = submenu.getBoundingClientRect().left;
+		var submenuWidth = ( submenu.offsetWidth != null )? submenu.offsetWidth : 0;
+		var submenuPosition = ( submenu.getBoundingClientRect().left != null )? submenu.getBoundingClientRect().left : 0;
 
 		// // Get the width of the window
 		var windowWidth = window.innerWidth;
@@ -159,14 +168,21 @@ function subMenuNavOffScreen() {
 		// Check if the submenu goes beyond the right edge of the window
 		if ( submenuPosition + submenuWidth > windowWidth ) {
 			// Add a class to the submenu to make it appear to the left
+			preSubmenu.classList.add('submenu-left-active');
 			submenu.classList.add('submenu-left');
-			menuitemarrow.classList.add('arrow-icon-left');
+			
 		}
 		else {
 			submenu.classList.remove('submenu-left');
-			menuitemarrow.classList.remove('arrow-icon-left');
+			preSubmenu.classList.remove('submenu-left-active');
 		}
 		
+		if ( menuItemArrow.length != 0 ) {
+			menuItemArrow.forEach(function (arrow) {
+				var menuItemArrowParent = arrow.closest('a');
+				menuItemArrowParent.classList.add('icon-submenu-left');
+			});
+		}
 
 	});
 	
