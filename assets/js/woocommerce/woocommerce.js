@@ -531,13 +531,14 @@ var progressBarConfetti = function( progress_bar, percent ) {
 		if ( curr_progress_bar.length ) {
 			curr_percent = parseInt( curr_progress_bar[0].getAttribute( 'data-progress' ) );
 		}
-
+	
 		// Effect.
-		if ( ( ! progress_bar.length && curr_percent >= 100 ) || ( percent < curr_percent && curr_percent >= 100 ) ) {
+		if ( ( progress_bar.length && curr_percent >= 100 ) || ( percent < curr_percent && curr_percent >= 100 ) ) {
+
 			let confetti_canvas = document.createElement( 'canvas' );
 
 			confetti_canvas.className = 'confetti-canvas';
-
+			
 			document.querySelector( '#shop-cart-sidebar' ).appendChild( confetti_canvas );
 
 			let wConfetti = confetti.create(
@@ -1311,7 +1312,7 @@ document.addEventListener(
 					if ( progress_bar.length ) {
 						percent = parseInt( progress_bar[0].getAttribute( 'data-progress' ) );
 					}
-
+					
 					progressBarConfetti( progress_bar, percent );
 				}
 			}
