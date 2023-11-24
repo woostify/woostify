@@ -80,6 +80,15 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Update product quantity in minicart.
 			add_action( 'wp_ajax_update_quantity_in_mini_cart', 'woostify_ajax_update_quantity_in_mini_cart' );
 			add_action( 'wp_ajax_nopriv_update_quantity_in_mini_cart', 'woostify_ajax_update_quantity_in_mini_cart' );
+			
+			// Get current percent shipping threshold added cart
+			add_action( 'wp_ajax_get_curr_percent_shipping_threshold', 'woostify_ajax_get_curr_percent_shipping_threshold' );
+			add_action( 'wp_ajax_nopriv_get_curr_percent_shipping_threshold', 'woostify_ajax_get_curr_percent_shipping_threshold' );
+
+			// Get current percent shipping threshold product add to cart
+			add_action( 'wp_ajax_get_curr_percent_shipping_threshold_product', 'woostify_ajax_get_curr_percent_shipping_threshold_product' );
+			add_action( 'wp_ajax_nopriv_get_curr_percent_shipping_threshold_product', 'woostify_ajax_get_curr_percent_shipping_threshold_product' );
+
 			// Modified woocommerce breadcrumb.
 			add_filter( 'woocommerce_breadcrumb_defaults', 'woostify_modifided_woocommerce_breadcrumb' );
 

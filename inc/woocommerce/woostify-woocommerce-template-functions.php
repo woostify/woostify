@@ -132,6 +132,114 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold' ) ) {
+	/**
+	 * get curr percent shipping threshold
+	 */
+	function woostify_ajax_get_curr_percent_shipping_threshold() {
+		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
+
+		$options                    = woostify_options( false );
+		$response                   = array();
+		$top_content                = $options['mini_cart_top_content_select'];
+		$before_checkout_content    = $options['mini_cart_before_checkout_button_content_select'];
+		$after_checkout_content     = $options['mini_cart_after_checkout_button_content_select'];
+		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
+
+		$number_of_decimals = get_option( 'woocommerce_price_num_decimals', 0 );
+
+		$count = WC()->cart->get_cart_contents_count();
+
+		ob_start();
+		$response['item']        = $count;
+		$response['total_price'] = WC()->cart->get_cart_total();
+		$response['free_shipping_threshold']['active'] = false;
+		if ( ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) && $enabled_shipping_threshold ) {
+			$response['free_shipping_threshold'] = array();
+
+			$subtotal                 = WC()->cart->subtotal;
+			$goal_amount              = $options['shipping_threshold_progress_bar_amount'];
+			$progress_bar_initial_msg = $options['shipping_threshold_progress_bar_initial_msg'];
+			$progress_bar_success_msg = $options['shipping_threshold_progress_bar_success_msg'];
+			$missing_amount           = $goal_amount - $subtotal;
+			$progress_bar_initial_msg = str_replace( '[missing_amount]', wc_price( $missing_amount ), $progress_bar_initial_msg );
+
+			$percent = 0;
+			$total_percent = ( $subtotal / $goal_amount ) * 100;
+			$percent = $total_percent >= 100 ? 100 : round( $total_percent, $number_of_decimals );
+
+			$response['free_shipping_threshold']['active'] = true;
+			$response['free_shipping_threshold']['total_percent'] = $total_percent;
+			$response['free_shipping_threshold']['percent'] = $percent;
+			$response['free_shipping_threshold']['message'] = $percent >= 100 ? $progress_bar_success_msg : $progress_bar_initial_msg;
+		}
+		$response['content'] = ob_get_clean();
+
+		wp_send_json_success( $response );
+	}
+}
+
+if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold_product' ) ) {
+	/**
+	 * get curr percent shipping threshold
+	 */
+	function woostify_ajax_get_curr_percent_shipping_threshold_product() {
+		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
+
+		if ( ! isset( $_POST['product_id'] ) || ! isset( $_POST['qty'] ) ) {
+			wp_send_json_error();
+		}
+
+		$options                    = woostify_options( false );
+		$response                   = array();
+		$top_content                = $options['mini_cart_top_content_select'];
+		$before_checkout_content    = $options['mini_cart_before_checkout_button_content_select'];
+		$after_checkout_content     = $options['mini_cart_after_checkout_button_content_select'];
+		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
+
+		$number_of_decimals = get_option( 'woocommerce_price_num_decimals', 0 );
+
+		$count = WC()->cart->get_cart_contents_count();
+
+		$product = wc_get_product( $_POST['product_id'] );
+		$product->get_regular_price();
+		$product->get_sale_price();
+		$product->get_price();
+
+		ob_start();
+		$response['number_of_decimals'] = $number_of_decimals;
+		$response['product']['regular_price'] = $product->get_regular_price();
+		$response['product']['sale_price'] = $product->get_sale_price();
+		$response['product']['price'] = $product->get_price();
+		$response['item']        = $count;
+		$response['total_price'] = WC()->cart->get_cart_total();
+		$response['free_shipping_threshold']['active'] = false;
+		if ( ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) && $enabled_shipping_threshold ) {
+			$response['free_shipping_threshold'] = array();
+
+			$subtotal                 = WC()->cart->subtotal;
+			$goal_amount              = $options['shipping_threshold_progress_bar_amount'];
+			$progress_bar_initial_msg = $options['shipping_threshold_progress_bar_initial_msg'];
+			$progress_bar_success_msg = $options['shipping_threshold_progress_bar_success_msg'];
+			$missing_amount           = $goal_amount - $subtotal;
+			$progress_bar_initial_msg = str_replace( '[missing_amount]', wc_price( $missing_amount ), $progress_bar_initial_msg );
+
+			$percent = 0;
+			$total_percent = ( $subtotal / $goal_amount ) * 100;
+			$percent = $total_percent >= 100 ? 100 : round( $total_percent, $number_of_decimals );
+
+			$response['free_shipping_threshold']['active'] = true;
+			$response['free_shipping_threshold']['goal_amount'] = $goal_amount;
+			$response['free_shipping_threshold']['total_percent'] = $total_percent;
+			$response['free_shipping_threshold']['percent'] = $percent;
+			$response['free_shipping_threshold']['message'] = $percent >= 100 ? $progress_bar_success_msg : $progress_bar_initial_msg;
+		}
+		$response['content'] = ob_get_clean();
+
+		wp_send_json_success( $response );
+	}
+}
+
 if ( ! function_exists( 'woostify_ajax_single_add_to_cart' ) ) {
 	/**
 	 * Ajax single add to cart
