@@ -166,7 +166,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'woostify_setting[outofstock_to_bottom]',
 		array(
-			'label'    => __( 'Move Out-of-stock products to buttom', 'woostify' ),
+			'label'    => __( 'Out-of-stock products to bottom', 'woostify' ),
 			'section'  => 'woostify_shop_page',
 			'settings' => 'woostify_setting[outofstock_to_bottom]',
 			'tab'      => 'general',

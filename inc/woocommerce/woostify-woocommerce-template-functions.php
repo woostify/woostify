@@ -121,8 +121,116 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 
 			$percent = 0;
 			$percent = ( $subtotal / $goal_amount ) * 100;
-			$percent = $percent >= 100 ? 100 : round( $percent, $wc_number_of_decimals );
+			$percent = $percent >= 100 ? 100 : round( $percent, $number_of_decimals );
 
+			$response['free_shipping_threshold']['percent'] = $percent;
+			$response['free_shipping_threshold']['message'] = $percent >= 100 ? $progress_bar_success_msg : $progress_bar_initial_msg;
+		}
+		$response['content'] = ob_get_clean();
+
+		wp_send_json_success( $response );
+	}
+}
+
+if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold' ) ) {
+	/**
+	 * get curr percent shipping threshold
+	 */
+	function woostify_ajax_get_curr_percent_shipping_threshold() {
+		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
+
+		$options                    = woostify_options( false );
+		$response                   = array();
+		$top_content                = $options['mini_cart_top_content_select'];
+		$before_checkout_content    = $options['mini_cart_before_checkout_button_content_select'];
+		$after_checkout_content     = $options['mini_cart_after_checkout_button_content_select'];
+		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
+
+		$number_of_decimals = get_option( 'woocommerce_price_num_decimals', 0 );
+
+		$count = WC()->cart->get_cart_contents_count();
+
+		ob_start();
+		$response['item']        = $count;
+		$response['total_price'] = WC()->cart->get_cart_total();
+		$response['free_shipping_threshold']['active'] = false;
+		if ( ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) && $enabled_shipping_threshold ) {
+			$response['free_shipping_threshold'] = array();
+
+			$subtotal                 = WC()->cart->subtotal;
+			$goal_amount              = $options['shipping_threshold_progress_bar_amount'];
+			$progress_bar_initial_msg = $options['shipping_threshold_progress_bar_initial_msg'];
+			$progress_bar_success_msg = $options['shipping_threshold_progress_bar_success_msg'];
+			$missing_amount           = $goal_amount - $subtotal;
+			$progress_bar_initial_msg = str_replace( '[missing_amount]', wc_price( $missing_amount ), $progress_bar_initial_msg );
+
+			$percent = 0;
+			$total_percent = ( $subtotal / $goal_amount ) * 100;
+			$percent = $total_percent >= 100 ? 100 : round( $total_percent, $number_of_decimals );
+
+			$response['free_shipping_threshold']['active'] = true;
+			$response['free_shipping_threshold']['total_percent'] = $total_percent;
+			$response['free_shipping_threshold']['percent'] = $percent;
+			$response['free_shipping_threshold']['message'] = $percent >= 100 ? $progress_bar_success_msg : $progress_bar_initial_msg;
+		}
+		$response['content'] = ob_get_clean();
+
+		wp_send_json_success( $response );
+	}
+}
+
+if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold_product' ) ) {
+	/**
+	 * get curr percent shipping threshold
+	 */
+	function woostify_ajax_get_curr_percent_shipping_threshold_product() {
+		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
+
+		if ( ! isset( $_POST['product_id'] ) || ! isset( $_POST['qty'] ) ) {
+			wp_send_json_error();
+		}
+
+		$options                    = woostify_options( false );
+		$response                   = array();
+		$top_content                = $options['mini_cart_top_content_select'];
+		$before_checkout_content    = $options['mini_cart_before_checkout_button_content_select'];
+		$after_checkout_content     = $options['mini_cart_after_checkout_button_content_select'];
+		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
+
+		$number_of_decimals = get_option( 'woocommerce_price_num_decimals', 0 );
+
+		$count = WC()->cart->get_cart_contents_count();
+
+		$product = wc_get_product( $_POST['product_id'] );
+		$product->get_regular_price();
+		$product->get_sale_price();
+		$product->get_price();
+
+		ob_start();
+		$response['number_of_decimals'] = $number_of_decimals;
+		$response['product']['regular_price'] = $product->get_regular_price();
+		$response['product']['sale_price'] = $product->get_sale_price();
+		$response['product']['price'] = $product->get_price();
+		$response['item']        = $count;
+		$response['total_price'] = WC()->cart->get_cart_total();
+		$response['free_shipping_threshold']['active'] = false;
+		if ( ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) && $enabled_shipping_threshold ) {
+			$response['free_shipping_threshold'] = array();
+
+			$subtotal                 = WC()->cart->subtotal;
+			$goal_amount              = $options['shipping_threshold_progress_bar_amount'];
+			$progress_bar_initial_msg = $options['shipping_threshold_progress_bar_initial_msg'];
+			$progress_bar_success_msg = $options['shipping_threshold_progress_bar_success_msg'];
+			$missing_amount           = $goal_amount - $subtotal;
+			$progress_bar_initial_msg = str_replace( '[missing_amount]', wc_price( $missing_amount ), $progress_bar_initial_msg );
+
+			$percent = 0;
+			$total_percent = ( $subtotal / $goal_amount ) * 100;
+			$percent = $total_percent >= 100 ? 100 : round( $total_percent, $number_of_decimals );
+
+			$response['free_shipping_threshold']['active'] = true;
+			$response['free_shipping_threshold']['goal_amount'] = $goal_amount;
+			$response['free_shipping_threshold']['total_percent'] = $total_percent;
 			$response['free_shipping_threshold']['percent'] = $percent;
 			$response['free_shipping_threshold']['message'] = $percent >= 100 ? $progress_bar_success_msg : $progress_bar_initial_msg;
 		}
@@ -360,11 +468,64 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 									<?php Woostify_Icon::fetch_svg_icon( 'plus' ); ?>
 									</span>
 								</span>
+								<?php
+								if ( class_exists( 'Woostify_FBT' ) ) {
+									$bundles       = get_post_meta( $product_id, 'woostify_fbt', true );
+									$bundles_added = explode( ',', ( isset( $cart_item['bundle-products'] ) ? $cart_item['bundle-products'] : '' ) );
 
+									if ( isset( $cart_item['bundle-products'] ) && $cart_item['bundle-products'] ) {
+										$product_price = apply_filters( 'woocommerce_widget_cart_item_quantity', wc_price( round( $cart_item['custom-price'], 2 ) ), $cart_item, $cart_item_key );
+									} else {
+										$product_price = apply_filters( 'woocommerce_widget_cart_item_quantity', $product_price, $cart_item, $cart_item_key );
+									}
+								}
+								?>
 								<span class="mini-cart-product-price"><?php echo wp_kses_post( $product_price ); ?></span>
 
 								<?php do_action( 'woostify_mini_cart_item_after_price', $_product ); ?>
 							</span>
+							<?php
+							if ( class_exists( 'Woostify_FBT' ) ) {
+								if ( !empty( $cart_item['bundle-products'] ) ) { // phpcs:ignore
+									$bundles       = get_post_meta( $product_id, 'woostify_fbt', true );
+									$bundles_added = explode( ',', ( isset( $cart_item['bundle-products'] ) ? $cart_item['bundle-products'] : '' ) );
+									if ( $bundles ) {
+										$custom_variable = $cart_item['bundle-variable'];
+
+										echo '<ul class="product-bundle fr pd__0">';
+										foreach ( $bundles as $key => $val ) {
+											if ( isset( $val['id'] ) && in_array( $val['id'], $bundles_added ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
+												$product_item = wc_get_product( intval( $val['id'] ) );
+
+												echo '<li class="pr mini_cart_item">';
+												echo '<a href="' . $product_item->get_permalink() . '" title="' . $product_item->get_name() . '">' . $product_item->get_image() . $product_item->get_name() . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+												// Get variable.
+												if ( ! empty( $val['variable'] ) ) {
+													$variable = wp_unslash( $val['variable'] );
+
+													if ( isset( $custom_variable[ $val['id'] ] ) && count( $custom_variable[ $val['id'] ] ) > 0 ) {
+														// Custom variable before add produt bundle to cart.
+														echo '<span class="db" style="text-transform: capitalize;">';
+															echo wp_kses_post( $custom_variable[ $val['id'] ]['variable'] );
+														echo '</span>';
+													} else {
+														if ( ! empty( $val['variable'] ) ) {
+															foreach ( $val['variable'] as $key => $value ) {
+																echo '<span class="db" style="text-transform: capitalize;">';
+																	echo substr( $key, 13 ) . ': ' . $value; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+																echo '</span>';
+															}
+														}
+													}
+												}
+												echo '</li>';
+											}
+										}
+										echo '</ul>';
+									}
+								}
+							}
+							?>
 						</li>
 						<?php
 					}
@@ -488,7 +649,9 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 				</div>
 
 				<div class="cart-sidebar-content">
-					<?php woostify_mini_cart(); ?>
+					<?php
+					woostify_mini_cart();
+					?>
 				</div>
 			</div>
 		<?php
@@ -789,7 +952,9 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 
 		// Get mini cart content.
 		ob_start();
+
 		woostify_mini_cart();
+
 		$mini_cart = ob_get_clean();
 
 		// Cart item count.
