@@ -629,7 +629,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'name'        => 'woostify_wc_frequently_bought',
 					'title'       => __( 'Frequently Bought Together', 'woostify' ),
 					'description' => __( 'Offers a way owners to get related products and put them in a deal', 'woostify' ),
-					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-buy-now.png',
+					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-bought-together.png',
 					'category'    => array( 'ecommerce' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/frequently-bought-together/',
 				),
