@@ -499,7 +499,7 @@ class WoostifyGallery {
 				}
 			}
 		}
-		console.log( imageCarousel );
+		
 		if ( imageCarousel && imageCarousel.slider ) {
 			imageCarousel.destroy();
 		}
