@@ -47,19 +47,20 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
         return false;
     }
 
-    window.infScroll = new InfiniteScroll(
-        container,
-        {
+    if ( ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) ) {
+        let options = {
             path: infScrollPath ? infScrollPath : '.prev.page-numbers',
             append: '.product.type-product',
             history: 'push',
             hideNav: '.woocommerce-pagination',
             loadOnScroll: false
-        }
-    )
+        };
 
-    if ( ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) ) {
-
+        window.infScroll = new InfiniteScroll(
+            container,
+            options
+        );
+        
         var pagePrev      = woostify_woocommerce_general.paged - 1,
             page          = woostify_woocommerce_general.paged,
             listPage      = {};
