@@ -1583,6 +1583,9 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 					case 'wishlist':
 						$icon = 'heart';
 						break;
+					case 'favorieten':
+						$icon = 'heart';
+						break;
 					case 'customer-logout':
 						$icon = 'pencil-alt';
 						break;
