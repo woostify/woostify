@@ -1580,6 +1580,9 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 					case 'tinv_wishlist':
 						$icon = 'heart';
 						break;
+					case 'wishlist':
+						$icon = 'heart';
+						break;
 					case 'customer-logout':
 						$icon = 'pencil-alt';
 						break;
@@ -1617,17 +1620,17 @@ if ( ! function_exists( 'woostify_ajax_notices_register_account' ) ) {
 	 */
 	function woostify_ajax_notices_register_account() {
 		$nonce_value = isset( $_POST['_wpnonce'] ) ? wp_unslash( $_POST['_wpnonce'] ) : '';
-		$nonce_value = isset( $_POST['woocommerce-register-nonce'] ) ? wp_unslash( $_POST['woocommerce-register-nonce'] ) : $nonce_value; 
+		$nonce_value = isset( $_POST['woocommerce-register-nonce'] ) ? wp_unslash( $_POST['woocommerce-register-nonce'] ) : $nonce_value;
 
 		$mes = 'Please provide a valid email address.';
 		$successfully = false;
 		$wp_redirect = '';
 
 		if ( isset( $_POST['email'] ) && wp_verify_nonce( $nonce_value, 'woocommerce-register' ) ) {
-			$username = 'no' === get_option( 'woocommerce_registration_generate_username' ) && isset( $_POST['username'] ) ? wp_unslash( $_POST['username'] ) : ''; 
+			$username = 'no' === get_option( 'woocommerce_registration_generate_username' ) && isset( $_POST['username'] ) ? wp_unslash( $_POST['username'] ) : '';
 			$password = 'no' === get_option( 'woocommerce_registration_generate_password' ) && isset( $_POST['password'] ) ? $_POST['password'] : '';
 			$email = wp_unslash( $_POST['email'] );
-		
+
 			try {
 				$validation_error  = new WP_Error();
 				$validation_error  = apply_filters( 'woocommerce_process_registration_errors', $validation_error, $username, $password, $email );
@@ -1652,7 +1655,7 @@ if ( ! function_exists( 'woostify_ajax_notices_register_account' ) ) {
 				} else {
 					$mes = __( 'Your account was created successfully. Your login details have been sent to your email address.', 'woostify' );
 				}
-				
+
 				// Only redirect after a forced login - otherwise output a success notice.
 				if ( apply_filters( 'woocommerce_registration_auth_new_customer', true, $new_customer ) ) {
 					wc_set_customer_auth_cookie( $new_customer );
@@ -1666,7 +1669,7 @@ if ( ! function_exists( 'woostify_ajax_notices_register_account' ) ) {
 					}
 
 					$wp_redirect = wp_validate_redirect( apply_filters( 'woocommerce_registration_redirect', $redirect ), wc_get_page_permalink( 'myaccount' ) );
-		
+
 				}
 
 				if ( $new_customer ) {
@@ -1680,7 +1683,7 @@ if ( ! function_exists( 'woostify_ajax_notices_register_account' ) ) {
 			}
 		}
 
-		$notices = ( $successfully ) ? 
+		$notices = ( $successfully ) ?
 		'<div class="woocommerce-notices-wrapper">
 			<ul class="woocommerce-error" role="alert" style="background-color: #1346af;">
 				<li>'.$mes .'</li>
@@ -1708,7 +1711,7 @@ if ( ! function_exists( 'woostify_ajax_notices_login_account' ) ) {
 	*/
 	function woostify_ajax_notices_login_account() {
 		$nonce_value = isset( $_POST['_wpnonce'] ) ? wp_unslash( $_POST['_wpnonce'] ) : '';
-		$nonce_value = isset( $_POST['woocommerce-login-nonce'] ) ? wp_unslash( $_POST['woocommerce-login-nonce'] ) : $nonce_value; 
+		$nonce_value = isset( $_POST['woocommerce-login-nonce'] ) ? wp_unslash( $_POST['woocommerce-login-nonce'] ) : $nonce_value;
 
 		$mes = '';
 		$successfully = false;
@@ -1717,9 +1720,9 @@ if ( ! function_exists( 'woostify_ajax_notices_login_account' ) ) {
 		if ( isset( $_POST['username'], $_POST['password'] ) && wp_verify_nonce( $nonce_value, 'woocommerce-login' ) ) {
 			try {
 				$creds = array(
-					'user_login'    => trim( wp_unslash( $_POST['username'] ) ), // phpcs:ignore 
-					'user_password' => $_POST['password'], // phpcs:ignore 
-					'remember'      => isset( $_POST['rememberme'] ), // phpcs:ignore 
+					'user_login'    => trim( wp_unslash( $_POST['username'] ) ), // phpcs:ignore
+					'user_password' => $_POST['password'], // phpcs:ignore
+					'remember'      => isset( $_POST['rememberme'] ), // phpcs:ignore
 				);
 
 				$validation_error = new WP_Error();
@@ -1750,7 +1753,7 @@ if ( ! function_exists( 'woostify_ajax_notices_login_account' ) ) {
 				} else {
 
 					if ( ! empty( $_POST['redirect'] ) ) {
-						$redirect = wp_unslash( $_POST['redirect'] ); 
+						$redirect = wp_unslash( $_POST['redirect'] );
 					} elseif ( wc_get_raw_referer() ) {
 						$redirect = wc_get_raw_referer();
 					} else {
@@ -1760,7 +1763,7 @@ if ( ! function_exists( 'woostify_ajax_notices_login_account' ) ) {
 					$redirect = remove_query_arg( array( 'wc_error', 'password-reset' ), $redirect );
 
 					$wp_redirect = wp_validate_redirect( apply_filters( 'woocommerce_login_redirect', $redirect, $user ), wc_get_page_permalink( 'myaccount' ) ) ; // phpcs:ignore
-					
+
 					$successfully = true;
 				}
 			} catch ( Exception $e ) {
@@ -1768,7 +1771,7 @@ if ( ! function_exists( 'woostify_ajax_notices_login_account' ) ) {
 			}
 		}
 
-		$notices = ( $successfully ) ? 
+		$notices = ( $successfully ) ?
 		''
 		: '<div class="woocommerce-notices-wrapper">
 			<ul class="woocommerce-error" role="alert">
