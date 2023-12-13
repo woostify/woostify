@@ -98,6 +98,7 @@ class WoostifyGallery {
 		gallery.thumbOptions = { ...options.thumb}; // Shallow clone object.
 		
 		gallery.init();
+
 		return gallery;
 
 	}
@@ -465,10 +466,11 @@ class WoostifyGallery {
 	updateGallery( data, reset, variationId  ){
 		var gallery = this;
 		var galleryElement = gallery.el;
-
+		
 		if ( ! data.length || document.documentElement.classList.contains( 'quick-view-open' ) ) {
 			return;
 		}
+
 		var images     = '',
 			thumbnails = '',
 			imageCarousel = gallery.imageCarousel||{},
@@ -525,6 +527,7 @@ class WoostifyGallery {
 					productThumbnailsWrapper = document.createElement( 'div' );
 					productThumbnailsWrapper.classList.add('product-thumbnail-images-container' );
 				}
+				
 				productThumbnailsWrapper.classList.remove('flickity-enabled');
 				galleryElement.querySelector( '.product-thumbnail-images' ).innerHTML = '';
 				galleryElement.querySelector( '.product-thumbnail-images' ).appendChild( productThumbnailsWrapper ).innerHTML = thumbnails;
@@ -540,7 +543,7 @@ class WoostifyGallery {
 				galleryElement.querySelector( '.product-thumbnail-images' ).innerHTML = '';
 			}
 		}
-
+	
 		gallery.initSlider();
 
 	}
@@ -630,6 +633,7 @@ class WoostifyGallery {
 			'found_variation',
 			function( e, variation ) {
 				if ( 'undefined' !== typeof( woostify_variation_gallery ) && woostify_variation_gallery.length ) {
+					
 					gallery.updateGallery( woostify_variation_gallery, false, variation.variation_id );
 				}else{
 					// check if Woostify_Variation_Swatches_Frontend is exists
@@ -639,6 +643,7 @@ class WoostifyGallery {
 						// Neu chi co 1 image trong gallery và image nay trung voi product variation image thi coi nhu k co.
 						var has_gallery = ( ( variation.variation_gallery_images.length > 1 ) || (variation.variation_gallery_images.length && variation.image && variation.variation_gallery_images[0]['full_src'] != variation.image['full_src'] ) );
 						if( has_gallery ) {
+							
 							gallery.updateGallery(variation.variation_gallery_images, true, variation.variation_id );
 							if( thumbs ) {
 								thumbs.classList.add( 'variation-gallery' );
@@ -666,6 +671,16 @@ class WoostifyGallery {
 						}
 					}
 				}
+
+				var thumbCarousel = gallery.thumbCarousel;
+				var imageCarousel = gallery.imageCarousel;
+
+				if( galleryElement.classList.contains('horizontal-style') ){
+					imageCarousel.select( 0 );
+					thumbCarousel.select( 0 );
+				}
+
+				
 			}
 		);
 		gallery.listEvents.found_variation = 1;
