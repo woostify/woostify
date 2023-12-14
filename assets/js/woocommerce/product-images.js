@@ -676,8 +676,15 @@ class WoostifyGallery {
 				var imageCarousel = gallery.imageCarousel;
 
 				if( galleryElement.classList.contains('horizontal-style') ){
-					imageCarousel.select( 0 );
-					thumbCarousel.select( 0 );
+					if ( imageCarousel && imageCarousel.slider ) {
+						imageCarousel.select( 0 );
+					}
+			
+					if ( thumbCarousel && thumbCarousel.slider ) {
+						thumbCarousel.select( 0 );
+					}
+					
+					
 				}
 
 				
