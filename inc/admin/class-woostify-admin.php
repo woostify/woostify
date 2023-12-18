@@ -629,7 +629,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'name'        => 'woostify_wc_frequently_bought',
 					'title'       => __( 'Frequently Bought Together', 'woostify' ),
 					'description' => __( 'Offers a way owners to get related products and put them in a deal', 'woostify' ),
-					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-bought-together.png',
+					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-buy-now.png',
 					'category'    => array( 'ecommerce' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/frequently-bought-together/',
 				),
@@ -821,7 +821,10 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 										);
 										?>
 										<div>
-											<?php echo wp_kses_post( $button ); ?>
+											<ul class="content-list-install">
+												<li class="list-install-item" style="font-size:16px; color:#212b36; line-height:24px;">1. You can click <a href="https://woostify.com/wp-content/uploads/2023/12/woostify-sites-library.zip">Here</a> to download and install Woostify Site Library plugin</li>
+												<li class="list-install-item" style="font-size:16px; color:#212b36; line-height:24px;">2. Next, You can click <a href="<?php echo esc_url( admin_url( 'admin.php?page=woostify-sites' ) ); ?>">Here</a> to import the demo </li>
+											</ul>
 										</div>
 									</div>
 								</div>
@@ -848,7 +851,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 							</div>
 						</div>
 					</div>
-				</section>			
+				</section>
 			</div>
 			<?php
 		}
