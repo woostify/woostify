@@ -15,13 +15,22 @@
  * because product-page param is managed by InfiniteScroll lib
  */
 function removePageInUrl( url ){
-    var _url = new URL( url );
-    var urlParams = new URLSearchParams(_url.search);
-    if (urlParams.has('product-page')) {
-        urlParams.delete('product-page');
-        _url.search = urlParams.toString();
-    }
-    return _url.toString().replace('#', '');
+	var _url = new URL( url );
+	var urlParams = new URLSearchParams(_url.search);
+	if (urlParams.has('product-page')) {
+		urlParams.delete('product-page');
+		_url.search = urlParams.toString();
+	}
+
+	let match = _url.pathname.match(/page\/\w{1,}\/{0,}/);
+	if ( match ){
+		_url.pathname = _url.pathname.replace( match[0], '');
+	}
+	match = _url.pathname.match(/(\w{0,})\/{1,}$/);
+	if ( match ){
+		_url.pathname = _url.pathname.replace( match[0], match[1] );
+	}
+	return _url.toString().replace('#', '');
 }
 function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
     let container      = document.querySelector( '.site-main .products' ),
@@ -39,20 +48,19 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
     }
 
     if ( ( null == view_more_btn_wrap || 'undefined' === typeof( view_more_btn_wrap ) ) ) {
-
         let options = {
             path: infScrollPath ? infScrollPath : '.prev.page-numbers',
             append: '.product.type-product',
             history: 'push',
             hideNav: '.woocommerce-pagination',
             loadOnScroll: false
-        }
+        };
 
         window.infScroll = new InfiniteScroll(
             container,
             options
-        )
-
+        );
+        
         var pagePrev      = woostify_woocommerce_general.paged - 1,
             page          = woostify_woocommerce_general.paged,
             listPage      = {};
@@ -190,17 +198,22 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
             this.element.appendChild( fragment );
         };
 
-        /**
-         * InfiniteScroll: Check the conditions before append content of next page
-         * new data will not appended if this function return false
-         * @param infScrollObj The InfiniteScroll object
-         * @param args The InfiniteScroll data (items, fragment), prepare to appended
-         * @return boolean | Will data appended or not
-         */ 
-        InfiniteScroll.prototype.conditionBeforeAppend = function( infScrollObj, args ) {
-            let beforeUrl = removePageInUrl(woostify_woocommerce_general.currentUrl);
-            let afterUrl = removePageInUrl(window.location.href);
-            return beforeUrl == afterUrl;
+		/**
+		 * InfiniteScroll: Check the conditions before append content of next page
+		 * new data will not appended if this function return false
+		 * @param infScrollObj The InfiniteScroll object
+		 * @param args The InfiniteScroll data (items, fragment), prepare to appended
+		 * @return boolean | Will data appended or not
+		 */ 
+		InfiniteScroll.prototype.conditionBeforeAppend = function( infScrollObj, args ) {
+			// let beforeUrl = removePageInUrl(woostify_woocommerce_general.currentUrl);
+			// let afterUrl = removePageInUrl(window.location.href);
+			// if(beforeUrl != afterUrl) {
+			// 	console.warn( 'Before', woostify_woocommerce_general.currentUrl, beforeUrl);
+			// 	console.warn( 'After ' , window.location.href, afterUrl);
+			// }
+			// return beforeUrl == afterUrl;
+			return infScroll.continue && (woostifyEvent.ajax_call||0) != 1;
 
         }
 
@@ -211,19 +224,25 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 
         infScroll.loadCount = 0;
 
-        infScroll.on(
-            'request',
-            function( path, fetchPromise ) {
-                if ( 'button' === loading_type ) {
-                    view_more_btn.classList.add( 'circle-loading' )
-                } else {
-                    loading_status.style.display = 'inline-block'
-                }
-                let infScrollPathelm = document.querySelector(options.path);
-                let currentUrl = infScrollPathelm ? infScrollPathelm.href : '';
-                woostify_woocommerce_general.currentUrl = currentUrl;
-            }
-        )
+		infScroll.on(
+			'request',
+			function( path, fetchPromise ) {
+				if ( 'button' === loading_type ) {
+					view_more_btn.classList.add( 'circle-loading' )
+				} else {
+					loading_status.style.display = 'inline-block'
+				}
+				let infScrollPathelm = document.querySelector(options.path);
+				let currentUrl = infScrollPathelm ? infScrollPathelm.href : '';
+				woostify_woocommerce_general.currentUrl = currentUrl;
+
+				infScroll.continue = 1;
+				if( woostifyEvent.ajax_call||0 ) {
+					infScroll.continue = 0;
+				}
+
+			}
+		)
 
         infScroll.on(
             'load',
