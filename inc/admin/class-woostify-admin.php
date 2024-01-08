@@ -65,10 +65,10 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 			ob_start();
 			?>
 			<p>
-				<?php // esc_html_e( 'Quickly and easily transform your shops appearance with Woostify Demo Sites.', 'woostify' ); ?>
+				<?php esc_html_e( 'Quickly and easily transform your shops appearance with Woostify Demo Sites.', 'woostify' ); ?>
 			</p>
 			<p>
-				<?php // esc_html_e( 'It will require other 3rd party plugins such as Elementor, WooCommerce, Contact form 7, etc.', 'woostify' ); ?>
+				<?php esc_html_e( 'It will require other 3rd party plugins such as Elementor, WooCommerce, Contact form 7, etc.', 'woostify' ); ?>
 			</p>
 			<?php
 			$summary = ob_get_clean();
@@ -821,11 +821,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 										);
 										?>
 										<div>
-											<ul class="content-list-install">
-												<li class="list-install-item" style="font-size:16px; color:#212b36; line-height:24px;">1. Click <a href="https://woostify.com/wp-content/uploads/2023/12/woostify-sites-library.zip">here</a> to download and install Woostify Site Library plugin</li>
-												<li class="list-install-item" style="font-size:16px; color:#212b36; line-height:24px;">2. Go to Plugin -> Add new and Upload this plugin</li>
-												<li class="list-install-item" style="font-size:16px; color:#212b36; line-height:24px;">2. After activating this plugin, go <a href="<?php echo esc_url( admin_url( 'admin.php?page=woostify-sites' ) ); ?>">here</a> to import the demo </li>
-											</ul>
+											<?php echo wp_kses_post( $button ); ?>
 										</div>
 									</div>
 								</div>
