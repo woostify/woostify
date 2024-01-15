@@ -145,8 +145,8 @@ if ( ! class_exists( 'Woostify_Recent_Post_Thumbnail' ) ) {
 
 			$instance = $old_instance;
 
-			$instance['title']  = strip_tags( $new_instance['title'] );
-			$instance['number'] = strip_tags( $new_instance['number'] );
+			$instance['title']  = !empty( $new_instance['title'] )? strip_tags( $new_instance['title'] ) : '';
+			$instance['number'] = !empty( $new_instance['number'] )? strip_tags( $new_instance['number'] ) : '';
 
 			return $instance;
 
