@@ -1,4 +1,4 @@
-# Copyright (C) 2023 Woostify
+# Copyright (C) 2024 Woostify
 # This file is distributed under the same license as the Woostify package.
 msgid ""
 msgstr ""
@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-12-18 08:00+0000\n"
+"POT-Creation-Date: 2024-01-08 05:06+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -490,6 +490,14 @@ msgstr ""
 msgid "Next (arrow right)"
 msgstr ""
 
+#: inc/admin/class-woostify-admin.php:68
+msgid "Quickly and easily transform your shops appearance with Woostify Demo Sites."
+msgstr ""
+
+#: inc/admin/class-woostify-admin.php:71
+msgid "It will require other 3rd party plugins such as Elementor, WooCommerce, Contact form 7, etc."
+msgstr ""
+
 #: inc/admin/class-woostify-admin.php:111
 msgid "Thanks for installing Woostify!"
 msgstr ""
@@ -531,7 +539,7 @@ msgstr ""
 msgid "Starter sites"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:329, inc/admin/class-woostify-admin.php:865
+#: inc/admin/class-woostify-admin.php:329, inc/admin/class-woostify-admin.php:861
 msgid "Changelog"
 msgstr ""
 
@@ -539,7 +547,7 @@ msgstr ""
 msgid "Woostify Support"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:334, inc/admin/class-woostify-admin.php:668, inc/admin/class-woostify-admin.php:935
+#: inc/admin/class-woostify-admin.php:334, inc/admin/class-woostify-admin.php:668, inc/admin/class-woostify-admin.php:931
 msgid "Support"
 msgstr ""
 
@@ -768,51 +776,51 @@ msgstr ""
 msgid "Installing"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:836
+#: inc/admin/class-woostify-admin.php:832
 msgid "Woostify Theme"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:840
+#: inc/admin/class-woostify-admin.php:836
 msgid "Woostify Pro"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:887
+#: inc/admin/class-woostify-admin.php:883
 msgid "Document"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:898
+#: inc/admin/class-woostify-admin.php:894
 msgid "Want a guide? We have video tutorials to walk you through getting started."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:902
+#: inc/admin/class-woostify-admin.php:898
 msgid "Go to Documentation"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:909
+#: inc/admin/class-woostify-admin.php:905
 msgid "Community"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:924, inc/admin/class-woostify-admin.php:962
+#: inc/admin/class-woostify-admin.php:920, inc/admin/class-woostify-admin.php:958
 msgid "Join our community! Share your site, ask a question and help others."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:928
+#: inc/admin/class-woostify-admin.php:924
 msgid "Go to Facebook Group"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:943
+#: inc/admin/class-woostify-admin.php:939
 msgid "Have a question, we are happy to help! Get in touch with our support team."
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:947
+#: inc/admin/class-woostify-admin.php:943
 msgid "Submit a Ticket"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:954
+#: inc/admin/class-woostify-admin.php:950
 msgid "Give us feedback"
 msgstr ""
 
-#: inc/admin/class-woostify-admin.php:966
+#: inc/admin/class-woostify-admin.php:962
 msgid "Write a Review"
 msgstr ""
 
