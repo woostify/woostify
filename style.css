@@ -6790,10 +6790,6 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   display: none;
 }
 
-.infinite-scroll-active .woocommerce-pagination {
-  display: none;
-}
-
 .hid-skus .product_meta .sku_wrapper {
   display: none;
 }
