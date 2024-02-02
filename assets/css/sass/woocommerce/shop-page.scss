@@ -298,7 +298,9 @@
 }
 
 .infinite-scroll-active {
-	.woocommerce-pagination {
-		display: none;
+	&:not(.woocommerce-orders) {
+		.woocommerce-pagination {
+			display: none;
+		}
 	}
 }

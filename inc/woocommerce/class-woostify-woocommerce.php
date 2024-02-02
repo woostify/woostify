@@ -336,7 +336,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			$type         = $options['shop_page_infinite_scroll_type'];
 			$current_page = get_query_var( 'paged' );
 
-			if ( woocommerce_products_will_display() && $current_page < $pages ) {
+			if ( woocommerce_products_will_display() && $current_page < $pages && $pages > 1) {
 				?>
 				<div class="woostify-view-more" data-loading_type="<?php echo esc_attr( $type ); ?>">
 					<?php if ( 'button' === $type ) { ?>
