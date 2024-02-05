@@ -266,6 +266,7 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 		if ( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ) {
 			$stock_quantity = get_post_meta( $product_id, '_onpreorder_maximum_order', true );
 		}
+
 		ob_start();
 		?>
 		<span class="mini-cart-product-infor">
@@ -274,7 +275,17 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 				<?php Woostify_Icon::fetch_svg_icon( 'minus' ); ?>
 				</span>
 
-				<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+				<?php
+				if ( get_post_meta( $product_id, '_backorders', true ) != 'no' ) {
+					?>
+					<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ) ); ?>" max="" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+					<?php
+				}else{
+					?>
+					<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+					<?php
+				}
+				?>
 
 				<span class="mini-cart-product-qty" data-qty="plus">
 				<?php Woostify_Icon::fetch_svg_icon( 'plus' ); ?>
@@ -431,6 +442,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 						if ( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ) {
 							$stock_quantity = get_post_meta( $product_id, '_onpreorder_maximum_order', true );
 						}
+
 						?>
 						<li class="woocommerce-mini-cart-item mini_cart_item <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>">
 							<?php
@@ -462,7 +474,17 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 									<?php Woostify_Icon::fetch_svg_icon( 'minus' ); ?>
 									</span>
 
-									<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric" <?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>>
+									<?php
+									if ( get_post_meta( $product_id, '_backorders', true ) != 'no' ) {
+										?>
+										<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>" max="" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric" <?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>>
+										<?php
+									}else{
+										?>
+										<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric" <?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>>
+										<?php
+									}
+									?>
 
 									<span class="mini-cart-product-qty" data-qty="plus">
 									<?php Woostify_Icon::fetch_svg_icon( 'plus' ); ?>
