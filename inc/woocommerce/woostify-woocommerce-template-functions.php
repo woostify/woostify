@@ -480,21 +480,59 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 									$max_quantity = '';
 
 									if( class_exists( 'WC_Min_Max_Quantities' )  ){
-										$checking_id = WC_Min_Max_Quantities::get_instance()->get_id_to_check( $cart_item );
 										$_product_id = $_product->get_id();
+										
+										if( $_product->is_type( 'variation' ) ){
+											$variation_id = $_product->get_id();
+											$parent_variable_id = $_product->get_parent_id();
 
-										$min_max_rules     = get_post_meta( $checking_id, 'min_max_rules', true );	
-										$allow_combination = ( 'yes' === get_post_meta( $checking_id, 'allow_combination', true ) );
+											// Cast both 0 and empty values to zero, as we shouldn't do any adjustments for 0/empty values.
+											$group_of_quantity = absint( get_post_meta( $parent_variable_id, 'group_of_quantity', true ) );
+											$minimum_quantity  = absint( get_post_meta( $parent_variable_id, 'minimum_allowed_quantity', true ) );
+											$maximum_quantity  = absint( get_post_meta( $parent_variable_id, 'maximum_allowed_quantity', true ) );
+											$allow_combination = 'yes' === get_post_meta( $parent_variable_id, 'allow_combination', true );
+											$min_max_rules = get_post_meta( $variation_id, 'min_max_rules', true );
 
-										if( $min_max_rules == 'yes' && ! $allow_combination ){
-											$maximum_quantity  = absint( get_post_meta( $checking_id, 'variation_maximum_allowed_quantity', true ) );
-											$minimum_quantity  = absint( get_post_meta( $checking_id, 'variation_minimum_allowed_quantity', true ) );
-											$group_of_quantity = absint( get_post_meta( $checking_id, 'variation_group_of_quantity', true ) );
-						
+											if ( 'no' === $min_max_rules || empty( $min_max_rules ) ) {
+												$min_max_rules = false;
+
+											} else {
+												$min_max_rules = true;
+
+											}
+
+											// Cast both 0 and empty values to zero, as we shouldn't do any adjustments for 0/empty values.
+											$variation_minimum_quantity  = absint( get_post_meta( $variation_id, 'variation_minimum_allowed_quantity', true ) );
+											$variation_maximum_quantity  = absint( get_post_meta( $variation_id, 'variation_maximum_allowed_quantity', true ) );
+											$variation_group_of_quantity = absint( get_post_meta( $variation_id, 'variation_group_of_quantity', true ) );
+
+											// Override product level.
+											if ( $min_max_rules && ! $allow_combination && $variation_minimum_quantity ) {
+												$minimum_quantity = $variation_minimum_quantity;
+											}
+
+											// Override product level.
+											if ( $min_max_rules && ! $allow_combination && $variation_maximum_quantity ) {
+												$maximum_quantity = $variation_maximum_quantity;
+											}
+
+											// Override product level.
+											if ( $min_max_rules && ! $allow_combination && $variation_group_of_quantity ) {
+												$group_of_quantity = $variation_group_of_quantity;
+											}
+
+											if( $allow_combination ){
+												$group_of_quantity = 1;
+												$minimum_quantity = 1;
+											}
+
+
 										}else{
+
 											$group_of_quantity = absint( get_post_meta( $_product_id, 'group_of_quantity', true ) );
 											$minimum_quantity  = absint( get_post_meta( $_product_id, 'minimum_allowed_quantity', true ) );
-											$maximum_quantity  = absint( get_post_meta( $_product_id, 'maximum_allowed_quantity', true ) );							
+											$maximum_quantity  = absint( get_post_meta( $_product_id, 'maximum_allowed_quantity', true ) );
+
 										}
 
 										$step_quantity = ($group_of_quantity !== 0) ? $group_of_quantity : 1;
