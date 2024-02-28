@@ -283,7 +283,7 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 				}else{
 					?>
 					<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
-					<?php
+					<?php			
 				}
 				?>
 
@@ -475,14 +475,131 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 									</span>
 
 									<?php
+									$step_quantity = 1;
+									$min_quantity = $_product->get_min_purchase_quantity();
+									$max_quantity = '';
+
+									if( class_exists( 'WC_Min_Max_Quantities' )  ){
+										$_product_id = $_product->get_id();
+										
+										if( $_product->is_type( 'variation' ) ){
+											$variation_id = $_product->get_id();
+											$parent_variable_id = $_product->get_parent_id();
+
+											// Cast both 0 and empty values to zero, as we shouldn't do any adjustments for 0/empty values.
+											$group_of_quantity = absint( get_post_meta( $parent_variable_id, 'group_of_quantity', true ) );
+											$minimum_quantity  = absint( get_post_meta( $parent_variable_id, 'minimum_allowed_quantity', true ) );
+											$maximum_quantity  = absint( get_post_meta( $parent_variable_id, 'maximum_allowed_quantity', true ) );
+											$allow_combination = 'yes' === get_post_meta( $parent_variable_id, 'allow_combination', true );
+											$min_max_rules = get_post_meta( $variation_id, 'min_max_rules', true );
+
+											if ( 'no' === $min_max_rules || empty( $min_max_rules ) ) {
+												$min_max_rules = false;
+
+											} else {
+												$min_max_rules = true;
+
+											}
+
+											// Cast both 0 and empty values to zero, as we shouldn't do any adjustments for 0/empty values.
+											$variation_minimum_quantity  = absint( get_post_meta( $variation_id, 'variation_minimum_allowed_quantity', true ) );
+											$variation_maximum_quantity  = absint( get_post_meta( $variation_id, 'variation_maximum_allowed_quantity', true ) );
+											$variation_group_of_quantity = absint( get_post_meta( $variation_id, 'variation_group_of_quantity', true ) );
+
+											// Override product level.
+											if ( $min_max_rules && ! $allow_combination && $variation_minimum_quantity ) {
+												$minimum_quantity = $variation_minimum_quantity;
+											}
+
+											// Override product level.
+											if ( $min_max_rules && ! $allow_combination && $variation_maximum_quantity ) {
+												$maximum_quantity = $variation_maximum_quantity;
+											}
+
+											// Override product level.
+											if ( $min_max_rules && ! $allow_combination && $variation_group_of_quantity ) {
+												$group_of_quantity = $variation_group_of_quantity;
+											}
+
+											if( $allow_combination ){
+												$group_of_quantity = 1;
+												$minimum_quantity = 1;
+											}
+
+
+										}else{
+
+											$group_of_quantity = absint( get_post_meta( $_product_id, 'group_of_quantity', true ) );
+											$minimum_quantity  = absint( get_post_meta( $_product_id, 'minimum_allowed_quantity', true ) );
+											$maximum_quantity  = absint( get_post_meta( $_product_id, 'maximum_allowed_quantity', true ) );
+
+										}
+
+										$step_quantity = ($group_of_quantity !== 0) ? $group_of_quantity : 1;
+
+										if( isset( $minimum_quantity ) && $minimum_quantity !== 0 ){
+											if( $_product->managing_stock() && ! $_product->backorders_allowed() && absint( $minimum_quantity ) > $stock_quantity ){
+												$min_quantity = $stock_quantity;
+											}else{
+												$min_quantity = $minimum_quantity;
+											}
+										}else{
+											$min_quantity = (  ! isset( $minimum_quantity ) || $minimum_quantity == 0 )? $group_of_quantity : 1;
+										}
+										
+										if( $maximum_quantity ){
+											if( $_product->managing_stock() && $_product->backorders_allowed() ){
+												$max_quantity = $maximum_quantity;
+											}elseif( $_product->managing_stock() && absint( $maximum_quantity ) > $stock_quantity ){
+												$max_quantity = $stock_quantity;
+											}else{
+												$max_quantity = $maximum_quantity;
+											}
+										}
+									}
+
+
 									if ( get_post_meta( $product_id, '_backorders', true ) != 'no' ) {
+			
 										?>
-										<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>" max="" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric" <?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>>
+										<input type="number" 
+											data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" 
+											class="input-text qty" 
+											step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>" 
+											min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>" 
+											max="" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" 
+											inputmode="numeric" 
+											<?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
+										>
 										<?php
 									}else{
-										?>
-										<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric" <?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>>
-										<?php
+										if( class_exists( 'WC_Min_Max_Quantities' )  ){
+											?>
+											<input type="number" 
+												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" 
+												class="input-text qty" 
+												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>" 
+												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>" 
+												max="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_max', $max_quantity, $_product ) ); ?>" 
+												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" 
+												inputmode="numeric" 
+												<?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
+											>
+											<?php
+										}else{
+											?>
+											<input type="number" 
+												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" 
+												class="input-text qty" 
+												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>" 
+												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>" 
+												max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" 
+												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" 
+												inputmode="numeric" <?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
+											>
+											<?php
+										}
+
 									}
 									?>
 
