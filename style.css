@@ -1222,7 +1222,7 @@ a.pswp__share--download:hover {
 }
 
 /* pswp--has_mouse class is added only when two subsequent mousemove events occur */
-.pswp--has_mouse .pswp__button--arrow--left,
+.pswp--has_mouse .tton--arrow--left,
 .pswp--has_mouse .pswp__button--arrow--right {
   visibility: visible;
 }
