@@ -189,7 +189,8 @@ if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold_produ
 		if ( ! isset( $_POST['product_id'] ) || ! isset( $_POST['qty'] ) ) {
 			wp_send_json_error();
 		}
-
+		$product_id = $_POST['product_id'];
+		$quantity = $_POST['qty'];
 		$options                    = woostify_options( false );
 		$response                   = array();
 		$top_content                = $options['mini_cart_top_content_select'];
@@ -201,7 +202,7 @@ if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold_produ
 
 		$count = WC()->cart->get_cart_contents_count();
 
-		$product = wc_get_product( $_POST['product_id'] );
+		$product = wc_get_product( $product_id );
 		$product->get_regular_price();
 		$product->get_sale_price();
 		$product->get_price();

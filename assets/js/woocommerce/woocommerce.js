@@ -240,7 +240,7 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
 				if( woostifyEvent.ajax_call||0 ) {
 					infScroll.continue = 0;
 				}
-
+                
 			}
 		)
 
@@ -298,6 +298,11 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
                 } else {
                     let loading_status = view_more_btn_wrap.querySelector( '.woostify-loading-status' );
                     loading_status.style.display = 'none'
+                }
+
+                // Re-init ajax add to cart button
+                if ( 'function' === typeof( woostifyAjaxAddToCartButton ) ) {
+                    woostifyAjaxAddToCartButton();
                 }
                 // Re-init quick view.
                 if ( 'function' === typeof( woostifyQuickView ) ) {
@@ -853,10 +858,10 @@ function woostifyAjaxAddToCartButton() {
 	buttons.forEach(
 		function( ele ) {
 			ele.onclick = function( e ) {
-
+                
 				var product_id = ele.getAttribute('data-product_id');
-				var product_qty = ele.getAttribute('data-product_id');
-
+				var product_qty = ele.getAttribute('data-quantity');
+               
 				var request = new Request(
 					woostify_woocommerce_general.ajax_url,
 					{
@@ -870,7 +875,7 @@ function woostifyAjaxAddToCartButton() {
 						)
 					}
 				);
-
+                
 				// Fetch API.
 				fetch( request )
 				.then(
@@ -901,24 +906,25 @@ function woostifyAjaxAddToCartButton() {
 						var total_percent = data.free_shipping_threshold.total_percent;
 						var curr_percent = data.free_shipping_threshold.percent;
 						var product_price = data.product.price;
-
+                        
 						if ( woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold && woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold_effect ) {
 							var progress_bar = document.querySelectorAll( '.free-shipping-progress-bar' ),
 							percent          = 0;
 							if ( progress_bar.length ) {
 								percent = parseInt( progress_bar[0].getAttribute( 'data-progress' ) );
 							}
-	
+
 							if ( progress_bar.length == 0 ) {
+                                
 								if( product_price >= goal_amount ){
 									total_percent = ( product_price / goal_amount ) * 100;
 									curr_percent = total_percent >= 100 ? 100 : total_percent.toFixed(number_of_decimals );
 								}
-								
+                                
 								// Effect.
 								if ( ( !progress_bar.length && curr_percent >= 100 ) || ( percent < curr_percent && curr_percent >= 100 ) ) {
-
-									let confetti_canvas = document.createElement( 'canvas' );
+									
+                                    let confetti_canvas = document.createElement( 'canvas' );
 						
 									confetti_canvas.className = 'confetti-canvas';
 									
@@ -930,8 +936,8 @@ function woostifyAjaxAddToCartButton() {
 											resize: true,
 											}
 									);
-						
-									confettiSnowEffect( wConfetti, 5000 )
+
+									confettiSnowEffect( wConfetti, 5000 );
 						
 									setTimeout(
 										function() {
@@ -1022,8 +1028,8 @@ function shippingThresholdCurrPercent() {
                         resize: true,
                     }
                 );
-
-                confettiSnowEffect( wConfetti, 5000 )
+                
+                confettiSnowEffect( wConfetti, 5000 );
 
                 setTimeout(
                     function() {
