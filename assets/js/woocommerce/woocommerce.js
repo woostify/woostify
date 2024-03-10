@@ -555,7 +555,7 @@ var progressBarConfetti = function( progress_bar, percent ) {
         if ( curr_progress_bar.length ) {
             curr_percent = parseInt( curr_progress_bar[0].getAttribute( 'data-progress' ) );
         }
-
+        
         // Effect.
         if ( ( !progress_bar.length && curr_percent >= 100 ) || ( percent < curr_percent && curr_percent >= 100 ) ) {
 
@@ -906,6 +906,7 @@ function woostifyAjaxAddToCartButton() {
 						var total_percent = data.free_shipping_threshold.total_percent;
 						var curr_percent = data.free_shipping_threshold.percent;
 						var product_price = data.product.price;
+                        var product_total_price = data.product.total_price;
                         
 						if ( woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold && woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold_effect ) {
 							var progress_bar = document.querySelectorAll( '.free-shipping-progress-bar' ),
@@ -916,11 +917,12 @@ function woostifyAjaxAddToCartButton() {
 
 							if ( progress_bar.length == 0 ) {
                                 
-								if( product_price >= goal_amount ){
-									total_percent = ( product_price / goal_amount ) * 100;
+                                product_total_price = product_total_price.toFixed();
+                                if( product_total_price >= goal_amount ){
+									total_percent = ( product_total_price / goal_amount ) * 100;
 									curr_percent = total_percent >= 100 ? 100 : total_percent.toFixed(number_of_decimals );
 								}
-                                
+
 								// Effect.
 								if ( ( !progress_bar.length && curr_percent >= 100 ) || ( percent < curr_percent && curr_percent >= 100 ) ) {
 									
