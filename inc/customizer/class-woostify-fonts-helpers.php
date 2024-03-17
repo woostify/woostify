@@ -120,6 +120,18 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				}
 			}
 
+			// Support Custom fonts plugin.
+			if( class_exists( 'Bsf_Custom_Fonts_Render' ) ){
+				$all_font_posts = Bsf_Custom_Fonts_Render::get_instance()->get_existing_font_posts();
+				if( !empty( $all_font_posts ) ){
+					foreach ( $all_font_posts as $font_post => $font_post_id ) {
+						$font_data = get_post_meta( $font_post_id, 'fonts-data', true );
+						$font_name = $font_data['font_name'];
+						array_push( $fonts, $font_name );
+					}
+				}
+			}
+
 			return apply_filters( 'woostify_typography_default_fonts', $fonts );
 		}
 
