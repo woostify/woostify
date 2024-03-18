@@ -189,7 +189,9 @@ if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold_produ
 		if ( ! isset( $_POST['product_id'] ) || ! isset( $_POST['qty'] ) ) {
 			wp_send_json_error();
 		}
-
+		
+		$product_id = $_POST['product_id'];
+		$quantity = $_POST['qty'];
 		$options                    = woostify_options( false );
 		$response                   = array();
 		$top_content                = $options['mini_cart_top_content_select'];
@@ -201,16 +203,19 @@ if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold_produ
 
 		$count = WC()->cart->get_cart_contents_count();
 
-		$product = wc_get_product( $_POST['product_id'] );
+		$product = wc_get_product( $product_id );
 		$product->get_regular_price();
 		$product->get_sale_price();
 		$product->get_price();
+
+		$product_total_price = (float) $product->get_price() * (int) $quantity;
 
 		ob_start();
 		$response['number_of_decimals'] = $number_of_decimals;
 		$response['product']['regular_price'] = $product->get_regular_price();
 		$response['product']['sale_price'] = $product->get_sale_price();
 		$response['product']['price'] = $product->get_price();
+		$response['product']['total_price'] = $product_total_price;
 		$response['item']        = $count;
 		$response['total_price'] = WC()->cart->get_cart_total();
 		$response['free_shipping_threshold']['active'] = false;
