@@ -168,7 +168,7 @@ class Woostify_Product_Data_Tabs_Control extends WP_Customize_Control {
 				</div>
 			</div>
 			<button class="button button-primary adv-list-add-item-btn"><?php esc_html_e( 'Add Tab', 'woostify' ); ?></button>
-			<input type="hidden" class="woostify-adv-list-value" <?php $this->link(); ?> value='<?php echo $this->value(); //phpcs:ignore ?>'/>
+			<input type="hidden" class="woostify-adv-list-value" <?php $this->link(); ?> value='<?php echo esc_attr( json_encode( $this->value() ) ) ; //phpcs:ignore ?>'/>
 		</div>
 		<?php
 	}
