@@ -9500,7 +9500,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   position: static;
 }
 .checkout-layout-3:not(.woobuilder-active).has-distraction-free-checkout .site-content {
-  margin-top: 0;
+  margin-top: 3.5em;
 }
 @media (max-width: 991px) {
   .checkout-layout-3:not(.woobuilder-active).has-distraction-free-checkout .site-content {
