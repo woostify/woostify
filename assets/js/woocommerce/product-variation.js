@@ -161,7 +161,7 @@ function productVariation( selector, form ) {
 					}
 
 					// Update sale tag.
-					if ( onSaleLabel && woostify_woocommerce_variable_product_data.sale_tag_percent && variation.display_price != variation.display_regular_price ) {
+					if ( onSaleLabel && 'undefined' !== typeof( woostify_woocommerce_variable_product_data ) && woostify_woocommerce_variable_product_data.sale_tag_percent && variation.display_price != variation.display_regular_price ) {
 						onSaleLabel.innerHTML = '-' + Math.round( ( ( variation.display_regular_price - variation.display_price ) / variation.display_regular_price ) * 100 ) + '%';
 					}
 				} else if ( 'undefined' !== typeof( woostify_woocommerce_variable_product_data ) ) {
