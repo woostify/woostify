@@ -605,17 +605,6 @@ if ( ! function_exists( 'woostify_meta_charset' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_meta_viewport' ) ) {
-	/**
-	 * Meta viewport
-	 */
-	function woostify_meta_viewport() {
-		?>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-		<?php
-	}
-}
-
 if ( ! function_exists( 'woostify_rel_profile' ) ) {
 	/**
 	 * Rel profile

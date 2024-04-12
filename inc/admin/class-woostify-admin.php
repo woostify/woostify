@@ -746,7 +746,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 															?>
 														</div>
 														<div class="module-info-view-all-addon">
-															<a href="#" class="module-info-view-all-addon-btn">View All Add-ons</a>
+															<a href="#" class="module-info-view-all-addon-btn"><?php esc_html_e( 'View All Add-ons', 'woostify' ); ?></a>
 														</div>
 													</div>
 												<?php endif; ?>
