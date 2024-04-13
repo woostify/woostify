@@ -310,7 +310,7 @@ if ( ! function_exists( 'woostify_sanitize_rgba_color' ) ) {
 
 		// If string does not start with 'rgba', then treat as hex sanitize the hex color and finally convert hex to rgba.
 		if ( false === strpos( $color, 'rgba' ) ) {
-			return (strlen($color) != 9)? sanitize_hex_color( $color ) : $color;
+			return ( strlen( $color ) != 9 ) ? sanitize_hex_color( $color ) : $color;
 		}
 
 		// By now we know the string is formatted as an rgba color so we need to further sanitize it.
@@ -601,6 +601,17 @@ if ( ! function_exists( 'woostify_meta_charset' ) ) {
 	function woostify_meta_charset() {
 		?>
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
+		<?php
+	}
+}
+
+if ( ! function_exists( 'woostify_meta_viewport' ) ) {
+	/**
+	 * Meta viewport
+	 */
+	function woostify_meta_viewport() {
+		?>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 		<?php
 	}
 }
