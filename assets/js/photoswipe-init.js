@@ -67,7 +67,7 @@ function initPhotoSwipe( gallerySelector ) {
 		var eTarget = e.target || e.srcElement;
 
 		var productImages = eTarget.closest( '.product-images' );
-		var productGallery =  productImages.closest( '.product-gallery' );
+
 		var clickedListItem = productImages.querySelectorAll( '.image-item' )[0];
 
 		// find root element of slide.
@@ -99,10 +99,10 @@ function initPhotoSwipe( gallerySelector ) {
 			}
 			nodeIndex++;
 		}
-	
+
 		if ( index >= 0 ) {
 			// open PhotoSwipe if valid index found.
-			openPhotoSwipe( productGallery, index, clickedGallery );
+			openPhotoSwipe( index, clickedGallery );
 		}
 		return false;
 	}
@@ -113,9 +113,6 @@ function initPhotoSwipe( gallerySelector ) {
 		e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
 		var eTarget = e.target || e.srcElement;
-
-		var productImages = eTarget.closest( '.product-images' );
-		var productGallery =  productImages.closest( '.product-gallery' );
 
 		if ( 'A' === eTarget.tagName.toUpperCase() ) {
 			return;
@@ -155,14 +152,13 @@ function initPhotoSwipe( gallerySelector ) {
 
 		if ( index >= 0 ) {
 			// open PhotoSwipe if valid index found.
-			openPhotoSwipe( productGallery, index, clickedGallery );
+			openPhotoSwipe( index, clickedGallery );
 		}
 		return false;
 	};
 
-	var openPhotoSwipe = function( productGallery, index, galleryElement, disableAnimation, fromURL ) {
-		
-		var pswpElement = productGallery.querySelector( '.pswp' ),
+	var openPhotoSwipe = function( index, galleryElement, disableAnimation, fromURL ) {
+		var pswpElement = document.querySelector( '.pswp' ),
 			gallery,
 			options,
 			items;
