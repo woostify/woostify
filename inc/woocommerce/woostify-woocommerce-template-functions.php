@@ -1662,7 +1662,7 @@ if ( ! function_exists( 'woostify_wc_custom_product_search_form' ) ) {
 
 		$index = $product_search_form_index++;
 
-		$output  = '<form role="search" method="get" class="woocommerce-product-search" action="' . esc_url( home_url( '/' ) ) . '">';
+		$output  = '<form role="search" method="get" class="woocommerce-product-search" action="' . esc_url( get_site_url( '/' ) ) . '">';
 		$output .= '<label class="screen-reader-text" for="woocommerce-product-search-field-' . absint( $index ) . '">' . esc_html__( 'Search for:', 'woostify' ) . '></label>';
 		$output .= '<input type="search" id="woocommerce-product-search-field-' . absint( $index ) . '" class="search-field" placeholder="' . esc_attr__( 'Search products&hellip;', 'woostify' ) . '" value="' . get_search_query() . '" name="s" />';
 		$output .= '<button type="submit" value="' . esc_attr_x( 'Search', 'submit button', 'woostify' ) . '">' . esc_html_x( 'Search', 'submit button', 'woostify' ) . '</button>';
