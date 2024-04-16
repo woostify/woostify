@@ -158,10 +158,18 @@ function initPhotoSwipe( gallerySelector ) {
 	};
 
 	var openPhotoSwipe = function( index, galleryElement, disableAnimation, fromURL ) {
-		var pswpElement = document.querySelector( '.pswp' ),
+		var productGallery = galleryElement.closest('.product-gallery');
+		
+		var pswpElement,
 			gallery,
 			options,
 			items;
+
+		if (productGallery.querySelector( '.pswp' )) {
+			pswpElement = productGallery.querySelector( '.pswp' );
+		} else {
+			pswpElement = productGallery.nextElementSibling;
+		}
 
 		items = parseThumbnailElements( galleryElement );
 
