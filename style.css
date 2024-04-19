@@ -3736,7 +3736,9 @@ article p:last-child {
 .woostify-icon-bar span:after {
   bottom: -6px;
 }
-
+.logged-in.admin-bar #woostify-overlay .woostify-svg-icon {
+  top: 66px;
+}
 .sidebar-menu-open {
   overflow: hidden;
 }
@@ -3755,6 +3757,22 @@ article p:last-child {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+.sidebar-menu-open #woostify-overlay .woostify-svg-icon{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+}
+.sidebar-menu-open #woostify-overlay .woostify-svg-icon svg{
+  width: 1.5em;
+  height: 1.5em;
 }
 .sidebar-menu-open #view {
   transform: translateX(300px);
