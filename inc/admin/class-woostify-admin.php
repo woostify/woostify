@@ -625,6 +625,14 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 					'category'    => array( 'storebuilder' ),
 					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/white-label/',
 				),
+				array(
+					'name'        => 'woostify_wc_frequently_bought',
+					'title'       => __( 'Frequently Bought Together', 'woostify' ),
+					'description' => __( 'Offers a way owners to get related products and put them in a deal', 'woostify' ),
+					'icon'        => WOOSTIFY_THEME_URI . 'assets/images/module/module-icon-buy-now.png',
+					'category'    => array( 'ecommerce' ),
+					'setting_url' => esc_url( $woostify_url ) . '/docs/pro-modules/frequently-bought-together/',
+				),
 			)
 			?>
 			<div class="woostify-options-wrap admin-welcome-screen woostify-welcome-settings-section-tab woostify-enhance-settings-section-tab">
@@ -651,7 +659,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 								?>
 								<a href="#starter-sites" class="tab-head-button"><?php esc_html_e( 'Starter sites', 'woostify' ); ?></a>
 								<?php
-									do_action('woostify_change_log_tab_menu');
+									do_action( 'woostify_change_log_tab_menu' );
 								?>
 							</div>
 
@@ -738,7 +746,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 															?>
 														</div>
 														<div class="module-info-view-all-addon">
-															<a href="#" class="module-info-view-all-addon-btn">View All Add-ons</a>
+															<a href="#" class="module-info-view-all-addon-btn"><?php esc_html_e( 'View All Add-ons', 'woostify' ); ?></a>
 														</div>
 													</div>
 												<?php endif; ?>
@@ -790,7 +798,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 
 										// Generate button.
 										$site_library_label = apply_filters( 'woostify_custom_site_library_label', esc_html__( 'Activate Woostify site library', 'woostify' ) );
-										$button = '<a href="' . esc_url( admin_url( 'admin.php?page=woostify-sites' ) ) . '" class="woostify-button button-primary" target="_blank">' . $site_library_label . '</a>';
+										$button             = '<a href="' . esc_url( admin_url( 'admin.php?page=woostify-sites' ) ) . '" class="woostify-button button-primary" target="_blank">' . $site_library_label . '</a>';
 
 										// If Woostifu Site install.
 										if ( ! defined( 'WOOSTIFY_SITES_VER' ) ) {
@@ -840,7 +848,7 @@ if ( ! class_exists( 'Woostify_Admin' ) ) :
 							</div>
 						</div>
 					</div>
-				</section>			
+				</section>
 			</div>
 			<?php
 		}

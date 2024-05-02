@@ -121,8 +121,121 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 
 			$percent = 0;
 			$percent = ( $subtotal / $goal_amount ) * 100;
-			$percent = $percent >= 100 ? 100 : round( $percent, $wc_number_of_decimals );
+			$percent = $percent >= 100 ? 100 : round( $percent, $number_of_decimals );
 
+			$response['free_shipping_threshold']['percent'] = $percent;
+			$response['free_shipping_threshold']['message'] = $percent >= 100 ? $progress_bar_success_msg : $progress_bar_initial_msg;
+		}
+		$response['content'] = ob_get_clean();
+
+		wp_send_json_success( $response );
+	}
+}
+
+if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold' ) ) {
+	/**
+	 * get curr percent shipping threshold
+	 */
+	function woostify_ajax_get_curr_percent_shipping_threshold() {
+		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
+
+		$options                    = woostify_options( false );
+		$response                   = array();
+		$top_content                = $options['mini_cart_top_content_select'];
+		$before_checkout_content    = $options['mini_cart_before_checkout_button_content_select'];
+		$after_checkout_content     = $options['mini_cart_after_checkout_button_content_select'];
+		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
+
+		$number_of_decimals = get_option( 'woocommerce_price_num_decimals', 0 );
+
+		$count = WC()->cart->get_cart_contents_count();
+
+		ob_start();
+		$response['item']        = $count;
+		$response['total_price'] = WC()->cart->get_cart_total();
+		$response['free_shipping_threshold']['active'] = false;
+		if ( ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) && $enabled_shipping_threshold ) {
+			$response['free_shipping_threshold'] = array();
+
+			$subtotal                 = WC()->cart->subtotal;
+			$goal_amount              = $options['shipping_threshold_progress_bar_amount'];
+			$progress_bar_initial_msg = $options['shipping_threshold_progress_bar_initial_msg'];
+			$progress_bar_success_msg = $options['shipping_threshold_progress_bar_success_msg'];
+			$missing_amount           = $goal_amount - $subtotal;
+			$progress_bar_initial_msg = str_replace( '[missing_amount]', wc_price( $missing_amount ), $progress_bar_initial_msg );
+
+			$percent = 0;
+			$total_percent = ( $subtotal / $goal_amount ) * 100;
+			$percent = $total_percent >= 100 ? 100 : round( $total_percent, $number_of_decimals );
+
+			$response['free_shipping_threshold']['active'] = true;
+			$response['free_shipping_threshold']['total_percent'] = $total_percent;
+			$response['free_shipping_threshold']['percent'] = $percent;
+			$response['free_shipping_threshold']['message'] = $percent >= 100 ? $progress_bar_success_msg : $progress_bar_initial_msg;
+		}
+		$response['content'] = ob_get_clean();
+
+		wp_send_json_success( $response );
+	}
+}
+
+if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold_product' ) ) {
+	/**
+	 * get curr percent shipping threshold
+	 */
+	function woostify_ajax_get_curr_percent_shipping_threshold_product() {
+		check_ajax_referer( 'woostify_woocommerce_general_nonce', 'ajax_nonce' );
+
+		if ( ! isset( $_POST['product_id'] ) || ! isset( $_POST['qty'] ) ) {
+			wp_send_json_error();
+		}
+		
+		$product_id = $_POST['product_id'];
+		$quantity = $_POST['qty'];
+		$options                    = woostify_options( false );
+		$response                   = array();
+		$top_content                = $options['mini_cart_top_content_select'];
+		$before_checkout_content    = $options['mini_cart_before_checkout_button_content_select'];
+		$after_checkout_content     = $options['mini_cart_after_checkout_button_content_select'];
+		$enabled_shipping_threshold = $options['shipping_threshold_enabled'];
+
+		$number_of_decimals = get_option( 'woocommerce_price_num_decimals', 0 );
+
+		$count = WC()->cart->get_cart_contents_count();
+
+		$product = wc_get_product( $product_id );
+		$product->get_regular_price();
+		$product->get_sale_price();
+		$product->get_price();
+
+		$product_total_price = (float) $product->get_price() * (int) $quantity;
+
+		ob_start();
+		$response['number_of_decimals'] = $number_of_decimals;
+		$response['product']['regular_price'] = $product->get_regular_price();
+		$response['product']['sale_price'] = $product->get_sale_price();
+		$response['product']['price'] = $product->get_price();
+		$response['product']['total_price'] = $product_total_price;
+		$response['item']        = $count;
+		$response['total_price'] = WC()->cart->get_cart_total();
+		$response['free_shipping_threshold']['active'] = false;
+		if ( ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) && $enabled_shipping_threshold ) {
+			$response['free_shipping_threshold'] = array();
+
+			$subtotal                 = WC()->cart->subtotal;
+			$goal_amount              = $options['shipping_threshold_progress_bar_amount'];
+			$progress_bar_initial_msg = $options['shipping_threshold_progress_bar_initial_msg'];
+			$progress_bar_success_msg = $options['shipping_threshold_progress_bar_success_msg'];
+			$missing_amount           = $goal_amount - $subtotal;
+			$progress_bar_initial_msg = str_replace( '[missing_amount]', wc_price( $missing_amount ), $progress_bar_initial_msg );
+
+			$percent = 0;
+			$total_percent = ( $subtotal / $goal_amount ) * 100;
+			$percent = $total_percent >= 100 ? 100 : round( $total_percent, $number_of_decimals );
+
+			$response['free_shipping_threshold']['active'] = true;
+			$response['free_shipping_threshold']['goal_amount'] = $goal_amount;
+			$response['free_shipping_threshold']['total_percent'] = $total_percent;
 			$response['free_shipping_threshold']['percent'] = $percent;
 			$response['free_shipping_threshold']['message'] = $percent >= 100 ? $progress_bar_success_msg : $progress_bar_initial_msg;
 		}
@@ -158,6 +271,7 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 		if ( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ) {
 			$stock_quantity = get_post_meta( $product_id, '_onpreorder_maximum_order', true );
 		}
+
 		ob_start();
 		?>
 		<span class="mini-cart-product-infor">
@@ -166,7 +280,17 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 				<?php Woostify_Icon::fetch_svg_icon( 'minus' ); ?>
 				</span>
 
-				<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+				<?php
+				if ( get_post_meta( $product_id, '_backorders', true ) != 'no' ) {
+					?>
+					<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ) ); ?>" max="" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+					<?php
+				}else{
+					?>
+					<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+					<?php			
+				}
+				?>
 
 				<span class="mini-cart-product-qty" data-qty="plus">
 				<?php Woostify_Icon::fetch_svg_icon( 'plus' ); ?>
@@ -323,6 +447,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 						if ( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ) {
 							$stock_quantity = get_post_meta( $product_id, '_onpreorder_maximum_order', true );
 						}
+
 						?>
 						<li class="woocommerce-mini-cart-item mini_cart_item <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>">
 							<?php
@@ -354,17 +479,197 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 									<?php Woostify_Icon::fetch_svg_icon( 'minus' ); ?>
 									</span>
 
-									<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric" <?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>>
+									<?php
+									$step_quantity = 1;
+									$min_quantity = $_product->get_min_purchase_quantity();
+									$max_quantity = '';
+
+									if( class_exists( 'WC_Min_Max_Quantities' )  ){
+										$_product_id = $_product->get_id();
+										
+										if( $_product->is_type( 'variation' ) ){
+											$variation_id = $_product->get_id();
+											$parent_variable_id = $_product->get_parent_id();
+
+											// Cast both 0 and empty values to zero, as we shouldn't do any adjustments for 0/empty values.
+											$group_of_quantity = absint( get_post_meta( $parent_variable_id, 'group_of_quantity', true ) );
+											$minimum_quantity  = absint( get_post_meta( $parent_variable_id, 'minimum_allowed_quantity', true ) );
+											$maximum_quantity  = absint( get_post_meta( $parent_variable_id, 'maximum_allowed_quantity', true ) );
+											$allow_combination = 'yes' === get_post_meta( $parent_variable_id, 'allow_combination', true );
+											$min_max_rules = get_post_meta( $variation_id, 'min_max_rules', true );
+
+											if ( 'no' === $min_max_rules || empty( $min_max_rules ) ) {
+												$min_max_rules = false;
+
+											} else {
+												$min_max_rules = true;
+
+											}
+
+											// Cast both 0 and empty values to zero, as we shouldn't do any adjustments for 0/empty values.
+											$variation_minimum_quantity  = absint( get_post_meta( $variation_id, 'variation_minimum_allowed_quantity', true ) );
+											$variation_maximum_quantity  = absint( get_post_meta( $variation_id, 'variation_maximum_allowed_quantity', true ) );
+											$variation_group_of_quantity = absint( get_post_meta( $variation_id, 'variation_group_of_quantity', true ) );
+
+											// Override product level.
+											if ( $min_max_rules && ! $allow_combination && $variation_minimum_quantity ) {
+												$minimum_quantity = $variation_minimum_quantity;
+											}
+
+											// Override product level.
+											if ( $min_max_rules && ! $allow_combination && $variation_maximum_quantity ) {
+												$maximum_quantity = $variation_maximum_quantity;
+											}
+
+											// Override product level.
+											if ( $min_max_rules && ! $allow_combination && $variation_group_of_quantity ) {
+												$group_of_quantity = $variation_group_of_quantity;
+											}
+
+											if( $allow_combination ){
+												$group_of_quantity = 1;
+												$minimum_quantity = 1;
+											}
+
+
+										}else{
+
+											$group_of_quantity = absint( get_post_meta( $_product_id, 'group_of_quantity', true ) );
+											$minimum_quantity  = absint( get_post_meta( $_product_id, 'minimum_allowed_quantity', true ) );
+											$maximum_quantity  = absint( get_post_meta( $_product_id, 'maximum_allowed_quantity', true ) );
+
+										}
+
+										$step_quantity = ($group_of_quantity !== 0) ? $group_of_quantity : 1;
+
+										if( isset( $minimum_quantity ) && $minimum_quantity !== 0 ){
+											if( $_product->managing_stock() && ! $_product->backorders_allowed() && absint( $minimum_quantity ) > $stock_quantity ){
+												$min_quantity = $stock_quantity;
+											}else{
+												$min_quantity = $minimum_quantity;
+											}
+										}else{
+											$min_quantity = (  ! isset( $minimum_quantity ) || $minimum_quantity == 0 )? $group_of_quantity : 1;
+										}
+										
+										if( $maximum_quantity ){
+											if( $_product->managing_stock() && $_product->backorders_allowed() ){
+												$max_quantity = $maximum_quantity;
+											}elseif( $_product->managing_stock() && absint( $maximum_quantity ) > $stock_quantity ){
+												$max_quantity = $stock_quantity;
+											}else{
+												$max_quantity = $maximum_quantity;
+											}
+										}
+									}
+
+
+									if ( get_post_meta( $product_id, '_backorders', true ) != 'no' ) {
+			
+										?>
+										<input type="number" 
+											data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" 
+											class="input-text qty" 
+											step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>" 
+											min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>" 
+											max="" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" 
+											inputmode="numeric" 
+											<?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
+										>
+										<?php
+									}else{
+										if( class_exists( 'WC_Min_Max_Quantities' )  ){
+											?>
+											<input type="number" 
+												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" 
+												class="input-text qty" 
+												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>" 
+												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>" 
+												max="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_max', $max_quantity, $_product ) ); ?>" 
+												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" 
+												inputmode="numeric" 
+												<?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
+											>
+											<?php
+										}else{
+											?>
+											<input type="number" 
+												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" 
+												class="input-text qty" 
+												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>" 
+												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>" 
+												max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" 
+												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" 
+												inputmode="numeric" <?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
+											>
+											<?php
+										}
+
+									}
+									?>
 
 									<span class="mini-cart-product-qty" data-qty="plus">
 									<?php Woostify_Icon::fetch_svg_icon( 'plus' ); ?>
 									</span>
 								</span>
+								<?php
+								if ( class_exists( 'Woostify_FBT' ) ) {
+									$bundles       = get_post_meta( $product_id, 'woostify_fbt', true );
+									$bundles_added = explode( ',', ( isset( $cart_item['bundle-products'] ) ? $cart_item['bundle-products'] : '' ) );
 
+									if ( isset( $cart_item['bundle-products'] ) && $cart_item['bundle-products'] ) {
+										$product_price = apply_filters( 'woocommerce_widget_cart_item_quantity', wc_price( round( $cart_item['custom-price'], 2 ) ), $cart_item, $cart_item_key );
+									} else {
+										$product_price = apply_filters( 'woocommerce_widget_cart_item_quantity', $product_price, $cart_item, $cart_item_key );
+									}
+								}
+								?>
 								<span class="mini-cart-product-price"><?php echo wp_kses_post( $product_price ); ?></span>
 
 								<?php do_action( 'woostify_mini_cart_item_after_price', $_product ); ?>
 							</span>
+							<?php
+							if ( class_exists( 'Woostify_FBT' ) ) {
+								if ( !empty( $cart_item['bundle-products'] ) ) { // phpcs:ignore
+									$bundles       = get_post_meta( $product_id, 'woostify_fbt', true );
+									$bundles_added = explode( ',', ( isset( $cart_item['bundle-products'] ) ? $cart_item['bundle-products'] : '' ) );
+									if ( $bundles ) {
+										$custom_variable = $cart_item['bundle-variable'];
+
+										echo '<ul class="product-bundle fr pd__0">';
+										foreach ( $bundles as $key => $val ) {
+											if ( isset( $val['id'] ) && in_array( $val['id'], $bundles_added ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
+												$product_item = wc_get_product( intval( $val['id'] ) );
+
+												echo '<li class="pr mini_cart_item">';
+												echo '<a href="' . $product_item->get_permalink() . '" title="' . $product_item->get_name() . '">' . $product_item->get_image() . $product_item->get_name() . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+												// Get variable.
+												if ( ! empty( $val['variable'] ) ) {
+													$variable = wp_unslash( $val['variable'] );
+
+													if ( isset( $custom_variable[ $val['id'] ] ) && count( $custom_variable[ $val['id'] ] ) > 0 ) {
+														// Custom variable before add produt bundle to cart.
+														echo '<span class="db" style="text-transform: capitalize;">';
+															echo wp_kses_post( $custom_variable[ $val['id'] ]['variable'] );
+														echo '</span>';
+													} else {
+														if ( ! empty( $val['variable'] ) ) {
+															foreach ( $val['variable'] as $key => $value ) {
+																echo '<span class="db" style="text-transform: capitalize;">';
+																	echo substr( $key, 13 ) . ': ' . $value; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+																echo '</span>';
+															}
+														}
+													}
+												}
+												echo '</li>';
+											}
+										}
+										echo '</ul>';
+									}
+								}
+							}
+							?>
 						</li>
 						<?php
 					}
@@ -488,7 +793,9 @@ if ( ! function_exists( 'woostify_woocommerce_cart_sidebar' ) ) {
 				</div>
 
 				<div class="cart-sidebar-content">
-					<?php woostify_mini_cart(); ?>
+					<?php
+					woostify_mini_cart();
+					?>
 				</div>
 			</div>
 		<?php
@@ -789,7 +1096,9 @@ if ( ! function_exists( 'woostify_content_fragments' ) ) {
 
 		// Get mini cart content.
 		ob_start();
+
 		woostify_mini_cart();
+
 		$mini_cart = ob_get_clean();
 
 		// Cart item count.
@@ -1353,7 +1662,7 @@ if ( ! function_exists( 'woostify_wc_custom_product_search_form' ) ) {
 
 		$index = $product_search_form_index++;
 
-		$output  = '<form role="search" method="get" class="woocommerce-product-search" action="' . esc_url( home_url( '/' ) ) . '">';
+		$output  = '<form role="search" method="get" class="woocommerce-product-search" action="' . esc_url( get_site_url( '/' ) ) . '">';
 		$output .= '<label class="screen-reader-text" for="woocommerce-product-search-field-' . absint( $index ) . '">' . esc_html__( 'Search for:', 'woostify' ) . '></label>';
 		$output .= '<input type="search" id="woocommerce-product-search-field-' . absint( $index ) . '" class="search-field" placeholder="' . esc_attr__( 'Search products&hellip;', 'woostify' ) . '" value="' . get_search_query() . '" name="s" />';
 		$output .= '<button type="submit" value="' . esc_attr_x( 'Search', 'submit button', 'woostify' ) . '">' . esc_html_x( 'Search', 'submit button', 'woostify' ) . '</button>';
@@ -1415,6 +1724,12 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 					case 'tinv_wishlist':
 						$icon = 'heart';
 						break;
+					case 'wishlist':
+						$icon = 'heart';
+						break;
+					case 'favorieten':
+						$icon = 'heart';
+						break;
 					case 'customer-logout':
 						$icon = 'pencil-alt';
 						break;
@@ -1443,6 +1758,181 @@ if ( ! function_exists( 'woostify_override_woocommerce_account_navigation' ) ) {
 		</nav>
 		<?php
 		do_action( 'woocommerce_after_account_navigation' );
+	}
+}
+
+if ( ! function_exists( 'woostify_ajax_notices_register_account' ) ) {
+	/**
+	 * ajax notices register account
+	 */
+	function woostify_ajax_notices_register_account() {
+		$nonce_value = isset( $_POST['_wpnonce'] ) ? wp_unslash( $_POST['_wpnonce'] ) : '';
+		$nonce_value = isset( $_POST['woocommerce-register-nonce'] ) ? wp_unslash( $_POST['woocommerce-register-nonce'] ) : $nonce_value;
+
+		$mes = 'Please provide a valid email address.';
+		$successfully = false;
+		$wp_redirect = '';
+
+		if ( isset( $_POST['email'] ) && wp_verify_nonce( $nonce_value, 'woocommerce-register' ) ) {
+			$username = 'no' === get_option( 'woocommerce_registration_generate_username' ) && isset( $_POST['username'] ) ? wp_unslash( $_POST['username'] ) : '';
+			$password = 'no' === get_option( 'woocommerce_registration_generate_password' ) && isset( $_POST['password'] ) ? $_POST['password'] : '';
+			$email = wp_unslash( $_POST['email'] );
+
+			try {
+				$validation_error  = new WP_Error();
+				$validation_error  = apply_filters( 'woocommerce_process_registration_errors', $validation_error, $username, $password, $email );
+				$validation_errors = $validation_error->get_error_messages();
+				if ( 1 === count( $validation_errors ) ) {
+					throw new Exception( $validation_error->get_error_message() );
+				} elseif ( $validation_errors ) {
+					foreach ( $validation_errors as $message ) {
+						$mes = $message;
+					}
+					throw new Exception();
+				}
+
+				$new_customer = wc_create_new_customer( sanitize_email( $email ), wc_clean( $username ), $password );
+
+				if ( is_wp_error( $new_customer ) ) {
+					throw new Exception( $new_customer->get_error_message() );
+				}
+
+				if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) ) {
+					$mes = __( 'Your account was created successfully and a password has been sent to your email address.', 'woostify' );
+				} else {
+					$mes = __( 'Your account was created successfully. Your login details have been sent to your email address.', 'woostify' );
+				}
+
+				// Only redirect after a forced login - otherwise output a success notice.
+				if ( apply_filters( 'woocommerce_registration_auth_new_customer', true, $new_customer ) ) {
+					wc_set_customer_auth_cookie( $new_customer );
+
+					if ( ! empty( $_POST['redirect'] ) ) {
+						$redirect = wp_sanitize_redirect( wp_unslash( $_POST['redirect'] ) );
+					} elseif ( wc_get_raw_referer() ) {
+						$redirect = wc_get_raw_referer();
+					} else {
+						$redirect = wc_get_page_permalink( 'myaccount' );
+					}
+
+					$wp_redirect = wp_validate_redirect( apply_filters( 'woocommerce_registration_redirect', $redirect ), wc_get_page_permalink( 'myaccount' ) );
+
+				}
+
+				if ( $new_customer ) {
+					$successfully = true;
+				}
+
+			} catch (Exception $e) {
+				if ( $e->getMessage() ) {
+					$mes = $e->getMessage();
+				}
+			}
+		}
+
+		$notices = ( $successfully ) ?
+		'<div class="woocommerce-notices-wrapper">
+			<ul class="woocommerce-error" role="alert" style="background-color: #1346af;">
+				<li>'.$mes .'</li>
+			</ul>
+		</div>'
+		: '<div class="woocommerce-notices-wrapper">
+			<ul class="woocommerce-error" role="alert">
+				<li><strong>Error:</strong> '.$mes.'</li>
+			</ul>
+		</div>';
+
+		$data = array(
+			'notices' => $notices,
+			'successfully' => $successfully,
+			'wp_redirect' => $wp_redirect,
+		);
+
+		wp_send_json_success( $data );
+	}
+}
+
+if ( ! function_exists( 'woostify_ajax_notices_login_account' ) ) {
+	/**
+	 * ajax notices login account
+	*/
+	function woostify_ajax_notices_login_account() {
+		$nonce_value = isset( $_POST['_wpnonce'] ) ? wp_unslash( $_POST['_wpnonce'] ) : '';
+		$nonce_value = isset( $_POST['woocommerce-login-nonce'] ) ? wp_unslash( $_POST['woocommerce-login-nonce'] ) : $nonce_value;
+
+		$mes = '';
+		$successfully = false;
+		$wp_redirect = '';
+
+		if ( isset( $_POST['username'], $_POST['password'] ) && wp_verify_nonce( $nonce_value, 'woocommerce-login' ) ) {
+			try {
+				$creds = array(
+					'user_login'    => trim( wp_unslash( $_POST['username'] ) ), // phpcs:ignore
+					'user_password' => $_POST['password'], // phpcs:ignore
+					'remember'      => isset( $_POST['rememberme'] ), // phpcs:ignore
+				);
+
+				$validation_error = new WP_Error();
+				$validation_error = apply_filters( 'woocommerce_process_login_errors', $validation_error, $creds['user_login'], $creds['user_password'] );
+
+				if ( $validation_error->get_error_code() ) {
+					throw new Exception( '<strong>' . __( 'Error:', 'woostify' ) . '</strong> ' . $validation_error->get_error_message() );
+				}
+
+				if ( empty( $creds['user_login'] ) ) {
+					throw new Exception( '<strong>' . __( 'Error:', 'woostify' ) . '</strong> ' . __( 'Username is required.', 'woocommerce' ) );
+				}
+
+				// On multisite, ensure user exists on current site, if not add them before allowing login.
+				if ( is_multisite() ) {
+					$user_data = get_user_by( is_email( $creds['user_login'] ) ? 'email' : 'login', $creds['user_login'] );
+
+					if ( $user_data && ! is_user_member_of_blog( $user_data->ID, get_current_blog_id() ) ) {
+						add_user_to_blog( get_current_blog_id(), $user_data->ID, 'customer' );
+					}
+				}
+
+				// Peform the login.
+				$user = wp_signon( apply_filters( 'woocommerce_login_credentials', $creds ), is_ssl() );
+
+				if ( is_wp_error( $user ) ) {
+					throw new Exception( $user->get_error_message() );
+				} else {
+
+					if ( ! empty( $_POST['redirect'] ) ) {
+						$redirect = wp_unslash( $_POST['redirect'] );
+					} elseif ( wc_get_raw_referer() ) {
+						$redirect = wc_get_raw_referer();
+					} else {
+						$redirect = wc_get_page_permalink( 'myaccount' );
+					}
+
+					$redirect = remove_query_arg( array( 'wc_error', 'password-reset' ), $redirect );
+
+					$wp_redirect = wp_validate_redirect( apply_filters( 'woocommerce_login_redirect', $redirect, $user ), wc_get_page_permalink( 'myaccount' ) ) ; // phpcs:ignore
+
+					$successfully = true;
+				}
+			} catch ( Exception $e ) {
+				$mes = apply_filters( 'login_errors', $e->getMessage() );
+			}
+		}
+
+		$notices = ( $successfully ) ?
+		''
+		: '<div class="woocommerce-notices-wrapper">
+			<ul class="woocommerce-error" role="alert">
+				<li><strong>Error:</strong> '.$mes.'</li>
+			</ul>
+		</div>';
+
+		$data = array(
+			'notices' => $notices,
+			'successfully' => $successfully,
+			'wp_redirect' => $wp_redirect,
+		);
+
+		wp_send_json_success( $data );
 	}
 }
 

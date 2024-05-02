@@ -4,7 +4,7 @@ Theme URI:    https://woostify.com
 Author:       Woostify
 Author URI:   https://woostify.com/about
 Description:  Woostify is fast, lightweight, responsive and super flexible WooCommerce theme built with SEO, speed, and usability in mind. The theme works great with any of your favorite page builder likes Elementor, Beaver Builder, SiteOrigin, Thrive Architect, Divi, etc. Therefore, you can build any type of websites like shop, business agencies, corporate, portfolio, education, university portal, consulting, church, restaurant, medical and so on. Woostify is compatible with all well-coded plugins, including major ones like WooCommerce, OrbitFox, Yoast, BuddyPress, bbPress, etc. Learn more about the theme and ready to import demo sites at https://woostify.com
-Version:      2.2.5
+Version:      2.2.9
 Requires at least: 4.7
 Tested up to: 6.1
 Requires PHP: 7.3
@@ -1222,7 +1222,7 @@ a.pswp__share--download:hover {
 }
 
 /* pswp--has_mouse class is added only when two subsequent mousemove events occur */
-.pswp--has_mouse .pswp__button--arrow--left,
+.pswp--has_mouse .tton--arrow--left,
 .pswp--has_mouse .pswp__button--arrow--right {
   visibility: visible;
 }
@@ -6790,10 +6790,6 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   display: none;
 }
 
-.infinite-scroll-active .woocommerce-pagination {
-  display: none;
-}
-
 .hid-skus .product_meta .sku_wrapper {
   display: none;
 }
@@ -7409,10 +7405,6 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
 }
 .quantity [data-qty=plus] {
   right: 0;
-}
-
-.woocommerce-variation-add-to-cart {
-  display: flex;
 }
 
 .single_add_to_cart_button {
@@ -9508,7 +9500,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   position: static;
 }
 .checkout-layout-3:not(.woobuilder-active).has-distraction-free-checkout .site-content {
-  margin-top: 0;
+  margin-top: 3.5em;
 }
 @media (max-width: 991px) {
   .checkout-layout-3:not(.woobuilder-active).has-distraction-free-checkout .site-content {

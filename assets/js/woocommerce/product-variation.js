@@ -39,9 +39,24 @@ function productVariation( selector, form ) {
 			if ( ! document.querySelector( variationsForm ) ) {
 				return;
 			}
+			// get image url form `variation`.
+			var imgSrc  = variation.image.src,
+			fullSrc = variation.image.full_src,
+			inStock = variation.is_in_stock,
+			imgSrcheight = variation.image.src_h;
 
-			galleries.forEach( function( gallery, index){ 
-				var imageWrapper = gallery.querySelector( '.image-item.is-selected' ); // is-selected
+			if ( ! imgSrc || ! fullSrc ) {
+				return;
+			}
+			
+			galleries.forEach( function( gallery, index){
+				var _thumbSlider = gallery.querySelector( woostify_product_images_slider_options.thumb.container );
+				if (_thumbSlider && _thumbSlider.children.length) {
+					_thumbSlider.children[0].click();
+				}
+				
+				var imageWrapper = ( _thumbSlider == null )? gallery.querySelector( '.image-item' ) : gallery.querySelector( '.image-item.is-selected' ); // is-selected
+				
 				if ( imageWrapper == null ) {
 					return;
 				}
@@ -57,8 +72,6 @@ function productVariation( selector, form ) {
 					thumbImg = thumb ? thumb.querySelector( 'img' ) : false,
 					thumbSrc = thumbImg ? thumbImg.getAttribute( 'src' ) : '';
 
-					
-		
 				// Update
 				if( variation.max_qty || 0 ){
 					woostify_woocommerce_general.qty_max_warning = woostify_woocommerce_general.qty_max_warning_variation.replace( '%s', variation.max_qty);
@@ -68,16 +81,6 @@ function productVariation( selector, form ) {
 				var buttons = document.querySelectorAll( '.single_add_to_cart_button' );
 				buttons.forEach( elm => ( elm.value = variation.variation_id) );
 				
-				// get image url form `variation`.
-				var imgSrc  = variation.image.src,
-					fullSrc = variation.image.full_src,
-					inStock = variation.is_in_stock,
-					imgSrcheight = variation.image.src_h;
-	
-				if ( ! imgSrc || ! fullSrc ) {
-					return;
-				}
-	
 				// Support Product meta widget.
 				var productMetaSkus        = document.querySelectorAll( '.elementor-widget-woostify-product-meta .sku' );
 				var wpmGtinCodeWrappers    = document.querySelectorAll( '.wpm_gtin_code_wrapper .wpm_pgw_code' );
@@ -107,10 +110,16 @@ function productVariation( selector, form ) {
 					imageWrapper.classList.add( 'image-loading' );
 					var flickity_viewport = imageWrapper.closest('.flickity-viewport');
 					var img    = new Image();
+
 					img.onload = function () {
 						imageWrapper.classList.remove( 'image-loading' );
+						setTimeout( function() {
+							if ( flickity_viewport != null ) {
+								flickity_viewport.style.height = image.height + 'px';		
+							}
+
+						}, 50);
 					}
-					flickity_viewport.style.height = imgSrcheight + 'px';
 					img.src = imgSrc;
 					image.setAttribute( 'src', imgSrc );
 
@@ -152,7 +161,7 @@ function productVariation( selector, form ) {
 					}
 
 					// Update sale tag.
-					if ( onSaleLabel && woostify_woocommerce_variable_product_data.sale_tag_percent && variation.display_price != variation.display_regular_price ) {
+					if ( onSaleLabel && 'undefined' !== typeof( woostify_woocommerce_variable_product_data ) && woostify_woocommerce_variable_product_data.sale_tag_percent && variation.display_price != variation.display_regular_price ) {
 						onSaleLabel.innerHTML = '-' + Math.round( ( ( variation.display_regular_price - variation.display_price ) / variation.display_regular_price ) * 100 ) + '%';
 					}
 				} else if ( 'undefined' !== typeof( woostify_woocommerce_variable_product_data ) ) {
@@ -170,14 +179,15 @@ function productVariation( selector, form ) {
 	jQuery( '.reset_variations' ).on(
 		'click',
 		function( e ) {
-			if( (woostifyEvent.productVariationReady||0 ) ){
+			
+			if( ( woostifyEvent.productVariationReady || 0 ) ){
 				return;
 			}
 			e.preventDefault();
 
 			// Resset qty_max_warning 
 			woostify_woocommerce_general.qty_max_warning = woostify_woocommerce_general.qty_max_warning_default;
-
+	
 
 			// Support Product meta widget.
 			var productMetaSkus        = document.querySelectorAll( '.elementor-widget-woostify-product-meta .sku' );
@@ -194,7 +204,7 @@ function productVariation( selector, form ) {
 					wpmGtinCodeWrapper.innerHTML = woostifyEvent.productMetaSkuDefault;
 				});
 			}
-
+			console.log( image );
 			// Reset src image.
 			if ( image ) {
 				imageWrapper.classList.add( 'image-loading' );

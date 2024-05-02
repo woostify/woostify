@@ -13,8 +13,8 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'woostify_sidebar', 'woostify_get_sidebar', 10 );
 
 // Head tag.
-add_action( 'wp_head', 'woostify_meta_charset', 0 );
 add_action( 'wp_head', 'woostify_meta_viewport', 220 );
+add_action( 'wp_head', 'woostify_meta_charset', 0 );
 add_action( 'wp_head', 'woostify_rel_profile', 230 );
 add_action( 'wp_head', 'woostify_facebook_social', 240 );
 add_action( 'wp_head', 'woostify_pingback', 250 );

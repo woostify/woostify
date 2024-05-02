@@ -157,39 +157,19 @@ function initPhotoSwipe( gallerySelector ) {
 		return false;
 	};
 
-	// parse picture index and gallery index from URL (#&pid=1&gid=2).
-	var photoswipeParseHash = function() {
-		var hash   = window.location.hash.substring( 1 ),
-			params = {};
-
-		if ( hash.length < 5 ) {
-			return params;
-		}
-
-		var vars = hash.split( '&' );
-		for ( var i = 0, ij = vars.length; i < ij; i++ ) {
-			if ( ! vars[ i ] ) {
-				continue;
-			}
-			var pair = vars[ i ].split( '=' );
-			if ( pair.length < 2 ) {
-				continue;
-			}
-			params[ pair[ 0 ] ] = pair[ 1 ];
-		}
-
-		if ( params.gid ) {
-			params.gid = parseInt( params.gid, 10 );
-		}
-
-		return params;
-	};
-
 	var openPhotoSwipe = function( index, galleryElement, disableAnimation, fromURL ) {
-		var pswpElement = document.querySelector( '.pswp' ),
+		var productGallery = galleryElement.closest('.product-gallery');
+		
+		var pswpElement,
 			gallery,
 			options,
 			items;
+
+		if (productGallery.querySelector( '.pswp' )) {
+			pswpElement = productGallery.querySelector( '.pswp' );
+		} else {
+			pswpElement = productGallery.nextElementSibling;
+		}
 
 		items = parseThumbnailElements( galleryElement );
 
@@ -378,13 +358,6 @@ function initPhotoSwipe( gallerySelector ) {
 		buttonEl.onclick = onToggleButtonClick;
 		galleryElements[ i ].onclick = onThumbnailsClick;
 	}
-
-	// Parse URL and open gallery if it contains #&pid=3&gid=1.
-	var hashData = photoswipeParseHash();
-	if ( hashData.pid && hashData.gid ) {
-		openPhotoSwipe( hashData.pid, galleryElements[ hashData.gid - 1 ], true, true );
-	}
 }
 
 initPhotoSwipe( '.product-images-container' );
-
