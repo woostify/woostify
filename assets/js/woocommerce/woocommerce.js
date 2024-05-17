@@ -1720,7 +1720,7 @@ document.addEventListener(
                 'init_checkout updated_checkout payment_method_selected',
                 function( event, data  ) {
                     // Clear old notifications before displaying new ones.
-                    jQuery( '.woostify-woocommerce-NoticeGroup' ).html( '' );
+                    // jQuery( '.woostify-woocommerce-NoticeGroup' ).html( '' );
 
                     jQuery( 'form.checkout' ).arrive(
                         'form.checkout_coupon',
