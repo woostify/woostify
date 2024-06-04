@@ -231,6 +231,19 @@ wp.customize.controlConstructor['woostify-adv-list'] = wp.customize.Control.exte
 					}
 				}
 			)
+
+			jQuery( document ).on(
+				'click',
+				'.woostify-adv-list-items .sortable-item-dashicon-expand',
+				function() {
+					var btn          = jQuery( this )
+					var item_wrap    = btn.closest( '.woostify-sortable-list-item-wrap' )
+					var item_content = item_wrap.find( '.adv-list-item-content' )
+					if ( item_wrap.hasClass( 'checked' ) ) {
+						item_content.slideToggle()
+					}
+				}
+			)
 		}
 	}
 )
