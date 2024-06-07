@@ -12,7 +12,7 @@
 	opacity: 1;
 }
 
-.woostify-sortable-list-item-wrap .sortable-item-icon-expand {
+.woostify-sortable-list-item-wrap .sortable-item-dashicon-expand {
 	cursor: pointer;
 }
 
@@ -53,7 +53,7 @@
 	font-size: 16px;
 }
 
-.woostify-sortable-list-item-wrap .woostify-adv-list-item .dashicons.sortable-item-icon-expand {
+.woostify-sortable-list-item-wrap .woostify-adv-list-item .dashicons.sortable-item-dashicon-expand {
 	border-left: 1px solid #ddd;
 	border-right: none;
 }

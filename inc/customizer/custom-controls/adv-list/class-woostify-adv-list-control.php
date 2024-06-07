@@ -105,7 +105,7 @@ class Woostify_Adv_List_Control extends WP_Customize_Control {
 								<input class="sortable-item-input woostify-adv-list-checkbox" type="checkbox" name="<?php echo $this->id . '[' . $k . '][hidden]'; ?>" id="<?php echo $this->id . '_' . $k . '_hidden'; ?>" <?php echo ! $val->hidden ? 'checked="checked"' : '';//phpcs:ignore ?>>
 							</label>
 							<span class="sortable-item-name"><?php echo esc_html( $val->name ); ?></span>
-							<span class="sortable-item-icon-expand dashicons dashicons-arrow-down-alt2"></span>
+							<span class="sortable-item-dashicon-expand dashicons dashicons-arrow-down-alt2"></span>
 						</div>
 						<div class="adv-list-item-content" data-item_id="<?php echo esc_attr( $k ); ?>">
 							<div class="type-field woostify-adv-list-control customize-control-select" data-field_name="type">
