@@ -7096,6 +7096,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
 }
 .product-thumbnail-images img {
   border: 1px solid rgba(0, 0, 0, 0);
+  opacity: 1 !important;
 }
 
 .image-loading {
