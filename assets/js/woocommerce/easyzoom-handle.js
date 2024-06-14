@@ -18,6 +18,10 @@ function easyZoomHandle() {
 		return;
 	}
 
+	image.each( function( ele ){
+		jQuery(this).find('a img').css('opacity','1');
+	});
+	
 	if ( jQuery().easyZoom ) {
 		var zoom = image.easyZoom(),
 			api  = zoom.data( 'easyZoom' );
@@ -27,30 +31,29 @@ function easyZoomHandle() {
 	}
 }
 
-document.addEventListener(
-	'DOMContentLoaded',
-	function() {
-		// Setup image zoom.
-		if ( window.matchMedia( '( min-width: 992px )' ).matches && jQuery().easyZoom ) {
-			jQuery( '.ez-zoom' ).easyZoom(
-				{
-					loadingNotice: ''
-				}
-			);
-		}
+window.addEventListener('load', function() {
 
-		// For Elementor Preview Mode.
-		if ( 'function' === typeof( onElementorLoaded ) ) {
-			onElementorLoaded(
-				function() {
-					window.elementorFrontend.hooks.addAction(
-						'frontend/element_ready/global',
-						function() {
-							easyZoomHandle();
-						}
-					);
-				}
-			);
-		}
+	// Setup image zoom.
+	if ( window.matchMedia( '( min-width: 992px )' ).matches && jQuery().easyZoom ) {
+		jQuery( '.ez-zoom' ).easyZoom(
+			{
+				loadingNotice: ''
+			}
+		);
 	}
-);
+
+	// For Elementor Preview Mode.
+	if ( 'function' === typeof( onElementorLoaded ) ) {
+		onElementorLoaded(
+			function() {
+				window.elementorFrontend.hooks.addAction(
+					'frontend/element_ready/global',
+					function() {
+						easyZoomHandle();
+					}
+				);
+			}
+		);
+	}
+	
+});

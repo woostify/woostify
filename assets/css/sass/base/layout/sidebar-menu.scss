@@ -38,6 +38,14 @@
 	}
 }
 
+.logged-in.admin-bar{
+	#woostify-overlay{
+		.woostify-svg-icon{
+			top: 66px;
+		}
+	}
+}
+
 .sidebar-menu-open {
 	overflow: hidden;
 
@@ -61,6 +69,23 @@
 		opacity: 1;
 		visibility: visible;
 		pointer-events: auto;
+		.woostify-svg-icon{
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			width: 30px;
+			height: 30px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #fff;
+			cursor: pointer;
+			svg{
+				width: 1.5em;
+    			height: 1.5em;
+			}
+		}
+
 	}
 
 
