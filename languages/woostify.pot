@@ -2477,3 +2477,13 @@ msgstr ""
 #: inc/customizer/sections/wordpress/title-tagline.php:109
 msgid "Logo Width"
 msgstr ""
+msgstr ""
+
+#: woocommerce/loop/result-count.php:36
+msgid "Showing %1$d&ndash;<span class="result-end">%2$d</span> of %3$d result"
+msgstr ""
+msgstr ""
+
+#: woocommerce/loop/result-count.php:36
+msgid "Showing %1$d&ndash;<span class="result-end">%2$d</span> of %3$d results"
+msgstr ""
