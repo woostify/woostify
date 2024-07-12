@@ -335,6 +335,11 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
                         }
                     );
                 }
+
+                if (items.length > 0 && jQuery( '.result-end' )) {
+                    let end_num = jQuery( '.result-end' )[0].innerHTML;
+                    jQuery( '.result-end' )[0].innerHTML = parseInt(end_num) + items.length;
+                }
             }
         )
 
