@@ -1299,6 +1299,15 @@ var woostifyToggleSlide = function (elem, timing) {
 
 };
 
+var productReviewLink = function () {
+    jQuery('.woocommerce-review-link').click(function(){
+        var woostifyAccordionTitleReview = jQuery('.woostify-accordion-title[data-tab="reviews"]');
+        if ( !woostifyAccordionTitleReview.parent().hasClass('active') ) {
+            woostifyAccordionTitleReview.trigger('click');    
+        }
+    });
+}
+
 var productDataTabsAccordion = function() {
     var wcTabs = document.querySelectorAll( '.woocommerce-tabs.layout-accordion' );
 
@@ -1312,9 +1321,9 @@ var productDataTabsAccordion = function() {
             if ( ! tabTitles.length ) {
                 return;
             }
-
+      
             var tabsWrapper = wcTab.querySelectorAll( '.woostify-tab-wrapper' );
-
+     
             tabTitles.forEach(
                 function( tabTitle, tabTitleIdx ) {
                     tabTitle.onclick = function() {
@@ -1344,6 +1353,8 @@ var productDataTabsAccordion = function() {
             )
         }
     )
+
+    productReviewLink();
 }
 
 // Sticky order review.

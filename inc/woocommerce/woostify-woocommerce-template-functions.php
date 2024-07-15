@@ -2205,7 +2205,7 @@ if ( ! function_exists( 'woostify_output_product_data_tabs_accordion' ) ) {
 				foreach ( $product_tabs as $key => $product_tab ) :
 					?>
 					<div class="woostify-tab-wrapper <?php echo ( $open_tab && 0 === $i ) ? esc_attr( 'active' ) : ''; ?>">
-						<a href="javascript:;" class="woostify-accordion-title">
+						<a href="javascript:;" class="woostify-accordion-title" data-tab="<?php echo $key; ?>">
 							<?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?>
 							<?php Woostify_Icon::fetch_svg_icon( 'angle-down', true ); ?>
 						</a>
