@@ -248,6 +248,27 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * @return array
 		 */
 		public static function woostify_get_woostify_default_setting_values() {
+			$slider_items = array(
+				array(
+					'type'    => 'text',
+					'name'    => 'Text',
+					'woostify',
+					'content' => 'Item #1',
+				),
+				array(
+					'type'    => 'text',
+					'name'    => 'Text',
+					'woostify',
+					'content' => 'Item #2',
+				),
+				array(
+					'type'    => 'text',
+					'name'    => 'Text',
+					'woostify',
+					'content' => 'Item #3',
+				),
+			);
+
 			$product_data_tabs_items = array(
 				array(
 					'type'    => 'description',
@@ -362,6 +383,8 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'topbar_left'                              => '',
 				'topbar_center'                            => '',
 				'topbar_right'                             => '',
+				'topbar_slider_display'                    => false,
+				'topbar_slider_items'      				   => wp_json_encode( $slider_items ),
 				// HEADER.
 				'header_layout'                            => 'layout-1',
 				'header_background_color'                  => '#ffffff',

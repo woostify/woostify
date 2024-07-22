@@ -1722,6 +1722,49 @@ if ( ! function_exists( 'woostify_topbar' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_topbar_slider' ) ) {
+	/**
+	 * Display topbar slider
+	 */
+	function woostify_topbar_slider() {
+		$options = woostify_options( false );
+		$display = $options['topbar_slider_display'];
+		$topbar  = woostify_get_metabox( false, 'site-topbar' );
+
+		if ( 'disabled' === $topbar ) {
+			$display = false;
+		}
+
+		if ( ! $display ) {
+			return;
+		}
+
+		$topbar_slider_items = json_decode($options['topbar_slider_items']);
+
+		if( empty( $topbar_slider_items ) ){
+			return;
+		}
+
+		?>
+
+		<div class="topbar topbar-slider">
+			<div class="woostify-container">
+				<div class="woostify-text-scroll slider">
+				<?php foreach ($topbar_slider_items as $key => $item) {
+					$content = isset($item->name)? $item->name : ''; 
+					?>
+					<div class="slider-item">
+						<div class="text-scroll-item"><?php echo do_shortcode($content); ?></div>
+					</div>
+					<?php
+				} ?>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_search' ) ) {
 	/**
 	 * Display Product Search

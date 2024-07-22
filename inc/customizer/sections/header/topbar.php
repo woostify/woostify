@@ -229,3 +229,47 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+// Display topbar.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_display]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['topbar_slider_display'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_display]',
+		array(
+			'label'    => __( 'Topbar Slider Display', 'woostify' ),
+			'section'  => 'woostify_topbar',
+			'settings' => 'woostify_setting[topbar_slider_display]',
+			'tab'      => 'general',
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_items]',
+	array(
+		'default'           => $defaults['topbar_slider_items'],
+		'sanitize_callback' => 'woostify_sanitize_json_string',
+		'type'              => 'option',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Topbar_Slider_Data_Items_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_items]',
+		array(
+			'label'    => __( 'Sliders', 'woostify' ),
+			'section'  => 'woostify_topbar',
+			'settings' => 'woostify_setting[topbar_slider_items]',
+		)
+	)
+);

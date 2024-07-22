@@ -3450,6 +3450,18 @@ article p:last-child {
 .topbar .topbar-item p:last-child {
   margin-bottom: 0;
 }
+.topbar.topbar-slider{
+  background-color: #EDFDD3;
+}
+.topbar-slider{
+  width: 100%;
+}
+.topbar-slider .slider{
+  width: 100%;
+}
+/* .topbar-slider .slider .flickity-slider{
+  position: relative;
+} */
 @media (max-width: 992px) {
   .topbar .topbar-item {
     text-align: center;
