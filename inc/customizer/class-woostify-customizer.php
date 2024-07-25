@@ -251,21 +251,33 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			$slider_items = array(
 				array(
 					'type'    => 'text',
-					'name'    => 'Text',
+					'name'    => __('Sign up & enjoy 10% off','woostify'),
 					'woostify',
-					'content' => 'Item #1',
 				),
 				array(
 					'type'    => 'text',
-					'name'    => 'Text',
+					'name'    => __('Free shipping on all U.S. orders $50+','woostify'),
 					'woostify',
-					'content' => 'Item #2',
 				),
 				array(
 					'type'    => 'text',
-					'name'    => 'Text',
+					'name'    => __('Welcome to Woostify','woostify'),
 					'woostify',
-					'content' => 'Item #3',
+				),
+				array(
+					'type'    => 'text',
+					'name'    => __('Sign up & enjoy 10% off','woostify'),
+					'woostify',
+				),
+				array(
+					'type'    => 'text',
+					'name'    => __('Free shipping on all U.S. orders $50+','woostify'),
+					'woostify',
+				),
+				array(
+					'type'    => 'text',
+					'name'    => __('Welcome to Woostify','woostify'),
+					'woostify',
 				),
 			);
 

@@ -3453,15 +3453,26 @@ article p:last-child {
 .topbar.topbar-slider{
   background-color: #EDFDD3;
 }
+.topbar.topbar-slider * {
+  color: #000;
+}
 .topbar-slider{
   width: 100%;
+}
+.topbar-slider .slider-wrapper{
+  padding: 5px 0;
 }
 .topbar-slider .slider{
   width: 100%;
 }
-/* .topbar-slider .slider .flickity-slider{
+.topbar-slider .slider .slider-item{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
   position: relative;
-} */
+  margin: 0 1.5vw;
+}
 @media (max-width: 992px) {
   .topbar .topbar-item {
     text-align: center;

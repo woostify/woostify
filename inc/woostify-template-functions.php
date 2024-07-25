@@ -1746,15 +1746,15 @@ if ( ! function_exists( 'woostify_topbar_slider' ) ) {
 		}
 
 		?>
-
+	
 		<div class="topbar topbar-slider">
-			<div class="woostify-container">
-				<div class="woostify-text-scroll slider">
+			<div class="slider-wrapper">
+				<div class="slider">
 				<?php foreach ($topbar_slider_items as $key => $item) {
 					$content = isset($item->name)? $item->name : ''; 
 					?>
 					<div class="slider-item">
-						<div class="text-scroll-item"><?php echo do_shortcode($content); ?></div>
+						<div class="text-scroll"><?php echo do_shortcode($content); ?></div>
 					</div>
 					<?php
 				} ?>

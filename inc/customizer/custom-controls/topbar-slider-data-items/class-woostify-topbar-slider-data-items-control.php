@@ -79,7 +79,7 @@ class Woostify_Topbar_Slider_Data_Items_Control extends WP_Customize_Control {
 								$name_field_name = "{$this->id}[{$k}][name]";
 								?>
 								<label for="<?php echo esc_attr( $name_field_id ); ?>"><?php esc_html_e( 'Text', 'woostify' ); ?></label>
-								<input type="text" class="woostify-slider-list-input woostify-slider-list-input--name" name="<?php echo esc_attr( $name_field_name ); ?>" id="<?php echo esc_attr( $name_field_id ); ?>" value="<?php echo esc_html( $val->name ); ?>">
+								<input type="text" class="woostify-slider-list-input woostify-slider-list-input--name" name="<?php echo esc_attr( $name_field_name ); ?>" id="<?php echo esc_attr( $name_field_id ); ?>" value="<?php echo __( esc_html( $val->name ), 'woostify' ); ?>">
 							</div>
 						</div>
 					</div>
