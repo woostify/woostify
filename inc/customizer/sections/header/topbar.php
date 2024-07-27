@@ -230,7 +230,30 @@ $wp_customize->add_control(
 	)
 );
 
-// Display topbar.
+// Topbar Slider Tabs.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_context_tabs]',
+	array(
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Tabs_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_context_tabs]',
+		array(
+			'section'  => 'woostify_topbar_slider',
+			'settings' => 'woostify_setting[topbar_slider_context_tabs]',
+			'choices'  => array(
+				'general' => __( 'General', 'woostify' ),
+				'design'  => __( 'Design', 'woostify' ),
+			),
+		)
+	)
+);
+
+// Display topbar slider.
 $wp_customize->add_setting(
 	'woostify_setting[topbar_slider_display]',
 	array(
@@ -246,13 +269,14 @@ $wp_customize->add_control(
 		'woostify_setting[topbar_slider_display]',
 		array(
 			'label'    => __( 'Topbar Slider Display', 'woostify' ),
-			'section'  => 'woostify_topbar',
+			'section'  => 'woostify_topbar_slider',
 			'settings' => 'woostify_setting[topbar_slider_display]',
 			'tab'      => 'general',
 		)
 	)
 );
 
+// Topbar slider Items.
 $wp_customize->add_setting(
 	'woostify_setting[topbar_slider_items]',
 	array(
@@ -268,8 +292,96 @@ $wp_customize->add_control(
 		'woostify_setting[topbar_slider_items]',
 		array(
 			'label'    => __( 'Sliders', 'woostify' ),
-			'section'  => 'woostify_topbar',
+			'section'  => 'woostify_topbar_slider',
 			'settings' => 'woostify_setting[topbar_slider_items]',
+			'tab'      => 'general',
+		)
+	)
+);
+
+// Topbar Slider color.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_text_color]',
+	array(
+		'default'           => $defaults['topbar_slider_text_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_text_color]',
+		array(
+			'label'        => __( 'Text Color', 'woostify' ),
+			'section'      => 'woostify_topbar_slider',
+			'settings'     => array(
+				'woostify_setting[topbar_slider_text_color]',
+			),
+			'color_format' => 'hex',
+			'tab'          => 'design',
+		)
+	)
+);
+
+// Topbar Slider Background color.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_background_color]',
+	array(
+		'default'           => $defaults['topbar_slider_background_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_background_color]',
+		array(
+			'label'    => __( 'Background Color', 'woostify' ),
+			'section'  => 'woostify_topbar_slider',
+			'settings' => array(
+				'woostify_setting[topbar_slider_background_color]',
+			),
+			'tab'      => 'design',
+		)
+	)
+);
+
+// Topbar Slider Space.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_space]',
+	array(
+		'default'           => $defaults['topbar_slider_space'],
+		'sanitize_callback' => 'absint',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Range_Slider_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_space]',
+		array(
+			'label'    => __( 'Space', 'woostify' ),
+			'section'  => 'woostify_topbar_slider',
+			'settings' => array(
+				'desktop' => 'woostify_setting[topbar_slider_space]',
+			),
+			'choices'  => array(
+				'desktop' => array(
+					'min'  => apply_filters( 'woostify_topbar_min_step', 0 ),
+					'max'  => apply_filters( 'woostify_topbar_max_step', 50 ),
+					'step' => 1,
+					'edit' => true,
+					'unit' => 'px',
+				),
+			),
+			'tab'      => 'design',
 		)
 	)
 );

@@ -680,6 +680,10 @@ document.addEventListener(
 		woostify_html_live_update( 'topbar_left', '.topbar .topbar-left' )
 		woostify_html_live_update( 'topbar_center', '.topbar .topbar-center' )
 		woostify_html_live_update( 'topbar_right', '.topbar .topbar-right' )
+		// Topbar Slider.
+		woostify_colors_live_update( 'topbar_slider_text_color', '.topbar-slider *', 'color' )
+		woostify_colors_live_update( 'topbar_slider_background_color', '.topbar-slider', 'background-color' )
+		woostify_range_slider_update( ['topbar_slider_space'], '.topbar-slider .slider-wrapper', 'padding', 'px 0' )
 
 		// HEADER.
 		// Header background.

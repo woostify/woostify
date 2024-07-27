@@ -25,6 +25,13 @@ class Woostify_Topbar_Slider_Data_Items_Control extends WP_Customize_Control {
 	public $description = '';
 
 	/**
+	 * Declare the custom param: tab.
+	 *
+	 * @var string
+	 */
+	public $tab = '';
+
+	/**
 	 * Enqueue control related scripts/styles.
 	 *
 	 * @access public
@@ -48,6 +55,20 @@ class Woostify_Topbar_Slider_Data_Items_Control extends WP_Customize_Control {
 		);
 
 		wp_enqueue_editor();
+	}
+
+	/**
+	 * Renders the control wrapper and calls $this->render_content() for the internals.
+	 *
+	 * @since 3.4.0
+	 */
+	protected function render() {
+		$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
+		$class = 'customize-control customize-control-' . $this->type;
+
+		printf( '<li id="%s" class="%s" data-tab="%s">', esc_attr( $id ), esc_attr( $class ), esc_attr( $this->tab ) );
+		$this->render_content();
+		echo '</li>';
 	}
 
 	/**

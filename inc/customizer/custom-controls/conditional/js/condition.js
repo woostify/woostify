@@ -288,6 +288,18 @@
 					false,
 				)
 
+				// Topbar Slider.
+				condition(
+					'woostify_setting[topbar_slider_display]',
+					[
+						'woostify_setting[topbar_slider_items]',
+						'woostify_setting[topbar_slider_text_color]',
+						'woostify_setting[topbar_slider_background_color]',
+						'woostify_setting[topbar_slider_space]',
+					],
+					false,
+				)
+
 				// Shopping cart icon.
 				condition(
 					'woostify_setting[header_shop_cart_icon]',
@@ -744,6 +756,7 @@
 				/* hideTabLayout( 'woostify_setting[header_show_categories_menu_on_mobile]', 'woostify_setting[mobile_menu_context_tabs]' ) */
 				hideTabLayout( 'woostify_setting[sticky_footer_bar_enable]', 'woostify_setting[sticky_footer_bar_context_tabs]' )
 				hideTabLayout( 'woostify_setting[topbar_display]', 'woostify_setting[topbar_context_tabs]' )
+				hideTabLayout( 'woostify_setting[topbar_slider_display]', 'woostify_setting[topbar_slider_context_tabs]' )
 				hideTabLayout( 'woostify_setting[scroll_to_top]', 'woostify_setting[scroll_to_top_context_tabs]' )
 				hideTabLayout( 'woostify_setting[page_header_display]', 'woostify_setting[page_header_context_tabs]' )
 				hideTabLayout( 'woostify_setting[footer_display]', 'woostify_setting[footer_context_tabs]' )

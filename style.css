@@ -3450,10 +3450,10 @@ article p:last-child {
 .topbar .topbar-item p:last-child {
   margin-bottom: 0;
 }
-.topbar.topbar-slider{
+.topbar-slider{
   background-color: #EDFDD3;
 }
-.topbar.topbar-slider * {
+.topbar-slider * {
   color: #000;
 }
 .topbar-slider{

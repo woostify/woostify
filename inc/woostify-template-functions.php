@@ -1747,7 +1747,7 @@ if ( ! function_exists( 'woostify_topbar_slider' ) ) {
 
 		?>
 	
-		<div class="topbar topbar-slider">
+		<div class="topbar-slider">
 			<div class="slider-wrapper">
 				<div class="slider">
 				<?php foreach ($topbar_slider_items as $key => $item) {

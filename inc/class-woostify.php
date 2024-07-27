@@ -950,9 +950,12 @@ if ( ! class_exists( 'Woostify' ) ) {
 			// Topbar Slider.
 			if ( $options['topbar_slider_display'] ) {
 				wp_enqueue_script(
+					'woostify-flickity'
+				);
+				wp_enqueue_script(
 					'woostify-topbar-slider',
 					WOOSTIFY_THEME_URI . 'assets/js/topbar-slider' . woostify_suffix() . '.js',
-					array(),
+					array('jquery','woostify-flickity'),
 					woostify_version(),
 					true
 				);

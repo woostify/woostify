@@ -397,6 +397,9 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'topbar_right'                             => '',
 				'topbar_slider_display'                    => false,
 				'topbar_slider_items'      				   => wp_json_encode( $slider_items ),
+				'topbar_slider_text_color'                 => '#ffffff',
+				'topbar_slider_background_color'           => '#292f34',
+				'topbar_slider_space'                      => 5,
 				// HEADER.
 				'header_layout'                            => 'layout-1',
 				'header_background_color'                  => '#ffffff',

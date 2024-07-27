@@ -10,6 +10,7 @@ $layout_sections = apply_filters(
 	'woostify_customizer_layout_sections',
 	array(
 		'woostify_topbar'             => __( 'Topbar', 'woostify' ),
+		'woostify_topbar_slider'      => __( 'Topbar Slider', 'woostify' ),
 		'woostify_header'             => __( 'Normal Header', 'woostify' ),
 		'woostify_header_transparent' => __( 'Header Transparent', 'woostify' ),
 		'woostify_page_header'        => __( 'Page Header', 'woostify' ),

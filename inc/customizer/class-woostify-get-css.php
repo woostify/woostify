@@ -369,6 +369,19 @@ class Woostify_Get_CSS {
 			}
 		';
 
+		// Topbar Slider.
+		$styles .= '
+			.topbar-slider{
+				background-color: ' . esc_attr( $options['topbar_slider_background_color'] ) . ';
+			}
+			.topbar-slider .slider-wrapper{
+				padding: ' . esc_attr( $options['topbar_slider_space'] ) . 'px 0;
+			}
+			.topbar-slider *{
+				color: ' . esc_attr( $options['topbar_slider_text_color'] ) . ';
+			}
+		';
+
 		// Menu Breakpoint.
 		$styles .= '
 			@media ( max-width: ' . esc_attr( $options['header_menu_breakpoint'] - 1 ) . 'px ) {
