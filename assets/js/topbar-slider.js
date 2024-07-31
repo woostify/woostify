@@ -6,24 +6,32 @@
 
 'use strict';
 
-function TopbarMarqueeSlider() {
+var TopbarSliderMarquee = function() {
     // Play with this value to change the speed
     let tickerSpeed = 1;
     let flickity = null;
     let isPaused = false;
-    const slideshowEl = document.querySelector('.topbar-slider .slider');
+    var slideshowEl = document.querySelector('.topbar-slider .slider');
 
     if ( !slideshowEl && slideshowEl.length == 0 ) {
         return;
     }
 
-    const slideshowElItem = slideshowEl.querySelectorAll('.slider-item');
+    var slideshowElItem = slideshowEl.querySelectorAll('.slider-item');
     let slideshowElItemLength = slideshowElItem.length;
     slideshowElItem.forEach(ele => {
         ele.style.minWidth = (100 / slideshowElItemLength) + '%';
     });
     
     //   Functions
+    const dupliateItem = (flickity, index) => {
+        var slider = document.querySelector('.topbar-slider .slider .flickity-slider');
+        var itemToClone = slider.children[index];
+        var clone = itemToClone.cloneNode(true);
+        slider.appendChild(clone);
+        flickity.append(clone); // Update Flickity
+    }
+
     const update = () => {
         if (isPaused) return;
         if (flickity.slides) {
@@ -62,6 +70,10 @@ function TopbarMarqueeSlider() {
         });
         flickity.x = 0;
 
+        for (let index = 0; index < slideshowElItemLength; index++) {
+            dupliateItem(flickity,index);
+        }
+
         // Pause on hover/focus
         slideshowEl.addEventListener('mouseenter', () => pause());
 
@@ -80,7 +92,7 @@ function TopbarMarqueeSlider() {
 }
 
 window.addEventListener('load', function() {
-    TopbarMarqueeSlider();
+    TopbarSliderMarquee();
 });
 
 document.addEventListener('DOMContentLoaded', function () {  

@@ -3464,6 +3464,7 @@ article p:last-child {
 }
 .topbar-slider .slider{
   width: 100%;
+  overflow-x: hidden;
 }
 .topbar-slider .slider .slider-item{
   display: inline-flex;
@@ -3472,6 +3473,11 @@ article p:last-child {
   white-space: nowrap;
   position: relative;
   margin: 0 1.5vw;
+}
+.topbar-slider .slider .text-scroll{
+  width: 100%;
+  text-transform: uppercase;
+  text-align: center;
 }
 @media (max-width: 992px) {
   .topbar .topbar-item {
