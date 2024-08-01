@@ -3461,10 +3461,38 @@ article p:last-child {
 }
 .topbar-slider .slider-wrapper{
   padding: 5px 0;
+  position: relative;
 }
+.topbar-slider .flickity-prev-next-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+}
+.topbar-slider .flickity-prev-next-button.previous{
+  left: 16px;
+}
+.topbar-slider .flickity-prev-next-button.next{
+  right: 16px;
+}
+
+.topbar-slider .flickity-prev-next-button svg{
+  width: 1em;
+  height: 1em;
+  fill: #222;
+}
+
 .topbar-slider .slider{
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .topbar-slider .slider .slider-item{
   display: inline-flex;

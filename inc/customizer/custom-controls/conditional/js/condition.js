@@ -292,10 +292,13 @@
 				condition(
 					'woostify_setting[topbar_slider_display]',
 					[
+						'woostify_setting[topbar_slider_button]',
+						'woostify_setting[topbar_slider_autoplay]',
 						'woostify_setting[topbar_slider_items]',
 						'woostify_setting[topbar_slider_text_color]',
 						'woostify_setting[topbar_slider_background_color]',
 						'woostify_setting[topbar_slider_space]',
+						'woostify_setting[topbar_slider_button_color]',
 					],
 					false,
 				)

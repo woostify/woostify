@@ -1738,18 +1738,23 @@ if ( ! function_exists( 'woostify_topbar_slider' ) ) {
 		if ( ! $display ) {
 			return;
 		}
-
+		$button = $options['topbar_slider_button'];
+		$autoplay = $options['topbar_slider_autoplay'];
 		$topbar_slider_items = json_decode($options['topbar_slider_items']);
 
 		if( empty( $topbar_slider_items ) ){
 			return;
 		}
 
+		$setting = array(
+			'prevNextButtons' => $button,
+		);
+
 		?>
 	
 		<div class="topbar-slider">
 			<div class="slider-wrapper">
-				<div class="slider">
+				<div class="slider" data-setting="<?php echo esc_attr(json_encode($setting)); ?>" data-autoplay="<?php echo esc_attr(json_encode($autoplay)); ?>">
 				<?php foreach ($topbar_slider_items as $key => $item) {
 					$content = isset($item->name)? $item->name : ''; 
 					?>

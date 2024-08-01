@@ -276,6 +276,50 @@ $wp_customize->add_control(
 	)
 );
 
+// Topbar Slider Button.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_button]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['topbar_slider_button'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_button]',
+		array(
+			'label'    => __( 'PrevNext Button', 'woostify' ),
+			'section'  => 'woostify_topbar_slider',
+			'settings' => 'woostify_setting[topbar_slider_button]',
+			'tab'      => 'general',
+		)
+	)
+);
+
+// Topbar Slider Auto Play.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_autoplay]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['topbar_slider_autoplay'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_autoplay]',
+		array(
+			'label'    => __( 'Auto Play', 'woostify' ),
+			'section'  => 'woostify_topbar_slider',
+			'settings' => 'woostify_setting[topbar_slider_autoplay]',
+			'tab'      => 'general',
+		)
+	)
+);
+
 // Topbar slider Items.
 $wp_customize->add_setting(
 	'woostify_setting[topbar_slider_items]',
@@ -299,7 +343,7 @@ $wp_customize->add_control(
 	)
 );
 
-// Topbar Slider color.
+// Topbar Slider Color.
 $wp_customize->add_setting(
 	'woostify_setting[topbar_slider_text_color]',
 	array(
@@ -326,7 +370,7 @@ $wp_customize->add_control(
 	)
 );
 
-// Topbar Slider Background color.
+// Topbar Slider Background Color.
 $wp_customize->add_setting(
 	'woostify_setting[topbar_slider_background_color]',
 	array(
@@ -382,6 +426,33 @@ $wp_customize->add_control(
 				),
 			),
 			'tab'      => 'design',
+		)
+	)
+);
+
+// Topbar Slider Button Color.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_button_color]',
+	array(
+		'default'           => $defaults['topbar_slider_button_color'],
+		'sanitize_callback' => 'woostify_sanitize_rgba_color',
+		'type'              => 'option',
+		'transport'         => 'postMessage',
+	)
+);
+
+$wp_customize->add_control(
+	new Woostify_Color_Group_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_button_color]',
+		array(
+			'label'        => __( 'Button Color', 'woostify' ),
+			'section'      => 'woostify_topbar_slider',
+			'settings'     => array(
+				'woostify_setting[topbar_slider_button_color]',
+			),
+			'color_format' => 'hex',
+			'tab'          => 'design',
 		)
 	)
 );
