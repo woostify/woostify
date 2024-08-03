@@ -276,6 +276,28 @@ $wp_customize->add_control(
 	)
 );
 
+// Topbar Slider Auto Scroll.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_auto_slide_show]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['topbar_slider_auto_slide_show'],
+		'sanitize_callback' => 'woostify_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Switch_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_auto_slide_show]',
+		array(
+			'label'    => __( 'Auto Slide Show', 'woostify' ),
+			'section'  => 'woostify_topbar_slider',
+			'settings' => 'woostify_setting[topbar_slider_auto_slide_show]',
+			'tab'      => 'general',
+		)
+	)
+);
+
 // Topbar Slider Button.
 $wp_customize->add_setting(
 	'woostify_setting[topbar_slider_button]',

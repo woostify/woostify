@@ -3495,6 +3495,7 @@ article p:last-child {
   overflow: hidden;
 }
 .topbar-slider .slider .slider-item{
+  min-width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;

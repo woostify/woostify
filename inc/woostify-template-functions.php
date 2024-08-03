@@ -1738,6 +1738,7 @@ if ( ! function_exists( 'woostify_topbar_slider' ) ) {
 		if ( ! $display ) {
 			return;
 		}
+		$auto_slide_show = $options['topbar_slider_auto_slide_show'];
 		$button = $options['topbar_slider_button'];
 		$autoplay = $options['topbar_slider_autoplay'];
 		$topbar_slider_items = json_decode($options['topbar_slider_items']);
@@ -1750,11 +1751,21 @@ if ( ! function_exists( 'woostify_topbar_slider' ) ) {
 			'prevNextButtons' => $button,
 		);
 
+		if( $autoplay && !$auto_slide_show ){
+			$setting['autoPlay'] = 3000;
+		}elseif( $autoplay && $auto_slide_show ){
+			$setting['autoPlay'] = false;
+		}
+
 		?>
 	
 		<div class="topbar-slider">
 			<div class="slider-wrapper">
-				<div class="slider" data-setting="<?php echo esc_attr(json_encode($setting)); ?>" data-autoplay="<?php echo esc_attr(json_encode($autoplay)); ?>">
+				<div class="slider" 
+					data-setting="<?php echo esc_attr(json_encode($setting)); ?>" 
+					data-autoplay="<?php echo esc_attr(json_encode($autoplay)); ?>"
+					data-auto-slide-show="<?php echo esc_attr(json_encode($auto_slide_show)); ?>"
+				>
 				<?php foreach ($topbar_slider_items as $key => $item) {
 					$content = isset($item->name)? $item->name : ''; 
 					?>

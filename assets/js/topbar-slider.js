@@ -17,18 +17,22 @@
             return;
         }
 
+        var auto_slide_show = JSON.parse(slideshowEl.getAttribute('data-auto-slide-show'));
+
         var slideshowElItem = slideshowEl.querySelectorAll('.slider-item');
         let slideshowElItemLength = slideshowElItem.length;
-        slideshowElItem.forEach(ele => {
-            ele.style.minWidth = (100 / slideshowElItemLength) + '%';
-        });
+        if (auto_slide_show) {
+            slideshowElItem.forEach(ele => {
+                ele.style.minWidth = (100 / slideshowElItemLength) + '%';
+            });
+        }
 
         let tickerSpeed = 0;
         let flickity = null;
         let isPaused = false;
 
         var autoplay = JSON.parse(slideshowEl.getAttribute('data-autoplay'));
-        if (autoplay) {
+        if (autoplay && auto_slide_show) {
             tickerSpeed = 1;
         }
         
@@ -78,26 +82,39 @@
                 cellAlign: 'left'
             }
             var flickityOption = Object.assign(options, setting);
+            
             //   Create Flickity
             flickity = new Flickity('.topbar-slider .slider', flickityOption );
-            flickity.x = 0;
 
-            for (let index = 0; index < slideshowElItemLength; index++) {
-                dupliateItem(flickity,index);
+            if ( auto_slide_show ) {
+                // Start Ticker
+                flickity.x = 0;
+
+                for (let index = 0; index < slideshowElItemLength; index++) {
+                    dupliateItem(flickity,index);
+                }
+
+                // Pause on hover/focus
+                slideshowEl.addEventListener('mouseenter', () => pause());
+                
+                // Unpause on mouse out / defocus
+                slideshowEl.addEventListener('mouseleave', () => play());
+
+                flickity.on('dragStart', () => {
+                    isPaused = true;
+                });
+
+                update();
+
+            }else{
+
+                if (autoplay) {
+                    slideshowEl.addEventListener('mouseleave', () => {
+                        flickity.player.play();
+                    });
+                }
+         
             }
-
-            // Pause on hover/focus
-            slideshowEl.addEventListener('mouseenter', () => pause());
-
-            // Unpause on mouse out / defocus
-            slideshowEl.addEventListener('mouseleave', () => play());
-
-            flickity.on('dragStart', () => {
-                isPaused = true;
-            });
-
-            // Start Ticker
-            update();
 
         }
 

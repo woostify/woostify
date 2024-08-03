@@ -292,6 +292,7 @@
 				condition(
 					'woostify_setting[topbar_slider_display]',
 					[
+						'woostify_setting[topbar_slider_auto_slide_show]',
 						'woostify_setting[topbar_slider_button]',
 						'woostify_setting[topbar_slider_autoplay]',
 						'woostify_setting[topbar_slider_items]',

@@ -396,6 +396,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'topbar_center'                            => '',
 				'topbar_right'                             => '',
 				'topbar_slider_display'                    => false,
+				'topbar_slider_auto_slide_show'            => false,
 				'topbar_slider_button'                     => false,
 				'topbar_slider_autoplay'                   => true,
 				'topbar_slider_items'      				   => wp_json_encode( $slider_items ),
