@@ -182,7 +182,7 @@
 									if ( ! arr || arr[1] !== wp.customize.control( arr[0] ).setting.get() ) {
 										return
 									}
-
+									
 									if ( operator ) {
 										if ( value === setting.get() ) {
 											control.container.removeClass( 'hide' )
@@ -292,7 +292,8 @@
 				condition(
 					'woostify_setting[topbar_slider_display]',
 					[
-						'woostify_setting[topbar_slider_auto_slide_show]',
+						'woostify_setting[topbar_slider_type]',
+						'woostify_setting[topbar_slider_slide_to_show]',
 						'woostify_setting[topbar_slider_button]',
 						'woostify_setting[topbar_slider_autoplay]',
 						'woostify_setting[topbar_slider_items]',
@@ -302,6 +303,22 @@
 						'woostify_setting[topbar_slider_button_color]',
 					],
 					false,
+				)
+
+				wp.customize(
+					'woostify_setting[topbar_slider_type]',
+					function( value ) {
+						var sliderType = jQuery('#customize-control-woostify_setting-topbar_slider_slide_to_show');
+						console.log( sliderType );
+						
+						value.bind(
+							function( newval ) {
+								if ( newval ) {
+
+								}
+							},
+						)
+					},
 				)
 
 				// Shopping cart icon.

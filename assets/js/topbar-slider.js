@@ -11,28 +11,25 @@
     var TopbarSliderMarquee = function() {
         // Play with this value to change the speed
 
-        var slideshowEl = document.querySelector('.topbar-slider .slider');
+        var slideshowEl = document.querySelector('.topbar-slider .marquee-slider');
 
-        if ( !slideshowEl && slideshowEl.length == 0 ) {
+        if ( !slideshowEl ) {
             return;
         }
 
-        var auto_slide_show = JSON.parse(slideshowEl.getAttribute('data-auto-slide-show'));
-
         var slideshowElItem = slideshowEl.querySelectorAll('.slider-item');
         let slideshowElItemLength = slideshowElItem.length;
-        if (auto_slide_show) {
-            slideshowElItem.forEach(ele => {
-                ele.style.minWidth = (100 / slideshowElItemLength) + '%';
-            });
-        }
+        slideshowElItem.forEach(ele => {
+            ele.style.minWidth = (100 / slideshowElItemLength) + '%';
+        });
+
 
         let tickerSpeed = 0;
         let flickity = null;
         let isPaused = false;
 
         var autoplay = JSON.parse(slideshowEl.getAttribute('data-autoplay'));
-        if (autoplay && auto_slide_show) {
+        if (autoplay) {
             tickerSpeed = 1;
         }
         
@@ -84,45 +81,58 @@
             var flickityOption = Object.assign(options, setting);
             
             //   Create Flickity
-            flickity = new Flickity('.topbar-slider .slider', flickityOption );
+            flickity = new Flickity('.topbar-slider .marquee-slider', flickityOption );
 
-            if ( auto_slide_show ) {
-                // Start Ticker
-                flickity.x = 0;
+            // Start Ticker
+            flickity.x = 0;
 
-                for (let index = 0; index < slideshowElItemLength; index++) {
-                    dupliateItem(flickity,index);
-                }
-
-                // Pause on hover/focus
-                slideshowEl.addEventListener('mouseenter', () => pause());
-                
-                // Unpause on mouse out / defocus
-                slideshowEl.addEventListener('mouseleave', () => play());
-
-                flickity.on('dragStart', () => {
-                    isPaused = true;
-                });
-
-                update();
-
-            }else{
-
-                if (autoplay) {
-                    slideshowEl.addEventListener('mouseleave', () => {
-                        flickity.player.play();
-                    });
-                }
-         
+            for (let index = 0; index < slideshowElItemLength; index++) {
+                dupliateItem(flickity,index);
             }
+
+            // Pause on hover/focus
+            slideshowEl.addEventListener('mouseenter', () => pause());
+            
+            // Unpause on mouse out / defocus
+            slideshowEl.addEventListener('mouseleave', () => play());
+
+            flickity.on('dragStart', () => {
+                isPaused = true;
+            });
+
+            update();
 
         }
 
         window.dispatchEvent(new Event('resize'));
     }
 
+    var TopbarSliderSlick = function() {
+        var slideshowEl = document.querySelector('.topbar-slider .slick-slider');
+
+        if ( !slideshowEl ) {
+            return;
+        }
+
+        var slickData = JSON.parse(slideshowEl.getAttribute('data-slick'));
+
+        var options = {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: false,
+            arrows: false,
+            infinite: true,
+        }
+
+        var slickOption = Object.assign(options, slickData);
+        
+        $('.topbar-slider .slick-slider').slick(slickOption);
+
+    }
+
     window.addEventListener('load', function() {
         TopbarSliderMarquee();
+        TopbarSliderSlick();
     });
 
     document.addEventListener('DOMContentLoaded', function () {  

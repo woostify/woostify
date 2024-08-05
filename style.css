@@ -3483,16 +3483,35 @@ article p:last-child {
 .topbar-slider .flickity-prev-next-button.next{
   right: 16px;
 }
-
 .topbar-slider .flickity-prev-next-button svg{
   width: 1em;
   height: 1em;
   fill: #222;
 }
-
+.topbar-slider .slick-slider .slick-prev{
+  left: 16px;
+  z-index: 9;
+  font-size: 16px;
+}
+.topbar-slider .slick-slider .slick-next{
+  right: 16px;
+  z-index: 9;
+  font-size: 16px;
+}
+.topbar-slider .slick-slider .slick-prev::before,
+.topbar-slider .slick-slider .slick-next::before{
+  display: none;
+}
+.topbar-slider .slick-slider svg{
+  width: 1em;
+  height: 1em;
+  fill: #222;
+}
 .topbar-slider .slider{
+  line-height: normal;
   width: 100%;
   overflow: hidden;
+  cursor: pointer;
 }
 .topbar-slider .slider .slider-item{
   min-width: 100%;
@@ -3500,6 +3519,7 @@ article p:last-child {
   align-items: center;
   justify-content: center;
   white-space: nowrap;
+  overflow-x: hidden;
   position: relative;
   margin: 0 1.5vw;
 }

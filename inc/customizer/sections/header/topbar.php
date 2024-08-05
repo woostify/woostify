@@ -276,23 +276,65 @@ $wp_customize->add_control(
 	)
 );
 
-// Topbar Slider Auto Scroll.
+// Type.
 $wp_customize->add_setting(
-	'woostify_setting[topbar_slider_auto_slide_show]',
+	'woostify_setting[topbar_slider_type]',
 	array(
+		'default'           => $defaults['topbar_slider_type'],
 		'type'              => 'option',
-		'default'           => $defaults['topbar_slider_auto_slide_show'],
-		'sanitize_callback' => 'woostify_sanitize_checkbox',
+		'sanitize_callback' => 'woostify_sanitize_choices',
 	)
 );
 $wp_customize->add_control(
-	new Woostify_Switch_Control(
+	new Woostify_Customize_Control(
 		$wp_customize,
-		'woostify_setting[topbar_slider_auto_slide_show]',
+		'woostify_setting[topbar_slider_type]',
 		array(
-			'label'    => __( 'Auto Slide Show', 'woostify' ),
+			'label'    => __( 'Type', 'woostify' ),
+			'settings' => 'woostify_setting[topbar_slider_type]',
 			'section'  => 'woostify_topbar_slider',
-			'settings' => 'woostify_setting[topbar_slider_auto_slide_show]',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_slider_type_choices',
+				array(
+					'text-scroll' => __( 'Text Scroll', 'woostify' ),
+					'text-slide'  => __( 'Text Slide', 'woostify' ),
+				)
+			),
+			'tab'      => 'general',
+		)
+	)
+);
+
+// Topbar Slider Auto Scroll.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_slide_to_show]',
+	array(
+		'type'              => 'option',
+		'default'           => $defaults['topbar_slider_slide_to_show'],
+		'sanitize_callback' => 'woostify_sanitize_choices',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Customize_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_slide_to_show]',
+		array(
+			'label'    => __( 'Slide To Show', 'woostify' ),
+			'section'  => 'woostify_topbar_slider',
+			'settings' => 'woostify_setting[topbar_slider_slide_to_show]',
+			'type'     => 'select',
+			'choices'  => apply_filters(
+				'woostify_setting_slider_type_choices',
+				array(
+					'1' => 1,
+					'2'  => 2,
+					'3' => 3,
+					'4'  => 4,
+					'5' => 5,
+					'6'  => 6,
+				)
+			),
 			'tab'      => 'general',
 		)
 	)

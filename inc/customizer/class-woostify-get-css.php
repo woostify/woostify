@@ -383,6 +383,9 @@ class Woostify_Get_CSS {
 			.topbar-slider .flickity-prev-next-button svg{
 				fill: ' . esc_attr( $options['topbar_slider_button_color'] ) . ';
 			}
+			.topbar-slider .slick-slider svg{
+				fill: ' . esc_attr( $options['topbar_slider_button_color'] ) . ';
+			}
 		';
 
 		// Menu Breakpoint.
