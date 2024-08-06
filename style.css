@@ -3523,6 +3523,15 @@ article p:last-child {
   position: relative;
   margin: 0 1.5vw;
 }
+.topbar-slider .slider .slick-track{
+  display: flex;
+  align-items: center;
+}
+.topbar-slider .slick-slider .slick-track .slider-item{
+  white-space: normal;
+  margin: 0;
+  padding: 0 1.5vw;
+}
 .topbar-slider .slider .text-scroll{
   width: 100%;
   text-transform: uppercase;

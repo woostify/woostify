@@ -307,14 +307,23 @@
 
 				wp.customize(
 					'woostify_setting[topbar_slider_type]',
-					function( value ) {
-						var sliderType = jQuery('#customize-control-woostify_setting-topbar_slider_slide_to_show');
-						console.log( sliderType );
+					function( setting ) {
+						var curr_val = setting.get();
+						var sliderSlideShow = jQuery('#customize-control-woostify_setting-topbar_slider_slide_to_show');
+						if (curr_val == 'text-scroll') {
+							sliderSlideShow.addClass( 'hide' );
+						}else{
+							sliderSlideShow.removeClass( 'hide' );
+						}
 						
-						value.bind(
+						setting.bind(
 							function( newval ) {
 								if ( newval ) {
-
+									if ( newval == 'text-scroll' ) {
+										sliderSlideShow.addClass( 'hide' );
+									}else{
+										sliderSlideShow.removeClass( 'hide' );
+									}
 								}
 							},
 						)
