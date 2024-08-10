@@ -684,7 +684,7 @@ document.addEventListener(
 		woostify_colors_live_update( 'topbar_slider_text_color', '.topbar-slider *', 'color' )
 		woostify_colors_live_update( 'topbar_slider_background_color', '.topbar-slider', 'background-color' )
 		woostify_range_slider_update( ['topbar_slider_space'], '.topbar-slider .slider-wrapper', 'padding', 'px 0' )
-		woostify_colors_live_update( 'topbar_slider_button_color', '.topbar-slider .flickity-prev-next-button svg', 'fill' )
+		woostify_colors_live_update( 'topbar_slider_button_color', '.topbar-slider .flickity-prev-next-button svg, .topbar-slider .slick-slider svg', 'fill' )
 		// HEADER.
 		// Header background.
 		woostify_colors_live_update( 'header_background_color', '.site-header-inner, .has-header-layout-7 .sidebar-menu', 'background-color' )

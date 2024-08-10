@@ -310,7 +310,9 @@
 					function( setting ) {
 						var curr_val = setting.get();
 						var sliderSlideShow = jQuery('#customize-control-woostify_setting-topbar_slider_slide_to_show');
-						if (curr_val == 'text-scroll') {
+						var selectEL = jQuery('#customize-control-woostify_setting-topbar_slider_type').find('select');
+						
+						if (curr_val == 'text-scroll' || selectEL.val() == 'text-scroll' ) {
 							sliderSlideShow.addClass( 'hide' );
 						}else{
 							sliderSlideShow.removeClass( 'hide' );

@@ -17,6 +17,8 @@
             return;
         }
 
+        slideshowEl.style.display = 'block';
+
         var slideshowElItem = slideshowEl.querySelectorAll('.slider-item');
         let slideshowElItemLength = slideshowElItem.length;
         slideshowElItem.forEach(ele => {

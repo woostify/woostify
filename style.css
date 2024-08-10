@@ -3523,6 +3523,12 @@ article p:last-child {
   position: relative;
   margin: 0 1.5vw;
 }
+.topbar-slider .marquee-slider{
+  display: flex;
+}
+.topbar-slider .slick-slider{
+  display: flex;
+}
 .topbar-slider .slider .slick-track{
   display: flex;
   align-items: center;
