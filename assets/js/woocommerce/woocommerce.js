@@ -335,6 +335,11 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
                         }
                     );
                 }
+
+                if (items.length > 0 && jQuery( '.result-end' )) {
+                    let end_num = jQuery( '.result-end' )[0].innerHTML;
+                    jQuery( '.result-end' )[0].innerHTML = parseInt(end_num) + items.length;
+                }
             }
         )
 
@@ -1294,6 +1299,15 @@ var woostifyToggleSlide = function (elem, timing) {
 
 };
 
+var productReviewLink = function () {
+    jQuery('.woocommerce-review-link').click(function(){
+        var woostifyAccordionTitleReview = jQuery('.woostify-accordion-title[data-tab="reviews"]');
+        if ( !woostifyAccordionTitleReview.parent().hasClass('active') ) {
+            woostifyAccordionTitleReview.trigger('click');    
+        }
+    });
+}
+
 var productDataTabsAccordion = function() {
     var wcTabs = document.querySelectorAll( '.woocommerce-tabs.layout-accordion' );
 
@@ -1307,9 +1321,9 @@ var productDataTabsAccordion = function() {
             if ( ! tabTitles.length ) {
                 return;
             }
-
+      
             var tabsWrapper = wcTab.querySelectorAll( '.woostify-tab-wrapper' );
-
+     
             tabTitles.forEach(
                 function( tabTitle, tabTitleIdx ) {
                     tabTitle.onclick = function() {
@@ -1339,6 +1353,8 @@ var productDataTabsAccordion = function() {
             )
         }
     )
+
+    productReviewLink();
 }
 
 // Sticky order review.
@@ -1720,7 +1736,7 @@ document.addEventListener(
                 'init_checkout updated_checkout payment_method_selected',
                 function( event, data  ) {
                     // Clear old notifications before displaying new ones.
-                    jQuery( '.woostify-woocommerce-NoticeGroup' ).html( '' );
+                    // jQuery( '.woostify-woocommerce-NoticeGroup' ).html( '' );
 
                     jQuery( 'form.checkout' ).arrive(
                         'form.checkout_coupon',

@@ -207,17 +207,18 @@ class WoostifyGallery {
 	woostifyGalleryCarouselMobile(){
 		var gallery = this;
 		var galleryElement = gallery.el;
-		var mobileGallery = galleryElement.querySelector( '.has-gallery-list-layout .product-gallery.has-product-thumbnails' );
-		if ( ! mobileGallery || window.innerWidth > 991 ) {
+		
+		if ( window.innerWidth > 991 && !galleryElement.classList.contains('.has-product-thumbnails') ) {
 			return;
 		}
+		
 		gallery.sliderOptions.on   = {
 			ready: function() {
 				gallery.changeImageCarouselButtonIcon( );
 			}
 		}
 		gallery.mobileSlider = new Flickity( galleryElement.querySelector('.product-images-container'), gallery.sliderOptions );
-
+		
 	}
 
 	/**
@@ -476,7 +477,7 @@ class WoostifyGallery {
 			imageCarousel = gallery.imageCarousel||{},
 			thumbCarousel = gallery.thumbCarousel||{},
 			mobileSlider = gallery.mobileSlider||{};
-
+		
 		for ( var i = 0, j = data.length; i < j; i++ ) {
 			if ( reset ) {
 				// For reset variation.
@@ -734,60 +735,6 @@ class WoostifyGallery {
 
 } // End Class
 
-function renderSlideLayoutColumnGrid() {
-	//has-gallery-layout-column
-	//has-gallery-layout-grid
-	var body = document.querySelector('body');
-	var elem = document.querySelector('.product-images .product-images-container');
-	
-	if ( !elem ) {
-		return;
-	}
-
-	if ( body.classList.contains('has-gallery-layout-column') || body.classList.contains('has-gallery-layout-grid') ) {
-		// options
-		var options = {
-			contain: true,
-			freeScroll: true,
-			wrapAround: true,
-		}
-		var flkty = new Flickity( elem, options);
-		
-		var isFlickity = false;
-
-		var flickity_buttons = elem.querySelectorAll('.flickity-button');
-		if (flickity_buttons.length != 0) {
-			var next_icon = woostify_product_images_slider_options.next_icon;
-			var prev_icon = woostify_product_images_slider_options.prev_icon;
-		
-			flickity_buttons.forEach(function (button) {
-		
-				if (button.classList.contains('previous')) {
-					button.innerHTML = prev_icon;
-				}
-				if (button.classList.contains('next')) {
-					button.innerHTML = next_icon;
-				}
-			})
-		}
-	
-		if ( !window.matchMedia("(max-width: 991px)").matches) {
-			isFlickity = true;
-		}
-
-		if ( isFlickity ) {
-			flkty.destroy();
-		}else{
-			flkty = new Flickity( elem, options);
-		}
-		
-	}
-	
-}
-
-window.addEventListener('resize', function () {
-	renderSlideLayoutColumnGrid();
-});
 
 var woostifyGalleries = [];
 document.addEventListener(
@@ -800,8 +747,6 @@ document.addEventListener(
 			var gallery = new WoostifyGallery( galleryElement, woostify_product_images_slider_options);
 			woostifyGalleries.push( gallery );
 		});
-
-		renderSlideLayoutColumnGrid();
 
 		// For Elementor Preview Mode.
 		if ( 'function' === typeof( onElementorLoaded ) ) {
