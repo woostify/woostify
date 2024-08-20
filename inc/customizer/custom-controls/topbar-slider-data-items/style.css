@@ -1,0 +1,52 @@
+.woostify-sortable-list-item-wrap .woostify-slider-list-item{
+	border-color: #ddd;
+    margin: 0;
+    padding: 0;
+    height: 35px;
+}
+.woostify-sortable-list-item-wrap .woostify-slider-list-item .dashicons{
+    height: 35px;
+    line-height: 35px;
+    width: 35px;
+    border-right: 1px solid #ddd;
+    font-size: 16px;
+}
+.woostify-sortable-list-item-wrap .woostify-slider-list-item .sortable-item-name{
+	font-weight: 500;
+}
+.woostify-sortable-list-item-wrap .slider-list-item-content{
+	box-shadow: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    display: none;
+}
+.woostify-sortable-list-item-wrap .slider-list-item-content .woostify-slider-list-control{
+	padding: 10px;
+    position: relative;
+	display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.woostify-slider-list-control.customize-control-textarea {
+	flex-direction: column;
+    align-items: flex-start;
+}
+
+.woostify-slider-list-control.customize-control-textarea label {
+	margin-bottom: 5px;
+}
+
+.slider-list-item-content .woostify-slider-list-control.customize-control-textarea .woostify-slider-list-input {
+	max-width: 100%;
+}
+.woostify-sortable-list-item-wrap .woostify-slider-list-item .sortable-item-icon-del {
+	cursor: pointer;
+}
+.slider-list-add-item-btn.button {
+	margin-top: 10px;
+}
+
+.woostify-sortable-list-item-wrap.example-item-tmpl {
+	display: none;
+}

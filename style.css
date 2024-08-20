@@ -3450,6 +3450,99 @@ article p:last-child {
 .topbar .topbar-item p:last-child {
   margin-bottom: 0;
 }
+.topbar-slider{
+  background-color: #EDFDD3;
+}
+.topbar-slider * {
+  color: #000;
+}
+.topbar-slider{
+  width: 100%;
+}
+.topbar-slider .slider-wrapper{
+  padding: 5px 0;
+  position: relative;
+}
+.topbar-slider .flickity-prev-next-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+}
+.topbar-slider .flickity-prev-next-button.previous{
+  left: 16px;
+}
+.topbar-slider .flickity-prev-next-button.next{
+  right: 16px;
+}
+.topbar-slider .flickity-prev-next-button svg{
+  width: 1em;
+  height: 1em;
+  fill: #222;
+}
+.topbar-slider .slick-slider .slick-prev{
+  left: 16px;
+  z-index: 9;
+  font-size: 16px;
+}
+.topbar-slider .slick-slider .slick-next{
+  right: 16px;
+  z-index: 9;
+  font-size: 16px;
+}
+.topbar-slider .slick-slider .slick-prev::before,
+.topbar-slider .slick-slider .slick-next::before{
+  display: none;
+}
+.topbar-slider .slick-slider svg{
+  width: 1em;
+  height: 1em;
+  fill: #222;
+}
+.topbar-slider .slider{
+  line-height: normal;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.topbar-slider .slider .slider-item{
+  min-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  overflow-x: hidden;
+  position: relative;
+  margin: 0 1.5vw;
+}
+.topbar-slider .marquee-slider{
+  display: flex;
+}
+.topbar-slider .slick-slider{
+  display: flex;
+}
+.topbar-slider .slider .slick-track{
+  display: flex;
+  align-items: center;
+}
+.topbar-slider .slick-slider .slick-track .slider-item{
+  white-space: normal;
+  margin: 0;
+  padding: 0 1.5vw;
+}
+.topbar-slider .slider .text-scroll{
+  width: 100%;
+  text-transform: uppercase;
+  text-align: center;
+}
 @media (max-width: 992px) {
   .topbar .topbar-item {
     text-align: center;
