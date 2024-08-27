@@ -3869,9 +3869,9 @@ article p:last-child {
   width: 1.5em;
   height: 1.5em;
 }
-.sidebar-menu-open #view {
+/* .sidebar-menu-open #view {
   transform: translateX(300px);
-}
+} */
 .sidebar-menu-open .rtl #view {
   transform: translateX(-300px);
 }
