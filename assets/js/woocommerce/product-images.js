@@ -514,13 +514,22 @@ class WoostifyGallery {
 		if ( mobileSlider && mobileSlider.slider ) {
 			mobileSlider.destroy();
 		}
-
+		jQuery( 'form.variations_form' ).on('woocommerce_variation_has_changed',function () {  
+			galleryElement.style.opacity = '0';
+			setTimeout(() => {
+				galleryElement.style.opacity = '1';
+			}, 100);	
+		});	
 		// Append new markup html.
 		if ( images && galleryElement.querySelector( '.product-images' ) ) {
 			galleryElement.querySelector( '.product-images' ).querySelector( '.product-images-container' ).innerHTML = images;
 		}
-
+			
 		if ( galleryElement.querySelector( '.product-thumbnail-images' ) ) {
+			galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '0';
+			setTimeout(() => {
+				galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '1';
+			}, 100);
 			if ( '' !== thumbnails ) {
 				var productThumbnailsWrapper = galleryElement.querySelector( '.product-thumbnail-images' ).querySelector( '.product-thumbnail-images-container' );
 
@@ -644,8 +653,8 @@ class WoostifyGallery {
 						// Neu chi co 1 image trong gallery và image nay trung voi product variation image thi coi nhu k co.
 						var has_gallery = ( ( variation.variation_gallery_images.length > 1 ) || (variation.variation_gallery_images.length && variation.image && variation.variation_gallery_images[0]['full_src'] != variation.image['full_src'] ) );
 						if( has_gallery ) {
-							
-							gallery.updateGallery(variation.variation_gallery_images, true, variation.variation_id );
+
+								gallery.updateGallery(variation.variation_gallery_images, true, variation.variation_id );
 							if( thumbs ) {
 								thumbs.classList.add( 'variation-gallery' );
 							}
