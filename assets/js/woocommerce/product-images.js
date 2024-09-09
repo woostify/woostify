@@ -471,7 +471,7 @@ class WoostifyGallery {
 		if ( ! data.length || document.documentElement.classList.contains( 'quick-view-open' ) ) {
 			return;
 		}
-
+		galleryElement.classList.add('loading');
 		var images     = '',
 			thumbnails = '',
 			imageCarousel = gallery.imageCarousel||{},
@@ -514,52 +514,45 @@ class WoostifyGallery {
 		if ( mobileSlider && mobileSlider.slider ) {
 			mobileSlider.destroy();
 		}
-		setTimeout(() => {
-			galleryElement.style.opacity = '1';
-		}, 100);
-		jQuery( 'form.variations_form' ).on('woocommerce_variation_has_changed',function () {  
-			galleryElement.style.opacity = '0';
-			setTimeout(() => {
-				galleryElement.style.opacity = '1';
-			}, 100);	
-		});	
+
+		galleryElement.style.opacity = '1';
 		// Append new markup html.
 		if ( images && galleryElement.querySelector( '.product-images' ) ) {
 			galleryElement.querySelector( '.product-images' ).querySelector( '.product-images-container' ).innerHTML = images;
 		}
 
-		setTimeout(() => {	
-			if ( galleryElement.querySelector( '.product-thumbnail-images' ) ) {
-				galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '0';
-				setTimeout(() => {
-					galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '1';
-				}, 100);
-				if ( '' !== thumbnails ) {
-					var productThumbnailsWrapper = galleryElement.querySelector( '.product-thumbnail-images' ).querySelector( '.product-thumbnail-images-container' );
+		if ( galleryElement.querySelector( '.product-thumbnail-images' ) ) {
+			galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '0';
+			if ( '' !== thumbnails ) {
+				var productThumbnailsWrapper = galleryElement.querySelector( '.product-thumbnail-images' ).querySelector( '.product-thumbnail-images-container' );
 
-					if ( ! productThumbnailsWrapper ) {
-						productThumbnailsWrapper = document.createElement( 'div' );
-						productThumbnailsWrapper.classList.add('product-thumbnail-images-container' );
-					}
-					
-					productThumbnailsWrapper.classList.remove('flickity-enabled');
-					galleryElement.querySelector( '.product-thumbnail-images' ).innerHTML = '';
-					galleryElement.querySelector( '.product-thumbnail-images' ).appendChild( productThumbnailsWrapper ).innerHTML = thumbnails;
-
-					if ( galleryElement.querySelector( '.product-gallery' )) {
-						galleryElement.querySelector( '.product-gallery' ).classList.add( 'has-product-thumbnails' );
-					}
-
-					if ( galleryElement.classList.contains( 'product-gallery' )) {
-						galleryElement.classList.add( 'has-product-thumbnails' );
-					}
-				} else {
-					galleryElement.querySelector( '.product-thumbnail-images' ).innerHTML = '';
+				if ( ! productThumbnailsWrapper ) {
+					productThumbnailsWrapper = document.createElement( 'div' );
+					productThumbnailsWrapper.classList.add('product-thumbnail-images-container' );
 				}
+				
+				productThumbnailsWrapper.classList.remove('flickity-enabled');
+				galleryElement.querySelector( '.product-thumbnail-images' ).innerHTML = '';
+				galleryElement.querySelector( '.product-thumbnail-images' ).appendChild( productThumbnailsWrapper ).innerHTML = thumbnails;
+
+				if ( galleryElement.querySelector( '.product-gallery' )) {
+					galleryElement.querySelector( '.product-gallery' ).classList.add( 'has-product-thumbnails' );
+				}
+
+				if ( galleryElement.classList.contains( 'product-gallery' )) {
+					galleryElement.classList.add( 'has-product-thumbnails' );
+				}
+			} else {
+				galleryElement.querySelector( '.product-thumbnail-images' ).innerHTML = '';
 			}
+		}
+	
+		gallery.initSlider();
 		
-			gallery.initSlider();
-		}, 100);
+		setTimeout(() => {	
+			galleryElement.classList.remove('loading');
+			galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '1';
+		}, 400);
 
 	}
 	//END RENDER FUNCTIONS
