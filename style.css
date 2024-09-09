@@ -6971,6 +6971,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   position: relative;
   float: left;
   max-width: 100%;
+  opacity: 0;
 }
 @media (min-width: 992px) {
   .product-gallery {
@@ -7153,7 +7154,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
 }
 
 .product-thumbnail-images {
-  animation: fadeIn 2s;
+  animation: fadeIn 2s linear;
 }
 .product-thumbnail-images.has-single-thumbnail-image {
   display: none;
@@ -7162,7 +7163,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
 .product-images {
   overflow: hidden;
   position: relative;
-  animation: fadeIn 2s;
+  animation: fadeIn 2s linear;
 }
 .product-images .image-item {
   margin: 0;
