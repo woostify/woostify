@@ -1722,6 +1722,97 @@ if ( ! function_exists( 'woostify_topbar' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woostify_topbar_slider' ) ) {
+	/**
+	 * Display topbar slider
+	 */
+	function woostify_topbar_slider() {
+		$options = woostify_options( false );
+		$display = $options['topbar_slider_display'];
+		$topbar  = woostify_get_metabox( false, 'site-topbar' );
+
+		if ( 'disabled' === $topbar ) {
+			$display = false;
+		}
+
+		if ( ! $display ) {
+			return;
+		}
+		$slide_type = $options['topbar_slider_type'];
+		$slide_to_show = $options['topbar_slider_slide_to_show'];
+		$button = $options['topbar_slider_button'];
+		$autoplay = $options['topbar_slider_autoplay'];
+		$topbar_slider_items = json_decode($options['topbar_slider_items']);
+
+		if( empty( $topbar_slider_items ) ){
+			return;
+		}
+
+		$setting = array();
+		if( $slide_type == 'text-scroll' ){
+			$setting = array(
+				'prevNextButtons' => $button,
+			);
+	
+			if( $autoplay ){
+				$setting['autoPlay'] = false;
+			}
+
+		}else{
+			$setting = array(
+				'slidesToShow' => $slide_to_show,
+			);
+
+			if( $button ){
+				$setting['arrows'] = true;
+				$setting['prevArrow'] = '<button class="slick-prev slick-arrow"><svg class="flickity-button-icon" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"></path></svg></button>';
+				$setting['nextArrow'] = '<button class="slick-next slick-arrow"><svg class="flickity-button-icon" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path></svg></button>';
+			}
+
+			if( $autoplay ){
+				$setting['autoplay'] = true;
+				$setting['autoplaySpeed'] = 2000;
+			}
+		}
+
+
+
+		?>
+	
+		<div class="topbar-slider">
+			<div class="slider-wrapper">
+				<?php if( $slide_type == 'text-scroll' ): ?>
+					<div class="slider marquee-slider" 
+						data-setting="<?php echo esc_attr(json_encode($setting)); ?>" 
+						data-autoplay="<?php echo esc_attr(json_encode($autoplay)); ?>"
+					>
+						<?php foreach ($topbar_slider_items as $key => $item) {
+							$content = isset($item->name)? $item->name : ''; 
+						?>
+							<div class="slider-item">
+								<div class="text-scroll"><?php echo do_shortcode($content); ?></div>
+							</div>
+						<?php
+						} ?>
+					</div>
+				<?php else: ?>
+					<div class="slider slick-slider" data-slick="<?php echo esc_attr(json_encode($setting)); ?>">
+						<?php foreach ($topbar_slider_items as $key => $item) {
+							$content = isset($item->name)? $item->name : ''; 
+						?>
+							<div class="slider-item">
+								<div class="text-scroll"><?php echo do_shortcode($content); ?></div>
+							</div>
+						<?php
+						} ?>
+					</div>
+				<?php endif;?>
+			</div>
+		</div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'woostify_search' ) ) {
 	/**
 	 * Display Product Search

@@ -115,7 +115,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			$atts['href']   = ! empty( $item->url ) ? $item->url : '';
 			$atts           = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
 			$attributes     = '';
-
+			$href = $atts['href'];
 			foreach ( $atts as $attr => $value ) {
 				if ( ! empty( $value ) ) {
 					$value       = 'href' === $attr ? esc_url( $value ) : esc_attr( $value );
@@ -942,6 +942,43 @@ if ( ! class_exists( 'Woostify' ) ) {
 					'woostify-sticky-footer-bar',
 					WOOSTIFY_THEME_URI . 'assets/js/sticky-footer-bar' . woostify_suffix() . '.js',
 					array(),
+					woostify_version(),
+					true
+				);
+			}
+
+			// Topbar Slider.
+			if ( $options['topbar_slider_display'] ) {
+
+				wp_enqueue_style(
+					'woostify-slick',
+					WOOSTIFY_THEME_URI . 'assets/libs/slick/slick.css',
+					array(),
+					woostify_version()
+				);
+
+				wp_enqueue_style(
+					'woostify-slick-theme',
+					WOOSTIFY_THEME_URI . 'assets/libs/slick/slick-theme.css',
+					array(),
+					woostify_version()
+				);
+
+				wp_enqueue_script(
+					'woostify-slick',
+					WOOSTIFY_THEME_URI . 'assets/libs/slick/slick' . woostify_suffix() . '.js',
+					array('jquery'),
+					woostify_version(),
+					true
+				);
+
+				wp_enqueue_script(
+					'woostify-flickity'
+				);
+				wp_enqueue_script(
+					'woostify-topbar-slider',
+					WOOSTIFY_THEME_URI . 'assets/js/topbar-slider' . woostify_suffix() . '.js',
+					array('jquery','woostify-flickity','woostify-slick'),
 					woostify_version(),
 					true
 				);

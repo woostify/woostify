@@ -248,6 +248,39 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 * @return array
 		 */
 		public static function woostify_get_woostify_default_setting_values() {
+			$slider_items = array(
+				array(
+					'type'    => 'text',
+					'name'    => __('Sign up & enjoy 10% off','woostify'),
+					'woostify',
+				),
+				array(
+					'type'    => 'text',
+					'name'    => __('Free shipping on all U.S. orders $50+','woostify'),
+					'woostify',
+				),
+				array(
+					'type'    => 'text',
+					'name'    => __('Welcome to Woostify','woostify'),
+					'woostify',
+				),
+				array(
+					'type'    => 'text',
+					'name'    => __('Sign up & enjoy 10% off','woostify'),
+					'woostify',
+				),
+				array(
+					'type'    => 'text',
+					'name'    => __('Free shipping on all U.S. orders $50+','woostify'),
+					'woostify',
+				),
+				array(
+					'type'    => 'text',
+					'name'    => __('Welcome to Woostify','woostify'),
+					'woostify',
+				),
+			);
+
 			$product_data_tabs_items = array(
 				array(
 					'type'    => 'description',
@@ -362,6 +395,16 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'topbar_left'                              => '',
 				'topbar_center'                            => '',
 				'topbar_right'                             => '',
+				'topbar_slider_display'                    => false,
+				'topbar_slider_type'                       => 'text-scroll',
+				'topbar_slider_slide_to_show'            => 1,
+				'topbar_slider_button'                     => false,
+				'topbar_slider_autoplay'                   => true,
+				'topbar_slider_items'      				   => wp_json_encode( $slider_items ),
+				'topbar_slider_text_color'                 => '#ffffff',
+				'topbar_slider_background_color'           => '#292f34',
+				'topbar_slider_space'                      => 5,
+				'topbar_slider_button_color'               => '#222222',
 				// HEADER.
 				'header_layout'                            => 'layout-1',
 				'header_background_color'                  => '#ffffff',
