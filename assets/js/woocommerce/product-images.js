@@ -464,7 +464,7 @@ class WoostifyGallery {
 		}
 	}
 
-	updateGallery( data, reset, variationId  ){
+	updateGallery( data, reset, variationId, imgSrc = false ){
 		var gallery = this;
 		var galleryElement = gallery.el;
 		
@@ -515,6 +515,8 @@ class WoostifyGallery {
 			mobileSlider.destroy();
 		}
 
+		var img = new Image();
+		
 		galleryElement.style.opacity = '1';
 		// Append new markup html.
 		if ( images && galleryElement.querySelector( '.product-images' ) ) {
@@ -548,11 +550,22 @@ class WoostifyGallery {
 		}
 	
 		gallery.initSlider();
-		
-		setTimeout(() => {	
-			galleryElement.classList.remove('loading');
-			galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '1';
-		}, 400);
+
+		if ( imgSrc ) {
+			img.onload = function () {
+				setTimeout(() => {	
+					galleryElement.classList.remove('loading');
+					galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '1';
+				}, 300);
+			}
+			img.src = imgSrc;
+		}else{
+			setTimeout(() => {	
+				galleryElement.classList.remove('loading');
+				galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '1';
+			}, 300);
+		}
+
 
 	}
 	//END RENDER FUNCTIONS
@@ -651,8 +664,8 @@ class WoostifyGallery {
 						// Neu chi co 1 image trong gallery và image nay trung voi product variation image thi coi nhu k co.
 						var has_gallery = ( ( variation.variation_gallery_images.length > 1 ) || (variation.variation_gallery_images.length && variation.image && variation.variation_gallery_images[0]['full_src'] != variation.image['full_src'] ) );
 						if( has_gallery ) {
-
-								gallery.updateGallery(variation.variation_gallery_images, true, variation.variation_id );
+								var imgSrc  = variation.image.src;
+								gallery.updateGallery(variation.variation_gallery_images, true, variation.variation_id, imgSrc );
 							if( thumbs ) {
 								thumbs.classList.add( 'variation-gallery' );
 							}
