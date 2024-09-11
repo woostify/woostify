@@ -182,7 +182,7 @@
 									if ( ! arr || arr[1] !== wp.customize.control( arr[0] ).setting.get() ) {
 										return
 									}
-
+									
 									if ( operator ) {
 										if ( value === setting.get() ) {
 											control.container.removeClass( 'hide' )
@@ -286,6 +286,50 @@
 						'woostify_setting[topbar_right]',
 					],
 					false,
+				)
+
+				// Topbar Slider.
+				condition(
+					'woostify_setting[topbar_slider_display]',
+					[
+						'woostify_setting[topbar_slider_type]',
+						'woostify_setting[topbar_slider_slide_to_show]',
+						'woostify_setting[topbar_slider_button]',
+						'woostify_setting[topbar_slider_autoplay]',
+						'woostify_setting[topbar_slider_items]',
+						'woostify_setting[topbar_slider_text_color]',
+						'woostify_setting[topbar_slider_background_color]',
+						'woostify_setting[topbar_slider_space]',
+						'woostify_setting[topbar_slider_button_color]',
+					],
+					false,
+				)
+
+				wp.customize(
+					'woostify_setting[topbar_slider_type]',
+					function( setting ) {
+						var curr_val = setting.get();
+						var sliderSlideShow = jQuery('#customize-control-woostify_setting-topbar_slider_slide_to_show');
+						var selectEL = jQuery('#customize-control-woostify_setting-topbar_slider_type').find('select');
+						
+						if (curr_val == 'text-scroll' || selectEL.val() == 'text-scroll' ) {
+							sliderSlideShow.addClass( 'hide' );
+						}else{
+							sliderSlideShow.removeClass( 'hide' );
+						}
+						
+						setting.bind(
+							function( newval ) {
+								if ( newval ) {
+									if ( newval == 'text-scroll' ) {
+										sliderSlideShow.addClass( 'hide' );
+									}else{
+										sliderSlideShow.removeClass( 'hide' );
+									}
+								}
+							},
+						)
+					},
 				)
 
 				// Shopping cart icon.
@@ -744,6 +788,7 @@
 				/* hideTabLayout( 'woostify_setting[header_show_categories_menu_on_mobile]', 'woostify_setting[mobile_menu_context_tabs]' ) */
 				hideTabLayout( 'woostify_setting[sticky_footer_bar_enable]', 'woostify_setting[sticky_footer_bar_context_tabs]' )
 				hideTabLayout( 'woostify_setting[topbar_display]', 'woostify_setting[topbar_context_tabs]' )
+				hideTabLayout( 'woostify_setting[topbar_slider_display]', 'woostify_setting[topbar_slider_context_tabs]' )
 				hideTabLayout( 'woostify_setting[scroll_to_top]', 'woostify_setting[scroll_to_top_context_tabs]' )
 				hideTabLayout( 'woostify_setting[page_header_display]', 'woostify_setting[page_header_context_tabs]' )
 				hideTabLayout( 'woostify_setting[footer_display]', 'woostify_setting[footer_context_tabs]' )
