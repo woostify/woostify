@@ -328,7 +328,14 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		public function add_infinite_scroll_button() {
 			wp_enqueue_script( 'woostify-infinite-scroll-plugin' );
 			global $wp_query;
-			$pages        = $wp_query->max_num_pages;
+			// With case shop create from elementor page, $wp_query is post then get count product is wrong
+			// Using $query_result to get for elmentor page, $query_result is from widget product query
+			global $query_result;
+			if ($query_result) {
+				$pages = $query_result->max_num_pages;
+			} else {
+				$pages = $wp_query->max_num_pages;
+			}
 			$options      = woostify_options( false );
 			$type         = $options['shop_page_infinite_scroll_type'];
 			$current_page = get_query_var( 'paged' );
