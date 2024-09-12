@@ -6972,47 +6972,11 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   float: left;
   max-width: 100%;
 }
-.product-gallery::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #FFFFFF;
-  opacity: 0;
-  visibility: hidden;
-  z-index: -1;
-}
-.product-gallery::after {
-  content: "";
-  position: absolute;
-  border: 1px solid #ddd;
-  border-top-color: #222;
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-  top: calc( 50% - 10px );
-  left: calc( 50% - 10px );
-  transform: translateY(-50%) translateX(-50%);
-  animation: circle-loading 0.35s linear infinite;
-  opacity: 0;
-  visibility: hidden;
-  z-index: -1;
-}
-.product-gallery.loading::before{
-  z-index: 99;
-  opacity: 1;
-  visibility: visible;
-}
-.product-gallery.loading::after{
-  z-index: 100;
-  opacity: 1;
-  visibility: visible;
-}
 .product-images{
   height: 570px;
+}
+.product-images-container{
+  height: 100%;
 }
 @media (min-width: 992px) {
   .product-gallery {

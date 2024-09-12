@@ -514,7 +514,7 @@ class WoostifyGallery {
 		if ( mobileSlider && mobileSlider.slider ) {
 			mobileSlider.destroy();
 		}
-		galleryElement.classList.add('loading');
+		// galleryElement.classList.add('loading');
 		var img = new Image();
 		var productImages = galleryElement.querySelector( '.product-images' );
 
@@ -533,7 +533,7 @@ class WoostifyGallery {
 		}
 
 		if ( galleryElement.querySelector( '.product-thumbnail-images' ) ) {
-			galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '0';
+			// galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '0';
 			if ( '' !== thumbnails ) {
 				var productThumbnailsWrapper = galleryElement.querySelector( '.product-thumbnail-images' ).querySelector( '.product-thumbnail-images-container' );
 
@@ -563,14 +563,14 @@ class WoostifyGallery {
 		if ( imgSrc ) {
 			img.onload = function () {
 				setTimeout(() => {	
-					galleryElement.classList.remove('loading');
+					// galleryElement.classList.remove('loading');
 					galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '1';
 				}, 400);
 			}
 			img.src = imgSrc;
 		}else{
 			setTimeout(() => {	
-				galleryElement.classList.remove('loading');
+				// galleryElement.classList.remove('loading');
 				galleryElement.querySelector( '.product-thumbnail-images' ).style.opacity = '1';
 			}, 400);
 		}
