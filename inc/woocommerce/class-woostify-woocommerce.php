@@ -839,6 +839,10 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				$classes[] = 'has-gallery-layout-' . $options['shop_single_gallery_layout'];
 			}
 
+			if ( class_exists( 'Woostify_Variation_Swatches_Frontend' ) ){
+				$classes[] = 'has-variation-swatches';
+			}
+
 			// Product meta.
 			$sku        = $options['shop_single_skus'];
 			$categories = $options['shop_single_categories'];
