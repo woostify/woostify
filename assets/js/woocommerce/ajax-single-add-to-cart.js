@@ -22,6 +22,7 @@ function woostifyAjaxSingleHandleError( button ) {
 }
 
 function woostifyAjaxSingleUpdateFragments( button ) {
+	
 	if ( woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold && woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold_effect ) {
 		var progress_bar = document.querySelectorAll( '.free-shipping-progress-bar' ),
 		percent          = 0;
@@ -66,9 +67,10 @@ function woostifyAjaxSingleUpdateFragments( button ) {
 			// Handle.
 			woostifyAjaxSingleHandleError( button );
 
+			progressBarConfetti( progress_bar, percent );
+
 			jQuery( document.body ).trigger( 'added_to_cart' );
 
-			progressBarConfetti( progress_bar, percent );
 		}
 	);
 }
