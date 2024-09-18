@@ -549,9 +549,11 @@ class WoostifyGallery {
 
 		var img = new Image();
 		if ( imgSrc ) {
+			var productThumbnail = galleryElement.querySelector( '.product-thumbnail-images-container' );
+			var imageWrapper = ( productThumbnail.length != 0 )? productImages.querySelector( '.image-item' ) : productImages.querySelector( '.image-item.is-selected' ); // is-selected
+			imageWrapper.classList.add( 'image-loading' );
 			img.onload = function () {
-				var productThumbnail = galleryElement.querySelector( '.product-thumbnail-images-container' );
-				var imageWrapper = ( productThumbnail.length != 0 )? productImages.querySelector( '.image-item' ) : productImages.querySelector( '.image-item.is-selected' ); // is-selected
+				imageWrapper.classList.remove( 'image-loading' );
 				var image       = imageWrapper ? imageWrapper.querySelector( 'img' ) : false;
 				let imgHeight = image.height;
 				
