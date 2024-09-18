@@ -551,16 +551,18 @@ class WoostifyGallery {
 		if ( imgSrc ) {
 			var productThumbnail = galleryElement.querySelector( '.product-thumbnail-images-container' );
 			var imageWrapper = ( productThumbnail.length != 0 )? productImages.querySelector( '.image-item' ) : productImages.querySelector( '.image-item.is-selected' ); // is-selected
-			imageWrapper.classList.add( 'image-loading' );
+			
 			img.onload = function () {
-				imageWrapper.classList.remove( 'image-loading' );
 				var image       = imageWrapper ? imageWrapper.querySelector( 'img' ) : false;
 				let imgHeight = image.height;
 				
 				if ( productImages != null ) {					
 					productImages.style.height = imgHeight + 'px';		
 				}
+
+				imageWrapper.classList.add( 'image-loading' );
 				setTimeout(() => {
+					imageWrapper.classList.remove( 'image-loading' );
 					gallery.initSlider();
 				}, 50);
 				
