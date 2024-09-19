@@ -761,7 +761,7 @@ class WoostifyGallery {
 
 function setHeightProductImages() {
 	var productImages = document.querySelector('.product-images');
-	if (productImages.length != 0) {
+	if ( productImages && productImages.length != 0) {
 		let width = productImages.offsetWidth;
 		productImages.style.height = width + 'px';	
 		
