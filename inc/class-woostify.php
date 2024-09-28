@@ -659,30 +659,6 @@ if ( ! class_exists( 'Woostify' ) ) {
 				);
 			}
 
-			/**
-			 * Scripts
-			 */
-			// For IE.
-			if ( 'ie' === woostify_browser_detection() ) {
-				// Fetch API polyfill.
-				wp_enqueue_script(
-					'woostify-fetch-api-polyfill',
-					WOOSTIFY_THEME_URI . 'assets/js/fetch-api-polyfill' . woostify_suffix() . '.js',
-					array(),
-					woostify_version(),
-					true
-				);
-
-				// Foreach polyfill.
-				wp_enqueue_script(
-					'woostify-for-each-polyfill',
-					WOOSTIFY_THEME_URI . 'assets/js/for-each-polyfill' . woostify_suffix() . '.js',
-					array(),
-					woostify_version(),
-					true
-				);
-			}
-
 			// General script.
 			wp_enqueue_script(
 				'woostify-general',
