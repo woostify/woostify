@@ -947,31 +947,34 @@ if ( ! class_exists( 'Woostify' ) ) {
 				);
 			}
 
+			wp_enqueue_style(
+				'woostify-slick',
+				WOOSTIFY_THEME_URI . 'assets/libs/slick/slick.css',
+				array(),
+				woostify_version()
+			);
+
+			wp_enqueue_style(
+				'woostify-slick-theme',
+				WOOSTIFY_THEME_URI . 'assets/libs/slick/slick-theme.css',
+				array(),
+				woostify_version()
+			);
+
+			wp_register_script(
+				'woostify-slick',
+				WOOSTIFY_THEME_URI . 'assets/libs/slick/slick' . woostify_suffix() . '.js',
+				array('jquery'),
+				woostify_version(),
+				true
+			);
+
 			// Topbar Slider.
 			if ( $options['topbar_slider_display'] ) {
 
-				wp_enqueue_style(
-					'woostify-slick',
-					WOOSTIFY_THEME_URI . 'assets/libs/slick/slick.css',
-					array(),
-					woostify_version()
-				);
-
-				wp_enqueue_style(
-					'woostify-slick-theme',
-					WOOSTIFY_THEME_URI . 'assets/libs/slick/slick-theme.css',
-					array(),
-					woostify_version()
-				);
-
 				wp_enqueue_script(
-					'woostify-slick',
-					WOOSTIFY_THEME_URI . 'assets/libs/slick/slick' . woostify_suffix() . '.js',
-					array('jquery'),
-					woostify_version(),
-					true
+					'woostify-slick'
 				);
-
 				wp_enqueue_script(
 					'woostify-flickity'
 				);
