@@ -35,10 +35,11 @@ function mobileMenuTab() {
 			}
 
 			menus[0].classList.add( 'active' );
-
+			
 			tabs.forEach(
 				function( tab, tabIndex ) {
 					tab.onclick = function() {
+						let dataMenuTab = this.getAttribute('data-menu');
 						if ( tab.classList.contains( 'active' ) ) {
 							return;
 						}
@@ -47,10 +48,11 @@ function mobileMenuTab() {
 							tabs[i].classList.remove( 'active' );
 						}
 						tab.classList.add( 'active' );
-
+						
 						menus.forEach(
 							function( menu, menuIndex ) {
-								if ( tabIndex === menuIndex ) {
+								let dataMenu = menu.getAttribute('data-menu');
+								if ( dataMenu === dataMenuTab ) {
 									menu.classList.add( 'active' );
 								} else {
 									menu.classList.remove( 'active' );
