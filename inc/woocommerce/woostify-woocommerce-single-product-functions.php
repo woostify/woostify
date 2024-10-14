@@ -635,7 +635,7 @@ if ( ! function_exists( 'woostify_product_recently_viewed' ) ) {
 			$viewed_products = (array) explode( '|', sanitize_text_field( wp_unslash( $_COOKIE['woostify_product_recently_viewed'] ) ) );
 		}
 
-		if ( ! in_array( $post->ID, $viewed_products, true ) ) {
+		if ( ! in_array( $post->ID, $viewed_products ) ) {
 			$viewed_products[] = $post->ID;
 		}
 
@@ -653,13 +653,19 @@ if ( ! function_exists( 'woostify_product_recently_viewed_template' ) ) {
 	 * Display product recently viewed
 	 */
 	function woostify_product_recently_viewed_template() {
+		global $post;
 		$options = woostify_options( false );
 		$cookies = isset( $_COOKIE['woostify_product_recently_viewed'] ) ? sanitize_text_field( wp_unslash( $_COOKIE['woostify_product_recently_viewed'] ) ) : false;
 		if ( ! $cookies || ! $options['shop_single_product_recently_viewed'] || ! is_singular( 'product' ) || woostify_elementor_has_location( 'single' ) ) {
 			return;
 		}
-
 		$ids       = explode( '|', $cookies );
+		if ( in_array( $post->ID, $ids) ) {
+			$key = array_search($post->ID, $ids);
+			if ($key !== false) {
+				unset($ids[$key]);
+			}
+		}
 		$container = woostify_site_container();
 		$args      = array(
 			'post_type'      => 'product',

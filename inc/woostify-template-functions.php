@@ -525,10 +525,10 @@ if ( ! function_exists( 'woostify_mobile_menu_tab' ) ) {
 			$categories_menu_tab_title = $options['mobile_menu_categories_menu_tab_title'];
 			?>
 			<ul class="mobile-nav-tab">
-				<li class="mobile-tab-title mobile-main-nav-tab-title active" data-menu="categories">
+				<li class="mobile-tab-title mobile-main-nav-tab-title active" data-menu="main">
 					<a href="javascript:;" class="mobile-nav-tab-item"><?php echo esc_html( $primary_menu_tab_title ); ?></a>
 				</li>
-				<li class="mobile-tab-title mobile-categories-nav-tab-title" data-menu="main">
+				<li class="mobile-tab-title mobile-categories-nav-tab-title" data-menu="categories">
 					<a href="javascript:;" class="mobile-nav-tab-item"><?php echo esc_html( $categories_menu_tab_title ); ?></a>
 				</li>
 			</ul>
@@ -558,7 +558,7 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 			<?php do_action( 'woostify_before_main_nav' ); ?>
 
 			<?php if ( $header_primary_menu && ( has_nav_menu( 'mobile' ) || has_nav_menu( 'primary' ) ) ) { ?>
-				<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary navigation', 'woostify' ); ?>">
+				<nav class="main-navigation" data-menu="main" aria-label="<?php esc_attr_e( 'Primary navigation', 'woostify' ); ?>">
 					<?php
 					if ( has_nav_menu( 'mobile' ) ) {
 						$mobile = array(
@@ -588,7 +588,7 @@ if ( ! function_exists( 'woostify_primary_navigation' ) ) {
 			<?php } ?>
 
 			<?php if ( $show_categories_menu_on_mobile && has_nav_menu( 'mobile_categories' ) ) { ?>
-				<nav class="categories-navigation" aria-label="<?php esc_attr_e( 'Categories Menu', 'woostify' ); ?>">
+				<nav class="categories-navigation" data-menu="categories" aria-label="<?php esc_attr_e( 'Categories Menu', 'woostify' ); ?>">
 					<?php
 					$categories_menu = array(
 						'theme_location' => 'mobile_categories',
