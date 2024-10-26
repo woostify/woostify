@@ -443,6 +443,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 						$thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 						$product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 						$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+						$variation_id = isset($cart_item['variation_id']) ? $cart_item['variation_id'] : '';
 						$stock_quantity    = $_product->get_stock_quantity();
 						if ( get_post_meta( $product_id, '_stock_status', true ) == 'onpreorder' ) {
 							$stock_quantity = get_post_meta( $product_id, '_onpreorder_maximum_order', true );
@@ -595,6 +596,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 											?>
 											<input type="number" 
 												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" 
+												data-variation_id="<?php echo esc_attr( $variation_id ); ?>"
 												class="input-text qty" 
 												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>" 
 												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>" 
