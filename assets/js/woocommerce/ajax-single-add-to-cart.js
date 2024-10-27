@@ -92,12 +92,14 @@ function woostifyAjaxSingleAddToCartButton() {
 
 				e.preventDefault();
 				let input = form.querySelector( 'input.qty' );
+				let variation_input = form.querySelector( 'input.variation_id' );
 
 				if ( null == input ) {
 					input = form.querySelector( 'input[name="quantity"]' );
 				}
 
 				let inputValue = input ? Number( input.value.trim() ) : false;
+				let variationValue = variation_input ? Number( variation_input.value.trim() ) : false;
 
 				if ( ! inputValue || isNaN( inputValue ) || inputValue <= 0 ) {
 					alert( woostify_woocommerce_general.qty_warning );
@@ -120,6 +122,14 @@ function woostifyAjaxSingleAddToCartButton() {
 						}
 
 					});
+
+					if (variationValue) {
+						cart_item_count = 0;
+						let variation_cart_item = cart_content.querySelector( 'input[data-variation_id="' + variationValue + '"]' );
+						if (variation_cart_item) {
+							cart_item_count = Number( variation_cart_item.value.trim() );
+						}
+					}
 					var product_max_quantity = parseInt(input.getAttribute('max'));			
 					var total_count          = cart_item_count+inputValue;
 					if( product_max_quantity||0 ){
