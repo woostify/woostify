@@ -1050,7 +1050,18 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 
 			// Single product.
 			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
-			remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
+			// Check class WC_Bundles
+			if ( class_exists('WC_Bundles')) {
+				add_action( 'wp_enqueue_scripts', function() {
+					$custom_css = "
+					.single-product .woocommerce-product-gallery.woocommerce-product-gallery--with-images{
+						display: none;
+					}";
+					wp_add_inline_style( 'woostify-style', $custom_css );
+				} );
+			}else{
+				remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
+			}
 			remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
 			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
