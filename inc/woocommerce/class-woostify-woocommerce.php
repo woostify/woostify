@@ -176,7 +176,7 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 				add_action( 'woocommerce_before_single_product_summary', 'woostify_change_sale_flash', 25 );
 				add_action( 'woocommerce_before_single_product_summary', 'woostify_print_out_of_stock_label', 30 );
 				add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_group_buttons', 35 );
-				add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 40 );
+				add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
 			}
 
 			add_action( 'woocommerce_before_single_product_summary', 'woostify_single_product_gallery_close', 50 );
