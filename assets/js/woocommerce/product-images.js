@@ -558,8 +558,9 @@ class WoostifyGallery {
 				img.onload = function () {
 					var image       = imageWrapper ? imageWrapper.querySelector( 'img' ) : false;
 					let imgHeight = image.height;
-					
-					if ( productImages != null ) {					
+					var classesToCheck = ['column-style', 'grid-style'];
+					var hasAllClasses = classesToCheck.some(className => galleryElement.classList.contains(className));
+					if ( productImages != null && !hasAllClasses ) {					
 						productImages.style.height = imgHeight + 'px';		
 					}
 	
@@ -765,8 +766,17 @@ class WoostifyGallery {
 } // End Class
 
 function setHeightProductImages() {
-	var productImages = document.querySelector('.product-images');
-	if ( productImages && productImages.length != 0) {
+	var productGallery = document.querySelector('.product-gallery');
+	if ( !productGallery ) {
+		return;
+	}	
+	var classesToCheck = ['column-style', 'grid-style'];
+	var hasAllClasses = classesToCheck.some(className => productGallery.classList.contains(className));
+	if ( hasAllClasses ) {
+		return;
+	}
+	var productImages = productGallery.querySelector('.product-images');	
+	if ( productImages && productImages.length != 0 ) {
 		let width = productImages.offsetWidth;
 		productImages.style.height = width + 'px';	
 		
