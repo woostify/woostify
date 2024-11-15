@@ -3557,25 +3557,6 @@ article p:last-child {
   }
 }
 
-/* Header sticky. Theo nhu trong file js thi bo qua header layout 7 */
-.has-sticky-header .site-header:not(.header-layout-7) {
-  position: sticky;
-  top: 0;
-  z-index: 99;
-}
-
-/* Theo dinh nghia cua wp-admin bar */
-@media screen and (min-width: 601px) {
-  .has-sticky-header.admin-bar .site-header:not(.header-layout-7) {
-    top: 46px;
-  }
-}
-@media screen and (min-width: 783px) {
-  .has-sticky-header.admin-bar .site-header:not(.header-layout-7) {
-    top: 32px;
-  }
-}
-
 /* Header Menu */
 .site-header-inner {
   border-bottom: 1px solid #eaeaea;
@@ -6972,7 +6953,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   float: left;
   max-width: 100%;
 }
-.has-variation-swatches .product-images{
+.has-variation-swatches .product-gallery:not(.column-style):not(.grid-style) .product-images{
   height: 570px;
 }
 .product-images-container{
