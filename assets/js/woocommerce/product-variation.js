@@ -176,11 +176,10 @@ function productVariation( selector, form ) {
 	);
 
 	jQuery( '.single_variation_wrap' ).on( 'show_variation', function( event, variation ) {
-		
+	
 		if ( variation ) {
-			var swatch_selected = document.querySelector('.woostify-variation-swatches .swatch.selected');
-			if( swatch_selected ) {
-				var reset_variations = document.querySelector( '.reset_variations' );
+			var reset_variations = document.querySelector( '.reset_variations' );
+			if( reset_variations ) {
 				reset_variations.style.visibility = 'visible';
 			}
 		}

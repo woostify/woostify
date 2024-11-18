@@ -560,17 +560,18 @@ class WoostifyGallery {
 					if ( productImages != null && !hasAllClasses ) {					
 						productImages.style.height = imgHeight + 'px';		
 					}
-	
 					imageWrapper.classList.add( 'image-loading' );
 					setTimeout(() => {
 						imageWrapper.classList.remove( 'image-loading' );
 						gallery.initSlider();
 					}, 50);
-					
 				}
 				img.src = imgSrc;
 			}
-			
+		}else{
+			setTimeout(() => {
+				gallery.initSlider();
+			}, 50);
 		}
 
 	}
