@@ -272,7 +272,7 @@ function productVariation( selector, form ) {
 				var photoSwipe    = imageWrapper.querySelector( 'a' ),
 					photoSwipeSrc = photoSwipe ? photoSwipe.getAttribute( 'href' ) : '';
 				
-				var photoSwipeDefault    = imageItemDefault.querySelector( 'a' ),
+				var photoSwipeDefault = imageItemDefault ? imageItemDefault.querySelector( 'a' ) : false,
 					photoSwipeSrc = photoSwipeDefault ? photoSwipeDefault.getAttribute( 'href' ) : photoSwipeSrc;
 
 				// Photoswipe + zoom.
@@ -290,14 +290,14 @@ function productVariation( selector, form ) {
 				}
 				
 				var woostifyGallery = new WoostifyGallery( '.product-gallery', woostify_product_images_slider_options);
-
+				
 				var swatch_cont = document.querySelector('.woostify-variation-swatches');
 				if( swatch_cont ) {
 					swatch_cont.querySelectorAll('.swatch').forEach( function( swatch, index){ 
 						swatch.classList.remove('selected');
 					});
 				}
-			}, 200);
+			}, 150);
 
 		}
 	); // END reset event
