@@ -122,6 +122,11 @@ function dialogPopup( targetClickClass, popupTarget, type ) {
 
 		// Field must not empty.
 		searchField.setAttribute( 'required', 'required' );
+
+		// clear text search
+		window.addEventListener("load", (event) => {
+			searchField.value = "";		
+		});
 	}
 
 	if ( 'account' === type ) {
