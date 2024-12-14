@@ -148,11 +148,15 @@ function woostifyValidAddToCartButton(ele) {
 	if ( ! product ) {
 		return;
 	}
-
+	
 	var add_to_cart_button = product.querySelector( '.add_to_cart_button' );
+	
+	if ( ! add_to_cart_button ) {
+		return;
+	}
+
 	let product_id = add_to_cart_button.getAttribute('data-product_id');
 	let product_qty = add_to_cart_button.getAttribute('data-quantity');
-
 	let input = product.querySelector( 'input.qty' );
 	let variation_input = product.querySelector( 'input.variation_id' );
 
