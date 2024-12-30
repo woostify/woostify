@@ -7508,6 +7508,11 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   right: 0;
 }
 
+.add_to_cart_button.disabled{
+  opacity: 0.7 !important;
+  pointer-events: none;
+}
+
 .single_add_to_cart_button {
   position: relative;
 }
