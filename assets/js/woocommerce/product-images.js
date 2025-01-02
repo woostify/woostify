@@ -570,6 +570,9 @@ class WoostifyGallery {
 		var img = new Image();
 		if ( imgSrc ) {
 			var productThumbnail = galleryElement.querySelector( '.product-thumbnail-images-container' );
+			if (!productThumbnail) {
+				return;
+			}
 			var imageWrapper = ( productThumbnail && productThumbnail.length != 0 )? productImages.querySelector( '.image-item' ) : productImages.querySelector( '.image-item.is-selected' ); // is-selected
 			if (imageWrapper) {
 				img.onload = function () {
