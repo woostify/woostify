@@ -2014,6 +2014,9 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		} elseif ( is_singular( 'post' ) ) {
 			// Post page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_blog_single, $sidebar_default );
+		} elseif ( is_home() ) {
+			// Blog page.
+			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_blog, $sidebar_default );
 		} else {
 			// Other page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_default, $sidebar_default );
