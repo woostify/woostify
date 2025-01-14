@@ -1123,9 +1123,13 @@ if ( ! function_exists( 'woostify_get_post_title' ) ) {
 		}
 
 		$title  = '<' . esc_attr( $title_tag ) . ' class="entry-header-item alpha entry-title">';
-		$title .= '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">';
-		$title .= get_the_title();
-		$title .= '</a>';
+		if ( is_single() ) {
+			$title .= get_the_title();
+		}else{
+			$title .= '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">';
+			$title .= get_the_title();
+			$title .= '</a>';
+		}
 		$title .= '</' . esc_attr( $title_tag ) . '>';
 
 		if ( $echo ) {
