@@ -1266,6 +1266,17 @@ msgstr ""
 msgid "Reviews (%d)"
 msgstr ""
 
+#: woocommerce/loop/result-count.php:28
+msgid "Showing the single result"
+msgstr ""
+
+#.  translators: %d: total results
+#: woocommerce/loop/result-count.php:30
+msgid "Showing all %d result"
+msgid_plural "Showing all %d results"
+msgstr[0] ""
+msgstr[1] ""
+
 #. translators: 1: first result 2: last result 3: total results
 #: woocommerce/loop/result-count.php:36
 msgctxt "with first and last result"
