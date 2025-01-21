@@ -25,10 +25,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php
 	// phpcs:disable WordPress.Security
 	if ( 1 === intval( $total ) ) {
-		_e( 'Showing the single result', 'woocommerce' );
+		_e( 'Showing the single result', 'woostify' );
 	} elseif ( $total <= $per_page || -1 === $per_page ) {
 		/* translators: %d: total results */
-		printf( _n( 'Showing all %d result', 'Showing all %d results', $total, 'woocommerce' ), $total );
+		printf( _n( 'Showing all %d result', 'Showing all %d results', $total, 'woostify' ), $total );
 	} else {
 		$first = ( $per_page * $current ) - $per_page + 1;
 		$last  = min( $total, $per_page * $current );

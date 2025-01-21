@@ -1271,7 +1271,7 @@ msgid "Showing the single result"
 msgstr ""
 
 #.  translators: %d: total results
-#: woocommerce/loop/result-count.php:30
+#: woocommerce/loop/result-count.php:31
 msgid "Showing all %d result"
 msgid_plural "Showing all %d results"
 msgstr[0] ""
