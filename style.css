@@ -5810,6 +5810,7 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   color: #fff;
   margin-right: 10px;
   content: "\e016";
+  display: inline-block;
 }
 .woocommerce-error li a {
   display: none;
@@ -8771,6 +8772,14 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
 }
 .woocommerce-checkout .woocommerce .woocommerce-error {
   clear: both;
+}
+.woocommerce-checkout .woocommerce-error li{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.woocommerce-checkout .woocommerce-error li a{
+  display: inline-block;
+  margin: 0;
 }
 .woocommerce-checkout input {
   word-break: normal;
