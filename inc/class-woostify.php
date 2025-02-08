@@ -346,7 +346,7 @@ if ( ! class_exists( 'Woostify' ) ) {
 			 */
 
 			// Loads wp-content/languages/themes/woostify-it_IT.mo.
-			load_theme_textdomain( 'woostify', WP_LANG_DIR . '/themes/' );
+			load_theme_textdomain( 'woostify', trailingslashit(WP_LANG_DIR) . 'themes' );
 
 			// Loads wp-content/themes/child-theme-name/languages/it_IT.mo.
 			load_theme_textdomain( 'woostify', get_stylesheet_directory() . '/languages' );
