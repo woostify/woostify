@@ -5810,6 +5810,7 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   color: #fff;
   margin-right: 10px;
   content: "\e016";
+  display: inline-block;
 }
 .woocommerce-error li a {
   display: none;
@@ -8772,6 +8773,14 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
 .woocommerce-checkout .woocommerce .woocommerce-error {
   clear: both;
 }
+.woocommerce-checkout .woocommerce-error li{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.woocommerce-checkout .woocommerce-error li a{
+  display: inline-block;
+  margin: 0;
+}
 .woocommerce-checkout input {
   word-break: normal;
 }
@@ -9662,7 +9671,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
 }
 .checkout-layout-3:not(.woobuilder-active) form.checkout .col-left .form-row:not(.field-readonly) label:not(.checkbox) {
   position: absolute;
-  top: 50%;
+  top: 26px;
   left: 12px;
   background: #fff;
   right: 12px;
@@ -9671,6 +9680,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   pointer-events: none;
   transition: all 0.2s;
   line-height: 20px;
+  height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
