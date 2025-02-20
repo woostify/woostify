@@ -2214,8 +2214,10 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 				$logout_url = str_replace( 'http:', 'https:', $logout_url );
 			}
 
-			$count     = $woocommerce->cart->cart_contents_count;
-			$sub_total = $woocommerce->cart->get_cart_subtotal();
+			if ( function_exists( 'WC' ) && WC()->cart ) {
+				$count     = WC()->cart->get_cart_contents_count();
+			    $sub_total = WC()->cart->get_cart_subtotal();
+			}
 
 		}
 
