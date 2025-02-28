@@ -1123,9 +1123,13 @@ if ( ! function_exists( 'woostify_get_post_title' ) ) {
 		}
 
 		$title  = '<' . esc_attr( $title_tag ) . ' class="entry-header-item alpha entry-title">';
-		$title .= '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">';
-		$title .= get_the_title();
-		$title .= '</a>';
+		if ( is_single() ) {
+			$title .= get_the_title();
+		}else{
+			$title .= '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">';
+			$title .= get_the_title();
+			$title .= '</a>';
+		}
 		$title .= '</' . esc_attr( $title_tag ) . '>';
 
 		if ( $echo ) {
@@ -2014,6 +2018,9 @@ if ( ! function_exists( 'woostify_sidebar_class' ) ) {
 		} elseif ( is_singular( 'post' ) ) {
 			// Post page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_blog_single, $sidebar_default );
+		} elseif ( is_home() ) {
+			// Blog page.
+			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_blog, $sidebar_default );
 		} else {
 			// Other page.
 			$sidebar = woostify_get_sidebar_id( 'sidebar', $sidebar_default, $sidebar_default );
@@ -2207,8 +2214,10 @@ if ( ! function_exists( 'woostify_header_action' ) ) {
 				$logout_url = str_replace( 'http:', 'https:', $logout_url );
 			}
 
-			$count     = $woocommerce->cart->cart_contents_count;
-			$sub_total = $woocommerce->cart->get_cart_subtotal();
+			if ( function_exists( 'WC' ) && WC()->cart ) {
+				$count     = WC()->cart->get_cart_contents_count();
+			    $sub_total = WC()->cart->get_cart_subtotal();
+			}
 
 		}
 

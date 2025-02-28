@@ -300,6 +300,11 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
                     loading_status.style.display = 'none'
                 }
 
+                // Re-init valid quantity add to cart button
+                if ( 'function' === typeof( woostifyValidLoopItemAddToCartButton ) ) {
+                    woostifyValidLoopItemAddToCartButton();
+                }
+
                 // Re-init ajax add to cart button
                 if ( 'function' === typeof( woostifyAjaxAddToCartButton ) ) {
                     woostifyAjaxAddToCartButton();
