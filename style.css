@@ -1473,6 +1473,7 @@ a.pswp__share--download:hover {
 
 .tns-controls [data-controls] .woostify-svg-icon {
   color: currentColor;
+  line-height: normal;
 }
 .tns-controls [data-controls] .woostify-svg-icon svg {
   width: 18px;
