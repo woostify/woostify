@@ -5525,7 +5525,7 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
 @media (max-width: 991px) {
   .shop-widget {
     margin-top: 0 !important;
-    position: fixed;
+    position: fixed !important;
     left: 0;
     bottom: 0;
     top: 0;
