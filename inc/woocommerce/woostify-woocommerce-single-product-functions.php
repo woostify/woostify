@@ -575,10 +575,18 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 				<div class="woostify-single-product-stock stock">
 
 					<?php
+					$stock_display_format = get_option( 'woocommerce_stock_format' );
+					$stock_label = esc_html( sprintf( /* translators: %s stock quantity */ apply_filters( 'woostify_stock_message', __( '%s in stock', 'woostify' ) ), $stock_quantity ) );
+					if ( $stock_display_format == 'low_amount' ) {
+						$stock_label = esc_html( sprintf( /* translators: %s stock quantity */ apply_filters( 'woostify_stock_message', __( 'Hurry! only %s left in stock.', 'woostify' ) ), $stock_quantity ) );
+					} elseif ( $stock_display_format == 'no_amount' ) {
+						$stock_label = esc_html( sprintf( /* translators: In stock */ apply_filters( 'woostify_stock_message', __( 'In stock', 'woostify' ) ) ) );
+					}
+					
 					if ( $options['shop_single_stock_label'] ) {
 						?>
 							<span class="woostify-single-product-stock-label">
-								<?php echo esc_html( sprintf( /* translators: %s stock quantity */ apply_filters( 'woostify_stock_message', __( 'Hurry! only %s left in stock.', 'woostify' ) ), $stock_quantity ) ); ?>
+								<?php echo $stock_label; ?>
 							</span>
 						<?php
 					}
