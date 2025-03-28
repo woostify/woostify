@@ -13,7 +13,6 @@
         "gulp-uglify-es": "^3.0.0",
         "gulp-wp-pot": "^2.5.0",
         "gulp-zip": "^4.2.0",
-        "node-sass": "^7.0.1",
         "run-sequence": "^2.2.1",
         "vinyl-buffer": "^1.0.1"
     },
