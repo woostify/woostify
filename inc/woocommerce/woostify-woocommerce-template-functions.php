@@ -2095,7 +2095,7 @@ if ( ! function_exists( 'woostify_product_quantity' ) ) {
 
 		$product = wc_get_product( get_the_ID() );
 
-		if ( $product->is_sold_individually() || 'variable' === $product->get_type() || ! $product->is_purchasable() ) {
+		if ( $product->is_sold_individually() || 'variable' === $product->get_type() || ! $product->is_purchasable() || $product->get_stock_quantity() == 1 ) {
 			return;
 		}
 
