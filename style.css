@@ -7892,7 +7892,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
 }
 
 .cart-sidebar-open {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .cart-sidebar-open.cart-updated #shop-cart-sidebar:before {
   content: none !important;
