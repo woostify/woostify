@@ -1815,10 +1815,24 @@ class Woostify_Get_CSS {
 	public function woostify_guten_block_editor_assets() {
 		// Get all theme option value.
 		$options = woostify_options( false );
-
 		$block_styles = '
-			.edit-post-visual-editor, .edit-post-visual-editor p{
+			:root {
+				--e-global-color-woostify_color_1: '. esc_attr( $options['theme_color'] ) .';
+				--e-global-color-woostify_color_2: '. esc_attr( $options['text_color'] ) .';
+				--e-global-color-woostify_color_3: '. esc_attr( $options['accent_color'] ) .';
+				--e-global-color-woostify_color_6: '. esc_attr( $options['link_hover_color'] ) .';
+				--e-global-color-woostify_color_4: '. esc_attr( $options['extra_color_1'] ) .';
+				--e-global-color-woostify_color_5: '. esc_attr( $options['extra_color_2'] ) .';
+			}
+		';
+		$block_styles .= '
+			.edit-post-visual-editor, .edit-post-visual-editor p, .edit-post-visual-editor div{
 				font-family: ' . esc_attr( $options['body_font_family'] ) . ';
+				font-weight: ' . esc_attr( $options['body_font_weight'] ) . ';
+				line-height: ' . esc_attr( $options['body_line_height'] ) . 'px;
+				text-transform: ' . esc_attr( $options['body_font_transform'] ) . ';
+				font-size: ' . esc_attr( $options['body_font_size'] ) . 'px;
+				color: ' . esc_attr( $options['text_color'] ) . ';
 			}
 
 			.editor-post-title__block .editor-post-title__input,
@@ -1831,6 +1845,61 @@ class Woostify_Get_CSS {
 			}
 
 		';
+
+		$heading_font_family = $options['heading_font_family'];
+		$heading_font_family = $options['heading_font_weight'];
+		$heading_font_transform = $options['heading_font_transform'];
+		$heading_line_height = $options['heading_line_height'];
+		$heading_color = $options['heading_color'];
+
+		$heading_h1_font_size = $options[ 'heading_h1_font_size' ];
+		$heading_h2_font_size = $options[ 'heading_h2_font_size' ];
+		$heading_h3_font_size = $options[ 'heading_h3_font_size' ];
+		$heading_h4_font_size = $options[ 'heading_h4_font_size' ];
+		$heading_h5_font_size = $options[ 'heading_h5_font_size' ];
+		$heading_h6_font_size = $options[ 'heading_h6_font_size' ];
+
+		for ($i = 1; $i <= 6 ; $i++) {
+			$block_styles .= ".editor-styles-wrapper .block-editor-block-list__block h" . $i . ", .wp-block-heading h" . $i . ", .wp-block-freeform.block-library-rich-text__tinymce h" . $i . ", .editor-styles-wrapper .wp-block-heading h" . $i . ", .wp-block-heading h" . $i . ".editor-rich-text__tinymce, .editor-styles-wrapper h" . $i . ".block-editor-block-list__block {" . '
+				font-family: ' . esc_attr( $options['heading_font_family'] ) . ';
+				font-weight: ' . esc_attr( $options['heading_font_weight'] ) . ';
+				text-transform: ' . esc_attr( $options['heading_font_transform'] ) . ';
+				line-height: ' . esc_attr( $options['heading_line_height'] ) . ';
+				color: ' . esc_attr( $options['heading_color'] ) . ';
+	
+			}';
+		}
+
+		// Heading style
+		$block_styles .= '.editor-styles-wrapper .block-editor-block-list__block h1, .wp-block-heading h1, .wp-block-freeform.block-library-rich-text__tinymce h1, .editor-styles-wrapper .wp-block-heading h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-styles-wrapper h1.block-editor-block-list__block {
+			font-size: ' . $heading_h1_font_size . 'px;' .
+
+		'}';
+
+		$block_styles .= '.editor-styles-wrapper .block-editor-block-list__block h2, .wp-block-heading h2, .wp-block-freeform.block-library-rich-text__tinymce h2, .editor-styles-wrapper .wp-block-heading h2, .wp-block-heading h2.editor-rich-text__tinymce, .editor-styles-wrapper h2.block-editor-block-list__block {
+			font-size: ' . $heading_h2_font_size . 'px;' .
+
+		'}';
+
+		$block_styles .= '.editor-styles-wrapper .block-editor-block-list__block h3, .wp-block-heading h3, .wp-block-freeform.block-library-rich-text__tinymce h3, .editor-styles-wrapper .wp-block-heading h3, .wp-block-heading h3.editor-rich-text__tinymce, .editor-styles-wrapper h3.block-editor-block-list__block {
+			font-size: ' . $heading_h3_font_size . 'px;' .
+
+		'}';
+
+		$block_styles .= '.editor-styles-wrapper .block-editor-block-list__block h4, .wp-block-heading h4, .wp-block-freeform.block-library-rich-text__tinymce h4, .editor-styles-wrapper .wp-block-heading h4, .wp-block-heading h4.editor-rich-text__tinymce, .editor-styles-wrapper h4.block-editor-block-list__block {
+			font-size: ' . $heading_h4_font_size . 'px;' .
+
+		'}';
+
+		$block_styles .= '.editor-styles-wrapper .block-editor-block-list__block h5, .wp-block-heading h5, .wp-block-freeform.block-library-rich-text__tinymce h5, .editor-styles-wrapper .wp-block-heading h5, .wp-block-heading h5.editor-rich-text__tinymce, .editor-styles-wrapper h5.block-editor-block-list__block {
+			font-size: ' . $heading_h5_font_size . 'px;' .
+
+		'}';
+
+		$block_styles .= '.editor-styles-wrapper .block-editor-block-list__block h6, .wp-block-heading h6, .wp-block-freeform.block-library-rich-text__tinymce h6, .editor-styles-wrapper .wp-block-heading h6, .wp-block-heading h6.editor-rich-text__tinymce, .editor-styles-wrapper h6.block-editor-block-list__block {
+			font-size: ' . $heading_h6_font_size . 'px;' .
+
+		'}';
 
 		wp_register_style( 'woostify-block-editor', true ); // @codingStandardsIgnoreLine
 		wp_enqueue_style( 'woostify-block-editor' );
