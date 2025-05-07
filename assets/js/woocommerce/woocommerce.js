@@ -132,6 +132,10 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
                                 for (var i = 1; i < infScroll.scrollPages.length; i++) {
                                     infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
                                 }
+                                if (items.length > 0 && jQuery( '.result-first' )) {
+                                    let first_num = jQuery( '.result-first' )[0].innerHTML;
+                                    jQuery( '.result-first' )[0].innerHTML = parseInt(first_num) - items.length;
+                                }
                             } );
                         } )
                     .catch( ( error ) => {
@@ -452,6 +456,10 @@ function loadPreviewPage(infScroll, pagePrev, listPage ) {
                 infScroll.scrollPages.unshift(history);
                 for (var i = 1; i < infScroll.scrollPages.length; i++) {
                     infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
+                }
+                if (items.length > 0 && jQuery( '.result-first' )) {
+                    let first_num = jQuery( '.result-first' )[0].innerHTML;
+                    jQuery( '.result-first' )[0].innerHTML = parseInt(first_num) - items.length;
                 }
             } );
         } )
