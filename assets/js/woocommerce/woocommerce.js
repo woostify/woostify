@@ -129,8 +129,10 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
                                     title: response.title
                                 };
                                 infScroll.scrollPages.unshift(history);
-                                for (var i = 1; i < infScroll.scrollPages.length; i++) {
-                                    infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
+                                for (var i = 0; i < infScroll.scrollPages.length; i++) {
+                                    // infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
+                                    const pageEl = infScroll.element.children[i];
+                                    infScroll.scrollPages[i].top += pageEl.offsetTop;
                                 }
                                 if (items.length > 0 && jQuery( '.result-first' )) {
                                     let first_num = jQuery( '.result-first' )[0].innerHTML;
@@ -454,8 +456,10 @@ function loadPreviewPage(infScroll, pagePrev, listPage ) {
                     title: response.title
                 };
                 infScroll.scrollPages.unshift(history);
-                for (var i = 1; i < infScroll.scrollPages.length; i++) {
-                    infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
+                for (var i = 0; i < infScroll.scrollPages.length; i++) {
+                    // infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
+                    const pageEl = infScroll.element.children[i];
+                    infScroll.scrollPages[i].top += pageEl.offsetTop;
                 }
                 if (items.length > 0 && jQuery( '.result-first' )) {
                     let first_num = jQuery( '.result-first' )[0].innerHTML;
