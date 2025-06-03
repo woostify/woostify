@@ -4,7 +4,7 @@ Theme URI:    https://woostify.com
 Author:       Woostify
 Author URI:   https://woostify.com/about
 Description:  Woostify is fast, lightweight, responsive and super flexible WooCommerce theme built with SEO, speed, and usability in mind. The theme works great with any of your favorite page builder likes Elementor, Beaver Builder, SiteOrigin, Thrive Architect, Divi, etc. Therefore, you can build any type of websites like shop, business agencies, corporate, portfolio, education, university portal, consulting, church, restaurant, medical and so on. Woostify is compatible with all well-coded plugins, including major ones like WooCommerce, OrbitFox, Yoast, BuddyPress, bbPress, etc. Learn more about the theme and ready to import demo sites at https://woostify.com
-Version:      2.4.0
+Version:      2.4.1
 Requires at least: 4.7
 Tested up to: 6.1
 Requires PHP: 7.3
@@ -6805,7 +6805,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   padding: 25px 15px;
 }
 
-.disabled-icon-add-cart-button .added_to_cart .woostify-svg-icon, 
+.disabled-icon-add-cart-button .added_to_cart .woostify-svg-icon,
 .disabled-icon-add-cart-button .loop-add-to-cart-btn .woostify-svg-icon,
 .disabled-icon-add-cart-button .loop-add-to-cart-on-image .woostify-svg-icon {
   display: none;
