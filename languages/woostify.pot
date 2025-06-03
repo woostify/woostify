@@ -1,4 +1,5 @@
-#, fuzzy
+# Copyright (C) 2024 Woostify
+# This file is distributed under the same license as the Woostify package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Woostify\n"
