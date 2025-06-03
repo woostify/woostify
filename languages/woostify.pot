@@ -1087,6 +1087,8 @@ msgstr ""
 
 #: inc/woostify-template-functions.php:1578
 msgid "1 Comment"
+msgstr ""
+
 #: inc/woocommerce/woostify-woocommerce-template-functions.php:1582
 msgid "Order Summary"
 msgstr ""
@@ -3728,7 +3730,8 @@ msgstr ""
 
 #: inc/customizer/sections/page-header/page-header.php:329
 msgid "Left Top"
-=======
+msgstr ""
+
 #: inc/woocommerce/woostify-woocommerce-template-functions.php:712
 msgid "Continue Shopping"
 msgstr ""
@@ -3843,7 +3846,6 @@ msgstr ""
 #. translators: %s: reviews count
 #: inc/woocommerce/woostify-woocommerce-template-functions.php:2296
 msgid "Reviews (%d)"
->>>>>>> master
 msgstr ""
 
 #: inc/customizer/sections/blog/blog.php:83
