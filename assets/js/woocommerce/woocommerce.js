@@ -119,9 +119,25 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
                                 if ( !items || !items.length ) return;
 
                                 // get fragment if not provided
-                                let fragment = getItemsFragment( items );
+                                // let fragment = getItemsFragment( items );
 
-                                infScroll.element.insertBefore( fragment, infScroll.element.children[0] );
+                                // infScroll.element.insertBefore( fragment, infScroll.element.children[0] );
+                                // var scrollPages = infScroll.scrollPages;
+                                // var history = {
+                                //     top: 0,
+                                //     path: path,
+                                //     title: response.title
+                                // };
+                                // infScroll.scrollPages.unshift(history);
+                                // for (var i = 0; i < infScroll.scrollPages.length; i++) {
+                                //     // infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
+                                //     const pageEl = infScroll.element.children[i];
+                                //     infScroll.scrollPages[i].top += pageEl.offsetTop;
+                                // }
+                                let productSelector = infScroll.options.append;
+                                let beforeProducts = Array.from(infScroll.element.querySelectorAll(productSelector));
+                                let fragment = getItemsFragment(items);
+                                infScroll.element.insertBefore(fragment, infScroll.element.children[0]);
                                 var scrollPages = infScroll.scrollPages;
                                 var history = {
                                     top: 0,
@@ -129,8 +145,18 @@ function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
                                     title: response.title
                                 };
                                 infScroll.scrollPages.unshift(history);
-                                for (var i = 1; i < infScroll.scrollPages.length; i++) {
-                                    infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
+                                requestAnimationFrame(() => {
+                                    let afterProducts = Array.from(infScroll.element.querySelectorAll(productSelector));
+                                    let newItems = afterProducts.slice(0, afterProducts.length - beforeProducts.length);
+                                    let totalHeight = newItems.reduce((acc, el) => acc + el.offsetHeight, 0);
+                                    let scrollPages = infScroll.scrollPages;
+                                    for (let i = 1; i < scrollPages.length; i++) {
+                                        scrollPages[i].top += totalHeight;
+                                    }
+                                });
+                                if (items.length > 0 && jQuery( '.result-first' )) {
+                                    let first_num = jQuery( '.result-first' )[0].innerHTML;
+                                    jQuery( '.result-first' )[0].innerHTML = parseInt(first_num) - items.length;
                                 }
                             } );
                         } )
@@ -440,9 +466,25 @@ function loadPreviewPage(infScroll, pagePrev, listPage ) {
                 if ( !items || !items.length ) return;
 
                 // get fragment if not provided
-                let fragment = getItemsFragment( items );
+                // let fragment = getItemsFragment( items );
 
-                infScroll.element.insertBefore( fragment, infScroll.element.children[0] );
+                // infScroll.element.insertBefore( fragment, infScroll.element.children[0] );
+                // var scrollPages = infScroll.scrollPages;
+                // var history = {
+                //     top: 0,
+                //     path: path,
+                //     title: response.title
+                // };
+                // infScroll.scrollPages.unshift(history);
+                // for (var i = 0; i < infScroll.scrollPages.length; i++) {
+                //     // infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
+                //     const pageEl = infScroll.element.children[i];
+                //     infScroll.scrollPages[i].top += pageEl.offsetTop;
+                // }
+                let productSelector = infScroll.options.append;
+                let beforeProducts = Array.from(infScroll.element.querySelectorAll(productSelector));
+                let fragment = getItemsFragment(items);
+                infScroll.element.insertBefore(fragment, infScroll.element.children[0]);
                 var scrollPages = infScroll.scrollPages;
                 var history = {
                     top: 0,
@@ -450,8 +492,18 @@ function loadPreviewPage(infScroll, pagePrev, listPage ) {
                     title: response.title
                 };
                 infScroll.scrollPages.unshift(history);
-                for (var i = 1; i < infScroll.scrollPages.length; i++) {
-                    infScroll.scrollPages[i].top = infScroll.scrollPages[i].top + elementHeight;
+                requestAnimationFrame(() => {
+                    let afterProducts = Array.from(infScroll.element.querySelectorAll(productSelector));
+                    let newItems = afterProducts.slice(0, afterProducts.length - beforeProducts.length);
+                    let totalHeight = newItems.reduce((acc, el) => acc + el.offsetHeight, 0);
+                    let scrollPages = infScroll.scrollPages;
+                    for (let i = 1; i < scrollPages.length; i++) {
+                        scrollPages[i].top += totalHeight;
+                    }
+                });
+                if (items.length > 0 && jQuery( '.result-first' )) {
+                    let first_num = jQuery( '.result-first' )[0].innerHTML;
+                    jQuery( '.result-first' )[0].innerHTML = parseInt(first_num) - items.length;
                 }
             } );
         } )

@@ -151,7 +151,7 @@ function productVariation( selector, form ) {
 							function() {
 								woostifyStockQuantityProgressBar();
 							},
-							200
+							300
 						);
 					}
 
