@@ -53,6 +53,40 @@ function onElementorLoaded( callback ) {
 	callback();
 }
 
+function getScrollbarWidth() {
+    return window.innerWidth - document.documentElement.clientWidth;
+}
+
+function onTouchStart( isCartSidebarOpen = true ) {
+
+	var on_touch_start = false;
+	var scrollbar_width = getScrollbarWidth();
+
+    if (
+		'ontouchstart' in window ||
+		navigator.maxTouchPoints > 0 ||
+		window.matchMedia( '(pointer:coarse)' ).matches
+	){
+        on_touch_start = true;
+    }
+	
+	if (isCartSidebarOpen) {
+		if (on_touch_start) {
+			Object.assign(document.body.style, {
+				paddingRight: 0 + 'px',
+			});
+		}else{
+			Object.assign(document.body.style, {
+				paddingRight: scrollbar_width + 'px',
+			});
+		}
+	}else{
+		Object.assign(document.body.style, {
+			paddingRight: '',
+		});
+	}
+}
+
 // Disable popup/sidebar/menumobile.
 function closeAll() {
 	// Use ESC key.
@@ -61,6 +95,7 @@ function closeAll() {
 		function( e ) {
 			if ( 27 === e.keyCode ) {
 				document.documentElement.classList.remove( 'cart-sidebar-open' );
+				onTouchStart(false);
 			}
 		}
 	);
@@ -73,6 +108,7 @@ function closeAll() {
 			'click',
 			function() {
 				document.documentElement.classList.remove( 'cart-sidebar-open' );
+				onTouchStart(false);
 			}
 		);
 	}
@@ -85,6 +121,7 @@ function closeAll() {
 			'click',
 			function() {
 				document.documentElement.classList.remove( 'cart-sidebar-open', 'sidebar-menu-open' );
+				onTouchStart(false);
 			}
 		);
 	}

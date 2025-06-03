@@ -539,6 +539,7 @@ function cartSidebarOpen() {
         return;
     }
 
+    onTouchStart();
     document.documentElement.classList.add( 'cart-sidebar-open' );
 }
 
