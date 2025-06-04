@@ -1762,6 +1762,10 @@ if ( ! function_exists( 'woostify_topbar_slider' ) ) {
 				$setting['autoPlay'] = false;
 			}
 
+			if ( is_rtl() ) {
+				$setting['rightToLeft'] = true;
+			}
+
 		}else{
 			$setting = array(
 				'slidesToShow' => $slide_to_show,
@@ -1776,6 +1780,10 @@ if ( ! function_exists( 'woostify_topbar_slider' ) ) {
 			if( $autoplay ){
 				$setting['autoplay'] = true;
 				$setting['autoplaySpeed'] = 2000;
+			}
+
+			if ( is_rtl() ) {
+				$setting['rtl'] = true;
 			}
 		}
 
