@@ -14,7 +14,7 @@
  *
  * @see         https://woo.com/document/template-structure/
  * @package     WooCommerce\Templates
- * @version     9.4.0
+ * @version     9.9.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$first = ( $per_page * $current ) - $per_page + 1;
 		$last  = min( $total, $per_page * $current );
 		/* translators: 1: first result 2: last result 3: total results */
-		printf( _nx( 'Showing %1$d&ndash;<span class="result-end">%2$d</span> of %3$d result', 'Showing %1$d&ndash;<span class="result-end">%2$d</span> of %3$d results', $total, 'with first and last result', 'woostify' ), $first, $last, $total );
+		printf( _nx( 'Showing <span class="result-first">%1$d</span>&ndash;<span class="result-end">%2$d</span> of %3$d result', 'Showing <span class="result-first">%1$d</span>&ndash;<span class="result-end">%2$d</span> of %3$d results', $total, 'with first and last result', 'woostify' ), $first, $last, $total );
 	}
 	// phpcs:enable WordPress.Security
 	?>
