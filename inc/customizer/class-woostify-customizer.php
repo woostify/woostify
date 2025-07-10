@@ -31,6 +31,39 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 			add_action( 'wp_ajax_woostify_reset_dynamic_stylesheet_folder', array( $this, 'reset_dynamic_stylesheet_folder' ) );
 
 			add_action( 'customize_preview_init', array( $this, 'woocommerce_init_action' ) );
+			add_action( 'init', array( $this, 'woostify_load_default_values' ) );
+			add_action( 'after_switch_theme', array( $this, 'woostify_update_default_values' ) );
+		}
+
+		/**
+		 * Load default values first time
+		 */
+		public function woostify_load_default_values() {
+
+			$default_setting_values = self::woostify_get_woostify_default_setting_values();
+			$current  = get_option( 'woostify_default_values' );
+			// Only add if not exists
+			if ( false === $default_setting_values ) {
+				add_option( 'woostify_default_values', $default_setting_values );
+			}
+
+		}
+
+		/**
+		 * Update default values after switch theme actived
+		 */
+		public function woostify_update_default_values() {
+
+			$default_setting_values = self::woostify_get_woostify_default_setting_values();
+			$current  = get_option( 'woostify_default_values' );
+			if ( false === $default_setting_values ) {
+				add_option( 'woostify_default_values', $default_setting_values );
+			}else{
+				if ( $current !== $default_setting_values ) {
+					update_option( 'woostify_default_values', $default_setting_values );
+				}
+			}
+
 		}
 
 		/**
