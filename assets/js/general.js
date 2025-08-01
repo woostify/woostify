@@ -398,6 +398,8 @@ function noticesLoginRegisterAccout() {
 	var wc_form_register = woocommerce_account.querySelector('.woocommerce-form-register');
 
 	if( wc_form_register ){
+		var wc_form_register_role = wc_form_register.querySelector('input[name="role"]'); // for Dokan
+		var wc_form_register_shopurl = wc_form_register.querySelector('input[name="shopurl"]'); // for Dokan
 		var wc_form_register_username = wc_form_register.querySelector('input[name="username"]');
 		var wc_form_register_email = wc_form_register.querySelector('input[type="email"]');
 		var wc_form_register_password = wc_form_register.querySelector('input[type="password"]');
@@ -408,6 +410,8 @@ function noticesLoginRegisterAccout() {
 		wc_form_register_submit.addEventListener('click', function (e) {
 			e.preventDefault();
 
+			var role = wc_form_register_role ? wc_form_register_role.value : ''; // for Dokan
+			var shopurl = wc_form_register_shopurl ? wc_form_register_shopurl.value : ''; // for Dokan
 			var username = wc_form_register_username ? wc_form_register_username.value : '';
 			var email = wc_form_register_email.value;
 			var password = wc_form_register_password ? wc_form_register_password.value : '';
@@ -420,6 +424,8 @@ function noticesLoginRegisterAccout() {
 				'email' : email,
 				'password' : password,
 				'redirect' : redirect,
+				'role' : role,
+				'shopurl' : shopurl,
 			};
 
 			jQuery.ajax({
