@@ -1,5 +1,11 @@
 // Guttenberg
 .no-sidebar:not(.site-boxed-container) {
+    .alignfull:not(.is_wcb_container_child) {
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+        max-width: 100vw;
+        width: 100vw;
+    }
     .alignwide {
         max-width: unset;
         width: unset;
