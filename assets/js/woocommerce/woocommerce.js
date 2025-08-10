@@ -1866,6 +1866,27 @@ document.addEventListener(
             checkoutOrder();
             stickyOrderReview();
 
+            jQuery( document.body ).on(
+				'click',
+				'a.woocommerce-terms-and-conditions-link',
+				function (e) {
+                    var target = document.querySelector('#order_review');
+                    if (target) {
+                        // Watch DOM changes
+                        new MutationObserver(mutations => {
+                            mutations.forEach(m => {
+                                stickyOrderReview();
+                            });
+                        }).observe(target, {
+                            attributes: true,
+                            childList: true,
+                            subtree: true,
+                            characterData: true
+                        });
+                    }
+                }
+			);
+
             window.onscroll = function() {
                 if ( ! resized ) {
                     window.dispatchEvent( new Event( 'resize' ) );
