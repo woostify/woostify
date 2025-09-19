@@ -26,10 +26,7 @@ function removePageInUrl( url ){
 	if ( match ){
 		_url.pathname = _url.pathname.replace( match[0], '');
 	}
-	match = _url.pathname.match(/(\w{0,})\/{1,}$/);
-	if ( match ){
-		_url.pathname = _url.pathname.replace( match[0], match[1] );
-	}
+
 	return _url.toString().replace('#', '');
 }
 function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
