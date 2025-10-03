@@ -1666,6 +1666,11 @@ https://flickity.metafizzy.co
   animation: loading 0.5s linear infinite;
 }
 
+.wpcf7 .hidden-fields-container {
+  border: none;
+  padding: 0;
+}
+
 .wpcf7-mail-sent-ok {
   color: #27ae61;
 }
@@ -6805,7 +6810,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   padding: 25px 15px;
 }
 
-.disabled-icon-add-cart-button .added_to_cart .woostify-svg-icon, 
+.disabled-icon-add-cart-button .added_to_cart .woostify-svg-icon,
 .disabled-icon-add-cart-button .loop-add-to-cart-btn .woostify-svg-icon,
 .disabled-icon-add-cart-button .loop-add-to-cart-on-image .woostify-svg-icon {
   display: none;
