@@ -26,10 +26,7 @@ function removePageInUrl( url ){
 	if ( match ){
 		_url.pathname = _url.pathname.replace( match[0], '');
 	}
-	match = _url.pathname.match(/(\w{0,})\/{1,}$/);
-	if ( match ){
-		_url.pathname = _url.pathname.replace( match[0], match[1] );
-	}
+
 	return _url.toString().replace('#', '');
 }
 function woostifyInfiniteScroll( addEventClick, infScrollPath ) {
@@ -1655,6 +1652,33 @@ var woostifyCheckoutFormFieldAnimation = function() {
     }
 }
 
+// listen for cart updates on Cart Block pages
+function woostifyCartBlockUpdates() {
+    
+    if ( !document.body.classList.contains('woocommerce-cart') ) {
+        return;
+    }
+
+    let previousCart = null;
+
+    wp.data.subscribe( () => {
+		const store = wp.data.select( 'wc/store/cart' );
+		if ( ! store ) return;
+
+		const cart = store.getCartData();
+		if ( ! cart ) return;
+
+        if ( JSON.stringify( cart ) !== JSON.stringify( previousCart ) ) {
+            var cartCountContainer = document.querySelector( '.shopping-bag-button .shop-cart-count, .boostify-count-product' );
+            if ( cartCountContainer ) {
+                let itemCount = cart.itemsCount || 0;
+                cartCountContainer.textContent = itemCount;
+            }
+            previousCart = cart;
+        }
+    } );
+}
+
 document.addEventListener(
     'DOMContentLoaded',
     function() {
@@ -1667,6 +1691,8 @@ document.addEventListener(
         woostifyProductsCarousel( '.woostify-product-recently-viewed-section ul.products' );
 
         productDataTabsAccordion();
+
+        woostifyCartBlockUpdates();
 
         window.addEventListener(
             'load',
@@ -1865,6 +1891,27 @@ document.addEventListener(
 
             checkoutOrder();
             stickyOrderReview();
+
+            jQuery( document.body ).on(
+				'click',
+				'a.woocommerce-terms-and-conditions-link',
+				function (e) {
+                    var target = document.querySelector('#order_review');
+                    if (target) {
+                        // Watch DOM changes
+                        new MutationObserver(mutations => {
+                            mutations.forEach(m => {
+                                stickyOrderReview();
+                            });
+                        }).observe(target, {
+                            attributes: true,
+                            childList: true,
+                            subtree: true,
+                            characterData: true
+                        });
+                    }
+                }
+			);
 
             window.onscroll = function() {
                 if ( ! resized ) {

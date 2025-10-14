@@ -1666,6 +1666,11 @@ https://flickity.metafizzy.co
   animation: loading 0.5s linear infinite;
 }
 
+.wpcf7 .hidden-fields-container {
+  border: none;
+  padding: 0;
+}
+
 .wpcf7-mail-sent-ok {
   color: #27ae61;
 }
