@@ -46,7 +46,7 @@ class Woostify_Tabs_Control extends WP_Customize_Control {
 	 * @return void
 	 */
 	public function render_content() {
-		if ( empty( $this->choices ) ) {
+		if ( empty( $this->choices ) || ! is_array( $this->choices ) ) {
 			return;
 		}
 		$total_tabs = count( $this->choices );
