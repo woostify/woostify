@@ -382,7 +382,10 @@ if ( ! function_exists( 'woostify_options' ) ) {
 	 * @return     array $options         All theme options
 	 */
 	function woostify_options( $defaults = true ) {
-		$default_settings = !empty(get_option( 'woostify_default_values' ))? get_option( 'woostify_default_values' ) : array();
+		$default_settings = get_option( 'woostify_default_values' );
+		if ( ! is_array( $default_settings ) ) {
+			$default_settings = array();
+		}
 		$default_fonts    = Woostify_Fonts_Helpers::woostify_get_default_fonts();
 		$default_options  = array_merge( $default_settings, $default_fonts );
 
