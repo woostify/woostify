@@ -40,12 +40,12 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 */
 		public function woostify_load_default_values() {
 
-			$default_setting_values = self::woostify_get_woostify_default_setting_values();
-			$current  = get_option( 'woostify_default_values' );
-			// Only add if not exists
-			if ( false === $default_setting_values ) {
-				add_option( 'woostify_default_values', $default_setting_values );
-			}
+		$default_setting_values = self::woostify_get_woostify_default_setting_values();
+		$current  = get_option( 'woostify_default_values' );
+		// Only add if not exists
+		if ( false === $current ) {
+			add_option( 'woostify_default_values', $default_setting_values );
+		}
 
 		}
 
@@ -54,15 +54,15 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		 */
 		public function woostify_update_default_values() {
 
-			$default_setting_values = self::woostify_get_woostify_default_setting_values();
-			$current  = get_option( 'woostify_default_values' );
-			if ( false === $default_setting_values ) {
-				add_option( 'woostify_default_values', $default_setting_values );
-			}else{
-				if ( $current !== $default_setting_values ) {
-					update_option( 'woostify_default_values', $default_setting_values );
-				}
+		$default_setting_values = self::woostify_get_woostify_default_setting_values();
+		$current  = get_option( 'woostify_default_values' );
+		if ( false === $current ) {
+			add_option( 'woostify_default_values', $default_setting_values );
+		}else{
+			if ( $current !== $default_setting_values ) {
+				update_option( 'woostify_default_values', $default_setting_values );
 			}
+		}
 
 		}
 

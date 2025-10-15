@@ -149,7 +149,7 @@ class Woostify_Color_Group_Control extends WP_Customize_Control {
 
 		$swatches                    = array();
 		$global_color_settings       = $options['global_color_settings'];
-		$global_color_settings_count = count( $global_color_settings );
+		$global_color_settings_count = is_array( $global_color_settings ) ? count( $global_color_settings ) : 0;
 		for ( $i = 0; $i < $global_color_settings_count; $i++ ) {
 			$swatches[ $i ] = $options[ $global_color_settings[ $i ] ];
 		}

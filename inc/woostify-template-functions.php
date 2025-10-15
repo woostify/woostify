@@ -309,7 +309,7 @@ if ( ! function_exists( 'woostify_credit' ) ) {
 				$footer_text = woostify_replace_text( $options['footer_custom_text'] );
 				?>
 				<div class="site-infor-col">
-					<?php echo do_shortcode( $footer_text ); ?>
+					<?php echo wp_kses_post( do_shortcode( $footer_text ) ); ?>
 				</div>
 			<?php } ?>
 
