@@ -77,7 +77,7 @@ function woostifyAjaxSingleUpdateFragments( button ) {
 
 
 function woostifyAjaxSingleAddToCartButton() {
-	var buttons = document.querySelectorAll( '.single_add_to_cart_button' );
+	var buttons = document.querySelectorAll( '.single_add_to_cart_button[name="add-to-cart"]' );
 	if ( ! buttons.length ) {
 		return;
 	}
