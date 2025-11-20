@@ -1653,9 +1653,24 @@ var woostifyCheckoutFormFieldAnimation = function() {
 }
 
 // listen for cart updates on Cart Block pages
-function woostifyCartBlockUpdates() {
-    
+function woostifyCartBlockUpdates() {    
     if ( !document.body.classList.contains('woocommerce-cart') ) {
+        return;
+    }
+
+    if (typeof wp === 'undefined') {
+        return;
+    }
+
+    if ( typeof wp.data === 'undefined' ) {
+        return;
+    }
+
+    if( typeof wp?.data?.select('wc/store/cart') === 'undefined' ){
+        return;
+    }
+
+    if ( typeof wp.data.subscribe !== 'function' ) {
         return;
     }
 
