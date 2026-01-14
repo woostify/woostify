@@ -111,32 +111,12 @@ if ( ! class_exists( 'Woostify_Adjacent_Products' ) ) {
 		private function get_adjacent() {
 			global $post;
 
-			$direction = $this->previous ? 'previous' : 'next';
-
-			add_filter( 'get_' . $direction . '_post_where', array( $this, 'filter_post_where' ) );
-
+			$old_post = $post;
+			$post     = get_post( $this->current_product );
 			$adjacent = get_adjacent_post( $this->in_same_term, $this->excluded_terms, $this->previous, $this->taxonomy );
-
-			remove_filter( 'get_' . $direction . '_post_where', array( $this, 'filter_post_where' ) );
+			$post     = $old_post;
 
 			return $adjacent;
-		}
-
-		/**
-		 * Filters the WHERE clause in the SQL for an adjacent post query, replacing the
-		 * date with date of the next post to consider.
-		 *
-		 * @param string $where The `WHERE` clause in the SQL.
-		 * @return WP_POST|false Post object if successful. False if no valid post is found.
-		 */
-		public function filter_post_where( $where ) {
-			global $post;
-
-			$new = get_post( $this->current_product );
-
-			$where = str_replace( $post->post_date, $new->post_date, $where );
-
-			return $where;
 		}
 
 		/**
