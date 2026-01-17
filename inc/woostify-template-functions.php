@@ -1512,7 +1512,7 @@ if ( ! function_exists( 'woostify_post_meta_author' ) ) {
 	function woostify_post_meta_author( $echo = true ) {
 		$author = '<span class="post-meta-item vcard author">';
 		if ( ! get_the_author() ) {
-			$author .= esc_html_e( 'by Unknown author', 'woostify' );
+			$author .= esc_html__( 'by Unknown author', 'woostify' );
 		} else {
 			$author .= '<span class="label">' . esc_html__( 'by', 'woostify' ) . '</span>';
 			$author .= sprintf(
