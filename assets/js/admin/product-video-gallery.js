@@ -68,7 +68,44 @@ jQuery(document).ready(function ($) {
                 self.closeModal();
             });
 
-            // Source Tabs (Removed per recent changes, but keeping structure for Audio if needed)
+            // Tab Switching
+            this.modal.on('click', '.woostify-tab-btn', function () {
+                var tab = $(this).data('tab');
+
+                // Tabs
+                $('.woostify-tab-btn').removeClass('active');
+                $(this).addClass('active');
+
+                // Content
+                $('.woostify-tab-content').hide();
+                $('#woostify-tab-' + tab).show();
+
+                // Hidden input
+                $('#woostify-video-source').val(tab);
+            });
+
+            // MP4 Upload
+            this.modal.on('click', '#woostify-upload-mp4-btn', function (e) {
+                e.preventDefault();
+
+                var frame = wp.media({
+                    title: 'Select or Upload Video',
+                    button: {
+                        text: 'Use this video'
+                    },
+                    multiple: false,
+                    library: {
+                        type: 'video'
+                    }
+                });
+
+                frame.on('select', function () {
+                    var attachment = frame.state().get('selection').first().toJSON();
+                    $('#woostify-mp4-url').val(attachment.url);
+                });
+
+                frame.open();
+            });
 
             // Audio Status Buttons
             this.modal.on('click', '.woostify-btn-audio', function () {
@@ -95,10 +132,6 @@ jQuery(document).ready(function ($) {
 
             if (isAutoplay) {
                 audioGroup.hide();
-                // Force mute when autoplay is enabled
-                $('#woostify-video-mute').val('1');
-                $('.woostify-btn-audio').removeClass('active');
-                $('.woostify-btn-audio[data-value="1"]').addClass('active');
             } else {
                 audioGroup.show();
             }
@@ -112,9 +145,19 @@ jQuery(document).ready(function ($) {
             this.modal.fadeOut(200);
             this.currentAttachmentId = null;
             this.currentButton = null;
+
             // Reset fields
+            $('#woostify-video-source').val('youtube');
             $('#woostify-video-url').val('');
+            $('#woostify-mp4-url').val('');
             $('#woostify-video-autoplay').prop('checked', false);
+
+            // Reset Tabs
+            $('.woostify-tab-btn').removeClass('active');
+            $('.woostify-tab-btn[data-tab="youtube"]').addClass('active');
+            $('.woostify-tab-content').hide();
+            $('#woostify-tab-youtube').show();
+
             // Default to Unmute (0)
             $('#woostify-video-mute').val('0');
             $('.woostify-btn-audio').removeClass('active');
@@ -140,9 +183,17 @@ jQuery(document).ready(function ($) {
                 success: function (response) {
                     if (response.success) {
                         var data = response.data;
+                        var source = data.source || 'youtube';
+
+                        // Set Source Tab
+                        $('.woostify-tab-btn[data-tab="' + source + '"]').trigger('click');
 
                         // Set URL
-                        $('#woostify-video-url').val(data.url || '');
+                        if (source === 'mp4') {
+                            $('#woostify-mp4-url').val(data.url || '');
+                        } else {
+                            $('#woostify-video-url').val(data.url || '');
+                        }
 
                         // Set Autoplay
                         var isAutoplay = (data.autoplay === 'true' || data.autoplay === '1' || data.autoplay === true);
@@ -165,13 +216,10 @@ jQuery(document).ready(function ($) {
             var self = this;
             if (!this.currentAttachmentId) return;
 
-            var url = $('#woostify-video-url').val();
+            var source = $('#woostify-video-source').val();
+            var url = (source === 'mp4') ? $('#woostify-mp4-url').val() : $('#woostify-video-url').val();
             var autoplay = $('#woostify-video-autoplay').is(':checked');
             var mute = $('#woostify-video-mute').val();
-
-            if (autoplay) {
-                mute = '1';
-            }
 
             this.saveBtn.prop('disabled', true).text('Saving...');
 
@@ -182,6 +230,7 @@ jQuery(document).ready(function ($) {
                     action: 'woostify_save_attachment_video_data',
                     nonce: woostify_product_video_gallery.nonce,
                     attachment_id: self.currentAttachmentId,
+                    source: source,
                     url: url,
                     autoplay: autoplay,
                     mute: mute

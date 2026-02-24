@@ -9,17 +9,103 @@
         init: function () {
             this.bindEvents();
             this.initPhotoswipe();
+
+            // Check for autoplay on first load
+            var $gallery = $('.product-gallery .product-images-container');
+            var $mainImage = $gallery.find('.image-item').first();
+            var $lightboxToggleButton = $('.photoswipe-toggle-button');
+
+            if ($mainImage.length && $mainImage.data('video-autoplay') == 1) {
+                this.playVideo($mainImage);
+            }
+
+            // Initial check for lightbox button visibility
+            if ($mainImage.hasClass('has-video')) {
+                $lightboxToggleButton.css('display', 'none'); // or visibility: hidden
+            } else {
+                $lightboxToggleButton.css('display', '');
+            }
+
+            // Listen for Flickity change event to toggle button visibility
+            if ($gallery.length) {
+                $gallery.on('change.flickity', function (event, index) {
+                    var $activeSlide = $(this).find('.image-item').eq(index);
+                    if ($activeSlide.hasClass('has-video')) {
+                        $lightboxToggleButton.css('display', 'none');
+                    } else {
+                        $lightboxToggleButton.css('display', '');
+                    }
+                });
+            }
+
+            // Failsafe: Remove ez-zoom from any video slides
+            $('.image-item.has-video').removeClass('ez-zoom');
         },
 
         bindEvents: function () {
             var self = this;
 
-            // Handle click on video icon in main gallery
-            $(document).on('click', '.woostify-video-icon-main', function (e) {
+            // Use Capture Phase to intercept clicks on the video icon BEFORE they reach other handlers (like Photoswipe)
+            // This is critical because Photoswipe might be bound to the container with onclick or similar checks
+            // Use Capture Phase to intercept clicks on the video icon or container BEFORE they reach other handlers
+            // This is critical because Photoswipe might be bound to the container with onclick or similar checks
+            document.addEventListener('click', function (e) {
+                var target = e.target;
+
+                // If clicking inside a playing video iframe or control, let it pass (though iframe usually captures it)
+                if (target.tagName === 'IFRAME') return;
+
+                // Check if clicking on video icon OR anywhere on a video slide that is NOT yet playing
+                var videoSlide = target.closest('.image-item.has-video');
+
+                if (videoSlide) {
+                    // If video is already playing, we generally want to do nothing (let controls work)
+                    // unless we want to pause? But for now, we just want to avoid lighting up lightbox.
+                    if (videoSlide.classList.contains('playing-video')) {
+                        // If clicking on the wrapper while playing (e.g. side padding), prevent lightbox
+                        // But clicking on iframe usually won't bubble here anyway.
+                        // Let's safe guard:
+                        if (!target.closest('.woostify-product-video-container')) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            e.stopImmediatePropagation();
+                        }
+                        return;
+                    }
+
+                    // Loop prevents opening lightbox
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+
+                    self.playVideo($(videoSlide));
+                }
+            }, true); // true = Capture phase
+
+            // Prevent lightbox when clicking on the image if it has video (optional, depending on UX)
+            // But since we removed ez-zoom, the anchor might still open lightbox. 
+            // We want to ensure clicking anywhere on the video slide plays the video if not playing.
+            $(document).on('click', '.image-item.has-video', function (e) {
+                if (!$(this).hasClass('playing-video')) {
+                    // Check if click is on the play icon (already handled by capture)
+                    if ($(e.target).closest('.woostify-video-icon-main').length) return;
+
+                    e.preventDefault();
+                    e.stopPropagation();
+                    self.playVideo($(this));
+                }
+            });
+
+            // Specific blocker for anchor tags inside video slides to prevent opening image link
+            $(document).on('click', '.image-item.has-video a', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
+                e.stopImmediatePropagation();
+                // Trigger play on the parent wrapper
                 var wrapper = $(this).closest('.image-item');
-                self.playVideo(wrapper);
+                if (!wrapper.hasClass('playing-video')) {
+                    self.playVideo(wrapper);
+                }
             });
 
             // Handle click on video icon in thumbnails
@@ -44,30 +130,52 @@
         },
 
         playVideo: function (wrapper) {
+            var source = wrapper.data('video-source') || 'youtube';
             var url = wrapper.data('video-url');
             var autoplay = wrapper.data('video-autoplay');
             var mute = wrapper.data('video-mute');
 
             if (!url) return;
 
-            var videoId = this.getYoutubeId(url);
-            if (videoId) {
-                var embedUrl = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+            // Hide icon explicitly
+            wrapper.find('.woostify-video-icon').css('display', 'none');
 
-                if (mute == 1 || autoplay == 1) { // Force mute if autoplay or mute set
-                    embedUrl += '&mute=1';
+            if (source === 'mp4') {
+                // MP4 Video - Use HTML5 video element
+                var videoHtml = '<div class="woostify-product-video-container">';
+                videoHtml += '<video controls autoplay';
+
+                if (mute == 1 || autoplay == 1) {
+                    videoHtml += ' muted';
                 }
 
-                var iframe = '<div class="woostify-product-video-container" style="padding-bottom:' + (wrapper.outerHeight() / wrapper.outerWidth() * 100) + '%"><iframe src="' + embedUrl + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
+                videoHtml += ' playsinline style="width:100%;height:100%;object-fit:cover;">';
+                videoHtml += '<source src="' + url + '" type="video/mp4">';
+                videoHtml += 'Your browser does not support the video tag.';
+                videoHtml += '</video>';
+                videoHtml += '</div>';
 
-                // Replace image with iframe
-                // We hide the image and icon, append iframe
-                wrapper.find('img, .woostify-video-icon').hide();
-                wrapper.find('a').hide(); // Hide the anchor tag which might be a zoom link
                 if (wrapper.find('.woostify-product-video-container').length === 0) {
-                    wrapper.append(iframe);
+                    wrapper.append(videoHtml);
                 }
                 wrapper.addClass('playing-video');
+            } else {
+                // YouTube Video - Use iframe
+                var videoId = this.getYoutubeId(url);
+                if (videoId) {
+                    var embedUrl = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&enablejsapi=1';
+
+                    if (mute == 1 || autoplay == 1) {
+                        embedUrl += '&mute=1';
+                    }
+
+                    var iframe = '<div class="woostify-product-video-container"><iframe src="' + embedUrl + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
+
+                    if (wrapper.find('.woostify-product-video-container').length === 0) {
+                        wrapper.append(iframe);
+                    }
+                    wrapper.addClass('playing-video');
+                }
             }
         },
 

@@ -8,34 +8,44 @@
 
 // Use in product-variation.js.
 function easyZoomHandle() {
-	if ( window.matchMedia( '( max-width: 991px )' ).matches ) {
+	if (window.matchMedia('( max-width: 991px )').matches) {
 		return;
 	}
 
-	var image = jQuery( '.product-images .image-item' );
+	var image = jQuery('.product-images .image-item').not('.has-video');
 
-	if ( ! image.length || document.documentElement.classList.contains( 'quick-view-open' ) ) {
+	if (!image.length || document.documentElement.classList.contains('quick-view-open')) {
 		return;
 	}
 
-	image.each( function( ele ){
-		jQuery(this).find('a img').css('opacity','1');
+	image.each(function (ele) {
+		var _this = jQuery(this);
+		// destroy if it was initialized and now has video
+		if (_this.hasClass('has-video')) {
+			var zoom = _this.data('easyZoom');
+			if (zoom) {
+				zoom.teardown();
+			}
+			return true; // continue
+		}
+
+		_this.find('a img').css('opacity', '1');
 	});
-	
-	if ( jQuery().easyZoom ) {
+
+	if (jQuery().easyZoom) {
 		var zoom = image.easyZoom(),
-			api  = zoom.data( 'easyZoom' );
+			api = zoom.data('easyZoom');
 
 		api.teardown();
 		api._init();
 	}
 }
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 
 	// Setup image zoom.
-	if ( window.matchMedia( '( min-width: 992px )' ).matches && jQuery().easyZoom ) {
-		jQuery( '.ez-zoom' ).easyZoom(
+	if (window.matchMedia('( min-width: 992px )').matches && jQuery().easyZoom) {
+		jQuery('.ez-zoom').easyZoom(
 			{
 				loadingNotice: ''
 			}
@@ -43,17 +53,17 @@ window.addEventListener('load', function() {
 	}
 
 	// For Elementor Preview Mode.
-	if ( 'function' === typeof( onElementorLoaded ) ) {
+	if ('function' === typeof (onElementorLoaded)) {
 		onElementorLoaded(
-			function() {
+			function () {
 				window.elementorFrontend.hooks.addAction(
 					'frontend/element_ready/global',
-					function() {
+					function () {
 						easyZoomHandle();
 					}
 				);
 			}
 		);
 	}
-	
+
 });

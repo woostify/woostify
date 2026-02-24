@@ -118,11 +118,55 @@
     margin-bottom: 8px;
 }
 
+/* Video Source Tabs */
+.woostify-video-source-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 0;
+}
+
+.woostify-tab-btn {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    margin-right: -1px;
+    font-size: 13px;
+    color: #555;
+}
+
+.woostify-tab-btn:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.woostify-tab-btn:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-right: 0;
+}
+
+.woostify-tab-btn.active {
+    background: #007cba;
+    color: #fff;
+    border-color: #007cba;
+    z-index: 1;
+}
+
+/* MP4 Upload Styling */
+.woostify-mp4-upload-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.woostify-mp4-upload-wrapper input {
+    flex-grow: 1;
+}
+
 /* Audio Status Buttons */
 .woostify-video-audio-options {
     display: flex;
-    gap: 0;
-    /* Connected buttons */
+    gap: 0; /* Connected buttons */
 }
 
 .woostify-btn-audio {

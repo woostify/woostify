@@ -89,6 +89,8 @@ if ( ! class_exists( 'Woostify_Product_Video' ) ) {
 			);
 
 			
+			wp_enqueue_media();
+
 			// Get current product images to set initial state
 			global $post;
 			$video_map = array();
@@ -134,6 +136,7 @@ if ( ! class_exists( 'Woostify_Product_Video' ) ) {
 			}
 
 			$data = array(
+				'source'        => get_post_meta( $attachment_id, 'woostify_video_source', true ),
 				'url'           => get_post_meta( $attachment_id, 'woostify_video_url', true ),
 				'autoplay'      => get_post_meta( $attachment_id, 'woostify_video_autoplay', true ),
 				'mute'          => get_post_meta( $attachment_id, 'woostify_video_mute', true ),
@@ -153,12 +156,12 @@ if ( ! class_exists( 'Woostify_Product_Video' ) ) {
 				wp_send_json_error( 'Invalid attachment ID' );
 			}
 
+			$source        = isset( $_POST['source'] ) ? sanitize_text_field( $_POST['source'] ) : 'youtube';
 			$url           = isset( $_POST['url'] ) ? sanitize_text_field( $_POST['url'] ) : '';
 			$autoplay      = isset( $_POST['autoplay'] ) ? sanitize_text_field( $_POST['autoplay'] ) : '';
 			$mute          = isset( $_POST['mute'] ) ? sanitize_text_field( $_POST['mute'] ) : '';
 
-			// Force source to youtube since that's the only option now
-			update_post_meta( $attachment_id, 'woostify_video_source', 'youtube' );
+			update_post_meta( $attachment_id, 'woostify_video_source', $source );
 			update_post_meta( $attachment_id, 'woostify_video_url', $url );
 			update_post_meta( $attachment_id, 'woostify_video_autoplay', $autoplay );
 			update_post_meta( $attachment_id, 'woostify_video_mute', $mute );
@@ -184,9 +187,34 @@ if ( ! class_exists( 'Woostify_Product_Video' ) ) {
 					<div class="woostify-modal-body">
 						
 						<div class="woostify-form-group">
-							<label for="woostify-video-url"><?php esc_html_e( 'Video source', 'woostify' ); ?></label>
-							<input type="text" id="woostify-video-url" class="widefat" placeholder="https://www.youtube.com/...">
-							<p class="description"><?php esc_html_e( 'Enter YouTube video URL.', 'woostify' ); ?></p>
+							<label><?php esc_html_e( 'Video source', 'woostify' ); ?></label>
+							<div class="woostify-video-source-tabs">
+								<button type="button" class="woostify-tab-btn" data-tab="mp4"><?php esc_html_e( 'MP4', 'woostify' ); ?></button>
+								<button type="button" class="woostify-tab-btn active" data-tab="youtube"><?php esc_html_e( 'YouTube', 'woostify' ); ?></button>
+							</div>
+							<input type="hidden" id="woostify-video-source" value="youtube">
+						</div>
+
+						<div class="woostify-tab-content" id="woostify-tab-youtube">
+							<div class="woostify-form-group">
+								<label for="woostify-video-url"><?php esc_html_e( 'YouTube video URL', 'woostify' ); ?></label>
+								<input type="text" id="woostify-video-url" class="widefat" placeholder="https://www.youtube.com/...">
+								<p class="description"><?php esc_html_e( 'Example: https://youtu.be/LXb3EKWsInQ', 'woostify' ); ?></p>
+							</div>
+						</div>
+
+						<div class="woostify-tab-content" id="woostify-tab-mp4" style="display: none;">
+							<div class="woostify-form-group">
+								<label for="woostify-mp4-url"><?php esc_html_e( 'MP4 video file', 'woostify' ); ?></label>
+								<div class="woostify-mp4-upload-wrapper">
+									<input type="text" id="woostify-mp4-url" class="widefat" readonly placeholder="<?php esc_html_e( 'No file selected', 'woostify' ); ?>">
+									<button type="button" class="button" id="woostify-upload-mp4-btn">
+										<span class="dashicons dashicons-upload" style="margin-top: 3px;"></span> 
+										<?php esc_html_e( 'Upload', 'woostify' ); ?>
+									</button>
+								</div>
+								<p class="description"><?php esc_html_e( 'Upload a new or select (.mp4) video file from the media library.', 'woostify' ); ?></p>
+							</div>
 						</div>
 
 						<div class="woostify-form-group">
