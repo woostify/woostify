@@ -141,3 +141,15 @@
     background: #fff;
     transform: translate(-50%, -50%) scale(1.1) !important;
 }
+
+/* Suppress loading/error indicators on video slides */
+.image-item.has-video.is-loading::before,
+.image-item.has-video.is-loading::after,
+.image-item.has-video.is-error::before,
+.image-item.has-video.is-error::after,
+.image-item.has-video .easyzoom-notice,
+.image-item.has-video .easyzoom-flyout {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
