@@ -7067,8 +7067,8 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
   }
   .product-gallery.vertical-style.has-product-thumbnails .product-thumbnail-images {
     position: relative;
-    width: 50px;
-    min-width: 50px;
+    width: 80px;
+    min-width: 80px;
     margin-right: 20px;
     height: 100%;
   }
@@ -7188,7 +7188,7 @@ body:not(.yith-wcms-pro) .woostify-view-prev .w-view-prev-button.processing:not(
 .product-thumbnail-images .thumbnail-item {
   cursor: pointer;
   position: relative;
-  max-width: 70px;
+  max-width: 80px;
   width: 100%;
   margin-right: 10px;
 }

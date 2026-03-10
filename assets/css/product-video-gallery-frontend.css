@@ -1,0 +1,155 @@
+/**
+ * Product Video Gallery Frontend CSS
+ */
+
+.product-gallery .image-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.woostify-video-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    /* Rounded corners as requested */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.woostify-video-icon:hover {
+    background: #fff;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.woostify-video-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: #333;
+}
+
+/* Thumbnail icon (smaller) */
+.product-thumbnail-images .thumbnail-item {
+    position: relative;
+}
+
+.product-thumbnail-images .woostify-video-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.product-thumbnail-images .woostify-video-icon svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Main Image Video Container */
+/* Main Image Video Container */
+.woostify-product-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 100;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+    /* Ensure iframe prevents overflow */
+}
+
+.woostify-product-video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.woostify-product-video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+}
+
+/* Fix for Video Hover Overlay */
+.image-item.playing-video::after,
+.image-item.playing-video::before,
+.image-item.playing-video:hover::after,
+.image-item.playing-video:hover::before {
+    display: none !important;
+    opacity: 0 !important;
+    background: transparent !important;
+    content: none !important;
+}
+
+/* Prevent any hover effects on playing video */
+.image-item.playing-video {
+    pointer-events: none !important;
+}
+
+.image-item.playing-video .woostify-product-video-container {
+    pointer-events: auto !important;
+    /* Ensure video can be clicked to pause */
+}
+
+/* Ensure image is hidden but keeps space */
+.image-item.playing-video img {
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Prevent image transform on hover when video is playing */
+.image-item.playing-video:hover img {
+    transform: none !important;
+}
+
+/* Stabilize Play Icon */
+/* Stabilize Play Icon */
+/* We use more specific selector to potential override theme's default image hover effects */
+.product-gallery .image-item .woostify-video-icon {
+    top: 50% !important;
+    left: 50% !important;
+    margin: 0 !important;
+    transform: translate(-50%, -50%) !important;
+    /* Ensure no other transform or margin affects it */
+}
+
+.product-gallery .image-item:hover .woostify-video-icon {
+    top: 50% !important;
+    left: 50% !important;
+    margin: 0 !important;
+    transform: translate(-50%, -50%) scale(1.1) !important;
+}
+
+.woostify-video-icon:hover {
+    background: #fff;
+    transform: translate(-50%, -50%) scale(1.1) !important;
+}
+
+/* Suppress loading/error indicators on video slides */
+.image-item.has-video.is-loading::before,
+.image-item.has-video.is-loading::after,
+.image-item.has-video.is-error::before,
+.image-item.has-video.is-error::after,
+.image-item.has-video .easyzoom-notice,
+.image-item.has-video .easyzoom-flyout {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}

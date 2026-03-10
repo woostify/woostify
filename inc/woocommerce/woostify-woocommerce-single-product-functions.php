@@ -377,13 +377,32 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 		// Support <img> srcset attr.
 		$html_allowed                  = wp_kses_allowed_html( 'post' );
 		$html_allowed['img']['srcset'] = true;
+
+		// Video Data for Main Image
+		$main_video_source   = get_post_meta( $image_id, 'woostify_video_source', true );
+		$main_video_url      = get_post_meta( $image_id, 'woostify_video_url', true );
+		$main_video_autoplay = get_post_meta( $image_id, 'woostify_video_autoplay', true );
+		$main_video_mute     = get_post_meta( $image_id, 'woostify_video_mute', true );
+		$main_data_attr      = '';
+		$main_video_class    = '';
+		$main_icon_html      = '';
+
+		if ( $main_video_url ) {
+			$main_data_attr   = ' data-video-source="' . esc_attr( $main_video_source ) . '"';
+			$main_data_attr  .= ' data-video-url="' . esc_url( $main_video_url ) . '"';
+			$main_data_attr  .= ' data-video-autoplay="' . esc_attr( $main_video_autoplay ) . '"';
+			$main_data_attr  .= ' data-video-mute="' . esc_attr( $main_video_mute ) . '"';
+			$main_video_class = ' has-video';
+			$main_icon_html   = '<div class="woostify-video-icon woostify-video-icon-main">' . Woostify_Icon::fetch_svg_icon( 'control-play', false ) . '</div>';
+		}
 		?>
 
 		<div class="product-images">
 			<div class="product-images-container">
-				<figure class="image-item ez-zoom">
-					<a href="<?php echo esc_url( isset( $image_full_src[0] ) ? $image_full_src[0] : '#' ); ?>" data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
+				<figure class="image-item<?php echo esc_attr( $main_video_class ); ?><?php if ( ! $main_video_url ) echo ' ez-zoom'; ?>"<?php echo $main_data_attr; // phpcs:ignore ?>>
+					<a <?php if ( ! $main_video_url ) : ?>href="<?php echo esc_url( isset( $image_full_src[0] ) ? $image_full_src[0] : '#' ); ?>"<?php endif; ?> data-size="<?php echo esc_attr( $image_size ); ?>" data-elementor-open-lightbox="no">
 						<?php echo wp_kses( $product->get_image( 'woocommerce_single', array(), true ), $html_allowed ); ?>
+						<?php echo $main_icon_html; // phpcs:ignore ?>
 					</a>
 				</figure>
 				<?php
@@ -398,10 +417,29 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 						$g_image_size     = $g_full_img_src[1] . 'x' . $g_full_img_src[2];
 						$g_img_alt        = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
 						$g_img_srcset     = function_exists( 'wp_get_attachment_image_srcset' ) ? wp_get_attachment_image_srcset( $key, 'woocommerce_single' ) : '';
+
+						// Video Data
+						$video_source   = get_post_meta( $key, 'woostify_video_source', true );
+						$video_url      = get_post_meta( $key, 'woostify_video_url', true );
+						$video_autoplay = get_post_meta( $key, 'woostify_video_autoplay', true );
+						$video_mute     = get_post_meta( $key, 'woostify_video_mute', true );
+						$data_attr      = '';
+						$video_class    = '';
+						$icon_html      = '';
+
+						if ( $video_url ) {
+							$data_attr   = ' data-video-source="' . esc_attr( $video_source ) . '"';
+							$data_attr  .= ' data-video-url="' . esc_url( $video_url ) . '"';
+							$data_attr  .= ' data-video-autoplay="' . esc_attr( $video_autoplay ) . '"';
+							$data_attr  .= ' data-video-mute="' . esc_attr( $video_mute ) . '"';
+							$video_class = ' has-video';
+							$icon_html   = '<div class="woostify-video-icon woostify-video-icon-main">' . Woostify_Icon::fetch_svg_icon( 'control-play', false ) . '</div>';
+						}
 						?>
-						<figure class="image-item ez-zoom">
-							<a href="<?php echo esc_url( $g_full_img_src[0] ); ?>" data-size="<?php echo esc_attr( $g_image_size ); ?>" data-elementor-open-lightbox="no">
+						<figure class="image-item<?php echo esc_attr( $video_class ); ?><?php if ( ! $video_url ) echo ' ez-zoom'; ?>"<?php echo $data_attr; // phpcs:ignore ?>>
+							<a <?php if ( ! $video_url ) : ?>href="<?php echo esc_url( $g_full_img_src[0] ); ?>"<?php endif; ?> data-size="<?php echo esc_attr( $g_image_size ); ?>" data-elementor-open-lightbox="no">
 								<img width="<?php echo esc_attr( $g_medium_img_src[1] ); ?>" height="<?php echo esc_attr( $g_medium_img_src[2] ); ?>"  src="<?php echo esc_url( $g_medium_img_src[0] ); ?>" alt="<?php echo esc_attr( $g_img_alt ); ?>" srcset="<?php echo wp_kses_post( $g_img_srcset ); ?>">
+								<?php echo $icon_html; // phpcs:ignore ?>
 							</a>
 						</figure>
 						<?php
@@ -443,9 +481,17 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 		<div class="product-thumbnail-images">
 			<?php if ( ! empty( $gallery_id ) ) { ?>
 			<div class="product-thumbnail-images-container">
-				<?php if ( ! empty( $image_small_src ) ) { ?>
+				<?php if ( ! empty( $image_small_src ) ) {
+					// Video Data for Main Image Thumb
+					$main_video_url = get_post_meta( $image_id, 'woostify_video_url', true );
+					$main_icon_html = '';
+					if ( $main_video_url ) {
+						$main_icon_html = '<div class="woostify-video-icon">' . Woostify_Icon::fetch_svg_icon( 'control-play', false ) . '</div>';
+					}
+					?>
 					<div class="thumbnail-item">
 						<img src="<?php echo esc_url( $image_small_src[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
+						<?php echo $main_icon_html; // phpcs:ignore ?>
 					</div>
 				<?php } ?>
 
@@ -454,10 +500,18 @@ if ( ! function_exists( 'woostify_single_product_gallery_thumb_slide' ) ) {
 					$g_thumb_src = wp_get_attachment_image_src( $key, 'woocommerce_gallery_thumbnail' );
 					$g_thumb_alt = woostify_image_alt( $key, esc_attr__( 'Product image', 'woostify' ) );
 
+					// Video Data
+					$video_url = get_post_meta( $key, 'woostify_video_url', true );
+					$icon_html = '';
+					if ( $video_url ) {
+						$icon_html = '<div class="woostify-video-icon">' . Woostify_Icon::fetch_svg_icon( 'control-play', false ) . '</div>';
+					}
+
 					if ( ! empty( $g_thumb_src ) ) {
 						?>
 						<div class="thumbnail-item">
 							<img src="<?php echo esc_url( $g_thumb_src[0] ); ?>" alt="<?php echo esc_attr( $g_thumb_alt ); ?>">
+							<?php echo $icon_html; // phpcs:ignore ?>
 						</div>
 						<?php
 					}
@@ -582,7 +636,7 @@ if ( ! function_exists( 'woostify_modified_quantity_stock' ) ) {
 					} elseif ( $stock_display_format == 'no_amount' ) {
 						$stock_label = esc_html( sprintf( /* translators: In stock */ apply_filters( 'woostify_stock_message', __( 'In stock', 'woostify' ) ) ) );
 					}
-					
+
 					if ( $options['shop_single_stock_label'] ) {
 						?>
 							<span class="woostify-single-product-stock-label">
