@@ -899,7 +899,14 @@ if ( ! class_exists( 'Woostify' ) ) {
 					woostify_version(),
 					true
 				);
-			}
+
+			// Photoswipe video styles.
+			wp_enqueue_style(
+				'photoswipe-video',
+				WOOSTIFY_THEME_URI . 'assets/css/photoswipe-video.css',
+				array(),
+				woostify_version()
+			);			}
 
 			// Ajax single add to cart.
 			if ( $options['shop_single_ajax_add_to_cart'] ) {

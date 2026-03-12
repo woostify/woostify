@@ -1,0 +1,272 @@
+/* Video Button in Gallery */
+.woostify-add-video-btn {
+    display: block;
+    margin: 10px auto 0;
+    width: 100%;
+    text-align: center;
+    background: #007cba;
+    color: #fff;
+    border-color: #007cba;
+    padding: 0 10px;
+    height: 30px;
+    line-height: 28px;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: none;
+    border-radius: 3px;
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 0.2s ease;
+}
+
+.woostify-add-video-btn.has-video {
+    opacity: 1;
+    /* Always visible if video exists */
+}
+
+/* Ensure margin works for main image button which is after a potentially floated element */
+#postimagediv .woostify-add-video-btn {
+    margin-top: 10px;
+    clear: both;
+}
+
+/* Show on hover of the image container */
+#postimagediv .inside:hover .woostify-add-video-btn,
+#product_images_container .image:hover .woostify-add-video-btn {
+    opacity: 1;
+}
+
+.woostify-add-video-btn:hover {
+    background: #006ba1;
+    color: #fff;
+}
+
+#product_images_container .image .woostify-add-video-btn {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    width: auto;
+    z-index: 10;
+}
+
+/* Modal Styling */
+.woostify-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.woostify-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.woostify-modal-content {
+    background: #fff;
+    width: 500px;
+    max-width: 90%;
+    position: relative;
+    z-index: 2;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.woostify-modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.woostify-modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.woostify-modal-close {
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.woostify-modal-body {
+    padding: 20px;
+}
+
+.woostify-form-group {
+    margin-bottom: 20px;
+}
+
+.woostify-form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Video Source Tabs */
+.woostify-video-source-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 0;
+}
+
+.woostify-tab-btn {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    margin-right: -1px;
+    font-size: 13px;
+    color: #555;
+}
+
+.woostify-tab-btn:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.woostify-tab-btn:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-right: 0;
+}
+
+.woostify-tab-btn.active {
+    background: #007cba;
+    color: #fff;
+    border-color: #007cba;
+    z-index: 1;
+}
+
+/* MP4 Upload Styling */
+.woostify-mp4-upload-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.woostify-mp4-upload-wrapper input {
+    flex-grow: 1;
+}
+
+/* Audio Status Buttons */
+.woostify-video-audio-options {
+    display: flex;
+    gap: 0; /* Connected buttons */
+}
+
+.woostify-btn-audio {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    margin-right: -1px;
+    /* collapse borders */
+}
+
+.woostify-btn-audio:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.woostify-btn-audio:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-right: 0;
+}
+
+.woostify-btn-audio.active {
+    background: #007cba;
+    color: #fff;
+    border-color: #007cba;
+    z-index: 1;
+    /* bring to top for border */
+}
+
+/* Toggle Switch */
+.woostify-toggle-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.woostify-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.woostify-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.woostify-modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+    background: #f9f9f9;
+}

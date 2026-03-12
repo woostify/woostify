@@ -1209,7 +1209,10 @@ if ( ! function_exists( 'woostify_product_video_button_play' ) ) {
 		$product_id = $product->get_id();
 		$video_url  = woostify_get_metabox( $product_id, 'woostify_product_video_metabox' );
 
-		if ( 'default' !== $video_url ) {
+	if ( 'default' !== $video_url ) {
+			if ( false !== strpos( $video_url, '/shorts/' ) ) {
+				$video_url = str_replace( '/shorts/', '/watch?v=', $video_url );
+			}
 			$output .= '<a rel="nofollow" href="' . esc_url( $video_url ) . '" data-lity class="woostify-lightbox-button">' . Woostify_Icon::fetch_svg_icon( 'control-play', false ) . '</a>';
 		}
 
