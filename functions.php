@@ -37,12 +37,12 @@ if ( woostify_is_woocommerce_activated() ) {
 	require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-archive-product-functions.php';
 	require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-single-product-functions.php';
 	require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-query-update.php';
+	require_once WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-product-video.php';
 }
 
 // Woostify admin.
 require_once WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-admin.php';
 require_once WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-meta-boxes.php';
-require_once WOOSTIFY_THEME_DIR . 'inc/admin/class-woostify-product-video.php';
 
 // Compatibility.
 require_once WOOSTIFY_THEME_DIR . 'inc/compatibility/class-woostify-divi-builder.php';
