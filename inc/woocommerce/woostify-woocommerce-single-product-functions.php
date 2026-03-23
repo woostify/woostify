@@ -378,11 +378,28 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 		$html_allowed                  = wp_kses_allowed_html( 'post' );
 		$html_allowed['img']['srcset'] = true;
 
+		// Fetch Product Video Data
+		$product_videos = get_post_meta( $product->get_id(), 'woostify_product_video_data', true );
+
 		// Video Data for Main Image
-		$main_video_source   = get_post_meta( $image_id, 'woostify_video_source', true );
-		$main_video_url      = get_post_meta( $image_id, 'woostify_video_url', true );
-		$main_video_autoplay = get_post_meta( $image_id, 'woostify_video_autoplay', true );
-		$main_video_mute     = get_post_meta( $image_id, 'woostify_video_mute', true );
+		$main_video_source   = '';
+		$main_video_url      = '';
+		$main_video_autoplay = '';
+		$main_video_mute     = '';
+
+		if ( is_array( $product_videos ) && isset( $product_videos['featured']['url'] ) && ! empty( $product_videos['featured']['url'] ) ) {
+			$main_video_source   = isset( $product_videos['featured']['source'] ) ? $product_videos['featured']['source'] : 'youtube';
+			$main_video_url      = $product_videos['featured']['url'];
+			$main_video_autoplay = isset( $product_videos['featured']['autoplay'] ) ? $product_videos['featured']['autoplay'] : '';
+			$main_video_mute     = isset( $product_videos['featured']['mute'] ) ? $product_videos['featured']['mute'] : '';
+		} else {
+			// Fallback
+			$main_video_source   = get_post_meta( $image_id, 'woostify_video_source', true );
+			$main_video_url      = get_post_meta( $image_id, 'woostify_video_url', true );
+			$main_video_autoplay = get_post_meta( $image_id, 'woostify_video_autoplay', true );
+			$main_video_mute     = get_post_meta( $image_id, 'woostify_video_mute', true );
+		}
+
 		$main_data_attr      = '';
 		$main_video_class    = '';
 		$main_icon_html      = '';
@@ -419,10 +436,30 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 						$g_img_srcset     = function_exists( 'wp_get_attachment_image_srcset' ) ? wp_get_attachment_image_srcset( $key, 'woocommerce_single' ) : '';
 
 						// Video Data
-						$video_source   = get_post_meta( $key, 'woostify_video_source', true );
-						$video_url      = get_post_meta( $key, 'woostify_video_url', true );
-						$video_autoplay = get_post_meta( $key, 'woostify_video_autoplay', true );
-						$video_mute     = get_post_meta( $key, 'woostify_video_mute', true );
+						$video_source   = '';
+						$video_url      = '';
+						$video_autoplay = '';
+						$video_mute     = '';
+
+						if ( is_array( $product_videos ) && isset( $product_videos[ 'gallery_' . $key ]['url'] ) && ! empty( $product_videos[ 'gallery_' . $key ]['url'] ) ) {
+							$video_source   = isset( $product_videos[ 'gallery_' . $key ]['source'] ) ? $product_videos[ 'gallery_' . $key ]['source'] : 'youtube';
+							$video_url      = $product_videos[ 'gallery_' . $key ]['url'];
+							$video_autoplay = isset( $product_videos[ 'gallery_' . $key ]['autoplay'] ) ? $product_videos[ 'gallery_' . $key ]['autoplay'] : '';
+							$video_mute     = isset( $product_videos[ 'gallery_' . $key ]['mute'] ) ? $product_videos[ 'gallery_' . $key ]['mute'] : '';
+						} else {
+							// Check fallback ONLY if the image does not also have a product-level featured setting acting as a false positive
+							// That is, if this image is the featured image, we don't want its fallback meta to leak into its gallery instance if the gallery instance has no video.
+							// But actually, we already check 'gallery_'.$key. If the user didn't set a video for 'gallery_'.$key, it should NOT have a video, even if it has a fallback.
+							// However, if we do that, we break backward compatibility for people who set videos the old way.
+							// So we SHOULD fallback, but how do we know if they explicitly removed it?
+							// If they explicitly removed it, the JS deletes the attachment meta ANYWAY! So the fallback becomes empty!
+							// So we can still safely check the fallback.
+							$video_source   = get_post_meta( $key, 'woostify_video_source', true );
+							$video_url      = get_post_meta( $key, 'woostify_video_url', true );
+							$video_autoplay = get_post_meta( $key, 'woostify_video_autoplay', true );
+							$video_mute     = get_post_meta( $key, 'woostify_video_mute', true );
+						}
+
 						$data_attr      = '';
 						$video_class    = '';
 						$icon_html      = '';

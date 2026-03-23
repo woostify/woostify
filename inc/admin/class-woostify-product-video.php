@@ -37,6 +37,7 @@ if ( ! class_exists( 'Woostify_Product_Video' ) ) {
 			add_action( 'admin_footer', array( $this, 'modal_markup' ) );
 			add_action( 'wp_ajax_woostify_get_attachment_video_data', array( $this, 'get_attachment_video_data' ) );
 			add_action( 'wp_ajax_woostify_save_attachment_video_data', array( $this, 'save_attachment_video_data' ) );
+			add_action( 'wp_ajax_woostify_clear_attachment_video_data', array( $this, 'clear_attachment_video_data' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ) );
 		}
 
@@ -97,17 +98,23 @@ if ( ! class_exists( 'Woostify_Product_Video' ) ) {
 			if ( $post ) {
 				$product = wc_get_product( $post->ID );
 				if ( $product ) {
-					$attachment_ids = $product->get_gallery_image_ids();
+					$gallery_ids = $product->get_gallery_image_ids();
 					$thumbnail_id   = $product->get_image_id();
+                    
+					$product_videos = get_post_meta( $post->ID, 'woostify_product_video_data', true );
+
 					if ( $thumbnail_id ) {
-						$attachment_ids[] = $thumbnail_id;
+						$url = get_post_meta( $thumbnail_id, 'woostify_video_url', true );
+						if ( ( is_array( $product_videos ) && isset( $product_videos['featured']['url'] ) && ! empty( $product_videos['featured']['url'] ) ) || ! empty( $url ) ) {
+							$video_map['featured'] = true;
+						}
 					}
 
-					if ( ! empty( $attachment_ids ) ) {
-						foreach ( $attachment_ids as $att_id ) {
+					if ( ! empty( $gallery_ids ) ) {
+						foreach ( $gallery_ids as $att_id ) {
 							$url = get_post_meta( $att_id, 'woostify_video_url', true );
-							if ( ! empty( $url ) ) {
-								$video_map[ $att_id ] = true;
+							if ( ( is_array( $product_videos ) && isset( $product_videos[ 'gallery_' . $att_id ]['url'] ) && ! empty( $product_videos[ 'gallery_' . $att_id ]['url'] ) ) || ! empty( $url ) ) {
+								$video_map[ 'gallery_' . $att_id ] = true;
 							}
 						}
 					}
@@ -131,15 +138,27 @@ if ( ! class_exists( 'Woostify_Product_Video' ) ) {
 			check_ajax_referer( 'woostify_product_video_gallery_nonce', 'nonce' );
 
 			$attachment_id = isset( $_POST['attachment_id'] ) ? absint( $_POST['attachment_id'] ) : 0;
+			$product_id    = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
+			$context       = isset( $_POST['context'] ) ? sanitize_text_field( $_POST['context'] ) : '';
+
 			if ( ! $attachment_id ) {
 				wp_send_json_error( 'Invalid attachment ID' );
 			}
 
+			// Check product-level video meta first
+			if ( $product_id && $context ) {
+				$product_videos = get_post_meta( $product_id, 'woostify_product_video_data', true );
+				if ( is_array( $product_videos ) && isset( $product_videos[ $context ] ) && ! empty( $product_videos[ $context ]['url'] ) ) {
+					wp_send_json_success( $product_videos[ $context ] );
+				}
+			}
+
+			// Fallback to attachment meta
 			$data = array(
-				'source'        => get_post_meta( $attachment_id, 'woostify_video_source', true ),
-				'url'           => get_post_meta( $attachment_id, 'woostify_video_url', true ),
-				'autoplay'      => get_post_meta( $attachment_id, 'woostify_video_autoplay', true ),
-				'mute'          => get_post_meta( $attachment_id, 'woostify_video_mute', true ),
+				'source'   => get_post_meta( $attachment_id, 'woostify_video_source', true ),
+				'url'      => get_post_meta( $attachment_id, 'woostify_video_url', true ),
+				'autoplay' => get_post_meta( $attachment_id, 'woostify_video_autoplay', true ),
+				'mute'     => get_post_meta( $attachment_id, 'woostify_video_mute', true ),
 			);
 
 			wp_send_json_success( $data );
@@ -152,21 +171,71 @@ if ( ! class_exists( 'Woostify_Product_Video' ) ) {
 			check_ajax_referer( 'woostify_product_video_gallery_nonce', 'nonce' );
 
 			$attachment_id = isset( $_POST['attachment_id'] ) ? absint( $_POST['attachment_id'] ) : 0;
+			$product_id    = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
+			$context       = isset( $_POST['context'] ) ? sanitize_text_field( $_POST['context'] ) : '';
+
 			if ( ! $attachment_id ) {
 				wp_send_json_error( 'Invalid attachment ID' );
 			}
 
-			$source        = isset( $_POST['source'] ) ? sanitize_text_field( $_POST['source'] ) : 'youtube';
-			$url           = isset( $_POST['url'] ) ? sanitize_text_field( $_POST['url'] ) : '';
-			$autoplay      = isset( $_POST['autoplay'] ) ? sanitize_text_field( $_POST['autoplay'] ) : '';
-			$mute          = isset( $_POST['mute'] ) ? sanitize_text_field( $_POST['mute'] ) : '';
+			$source   = isset( $_POST['source'] ) ? sanitize_text_field( $_POST['source'] ) : 'youtube';
+			$url      = isset( $_POST['url'] ) ? sanitize_text_field( $_POST['url'] ) : '';
+			$autoplay = isset( $_POST['autoplay'] ) ? sanitize_text_field( $_POST['autoplay'] ) : '';
+			$mute     = isset( $_POST['mute'] ) ? sanitize_text_field( $_POST['mute'] ) : '';
 
+			if ( $product_id && $context ) {
+				$product_videos = get_post_meta( $product_id, 'woostify_product_video_data', true );
+				if ( ! is_array( $product_videos ) ) {
+					$product_videos = array();
+				}
+
+				$product_videos[ $context ] = array(
+					'source'   => $source,
+					'url'      => $url,
+					'autoplay' => $autoplay,
+					'mute'     => $mute,
+				);
+
+				update_post_meta( $product_id, 'woostify_product_video_data', $product_videos );
+				wp_send_json_success( 'Saved successfully' );
+			}
+
+			// Fallback (save to attachment as well if product context is missing)
 			update_post_meta( $attachment_id, 'woostify_video_source', $source );
 			update_post_meta( $attachment_id, 'woostify_video_url', $url );
 			update_post_meta( $attachment_id, 'woostify_video_autoplay', $autoplay );
 			update_post_meta( $attachment_id, 'woostify_video_mute', $mute );
 
 			wp_send_json_success( 'Saved successfully' );
+		}
+
+		/**
+		 * Clear Attachment Video Data
+		 */
+		public function clear_attachment_video_data() {
+			check_ajax_referer( 'woostify_product_video_gallery_nonce', 'nonce' );
+
+			$attachment_id = isset( $_POST['attachment_id'] ) ? absint( $_POST['attachment_id'] ) : 0;
+			$product_id    = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
+			$context       = isset( $_POST['context'] ) ? sanitize_text_field( $_POST['context'] ) : '';
+
+			if ( $product_id && $context ) {
+				$product_videos = get_post_meta( $product_id, 'woostify_product_video_data', true );
+				if ( is_array( $product_videos ) && isset( $product_videos[ $context ] ) ) {
+					unset( $product_videos[ $context ] );
+					update_post_meta( $product_id, 'woostify_product_video_data', $product_videos );
+				}
+			}
+
+			// Also clear fallback data on attachment
+			if ( $attachment_id ) {
+				delete_post_meta( $attachment_id, 'woostify_video_source' );
+				delete_post_meta( $attachment_id, 'woostify_video_url' );
+				delete_post_meta( $attachment_id, 'woostify_video_autoplay' );
+				delete_post_meta( $attachment_id, 'woostify_video_mute' );
+			}
+
+			wp_send_json_success( 'Cleared successfully' );
 		}
 
 		/**
