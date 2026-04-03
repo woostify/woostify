@@ -1120,6 +1120,10 @@ if ( ! function_exists( 'woostify_change_sale_flash' ) ) {
 	 * Change sale flash
 	 */
 	function woostify_change_sale_flash() {
+		if ( defined( 'WOOSTIFY_PRO_PRODUCT_LABEL' ) ) {
+			return;
+		}
+
 		global $product;
 		if ( ! $product || ! is_object( $product ) || class_exists( 'BM_Price' ) ) {
 			return;
