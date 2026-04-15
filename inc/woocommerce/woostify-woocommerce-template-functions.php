@@ -189,7 +189,7 @@ if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold_produ
 		if ( ! isset( $_POST['product_id'] ) || ! isset( $_POST['qty'] ) ) {
 			wp_send_json_error();
 		}
-		
+
 		$product_id = $_POST['product_id'];
 		$quantity = $_POST['qty'];
 		$options                    = woostify_options( false );
@@ -288,7 +288,7 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 				}else{
 					?>
 					<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
-					<?php			
+					<?php
 				}
 				?>
 
@@ -487,7 +487,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 
 									if( class_exists( 'WC_Min_Max_Quantities' )  ){
 										$_product_id = $_product->get_id();
-										
+
 										if( $_product->is_type( 'variation' ) ){
 											$variation_id = $_product->get_id();
 											$parent_variable_id = $_product->get_parent_id();
@@ -552,7 +552,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 										}else{
 											$min_quantity = (  ! isset( $minimum_quantity ) || $minimum_quantity == 0 )? $group_of_quantity : 1;
 										}
-										
+
 										if( $maximum_quantity ){
 											if( $_product->managing_stock() && $_product->backorders_allowed() ){
 												$max_quantity = $maximum_quantity;
@@ -565,7 +565,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 									}
 
 									if( function_exists( 'tpt_initFreemius' ) ){
-										$_product_id = $_product->get_id();										
+										$_product_id = $_product->get_id();
 
 										//start get id custom post type tpt-global-rule by product id
 											$post_tpt_global_rule_id = 0;
@@ -589,7 +589,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 											}
 											wp_reset_postdata();
 										// start get id custom post type tpt-global-rule by product id
-										
+
 										if( $_product->is_type( 'variation' ) ){
 											$variation_id = $_product->get_id();
 											$parent_variable_id = $_product->get_parent_id();
@@ -601,7 +601,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 											$variation_minimum_quantity  = absint( get_post_meta( $variation_id, '_tiered_price_minimum_qty', true ) );
 											$variation_maximum_quantity  = absint( get_post_meta( $variation_id, '_tiered_pricing_maximum_quantity', true ) );
 											$variation_group_of_quantity = absint( get_post_meta( $variation_id, '_tiered_pricing_group_of_quantity', true ) );
-											
+
 											if ( $variation_minimum_quantity ) {
 												$minimum_quantity = $variation_minimum_quantity;
 											}
@@ -622,7 +622,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 
 												if ( $min_quantity_rules ) {
 													$minimum_quantity = $min_quantity_rules;
-												}						
+												}
 
 												if ( $group_of_quantity_rules ) {
 													$group_of_quantity = $group_of_quantity_rules;
@@ -647,7 +647,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 
 												if ( $min_quantity_rules ) {
 													$minimum_quantity = $min_quantity_rules;
-												}						
+												}
 
 												if ( $group_of_quantity_rules ) {
 													$group_of_quantity = $group_of_quantity_rules;
@@ -671,7 +671,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 										}else{
 											$min_quantity = (  ! isset( $minimum_quantity ) || $minimum_quantity == 0 )? $group_of_quantity : 1;
 										}
-										
+
 										if( $maximum_quantity ){
 											if( $_product->managing_stock() && $_product->backorders_allowed() ){
 												$max_quantity = $maximum_quantity;
@@ -684,55 +684,55 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 									}
 
 									if ( get_post_meta( $product_id, '_backorders', true ) != 'no' ) {
-			
+
 										?>
-										<input type="number" 
-											data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" 
-											class="input-text qty" 
-											step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>" 
-											min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>" 
-											max="" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" 
-											inputmode="numeric" 
+										<input type="number"
+											data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>"
+											class="input-text qty"
+											step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>"
+											min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>"
+											max="" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
+											inputmode="numeric"
 											<?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
 										>
 										<?php
 									}else{
 										if( class_exists( 'WC_Min_Max_Quantities' )  ){
 											?>
-											<input type="number" 
-												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" 
-												class="input-text qty" 
-												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>" 
-												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>" 
-												max="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_max', $max_quantity, $_product ) ); ?>" 
-												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" 
-												inputmode="numeric" 
+											<input type="number"
+												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>"
+												class="input-text qty"
+												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>"
+												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>"
+												max="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_max', $max_quantity, $_product ) ); ?>"
+												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
+												inputmode="numeric"
 												<?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
 											>
 											<?php
 										}elseif( function_exists( 'tpt_initFreemius' ) ){
 											?>
-											<input type="number" 
-												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" 
-												class="input-text qty" 
-												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>" 
-												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>" 
-												max="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_max', $max_quantity, $_product ) ); ?>" 
-												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" 
-												inputmode="numeric" 
+											<input type="number"
+												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>"
+												class="input-text qty"
+												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>"
+												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>"
+												max="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_max', $max_quantity, $_product ) ); ?>"
+												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
+												inputmode="numeric"
 												<?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
 											>
-											<?php											
+											<?php
 										}else{
 											?>
-											<input type="number" 
-												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" 
+											<input type="number"
+												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>"
 												data-variation_id="<?php echo esc_attr( $variation_id ); ?>"
-												class="input-text qty" 
-												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>" 
-												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>" 
-												max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" 
-												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" 
+												class="input-text qty"
+												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $_product ) ); ?>"
+												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product ) ); ?>"
+												max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>"
+												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
 												inputmode="numeric" <?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
 											>
 											<?php
@@ -1802,7 +1802,7 @@ if ( ! function_exists( 'woostify_wc_custom_product_search_form' ) ) {
 
 		$index = $product_search_form_index++;
 
-		$output  = '<form role="search" method="get" class="woocommerce-product-search" action="' . esc_url( get_site_url( '/' ) ) . '">';
+		$output  = '<form role="search" method="get" class="woocommerce-product-search" action="' . esc_url( home_url( '/' ) ) . '">';
 		$output .= '<label class="screen-reader-text" for="woocommerce-product-search-field-' . absint( $index ) . '">' . esc_html__( 'Search for:', 'woostify' ) . '></label>';
 		$output .= '<input type="search" id="woocommerce-product-search-field-' . absint( $index ) . '" class="search-field" placeholder="' . esc_attr__( 'Search products&hellip;', 'woostify' ) . '" value="' . get_search_query() . '" name="s" />';
 		$output .= '<button type="submit" value="' . esc_attr_x( 'Search', 'submit button', 'woostify' ) . '">' . esc_html_x( 'Search', 'submit button', 'woostify' ) . '</button>';
