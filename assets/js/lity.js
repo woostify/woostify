@@ -616,6 +616,14 @@
             target = opener.data('lity-target') || opener.attr('href') || opener.attr('src');
         }
 
+        // Sanitize target to prevent XSS script injection via href/src
+        if (typeof target === 'string') {
+            var cleanTarget = target.trim().toLowerCase();
+            if (cleanTarget.indexOf('javascript:') === 0 || cleanTarget.indexOf('vbscript:') === 0 || cleanTarget.indexOf('data:') === 0) {
+                return;
+            }
+        }
+
         var instance = new Lity(
             target,
             $.extend(
