@@ -139,7 +139,10 @@
 
     function imageHandler(target, instance) {
         var desc = (instance.opener() && instance.opener().data('lity-desc')) || 'Image with no description';
-        var img = $('<img src="' + target + '" alt="' + desc + '"/>');
+        var img = $('<img/>').attr({
+            src: target,
+            alt: desc
+        });
         var deferred = _deferred();
         var failed = function() {
             deferred.reject(error('Failed loading image'));
@@ -293,7 +296,9 @@
     }
 
     function iframeHandler(target) {
-        return '<div class="lity-iframe-container"><iframe frameborder="0" allowfullscreen allow="autoplay; fullscreen" src="' + target + '"/></div>';
+        return $('<div class="lity-iframe-container">').append(
+            $('<iframe frameborder="0" allowfullscreen allow="autoplay; fullscreen"/>').attr('src', target)
+        );
     }
 
     function winHeight() {
@@ -609,6 +614,14 @@
             target.preventDefault();
             opener = $(this);
             target = opener.data('lity-target') || opener.attr('href') || opener.attr('src');
+        }
+
+        // Sanitize target to prevent XSS script injection via href/src
+        if (typeof target === 'string') {
+            var cleanTarget = target.trim().toLowerCase();
+            if (cleanTarget.indexOf('javascript:') === 0 || cleanTarget.indexOf('vbscript:') === 0 || cleanTarget.indexOf('data:') === 0) {
+                return;
+            }
         }
 
         var instance = new Lity(
