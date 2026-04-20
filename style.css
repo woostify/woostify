@@ -2825,7 +2825,7 @@ dd {
   direction: rtl;
 }
 
-.no-sidebar:not(.site-boxed-container) .alignfull {
+.no-sidebar:not(.site-boxed-container) .alignfull:not(.is_wcb_container_child) {
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   max-width: 100vw;
