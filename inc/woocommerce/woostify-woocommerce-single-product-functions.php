@@ -399,6 +399,10 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 			$main_video_autoplay = get_post_meta( $image_id, 'woostify_video_autoplay', true );
 			$main_video_mute     = get_post_meta( $image_id, 'woostify_video_mute', true );
 		}
+		
+		if ( false !== strpos( $main_video_url, '/shorts/' ) ) {
+			$main_video_url = str_replace( '/shorts/', '/watch?v=', $main_video_url );
+		}
 
 		$main_data_attr      = '';
 		$main_video_class    = '';
@@ -458,6 +462,10 @@ if ( ! function_exists( 'woostify_single_product_gallery_image_slide' ) ) {
 							$video_url      = get_post_meta( $key, 'woostify_video_url', true );
 							$video_autoplay = get_post_meta( $key, 'woostify_video_autoplay', true );
 							$video_mute     = get_post_meta( $key, 'woostify_video_mute', true );
+						}
+
+						if ( false !== strpos( $video_url, '/shorts/' ) ) {
+							$video_url = str_replace( '/shorts/', '/watch?v=', $video_url );
 						}
 
 						$data_attr      = '';
