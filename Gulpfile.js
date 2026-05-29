@@ -8,7 +8,7 @@
 
 let theme       = 'woostify',
 	site_name   = 'dev',
-	theme_ver   = '2.5.1',
+	theme_ver   = '2.5.2',
 	gulp        = require( 'gulp' ),
 	zip         = require( 'gulp-zip' ),
 	autoLoad    = require( 'gulp-load-plugins' )(),
@@ -160,6 +160,7 @@ let _zip = ( done ) => {
 			'!./{assets/css/sass,assets/css/sass/**/*}',
 			'!./{assets/css/rtl,assets/css/rtl/**/*}',
 			'!./assets/css/admin/**/*.scss}',
+			'!./Gulpfile.cjs',
 			'!./Gulpfile.js'
 		]
 	)
