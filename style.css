@@ -3532,7 +3532,7 @@ article p:last-child {
 .topbar-slider .marquee-slider{
   display: flex;
 }
-.topbar-slider .slick-slider{
+.topbar-slider .slick-slider:not(.slick-initialized){
   display: flex;
 }
 .topbar-slider .slider .slick-track{
@@ -3543,6 +3543,7 @@ article p:last-child {
   white-space: normal;
   margin: 0;
   padding: 0 1.5vw;
+  min-width: 0;
 }
 .topbar-slider .slider .text-scroll{
   width: 100%;
