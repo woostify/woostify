@@ -272,6 +272,251 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 			$stock_quantity = get_post_meta( $product_id, '_onpreorder_maximum_order', true );
 		}
 
+		$step_quantity = 1;
+		$min_quantity  = $product->get_min_purchase_quantity();
+		$max_quantity  = $stock_quantity ? $stock_quantity : '';
+
+		if ( class_exists( 'WC_Min_Max_Quantities' ) ) {
+			$_product_id = $product->get_id();
+
+			if ( $product->is_type( 'variation' ) ) {
+				$variation_id       = $product->get_id();
+				$parent_variable_id = $product->get_parent_id();
+
+				$group_of_quantity = absint( get_post_meta( $parent_variable_id, 'group_of_quantity', true ) );
+				$minimum_quantity  = absint( get_post_meta( $parent_variable_id, 'minimum_allowed_quantity', true ) );
+				$maximum_quantity  = absint( get_post_meta( $parent_variable_id, 'maximum_allowed_quantity', true ) );
+				$allow_combination = 'yes' === get_post_meta( $parent_variable_id, 'allow_combination', true );
+				$min_max_rules     = get_post_meta( $variation_id, 'min_max_rules', true );
+
+				if ( 'no' === $min_max_rules || empty( $min_max_rules ) ) {
+					$min_max_rules = false;
+				} else {
+					$min_max_rules = true;
+				}
+
+				$variation_minimum_quantity  = absint( get_post_meta( $variation_id, 'variation_minimum_allowed_quantity', true ) );
+				$variation_maximum_quantity  = absint( get_post_meta( $variation_id, 'variation_maximum_allowed_quantity', true ) );
+				$variation_group_of_quantity = absint( get_post_meta( $variation_id, 'variation_group_of_quantity', true ) );
+
+				if ( $min_max_rules && ! $allow_combination && $variation_minimum_quantity ) {
+					$minimum_quantity = $variation_minimum_quantity;
+				}
+				if ( $min_max_rules && ! $allow_combination && $variation_maximum_quantity ) {
+					$maximum_quantity = $variation_maximum_quantity;
+				}
+				if ( $min_max_rules && ! $allow_combination && $variation_group_of_quantity ) {
+					$group_of_quantity = $variation_group_of_quantity;
+				}
+				if ( $allow_combination ) {
+					$group_of_quantity = 1;
+					$minimum_quantity  = 1;
+				}
+			} else {
+				$group_of_quantity = absint( get_post_meta( $_product_id, 'group_of_quantity', true ) );
+				$minimum_quantity  = absint( get_post_meta( $_product_id, 'minimum_allowed_quantity', true ) );
+				$maximum_quantity  = absint( get_post_meta( $_product_id, 'maximum_allowed_quantity', true ) );
+			}
+
+			$step_quantity = ( $group_of_quantity !== 0 ) ? $group_of_quantity : 1;
+
+			if ( isset( $minimum_quantity ) && $minimum_quantity !== 0 ) {
+				if ( $product->managing_stock() && ! $product->backorders_allowed() && absint( $minimum_quantity ) > $stock_quantity ) {
+					$min_quantity = $stock_quantity;
+				} else {
+					$min_quantity = $minimum_quantity;
+				}
+			} else {
+				$min_quantity = ( ! isset( $minimum_quantity ) || $minimum_quantity == 0 ) ? $group_of_quantity : 1;
+			}
+
+			if ( $maximum_quantity ) {
+				if ( $product->managing_stock() && $product->backorders_allowed() ) {
+					$max_quantity = $maximum_quantity;
+				} elseif ( $product->managing_stock() && absint( $maximum_quantity ) > $stock_quantity ) {
+					$max_quantity = $stock_quantity;
+				} else {
+					$max_quantity = $maximum_quantity;
+				}
+			}
+		}
+
+		if ( function_exists( 'tpt_initFreemius' ) ) {
+			$_product_id = $product->get_id();
+
+			$post_tpt_global_rule_id = 0;
+			$args = array(
+				'post_type' => 'tpt-global-rule',
+				'meta_query' => array(
+					array(
+						'key' => '_tpt_included_products',
+						'value' => $product_id,
+						'compare' => 'LIKE'
+					),
+				),
+				'posts_per_page' => 1,
+			);
+			$query = new WP_Query($args);
+			if ($query->have_posts()) {
+				while ($query->have_posts()) {
+					$query->the_post();
+					$post_tpt_global_rule_id = get_the_ID();
+				}
+			}
+			wp_reset_postdata();
+
+			if ( $product->is_type( 'variation' ) ) {
+				$variation_id = $product->get_id();
+				$parent_variable_id = $product->get_parent_id();
+
+				$group_of_quantity = absint( get_post_meta( $parent_variable_id, '_tiered_pricing_group_of_quantity', true ) );
+				$minimum_quantity  = absint( get_post_meta( $parent_variable_id, '_tiered_price_minimum_qty', true ) );
+				$maximum_quantity  = absint( get_post_meta( $parent_variable_id, '_tiered_pricing_maximum_quantity', true ) );
+
+				$variation_minimum_quantity  = absint( get_post_meta( $variation_id, '_tiered_price_minimum_qty', true ) );
+				$variation_maximum_quantity  = absint( get_post_meta( $variation_id, '_tiered_pricing_maximum_quantity', true ) );
+				$variation_group_of_quantity = absint( get_post_meta( $variation_id, '_tiered_pricing_group_of_quantity', true ) );
+
+				if ( $variation_minimum_quantity ) {
+					$minimum_quantity = $variation_minimum_quantity;
+				}
+				if ( $variation_maximum_quantity ) {
+					$maximum_quantity = $variation_maximum_quantity;
+				}
+				if ( $variation_group_of_quantity ) {
+					$group_of_quantity = $variation_group_of_quantity;
+				}
+
+				if ($post_tpt_global_rule_id) {
+					$min_quantity_rules = absint(get_post_meta( $post_tpt_global_rule_id, '_tpt_minimum', true ));
+					$group_of_quantity_rules = absint(get_post_meta( $post_tpt_global_rule_id, '_tiered_pricing_group_of_quantity', true ));
+					$max_quantity_rules = absint(get_post_meta( $post_tpt_global_rule_id, '_tiered_pricing_maximum_quantity', true ));
+
+					if ( $min_quantity_rules ) {
+						$minimum_quantity = $min_quantity_rules;
+					}
+					if ( $group_of_quantity_rules ) {
+						$group_of_quantity = $group_of_quantity_rules;
+					}
+					if ( $max_quantity_rules ) {
+						$maximum_quantity = $max_quantity_rules;
+					}
+				}
+			} else {
+				$group_of_quantity = absint( get_post_meta( $_product_id, '_tiered_pricing_group_of_quantity', true ) );
+				$minimum_quantity  = absint( get_post_meta( $_product_id, '_tiered_price_minimum_qty', true ) );
+				$maximum_quantity  = absint( get_post_meta( $_product_id, '_tiered_pricing_maximum_quantity', true ) );
+
+				if ($post_tpt_global_rule_id) {
+					$min_quantity_rules = absint(get_post_meta( $post_tpt_global_rule_id, '_tpt_minimum', true ));
+					$group_of_quantity_rules = absint(get_post_meta( $post_tpt_global_rule_id, '_tiered_pricing_group_of_quantity', true ));
+					$max_quantity_rules = absint(get_post_meta( $post_tpt_global_rule_id, '_tiered_pricing_maximum_quantity', true ));
+
+					if ( $min_quantity_rules ) {
+						$minimum_quantity = $min_quantity_rules;
+					}
+					if ( $group_of_quantity_rules ) {
+						$group_of_quantity = $group_of_quantity_rules;
+					}
+					if ( $max_quantity_rules ) {
+						$maximum_quantity = $max_quantity_rules;
+					}
+				}
+			}
+
+			$step_quantity = ($group_of_quantity !== 0) ? $group_of_quantity : 1;
+
+			if ( isset( $minimum_quantity ) && $minimum_quantity !== 0 ) {
+				if ( $product->managing_stock() && ! $product->backorders_allowed() && absint( $minimum_quantity ) > $stock_quantity ) {
+					$min_quantity = $stock_quantity;
+				} else {
+					$min_quantity = $minimum_quantity;
+				}
+			} else {
+				$min_quantity = ( ! isset( $minimum_quantity ) || $minimum_quantity == 0 ) ? $group_of_quantity : 1;
+			}
+
+			if ( $maximum_quantity ) {
+				if ( $product->managing_stock() && $product->backorders_allowed() ) {
+					$max_quantity = $maximum_quantity;
+				} elseif ( $product->managing_stock() && absint( $maximum_quantity ) > $stock_quantity ) {
+					$max_quantity = $stock_quantity;
+				} else {
+					$max_quantity = $maximum_quantity;
+				}
+			}
+		}
+
+		$_product_id = $product->get_id();
+		$wcmmq_min   = get_post_meta( $_product_id, '_wcmmq_min_qty', true );
+		if ( $wcmmq_min === '' || $wcmmq_min === false ) {
+			$wcmmq_min = get_post_meta( $_product_id, '_wcmmq_s_min_quantity', true );
+		}
+		$wcmmq_max   = get_post_meta( $_product_id, '_wcmmq_max_qty', true );
+		if ( $wcmmq_max === '' || $wcmmq_max === false ) {
+			$wcmmq_max = get_post_meta( $_product_id, '_wcmmq_s_max_quantity', true );
+		}
+		$wcmmq_step  = get_post_meta( $_product_id, '_wcmmq_step', true );
+		if ( $wcmmq_step === '' || $wcmmq_step === false ) {
+			$wcmmq_step = get_post_meta( $_product_id, '_wcmmq_s_product_step', true );
+			if ( $wcmmq_step === '' || $wcmmq_step === false ) {
+				$wcmmq_step = get_post_meta( $_product_id, '_wcmmq_s_step_quantity', true );
+			}
+		}
+
+		if ( $product->is_type( 'variation' ) ) {
+			$parent_variable_id = $product->get_parent_id();
+			if ( $wcmmq_min === '' || $wcmmq_min === false ) {
+				$wcmmq_min = get_post_meta( $parent_variable_id, '_wcmmq_min_qty', true );
+				if ( $wcmmq_min === '' || $wcmmq_min === false ) {
+					$wcmmq_min = get_post_meta( $parent_variable_id, '_wcmmq_s_min_quantity', true );
+				}
+			}
+			if ( $wcmmq_max === '' || $wcmmq_max === false ) {
+				$wcmmq_max = get_post_meta( $parent_variable_id, '_wcmmq_max_qty', true );
+				if ( $wcmmq_max === '' || $wcmmq_max === false ) {
+					$wcmmq_max = get_post_meta( $parent_variable_id, '_wcmmq_s_max_quantity', true );
+				}
+			}
+			if ( $wcmmq_step === '' || $wcmmq_step === false ) {
+				$wcmmq_step = get_post_meta( $parent_variable_id, '_wcmmq_step', true );
+				if ( $wcmmq_step === '' || $wcmmq_step === false ) {
+					$wcmmq_step = get_post_meta( $parent_variable_id, '_wcmmq_s_product_step', true );
+					if ( $wcmmq_step === '' || $wcmmq_step === false ) {
+						$wcmmq_step = get_post_meta( $parent_variable_id, '_wcmmq_s_step_quantity', true );
+					}
+				}
+			}
+		}
+
+		$is_wcmmq_active = ( $wcmmq_step !== '' && $wcmmq_step !== false && intval( $wcmmq_step ) > 0 ) || ( $wcmmq_min !== '' && $wcmmq_min !== false && intval( $wcmmq_min ) > 0 ) || ( $wcmmq_max !== '' && $wcmmq_max !== false && intval( $wcmmq_max ) > 0 );
+
+		if ( $is_wcmmq_active ) {
+			if ( $wcmmq_step !== '' && $wcmmq_step !== false && intval( $wcmmq_step ) > 0 ) {
+				$step_quantity = intval( $wcmmq_step );
+			}
+			if ( $wcmmq_min !== '' && $wcmmq_min !== false && intval( $wcmmq_min ) >= 0 ) {
+				if ( $product->managing_stock() && ! $product->backorders_allowed() && absint( $wcmmq_min ) > $stock_quantity ) {
+					$min_quantity = $stock_quantity;
+				} else {
+					$min_quantity = intval( $wcmmq_min );
+				}
+			}
+			if ( $wcmmq_max !== '' && $wcmmq_max !== false && intval( $wcmmq_max ) > 0 ) {
+				if ( $product->managing_stock() && $product->backorders_allowed() ) {
+					$max_quantity = intval( $wcmmq_max );
+				} elseif ( $product->managing_stock() && absint( $wcmmq_max ) > $stock_quantity ) {
+					$max_quantity = $stock_quantity;
+				} else {
+					$max_quantity = intval( $wcmmq_max );
+				}
+			}
+		}
+
+		$is_min_max_active = class_exists( 'WC_Min_Max_Quantities' );
+		$is_tpt_active     = function_exists( 'tpt_initFreemius' );
+		$bypass_filters    = $is_min_max_active || $is_tpt_active || $is_wcmmq_active;
+
 		ob_start();
 		?>
 		<span class="mini-cart-product-infor">
@@ -282,12 +527,17 @@ if ( ! function_exists( 'woostify_update_quantity_mini_cart' ) ) {
 
 				<?php
 				if ( get_post_meta( $product_id, '_backorders', true ) != 'no' ) {
+					$input_step = $bypass_filters ? $step_quantity : apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $product );
+					$input_min  = $bypass_filters ? $min_quantity : apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $product );
 					?>
-					<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ) ); ?>" max="" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+					<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( $input_step ); ?>" min="<?php echo esc_attr( $input_min ); ?>" max="" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
 					<?php
 				}else{
+					$input_step = $bypass_filters ? $step_quantity : apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $product );
+					$input_min  = $bypass_filters ? $min_quantity : apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $product );
+					$input_max  = $bypass_filters ? $max_quantity : apply_filters( 'woocommerce_quantity_input_max', $max_quantity, $product );
 					?>
-					<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', 1, $product ) ); ?>" min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ) ); ?>" max="<?php echo esc_attr( $stock_quantity ? $stock_quantity : '' ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
+					<input type="number" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>" class="input-text qty" step="<?php echo esc_attr( $input_step ); ?>" min="<?php echo esc_attr( $input_min ); ?>" max="<?php echo esc_attr( $input_max ); ?>" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>" inputmode="numeric">
 					<?php
 				}
 				?>
@@ -419,6 +669,7 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 		if ( ! woostify_is_woocommerce_activated() ) {
 			return;
 		}
+
 
 		do_action( 'woocommerce_before_mini_cart' );
 
@@ -683,41 +934,99 @@ if ( ! function_exists( 'woostify_mini_cart' ) ) {
 										}
 									}
 
-									if ( get_post_meta( $product_id, '_backorders', true ) != 'no' ) {
+									$_product_id = $_product->get_id();
+									$wcmmq_min   = get_post_meta( $_product_id, '_wcmmq_min_qty', true );
+									if ( $wcmmq_min === '' || $wcmmq_min === false ) {
+										$wcmmq_min = get_post_meta( $_product_id, '_wcmmq_s_min_quantity', true );
+									}
+									$wcmmq_max   = get_post_meta( $_product_id, '_wcmmq_max_qty', true );
+									if ( $wcmmq_max === '' || $wcmmq_max === false ) {
+										$wcmmq_max = get_post_meta( $_product_id, '_wcmmq_s_max_quantity', true );
+									}
+									$wcmmq_step  = get_post_meta( $_product_id, '_wcmmq_step', true );
+									if ( $wcmmq_step === '' || $wcmmq_step === false ) {
+										$wcmmq_step = get_post_meta( $_product_id, '_wcmmq_s_product_step', true );
+										if ( $wcmmq_step === '' || $wcmmq_step === false ) {
+											$wcmmq_step = get_post_meta( $_product_id, '_wcmmq_s_step_quantity', true );
+										}
+									}
 
+									if ( $_product->is_type( 'variation' ) ) {
+										$parent_variable_id = $_product->get_parent_id();
+										if ( $wcmmq_min === '' || $wcmmq_min === false ) {
+											$wcmmq_min = get_post_meta( $parent_variable_id, '_wcmmq_min_qty', true );
+											if ( $wcmmq_min === '' || $wcmmq_min === false ) {
+												$wcmmq_min = get_post_meta( $parent_variable_id, '_wcmmq_s_min_quantity', true );
+											}
+										}
+										if ( $wcmmq_max === '' || $wcmmq_max === false ) {
+											$wcmmq_max = get_post_meta( $parent_variable_id, '_wcmmq_max_qty', true );
+											if ( $wcmmq_max === '' || $wcmmq_max === false ) {
+												$wcmmq_max = get_post_meta( $parent_variable_id, '_wcmmq_s_max_quantity', true );
+											}
+										}
+										if ( $wcmmq_step === '' || $wcmmq_step === false ) {
+											$wcmmq_step = get_post_meta( $parent_variable_id, '_wcmmq_step', true );
+											if ( $wcmmq_step === '' || $wcmmq_step === false ) {
+												$wcmmq_step = get_post_meta( $parent_variable_id, '_wcmmq_s_product_step', true );
+												if ( $wcmmq_step === '' || $wcmmq_step === false ) {
+													$wcmmq_step = get_post_meta( $parent_variable_id, '_wcmmq_s_step_quantity', true );
+												}
+											}
+										}
+									}
+
+									$is_wcmmq_active = ( $wcmmq_step !== '' && $wcmmq_step !== false && intval( $wcmmq_step ) > 0 ) || ( $wcmmq_min !== '' && $wcmmq_min !== false && intval( $wcmmq_min ) > 0 ) || ( $wcmmq_max !== '' && $wcmmq_max !== false && intval( $wcmmq_max ) > 0 );
+
+									if ( $is_wcmmq_active ) {
+										if ( $wcmmq_step !== '' && $wcmmq_step !== false && intval( $wcmmq_step ) > 0 ) {
+											$step_quantity = intval( $wcmmq_step );
+										}
+										if ( $wcmmq_min !== '' && $wcmmq_min !== false && intval( $wcmmq_min ) >= 0 ) {
+											if ( $_product->managing_stock() && ! $_product->backorders_allowed() && absint( $wcmmq_min ) > $stock_quantity ) {
+												$min_quantity = $stock_quantity;
+											} else {
+												$min_quantity = intval( $wcmmq_min );
+											}
+										}
+										if ( $wcmmq_max !== '' && $wcmmq_max !== false && intval( $wcmmq_max ) > 0 ) {
+											if ( $_product->managing_stock() && $_product->backorders_allowed() ) {
+												$max_quantity = intval( $wcmmq_max );
+											} elseif ( $_product->managing_stock() && absint( $wcmmq_max ) > $stock_quantity ) {
+												$max_quantity = $stock_quantity;
+											} else {
+												$max_quantity = intval( $wcmmq_max );
+											}
+										}
+									}
+
+									$is_min_max_active = class_exists( 'WC_Min_Max_Quantities' );
+									$is_tpt_active     = function_exists( 'tpt_initFreemius' );
+									$bypass_filters    = $is_min_max_active || $is_tpt_active || $is_wcmmq_active;
+
+									if ( get_post_meta( $product_id, '_backorders', true ) != 'no' ) {
+										$input_step = $bypass_filters ? $step_quantity : apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product );
+										$input_min  = $bypass_filters ? $min_quantity : apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product );
 										?>
 										<input type="number"
 											data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>"
 											class="input-text qty"
-											step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>"
-											min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>"
+											step="<?php echo esc_attr( $input_step ); ?>"
+											min="<?php echo esc_attr( $input_min ); ?>"
 											max="" value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
 											inputmode="numeric"
 											<?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
 										>
 										<?php
 									}else{
-										if( class_exists( 'WC_Min_Max_Quantities' )  ){
+										if ( $bypass_filters ) {
 											?>
 											<input type="number"
 												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>"
 												class="input-text qty"
-												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>"
-												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>"
-												max="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_max', $max_quantity, $_product ) ); ?>"
-												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
-												inputmode="numeric"
-												<?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
-											>
-											<?php
-										}elseif( function_exists( 'tpt_initFreemius' ) ){
-											?>
-											<input type="number"
-												data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>"
-												class="input-text qty"
-												step="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_step', $step_quantity, $_product ) ); ?>"
-												min="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_min', $min_quantity, $_product ) ); ?>"
-												max="<?php echo esc_attr( apply_filters( 'woocommerce_quantity_input_max', $max_quantity, $_product ) ); ?>"
+												step="<?php echo esc_attr( $step_quantity ); ?>"
+												min="<?php echo esc_attr( $min_quantity ); ?>"
+												max="<?php echo esc_attr( $max_quantity ); ?>"
 												value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
 												inputmode="numeric"
 												<?php echo esc_attr( $_product->is_sold_individually() ? 'disabled' : '' ); ?>
