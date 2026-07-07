@@ -11,7 +11,7 @@ function initPhotoSwipe(gallerySelector) {
 
 	// Helper function to extract YouTube video ID
 	var getYoutubeId = function (url) {
-		var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+		var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
 		var match = url.match(regExp);
 		if (match && match[2].length == 11) {
 			return match[2];

@@ -25,6 +25,21 @@
             ele.style.minWidth = (100 / slideshowElItemLength) + '%';
         });
 
+        // Duplicate items to ensure Flickity has at least 3 cells for wrapAround to work
+        if ( slideshowElItemLength > 0 ) {
+            let duplicateTimes = 1;
+            if ( slideshowElItemLength === 1 ) {
+                duplicateTimes = 3;
+            }
+
+            for ( let i = 0; i < duplicateTimes; i++ ) {
+                slideshowElItem.forEach(ele => {
+                    var clone = ele.cloneNode(true);
+                    slideshowEl.appendChild(clone);
+                });
+            }
+        }
+
 
         let tickerSpeed = 0;
         let flickity = null;
@@ -33,15 +48,6 @@
         var autoplay = JSON.parse(slideshowEl.getAttribute('data-autoplay'));
         if (autoplay) {
             tickerSpeed = 1;
-        }
-        
-        //   Functions
-        const dupliateItem = (flickity, index) => {
-            var slider = document.querySelector('.topbar-slider .slider .flickity-slider');
-            var itemToClone = slider.children[index];
-            var clone = itemToClone.cloneNode(true);
-            slider.appendChild(clone);
-            flickity.append(clone); // Update Flickity
         }
 
         const update = () => {
@@ -88,10 +94,6 @@
             // Start Ticker
             flickity.x = 0;
 
-            for (let index = 0; index < slideshowElItemLength; index++) {
-                dupliateItem(flickity,index);
-            }
-
             // Pause on hover/focus
             slideshowEl.addEventListener('mouseenter', () => pause());
             
@@ -114,6 +116,24 @@
 
         if ( !slideshowEl ) {
             return;
+        }
+
+        var slideshowElItem = slideshowEl.querySelectorAll('.slider-item');
+        let slideshowElItemLength = slideshowElItem.length;
+
+        // Duplicate items to ensure Slick has at least 3 cells for infinite to work without bugs
+        if ( slideshowElItemLength > 0 && slideshowElItemLength < 3 ) {
+            let duplicateTimes = 1;
+            if ( slideshowElItemLength === 1 ) {
+                duplicateTimes = 2;
+            }
+
+            for ( let i = 0; i < duplicateTimes; i++ ) {
+                slideshowElItem.forEach(ele => {
+                    var clone = ele.cloneNode(true);
+                    slideshowEl.appendChild(clone);
+                });
+            }
         }
 
         var slickData = JSON.parse(slideshowEl.getAttribute('data-slick'));
