@@ -719,28 +719,72 @@ if ( ! function_exists( 'woostify_wishlist_page_url' ) ) {
 	 * Get wishlist page url
 	 */
 	function woostify_wishlist_page_url() {
-		if ( ! woostify_support_wishlist_plugin() ) {
-			return '#';
+		static $wishlist_url = null;
+
+		if ( null !== $wishlist_url ) {
+			return $wishlist_url;
 		}
 
-		$options   = woostify_options( false );
-		$shortcode = '[yith_wcwl_wishlist]';
+		if ( ! woostify_support_wishlist_plugin() ) {
+			$wishlist_url = '#';
+			return $wishlist_url;
+		}
 
-		if ( 'ti' === $options['shop_page_wishlist_support_plugin'] ) {
+		$options = woostify_options( false );
+		$plugin  = isset( $options['shop_page_wishlist_support_plugin'] ) ? $options['shop_page_wishlist_support_plugin'] : 'yith';
+
+		// 1. Try to get the wishlist URL using plugin-specific helper functions or options first.
+		if ( 'ti' === $plugin ) {
+			if ( function_exists( 'tinv_url_wishlist' ) ) {
+				$wishlist_url = tinv_url_wishlist();
+				return $wishlist_url;
+			}
+
+			$page_id = get_option( 'tinvwl_general_page_wishlist' );
+			if ( $page_id ) {
+				$wishlist_url = get_permalink( $page_id );
+				return $wishlist_url;
+			}
+		} elseif ( 'yith' === $plugin ) {
+			if ( function_exists( 'yith_wcwl_get_wishlist_url' ) ) {
+				$wishlist_url = yith_wcwl_get_wishlist_url();
+				return $wishlist_url;
+			}
+
+			$page_id = get_option( 'yith_wcwl_wishlist_page_id' );
+			if ( $page_id ) {
+				$wishlist_url = get_permalink( $page_id );
+				return $wishlist_url;
+			}
+		}
+
+		// 2. Fallback to querying the database with transient caching.
+		$transient_key = 'woostify_wishlist_page_url_' . $plugin;
+		$cached_url    = get_transient( $transient_key );
+
+		if ( false !== $cached_url ) {
+			$wishlist_url = $cached_url;
+			return $wishlist_url;
+		}
+
+		$shortcode = '[yith_wcwl_wishlist]';
+		if ( 'ti' === $plugin ) {
 			$shortcode = '[ti_wishlistsview]';
 		}
 
 		global $wpdb;
-		$id = $wpdb->get_results( 'SELECT ID FROM ' . $wpdb->prefix . 'posts WHERE post_content LIKE "%' . $shortcode . '%" AND post_parent = 0' ); // phpcs:ignore
+		$id = $wpdb->get_results( 'SELECT ID FROM ' . $wpdb->prefix . 'posts WHERE post_content LIKE "%' . $shortcode . '%" AND post_parent = 0 LIMIT 1' ); // phpcs:ignore
 
 		if ( $id ) {
-			$id  = intval( $id[0]->ID );
-			$url = get_the_permalink( $id );
-
-			return $url;
+			$id           = intval( $id[0]->ID );
+			$wishlist_url = get_permalink( $id );
+		} else {
+			$wishlist_url = '#';
 		}
 
-		return '#';
+		set_transient( $transient_key, $wishlist_url, DAY_IN_SECONDS );
+
+		return $wishlist_url;
 	}
 }
 
