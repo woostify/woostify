@@ -45,6 +45,10 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 		// Only add if not exists
 		if ( false === $current ) {
 			add_option( 'woostify_default_values', $default_setting_values );
+		} else {
+			if ( $current !== $default_setting_values ) {
+				update_option( 'woostify_default_values', $default_setting_values );
+			}
 		}
 
 		}
@@ -433,6 +437,7 @@ if ( ! class_exists( 'Woostify_Customizer' ) ) :
 				'topbar_slider_slide_to_show'            => 1,
 				'topbar_slider_button'                     => false,
 				'topbar_slider_autoplay'                   => true,
+				'topbar_slider_autoplay_speed'             => 3000,
 				'topbar_slider_items'      				   => wp_json_encode( $slider_items ),
 				'topbar_slider_text_color'                 => '#ffffff',
 				'topbar_slider_background_color'           => '#292f34',
