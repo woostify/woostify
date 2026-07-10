@@ -384,6 +384,29 @@ $wp_customize->add_control(
 	)
 );
 
+// Topbar Slider Autoplay Timeout.
+$wp_customize->add_setting(
+	'woostify_setting[topbar_slider_autoplay_speed]',
+	array(
+		'type'              => 'option',
+		'default'           => isset( $defaults['topbar_slider_autoplay_speed'] ) ? $defaults['topbar_slider_autoplay_speed'] : 3000,
+		'sanitize_callback' => 'absint',
+	)
+);
+$wp_customize->add_control(
+	new Woostify_Customize_Control(
+		$wp_customize,
+		'woostify_setting[topbar_slider_autoplay_speed]',
+		array(
+			'label'    => __( 'Autoplay Timeout (ms)', 'woostify' ),
+			'section'  => 'woostify_topbar_slider',
+			'settings' => 'woostify_setting[topbar_slider_autoplay_speed]',
+			'type'     => 'number',
+			'tab'      => 'general',
+		)
+	)
+);
+
 // Topbar slider Items.
 $wp_customize->add_setting(
 	'woostify_setting[topbar_slider_items]',
