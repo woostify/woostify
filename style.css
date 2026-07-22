@@ -2933,7 +2933,7 @@ article p:last-child {
   margin: 3.5em 0;
 }
 .woobuilder-active .site-content, .elementor-page .site-content, .edited-by-divi-builder .site-content, .elementor-template-full-width .site-content {
-  margin: 0;
+  margin: 0 auto;
 }
 .site-content-boxed-container.elementor-template-full-width .site-content{
   max-width: 100%;
