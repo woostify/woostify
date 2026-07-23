@@ -102,13 +102,18 @@ if ( ! function_exists( 'woostify_ajax_update_quantity_in_mini_cart' ) ) {
 			}
 		}
 
+		if ( WC()->customer && ! WC()->customer->get_billing_country() ) {
+			WC()->customer->set_to_base();
+		}
+
 		WC()->cart->set_quantity( $cart_item_key, $product_qty );
+		WC()->cart->calculate_totals();
 
 		$count = WC()->cart->get_cart_contents_count();
 
 		ob_start();
 		$response['item']        = $count;
-		$response['total_price'] = WC()->cart->get_cart_total();
+		$response['total_price'] = WC()->cart->get_cart_subtotal();
 		if ( ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) && $enabled_shipping_threshold ) {
 			$response['free_shipping_threshold'] = array();
 
@@ -148,11 +153,16 @@ if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold' ) ) 
 
 		$number_of_decimals = get_option( 'woocommerce_price_num_decimals', 0 );
 
+		if ( WC()->customer && ! WC()->customer->get_billing_country() ) {
+			WC()->customer->set_to_base();
+			WC()->cart->calculate_totals();
+		}
+
 		$count = WC()->cart->get_cart_contents_count();
 
 		ob_start();
 		$response['item']        = $count;
-		$response['total_price'] = WC()->cart->get_cart_total();
+		$response['total_price'] = WC()->cart->get_cart_subtotal();
 		$response['free_shipping_threshold']['active'] = false;
 		if ( ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) && $enabled_shipping_threshold ) {
 			$response['free_shipping_threshold'] = array();
@@ -201,6 +211,11 @@ if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold_produ
 
 		$number_of_decimals = get_option( 'woocommerce_price_num_decimals', 0 );
 
+		if ( WC()->customer && ! WC()->customer->get_billing_country() ) {
+			WC()->customer->set_to_base();
+			WC()->cart->calculate_totals();
+		}
+
 		$count = WC()->cart->get_cart_contents_count();
 
 		$product = wc_get_product( $product_id );
@@ -217,7 +232,7 @@ if ( ! function_exists( 'woostify_ajax_get_curr_percent_shipping_threshold_produ
 		$response['product']['price'] = $product->get_price();
 		$response['product']['total_price'] = $product_total_price;
 		$response['item']        = $count;
-		$response['total_price'] = WC()->cart->get_cart_total();
+		$response['total_price'] = WC()->cart->get_cart_subtotal();
 		$response['free_shipping_threshold']['active'] = false;
 		if ( ( 'fst' === $top_content || 'fst' === $before_checkout_content || 'fst' === $after_checkout_content ) && $enabled_shipping_threshold ) {
 			$response['free_shipping_threshold'] = array();
@@ -2787,3 +2802,68 @@ if ( ! function_exists( 'woostify_cross_sell_display_columns' ) ) {
 		return $columns;
 	}
 }
+
+if ( ! function_exists( 'woostify_fix_cart_subtotal' ) ) {
+	/**
+	 * Fix cart subtotal to match tax display settings in cart
+	 *
+	 * @param string $cart_subtotal             Subtotal.
+	 * @param bool   $display_prices_including_tax Tax inclusion display status.
+	 * @param object $cart                      Cart object.
+	 */
+	function woostify_fix_cart_subtotal( $cart_subtotal, $display_prices_including_tax = null, $cart = null ) {
+		if ( ! $cart ) {
+			$cart = WC()->cart;
+		}
+		if ( ! $cart ) {
+			return $cart_subtotal;
+		}
+
+		$subtotal = 0;
+		foreach ( $cart->get_cart() as $item ) {
+			if ( $cart->display_prices_including_tax() ) {
+				$price = wc_get_price_including_tax( $item['data'] );
+			} else {
+				$price = wc_get_price_excluding_tax( $item['data'] );
+			}
+			$subtotal += $price * $item['quantity'];
+		}
+
+		return wc_price( $subtotal );
+	}
+}
+add_filter( 'woocommerce_cart_subtotal', 'woostify_fix_cart_subtotal', 10, 3 );
+
+if ( ! function_exists( 'woostify_default_customer_location' ) ) {
+	/**
+	 * Force default customer location to shop base address to ensure consistent tax calculation
+	 *
+	 * @param string $location Location.
+	 */
+	function woostify_default_customer_location( $location ) {
+		return 'base';
+	}
+}
+add_filter( 'woocommerce_customer_default_location', 'woostify_default_customer_location' );
+
+if ( ! function_exists( 'woostify_force_tax_location' ) ) {
+	/**
+	 * Force default tax location to shop base address when customer address is empty
+	 *
+	 * @param array  $location Location array.
+	 * @param string $source   Source.
+	 */
+	function woostify_force_tax_location( $location, $source = '' ) {
+		if ( empty( $location[0] ) ) {
+			$base_location = wc_get_base_location();
+			$location      = array(
+				$base_location['country'],
+				$base_location['state'],
+				'',
+				'',
+			);
+		}
+		return $location;
+	}
+}
+add_filter( 'woocommerce_get_tax_location', 'woostify_force_tax_location', 10, 2 );
