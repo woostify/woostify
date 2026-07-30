@@ -1512,7 +1512,7 @@ if ( ! function_exists( 'woostify_post_meta_author' ) ) {
 	function woostify_post_meta_author( $echo = true ) {
 		$author = '<span class="post-meta-item vcard author">';
 		if ( ! get_the_author() ) {
-			$author .= esc_html_e( 'by Unknown author', 'woostify' );
+			$author .= esc_html__( 'by Unknown author', 'woostify' );
 		} else {
 			$author .= '<span class="label">' . esc_html__( 'by', 'woostify' ) . '</span>';
 			$author .= sprintf(
@@ -1746,6 +1746,7 @@ if ( ! function_exists( 'woostify_topbar_slider' ) ) {
 		$slide_to_show = $options['topbar_slider_slide_to_show'];
 		$button = $options['topbar_slider_button'];
 		$autoplay = $options['topbar_slider_autoplay'];
+		$autoplay_speed = isset( $options['topbar_slider_autoplay_speed'] ) ? $options['topbar_slider_autoplay_speed'] : 3000;
 		$topbar_slider_items = json_decode($options['topbar_slider_items']);
 
 		if( empty( $topbar_slider_items ) ){
@@ -1779,7 +1780,7 @@ if ( ! function_exists( 'woostify_topbar_slider' ) ) {
 
 			if( $autoplay ){
 				$setting['autoplay'] = true;
-				$setting['autoplaySpeed'] = 2000;
+				$setting['autoplaySpeed'] = $autoplay_speed;
 			}
 
 			if ( is_rtl() ) {

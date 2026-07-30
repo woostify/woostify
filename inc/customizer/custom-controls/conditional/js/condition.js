@@ -296,6 +296,7 @@
 						'woostify_setting[topbar_slider_slide_to_show]',
 						'woostify_setting[topbar_slider_button]',
 						'woostify_setting[topbar_slider_autoplay]',
+						'woostify_setting[topbar_slider_autoplay_speed]',
 						'woostify_setting[topbar_slider_items]',
 						'woostify_setting[topbar_slider_text_color]',
 						'woostify_setting[topbar_slider_background_color]',
@@ -303,6 +304,19 @@
 						'woostify_setting[topbar_slider_button_color]',
 					],
 					false,
+				)
+
+				subCondition(
+					'woostify_setting[topbar_slider_autoplay]',
+					[
+						'woostify_setting[topbar_slider_autoplay_speed]',
+					],
+					false,
+					false,
+					[
+						'woostify_setting[topbar_slider_display]',
+						true,
+					],
 				)
 
 				wp.customize(
