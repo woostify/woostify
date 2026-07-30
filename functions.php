@@ -6,10 +6,10 @@
  */
 
 // Define constants.
-define( 'WOOSTIFY_VERSION', '2.5.3' );
-define( 'WOOSTIFY_PRO_MIN_VERSION', '1.7.2' );
-define( 'WOOSTIFY_THEME_DIR', get_template_directory() . '/' );
-define( 'WOOSTIFY_THEME_URI', get_template_directory_uri() . '/' );
+define('WOOSTIFY_VERSION', '2.5.4');
+define('WOOSTIFY_PRO_MIN_VERSION', '1.7.2');
+define('WOOSTIFY_THEME_DIR', get_template_directory() . '/');
+define('WOOSTIFY_THEME_URI', get_template_directory_uri() . '/');
 
 // Woostify svgs icon.
 require_once WOOSTIFY_THEME_DIR . 'inc/class-woostify-icon.php';
@@ -30,7 +30,7 @@ require_once WOOSTIFY_THEME_DIR . 'inc/class-woostify.php';
 require_once WOOSTIFY_THEME_DIR . 'inc/customizer/class-woostify-customizer.php';
 
 // Woostify woocommerce.
-if ( woostify_is_woocommerce_activated() ) {
+if (woostify_is_woocommerce_activated()) {
 	require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-woocommerce.php';
 	require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/class-woostify-adjacent-products.php';
 	require_once WOOSTIFY_THEME_DIR . 'inc/woocommerce/woostify-woocommerce-template-functions.php';
