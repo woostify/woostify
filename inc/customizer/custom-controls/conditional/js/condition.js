@@ -798,6 +798,31 @@
 					true,
 				)
 
+				// Mini cart cross sell / upsell.
+				condition(
+					'woostify_setting[mini_cart_cross_sell_upsell_enable]',
+					[
+						'woostify_setting[mini_cart_cross_sell_upsell_title]',
+						'woostify_setting[mini_cart_cross_sell_upsell_mobile_enable]',
+						'woostify_setting[mini_cart_cross_sell_upsell_type]',
+						'woostify_setting[mini_cart_cross_sell_upsell_location]',
+						'woostify_setting[mini_cart_cross_sell_upsell_mobile_location]',
+						'woostify_setting[mini_cart_cross_sell_upsell_number_of_products]',
+					],
+				)
+				subCondition(
+					'woostify_setting[mini_cart_cross_sell_upsell_mobile_enable]',
+					[
+						'woostify_setting[mini_cart_cross_sell_upsell_mobile_location]',
+					],
+					false,
+					false,
+					[
+						'woostify_setting[mini_cart_cross_sell_upsell_enable]',
+						true,
+					],
+				)
+
 				// And trigger if parent control update.
 				/* hideTabLayout( 'woostify_setting[header_show_categories_menu_on_mobile]', 'woostify_setting[mobile_menu_context_tabs]' ) */
 				hideTabLayout( 'woostify_setting[sticky_footer_bar_enable]', 'woostify_setting[sticky_footer_bar_context_tabs]' )
