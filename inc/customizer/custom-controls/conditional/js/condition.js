@@ -833,6 +833,26 @@
 				hideTabLayout( 'woostify_setting[footer_display]', 'woostify_setting[footer_context_tabs]' )
 				hideTabLayout( 'woostify_setting[header_transparent]', 'woostify_setting[header_transparent_context_tabs]' )
 				hideTabLayout( 'woostify_setting[shipping_threshold_enabled]', 'woostify_setting[shipping_threshold_context_tabs]' )
+
+				// Auto-open mini cart when mini cart section is expanded
+				if ( api.section( 'woostify_mini_cart' ) ) {
+					api.section( 'woostify_mini_cart', function( section ) {
+						section.expanded.bind( function( isExpanded ) {
+							if ( isExpanded ) {
+								api.previewer.send( 'woostify-section-active', 'woostify_mini_cart' );
+							} else {
+								api.previewer.send( 'woostify-section-inactive', 'woostify_mini_cart' );
+							}
+						} );
+					} );
+				}
+
+				// Send message on preview-ready if section is already expanded
+				api.previewer.bind( 'ready', function() {
+					if ( api.section( 'woostify_mini_cart' ) && api.section( 'woostify_mini_cart' ).expanded() ) {
+						api.previewer.send( 'woostify-section-active', 'woostify_mini_cart' );
+					}
+				} );
 			},
 		)
 

@@ -20,6 +20,13 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 		public static $instance;
 
 		/**
+		 * Flag to trigger fragment refresh in wp_head
+		 *
+		 * @var bool
+		 */
+		private $needs_fragment_refresh = false;
+
+		/**
 		 * Initiator
 		 */
 		public static function get_instance() {
@@ -38,6 +45,12 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			add_action( 'after_setup_theme', array( $this, 'woostify_woocommerce_setup' ) );
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 			add_action( 'wp_enqueue_scripts', array( $this, 'woocommerce_scripts' ), 200 );
+
+			// Clear WooCommerce fragments cache when theme options change
+			add_action( 'customize_save_after', array( $this, 'woostify_clear_fragments_on_settings_save' ) );
+			add_action( 'update_option_woostify_setting', array( $this, 'woostify_clear_fragments_on_settings_save' ) );
+			add_action( 'template_redirect', array( $this, 'woostify_check_fragments_cookie' ) );
+			add_action( 'wp_head', array( $this, 'woostify_clear_fragments_in_browser' ), 1 );
 			add_filter( 'body_class', array( $this, 'woocommerce_body_class' ) );
 
 			// GENERAL.
@@ -1248,6 +1261,48 @@ if ( ! class_exists( 'Woostify_WooCommerce' ) ) {
 			// Sanitize user input.
 			$video = empty( $_POST['woostify_product_video_metabox'] ) ? '' : sanitize_text_field( wp_unslash( $_POST['woostify_product_video_metabox'] ) );
 			update_post_meta( $post_id, 'woostify_product_video_metabox', $video );
+		}
+
+		/**
+		 * Update settings timestamp option to trigger frontend fragment refresh
+		 */
+		public function woostify_clear_fragments_on_settings_save() {
+			update_option( 'woostify_settings_updated', time() );
+		}
+
+		/**
+		 * Check settings update cookie and set it on template_redirect if needed
+		 */
+		public function woostify_check_fragments_cookie() {
+			$updated = get_option( 'woostify_settings_updated', 0 );
+			if ( ! $updated ) {
+				return;
+			}
+
+			$cookie_val = isset( $_COOKIE['woostify_settings_version'] ) ? intval( $_COOKIE['woostify_settings_version'] ) : 0;
+			if ( $cookie_val !== intval( $updated ) ) {
+				setcookie( 'woostify_settings_version', $updated, time() + YEAR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
+				$this->needs_fragment_refresh = true;
+			}
+		}
+
+		/**
+		 * Output inline JavaScript in wp_head to clear sessionStorage if flag is set
+		 */
+		public function woostify_clear_fragments_in_browser() {
+			if ( $this->needs_fragment_refresh ) {
+				?>
+				<script type="text/javascript">
+					if ( typeof sessionStorage !== 'undefined' ) {
+						for ( var key in sessionStorage ) {
+							if ( key.indexOf( 'wc_fragments' ) !== -1 || key.indexOf( 'wc_cart_hash' ) !== -1 ) {
+								sessionStorage.removeItem( key );
+							}
+						}
+					}
+				</script>
+				<?php
+			}
 		}
 	}
 	Woostify_WooCommerce::get_instance();

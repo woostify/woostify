@@ -2944,6 +2944,10 @@ if ( ! function_exists( 'woostify_mini_cart_recommendations' ) ) {
 	 * Render cross-sell / upsell recommended products in Mini Cart.
 	 */
 	function woostify_mini_cart_recommendations() {
+		if ( null === WC()->cart || WC()->cart->is_empty() ) {
+			return;
+		}
+
 		$options = woostify_options( false );
 		if ( ! isset( $options['mini_cart_cross_sell_upsell_enable'] ) || ! $options['mini_cart_cross_sell_upsell_enable'] ) {
 			return;

@@ -27,7 +27,7 @@ $media: 599px;
         &:before {
         	@include animation( 0.4s circle-loading linear infinite );
             top: calc( 50% + 20px ); // 20px = spinner size
-            z-index: 3;
+            z-index: 100;
             border-width: 2px;
         }
 
@@ -75,6 +75,9 @@ $media: 599px;
     right: 0;
     bottom: 0;
     z-index: 200;
+    .quick-view-open & {
+        z-index: 198;
+    }
     width: 400px;
 	padding: 0 30px 30px;
     background: #fff;
@@ -104,7 +107,7 @@ $media: 599px;
         right: 0;
         bottom: 0;
         background: $inh;
-        z-index: 2;
+        z-index: 99;
         opacity: 0;
         visibility: hidden;
         @extend .duration;
@@ -171,8 +174,8 @@ $media: 599px;
     margin: 0;
     display: inline-block;
     text-transform: uppercase;
-    font-weight: normal;
-    font-size: 13px;
+    font-weight: bold;
+    font-size: 14px;
     white-space: nowrap;
 }
 #close-cart-sidebar-btn {
@@ -571,7 +574,6 @@ $media: 599px;
 		margin-bottom: 15px;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
-		color: #333;
 	}
 
 	.recommendations-list {
@@ -638,16 +640,25 @@ $media: 599px;
 
 	.recommendation-action {
 		flex: 0 0 auto;
+		margin-left: auto;
 
 		.button {
-			padding: 6px 12px;
-			font-size: 11px;
-			text-transform: uppercase;
+			font-size: 0 !important;
+			padding: 0 !important;
+			width: 32px !important;
+			height: 32px !important;
+			min-width: 32px !important;
 			border-radius: 4px;
-			font-weight: 600;
-			white-space: nowrap;
-	    	display: flex;
-			column-gap: 5px;
+			display: inline-flex !important;
+			align-items: center;
+			justify-content: center;
+			vertical-align: middle;
+			margin: 0 !important;
+
+			.woostify-svg-icon {
+				font-size: 14px !important;
+				margin-right: 0 !important;
+			}
 
 			&.loading {
 				position: relative;
@@ -669,6 +680,10 @@ $media: 599px;
 				}
 			}
 		}
+	}
+
+	.added_to_cart {
+		display: none !important;
 	}
 }
 
@@ -726,12 +741,12 @@ $media: 599px;
 		visibility: visible;
 		transform: translateX(0);
 		pointer-events: auto;
-		transition-delay: 1.5s;
+		transition-delay: 0.5s;
 
 		.recommendations-drawer-inner {
 			visibility: visible;
 			opacity: 1;
-			transition-delay: 1.5s;
+			transition-delay: 0.5s;
 		}
 	}
 
@@ -748,19 +763,23 @@ $media: 599px;
 
 	// Drawer Header
 	.recommendations-drawer-header {
-		display: flex;
-		align-items: center;
-		margin-bottom: 20px;
-		padding-bottom: 10px;
-		border-bottom: 1px solid #f0f0f0;
+		height: 60px;
+		margin: 0 0 20px 0;
+		padding: 0;
+		border-bottom: 1px solid #ddd;
+		box-sizing: border-box;
+
+		@media ( max-width: $media ) {
+			height: 40px;
+		}
 
 		.recommendations-title {
 			margin: 0;
-			font-size: 16px;
-			font-weight: 600;
-			color: #333;
-			text-transform: capitalize;
-			letter-spacing: 0;
+			display: inline-block;
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 14px;
+			white-space: nowrap;
 		}
 	}
 
@@ -785,7 +804,7 @@ $media: 599px;
 
 		.cart-sidebar-open &.is-active {
 			transform: translateX(0);
-			transition-delay: 1.5s;
+			transition-delay: 0.5s;
 		}
 	}
 }
@@ -810,7 +829,7 @@ $media: 599px;
 		.tns-controls {
 			button[data-controls] {
 				position: absolute;
-				top: 50%;
+				top: 60%;
 				transform: translateY(-50%);
 				background: none;
 				border: none;
@@ -884,29 +903,7 @@ $media: 599px;
 			box-sizing: border-box;
 		}
 
-		// Hide Add to Cart text and show only cart icon
-		.recommendation-action {
-			margin-left: auto;
-
-			.button {
-				font-size: 0 !important;
-				padding: 0 !important;
-				width: 32px !important;
-				height: 32px !important;
-				min-width: 32px !important;
-				border-radius: 4px;
-				display: inline-flex !important;
-				align-items: center;
-				justify-content: center;
-				vertical-align: middle;
-				margin: 0 !important;
-
-				.woostify-svg-icon {
-					font-size: 14px !important;
-					margin-right: 0 !important;
-				}
-			}
-		}
+		// Hide Add to Cart text and show only cart icon is now handled globally.
 	}
 }
 
@@ -915,5 +912,24 @@ $media: 599px;
 
 	#shop-cart-sidebar{
 		width: 50%;
+	}
+}
+
+// Ensure Quick View is perfectly centered and doesn't animate diagonally when cart sidebar is active.
+.cart-sidebar-open {
+	#woostify-quick-view-panel {
+		transform: none !important;
+	}
+}
+
+// Disable all drawer animations once the drawer has animated once during the session.
+.recommendations-has-animated {
+	.woostify-mini-cart-recommendations.recommendations-drawer {
+		@include transition( none !important );
+
+		.recommendations-drawer-inner {
+			@include transition( none !important );
+			transition-delay: 0s !important;
+		}
 	}
 }

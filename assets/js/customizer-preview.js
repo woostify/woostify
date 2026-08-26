@@ -8,6 +8,15 @@
 
 'use strict'
 
+// Clear WooCommerce fragments cache in Customizer preview to force fresh HTML rendering
+if ( typeof sessionStorage !== 'undefined' ) {
+	for ( var key in sessionStorage ) {
+		if ( key.indexOf( 'wc_fragments' ) !== -1 || key.indexOf( 'wc_cart_hash' ) !== -1 ) {
+			sessionStorage.removeItem( key );
+		}
+	}
+}
+
 // Remove class with prefix.
 jQuery.fn.removeClassPrefix = function ( prefix ) {
 	this.each(
@@ -1256,5 +1265,23 @@ document.addEventListener(
 				'color',
 			],
 		)
+
+		// Auto-open/close cart sidebar when mini-cart section is active in Customizer
+		wp.customize.previewer.bind( 'woostify-section-active', function( sectionId ) {
+			if ( 'woostify_mini_cart' === sectionId ) {
+				if ( typeof cartSidebarOpen === 'function' ) {
+					cartSidebarOpen();
+				}
+			}
+		} );
+
+		wp.customize.previewer.bind( 'woostify-section-inactive', function( sectionId ) {
+			if ( 'woostify_mini_cart' === sectionId ) {
+				document.documentElement.classList.remove( 'cart-sidebar-open' );
+				if ( typeof onTouchStart === 'function' ) {
+					onTouchStart( false );
+				}
+			}
+		} );
 	},
 )

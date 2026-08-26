@@ -1299,6 +1299,17 @@ var initMiniCartRecommendations = function() {
         return;
     }
 
+    // If cart is empty, remove any existing recommendations
+    if ( document.querySelector( '.woocommerce-mini-cart__empty-message' ) ) {
+        var existingRecs = sidebar.querySelectorAll( '.woostify-mini-cart-recommendations' );
+        if ( existingRecs.length ) {
+            existingRecs.forEach( function( el ) {
+                el.remove();
+            } );
+        }
+        return;
+    }
+
     // 1. Move recommendations drawer to direct child of shop-cart-sidebar to prevent overflow clipping
     var recDrawer = document.querySelector( '.woostify-mini-cart-recommendations.recommendations-drawer' );
     if ( recDrawer ) {
@@ -1315,10 +1326,20 @@ var initMiniCartRecommendations = function() {
         }
 
         // 3. Set initial active state based on html class
-        if ( document.documentElement.classList.contains( 'cart-sidebar-open' ) ) {
+        if ( window.woostifyMiniCartRecommendationsAnimated ) {
+            recDrawer.classList.add( 'is-active', 'has-animated' );
+            document.body.classList.add( 'recommendations-has-animated' );
+        } else if ( document.documentElement.classList.contains( 'cart-sidebar-open' ) ) {
             setTimeout( function() {
                 if ( document.documentElement.classList.contains( 'cart-sidebar-open' ) ) {
                     recDrawer.classList.add( 'is-active' );
+                    setTimeout( function() {
+                        if ( recDrawer.classList.contains( 'is-active' ) ) {
+                            recDrawer.classList.add( 'has-animated' );
+                            window.woostifyMiniCartRecommendationsAnimated = true;
+                            document.body.classList.add( 'recommendations-has-animated' );
+                        }
+                    }, 1000 );
                 }
             }, 100 );
         } else {
@@ -1350,6 +1371,10 @@ var initMiniCartRecommendations = function() {
                 ]
             } );
         } );
+    }
+
+    if ( typeof( woostifyQuickView ) === 'function' ) {
+        woostifyQuickView();
     }
 }
 
@@ -1780,17 +1805,24 @@ document.addEventListener(
                         var recDrawer = document.querySelector( '.woostify-mini-cart-recommendations.recommendations-drawer' );
                         if ( recDrawer ) {
                             if ( html.classList.contains( 'cart-sidebar-open' ) ) {
-                                setTimeout( function() {
-                                    if ( html.classList.contains( 'cart-sidebar-open' ) ) {
-                                        recDrawer.classList.add( 'is-active' );
-                                        // Mark as animated after the 1.5s delay transition is done (e.g. 2s)
-                                        setTimeout( function() {
-                                            if ( recDrawer.classList.contains( 'is-active' ) ) {
-                                                recDrawer.classList.add( 'has-animated' );
-                                            }
-                                        }, 2000 );
-                                    }
-                                }, 100 );
+                                if ( window.woostifyMiniCartRecommendationsAnimated ) {
+                                    recDrawer.classList.add( 'is-active', 'has-animated' );
+                                    document.body.classList.add( 'recommendations-has-animated' );
+                                } else {
+                                    setTimeout( function() {
+                                        if ( html.classList.contains( 'cart-sidebar-open' ) ) {
+                                            recDrawer.classList.add( 'is-active' );
+                                            // Mark as animated after the 1.5s delay transition is done (e.g. 2s)
+                                            setTimeout( function() {
+                                                if ( recDrawer.classList.contains( 'is-active' ) ) {
+                                                    recDrawer.classList.add( 'has-animated' );
+                                                    window.woostifyMiniCartRecommendationsAnimated = true;
+                                                    document.body.classList.add( 'recommendations-has-animated' );
+                                                }
+                                            }, 1000 );
+                                        }
+                                    }, 100 );
+                                }
                             } else {
                                 recDrawer.classList.remove( 'is-active' );
                             }
@@ -1801,11 +1833,15 @@ document.addEventListener(
             observer.observe( document.documentElement, { attributes: true, attributeFilter: ['class'] } );
         }
 
-        // Prevent redirection for Select Option buttons in recommendations drawer
+        // Prevent redirection for Select Option buttons in recommendations drawer and close mini cart
         window.addEventListener( 'click', function( e ) {
             var target = e.target && e.target.closest && e.target.closest( '.woostify-mini-cart-recommendations .product-quick-view-btn' );
             if ( target ) {
                 e.preventDefault();
+                document.documentElement.classList.remove( 'cart-sidebar-open' );
+                if ( typeof onTouchStart === 'function' ) {
+                    onTouchStart( false );
+                }
             }
         }, false );
 
