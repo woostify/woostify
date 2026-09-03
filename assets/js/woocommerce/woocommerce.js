@@ -1292,6 +1292,92 @@ var woostifyProductsCarousel = function( selector ) {
     );
 }
 
+// Init mini cart recommendations.
+var initMiniCartRecommendations = function() {
+    var sidebar = document.getElementById( 'shop-cart-sidebar' );
+    if ( ! sidebar ) {
+        return;
+    }
+
+    // If cart is empty, remove any existing recommendations
+    if ( document.querySelector( '.woocommerce-mini-cart__empty-message' ) ) {
+        var existingRecs = sidebar.querySelectorAll( '.woostify-mini-cart-recommendations' );
+        if ( existingRecs.length ) {
+            existingRecs.forEach( function( el ) {
+                el.remove();
+            } );
+        }
+        return;
+    }
+
+    // 1. Move recommendations drawer to direct child of shop-cart-sidebar to prevent overflow clipping
+    var recDrawer = document.querySelector( '.woostify-mini-cart-recommendations.recommendations-drawer' );
+    if ( recDrawer ) {
+        if ( recDrawer.parentNode !== sidebar ) {
+            sidebar.appendChild( recDrawer );
+        }
+
+        // 2. Check if sidebar is on the left of screen
+        var sidebarStyle = window.getComputedStyle( sidebar );
+        if ( sidebarStyle.left === '0px' || sidebarStyle.right === 'auto' ) {
+            recDrawer.classList.add( 'sidebar-at-left' );
+        } else {
+            recDrawer.classList.remove( 'sidebar-at-left' );
+        }
+
+        // 3. Set initial active state based on html class
+        if ( window.woostifyMiniCartRecommendationsAnimated ) {
+            recDrawer.classList.add( 'is-active', 'has-animated' );
+            document.body.classList.add( 'recommendations-has-animated' );
+        } else if ( document.documentElement.classList.contains( 'cart-sidebar-open' ) ) {
+            setTimeout( function() {
+                if ( document.documentElement.classList.contains( 'cart-sidebar-open' ) ) {
+                    recDrawer.classList.add( 'is-active' );
+                    setTimeout( function() {
+                        if ( recDrawer.classList.contains( 'is-active' ) ) {
+                            recDrawer.classList.add( 'has-animated' );
+                            window.woostifyMiniCartRecommendationsAnimated = true;
+                            document.body.classList.add( 'recommendations-has-animated' );
+                        }
+                    }, 1000 );
+                }
+            }, 100 );
+        } else {
+            recDrawer.classList.remove( 'is-active' );
+        }
+    }
+
+    // 5. Initialize Tiny Slider for footer and after-cart-items sliders
+    var carousels = document.querySelectorAll( '.woostify-mini-cart-recommendations:not(.recommendations-drawer) .recommendations-list' );
+    if ( carousels.length && typeof( tns ) === 'function' ) {
+        carousels.forEach( function( carousel ) {
+            if ( carousel.classList.contains( 'tns-slider' ) ) {
+                return;
+            }
+            tns( {
+                container: carousel,
+                items: 1,
+                slideBy: 'page',
+                autoplay: false,
+                loop: false,
+                rewind: true,
+                mouseDrag: true,
+                controls: true,
+                nav: true,
+                navPosition: 'bottom',
+                controlsText: [
+                    '<span class="woostify-svg-icon icon-angle-left"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17"><path d="M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z" fill="#000000" /></svg></span>',
+                    '<span class="woostify-svg-icon icon-angle-right"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17"><path d="M11.793 8.471l-7.146 7.147 0.707 0.707 7.853-7.854-7.854-7.853-0.707 0.707 7.147 7.146z" fill="#000000" /></svg></span>'
+                ]
+            } );
+        } );
+    }
+
+    if ( typeof( woostifyQuickView ) === 'function' ) {
+        woostifyQuickView();
+    }
+}
+
 // Show an element.
 var woostiftToggleShow = function (elem) {
 
@@ -1708,6 +1794,58 @@ document.addEventListener(
         productDataTabsAccordion();
 
         woostifyCartBlockUpdates();
+        initMiniCartRecommendations();
+
+        // Observe cart-sidebar-open class on html tag to trigger drawer transition
+        if ( 'MutationObserver' in window ) {
+            var observer = new MutationObserver( function( mutations ) {
+                mutations.forEach( function( mutation ) {
+                    if ( mutation.attributeName === 'class' ) {
+                        var html = document.documentElement;
+                        var recDrawer = document.querySelector( '.woostify-mini-cart-recommendations.recommendations-drawer' );
+                        if ( recDrawer ) {
+                            if ( html.classList.contains( 'cart-sidebar-open' ) ) {
+                                if ( window.woostifyMiniCartRecommendationsAnimated ) {
+                                    recDrawer.classList.add( 'is-active', 'has-animated' );
+                                    document.body.classList.add( 'recommendations-has-animated' );
+                                } else {
+                                    setTimeout( function() {
+                                        if ( html.classList.contains( 'cart-sidebar-open' ) ) {
+                                            recDrawer.classList.add( 'is-active' );
+                                            // Mark as animated after the 1.5s delay transition is done (e.g. 2s)
+                                            setTimeout( function() {
+                                                if ( recDrawer.classList.contains( 'is-active' ) ) {
+                                                    recDrawer.classList.add( 'has-animated' );
+                                                    window.woostifyMiniCartRecommendationsAnimated = true;
+                                                    document.body.classList.add( 'recommendations-has-animated' );
+                                                }
+                                            }, 1000 );
+                                        }
+                                    }, 100 );
+                                }
+                            } else {
+                                recDrawer.classList.remove( 'is-active' );
+                            }
+                        }
+                    }
+                } );
+            } );
+            observer.observe( document.documentElement, { attributes: true, attributeFilter: ['class'] } );
+        }
+
+        // Prevent redirection for Select Option buttons in recommendations drawer and close mini cart (only if Quick View is enabled)
+        window.addEventListener( 'click', function( e ) {
+            var target = e.target && e.target.closest && e.target.closest( '.woostify-mini-cart-recommendations .product-quick-view-btn' );
+            if ( target ) {
+                if ( typeof woostifyQuickView === 'function' ) {
+                    e.preventDefault();
+                    document.documentElement.classList.remove( 'cart-sidebar-open' );
+                    if ( typeof onTouchStart === 'function' ) {
+                        onTouchStart( false );
+                    }
+                }
+            }
+        }, false );
 
         window.addEventListener(
             'load',
@@ -1732,6 +1870,7 @@ document.addEventListener(
             function( e, fragments, cart_hash, $button ) {
 
                 woostifyQuantityMiniCart();
+                initMiniCartRecommendations();
 
 				setTimeout(() => {
 					shippingThresholdCurrPercent();
@@ -1783,7 +1922,7 @@ document.addEventListener(
             function() {
                 woostifyQuantityMiniCart();
                 updateHeaderCartPrice();
-				
+                initMiniCartRecommendations();
 
                 if ( woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold && woostify_woocommerce_general.shipping_threshold.enabled_shipping_threshold_effect ) {
                     var progress_bar = document.querySelectorAll( '.free-shipping-progress-bar' );

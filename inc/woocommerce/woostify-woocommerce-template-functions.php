@@ -2076,12 +2076,28 @@ if ( ! function_exists( 'woostify_modify_woocommerce_loop_add_to_cart_link' ) ) 
 	 */
 	function woostify_modify_woocommerce_loop_add_to_cart_link( $html, $product, $args ) {
 		$icon = apply_filters( 'woostify_add_to_cart_svg_icon_name', 'shopping-cart-2' );
+		$classes = isset( $args['class'] ) ? $args['class'] : 'button';
+		$url = $product->add_to_cart_url();
+		$custom_attributes = '';
+
+		global $woostify_is_mini_cart_recommendations;
+		if ( ! empty( $woostify_is_mini_cart_recommendations ) && $product->is_type( 'variable' ) ) {
+			if ( defined( 'WOOSTIFY_PRO_VERSION' ) ) {
+				$classes .= ' product-quick-view-btn quick-view-btn';
+				$url = 'javascript:void(0);';
+				$custom_attributes = 'data-pid="' . esc_attr( $product->get_id() ) . '"';
+			} else {
+				$url = $product->get_permalink();
+			}
+		}
+
 		return sprintf(
-			'<a href="%s" data-quantity="%s" class="%s" %s>%s</a>',
-			esc_url( $product->add_to_cart_url() ),
+			'<a href="%s" data-quantity="%s" class="%s" %s %s>%s</a>',
+			esc_url( $url ),
 			esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
-			esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+			esc_attr( $classes ),
 			isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+			$custom_attributes,
 			Woostify_Icon::fetch_svg_icon( $icon, false ) . esc_html( $product->add_to_cart_text() )
 		);
 	}
@@ -2867,3 +2883,193 @@ if ( ! function_exists( 'woostify_force_tax_location' ) ) {
 	}
 }
 add_filter( 'woocommerce_get_tax_location', 'woostify_force_tax_location', 10, 2 );
+
+if ( ! function_exists( 'woostify_get_mini_cart_recommendations' ) ) {
+	/**
+	 * Get cross-sell, upsell, or related product IDs for the current cart items.
+	 *
+	 * @param string $type  Recommendation type (cross-sell, upsell, related).
+	 * @param int    $limit Max number of recommendations to return.
+	 * @return array List of product IDs.
+	 */
+	function woostify_get_mini_cart_recommendations( $type, $limit ) {
+		$product_ids = array();
+		$cart = WC()->cart;
+		if ( ! $cart || $cart->is_empty() ) {
+			return array();
+		}
+
+		if ( 'cross-sell' === $type ) {
+			$product_ids = $cart->get_cross_sells();
+		} elseif ( 'upsell' === $type ) {
+			foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+				$product_id = $cart_item['product_id'];
+				$product    = wc_get_product( $product_id );
+				if ( $product ) {
+					$upsells = $product->get_upsell_ids();
+					$product_ids = array_merge( $product_ids, $upsells );
+				}
+			}
+			$product_ids = array_unique( $product_ids );
+		} elseif ( 'related' === $type ) {
+			foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+				$product_id = $cart_item['product_id'];
+				$related_limit = ( $limit > 0 ) ? $limit : 10;
+				$related = wc_get_related_products( $product_id, $related_limit );
+				$product_ids = array_merge( $product_ids, $related );
+			}
+			$product_ids = array_unique( $product_ids );
+		}
+
+		// Remove product IDs that are already in the cart
+		$cart_product_ids = array();
+		foreach ( $cart->get_cart() as $cart_item ) {
+			$cart_product_ids[] = $cart_item['product_id'];
+			if ( isset( $cart_item['variation_id'] ) && $cart_item['variation_id'] ) {
+				$cart_product_ids[] = $cart_item['variation_id'];
+			}
+		}
+		$product_ids = array_diff( $product_ids, $cart_product_ids );
+
+		if ( empty( $product_ids ) ) {
+			return array();
+		}
+
+		if ( $limit > 0 ) {
+			$product_ids = array_slice( $product_ids, 0, $limit );
+		}
+
+		return $product_ids;
+	}
+}
+
+if ( ! function_exists( 'woostify_mini_cart_recommendations' ) ) {
+	/**
+	 * Render cross-sell / upsell recommended products in Mini Cart.
+	 */
+	function woostify_mini_cart_recommendations() {
+		if ( null === WC()->cart || WC()->cart->is_empty() ) {
+			return;
+		}
+
+		$options = woostify_options( false );
+		if ( ! isset( $options['mini_cart_cross_sell_upsell_enable'] ) || ! $options['mini_cart_cross_sell_upsell_enable'] ) {
+			return;
+		}
+
+		$type             = isset( $options['mini_cart_cross_sell_upsell_type'] ) ? $options['mini_cart_cross_sell_upsell_type'] : 'related';
+		$desktop_location = isset( $options['mini_cart_cross_sell_upsell_location'] ) ? $options['mini_cart_cross_sell_upsell_location'] : 'drawer';
+		$mobile_enable    = isset( $options['mini_cart_cross_sell_upsell_mobile_enable'] ) ? $options['mini_cart_cross_sell_upsell_mobile_enable'] : true;
+		$mobile_location  = isset( $options['mini_cart_cross_sell_upsell_mobile_location'] ) ? $options['mini_cart_cross_sell_upsell_mobile_location'] : 'footer';
+		$limit            = isset( $options['mini_cart_cross_sell_upsell_number_of_products'] ) ? intval( $options['mini_cart_cross_sell_upsell_number_of_products'] ) : 5;
+
+		$current_action = current_action();
+		$current_location = '';
+
+		if ( 'woocommerce_mini_cart_contents' === $current_action ) {
+			$current_location = 'after-cart-items';
+		} elseif ( 'woocommerce_widget_shopping_cart_after_buttons' === $current_action ) {
+			$current_location = 'footer';
+		} elseif ( 'woocommerce_after_mini_cart' === $current_action ) {
+			$current_location = 'drawer';
+		}
+
+		$is_desktop_placement = ( $desktop_location === $current_location );
+		$is_mobile_placement  = ( $mobile_enable && $mobile_location === $current_location );
+
+		if ( ! $is_desktop_placement && ! $is_mobile_placement ) {
+			return;
+		}
+
+		global $woostify_is_mini_cart_recommendations;
+		$woostify_is_mini_cart_recommendations = true;
+
+		$responsive_class = '';
+		if ( $is_desktop_placement && $is_mobile_placement ) {
+			$responsive_class = '';
+		} elseif ( $is_desktop_placement ) {
+			$responsive_class = ' woostify-recommendations-desktop-only';
+		} elseif ( $is_mobile_placement ) {
+			$responsive_class = ' woostify-recommendations-mobile-only';
+		}
+
+		$product_ids = woostify_get_mini_cart_recommendations( $type, $limit );
+		if ( empty( $product_ids ) ) {
+			return;
+		}
+
+		$title = isset( $options['mini_cart_cross_sell_upsell_title'] ) ? $options['mini_cart_cross_sell_upsell_title'] : '';
+		if ( empty( $title ) ) {
+			if ( 'cross-sell' === $type ) {
+				$title = __( 'You may be interested in...', 'woostify' );
+			} elseif ( 'upsell' === $type ) {
+				$title = __( 'You may also like...', 'woostify' );
+			} else {
+				$title = __( 'Related Products', 'woostify' );
+			}
+		}
+
+		$wrapper_class = 'woostify-mini-cart-recommendations recommendations-' . $current_location . $responsive_class;
+		if ( 'after-cart-items' === $current_location ) {
+			echo '<li class="' . esc_attr( $wrapper_class ) . '">';
+		} else {
+			echo '<div class="' . esc_attr( $wrapper_class ) . '">';
+		}
+
+		if ( 'drawer' === $current_location ) {
+			echo '<div class="recommendations-drawer-inner">';
+			echo '<div class="recommendations-drawer-header">';
+			echo '<h5 class="recommendations-title">' . esc_html( $title ) . '</h5>';
+			echo '</div>';
+		} else {
+			echo '<h5 class="recommendations-title">' . esc_html( $title ) . '</h5>';
+		}
+
+		echo '<ul class="recommendations-list">';
+
+		foreach ( $product_ids as $product_id ) {
+			$product = wc_get_product( $product_id );
+			if ( ! $product || ! $product->is_visible() ) {
+				continue;
+			}
+
+			$image = $product->get_image( array( 60, 60 ) );
+			$permalink = $product->get_permalink();
+			$name = $product->get_name();
+			$price = $product->get_price_html();
+
+			global $product;
+			$original_product = $product;
+			$product = wc_get_product( $product_id );
+
+			echo '<li class="recommendation-item">';
+			echo '<div class="recommendation-item-inner product-loop-wrapper">';
+			echo '<div class="recommendation-thumb"><a href="' . esc_url( $permalink ) . '">' . $image . '</a></div>';
+			echo '<div class="recommendation-info">';
+			echo '<a class="recommendation-name" href="' . esc_url( $permalink ) . '">' . esc_html( $name ) . '</a>';
+			echo '<span class="recommendation-price price">' . wp_kses_post( $price ) . '</span>';
+			echo '</div>';
+			echo '<div class="recommendation-action">';
+			woocommerce_template_loop_add_to_cart();
+			echo '</div>';
+			echo '</div>';
+			echo '</li>';
+
+			$product = $original_product;
+		}
+
+		echo '</ul>';
+
+		if ( 'drawer' === $current_location ) {
+			echo '</div>'; // close recommendations-drawer-inner
+		}
+
+		if ( 'after-cart-items' === $current_location ) {
+			echo '</li>';
+		} else {
+			echo '</div>';
+		}
+
+		$woostify_is_mini_cart_recommendations = false;
+	}
+}

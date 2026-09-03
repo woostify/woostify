@@ -798,6 +798,31 @@
 					true,
 				)
 
+				// Mini cart cross sell / upsell.
+				condition(
+					'woostify_setting[mini_cart_cross_sell_upsell_enable]',
+					[
+						'woostify_setting[mini_cart_cross_sell_upsell_title]',
+						'woostify_setting[mini_cart_cross_sell_upsell_mobile_enable]',
+						'woostify_setting[mini_cart_cross_sell_upsell_type]',
+						'woostify_setting[mini_cart_cross_sell_upsell_location]',
+						'woostify_setting[mini_cart_cross_sell_upsell_mobile_location]',
+						'woostify_setting[mini_cart_cross_sell_upsell_number_of_products]',
+					],
+				)
+				subCondition(
+					'woostify_setting[mini_cart_cross_sell_upsell_mobile_enable]',
+					[
+						'woostify_setting[mini_cart_cross_sell_upsell_mobile_location]',
+					],
+					false,
+					false,
+					[
+						'woostify_setting[mini_cart_cross_sell_upsell_enable]',
+						true,
+					],
+				)
+
 				// And trigger if parent control update.
 				/* hideTabLayout( 'woostify_setting[header_show_categories_menu_on_mobile]', 'woostify_setting[mobile_menu_context_tabs]' ) */
 				hideTabLayout( 'woostify_setting[sticky_footer_bar_enable]', 'woostify_setting[sticky_footer_bar_context_tabs]' )
@@ -808,6 +833,26 @@
 				hideTabLayout( 'woostify_setting[footer_display]', 'woostify_setting[footer_context_tabs]' )
 				hideTabLayout( 'woostify_setting[header_transparent]', 'woostify_setting[header_transparent_context_tabs]' )
 				hideTabLayout( 'woostify_setting[shipping_threshold_enabled]', 'woostify_setting[shipping_threshold_context_tabs]' )
+
+				// Auto-open mini cart when mini cart section is expanded
+				if ( api.section( 'woostify_mini_cart' ) ) {
+					api.section( 'woostify_mini_cart', function( section ) {
+						section.expanded.bind( function( isExpanded ) {
+							if ( isExpanded ) {
+								api.previewer.send( 'woostify-section-active', 'woostify_mini_cart' );
+							} else {
+								api.previewer.send( 'woostify-section-inactive', 'woostify_mini_cart' );
+							}
+						} );
+					} );
+				}
+
+				// Send message on preview-ready if section is already expanded
+				api.previewer.bind( 'ready', function() {
+					if ( api.section( 'woostify_mini_cart' ) && api.section( 'woostify_mini_cart' ).expanded() ) {
+						api.previewer.send( 'woostify-section-active', 'woostify_mini_cart' );
+					}
+				} );
 			},
 		)
 
