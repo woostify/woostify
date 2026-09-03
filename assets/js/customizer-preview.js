@@ -217,7 +217,6 @@ function woostify_unit_live_update( id, selector, property, unit, fullId ) {
 		) ? unit : 'px',
 		setting = fullId ? id : 'woostify_setting[' + id + ']'
 
-	// Wordpress customize.
 	wp.customize(
 		setting,
 		function ( value ) {
