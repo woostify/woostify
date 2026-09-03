@@ -6,6 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-08-26 02:49+0000\n"
 "POT-Creation-Date: 2026-07-30 04:33+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
@@ -234,6 +235,7 @@ msgctxt "label"
 msgid "Search for:"
 msgstr ""
 
+#: inc/woostify-functions.php:950, inc/woostify-functions.php:942, inc/woocommerce/woostify-woocommerce-template-functions.php:2148, inc/woocommerce/woostify-woocommerce-template-functions.php:2148
 #: inc/woostify-functions.php:950, inc/woostify-functions.php:942, inc/woocommerce/woostify-woocommerce-template-functions.php:2132, inc/woocommerce/woostify-woocommerce-template-functions.php:2132
 msgctxt "submit button"
 msgid "Search"
@@ -880,11 +882,11 @@ msgstr ""
 msgid "Transparent Header"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:249, inc/admin/class-woostify-meta-boxes.php:272, inc/woocommerce/class-woostify-woocommerce.php:472, inc/woocommerce/class-woostify-woocommerce.php:498
+#: inc/admin/class-woostify-meta-boxes.php:249, inc/admin/class-woostify-meta-boxes.php:272, inc/woocommerce/class-woostify-woocommerce.php:518, inc/woocommerce/class-woostify-woocommerce.php:544
 msgid "Enabled"
 msgstr ""
 
-#: inc/admin/class-woostify-meta-boxes.php:253, inc/admin/class-woostify-meta-boxes.php:276, inc/woocommerce/class-woostify-woocommerce.php:473, inc/woocommerce/class-woostify-woocommerce.php:499
+#: inc/admin/class-woostify-meta-boxes.php:253, inc/admin/class-woostify-meta-boxes.php:276, inc/woocommerce/class-woostify-woocommerce.php:519, inc/woocommerce/class-woostify-woocommerce.php:545
 msgid "Disabled"
 msgstr ""
 
@@ -1020,6 +1022,19 @@ msgstr ""
 msgid "Recently Viewed Products"
 msgstr ""
 
+#: inc/customizer/class-woostify-customizer.php:736
+msgid "Opps! The page you are looking for is missing for some reasons. Please come back to homepage"
+msgstr ""
+
+#: inc/customizer/class-woostify-customizer.php:829
+msgid "Get Woostify  Pro Extensions!"
+msgstr ""
+
+#: inc/customizer/class-woostify-customizer.php:846, inc/customizer/class-woostify-customizer.php:862, inc/customizer/class-woostify-customizer.php:878, inc/customizer/class-woostify-customizer.php:894, inc/customizer/class-woostify-customizer.php:910
+msgid "Learn More"
+msgstr ""
+
+#: inc/customizer/class-woostify-customizer.php:847, inc/customizer/class-woostify-customizer.php:863, inc/customizer/class-woostify-customizer.php:879, inc/customizer/class-woostify-customizer.php:895, inc/customizer/class-woostify-customizer.php:911
 #: inc/customizer/class-woostify-customizer.php:729
 msgid "Opps! The page you are looking for is missing for some reasons. Please come back to homepage"
 msgstr ""
@@ -1060,7 +1075,7 @@ msgstr ""
 msgid "Blog Single"
 msgstr ""
 
-#: inc/customizer/register-sections.php:21
+#: inc/customizer/register-sections.php:21, inc/customizer/sections/shop/mini-cart.php:466, inc/customizer/sections/shop/mini-cart.php:494
 msgid "Footer"
 msgstr ""
 
@@ -1132,60 +1147,63 @@ msgstr ""
 msgid "Number:"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:347
+#: inc/woocommerce/class-woostify-woocommerce.php:393
 msgid "View more"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:368
+#: inc/woocommerce/class-woostify-woocommerce.php:414
 msgid "View Previous"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:470, inc/woocommerce/class-woostify-woocommerce.php:494
+#: inc/woocommerce/class-woostify-woocommerce.php:516, inc/woocommerce/class-woostify-woocommerce.php:540
 msgid "Single ajax add to cart"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:527, inc/woocommerce/class-woostify-woocommerce.php:545
+#: inc/woocommerce/class-woostify-woocommerce.php:573, inc/woocommerce/class-woostify-woocommerce.php:591
 msgid "Enable thumbnail for page header BG"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:529, inc/woocommerce/class-woostify-woocommerce.php:548
+#: inc/woocommerce/class-woostify-woocommerce.php:575, inc/woocommerce/class-woostify-woocommerce.php:594
 msgid "Disable"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:530, inc/woocommerce/class-woostify-woocommerce.php:549, inc/customizer/sections/shop/shop-page.php:408, inc/customizer/sections/sticky-footer-bar/sticky-footer-bar.php:48
+#: inc/woocommerce/class-woostify-woocommerce.php:576, inc/woocommerce/class-woostify-woocommerce.php:595, inc/customizer/sections/shop/shop-page.php:408, inc/customizer/sections/sticky-footer-bar/sticky-footer-bar.php:48
 msgid "Enable"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:680
+#: inc/woocommerce/class-woostify-woocommerce.php:766
 msgid "Sorry, something went wrong. Please try again!"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:681
+#: inc/woocommerce/class-woostify-woocommerce.php:767
 msgid "Please enter a valid quantity for this product"
 msgstr ""
 
+#: inc/woocommerce/class-woostify-woocommerce.php:768, inc/woocommerce/woostify-woocommerce-template-functions.php:1995
 #: inc/woocommerce/class-woostify-woocommerce.php:682, inc/woocommerce/woostify-woocommerce-template-functions.php:1995
 msgid "Shipping"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:683
+#: inc/woocommerce/class-woostify-woocommerce.php:769
 msgid "Calculated at next step"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:696, inc/woocommerce/class-woostify-woocommerce.php:697, inc/woocommerce/class-woostify-woocommerce.php:698
+#: inc/woocommerce/class-woostify-woocommerce.php:782, inc/woocommerce/class-woostify-woocommerce.php:783, inc/woocommerce/class-woostify-woocommerce.php:784
 msgid "You can’t add more than %s items in cart"
 msgstr ""
 
 #. translators: %s number of product
+#: inc/woocommerce/class-woostify-woocommerce.php:889, inc/woocommerce/woostify-woocommerce-single-product-functions.php:680
+=======
 #: inc/woocommerce/class-woostify-woocommerce.php:803, inc/woocommerce/woostify-woocommerce-single-product-functions.php:680
 msgid "Hurry! only %s left in stock."
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1132
+#: inc/woocommerce/class-woostify-woocommerce.php:1218
 msgid "Product video url"
 msgstr ""
 
-#: inc/woocommerce/class-woostify-woocommerce.php:1153
+#: inc/woocommerce/class-woostify-woocommerce.php:1239
 msgid "Enter Youtube or Vimeo video url"
 msgstr ""
 
@@ -1298,6 +1316,43 @@ msgstr[1] ""
 msgid "Order Summary"
 msgstr ""
 
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:2118
+msgid "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:2126
+msgid "Dismiss"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:2146
+msgid "Search for:"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:2147
+msgid "Search products&hellip;"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:2283
+msgid "Your account was created successfully. Your login details have been sent to your email address."
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:2281
+msgid "Your account was created successfully and a password has been sent to your email address."
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:2359, inc/woocommerce/woostify-woocommerce-template-functions.php:2363
+msgid "Error:"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:2505
+msgid "Back to cart"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:2755, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:78, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:105, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:145
+msgid "Description"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:2764, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:81, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:106, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:146
 #: inc/woocommerce/woostify-woocommerce-template-functions.php:2102
 msgid "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
 msgstr ""
@@ -1335,12 +1390,26 @@ msgid "Description"
 msgstr ""
 
 #: inc/woocommerce/woostify-woocommerce-template-functions.php:2748, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:81, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:106, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:146
+>>>>>>> master
 msgid "Additional information"
 msgstr ""
 
 #. translators: %s: reviews count
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:2774
 #: inc/woocommerce/woostify-woocommerce-template-functions.php:2758
 msgid "Reviews (%d)"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:3008, inc/customizer/sections/shop/shop-single.php:634
+msgid "Related Products"
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:3006
+msgid "You may also like..."
+msgstr ""
+
+#: inc/woocommerce/woostify-woocommerce-template-functions.php:3004
+msgid "You may be interested in..."
 msgstr ""
 
 #. translators: 1: first result 2: last result 3: total results
@@ -1373,7 +1442,7 @@ msgstr ""
 msgid "Default single product image"
 msgstr ""
 
-#: inc/customizer/custom-controls/adv-list/class-woostify-adv-list-control.php:116, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:102, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:142, inc/customizer/sections/header/topbar.php:293
+#: inc/customizer/custom-controls/adv-list/class-woostify-adv-list-control.php:116, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:102, inc/customizer/custom-controls/product-data-tabs/class-woostify-product-data-tabs-control.php:142, inc/customizer/sections/header/topbar.php:293, inc/customizer/sections/shop/mini-cart.php:433
 msgid "Type"
 msgstr ""
 
@@ -1489,7 +1558,7 @@ msgstr ""
 msgid "Featured Image"
 msgstr ""
 
-#: inc/customizer/sections/blog/blog-single.php:32, inc/customizer/sections/blog/blog.php:131, inc/customizer/sections/page-header/page-header.php:90
+#: inc/customizer/sections/blog/blog-single.php:32, inc/customizer/sections/blog/blog.php:131, inc/customizer/sections/page-header/page-header.php:90, inc/customizer/sections/shop/mini-cart.php:389
 msgid "Title"
 msgstr ""
 
@@ -2069,6 +2138,62 @@ msgstr ""
 msgid "After checkout button"
 msgstr ""
 
+#: inc/customizer/sections/shop/mini-cart.php:339
+msgid "Cross-sell / Upsell"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:368
+msgid "Enable Cross-sell / Upsell"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:411
+msgid "Enable on mobile devices"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:412
+msgid "Show suggested products on mobile."
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:438
+msgid "Cross-Sells"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:439
+msgid "Up-Sells"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:440
+msgid "Related"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:460
+msgid "Location"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:465, inc/customizer/sections/shop/mini-cart.php:493
+msgid "After Cart Items"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:467
+msgid "Drawer"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:487
+msgid "Location (Mobile)"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:488
+msgid "The slider is optimized for and visible on mobile devices"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:514
+msgid "Number of Products"
+msgstr ""
+
+#: inc/customizer/sections/shop/mini-cart.php:515
+msgid "Display the number of recommended products, -1 for all displays"
+msgstr ""
+
 #: inc/customizer/sections/shop/product-catalog.php:29
 msgid "Catalog Mode"
 msgstr ""
@@ -2427,10 +2552,6 @@ msgstr ""
 
 #: inc/customizer/sections/shop/shop-single.php:615, inc/customizer/sections/sticky-footer-bar/sticky-footer-bar.php:191
 msgid "Items"
-msgstr ""
-
-#: inc/customizer/sections/shop/shop-single.php:634
-msgid "Related Products"
 msgstr ""
 
 #: inc/customizer/sections/shop/shop-single.php:684
