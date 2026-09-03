@@ -2082,9 +2082,13 @@ if ( ! function_exists( 'woostify_modify_woocommerce_loop_add_to_cart_link' ) ) 
 
 		global $woostify_is_mini_cart_recommendations;
 		if ( ! empty( $woostify_is_mini_cart_recommendations ) && $product->is_type( 'variable' ) ) {
-			$classes .= ' product-quick-view-btn quick-view-btn';
-			$url = 'javascript:void(0);';
-			$custom_attributes = 'data-pid="' . esc_attr( $product->get_id() ) . '"';
+			if ( defined( 'WOOSTIFY_PRO_VERSION' ) ) {
+				$classes .= ' product-quick-view-btn quick-view-btn';
+				$url = 'javascript:void(0);';
+				$custom_attributes = 'data-pid="' . esc_attr( $product->get_id() ) . '"';
+			} else {
+				$url = $product->get_permalink();
+			}
 		}
 
 		return sprintf(

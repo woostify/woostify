@@ -1833,14 +1833,16 @@ document.addEventListener(
             observer.observe( document.documentElement, { attributes: true, attributeFilter: ['class'] } );
         }
 
-        // Prevent redirection for Select Option buttons in recommendations drawer and close mini cart
+        // Prevent redirection for Select Option buttons in recommendations drawer and close mini cart (only if Quick View is enabled)
         window.addEventListener( 'click', function( e ) {
             var target = e.target && e.target.closest && e.target.closest( '.woostify-mini-cart-recommendations .product-quick-view-btn' );
             if ( target ) {
-                e.preventDefault();
-                document.documentElement.classList.remove( 'cart-sidebar-open' );
-                if ( typeof onTouchStart === 'function' ) {
-                    onTouchStart( false );
+                if ( typeof woostifyQuickView === 'function' ) {
+                    e.preventDefault();
+                    document.documentElement.classList.remove( 'cart-sidebar-open' );
+                    if ( typeof onTouchStart === 'function' ) {
+                        onTouchStart( false );
+                    }
                 }
             }
         }, false );
