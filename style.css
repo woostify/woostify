@@ -6048,16 +6048,10 @@ body:not(.yith-wcms-pro) .processing:not(.um-woo-status):after {
   content: "\e016";
 }
 .woocommerce-error li a {
-  display: none;
   order: 2;
   margin-left: auto;
   color: #ffffff;
   text-decoration: underline;
-}
-@media (min-width: 601px) {
-  .woocommerce-error li a {
-    display: block;
-  }
 }
 @media (max-width: 600px) {
   .woocommerce-error li {

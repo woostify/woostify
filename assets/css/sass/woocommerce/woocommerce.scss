@@ -528,15 +528,10 @@ body{
 		}
 
 		a {
-			display: none;
 			order: 2;
 			margin-left: auto;
 			color: #ffffff;
 			text-decoration: underline;
-
-			@media (min-width: 601px) {
-				display: block;
-			}
 		}
 
 		@media (max-width: 600px) {
