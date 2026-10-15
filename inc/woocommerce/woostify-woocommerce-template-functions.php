@@ -2819,49 +2819,6 @@ if ( ! function_exists( 'woostify_cross_sell_display_columns' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woostify_fix_cart_subtotal' ) ) {
-	/**
-	 * Fix cart subtotal to match tax display settings in cart
-	 *
-	 * @param string $cart_subtotal             Subtotal.
-	 * @param bool   $display_prices_including_tax Tax inclusion display status.
-	 * @param object $cart                      Cart object.
-	 */
-	function woostify_fix_cart_subtotal( $cart_subtotal, $display_prices_including_tax = null, $cart = null ) {
-		if ( ! $cart ) {
-			$cart = WC()->cart;
-		}
-		if ( ! $cart ) {
-			return $cart_subtotal;
-		}
-
-		$subtotal = 0;
-		foreach ( $cart->get_cart() as $item ) {
-			if ( $cart->display_prices_including_tax() ) {
-				$price = wc_get_price_including_tax( $item['data'] );
-			} else {
-				$price = wc_get_price_excluding_tax( $item['data'] );
-			}
-			$subtotal += $price * $item['quantity'];
-		}
-
-		return wc_price( $subtotal );
-	}
-}
-add_filter( 'woocommerce_cart_subtotal', 'woostify_fix_cart_subtotal', 10, 3 );
-
-if ( ! function_exists( 'woostify_default_customer_location' ) ) {
-	/**
-	 * Force default customer location to shop base address to ensure consistent tax calculation
-	 *
-	 * @param string $location Location.
-	 */
-	function woostify_default_customer_location( $location ) {
-		return 'base';
-	}
-}
-add_filter( 'woocommerce_customer_default_location', 'woostify_default_customer_location' );
-
 if ( ! function_exists( 'woostify_force_tax_location' ) ) {
 	/**
 	 * Force default tax location to shop base address when customer address is empty
