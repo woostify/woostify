@@ -1780,11 +1780,49 @@ function woostifyCartBlockUpdates() {
     } );
 }
 
+// Fix WooCommerce catalog ordering when sidebar or filter widgets are not present.
+function woostifySorting() {
+    var orderingForms = document.querySelectorAll( 'form.woocommerce-ordering' );
+    if ( ! orderingForms.length ) {
+        return;
+    }
+
+    orderingForms.forEach( function( orderingForm ) {
+        var orderbySelect = orderingForm.querySelector( 'select.orderby' );
+        if ( ! orderbySelect ) {
+            return;
+        }
+
+        var submitted = false;
+        var submitForm = function() {
+            if ( submitted ) {
+                return;
+            }
+            var hasFilter = document.querySelector( '.w-product-filter[data-type]' );
+            if ( ! hasFilter ) {
+                submitted = true;
+                HTMLFormElement.prototype.submit.call( orderingForm );
+            }
+        };
+
+        orderbySelect.addEventListener( 'change', submitForm );
+
+        document.body.addEventListener( 'filtered', function() {
+            submitForm();
+        } );
+
+        window.addEventListener( 'pageshow', function() {
+            submitted = false;
+        } );
+    } );
+}
+
 document.addEventListener(
     'DOMContentLoaded',
     function() {
 
         shoppingBag();
+        woostifySorting();
 		woostifyAjaxAddToCartButton();
         woostifyQuantityMiniCart();
         woostifyProductsCarousel( '.related.products ul.products' );
