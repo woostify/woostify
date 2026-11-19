@@ -7,7 +7,7 @@ Tags: custom-background, custom-logo, custom-menu, custom-logo, featured-images,
 Requires at least: 5.0
 Tested up to: 7.1.5
 Stable tag: 2.6.0
-Requires PHP: 5.6
+Requires PHP: 7.4
 
 == Description ==
 
