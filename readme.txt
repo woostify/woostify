@@ -8,6 +8,9 @@ Requires at least: 5.0
 Tested up to: 7.1.5
 Stable tag: 2.6.0
 Requires PHP: 7.4
+Tested up to: 5.2.3
+Stable tag: 2.6.1
+Requires PHP: 5.6
 
 == Description ==
 
