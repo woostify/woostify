@@ -132,7 +132,48 @@ if ( ! class_exists( 'Woostify_Fonts_Helpers' ) ) :
 				}
 			}
 
+			// Support fonts installed and activated in WordPress Font Library (Appearance > Fonts).
+			foreach ( self::woostify_get_font_library_fonts() as $font_name ) {
+				if ( ! in_array( $font_name, $fonts, true ) ) {
+					array_push( $fonts, $font_name );
+				}
+			}
+
 			return apply_filters( 'woostify_typography_default_fonts', $fonts );
+		}
+
+		/**
+		 * Get active font family names from WordPress Font Library.
+		 *
+		 * Activated fonts are stored in the user global styles (custom origin),
+		 * their @font-face rules are printed by core via wp_print_font_faces().
+		 *
+		 * @return array Font family names.
+		 */
+		public static function woostify_get_font_library_fonts() {
+			if ( ! function_exists( 'wp_get_global_settings' ) ) {
+				return array();
+			}
+
+			$font_families = wp_get_global_settings( array( 'typography', 'fontFamilies' ) );
+			if ( empty( $font_families['custom'] ) || ! is_array( $font_families['custom'] ) ) {
+				return array();
+			}
+
+			$fonts = array();
+			foreach ( $font_families['custom'] as $font_family ) {
+				if ( empty( $font_family['fontFamily'] ) ) {
+					continue;
+				}
+
+				// Get the first font name from comma-separated list, e.g "'Abril Fatface', serif".
+				$font_name = trim( current( explode( ',', $font_family['fontFamily'] ) ), " \"'" );
+				if ( '' !== $font_name && ! in_array( $font_name, $fonts, true ) ) {
+					$fonts[] = $font_name;
+				}
+			}
+
+			return $fonts;
 		}
 
 		/**
